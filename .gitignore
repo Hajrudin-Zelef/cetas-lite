@@ -1,0 +1,6 @@
+/bin/
+*.db
+*.db.lock
+*.exe
+.env
+.env.*
