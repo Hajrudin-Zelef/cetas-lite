@@ -1,6 +1,7 @@
 import { api, getToken, readSSE } from "./api.js";
 import { renderInto } from "./markdown.js";
 import { createStreamRenderer } from "./stream-render.js";
+import { applyWebToggle, persistPrefs } from "./model-select.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
@@ -10,6 +11,7 @@ export function initChat() {
   const form = document.getElementById("composer");
   const stopBtn = document.getElementById("stop-btn");
   const routeBadge = document.getElementById("route-badge");
+  const webToggle = document.getElementById("web-toggle");
 
   const emptyHTML = document.getElementById("empty-chat").outerHTML;
   let empty = document.getElementById("empty-chat");
@@ -55,6 +57,7 @@ export function initChat() {
     return {
       family: document.getElementById("family-select").value,
       mode: document.getElementById("mode-select").value,
+      web: !!(webToggle && webToggle.getAttribute("aria-pressed") === "true"),
     };
   }
 
@@ -318,7 +321,7 @@ export function initChat() {
     input.value = "";
     autoGrow();
     try {
-      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text } });
+      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web } });
       generating = true;
       stopBtn.hidden = false;
       setBusy(true);
@@ -353,6 +356,13 @@ export function initChat() {
   stopBtn.addEventListener("click", () => {
     api("/api/chat/stop", { method: "POST" }).catch(() => {});
   });
+  if (webToggle) {
+    webToggle.addEventListener("click", () => {
+      const next = webToggle.getAttribute("aria-pressed") !== "true";
+      applyWebToggle(next);
+      persistPrefs().catch(() => {});
+    });
+  }
   document.getElementById("new-chat-btn").addEventListener("click", () => {
     api("/api/chat/reset", { method: "POST" }).catch(() => {});
   });

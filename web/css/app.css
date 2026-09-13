@@ -268,6 +268,29 @@ input:focus {
   font-weight: 600;
 }
 
+.web-toggle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.web-toggle:hover,
+.web-toggle:focus-visible {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.web-toggle.active {
+  color: var(--accent);
+  background: var(--accent-light);
+  border-color: transparent;
+}
+
 .chat-log {
   flex: 1;
   overflow-y: auto;

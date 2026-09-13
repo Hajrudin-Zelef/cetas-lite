@@ -124,3 +124,34 @@ func TestAssetCacheHeader(t *testing.T) {
 		t.Fatalf("cache asset = %q", got)
 	}
 }
+
+func TestSettingsPartialMerge(t *testing.T) {
+	s := newTestServer(t, true)
+	h := s.Handler()
+	token := registerAndLogin(t, h, "sam")
+
+	rec := doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{
+		"theme": "ocean", "family": "samagent-n8", "mode": "elite",
+		"agent_default": true, "web_default": true,
+	})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("put plein status = %d (%s)", rec.Code, rec.Body.String())
+	}
+
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{"theme": "clair"})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("put partiel status = %d (%s)", rec.Code, rec.Body.String())
+	}
+
+	rec = doJSON(t, h, http.MethodGet, "/api/settings", token, nil)
+	body := decode(t, rec)
+	if body["theme"] != "clair" {
+		t.Fatalf("theme = %v", body["theme"])
+	}
+	if body["web_default"] != true || body["agent_default"] != true {
+		t.Fatalf("merge partiel perdu: %v", body)
+	}
+	if body["family"] != "samagent-n8" || body["mode"] != "elite" {
+		t.Fatalf("famille/mode perdus: %v", body)
+	}
+}

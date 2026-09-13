@@ -1,5 +1,25 @@
 import { api, getPrefs, putPrefs } from "./api.js";
 
+export function applyWebToggle(on) {
+  const el = document.getElementById("web-toggle");
+  if (!el) return;
+  el.setAttribute("aria-pressed", on ? "true" : "false");
+  el.classList.toggle("active", !!on);
+}
+
+export function persistPrefs() {
+  const body = {};
+  const theme = document.documentElement.dataset.theme;
+  if (theme) body.theme = theme;
+  const familySel = document.getElementById("family-select");
+  if (familySel && familySel.value) body.family = familySel.value;
+  const modeSel = document.getElementById("mode-select");
+  if (modeSel && modeSel.value) body.mode = modeSel.value;
+  const webToggle = document.getElementById("web-toggle");
+  if (webToggle) body.web_default = webToggle.getAttribute("aria-pressed") === "true";
+  return putPrefs(body);
+}
+
 export async function initModels() {
   const familySel = document.getElementById("family-select");
   const modeSel = document.getElementById("mode-select");
@@ -17,12 +37,7 @@ export async function initModels() {
   }
 
   function persist() {
-    putPrefs({
-      theme: document.documentElement.dataset.theme || "ocean",
-      family: familySel.value,
-      mode: modeSel.value,
-      agent_default: false,
-    }).catch(() => {});
+    persistPrefs().catch(() => {});
   }
 
   function renderModes() {
@@ -60,6 +75,7 @@ export async function initModels() {
     families = data.families || [];
     const prefs = await getPrefs().catch(() => null);
     if (prefs && prefs.theme) applyTheme(prefs.theme);
+    applyWebToggle(!!(prefs && prefs.web_default));
     const prevF = familySel.value || (prefs && prefs.family) || "";
     const prevM = modeSel.value || (prefs && prefs.mode) || "";
     familySel.innerHTML = "";

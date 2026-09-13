@@ -35,6 +35,8 @@ FAMILIES = {
 
 SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard", "agent_default": False}
 
+STATE = {"put_settings": None, "send_body": None}
+
 
 def sse(events):
     return "".join("data: " + json.dumps(e) + "\n\n" for e in events)
@@ -86,8 +88,20 @@ def route_mocks(page):
     page.route("**/api/config", lambda r: r.fulfill(json={"registration_open": False, "version": "smoke"}))
     page.route("**/api/me", lambda r: r.fulfill(json={"username": "test", "role": "user"}))
     page.route("**/api/aliases", lambda r: r.fulfill(json=FAMILIES))
-    page.route("**/api/settings", lambda r: r.fulfill(json=SETTINGS))
-    page.route("**/api/chat/send", lambda r: r.fulfill(json={"ok": True}))
+
+    def settings(route):
+        if route.request.method == "PUT":
+            STATE["put_settings"] = route.request.post_data_json
+            route.fulfill(json={"ok": True})
+        else:
+            route.fulfill(json=SETTINGS)
+
+    def send(route):
+        STATE["send_body"] = route.request.post_data_json
+        route.fulfill(json={"ok": True})
+
+    page.route("**/api/settings", settings)
+    page.route("**/api/chat/send", send)
     page.route(
         "**/api/chat/stream**",
         lambda r: r.fulfill(status=200, headers={"Content-Type": "text/event-stream", "Cache-Control": "no-cache"}, body=STREAM),
@@ -96,6 +110,8 @@ def route_mocks(page):
 
 def check(page, url, reduced):
     errors = []
+    STATE["put_settings"] = None
+    STATE["send_body"] = None
     page.on("pageerror", lambda e: errors.append(str(e)))
     page.goto(url)
     page.wait_for_selector("#app:not([hidden])", state="visible", timeout=8000)
@@ -115,6 +131,21 @@ def check(page, url, reduced):
 
     busy = page.get_attribute("#chat-log", "aria-busy")
     assert busy == "false", f"aria-busy = {busy!r}"
+
+    toggle = page.locator("#web-toggle")
+    assert toggle.count() == 1, "web toggle absent"
+    assert toggle.get_attribute("aria-pressed") == "false", "web toggle doit demarrer desactive"
+    toggle.click()
+    assert toggle.get_attribute("aria-pressed") == "true", "web toggle doit s'activer"
+    page.wait_for_timeout(100)
+    put = STATE["put_settings"] or {}
+    assert put.get("web_default") is True, f"web_default non persiste: {put!r}"
+
+    page.fill("#prompt-input", "question web")
+    page.press("#prompt-input", "Enter")
+    page.wait_for_timeout(100)
+    body = STATE["send_body"] or {}
+    assert body.get("web") is True, f"le tour doit porter web=true: {body!r}"
 
     assert not errors, f"erreurs page: {errors}"
     label = "reduced" if reduced else "normal"

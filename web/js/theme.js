@@ -1,4 +1,4 @@
-import { putPrefs } from "./api.js";
+import { persistPrefs } from "./model-select.js";
 
 export function initTheme() {
   const sel = document.getElementById("theme-select");
@@ -10,11 +10,6 @@ export function initTheme() {
     try {
       localStorage.setItem("cetas-lite-theme", value);
     } catch (e) {}
-    putPrefs({
-      theme: value,
-      family: (document.getElementById("family-select") || {}).value || "",
-      mode: (document.getElementById("mode-select") || {}).value || "",
-      agent_default: false,
-    }).catch(() => {});
+    persistPrefs().catch(() => {});
   });
 }

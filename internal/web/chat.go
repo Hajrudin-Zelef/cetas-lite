@@ -18,6 +18,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		Family  string `json:"family"`
 		Mode    string `json:"mode"`
 		Message string `json:"message"`
+		Web     bool   `json:"web"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -28,7 +29,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	c := s.engine.Conversation(claims.Username)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message})
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return

@@ -21,6 +21,7 @@ import (
 	"cetas-lite/internal/cryptovault"
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/provider"
+	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/web"
 )
@@ -88,11 +89,13 @@ func runServe() error {
 
 	client := provider.NewHTTPClient()
 	localURLs := localURLsFromEnv()
-	registry := provider.Build(loadProviderKeys(st), localURLs, client)
+	keys := loadProviderKeys(st)
+	registry := provider.Build(keys, localURLs, client)
 	discover := local.New(local.DefaultEngines(localURLs), client)
 	families := loadFamilies(st)
 	engine := chat.NewEngine(registry, families, st, discover, cfg.WorkspaceDir)
 	engine.SetAllowScript(cfg.AllowScript)
+	engine.SetSearcher(search.New(keys, client))
 
 	srv := web.New(cfg, st, authMgr, engine, version)
 	httpSrv := &http.Server{

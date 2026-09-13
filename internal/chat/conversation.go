@@ -27,6 +27,7 @@ type TurnInput struct {
 	Family string
 	Mode   string
 	Text   string
+	Web    bool
 }
 
 type Runner interface {

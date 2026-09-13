@@ -12,6 +12,8 @@ import (
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
+
+	"golang.org/x/time/rate"
 )
 
 type Engine struct {
@@ -20,10 +22,12 @@ type Engine struct {
 	st          *store.Store
 	workspace   string
 	allowScript bool
+	searcher    WebTools
 
-	mu       sync.Mutex
-	families []alias.Family
-	convs    map[string]*Conversation
+	mu         sync.Mutex
+	families   []alias.Family
+	convs      map[string]*Conversation
+	webLimiter map[string]*rate.Limiter
 }
 
 func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc *local.Discoverer, workspace string) *Engine {
@@ -49,6 +53,39 @@ func (e *Engine) SetAllowScript(v bool) {
 	e.mu.Lock()
 	e.allowScript = v
 	e.mu.Unlock()
+}
+
+func (e *Engine) SetSearcher(w WebTools) {
+	e.mu.Lock()
+	e.searcher = w
+	if w != nil && e.webLimiter == nil {
+		e.webLimiter = map[string]*rate.Limiter{}
+	}
+	e.mu.Unlock()
+}
+
+func (e *Engine) webTools() WebTools {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	return e.searcher
+}
+
+func (e *Engine) allowWeb(user string) bool {
+	e.mu.Lock()
+	if e.searcher == nil {
+		e.mu.Unlock()
+		return false
+	}
+	if e.webLimiter == nil {
+		e.webLimiter = map[string]*rate.Limiter{}
+	}
+	l, ok := e.webLimiter[user]
+	if !ok {
+		l = rate.NewLimiter(rate.Every(3*time.Second), 5)
+		e.webLimiter[user] = l
+	}
+	e.mu.Unlock()
+	return l.Allow()
 }
 
 func (e *Engine) scriptAllowed() bool {
@@ -137,6 +174,12 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	if res.agent && e.workspace != "" && in.User != "" {
 		e.runAgent(ctx, c, epoch, res, msgs, in)
 		return
+	}
+
+	if in.Web && in.User != "" {
+		if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
+			msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
+		}
 	}
 
 	var content strings.Builder
