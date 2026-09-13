@@ -4,3 +4,5 @@
 *.exe
 .env
 .env.*
+AGENTS.md
+docs/plan-cetas-lite-go.md
