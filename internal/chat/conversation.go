@@ -23,6 +23,7 @@ var (
 func newID() string { return strconv.FormatInt(time.Now().UnixNano(), 10) }
 
 type TurnInput struct {
+	User   string
 	Family string
 	Mode   string
 	Text   string

@@ -15,20 +15,21 @@ import (
 )
 
 type Engine struct {
-	reg      *provider.Registry
-	discover *local.Discoverer
-	st       *store.Store
+	reg       *provider.Registry
+	discover  *local.Discoverer
+	st        *store.Store
+	workspace string
 
 	mu       sync.Mutex
 	families []alias.Family
 	convs    map[string]*Conversation
 }
 
-func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc *local.Discoverer) *Engine {
+func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc *local.Discoverer, workspace string) *Engine {
 	if families == nil {
 		families = alias.Defaults()
 	}
-	return &Engine{reg: reg, discover: disc, st: st, families: families, convs: map[string]*Conversation{}}
+	return &Engine{reg: reg, discover: disc, st: st, workspace: workspace, families: families, convs: map[string]*Conversation{}}
 }
 
 func (e *Engine) Families() []alias.Family {
@@ -72,6 +73,7 @@ type resolution struct {
 	members  []alias.ResolvedMember
 	local    bool
 	fallback bool
+	agent    bool
 }
 
 func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
@@ -105,7 +107,7 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 	if !ok {
 		return resolution{}
 	}
-	return resolution{members: rm.Pool}
+	return resolution{members: rm.Pool, agent: rm.Agent}
 }
 
 func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInput) {
@@ -118,6 +120,11 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		return
 	}
 	msgs := c.MessagesSnapshot()
+
+	if res.agent && e.workspace != "" && in.User != "" {
+		e.runAgent(ctx, c, epoch, res, msgs, in)
+		return
+	}
 
 	var content strings.Builder
 	emitted := false

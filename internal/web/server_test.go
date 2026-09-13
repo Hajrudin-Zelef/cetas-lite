@@ -35,7 +35,7 @@ func newTestServer(t *testing.T, registrationOpen bool) *Server {
 	if err != nil {
 		t.Fatal(err)
 	}
-	engine := chat.NewEngine(provider.NewRegistry(), alias.Defaults(), st, nil)
+	engine := chat.NewEngine(provider.NewRegistry(), alias.Defaults(), st, nil, "")
 	return New(cfg, st, m, engine, "test")
 }
 

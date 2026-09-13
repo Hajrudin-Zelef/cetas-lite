@@ -102,6 +102,10 @@ func TestStreamNon200(t *testing.T) {
 	if err == nil || !strings.Contains(err.Error(), "500") {
 		t.Fatalf("erreur attendue avec le statut, got %v", err)
 	}
+	var he *HTTPError
+	if !errors.As(err, &he) || he.Status != http.StatusInternalServerError {
+		t.Fatalf("erreur typée HTTPError attendue, got %#v", err)
+	}
 }
 
 func TestStreamCutRemonteUneErreur(t *testing.T) {

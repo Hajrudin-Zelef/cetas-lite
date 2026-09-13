@@ -91,7 +91,7 @@ func runServe() error {
 	registry := provider.Build(loadProviderKeys(st), localURLs, client)
 	discover := local.New(local.DefaultEngines(localURLs), client)
 	families := loadFamilies(st)
-	engine := chat.NewEngine(registry, families, st, discover)
+	engine := chat.NewEngine(registry, families, st, discover, cfg.WorkspaceDir)
 
 	srv := web.New(cfg, st, authMgr, engine, version)
 	httpSrv := &http.Server{

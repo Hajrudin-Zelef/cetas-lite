@@ -42,7 +42,7 @@ func newEngine(t *testing.T, fp *fakeProvider, fams []alias.Family) *Engine {
 	t.Cleanup(func() { _ = st.Close() })
 	reg := provider.NewRegistry()
 	reg.Set(fp)
-	return NewEngine(reg, fams, st, nil)
+	return NewEngine(reg, fams, st, nil, t.TempDir())
 }
 
 func codeFamily(pool ...alias.Member) []alias.Family {
@@ -154,13 +154,13 @@ func TestConversationPersistence(t *testing.T) {
 	reg.Set(fp)
 	fams := codeFamily(alias.Member{Provider: "fake", Model: "ok"})
 
-	e1 := NewEngine(reg, fams, st, nil)
+	e1 := NewEngine(reg, fams, st, nil, t.TempDir())
 	c1 := runTurn(t, e1, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut"})
 	if got := logText(c1); got != "memoire" {
 		t.Fatalf("contenu = %q", got)
 	}
 
-	e2 := NewEngine(reg, fams, st, nil)
+	e2 := NewEngine(reg, fams, st, nil, t.TempDir())
 	c2 := e2.Conversation("sam")
 	if got := logText(c2); got == "" {
 		t.Fatal("conversation non rechargee depuis le store")

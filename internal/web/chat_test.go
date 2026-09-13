@@ -57,7 +57,7 @@ func newTestServerWith(t *testing.T, fp provider.Provider) *Server {
 		ID: "code", Label: "Code",
 		Modes: []alias.Mode{{ID: "standard", Agent: true, Pool: []alias.Member{{Provider: "fake", Model: "ok"}}}},
 	}}
-	engine := chat.NewEngine(reg, fams, st, nil)
+	engine := chat.NewEngine(reg, fams, st, nil, t.TempDir())
 	return New(cfg, st, m, engine, "test")
 }
 

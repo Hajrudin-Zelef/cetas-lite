@@ -121,6 +121,20 @@ type streamChunk struct {
 
 var ErrStreamCut = errors.New("flux de reponse coupe")
 
+type HTTPError struct {
+	Provider string
+	Status   int
+	Body     string
+}
+
+func (e *HTTPError) Error() string {
+	msg := e.Body
+	if msg == "" {
+		msg = http.StatusText(e.Status)
+	}
+	return fmt.Sprintf("%s a renvoye %d: %s", e.Provider, e.Status, msg)
+}
+
 func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event) bool) (Response, error) {
 	var resp Response
 	if req.Temperature == 0 {
@@ -173,7 +187,7 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 		if msg == "" {
 			msg = httpResp.Status
 		}
-		return resp, fmt.Errorf("%s a renvoye %d: %s", p.endpoint.Provider, httpResp.StatusCode, msg)
+		return resp, &HTTPError{Provider: p.endpoint.Provider, Status: httpResp.StatusCode, Body: msg}
 	}
 
 	toolCalls := map[int]*ToolCall{}
