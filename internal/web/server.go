@@ -8,25 +8,31 @@ import (
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/store"
 	webassets "cetas-lite/web"
+
+	"golang.org/x/time/rate"
 )
 
 type Server struct {
-	cfg     *config.Config
-	st      *store.Store
-	auth    *auth.Manager
-	engine  *chat.Engine
-	version string
-	handler http.Handler
+	cfg         *config.Config
+	st          *store.Store
+	auth        *auth.Manager
+	engine      *chat.Engine
+	version     string
+	authLimiter *ipLimiter
+	handler     http.Handler
 }
 
 func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *chat.Engine, version string) *Server {
-	s := &Server{cfg: cfg, st: st, auth: authMgr, engine: engine, version: version}
+	s := &Server{
+		cfg: cfg, st: st, auth: authMgr, engine: engine, version: version,
+		authLimiter: newIPLimiter(rate.Every(authLimitEvery), authLimitBurst),
+	}
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /api/health", s.handleHealth)
 	mux.HandleFunc("GET /api/config", s.handleConfig)
-	mux.HandleFunc("POST /api/auth/register", s.handleRegister)
-	mux.HandleFunc("POST /api/auth/login", s.handleLogin)
+	mux.HandleFunc("POST /api/auth/register", s.withAuthRateLimit(s.handleRegister))
+	mux.HandleFunc("POST /api/auth/login", s.withAuthRateLimit(s.handleLogin))
 	mux.HandleFunc("GET /api/me", s.requireAuth(s.handleMe))
 	mux.HandleFunc("GET /api/settings", s.requireAuth(s.handleSettingsGet))
 	mux.HandleFunc("PUT /api/settings", s.requireAuth(s.handleSettingsPut))

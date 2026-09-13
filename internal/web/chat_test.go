@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -225,5 +227,200 @@ func TestChatBusyConflict(t *testing.T) {
 			break
 		}
 		time.Sleep(10 * time.Millisecond)
+	}
+}
+
+type sseStream struct{ ch chan string }
+
+func newSSEStream(body io.Reader) *sseStream {
+	ch := make(chan string, 256)
+	go func() {
+		sc := bufio.NewScanner(body)
+		sc.Buffer(make([]byte, 0, 64*1024), 1<<20)
+		for sc.Scan() {
+			ch <- sc.Text()
+		}
+		close(ch)
+	}()
+	return &sseStream{ch: ch}
+}
+
+func (s *sseStream) readUntil(stop func(string) bool, timeout time.Duration) []string {
+	var out []string
+	timer := time.After(timeout)
+	for {
+		select {
+		case line, ok := <-s.ch:
+			if !ok {
+				return out
+			}
+			out = append(out, line)
+			if stop != nil && stop(line) {
+				return out
+			}
+		case <-timer:
+			return out
+		}
+	}
+}
+
+func containsLine(lines []string, sub string) bool {
+	for _, l := range lines {
+		if strings.Contains(l, sub) {
+			return true
+		}
+	}
+	return false
+}
+
+func lineSeq(line string) int { return lineField(line, "seq") }
+
+func lineField(line, key string) int {
+	const p = "data: "
+	if !strings.HasPrefix(line, p) {
+		return 0
+	}
+	var m map[string]any
+	if json.Unmarshal([]byte(line[len(p):]), &m) != nil {
+		return 0
+	}
+	if v, ok := m[key].(float64); ok {
+		return int(v)
+	}
+	return 0
+}
+
+func sendAndWait(t *testing.T, base, tok, msg string) {
+	t.Helper()
+	body, _ := json.Marshal(map[string]string{"family": "code", "mode": "standard", "message": msg})
+	req, _ := http.NewRequest(http.MethodPost, base+"/api/chat/send", bytes.NewReader(body))
+	req.Header.Set("Authorization", "Bearer "+tok)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	resp.Body.Close()
+	deadline := time.Now().Add(3 * time.Second)
+	for time.Now().Before(deadline) {
+		stReq, _ := http.NewRequest(http.MethodGet, base+"/api/chat/state", nil)
+		stReq.Header.Set("Authorization", "Bearer "+tok)
+		stResp, err := http.DefaultClient.Do(stReq)
+		if err != nil {
+			t.Fatal(err)
+		}
+		var st map[string]any
+		_ = json.NewDecoder(stResp.Body).Decode(&st)
+		stResp.Body.Close()
+		if st["generating"] == false {
+			return
+		}
+		time.Sleep(10 * time.Millisecond)
+	}
+	t.Fatal("tour non termine")
+}
+
+func streamRequest(t *testing.T, base, tok string, from int) *http.Response {
+	t.Helper()
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("%s/api/chat/stream?from=%d", base, from), nil)
+	req.Header.Set("Authorization", "Bearer "+tok)
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return resp
+}
+
+func TestChatReplayCoalescesFromZero(t *testing.T) {
+	s := newTestServerWith(t, &fakeProvider{content: "bonjour"})
+	ts := httptest.NewServer(s.Handler())
+	defer ts.Close()
+	tok := tokenFor(t, ts.URL)
+	sendAndWait(t, ts.URL, tok, "salut")
+
+	resp := streamRequest(t, ts.URL, tok, 0)
+	defer resp.Body.Close()
+	lines := newSSEStream(resp.Body).readUntil(func(l string) bool { return strings.Contains(l, "caught_up") }, 3*time.Second)
+	if !containsLine(lines, "caught_up") {
+		t.Fatal("caught_up manquant")
+	}
+	var contents []string
+	for _, l := range lines {
+		if strings.Contains(l, `"content"`) {
+			contents = append(contents, l)
+		}
+	}
+	if len(contents) != 1 || !strings.Contains(contents[0], "bonjour") {
+		t.Fatalf("coalescence = %v", contents)
+	}
+
+	seq0 := lineField(contents[0], "seq0")
+	if seq0 == 0 {
+		t.Fatal("seq0 introuvable")
+	}
+	resp2 := streamRequest(t, ts.URL, tok, seq0)
+	defer resp2.Body.Close()
+	lines2 := newSSEStream(resp2.Body).readUntil(func(l string) bool { return strings.Contains(l, "caught_up") }, 3*time.Second)
+	if !containsLine(lines2, "onjour") {
+		t.Fatalf("continuation attendue depuis seq0=%d: %v", seq0, lines2)
+	}
+	if containsLine(lines2, `"bonjour"`) {
+		t.Fatalf("le debut deja recu ne doit pas etre rediffuse: %v", lines2)
+	}
+}
+
+func TestChatReconnectFromLastNoDuplicate(t *testing.T) {
+	s := newTestServerWith(t, &fakeProvider{content: "bonjour"})
+	ts := httptest.NewServer(s.Handler())
+	defer ts.Close()
+	tok := tokenFor(t, ts.URL)
+	sendAndWait(t, ts.URL, tok, "salut")
+
+	resp := streamRequest(t, ts.URL, tok, 0)
+	lines := newSSEStream(resp.Body).readUntil(func(l string) bool { return strings.Contains(l, "caught_up") }, 3*time.Second)
+	resp.Body.Close()
+	maxSeq := 0
+	for _, l := range lines {
+		if v := lineSeq(l); v > maxSeq {
+			maxSeq = v
+		}
+	}
+	if maxSeq == 0 {
+		t.Fatal("aucun seq dans le flux initial")
+	}
+
+	resp2 := streamRequest(t, ts.URL, tok, maxSeq)
+	defer resp2.Body.Close()
+	lines2 := newSSEStream(resp2.Body).readUntil(func(l string) bool { return strings.Contains(l, "caught_up") }, 3*time.Second)
+	if !containsLine(lines2, "caught_up") {
+		t.Fatal("caught_up manquant en reconnexion")
+	}
+	if containsLine(lines2, `"content"`) {
+		t.Fatalf("contenu deja vu rediffuse apres from=%d", maxSeq)
+	}
+}
+
+func TestChatStreamEmitsReset(t *testing.T) {
+	s := newTestServerWith(t, &fakeProvider{content: "x"})
+	ts := httptest.NewServer(s.Handler())
+	defer ts.Close()
+	tok := tokenFor(t, ts.URL)
+
+	resp := streamRequest(t, ts.URL, tok, 0)
+	defer resp.Body.Close()
+	stream := newSSEStream(resp.Body)
+	stream.readUntil(func(l string) bool { return strings.Contains(l, "caught_up") }, 2*time.Second)
+
+	rreq, _ := http.NewRequest(http.MethodPost, ts.URL+"/api/chat/reset", nil)
+	rreq.Header.Set("Authorization", "Bearer "+tok)
+	rresp, err := http.DefaultClient.Do(rreq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rresp.Body.Close()
+
+	lines := stream.readUntil(func(l string) bool { return strings.Contains(l, `"reset":true`) }, 2*time.Second)
+	if !containsLine(lines, `"reset":true`) {
+		t.Fatalf("evenement reset manquant: %v", lines)
 	}
 }
