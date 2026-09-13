@@ -7,12 +7,13 @@ import { initTheme } from "./theme.js";
 initTheme();
 
 initAuth(async () => {
+  let reloadModels = null;
   try {
-    await initModels();
+    reloadModels = await initModels();
   } catch (e) {
     console.error("chargement des alias impossible", e);
   }
-  initSettings();
+  initSettings({ reloadModels });
   initChat();
   document.getElementById("sidebar-toggle").addEventListener("click", () => {
     document.getElementById("sidebar").classList.toggle("open");

@@ -69,8 +69,15 @@ export async function api(path, opts = {}) {
   return data;
 }
 
-export async function readSSE(resp, onEvent) {
-  const reader = resp.body.getReader();
+export function getPrefs() {
+  return api("/api/settings");
+}
+
+export function putPrefs(prefs) {
+  return api("/api/settings", { method: "PUT", body: prefs });
+}
+
+export async function readSSE(resp, onEvent) {  const reader = resp.body.getReader();
   const decoder = new TextDecoder();
   let buf = "";
   for (;;) {

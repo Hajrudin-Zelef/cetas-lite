@@ -1,18 +1,29 @@
 import { api, getToken, readSSE } from "./api.js";
+import { renderInto } from "./markdown.js";
+import { createStreamRenderer } from "./stream-render.js";
+
+const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
 export function initChat() {
   const log = document.getElementById("chat-log");
-  const empty = document.getElementById("empty-chat");
   const input = document.getElementById("prompt-input");
   const form = document.getElementById("composer");
   const stopBtn = document.getElementById("stop-btn");
   const routeBadge = document.getElementById("route-badge");
 
+  const emptyHTML = document.getElementById("empty-chat").outerHTML;
+  let empty = document.getElementById("empty-chat");
+
   let lastSeq = 0;
   let assistant = null;
-  let reasoning = null;
+  let textRenderer = null;
+  let reasoningEl = null;
+  let reasoningText = "";
   let controller = null;
   let generating = false;
+  let waitEl = null;
+  let waitTimer = null;
+  let waitIdx = 0;
   const toolBoxes = new Map();
 
   function el(tag, cls, text) {
@@ -24,6 +35,12 @@ export function initChat() {
 
   function clearEmpty() {
     if (empty && empty.parentNode) empty.remove();
+    empty = null;
+  }
+
+  function reAddEmpty() {
+    log.innerHTML = emptyHTML;
+    empty = document.getElementById("empty-chat");
   }
 
   function atBottom() {
@@ -41,6 +58,29 @@ export function initChat() {
     };
   }
 
+  function showWait() {
+    if (waitEl) return;
+    waitEl = el("div", "stream-waiting");
+    waitEl.appendChild(el("span", "stream-spinner", BRAILLE[0]));
+    log.appendChild(waitEl);
+    waitTimer = setInterval(() => {
+      waitIdx = (waitIdx + 1) % BRAILLE.length;
+      if (waitEl && waitEl.firstChild) waitEl.firstChild.textContent = BRAILLE[waitIdx];
+    }, 80);
+    scroll(true);
+  }
+
+  function hideWait() {
+    if (waitTimer) {
+      clearInterval(waitTimer);
+      waitTimer = null;
+    }
+    if (waitEl) {
+      waitEl.remove();
+      waitEl = null;
+    }
+  }
+
   function addUser(text) {
     clearEmpty();
     log.appendChild(el("div", "msg user", text));
@@ -51,39 +91,52 @@ export function initChat() {
     if (!assistant) {
       clearEmpty();
       assistant = el("div", "msg assistant");
+      const body = el("div", "msg-text");
+      assistant.appendChild(body);
       log.appendChild(assistant);
+      textRenderer = createStreamRenderer({
+        onRender: (t) => renderInto(body, t),
+        onFirst: hideWait,
+      });
     }
     return assistant;
   }
 
-  function appendContent(text) {
-    ensureAssistant().textContent += text;
+  function appendContent(text, isReplace) {
+    ensureAssistant();
+    if (isReplace) textRenderer.replace(text);
+    else textRenderer.add(text);
     scroll();
   }
 
-  function replaceContent(text) {
-    ensureAssistant().textContent = text;
-    scroll();
-  }
-
-  function appendReasoning(text) {
-    if (!reasoning) {
+  function ensureReasoning() {
+    if (!reasoningEl) {
       ensureAssistant();
-      reasoning = el("div", "msg-reasoning");
-      log.insertBefore(reasoning, assistant);
+      reasoningEl = el("details", "msg-reasoning");
+      reasoningEl.appendChild(el("summary", null, "Raisonnement"));
+      reasoningEl.appendChild(el("div", "reasoning-body"));
+      log.insertBefore(reasoningEl, assistant);
     }
-    reasoning.textContent += text;
+    return reasoningEl;
+  }
+
+  function appendReasoning(text, isReplace) {
+    ensureReasoning();
+    reasoningText = isReplace ? String(text) : reasoningText + String(text);
+    reasoningEl.querySelector(".reasoning-body").textContent = reasoningText;
     scroll();
   }
 
   function removeReasoning() {
-    if (reasoning) {
-      reasoning.remove();
-      reasoning = null;
+    if (reasoningEl) {
+      reasoningEl.remove();
+      reasoningEl = null;
+      reasoningText = "";
     }
   }
 
   function addError(text) {
+    hideWait();
     clearEmpty();
     log.appendChild(el("div", "msg error", text));
     scroll();
@@ -94,45 +147,79 @@ export function initChat() {
     return args.command || args.file_path || args.pattern || args.query || "";
   }
 
+  function renderTodos(todos) {
+    const list = el("ul", "chat-todo-list");
+    for (const t of todos) {
+      const status = t.status || "pending";
+      list.appendChild(el("li", "chat-todo-item todo-" + status, t.content || ""));
+    }
+    return list;
+  }
+
+  function renderDiff(lines) {
+    const wrap = el("div", "tool-diff");
+    for (const line of lines) {
+      const cls = line.kind === "+" ? "diff-add" : "diff-del";
+      wrap.appendChild(el("span", cls, (line.kind === "+" ? "+ " : "- ") + line.text + "\n"));
+    }
+    return wrap;
+  }
+
   function addTool(ev) {
     const key = ev.name + "|" + JSON.stringify(ev.args || {});
     if (ev.phase === "start") {
       clearEmpty();
       const box = el("details", "msg-tool");
-      box.appendChild(el("summary", null, ev.name + (summarize(ev.args) ? " " + summarize(ev.args) : "")));
-      const pre = el("pre");
-      box.appendChild(pre);
+      const summary = el("summary");
+      summary.appendChild(el("span", "tool-name", ev.name));
+      const hint = summarize(ev.args);
+      if (hint) summary.appendChild(el("span", "tool-hint", " " + hint));
+      box.appendChild(summary);
+      const body = el("div", "tool-body");
+      if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
+        body.appendChild(renderTodos(ev.args.todos));
+      }
+      box.appendChild(body);
       log.appendChild(box);
-      toolBoxes.set(key, pre);
+      toolBoxes.set(key, body);
       assistant = null;
-      reasoning = null;
+      textRenderer = null;
+      reasoningEl = null;
+      reasoningText = "";
       scroll(true);
       return;
     }
-    const pre = toolBoxes.get(key);
-    if (!pre) return;
-    if (typeof ev.result === "string" && ev.result) pre.textContent = ev.result;
-    if (Array.isArray(ev.diff)) {
-      for (const line of ev.diff) {
-        const cls = line.kind === "+" ? "diff-add" : "diff-del";
-        pre.appendChild(el("span", cls, (line.kind === "+" ? "+ " : "- ") + line.text + "\n"));
-      }
+    const body = toolBoxes.get(key);
+    if (!body) return;
+    if (Array.isArray(ev.diff) && ev.diff.length) {
+      body.appendChild(renderDiff(ev.diff));
+    }
+    if (typeof ev.result === "string" && ev.result) {
+      body.appendChild(el("pre", "tool-result", ev.result));
     }
     scroll();
   }
 
   function finishTurn() {
+    if (textRenderer) textRenderer.flush();
+    hideWait();
     generating = false;
     stopBtn.hidden = true;
     assistant = null;
-    reasoning = null;
+    textRenderer = null;
+    reasoningEl = null;
+    reasoningText = "";
   }
 
   function resetLocal() {
-    log.innerHTML = "";
+    hideWait();
+    log.innerHTML = emptyHTML;
+    empty = document.getElementById("empty-chat");
     lastSeq = 0;
     assistant = null;
-    reasoning = null;
+    textRenderer = null;
+    reasoningEl = null;
+    reasoningText = "";
     toolBoxes.clear();
     generating = false;
     stopBtn.hidden = true;
@@ -145,23 +232,28 @@ export function initChat() {
       resetLocal();
       return;
     }
-    if (ev.pad !== undefined || ev.caught_up) return;
+    if (ev.pad !== undefined) return;
+    if (ev.caught_up) {
+      scroll(true);
+      return;
+    }
     if (ev.user !== undefined) {
       addUser(String(ev.user));
       assistant = null;
-      reasoning = null;
+      textRenderer = null;
+      reasoningEl = null;
+      reasoningText = "";
       generating = true;
       stopBtn.hidden = false;
+      showWait();
       return;
     }
     if (ev.reasoning_content !== undefined) {
-      appendReasoning(String(ev.reasoning_content));
+      appendReasoning(String(ev.reasoning_content), ev.replace === true);
       return;
     }
     if (ev.content !== undefined) {
-      const text = String(ev.content);
-      if (ev.replace) replaceContent(text);
-      else appendContent(text);
+      appendContent(String(ev.content), ev.replace === true);
       return;
     }
     if (ev.tool !== undefined) {
@@ -172,7 +264,8 @@ export function initChat() {
       const r = ev.route || {};
       routeBadge.hidden = false;
       const name = r.label || r.model || "";
-      routeBadge.textContent = (r.provider ? r.provider + "/" : "") + name + (r.local ? " (local)" : "") + (r.fallback ? " (repli)" : "");
+      routeBadge.textContent =
+        (r.provider ? r.provider + "/" : "") + name + (r.local ? " (local)" : "") + (r.fallback ? " (repli)" : "");
       return;
     }
     if (ev.drop_reasoning) {

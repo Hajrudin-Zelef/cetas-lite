@@ -1,6 +1,6 @@
 import { api } from "./api.js";
 
-export function initSettings() {
+export function initSettings({ reloadModels } = {}) {
   const overlay = document.getElementById("settings-overlay");
   const editor = document.getElementById("aliases-editor");
   const status = document.getElementById("aliases-status");
@@ -84,6 +84,7 @@ export function initSettings() {
       await api("/api/aliases", { method: "PUT", body: ov });
       status.textContent = "Enregistre.";
       await load();
+      if (reloadModels) await reloadModels();
     } catch (e) {
       status.textContent = e.message;
     }
