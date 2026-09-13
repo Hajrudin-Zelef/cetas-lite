@@ -18,6 +18,7 @@ var (
 	bUsers         = []byte("users")
 	bSettings      = []byte("settings")
 	bConversations = []byte("conversations")
+	bArchives      = []byte("archives")
 	bSecrets       = []byte("secrets")
 )
 
@@ -223,6 +224,74 @@ func (s *Store) PutConversation(user, id string, data []byte) error {
 func (s *Store) DeleteConversation(user, id string) error {
 	return s.db.Update(func(tx *bolt.Tx) error {
 		b := tx.Bucket(bConversations).Bucket([]byte(user))
+		if b == nil {
+			return nil
+		}
+		return b.Delete([]byte(id))
+	})
+}
+
+func (s *Store) ArchiveConversation(user, id string, data []byte) error {
+	ts := time.Now().Format("20060102_150405")
+	archiveID := ts + "_" + id
+	return s.db.Update(func(tx *bolt.Tx) error {
+		top, err := tx.CreateBucketIfNotExists(bArchives)
+		if err != nil {
+			return err
+		}
+		b, err := top.CreateBucketIfNotExists([]byte(user))
+		if err != nil {
+			return err
+		}
+		return b.Put([]byte(archiveID), data)
+	})
+}
+
+func (s *Store) ListArchives(user string) ([]string, error) {
+	var out []string
+	err := s.db.View(func(tx *bolt.Tx) error {
+		top := tx.Bucket(bArchives)
+		if top == nil {
+			return nil
+		}
+		b := top.Bucket([]byte(user))
+		if b == nil {
+			return nil
+		}
+		return b.ForEach(func(k, _ []byte) error {
+			out = append(out, string(k))
+			return nil
+		})
+	})
+	return out, err
+}
+
+func (s *Store) GetArchive(user, id string) ([]byte, bool) {
+	var out []byte
+	_ = s.db.View(func(tx *bolt.Tx) error {
+		top := tx.Bucket(bArchives)
+		if top == nil {
+			return nil
+		}
+		b := top.Bucket([]byte(user))
+		if b == nil {
+			return nil
+		}
+		if v := b.Get([]byte(id)); v != nil {
+			out = append([]byte(nil), v...)
+		}
+		return nil
+	})
+	return out, out != nil
+}
+
+func (s *Store) DeleteArchive(user, id string) error {
+	return s.db.Update(func(tx *bolt.Tx) error {
+		top := tx.Bucket(bArchives)
+		if top == nil {
+			return nil
+		}
+		b := top.Bucket([]byte(user))
 		if b == nil {
 			return nil
 		}

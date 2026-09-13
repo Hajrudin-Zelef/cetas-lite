@@ -424,3 +424,47 @@ func TestChatStreamEmitsReset(t *testing.T) {
 		t.Fatalf("evenement reset manquant: %v", lines)
 	}
 }
+
+func TestConversationsArchives(t *testing.T) {
+	s := newTestServerWith(t, &fakeProvider{content: "bonjour"})
+	ts := httptest.NewServer(s.Handler())
+	defer ts.Close()
+	tok := tokenFor(t, ts.URL)
+	sendAndWait(t, ts.URL, tok, "salut")
+
+	rreq, _ := http.NewRequest(http.MethodPost, ts.URL+"/api/chat/reset", nil)
+	rreq.Header.Set("Authorization", "Bearer "+tok)
+	rresp, err := http.DefaultClient.Do(rreq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rresp.Body.Close()
+
+	lreq, _ := http.NewRequest(http.MethodGet, ts.URL+"/api/conversations", nil)
+	lreq.Header.Set("Authorization", "Bearer "+tok)
+	lresp, err := http.DefaultClient.Do(lreq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var list struct {
+		Archives []string `json:"archives"`
+	}
+	_ = json.NewDecoder(lresp.Body).Decode(&list)
+	lresp.Body.Close()
+	if len(list.Archives) != 1 {
+		t.Fatalf("archives = %v", list.Archives)
+	}
+
+	body, _ := json.Marshal(map[string]string{"id": list.Archives[0]})
+	rreq2, _ := http.NewRequest(http.MethodPost, ts.URL+"/api/conversations/restore", bytes.NewReader(body))
+	rreq2.Header.Set("Authorization", "Bearer "+tok)
+	rreq2.Header.Set("Content-Type", "application/json")
+	rresp2, err := http.DefaultClient.Do(rreq2)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer rresp2.Body.Close()
+	if rresp2.StatusCode != http.StatusOK {
+		t.Fatalf("restore status = %d", rresp2.StatusCode)
+	}
+}

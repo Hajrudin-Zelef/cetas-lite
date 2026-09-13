@@ -114,14 +114,52 @@ func (e *Engine) Conversation(user string) *Conversation {
 		return c
 	}
 	c := NewConversation(newID(), e, func(c *Conversation) { e.save(user, c) })
-	if raw, ok := e.st.GetConversation(user, "active"); ok {
-		var s snapshot
-		if err := json.Unmarshal(raw, &s); err == nil && s.ID != "" {
-			c.load(s)
+	if e.st != nil {
+		if raw, ok := e.st.GetConversation(user, "active"); ok {
+			var s snapshot
+			if err := json.Unmarshal(raw, &s); err == nil && s.ID != "" {
+				c.load(s)
+			}
 		}
 	}
 	e.convs[user] = c
 	return c
+}
+
+func (e *Engine) ArchiveAndReset(user string) {
+	c := e.Conversation(user)
+	if e.st != nil {
+		data, err := c.save()
+		if err == nil && len(data) > 2 {
+			_ = e.st.ArchiveConversation(user, c.ID, data)
+		}
+	}
+	c.Reset()
+}
+
+func (e *Engine) ListArchives(user string) []string {
+	out, _ := e.st.ListArchives(user)
+	return out
+}
+
+func (e *Engine) RestoreArchive(user, archiveID string) bool {
+	raw, ok := e.st.GetArchive(user, archiveID)
+	if !ok {
+		return false
+	}
+	var s snapshot
+	if err := json.Unmarshal(raw, &s); err != nil || s.ID == "" {
+		return false
+	}
+	c := e.Conversation(user)
+	c.load(s)
+	if e.st != nil {
+		data, _ := c.save()
+		if len(data) > 2 {
+			_ = e.st.PutConversation(user, "active", data)
+		}
+	}
+	return true
 }
 
 func (e *Engine) save(user string, c *Conversation) {
@@ -175,9 +213,17 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 
 func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInput) {
 	start := time.Now()
-	defer func() { c.finishTurn(epoch, time.Since(start)) }()
-
 	res := e.resolve(ctx, in)
+	defer func() {
+		c.finishTurn(epoch, time.Since(start))
+		if ctx.Err() != nil {
+			return
+		}
+		ct, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		defer cancel()
+		e.maybeCompact(ct, c, epoch, res.members)
+	}()
+
 	if len(res.members) == 0 {
 		c.appendDelta(epoch, map[string]any{"error": "aucun modele disponible pour cet alias"})
 		return

@@ -181,6 +181,7 @@ func (c *Conversation) finishTurn(epoch int, elapsed time.Duration) {
 	if c.epoch == epoch {
 		c.Generating = false
 		c.cancel = nil
+		c.Log = coalesceCompletedTurns(c.Log)
 	}
 	c.mu.Unlock()
 	c.appendDelta(epoch, map[string]any{"turn_done": true, "elapsed_ms": elapsed.Milliseconds()})
@@ -296,6 +297,57 @@ func (c *Conversation) Subscribe(ctx context.Context, from int, emit func(map[st
 		}
 		c.mu.Lock()
 	}
+}
+
+func coalesceCompletedTurns(log []LogEvent) []LogEvent {
+	cut := 0
+	for i := len(log) - 1; i >= 0; i-- {
+		if _, ok := log[i].Delta["user"]; ok {
+			cut = i
+			break
+		}
+	}
+	if cut <= 0 {
+		return log
+	}
+	return append(coalesceLog(log[:cut]), log[cut:]...)
+}
+
+func cloneDelta(d map[string]any) map[string]any {
+	out := make(map[string]any, len(d))
+	for k, v := range d {
+		out[k] = v
+	}
+	return out
+}
+
+func coalesceLog(log []LogEvent) []LogEvent {
+	if len(log) == 0 {
+		return log
+	}
+	out := make([]LogEvent, 0, len(log))
+	for _, ev := range log {
+		ev.Delta = cloneDelta(ev.Delta)
+		k := textKey(ev.Delta)
+		if k == "" || len(out) == 0 {
+			out = append(out, ev)
+			continue
+		}
+		prev := &out[len(out)-1]
+		if textKey(prev.Delta) != k {
+			out = append(out, ev)
+			continue
+		}
+		prev.Delta[k] = prev.Delta[k].(string) + ev.Delta[k].(string)
+		prev.Seq = ev.Seq
+		prev.TS = ev.TS
+		if ptok, ok := prev.Delta["toks"]; ok {
+			if etok, ok := ev.Delta["toks"]; ok {
+				prev.Delta["toks"] = ptok.(int) + etok.(int)
+			}
+		}
+	}
+	return out
 }
 
 func textKey(d map[string]any) string {

@@ -83,7 +83,7 @@ func (s *Server) handleChatReset(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusUnauthorized, "non authentifie")
 		return
 	}
-	s.engine.Conversation(claims.Username).Reset()
+	s.engine.ArchiveAndReset(claims.Username)
 	writeJSON(w, http.StatusOK, map[string]any{"ok": true})
 }
 
@@ -94,4 +94,35 @@ func (s *Server) handleChatState(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, s.engine.Conversation(claims.Username).State())
+}
+
+func (s *Server) handleConversationsList(w http.ResponseWriter, r *http.Request) {
+	claims := claimsFrom(r)
+	if claims == nil {
+		writeError(w, http.StatusUnauthorized, "non authentifie")
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"archives": s.engine.ListArchives(claims.Username),
+	})
+}
+
+func (s *Server) handleConversationRestore(w http.ResponseWriter, r *http.Request) {
+	claims := claimsFrom(r)
+	if claims == nil {
+		writeError(w, http.StatusUnauthorized, "non authentifie")
+		return
+	}
+	var body struct {
+		ID string `json:"id"`
+	}
+	if err := decodeJSON(r, &body); err != nil || body.ID == "" {
+		writeError(w, http.StatusBadRequest, "id requis")
+		return
+	}
+	if !s.engine.RestoreArchive(claims.Username, body.ID) {
+		writeError(w, http.StatusNotFound, "archive introuvable")
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"ok": true})
 }
