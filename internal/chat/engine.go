@@ -23,6 +23,7 @@ type Engine struct {
 	workspace   string
 	allowScript bool
 	searcher    WebTools
+	mem         MemoryTools
 
 	mu         sync.Mutex
 	families   []alias.Family
@@ -68,6 +69,18 @@ func (e *Engine) webTools() WebTools {
 	e.mu.Lock()
 	defer e.mu.Unlock()
 	return e.searcher
+}
+
+func (e *Engine) SetMemory(m MemoryTools) {
+	e.mu.Lock()
+	e.mem = m
+	e.mu.Unlock()
+}
+
+func (e *Engine) memoryTools() MemoryTools {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	return e.mem
 }
 
 func (e *Engine) allowWeb(user string) bool {
@@ -170,6 +183,10 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		return
 	}
 	msgs := c.MessagesSnapshot()
+
+	if mi, ok := e.memoryIndexMessage(in.User); ok {
+		msgs = append([]provider.Message{mi}, msgs...)
+	}
 
 	if res.agent && e.workspace != "" && in.User != "" {
 		e.runAgent(ctx, c, epoch, res, msgs, in)

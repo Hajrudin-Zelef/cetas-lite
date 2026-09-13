@@ -29,6 +29,9 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	if !e.scriptAllowed() {
 		tools = filterTools(tools, "RunScript")
 	}
+	if e.memoryTools() != nil {
+		tools = append(tools, MemoryToolSchemas()...)
+	}
 	if in.Web && e.webTools() != nil {
 		tools = append(tools, WebToolSchemas()...)
 	}
@@ -144,6 +147,8 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				} else {
 					if tc.Function.Name == "web_search" || tc.Function.Name == "web_fetch" {
 						out = e.webExecute(ctx, user, tc.Function.Name, tc.Function.Arguments)
+					} else if strings.HasPrefix(tc.Function.Name, "mem_") {
+						out = e.memExecute(user, tc.Function.Name, tc.Function.Arguments)
 					} else {
 						out = sb.Execute(ctx, tc.Function.Name, tc.Function.Arguments)
 					}

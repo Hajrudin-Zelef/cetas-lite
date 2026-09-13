@@ -20,6 +20,7 @@ import (
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/cryptovault"
 	"cetas-lite/internal/local"
+	"cetas-lite/internal/memory"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
@@ -96,6 +97,7 @@ func runServe() error {
 	engine := chat.NewEngine(registry, families, st, discover, cfg.WorkspaceDir)
 	engine.SetAllowScript(cfg.AllowScript)
 	engine.SetSearcher(search.New(keys, client))
+	engine.SetMemory(memory.New(cfg.MemoryDir))
 
 	srv := web.New(cfg, st, authMgr, engine, version)
 	httpSrv := &http.Server{
