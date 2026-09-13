@@ -77,7 +77,8 @@ export function putPrefs(prefs) {
   return api("/api/settings", { method: "PUT", body: prefs });
 }
 
-export async function readSSE(resp, onEvent) {  const reader = resp.body.getReader();
+export async function readSSE(resp, onEvent) {
+  const reader = resp.body.getReader();
   const decoder = new TextDecoder();
   let buf = "";
   for (;;) {

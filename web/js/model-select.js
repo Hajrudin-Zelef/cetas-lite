@@ -45,10 +45,21 @@ export async function initModels() {
     persist();
   });
 
+  function applyTheme(theme) {
+    if (!["ocean", "sombre", "clair"].includes(theme)) return;
+    document.documentElement.dataset.theme = theme;
+    const sel = document.getElementById("theme-select");
+    if (sel) sel.value = theme;
+    try {
+      localStorage.setItem("cetas-lite-theme", theme);
+    } catch (e) {}
+  }
+
   async function load() {
     const data = await api("/api/aliases");
     families = data.families || [];
     const prefs = await getPrefs().catch(() => null);
+    if (prefs && prefs.theme) applyTheme(prefs.theme);
     const prevF = familySel.value || (prefs && prefs.family) || "";
     const prevM = modeSel.value || (prefs && prefs.mode) || "";
     familySel.innerHTML = "";

@@ -72,6 +72,10 @@ export function createStreamRenderer({ onRender, onFirst, onDone, cps = 30, redu
   }
 
   function replace(text) {
+    if (first) {
+      first = false;
+      if (onFirst) onFirst();
+    }
     buffer = String(text || "");
     shown = buffer.length;
     if (frame) {

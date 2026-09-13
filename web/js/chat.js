@@ -63,7 +63,8 @@ export function initChat() {
   }
 
   function showWait() {
-    if (waitEl) return;    waitEl = el("div", "stream-waiting");
+    if (waitEl) return;
+    waitEl = el("div", "stream-waiting");
     waitEl.appendChild(el("span", "stream-spinner", BRAILLE[0]));
     log.appendChild(waitEl);
     waitTimer = setInterval(() => {
@@ -173,6 +174,7 @@ export function initChat() {
     const key = ev.name + "|" + JSON.stringify(ev.args || {});
     if (ev.phase === "start") {
       clearEmpty();
+      hideWait();
       const box = el("details", "msg-tool");
       const summary = el("summary");
       summary.appendChild(el("span", "tool-name", ev.name));

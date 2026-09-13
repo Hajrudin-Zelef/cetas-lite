@@ -44,6 +44,16 @@ test("renderer replace est immediat et replace-aware", () => {
   assert.deepEqual(seen, ["bonjour", "salut"]);
 });
 
+test("renderer replace declenche onFirst une seule fois", () => {
+  let first = 0;
+  const r = createStreamRenderer({ onRender: () => {}, onFirst: () => { first++; } });
+  r.replace("a");
+  r.replace("ab");
+  assert.equal(first, 1);
+  r.add("c");
+  assert.equal(first, 1);
+});
+
 test("renderer reset vide le buffer", () => {
   const r = createStreamRenderer({ onRender: () => {} });
   r.replace("texte");
