@@ -10,8 +10,11 @@ import (
 	"strings"
 	"testing"
 
+	"cetas-lite/internal/alias"
 	"cetas-lite/internal/auth"
+	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
+	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
 )
 
@@ -32,7 +35,8 @@ func newTestServer(t *testing.T, registrationOpen bool) *Server {
 	if err != nil {
 		t.Fatal(err)
 	}
-	return New(cfg, st, m, "test")
+	engine := chat.NewEngine(provider.NewRegistry(), alias.Defaults(), st, nil)
+	return New(cfg, st, m, engine, "test")
 }
 
 func doJSON(t *testing.T, h http.Handler, method, path, token string, body any) *httptest.ResponseRecorder {

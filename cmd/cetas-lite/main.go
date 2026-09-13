@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -13,9 +14,13 @@ import (
 	"syscall"
 	"time"
 
+	"cetas-lite/internal/alias"
 	"cetas-lite/internal/auth"
+	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/cryptovault"
+	"cetas-lite/internal/local"
+	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/web"
 )
@@ -81,7 +86,14 @@ func runServe() error {
 		return err
 	}
 
-	srv := web.New(cfg, st, authMgr, version)
+	client := provider.NewHTTPClient()
+	localURLs := localURLsFromEnv()
+	registry := provider.Build(loadProviderKeys(st), localURLs, client)
+	discover := local.New(local.DefaultEngines(localURLs), client)
+	families := loadFamilies(st)
+	engine := chat.NewEngine(registry, families, st, discover)
+
+	srv := web.New(cfg, st, authMgr, engine, version)
 	httpSrv := &http.Server{
 		Addr:              cfg.Addr,
 		Handler:           srv.Handler(),
@@ -189,6 +201,52 @@ func runKeys(args []string) error {
 	default:
 		return fmt.Errorf("action inconnue: %s", args[0])
 	}
+}
+
+func localURLsFromEnv() map[string]string {
+	return map[string]string{
+		"llamacpp": strings.TrimSpace(os.Getenv("CETAS_LITE_LLAMACPP_URL")),
+		"ollama":   strings.TrimSpace(os.Getenv("CETAS_LITE_OLLAMA_URL")),
+		"lmstudio": strings.TrimSpace(os.Getenv("CETAS_LITE_LMSTUDIO_URL")),
+	}
+}
+
+func loadProviderKeys(st *store.Store) map[string]string {
+	keys := map[string]string{}
+	names, err := st.ListSecrets()
+	if err != nil || len(names) == 0 {
+		return keys
+	}
+	vault, err := openVault(st)
+	if err != nil {
+		slog.Warn("cles chiffrees ignorees (coffre indisponible)", "raison", err)
+		return keys
+	}
+	for _, name := range names {
+		ct, ok := st.GetSecret(name)
+		if !ok {
+			continue
+		}
+		pt, err := vault.Decrypt(ct, []byte(name))
+		if err != nil {
+			continue
+		}
+		keys[name] = string(pt)
+	}
+	return keys
+}
+
+func loadFamilies(st *store.Store) []alias.Family {
+	fams := alias.Defaults()
+	raw, ok := st.GetMeta("aliases")
+	if !ok {
+		return fams
+	}
+	var ov alias.Overrides
+	if err := json.Unmarshal(raw, &ov); err != nil {
+		return fams
+	}
+	return alias.Apply(fams, ov)
 }
 
 func openVault(st *store.Store) (*cryptovault.Vault, error) {

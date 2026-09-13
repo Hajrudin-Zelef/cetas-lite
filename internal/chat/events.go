@@ -1,0 +1,16 @@
+package chat
+
+import "cetas-lite/internal/provider"
+
+type LogEvent struct {
+	Seq   int            `json:"seq"`
+	TS    int64          `json:"ts"`
+	Delta map[string]any `json:"delta"`
+}
+
+type snapshot struct {
+	ID       string             `json:"id"`
+	Messages []provider.Message `json:"messages"`
+	Log      []LogEvent         `json:"log"`
+	Seq      int                `json:"seq"`
+}

@@ -6,7 +6,11 @@
 
 ## État
 
-**Phase 0 (socle)** : serveur HTTP, bbolt, coffre chiffré AES-256-GCM, auth JWT multi-utilisateurs, health, assets embarqués. Les phases chat/agent/web/mémoire suivent (voir `docs/plans/`).
+**Phase 1 (chat)** : socle (bbolt, coffre AES-256-GCM, auth JWT) + **alias** + **moteur de chat stable**.
+- Alias à 2 niveaux : `SamAgent Nano` (free), `SamAgent N4` (flash/standard), `SamAgent N8` (flash/standard/elite), `Code` (flash/standard/elite, agent), `SamGen` (local : nano=llama.cpp, n4=Ollama, n8=LM Studio).
+- Chat serveur : journal rejouable, reconnexion (`?from=`), stop/reset non bloquants, heartbeat SSE, failover de pool.
+- Providers cloud : DeepSeek, OpenCode Zen, OpenCode Go, OpenRouter. Local : Ollama/LM Studio/llama.cpp (découverte auto).
+- UI web et outils agent : phases suivantes.
 
 ## Démarrage
 
@@ -15,6 +19,17 @@ make build
 CETAS_LITE_HOME=~/.cetas-lite ./bin/cetas-lite serve
 # http://127.0.0.1:8787/api/health
 ```
+
+Alias et chat (après login) :
+
+```bash
+curl -s localhost:8787/api/aliases -H "Authorization: Bearer $TOKEN"
+curl -s -X POST localhost:8787/api/chat/send -H "Authorization: Bearer $TOKEN" \
+  -H 'Content-Type: application/json' -d '{"family":"code","mode":"standard","message":"salut"}'
+curl -sN "localhost:8787/api/chat/stream?from=0" -H "Authorization: Bearer $TOKEN"
+```
+
+Moteurs locaux (optionnel) : `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`, `CETAS_LITE_LLAMACPP_URL`.
 
 ## Clés providers (chiffrées)
 
