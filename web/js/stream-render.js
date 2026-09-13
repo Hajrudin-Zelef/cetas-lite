@@ -9,6 +9,14 @@ function now() {
   return typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
 }
 
+function reducedMotion() {
+  return (
+    typeof window !== "undefined" &&
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
 function raf(fn) {
   if (typeof requestAnimationFrame === "function") return requestAnimationFrame(fn);
   return setTimeout(() => fn(now()), 16);
@@ -19,7 +27,8 @@ function cancel(id) {
   else clearTimeout(id);
 }
 
-export function createStreamRenderer({ onRender, onFirst, onDone, cps = 30 } = {}) {
+export function createStreamRenderer({ onRender, onFirst, onDone, cps = 30, reducedMotion: reducedOverride } = {}) {
+  const reduced = reducedOverride === undefined ? reducedMotion() : reducedOverride;
   let buffer = "";
   let shown = 0;
   let frame = 0;
@@ -54,6 +63,11 @@ export function createStreamRenderer({ onRender, onFirst, onDone, cps = 30 } = {
       if (onFirst) onFirst();
     }
     buffer += String(text);
+    if (reduced) {
+      shown = buffer.length;
+      render();
+      return;
+    }
     start();
   }
 

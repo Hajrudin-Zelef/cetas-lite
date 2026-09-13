@@ -53,15 +53,17 @@
           <option value="sombre">Sombre</option>
           <option value="clair">Clair</option>
         </select>
-        <button type="button" id="settings-btn" class="icon-btn" title="Reglages des alias">&#9881;</button>
+        <button type="button" id="settings-btn" class="icon-btn" title="Reglages des alias" aria-label="Reglages des alias">&#9881;</button>
       </div>
       <div class="user-row">
         <span class="user-initials" id="user-initials"></span>
         <span id="user-name"></span>
-        <button type="button" id="logout-btn" class="icon-btn" title="Se deconnecter">&#8592;</button>
+        <button type="button" id="logout-btn" class="icon-btn" title="Se deconnecter" aria-label="Se deconnecter">&#8592;</button>
       </div>
     </div>
   </aside>
+
+  <div id="sidebar-scrim" class="sidebar-scrim" hidden></div>
 
   <section class="main">
     <header class="topbar">
@@ -69,10 +71,10 @@
       <select id="mode-select" title="Mode"></select>
       <span id="agent-toggle" class="agent-pill" hidden>Agent</span>
       <span id="route-badge" class="route-badge" hidden></span>
-      <button type="button" id="sidebar-toggle" class="icon-btn" title="Panneau">&#9776;</button>
+      <button type="button" id="sidebar-toggle" class="icon-btn" title="Panneau" aria-label="Ouvrir ou fermer le panneau" aria-controls="sidebar" aria-expanded="false">&#9776;</button>
     </header>
 
-    <div id="chat-log" class="chat-log" aria-live="polite">
+    <div id="chat-log" class="chat-log" role="log" aria-live="polite" aria-relevant="additions text">
       <div class="empty-chat" id="empty-chat">
         <h2>Bonjour</h2>
         <p>Choisis une famille et un mode, puis pose ta question. Le mode Code active les outils.</p>

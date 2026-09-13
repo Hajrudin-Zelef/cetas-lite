@@ -15,7 +15,21 @@ initAuth(async () => {
   }
   initSettings({ reloadModels });
   initChat();
-  document.getElementById("sidebar-toggle").addEventListener("click", () => {
-    document.getElementById("sidebar").classList.toggle("open");
+
+  const sidebar = document.getElementById("sidebar");
+  const scrim = document.getElementById("sidebar-scrim");
+  const toggle = document.getElementById("sidebar-toggle");
+
+  function setSidebar(open) {
+    sidebar.classList.toggle("open", open);
+    scrim.classList.toggle("show", open);
+    scrim.hidden = !open;
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  toggle.addEventListener("click", () => setSidebar(!sidebar.classList.contains("open")));
+  scrim.addEventListener("click", () => setSidebar(false));
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setSidebar(false);
   });
 });

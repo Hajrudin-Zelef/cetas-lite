@@ -59,3 +59,13 @@ test("renderer add accumule dans le buffer", () => {
   assert.equal(r.text(), "ab");
   r.reset();
 });
+
+test("renderer reducedMotion rend immediatement sans rAF", () => {
+  const seen = [];
+  const r = createStreamRenderer({ reducedMotion: true, onRender: (t) => seen.push(t) });
+  r.add("abc");
+  r.add("def");
+  assert.equal(r.text(), "abcdef");
+  assert.deepEqual(seen, ["abc", "abcdef"]);
+  assert.equal(r.isActive(), false);
+});

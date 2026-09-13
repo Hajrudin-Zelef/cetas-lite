@@ -58,9 +58,12 @@ export function initChat() {
     };
   }
 
+  function setBusy(v) {
+    log.setAttribute("aria-busy", v ? "true" : "false");
+  }
+
   function showWait() {
-    if (waitEl) return;
-    waitEl = el("div", "stream-waiting");
+    if (waitEl) return;    waitEl = el("div", "stream-waiting");
     waitEl.appendChild(el("span", "stream-spinner", BRAILLE[0]));
     log.appendChild(waitEl);
     waitTimer = setInterval(() => {
@@ -137,6 +140,7 @@ export function initChat() {
 
   function addError(text) {
     hideWait();
+    setBusy(false);
     clearEmpty();
     log.appendChild(el("div", "msg error", text));
     scroll();
@@ -182,6 +186,7 @@ export function initChat() {
       box.appendChild(body);
       log.appendChild(box);
       toolBoxes.set(key, body);
+      if (textRenderer) textRenderer.flush();
       assistant = null;
       textRenderer = null;
       reasoningEl = null;
@@ -203,6 +208,7 @@ export function initChat() {
   function finishTurn() {
     if (textRenderer) textRenderer.flush();
     hideWait();
+    setBusy(false);
     generating = false;
     stopBtn.hidden = true;
     assistant = null;
@@ -213,6 +219,7 @@ export function initChat() {
 
   function resetLocal() {
     hideWait();
+    setBusy(false);
     log.innerHTML = emptyHTML;
     empty = document.getElementById("empty-chat");
     lastSeq = 0;
@@ -246,6 +253,7 @@ export function initChat() {
       generating = true;
       stopBtn.hidden = false;
       showWait();
+      setBusy(true);
       return;
     }
     if (ev.reasoning_content !== undefined) {
@@ -311,11 +319,13 @@ export function initChat() {
       await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text } });
       generating = true;
       stopBtn.hidden = false;
+      setBusy(true);
       scroll(true);
     } catch (err) {
       if (/en cours/i.test(err.message)) {
         generating = true;
         stopBtn.hidden = false;
+        setBusy(true);
       } else {
         addError(err.message);
       }

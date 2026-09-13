@@ -2,13 +2,16 @@ BINARY  := cetas-lite
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 LDFLAGS := -s -w -X main.version=$(VERSION)
 
-.PHONY: test build cross run clean fmt vet
+.PHONY: test build cross run clean fmt vet smoke
 
 test:
 	go test ./... -race
 
 vet:
 	go vet ./...
+
+smoke: build
+	python3 tests/smoke/ui_smoke.py
 
 fmt:
 	gofmt -w .
