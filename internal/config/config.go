@@ -16,6 +16,7 @@ type Config struct {
 	MemoryDir        string
 	DBPath           string
 	RegistrationOpen bool
+	AllowScript      bool
 }
 
 func Load() (*Config, error) {
@@ -46,6 +47,15 @@ func Load() (*Config, error) {
 		registrationOpen = v
 	}
 
+	allowScript := false
+	if raw := strings.TrimSpace(os.Getenv("CETAS_LITE_ALLOW_SCRIPT")); raw != "" {
+		v, err := strconv.ParseBool(raw)
+		if err != nil {
+			return nil, fmt.Errorf("CETAS_LITE_ALLOW_SCRIPT invalide: %q", raw)
+		}
+		allowScript = v
+	}
+
 	cfg := &Config{
 		Home:             home,
 		Addr:             addr,
@@ -54,6 +64,7 @@ func Load() (*Config, error) {
 		MemoryDir:        filepath.Join(home, "memory"),
 		DBPath:           filepath.Join(home, "cetas-lite.db"),
 		RegistrationOpen: registrationOpen,
+		AllowScript:      allowScript,
 	}
 
 	for _, dir := range []string{cfg.Home, cfg.DataDir, cfg.WorkspaceDir, cfg.MemoryDir} {

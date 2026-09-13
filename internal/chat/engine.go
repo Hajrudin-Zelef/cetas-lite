@@ -15,10 +15,11 @@ import (
 )
 
 type Engine struct {
-	reg       *provider.Registry
-	discover  *local.Discoverer
-	st        *store.Store
-	workspace string
+	reg         *provider.Registry
+	discover    *local.Discoverer
+	st          *store.Store
+	workspace   string
+	allowScript bool
 
 	mu       sync.Mutex
 	families []alias.Family
@@ -42,6 +43,18 @@ func (e *Engine) SetFamilies(f []alias.Family) {
 	e.mu.Lock()
 	e.families = f
 	e.mu.Unlock()
+}
+
+func (e *Engine) SetAllowScript(v bool) {
+	e.mu.Lock()
+	e.allowScript = v
+	e.mu.Unlock()
+}
+
+func (e *Engine) scriptAllowed() bool {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	return e.allowScript
 }
 
 func (e *Engine) Conversation(user string) *Conversation {

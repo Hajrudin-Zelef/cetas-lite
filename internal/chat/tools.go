@@ -411,6 +411,9 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 		if execBannedFlags[tok] {
 			return "[erreur] flag interdit: " + tok
 		}
+		if msg := s.checkArg(tok); msg != "" {
+			return "[erreur] " + msg
+		}
 	}
 	timeout := intArg(args, "timeout")
 	if timeout <= 0 {
@@ -455,7 +458,54 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 	return strings.Join(parts, "\n\n")
 }
 
+func filterTools(tools []provider.Tool, drop string) []provider.Tool {
+	out := make([]provider.Tool, 0, len(tools))
+	for _, t := range tools {
+		if t.Function.Name == drop {
+			continue
+		}
+		out = append(out, t)
+	}
+	return out
+}
+
+func (s *Sandbox) checkArg(tok string) string {
+	if tok == "" {
+		return ""
+	}
+	norm := strings.ReplaceAll(tok, "\\", "/")
+	if strings.Contains(norm, "~") {
+		return "argument hors sandbox: " + tok
+	}
+	if strings.Contains(norm, "=/") || (len(norm) > 2 && norm[0] == '-' && norm[1] != '/' && norm[2] == '/') {
+		return "argument hors sandbox: " + tok
+	}
+	if strings.HasPrefix(norm, "-") {
+		if strings.Contains(norm, "..") {
+			return "argument hors sandbox: " + tok
+		}
+		return ""
+	}
+	if strings.HasPrefix(norm, "/") {
+		return "argument absolu interdit: " + tok
+	}
+	if !strings.Contains(norm, "/") && !strings.Contains(norm, "..") {
+		return ""
+	}
+	clean := path.Clean(norm)
+	if clean == ".." || strings.HasPrefix(clean, "../") {
+		return "argument hors sandbox: " + tok
+	}
+	if _, err := s.Resolve(norm); err != nil {
+		return "argument hors sandbox: " + tok
+	}
+	return ""
+}
+
 func (s *Sandbox) toolRunScript(ctx context.Context, args map[string]any) string {
+	if !s.AllowScript {
+		return "[erreur] RunScript desactive (definir CETAS_LITE_ALLOW_SCRIPT=1 pour l'activer)"
+	}
 	lang := strings.ToLower(strings.TrimSpace(strArg(args, "language")))
 	runners := map[string]string{"python": "python3", "node": "node"}
 	runner, ok := runners[lang]

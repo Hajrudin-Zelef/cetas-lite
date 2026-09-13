@@ -92,6 +92,7 @@ func runServe() error {
 	discover := local.New(local.DefaultEngines(localURLs), client)
 	families := loadFamilies(st)
 	engine := chat.NewEngine(registry, families, st, discover, cfg.WorkspaceDir)
+	engine.SetAllowScript(cfg.AllowScript)
 
 	srv := web.New(cfg, st, authMgr, engine, version)
 	httpSrv := &http.Server{

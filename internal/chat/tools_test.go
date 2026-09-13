@@ -16,6 +16,7 @@ func newTestSandbox(t *testing.T) *Sandbox {
 	if err != nil {
 		t.Fatal(err)
 	}
+	sb.AllowScript = true
 	return sb
 }
 
@@ -138,9 +139,64 @@ func TestBashInterrupt(t *testing.T) {
 	sb := newTestSandbox(t)
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
-	out := sb.Execute(ctx, "Bash", `{"command":"tail -f /dev/null","timeout":60}`)
+	out := sb.Execute(ctx, "Bash", `{"command":"sleep 60","timeout":60}`)
 	if !strings.Contains(out.Text, "interrompue") {
 		t.Fatalf("stop doit etre signale: %q", out.Text)
+	}
+}
+
+func TestBashRejectsAbsolutePath(t *testing.T) {
+	sb := newTestSandbox(t)
+	out := sb.Execute(context.Background(), "Bash", `{"command":"cat /etc/hostname"}`)
+	if !strings.Contains(out.Text, "absolu") && !strings.Contains(out.Text, "hors sandbox") {
+		t.Fatalf("chemin absolu doit etre refuse: %q", out.Text)
+	}
+}
+
+func TestBashRejectsParentTraversal(t *testing.T) {
+	sb := newTestSandbox(t)
+	out := sb.Execute(context.Background(), "Bash", `{"command":"cat ../secret.txt"}`)
+	if !strings.Contains(out.Text, "hors sandbox") {
+		t.Fatalf("traversee doit etre refusee: %q", out.Text)
+	}
+	out = sb.Execute(context.Background(), "Bash", `{"command":"cat ../../etc/passwd"}`)
+	if !strings.Contains(out.Text, "hors sandbox") && !strings.Contains(out.Text, "absolu") {
+		t.Fatalf("traversee profonde doit etre refusee: %q", out.Text)
+	}
+}
+
+func TestBashRejectsEmbeddedAbsoluteFlag(t *testing.T) {
+	sb := newTestSandbox(t)
+	out := sb.Execute(context.Background(), "Bash", `{"command":"git -C/etc status"}`)
+	if !strings.Contains(out.Text, "hors sandbox") {
+		t.Fatalf("flag avec chemin absolu doit etre refuse: %q", out.Text)
+	}
+	out = sb.Execute(context.Background(), "Bash", `{"command":"git --git-dir=/etc status"}`)
+	if !strings.Contains(out.Text, "hors sandbox") {
+		t.Fatalf("flag =/absolu doit etre refuse: %q", out.Text)
+	}
+}
+
+func TestBashAllowsRelativeInside(t *testing.T) {
+	sb := newTestSandbox(t)
+	write := sb.Execute(context.Background(), "Write", `{"file_path":"sub/note.txt","content":"bonjour"}`)
+	if strings.HasPrefix(write.Text, "[erreur]") {
+		t.Fatalf("write: %q", write.Text)
+	}
+	out := sb.Execute(context.Background(), "Bash", `{"command":"cat sub/note.txt"}`)
+	if !strings.Contains(out.Text, "bonjour") {
+		t.Fatalf("chemin relatif interne doit etre autorise: %q", out.Text)
+	}
+}
+
+func TestRunScriptDisabledByDefault(t *testing.T) {
+	sb, err := NewSandbox(t.TempDir())
+	if err != nil {
+		t.Fatal(err)
+	}
+	out := sb.Execute(context.Background(), "RunScript", `{"language":"python","code":"print(1)"}`)
+	if !strings.Contains(out.Text, "desactive") {
+		t.Fatalf("RunScript doit etre desactive par defaut: %q", out.Text)
 	}
 }
 

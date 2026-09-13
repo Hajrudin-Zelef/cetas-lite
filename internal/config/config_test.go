@@ -65,3 +65,27 @@ func TestLoadInvalidRegistrationFlag(t *testing.T) {
 		t.Fatal("Load devrait echouer sur un flag invalide")
 	}
 }
+
+func TestAllowScriptFlag(t *testing.T) {
+	t.Setenv("CETAS_LITE_HOME", t.TempDir())
+	t.Setenv("CETAS_LITE_ALLOW_SCRIPT", "")
+	cfg, err := Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.AllowScript {
+		t.Fatal("AllowScript doit etre faux par defaut")
+	}
+	t.Setenv("CETAS_LITE_ALLOW_SCRIPT", "true")
+	cfg, err = Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !cfg.AllowScript {
+		t.Fatal("AllowScript doit passer a vrai")
+	}
+	t.Setenv("CETAS_LITE_ALLOW_SCRIPT", "oups")
+	if _, err := Load(); err == nil {
+		t.Fatal("Load devrait echouer sur CETAS_LITE_ALLOW_SCRIPT invalide")
+	}
+}

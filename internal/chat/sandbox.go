@@ -9,7 +9,8 @@ import (
 )
 
 type Sandbox struct {
-	root string
+	root        string
+	AllowScript bool
 }
 
 var errOutsideSandbox = errors.New("chemin hors sandbox")
