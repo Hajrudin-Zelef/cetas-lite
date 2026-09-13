@@ -1,0 +1,104 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a1628;
+  --bg-sidebar: #0d2137;
+  --bg-msg-user: #14304d;
+  --bg-msg-assistant: #102a44;
+  --text: #dbe9f5;
+  --text-secondary: #7fa3c4;
+  --border: rgba(33, 150, 243, 0.15);
+  --border-input: rgba(33, 150, 243, 0.25);
+  --bg-input: #0f2740;
+  --bg-hover: #14304d;
+  --bg-active: #1b3d5f;
+  --accent: #2196f3;
+  --accent-dark: #1976d2;
+  --accent-light: rgba(33, 150, 243, 0.12);
+  --danger: #ef4444;
+  --danger-light: rgba(239, 68, 68, 0.14);
+  --link: #4dabf7;
+  --btn-bg: #2196f3;
+  --btn-text: #04121f;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  --radius: 12px;
+}
+
+[data-theme="sombre"] {
+  color-scheme: dark;
+  --bg: #1a1a1a;
+  --bg-sidebar: #212121;
+  --bg-msg-user: #2a2a2a;
+  --bg-msg-assistant: #323232;
+  --text: #e0e0e0;
+  --text-secondary: #999;
+  --border: #2e2e2e;
+  --border-input: #444;
+  --bg-input: #2a2a2a;
+  --bg-hover: #2e2e2e;
+  --bg-active: #3a3a3a;
+  --accent: #3b87ce;
+  --accent-dark: #2a6da3;
+  --accent-light: rgba(59, 135, 206, 0.12);
+  --danger: #dc2626;
+  --danger-light: rgba(220, 38, 38, 0.15);
+  --link: #60a5fa;
+  --btn-bg: #e0e0e0;
+  --btn-text: #1a1a1a;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="clair"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-sidebar: #fafafa;
+  --bg-msg-user: #f0f0f0;
+  --bg-msg-assistant: #f9f9f9;
+  --text: #1a1a1a;
+  --text-secondary: #888;
+  --border: #eaeaea;
+  --border-input: #ddd;
+  --bg-input: #ffffff;
+  --bg-hover: #f0f0f0;
+  --bg-active: #e8e8e8;
+  --accent: #2196f3;
+  --accent-dark: #1976d2;
+  --accent-light: rgba(33, 150, 243, 0.08);
+  --danger: #dc2626;
+  --danger-light: rgba(220, 38, 38, 0.1);
+  --link: #2563eb;
+  --btn-bg: #1a1a1a;
+  --btn-text: #ffffff;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-input) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border-input);
+  border-radius: 6px;
+}
+
+html,
+body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+}

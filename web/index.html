@@ -1,27 +1,111 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="ocean">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
 <title>Cetas Lite</title>
-<style>
-  :root { color-scheme: dark light; }
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-         font-family: system-ui, sans-serif; background: #0b1220; color: #e6edf6; }
-  main { text-align: center; }
-  h1 { font-weight: 600; letter-spacing: .5px; }
-  p { color: #8aa0bd; }
-</style>
+<link rel="stylesheet" href="/css/variables.css">
+<link rel="stylesheet" href="/css/ocean.css">
+<link rel="stylesheet" href="/css/app.css">
+<script>
+  try {
+    document.documentElement.dataset.theme = localStorage.getItem("cetas-lite-theme") || "ocean";
+  } catch (e) {}
+</script>
 </head>
 <body>
-<main>
-  <h1>Cetas Lite</h1>
-  <p id="status">Socle actif — UI en construction.</p>
-</main>
-<script>
-  fetch('/api/health').then(r => r.json())
-    .then(d => { document.getElementById('status').textContent = 'Proxy ' + d.status; })
-    .catch(() => {});
-</script>
+
+<div id="login-overlay" class="login-overlay">
+  <div class="login-card">
+    <div class="login-logo">C</div>
+    <h1 class="login-title">Cetas Lite</h1>
+    <p class="login-subtitle">Assistant IA auto-heberge</p>
+    <form id="login-form" class="login-form">
+      <div class="login-field">
+        <label for="login-username">Nom d'utilisateur</label>
+        <input type="text" id="login-username" autocomplete="username" placeholder="utilisateur" required>
+      </div>
+      <div class="login-field">
+        <label for="login-password">Mot de passe</label>
+        <input type="password" id="login-password" autocomplete="current-password" placeholder="........" required>
+      </div>
+      <div id="login-error" class="login-error" hidden></div>
+      <button type="submit" id="login-submit" class="login-submit">Se connecter</button>
+    </form>
+    <button type="button" id="login-toggle" class="login-toggle">Creer un compte</button>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <aside id="sidebar" class="sidebar">
+    <h1 class="sidebar-title">
+      <span class="sidebar-logo">C</span>
+      Cetas Lite
+      <span class="version-badge" id="version-badge"></span>
+    </h1>
+    <button type="button" id="new-chat-btn" class="new-chat-btn">+ Nouvelle conversation</button>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-footer">
+      <div class="sidebar-row">
+        <select id="theme-select" title="Theme">
+          <option value="ocean">Ocean</option>
+          <option value="sombre">Sombre</option>
+          <option value="clair">Clair</option>
+        </select>
+        <button type="button" id="settings-btn" class="icon-btn" title="Reglages des alias">&#9881;</button>
+      </div>
+      <div class="user-row">
+        <span class="user-initials" id="user-initials"></span>
+        <span id="user-name"></span>
+        <button type="button" id="logout-btn" class="icon-btn" title="Se deconnecter">&#8592;</button>
+      </div>
+    </div>
+  </aside>
+
+  <section class="main">
+    <header class="topbar">
+      <select id="family-select" title="Famille"></select>
+      <select id="mode-select" title="Mode"></select>
+      <span id="agent-toggle" class="agent-pill" hidden>Agent</span>
+      <span id="route-badge" class="route-badge" hidden></span>
+      <button type="button" id="sidebar-toggle" class="icon-btn" title="Panneau">&#9776;</button>
+    </header>
+
+    <div id="chat-log" class="chat-log" aria-live="polite">
+      <div class="empty-chat" id="empty-chat">
+        <h2>Bonjour</h2>
+        <p>Choisis une famille et un mode, puis pose ta question. Le mode Code active les outils.</p>
+      </div>
+    </div>
+
+    <form id="composer" class="composer">
+      <div class="input-wrapper">
+        <textarea id="prompt-input" class="prompt-input" rows="1" placeholder="Ecris ton message..."></textarea>
+        <button type="button" id="stop-btn" class="stop-btn" hidden>Stop</button>
+        <button type="submit" id="send-btn" class="send-btn">Envoyer</button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<div id="settings-overlay" class="settings-overlay" hidden>
+  <div class="settings-card">
+    <div class="settings-head">
+      <h2>Settings &rarr; Alias</h2>
+      <button type="button" id="settings-close" class="icon-btn" title="Fermer">&#10005;</button>
+    </div>
+    <div class="settings-body">
+      <p class="settings-status">Un <code>provider model</code> par ligne, du plus prioritaire au moins prioritaire.</p>
+      <div id="aliases-editor"></div>
+    </div>
+    <div class="settings-foot">
+      <span id="aliases-status" class="settings-status"></span>
+      <button type="button" id="aliases-save" class="primary-btn">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/app.js"></script>
 </body>
 </html>
