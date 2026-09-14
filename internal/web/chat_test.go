@@ -461,15 +461,27 @@ func TestConversationsArchives(t *testing.T) {
 		t.Fatal(err)
 	}
 	var list struct {
-		Archives []string `json:"archives"`
+		Archives []struct {
+			ID       string `json:"id"`
+			Title    string `json:"title"`
+			Updated  int64  `json:"updated"`
+			Messages int    `json:"messages"`
+		} `json:"archives"`
 	}
 	_ = json.NewDecoder(lresp.Body).Decode(&list)
 	lresp.Body.Close()
 	if len(list.Archives) != 1 {
 		t.Fatalf("archives = %v", list.Archives)
 	}
+	if list.Archives[0].Title != "salut" {
+		t.Fatalf("titre = %q", list.Archives[0].Title)
+	}
+	if list.Archives[0].Updated == 0 || list.Archives[0].Messages != 2 {
+		t.Fatalf("meta archive = %+v", list.Archives[0])
+	}
+	id := list.Archives[0].ID
 
-	body, _ := json.Marshal(map[string]string{"id": list.Archives[0]})
+	body, _ := json.Marshal(map[string]string{"id": id})
 	rreq2, _ := http.NewRequest(http.MethodPost, ts.URL+"/api/conversations/restore", bytes.NewReader(body))
 	rreq2.Header.Set("Authorization", "Bearer "+tok)
 	rreq2.Header.Set("Content-Type", "application/json")
@@ -480,5 +492,27 @@ func TestConversationsArchives(t *testing.T) {
 	defer rresp2.Body.Close()
 	if rresp2.StatusCode != http.StatusOK {
 		t.Fatalf("restore status = %d", rresp2.StatusCode)
+	}
+
+	dreq, _ := http.NewRequest(http.MethodDelete, ts.URL+"/api/conversations/"+id, nil)
+	dreq.Header.Set("Authorization", "Bearer "+tok)
+	dresp, err := http.DefaultClient.Do(dreq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	dresp.Body.Close()
+	if dresp.StatusCode != http.StatusOK {
+		t.Fatalf("delete status = %d", dresp.StatusCode)
+	}
+
+	dreq2, _ := http.NewRequest(http.MethodDelete, ts.URL+"/api/conversations/"+id, nil)
+	dreq2.Header.Set("Authorization", "Bearer "+tok)
+	dresp2, err := http.DefaultClient.Do(dreq2)
+	if err != nil {
+		t.Fatal(err)
+	}
+	dresp2.Body.Close()
+	if dresp2.StatusCode != http.StatusNotFound {
+		t.Fatalf("delete inconnu status = %d", dresp2.StatusCode)
 	}
 }

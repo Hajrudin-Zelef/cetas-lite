@@ -33,11 +33,17 @@ FAMILIES = {
     ]
 }
 
-SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard", "agent_default": False}
+SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard"}
 
 MCP_SERVERS = {"servers": [{"name": "demo", "transport": "stdio", "connected": True, "tools": 2, "error": ""}]}
 
-STATE = {"put_settings": None, "send_body": None}
+CONVERSATIONS = {
+    "archives": [
+        {"id": "20260101_120000_1", "title": "Ancienne question", "updated": 1735732800000, "messages": 4}
+    ]
+}
+
+STATE = {"put_settings": None, "send_body": None, "deleted": None}
 
 
 def sse(events):
@@ -61,7 +67,9 @@ STREAM = sse(
             },
         },
         {"seq": 6, "content": "\n\n```js\nconsole.log(1)\n```\n"},
-        {"seq": 7, "turn_done": True, "elapsed_ms": 12},
+        {"seq": 7, "stats": {"prompt_tokens": 10, "completion_tokens": 5}},
+        {"seq": 8, "compact": True},
+        {"seq": 9, "turn_done": True, "elapsed_ms": 12},
     ]
 )
 
@@ -102,9 +110,21 @@ def route_mocks(page):
         STATE["send_body"] = route.request.post_data_json
         route.fulfill(json={"ok": True})
 
+    def conversations(route):
+        req = route.request
+        if req.method == "DELETE":
+            STATE["deleted"] = req.url.rsplit("/", 1)[-1]
+            route.fulfill(json={"ok": True})
+        elif req.method == "POST":
+            route.fulfill(json={"ok": True})
+        else:
+            route.fulfill(json=CONVERSATIONS)
+
     page.route("**/api/settings", settings)
     page.route("**/api/mcp", lambda r: r.fulfill(json=MCP_SERVERS))
     page.route("**/api/chat/send", send)
+    page.route("**/api/chat/state", lambda r: r.fulfill(json={"turns": 1, "generating": False}))
+    page.route("**/api/conversations**", conversations)
     page.route(
         "**/api/chat/stream**",
         lambda r: r.fulfill(status=200, headers={"Content-Type": "text/event-stream", "Cache-Control": "no-cache"}, body=STREAM),
@@ -115,7 +135,9 @@ def check(page, url, reduced):
     errors = []
     STATE["put_settings"] = None
     STATE["send_body"] = None
+    STATE["deleted"] = None
     page.on("pageerror", lambda e: errors.append(str(e)))
+    page.on("dialog", lambda d: d.accept())
     page.goto(url)
     page.wait_for_selector("#app:not([hidden])", state="visible", timeout=8000)
     page.wait_for_selector("#chat-log[aria-busy='false']", timeout=8000)
@@ -156,6 +178,21 @@ def check(page, url, reduced):
     mcp.click()
     assert mcp.get_attribute("aria-pressed") == "true", "mcp doit se reactiver"
     page.wait_for_timeout(100)
+
+    stats = page.locator("#stats-badge")
+    assert stats.is_visible(), "stats badge visible attendu"
+    stext = stats.inner_text()
+    assert "10" in stext and "5" in stext, f"stats = {stext!r}"
+
+    assert page.locator(".msg-system").count() >= 1, "notice de compaction attendue"
+
+    assert page.locator(".conv-item").count() == 1, "une conversation archivee attendue"
+    ctitle = page.locator(".conv-title").first.inner_text()
+    assert "Ancienne question" in ctitle, f"titre archive = {ctitle!r}"
+
+    page.locator(".conv-del").first.click()
+    page.wait_for_timeout(100)
+    assert STATE.get("deleted") == "20260101_120000_1", f"DELETE archive attendu: {STATE.get('deleted')!r}"
 
     page.fill("#prompt-input", "question web")
     page.press("#prompt-input", "Enter")

@@ -1,5 +1,6 @@
 import { initAuth } from "./auth.js";
 import { initChat } from "./chat.js";
+import { initConversations } from "./conversations.js";
 import { initModels } from "./model-select.js";
 import { initSettings } from "./settings.js";
 import { initTheme } from "./theme.js";
@@ -15,6 +16,7 @@ initAuth(async () => {
   }
   initSettings({ reloadModels });
   initChat();
+  initConversations();
 
   const sidebar = document.getElementById("sidebar");
   const scrim = document.getElementById("sidebar-scrim");

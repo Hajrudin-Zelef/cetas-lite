@@ -163,14 +163,6 @@ func (e *Engine) archiveCurrent(user string, c *Conversation) {
 	}
 }
 
-func (e *Engine) ListArchives(user string) []string {
-	if e.st == nil {
-		return nil
-	}
-	out, _ := e.st.ListArchives(user)
-	return out
-}
-
 func (e *Engine) RestoreArchive(user, archiveID string) bool {
 	if e.st == nil {
 		return false
@@ -242,13 +234,14 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	start := time.Now()
 	res := e.resolve(ctx, in)
 	defer func() {
-		c.finishTurn(epoch, time.Since(start))
-		if ctx.Err() != nil {
-			return
+		if ctx.Err() == nil {
+			ct, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+			if e.maybeCompact(ct, c, epoch, res.members) {
+				c.appendDelta(epoch, map[string]any{"compact": true})
+			}
+			cancel()
 		}
-		ct, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-		defer cancel()
-		e.maybeCompact(ct, c, epoch, res.members)
+		c.finishTurn(epoch, time.Since(start))
 	}()
 
 	if len(res.members) == 0 {

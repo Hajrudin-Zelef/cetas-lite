@@ -33,7 +33,9 @@ func TestMaybeCompactReduces(t *testing.T) {
 	if !ok {
 		t.Fatal("resolution alias")
 	}
-	e.maybeCompact(context.Background(), c, epoch, rm.Pool)
+	if !e.maybeCompact(context.Background(), c, epoch, rm.Pool) {
+		t.Fatal("maybeCompact doit signaler la compaction")
+	}
 
 	after := len(c.MessagesSnapshot())
 	if after >= before {
@@ -63,7 +65,9 @@ func TestMaybeCompactNoopBelowThreshold(t *testing.T) {
 	c.mu.Unlock()
 
 	rm, _ := alias.Resolve(fams, "code", "standard")
-	e.maybeCompact(context.Background(), c, epoch, rm.Pool)
+	if e.maybeCompact(context.Background(), c, epoch, rm.Pool) {
+		t.Fatal("maybeCompact ne doit rien signaler sous le seuil")
+	}
 
 	if len(c.MessagesSnapshot()) != before {
 		t.Fatal("aucune compaction ne doit avoir lieu sous le seuil")
@@ -124,7 +128,7 @@ func TestArchiveAndRestore(t *testing.T) {
 	if e.RestoreArchive("sam", "inconnu") {
 		t.Fatal("archive inconnue doit echouer")
 	}
-	if !e.RestoreArchive("sam", archives[0]) {
+	if !e.RestoreArchive("sam", archives[0].ID) {
 		t.Fatal("restauration attendue")
 	}
 	if len(e.Conversation("sam").MessagesSnapshot()) == 0 {
@@ -152,7 +156,7 @@ func TestRestoreArchivesCurrent(t *testing.T) {
 	}
 	waitFor(t, func() bool { return !c.IsGenerating() }, "tour 2")
 
-	if !e.RestoreArchive("sam", archives[0]) {
+	if !e.RestoreArchive("sam", archives[0].ID) {
 		t.Fatal("restauration attendue")
 	}
 	if got := len(e.ListArchives("sam")); got != 2 {
@@ -197,7 +201,7 @@ func TestRestoreEmitsReset(t *testing.T) {
 		t.Fatal("abonnement non pret")
 	}
 
-	if !e.RestoreArchive("sam", archives[0]) {
+	if !e.RestoreArchive("sam", archives[0].ID) {
 		t.Fatal("restauration attendue")
 	}
 	select {

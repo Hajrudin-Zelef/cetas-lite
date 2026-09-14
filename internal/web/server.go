@@ -46,6 +46,7 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("GET /api/chat/state", s.requireAuth(s.handleChatState))
 	mux.HandleFunc("GET /api/conversations", s.requireAuth(s.handleConversationsList))
 	mux.HandleFunc("POST /api/conversations/restore", s.requireAuth(s.handleConversationRestore))
+	mux.HandleFunc("DELETE /api/conversations/{id}", s.requireAuth(s.handleConversationDelete))
 	mux.Handle("GET /", http.FileServerFS(webassets.FS))
 
 	s.handler = withRecovery(withSecurityHeaders(mux))

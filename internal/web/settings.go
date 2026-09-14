@@ -8,12 +8,11 @@ import (
 )
 
 type uiSettings struct {
-	Theme        string `json:"theme"`
-	Family       string `json:"family"`
-	Mode         string `json:"mode"`
-	AgentDefault bool   `json:"agent_default"`
-	WebDefault   bool   `json:"web_default"`
-	MCPDefault   *bool  `json:"mcp_default,omitempty"`
+	Theme      string `json:"theme"`
+	Family     string `json:"family"`
+	Mode       string `json:"mode"`
+	WebDefault bool   `json:"web_default"`
+	MCPDefault *bool  `json:"mcp_default,omitempty"`
 }
 
 func defaultUISettings() uiSettings {
@@ -57,12 +56,11 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var body struct {
-		Theme        *string `json:"theme"`
-		Family       *string `json:"family"`
-		Mode         *string `json:"mode"`
-		AgentDefault *bool   `json:"agent_default"`
-		WebDefault   *bool   `json:"web_default"`
-		MCPDefault   *bool   `json:"mcp_default"`
+		Theme      *string `json:"theme"`
+		Family     *string `json:"family"`
+		Mode       *string `json:"mode"`
+		WebDefault *bool   `json:"web_default"`
+		MCPDefault *bool   `json:"mcp_default"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -81,9 +79,6 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 	}
 	if body.Mode != nil {
 		cur.Mode = *body.Mode
-	}
-	if body.AgentDefault != nil {
-		cur.AgentDefault = *body.AgentDefault
 	}
 	if body.WebDefault != nil {
 		cur.WebDefault = *body.WebDefault

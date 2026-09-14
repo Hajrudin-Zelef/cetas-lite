@@ -48,7 +48,7 @@ func TestSettingsRoundTrip(t *testing.T) {
 	token := registerAndLogin(t, h, "sam")
 
 	rec := doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{
-		"theme": "clair", "family": "samagent-n8", "mode": "elite", "agent_default": true,
+		"theme": "clair", "family": "samagent-n8", "mode": "elite",
 	})
 	if rec.Code != http.StatusOK {
 		t.Fatalf("put status = %d (%s)", rec.Code, rec.Body.String())
@@ -57,9 +57,6 @@ func TestSettingsRoundTrip(t *testing.T) {
 	body := decode(t, rec)
 	if body["theme"] != "clair" || body["family"] != "samagent-n8" || body["mode"] != "elite" {
 		t.Fatalf("round-trip = %v", body)
-	}
-	if body["agent_default"] != true {
-		t.Fatalf("agent_default = %v", body["agent_default"])
 	}
 }
 
@@ -132,7 +129,7 @@ func TestSettingsPartialMerge(t *testing.T) {
 
 	rec := doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{
 		"theme": "ocean", "family": "samagent-n8", "mode": "elite",
-		"agent_default": true, "web_default": true,
+		"web_default": true,
 	})
 	if rec.Code != http.StatusOK {
 		t.Fatalf("put plein status = %d (%s)", rec.Code, rec.Body.String())
@@ -148,7 +145,7 @@ func TestSettingsPartialMerge(t *testing.T) {
 	if body["theme"] != "clair" {
 		t.Fatalf("theme = %v", body["theme"])
 	}
-	if body["web_default"] != true || body["agent_default"] != true {
+	if body["web_default"] != true {
 		t.Fatalf("merge partiel perdu: %v", body)
 	}
 	if body["family"] != "samagent-n8" || body["mode"] != "elite" {

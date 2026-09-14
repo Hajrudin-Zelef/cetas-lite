@@ -12,7 +12,7 @@ func TestAssetsEmbedded(t *testing.T) {
 		"css/variables.css", "css/ocean.css", "css/app.css",
 		"js/app.js", "js/api.js", "js/auth.js", "js/chat.js",
 		"js/model-select.js", "js/settings.js", "js/theme.js",
-		"js/markdown.js", "js/stream-render.js",
+		"js/conversations.js", "js/markdown.js", "js/stream-render.js",
 		"js/vendor/marked.umd.min.js", "js/vendor/purify.min.js",
 		"js/package.json",
 	} {
@@ -41,6 +41,7 @@ func TestIndexHasIDs(t *testing.T) {
 		`id="composer"`, `id="prompt-input"`, `id="send-btn"`, `id="stop-btn"`,
 		`id="settings-overlay"`, `id="aliases-editor"`, `id="aliases-save"`, `id="aliases-status"`,
 		`id="agent-toggle"`, `id="web-toggle"`, `id="mcp-toggle"`,
+		`id="conv-list"`, `id="stats-badge"`,
 	} {
 		if !strings.Contains(html, id) {
 			t.Errorf("index.html manque %s", id)

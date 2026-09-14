@@ -11,6 +11,7 @@ export function initChat() {
   const form = document.getElementById("composer");
   const stopBtn = document.getElementById("stop-btn");
   const routeBadge = document.getElementById("route-badge");
+  const statsBadge = document.getElementById("stats-badge");
   const webToggle = document.getElementById("web-toggle");
 
   const emptyHTML = document.getElementById("empty-chat").outerHTML;
@@ -152,6 +153,12 @@ export function initChat() {
     scroll();
   }
 
+  function addSystem(text) {
+    clearEmpty();
+    log.appendChild(el("div", "msg-system", text));
+    scroll();
+  }
+
   function summarize(args) {
     if (!args) return "";
     return args.command || args.file_path || args.pattern || args.query || "";
@@ -238,6 +245,10 @@ export function initChat() {
     generating = false;
     stopBtn.hidden = true;
     routeBadge.hidden = true;
+    if (statsBadge) {
+      statsBadge.hidden = true;
+      statsBadge.textContent = "";
+    }
   }
 
   function handleEvent(ev) {
@@ -273,6 +284,18 @@ export function initChat() {
     }
     if (ev.tool !== undefined) {
       addTool(ev.tool);
+      return;
+    }
+    if (ev.stats !== undefined) {
+      const s = ev.stats || {};
+      if (statsBadge) {
+        statsBadge.hidden = false;
+        statsBadge.textContent = "\u2191" + (s.prompt_tokens || 0) + " \u2193" + (s.completion_tokens || 0);
+      }
+      return;
+    }
+    if (ev.compact) {
+      addSystem("Contexte compacté pour rester dans la fenêtre du modèle.");
       return;
     }
     if (ev.route !== undefined) {
@@ -373,9 +396,6 @@ export function initChat() {
       persistPrefs().catch(() => {});
     });
   }
-  document.getElementById("new-chat-btn").addEventListener("click", () => {
-    api("/api/chat/reset", { method: "POST" }).catch(() => {});
-  });
 
   connect();
 }

@@ -115,20 +115,20 @@ func summarize(ctx context.Context, p provider.Provider, model, transcript strin
 	return c, nil
 }
 
-func (e *Engine) maybeCompact(ctx context.Context, c *Conversation, epoch int, members []alias.ResolvedMember) {
+func (e *Engine) maybeCompact(ctx context.Context, c *Conversation, epoch int, members []alias.ResolvedMember) bool {
 	c.mu.Lock()
 	msgs := append([]provider.Message(nil), c.Messages...)
 	c.mu.Unlock()
 
 	used := estimateTokens(msgs)
 	if used < int(float64(compactDefaultWindow)*compactThresholdFrac) {
-		return
+		return false
 	}
 
 	tailBudget := int(float64(used) * compactTailFrac)
 	head, tailStart := compactBounds(msgs, tailBudget)
 	if tailStart <= head {
-		return
+		return false
 	}
 
 	torso := msgs[head:tailStart]
@@ -155,7 +155,7 @@ func (e *Engine) maybeCompact(ctx context.Context, c *Conversation, epoch int, m
 		break
 	}
 	if summary == "" {
-		return
+		return false
 	}
 
 	var pending []provider.Message
@@ -176,7 +176,7 @@ func (e *Engine) maybeCompact(ctx context.Context, c *Conversation, epoch int, m
 	newMsgs = append(newMsgs, msgs[tailStart:]...)
 
 	if estimateTokens(newMsgs) > used*4/5 {
-		return
+		return false
 	}
 
 	c.mu.Lock()
@@ -184,4 +184,5 @@ func (e *Engine) maybeCompact(ctx context.Context, c *Conversation, epoch int, m
 		c.Messages = newMsgs
 	}
 	c.mu.Unlock()
+	return true
 }
