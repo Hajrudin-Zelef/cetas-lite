@@ -33,6 +33,12 @@ type TurnInput struct {
 	Think       bool
 	Effort      string
 	Attachments []string
+	// Approve demande une validation utilisateur avant chaque outil
+	// d'ecriture/execution (agent uniquement).
+	Approve bool
+	// Plan active le mode plan : l'agent explore puis propose un plan
+	// a valider avant d'executer (agent uniquement).
+	Plan bool
 }
 
 type Runner interface {
@@ -53,6 +59,9 @@ type Conversation struct {
 	cancel     context.CancelFunc
 	epoch      int
 	lastTurn   *snapshotTurn
+
+	// Approbations en attente, par id de demande.
+	approvals map[string]chan approvalDecision
 
 	runner  Runner
 	persist func(c *Conversation)
@@ -84,7 +93,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Attachments: in.Attachments}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Attachments: in.Attachments}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()
@@ -130,6 +139,7 @@ func (c *Conversation) Stop() {
 
 func (c *Conversation) Reset() {
 	c.Stop()
+	c.failPendingApprovals()
 	c.mu.Lock()
 	c.Messages = nil
 	c.Log = nil
@@ -246,6 +256,7 @@ func (c *Conversation) isEmpty() bool {
 
 func (c *Conversation) restore(s snapshot) {
 	c.Stop()
+	c.failPendingApprovals()
 	c.mu.Lock()
 	c.ID = s.ID
 	c.Messages = s.Messages
@@ -463,4 +474,93 @@ func decorateEvent(ev LogEvent, from int) map[string]any {
 
 func (c *Conversation) save() ([]byte, error) {
 	return json.Marshal(c.marshal())
+}
+
+// ApprovalRequest decrit une demande de validation utilisateur : soit un
+// outil sensible avant execution (kind "tool"), soit un plan a valider
+// avant la phase d'execution du mode plan (kind "plan").
+type ApprovalRequest struct {
+	ID   string         `json:"id"`
+	Kind string         `json:"kind"`
+	Tool string         `json:"tool,omitempty"`
+	Args map[string]any `json:"args,omitempty"`
+	Plan string         `json:"plan,omitempty"`
+}
+
+type approvalDecision struct {
+	approved bool
+	always   bool
+}
+
+const approvalTimeout = 10 * time.Minute
+
+// RequestApproval emet une demande d'approbation et bloque jusqu'a la decision
+// de l'utilisateur, l'arret du tour ou l'expiration du delai.
+func (c *Conversation) RequestApproval(ctx context.Context, epoch int, req ApprovalRequest) (approvalDecision, error) {
+	if req.ID == "" {
+		req.ID = newID()
+	}
+	ch := make(chan approvalDecision, 1)
+	c.mu.Lock()
+	if c.approvals == nil {
+		c.approvals = map[string]chan approvalDecision{}
+	}
+	c.approvals[req.ID] = ch
+	c.mu.Unlock()
+	defer func() {
+		c.mu.Lock()
+		delete(c.approvals, req.ID)
+		c.mu.Unlock()
+	}()
+
+	c.appendDelta(epoch, map[string]any{"approval": map[string]any{
+		"id": req.ID, "kind": req.Kind, "tool": req.Tool, "args": req.Args,
+		"plan": req.Plan, "phase": "request",
+	}})
+
+	timer := time.NewTimer(approvalTimeout)
+	defer timer.Stop()
+	select {
+	case d := <-ch:
+		c.appendDelta(epoch, map[string]any{"approval": map[string]any{
+			"id": req.ID, "phase": "resolved", "approved": d.approved,
+		}})
+		return d, nil
+	case <-ctx.Done():
+		return approvalDecision{}, ctx.Err()
+	case <-timer.C:
+		c.appendDelta(epoch, map[string]any{"approval": map[string]any{
+			"id": req.ID, "phase": "resolved", "approved": false, "timeout": true,
+		}})
+		return approvalDecision{}, errors.New("approbation expiree")
+	}
+}
+
+// ResolveApproval transmet la decision de l'utilisateur a une demande en attente.
+func (c *Conversation) ResolveApproval(id string, approved, always bool) bool {
+	c.mu.Lock()
+	ch, ok := c.approvals[id]
+	c.mu.Unlock()
+	if !ok {
+		return false
+	}
+	select {
+	case ch <- approvalDecision{approved: approved, always: always}:
+		return true
+	default:
+		return false
+	}
+}
+
+// failPendingApprovals refuse les demandes en attente (reset / restauration).
+func (c *Conversation) failPendingApprovals() {
+	c.mu.Lock()
+	for id, ch := range c.approvals {
+		select {
+		case ch <- approvalDecision{}:
+		default:
+		}
+		delete(c.approvals, id)
+	}
+	c.mu.Unlock()
 }

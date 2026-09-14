@@ -48,6 +48,7 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("DELETE /api/chat/attach/{id}", s.requireAuth(s.handleAttachDelete))
 	mux.HandleFunc("GET /api/chat/stream", s.requireAuth(s.handleChatStream))
 	mux.HandleFunc("POST /api/chat/stop", s.requireAuth(s.handleChatStop))
+	mux.HandleFunc("POST /api/chat/approve", s.requireAuth(s.handleChatApprove))
 	mux.HandleFunc("POST /api/chat/reset", s.requireAuth(s.handleChatReset))
 	mux.HandleFunc("POST /api/chat/regenerate", s.requireAuth(s.handleChatRegenerate))
 	mux.HandleFunc("GET /api/chat/state", s.requireAuth(s.handleChatState))

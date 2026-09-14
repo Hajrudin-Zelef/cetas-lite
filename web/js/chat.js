@@ -1,7 +1,7 @@
 import { api, getToken, readSSE } from "./api.js";
 import { appendLinkified, renderInto } from "./markdown.js";
 import { createStreamRenderer } from "./stream-render.js";
-import { applyWebToggle, applyMCPToggle, persistPrefs, setThinking } from "./model-select.js";
+import { applyWebToggle, applyMCPToggle, persistPrefs, setThinking, applyApproveToggle, applyPlanToggle, isAgentMode } from "./model-select.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
@@ -77,7 +77,10 @@ export function initChat() {
   function selection() {
     const mcpToggle = document.getElementById("mcp-toggle");
     const thinkingToggle = document.getElementById("thinking-toggle");
+    const approveToggle = document.getElementById("approve-toggle");
+    const planToggle = document.getElementById("plan-toggle");
     const effortSel = document.getElementById("effort-select");
+    const agent = isAgentMode();
     return {
       family: document.getElementById("family-select").value,
       mode: document.getElementById("mode-select").value,
@@ -85,6 +88,8 @@ export function initChat() {
       mcp: !!(mcpToggle && !mcpToggle.hidden && mcpToggle.getAttribute("aria-pressed") === "true"),
       think: !!(thinkingToggle && thinkingToggle.getAttribute("aria-pressed") === "true"),
       effort: effortSel ? effortSel.value : "default",
+      approve: agent && !!(approveToggle && !approveToggle.hidden && approveToggle.getAttribute("aria-pressed") === "true"),
+      plan: agent && !!(planToggle && !planToggle.hidden && planToggle.getAttribute("aria-pressed") === "true"),
     };
   }
 
@@ -318,12 +323,31 @@ export function initChat() {
     return list;
   }
 
-  function renderDiff(lines) {
+  function renderDiff(lines, filePath) {
     const wrap = el("div", "tool-diff");
+    let adds = 0, dels = 0;
     for (const line of lines) {
-      const cls = line.kind === "+" ? "diff-add" : "diff-del";
-      wrap.appendChild(el("span", cls, (line.kind === "+" ? "+ " : "- ") + line.text + "\n"));
+      if (line.kind === "+") adds++;
+      else if (line.kind === "-") dels++;
     }
+    const head = el("div", "diff-head");
+    head.appendChild(el("span", "diff-file", filePath ? String(filePath) : "modification"));
+    head.appendChild(el("span", "diff-stats", "+" + adds + " / -" + dels));
+    wrap.appendChild(head);
+    const body = el("div", "diff-body");
+    let oldN = 0, newN = 0;
+    for (const line of lines) {
+      const kind = line.kind === "+" ? "diff-add" : line.kind === "-" ? "diff-del" : "diff-ctx";
+      const row = el("div", "diff-row " + kind);
+      let gutter = "";
+      if (line.kind === "-") { oldN++; gutter = String(oldN); }
+      else if (line.kind === "+") { newN++; gutter = String(newN); }
+      row.appendChild(el("span", "diff-gutter", gutter));
+      row.appendChild(el("span", "diff-sign", line.kind === "…" ? "…" : line.kind || " "));
+      row.appendChild(el("span", "diff-code", line.text != null ? String(line.text) : ""));
+      body.appendChild(row);
+    }
+    wrap.appendChild(body);
     return wrap;
   }
 
@@ -356,7 +380,7 @@ export function initChat() {
     const body = toolBoxes.get(key);
     if (!body) return;
     if (Array.isArray(ev.diff) && ev.diff.length) {
-      body.appendChild(renderDiff(ev.diff));
+      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
     }
     if (typeof ev.result === "string" && ev.result) {
       const pre = el("pre", "tool-result");
@@ -366,8 +390,93 @@ export function initChat() {
     scroll();
   }
 
-  function finishTurn() {
+  const approvalCards = new Map();
+
+  function summarizeApprovalArgs(tool, args) {
+    if (!args) return "";
+    if (args.file_path) return String(args.file_path);
+    if (args.command) return String(args.command);
+    if (args.pattern) return String(args.pattern);
+    if (args.query) return String(args.query);
+    return "";
+  }
+
+  async function decideApproval(id, approved, always) {
+    try {
+      await api("/api/chat/approve", { method: "POST", body: { id, approved, always: !!always } });
+    } catch (e) {
+      addError("Approbation : " + e.message);
+    }
+  }
+
+  function setApprovalResolved(id, approved, timeout) {
+    const card = approvalCards.get(id);
+    if (!card) return;
+    const btns = card.querySelectorAll("button");
+    btns.forEach((b) => { b.disabled = true; });
+    const status = card.querySelector(".approval-status");
+    if (status) {
+      status.textContent = timeout ? "Expirée (10 min sans réponse)" : approved ? "Approuvé" : "Refusé";
+      status.classList.add(approved && !timeout ? "approved" : "denied");
+    }
+    scroll();
+  }
+
+  function addApproval(ev) {
+    const id = ev.id;
+    if (ev.phase === "resolved") {
+      setApprovalResolved(id, ev.approved === true, ev.timeout === true);
+      return;
+    }
+    if (ev.phase !== "request" || !id || approvalCards.has(id)) return;
+    clearEmpty();
+    hideWait();
+    const card = el("div", "msg-approval");
+    const head = el("div", "approval-head");
+    const isPlan = ev.kind === "plan";
+    head.appendChild(el("span", "approval-title", isPlan ? "Plan à valider" : "Approbation requise"));
+    if (!isPlan && ev.tool) head.appendChild(el("span", "tool-name", " " + ev.tool));
+    card.appendChild(head);
+    const hint = isPlan ? "" : summarizeApprovalArgs(ev.tool, ev.args);
+    if (hint) card.appendChild(el("div", "approval-hint", hint));
+    if (isPlan && ev.plan) {
+      const pre = el("pre", "approval-plan");
+      pre.textContent = String(ev.plan).slice(0, 4000);
+      card.appendChild(pre);
+    } else if (ev.args && typeof ev.args === "object") {
+      const det = el("details", "approval-args");
+      det.appendChild(el("summary", "", "Détails"));
+      const pre = el("pre");
+      const shown = Object.assign({}, ev.args);
+      for (const k of ["content", "code", "new"]) {
+        if (typeof shown[k] === "string" && shown[k].length > 600) shown[k] = shown[k].slice(0, 600) + "…";
+      }
+      pre.textContent = JSON.stringify(shown, null, 2);
+      det.appendChild(pre);
+      card.appendChild(det);
+    }
+    const status = el("div", "approval-status", "En attente de ta décision…");
+    card.appendChild(status);
+    const row = el("div", "approval-actions");
+    const btnApprove = el("button", "btn-approve", isPlan ? "Valider le plan" : "Approuver");
+    btnApprove.addEventListener("click", () => decideApproval(id, true, false));
+    const btnDeny = el("button", "btn-deny", "Refuser");
+    btnDeny.addEventListener("click", () => decideApproval(id, false, false));
+    row.appendChild(btnApprove);
+    row.appendChild(btnDeny);
+    if (!isPlan) {
+      const btnAlways = el("button", "btn-always", "Toujours approuver (ce tour)");
+      btnAlways.addEventListener("click", () => decideApproval(id, true, true));
+      row.appendChild(btnAlways);
+    }
+    card.appendChild(row);
+    log.appendChild(card);
+    approvalCards.set(id, card);
     if (textRenderer) textRenderer.flush();
+    scroll(true);
+  }
+
+  function finishTurn() {    if (textRenderer) textRenderer.flush();
     const box = assistant;
     const raw = textRenderer ? textRenderer.text() : "";
     if (box) box.classList.remove("streaming");
@@ -393,6 +502,7 @@ export function initChat() {
     reasoningEl = null;
     reasoningText = "";
     toolBoxes.clear();
+    approvalCards.clear();
     generating = false;
     stopBtn.hidden = true;
     routeBadge.hidden = true;
@@ -437,6 +547,10 @@ export function initChat() {
     }
     if (ev.tool !== undefined) {
       addTool(ev.tool);
+      return;
+    }
+    if (ev.approval !== undefined) {
+      addApproval(ev.approval);
       return;
     }
     if (ev.stats !== undefined) {
@@ -499,7 +613,7 @@ export function initChat() {
     input.value = "";
     autoGrow();
     try {
-      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp, think: sel.think, effort: sel.effort, attachments: attachments.map((a) => a.id) } });
+      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp, think: sel.think, effort: sel.effort, approve: sel.approve, plan: sel.plan, attachments: attachments.map((a) => a.id) } });
       attachments = [];
       renderChips();
       generating = true;
@@ -556,13 +670,26 @@ export function initChat() {
     thinkingToggle.addEventListener("click", () => {
       if (thinkingToggle.disabled) return;
       const next = thinkingToggle.getAttribute("aria-pressed") !== "true";
-      setThinking(next);
-      persistPrefs().catch(() => {});
+      setThinking(next);      persistPrefs().catch(() => {});
     });
   }
   const effortSel = document.getElementById("effort-select");
   if (effortSel) {
     effortSel.addEventListener("change", () => persistPrefs().catch(() => {}));
+  }
+  const approveToggle = document.getElementById("approve-toggle");
+  if (approveToggle) {
+    approveToggle.addEventListener("click", () => {
+      const next = approveToggle.getAttribute("aria-pressed") !== "true";
+      applyApproveToggle(next);
+    });
+  }
+  const planToggle = document.getElementById("plan-toggle");
+  if (planToggle) {
+    planToggle.addEventListener("click", () => {
+      const next = planToggle.getAttribute("aria-pressed") !== "true";
+      applyPlanToggle(next);
+    });
   }
 
   if (attachBtn && attachInput) {

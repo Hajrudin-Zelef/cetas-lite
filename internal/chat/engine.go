@@ -226,7 +226,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Attachments: last.Attachments}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Attachments: last.Attachments}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)
