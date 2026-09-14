@@ -16,6 +16,7 @@ import (
 
 	"cetas-lite/internal/alias"
 	"cetas-lite/internal/auth"
+	"cetas-lite/internal/backup"
 	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/cryptovault"
@@ -40,6 +41,8 @@ Usage:
   cetas-lite keys set <p> [valeur] chiffre et enregistre une cle (valeur sinon sur stdin)
   cetas-lite keys delete <p>       supprime une cle
   cetas-lite mcp                   liste les serveurs MCP et leurs outils
+  cetas-lite backup <fichier>      sauvegarde la base (+ mcp.json) dans un tar.gz (serveur arrete)
+  cetas-lite restore <fichier>     restaure la base depuis un tar.gz (serveur arrete)
 
 Variables:
   CETAS_LITE_HOME                 repertoire de donnees (defaut: config/cetas-lite)
@@ -64,6 +67,10 @@ func main() {
 		err = runKeys(os.Args[2:])
 	case "mcp":
 		err = runMCP(os.Args[2:])
+	case "backup":
+		err = runBackup(os.Args[2:])
+	case "restore":
+		err = runRestore(os.Args[2:])
 	case "help", "-h", "--help":
 		usage()
 	default:
@@ -256,6 +263,48 @@ func runMCP(args []string) error {
 		}
 	}
 	return nil
+}
+
+func runBackup(args []string) error {
+	if len(args) < 1 {
+		return errors.New("usage: cetas-lite backup <fichier.tar.gz>")
+	}
+	cfg, err := unlockedConfig()
+	if err != nil {
+		return err
+	}
+	if err := backup.Create(cfg.DBPath, cfg.MCPPath, args[0]); err != nil {
+		return err
+	}
+	fmt.Println("sauvegarde ecrite:", args[0])
+	return nil
+}
+
+func runRestore(args []string) error {
+	if len(args) < 1 {
+		return errors.New("usage: cetas-lite restore <fichier.tar.gz>")
+	}
+	cfg, err := unlockedConfig()
+	if err != nil {
+		return err
+	}
+	if err := backup.Restore(args[0], cfg.Home); err != nil {
+		return err
+	}
+	fmt.Println("restauration effectuee dans", cfg.Home)
+	return nil
+}
+
+func unlockedConfig() (*config.Config, error) {
+	cfg, st, err := openStore()
+	if err == nil {
+		_ = st.Close()
+		return cfg, nil
+	}
+	if errors.Is(err, store.ErrLocked) {
+		return nil, errors.New("base verrouillee: arretez le serveur")
+	}
+	return config.Load()
 }
 
 func localURLsFromEnv() map[string]string {

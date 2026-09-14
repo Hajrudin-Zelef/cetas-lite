@@ -88,6 +88,25 @@ func (s *Server) handleChatReset(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"ok": true})
 }
 
+func (s *Server) handleChatRegenerate(w http.ResponseWriter, r *http.Request) {
+	claims := claimsFrom(r)
+	if claims == nil {
+		writeError(w, http.StatusUnauthorized, "non authentifie")
+		return
+	}
+	err := s.engine.Regenerate(claims.Username)
+	switch {
+	case err == nil:
+		writeJSON(w, http.StatusOK, map[string]any{"ok": true})
+	case errors.Is(err, chat.ErrBusy):
+		writeError(w, http.StatusConflict, "generation en cours")
+	case errors.Is(err, chat.ErrNoTurn):
+		writeError(w, http.StatusBadRequest, "aucun tour a regenerer")
+	default:
+		writeError(w, http.StatusInternalServerError, err.Error())
+	}
+}
+
 func (s *Server) handleChatState(w http.ResponseWriter, r *http.Request) {
 	claims := claimsFrom(r)
 	if claims == nil {

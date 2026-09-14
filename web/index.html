@@ -45,6 +45,10 @@
       <span class="version-badge" id="version-badge"></span>
     </h1>
     <button type="button" id="new-chat-btn" class="new-chat-btn">+ Nouvelle conversation</button>
+    <div class="conv-head">
+      <span class="conv-head-label">Conversations</span>
+      <button type="button" id="export-btn" class="icon-btn" title="Exporter la conversation active (Markdown)" aria-label="Exporter la conversation active">&#8681;</button>
+    </div>
     <div id="conv-list" class="conv-list"></div>
     <div class="sidebar-spacer"></div>
     <div class="sidebar-footer">
@@ -104,6 +108,13 @@
     <div class="settings-body">
       <p class="settings-status">Un <code>provider model</code> par ligne, du plus prioritaire au moins prioritaire.</p>
       <div id="aliases-editor"></div>
+      <div class="settings-section">
+        <div class="settings-section-head">
+          <h3>Serveurs MCP</h3>
+          <button type="button" id="mcp-refresh" class="small-btn">Rafraichir</button>
+        </div>
+        <div id="mcp-panel" class="mcp-panel"></div>
+      </div>
     </div>
     <div class="settings-foot">
       <span id="aliases-status" class="settings-status"></span>

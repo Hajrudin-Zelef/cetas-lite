@@ -56,3 +56,23 @@ export function renderInto(el, text) {
   wrapTables(el);
   addCopyButtons(el);
 }
+
+const URL_RE = /(https?:\/\/[^\s<>()"']+)/g;
+
+export function appendLinkified(el, text) {
+  const s = String(text || "");
+  let last = 0;
+  URL_RE.lastIndex = 0;
+  let m;
+  while ((m = URL_RE.exec(s)) !== null) {
+    if (m.index > last) el.appendChild(document.createTextNode(s.slice(last, m.index)));
+    const a = document.createElement("a");
+    a.href = m[1];
+    a.textContent = m[1];
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    el.appendChild(a);
+    last = m.index + m[1].length;
+  }
+  if (last < s.length) el.appendChild(document.createTextNode(s.slice(last)));
+}

@@ -43,10 +43,13 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("GET /api/chat/stream", s.requireAuth(s.handleChatStream))
 	mux.HandleFunc("POST /api/chat/stop", s.requireAuth(s.handleChatStop))
 	mux.HandleFunc("POST /api/chat/reset", s.requireAuth(s.handleChatReset))
+	mux.HandleFunc("POST /api/chat/regenerate", s.requireAuth(s.handleChatRegenerate))
 	mux.HandleFunc("GET /api/chat/state", s.requireAuth(s.handleChatState))
+	mux.HandleFunc("GET /api/chat/export", s.requireAuth(s.handleChatExport))
 	mux.HandleFunc("GET /api/conversations", s.requireAuth(s.handleConversationsList))
 	mux.HandleFunc("POST /api/conversations/restore", s.requireAuth(s.handleConversationRestore))
 	mux.HandleFunc("DELETE /api/conversations/{id}", s.requireAuth(s.handleConversationDelete))
+	mux.HandleFunc("GET /api/conversations/{id}/export", s.requireAuth(s.handleArchiveExport))
 	mux.Handle("GET /", http.FileServerFS(webassets.FS))
 
 	s.handler = withRecovery(withSecurityHeaders(mux))

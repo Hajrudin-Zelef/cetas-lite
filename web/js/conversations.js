@@ -1,4 +1,22 @@
-import { api } from "./api.js";
+import { api, getToken } from "./api.js";
+
+async function download(url, name) {
+  let resp;
+  try {
+    resp = await fetch(url, { headers: { Authorization: "Bearer " + getToken() } });
+  } catch (e) {
+    return;
+  }
+  if (!resp.ok) return;
+  const blob = await resp.blob();
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
 
 function fmtDate(ms) {
   if (!ms) return "";
@@ -58,7 +76,19 @@ function convItem(a, onChanged) {
     remove(a.id, onChanged);
   });
 
+  const exp = document.createElement("button");
+  exp.type = "button";
+  exp.className = "conv-export";
+  exp.title = "Exporter (Markdown)";
+  exp.setAttribute("aria-label", "Exporter la conversation");
+  exp.textContent = "\u2913";
+  exp.addEventListener("click", (e) => {
+    e.stopPropagation();
+    download("/api/conversations/" + encodeURIComponent(a.id) + "/export?format=md", a.id + ".md");
+  });
+
   row.appendChild(main);
+  row.appendChild(exp);
   row.appendChild(del);
   return row;
 }
@@ -96,6 +126,13 @@ export function initConversations() {
     } catch (e) {}
     await refresh();
   });
+
+  const exportBtn = document.getElementById("export-btn");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+      download("/api/chat/export?format=md", "conversation.md");
+    });
+  }
 
   refresh();
 }

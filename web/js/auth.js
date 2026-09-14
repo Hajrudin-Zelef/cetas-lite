@@ -65,7 +65,11 @@ export function initAuth(onAuthenticated) {
     clearSession();
     location.reload();
   });
-  window.addEventListener("cetas:unauthorized", showLogin);
+  window.addEventListener("cetas:unauthorized", () => {
+    errEl.textContent = "Session expirée. Reconnecte-toi pour continuer.";
+    errEl.hidden = false;
+    showLogin();
+  });
 
   if (getToken()) showApp();
   else showLogin();

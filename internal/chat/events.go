@@ -13,4 +13,13 @@ type snapshot struct {
 	Messages []provider.Message `json:"messages"`
 	Log      []LogEvent         `json:"log"`
 	Seq      int                `json:"seq"`
+	Turn     *snapshotTurn      `json:"turn,omitempty"`
+}
+
+type snapshotTurn struct {
+	Family string `json:"family"`
+	Mode   string `json:"mode"`
+	Text   string `json:"text"`
+	Web    bool   `json:"web,omitempty"`
+	MCP    bool   `json:"mcp,omitempty"`
 }

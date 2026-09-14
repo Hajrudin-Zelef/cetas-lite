@@ -104,6 +104,15 @@ func (e *Engine) MCPServers() []mcp.ServerStatus {
 	return nil
 }
 
+func (e *Engine) MCPProbe(ctx context.Context) []mcp.ServerStatus {
+	m := e.mcpTools()
+	if m == nil {
+		return nil
+	}
+	m.Tools(ctx)
+	return m.Servers()
+}
+
 func (e *Engine) allowWeb(user string) bool {
 	e.mu.Lock()
 	if e.searcher == nil {
@@ -151,6 +160,48 @@ func (e *Engine) ArchiveAndReset(user string) {
 	c := e.Conversation(user)
 	e.archiveCurrent(user, c)
 	c.Reset()
+}
+
+func (e *Engine) Regenerate(user string) error {
+	c := e.Conversation(user)
+	c.mu.Lock()
+	if c.Generating {
+		c.mu.Unlock()
+		return ErrBusy
+	}
+	last := c.lastTurn
+	if last == nil {
+		c.mu.Unlock()
+		return ErrNoTurn
+	}
+	idx := -1
+	for i := len(c.Messages) - 1; i >= 0; i-- {
+		if c.Messages[i].Role == "user" {
+			idx = i
+			break
+		}
+	}
+	if idx < 0 {
+		c.mu.Unlock()
+		return ErrNoTurn
+	}
+	c.Messages = append([]provider.Message(nil), c.Messages[:idx]...)
+	cut := 0
+	for i := len(c.Log) - 1; i >= 0; i-- {
+		if _, ok := c.Log[i].Delta["user"]; ok {
+			cut = i
+			break
+		}
+	}
+	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
+	c.epoch++
+	c.cond.Broadcast()
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP}
+	c.mu.Unlock()
+	if c.persist != nil {
+		c.persist(c)
+	}
+	return c.StartTurn(in)
 }
 
 func (e *Engine) archiveCurrent(user string, c *Conversation) {

@@ -22,6 +22,14 @@ func TestMCPStatusEmpty(t *testing.T) {
 	if len(servers) != 0 {
 		t.Fatalf("serveurs attendus vides: %v", servers)
 	}
+
+	rec = doJSON(t, h, http.MethodGet, "/api/mcp?probe=1", token, nil)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("probe status = %d (%s)", rec.Code, rec.Body.String())
+	}
+	if got, _ := decode(t, rec)["servers"].([]any); len(got) != 0 {
+		t.Fatalf("probe sans serveur = %v", got)
+	}
 }
 
 func TestMCPStatusUnauthorized(t *testing.T) {

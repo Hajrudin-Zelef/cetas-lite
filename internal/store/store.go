@@ -3,6 +3,7 @@ package store
 import (
 	"crypto/rand"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -20,6 +21,8 @@ var (
 	bConversations = []byte("conversations")
 	bArchives      = []byte("archives")
 	bSecrets       = []byte("secrets")
+
+	ErrLocked = errors.New("base verrouillee")
 )
 
 type Store struct {
@@ -42,6 +45,9 @@ func Open(path string) (*Store, error) {
 	}
 	db, err := bolt.Open(path, 0o600, &bolt.Options{Timeout: 5 * time.Second})
 	if err != nil {
+		if errors.Is(err, bolt.ErrTimeout) {
+			return nil, ErrLocked
+		}
 		return nil, fmt.Errorf("ouverture bbolt: %w", err)
 	}
 	s := &Store{db: db}

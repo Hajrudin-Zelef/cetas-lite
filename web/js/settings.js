@@ -7,6 +7,8 @@ export function initSettings({ reloadModels } = {}) {
   const openBtn = document.getElementById("settings-btn");
   const closeBtn = document.getElementById("settings-close");
   const saveBtn = document.getElementById("aliases-save");
+  const mcpPanel = document.getElementById("mcp-panel");
+  const mcpRefresh = document.getElementById("mcp-refresh");
   let families = [];
 
   function render() {
@@ -56,6 +58,42 @@ export function initSettings({ reloadModels } = {}) {
     return pool;
   }
 
+  function renderMCP(servers) {
+    mcpPanel.innerHTML = "";
+    if (!servers.length) {
+      const p = document.createElement("p");
+      p.className = "settings-status";
+      p.textContent = "Aucun serveur MCP configure ($CETAS_LITE_HOME/mcp.json).";
+      mcpPanel.appendChild(p);
+      return;
+    }
+    for (const s of servers) {
+      const row = document.createElement("div");
+      row.className = "mcp-row";
+      const name = document.createElement("span");
+      name.className = "mcp-name";
+      name.textContent = s.name || "";
+      const meta = document.createElement("span");
+      meta.className = "mcp-meta";
+      const state = s.connected ? "connecte" : s.error ? "erreur" : "hors ligne";
+      meta.textContent =
+        (s.transport || "") + " · " + state + " · " + (s.tools || 0) + " outil(s)" + (s.error ? " · " + s.error : "");
+      row.appendChild(name);
+      row.appendChild(meta);
+      mcpPanel.appendChild(row);
+    }
+  }
+
+  async function loadMCP(probe) {
+    mcpPanel.textContent = "Chargement...";
+    try {
+      const data = await api("/api/mcp" + (probe ? "?probe=1" : ""));
+      renderMCP((data && data.servers) || []);
+    } catch (e) {
+      mcpPanel.textContent = e.message;
+    }
+  }
+
   openBtn.addEventListener("click", async () => {
     status.textContent = "";
     overlay.hidden = false;
@@ -64,7 +102,9 @@ export function initSettings({ reloadModels } = {}) {
     } catch (e) {
       status.textContent = e.message;
     }
+    loadMCP(false);
   });
+  mcpRefresh.addEventListener("click", () => loadMCP(true));
   closeBtn.addEventListener("click", () => {
     overlay.hidden = true;
   });

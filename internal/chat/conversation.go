@@ -18,6 +18,7 @@ const maxLogEvents = 200000
 var (
 	ErrBusy       = errors.New("generation en cours")
 	ErrBadMessage = errors.New("message vide")
+	ErrNoTurn     = errors.New("aucun tour a regenerer")
 )
 
 func newID() string { return strconv.FormatInt(time.Now().UnixNano(), 10) }
@@ -48,6 +49,7 @@ type Conversation struct {
 	genStart   time.Time
 	cancel     context.CancelFunc
 	epoch      int
+	lastTurn   *snapshotTurn
 
 	runner  Runner
 	persist func(c *Conversation)
@@ -79,6 +81,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()
@@ -132,6 +135,7 @@ func (c *Conversation) Reset() {
 	c.epoch++
 	c.Generating = false
 	c.cancel = nil
+	c.lastTurn = nil
 	c.cond.Broadcast()
 	c.mu.Unlock()
 	if c.persist != nil {
@@ -210,6 +214,7 @@ func (c *Conversation) marshal() snapshot {
 		Messages: append([]provider.Message(nil), c.Messages...),
 		Log:      append([]LogEvent(nil), c.Log...),
 		Seq:      c.Seq,
+		Turn:     c.lastTurn,
 	}
 }
 
@@ -220,6 +225,7 @@ func (c *Conversation) load(s snapshot) {
 	c.Messages = s.Messages
 	c.Log = s.Log
 	c.Seq = s.Seq
+	c.lastTurn = s.Turn
 	c.Generating = false
 	c.cancel = nil
 }
@@ -237,6 +243,7 @@ func (c *Conversation) restore(s snapshot) {
 	c.Messages = s.Messages
 	c.Log = s.Log
 	c.Seq = s.Seq
+	c.lastTurn = s.Turn
 	c.Generating = false
 	c.cancel = nil
 	c.epoch++

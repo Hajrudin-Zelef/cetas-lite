@@ -2,6 +2,7 @@ package store
 
 import (
 	"bytes"
+	"errors"
 	"path/filepath"
 	"testing"
 )
@@ -115,5 +116,17 @@ func TestSecretsAndSettings(t *testing.T) {
 	}
 	if v, ok := s.GetSetting("sam", "theme"); !ok || !bytes.Equal(v, []byte("ocean")) {
 		t.Fatalf("setting = %q ok=%v", v, ok)
+	}
+}
+
+func TestOpenReportsLocked(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "locked.db")
+	s, err := Open(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer func() { _ = s.Close() }()
+	if _, err := Open(path); !errors.Is(err, ErrLocked) {
+		t.Fatalf("err = %v, want ErrLocked", err)
 	}
 }

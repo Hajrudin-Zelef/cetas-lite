@@ -1,5 +1,5 @@
 import { api, getToken, readSSE } from "./api.js";
-import { renderInto } from "./markdown.js";
+import { appendLinkified, renderInto } from "./markdown.js";
 import { createStreamRenderer } from "./stream-render.js";
 import { applyWebToggle, applyMCPToggle, persistPrefs } from "./model-select.js";
 
@@ -159,6 +159,35 @@ export function initChat() {
     scroll();
   }
 
+  function addActions(box, raw) {
+    if (!box || box.querySelector(".msg-actions")) return;
+    const bar = el("div", "msg-actions");
+    const copy = el("button", "msg-action", "Copier");
+    copy.type = "button";
+    copy.addEventListener("click", () => {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(raw).then(() => {
+        copy.textContent = "Copie";
+        setTimeout(() => {
+          copy.textContent = "Copier";
+        }, 1200);
+      }).catch(() => {});
+    });
+    const regen = el("button", "msg-action", "Regenerer");
+    regen.type = "button";
+    regen.addEventListener("click", async () => {
+      if (generating) return;
+      try {
+        await api("/api/chat/regenerate", { method: "POST" });
+      } catch (e) {
+        addError(e.message);
+      }
+    });
+    bar.appendChild(copy);
+    bar.appendChild(regen);
+    box.appendChild(bar);
+  }
+
   function summarize(args) {
     if (!args) return "";
     return args.command || args.file_path || args.pattern || args.query || "";
@@ -214,17 +243,22 @@ export function initChat() {
       body.appendChild(renderDiff(ev.diff));
     }
     if (typeof ev.result === "string" && ev.result) {
-      body.appendChild(el("pre", "tool-result", ev.result));
+      const pre = el("pre", "tool-result");
+      appendLinkified(pre, ev.result);
+      body.appendChild(pre);
     }
     scroll();
   }
 
   function finishTurn() {
     if (textRenderer) textRenderer.flush();
+    const box = assistant;
+    const raw = textRenderer ? textRenderer.text() : "";
     hideWait();
     setBusy(false);
     generating = false;
     stopBtn.hidden = true;
+    if (box && raw.trim()) addActions(box, raw);
     assistant = null;
     textRenderer = null;
     reasoningEl = null;

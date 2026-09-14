@@ -43,7 +43,7 @@ CONVERSATIONS = {
     ]
 }
 
-STATE = {"put_settings": None, "send_body": None, "deleted": None}
+STATE = {"put_settings": None, "send_body": None, "deleted": None, "regenerated": None, "exported": None}
 
 
 def sse(events):
@@ -62,7 +62,7 @@ STREAM = sse(
                 "name": "Edit",
                 "args": {"file_path": "a.txt"},
                 "phase": "end",
-                "result": "ok",
+                "result": "ok https://go.dev doc",
                 "diff": [{"kind": "-", "text": "ligne"}, {"kind": "+", "text": "LIGNE"}],
             },
         },
@@ -125,6 +125,18 @@ def route_mocks(page):
     page.route("**/api/chat/send", send)
     page.route("**/api/chat/state", lambda r: r.fulfill(json={"turns": 1, "generating": False}))
     page.route("**/api/conversations**", conversations)
+
+    def regenerate(route):
+        STATE["regenerated"] = True
+        route.fulfill(json={"ok": True})
+
+    page.route("**/api/chat/regenerate", regenerate)
+
+    def export(route):
+        STATE["exported"] = True
+        route.fulfill(status=200, headers={"Content-Type": "text/markdown"}, body="# Conversation\n")
+
+    page.route("**/api/chat/export**", export)
     page.route(
         "**/api/chat/stream**",
         lambda r: r.fulfill(status=200, headers={"Content-Type": "text/event-stream", "Cache-Control": "no-cache"}, body=STREAM),
@@ -136,6 +148,8 @@ def check(page, url, reduced):
     STATE["put_settings"] = None
     STATE["send_body"] = None
     STATE["deleted"] = None
+    STATE["regenerated"] = None
+    STATE["exported"] = None
     page.on("pageerror", lambda e: errors.append(str(e)))
     page.on("dialog", lambda d: d.accept())
     page.goto(url)
@@ -193,6 +207,25 @@ def check(page, url, reduced):
     page.locator(".conv-del").first.click()
     page.wait_for_timeout(100)
     assert STATE.get("deleted") == "20260101_120000_1", f"DELETE archive attendu: {STATE.get('deleted')!r}"
+
+    assert page.locator('.tool-result a[href="https://go.dev"]').count() >= 1, "citation cliquable attendue"
+
+    assert page.locator(".msg-actions").count() >= 1, "actions message attendues"
+    page.locator(".msg-action", has_text="Regenerer").last.click()
+    page.wait_for_timeout(100)
+    assert STATE.get("regenerated"), "regeneration attendue"
+
+    page.locator("#export-btn").click()
+    page.wait_for_timeout(100)
+    assert STATE.get("exported"), "export actif attendu"
+
+    page.locator("#settings-btn").click()
+    page.wait_for_selector("#settings-overlay:not([hidden])", timeout=4000)
+    page.wait_for_timeout(200)
+    assert page.locator("#mcp-panel .mcp-name").count() == 1, "serveur MCP liste attendu"
+    mcpname = page.locator("#mcp-panel .mcp-name").first.inner_text()
+    assert mcpname == "demo", f"nom MCP = {mcpname!r}"
+    page.locator("#settings-close").click()
 
     page.fill("#prompt-input", "question web")
     page.press("#prompt-input", "Enter")
