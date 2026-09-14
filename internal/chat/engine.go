@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"cetas-lite/internal/alias"
+	"cetas-lite/internal/attach"
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/provider"
@@ -27,6 +28,7 @@ type Engine struct {
 	mem         MemoryTools
 	ext         MCPTools
 	custom      CustomTools
+	attach      *attach.Store
 	sandboxMode string
 
 	mu         sync.Mutex
@@ -222,7 +224,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Attachments: last.Attachments}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)
@@ -329,6 +331,10 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 
 	if mi, ok := e.memoryIndexMessage(in.User); ok {
 		msgs = append([]provider.Message{mi}, msgs...)
+	}
+
+	if actx := e.attachmentContext(in.User, in.Attachments); actx != "" {
+		msgs = append([]provider.Message{{Role: "system", Content: actx}}, msgs...)
 	}
 
 	if res.agent && e.workspace != "" && in.User != "" {

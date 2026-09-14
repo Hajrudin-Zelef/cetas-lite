@@ -28,6 +28,10 @@ export function initChat() {
   let waitTimer = null;
   let waitIdx = 0;
   const toolBoxes = new Map();
+  let attachments = [];
+  const attachChips = document.getElementById("attach-chips");
+  const attachInput = document.getElementById("attach-input");
+  const attachBtn = document.getElementById("attach-btn");
 
   function el(tag, cls, text) {
     const e = document.createElement(tag);
@@ -159,6 +163,57 @@ export function initChat() {
     scroll();
   }
 
+  function renderChips() {
+    if (!attachChips) return;
+    attachChips.innerHTML = "";
+    attachChips.hidden = attachments.length === 0;
+    for (const a of attachments) {
+      const chip = el("span", "attach-chip");
+      chip.appendChild(el("span", "attach-name", a.name));
+      const rm = el("button", "attach-remove", "\u00d7");
+      rm.type = "button";
+      rm.title = "Retirer";
+      rm.setAttribute("aria-label", "Retirer " + a.name);
+      rm.addEventListener("click", () => removeAttachment(a.id));
+      chip.appendChild(rm);
+      attachChips.appendChild(chip);
+    }
+  }
+
+  async function uploadFiles(files) {
+    for (const f of files) {
+      const fd = new FormData();
+      fd.append("file", f);
+      let resp;
+      try {
+        resp = await fetch("/api/chat/attach", {
+          method: "POST",
+          headers: { Authorization: "Bearer " + getToken() },
+          body: fd,
+        });
+      } catch (e) {
+        addError("Envoi du fichier impossible.");
+        continue;
+      }
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok) {
+        addError(data.error || "Erreur " + resp.status);
+        continue;
+      }
+      attachments.push({ id: data.id, name: data.name, kind: data.kind });
+    }
+    renderChips();
+  }
+
+  function removeAttachment(id) {
+    attachments = attachments.filter((a) => a.id !== id);
+    renderChips();
+    fetch("/api/chat/attach/" + encodeURIComponent(id), {
+      method: "DELETE",
+      headers: { Authorization: "Bearer " + getToken() },
+    }).catch(() => {});
+  }
+
   function addActions(box, raw) {
     if (!box || box.querySelector(".msg-actions")) return;
     const bar = el("div", "msg-actions");
@@ -279,6 +334,8 @@ export function initChat() {
     generating = false;
     stopBtn.hidden = true;
     routeBadge.hidden = true;
+    attachments = [];
+    renderChips();
     if (statsBadge) {
       statsBadge.hidden = true;
       statsBadge.textContent = "";
@@ -380,7 +437,9 @@ export function initChat() {
     input.value = "";
     autoGrow();
     try {
-      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp } });
+      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp, attachments: attachments.map((a) => a.id) } });
+      attachments = [];
+      renderChips();
       generating = true;
       stopBtn.hidden = false;
       setBusy(true);
@@ -430,6 +489,28 @@ export function initChat() {
       persistPrefs().catch(() => {});
     });
   }
+
+  if (attachBtn && attachInput) {
+    attachBtn.addEventListener("click", () => attachInput.click());
+    attachInput.addEventListener("change", () => {
+      if (attachInput.files && attachInput.files.length) {
+        uploadFiles(Array.from(attachInput.files));
+      }
+      attachInput.value = "";
+    });
+  }
+  form.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    form.classList.add("dragover");
+  });
+  form.addEventListener("dragleave", () => form.classList.remove("dragover"));
+  form.addEventListener("drop", (e) => {
+    e.preventDefault();
+    form.classList.remove("dragover");
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+      uploadFiles(Array.from(e.dataTransfer.files));
+    }
+  });
 
   connect();
 }

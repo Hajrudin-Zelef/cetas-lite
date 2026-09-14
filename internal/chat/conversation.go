@@ -24,12 +24,13 @@ var (
 func newID() string { return strconv.FormatInt(time.Now().UnixNano(), 10) }
 
 type TurnInput struct {
-	User   string
-	Family string
-	Mode   string
-	Text   string
-	Web    bool
-	MCP    bool
+	User        string
+	Family      string
+	Mode        string
+	Text        string
+	Web         bool
+	MCP         bool
+	Attachments []string
 }
 
 type Runner interface {
@@ -81,7 +82,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Attachments: in.Attachments}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()

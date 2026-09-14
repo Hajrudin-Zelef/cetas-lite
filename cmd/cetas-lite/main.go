@@ -10,11 +10,13 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"strings"
 	"syscall"
 	"time"
 
 	"cetas-lite/internal/alias"
+	"cetas-lite/internal/attach"
 	"cetas-lite/internal/auth"
 	"cetas-lite/internal/backup"
 	"cetas-lite/internal/chat"
@@ -123,6 +125,7 @@ func runServe() error {
 	}
 	engine.SetSearcher(search.New(keys, client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
+	engine.SetAttachments(attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20))
 	customManager, err := customtools.NewManager(cfg.ToolsPath, client)
 	if err != nil {
 		return err

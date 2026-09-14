@@ -530,6 +530,57 @@ input:focus {
   border-top: 1px solid var(--border);
 }
 
+.composer.dragover {
+  background: var(--accent-light);
+  outline: 2px dashed var(--accent);
+  outline-offset: -6px;
+}
+
+.attach-chips {
+  max-width: 820px;
+  margin: 0 auto 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.attach-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2px 4px 2px 10px;
+  font-size: 12px;
+  max-width: 260px;
+}
+
+.attach-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attach-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.attach-remove:hover,
+.attach-remove:focus-visible {
+  color: var(--accent);
+}
+
+.attach-btn {
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+
 .input-wrapper {
   max-width: 820px;
   margin: 0 auto;

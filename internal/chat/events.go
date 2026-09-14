@@ -17,9 +17,10 @@ type snapshot struct {
 }
 
 type snapshotTurn struct {
-	Family string `json:"family"`
-	Mode   string `json:"mode"`
-	Text   string `json:"text"`
-	Web    bool   `json:"web,omitempty"`
-	MCP    bool   `json:"mcp,omitempty"`
+	Family      string   `json:"family"`
+	Mode        string   `json:"mode"`
+	Text        string   `json:"text"`
+	Web         bool     `json:"web,omitempty"`
+	MCP         bool     `json:"mcp,omitempty"`
+	Attachments []string `json:"attachments,omitempty"`
 }
