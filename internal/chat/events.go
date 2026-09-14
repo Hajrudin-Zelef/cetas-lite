@@ -28,5 +28,6 @@ type snapshotTurn struct {
 	Plan        bool     `json:"plan,omitempty"`
 	Worktree    bool     `json:"worktree,omitempty"`
 	Repo        string   `json:"repo,omitempty"`
+	ProjectID   string   `json:"project_id,omitempty"`
 	Attachments []string `json:"attachments,omitempty"`
 }

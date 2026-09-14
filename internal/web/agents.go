@@ -16,15 +16,16 @@ func (s *Server) handleAgentsCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var body struct {
-		Family   string `json:"family"`
-		Mode     string `json:"mode"`
-		Message  string `json:"message"`
-		Repo     string `json:"repo"`
-		Worktree bool   `json:"worktree"`
-		Approve  bool   `json:"approve"`
-		Plan     bool   `json:"plan"`
-		Web      bool   `json:"web"`
-		Effort   string `json:"effort"`
+		Family    string `json:"family"`
+		Mode      string `json:"mode"`
+		Message   string `json:"message"`
+		Repo      string `json:"repo"`
+		ProjectID string `json:"project_id"`
+		Worktree  bool   `json:"worktree"`
+		Approve   bool   `json:"approve"`
+		Plan      bool   `json:"plan"`
+		Web       bool   `json:"web"`
+		Effort    string `json:"effort"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -39,7 +40,7 @@ func (s *Server) handleAgentsCreate(w http.ResponseWriter, r *http.Request) {
 		Text: body.Message, Approve: body.Approve, Plan: body.Plan,
 		Web: body.Web, Think: true, Effort: body.Effort,
 		AgentMode: true,
-		Worktree:  body.Worktree, Repo: body.Repo,
+		Worktree:  body.Worktree, Repo: body.Repo, ProjectID: body.ProjectID,
 		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
 	})
 	if err != nil {
@@ -116,11 +117,12 @@ func (s *Server) handleAgentMessage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var body struct {
-		Message string `json:"message"`
-		Approve bool   `json:"approve"`
-		Plan    bool   `json:"plan"`
-		Web     bool   `json:"web"`
-		Effort  string `json:"effort"`
+		Message   string `json:"message"`
+		Approve   bool   `json:"approve"`
+		Plan      bool   `json:"plan"`
+		Web       bool   `json:"web"`
+		Effort    string `json:"effort"`
+		ProjectID string `json:"project_id"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -129,7 +131,7 @@ func (s *Server) handleAgentMessage(w http.ResponseWriter, r *http.Request) {
 	err := s.engine.MessageAgent(claims.Username, r.PathValue("id"), chat.TurnInput{
 		User: claims.Username, Text: body.Message, Approve: body.Approve, Plan: body.Plan,
 		Web: body.Web, Think: true, Effort: body.Effort,
-		AgentMode: true,
+		AgentMode: true, ProjectID: body.ProjectID,
 		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
 	})
 	if err != nil {

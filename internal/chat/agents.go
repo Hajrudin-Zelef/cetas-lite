@@ -16,17 +16,18 @@ import (
 // conversation (donc son propre tour, ses approbations, son SSE) et,
 // si demande, son propre worktree git isole.
 type AgentRun struct {
-	ID       string
-	User     string
-	Family   string
-	Mode     string
-	Repo     string
-	Created  time.Time
-	conv     *Conversation
-	convID   string
-	mu       sync.Mutex
-	wtPath   string
-	restored bool
+	ID        string
+	User      string
+	Family    string
+	Mode      string
+	Repo      string
+	ProjectID string
+	Created   time.Time
+	conv      *Conversation
+	convID    string
+	mu        sync.Mutex
+	wtPath    string
+	restored  bool
 }
 
 // WorktreePath retourne le chemin du worktree associe ("" si aucun).
@@ -92,12 +93,13 @@ func (e *Engine) SpawnAgent(user string, in TurnInput) (*AgentRun, error) {
 	}
 	in.User = user
 	run := &AgentRun{
-		ID:      newID(),
-		User:    user,
-		Family:  in.Family,
-		Mode:    in.Mode,
-		Repo:    strings.TrimSpace(in.Repo),
-		Created: time.Now(),
+		ID:        newID(),
+		User:      user,
+		Family:    in.Family,
+		Mode:      in.Mode,
+		Repo:      strings.TrimSpace(in.Repo),
+		ProjectID: strings.TrimSpace(in.ProjectID),
+		Created:   time.Now(),
 	}
 	run.convID = newID()
 	run.conv = NewConversation(run.convID, e, func(c *Conversation) { e.saveAgent(run, c) })
@@ -326,6 +328,9 @@ func (e *Engine) MessageAgent(user, id string, in TurnInput) error {
 	}
 	if in.Repo == "" {
 		in.Repo = r.Repo
+	}
+	if in.ProjectID == "" {
+		in.ProjectID = r.ProjectID
 	}
 	return r.conv.StartTurn(in)
 }

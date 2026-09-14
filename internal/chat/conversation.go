@@ -47,6 +47,9 @@ type TurnInput struct {
 	// Repo est le chemin du depot a cloner en worktree.
 	Worktree bool
 	Repo     string
+	// ProjectID est le projet (upload local ou dossier SFTP) sur lequel
+	// l'agent travaille. Vide = espace partagé historique.
+	ProjectID string
 	// MaxTokens limite les tokens generes par reponse (0 = defaut).
 	MaxTokens int
 }
@@ -124,7 +127,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, Attachments: in.Attachments}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()

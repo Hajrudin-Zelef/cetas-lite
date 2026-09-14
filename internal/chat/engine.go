@@ -15,6 +15,7 @@ import (
 	"cetas-lite/internal/modelcaps"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/workspace"
 	"cetas-lite/internal/worktree"
 
 	"golang.org/x/time/rate"
@@ -46,6 +47,9 @@ type Engine struct {
 	agentsMu sync.Mutex
 	agents   map[string]*AgentRun
 	wtRepos  map[string]string
+
+	// Projets (upload local / dossier SFTP) : workspace de l'agent.
+	wsProjects *workspace.Manager
 
 	// MAREX.md : chemin du fichier renseigne par l'utilisateur, et cache
 	// du contenu lu au demarrage de chaque session (par ID de conversation).
@@ -244,7 +248,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, Attachments: last.Attachments}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, ProjectID: last.ProjectID, Attachments: last.Attachments}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)

@@ -2,6 +2,7 @@ import { api, getPrefs, putPrefs } from "./api.js";
 import { applyTheme, persistPrefs } from "./model-select.js";
 import { getCategories, saveCategories } from "./sidebar.js";
 import { saveRoles } from "./right-panel.js";
+import { renderConnectorsInto } from "./projects.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -78,6 +79,11 @@ function initConfigModal() {
       tab.classList.add("active");
       const panel = document.getElementById("panel-" + tab.dataset.tab);
       if (panel) panel.classList.add("active");
+      // Les connecteurs se chargent à l'ouverture de l'onglet.
+      if (tab.dataset.tab === "connecteurs") {
+        const body = document.getElementById("connectors-body");
+        if (body) renderConnectorsInto(body);
+      }
     });
   });
   document.getElementById("apikeys-close-btn")?.addEventListener("click", () => closeOverlay("apikeys-modal-overlay"));

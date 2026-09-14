@@ -17,6 +17,7 @@ import (
 	"time"
 
 	"cetas-lite/internal/provider"
+	"cetas-lite/internal/vfs"
 )
 
 const (
@@ -113,32 +114,32 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 	}
 	switch name {
 	case "Ls":
-		return s.toolLs()
+		return s.toolLs(ctx)
 	case "Read":
 		if f := missingArg(args, "file_path"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
-		return s.toolRead(args)
+		return s.toolRead(ctx, args)
 	case "Write":
 		if f := missingArg(args, "file_path", "content"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
-		return s.toolWrite(args)
+		return s.toolWrite(ctx, args)
 	case "Edit":
 		if f := missingArg(args, "file_path", "old", "new"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
-		return s.toolEdit(args)
+		return s.toolEdit(ctx, args)
 	case "Grep":
 		if f := missingArg(args, "pattern"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
-		return s.toolGrep(args)
+		return s.toolGrep(ctx, args)
 	case "Glob":
 		if f := missingArg(args, "pattern"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
-		return s.toolGlob(args)
+		return s.toolGlob(ctx, args)
 	case "Bash":
 		if f := missingArg(args, "command"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
@@ -175,32 +176,12 @@ func missingArgErr(tool, field string) string {
 		"\" — renvoie l'appel avec ce champ renseigne."
 }
 
-func (s *Sandbox) toolLs() ToolResult {
+func (s *Sandbox) toolLs(ctx context.Context) ToolResult {
 	var entries []string
-	_ = filepath.WalkDir(s.root, func(p string, d os.DirEntry, err error) error {
-		if err != nil {
-			return nil
-		}
-		if p == s.root {
-			return nil
-		}
-		if d.IsDir() && skipEntry(d.Name()) {
-			return filepath.SkipDir
-		}
-		if skipEntry(d.Name()) {
-			return nil
-		}
-		rel, rerr := filepath.Rel(s.root, p)
-		if rerr != nil {
-			return nil
-		}
-		rel = filepath.ToSlash(rel)
-		if d.IsDir() {
-			rel += "/"
-		}
-		entries = append(entries, rel)
+	_ = s.fs.Walk(ctx, func(e vfs.Entry) error {
+		entries = append(entries, e.Path)
 		if len(entries) >= lsMaxEntries {
-			return errors.New("stop")
+			return errWalkStopSandbox
 		}
 		return nil
 	})
@@ -212,15 +193,20 @@ func (s *Sandbox) toolLs() ToolResult {
 	return ToolResult{Text: out}
 }
 
-func (s *Sandbox) toolRead(args map[string]any) ToolResult {
+var errWalkStopSandbox = errors.New("stop")
+
+func (s *Sandbox) toolRead(ctx context.Context, args map[string]any) ToolResult {
 	rel := strArg(args, "file_path")
-	p, err := s.Resolve(rel)
+	clean, err := s.fs.Resolve(rel)
 	if err != nil {
 		return ToolResult{Text: "[erreur] " + err.Error()}
 	}
-	b, err := os.ReadFile(p)
+	if clean == "" {
+		return ToolResult{Text: "[erreur] chemin vide"}
+	}
+	b, err := s.fs.ReadFile(ctx, clean)
 	if err != nil {
-		if os.IsNotExist(err) {
+		if errors.Is(err, vfs.ErrNotFound) {
 			return ToolResult{Text: "[erreur] fichier introuvable: " + rel + ". Utilise Glob pour trouver le bon chemin."}
 		}
 		return ToolResult{Text: "[erreur] " + err.Error()}
@@ -245,28 +231,25 @@ func (s *Sandbox) toolRead(args map[string]any) ToolResult {
 	return ToolResult{Text: out}
 }
 
-func (s *Sandbox) toolWrite(args map[string]any) ToolResult {
+func (s *Sandbox) toolWrite(ctx context.Context, args map[string]any) ToolResult {
 	rel := strArg(args, "file_path")
 	content := strArg(args, "content")
 	if strings.TrimSpace(rel) == "" {
 		return ToolResult{Text: "[erreur] chemin vide"}
 	}
-	p, err := s.Resolve(rel)
+	clean, err := s.fs.Resolve(rel)
 	if err != nil {
 		return ToolResult{Text: "[erreur] " + err.Error()}
 	}
-	if dir := filepath.Dir(p); dir != "" && dir != s.root {
-		if err := os.MkdirAll(dir, 0o700); err != nil {
-			return ToolResult{Text: "[erreur] " + err.Error()}
-		}
+	if clean == "" {
+		return ToolResult{Text: "[erreur] chemin vide"}
 	}
 	mode := os.FileMode(0o644)
 	existed := false
-	if fi, err := os.Stat(p); err == nil {
-		mode = fi.Mode()
+	if _, err := s.fs.Stat(ctx, clean); err == nil {
 		existed = true
 	}
-	if err := os.WriteFile(p, []byte(content), mode); err != nil {
+	if err := s.fs.WriteFile(ctx, clean, []byte(content), mode); err != nil {
 		return ToolResult{Text: "[erreur] " + err.Error()}
 	}
 	verb := "cree"
@@ -279,7 +262,7 @@ func (s *Sandbox) toolWrite(args map[string]any) ToolResult {
 	}
 }
 
-func (s *Sandbox) toolEdit(args map[string]any) ToolResult {
+func (s *Sandbox) toolEdit(ctx context.Context, args map[string]any) ToolResult {
 	rel := strArg(args, "file_path")
 	oldText := strArg(args, "old")
 	newText := strArg(args, "new")
@@ -289,11 +272,14 @@ func (s *Sandbox) toolEdit(args map[string]any) ToolResult {
 	if oldText == "" {
 		return ToolResult{Text: "[erreur] old vide"}
 	}
-	p, err := s.Resolve(rel)
+	clean, err := s.fs.Resolve(rel)
 	if err != nil {
 		return ToolResult{Text: "[erreur] " + err.Error()}
 	}
-	b, err := os.ReadFile(p)
+	if clean == "" {
+		return ToolResult{Text: "[erreur] chemin vide"}
+	}
+	b, err := s.fs.ReadFile(ctx, clean)
 	if err != nil {
 		return ToolResult{Text: "[erreur] " + err.Error()}
 	}
@@ -309,17 +295,13 @@ func (s *Sandbox) toolEdit(args map[string]any) ToolResult {
 		return ToolResult{Text: fmt.Sprintf("[erreur] old apparait %d fois — ajoute du contexte pour le rendre unique", n)}
 	}
 	updated := strings.Replace(content, oldText, newText, 1)
-	mode := os.FileMode(0o644)
-	if fi, err := os.Stat(p); err == nil {
-		mode = fi.Mode()
-	}
-	if err := os.WriteFile(p, []byte(updated), mode); err != nil {
+	if err := s.fs.WriteFile(ctx, clean, []byte(updated), 0o644); err != nil {
 		return ToolResult{Text: "[erreur] " + err.Error()}
 	}
 	return ToolResult{Text: fmt.Sprintf("[ok] %s modifie (1 remplacement)", rel), Diff: lineDiff(oldText, newText)}
 }
 
-func (s *Sandbox) toolGrep(args map[string]any) ToolResult {
+func (s *Sandbox) toolGrep(ctx context.Context, args map[string]any) ToolResult {
 	pattern := strArg(args, "pattern")
 	if pattern == "" {
 		return ToolResult{Text: "[erreur] pattern vide"}
@@ -332,49 +314,62 @@ func (s *Sandbox) toolGrep(args map[string]any) ToolResult {
 	if limit <= 0 {
 		limit = grepMaxMatches
 	}
-	base := s.root
+	base := ""
 	if rel := strArg(args, "path"); rel != "" && rel != "." {
-		p, err := s.Resolve(rel)
+		clean, err := s.fs.Resolve(rel)
 		if err != nil {
 			return ToolResult{Text: "[erreur] " + err.Error()}
 		}
-		base = p
+		base = clean
 	}
 	var matches []string
-	walkFile := func(p string) {
-		if info, err := os.Stat(p); err != nil || info.Size() > grepMaxFile {
+	stopped := false
+	walkFile := func(rel string) {
+		if stopped {
 			return
 		}
-		b, err := os.ReadFile(p)
+		fi, err := s.fs.Stat(ctx, rel)
+		if err != nil || fi.IsDir || fi.Size > grepMaxFile {
+			return
+		}
+		b, err := s.fs.ReadFile(ctx, rel)
 		if err != nil || strings.ContainsRune(string(b), 0) {
 			return
 		}
-		rel, _ := filepath.Rel(s.root, p)
-		rel = filepath.ToSlash(rel)
 		for i, line := range strings.Split(string(b), "\n") {
 			if re.MatchString(line) {
 				matches = append(matches, fmt.Sprintf("%s:%d: %s", rel, i+1, line))
 				if len(matches) >= limit {
+					stopped = true
 					return
 				}
 			}
 		}
 	}
-	if info, err := os.Stat(base); err == nil && !info.IsDir() {
-		walkFile(base)
-	} else {
-		_ = filepath.WalkDir(base, func(p string, d os.DirEntry, err error) error {
-			if err != nil {
-				return nil
-			}
-			if d.IsDir() && p != base && skipEntry(d.Name()) {
-				return filepath.SkipDir
-			}
-			if !d.IsDir() && !skipEntry(d.Name()) {
-				walkFile(p)
-				if len(matches) >= limit {
-					return errors.New("stop")
+	if base != "" {
+		if fi, err := s.fs.Stat(ctx, base); err == nil && !fi.IsDir {
+			walkFile(base)
+		} else {
+			_ = s.fs.Walk(ctx, func(e vfs.Entry) error {
+				if base != "" && e.Path != base && !strings.HasPrefix(e.Path, base+"/") {
+					return nil
 				}
+				if !e.IsDir {
+					walkFile(strings.TrimSuffix(e.Path, "/"))
+				}
+				if stopped {
+					return errWalkStopSandbox
+				}
+				return nil
+			})
+		}
+	} else {
+		_ = s.fs.Walk(ctx, func(e vfs.Entry) error {
+			if !e.IsDir {
+				walkFile(strings.TrimSuffix(e.Path, "/"))
+			}
+			if stopped {
+				return errWalkStopSandbox
 			}
 			return nil
 		})
@@ -386,35 +381,22 @@ func (s *Sandbox) toolGrep(args map[string]any) ToolResult {
 	return ToolResult{Text: out}
 }
 
-func (s *Sandbox) toolGlob(args map[string]any) ToolResult {
+func (s *Sandbox) toolGlob(ctx context.Context, args map[string]any) ToolResult {
 	pattern := strings.TrimSpace(strArg(args, "pattern"))
 	if pattern == "" {
 		return ToolResult{Text: "[erreur] pattern vide"}
 	}
 	pattern = strings.TrimPrefix(filepath.ToSlash(pattern), "./")
 	var files []string
-	_ = filepath.WalkDir(s.root, func(p string, d os.DirEntry, err error) error {
-		if err != nil {
+	_ = s.fs.Walk(ctx, func(e vfs.Entry) error {
+		if e.IsDir {
 			return nil
 		}
-		if p == s.root {
-			return nil
-		}
-		if d.IsDir() && skipEntry(d.Name()) {
-			return filepath.SkipDir
-		}
-		if d.IsDir() || skipEntry(d.Name()) {
-			return nil
-		}
-		rel, rerr := filepath.Rel(s.root, p)
-		if rerr != nil {
-			return nil
-		}
-		rel = filepath.ToSlash(rel)
+		rel := strings.TrimSuffix(e.Path, "/")
 		if globMatch(pattern, rel) {
 			files = append(files, rel)
 			if len(files) >= globMaxEntries {
-				return errors.New("stop")
+				return errWalkStopSandbox
 			}
 		}
 		return nil
@@ -427,7 +409,7 @@ func (s *Sandbox) toolGlob(args map[string]any) ToolResult {
 }
 
 func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
-	if runtime.GOOS == "windows" {
+	if runtime.GOOS == "windows" && !s.fs.Remote() {
 		return "[erreur] Bash non supporte sur Windows en v1"
 	}
 	command := strings.TrimSpace(strArg(args, "command"))
@@ -465,41 +447,55 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 	if timeout > bashMax {
 		timeout = bashMax
 	}
-	cctx, cancel := context.WithTimeout(ctx, time.Duration(timeout)*time.Second)
-	defer cancel()
-	argv := wrapCommand(s.Isolation, s.root, tokens)
-	cmd := exec.CommandContext(cctx, argv[0], argv[1:]...)
-	if err := os.MkdirAll(s.root, 0o700); err == nil {
-		cmd.Dir = s.root
+	// Environnement git : authentifie les opérations GitHub via le token
+	// connecté, sans modifier aucun fichier du dépôt.
+	var env map[string]string
+	if binary == "git" {
+		env = gitEnv(s.githubToken())
 	}
-	cmd.WaitDelay = 2 * time.Second
-	var stdout, stderr strings.Builder
-	cmd.Stdout = &stdout
-	cmd.Stderr = &stderr
-	err = cmd.Run()
+	argv := tokens
+	if !s.fs.Remote() {
+		argv = wrapCommand(s.Isolation, s.localRoot(), tokens)
+	}
+	out, err := s.fs.Exec(ctx, argv[0], argv[1:], env, time.Duration(timeout)*time.Second)
 	switch {
-	case errors.Is(cctx.Err(), context.DeadlineExceeded):
+	case isTimeoutErr(err):
 		return fmt.Sprintf("[timeout apres %ds]", timeout)
 	case errors.Is(ctx.Err(), context.Canceled):
 		return "[commande interrompue]"
 	}
-	exit := 0
-	if err != nil {
-		var ee *exec.ExitError
-		if errors.As(err, &ee) {
-			exit = ee.ExitCode()
-		} else {
-			return fmt.Sprintf("[erreur] %v", err)
-		}
-	}
+	exit := exitCodeOf(err)
 	parts := []string{fmt.Sprintf("exit: %d", exit)}
-	if out := truncate(stdout.String(), toolMaxOutput); out != "" {
-		parts = append(parts, "stdout:\n"+out)
+	if out := truncate(out, toolMaxOutput); out != "" {
+		parts = append(parts, "sortie:\n"+out)
 	}
-	if out := truncate(stderr.String(), toolMaxOutput); out != "" {
-		parts = append(parts, "stderr:\n"+out)
+	if err != nil && exit == 0 {
+		parts = append(parts, fmt.Sprintf("[erreur] %v", err))
 	}
 	return strings.Join(parts, "\n\n")
+}
+
+// isTimeoutErr détecte un dépassement de délai renvoyé par un FS.
+func isTimeoutErr(err error) bool {
+	return err != nil && strings.Contains(err.Error(), "delai depasse")
+}
+
+// exitCodeOf extrait le code de sortie d'une commande (locale ou SSH).
+func exitCodeOf(err error) int {
+	if err == nil {
+		return 0
+	}
+	var ee *exec.ExitError
+	if errors.As(err, &ee) {
+		return ee.ExitCode()
+	}
+	// *ssh.ExitError expose ExitStatus() sans hériter d'exec.ExitError.
+	type exitStater interface{ ExitStatus() int }
+	var es exitStater
+	if errors.As(err, &es) {
+		return es.ExitStatus()
+	}
+	return 1
 }
 
 func filterTools(tools []provider.Tool, drop string) []provider.Tool {
@@ -564,69 +560,47 @@ func (s *Sandbox) toolRunScript(ctx context.Context, args map[string]any) string
 	if timeout > scriptMax {
 		timeout = scriptMax
 	}
-	tmpDir := filepath.Join(s.root, ".runscript_tmp")
-	if err := os.MkdirAll(tmpDir, 0o700); err != nil {
-		return "[erreur] preparation sandbox impossible: " + err.Error()
-	}
 	ext := "py"
 	if lang == "node" {
 		ext = "js"
 	}
-	f, err := os.CreateTemp(tmpDir, "script-*."+ext)
-	if err != nil {
+	// Le script est déposé dans le FS (local ou distant) puis exécuté
+	// via le même chemin que Bash : comportement identique partout.
+	rel := fmt.Sprintf(".runscript_tmp/script-%d.%s", time.Now().UnixNano(), ext)
+	if err := s.fs.WriteFile(ctx, rel, []byte(code), 0o600); err != nil {
 		return "[erreur] ecriture script impossible: " + err.Error()
 	}
-	fpath := f.Name()
-	if _, err := f.WriteString(code); err != nil {
-		f.Close()
-		os.Remove(fpath)
-		return "[erreur] ecriture script impossible: " + err.Error()
+	defer s.fs.Remove(ctx, rel)
+	env := map[string]string{
+		"PATH": envOr("PATH", "/usr/local/bin:/usr/bin:/bin"),
+		"LANG": "C.UTF-8",
 	}
-	f.Close()
-	defer os.Remove(fpath)
-
-	cctx, cancel := context.WithTimeout(ctx, time.Duration(timeout)*time.Second)
-	defer cancel()
-	argv := wrapCommand(s.Isolation, s.root, []string{runner, fpath})
-	cmd := exec.CommandContext(cctx, argv[0], argv[1:]...)
-	cmd.Dir = s.root
-	cmd.WaitDelay = 2 * time.Second
-	cmd.Env = []string{
-		"PATH=" + envOr("PATH", "/usr/local/bin:/usr/bin:/bin"),
-		"HOME=" + s.root,
-		"LANG=C.UTF-8",
+	if !s.fs.Remote() {
+		env["HOME"] = s.localRoot()
 	}
-	var stdout, stderr strings.Builder
-	cmd.Stdout = &stdout
-	cmd.Stderr = &stderr
-	err = cmd.Run()
+	argv := []string{runner, rel}
+	if !s.fs.Remote() {
+		argv = wrapCommand(s.Isolation, s.localRoot(), argv)
+	}
+	out, err := s.fs.Exec(ctx, argv[0], argv[1:], env, time.Duration(timeout)*time.Second)
 	switch {
-	case errors.Is(cctx.Err(), context.DeadlineExceeded):
+	case isTimeoutErr(err):
 		return fmt.Sprintf("[timeout apres %ds]", timeout)
 	case errors.Is(ctx.Err(), context.Canceled):
 		return "[commande interrompue]"
 	}
-	exit := 0
-	if err != nil {
-		var ee *exec.ExitError
-		if errors.As(err, &ee) {
-			exit = ee.ExitCode()
-		} else {
-			return fmt.Sprintf("[erreur] %v", err)
-		}
+	parts := []string{fmt.Sprintf("exit: %d", exitCodeOf(err))}
+	if out := truncate(out, toolMaxOutput); out != "" {
+		parts = append(parts, "sortie:\n"+out)
 	}
-	parts := []string{fmt.Sprintf("exit: %d", exit)}
-	if out := truncate(stdout.String(), toolMaxOutput); out != "" {
-		parts = append(parts, "stdout:\n"+out)
-	}
-	if out := truncate(stderr.String(), toolMaxOutput); out != "" {
-		parts = append(parts, "stderr:\n"+out)
+	if err != nil && exitCodeOf(err) == 0 {
+		parts = append(parts, fmt.Sprintf("[erreur] %v", err))
 	}
 	return strings.Join(parts, "\n\n")
 }
 
 func skipEntry(name string) bool {
-	return name == ".git" || name == "node_modules" || name == ".runscript_tmp" || strings.HasPrefix(name, ".")
+	return vfs.SkipEntry(name)
 }
 
 func globMatch(pattern, name string) bool {

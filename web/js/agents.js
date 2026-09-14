@@ -2,6 +2,13 @@ import { api } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
 import { estimateTokens } from "./turn-tokens.js";
 import { logout } from "./auth.js";
+import {
+  Projects,
+  renderActiveTree,
+  renderProjectsList,
+  renderProjectBar,
+  openNewProjectModal,
+} from "./projects.js";
 
 // ============================================================================
 // Vue "Agents" façon Marexcode.
@@ -79,7 +86,8 @@ const VIEW_HTML = `
         <button class="sb-section-toggle" id="mx-toggle-active"><span>Projet actif</span>${I.chevSm}</button>
         <div class="sb-collapsible" id="mx-panel-active">
           <div class="sb-project-header">${I.folder}<span id="mx-active-name">Espace partagé</span></div>
-          <div class="sb-tree-empty">Aucun fichier dans le workspace.</div>
+          <div class="sb-tree-empty" id="mx-active-sub">Aucun projet actif.</div>
+          <div id="mx-active-tree"></div>
         </div>
         <button class="sb-section-toggle" id="mx-toggle-projects"><span>Mes projets</span>${I.chevSm}</button>
         <div class="sb-collapsible" id="mx-panel-projects">
@@ -133,6 +141,7 @@ const VIEW_HTML = `
               <div class="cdrop-menu" id="mx-menu-project"></div>
             </div>
           </div>
+          <div class="mx-pbar" id="mx-project-bar"></div>
           <textarea id="mx-input" rows="1" placeholder="Décrivez la tâche de code à réaliser... (glissez des images ici)"></textarea>
           <div class="composer-info-bar"><span id="mx-token-counter"></span><span id="mx-queue" style="display:none"></span></div>
           <div class="composer-footer">
@@ -253,7 +262,6 @@ export function initAgents() {
   let mxEffort = LS.get("mx_effort", "default");
   if (!["default", "low", "medium", "high"].includes(mxEffort)) mxEffort = "default";
   const EFFORT_LABELS = { default: "Défaut", low: "Faible", medium: "Moyen", high: "Max" };
-  let projects = LS.getJSON("projects", []);
   let favorites = new Set(LS.getJSON("favs", []));
   let missionTitles = LS.getJSON("titles", {});
   let agents = [];
@@ -430,69 +438,63 @@ export function initAgents() {
     });
   }
 
-  // ---------------- projets ----------------
+  // ---------------- projets (via /api/projects) ----------------
   function activeProjectName() {
-    return repo || "Espace partagé";
+    const p = Projects.active;
+    return p ? p.name : "Espace partagé";
   }
   function refreshProjectLabels() {
     $("#mx-label-project").textContent = activeProjectName();
     $("#mx-active-name").textContent = activeProjectName();
+    const p = Projects.active;
+    $("#mx-active-sub").textContent = p
+      ? p.mode === "sftp"
+        ? p.user + "@" + p.host + ":" + p.remote_path
+        : "Projet local"
+      : "Aucun projet actif.";
+    renderProjectBar($("#mx-project-bar"));
   }
   function renderProjects() {
-    const list = $("#mx-projects-list");
-    list.innerHTML = "";
-    $("#mx-projects-empty").style.display = projects.length ? "none" : "";
-    for (const p of projects) {
-      const b = el("button", "sb-tree-item" + (p === repo ? " active" : ""));
-      b.type = "button";
-      b.innerHTML = I.folder + "<span>" + esc(p) + "</span>";
-      b.title = p;
-      b.addEventListener("click", () => {
-        repo = p;
-        LS.set("repo", repo);
-        refreshProjectLabels();
-        renderProjects();
-      });
-      list.appendChild(b);
-    }
+    renderProjectsList($("#mx-projects-list"), $("#mx-projects-empty"));
+    renderActiveTree($("#mx-active-tree"));
   }
   function buildProjectMenu() {
     const menu = $("#mx-menu-project");
     let html = '<div class="cdrop-section-label">Projet</div>';
-    html += cdropItemHTML("Espace partagé", "Dépôt courant, sans isolation git", !repo, I.folder, 'data-repo="__shared__"');
-    for (const p of projects) {
-      html += cdropItemHTML(p, "Dépôt importé", p === repo, I.folder, 'data-repo="' + esc(p) + '"');
+    html += cdropItemHTML("Espace partagé", "Workspace partagé, sans projet", !Projects.activeId, I.folder, 'data-pid="__shared__"');
+    for (const p of Projects.list) {
+      html += cdropItemHTML(
+        p.name,
+        p.mode === "sftp" ? p.user + "@" + p.host : "Projet local",
+        p.id === Projects.activeId,
+        I.folder,
+        'data-pid="' + esc(p.id) + '"'
+      );
     }
     html += '<div class="cdrop-divider"></div>';
-    html += '<button class="cdrop-upload-btn" id="mx-pick-repo">' + I.upload + " Choisir un dépôt…</button>";
+    html += '<button class="cdrop-upload-btn" id="mx-pick-repo">' + I.upload + " Nouveau projet…</button>";
     menu.innerHTML = html;
-    menu.querySelectorAll(".cdrop-item[data-repo]").forEach((it) => {
-      it.addEventListener("click", () => {
-        repo = it.dataset.repo === "__shared__" ? "" : it.dataset.repo;
-        LS.set("repo", repo);
-        refreshProjectLabels();
-        renderProjects();
+    menu.querySelectorAll(".cdrop-item[data-pid]").forEach((it) => {
+      it.addEventListener("click", async () => {
+        try {
+          await Projects.setActive(it.dataset.pid === "__shared__" ? "" : it.dataset.pid);
+        } catch (e) {
+          alert("Sélection impossible : " + (e.message || e));
+        }
         closeAllDrops();
-        buildProjectMenu();
       });
     });
     menu.querySelector("#mx-pick-repo").addEventListener("click", () => {
-      const v = prompt("Chemin du dépôt (sous ton espace, ex. ~/workspace/mon-projet) :", repo || "~/workspace/");
-      if (v == null) return;
-      const path = v.trim();
-      if (!path) return;
-      repo = path;
-      if (!projects.includes(path)) {
-        projects.push(path);
-        LS.setJSON("projects", projects);
-      }
-      LS.set("repo", repo);
-      refreshProjectLabels();
-      renderProjects();
       closeAllDrops();
-      buildProjectMenu();
+      openNewProjectModal();
     });
   }
+  // Rafraîchit tout le volet projet quand l'état change.
+  Projects.onChange = () => {
+    refreshProjectLabels();
+    renderProjects();
+    buildProjectMenu();
+  };
 
 // ============================================================================
 // Corps de la vue (3/3) : discussions, métriques, raisonnement, thread, envoi
@@ -799,6 +801,7 @@ async function send() {
           plan: PERMS[perm].plan,
           worktree: useWorktree,
           repo,
+          project_id: Projects.activeId || undefined,
           web: mxWeb,
           effort: mxEffort, // think est forcé côté serveur pour les agents
         },
@@ -964,14 +967,7 @@ wireToggle("#mx-toggle-projects", "#mx-panel-projects");
 wireToggle("#mx-toggle-disc", "#mx-panel-disc");
 
 $("#mx-new-project").addEventListener("click", () => {
-  const v = prompt("Chemin du dépôt (sous ton espace, ex. ~/workspace/mon-projet) :", "~/workspace/");
-  if (v == null) return;
-  const path = v.trim();
-  if (!path || projects.includes(path)) return;
-  projects.push(path);
-  LS.setJSON("projects", projects);
-  renderProjects();
-  buildProjectMenu();
+  openNewProjectModal();
 });
 
 $("#mx-sp-close").addEventListener("click", () => mxCloseReason(true));
@@ -1001,6 +997,7 @@ buildProjectMenu();
 buildEffortMenu();
 refreshProjectLabels();
 renderProjects();
+Projects.refresh(); // charge /api/projects (+ projet actif), re-rend via onChange
 refreshMxWeb();
 $("#mx-think").classList.add("active"); // réflexion obligatoire pour l'agent
 mxResetReason();

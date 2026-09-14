@@ -1714,3 +1714,100 @@
 #marex-view .mx-hist-del:hover{ color:var(--danger); background:var(--bg-active); }
 /* Scrollbar du panneau latéral */
 #marex-view .side-panel-body{ scrollbar-width:thin; }
+
+/* ---- Projets : lignes, barre active, arborescence ---- */
+#marex-view .mx-project-row{ display:flex; align-items:center; gap:4px; }
+#marex-view .mx-project-row .sb-tree-item{ flex:1; min-width:0; }
+#marex-view .mx-project-row.active .sb-tree-item{ background:var(--accent-light); color:var(--accent); }
+#marex-view .mx-project-del{
+  flex-shrink:0; padding:6px; border:none; border-radius:6px; background:transparent;
+  color:var(--text-tertiary); cursor:pointer; opacity:0; transition:opacity .15s;
+}
+#marex-view .mx-project-row:hover .mx-project-del{ opacity:.8; }
+#marex-view .mx-project-del:hover{ color:#e05252; background:var(--bg-hover); }
+#marex-view .mx-project-mode{
+  margin-left:auto; font-size:10.5px; color:var(--text-tertiary);
+  border:1px solid var(--border); border-radius:10px; padding:1px 7px; flex-shrink:0;
+}
+#marex-view .mx-pbar{
+  display:flex; align-items:center; gap:8px; padding:7px 12px;
+  font-size:12.5px; color:var(--text-secondary);
+  border-bottom:1px solid var(--border); background:var(--bg-subtle);
+}
+#marex-view .mx-pbar-icon{ display:inline-flex; color:var(--accent); }
+#marex-view .mx-pbar-name{ font-weight:600; color:var(--text-primary); }
+#marex-view .mx-pbar-sub{ color:var(--text-tertiary); font-size:11.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* ---- Modales (nouveau projet, lecteur) ---- */
+.mx-modal-overlay{
+  position:fixed; inset:0; background:rgba(4,10,18,.62); backdrop-filter:blur(2px);
+  display:flex; align-items:center; justify-content:center; z-index:200;
+}
+.mx-modal{
+  width:min(560px, calc(100vw - 32px)); max-height:calc(100vh - 64px); overflow:auto;
+  background:var(--bg-panel, #0d1622); border:1px solid var(--border); border-radius:14px;
+  box-shadow:0 24px 64px rgba(0,0,0,.5); color:var(--text-primary);
+}
+.mx-modal-head{
+  display:flex; align-items:center; gap:10px; padding:14px 16px;
+  border-bottom:1px solid var(--border);
+}
+.mx-modal-title{ font-weight:650; font-size:15px; }
+.mx-modal-path{ font-size:11.5px; color:var(--text-tertiary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mx-modal-close{
+  margin-left:auto; padding:6px; border:none; border-radius:8px; background:transparent;
+  color:var(--text-tertiary); cursor:pointer;
+}
+.mx-modal-close:hover{ background:var(--bg-hover); color:var(--text-primary); }
+.mx-modal-tabs{ display:flex; gap:4px; padding:10px 16px 0; }
+.mx-modal-tab{
+  padding:8px 12px; border:none; border-bottom:2px solid transparent; background:transparent;
+  color:var(--text-secondary); font-size:13px; cursor:pointer; font-family:inherit;
+}
+.mx-modal-tab.active{ color:var(--accent); border-bottom-color:var(--accent); font-weight:600; }
+.mx-modal-pane{ padding:14px 16px 16px; }
+.mx-modal-pane.hidden{ display:none; }
+.mx-field{ display:block; margin-bottom:12px; }
+.mx-field > span{ display:block; font-size:12px; color:var(--text-secondary); margin-bottom:5px; }
+.mx-field input[type=text], .mx-field input[type=password], .mx-field input[type=number],
+.mx-field select, .mx-field textarea{
+  width:100%; padding:9px 11px; border-radius:9px; border:1px solid var(--border);
+  background:var(--bg-input-btn); color:var(--text-primary); font-size:13px; font-family:inherit;
+  box-sizing:border-box;
+}
+.mx-field-row{ display:flex; gap:10px; }
+.mx-field-row .mx-field{ flex:1; }
+.mx-field-row .mx-field-sm{ flex:0 0 90px; }
+.mx-field input[type=file]{ font-size:12.5px; color:var(--text-secondary); }
+.mx-hint{ font-size:11.5px; color:var(--text-tertiary); margin:4px 0 10px; line-height:1.45; }
+.mx-modal-error{ font-size:12.5px; color:#e05252; min-height:18px; margin-bottom:6px; }
+.mx-modal-foot{ display:flex; gap:8px; justify-content:flex-end; margin-top:6px; }
+.mx-btn{
+  padding:9px 16px; border-radius:9px; border:1px solid var(--border);
+  background:var(--bg-input-btn); color:var(--text-primary); font-size:13px; cursor:pointer; font-family:inherit;
+}
+.mx-btn:hover{ background:var(--bg-hover); }
+.mx-btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
+.mx-btn.primary:hover{ filter:brightness(1.08); }
+.mx-btn:disabled{ opacity:.55; cursor:wait; }
+.mx-reader-modal{ width:min(860px, calc(100vw - 32px)); }
+.mx-reader-body{ padding:0; max-height:70vh; overflow:auto; }
+.mx-reader-code{
+  margin:0; padding:16px 18px; font-size:12.5px; line-height:1.6;
+  font-family:ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  white-space:pre-wrap; word-break:break-word; color:var(--text-primary);
+}
+.mx-reader-pdf{ width:100%; height:70vh; border:none; background:#fff; }
+.mx-tree-file-dot{ width:6px; height:6px; border-radius:50%; background:var(--text-tertiary); flex-shrink:0; margin-left:4px; }
+
+/* ---- Connecteurs ---- */
+.mx-conn-card{
+  border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin-bottom:12px;
+  background:var(--bg-subtle);
+}
+.mx-conn-head{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.mx-conn-name{ font-weight:650; font-size:14px; }
+.mx-conn-badge{ font-size:11px; padding:2px 10px; border-radius:12px; }
+.mx-conn-badge.on{ background:rgba(46,160,90,.15); color:#3fb968; border:1px solid rgba(46,160,90,.4); }
+.mx-conn-badge.off{ background:var(--bg-input-btn); color:var(--text-tertiary); border:1px solid var(--border); }
+.mx-conn-desc{ font-size:12.5px; color:var(--text-secondary); line-height:1.5; margin:0 0 12px; }

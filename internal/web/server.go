@@ -9,6 +9,7 @@ import (
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/terminal"
+	"cetas-lite/internal/workspace"
 	webassets "cetas-lite/web"
 
 	"golang.org/x/time/rate"
@@ -25,6 +26,13 @@ type Server struct {
 	version     string
 	authLimiter *ipLimiter
 	handler     http.Handler
+	// projects gère les projets de l'agent (upload local / dossier SFTP).
+	projects *workspace.Manager
+}
+
+// SetWorkspaceManager branche le gestionnaire de projets sur le serveur.
+func (s *Server) SetWorkspaceManager(m *workspace.Manager) {
+	s.projects = m
 }
 
 func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *chat.Engine, termMgr *terminal.Manager, registry *provider.Registry, httpClient *http.Client, version string) *Server {
@@ -72,6 +80,19 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("POST /api/terminal/{id}/input", s.requireAuth(s.handleTerminalInput))
 	mux.HandleFunc("POST /api/terminal/{id}/resize", s.requireAuth(s.handleTerminalResize))
 	mux.HandleFunc("DELETE /api/terminal/{id}", s.requireAuth(s.handleTerminalDelete))
+	mux.HandleFunc("GET /api/projects", s.requireAuth(s.handleProjectsList))
+	mux.HandleFunc("POST /api/projects", s.requireAuth(s.handleProjectsCreate))
+	mux.HandleFunc("POST /api/projects/sftp-test", s.requireAuth(s.handleProjectSFTPTest))
+	mux.HandleFunc("DELETE /api/projects/{id}", s.requireAuth(s.handleProjectDelete))
+	mux.HandleFunc("GET /api/projects/{id}/tree", s.requireAuth(s.handleProjectTree))
+	mux.HandleFunc("GET /api/projects/{id}/file", s.requireAuth(s.handleProjectFileGet))
+	mux.HandleFunc("DELETE /api/projects/{id}/file", s.requireAuth(s.handleProjectFileDelete))
+	mux.HandleFunc("POST /api/projects/{id}/upload", s.requireAuth(s.handleProjectUpload))
+	mux.HandleFunc("GET /api/projects/active", s.requireAuth(s.handleProjectActiveGet))
+	mux.HandleFunc("PUT /api/projects/active", s.requireAuth(s.handleProjectActivePut))
+	mux.HandleFunc("GET /api/connectors", s.requireAuth(s.handleConnectors))
+	mux.HandleFunc("PUT /api/connectors/github", s.requireAuth(s.handleGitHubPut))
+	mux.HandleFunc("DELETE /api/connectors/github", s.requireAuth(s.handleGitHubDelete))
 	mux.HandleFunc("POST /api/chat/attach", s.requireAuth(s.handleAttachUpload))
 	mux.HandleFunc("GET /api/chat/attach/{id}", s.requireAuth(s.handleAttachGet))
 	mux.HandleFunc("DELETE /api/chat/attach/{id}", s.requireAuth(s.handleAttachDelete))

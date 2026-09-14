@@ -15,18 +15,11 @@ import (
 )
 
 func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res resolution, base []provider.Message, in TurnInput) {
-	root, err := userWorkspacePath(e.workspace, in.User)
+	sb, err := e.agentSandbox(in)
 	if err != nil {
 		c.appendDelta(epoch, map[string]any{"error": err.Error()})
 		return
 	}
-	sb, err := NewSandbox(root)
-	if err != nil {
-		c.appendDelta(epoch, map[string]any{"error": err.Error()})
-		return
-	}
-	sb.AllowScript = e.scriptAllowed()
-	sb.Isolation = e.isolation()
 	// Worktree d'isolation : l'agent travaille dans un checkout dedie du
 	// depot au lieu du workspace partage. En cas d'echec, on continue sur
 	// le workspace normal (erreur explicite, pas de silence).
@@ -37,6 +30,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 					if wsb, serr := NewSandbox(wtPath); serr == nil {
 						wsb.AllowScript = sb.AllowScript
 						wsb.Isolation = sb.Isolation
+						wsb.GitHubToken = sb.GitHubToken
 						sb = wsb
 						e.noteWorktreeRepo(c.ID, repo)
 						if run := e.agentForConv(c.ID); run != nil {
@@ -57,6 +51,21 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	reg := e.toolRegistry(in, sb)
 	tools := reg.schemas(ctx)
 	sys := []provider.Message{{Role: "system", Content: agentSystemPrompt()}}
+	// Snapshot du workspace : le modèle voit la structure réelle et ne
+	// devine jamais les chemins. Nom du projet si renseigné.
+	projectName := ""
+	if pid := strings.TrimSpace(in.ProjectID); pid != "" {
+		if wm := e.workspaceManager(); wm != nil {
+			if p, perr := wm.Get(pid); perr == nil {
+				projectName = p.Name
+			}
+		}
+	}
+	sys = append(sys, workspaceSnapshotMessage(ctx, sb, projectName))
+	// GitHub connecté : l'agent sait qu'il peut commit/diff/push.
+	if login := githubLogin(e.st); login != "" {
+		sys = append(sys, githubPromptMessage(login))
+	}
 	// Directive de raisonnement (imperative, en anglais) : le thinking est
 	// obligatoire pour l'agent, avec le niveau d'effort demande.
 	sys = append(sys, provider.Message{Role: "system", Content: thinkDirective(true, false, in.Effort)})

@@ -95,8 +95,8 @@ func (visionFamily) schemas(context.Context) []provider.Tool {
 
 func (visionFamily) handles(name string) bool { return name == "ViewImage" }
 
-func (f visionFamily) execute(_ context.Context, env toolEnv, _ string, argsJSON string) (ToolResult, *provider.Message) {
-	return f.e.viewImage(env.member, f.sb, argsJSON)
+func (f visionFamily) execute(ctx context.Context, env toolEnv, _ string, argsJSON string) (ToolResult, *provider.Message) {
+	return f.e.viewImage(ctx, env.member, f.sb, argsJSON)
 }
 
 type memoryFamily struct{ e *Engine }

@@ -1,0 +1,447 @@
+package vfs
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"io"
+	"net"
+	"os"
+	"path"
+	"sort"
+	"strings"
+	"sync"
+	"time"
+
+	"github.com/pkg/sftp"
+	"golang.org/x/crypto/ssh"
+)
+
+// SFTPConfig décrit une connexion SFTP vers un dossier distant.
+type SFTPConfig struct {
+	Host     string
+	Port     int
+	User     string
+	Password string
+	// PrivateKey : clé privée OpenSSH (optionnelle, prioritaire sur password).
+	PrivateKey    []byte
+	KeyPassphrase string
+	// RemotePath : dossier distant servant de racine (ex. /home/u/projet).
+	RemotePath string
+	// HostKey : clé publique hôte connue (TOFU). Vide au premier contact :
+	// la clé présentée est alors renvoyée via ErrUnknownHostKey pour
+	// validation explicite avant stockage.
+	HostKey []byte
+}
+
+// ErrUnknownHostKey est renvoyé au premier contact avec un serveur : il
+// transporte l'empreinte de la clé présentée pour validation utilisateur.
+type ErrUnknownHostKey struct {
+	Fingerprint string
+	Key         []byte
+}
+
+func (e *ErrUnknownHostKey) Error() string {
+	return "cle hote inconnue: " + e.Fingerprint
+}
+
+// dialSSH établit la connexion SSH (timeout 10s) avec vérification TOFU.
+func dialSSH(cfg SFTPConfig) (*ssh.Client, []byte, error) {
+	if cfg.Host == "" || cfg.User == "" {
+		return nil, nil, errors.New("hote ou utilisateur manquant")
+	}
+	port := cfg.Port
+	if port <= 0 {
+		port = 22
+	}
+	var auths []ssh.AuthMethod
+	if len(cfg.PrivateKey) > 0 {
+		var signer ssh.Signer
+		var err error
+		if cfg.KeyPassphrase != "" {
+			signer, err = ssh.ParsePrivateKeyWithPassphrase(cfg.PrivateKey, []byte(cfg.KeyPassphrase))
+		} else {
+			signer, err = ssh.ParsePrivateKey(cfg.PrivateKey)
+		}
+		if err != nil {
+			return nil, nil, fmt.Errorf("cle privee invalide: %w", err)
+		}
+		auths = append(auths, ssh.PublicKeys(signer))
+	}
+	if cfg.Password != "" {
+		auths = append(auths, ssh.Password(cfg.Password))
+	}
+	if len(auths) == 0 {
+		return nil, nil, errors.New("aucune methode d'authentification")
+	}
+
+	var presented []byte
+	sshCfg := &ssh.ClientConfig{
+		User:            cfg.User,
+		Auth:            auths,
+		Timeout:         10 * time.Second,
+		HostKeyCallback: func(_ string, _ net.Addr, key ssh.PublicKey) error { presented = key.Marshal(); return nil },
+	}
+	addr := fmt.Sprintf("%s:%d", cfg.Host, port)
+	cl, err := ssh.Dial("tcp", addr, sshCfg)
+	if err != nil {
+		return nil, nil, fmt.Errorf("connexion SSH: %w", err)
+	}
+	// Vérification TOFU : la clé doit correspondre à celle stockée.
+	if len(cfg.HostKey) > 0 && !keysEqual(cfg.HostKey, presented) {
+		cl.Close()
+		return nil, nil, errors.New("la cle hote du serveur a change (attaque possible) — reverifiez la connexion")
+	}
+	if len(cfg.HostKey) == 0 {
+		cl.Close()
+		fp := ssh.FingerprintSHA256(sshPublicKey(presented))
+		return nil, presented, &ErrUnknownHostKey{Fingerprint: fp, Key: presented}
+	}
+	return cl, presented, nil
+}
+
+func keysEqual(a, b []byte) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func sshPublicKey(marshaled []byte) ssh.PublicKey {
+	k, _ := ssh.ParsePublicKey(marshaled)
+	return k
+}
+
+// SFTPFS est l'implémentation distante de FS (dossier via SFTP).
+type SFTPFS struct {
+	cfg  SFTPConfig
+	name string
+
+	mu     sync.Mutex
+	sshCl  *ssh.Client
+	sftpCl *sftp.Client
+}
+
+func NewSFTP(cfg SFTPConfig, name string) *SFTPFS {
+	if name == "" {
+		name = cfg.User + "@" + cfg.Host + ":" + cfg.RemotePath
+	}
+	return &SFTPFS{cfg: cfg, name: name}
+}
+
+func (s *SFTPFS) Name() string { return s.name }
+func (s *SFTPFS) Remote() bool { return true }
+
+// client retourne un client SFTP connecté (reconnexion paresseuse).
+func (s *SFTPFS) client(ctx context.Context) (*sftp.Client, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.sftpCl != nil {
+		// Sonde légère : si la session est morte, on reconnecte.
+		if _, err := s.sftpCl.Stat(s.cfg.RemotePath); err == nil {
+			return s.sftpCl, nil
+		}
+		s.closeLocked()
+	}
+	sshCl, _, err := dialSSH(s.cfg)
+	if err != nil {
+		return nil, err
+	}
+	cl, err := sftp.NewClient(sshCl)
+	if err != nil {
+		sshCl.Close()
+		return nil, fmt.Errorf("session SFTP: %w", err)
+	}
+	// La racine distante doit exister.
+	if _, err := cl.Stat(s.cfg.RemotePath); err != nil {
+		cl.Close()
+		sshCl.Close()
+		return nil, fmt.Errorf("dossier distant introuvable: %s", s.cfg.RemotePath)
+	}
+	s.sshCl = sshCl
+	s.sftpCl = cl
+	return cl, nil
+}
+
+func (s *SFTPFS) closeLocked() {
+	if s.sftpCl != nil {
+		s.sftpCl.Close()
+		s.sftpCl = nil
+	}
+	if s.sshCl != nil {
+		s.sshCl.Close()
+		s.sshCl = nil
+	}
+}
+
+func (s *SFTPFS) Close() error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.closeLocked()
+	return nil
+}
+
+// rpath construit le chemin distant absolu depuis un relatif.
+func (s *SFTPFS) rpath(rel string) (string, error) {
+	clean := ""
+	if strings.TrimSpace(rel) != "" {
+		var err error
+		clean, err = cleanRel(rel)
+		if err != nil {
+			return "", err
+		}
+	}
+	base := path.Clean("/" + strings.TrimPrefix(s.cfg.RemotePath, "/"))
+	if clean == "" {
+		return base, nil
+	}
+	joined := path.Join(base, path.Clean("/"+clean))
+	if joined != base && !strings.HasPrefix(joined, base+"/") {
+		return "", ErrOutsideRoot
+	}
+	return joined, nil
+}
+
+func (s *SFTPFS) Resolve(rel string) (string, error) {
+	if strings.TrimSpace(rel) == "" {
+		return "", nil
+	}
+	return cleanRel(rel)
+}
+
+func (s *SFTPFS) ReadFile(ctx context.Context, rel string) ([]byte, error) {
+	cl, err := s.client(ctx)
+	if err != nil {
+		return nil, err
+	}
+	rp, err := s.rpath(rel)
+	if err != nil {
+		return nil, err
+	}
+	f, err := cl.Open(rp)
+	if err != nil {
+		return nil, toFSerr(err)
+	}
+	defer f.Close()
+	return io.ReadAll(io.LimitReader(f, 64<<20))
+}
+
+func (s *SFTPFS) WriteFile(ctx context.Context, rel string, data []byte, perm os.FileMode) error {
+	cl, err := s.client(ctx)
+	if err != nil {
+		return err
+	}
+	rp, err := s.rpath(rel)
+	if err != nil {
+		return err
+	}
+	// Crée les dossiers parents.
+	if dir := path.Dir(rp); dir != s.cfg.RemotePath {
+		if err := cl.MkdirAll(dir); err != nil {
+			return err
+		}
+	}
+	f, err := cl.OpenFile(rp, os.O_WRONLY|os.O_CREATE|os.O_TRUNC)
+	if err != nil {
+		return toFSerr(err)
+	}
+	defer f.Close()
+	if _, err := f.Write(data); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SFTPFS) MkdirAll(ctx context.Context, rel string) error {
+	cl, err := s.client(ctx)
+	if err != nil {
+		return err
+	}
+	rp, err := s.rpath(rel)
+	if err != nil {
+		return err
+	}
+	return cl.MkdirAll(rp)
+}
+
+func (s *SFTPFS) Remove(ctx context.Context, rel string) error {
+	cl, err := s.client(ctx)
+	if err != nil {
+		return err
+	}
+	rp, err := s.rpath(rel)
+	if err != nil {
+		return err
+	}
+	return cl.Remove(rp)
+}
+
+func toEntrySFTP(rel string, fi os.FileInfo) Entry {
+	e := Entry{Path: rel, IsDir: fi.IsDir(), Size: fi.Size(), ModTime: fi.ModTime()}
+	if e.IsDir && !strings.HasSuffix(e.Path, "/") {
+		e.Path += "/"
+	}
+	return e
+}
+
+func (s *SFTPFS) Stat(ctx context.Context, rel string) (Entry, error) {
+	cl, err := s.client(ctx)
+	if err != nil {
+		return Entry{}, err
+	}
+	rp, err := s.rpath(rel)
+	if err != nil {
+		return Entry{}, err
+	}
+	fi, err := cl.Stat(rp)
+	if err != nil {
+		return Entry{}, toFSerr(err)
+	}
+	clean, _ := cleanRel(rel)
+	if clean == "" {
+		return Entry{Path: "", IsDir: true}, nil
+	}
+	return toEntrySFTP(clean, fi), nil
+}
+
+func (s *SFTPFS) ReadDir(ctx context.Context, rel string) ([]Entry, error) {
+	cl, err := s.client(ctx)
+	if err != nil {
+		return nil, err
+	}
+	rp, err := s.rpath(rel)
+	if err != nil {
+		return nil, err
+	}
+	fis, err := cl.ReadDir(rp)
+	if err != nil {
+		return nil, toFSerr(err)
+	}
+	clean, _ := cleanRel(rel)
+	out := make([]Entry, 0, len(fis))
+	for _, fi := range fis {
+		if SkipEntry(fi.Name()) {
+			continue
+		}
+		rp2 := fi.Name()
+		if clean != "" {
+			rp2 = clean + "/" + fi.Name()
+		}
+		out = append(out, toEntrySFTP(rp2, fi))
+	}
+	sort.Slice(out, func(i, j int) bool {
+		if out[i].IsDir != out[j].IsDir {
+			return out[i].IsDir
+		}
+		return out[i].Path < out[j].Path
+	})
+	return out, nil
+}
+
+func (s *SFTPFS) Walk(ctx context.Context, fn func(Entry) error) error {
+	var rec func(rel string) error
+	rec = func(rel string) error {
+		if ctx.Err() != nil {
+			return ctx.Err()
+		}
+		ents, err := s.ReadDir(ctx, rel)
+		if err != nil {
+			return nil // dossier illisible : on continue
+		}
+		for _, e := range ents {
+			if err := fn(e); err != nil {
+				return err
+			}
+			if e.IsDir {
+				sub := strings.TrimSuffix(e.Path, "/")
+				if err := rec(sub); err != nil {
+					return err
+				}
+			}
+		}
+		return nil
+	}
+	return rec("")
+}
+
+// Exec exécute une commande sur le serveur distant via SSH.
+func (s *SFTPFS) Exec(ctx context.Context, name string, args []string, env map[string]string, timeout time.Duration) (string, error) {
+	if timeout <= 0 {
+		timeout = 60 * time.Second
+	}
+	s.mu.Lock()
+	sshCl := s.sshCl
+	s.mu.Unlock()
+	if sshCl == nil {
+		if _, err := s.client(ctx); err != nil {
+			return "", err
+		}
+		s.mu.Lock()
+		sshCl = s.sshCl
+		s.mu.Unlock()
+	}
+	cctx, cancel := context.WithTimeout(ctx, timeout)
+	defer cancel()
+	sess, err := sshCl.NewSession()
+	if err != nil {
+		return "", err
+	}
+	defer sess.Close()
+	// Commande confinée au dossier du projet distant.
+	remote := s.cfg.RemotePath
+	quoted := make([]string, 0, len(args)+1)
+	quoted = append(quoted, name)
+	quoted = append(quoted, args...)
+	inner := shJoin(quoted)
+	if len(env) > 0 {
+		assigns := make([]string, 0, len(env))
+		for k, v := range env {
+			assigns = append(assigns, k+"="+shQuote(v))
+		}
+		sort.Strings(assigns)
+		inner = "env " + strings.Join(assigns, " ") + " " + inner
+	}
+	cmd := "cd " + shQuote(remote) + " && " + inner
+	done := make(chan struct{})
+	var out []byte
+	var runErr error
+	go func() {
+		defer close(done)
+		out, runErr = sess.CombinedOutput(cmd)
+	}()
+	select {
+	case <-cctx.Done():
+		sess.Signal(ssh.SIGKILL)
+		<-done
+		return string(out), errors.New("delai depasse")
+	case <-done:
+		return string(out), runErr
+	}
+}
+
+func shQuote(s string) string {
+	return "'" + strings.ReplaceAll(s, "'", "'\\''") + "'"
+}
+
+func shJoin(args []string) string {
+	qs := make([]string, len(args))
+	for i, a := range args {
+		qs[i] = shQuote(a)
+	}
+	return strings.Join(qs, " ")
+}
+
+func toFSerr(err error) error {
+	if err == nil {
+		return nil
+	}
+	if os.IsNotExist(err) {
+		return ErrNotFound
+	}
+	return err
+}

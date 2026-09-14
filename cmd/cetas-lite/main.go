@@ -35,6 +35,7 @@ import (
 	"cetas-lite/internal/terminal"
 	"cetas-lite/internal/vault"
 	"cetas-lite/internal/web"
+	"cetas-lite/internal/workspace"
 	"cetas-lite/internal/worktree"
 )
 
@@ -186,18 +187,43 @@ func buildApp() (*app, error) {
 		return nil, err
 	}
 	engine.SetWorktreeManager(wtMgr)
+	// Projets de l'agent : upload local ou dossier distant SFTP.
+	wsMgr := workspace.New(cfg.Home, st, vaultLazy{st: st})
+	engine.SetWorkspaceManager(wsMgr)
 	termMgr := terminal.NewManager(cfg.WorkspaceDir, wtMgr.Root())
 
 	srv := web.New(cfg, st, authMgr, engine, termMgr, registry, client, version)
+	srv.SetWorkspaceManager(wsMgr)
 	return &app{
 		cfg:     cfg,
 		handler: srv.Handler(),
 		cleanup: func() {
+			wsMgr.CloseAll()
 			termMgr.Close()
 			mcpManager.Close()
 			_ = st.Close()
 		},
 	}, nil
+}
+
+// vaultLazy ouvre le coffre chiffré à la demande pour le gestionnaire de
+// projets (les secrets SFTP sont chiffrés avant stockage).
+type vaultLazy struct{ st *store.Store }
+
+func (v vaultLazy) Encrypt(plain, aad []byte) ([]byte, error) {
+	vv, err := vault.Open(v.st)
+	if err != nil {
+		return nil, err
+	}
+	return vv.Encrypt(plain, aad)
+}
+
+func (v vaultLazy) Decrypt(data, aad []byte) ([]byte, error) {
+	vv, err := vault.Open(v.st)
+	if err != nil {
+		return nil, err
+	}
+	return vv.Decrypt(data, aad)
 }
 
 func runServe() error {
