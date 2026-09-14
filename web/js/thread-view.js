@@ -9,6 +9,13 @@ import { setTurnStats } from "./turn-tokens.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
+// Défilement calqué sur la vue de référence (ChatView.tsx) :
+// seuil d'épinglage, échantillonnage des gestes lecteur, borne DOM.
+const FOLLOW_THRESHOLD = 24; // px : en-deçà du bas = "épinglé"
+const SCROLL_SAMPLE_MS = 500; // debounce d'échantillonnage du scroll lecteur
+const MAX_LOG_NODES = 500; // au-delà, les anciens nœuds sont élagués
+const PRUNE_KEEP_TAIL = 120; // la queue active n'est jamais élaguée
+
 // Moteur de rendu streaming accelere (technique Marexcode) : coalesce les
 // deltas sur une seule frame + ne re-rend que les blocs markdown modifies.
 const mdRenderer = createMarkdownRenderer();
@@ -123,7 +130,6 @@ export class ThreadView {
     this.assistantBody = null;
     this.assistantText = "";
     this.assistantStarted = false;
-    this.scrollFrame = 0;
     this.reasoningEl = null;
     this.reasoningText = "";
     this.controller = null;
@@ -138,6 +144,16 @@ export class ThreadView {
     this.turnStats = null;
     this.turnRoute = null;
     this.turnElapsedMs = null;
+    // État du suivi de défilement (cf. initScrollFollow) : même comportement
+    // que la vue de référence (pinned-follow 24px + ledger lecteur/programmatique).
+    this.pinned = true;
+    this.observedTop = 0;
+    this.followFrame = 0;
+    this.sampleTimer = 0;
+    this.newWhileUnpinned = false;
+    this.toBottomBtn = null;
+    this.prunedCount = 0;
+    this.initScrollFollow();
   }
 
   clearEmpty() {
@@ -150,30 +166,152 @@ export class ThreadView {
     this.empty = this.log.querySelector("[data-empty]");
   }
 
-  atBottom() {
-    return this.log.scrollHeight - this.log.scrollTop - this.log.clientHeight < 80;
-  }
+  // ---- Défilement : même comportement que la vue de référence ----
+  //
+  // Principe (ChatView.tsx du fichier fourni) :
+  // - "pinned" = le lecteur est à <= 24px du bas -> le nouveau contenu fait
+  //   suivre la vue ; on ne re-épingle jamais sur un simple re-render
+  //   (sinon les scrolls inertiels seraient "snappés" jusqu'en bas).
+  // - observedTop enregistre chaque écriture programmatique de scrollTop ;
+  //   un événement scroll qui n'en dévie pas n'est PAS un geste lecteur
+  //   (pas de changement de propriété pinned).
+  // - les gestes lecteur sont échantillonnés (500ms + scrollend).
 
-  scroll(force) {
-    if (force) {
-      if (this.scrollFrame) {
-        cancelRafTick(this.scrollFrame);
-        this.scrollFrame = 0;
+  initScrollFollow() {
+    const log = this.log;
+    const onScroll = () => {
+      if (this.pinned) {
+        const floor = this.floorTop();
+        // Livraison non-lecteur (écriture programmatique différée, clamp
+        // navigateur) : échantillonner aussitôt sans toucher à pinned.
+        if (Math.abs(log.scrollTop - Math.min(this.observedTop, floor)) <= 0.5) {
+          this.sampleScroll();
+          return;
+        }
       }
-      this.log.scrollTop = this.log.scrollHeight;
-      return;
-    }
-    this.scheduleScroll();
+      if (!this.sampleTimer) {
+        this.sampleTimer = setTimeout(() => {
+          this.sampleTimer = 0;
+          this.sampleScroll();
+        }, SCROLL_SAMPLE_MS);
+      }
+    };
+    log.addEventListener("scroll", onScroll, { passive: true });
+    log.addEventListener("scrollend", () => this.sampleScroll(), { passive: true });
+    this.buildToBottomBtn();
   }
 
-  // Coalesce toutes les demandes de scroll sur une seule frame : evite de
-  // lire scrollHeight (reflow) a chaque delta de streaming (technique Marexcode).
-  scheduleScroll() {
-    if (this.scrollFrame) return;
-    this.scrollFrame = rafTick(() => {
-      this.scrollFrame = 0;
-      if (this.atBottom()) this.log.scrollTop = this.log.scrollHeight;
+  floorTop() {
+    return Math.max(0, this.log.scrollHeight - this.log.clientHeight);
+  }
+
+  // Ne change la propriété "pinned" que sur un geste lecteur réel.
+  sampleScroll() {
+    const top = this.log.scrollTop;
+    const floor = this.floorTop();
+    const readerMoved = Math.abs(top - Math.min(this.observedTop, floor)) > 0.5;
+    if (!readerMoved) return; // livraison programmatique : on garde l'état
+    const near = floor - top <= FOLLOW_THRESHOLD + 1;
+    this.pinned = near;
+    this.observedTop = top;
+    if (near) this.newWhileUnpinned = false;
+    this.updateToBottomBtn();
+  }
+
+  writeBottom() {
+    this.log.scrollTop = this.log.scrollHeight;
+    this.observedTop = this.log.scrollTop;
+  }
+
+  // Force le bas : nouveau message utilisateur, carte d'approbation,
+  // rattrapage d'historique, clic sur le bouton flottant.
+  toBottom() {
+    if (this.followFrame) {
+      cancelRafTick(this.followFrame);
+      this.followFrame = 0;
+    }
+    this.newWhileUnpinned = false;
+    this.writeBottom();
+    this.pinned = true;
+    this.updateToBottomBtn();
+    this.maybePrune();
+  }
+
+  // Suivi coalescé sur une frame : le contenu qui grandit (streaming,
+  // tool boxes, raisonnement) ne fait défiler que si épinglé.
+  requestFollow() {
+    if (this.followFrame) return;
+    this.followFrame = rafTick(() => {
+      this.followFrame = 0;
+      this.maybePrune(); // borne DOM même quand le lecteur lit plus haut
+      if (!this.pinned) {
+        this.newWhileUnpinned = true;
+        this.updateToBottomBtn();
+        return;
+      }
+      this.writeBottom();
     });
+  }
+
+  buildToBottomBtn() {
+    const parent = this.log.parentElement;
+    if (!parent || parent.querySelector(":scope > .thread-to-bottom")) return;
+    if (getComputedStyle(parent).position === "static") parent.style.position = "relative";
+    const btn = el("button", "thread-to-bottom");
+    btn.type = "button";
+    btn.hidden = true;
+    btn.setAttribute("aria-label", "Retour en bas");
+    btn.innerHTML = "<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M8 3v9M4.5 8.5 8 12l3.5-3.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>";
+    btn.addEventListener("click", () => this.toBottom());
+    parent.appendChild(btn);
+    this.toBottomBtn = btn;
+  }
+
+  updateToBottomBtn() {
+    const btn = this.toBottomBtn;
+    if (!btn) return;
+    const show = !this.pinned && this.log.scrollHeight > this.log.clientHeight + 8;
+    btn.hidden = !show;
+    btn.classList.toggle("has-new", this.newWhileUnpinned && show);
+    btn.setAttribute(
+      "aria-label",
+      this.newWhileUnpinned && show ? "Retour en bas — nouveaux messages" : "Retour en bas",
+    );
+  }
+
+  // ---- Borne DOM : les longues sessions restent fluides ----
+  //
+  // Au-delà de MAX_LOG_NODES, les nœuds les plus anciens sont retirés
+  // (l'historique serveur reste intact). Protégés : cartes d'approbation
+  // en attente, tool boxes en cours de stream, queue active, placeholder.
+  maybePrune() {
+    if (this.log.children.length <= MAX_LOG_NODES) return;
+    let cut = this.log.querySelector(":scope > .history-cut");
+    const tailStart = this.log.children.length - PRUNE_KEEP_TAIL;
+    let i = 0;
+    while (i < tailStart && this.log.children.length > MAX_LOG_NODES) {
+      const n = this.log.children[i];
+      if (
+        n === cut ||
+        n === this.empty ||
+        n.classList.contains("streaming") ||
+        (n.classList.contains("msg-approval") && !n.hasAttribute("data-resolved"))
+      ) {
+        i++;
+        continue;
+      }
+      n.remove();
+      this.prunedCount++;
+      // pas d'incrément : le nœud suivant glisse à l'index i
+    }
+    if (this.prunedCount > 0) {
+      if (!cut) {
+        cut = el("div", "history-cut");
+        this.log.prepend(cut);
+      }
+      cut.textContent =
+        "… " + this.prunedCount + " message(s) précédent(s) masqué(s) pour garder l'interface fluide …";
+    }
   }
 
   // Fige le rendu du message assistant en cours (fin de tour, outil, approbation).
@@ -203,7 +341,7 @@ export class ThreadView {
       this.waitIdx = (this.waitIdx + 1) % BRAILLE.length;
       if (this.waitEl && this.waitEl.firstChild) this.waitEl.firstChild.textContent = BRAILLE[this.waitIdx];
     }, 80);
-    this.scroll(true);
+    this.toBottom();
   }
 
   hideWait() {
@@ -224,7 +362,7 @@ export class ThreadView {
     bubble.appendChild(el("div", "message-text", text));
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
-    this.scroll(true);
+    this.toBottom();
   }
 
   ensureAssistant() {
@@ -258,7 +396,7 @@ export class ThreadView {
       this.assistantText += String(text);
       mdRenderer.update(this.assistantBody, this.assistantText);
     }
-    this.scheduleScroll();
+    this.requestFollow();
   }
 
   ensureReasoning() {
@@ -299,7 +437,7 @@ export class ThreadView {
       }
       node.appendData(String(text));
     }
-    this.scheduleScroll();
+    this.requestFollow();
   }
 
   removeReasoning() {
@@ -319,13 +457,13 @@ export class ThreadView {
     bubble.appendChild(el("div", "message-text", text));
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
-    this.scroll();
+    this.requestFollow();
   }
 
   addSystem(text) {
     this.clearEmpty();
     this.log.appendChild(el("div", "msg-system", text));
-    this.scroll();
+    this.requestFollow();
   }
 
   addActions(box, raw) {
@@ -390,7 +528,7 @@ export class ThreadView {
       this.toolBoxes.set(key, body);
       this.finalizeAssistant();
       this.resetAssistantState();
-      this.scroll(true);
+      this.requestFollow();
       return;
     }
     const body = this.toolBoxes.get(key);
@@ -403,7 +541,7 @@ export class ThreadView {
       appendLinkified(pre, ev.result);
       body.appendChild(pre);
     }
-    this.scroll();
+    this.requestFollow();
   }
 
   summarizeApprovalArgs(tool, args) {
@@ -427,6 +565,7 @@ export class ThreadView {
   setApprovalResolved(id, approved, timeout) {
     const card = this.approvalCards.get(id);
     if (!card) return;
+    card.setAttribute("data-resolved", "1");
     const btns = card.querySelectorAll("button");
     btns.forEach((b) => { b.disabled = true; });
     const status = card.querySelector(".approval-status");
@@ -434,7 +573,7 @@ export class ThreadView {
       status.textContent = timeout ? "Expirée (10 min sans réponse)" : approved ? "Approuvé" : "Refusé";
       status.classList.add(approved && !timeout ? "approved" : "denied");
     }
-    this.scroll();
+    this.requestFollow();
   }
 
   addApproval(ev) {
@@ -488,7 +627,7 @@ export class ThreadView {
     this.log.appendChild(card);
     this.approvalCards.set(id, card);
     this.finalizeAssistant();
-    this.scroll(true);
+    this.toBottom();
   }
 
   addTurnStats(box) {
@@ -557,6 +696,19 @@ export class ThreadView {
     this.turnStats = null;
     this.turnRoute = null;
     this.turnElapsedMs = null;
+    if (this.followFrame) {
+      cancelRafTick(this.followFrame);
+      this.followFrame = 0;
+    }
+    if (this.sampleTimer) {
+      clearTimeout(this.sampleTimer);
+      this.sampleTimer = 0;
+    }
+    this.pinned = true;
+    this.observedTop = 0;
+    this.newWhileUnpinned = false;
+    this.prunedCount = 0;
+    this.updateToBottomBtn();
     if (this.stopBtn) this.stopBtn.hidden = true;
     if (this.routeBadge) this.routeBadge.hidden = true;
     if (this.statsBadge) {
@@ -573,7 +725,7 @@ export class ThreadView {
     }
     if (ev.pad !== undefined) return;
     if (ev.caught_up) {
-      this.scroll(true);
+      this.toBottom();
       return;
     }
     if (ev.user !== undefined) {
@@ -694,7 +846,7 @@ export class ThreadView {
       this.generating = true;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.setBusy(true);
-      this.scroll(true);
+      this.toBottom();
       return true;
     } catch (err) {
       if (/en cours/i.test(err.message)) {
