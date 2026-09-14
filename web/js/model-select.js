@@ -2,6 +2,7 @@ import { api, getPrefs, putPrefs } from "./api.js";
 
 let families = [];
 let thinkingPref = false;
+let appMode = "chat"; // "chat" | "agent" : mode top-level choisi dans l'UI
 
 function setCheck(id, on) {
   const el = document.getElementById(id);
@@ -34,17 +35,28 @@ export function applyPlanToggle(on) {
   setCheck("plan-toggle", on);
 }
 
-export function isAgentMode() {
+export function getAppMode() {
+  return appMode;
+}
+
+// Capacité agent de la famille/mode sélectionnée (indépendant du mode top-level).
+export function isFamilyAgent() {
   const familySel = document.getElementById("family-select");
   return !!(familySel && familySel.dataset.agent === "1");
+}
+
+// Agent réellement actif : mode "Agent" choisi ET famille compatible.
+export function isAgentActive() {
+  return appMode === "agent" && isFamilyAgent();
 }
 
 export function currentSelection() {
   const family = document.getElementById("family-select");
   const mode = document.getElementById("mode-select");
   const effortSel = document.getElementById("effort-select");
-  const agent = isAgentMode();
+  const agent = isAgentActive();
   return {
+    appMode,
     family: family ? family.value : "",
     mode: mode ? mode.value : "",
     web: getCheck("web-toggle"),
@@ -70,6 +82,7 @@ export function persistPrefs() {
   if (mcpEl && mcpEl.closest(".right-panel-section") && !mcpEl.disabled) {
     body.mcp_default = sel.mcp;
   }
+  body.app_mode = appMode;
   return putPrefs(body);
 }
 
@@ -85,11 +98,12 @@ function updateAgent() {
   const m = modesFor(familySel.value).find((x) => x.mode === modeSel.value);
   const agent = !!(m && m.agent);
   familySel.dataset.agent = agent ? "1" : "";
+  const active = appMode === "agent" && agent;
   const pillRow = document.getElementById("agent-pill-row");
-  if (pillRow) pillRow.style.display = agent ? "" : "none";
+  if (pillRow) pillRow.style.display = active ? "" : "none";
   const th = document.getElementById("thinking-toggle");
   if (th) {
-    if (agent) {
+    if (active) {
       th.checked = true;
       th.disabled = true;
       th.title = "Réflexion (active en mode Agent)";
@@ -99,6 +113,73 @@ function updateAgent() {
       th.checked = thinkingPref;
     }
   }
+  updateAppModeUI();
+}
+
+// Première famille/mode compatible agent (pour basculer automatiquement).
+function firstAgentFamily() {
+  for (const f of families) {
+    const m = (f.modes || []).find((x) => x.agent);
+    if (m) return { family: f.id, mode: m.mode };
+  }
+  return null;
+}
+
+// Met à jour l'UI en fonction du mode top-level (sans changer appMode).
+function updateAppModeUI() {
+  const chatBtn = document.getElementById("mode-chat-btn");
+  const agentBtn = document.getElementById("mode-agent-btn");
+  for (const [btn, mode] of [[chatBtn, "chat"], [agentBtn, "agent"]]) {
+    if (!btn) continue;
+    const on = appMode === mode;
+    btn.classList.toggle("active", on);
+    btn.setAttribute("aria-selected", on ? "true" : "false");
+  }
+  const isAgent = appMode === "agent";
+  for (const id of ["rp-approvals-section", "rp-plan-section"]) {
+    const sec = document.getElementById(id);
+    if (sec) sec.style.display = isAgent ? "" : "none";
+  }
+  const input = document.getElementById("prompt-input");
+  if (input) {
+    input.placeholder = isAgent
+      ? "Décrivez la tâche à accomplir…"
+      : "Écrivez votre message…";
+  }
+  document.body.classList.toggle("app-mode-agent", isAgent);
+  document.body.classList.toggle("app-mode-chat", !isAgent);
+  updateAgentPillOnly();
+}
+
+function updateAgentPillOnly() {
+  const pillRow = document.getElementById("agent-pill-row");
+  if (pillRow) pillRow.style.display = isAgentActive() ? "" : "none";
+}
+
+export function setAppMode(mode, opts = {}) {
+  if (mode !== "chat" && mode !== "agent") return;
+  if (appMode === mode && !opts.force) {
+    updateAppModeUI();
+    return;
+  }
+  appMode = mode;
+  // En mode Agent, basculer sur une famille compatible si besoin.
+  if (mode === "agent" && !isFamilyAgent()) {
+    const target = firstAgentFamily();
+    if (target) {
+      const familySel = document.getElementById("family-select");
+      const modeSel = document.getElementById("mode-select");
+      if (familySel) familySel.value = target.family;
+      renderModes();
+      if (modeSel) modeSel.value = target.mode;
+    }
+  }
+  updateAgent();
+  updateAppModeUI();
+  if (opts.persist !== false) {
+    putPrefs({ app_mode: appMode }).catch(() => {});
+  }
+  window.dispatchEvent(new CustomEvent("cetas:app-mode-changed", { detail: appMode }));
 }
 
 function renderModes() {
@@ -228,6 +309,12 @@ export async function initModels() {
   if (familySel) familySel.addEventListener("change", () => { renderModes(); persistPrefs().catch(() => {}); renderPlusModelList(); });
   if (modeSel) modeSel.addEventListener("change", () => { updateAgent(); persistPrefs().catch(() => {}); renderPlusModelList(); });
 
+  // Sélecteur top-level Chat / Agent
+  const chatBtn = document.getElementById("mode-chat-btn");
+  const agentBtn = document.getElementById("mode-agent-btn");
+  if (chatBtn) chatBtn.addEventListener("click", () => setAppMode("chat"));
+  if (agentBtn) agentBtn.addEventListener("click", () => setAppMode("agent"));
+
   async function load() {
     const data = await api("/api/aliases");
     families = data.families || [];
@@ -278,6 +365,9 @@ export async function initModels() {
       modeSel.value = prevM;
       updateAgent();
     }
+    renderPlusModelList();
+    // Restaure le mode top-level Chat / Agent enregistré.
+    setAppMode(prefs && prefs.app_mode === "agent" ? "agent" : "chat", { persist: false, force: true });
     renderPlusModelList();
   }
 

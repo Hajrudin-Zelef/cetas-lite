@@ -195,7 +195,7 @@ func TestPlanModeExplorationThenApproval(t *testing.T) {
 	defer close(stop)
 	autoResolveApprovals(t, c, true, stop)
 
-	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "corrige le bug", Plan: true, User: "sam"}); err != nil {
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "corrige le bug", Plan: true, User: "sam", AgentMode: true}); err != nil {
 		t.Fatalf("StartTurn: %v", err)
 	}
 	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
@@ -239,7 +239,7 @@ func TestPlanModeDenied(t *testing.T) {
 	defer close(stop)
 	autoResolveApprovals(t, c, false, stop)
 
-	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "fais quelque chose", Plan: true, User: "sam"}); err != nil {
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "fais quelque chose", Plan: true, User: "sam", AgentMode: true}); err != nil {
 		t.Fatalf("StartTurn: %v", err)
 	}
 	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
@@ -264,7 +264,7 @@ func TestToolApprovalDenied(t *testing.T) {
 	defer close(stop)
 	autoResolveApprovals(t, c, false, stop)
 
-	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "ecris un fichier", Approve: true, User: "sam"}); err != nil {
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "ecris un fichier", Approve: true, User: "sam", AgentMode: true}); err != nil {
 		t.Fatalf("StartTurn: %v", err)
 	}
 	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")

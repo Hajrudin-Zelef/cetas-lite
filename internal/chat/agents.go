@@ -82,6 +82,7 @@ func (e *Engine) SpawnAgent(user string, in TurnInput) (*AgentRun, error) {
 	if strings.TrimSpace(in.Text) == "" {
 		return nil, ErrBadMessage
 	}
+	in.AgentMode = true // un agent parallele tourne toujours en mode agent
 	res := e.resolve(context.Background(), in)
 	if len(res.members) == 0 {
 		return nil, errors.New("aucun modele disponible pour cet alias")
@@ -315,6 +316,7 @@ func (e *Engine) MessageAgent(user, id string, in TurnInput) error {
 		return errors.New("agent introuvable")
 	}
 	in.User = user
+	in.AgentMode = true // un agent parallele tourne toujours en mode agent
 	// Conserver la configuration d'origine si non precisee.
 	if in.Family == "" {
 		in.Family = r.Family

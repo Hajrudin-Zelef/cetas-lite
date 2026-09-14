@@ -11,6 +11,7 @@ type uiSettings struct {
 	Theme           string `json:"theme"`
 	Family          string `json:"family"`
 	Mode            string `json:"mode"`
+	AppMode         string `json:"app_mode"`
 	WebDefault      bool   `json:"web_default"`
 	MCPDefault      *bool  `json:"mcp_default,omitempty"`
 	ThinkingDefault bool   `json:"thinking_default"`
@@ -26,7 +27,11 @@ func validEffort(e string) bool {
 }
 
 func defaultUISettings() uiSettings {
-	return uiSettings{Theme: "ocean", Family: "samagent-n4", Mode: "standard"}
+	return uiSettings{Theme: "ocean", Family: "samagent-n4", Mode: "standard", AppMode: "chat"}
+}
+
+func validAppMode(m string) bool {
+	return m == "chat" || m == "agent"
 }
 
 func validTheme(t string) bool {
@@ -46,6 +51,9 @@ func (s *Server) storedSettings(user string) uiSettings {
 	}
 	if !validTheme(out.Theme) {
 		out.Theme = defaultUISettings().Theme
+	}
+	if !validAppMode(out.AppMode) {
+		out.AppMode = defaultUISettings().AppMode
 	}
 	if out.ThinkingEffort == "" || !validEffort(out.ThinkingEffort) {
 		out.ThinkingEffort = "default"
@@ -72,6 +80,7 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		Theme           *string `json:"theme"`
 		Family          *string `json:"family"`
 		Mode            *string `json:"mode"`
+		AppMode         *string `json:"app_mode"`
 		WebDefault      *bool   `json:"web_default"`
 		MCPDefault      *bool   `json:"mcp_default"`
 		ThinkingDefault *bool   `json:"thinking_default"`
@@ -94,6 +103,13 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 	}
 	if body.Mode != nil {
 		cur.Mode = *body.Mode
+	}
+	if body.AppMode != nil {
+		if !validAppMode(*body.AppMode) {
+			writeError(w, http.StatusBadRequest, "mode applicatif invalide")
+			return
+		}
+		cur.AppMode = *body.AppMode
 	}
 	if body.WebDefault != nil {
 		cur.WebDefault = *body.WebDefault

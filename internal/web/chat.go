@@ -24,6 +24,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		Effort      string   `json:"effort"`
 		Approve     bool     `json:"approve"`
 		Plan        bool     `json:"plan"`
+		AgentMode   bool     `json:"agent_mode"`
 		Worktree    bool     `json:"worktree"`
 		Repo        string   `json:"repo"`
 		Attachments []string `json:"attachments"`
@@ -37,7 +38,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	c := s.engine.Conversation(claims.Username)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments})
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return

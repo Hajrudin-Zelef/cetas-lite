@@ -76,6 +76,7 @@ func newAgentEngine(t *testing.T, sp *scriptedProvider, fams []alias.Family) *En
 func runAgentTurn(t *testing.T, e *Engine, user string, in TurnInput) *Conversation {
 	t.Helper()
 	in.User = user
+	in.AgentMode = true // les tests agent simulent le mode "Agent" de l'UI
 	c := e.Conversation(user)
 	if err := c.StartTurn(in); err != nil {
 		t.Fatalf("StartTurn: %v", err)
@@ -264,5 +265,26 @@ func TestNonAgentModeHasNoTools(t *testing.T) {
 	}
 	if !hasSystemContaining(reqs, "senior teacher") {
 		t.Fatal("mode non-agent doit porter le prompt systeme de chat")
+	}
+}
+
+func TestChatModeDisablesAgentPath(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{toolCall("c1", "Read", `{"file_path":"a.txt"}`)}},
+		{content: "Termine"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	// Famille compatible agent mais mode Chat (AgentMode=false) : aucun outil.
+	c := e.Conversation("sam")
+	in := TurnInput{User: "sam", Family: "code", Mode: "standard", Text: "lis a.txt", AgentMode: false}
+	if err := c.StartTurn(in); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+	if hasToolEvent(c, "start") || hasToolEvent(c, "end") {
+		t.Fatal("aucun outil ne devrait etre execute en mode Chat")
+	}
+	if got := len(sp.requests()); got != 1 {
+		t.Fatalf("requetes = %d, attendu 1 (pas de second appel avec resultat d'outil)", got)
 	}
 }

@@ -36,6 +36,10 @@ type TurnInput struct {
 	// Approve demande une validation utilisateur avant chaque outil
 	// d'ecriture/execution (agent uniquement).
 	Approve bool
+	// AgentMode est le mode top-level choisi dans l'UI ("Chat" ou "Agent").
+	// Les outils ne sont actifs que si AgentMode est vrai ET que la
+	// famille/mode resolue supporte l'agent.
+	AgentMode bool
 	// Plan active le mode plan : l'agent explore puis propose un plan
 	// a valider avant d'executer (agent uniquement).
 	Plan bool

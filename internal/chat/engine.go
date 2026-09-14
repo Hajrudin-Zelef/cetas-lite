@@ -319,7 +319,7 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 	if !ok {
 		return resolution{}
 	}
-	return resolution{members: rm.Pool, agent: rm.Agent}
+	return resolution{members: rm.Pool, agent: rm.Agent && in.AgentMode}
 }
 
 func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInput) {

@@ -72,7 +72,7 @@ func TestToolCallEndToEnd(t *testing.T) {
 	reg := provider.NewRegistry()
 	reg.Set(tp)
 	e := NewEngine(reg, codeFamily(alias.Member{Provider: "toolprov", Model: "m"}), st, nil, ws)
-	c := runTurn(t, e, "u", TurnInput{User: "u", Family: "code", Mode: "standard", Text: "lis secret.txt", Approve: false})
+	c := runTurn(t, e, "u", TurnInput{User: "u", Family: "code", Mode: "standard", Text: "lis secret.txt", Approve: false, AgentMode: true})
 	tp.mu.Lock()
 	sawResult := tp.sawResult
 	calls := tp.calls
