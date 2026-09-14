@@ -18,9 +18,12 @@ let thinkingPref = false;
 
 export function applyThinkingToggle(on) {
   const el = document.getElementById("thinking-toggle");
-  if (!el || el.disabled) return;
-  el.setAttribute("aria-pressed", on ? "true" : "false");
-  el.classList.toggle("active", !!on);
+  if (el && !el.disabled) {
+    el.setAttribute("aria-pressed", on ? "true" : "false");
+    el.classList.toggle("active", !!on);
+  }
+  const state = document.getElementById("thinking-state");
+  if (state) state.textContent = el && el.disabled ? "Force (Agent)" : on ? "On" : "Off";
 }
 
 export function setThinking(on) {
@@ -70,6 +73,7 @@ export async function initModels() {
         th.setAttribute("aria-pressed", "true");
         th.classList.add("active");
         th.title = "Raisonnement (actif en mode Agent)";
+        applyThinkingToggle(true);
       } else {
         th.disabled = false;
         th.title = "Raisonnement";
@@ -105,6 +109,7 @@ export async function initModels() {
   function applyTheme(theme) {
     if (!["ocean", "sombre", "clair"].includes(theme)) return;
     document.documentElement.dataset.theme = theme;
+    document.body.className = theme === "sombre" ? "ocean-theme dark" : theme === "ocean" ? "ocean-theme" : "";
     const sel = document.getElementById("theme-select");
     if (sel) sel.value = theme;
     try {

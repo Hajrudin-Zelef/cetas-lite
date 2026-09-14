@@ -117,17 +117,23 @@ export function initChat() {
 
   function addUser(text) {
     clearEmpty();
-    log.appendChild(el("div", "msg user", text));
+    const wrapper = el("div", "message-wrapper message-wrapper-user");
+    const bubble = el("div", "message message-user");
+    bubble.appendChild(el("div", "message-text", text));
+    wrapper.appendChild(bubble);
+    log.appendChild(wrapper);
     scroll(true);
   }
 
   function ensureAssistant() {
     if (!assistant) {
       clearEmpty();
-      assistant = el("div", "msg assistant");
-      const body = el("div", "msg-text");
+      const wrapper = el("div", "message-wrapper message-wrapper-assistant");
+      assistant = el("div", "message message-assistant streaming");
+      const body = el("div", "message-text");
       assistant.appendChild(body);
-      log.appendChild(assistant);
+      wrapper.appendChild(assistant);
+      log.appendChild(wrapper);
       textRenderer = createStreamRenderer({
         onRender: (t) => renderInto(body, t),
         onFirst: hideWait,
@@ -146,10 +152,11 @@ export function initChat() {
   function ensureReasoning() {
     if (!reasoningEl) {
       ensureAssistant();
-      reasoningEl = el("details", "msg-reasoning");
+      reasoningEl = el("details", "thinking-block");
+      reasoningEl.open = true;
       reasoningEl.appendChild(el("summary", null, "Raisonnement"));
-      reasoningEl.appendChild(el("div", "reasoning-body"));
-      log.insertBefore(reasoningEl, assistant);
+      reasoningEl.appendChild(el("div", "thinking-content"));
+      assistant.insertBefore(reasoningEl, assistant.firstChild);
     }
     return reasoningEl;
   }
@@ -157,7 +164,7 @@ export function initChat() {
   function appendReasoning(text, isReplace) {
     ensureReasoning();
     reasoningText = isReplace ? String(text) : reasoningText + String(text);
-    reasoningEl.querySelector(".reasoning-body").textContent = reasoningText;
+    reasoningEl.querySelector(".thinking-content").textContent = reasoningText;
     scroll();
   }
 
@@ -173,7 +180,11 @@ export function initChat() {
     hideWait();
     setBusy(false);
     clearEmpty();
-    log.appendChild(el("div", "msg error", text));
+    const wrapper = el("div", "message-wrapper message-wrapper-assistant");
+    const bubble = el("div", "message message-assistant message-error");
+    bubble.appendChild(el("div", "message-text", text));
+    wrapper.appendChild(bubble);
+    log.appendChild(wrapper);
     scroll();
   }
 
@@ -253,9 +264,10 @@ export function initChat() {
   }
 
   function addActions(box, raw) {
-    if (!box || box.querySelector(".msg-actions")) return;
-    const bar = el("div", "msg-actions");
-    const copy = el("button", "msg-action", "Copier");
+    const wrapper = box.closest(".message-wrapper") || box;
+    if (!wrapper || wrapper.querySelector(".message-btn-row")) return;
+    const bar = el("div", "message-btn-row");
+    const copy = el("button", "message-copy-btn", "Copier");
     copy.type = "button";
     copy.addEventListener("click", () => {
       if (!navigator.clipboard) return;
@@ -266,7 +278,7 @@ export function initChat() {
         }, 1200);
       }).catch(() => {});
     });
-    const regen = el("button", "msg-action", "Regenerer");
+    const regen = el("button", "regen-btn", "Regenerer");
     regen.type = "button";
     regen.addEventListener("click", async () => {
       if (generating) return;
@@ -279,7 +291,7 @@ export function initChat() {
     bar.appendChild(copy);
     bar.appendChild(regen);
     if (window.speechSynthesis) {
-      const speak = el("button", "msg-action", "Lire");
+      const speak = el("button", "message-tts-btn", "Lire");
       speak.type = "button";
       speak.addEventListener("click", () => {
         window.speechSynthesis.cancel();
@@ -289,7 +301,7 @@ export function initChat() {
       });
       bar.appendChild(speak);
     }
-    box.appendChild(bar);
+    wrapper.appendChild(bar);
   }
 
   function summarize(args) {
@@ -358,6 +370,7 @@ export function initChat() {
     if (textRenderer) textRenderer.flush();
     const box = assistant;
     const raw = textRenderer ? textRenderer.text() : "";
+    if (box) box.classList.remove("streaming");
     hideWait();
     setBusy(false);
     generating = false;
@@ -598,6 +611,21 @@ export function initChat() {
     rec.addEventListener("error", () => micBtn.classList.remove("active"));
   } else if (micBtn) {
     micBtn.hidden = true;
+  }
+
+  const plusBtn = document.getElementById("plus-menu-btn");
+  const plusMenu = document.getElementById("plus-menu-dropdown");
+  if (plusBtn && plusMenu) {
+    plusMenu.hidden = true;
+    plusBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      plusMenu.hidden = !plusMenu.hidden;
+    });
+    document.addEventListener("click", (e) => {
+      if (!plusMenu.hidden && !plusMenu.contains(e.target) && e.target !== plusBtn) {
+        plusMenu.hidden = true;
+      }
+    });
   }
 
   connect();

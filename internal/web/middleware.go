@@ -44,10 +44,11 @@ func withSecurityHeaders(next http.Handler) http.Handler {
 		h.Set("Referrer-Policy", "no-referrer")
 		h.Set("X-Frame-Options", "DENY")
 		h.Set("Content-Security-Policy",
-			"default-src 'self'; script-src 'self' 'sha256-8LEdURfXdXCMt9i3ymt7V2tHAaYmp49Mg/T9W1B+L10='; "+
-				"style-src 'self'; img-src 'self' data:; connect-src 'self'; "+
+			"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "+
+				"img-src 'self' data:; connect-src 'self'; "+
 				"frame-ancestors 'none'; base-uri 'self'; form-action 'self'")
-		if strings.HasPrefix(r.URL.Path, "/js/") || strings.HasPrefix(r.URL.Path, "/css/") {
+		if strings.HasPrefix(r.URL.Path, "/js/") || strings.HasPrefix(r.URL.Path, "/css/") ||
+			strings.HasPrefix(r.URL.Path, "/images/") {
 			h.Set("Cache-Control", "public, max-age=3600")
 		} else {
 			h.Set("Cache-Control", "no-cache")

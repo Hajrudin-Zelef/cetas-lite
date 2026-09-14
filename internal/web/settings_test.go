@@ -103,7 +103,7 @@ func TestSecurityHeaders(t *testing.T) {
 	s := newTestServer(t, true)
 	rec := doJSON(t, s.Handler(), http.MethodGet, "/", "", nil)
 	csp := rec.Header().Get("Content-Security-Policy")
-	if !strings.Contains(csp, "script-src 'self'") || !strings.Contains(csp, "sha256-") {
+	if !strings.Contains(csp, "script-src 'self'") || !strings.Contains(csp, "style-src 'self' 'unsafe-inline'") {
 		t.Fatalf("CSP inattendue: %q", csp)
 	}
 	if rec.Header().Get("Cache-Control") != "no-cache" {

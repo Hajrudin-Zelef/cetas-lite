@@ -2,5 +2,5 @@ package webassets
 
 import "embed"
 
-//go:embed index.html favicon.svg css js
+//go:embed index.html css images js
 var FS embed.FS

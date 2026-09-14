@@ -50,35 +50,29 @@ function convItem(a, onChanged) {
   const row = document.createElement("div");
   row.className = "conv-item";
 
-  const main = document.createElement("button");
-  main.type = "button";
-  main.className = "conv-main";
-  main.title = a.title || "";
-  const title = document.createElement("span");
-  title.className = "conv-title";
+  const content = document.createElement("div");
+  content.className = "conv-item-content";
+  const title = document.createElement("div");
+  title.className = "conv-item-title";
   title.textContent = a.title || "(sans titre)";
-  const meta = document.createElement("span");
-  meta.className = "conv-meta";
+  title.title = a.title || "";
+  const dateLine = document.createElement("div");
+  dateLine.className = "conv-item-date-line";
+  const date = document.createElement("span");
+  date.className = "conv-item-date";
   const n = a.messages || 0;
-  meta.textContent = n + " message" + (n > 1 ? "s" : "") + (a.updated ? " · " + fmtDate(a.updated) : "");
-  main.appendChild(title);
-  main.appendChild(meta);
-  main.addEventListener("click", () => restore(a.id, onChanged));
+  date.textContent = n + " message" + (n > 1 ? "s" : "") + (a.updated ? " · " + fmtDate(a.updated) : "");
+  dateLine.appendChild(date);
+  content.appendChild(title);
+  content.appendChild(dateLine);
+  content.addEventListener("click", () => restore(a.id, onChanged));
 
-  const del = document.createElement("button");
-  del.type = "button";
-  del.className = "conv-del";
-  del.title = "Supprimer";
-  del.setAttribute("aria-label", "Supprimer la conversation");
-  del.textContent = "\u00d7";
-  del.addEventListener("click", (e) => {
-    e.stopPropagation();
-    remove(a.id, onChanged);
-  });
+  const actions = document.createElement("div");
+  actions.className = "conv-item-actions";
 
   const exp = document.createElement("button");
   exp.type = "button";
-  exp.className = "conv-export";
+  exp.className = "conv-action-btn";
   exp.title = "Exporter (Markdown)";
   exp.setAttribute("aria-label", "Exporter la conversation");
   exp.textContent = "\u2913";
@@ -87,9 +81,21 @@ function convItem(a, onChanged) {
     download("/api/conversations/" + encodeURIComponent(a.id) + "/export?format=md", a.id + ".md");
   });
 
-  row.appendChild(main);
-  row.appendChild(exp);
-  row.appendChild(del);
+  const del = document.createElement("button");
+  del.type = "button";
+  del.className = "conv-action-btn danger";
+  del.title = "Supprimer";
+  del.setAttribute("aria-label", "Supprimer la conversation");
+  del.textContent = "\u00d7";
+  del.addEventListener("click", (e) => {
+    e.stopPropagation();
+    remove(a.id, onChanged);
+  });
+
+  actions.appendChild(exp);
+  actions.appendChild(del);
+  row.appendChild(content);
+  row.appendChild(actions);
   return row;
 }
 

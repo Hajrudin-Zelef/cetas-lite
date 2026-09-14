@@ -31,10 +31,10 @@ function wrapTables(root) {
 
 function addCopyButtons(root) {
   for (const pre of root.querySelectorAll("pre")) {
-    if (pre.querySelector(".code-copy")) continue;
+    if (pre.querySelector(".code-copy-btn")) continue;
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "code-copy";
+    btn.className = "code-copy-btn";
     btn.textContent = "Copier";
     btn.addEventListener("click", () => {
       const code = pre.querySelector("code");

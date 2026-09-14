@@ -1,0 +1,427 @@
+/* Cetas Lite — compléments au design system Cetas (uniquement les briques absentes de Cetas). */
+
+[hidden] {
+  display: none !important;
+}
+
+/* Titre de sidebar : "Cetas Lite" est plus long que "Cetas" → on ajuste. */
+.sidebar-title {
+  font-size: 1.2rem;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.sidebar-title .version-badge {
+  white-space: nowrap;
+  font-size: 0.5rem;
+}
+
+.settings-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.settings-head h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.settings-body {
+  max-height: 62vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.settings-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.settings-section {
+  margin-top: 22px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.settings-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.settings-section-head h3 {
+  font-size: 0.95rem;
+}
+
+.settings-status {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.small-btn,
+.primary-btn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 0.82rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.small-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+}
+
+.primary-btn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.primary-btn:hover {
+  background: var(--accent-dark);
+}
+
+.alias-group {
+  margin-bottom: 12px;
+}
+
+.alias-group h3 {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.alias-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.alias-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-body textarea,
+.settings-body input,
+.caps-add input,
+.alias-row input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.mcp-panel,
+.caps-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.mcp-row,
+.caps-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+
+.mcp-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.mcp-name,
+.caps-name {
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.caps-name {
+  flex: 1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.mcp-meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.caps-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.caps-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* --- Inputs secondaires (thème, mode, effort) --- */
+.theme-select,
+.plus-menu-select,
+.topbar select {
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  padding: 5px 8px;
+  color: var(--text);
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.plus-menu-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.plus-menu-select + .plus-menu-select {
+  margin-left: 6px;
+}
+
+.plus-menu-state {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* --- Boutons icône génériques --- */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  padding: 4px 6px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.icon-btn:hover,
+.icon-btn:focus-visible {
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* --- Pastille Agent --- */
+.agent-pill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: var(--accent-light);
+}
+
+/* --- Stop --- */
+.stop-btn {
+  background: var(--danger);
+  border: 1px solid var(--danger);
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* --- Note système (compaction) --- */
+.msg-system {
+  max-width: 800px;
+  margin: 6px auto;
+  padding: 4px 14px;
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* --- Pièces jointes --- */
+.attach-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 6px;
+}
+
+.attach-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 999px;
+  padding: 3px 6px 3px 10px;
+  font-size: 0.78rem;
+  max-width: 260px;
+}
+
+.attach-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attach-thumb {
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.attach-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.attach-remove:hover {
+  color: var(--danger);
+}
+
+/* --- Blocs outils (riches) --- */
+.msg-tool,
+.stream-waiting {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.msg-tool {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-msg-assistant);
+  overflow: hidden;
+}
+
+.msg-tool summary {
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.tool-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tool-body {
+  border-top: 1px solid var(--border);
+}
+
+.tool-body pre,
+.tool-result {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.tool-result a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.tool-diff {
+  display: flex;
+  flex-direction: column;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+}
+
+.diff-add {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+}
+
+.diff-del {
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+}
+
+.chat-todo-list {
+  margin: 6px 0;
+  padding-left: 18px;
+  font-size: 0.82rem;
+}
+
+.chat-todo-item.todo-completed {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+
+/* --- Sidebar : en-tête de liste --- */
+.conv-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.conv-head-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+/* --- Scrim mobile --- */
+.sidebar-scrim {
+  display: none;
+}
+
+.conv-empty {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  padding: 8px 10px;
+}
+
+@media (max-width: 768px) {
+  .sidebar-scrim.show {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 25;
+    background: rgba(0, 0, 0, 0.45);
+  }
+}

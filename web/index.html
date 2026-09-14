@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="ocean">
+<html lang="fr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <title>Cetas Lite</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/css/variables.css">
-<link rel="stylesheet" href="/css/ocean.css">
-<link rel="stylesheet" href="/css/app.css">
-<script>
-  try {
-    document.documentElement.dataset.theme = localStorage.getItem("cetas-lite-theme") || "ocean";
-  } catch (e) {}
-</script>
+<link rel="icon" type="image/png" href="/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/cetas.css">
+<link rel="stylesheet" href="/css/cetas-ocean.css">
+<link rel="stylesheet" href="/css/cetas-lite.css">
+<script src="/js/theme-init.js"></script>
 </head>
-<body>
+<body class="ocean-theme">
 
 <div id="login-overlay" class="login-overlay">
   <div class="login-card">
-    <div class="login-logo">C</div>
+    <img class="login-logo" src="/images/Cetas42.png" alt="Cetas Lite">
     <h1 class="login-title">Cetas Lite</h1>
     <p class="login-subtitle">Assistant IA auto-heberge</p>
     <form id="login-form" class="login-form">
@@ -38,81 +35,133 @@
   </div>
 </div>
 
-<div id="app" hidden>
-  <aside id="sidebar" class="sidebar">
-    <h1 class="sidebar-title">
-      <span class="sidebar-logo">C</span>
-      Cetas Lite
-      <span class="version-badge" id="version-badge"></span>
-    </h1>
-    <button type="button" id="new-chat-btn" class="new-chat-btn">+ Nouvelle conversation</button>
+<button id="sidebar-toggle" class="sidebar-toggle" title="Masquer le panneau" aria-label="Ouvrir ou fermer le panneau" aria-controls="sidebar" aria-expanded="true">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+</button>
+
+<aside class="sidebar" id="sidebar">
+  <h1 class="sidebar-title">
+    <img src="/images/Cetas42.png" class="sidebar-logo" alt="Cetas Lite">
+    Cetas Lite
+    <span class="version-badge" id="version-badge"></span>
+  </h1>
+
+  <button id="new-chat-btn" class="new-chat-btn">Nouvelle conversation</button>
+
+  <div class="conv-section">
     <div class="conv-head">
       <span class="conv-head-label">Conversations</span>
-      <button type="button" id="export-btn" class="icon-btn" title="Exporter la conversation active (Markdown)" aria-label="Exporter la conversation active">&#8681;</button>
+      <button type="button" id="export-btn" class="icon-btn" title="Exporter la conversation active (Markdown)" aria-label="Exporter la conversation active">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
     </div>
     <div id="conv-list" class="conv-list"></div>
-    <div class="sidebar-spacer"></div>
-    <div class="sidebar-footer">
-      <div class="sidebar-row">
-        <select id="theme-select" title="Theme">
-          <option value="ocean">Ocean</option>
-          <option value="sombre">Sombre</option>
-          <option value="clair">Clair</option>
-        </select>
-        <button type="button" id="settings-btn" class="icon-btn" title="Reglages des alias" aria-label="Reglages des alias">&#9881;</button>
-      </div>
-      <div class="user-row">
-        <span class="user-initials" id="user-initials"></span>
-        <span id="user-name"></span>
-        <button type="button" id="logout-btn" class="icon-btn" title="Se deconnecter" aria-label="Se deconnecter">&#8592;</button>
-      </div>
+  </div>
+
+  <div class="user-menu-wrapper">
+    <span class="user-avatar-initials" id="user-initials"></span>
+    <span id="user-name"></span>
+    <select id="theme-select" class="theme-select" title="Theme">
+      <option value="ocean">Ocean</option>
+      <option value="clair">Clair</option>
+      <option value="sombre">Sombre</option>
+    </select>
+    <button type="button" id="settings-btn" class="sidebar-config-btn" title="Reglages" aria-label="Reglages">
+      <svg width="16" height="16" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-settings"/></svg>
+    </button>
+    <button type="button" id="logout-btn" class="sidebar-config-btn" title="Se deconnecter" aria-label="Se deconnecter">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    </button>
+  </div>
+</aside>
+
+<main class="main" id="app" hidden>
+  <div id="chat-log" class="chat-container" role="log" aria-live="polite" aria-relevant="additions text">
+    <div class="empty-chat-placeholder" id="empty-chat">
+      <img src="/images/Cetas42.png" alt="Cetas Lite" class="empty-chat-logo">
+      <p class="empty-chat-text">Choisis un modele dans le menu +, puis pose ta question. Le mode Code active les outils.</p>
     </div>
-  </aside>
+  </div>
 
-  <div id="sidebar-scrim" class="sidebar-scrim" hidden></div>
+  <div class="token-bar" id="token-bar">
+    <span id="stats-badge" hidden></span>
+    <span id="route-badge" hidden></span>
+  </div>
 
-  <section class="main">
-    <header class="topbar">
-      <select id="family-select" title="Famille"></select>
-      <select id="mode-select" title="Mode"></select>
-      <span id="agent-toggle" class="agent-pill" hidden>Agent</span>
-      <button type="button" id="web-toggle" class="web-toggle" title="Recherche web" aria-label="Recherche web" aria-pressed="false">Web</button>
-      <button type="button" id="mcp-toggle" class="web-toggle" title="Outils MCP" aria-label="Outils MCP" aria-pressed="false" hidden>MCP</button>
-      <button type="button" id="thinking-toggle" class="web-toggle" title="Raisonnement" aria-label="Raisonnement" aria-pressed="false">Think</button>
-      <select id="effort-select" title="Effort de raisonnement">
-        <option value="default">Defaut</option>
-        <option value="low">Faible</option>
-        <option value="medium">Moyen</option>
-        <option value="high">Max</option>
-      </select>
-      <span id="stats-badge" class="stats-badge" hidden></span>
-      <span id="route-badge" class="route-badge" hidden></span>
-      <button type="button" id="sidebar-toggle" class="icon-btn" title="Panneau" aria-label="Ouvrir ou fermer le panneau" aria-controls="sidebar" aria-expanded="false">&#9776;</button>
-    </header>
-
-    <div id="chat-log" class="chat-log" role="log" aria-live="polite" aria-relevant="additions text">
-      <div class="empty-chat" id="empty-chat">
-        <h2>Bonjour</h2>
-        <p>Choisis une famille et un mode, puis pose ta question. Le mode Code active les outils.</p>
-      </div>
-    </div>
-
-    <form id="composer" class="composer">
-      <div id="attach-chips" class="attach-chips" hidden></div>
+  <form class="input-area" id="composer">
+    <div id="attach-chips" class="attach-chips" hidden></div>
+    <div class="input-row">
       <div class="input-wrapper">
-        <button type="button" id="attach-btn" class="icon-btn attach-btn" title="Joindre un document" aria-label="Joindre un document">&#128206;</button>
-        <button type="button" id="mic-btn" class="icon-btn mic-btn" title="Dicter (navigateur)" aria-label="Dicter">&#127908;</button>
-        <input type="file" id="attach-input" hidden multiple accept=".png,.jpg,.jpeg,.gif,.webp,.md,.markdown,.txt,.text,.log,.csv,.tsv,.json,.yaml,.yml,.toml,.ini,.cfg,.conf,.env,.py,.js,.mjs,.cjs,.ts,.tsx,.jsx,.go,.rs,.java,.kt,.c,.h,.cpp,.hpp,.cs,.rb,.php,.sh,.bash,.zsh,.sql,.xml,.css,.scss,.vue,.svelte,.swift,.pl,.lua,.r,.dart,.scala,.clj,.ex,.exs,.erl,.hs,.elm,.tf,.gradle,.properties,.pdf,.html,.htm">
-        <textarea id="prompt-input" class="prompt-input" rows="1" placeholder="Ecris ton message..."></textarea>
-        <button type="button" id="stop-btn" class="stop-btn" hidden>Stop</button>
-        <button type="submit" id="send-btn" class="send-btn">Envoyer</button>
+        <button type="button" id="plus-menu-btn" class="input-icon-btn" title="Plus d'options" aria-label="Plus d'options">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="input-content">
+          <div class="input-line-1">
+            <textarea id="prompt-input" class="prompt-input" rows="1" placeholder="Ecrivez votre message..."></textarea>
+          </div>
+          <div class="input-line-2">
+            <div class="input-line-2-left">
+              <button type="button" id="attach-btn" class="input-icon-btn" title="Joindre un document" aria-label="Joindre un document">
+                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-attach"/></svg>
+              </button>
+              <button type="button" id="web-toggle" class="input-icon-btn" title="Recherche web" aria-label="Recherche web" aria-pressed="false">
+                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-globe"/></svg>
+              </button>
+              <button type="button" id="mcp-toggle" class="input-icon-btn" title="Outils MCP" aria-label="Outils MCP" aria-pressed="false" hidden>MCP</button>
+              <button type="button" id="thinking-toggle" class="input-icon-btn" title="Mode Reflexion" aria-label="Mode Reflexion" aria-pressed="false">
+                <img src="/images/cetas-thinking.png" alt="Thinking" width="18" height="18" style="border-radius:3px">
+              </button>
+              <span id="agent-toggle" class="agent-pill" hidden>Agent</span>
+            </div>
+            <div class="input-line-2-right">
+              <button type="button" id="mic-btn" class="mic-btn" title="Dicter" aria-label="Dicter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="1" width="6" height="12" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </button>
+              <button type="button" id="stop-btn" class="stop-btn" hidden>Stop</button>
+              <button type="submit" id="send-btn" class="send-btn" title="Envoyer" aria-label="Envoyer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
-  </section>
-</div>
+    </div>
 
-<div id="settings-overlay" class="settings-overlay" hidden>
-  <div class="settings-card">
+    <input type="file" id="attach-input" hidden multiple accept=".png,.jpg,.jpeg,.gif,.webp,.md,.markdown,.txt,.text,.log,.csv,.tsv,.json,.yaml,.yml,.toml,.ini,.cfg,.conf,.env,.py,.js,.mjs,.cjs,.ts,.tsx,.jsx,.go,.rs,.java,.kt,.c,.h,.cpp,.hpp,.cs,.rb,.php,.sh,.bash,.zsh,.sql,.xml,.css,.scss,.vue,.svelte,.swift,.pl,.lua,.r,.dart,.scala,.clj,.ex,.exs,.erl,.hs,.elm,.tf,.gradle,.properties,.pdf,.html,.htm">
+
+    <div id="plus-menu-dropdown" class="plus-menu-dropdown" hidden>
+      <div class="plus-menu-section">
+        <div class="plus-menu-section-title">Modele</div>
+        <div class="plus-menu-row">
+          <select id="family-select" class="plus-menu-select" title="Famille"></select>
+          <select id="mode-select" class="plus-menu-select" title="Mode"></select>
+        </div>
+      </div>
+      <div class="plus-menu-sep"></div>
+      <div class="plus-menu-section">
+        <div class="plus-menu-section-title">Effort</div>
+        <div class="plus-menu-row">
+          <select id="effort-select" class="plus-menu-select">
+            <option value="default">Defaut</option>
+            <option value="low">Faible</option>
+            <option value="medium">Moyen</option>
+            <option value="high">Max</option>
+          </select>
+        </div>
+      </div>
+      <div class="plus-menu-sep"></div>
+      <div class="plus-menu-section">
+        <div class="plus-menu-row">
+          <span class="plus-menu-row-label">Reflexion</span>
+          <span id="thinking-state" class="plus-menu-state">Off</span>
+        </div>
+      </div>
+    </div>
+  </form>
+</main>
+
+<div id="settings-overlay" class="sp-modal-overlay" hidden>
+  <div class="sp-modal">
     <div class="settings-head">
       <h2>Settings &rarr; Alias</h2>
       <button type="button" id="settings-close" class="icon-btn" title="Fermer">&#10005;</button>

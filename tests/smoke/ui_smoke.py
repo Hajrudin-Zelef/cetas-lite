@@ -157,9 +157,9 @@ def check(page, url, reduced):
     page.wait_for_selector("#app:not([hidden])", state="visible", timeout=8000)
     page.wait_for_selector("#chat-log[aria-busy='false']", timeout=8000)
     page.wait_for_selector(".tool-diff .diff-add", state="attached", timeout=8000)
-    page.wait_for_selector(".msg.assistant pre code", timeout=8000)
+    page.wait_for_selector(".message-assistant .message-text pre code", timeout=8000)
 
-    title = page.locator(".msg.assistant h2").first.inner_text()
+    title = page.locator(".message-assistant .message-text h2").first.inner_text()
     assert title.strip() == "Titre", f"markdown titre = {title!r}"
 
     diff = page.locator(".tool-diff .diff-add").first.text_content()
@@ -208,19 +208,19 @@ def check(page, url, reduced):
     assert page.locator(".msg-system").count() >= 1, "notice de compaction attendue"
 
     assert page.locator(".conv-item").count() == 1, "une conversation archivee attendue"
-    ctitle = page.locator(".conv-title").first.inner_text()
+    ctitle = page.locator(".conv-item-title").first.inner_text()
     assert "Ancienne question" in ctitle, f"titre archive = {ctitle!r}"
 
-    page.locator(".conv-del").first.click()
+    page.locator(".conv-item-actions .danger").first.click()
     page.wait_for_timeout(100)
     assert STATE.get("deleted") == "20260101_120000_1", f"DELETE archive attendu: {STATE.get('deleted')!r}"
 
     assert page.locator('.tool-result a[href="https://go.dev"]').count() >= 1, "citation cliquable attendue"
 
-    assert page.locator(".msg-actions").count() >= 1, "actions message attendues"
-    assert page.locator(".msg-action", has_text="Lire").count() >= 1, "bouton TTS (navigateur) attendu"
+    assert page.locator(".message-btn-row").count() >= 1, "actions message attendues"
+    assert page.locator(".message-tts-btn").count() >= 1, "bouton TTS (navigateur) attendu"
     assert page.locator("#mic-btn").count() == 1, "bouton micro present"
-    page.locator(".msg-action", has_text="Regenerer").last.click()
+    page.locator(".regen-btn").last.click()
     page.wait_for_timeout(100)
     assert STATE.get("regenerated"), "regeneration attendue"
 

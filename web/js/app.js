@@ -19,19 +19,22 @@ initAuth(async () => {
   initConversations();
 
   const sidebar = document.getElementById("sidebar");
-  const scrim = document.getElementById("sidebar-scrim");
   const toggle = document.getElementById("sidebar-toggle");
+  const mobile = window.matchMedia("(max-width: 768px)");
 
-  function setSidebar(open) {
-    sidebar.classList.toggle("open", open);
-    scrim.classList.toggle("show", open);
-    scrim.hidden = !open;
+  function applySidebar(open) {
+    sidebar.classList.toggle("collapsed", !open);
+    toggle.classList.toggle("collapsed", !open);
+    document.body.classList.toggle("sidebar-open", open && mobile.matches);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
-  toggle.addEventListener("click", () => setSidebar(!sidebar.classList.contains("open")));
-  scrim.addEventListener("click", () => setSidebar(false));
+  applySidebar(!mobile.matches);
+  toggle.addEventListener("click", () => applySidebar(sidebar.classList.contains("collapsed")));
+  sidebar.addEventListener("click", (e) => {
+    if (mobile.matches && e.target.closest(".conv-item")) applySidebar(false);
+  });
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setSidebar(false);
+    if (e.key === "Escape") applySidebar(false);
   });
 });
