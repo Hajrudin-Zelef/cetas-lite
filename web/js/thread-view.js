@@ -82,6 +82,8 @@ function speakable(md) {
 //   regenerateURL : endpoint de regeneration (optionnel)
 //   onFirstUser, onDone : callbacks optionnels
 //   reasonPanel : affiche le raisonnement dans le panneau lateral (vue principale)
+//   reasonHooks : { append(text, replace), finish(), reset() } — panneau custom
+//     (ex. vue Agents façon Marexcode) ; prioritaire sur reasonPanel.
 //   trackTokens : met a jour la ligne de tokens du composer (vue principale)
 export class ThreadView {
   constructor(opts) {
@@ -99,6 +101,7 @@ export class ThreadView {
     this.regenerateURL = opts.regenerateURL || null;
     this.onDone = opts.onDone || null;
     this.reasonPanel = opts.reasonPanel === true;
+    this.reasonHooks = opts.reasonHooks || null;
     this.trackTokens = opts.trackTokens === true;
 
     this.empty = this.log.querySelector("[data-empty]");
@@ -213,6 +216,10 @@ export class ThreadView {
   }
 
   appendReasoning(text, isReplace) {
+    if (this.reasonHooks) {
+      this.reasonHooks.append(text, isReplace);
+      return;
+    }
     if (this.reasonPanel) {
       appendReasoningPanel(text, isReplace);
       return;
@@ -447,6 +454,7 @@ export class ThreadView {
     this.generating = false;
     if (this.stopBtn) this.stopBtn.hidden = true;
     if (this.reasonPanel) finishReasoningPanel();
+    else if (this.reasonHooks) this.reasonHooks.finish();
     if (box && raw.trim()) {
       this.addTurnStats(box);
       this.addActions(box, raw);
@@ -466,6 +474,7 @@ export class ThreadView {
     this.hideWait();
     this.setBusy(false);
     if (this.reasonPanel) resetReasonPanel();
+      else if (this.reasonHooks) this.reasonHooks.reset();
     this.log.innerHTML = this.emptyHTML;
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
@@ -510,6 +519,7 @@ export class ThreadView {
       this.turnRoute = null;
       this.turnElapsedMs = null;
       if (this.reasonPanel) resetReasonPanel();
+      else if (this.reasonHooks) this.reasonHooks.reset();
       this.generating = true;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.showWait();
