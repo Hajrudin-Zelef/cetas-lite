@@ -268,14 +268,41 @@ function initConfigModal() {
       await loadPluginsStatus();
       btn.disabled = false;
     });
+    document.getElementById("cfg-marex-save")?.addEventListener("click", async (e) => {
+      const btn = e.currentTarget;
+      const ta = document.getElementById("cfg-marex-content");
+      const st = document.getElementById("cfg-marex-status");
+      btn.disabled = true;
+      try {
+        await api("/api/marex", { method: "PUT", body: { content: ta ? ta.value : "" } });
+        if (st) st.textContent = "Enregistré.";
+      } catch (err) {
+        if (st) st.textContent = "Échec : " + (err && err.message ? err.message : "erreur");
+      }
+      btn.disabled = false;
+    });
   }
   bindFeatureToggles();
+
+  async function loadMarex() {
+    const ta = document.getElementById("cfg-marex-content");
+    const st = document.getElementById("cfg-marex-status");
+    if (!ta) return;
+    try {
+      const d = await api("/api/marex");
+      ta.value = (d && d.content) || "";
+      if (st) st.textContent = (d && d.path) ? "Fichier : " + d.path : "";
+    } catch (_) {
+      if (st) st.textContent = "Chargement impossible.";
+    }
+  }
 
   window.addEventListener("cetas:open-config", () => {
     openOverlay("apikeys-modal-overlay");
     loadProviders();
     loadFamilies();
     loadFeatureDefaults();
+    loadMarex();
   });
   window.addEventListener("cetas:open-config-faq", () => {
     openOverlay("apikeys-modal-overlay");

@@ -105,6 +105,7 @@ export function initChat() {
   document.getElementById("family-select")?.addEventListener("change", refreshHint);
   document.getElementById("mode-select")?.addEventListener("change", refreshHint);
   window.addEventListener("cetas:app-mode-changed", refreshHint);
+  window.addEventListener("cetas:composer-toggles", refreshHint);
 
   function renderPreview() {
     if (!attachPreview) return;

@@ -100,6 +100,12 @@
 }
 #marex-view .icon-btn:hover{ background:var(--bg-input-btn); color:var(--text-primary); }
 #marex-view .icon-btn:disabled{ opacity:0.3; cursor:default; pointer-events:none; }
+/* Globe / thinking du composer : état actif identique au mode chat */
+#marex-view .icon-btn.active{ color:var(--accent); background:var(--bg-input-btn); }
+#marex-view .icon-btn.locked{ cursor:default; color:var(--accent); }
+#marex-view .icon-btn.locked:hover{ background:transparent; color:var(--accent); }
+/* Effort de réflexion (bouton style sélecteur) */
+#marex-view #mx-dd-effort .selector{ font-size:11.5px; gap:4px; }
 
 #marex-view .sb-back-btn{ display:flex; align-items:center; gap:6px; width:100%; padding:8px 12px; background:none; border:none; color:var(--accent); cursor:pointer; font-size:13px; border-bottom:1px solid var(--border); }
 #marex-view .sb-back-btn:hover{ background:var(--bg-input-btn); }

@@ -41,6 +41,8 @@ const I = {
   upload: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
   burger: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',
   logout: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',
+  globe: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+  think: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2a2.5 2.5 0 0 1 2.5 2.5c2.5 0 4.5 1.5 5.3 3.6a3.5 3.5 0 0 1-.6 6.9 3.5 3.5 0 0 1-2.7 3.4 3.5 3.5 0 0 1-6.3.6A3.5 3.5 0 0 1 4 15.5 3.5 3.5 0 0 1 4.6 8.6 4.5 4.5 0 0 1 9.5 2z"/></svg>',
 };
 
 const VIEW_HTML = `
@@ -138,6 +140,12 @@ const VIEW_HTML = `
               <div class="cdrop" id="mx-dd-plus">
                 <button class="plus-btn" id="mx-plus" aria-label="Ajouter" title="Ajouter">${I.plus}</button>
                 <div class="cdrop-menu" id="mx-menu-plus"></div>
+              </div>
+              <button class="icon-btn" id="mx-web" title="Recherche web" aria-label="Recherche web">${I.globe}</button>
+              <button class="icon-btn locked" id="mx-think" title="Réflexion (toujours active pour les agents)" aria-label="Réflexion">${I.think}</button>
+              <div class="cdrop" id="mx-dd-effort">
+                <button class="selector" id="mx-btn-effort" title="Niveau d'effort de réflexion">${I.think}<span id="mx-label-effort">Défaut</span>${I.chevron}</button>
+                <div class="cdrop-menu" id="mx-menu-effort"></div>
               </div>
               <button class="icon-btn mx-fav-btn" id="mx-fav" title="Ajouter aux favoris">${I.star}</button>
               <div class="cdrop" id="mx-dd-perm">
@@ -240,6 +248,11 @@ export function initAgents() {
   if (!PERMS[perm]) perm = "write";
   let repo = LS.get("repo", "");
   let useWorktree = LS.get("worktree", "1") !== "0";
+  // Globe (recherche web) et effort de réflexion (thinking obligatoire).
+  let mxWeb = LS.get("mx_web", "0") === "1";
+  let mxEffort = LS.get("mx_effort", "default");
+  if (!["default", "low", "medium", "high"].includes(mxEffort)) mxEffort = "default";
+  const EFFORT_LABELS = { default: "Défaut", low: "Faible", medium: "Moyen", high: "Max" };
   let projects = LS.getJSON("projects", []);
   let favorites = new Set(LS.getJSON("favs", []));
   let missionTitles = LS.getJSON("titles", {});
@@ -283,6 +296,16 @@ export function initAgents() {
   wireDrop("#mx-btn-perm", "#mx-menu-perm");
   wireDrop("#mx-btn-project", "#mx-menu-project");
   wireDrop("#mx-plus", "#mx-menu-plus");
+  wireDrop("#mx-btn-effort", "#mx-menu-effort");
+
+  $("#mx-web").addEventListener("click", () => {
+    mxWeb = !mxWeb;
+    LS.set("mx_web", mxWeb ? "1" : "0");
+    refreshMxWeb();
+  });
+  // Réflexion obligatoire pour l'agent : le bouton n'est pas désactivable.
+  $("#mx-think").addEventListener("click", () => {});
+
 
   function modeLabel(family, mode) {
     const f = families.find((x) => x.id === family);
@@ -375,6 +398,35 @@ export function initAgents() {
     t.addEventListener("change", () => {
       useWorktree = t.checked;
       LS.set("worktree", useWorktree ? "1" : "0");
+    });
+  }
+
+  // ---------------- globe (web) + effort de réflexion ----------------
+  function refreshMxWeb() {
+    const b = $("#mx-web");
+    b.classList.toggle("active", mxWeb);
+    b.title = mxWeb ? "Recherche web : activée" : "Recherche web : désactivée";
+    b.setAttribute("aria-pressed", mxWeb ? "true" : "false");
+  }
+  function buildEffortMenu() {
+    const menu = $("#mx-menu-effort");
+    const defs = [
+      ["default", "Défaut", "Équilibré automatiquement"],
+      ["low", "Faible", "Rapide"],
+      ["medium", "Moyen", "Équilibré"],
+      ["high", "Max", "Qualité maximale"],
+    ];
+    menu.innerHTML = defs
+      .map(([v, label, desc]) => cdropItemHTML(label, desc, mxEffort === v, "", 'data-effort="' + v + '"'))
+      .join("");
+    menu.querySelectorAll(".cdrop-item[data-effort]").forEach((it) => {
+      it.addEventListener("click", () => {
+        mxEffort = it.dataset.effort;
+        LS.set("mx_effort", mxEffort);
+        $("#mx-label-effort").textContent = EFFORT_LABELS[mxEffort] || "Défaut";
+        buildEffortMenu();
+        closeAllDrops();
+      });
     });
   }
 
@@ -675,7 +727,14 @@ function buildThread(id) {
     sendURL: "/api/agents/" + encodeURIComponent(id) + "/message",
     stopURL: "/api/agents/" + encodeURIComponent(id) + "/stop",
     approveURL: "/api/agents/" + encodeURIComponent(id) + "/approve",
-    getPayload: (text) => ({ message: text, approve: PERMS[perm].approve, plan: PERMS[perm].plan }),
+    getPayload: (text) => ({
+      message: text,
+      approve: PERMS[perm].approve,
+      plan: PERMS[perm].plan,
+      web: mxWeb,
+      think: true, // réflexion obligatoire pour l'agent
+      effort: mxEffort,
+    }),
     reasonHooks,
     onDone: () => {
       if (statsBadge.textContent) tokenCounter.textContent = statsBadge.textContent;
@@ -740,6 +799,8 @@ async function send() {
           plan: PERMS[perm].plan,
           worktree: useWorktree,
           repo,
+          web: mxWeb,
+          effort: mxEffort, // think est forcé côté serveur pour les agents
         },
       });
       missionTitles[res.id] = text;
@@ -933,11 +994,15 @@ $("#mx-logout").addEventListener("click", () => {
 
 // ---------------- init ----------------
 $("#mx-label-perm").textContent = PERMS[perm].label;
+$("#mx-label-effort").textContent = EFFORT_LABELS[mxEffort] || "Défaut";
 buildPermMenu();
 buildPlusMenu();
 buildProjectMenu();
+buildEffortMenu();
 refreshProjectLabels();
 renderProjects();
+refreshMxWeb();
+$("#mx-think").classList.add("active"); // réflexion obligatoire pour l'agent
 mxResetReason();
 syncUndoBtns();
 api("/api/me")

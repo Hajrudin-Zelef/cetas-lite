@@ -892,6 +892,10 @@ export class ThreadView {
       this.addSystem("Contexte compacté pour rester dans la fenêtre du modèle.");
       return;
     }
+    if (ev.system !== undefined) {
+      this.addSystem(String(ev.system));
+      return;
+    }
     if (ev.route !== undefined) {
       const r = ev.route || {};
       this.turnRoute = r;

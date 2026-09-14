@@ -19,7 +19,7 @@ type MemoryTools interface {
 	Index(user string) string
 }
 
-const memIndexPrefix = "Index memoire"
+const memIndexPrefix = "Memory index"
 
 func MemoryToolSchemas() []provider.Tool {
 	str := func(props map[string]any, required ...string) map[string]any {
@@ -28,11 +28,11 @@ func MemoryToolSchemas() []provider.Tool {
 	return []provider.Tool{
 		{Type: "function", Function: provider.ToolFunction{Name: "mem_search", Description: "Search your persistent memory pages. Returns files, titles and snippets.", Parameters: str(map[string]any{
 			"query": map[string]any{"type": "string"},
-			"limit": map[string]any{"type": "integer", "description": "Defaut 8, max 30"},
+			"limit": map[string]any{"type": "integer", "description": "Default 8, max 30"},
 		}, "query")}},
 		{Type: "function", Function: provider.ToolFunction{Name: "mem_read", Description: "Read a memory page, line-numbered, with offset/limit.", Parameters: str(map[string]any{
-			"name":   map[string]any{"type": "string", "description": "Ex: notes.md"},
-			"offset": map[string]any{"type": "integer", "description": "Premiere ligne (1-based)"},
+			"name":   map[string]any{"type": "string", "description": "E.g. notes.md"},
+			"offset": map[string]any{"type": "integer", "description": "First line (1-based)"},
 			"limit":  map[string]any{"type": "integer"},
 		}, "name")}},
 		{Type: "function", Function: provider.ToolFunction{Name: "mem_add", Description: "Create a new memory page (fails if it exists).", Parameters: str(map[string]any{
@@ -114,7 +114,7 @@ func (e *Engine) memoryIndexMessage(user string) (provider.Message, bool) {
 	if idx == "" {
 		return provider.Message{}, false
 	}
-	content := memIndexPrefix + " (titres seulement ; utilise mem_read pour lire une page, " +
-		"mem_search pour chercher, mem_add/mem_edit/mem_delete pour la maintenir).\n\n" + idx
+	content := memIndexPrefix + " (titles only; use mem_read to read a page, " +
+		"mem_search to search, mem_add/mem_edit/mem_delete to maintain it).\n\n" + idx
 	return provider.Message{Role: "system", Content: content}, true
 }

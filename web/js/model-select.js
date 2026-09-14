@@ -16,6 +16,7 @@ function getCheck(id) {
 export function applyWebToggle(on) {
   setCheck("web-toggle", on);
   setCheck("plus-websearch-toggle", on);
+  syncGlobeButton();
 }
 export function applyMCPToggle(on) {
   setCheck("mcp-toggle", on);
@@ -23,6 +24,30 @@ export function applyMCPToggle(on) {
 export function applyThinkingToggle(on) {
   setCheck("thinking-toggle", on);
   setCheck("plus-reflection-toggle", on);
+  syncThinkingButton();
+}
+
+// Bouton globe du composer (a cote du +) : reflete l'etat du toggle web.
+function syncGlobeButton() {
+  const btn = document.getElementById("web-search-btn");
+  if (!btn) return;
+  const on = getCheck("web-toggle");
+  btn.classList.toggle("active", on);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  btn.title = on ? "Recherche web : activée" : "Recherche web : désactivée";
+}
+
+// Bouton Thinking du composer (a cote du globe) : en mode Agent la reflexion
+// est obligatoire et le bouton est verrouille.
+function syncThinkingButton() {
+  const btn = document.getElementById("thinking-toggle-btn");
+  if (!btn) return;
+  const locked = isAgentActive();
+  const on = locked || getCheck("thinking-toggle");
+  btn.classList.toggle("active", on);
+  btn.classList.toggle("locked", locked);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  btn.title = locked ? "Réflexion (toujours active en mode Agent)" : on ? "Réflexion : activée" : "Réflexion : désactivée";
 }
 export function setThinking(on) {
   thinkingPref = !!on;
@@ -113,6 +138,7 @@ function updateAgent() {
       th.checked = thinkingPref;
     }
   }
+  syncThinkingButton();
   updateAppModeUI();
 }
 
@@ -277,6 +303,25 @@ export async function initModels() {
   bindCheck("plus-reflection-toggle", applyThinkingToggle);
   bindCheck("approve-toggle", applyApproveToggle, false);
   bindCheck("plan-toggle", applyPlanToggle, false);
+
+  // Boutons globe / Thinking du composer (a cote du bouton +).
+  const globeBtn = document.getElementById("web-search-btn");
+  if (globeBtn) {
+    globeBtn.addEventListener("click", () => {
+      applyWebToggle(!getCheck("web-toggle"));
+      persistPrefs().catch(() => {});
+      window.dispatchEvent(new CustomEvent("cetas:composer-toggles"));
+    });
+  }
+  const thinkBtn = document.getElementById("thinking-toggle-btn");
+  if (thinkBtn) {
+    thinkBtn.addEventListener("click", () => {
+      if (isAgentActive()) return; // reflexion obligatoire en mode Agent
+      setThinking(!getCheck("thinking-toggle"));
+      persistPrefs().catch(() => {});
+      window.dispatchEvent(new CustomEvent("cetas:composer-toggles"));
+    });
+  }
 
   // Pills d'effort du plus-menu
   document.querySelectorAll("#plus-effort-pills .plus-menu-pill").forEach((p) => {

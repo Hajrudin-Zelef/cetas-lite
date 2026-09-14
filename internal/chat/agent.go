@@ -57,13 +57,28 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	reg := e.toolRegistry(in, sb)
 	tools := reg.schemas(ctx)
 	sys := []provider.Message{{Role: "system", Content: agentSystemPrompt()}}
-	if mm, ok := e.marexMessage(in.User); ok {
+	// Directive de raisonnement (imperative, en anglais) : le thinking est
+	// obligatoire pour l'agent, avec le niveau d'effort demande.
+	sys = append(sys, provider.Message{Role: "system", Content: thinkDirective(true, false, in.Effort)})
+	// Recherche native du membre principal, calculee une seule fois (limiteur).
+	nativePrimary := len(res.members) > 0 && e.useNativeWebSearch(in, res.members[0].Provider, res.members[0].Model)
+	// Directive de recherche web (imperative, en anglais) : le globe est
+	// l'interrupteur principal. Le thinking est obligatoire pour l'agent
+	// (payload), avec effort selectionnable via in.Effort.
+	sys = append(sys, provider.Message{Role: "system", Content: searchDirective(e.webEnabled(in), nativePrimary)})
+	if mm, ok, notice := e.marexForSession(c.ID); ok {
 		sys = append(sys, mm)
+		if notice {
+			c.appendDelta(epoch, map[string]any{"system": "MAREX.md chargé"})
+		}
 	}
 	msgs := normalizeSystemMessages(append(sys, base...))
+	// Directive web courante : recalculee par membre, car un membre non natif
+	// ne doit pas recevoir la directive "provider-native" du membre principal.
+	webDir := searchDirective(e.webEnabled(in), nativePrimary)
 
 	var lastErr error
-	for _, m := range res.members {
+	for i, m := range res.members {
 		if ctx.Err() != nil {
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Génération interrompue._"})
 			return
@@ -76,7 +91,15 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		c.appendDelta(epoch, routeDelta(m, in.Family, in.Mode, false, res.fallback))
 
 		emitted := false
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: e.useNativeWebSearch(in, m.Provider, m.Model), webFallback: e.webToolsFor(in)})
+		native := nativePrimary
+		if i > 0 {
+			native = e.useNativeWebSearch(in, m.Provider, m.Model)
+		}
+		if dir := searchDirective(e.webEnabled(in), native); dir != webDir {
+			msgs = replaceWebDirective(msgs, webDir, dir)
+			webDir = dir
+		}
+		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: native, webFallback: e.webToolsFor(in)})
 		if err == nil {
 			c.appendAssistant(epoch, content)
 			return
@@ -163,7 +186,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			ReasoningEffort: effort,
 		}
 		if opts.nativeWeb {
-			req.Extra = nativeWebExtra()
+			req.Extra = nativeWebExtraFor(m.Provider)
 			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
 		}
 		resp, err := e.streamWithRetry(ctx, p, req, emit, emitted)
@@ -181,12 +204,15 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				nativeFallbackDone = true
 				opts.nativeWeb = false
 				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(nil, true)})
+				// Le natif est desactive pour la 2e tentative : la directive
+				// ne doit plus parler de recherche native.
+				msgs = replaceWebDirective(msgs, searchDirective(true, true), searchDirective(true, false))
 				continue
 			}
 			var he *provider.HTTPError
 			if errors.As(err, &he) && !disableTools && len(tools) > 0 {
 				disableTools = true
-				msgs = append(msgs, provider.Message{Role: "system", Content: "N'appelle plus d'outil. Reponds maintenant directement a partir des informations deja obtenues."})
+				msgs = append(msgs, provider.Message{Role: "system", Content: "Stop calling tools. Answer directly now using only the information already gathered."})
 				continue
 			}
 			return last, err
@@ -326,8 +352,8 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			}
 			planApproved = true
 			tools = fullTools
-			msgs = append(msgs, provider.Message{Role: "system", Content: "Plan valide par l'utilisateur. Execute-le maintenant avec tous les outils, " +
-				"puis VERIFIE ton travail (compile/teste) avant de conclure."})
+			msgs = append(msgs, provider.Message{Role: "system", Content: "Plan approved by the user. Execute it now with all tools, " +
+				"then VERIFY your work (compile/test) before concluding."})
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Plan valide, execution en cours..._\n\n"})
 			continue
 		}
@@ -399,7 +425,7 @@ type agentOpts struct {
 	// maxTokens limite les tokens generes par reponse (0 = defaut).
 	maxTokens int
 	// nativeWeb : la recherche web passe par le plugin natif du provider
-	// (OpenRouter) au lieu des outils web_search/web_fetch.
+	// (OpenRouter / DeepSeek) au lieu des outils web_search/web_fetch.
 	nativeWeb bool
 	// webFallback : si la recherche native echoue avant toute emission,
 	// retenter une fois avec les outils web_search/web_fetch (mode auto).
@@ -429,11 +455,11 @@ func readOnlyTools(tools []provider.Tool) []provider.Tool {
 }
 
 func planModePrompt() string {
-	return "MODE PLAN : tu es en phase d'exploration. Utilise uniquement les outils " +
-		"de lecture (Ls, Read, Grep, Glob) et TodoWrite pour construire un plan d'action. " +
-		"Quand ton exploration est terminee, presente ton plan clairement dans ta reponse " +
-		"(etapes numerotees) et attends la validation : n'appelle AUCUN outil d'ecriture " +
-		"ou d'execution pendant cette phase."
+	return "PLAN MODE: you are in the exploration phase. Use only read tools " +
+		"(Ls, Read, Grep, Glob) and TodoWrite to build an action plan. " +
+		"When exploration is done, present your plan clearly in your answer " +
+		"(numbered steps) and wait for validation: do NOT call any write " +
+		"or execution tool during this phase."
 }
 
 // buildPlanText reconstitue le plan a soumettre : derniers todos + conclusion.

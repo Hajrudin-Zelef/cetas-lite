@@ -45,6 +45,8 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("GET /api/mcp", s.requireAuth(s.handleMCPStatus))
 	mux.HandleFunc("GET /api/plugins", s.requireAuth(s.handlePluginsStatus))
 	mux.HandleFunc("POST /api/plugins/reload", s.requireAuth(s.handlePluginsReload))
+	mux.HandleFunc("GET /api/marex", s.requireAuth(s.handleMarex))
+	mux.HandleFunc("PUT /api/marex", s.requireAuth(s.handleMarex))
 	mux.HandleFunc("GET /api/capabilities", s.requireAuth(s.handleCapabilitiesGet))
 	mux.HandleFunc("PUT /api/capabilities", s.requireAuth(s.handleCapabilitiesPut))
 	mux.HandleFunc("GET /api/aliases", s.requireAuth(s.handleAliasesGet))

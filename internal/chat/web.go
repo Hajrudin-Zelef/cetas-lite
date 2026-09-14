@@ -23,7 +23,7 @@ func WebToolSchemas() []provider.Tool {
 				"type": "object",
 				"properties": map[string]any{
 					"query":       map[string]any{"type": "string"},
-					"max_results": map[string]any{"type": "integer", "description": "Defaut 5, max 10"},
+					"max_results": map[string]any{"type": "integer", "description": "Default 5, max 10"},
 				},
 				"required": []string{"query"},
 			},
@@ -119,7 +119,7 @@ func (e *Engine) webContext(ctx context.Context, user, query string) string {
 	for i, h := range res.Hits {
 		lines = append(lines, fmt.Sprintf("[%d] %s\n%s\n%s", i+1, h.Title, h.URL, h.Description))
 	}
-	return "Resultats de recherche web pour la requete : \"" + query + "\"\n\n" +
+	return "Web search results for the query: \"" + query + "\"\n\n" +
 		strings.Join(lines, "\n\n") +
-		"\n\nUtilise ces informations pour repondre et cite tes sources par leur numero [1], [2], etc."
+		"\n\nUse this information to answer and cite your sources by their number [1], [2], etc."
 }

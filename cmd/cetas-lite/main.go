@@ -152,6 +152,7 @@ func buildApp() (*app, error) {
 	engine.SetMemory(memory.New(cfg.MemoryDir))
 	engine.SetAttachments(attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20))
 	engine.SetCapabilities(modelcaps.Load(st))
+	engine.SetMarexPath(filepath.Join(cfg.Home, "MAREX.md"))
 	customManager, err := customtools.NewManager(cfg.ToolsPath, client)
 	if err != nil {
 		_ = st.Close()

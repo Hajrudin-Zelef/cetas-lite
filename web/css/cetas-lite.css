@@ -1143,3 +1143,38 @@
   flex: 1;
   min-width: 0;
 }
+
+/* --- Globe / Thinking du composer (mode Agent : thinking verrouillé) --- */
+.input-icon-btn.locked {
+  cursor: default;
+}
+.input-icon-btn.locked:hover {
+  color: inherit;
+}
+
+/* --- Éditeur MAREX.md (Réglages) --- */
+.marex-editor-block {
+  padding: 4px 18px 14px;
+}
+.marex-textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 140px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #d9dee6);
+  background: var(--input-bg, #fff);
+  color: var(--text-primary, #1c2333);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.marex-textarea:focus {
+  outline: none;
+  border-color: var(--accent, #3B87CE);
+}
+.marex-editor-block .rp-mcp-status {
+  display: block;
+  margin-top: 6px;
+  text-align: left;
+}

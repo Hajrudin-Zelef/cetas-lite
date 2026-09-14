@@ -2,11 +2,17 @@ package web
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"strings"
+	"sync"
 	"testing"
+	"time"
+
+	"cetas-lite/internal/provider"
 )
 
 func doAuthed(t *testing.T, method, url, tok string, body any) (int, map[string]any) {
@@ -167,5 +173,73 @@ func TestAgentsIsolationBetweenUsers(t *testing.T) {
 	}
 	if agents, _ := listOut["agents"].([]any); len(agents) != 0 {
 		t.Fatalf("bob devrait avoir 0 agent, recu %v", agents)
+	}
+}
+
+// captureProvider enregistre les requetes provider pour verifier le
+// transfert des champs web / effort / think depuis l'API agents.
+type captureProvider struct {
+	mu   sync.Mutex
+	reqs []provider.Request
+}
+
+func (p *captureProvider) ID() string { return "fake" }
+
+func (p *captureProvider) Stream(ctx context.Context, req provider.Request, emit func(provider.Event) bool) (provider.Response, error) {
+	p.mu.Lock()
+	p.reqs = append(p.reqs, req)
+	p.mu.Unlock()
+	return provider.Response{Content: "ok"}, nil
+}
+
+func TestAgentSpawnForwardsWebEffortAndForcesThinking(t *testing.T) {
+	cp := &captureProvider{}
+	s := newTestServerWith(t, cp)
+	ts := httptest.NewServer(s.Handler())
+	defer ts.Close()
+	tok := tokenFor(t, ts.URL)
+
+	code, st := doAuthed(t, http.MethodPost, ts.URL+"/api/agents", tok,
+		map[string]any{"family": "code", "mode": "standard", "message": "hello", "web": true, "effort": "high"})
+	if code != http.StatusOK {
+		t.Fatalf("create status = %d (%v)", code, st)
+	}
+	id, _ := st["id"].(string)
+	if id == "" {
+		t.Fatal("id manquant")
+	}
+
+	// Attendre la fin du tour.
+	deadline := time.Now().Add(10 * time.Second)
+	for {
+		_, state := doAuthed(t, http.MethodGet, ts.URL+"/api/agents/"+id+"/state", tok, nil)
+		if running, _ := state["running"].(bool); !running {
+			break
+		}
+		if time.Now().After(deadline) {
+			t.Fatal("le tour agent ne se termine pas")
+		}
+		time.Sleep(50 * time.Millisecond)
+	}
+
+	cp.mu.Lock()
+	defer cp.mu.Unlock()
+	if len(cp.reqs) == 0 {
+		t.Fatal("aucune requete provider enregistree")
+	}
+	req := cp.reqs[0]
+	if !req.EnableReasoning {
+		t.Fatal("le thinking doit etre force pour un agent")
+	}
+	found := false
+	for _, m := range req.Messages {
+		if m.Role == "system" {
+			if s, _ := m.Content.(string); strings.Contains(s, "Web search is enabled") {
+				found = true
+			}
+		}
+	}
+	if !found {
+		t.Fatal("la directive web (web:true) doit etre injectee dans le prompt agent")
 	}
 }

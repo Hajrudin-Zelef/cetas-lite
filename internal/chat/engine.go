@@ -46,6 +46,12 @@ type Engine struct {
 	agentsMu sync.Mutex
 	agents   map[string]*AgentRun
 	wtRepos  map[string]string
+
+	// MAREX.md : chemin du fichier renseigne par l'utilisateur, et cache
+	// du contenu lu au demarrage de chaque session (par ID de conversation).
+	marexMu       sync.Mutex
+	marexPath     string
+	marexSessions map[string]*marexEntry
 }
 
 func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc *local.Discoverer, workspace string) *Engine {
@@ -367,12 +373,29 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	}
 
 	msgs = append([]provider.Message{{Role: "system", Content: chatSystemPrompt()}}, msgs...)
+	// Directive de raisonnement (imperative, en anglais) : le bouton
+	// Thinking du composer est l'interrupteur principal en mode chat.
+	msgs = append([]provider.Message{{Role: "system", Content: thinkDirective(false, in.Think, in.Effort)}}, msgs...)
 
 	// Choix du moteur de recherche AVANT toute pre-recherche : si le membre
 	// principal utilise la recherche native du provider, la pre-recherche
 	// locale est inutile (elle doublerait latence et cout). La decision est
 	// calculee une seule fois pour ne pas consommer le limiteur deux fois.
 	nativePrimary := len(res.members) > 0 && e.useNativeWebSearch(in, res.members[0].Provider, res.members[0].Model)
+
+	// Directive de recherche web (imperative, en anglais) : le globe est
+	// l'interrupteur principal, le mode "off" coupe aussi la recherche.
+	msgs = append([]provider.Message{{Role: "system", Content: searchDirective(e.webEnabled(in), nativePrimary)}}, msgs...)
+
+	// MAREX.md : lu une seule fois au demarrage de la session ; s'il est
+	// rempli, un message discret "MAREX.md chargé" s'affiche dans le chat.
+	if mm, ok, notice := e.marexForSession(c.ID); ok {
+		msgs = append([]provider.Message{mm}, msgs...)
+		if notice {
+			c.appendDelta(epoch, map[string]any{"system": "MAREX.md chargé"})
+		}
+	}
+
 	webDone := false
 	nativeOff := false
 	if e.webToolsFor(in) && !nativePrimary {
@@ -402,7 +425,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			"local": res.local, "fallback": res.fallback,
 		}})
 
-		// Recherche web native du provider (OpenRouter) : le plugin "web"
+		// Recherche web native du provider (OpenRouter, DeepSeek) : le natif
 		// cherche pendant la generation ; les outils web_search/web_fetch
 		// deviennent redondants pour ce membre.
 		native := false
@@ -422,7 +445,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			ReasoningEffort: resolveEffort(false, in.Think, in.Text, in.Effort),
 		}
 		if native {
-			req.Extra = nativeWebExtra()
+			req.Extra = nativeWebExtraFor(m.Provider)
 			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
 		}
 		resp, err := p.Stream(ctx, req, func(ev provider.Event) bool {
@@ -469,6 +492,9 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			}
 			webDone = true
 			nativeOff = true
+			// Le natif est desactive : la directive ne doit plus parler de
+			// recherche native pour les membres suivants.
+			msgs = replaceWebDirective(msgs, searchDirective(true, true), searchDirective(true, false))
 		}
 	}
 	if lastErr == nil {

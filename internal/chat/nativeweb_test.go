@@ -59,8 +59,10 @@ func TestNativeWebFor(t *testing.T) {
 		{"u", "openrouter", "openai/gpt-5", "natif", true},
 		{"u", "openrouter", "openai/gpt-5", "outils", false},
 		{"u", "openrouter", "openai/gpt-5", "off", false},
-		{"u", "deepseek", "deepseek-chat", "auto", false},             // pas de natif chez DeepSeek
-		{"u", "deepseek", "deepseek-chat", "natif", false},            // idem
+		{"u", "deepseek", "deepseek-chat", "auto", true},              // natif via enable_search
+		{"u", "deepseek", "deepseek-chat", "natif", true},             // idem
+		{"u", "deepseek", "deepseek-chat", "outils", false},           // outils forces
+		{"u", "deepseek", "deepseek-chat", "off", false},              // coupe
 		{"u", "openrouter", "perplexity/sonar:online", "auto", false}, // deja en ligne
 	}
 	for _, c := range cas {
@@ -173,33 +175,51 @@ func TestChatNatifSansPreRechercheLocale(t *testing.T) {
 	}
 }
 
-// En mode chat + auto, un membre non natif (DeepSeek) utilise la
-// pre-recherche locale, sans plugin natif.
-func TestChatNonNatifAvecPreRechercheLocale(t *testing.T) {
+// En mode chat + auto, un membre DeepSeek (natif via enable_search) ne doit
+// PAS declencher la pre-recherche locale (pas de double recherche).
+func TestChatDeepSeekNatifSansPreRecherche(t *testing.T) {
 	stub := stubWebWithHit()
 	ds := &scriptedProvider{id: "deepseek", steps: []scriptStep{{content: "ok"}}}
 	e := newChatEngine(t, []*scriptedProvider{ds}, plainFamily(alias.Member{Provider: "deepseek", Model: "deepseek-chat"}))
 	e.SetSearcher(stub)
 	runTurn(t, e, "sam", TurnInput{User: "sam", Family: "plain", Mode: "standard", Text: "quoi de neuf ?", Web: true})
 
+	if n := atomic.LoadInt32(&stub.searchCalls); n != 0 {
+		t.Fatalf("pre-recherche locale inattendue avec le natif DeepSeek (appels=%d)", n)
+	}
+	reqs := ds.requests()
+	if len(reqs) != 1 {
+		t.Fatalf("une requete attendue : %+v", reqs)
+	}
+	if reqs[0].Extra["enable_search"] != true {
+		t.Fatalf("enable_search=true attendu dans Extra : %+v", reqs[0].Extra)
+	}
+}
+
+// En mode chat + auto, un membre non natif (ex: fake) utilise la
+// pre-recherche locale, sans parametre natif.
+func TestChatNonNatifAvecPreRechercheLocale(t *testing.T) {
+	stub := stubWebWithHit()
+	fk := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok"}}}
+	e := newChatEngine(t, []*scriptedProvider{fk}, plainFamily(alias.Member{Provider: "fake", Model: "m"}))
+	e.SetSearcher(stub)
+	runTurn(t, e, "sam", TurnInput{User: "sam", Family: "plain", Mode: "standard", Text: "quoi de neuf ?", Web: true})
+
 	if n := atomic.LoadInt32(&stub.searchCalls); n != 1 {
 		t.Fatalf("pre-recherche locale attendue (appels=%d)", n)
 	}
-	reqs := ds.requests()
+	reqs := fk.requests()
 	if len(reqs) != 1 || hasNativePlugin(reqs[0]) {
 		t.Fatalf("aucun plugin natif attendu : %+v", reqs)
 	}
-	found := false
 	for _, m := range reqs[0].Messages {
 		if m.Role == "system" {
 			if s, _ := m.Content.(string); strings.Contains(s, "https://x.test") {
-				found = true
+				return
 			}
 		}
 	}
-	if !found {
-		t.Fatal("le contexte de pre-recherche doit etre injecte")
-	}
+	t.Fatal("le contexte de pre-recherche doit etre injecte")
 }
 
 // Repli chat : le natif echoue avant toute emission -> une seule
@@ -225,6 +245,13 @@ func TestChatRepliNatifVersOutils(t *testing.T) {
 	freqs := fb.requests()
 	if len(freqs) != 1 || hasNativePlugin(freqs[0]) {
 		t.Fatalf("le membre de repli ne doit pas reutiliser le natif : %+v", freqs)
+	}
+	for _, m := range freqs[0].Messages {
+		if m.Role == "system" {
+			if s, _ := m.Content.(string); strings.Contains(s, "provider-native") {
+				t.Fatal("le membre de repli ne doit plus voir la directive native")
+			}
+		}
 	}
 	if txt := logText(c); !strings.Contains(txt, "ok") {
 		t.Fatalf("reponse finale attendue, obtenu : %q", txt)
@@ -275,5 +302,32 @@ func TestAgentRepliNatifVersOutils(t *testing.T) {
 	}
 	if !hasToolName(reqs[1].Tools, "web_search") {
 		t.Fatal("la requete de repli doit reexposer web_search")
+	}
+}
+
+// Le repli natif -> outils doit remplacer la directive : le membre suivant
+// ne doit plus lire "provider-native search".
+func TestReplaceWebDirective(t *testing.T) {
+	oldDir := searchDirective(true, true)
+	newDir := searchDirective(true, false)
+	pm := []provider.Message{
+		{Role: "system", Content: "Contexte.\n\n" + oldDir},
+		{Role: "user", Content: "salut"},
+	}
+	out := replaceWebDirective(pm, oldDir, newDir)
+	s, _ := out[0].Content.(string)
+	if strings.Contains(s, "provider-native") {
+		t.Fatal("l'ancienne directive native doit etre remplacee")
+	}
+	if !strings.Contains(s, "web_search and web_fetch") {
+		t.Fatal("la nouvelle directive outils doit etre presente")
+	}
+	if u, _ := out[1].Content.(string); u != "salut" {
+		t.Fatal("les messages non-systeme doivent etre intacts")
+	}
+	// Aucun changement si l'ancienne directive est absente.
+	again := replaceWebDirective(out, oldDir, newDir)
+	if s2, _ := again[0].Content.(string); s2 != s {
+		t.Fatal("remplacement idempotent attendu")
 	}
 }

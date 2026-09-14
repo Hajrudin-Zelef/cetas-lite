@@ -23,6 +23,8 @@ func (s *Server) handleAgentsCreate(w http.ResponseWriter, r *http.Request) {
 		Worktree bool   `json:"worktree"`
 		Approve  bool   `json:"approve"`
 		Plan     bool   `json:"plan"`
+		Web      bool   `json:"web"`
+		Effort   string `json:"effort"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -35,6 +37,7 @@ func (s *Server) handleAgentsCreate(w http.ResponseWriter, r *http.Request) {
 	run, err := s.engine.SpawnAgent(claims.Username, chat.TurnInput{
 		User: claims.Username, Family: body.Family, Mode: body.Mode,
 		Text: body.Message, Approve: body.Approve, Plan: body.Plan,
+		Web: body.Web, Think: true, Effort: body.Effort,
 		AgentMode: true,
 		Worktree:  body.Worktree, Repo: body.Repo,
 		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
@@ -116,6 +119,8 @@ func (s *Server) handleAgentMessage(w http.ResponseWriter, r *http.Request) {
 		Message string `json:"message"`
 		Approve bool   `json:"approve"`
 		Plan    bool   `json:"plan"`
+		Web     bool   `json:"web"`
+		Effort  string `json:"effort"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -123,6 +128,7 @@ func (s *Server) handleAgentMessage(w http.ResponseWriter, r *http.Request) {
 	}
 	err := s.engine.MessageAgent(claims.Username, r.PathValue("id"), chat.TurnInput{
 		User: claims.Username, Text: body.Message, Approve: body.Approve, Plan: body.Plan,
+		Web: body.Web, Think: true, Effort: body.Effort,
 		AgentMode: true,
 		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
 	})
