@@ -41,6 +41,16 @@ curl -sN "localhost:8787/api/chat/stream?from=0" -H "Authorization: Bearer $TOKE
 
 Moteurs locaux (optionnel) : `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`, `CETAS_LITE_LLAMACPP_URL`.
 
+## Sécurité (variables d'environnement)
+
+- `CETAS_LITE_REGISTRATION_OPEN` : non défini = **bootstrap** (le 1er compte est créé, puis l'inscription
+  se ferme) ; `true` = ouvert ; `false` = fermé.
+- `CETAS_LITE_TRUST_PROXY=true` : derrière un reverse proxy (nginx), utiliser le dernier hop
+  `X-Forwarded-For`/`X-Real-IP` pour le rate-limit par IP.
+- `CETAS_LITE_SANDBOX=none|auto|bwrap` (défaut `none`) : isole `Bash`/`RunScript` dans **bubblewrap**
+  (système en lecture seule, bind du seul workspace) ; sonde au démarrage, repli sûr.
+- `CETAS_LITE_ALLOW_SCRIPT` (défaut `false`) : active l'outil `RunScript`.
+
 ## Clés providers (chiffrées)
 
 ```bash
