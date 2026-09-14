@@ -61,12 +61,7 @@
   <div class="user-menu-wrapper">
     <span class="user-avatar-initials" id="user-initials"></span>
     <span id="user-name"></span>
-    <select id="theme-select" class="theme-select" title="Theme">
-      <option value="ocean">Ocean</option>
-      <option value="clair">Clair</option>
-      <option value="sombre">Sombre</option>
-    </select>
-    <button type="button" id="settings-btn" class="sidebar-config-btn" title="Reglages" aria-label="Reglages">
+    <button type="button" id="settings-btn" class="sidebar-config-btn" title="Configuration" aria-label="Configuration">
       <svg width="16" height="16" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-settings"/></svg>
     </button>
     <button type="button" id="logout-btn" class="sidebar-config-btn" title="Se deconnecter" aria-label="Se deconnecter">
@@ -161,38 +156,69 @@
 </main>
 
 <div id="settings-overlay" class="sp-modal-overlay" hidden>
-  <div class="sp-modal">
-    <div class="settings-head">
-      <h2>Settings &rarr; Alias</h2>
-      <button type="button" id="settings-close" class="icon-btn" title="Fermer">&#10005;</button>
+  <div class="sp-modal apikeys-modal">
+    <div class="apikeys-tabs" id="settings-tabs">
+      <button class="apikeys-tab active" data-tab="apimodeles">API et Modeles</button>
+      <button class="apikeys-tab" data-tab="models">Fonctionnalites</button>
+      <button class="apikeys-tab" data-tab="websearch">Recherche Web</button>
+      <button class="apikeys-tab" data-tab="appearance">Apparence</button>
     </div>
-    <div class="settings-body">
-      <p class="settings-status">Un <code>provider model</code> par ligne, du plus prioritaire au moins prioritaire.</p>
-      <div id="aliases-editor"></div>
-      <div class="settings-section">
-        <div class="settings-section-head">
-          <h3>Serveurs MCP</h3>
-          <button type="button" id="mcp-refresh" class="small-btn">Rafraichir</button>
+    <div class="apikeys-tab-content">
+      <button type="button" id="settings-close" class="apikeys-close-btn" title="Fermer">&times;</button>
+
+      <div class="apikeys-panel active" id="panel-apimodeles">
+        <h3>API et Modeles</h3>
+        <p class="apikey-intro">Un <code>provider model</code> par ligne, du plus prioritaire au moins prioritaire.</p>
+        <div class="apikeys-panel-body">
+          <div id="aliases-editor"></div>
         </div>
-        <div id="mcp-panel" class="mcp-panel"></div>
+        <div class="models-save-row">
+          <span id="aliases-status" class="settings-status"></span>
+          <button type="button" id="aliases-save" class="models-save-btn">Sauvegarder</button>
+        </div>
       </div>
-      <div class="settings-section">
-        <div class="settings-section-head">
-          <h3>Capacites des modeles</h3>
-          <button type="button" id="caps-save" class="small-btn">Enregistrer</button>
+
+      <div class="apikeys-panel" id="panel-models">
+        <h3>Fonctionnalites</h3>
+        <p class="apikey-intro">Coche les capacites reelles de chaque modele (vision, synthese vocale, transcription).</p>
+        <div class="apikeys-panel-body">
+          <div id="caps-panel" class="caps-panel"></div>
+          <div class="caps-add">
+            <input type="text" id="caps-add-input" class="sp-modal-input" placeholder="provider/model">
+            <button type="button" id="caps-add" class="small-btn">Ajouter</button>
+          </div>
         </div>
-        <p class="settings-status">Coche <code>vision</code> pour les modeles qui lisent les images.</p>
-        <div id="caps-panel" class="caps-panel"></div>
-        <div class="caps-add">
-          <input type="text" id="caps-add-input" placeholder="provider/model">
-          <button type="button" id="caps-add" class="small-btn">Ajouter</button>
+        <div class="models-save-row">
           <span id="caps-status" class="settings-status"></span>
+          <button type="button" id="caps-save" class="models-save-btn">Sauvegarder</button>
         </div>
       </div>
-    </div>
-    <div class="settings-foot">
-      <span id="aliases-status" class="settings-status"></span>
-      <button type="button" id="aliases-save" class="primary-btn">Enregistrer</button>
+
+      <div class="apikeys-panel" id="panel-websearch">
+        <h3>Recherche Web</h3>
+        <p class="apikey-intro">Serveurs MCP connectes a l'agent (declares dans <code>mcp.json</code>).</p>
+        <div class="apikeys-panel-body">
+          <div id="mcp-panel" class="mcp-panel"></div>
+        </div>
+        <div class="models-save-row">
+          <button type="button" id="mcp-refresh" class="models-cancel-btn">Rafraichir</button>
+        </div>
+      </div>
+
+      <div class="apikeys-panel" id="panel-appearance">
+        <h3>Apparence</h3>
+        <p class="apikey-intro">Theme de l'interface.</p>
+        <div class="apikeys-panel-body">
+          <div class="audio-setting-row">
+            <label class="audio-setting-label" for="theme-select">Theme</label>
+            <select id="theme-select" class="audio-setting-select theme-select">
+              <option value="ocean">Ocean</option>
+              <option value="clair">Clair</option>
+              <option value="sombre">Sombre</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

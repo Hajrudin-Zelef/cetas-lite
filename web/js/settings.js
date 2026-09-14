@@ -18,6 +18,19 @@ export function initSettings({ reloadModels } = {}) {
   let caps = {};
   let capKeys = [];
 
+  function selectTab(tab) {
+    for (const b of overlay.querySelectorAll(".apikeys-tab")) {
+      b.classList.toggle("active", b.dataset.tab === tab);
+    }
+    for (const p of overlay.querySelectorAll(".apikeys-panel")) {
+      p.classList.toggle("active", p.id === "panel-" + tab);
+    }
+  }
+
+  overlay.querySelectorAll(".apikeys-tab").forEach((b) => {
+    b.addEventListener("click", () => selectTab(b.dataset.tab));
+  });
+
   function render() {
     editor.innerHTML = "";
     for (const f of families) {

@@ -92,13 +92,46 @@
 }
 
 .alias-group {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .alias-group h3 {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.alias-mode {
+  margin-bottom: 10px;
+}
+
+.alias-mode label {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.alias-mode textarea,
+.apikeys-panel-body textarea,
+.apikeys-panel-body input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  resize: vertical;
+}
+
+.alias-mode textarea:focus,
+.apikeys-panel-body input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
 }
 
 .alias-row {
@@ -111,20 +144,6 @@
 .alias-row input {
   flex: 1;
   min-width: 0;
-}
-
-.settings-body textarea,
-.settings-body input,
-.caps-add input,
-.alias-row input {
-  width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border-input);
-  border-radius: 8px;
-  padding: 7px 10px;
-  color: var(--text);
-  font-size: 0.85rem;
-  font-family: inherit;
 }
 
 .mcp-panel,
