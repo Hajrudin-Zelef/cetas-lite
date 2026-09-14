@@ -242,6 +242,16 @@ export function initChat() {
     }).catch(() => {});
   }
 
+  function speakable(md) {
+    return String(md || "")
+      .replace(/```[\s\S]*?```/g, " (bloc de code) ")
+      .replace(/`([^`]+)`/g, "$1")
+      .replace(/^#{1,6}\s*/gm, "")
+      .replace(/[*_>#|]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   function addActions(box, raw) {
     if (!box || box.querySelector(".msg-actions")) return;
     const bar = el("div", "msg-actions");
@@ -268,6 +278,17 @@ export function initChat() {
     });
     bar.appendChild(copy);
     bar.appendChild(regen);
+    if (window.speechSynthesis) {
+      const speak = el("button", "msg-action", "Lire");
+      speak.type = "button";
+      speak.addEventListener("click", () => {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(speakable(raw));
+        u.lang = document.documentElement.lang || "fr";
+        window.speechSynthesis.speak(u);
+      });
+      bar.appendChild(speak);
+    }
     box.appendChild(bar);
   }
 
@@ -552,6 +573,32 @@ export function initChat() {
       uploadFiles(Array.from(e.dataTransfer.files));
     }
   });
+
+  const micBtn = document.getElementById("mic-btn");
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (micBtn && SR) {
+    const rec = new SR();
+    rec.lang = document.documentElement.lang || "fr";
+    rec.interimResults = false;
+    rec.continuous = false;
+    micBtn.addEventListener("click", () => {
+      try {
+        rec.start();
+        micBtn.classList.add("active");
+      } catch (e) {}
+    });
+    rec.addEventListener("result", (e) => {
+      const t = e.results && e.results[0] && e.results[0][0] ? e.results[0][0].transcript : "";
+      if (t) {
+        input.value = (input.value ? input.value + " " : "") + t;
+        autoGrow();
+      }
+    });
+    rec.addEventListener("end", () => micBtn.classList.remove("active"));
+    rec.addEventListener("error", () => micBtn.classList.remove("active"));
+  } else if (micBtn) {
+    micBtn.hidden = true;
+  }
 
   connect();
 }

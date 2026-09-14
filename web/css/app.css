@@ -632,6 +632,15 @@ input:focus {
   margin-bottom: 2px;
 }
 
+.mic-btn {
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+
+.mic-btn.active {
+  color: var(--accent);
+}
+
 .input-wrapper {
   max-width: 820px;
   margin: 0 auto;

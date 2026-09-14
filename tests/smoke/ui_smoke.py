@@ -218,6 +218,8 @@ def check(page, url, reduced):
     assert page.locator('.tool-result a[href="https://go.dev"]').count() >= 1, "citation cliquable attendue"
 
     assert page.locator(".msg-actions").count() >= 1, "actions message attendues"
+    assert page.locator(".msg-action", has_text="Lire").count() >= 1, "bouton TTS (navigateur) attendu"
+    assert page.locator("#mic-btn").count() == 1, "bouton micro present"
     page.locator(".msg-action", has_text="Regenerer").last.click()
     page.wait_for_timeout(100)
     assert STATE.get("regenerated"), "regeneration attendue"
