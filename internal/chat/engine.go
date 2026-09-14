@@ -336,6 +336,8 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		return
 	}
 
+	msgs = append([]provider.Message{{Role: "system", Content: chatSystemPrompt()}}, msgs...)
+
 	if in.Web && in.User != "" {
 		if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
 			msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)

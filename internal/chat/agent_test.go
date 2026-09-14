@@ -234,9 +234,7 @@ func TestNonAgentModeHasNoTools(t *testing.T) {
 	if len(reqs[0].Tools) != 0 {
 		t.Fatalf("mode non-agent ne doit pas porter d'outils, tools = %d", len(reqs[0].Tools))
 	}
-	for _, m := range reqs[0].Messages {
-		if m.Role == "system" {
-			t.Fatalf("mode non-agent ne doit pas avoir de prompt systeme: %v", m.Content)
-		}
+	if !hasSystemContaining(reqs, "senior teacher") {
+		t.Fatal("mode non-agent doit porter le prompt systeme de chat")
 	}
 }

@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
-	"time"
 
 	"cetas-lite/internal/alias"
 	"cetas-lite/internal/provider"
@@ -43,7 +42,11 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	}
 	sb.AllowScript = e.scriptAllowed()
 	sb.Isolation = e.isolation()
-	msgs := normalizeSystemMessages(append([]provider.Message{{Role: "system", Content: agentSystemPrompt()}}, base...))
+	sys := []provider.Message{{Role: "system", Content: agentSystemPrompt()}}
+	if mm, ok := e.marexMessage(in.User); ok {
+		sys = append(sys, mm)
+	}
+	msgs := normalizeSystemMessages(append(sys, base...))
 
 	var lastErr error
 	for _, m := range res.members {
@@ -235,13 +238,6 @@ func nudgeText(n int) string {
 		return "You are stuck re-describing the same plan without executing it. Stop reasoning. In your NEXT message, either call ONE tool right now, or write your final answer in plain text using only what you already know — no more planning, no more thinking, act or answer this instant."
 	}
 	return "You reasoned but did not call a tool or answer. Act NOW: call the appropriate tool directly, or give your final answer if you already have the info. Don't explain, act."
-}
-
-func agentSystemPrompt() string {
-	return "You are cetas-lite's coding agent. Use the provided tools to inspect and modify your workspace. " +
-		"Act immediately: call the right tool instead of guessing. Files are confined to your workspace; " +
-		"use the Write/Edit tools rather than shell redirection. The shell is bash without pipes or redirection. " +
-		"Date: " + time.Now().Format("2006-01-02")
 }
 
 func normalizeSystemMessages(msgs []provider.Message) []provider.Message {
