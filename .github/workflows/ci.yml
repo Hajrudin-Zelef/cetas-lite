@@ -41,6 +41,8 @@ jobs:
           cache: true
       - name: make cross
         run: make cross
+      - name: make desktop (Windows GUI)
+        run: make desktop
       - uses: actions/upload-artifact@v4
         with:
           name: cetas-lite-binaries

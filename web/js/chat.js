@@ -1,9 +1,15 @@
-import { api, getToken, readSSE } from "./api.js";
-import { appendLinkified, renderInto } from "./markdown.js";
-import { createStreamRenderer } from "./stream-render.js";
-import { applyWebToggle, applyMCPToggle, persistPrefs, setThinking } from "./model-select.js";
-
-const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+import { api, getToken } from "./api.js";
+import { ThreadView, el } from "./thread-view.js";
+import {
+  applyWebToggle,
+  applyMCPToggle,
+  applyThinkingToggle,
+  setThinking,
+  applyApproveToggle,
+  applyPlanToggle,
+  isAgentMode,
+  persistPrefs,
+} from "./model-select.js";
 
 export function initChat() {
   const log = document.getElementById("chat-log");
@@ -15,19 +21,7 @@ export function initChat() {
   const webToggle = document.getElementById("web-toggle");
 
   const emptyHTML = document.getElementById("empty-chat").outerHTML;
-  let empty = document.getElementById("empty-chat");
 
-  let lastSeq = 0;
-  let assistant = null;
-  let textRenderer = null;
-  let reasoningEl = null;
-  let reasoningText = "";
-  let controller = null;
-  let generating = false;
-  let waitEl = null;
-  let waitTimer = null;
-  let waitIdx = 0;
-  const toolBoxes = new Map();
   let attachments = [];
   const attachChips = document.getElementById("attach-chips");
   const attachInput = document.getElementById("attach-input");
@@ -49,471 +43,117 @@ export function initChat() {
     }
   }
 
-  function el(tag, cls, text) {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text !== undefined) e.textContent = text;
-    return e;
-  }
-
-  function clearEmpty() {
-    if (empty && empty.parentNode) empty.remove();
-    empty = null;
-  }
-
-  function reAddEmpty() {
-    log.innerHTML = emptyHTML;
-    empty = document.getElementById("empty-chat");
-  }
-
-  function atBottom() {
-    return log.scrollHeight - log.scrollTop - log.clientHeight < 80;
-  }
-
-  function scroll(force) {
-    if (force || atBottom()) log.scrollTop = log.scrollHeight;
-  }
-
   function selection() {
+    const family = document.getElementById("family-select").value;
+    const mode = document.getElementById("mode-select").value;
+    const web = webToggle ? webToggle.getAttribute("aria-pressed") === "true" : false;
     const mcpToggle = document.getElementById("mcp-toggle");
-    const thinkingToggle = document.getElementById("thinking-toggle");
+    const mcp = mcpToggle ? mcpToggle.getAttribute("aria-pressed") === "true" : false;
+    const thinkToggle = document.getElementById("thinking-toggle");
+    const think = thinkToggle ? thinkToggle.getAttribute("aria-pressed") === "true" : false;
     const effortSel = document.getElementById("effort-select");
-    return {
-      family: document.getElementById("family-select").value,
-      mode: document.getElementById("mode-select").value,
-      web: !!(webToggle && webToggle.getAttribute("aria-pressed") === "true"),
-      mcp: !!(mcpToggle && !mcpToggle.hidden && mcpToggle.getAttribute("aria-pressed") === "true"),
-      think: !!(thinkingToggle && thinkingToggle.getAttribute("aria-pressed") === "true"),
-      effort: effortSel ? effortSel.value : "default",
-    };
+    const effort = effortSel ? effortSel.value : "default";
+    const approveToggle = document.getElementById("approve-toggle");
+    const approve = approveToggle && !approveToggle.hidden ? approveToggle.getAttribute("aria-pressed") === "true" : false;
+    const planToggle = document.getElementById("plan-toggle");
+    const plan = planToggle && !planToggle.hidden ? planToggle.getAttribute("aria-pressed") === "true" : false;
+    return { family, mode, web, mcp, think, effort, approve: isAgentMode() && approve, plan: isAgentMode() && plan };
   }
 
-  function setBusy(v) {
-    log.setAttribute("aria-busy", v ? "true" : "false");
+  const view = new ThreadView({
+    log,
+    stopBtn,
+    routeBadge,
+    statsBadge,
+    emptyHTML,
+    streamURL: (from) => "/api/chat/stream?from=" + from,
+    sendURL: "/api/chat/send",
+    stopURL: "/api/chat/stop",
+    approveURL: "/api/chat/approve",
+    regenerateURL: "/api/chat/regenerate",
+    getPayload: (text) => {
+      const sel = selection();
+      return {
+        family: sel.family,
+        mode: sel.mode,
+        message: text,
+        web: sel.web,
+        mcp: sel.mcp,
+        think: sel.think,
+        effort: sel.effort,
+        approve: sel.approve,
+        plan: sel.plan,
+        attachments: attachments.map((a) => a.id),
+      };
+    },
+  });
+
+  function addAttachment(file) {
+    const chip = el("div", "attach-chip");
+    const thumb = el("img", "attach-thumb");
+    thumb.alt = file.name;
+    chip.appendChild(thumb);
+    chip.appendChild(el("span", "attach-name", file.name));
+    const remove = el("button", "attach-remove", "×");
+    remove.type = "button";
+    remove.setAttribute("aria-label", "Retirer la pièce jointe");
+    chip.appendChild(remove);
+    attachChips.appendChild(chip);
+    const entry = { id: file.id, name: file.name, chip };
+    remove.addEventListener("click", () => removeAttachment(entry));
+    thumbFor(file.id).then((url) => {
+      if (url) thumb.src = url;
+      else thumb.remove();
+    });
+    attachments.push(entry);
   }
 
-  function showWait() {
-    if (waitEl) return;
-    waitEl = el("div", "stream-waiting");
-    waitEl.appendChild(el("span", "stream-spinner", BRAILLE[0]));
-    log.appendChild(waitEl);
-    waitTimer = setInterval(() => {
-      waitIdx = (waitIdx + 1) % BRAILLE.length;
-      if (waitEl && waitEl.firstChild) waitEl.firstChild.textContent = BRAILLE[waitIdx];
-    }, 80);
-    scroll(true);
-  }
-
-  function hideWait() {
-    if (waitTimer) {
-      clearInterval(waitTimer);
-      waitTimer = null;
-    }
-    if (waitEl) {
-      waitEl.remove();
-      waitEl = null;
-    }
-  }
-
-  function addUser(text) {
-    clearEmpty();
-    const wrapper = el("div", "message-wrapper message-wrapper-user");
-    const bubble = el("div", "message message-user");
-    bubble.appendChild(el("div", "message-text", text));
-    wrapper.appendChild(bubble);
-    log.appendChild(wrapper);
-    scroll(true);
-  }
-
-  function ensureAssistant() {
-    if (!assistant) {
-      clearEmpty();
-      const wrapper = el("div", "message-wrapper message-wrapper-assistant");
-      assistant = el("div", "message message-assistant streaming");
-      const body = el("div", "message-text");
-      assistant.appendChild(body);
-      wrapper.appendChild(assistant);
-      log.appendChild(wrapper);
-      textRenderer = createStreamRenderer({
-        onRender: (t) => renderInto(body, t),
-        onFirst: hideWait,
-      });
-    }
-    return assistant;
-  }
-
-  function appendContent(text, isReplace) {
-    ensureAssistant();
-    if (isReplace) textRenderer.replace(text);
-    else textRenderer.add(text);
-    scroll();
-  }
-
-  function ensureReasoning() {
-    if (!reasoningEl) {
-      ensureAssistant();
-      reasoningEl = el("details", "thinking-block");
-      reasoningEl.open = true;
-      reasoningEl.appendChild(el("summary", null, "Raisonnement"));
-      reasoningEl.appendChild(el("div", "thinking-content"));
-      assistant.insertBefore(reasoningEl, assistant.firstChild);
-    }
-    return reasoningEl;
-  }
-
-  function appendReasoning(text, isReplace) {
-    ensureReasoning();
-    reasoningText = isReplace ? String(text) : reasoningText + String(text);
-    reasoningEl.querySelector(".thinking-content").textContent = reasoningText;
-    scroll();
-  }
-
-  function removeReasoning() {
-    if (reasoningEl) {
-      reasoningEl.remove();
-      reasoningEl = null;
-      reasoningText = "";
-    }
-  }
-
-  function addError(text) {
-    hideWait();
-    setBusy(false);
-    clearEmpty();
-    const wrapper = el("div", "message-wrapper message-wrapper-assistant");
-    const bubble = el("div", "message message-assistant message-error");
-    bubble.appendChild(el("div", "message-text", text));
-    wrapper.appendChild(bubble);
-    log.appendChild(wrapper);
-    scroll();
-  }
-
-  function addSystem(text) {
-    clearEmpty();
-    log.appendChild(el("div", "msg-system", text));
-    scroll();
+  function removeAttachment(entry) {
+    attachments = attachments.filter((a) => a !== entry);
+    if (entry.chip && entry.chip.parentNode) entry.chip.remove();
+    api("/api/chat/attach/" + encodeURIComponent(entry.id), { method: "DELETE" }).catch(() => {});
   }
 
   function renderChips() {
-    if (!attachChips) return;
     attachChips.innerHTML = "";
-    attachChips.hidden = attachments.length === 0;
-    for (const a of attachments) {
-      const chip = el("span", "attach-chip");
-      if (a.kind === "image") {
-        const img = el("img", "attach-thumb");
-        img.alt = a.name;
-        thumbFor(a.id).then((u) => {
-          if (u) img.src = u;
-        });
-        chip.appendChild(img);
-      }
-      chip.appendChild(el("span", "attach-name", a.name));
-      const rm = el("button", "attach-remove", "\u00d7");
-      rm.type = "button";
-      rm.title = "Retirer";
-      rm.setAttribute("aria-label", "Retirer " + a.name);
-      rm.addEventListener("click", () => removeAttachment(a.id));
-      chip.appendChild(rm);
-      attachChips.appendChild(chip);
-    }
+    const keep = attachments;
+    attachments = [];
+    for (const a of keep) addAttachment({ id: a.id, name: a.name });
   }
 
   async function uploadFiles(files) {
     for (const f of files) {
-      const fd = new FormData();
-      fd.append("file", f);
-      let resp;
       try {
-        resp = await fetch("/api/chat/attach", {
+        const fd = new FormData();
+        fd.append("file", f);
+        const resp = await fetch("/api/chat/attach", {
           method: "POST",
           headers: { Authorization: "Bearer " + getToken() },
           body: fd,
         });
+        if (!resp.ok) throw new Error("échec du téléversement (" + resp.status + ")");
+        const data = await resp.json();
+        addAttachment({ id: data.id, name: data.name });
       } catch (e) {
-        addError("Envoi du fichier impossible.");
-        continue;
+        view.addError("Pièce jointe : " + e.message);
       }
-      const data = await resp.json().catch(() => ({}));
-      if (!resp.ok) {
-        addError(data.error || "Erreur " + resp.status);
-        continue;
-      }
-      attachments.push({ id: data.id, name: data.name, kind: data.kind });
-    }
-    renderChips();
-  }
-
-  function removeAttachment(id) {
-    attachments = attachments.filter((a) => a.id !== id);
-    renderChips();
-    fetch("/api/chat/attach/" + encodeURIComponent(id), {
-      method: "DELETE",
-      headers: { Authorization: "Bearer " + getToken() },
-    }).catch(() => {});
-  }
-
-  function speakable(md) {
-    return String(md || "")
-      .replace(/```[\s\S]*?```/g, " (bloc de code) ")
-      .replace(/`([^`]+)`/g, "$1")
-      .replace(/^#{1,6}\s*/gm, "")
-      .replace(/[*_>#|]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function addActions(box, raw) {
-    const wrapper = box.closest(".message-wrapper") || box;
-    if (!wrapper || wrapper.querySelector(".message-btn-row")) return;
-    const bar = el("div", "message-btn-row");
-    const copy = el("button", "message-copy-btn", "Copier");
-    copy.type = "button";
-    copy.addEventListener("click", () => {
-      if (!navigator.clipboard) return;
-      navigator.clipboard.writeText(raw).then(() => {
-        copy.textContent = "Copie";
-        setTimeout(() => {
-          copy.textContent = "Copier";
-        }, 1200);
-      }).catch(() => {});
-    });
-    const regen = el("button", "regen-btn", "Regenerer");
-    regen.type = "button";
-    regen.addEventListener("click", async () => {
-      if (generating) return;
-      try {
-        await api("/api/chat/regenerate", { method: "POST" });
-      } catch (e) {
-        addError(e.message);
-      }
-    });
-    bar.appendChild(copy);
-    bar.appendChild(regen);
-    if (window.speechSynthesis) {
-      const speak = el("button", "message-tts-btn", "Lire");
-      speak.type = "button";
-      speak.addEventListener("click", () => {
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(speakable(raw));
-        u.lang = document.documentElement.lang || "fr";
-        window.speechSynthesis.speak(u);
-      });
-      bar.appendChild(speak);
-    }
-    wrapper.appendChild(bar);
-  }
-
-  function summarize(args) {
-    if (!args) return "";
-    return args.command || args.file_path || args.pattern || args.query || "";
-  }
-
-  function renderTodos(todos) {
-    const list = el("ul", "chat-todo-list");
-    for (const t of todos) {
-      const status = t.status || "pending";
-      list.appendChild(el("li", "chat-todo-item todo-" + status, t.content || ""));
-    }
-    return list;
-  }
-
-  function renderDiff(lines) {
-    const wrap = el("div", "tool-diff");
-    for (const line of lines) {
-      const cls = line.kind === "+" ? "diff-add" : "diff-del";
-      wrap.appendChild(el("span", cls, (line.kind === "+" ? "+ " : "- ") + line.text + "\n"));
-    }
-    return wrap;
-  }
-
-  function addTool(ev) {
-    const key = ev.name + "|" + JSON.stringify(ev.args || {});
-    if (ev.phase === "start") {
-      clearEmpty();
-      hideWait();
-      const box = el("details", "msg-tool");
-      const summary = el("summary");
-      summary.appendChild(el("span", "tool-name", ev.name));
-      const hint = summarize(ev.args);
-      if (hint) summary.appendChild(el("span", "tool-hint", " " + hint));
-      box.appendChild(summary);
-      const body = el("div", "tool-body");
-      if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
-        body.appendChild(renderTodos(ev.args.todos));
-      }
-      box.appendChild(body);
-      log.appendChild(box);
-      toolBoxes.set(key, body);
-      if (textRenderer) textRenderer.flush();
-      assistant = null;
-      textRenderer = null;
-      reasoningEl = null;
-      reasoningText = "";
-      scroll(true);
-      return;
-    }
-    const body = toolBoxes.get(key);
-    if (!body) return;
-    if (Array.isArray(ev.diff) && ev.diff.length) {
-      body.appendChild(renderDiff(ev.diff));
-    }
-    if (typeof ev.result === "string" && ev.result) {
-      const pre = el("pre", "tool-result");
-      appendLinkified(pre, ev.result);
-      body.appendChild(pre);
-    }
-    scroll();
-  }
-
-  function finishTurn() {
-    if (textRenderer) textRenderer.flush();
-    const box = assistant;
-    const raw = textRenderer ? textRenderer.text() : "";
-    if (box) box.classList.remove("streaming");
-    hideWait();
-    setBusy(false);
-    generating = false;
-    stopBtn.hidden = true;
-    if (box && raw.trim()) addActions(box, raw);
-    assistant = null;
-    textRenderer = null;
-    reasoningEl = null;
-    reasoningText = "";
-  }
-
-  function resetLocal() {
-    hideWait();
-    setBusy(false);
-    log.innerHTML = emptyHTML;
-    empty = document.getElementById("empty-chat");
-    lastSeq = 0;
-    assistant = null;
-    textRenderer = null;
-    reasoningEl = null;
-    reasoningText = "";
-    toolBoxes.clear();
-    generating = false;
-    stopBtn.hidden = true;
-    routeBadge.hidden = true;
-    attachments = [];
-    renderChips();
-    if (statsBadge) {
-      statsBadge.hidden = true;
-      statsBadge.textContent = "";
-    }
-  }
-
-  function handleEvent(ev) {
-    if (typeof ev.seq === "number" && ev.seq > lastSeq) lastSeq = ev.seq;
-    if (ev.reset) {
-      resetLocal();
-      return;
-    }
-    if (ev.pad !== undefined) return;
-    if (ev.caught_up) {
-      scroll(true);
-      return;
-    }
-    if (ev.user !== undefined) {
-      addUser(String(ev.user));
-      assistant = null;
-      textRenderer = null;
-      reasoningEl = null;
-      reasoningText = "";
-      generating = true;
-      stopBtn.hidden = false;
-      showWait();
-      setBusy(true);
-      return;
-    }
-    if (ev.reasoning_content !== undefined) {
-      appendReasoning(String(ev.reasoning_content), ev.replace === true);
-      return;
-    }
-    if (ev.content !== undefined) {
-      appendContent(String(ev.content), ev.replace === true);
-      return;
-    }
-    if (ev.tool !== undefined) {
-      addTool(ev.tool);
-      return;
-    }
-    if (ev.stats !== undefined) {
-      const s = ev.stats || {};
-      if (statsBadge) {
-        statsBadge.hidden = false;
-        statsBadge.textContent = "\u2191" + (s.prompt_tokens || 0) + " \u2193" + (s.completion_tokens || 0);
-      }
-      return;
-    }
-    if (ev.compact) {
-      addSystem("Contexte compacté pour rester dans la fenêtre du modèle.");
-      return;
-    }
-    if (ev.route !== undefined) {
-      const r = ev.route || {};
-      routeBadge.hidden = false;
-      const name = r.label || r.model || "";
-      routeBadge.textContent =
-        (r.provider ? r.provider + "/" : "") + name + (r.local ? " (local)" : "") + (r.fallback ? " (repli)" : "");
-      return;
-    }
-    if (ev.drop_reasoning) {
-      removeReasoning();
-      return;
-    }
-    if (ev.error !== undefined) {
-      addError(String(ev.error));
-      return;
-    }
-    if (ev.turn_done !== undefined) {
-      finishTurn();
-    }
-  }
-
-  async function connect() {
-    if (controller) controller.abort();
-    controller = new AbortController();
-    try {
-      const resp = await fetch("/api/chat/stream?from=" + lastSeq, {
-        headers: { Authorization: "Bearer " + getToken() },
-        signal: controller.signal,
-      });
-      if (!resp.ok || !resp.body) return;
-      await readSSE(resp, handleEvent);
-    } catch (e) {
-      if (e && e.name === "AbortError") return;
-      setTimeout(connect, 1500);
     }
   }
 
   async function send() {
     const text = input.value.trim();
-    if (!text || generating) return;
+    if (!text || view.generating) return;
     const sel = selection();
     if (!sel.family || !sel.mode) {
-      addError("Choisis une famille et un mode.");
+      view.addError("Choisis une famille et un mode.");
       return;
     }
     input.value = "";
     autoGrow();
-    try {
-      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp, think: sel.think, effort: sel.effort, attachments: attachments.map((a) => a.id) } });
+    const ok = await view.sendText(text);
+    if (ok) {
       attachments = [];
       renderChips();
-      generating = true;
-      stopBtn.hidden = false;
-      setBusy(true);
-      scroll(true);
-    } catch (err) {
-      if (/en cours/i.test(err.message)) {
-        generating = true;
-        stopBtn.hidden = false;
-        setBusy(true);
-      } else {
-        addError(err.message);
-      }
     }
   }
 
@@ -533,9 +173,7 @@ export function initChat() {
       send();
     }
   });
-  stopBtn.addEventListener("click", () => {
-    api("/api/chat/stop", { method: "POST" }).catch(() => {});
-  });
+  stopBtn.addEventListener("click", () => view.stop());
   if (webToggle) {
     webToggle.addEventListener("click", () => {
       const next = webToggle.getAttribute("aria-pressed") !== "true";
@@ -563,6 +201,20 @@ export function initChat() {
   const effortSel = document.getElementById("effort-select");
   if (effortSel) {
     effortSel.addEventListener("change", () => persistPrefs().catch(() => {}));
+  }
+  const approveToggle = document.getElementById("approve-toggle");
+  if (approveToggle) {
+    approveToggle.addEventListener("click", () => {
+      const next = approveToggle.getAttribute("aria-pressed") !== "true";
+      applyApproveToggle(next);
+    });
+  }
+  const planToggle = document.getElementById("plan-toggle");
+  if (planToggle) {
+    planToggle.addEventListener("click", () => {
+      const next = planToggle.getAttribute("aria-pressed") !== "true";
+      applyPlanToggle(next);
+    });
   }
 
   if (attachBtn && attachInput) {
@@ -628,5 +280,5 @@ export function initChat() {
     });
   }
 
-  connect();
+  view.connect();
 }

@@ -25,7 +25,13 @@ type ToolCall struct {
 	ID       string `json:"id,omitempty"`
 	Type     string `json:"type,omitempty"`
 	Function Func   `json:"function"`
+	// invalid marque un appel irrecevable (nom vide ou arguments JSON
+	// irreparables). Non serialise : usage interne uniquement.
+	invalid bool
 }
+
+// InvalidCall indique si cet appel d'outil doit etre rejete sans execution.
+func (t ToolCall) InvalidCall() bool { return t.invalid }
 
 type Func struct {
 	Name      string `json:"name"`
@@ -284,12 +290,96 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 		if tc.ID == "" {
 			tc.ID = fmt.Sprintf("call_%d", k)
 		}
-		if !json.Valid([]byte(tc.Function.Arguments)) {
-			tc.Function.Arguments = "{}"
+		tc.Function.Name = strings.TrimSpace(tc.Function.Name)
+		if tc.Function.Name == "" {
+			// Appel sans nom : invalide, l'agent demandera au modele de le renvoyer.
+			tc.invalid = true
+		} else if fixed, ok := repairJSON(tc.Function.Arguments); ok {
+			tc.Function.Arguments = fixed
+		} else {
+			// Arguments irreparables : invalide plutot qu'executer avec des args vides.
+			tc.invalid = true
 		}
 		resp.ToolCalls = append(resp.ToolCalls, tc)
 	}
 	return resp, nil
+}
+
+// repairJSON tente de reparer des arguments JSON tronques (flux coupe en
+// pleine valeur) en fermant les accolades/crochets ouverts. Retourne false
+// si le contenu est irreparable : l'appel doit alors etre rejete, jamais
+// execute avec des arguments vides ou partiels silencieux.
+func repairJSON(raw string) (string, bool) {
+	s := strings.TrimSpace(raw)
+	if s == "" {
+		return "{}", true
+	}
+	if json.Valid([]byte(s)) {
+		return s, true
+	}
+	// Essaie des points de coupe de plus en plus courts.
+	for i := len(s); i > 0; i-- {
+		if fixed, ok := closeBrackets(strings.TrimSpace(s[:i])); ok {
+			return fixed, true
+		}
+	}
+	return "", false
+}
+
+// closeBrackets ferme les accolades/crochets restes ouverts. Si le texte se
+// termine au milieu d'une chaine JSON, celle-ci est abandonnee proprement.
+func closeBrackets(s string) (string, bool) {
+	var stack []byte
+	inStr := false
+	esc := false
+	lastSafe := -1 // dernier index ou couper proprement (hors chaine)
+	for i := 0; i < len(s); i++ {
+		c := s[i]
+		if inStr {
+			switch {
+			case esc:
+				esc = false
+			case c == '\\':
+				esc = true
+			case c == '"':
+				inStr = false
+				lastSafe = i
+			}
+			continue
+		}
+		switch c {
+		case '"':
+			inStr = true
+		case '{':
+			stack = append(stack, '}')
+		case '[':
+			stack = append(stack, ']')
+		case '}', ']':
+			if len(stack) == 0 || stack[len(stack)-1] != c {
+				return "", false
+			}
+			stack = stack[:len(stack)-1]
+			lastSafe = i
+		case ',':
+			lastSafe = i
+		}
+	}
+	if inStr {
+		if lastSafe < 0 {
+			return "", false
+		}
+		return closeBrackets(s[:lastSafe+1])
+	}
+	var b strings.Builder
+	b.WriteString(s)
+	for i := len(stack) - 1; i >= 0; i-- {
+		b.WriteByte(stack[i])
+	}
+	out := b.String()
+	if !json.Valid([]byte(out)) {
+		return "", false
+	}
+	return out, true
 }
 
 func applyReasoning(payload map[string]any, providerID string, enable bool, effort string) {

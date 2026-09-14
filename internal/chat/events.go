@@ -24,5 +24,9 @@ type snapshotTurn struct {
 	MCP         bool     `json:"mcp,omitempty"`
 	Think       bool     `json:"think,omitempty"`
 	Effort      string   `json:"effort,omitempty"`
+	Approve     bool     `json:"approve,omitempty"`
+	Plan        bool     `json:"plan,omitempty"`
+	Worktree    bool     `json:"worktree,omitempty"`
+	Repo        string   `json:"repo,omitempty"`
 	Attachments []string `json:"attachments,omitempty"`
 }

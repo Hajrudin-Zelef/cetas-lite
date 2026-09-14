@@ -112,24 +112,64 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 	case "Ls":
 		return s.toolLs()
 	case "Read":
+		if f := missingArg(args, "file_path"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
 		return s.toolRead(args)
 	case "Write":
+		if f := missingArg(args, "file_path", "content"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
 		return s.toolWrite(args)
 	case "Edit":
+		if f := missingArg(args, "file_path", "old", "new"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
 		return s.toolEdit(args)
 	case "Grep":
+		if f := missingArg(args, "pattern"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
 		return s.toolGrep(args)
 	case "Glob":
+		if f := missingArg(args, "pattern"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
 		return s.toolGlob(args)
 	case "Bash":
+		if f := missingArg(args, "command"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
 		return ToolResult{Text: s.toolBash(ctx, args)}
 	case "RunScript":
+		if f := missingArg(args, "language", "code"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
 		return ToolResult{Text: s.toolRunScript(ctx, args)}
 	case "TodoWrite":
 		return ToolResult{Text: "[ok] liste mise a jour"}
 	default:
 		return ToolResult{Text: "[erreur] outil inconnu: " + name}
 	}
+}
+
+// missingArg retourne le premier champ requis absent ou vide.
+func missingArg(args map[string]any, fields ...string) string {
+	for _, f := range fields {
+		v, ok := args[f]
+		if !ok {
+			return f
+		}
+		if s, ok := v.(string); ok && strings.TrimSpace(s) == "" {
+			return f
+		}
+	}
+	return ""
+}
+
+func missingArgErr(tool, field string) string {
+	return "[erreur] " + tool + " : champ requis manquant ou vide : \"" + field +
+		"\" — renvoie l'appel avec ce champ renseigne."
 }
 
 func (s *Sandbox) toolLs() ToolResult {

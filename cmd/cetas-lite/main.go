@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"syscall"
 	"time"
@@ -23,6 +24,7 @@ import (
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/cryptovault"
 	"cetas-lite/internal/customtools"
+	"cetas-lite/internal/desktop"
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/memory"
@@ -30,7 +32,9 @@ import (
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/terminal"
 	"cetas-lite/internal/web"
+	"cetas-lite/internal/worktree"
 )
 
 var version = "dev"
@@ -40,6 +44,7 @@ func usage() {
 
 Usage:
   cetas-lite serve                 demarre le serveur HTTP
+  cetas-lite desktop               application bureau (fenetre native, Windows)
   cetas-lite version               affiche la version
   cetas-lite keys list             liste les providers configures
   cetas-lite keys set <p> [valeur] chiffre et enregistre une cle (valeur sinon sur stdin)
@@ -61,6 +66,14 @@ Variables:
 
 func main() {
 	if len(os.Args) < 2 {
+		// Double-clic sous Windows : ouvrir directement l'application bureau.
+		if runtime.GOOS == "windows" {
+			if err := runDesktop(); err != nil {
+				fmt.Fprintln(os.Stderr, "erreur:", err)
+				os.Exit(1)
+			}
+			return
+		}
 		usage()
 		os.Exit(2)
 	}
@@ -68,6 +81,8 @@ func main() {
 	switch os.Args[1] {
 	case "serve":
 		err = runServe()
+	case "desktop":
+		err = runDesktop()
 	case "version":
 		fmt.Println("cetas-lite", version)
 	case "keys":
@@ -92,20 +107,27 @@ func main() {
 	}
 }
 
-func runServe() error {
+// app regroupe le handler HTTP et le nettoyage, commun a `serve` et `desktop`.
+type app struct {
+	cfg     *config.Config
+	handler http.Handler
+	cleanup func()
+}
+
+func buildApp() (*app, error) {
 	cfg, err := config.Load()
 	if err != nil {
-		return err
+		return nil, err
 	}
 	st, err := store.Open(cfg.DBPath)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	defer func() { _ = st.Close() }()
 
 	authMgr, err := auth.New(st)
 	if err != nil {
-		return err
+		_ = st.Close()
+		return nil, err
 	}
 
 	client := provider.NewHTTPClient()
@@ -118,7 +140,8 @@ func runServe() error {
 	engine.SetAllowScript(cfg.AllowScript)
 	iso, err := chat.ResolveIsolation(cfg.Sandbox, cfg.WorkspaceDir)
 	if err != nil {
-		return err
+		_ = st.Close()
+		return nil, err
 	}
 	engine.SetIsolation(iso)
 	if iso == chat.IsolationBwrap {
@@ -130,29 +153,55 @@ func runServe() error {
 	engine.SetCapabilities(modelcaps.Load(st))
 	customManager, err := customtools.NewManager(cfg.ToolsPath, client)
 	if err != nil {
-		return err
+		_ = st.Close()
+		return nil, err
 	}
 	engine.SetCustom(customManager)
 	mcpManager, err := mcp.NewManager(cfg.MCPPath, version)
 	if err != nil {
-		return err
+		_ = st.Close()
+		return nil, err
 	}
-	defer mcpManager.Close()
 	engine.SetMCP(mcpManager)
 	if mcpManager.Configured() {
 		slog.Info("mcp configure", "path", cfg.MCPPath)
 	}
+	wtMgr, err := worktree.NewManager(filepath.Join(cfg.Home, "worktrees"))
+	if err != nil {
+		_ = st.Close()
+		return nil, err
+	}
+	engine.SetWorktreeManager(wtMgr)
+	termMgr := terminal.NewManager(cfg.WorkspaceDir, wtMgr.Root())
 
-	srv := web.New(cfg, st, authMgr, engine, version)
+	srv := web.New(cfg, st, authMgr, engine, termMgr, version)
+	return &app{
+		cfg:     cfg,
+		handler: srv.Handler(),
+		cleanup: func() {
+			termMgr.Close()
+			mcpManager.Close()
+			_ = st.Close()
+		},
+	}, nil
+}
+
+func runServe() error {
+	a, err := buildApp()
+	if err != nil {
+		return err
+	}
+	defer a.cleanup()
+
 	httpSrv := &http.Server{
-		Addr:              cfg.Addr,
-		Handler:           srv.Handler(),
+		Addr:              a.cfg.Addr,
+		Handler:           a.handler,
 		ReadHeaderTimeout: 10 * time.Second,
 	}
 
 	errCh := make(chan error, 1)
 	go func() {
-		slog.Info("cetas-lite demarre", "addr", cfg.Addr, "home", cfg.Home, "version", version)
+		slog.Info("cetas-lite demarre", "addr", a.cfg.Addr, "home", a.cfg.Home, "version", version)
 		if err := httpSrv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			errCh <- err
 		}
@@ -170,6 +219,39 @@ func runServe() error {
 		defer cancel()
 		return httpSrv.Shutdown(shutdownCtx)
 	}
+}
+
+// runDesktop demarre le serveur en local (127.0.0.1, port ephemere) puis ouvre
+// une fenetre native (WebView2 sous Windows). La fermeture de la fenetre arrete
+// proprement le serveur.
+func runDesktop() error {
+	a, err := buildApp()
+	if err != nil {
+		return err
+	}
+	defer a.cleanup()
+
+	// En mode GUI Windows il n'y a pas de console : journaliser aussi dans un fichier.
+	if f, ferr := os.OpenFile(filepath.Join(a.cfg.Home, "desktop.log"), os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600); ferr == nil {
+		slog.SetDefault(slog.New(slog.NewTextHandler(io.MultiWriter(os.Stderr, f), nil)))
+		defer func() { _ = f.Close() }()
+	}
+
+	addr, shutdown, err := desktop.ServeLocal(a.handler)
+	if err != nil {
+		return err
+	}
+	url := "http://" + addr + "/"
+	slog.Info("cetas-lite bureau", "url", url, "home", a.cfg.Home, "version", version)
+
+	debug := os.Getenv("CETAS_LITE_DEBUG") == "true"
+	if err := desktop.Open(url, "Cetas", 1280, 800, debug); err != nil {
+		return err
+	}
+	slog.Info("fenetre fermee, arret en cours")
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	return shutdown(ctx)
 }
 
 func openStore() (*config.Config, *store.Store, error) {

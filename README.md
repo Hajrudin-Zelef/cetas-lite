@@ -33,6 +33,16 @@ Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.
 - Archives : liste/restauration/suppression/export dans la sidebar ; export Markdown ou JSON de l'active.
 - Confort : copier/régénérer un message, jetons affichés, compaction visible, citations cliquables, notice de session expirée.
 - Sauvegarde : `cetas-lite backup <fichier.tar.gz>` / `restore <fichier>` (serveur arrêté).
+- **Terminal intégré** : tiroir bas avec onglets, xterm.js embarqué (fonctionne hors-ligne),
+  vrai PTY natif (Unix) / **ConPTY** (Windows, via l'API pseudo-console : redimensionnement
+  et programmes interactifs supportés), jusqu'à 6 sessions par utilisateur, `cwd` confiné au
+  workspace, sortie diffusée en SSE (base64), redimensionnement dynamique.
+- **Worktrees d'isolation** : chaque run agent peut s'exécuter dans un `git worktree --detach`
+  dédié sous `$CETAS_LITE_HOME/worktrees` (toggle dans le modal), nettoyé à la suppression.
+- **Multi-agents en parallèle** : panneau « Agents » (création via modal : mission, famille/mode
+  agent, approbations, plan, worktree), chaque agent a son fil SSE, ses approbations et son
+  worktree ; suivi/stop/suppression, état `running/done/stopped/error`, persistance après
+  redémarrage (reprise à l'arrêt).
 
 ## Démarrage
 
@@ -40,6 +50,23 @@ Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.
 make build
 CETAS_LITE_HOME=~/.cetas-lite ./bin/cetas-lite serve
 # http://127.0.0.1:8787/api/health
+```
+
+## Application bureau (Windows)
+
+```bash
+make desktop
+# -> bin/cetas-lite-desktop-windows-amd64.exe : double-clic, aucune console.
+```
+
+Le mode bureau demarre le serveur en local sur `127.0.0.1` (port ephemere, `CETAS_LITE_ADDR`
+ignore) puis ouvre une fenetre native **WebView2** (moteur Edge, inclus dans Windows 10/11) ;
+la fermeture de la fenetre arrete proprement le serveur. Les logs vont aussi dans
+`$CETAS_LITE_HOME/desktop.log` (pas de console en mode GUI). `CETAS_LITE_DEBUG=true`
+active les outils de dev du WebView.
+
+```bash
+cetas-lite desktop   # depuis un terminal, ou sans argument sous Windows
 ```
 
 Alias et chat (après login) :
@@ -62,6 +89,10 @@ Moteurs locaux (optionnel) : `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`,
 - `CETAS_LITE_SANDBOX=none|auto|bwrap` (défaut `none`) : isole `Bash`/`RunScript` dans **bubblewrap**
   (système en lecture seule, bind du seul workspace) ; sonde au démarrage, repli sûr.
 - `CETAS_LITE_ALLOW_SCRIPT` (défaut `false`) : active l'outil `RunScript`.
+- **Terminal intégré** : il exécute un **vrai shell** dont le `cwd` est confiné au workspace (et aux
+  worktrees). Il ne passe **pas** par la sandbox des outils agent ni par `bwrap`. En usage local
+  mono-utilisateur c'est acceptable ; **avant toute exposition réseau**, désactive-le ou encadre-le
+  (reverse proxy + auth) — c'est la surface la plus large de l'application.
 
 ## Clés providers (chiffrées)
 

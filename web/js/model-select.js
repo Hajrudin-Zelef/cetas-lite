@@ -16,8 +16,7 @@ export function applyMCPToggle(on) {
 
 let thinkingPref = false;
 
-export function applyThinkingToggle(on) {
-  const el = document.getElementById("thinking-toggle");
+export function applyThinkingToggle(on) {  const el = document.getElementById("thinking-toggle");
   if (el && !el.disabled) {
     el.setAttribute("aria-pressed", on ? "true" : "false");
     el.classList.toggle("active", !!on);
@@ -29,6 +28,25 @@ export function applyThinkingToggle(on) {
 export function setThinking(on) {
   thinkingPref = !!on;
   applyThinkingToggle(thinkingPref);
+}
+
+export function applyApproveToggle(on) {
+  const el = document.getElementById("approve-toggle");
+  if (!el) return;
+  el.setAttribute("aria-pressed", on ? "true" : "false");
+  el.classList.toggle("active", !!on);
+}
+
+export function applyPlanToggle(on) {
+  const el = document.getElementById("plan-toggle");
+  if (!el) return;
+  el.setAttribute("aria-pressed", on ? "true" : "false");
+  el.classList.toggle("active", !!on);
+}
+
+export function isAgentMode() {
+  const familySel = document.getElementById("family-select");
+  return !!(familySel && familySel.dataset.agent === "1");
 }
 
 export function persistPrefs() {
@@ -66,6 +84,11 @@ export async function initModels() {
     const m = modesFor(familySel.value).find((x) => x.mode === modeSel.value);
     const agent = !!(m && m.agent);
     agentPill.hidden = !agent;
+    familySel.dataset.agent = agent ? "1" : "";
+    const approveToggle = document.getElementById("approve-toggle");
+    if (approveToggle) approveToggle.hidden = !agent;
+    const planToggle = document.getElementById("plan-toggle");
+    if (planToggle) planToggle.hidden = !agent;
     const th = document.getElementById("thinking-toggle");
     if (th) {
       if (agent) {

@@ -22,6 +22,10 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		MCP         bool     `json:"mcp"`
 		Think       bool     `json:"think"`
 		Effort      string   `json:"effort"`
+		Approve     bool     `json:"approve"`
+		Plan        bool     `json:"plan"`
+		Worktree    bool     `json:"worktree"`
+		Repo        string   `json:"repo"`
 		Attachments []string `json:"attachments"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
@@ -33,7 +37,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	c := s.engine.Conversation(claims.Username)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Attachments: body.Attachments})
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return
@@ -78,6 +82,31 @@ func (s *Server) handleChatStop(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.engine.Conversation(claims.Username).Stop()
+	writeJSON(w, http.StatusOK, map[string]any{"ok": true})
+}
+
+// handleChatApprove transmet la decision de l'utilisateur pour une demande
+// d'approbation en attente (outil sensible ou plan).
+func (s *Server) handleChatApprove(w http.ResponseWriter, r *http.Request) {
+	claims := claimsFrom(r)
+	if claims == nil {
+		writeError(w, http.StatusUnauthorized, "non authentifie")
+		return
+	}
+	var body struct {
+		ID       string `json:"id"`
+		Approved bool   `json:"approved"`
+		Always   bool   `json:"always"`
+	}
+	if err := decodeJSON(r, &body); err != nil || body.ID == "" {
+		writeError(w, http.StatusBadRequest, "id requis")
+		return
+	}
+	ok := s.engine.Conversation(claims.Username).ResolveApproval(body.ID, body.Approved, body.Always)
+	if !ok {
+		writeError(w, http.StatusGone, "demande d'approbation introuvable ou expiree")
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{"ok": true})
 }
 

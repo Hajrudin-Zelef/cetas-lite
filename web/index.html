@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/css/cetas.css">
 <link rel="stylesheet" href="/css/cetas-ocean.css">
 <link rel="stylesheet" href="/css/cetas-lite.css">
+<link rel="stylesheet" href="/css/xterm.css">
 <script src="/js/theme-init.js"></script>
 </head>
 <body class="ocean-theme">
@@ -47,6 +48,11 @@
   <span class="sidebar-credit">Kouassi Marius</span>
 
   <button id="new-chat-btn" class="new-chat-btn">Nouvelle conversation</button>
+
+  <div class="sidebar-tools">
+    <button id="agents-btn" class="tool-btn" type="button" title="Agents parallèles" aria-label="Agents parallèles">🤖 Agents</button>
+    <button id="terminal-btn" class="tool-btn" type="button" title="Terminal intégré" aria-label="Terminal intégré">⌨️ Terminal</button>
+  </div>
 
   <div class="conv-section">
     <div class="conv-head">
@@ -107,6 +113,12 @@
                 <img src="/images/cetas-thinking.png" alt="Thinking" width="18" height="18" style="border-radius:3px">
               </button>
               <span id="agent-toggle" class="agent-pill" hidden>Agent</span>
+              <button type="button" id="approve-toggle" class="input-icon-btn" title="Approbations : demander avant chaque ecriture/execution" aria-label="Approbations" aria-pressed="false" hidden>
+                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-shield"/></svg>
+              </button>
+              <button type="button" id="plan-toggle" class="input-icon-btn" title="Mode plan : valider le plan avant execution" aria-label="Mode plan" aria-pressed="false" hidden>
+                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-plan"/></svg>
+              </button>
             </div>
             <div class="input-line-2-right">
               <button type="button" id="mic-btn" class="mic-btn" title="Dicter" aria-label="Dicter">
@@ -225,6 +237,8 @@
 
 <script src="/js/vendor/marked.umd.min.js"></script>
 <script src="/js/vendor/purify.min.js"></script>
+<script src="/js/vendor/xterm.js"></script>
+<script src="/js/vendor/xterm-addon-fit.js"></script>
 <script type="module" src="/js/app.js"></script>
 </body>
 </html>

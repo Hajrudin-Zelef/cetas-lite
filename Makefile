@@ -3,7 +3,9 @@ VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 LDFLAGS := -s -w -X main.version=$(VERSION)
 CROSS   := linux-amd64 linux-arm64 windows-amd64 windows-arm64 darwin-amd64 darwin-arm64
 
-.PHONY: test build cross run clean fmt fmt-check vet smoke ci
+.PHONY: test build cross desktop run clean fmt fmt-check vet smoke ci
+
+DESKTOP_LDFLAGS := -s -w -H windowsgui -X main.version=$(VERSION)
 
 test:
 	go test ./... -race
@@ -33,6 +35,12 @@ cross:
 	  echo "build $$t"; \
 	  CGO_ENABLED=0 GOOS=$$os GOARCH=$$arch go build -trimpath -ldflags "$(LDFLAGS)" -o bin/$(BINARY)-$$t$$ext ./cmd/cetas-lite; \
 	done
+
+# Application bureau Windows : binaire GUI (sans console), double-clic = ouvre Cetas.
+desktop:
+	mkdir -p bin
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags "$(DESKTOP_LDFLAGS)" -o bin/$(BINARY)-desktop-windows-amd64.exe ./cmd/cetas-lite
+	CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -trimpath -ldflags "$(DESKTOP_LDFLAGS)" -o bin/$(BINARY)-desktop-windows-arm64.exe ./cmd/cetas-lite
 
 run: build
 	./bin/$(BINARY) serve

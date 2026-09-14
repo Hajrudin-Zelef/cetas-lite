@@ -227,6 +227,28 @@ func TestAgentRetryWithoutToolsOnHTTPError(t *testing.T) {
 	}
 }
 
+func TestAgentRetries429WithTools(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{err: &provider.HTTPError{Provider: "fake", Status: 429, Body: "rate limit"}},
+		{content: "apres retry"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "?"})
+
+	if got := logText(c); !strings.Contains(got, "apres retry") {
+		t.Fatalf("contenu = %q", got)
+	}
+	reqs := sp.requests()
+	if len(reqs) != 2 {
+		t.Fatalf("requetes = %d, want 2", len(reqs))
+	}
+	for i, r := range reqs {
+		if len(r.Tools) == 0 {
+			t.Fatalf("requete %d : le retry 429 doit garder les outils", i)
+		}
+	}
+}
+
 func TestNonAgentModeHasNoTools(t *testing.T) {
 	sp := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "salut"}}}
 	fams := []alias.Family{{ID: "plain", Label: "Plain", Modes: []alias.Mode{{ID: "standard", Pool: []alias.Member{{Provider: "fake", Model: "m"}}}}}}
