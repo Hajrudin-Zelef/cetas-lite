@@ -20,6 +20,7 @@ import (
 	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/cryptovault"
+	"cetas-lite/internal/customtools"
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/memory"
@@ -41,6 +42,7 @@ Usage:
   cetas-lite keys set <p> [valeur] chiffre et enregistre une cle (valeur sinon sur stdin)
   cetas-lite keys delete <p>       supprime une cle
   cetas-lite mcp                   liste les serveurs MCP et leurs outils
+  cetas-lite tools                 liste les outils personnalises (tools.json)
   cetas-lite backup <fichier>      sauvegarde la base (+ mcp.json) dans un tar.gz (serveur arrete)
   cetas-lite restore <fichier>     restaure la base depuis un tar.gz (serveur arrete)
 
@@ -69,6 +71,8 @@ func main() {
 		err = runKeys(os.Args[2:])
 	case "mcp":
 		err = runMCP(os.Args[2:])
+	case "tools":
+		err = runTools(os.Args[2:])
 	case "backup":
 		err = runBackup(os.Args[2:])
 	case "restore":
@@ -119,6 +123,11 @@ func runServe() error {
 	}
 	engine.SetSearcher(search.New(keys, client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
+	customManager, err := customtools.NewManager(cfg.ToolsPath, client)
+	if err != nil {
+		return err
+	}
+	engine.SetCustom(customManager)
 	mcpManager, err := mcp.NewManager(cfg.MCPPath, version)
 	if err != nil {
 		return err
@@ -315,6 +324,25 @@ func unlockedConfig() (*config.Config, error) {
 		return nil, errors.New("base verrouillee: arretez le serveur")
 	}
 	return config.Load()
+}
+
+func runTools(args []string) error {
+	cfg, err := config.Load()
+	if err != nil {
+		return err
+	}
+	mgr, err := customtools.NewManager(cfg.ToolsPath, nil)
+	if err != nil {
+		return err
+	}
+	if !mgr.Configured() {
+		fmt.Println("(aucun outil personnalise dans " + cfg.ToolsPath + ")")
+		return nil
+	}
+	for _, d := range mgr.Defs() {
+		fmt.Printf("%s\t%s\n", d.Name, d.Description)
+	}
+	return nil
 }
 
 func localURLsFromEnv() map[string]string {

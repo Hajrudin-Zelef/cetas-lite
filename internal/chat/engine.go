@@ -26,6 +26,7 @@ type Engine struct {
 	searcher    WebTools
 	mem         MemoryTools
 	ext         MCPTools
+	custom      CustomTools
 	sandboxMode string
 
 	mu         sync.Mutex
@@ -112,6 +113,18 @@ func (e *Engine) MCPProbe(ctx context.Context) []mcp.ServerStatus {
 	}
 	m.Tools(ctx)
 	return m.Servers()
+}
+
+func (e *Engine) SetCustom(c CustomTools) {
+	e.mu.Lock()
+	e.custom = c
+	e.mu.Unlock()
+}
+
+func (e *Engine) customTools() CustomTools {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	return e.custom
 }
 
 func (e *Engine) allowWeb(user string) bool {

@@ -32,6 +32,9 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	if e.memoryTools() != nil {
 		tools = append(tools, MemoryToolSchemas()...)
 	}
+	if ct := e.customTools(); ct != nil {
+		tools = append(tools, CustomToolSchemas(ct.Defs())...)
+	}
 	if in.MCP {
 		tools = append(tools, e.mcpSchemas(ctx)...)
 	}
@@ -155,6 +158,8 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 						out = e.memExecute(user, tc.Function.Name, tc.Function.Arguments)
 					} else if strings.HasPrefix(tc.Function.Name, "mcp_") {
 						out = e.mcpExecute(ctx, tc.Function.Name, tc.Function.Arguments)
+					} else if strings.HasPrefix(tc.Function.Name, "custom_") {
+						out = e.customExecute(ctx, tc.Function.Name, tc.Function.Arguments)
 					} else {
 						out = sb.Execute(ctx, tc.Function.Name, tc.Function.Arguments)
 					}
@@ -209,7 +214,7 @@ func routeDelta(m alias.ResolvedMember, family, mode string, local, fallback boo
 }
 
 func dedupableTool(name string) bool {
-	if strings.HasPrefix(name, "mcp_") {
+	if strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") {
 		return false
 	}
 	return name != "Bash" && name != "RunScript"

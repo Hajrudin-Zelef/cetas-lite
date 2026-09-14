@@ -15,6 +15,7 @@ type Config struct {
 	WorkspaceDir     string
 	MemoryDir        string
 	MCPPath          string
+	ToolsPath        string
 	DBPath           string
 	RegistrationMode string
 	AllowScript      bool
@@ -88,6 +89,7 @@ func Load() (*Config, error) {
 		WorkspaceDir:     filepath.Join(home, "workspace"),
 		MemoryDir:        filepath.Join(home, "memory"),
 		MCPPath:          filepath.Join(home, "mcp.json"),
+		ToolsPath:        filepath.Join(home, "tools.json"),
 		DBPath:           filepath.Join(home, "cetas-lite.db"),
 		RegistrationMode: registrationMode,
 		AllowScript:      allowScript,
