@@ -42,6 +42,23 @@ CETAS_LITE_HOME=~/.cetas-lite ./bin/cetas-lite serve
 # http://127.0.0.1:8787/api/health
 ```
 
+## Application bureau (Windows)
+
+```bash
+make desktop
+# -> bin/cetas-lite-desktop-windows-amd64.exe : double-clic, aucune console.
+```
+
+Le mode bureau demarre le serveur en local sur `127.0.0.1` (port ephemere, `CETAS_LITE_ADDR`
+ignore) puis ouvre une fenetre native **WebView2** (moteur Edge, inclus dans Windows 10/11) ;
+la fermeture de la fenetre arrete proprement le serveur. Les logs vont aussi dans
+`$CETAS_LITE_HOME/desktop.log` (pas de console en mode GUI). `CETAS_LITE_DEBUG=true`
+active les outils de dev du WebView.
+
+```bash
+cetas-lite desktop   # depuis un terminal, ou sans argument sous Windows
+```
+
 Alias et chat (après login) :
 
 ```bash
