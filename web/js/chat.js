@@ -1,7 +1,7 @@
 import { api, getToken, readSSE } from "./api.js";
 import { renderInto } from "./markdown.js";
 import { createStreamRenderer } from "./stream-render.js";
-import { applyWebToggle, persistPrefs } from "./model-select.js";
+import { applyWebToggle, applyMCPToggle, persistPrefs } from "./model-select.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
@@ -54,10 +54,12 @@ export function initChat() {
   }
 
   function selection() {
+    const mcpToggle = document.getElementById("mcp-toggle");
     return {
       family: document.getElementById("family-select").value,
       mode: document.getElementById("mode-select").value,
       web: !!(webToggle && webToggle.getAttribute("aria-pressed") === "true"),
+      mcp: !!(mcpToggle && !mcpToggle.hidden && mcpToggle.getAttribute("aria-pressed") === "true"),
     };
   }
 
@@ -321,7 +323,7 @@ export function initChat() {
     input.value = "";
     autoGrow();
     try {
-      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web } });
+      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp } });
       generating = true;
       stopBtn.hidden = false;
       setBusy(true);
@@ -360,6 +362,14 @@ export function initChat() {
     webToggle.addEventListener("click", () => {
       const next = webToggle.getAttribute("aria-pressed") !== "true";
       applyWebToggle(next);
+      persistPrefs().catch(() => {});
+    });
+  }
+  const mcpToggle = document.getElementById("mcp-toggle");
+  if (mcpToggle) {
+    mcpToggle.addEventListener("click", () => {
+      const next = mcpToggle.getAttribute("aria-pressed") !== "true";
+      applyMCPToggle(next);
       persistPrefs().catch(() => {});
     });
   }

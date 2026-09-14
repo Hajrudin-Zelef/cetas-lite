@@ -10,12 +10,14 @@
 (journal rejouable, reconnexion `?from=`, stop/reset, heartbeat SSE, failover), outils agent + sandbox,
 UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Markdown (`mem_*`).
 **P6** : durcissement (rate-limit auth, fuzz, tests de reconnexion) + packaging 6 binaires + CI.
+**P7** : compaction du contexte + archives multi-sessions. **P8.1** : client MCP (`mcp_*`).
 
 - Alias à 2 niveaux : `SamAgent Nano` (free), `SamAgent N4` (flash/standard), `SamAgent N8` (flash/standard/elite), `Code` (flash/standard/elite, agent), `SamGen` (local : nano=llama.cpp, n4=Ollama, n8=LM Studio).
 - Chat serveur : journal rejouable, reconnexion (`?from=`), stop/reset non bloquants, heartbeat SSE, failover de pool.
 - Providers cloud : DeepSeek, OpenCode Zen, OpenCode Go, OpenRouter. Local : Ollama/LM Studio/llama.cpp (découverte auto).
-- Outils agent : fichiers (Ls/Read/Write/Edit/Grep/Glob), Bash, RunScript (désactivé par défaut), TodoWrite, web (`web_search`/`web_fetch`), mémoire (`mem_*`).
+- Outils agent : fichiers (Ls/Read/Write/Edit/Grep/Glob), Bash, RunScript (désactivé par défaut), TodoWrite, web (`web_search`/`web_fetch`), mémoire (`mem_*`), MCP (`mcp_*`).
 - Mémoire : pages Markdown par user sous `$CETAS_LITE_HOME/memory/<user>/`, index `MEMORY.md` auto, recherche TF-IDF.
+- MCP : serveurs déclarés dans `$CETAS_LITE_HOME/mcp.json` (`stdio` ou `http`), outils exposés à l'agent sous `mcp_<serveur>_<outil>` (diagnostic : `./bin/cetas-lite mcp`).
 
 ## Démarrage
 
@@ -64,7 +66,7 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 
 ## Architecture
 
-- `cmd/cetas-lite` — CLI (`serve`, `keys`, `version`)
+- `cmd/cetas-lite` — CLI (`serve`, `keys`, `mcp`, `version`)
 - `internal/config` — configuration et répertoires
 - `internal/store` — bbolt (users, settings, conversations, secrets)
 - `internal/cryptovault` — AES-256-GCM + scrypt
@@ -73,6 +75,7 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 - `internal/provider` / `internal/local` — providers cloud + découverte locale
 - `internal/search` — web search + fetch (garde SSRF)
 - `internal/memory` — pages Markdown + index + TF-IDF
+- `internal/mcp` — client MCP (stdio + HTTP, outils `mcp_*`)
 - `internal/web` — routeur HTTP + middleware
 - `web/` — assets embarqués (`go:embed`)
 

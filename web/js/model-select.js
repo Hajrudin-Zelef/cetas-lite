@@ -7,6 +7,13 @@ export function applyWebToggle(on) {
   el.classList.toggle("active", !!on);
 }
 
+export function applyMCPToggle(on) {
+  const el = document.getElementById("mcp-toggle");
+  if (!el) return;
+  el.setAttribute("aria-pressed", on ? "true" : "false");
+  el.classList.toggle("active", !!on);
+}
+
 export function persistPrefs() {
   const body = {};
   const theme = document.documentElement.dataset.theme;
@@ -17,6 +24,10 @@ export function persistPrefs() {
   if (modeSel && modeSel.value) body.mode = modeSel.value;
   const webToggle = document.getElementById("web-toggle");
   if (webToggle) body.web_default = webToggle.getAttribute("aria-pressed") === "true";
+  const mcpToggle = document.getElementById("mcp-toggle");
+  if (mcpToggle && !mcpToggle.hidden) {
+    body.mcp_default = mcpToggle.getAttribute("aria-pressed") === "true";
+  }
   return putPrefs(body);
 }
 
@@ -76,6 +87,20 @@ export async function initModels() {
     const prefs = await getPrefs().catch(() => null);
     if (prefs && prefs.theme) applyTheme(prefs.theme);
     applyWebToggle(!!(prefs && prefs.web_default));
+
+    const mcp = await api("/api/mcp").catch(() => null);
+    const mcpToggle = document.getElementById("mcp-toggle");
+    if (mcpToggle) {
+      const servers = (mcp && mcp.servers) || [];
+      if (servers.length > 0) {
+        mcpToggle.hidden = false;
+        const on = prefs && typeof prefs.mcp_default === "boolean" ? prefs.mcp_default : true;
+        applyMCPToggle(on);
+      } else {
+        mcpToggle.hidden = true;
+        applyMCPToggle(false);
+      }
+    }
     const prevF = familySel.value || (prefs && prefs.family) || "";
     const prevM = modeSel.value || (prefs && prefs.mode) || "";
     familySel.innerHTML = "";

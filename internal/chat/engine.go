@@ -10,6 +10,7 @@ import (
 
 	"cetas-lite/internal/alias"
 	"cetas-lite/internal/local"
+	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
 
@@ -24,6 +25,7 @@ type Engine struct {
 	allowScript bool
 	searcher    WebTools
 	mem         MemoryTools
+	ext         MCPTools
 
 	mu         sync.Mutex
 	families   []alias.Family
@@ -81,6 +83,25 @@ func (e *Engine) memoryTools() MemoryTools {
 	e.mu.Lock()
 	defer e.mu.Unlock()
 	return e.mem
+}
+
+func (e *Engine) SetMCP(m MCPTools) {
+	e.mu.Lock()
+	e.ext = m
+	e.mu.Unlock()
+}
+
+func (e *Engine) mcpTools() MCPTools {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	return e.ext
+}
+
+func (e *Engine) MCPServers() []mcp.ServerStatus {
+	if m := e.mcpTools(); m != nil {
+		return m.Servers()
+	}
+	return nil
 }
 
 func (e *Engine) allowWeb(user string) bool {

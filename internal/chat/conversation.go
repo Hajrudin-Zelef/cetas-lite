@@ -28,6 +28,7 @@ type TurnInput struct {
 	Mode   string
 	Text   string
 	Web    bool
+	MCP    bool
 }
 
 type Runner interface {

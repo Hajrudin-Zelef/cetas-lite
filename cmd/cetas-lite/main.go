@@ -20,6 +20,7 @@ import (
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/cryptovault"
 	"cetas-lite/internal/local"
+	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/memory"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/search"
@@ -38,6 +39,7 @@ Usage:
   cetas-lite keys list             liste les providers configures
   cetas-lite keys set <p> [valeur] chiffre et enregistre une cle (valeur sinon sur stdin)
   cetas-lite keys delete <p>       supprime une cle
+  cetas-lite mcp                   liste les serveurs MCP et leurs outils
 
 Variables:
   CETAS_LITE_HOME                 repertoire de donnees (defaut: config/cetas-lite)
@@ -60,6 +62,8 @@ func main() {
 		fmt.Println("cetas-lite", version)
 	case "keys":
 		err = runKeys(os.Args[2:])
+	case "mcp":
+		err = runMCP(os.Args[2:])
 	case "help", "-h", "--help":
 		usage()
 	default:
@@ -98,6 +102,15 @@ func runServe() error {
 	engine.SetAllowScript(cfg.AllowScript)
 	engine.SetSearcher(search.New(keys, client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
+	mcpManager, err := mcp.NewManager(cfg.MCPPath, version)
+	if err != nil {
+		return err
+	}
+	defer mcpManager.Close()
+	engine.SetMCP(mcpManager)
+	if mcpManager.Configured() {
+		slog.Info("mcp configure", "path", cfg.MCPPath)
+	}
 
 	srv := web.New(cfg, st, authMgr, engine, version)
 	httpSrv := &http.Server{
@@ -207,6 +220,42 @@ func runKeys(args []string) error {
 	default:
 		return fmt.Errorf("action inconnue: %s", args[0])
 	}
+}
+
+func runMCP(args []string) error {
+	cfg, err := config.Load()
+	if err != nil {
+		return err
+	}
+	mgr, err := mcp.NewManager(cfg.MCPPath, version)
+	if err != nil {
+		return err
+	}
+	defer mgr.Close()
+	if !mgr.Configured() {
+		fmt.Println("(aucun serveur mcp configure dans " + cfg.MCPPath + ")")
+		return nil
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+	tools := mgr.Tools(ctx)
+	for _, s := range mgr.Servers() {
+		status := "hors ligne"
+		if s.Connected {
+			status = "connecte"
+		}
+		line := fmt.Sprintf("%s\t%s\t%s\t%d outil(s)", s.Name, s.Transport, status, s.Tools)
+		if s.Error != "" {
+			line += "  [" + s.Error + "]"
+		}
+		fmt.Println(line)
+		for _, t := range tools {
+			if t.Server == s.Name {
+				fmt.Printf("  - %s  (%s)\n", t.Exposed, t.Name)
+			}
+		}
+	}
+	return nil
 }
 
 func localURLsFromEnv() map[string]string {

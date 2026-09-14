@@ -13,6 +13,7 @@ type uiSettings struct {
 	Mode         string `json:"mode"`
 	AgentDefault bool   `json:"agent_default"`
 	WebDefault   bool   `json:"web_default"`
+	MCPDefault   *bool  `json:"mcp_default,omitempty"`
 }
 
 func defaultUISettings() uiSettings {
@@ -61,6 +62,7 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		Mode         *string `json:"mode"`
 		AgentDefault *bool   `json:"agent_default"`
 		WebDefault   *bool   `json:"web_default"`
+		MCPDefault   *bool   `json:"mcp_default"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -85,6 +87,9 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 	}
 	if body.WebDefault != nil {
 		cur.WebDefault = *body.WebDefault
+	}
+	if body.MCPDefault != nil {
+		cur.MCPDefault = body.MCPDefault
 	}
 	if cur.Family != "" && cur.Mode != "" {
 		if _, ok := alias.Resolve(s.engine.Families(), cur.Family, cur.Mode); !ok {

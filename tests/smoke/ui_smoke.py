@@ -35,6 +35,8 @@ FAMILIES = {
 
 SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard", "agent_default": False}
 
+MCP_SERVERS = {"servers": [{"name": "demo", "transport": "stdio", "connected": True, "tools": 2, "error": ""}]}
+
 STATE = {"put_settings": None, "send_body": None}
 
 
@@ -101,6 +103,7 @@ def route_mocks(page):
         route.fulfill(json={"ok": True})
 
     page.route("**/api/settings", settings)
+    page.route("**/api/mcp", lambda r: r.fulfill(json=MCP_SERVERS))
     page.route("**/api/chat/send", send)
     page.route(
         "**/api/chat/stream**",
@@ -141,11 +144,25 @@ def check(page, url, reduced):
     put = STATE["put_settings"] or {}
     assert put.get("web_default") is True, f"web_default non persiste: {put!r}"
 
+    mcp = page.locator("#mcp-toggle")
+    assert mcp.count() == 1, "mcp toggle absent"
+    assert mcp.is_visible(), "mcp toggle doit etre visible si des serveurs sont configures"
+    assert mcp.get_attribute("aria-pressed") == "true", "mcp doit demarrer actif (auto)"
+    mcp.click()
+    assert mcp.get_attribute("aria-pressed") == "false", "mcp doit se desactiver"
+    page.wait_for_timeout(100)
+    put = STATE["put_settings"] or {}
+    assert put.get("mcp_default") is False, f"mcp_default non persiste: {put!r}"
+    mcp.click()
+    assert mcp.get_attribute("aria-pressed") == "true", "mcp doit se reactiver"
+    page.wait_for_timeout(100)
+
     page.fill("#prompt-input", "question web")
     page.press("#prompt-input", "Enter")
     page.wait_for_timeout(100)
     body = STATE["send_body"] or {}
     assert body.get("web") is True, f"le tour doit porter web=true: {body!r}"
+    assert body.get("mcp") is True, f"le tour doit porter mcp=true: {body!r}"
 
     assert not errors, f"erreurs page: {errors}"
     label = "reduced" if reduced else "normal"
