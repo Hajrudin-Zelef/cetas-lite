@@ -11,11 +11,6 @@
   flex-wrap: nowrap;
 }
 
-.sidebar-title .version-badge {
-  white-space: nowrap;
-  font-size: 0.5rem;
-}
-
 .settings-head {
   display: flex;
   align-items: center;

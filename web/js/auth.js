@@ -12,8 +12,6 @@ export function initAuth(onAuthenticated) {
   fetch("/api/config")
     .then((r) => r.json())
     .then((cfg) => {
-      const badge = document.getElementById("version-badge");
-      if (badge && cfg.version) badge.textContent = "v" + cfg.version;
       if (!cfg.registration_open) toggle.hidden = true;
     })
     .catch(() => {});
