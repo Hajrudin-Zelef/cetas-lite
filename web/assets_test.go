@@ -45,6 +45,7 @@ func TestIndexHasIDs(t *testing.T) {
 		`id="thinking-toggle"`, `id="effort-select"`,
 		`id="conv-list"`, `id="stats-badge"`, `id="export-btn"`,
 		`id="attach-chips"`, `id="attach-input"`, `id="attach-btn"`,
+		`id="caps-panel"`, `id="caps-save"`, `id="caps-add"`, `id="caps-add-input"`,
 	} {
 		if !strings.Contains(html, id) {
 			t.Errorf("index.html manque %s", id)

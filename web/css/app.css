@@ -562,6 +562,57 @@ input:focus {
   white-space: nowrap;
 }
 
+.attach-thumb {
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.caps-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.caps-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.caps-name {
+  flex: 1;
+  font-size: 12.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  overflow-wrap: anywhere;
+}
+
+.caps-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.caps-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.caps-add input {
+  flex: 1;
+  min-width: 0;
+}
+
 .attach-remove {
   background: transparent;
   border: none;

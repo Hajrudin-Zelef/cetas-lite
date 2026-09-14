@@ -17,18 +17,10 @@ func TestAttachmentContextInjected(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	img, err := st.Save("sam", "photo.png", []byte("\x89PNG"))
-	if err != nil {
-		t.Fatal(err)
-	}
 
-	runAgentTurn(t, e, "sam", TurnInput{Family: "plain", Mode: "standard", Text: "explique", Attachments: []string{doc.ID, img.ID}})
+	runAgentTurn(t, e, "sam", TurnInput{Family: "plain", Mode: "standard", Text: "explique", Attachments: []string{doc.ID}})
 
-	reqs := sp.requests()
-	if !hasSystemContaining(reqs, "Pythagore") {
+	if !hasSystemContaining(sp.requests(), "Pythagore") {
 		t.Fatal("le contenu du document doit etre injecte")
-	}
-	if hasSystemContaining(reqs, "photo.png") {
-		t.Fatal("les images ne sont pas injectees au Lot A")
 	}
 }

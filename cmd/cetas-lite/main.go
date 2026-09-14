@@ -26,6 +26,7 @@ import (
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/memory"
+	"cetas-lite/internal/modelcaps"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
@@ -126,6 +127,7 @@ func runServe() error {
 	engine.SetSearcher(search.New(keys, client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
 	engine.SetAttachments(attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20))
+	engine.SetCapabilities(modelcaps.Load(st))
 	customManager, err := customtools.NewManager(cfg.ToolsPath, client)
 	if err != nil {
 		return err

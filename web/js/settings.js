@@ -9,7 +9,14 @@ export function initSettings({ reloadModels } = {}) {
   const saveBtn = document.getElementById("aliases-save");
   const mcpPanel = document.getElementById("mcp-panel");
   const mcpRefresh = document.getElementById("mcp-refresh");
+  const capsPanel = document.getElementById("caps-panel");
+  const capsSave = document.getElementById("caps-save");
+  const capsAdd = document.getElementById("caps-add");
+  const capsAddInput = document.getElementById("caps-add-input");
+  const capsStatus = document.getElementById("caps-status");
   let families = [];
+  let caps = {};
+  let capKeys = [];
 
   function render() {
     editor.innerHTML = "";
@@ -94,6 +101,68 @@ export function initSettings({ reloadModels } = {}) {
     }
   }
 
+  function capKeysFromFamilies() {
+    const set = new Set(Object.keys(caps));
+    for (const f of families) {
+      for (const mode of f.modes || []) {
+        for (const p of mode.pool || []) {
+          if (p && p.provider && p.model) set.add(p.provider + "/" + p.model);
+        }
+      }
+    }
+    capKeys = Array.from(set).sort();
+  }
+
+  function renderCaps() {
+    capsPanel.innerHTML = "";
+    if (!capKeys.length) {
+      const p = document.createElement("p");
+      p.className = "settings-status";
+      p.textContent = "Aucun modele dans les alias ; ajoute-en un ci-dessous.";
+      capsPanel.appendChild(p);
+      return;
+    }
+    for (const key of capKeys) {
+      const c = caps[key] || {};
+      const row = document.createElement("div");
+      row.className = "caps-row";
+      const name = document.createElement("span");
+      name.className = "caps-name";
+      name.textContent = key;
+      row.appendChild(name);
+      for (const cap of ["vision", "tts", "stt"]) {
+        const wrap = document.createElement("label");
+        wrap.className = "caps-check";
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = !!c[cap];
+        cb.addEventListener("change", () => {
+          const cur = caps[key] || {};
+          cur[cap] = cb.checked;
+          if (cur.vision || cur.tts || cur.stt) caps[key] = cur;
+          else delete caps[key];
+        });
+        wrap.appendChild(cb);
+        wrap.appendChild(document.createTextNode(cap));
+        row.appendChild(wrap);
+      }
+      capsPanel.appendChild(row);
+    }
+  }
+
+  async function loadCaps() {
+    capsPanel.textContent = "Chargement...";
+    try {
+      const data = await api("/api/capabilities");
+      caps = (data && data.caps) || {};
+    } catch (e) {
+      capsPanel.textContent = e.message;
+      return;
+    }
+    capKeysFromFamilies();
+    renderCaps();
+  }
+
   openBtn.addEventListener("click", async () => {
     status.textContent = "";
     overlay.hidden = false;
@@ -103,8 +172,33 @@ export function initSettings({ reloadModels } = {}) {
       status.textContent = e.message;
     }
     loadMCP(false);
+    loadCaps();
   });
   mcpRefresh.addEventListener("click", () => loadMCP(true));
+
+  capsAdd.addEventListener("click", () => {
+    const raw = (capsAddInput.value || "").trim();
+    const i = raw.indexOf("/");
+    if (i <= 0 || i >= raw.length - 1) {
+      capsStatus.textContent = "Format attendu : provider/model";
+      return;
+    }
+    capsStatus.textContent = "";
+    capsAddInput.value = "";
+    caps[raw] = caps[raw] || {};
+    capKeysFromFamilies();
+    renderCaps();
+  });
+
+  capsSave.addEventListener("click", async () => {
+    capsStatus.textContent = "Enregistrement...";
+    try {
+      await api("/api/capabilities", { method: "PUT", body: { caps } });
+      capsStatus.textContent = "Enregistre.";
+    } catch (e) {
+      capsStatus.textContent = e.message;
+    }
+  });
   closeBtn.addEventListener("click", () => {
     overlay.hidden = true;
   });

@@ -29,11 +29,7 @@ func (s *Server) handleAttachUpload(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 	name := header.Filename
-	if attach.IsImage(name) {
-		writeError(w, http.StatusBadRequest, "les images seront prises en charge au lot suivant")
-		return
-	}
-	if !docs.IsSupported(name) {
+	if !attach.IsImage(name) && !docs.IsSupported(name) {
 		writeError(w, http.StatusBadRequest, "format non supporte: "+name)
 		return
 	}

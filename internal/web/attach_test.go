@@ -82,14 +82,20 @@ func TestAttachUploadGetDelete(t *testing.T) {
 	}
 }
 
-func TestAttachRejectsUnsupportedAndImages(t *testing.T) {
+func TestAttachRejectsUnsupportedAcceptsImages(t *testing.T) {
 	s, tok := newAttachServer(t)
 	h := s.Handler()
 	if rec := uploadAttachment(t, h, tok, "doc.docx", []byte("x")); rec.Code != http.StatusBadRequest {
 		t.Fatalf("docx status = %d", rec.Code)
 	}
-	if rec := uploadAttachment(t, h, tok, "photo.png", []byte("x")); rec.Code != http.StatusBadRequest {
-		t.Fatalf("image status = %d", rec.Code)
+	rec := uploadAttachment(t, h, tok, "photo.png", []byte("\x89PNG"))
+	if rec.Code != http.StatusOK {
+		t.Fatalf("image status = %d (%s)", rec.Code, rec.Body.String())
+	}
+	var a map[string]any
+	_ = json.Unmarshal(rec.Body.Bytes(), &a)
+	if a["kind"] != "image" {
+		t.Fatalf("kind image attendu: %v", a)
 	}
 }
 

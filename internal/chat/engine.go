@@ -12,6 +12,7 @@ import (
 	"cetas-lite/internal/attach"
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/mcp"
+	"cetas-lite/internal/modelcaps"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
 
@@ -29,6 +30,7 @@ type Engine struct {
 	ext         MCPTools
 	custom      CustomTools
 	attach      *attach.Store
+	caps        modelcaps.Map
 	sandboxMode string
 
 	mu         sync.Mutex
@@ -328,6 +330,16 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		return
 	}
 	msgs := c.MessagesSnapshot()
+
+	needsVision := e.hasImageAttachment(in.User, in.Attachments)
+	if needsVision {
+		res.members = e.filterVision(res.members)
+		if len(res.members) == 0 {
+			c.appendDelta(epoch, map[string]any{"error": "Aucun modele vision selectionne : declare un modele vision dans Settings -> Capacites des modeles."})
+			return
+		}
+		msgs = e.expandImageParts(msgs, in.User, in.Attachments)
+	}
 
 	if mi, ok := e.memoryIndexMessage(in.User); ok {
 		msgs = append([]provider.Message{mi}, msgs...)

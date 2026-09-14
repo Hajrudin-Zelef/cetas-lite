@@ -122,6 +122,7 @@ def route_mocks(page):
 
     page.route("**/api/settings", settings)
     page.route("**/api/mcp", lambda r: r.fulfill(json=MCP_SERVERS))
+    page.route("**/api/capabilities", lambda r: r.fulfill(json={"caps": {}}))
     page.route("**/api/chat/send", send)
     page.route("**/api/chat/state", lambda r: r.fulfill(json={"turns": 1, "generating": False}))
     page.route("**/api/conversations**", conversations)
@@ -231,6 +232,9 @@ def check(page, url, reduced):
     assert page.locator("#mcp-panel .mcp-name").count() == 1, "serveur MCP liste attendu"
     mcpname = page.locator("#mcp-panel .mcp-name").first.inner_text()
     assert mcpname == "demo", f"nom MCP = {mcpname!r}"
+    caps = page.locator("#caps-panel .caps-name")
+    assert caps.count() >= 1, "capacites modeles attendues"
+    assert "fake/ok" == page.locator("#caps-panel .caps-name").first.inner_text(), "modele d'alias attendu"
     page.locator("#settings-close").click()
 
     page.fill("#prompt-input", "question web")

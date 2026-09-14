@@ -28,6 +28,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	if !e.scriptAllowed() {
 		tools = filterTools(tools, "RunScript")
 	}
+	tools = append(tools, viewImageSchema())
 	if e.memoryTools() != nil {
 		tools = append(tools, MemoryToolSchemas()...)
 	}
@@ -153,12 +154,15 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				}})
 				key := tc.Function.Name + "\x00" + tc.Function.Arguments
 				var out ToolResult
+				var followup *provider.Message
 				if prev, seen := done[key]; seen && dedupableTool(tc.Function.Name) {
 					repeats[key]++
 					out.Text = repeatedCallResult(prev, repeats[key])
 				} else {
 					if tc.Function.Name == "web_search" || tc.Function.Name == "web_fetch" {
 						out = e.webExecute(ctx, user, tc.Function.Name, tc.Function.Arguments)
+					} else if tc.Function.Name == "ViewImage" {
+						out, followup = e.viewImage(m, sb, tc.Function.Arguments)
 					} else if strings.HasPrefix(tc.Function.Name, "mem_") {
 						out = e.memExecute(user, tc.Function.Name, tc.Function.Arguments)
 					} else if strings.HasPrefix(tc.Function.Name, "mcp_") {
@@ -177,6 +181,9 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 					"result": truncate(out.Text, toolMaxOutput), "diff": out.Diff,
 				}})
 				msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: tc.ID, Content: out.Text})
+				if followup != nil {
+					msgs = append(msgs, *followup)
+				}
 			}
 			last = resp.Content
 			continue
@@ -219,7 +226,7 @@ func routeDelta(m alias.ResolvedMember, family, mode string, local, fallback boo
 }
 
 func dedupableTool(name string) bool {
-	if strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") {
+	if strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || name == "ViewImage" {
 		return false
 	}
 	return name != "Bash" && name != "RunScript"

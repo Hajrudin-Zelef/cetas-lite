@@ -32,6 +32,22 @@ export function initChat() {
   const attachChips = document.getElementById("attach-chips");
   const attachInput = document.getElementById("attach-input");
   const attachBtn = document.getElementById("attach-btn");
+  const thumbCache = {};
+
+  async function thumbFor(id) {
+    if (thumbCache[id]) return thumbCache[id];
+    try {
+      const resp = await fetch("/api/chat/attach/" + encodeURIComponent(id), {
+        headers: { Authorization: "Bearer " + getToken() },
+      });
+      if (!resp.ok) return "";
+      const url = URL.createObjectURL(await resp.blob());
+      thumbCache[id] = url;
+      return url;
+    } catch (e) {
+      return "";
+    }
+  }
 
   function el(tag, cls, text) {
     const e = document.createElement(tag);
@@ -173,6 +189,14 @@ export function initChat() {
     attachChips.hidden = attachments.length === 0;
     for (const a of attachments) {
       const chip = el("span", "attach-chip");
+      if (a.kind === "image") {
+        const img = el("img", "attach-thumb");
+        img.alt = a.name;
+        thumbFor(a.id).then((u) => {
+          if (u) img.src = u;
+        });
+        chip.appendChild(img);
+      }
       chip.appendChild(el("span", "attach-name", a.name));
       const rm = el("button", "attach-remove", "\u00d7");
       rm.type = "button";
