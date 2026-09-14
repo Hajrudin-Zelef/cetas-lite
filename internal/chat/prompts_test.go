@@ -35,8 +35,22 @@ func TestChatSystemPromptInjected(t *testing.T) {
 	sp := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok"}}}
 	e := newAgentEngine(t, sp, plainFamily(alias.Member{Provider: "fake", Model: "m"}))
 	runTurn(t, e, "sam", TurnInput{Family: "plain", Mode: "standard", Text: "bonjour"})
-	if !hasSystemContaining(sp.requests(), "senior teacher") {
+	if !hasSystemContaining(sp.requests(), "professeur senior") {
 		t.Fatal("le prompt systeme de chat doit etre injecte")
+	}
+}
+
+func TestChatSystemPromptTokenBudget(t *testing.T) {
+	p := chatSystemPrompt()
+	// ~4 caracteres par token en francais : 700 caracteres ~= 175 tokens,
+	// tres largement sous la limite d'1k tokens en entree pour un "salut".
+	if len(p) > 700 {
+		t.Fatalf("prompt systeme trop long : %d caracteres (budget 700)", len(p))
+	}
+	for _, must := range []string{"professeur senior", "pédagogie premium", "n'en produis pas", "Réfléchis", "n'invente jamais"} {
+		if !strings.Contains(p, must) {
+			t.Fatalf("le prompt systeme devrait contenir %q", must)
+		}
 	}
 }
 
