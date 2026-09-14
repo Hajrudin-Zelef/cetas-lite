@@ -6,6 +6,7 @@ import (
 	"cetas-lite/internal/auth"
 	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
+	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/terminal"
 	webassets "cetas-lite/web"
@@ -19,14 +20,17 @@ type Server struct {
 	auth        *auth.Manager
 	engine      *chat.Engine
 	terminals   *terminal.Manager
+	registry    *provider.Registry
+	httpClient  *http.Client
 	version     string
 	authLimiter *ipLimiter
 	handler     http.Handler
 }
 
-func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *chat.Engine, termMgr *terminal.Manager, version string) *Server {
+func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *chat.Engine, termMgr *terminal.Manager, registry *provider.Registry, httpClient *http.Client, version string) *Server {
 	s := &Server{
-		cfg: cfg, st: st, auth: authMgr, engine: engine, terminals: termMgr, version: version,
+		cfg: cfg, st: st, auth: authMgr, engine: engine, terminals: termMgr,
+		registry: registry, httpClient: httpClient, version: version,
 		authLimiter: newIPLimiter(rate.Every(authLimitEvery), authLimitBurst),
 	}
 
@@ -44,6 +48,9 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("GET /api/aliases", s.requireAuth(s.handleAliasesGet))
 	mux.HandleFunc("PUT /api/aliases", s.requireAuth(s.handleAliasesPut))
 	mux.HandleFunc("GET /api/catalog", s.requireAuth(s.handleCatalogGet))
+	mux.HandleFunc("GET /api/providers", s.requireAuth(s.handleProvidersList))
+	mux.HandleFunc("PUT /api/providers/{id}", s.requireAuth(s.handleProviderPut))
+	mux.HandleFunc("DELETE /api/providers/{id}", s.requireAuth(s.handleProviderDelete))
 	mux.HandleFunc("POST /api/chat/send", s.requireAuth(s.handleChatSend))
 	mux.HandleFunc("POST /api/agents", s.requireAuth(s.handleAgentsCreate))
 	mux.HandleFunc("GET /api/agents", s.requireAuth(s.handleAgentsList))

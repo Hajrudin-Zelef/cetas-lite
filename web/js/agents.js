@@ -3,7 +3,8 @@ import { ThreadView, el } from "./thread-view.js";
 
 // Panneau multi-agents : liste, creation, suivi, stop, suppression.
 export function initAgents() {
-  const toolbarBtn = document.getElementById("agents-btn");
+  const toolbarBtn = document.getElementById("agents-btn") ||
+    document.querySelector('.dev-module-btn[data-module="agents"]');
   if (!toolbarBtn) return;
 
   const panel = document.createElement("aside");
@@ -426,4 +427,7 @@ export function initAgents() {
   }
 
   toolbarBtn.addEventListener("click", togglePanel);
+  window.addEventListener("cetas:open-agents", () => {
+    if (panel.hidden) togglePanel();
+  });
 }

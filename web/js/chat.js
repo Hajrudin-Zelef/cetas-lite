@@ -1,31 +1,24 @@
 import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
-import {
-  applyWebToggle,
-  applyMCPToggle,
-  applyThinkingToggle,
-  setThinking,
-  applyApproveToggle,
-  applyPlanToggle,
-  isAgentMode,
-  persistPrefs,
-} from "./model-select.js";
+import { currentSelection } from "./model-select.js";
+import { getFamilies } from "./model-select.js";
 
 export function initChat() {
-  const log = document.getElementById("chat-log");
+  const log = document.getElementById("chat-container");
   const input = document.getElementById("prompt-input");
-  const form = document.getElementById("composer");
   const stopBtn = document.getElementById("stop-btn");
-  const routeBadge = document.getElementById("route-badge");
-  const statsBadge = document.getElementById("stats-badge");
-  const webToggle = document.getElementById("web-toggle");
+  const routeBadge = document.getElementById("token-info");
+  const statsBadge = document.getElementById("cost-info");
+  const modelAlert = document.getElementById("model-alert");
+  const inputHint = document.getElementById("input-hint");
 
-  const emptyHTML = document.getElementById("empty-chat").outerHTML;
+  const emptyHTML = document.getElementById("empty-chat-placeholder")
+    ? document.getElementById("empty-chat-placeholder").outerHTML
+    : "";
 
   let attachments = [];
-  const attachChips = document.getElementById("attach-chips");
-  const attachInput = document.getElementById("attach-input");
-  const attachBtn = document.getElementById("attach-btn");
+  const attachPreview = document.getElementById("attach-preview");
+  const fileInput = document.getElementById("file-input");
   const thumbCache = {};
 
   async function thumbFor(id) {
@@ -43,23 +36,6 @@ export function initChat() {
     }
   }
 
-  function selection() {
-    const family = document.getElementById("family-select").value;
-    const mode = document.getElementById("mode-select").value;
-    const web = webToggle ? webToggle.getAttribute("aria-pressed") === "true" : false;
-    const mcpToggle = document.getElementById("mcp-toggle");
-    const mcp = mcpToggle ? mcpToggle.getAttribute("aria-pressed") === "true" : false;
-    const thinkToggle = document.getElementById("thinking-toggle");
-    const think = thinkToggle ? thinkToggle.getAttribute("aria-pressed") === "true" : false;
-    const effortSel = document.getElementById("effort-select");
-    const effort = effortSel ? effortSel.value : "default";
-    const approveToggle = document.getElementById("approve-toggle");
-    const approve = approveToggle && !approveToggle.hidden ? approveToggle.getAttribute("aria-pressed") === "true" : false;
-    const planToggle = document.getElementById("plan-toggle");
-    const plan = planToggle && !planToggle.hidden ? planToggle.getAttribute("aria-pressed") === "true" : false;
-    return { family, mode, web, mcp, think, effort, approve: isAgentMode() && approve, plan: isAgentMode() && plan };
-  }
-
   const view = new ThreadView({
     log,
     stopBtn,
@@ -71,8 +47,9 @@ export function initChat() {
     stopURL: "/api/chat/stop",
     approveURL: "/api/chat/approve",
     regenerateURL: "/api/chat/regenerate",
+    actions: true,
     getPayload: (text) => {
-      const sel = selection();
+      const sel = currentSelection();
       return {
         family: sel.family,
         mode: sel.mode,
@@ -86,39 +63,65 @@ export function initChat() {
         attachments: attachments.map((a) => a.id),
       };
     },
+    onDone: () => refreshHint(),
   });
 
+  function showModelAlert(show) {
+    if (modelAlert) modelAlert.style.display = show ? "" : "none";
+  }
+  const alertClose = document.getElementById("model-alert-close");
+  if (alertClose) alertClose.addEventListener("click", () => showModelAlert(false));
+
+  function refreshHint() {
+    if (!inputHint) return;
+    const sel = currentSelection();
+    const fams = getFamilies();
+    const f = fams.find((x) => x.id === sel.family);
+    const m = f ? f.modes.find((x) => x.mode === sel.mode) : null;
+    const parts = [];
+    if (f) parts.push(f.label);
+    if (m) parts.push(m.label);
+    const extra = [];
+    if (sel.web) extra.push("web");
+    if (sel.think) extra.push("réflexion");
+    if (sel.approve) extra.push("approbations");
+    if (sel.plan) extra.push("plan");
+    inputHint.textContent = parts.join(" · ") + (extra.length ? " — " + extra.join(", ") : "");
+  }
+  document.getElementById("family-select")?.addEventListener("change", refreshHint);
+  document.getElementById("mode-select")?.addEventListener("change", refreshHint);
+
+  function renderPreview() {
+    if (!attachPreview) return;
+    attachPreview.innerHTML = "";
+    for (const a of attachments) {
+      const chip = el("div", "attach-chip-preview");
+      const img = el("img", "attach-thumb");
+      img.alt = a.name;
+      thumbFor(a.id).then((url) => {
+        if (url) img.src = url;
+        else img.remove();
+      });
+      chip.appendChild(img);
+      chip.appendChild(el("span", "attach-name", a.name));
+      const rm = el("button", "attach-thumb-remove", "×");
+      rm.type = "button";
+      rm.setAttribute("aria-label", "Retirer");
+      rm.addEventListener("click", () => removeAttachment(a));
+      chip.appendChild(rm);
+      attachPreview.appendChild(chip);
+    }
+  }
+
   function addAttachment(file) {
-    const chip = el("div", "attach-chip");
-    const thumb = el("img", "attach-thumb");
-    thumb.alt = file.name;
-    chip.appendChild(thumb);
-    chip.appendChild(el("span", "attach-name", file.name));
-    const remove = el("button", "attach-remove", "×");
-    remove.type = "button";
-    remove.setAttribute("aria-label", "Retirer la pièce jointe");
-    chip.appendChild(remove);
-    attachChips.appendChild(chip);
-    const entry = { id: file.id, name: file.name, chip };
-    remove.addEventListener("click", () => removeAttachment(entry));
-    thumbFor(file.id).then((url) => {
-      if (url) thumb.src = url;
-      else thumb.remove();
-    });
-    attachments.push(entry);
+    attachments.push({ id: file.id, name: file.name });
+    renderPreview();
   }
 
   function removeAttachment(entry) {
     attachments = attachments.filter((a) => a !== entry);
-    if (entry.chip && entry.chip.parentNode) entry.chip.remove();
+    renderPreview();
     api("/api/chat/attach/" + encodeURIComponent(entry.id), { method: "DELETE" }).catch(() => {});
-  }
-
-  function renderChips() {
-    attachChips.innerHTML = "";
-    const keep = attachments;
-    attachments = [];
-    for (const a of keep) addAttachment({ id: a.id, name: a.name });
   }
 
   async function uploadFiles(files) {
@@ -143,17 +146,19 @@ export function initChat() {
   async function send() {
     const text = input.value.trim();
     if (!text || view.generating) return;
-    const sel = selection();
+    const sel = currentSelection();
     if (!sel.family || !sel.mode) {
-      view.addError("Choisis une famille et un mode.");
+      showModelAlert(true);
       return;
     }
+    showModelAlert(false);
     input.value = "";
     autoGrow();
     const ok = await view.sendText(text);
     if (ok) {
       attachments = [];
-      renderChips();
+      renderPreview();
+      window.dispatchEvent(new CustomEvent("cetas:chat-changed"));
     }
   }
 
@@ -162,10 +167,6 @@ export function initChat() {
     input.style.height = Math.min(input.scrollHeight, 200) + "px";
   }
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    send();
-  });
   input.addEventListener("input", autoGrow);
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -173,72 +174,54 @@ export function initChat() {
       send();
     }
   });
-  stopBtn.addEventListener("click", () => view.stop());
-  if (webToggle) {
-    webToggle.addEventListener("click", () => {
-      const next = webToggle.getAttribute("aria-pressed") !== "true";
-      applyWebToggle(next);
-      persistPrefs().catch(() => {});
-    });
-  }
-  const mcpToggle = document.getElementById("mcp-toggle");
-  if (mcpToggle) {
-    mcpToggle.addEventListener("click", () => {
-      const next = mcpToggle.getAttribute("aria-pressed") !== "true";
-      applyMCPToggle(next);
-      persistPrefs().catch(() => {});
-    });
-  }
-  const thinkingToggle = document.getElementById("thinking-toggle");
-  if (thinkingToggle) {
-    thinkingToggle.addEventListener("click", () => {
-      if (thinkingToggle.disabled) return;
-      const next = thinkingToggle.getAttribute("aria-pressed") !== "true";
-      setThinking(next);
-      persistPrefs().catch(() => {});
-    });
-  }
-  const effortSel = document.getElementById("effort-select");
-  if (effortSel) {
-    effortSel.addEventListener("change", () => persistPrefs().catch(() => {}));
-  }
-  const approveToggle = document.getElementById("approve-toggle");
-  if (approveToggle) {
-    approveToggle.addEventListener("click", () => {
-      const next = approveToggle.getAttribute("aria-pressed") !== "true";
-      applyApproveToggle(next);
-    });
-  }
-  const planToggle = document.getElementById("plan-toggle");
-  if (planToggle) {
-    planToggle.addEventListener("click", () => {
-      const next = planToggle.getAttribute("aria-pressed") !== "true";
-      applyPlanToggle(next);
-    });
-  }
+  if (stopBtn) stopBtn.addEventListener("click", () => view.stop());
 
-  if (attachBtn && attachInput) {
-    attachBtn.addEventListener("click", () => attachInput.click());
-    attachInput.addEventListener("change", () => {
-      if (attachInput.files && attachInput.files.length) {
-        uploadFiles(Array.from(attachInput.files));
+  // Plus-menu
+  const plusBtn = document.getElementById("plus-menu-btn");
+  const plusMenu = document.getElementById("plus-menu-dropdown");
+  if (plusBtn && plusMenu) {
+    plusBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = plusMenu.style.display === "none";
+      plusMenu.style.display = open ? "" : "none";
+    });
+    document.addEventListener("click", (e) => {
+      if (plusMenu.style.display !== "none" && !plusMenu.contains(e.target) && e.target !== plusBtn && !plusBtn.contains(e.target)) {
+        plusMenu.style.display = "none";
       }
-      attachInput.value = "";
+    });
+    plusMenu.querySelectorAll(".plus-menu-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const action = item.dataset.action;
+        plusMenu.style.display = "none";
+        if (action === "attach" && fileInput) fileInput.click();
+      });
     });
   }
-  form.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    form.classList.add("dragover");
-  });
-  form.addEventListener("dragleave", () => form.classList.remove("dragover"));
-  form.addEventListener("drop", (e) => {
-    e.preventDefault();
-    form.classList.remove("dragover");
-    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
-      uploadFiles(Array.from(e.dataTransfer.files));
-    }
-  });
 
+  if (fileInput) {
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files && fileInput.files.length) uploadFiles(Array.from(fileInput.files));
+      fileInput.value = "";
+    });
+  }
+  const inputWrapper = input.closest(".input-wrapper");
+  if (inputWrapper) {
+    inputWrapper.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      inputWrapper.classList.add("drag-over");
+    });
+    inputWrapper.addEventListener("dragleave", () => inputWrapper.classList.remove("drag-over"));
+    inputWrapper.addEventListener("drop", (e) => {
+      e.preventDefault();
+      inputWrapper.classList.remove("drag-over");
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+        uploadFiles(Array.from(e.dataTransfer.files));
+      }
+    });
+  }
+
+  // Micro
   const micBtn = document.getElementById("mic-btn");
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (micBtn && SR) {
@@ -262,23 +245,52 @@ export function initChat() {
     rec.addEventListener("end", () => micBtn.classList.remove("active"));
     rec.addEventListener("error", () => micBtn.classList.remove("active"));
   } else if (micBtn) {
-    micBtn.hidden = true;
+    micBtn.style.display = "none";
   }
 
-  const plusBtn = document.getElementById("plus-menu-btn");
-  const plusMenu = document.getElementById("plus-menu-dropdown");
-  if (plusBtn && plusMenu) {
-    plusMenu.hidden = true;
-    plusBtn.addEventListener("click", (e) => {
+  // Export (menu partage)
+  const shareBtn = document.getElementById("share-btn");
+  const shareMenu = document.getElementById("share-menu");
+  if (shareBtn && shareMenu) {
+    shareBtn.style.display = "";
+    shareBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      plusMenu.hidden = !plusMenu.hidden;
+      shareMenu.classList.toggle("open");
     });
-    document.addEventListener("click", (e) => {
-      if (!plusMenu.hidden && !plusMenu.contains(e.target) && e.target !== plusBtn) {
-        plusMenu.hidden = true;
+    document.addEventListener("click", () => shareMenu.classList.remove("open"));
+    const dl = async (format) => {
+      try {
+        const resp = await fetch("/api/chat/export?format=" + format, {
+          headers: { Authorization: "Bearer " + getToken() },
+        });
+        if (!resp.ok) throw new Error("export impossible");
+        const blob = await resp.blob();
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "conversation." + (format === "html" ? "html" : "md");
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      } catch (e) {
+        view.addError(e.message);
       }
-    });
+    };
+    document.getElementById("share-menu-md")?.addEventListener("click", () => dl("md"));
+    document.getElementById("share-menu-html")?.addEventListener("click", () => dl("html"));
   }
+  const summaryBtn = document.getElementById("summary-btn");
+  if (summaryBtn) summaryBtn.style.display = "none";
 
+  // Reset du chat (nouvelle conversation gérée par la sidebar)
+  window.addEventListener("cetas:chat-reset", () => {
+    view.reset();
+    attachments = [];
+    renderPreview();
+    refreshHint();
+  });
+
+  refreshHint();
   view.connect();
+  return view;
 }

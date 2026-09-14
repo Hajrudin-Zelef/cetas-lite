@@ -11,6 +11,9 @@ var providerLabels = map[string]string{
 	"openrouter":  "OpenRouter",
 	"opencode":    "OpenCode Zen",
 	"opencode-go": "OpenCode Go",
+	"llamacpp":    "llama.cpp",
+	"ollama":      "Ollama",
+	"lmstudio":    "LM Studio",
 }
 
 var providerOrder = []string{"deepseek", "openrouter", "opencode", "opencode-go"}

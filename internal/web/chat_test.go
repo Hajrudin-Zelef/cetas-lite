@@ -62,7 +62,7 @@ func newTestServerWith(t *testing.T, fp provider.Provider) *Server {
 	}}
 	engine := chat.NewEngine(reg, fams, st, nil, t.TempDir())
 	termMgr := terminal.NewManager(cfg.WorkspaceDir, t.TempDir())
-	return New(cfg, st, m, engine, termMgr, "test")
+	return New(cfg, st, m, engine, termMgr, reg, provider.NewHTTPClient(), "test")
 }
 
 func tokenFor(t *testing.T, base string) string {

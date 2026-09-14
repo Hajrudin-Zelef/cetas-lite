@@ -22,7 +22,6 @@ import (
 	"cetas-lite/internal/backup"
 	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
-	"cetas-lite/internal/cryptovault"
 	"cetas-lite/internal/customtools"
 	"cetas-lite/internal/desktop"
 	"cetas-lite/internal/local"
@@ -33,6 +32,7 @@ import (
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/terminal"
+	"cetas-lite/internal/vault"
 	"cetas-lite/internal/web"
 	"cetas-lite/internal/worktree"
 )
@@ -174,7 +174,7 @@ func buildApp() (*app, error) {
 	engine.SetWorktreeManager(wtMgr)
 	termMgr := terminal.NewManager(cfg.WorkspaceDir, wtMgr.Root())
 
-	srv := web.New(cfg, st, authMgr, engine, termMgr, version)
+	srv := web.New(cfg, st, authMgr, engine, termMgr, registry, client, version)
 	return &app{
 		cfg:     cfg,
 		handler: srv.Handler(),
@@ -317,7 +317,7 @@ func runKeys(args []string) error {
 		if value == "" {
 			return errors.New("valeur vide")
 		}
-		vault, err := openVault(st)
+		vault, err := vault.Open(st)
 		if err != nil {
 			return err
 		}
@@ -446,7 +446,7 @@ func loadProviderKeys(st *store.Store) map[string]string {
 	if err != nil || len(names) == 0 {
 		return keys
 	}
-	vault, err := openVault(st)
+	vault, err := vault.Open(st)
 	if err != nil {
 		slog.Warn("cles chiffrees ignorees (coffre indisponible)", "raison", err)
 		return keys
@@ -476,23 +476,4 @@ func loadFamilies(st *store.Store) []alias.Family {
 		return fams
 	}
 	return alias.Apply(fams, ov)
-}
-
-func openVault(st *store.Store) (*cryptovault.Vault, error) {
-	password := os.Getenv("CETAS_LITE_VAULT_PASSWORD")
-	if password == "" {
-		return nil, errors.New("CETAS_LITE_VAULT_PASSWORD requis")
-	}
-	salt, ok := st.GetMeta("vault_salt")
-	if !ok {
-		var err error
-		salt, err = cryptovault.NewSalt()
-		if err != nil {
-			return nil, err
-		}
-		if err := st.PutMeta("vault_salt", salt); err != nil {
-			return nil, err
-		}
-	}
-	return cryptovault.New(password, salt)
 }
