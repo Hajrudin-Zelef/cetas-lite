@@ -573,6 +573,20 @@ async function pollMetrics() {
 }
 
 // ---------------- panneau raisonnement ----------------
+let spScrollFrame = 0;
+function spRaf(fn) {
+  if (typeof requestAnimationFrame === "function") return requestAnimationFrame(fn);
+  return setTimeout(fn, 16);
+}
+// Coalesce le scroll sur une frame : evite le reflow (scrollHeight) a
+// chaque delta de raisonnement (technique Marexcode).
+function spScheduleScroll() {
+  if (spScrollFrame) return;
+  spScrollFrame = spRaf(() => {
+    spScrollFrame = 0;
+    spBody.scrollTop = spBody.scrollHeight;
+  });
+}
 function mxResetReason() {
   spUserClosed = false;
   spBody.innerHTML = '<div class="side-panel-empty">Le raisonnement de l\'agent s\'affichera ici.</div>';
@@ -597,11 +611,24 @@ const reasonHooks = {
       t = el("div", "reason-text");
       spBody.appendChild(t);
     }
-    t.textContent = replace === true ? String(text) : t.textContent + String(text);
+    // Rendu incremental : on n'ajoute QUE le nouveau morceau au noeud texte
+    // (appendData). Jamais de textContent sur tout le texte -> pas de O(n)
+    // par delta quand le raisonnement est long (technique Marexcode).
+    if (replace === true) {
+      t.textContent = String(text);
+    } else {
+      let node = t.firstChild;
+      if (!node || node.nodeType !== 3) {
+        t.textContent = "";
+        node = document.createTextNode("");
+        t.appendChild(node);
+      }
+      node.appendData(String(text));
+    }
     spSpinner.style.display = "";
     if (!spUserClosed) mxOpenReason();
     else thinkFab.classList.add("show");
-    spBody.scrollTop = spBody.scrollHeight;
+    spScheduleScroll();
   },
   finish() {
     spSpinner.style.display = "none";

@@ -1,6 +1,5 @@
 import { api, getToken, readSSE } from "./api.js";
-import { appendLinkified, renderInto } from "./markdown.js";
-import { createStreamRenderer } from "./stream-render.js";
+import { appendLinkified, createMarkdownRenderer } from "./markdown.js";
 import {
   appendReasoningPanel,
   finishReasoningPanel,
@@ -9,6 +8,20 @@ import {
 import { setTurnStats } from "./turn-tokens.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+
+// Moteur de rendu streaming accelere (technique Marexcode) : coalesce les
+// deltas sur une seule frame + ne re-rend que les blocs markdown modifies.
+const mdRenderer = createMarkdownRenderer();
+
+function rafTick(fn) {
+  if (typeof requestAnimationFrame === "function") return requestAnimationFrame(fn);
+  return setTimeout(fn, 16);
+}
+
+function cancelRafTick(id) {
+  if (typeof cancelAnimationFrame === "function") cancelAnimationFrame(id);
+  else clearTimeout(id);
+}
 
 export function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -107,7 +120,10 @@ export class ThreadView {
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
     this.assistant = null;
-    this.textRenderer = null;
+    this.assistantBody = null;
+    this.assistantText = "";
+    this.assistantStarted = false;
+    this.scrollFrame = 0;
     this.reasoningEl = null;
     this.reasoningText = "";
     this.controller = null;
@@ -139,7 +155,39 @@ export class ThreadView {
   }
 
   scroll(force) {
-    if (force || this.atBottom()) this.log.scrollTop = this.log.scrollHeight;
+    if (force) {
+      if (this.scrollFrame) {
+        cancelRafTick(this.scrollFrame);
+        this.scrollFrame = 0;
+      }
+      this.log.scrollTop = this.log.scrollHeight;
+      return;
+    }
+    this.scheduleScroll();
+  }
+
+  // Coalesce toutes les demandes de scroll sur une seule frame : evite de
+  // lire scrollHeight (reflow) a chaque delta de streaming (technique Marexcode).
+  scheduleScroll() {
+    if (this.scrollFrame) return;
+    this.scrollFrame = rafTick(() => {
+      this.scrollFrame = 0;
+      if (this.atBottom()) this.log.scrollTop = this.log.scrollHeight;
+    });
+  }
+
+  // Fige le rendu du message assistant en cours (fin de tour, outil, approbation).
+  finalizeAssistant() {
+    if (this.assistantBody) mdRenderer.finalize(this.assistantBody, this.assistantText);
+  }
+
+  resetAssistantState() {
+    this.assistant = null;
+    this.assistantBody = null;
+    this.assistantText = "";
+    this.assistantStarted = false;
+    this.reasoningEl = null;
+    this.reasoningText = "";
   }
 
   setBusy(v) {
@@ -188,19 +236,29 @@ export class ThreadView {
       this.assistant.appendChild(body);
       wrapper.appendChild(this.assistant);
       this.log.appendChild(wrapper);
-      this.textRenderer = createStreamRenderer({
-        onRender: (t) => renderInto(body, t),
-        onFirst: () => this.hideWait(),
-      });
+      this.assistantBody = body;
+      this.assistantText = "";
+      this.assistantStarted = false;
     }
     return this.assistant;
   }
 
   appendContent(text, isReplace) {
     this.ensureAssistant();
-    if (isReplace) this.textRenderer.replace(text);
-    else this.textRenderer.add(text);
-    this.scroll();
+    if (!this.assistantStarted) {
+      this.assistantStarted = true;
+      this.hideWait();
+    }
+    // Streaming accelere (technique Marexcode) : update() bufferise et rend
+    // au plus une fois par frame, en ne re-rendant que les blocs modifies.
+    if (isReplace) {
+      this.assistantText = String(text);
+      mdRenderer.render(this.assistantBody, text);
+    } else {
+      this.assistantText += String(text);
+      mdRenderer.update(this.assistantBody, this.assistantText);
+    }
+    this.scheduleScroll();
   }
 
   ensureReasoning() {
@@ -224,10 +282,24 @@ export class ThreadView {
       appendReasoningPanel(text, isReplace);
       return;
     }
-    this.ensureReasoning();
-    this.reasoningText = isReplace ? String(text) : this.reasoningText + String(text);
-    this.reasoningEl.querySelector(".thinking-content").textContent = this.reasoningText;
-    this.scroll();
+    const box = this.ensureReasoning().querySelector(".thinking-content");
+    // Rendu incremental : on n'ajoute QUE le nouveau morceau au noeud texte
+    // (appendData). Jamais de textContent sur tout le texte -> pas de O(n)
+    // par delta quand le raisonnement est long (technique Marexcode).
+    if (isReplace) {
+      box.textContent = String(text);
+      this.reasoningText = String(text);
+    } else {
+      this.reasoningText += String(text);
+      let node = box.firstChild;
+      if (!node || node.nodeType !== 3) {
+        box.textContent = "";
+        node = document.createTextNode("");
+        box.appendChild(node);
+      }
+      node.appendData(String(text));
+    }
+    this.scheduleScroll();
   }
 
   removeReasoning() {
@@ -316,11 +388,8 @@ export class ThreadView {
       box.appendChild(body);
       this.log.appendChild(box);
       this.toolBoxes.set(key, body);
-      if (this.textRenderer) this.textRenderer.flush();
-      this.assistant = null;
-      this.textRenderer = null;
-      this.reasoningEl = null;
-      this.reasoningText = "";
+      this.finalizeAssistant();
+      this.resetAssistantState();
       this.scroll(true);
       return;
     }
@@ -418,7 +487,7 @@ export class ThreadView {
     card.appendChild(row);
     this.log.appendChild(card);
     this.approvalCards.set(id, card);
-    if (this.textRenderer) this.textRenderer.flush();
+    this.finalizeAssistant();
     this.scroll(true);
   }
 
@@ -445,9 +514,9 @@ export class ThreadView {
   }
 
   finishTurn() {
-    if (this.textRenderer) this.textRenderer.flush();
+    this.finalizeAssistant();
     const box = this.assistant;
-    const raw = this.textRenderer ? this.textRenderer.text() : "";
+    const raw = this.assistantText;
     if (box) box.classList.remove("streaming");
     this.hideWait();
     this.setBusy(false);
@@ -459,10 +528,7 @@ export class ThreadView {
       this.addTurnStats(box);
       this.addActions(box, raw);
     }
-    this.assistant = null;
-    this.textRenderer = null;
-    this.reasoningEl = null;
-    this.reasoningText = "";
+    this.resetAssistantState();
     this.turnStartTs = 0;
     this.turnStats = null;
     this.turnRoute = null;
@@ -479,7 +545,9 @@ export class ThreadView {
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
     this.assistant = null;
-    this.textRenderer = null;
+    this.assistantBody = null;
+    this.assistantText = "";
+    this.assistantStarted = false;
     this.reasoningEl = null;
     this.reasoningText = "";
     this.toolBoxes.clear();
@@ -510,10 +578,7 @@ export class ThreadView {
     }
     if (ev.user !== undefined) {
       this.addUser(String(ev.user));
-      this.assistant = null;
-      this.textRenderer = null;
-      this.reasoningEl = null;
-      this.reasoningText = "";
+      this.resetAssistantState();
       this.turnStartTs = Date.now();
       this.turnStats = null;
       this.turnRoute = null;

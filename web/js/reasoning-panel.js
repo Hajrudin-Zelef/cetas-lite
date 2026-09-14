@@ -21,6 +21,25 @@ function body() {
   return document.getElementById("reason-panel-body");
 }
 
+function panelRaf(fn) {
+  if (typeof requestAnimationFrame === "function") return requestAnimationFrame(fn);
+  return setTimeout(fn, 16);
+}
+
+let panelScrollFrame = 0;
+
+// Coalesce le scroll sur une frame : evite le reflow (scrollHeight) a
+// chaque delta de raisonnement (technique Marexcode).
+function schedulePanelScroll() {
+  const b = body();
+  if (!b || panelScrollFrame) return;
+  panelScrollFrame = panelRaf(() => {
+    panelScrollFrame = 0;
+    const bb = body();
+    if (bb) bb.scrollTop = bb.scrollHeight;
+  });
+}
+
 function reopenBtn() {
   return document.getElementById("reason-panel-reopen");
 }
@@ -85,13 +104,26 @@ export function appendReasoningPanel(text, replace) {
     t = el("div", "reason-text");
     b.appendChild(t);
   }
-  t.textContent = replace === true ? String(text) : t.textContent + String(text);
+  // Rendu incremental : on n'ajoute QUE le nouveau morceau au noeud texte
+  // (appendData). Jamais de textContent sur tout le texte -> pas de O(n)
+  // par delta quand le raisonnement est long (technique Marexcode).
+  if (replace === true) {
+    t.textContent = String(text);
+  } else {
+    let node = t.firstChild;
+    if (!node || node.nodeType !== 3) {
+      t.textContent = "";
+      node = document.createTextNode("");
+      t.appendChild(node);
+    }
+    node.appendData(String(text));
+  }
   if (!userClosed) openReasonPanel();
   else {
     const ro = reopenBtn();
     if (ro && hasContent()) ro.style.display = "";
   }
-  b.scrollTop = b.scrollHeight;
+  schedulePanelScroll();
   setReasoningStreaming(true);
 }
 
