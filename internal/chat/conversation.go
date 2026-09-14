@@ -47,6 +47,29 @@ type TurnInput struct {
 	// Repo est le chemin du depot a cloner en worktree.
 	Worktree bool
 	Repo     string
+	// MaxTokens limite les tokens generes par reponse (0 = defaut).
+	MaxTokens int
+}
+
+// Bornes du reglage "tokens max par reponse".
+const (
+	MinMaxTokens = 300
+	MaxMaxTokens = 32768
+)
+
+// ClampMaxTokens ramene n dans [MinMaxTokens, MaxMaxTokens].
+// Une valeur <= 0 retourne 0 (defaut du provider).
+func ClampMaxTokens(n int) int {
+	if n <= 0 {
+		return 0
+	}
+	if n < MinMaxTokens {
+		return MinMaxTokens
+	}
+	if n > MaxMaxTokens {
+		return MaxMaxTokens
+	}
+	return n
 }
 
 type Runner interface {

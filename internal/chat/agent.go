@@ -76,7 +76,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		c.appendDelta(epoch, routeDelta(m, in.Family, in.Mode, false, res.fallback))
 
 		emitted := false
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan})
+		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens})
 		if err == nil {
 			c.appendAssistant(epoch, content)
 			return
@@ -152,6 +152,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			Messages:        normalizeSystemMessages(msgs),
 			Tools:           toolSet,
 			Temperature:     0.7,
+			MaxTokens:       opts.maxTokens,
 			EnableReasoning: true,
 			ReasoningEffort: effort,
 		}, emit, emitted)
@@ -362,6 +363,8 @@ type agentOpts struct {
 	// plan active le mode plan : exploration en lecture seule, puis
 	// validation du plan avant execution.
 	plan bool
+	// maxTokens limite les tokens generes par reponse (0 = defaut).
+	maxTokens int
 }
 
 // needsApproval indique si un outil exige une validation utilisateur avant

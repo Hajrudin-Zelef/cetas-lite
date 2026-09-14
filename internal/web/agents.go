@@ -37,6 +37,7 @@ func (s *Server) handleAgentsCreate(w http.ResponseWriter, r *http.Request) {
 		Text: body.Message, Approve: body.Approve, Plan: body.Plan,
 		AgentMode: true,
 		Worktree:  body.Worktree, Repo: body.Repo,
+		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
 	})
 	if err != nil {
 		switch {
@@ -123,6 +124,7 @@ func (s *Server) handleAgentMessage(w http.ResponseWriter, r *http.Request) {
 	err := s.engine.MessageAgent(claims.Username, r.PathValue("id"), chat.TurnInput{
 		User: claims.Username, Text: body.Message, Approve: body.Approve, Plan: body.Plan,
 		AgentMode: true,
+		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
 	})
 	if err != nil {
 		switch {

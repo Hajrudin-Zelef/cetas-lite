@@ -62,6 +62,8 @@ type Request struct {
 	Temperature     float64
 	EnableReasoning bool
 	ReasoningEffort string
+	// MaxTokens limite le nombre de tokens generes par reponse (0 = defaut du provider).
+	MaxTokens int
 }
 
 type Response struct {
@@ -160,6 +162,9 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 	if len(req.Tools) > 0 {
 		payload["tools"] = req.Tools
 		payload["parallel_tool_calls"] = false
+	}
+	if req.MaxTokens > 0 {
+		payload["max_tokens"] = req.MaxTokens
 	}
 	applyReasoning(payload, p.endpoint.Provider, req.EnableReasoning, req.ReasoningEffort)
 	body, err := json.Marshal(payload)

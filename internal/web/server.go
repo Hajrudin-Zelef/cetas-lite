@@ -49,6 +49,8 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("PUT /api/aliases", s.requireAuth(s.handleAliasesPut))
 	mux.HandleFunc("GET /api/catalog", s.requireAuth(s.handleCatalogGet))
 	mux.HandleFunc("GET /api/providers", s.requireAuth(s.handleProvidersList))
+	mux.HandleFunc("GET /api/model-info", s.requireAuth(s.handleModelInfo))
+	mux.HandleFunc("GET /api/metrics", s.requireAuth(s.handleMetrics))
 	mux.HandleFunc("PUT /api/providers/{id}", s.requireAuth(s.handleProviderPut))
 	mux.HandleFunc("DELETE /api/providers/{id}", s.requireAuth(s.handleProviderDelete))
 	mux.HandleFunc("POST /api/chat/send", s.requireAuth(s.handleChatSend))

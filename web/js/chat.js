@@ -1,7 +1,15 @@
 import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
 import { currentSelection } from "./model-select.js";
-import { getFamilies } from "./model-select.js";
+import { getFamilies, getMaxTokens } from "./model-select.js";
+import { initReasonPanel } from "./reasoning-panel.js";
+import {
+  estimateTokens,
+  refreshCtxCounter,
+  refreshModelMeta,
+  resetTurnTokens,
+  setInputEstimate,
+} from "./turn-tokens.js";
 
 export function initChat() {
   const log = document.getElementById("chat-container");
@@ -48,6 +56,8 @@ export function initChat() {
     approveURL: "/api/chat/approve",
     regenerateURL: "/api/chat/regenerate",
     actions: true,
+    reasonPanel: true,
+    trackTokens: true,
     getPayload: (text) => {
       const sel = currentSelection();
       return {
@@ -61,6 +71,7 @@ export function initChat() {
         approve: sel.approve,
         plan: sel.plan,
         agent_mode: sel.appMode === "agent",
+        max_tokens: getMaxTokens(),
         attachments: attachments.map((a) => a.id),
       };
     },
@@ -89,6 +100,7 @@ export function initChat() {
     if (sel.approve) extra.push("approbations");
     if (sel.plan) extra.push("plan");
     inputHint.textContent = parts.join(" · ") + (extra.length ? " — " + extra.join(", ") : "");
+    refreshModelMeta();
   }
   document.getElementById("family-select")?.addEventListener("change", refreshHint);
   document.getElementById("mode-select")?.addEventListener("change", refreshHint);
@@ -171,6 +183,7 @@ export function initChat() {
   }
 
   input.addEventListener("input", autoGrow);
+  input.addEventListener("input", () => setInputEstimate(estimateTokens(input.value)));
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -290,10 +303,13 @@ export function initChat() {
     view.reset();
     attachments = [];
     renderPreview();
+    resetTurnTokens();
     refreshHint();
   });
 
+  initReasonPanel();
   refreshHint();
+  refreshCtxCounter();
   view.connect();
   return view;
 }

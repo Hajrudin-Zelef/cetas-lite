@@ -7,6 +7,7 @@ import { initRightPanel } from "./right-panel.js";
 import { initModals } from "./modals.js";
 import { initAgents } from "./agents.js";
 import { initTerminal } from "./terminal.js";
+import { initMetrics } from "./metrics.js";
 
 const SPLASH_MIN_MS = 1400;
 
@@ -61,6 +62,7 @@ async function boot() {
     initModals();
     initAgents();
     initTerminal();
+    initMetrics();
   } catch (e) {
     console.error("[app] init modules:", e);
   }

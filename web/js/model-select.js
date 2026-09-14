@@ -257,16 +257,8 @@ export async function initModels() {
   document.querySelectorAll("#plus-model-tabs .plus-model-tab").forEach((t) => {
     if (t.dataset.tab !== "text") t.style.display = "none";
   });
-  // Pas de réglage de tokens max côté serveur : masquer la section
-  const maxTokSection = document.getElementById("plus-max-tok-slider");
-  if (maxTokSection) {
-    const sec = maxTokSection.closest(".plus-menu-section");
-    if (sec) {
-      sec.style.display = "none";
-      const sep = sec.nextElementSibling;
-      if (sep && sep.classList.contains("plus-menu-sep")) sep.style.display = "none";
-    }
-  }
+  // Slider "Tokens max par réponse" : réglage serveur (300..32768)
+  initMaxTokensSlider();
 
   function bindCheck(id, apply, persist = true) {
     const elc = document.getElementById(id);
@@ -377,4 +369,42 @@ export async function initModels() {
 
 export function getFamilies() {
   return families;
+}
+
+// --- Slider "Tokens max par réponse" (menu +) ---
+let maxTokensVal = 4096;
+let maxTokensInit = false;
+
+function fmtMaxTok(v) {
+  return v >= 1000 ? (v / 1000).toFixed(v >= 10000 ? 0 : 1).replace(/\.0$/, "") + "K" : String(v);
+}
+
+export function getMaxTokens() {
+  return maxTokensVal;
+}
+
+function initMaxTokensSlider() {
+  const slider = document.getElementById("plus-max-tok-slider");
+  const valEl = document.getElementById("plus-max-tok-val");
+  if (!slider || maxTokensInit) return;
+  maxTokensInit = true;
+  const apply = (v) => {
+    maxTokensVal = v;
+    slider.value = String(v);
+    if (valEl) valEl.textContent = fmtMaxTok(v);
+  };
+  getPrefs()
+    .then((prefs) => {
+      const v = prefs && prefs.max_tokens ? parseInt(prefs.max_tokens, 10) : 4096;
+      apply(Math.min(32768, Math.max(300, isNaN(v) ? 4096 : v)));
+    })
+    .catch(() => apply(4096));
+  let saveTimer = null;
+  slider.addEventListener("input", () => {
+    const v = parseInt(slider.value, 10) || 4096;
+    maxTokensVal = v;
+    if (valEl) valEl.textContent = fmtMaxTok(v);
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => putPrefs({ max_tokens: v }).catch(() => {}), 500);
+  });
 }

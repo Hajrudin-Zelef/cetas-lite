@@ -28,6 +28,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		Worktree    bool     `json:"worktree"`
 		Repo        string   `json:"repo"`
 		Attachments []string `json:"attachments"`
+		MaxTokens   int      `json:"max_tokens"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -37,8 +38,12 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, "family et mode requis")
 		return
 	}
+	maxTokens := chat.ClampMaxTokens(body.MaxTokens)
+	if maxTokens == 0 {
+		maxTokens = chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens)
+	}
 	c := s.engine.Conversation(claims.Username)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments})
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments, MaxTokens: maxTokens})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return

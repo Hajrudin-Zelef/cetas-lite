@@ -1,6 +1,12 @@
 import { api, getToken, readSSE } from "./api.js";
 import { appendLinkified, renderInto } from "./markdown.js";
 import { createStreamRenderer } from "./stream-render.js";
+import {
+  appendReasoningPanel,
+  finishReasoningPanel,
+  resetReasonPanel,
+} from "./reasoning-panel.js";
+import { setTurnStats } from "./turn-tokens.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
@@ -75,6 +81,8 @@ function speakable(md) {
 //   actions : affiche les boutons Copier/Lire (+ Regenerer si regenerateURL)
 //   regenerateURL : endpoint de regeneration (optionnel)
 //   onFirstUser, onDone : callbacks optionnels
+//   reasonPanel : affiche le raisonnement dans le panneau lateral (vue principale)
+//   trackTokens : met a jour la ligne de tokens du composer (vue principale)
 export class ThreadView {
   constructor(opts) {
     this.log = opts.log;
@@ -90,6 +98,8 @@ export class ThreadView {
     this.actions = opts.actions !== false;
     this.regenerateURL = opts.regenerateURL || null;
     this.onDone = opts.onDone || null;
+    this.reasonPanel = opts.reasonPanel === true;
+    this.trackTokens = opts.trackTokens === true;
 
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
@@ -104,6 +114,11 @@ export class ThreadView {
     this.waitIdx = 0;
     this.toolBoxes = new Map();
     this.approvalCards = new Map();
+    // Suivi du tour en cours (pied de message "modèle · temps · tokens").
+    this.turnStartTs = 0;
+    this.turnStats = null;
+    this.turnRoute = null;
+    this.turnElapsedMs = null;
   }
 
   clearEmpty() {
@@ -198,6 +213,10 @@ export class ThreadView {
   }
 
   appendReasoning(text, isReplace) {
+    if (this.reasonPanel) {
+      appendReasoningPanel(text, isReplace);
+      return;
+    }
     this.ensureReasoning();
     this.reasoningText = isReplace ? String(text) : this.reasoningText + String(text);
     this.reasoningEl.querySelector(".thinking-content").textContent = this.reasoningText;
@@ -396,6 +415,28 @@ export class ThreadView {
     this.scroll(true);
   }
 
+  addTurnStats(box) {
+    const s = this.turnStats || {};
+    const inTok = s.prompt_tokens || 0;
+    const outTok = s.completion_tokens || 0;
+    const r = this.turnRoute || {};
+    const model = r.label || r.model || "";
+    let secs = 0;
+    if (this.turnElapsedMs != null) secs = this.turnElapsedMs / 1000;
+    else if (this.turnStartTs) secs = (Date.now() - this.turnStartTs) / 1000;
+    const parts = [];
+    if (model) parts.push(model);
+    parts.push(secs.toFixed(secs < 10 ? 1 : 0) + "s");
+    let tokTxt = outTok.toLocaleString("fr") + " tokens";
+    if (secs > 0 && outTok > 0) tokTxt += " (" + Math.round(outTok / secs) + "/s)";
+    parts.push(tokTxt);
+    const wrapper = box.closest(".message-wrapper") || box;
+    const div = el("div", "turn-stats", parts.join(" · "));
+    div.title =
+      "Entrée : " + inTok.toLocaleString("fr") + " tokens · Sortie : " + outTok.toLocaleString("fr") + " tokens";
+    wrapper.appendChild(div);
+  }
+
   finishTurn() {
     if (this.textRenderer) this.textRenderer.flush();
     const box = this.assistant;
@@ -405,17 +446,26 @@ export class ThreadView {
     this.setBusy(false);
     this.generating = false;
     if (this.stopBtn) this.stopBtn.hidden = true;
-    if (box && raw.trim()) this.addActions(box, raw);
+    if (this.reasonPanel) finishReasoningPanel();
+    if (box && raw.trim()) {
+      this.addTurnStats(box);
+      this.addActions(box, raw);
+    }
     this.assistant = null;
     this.textRenderer = null;
     this.reasoningEl = null;
     this.reasoningText = "";
+    this.turnStartTs = 0;
+    this.turnStats = null;
+    this.turnRoute = null;
+    this.turnElapsedMs = null;
     if (this.onDone) this.onDone();
   }
 
   reset() {
     this.hideWait();
     this.setBusy(false);
+    if (this.reasonPanel) resetReasonPanel();
     this.log.innerHTML = this.emptyHTML;
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
@@ -426,6 +476,10 @@ export class ThreadView {
     this.toolBoxes.clear();
     this.approvalCards.clear();
     this.generating = false;
+    this.turnStartTs = 0;
+    this.turnStats = null;
+    this.turnRoute = null;
+    this.turnElapsedMs = null;
     if (this.stopBtn) this.stopBtn.hidden = true;
     if (this.routeBadge) this.routeBadge.hidden = true;
     if (this.statsBadge) {
@@ -451,6 +505,11 @@ export class ThreadView {
       this.textRenderer = null;
       this.reasoningEl = null;
       this.reasoningText = "";
+      this.turnStartTs = Date.now();
+      this.turnStats = null;
+      this.turnRoute = null;
+      this.turnElapsedMs = null;
+      if (this.reasonPanel) resetReasonPanel();
       this.generating = true;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.showWait();
@@ -484,6 +543,8 @@ export class ThreadView {
     }
     if (ev.stats !== undefined) {
       const s = ev.stats || {};
+      this.turnStats = s;
+      if (this.trackTokens) setTurnStats(s.prompt_tokens, s.completion_tokens);
       if (this.statsBadge) {
         this.statsBadge.hidden = false;
         this.statsBadge.textContent = "↑" + (s.prompt_tokens || 0) + " ↓" + (s.completion_tokens || 0);
@@ -496,6 +557,7 @@ export class ThreadView {
     }
     if (ev.route !== undefined) {
       const r = ev.route || {};
+      this.turnRoute = r;
       if (this.routeBadge) {
         this.routeBadge.hidden = false;
         const name = r.label || r.model || "";
@@ -513,6 +575,8 @@ export class ThreadView {
       return;
     }
     if (ev.turn_done !== undefined) {
+      const td = ev.turn_done || {};
+      if (td.elapsed_ms != null) this.turnElapsedMs = td.elapsed_ms;
       this.finishTurn();
     }
   }

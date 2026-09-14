@@ -397,6 +397,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			Model:           m.Model,
 			Messages:        msgs,
 			Temperature:     0.7,
+			MaxTokens:       in.MaxTokens,
 			EnableReasoning: in.Think,
 			ReasoningEffort: resolveEffort(false, in.Think, in.Text, in.Effort),
 		}, func(ev provider.Event) bool {
