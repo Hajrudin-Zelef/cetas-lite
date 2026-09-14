@@ -40,18 +40,27 @@ func newTransport(cfg ServerConfig) (transport, error) {
 
 // ── stdio ────────────────────────────────────────────────────────────
 
-type syncBuffer struct {
+// limitedSyncBuffer capture le stderr d'un serveur MCP en le bornant : un
+// serveur bavard ne peut pas faire gonfler la memoire sur une longue session.
+type limitedSyncBuffer struct {
 	mu  sync.Mutex
 	buf bytes.Buffer
+	max int
 }
 
-func (b *syncBuffer) Write(p []byte) (int, error) {
+func (b *limitedSyncBuffer) Write(p []byte) (int, error) {
 	b.mu.Lock()
 	defer b.mu.Unlock()
+	if b.buf.Len() >= b.max {
+		return len(p), nil // tronque : on garde le debut
+	}
+	if len(p) > b.max-b.buf.Len() {
+		p = p[:b.max-b.buf.Len()]
+	}
 	return b.buf.Write(p)
 }
 
-func (b *syncBuffer) String() string {
+func (b *limitedSyncBuffer) String() string {
 	b.mu.Lock()
 	defer b.mu.Unlock()
 	return b.buf.String()
@@ -60,6 +69,7 @@ func (b *syncBuffer) String() string {
 type stdioTransport struct {
 	cmd     *exec.Cmd
 	stdin   io.WriteCloser
+	job     uintptr // Job Object Windows (0 sous Unix)
 	mu      sync.Mutex
 	pending map[int64]chan rpcMessage
 	nextID  int64
@@ -87,17 +97,18 @@ func newStdioTransport(cfg ServerConfig) (*stdioTransport, error) {
 	if err != nil {
 		return nil, err
 	}
-	stderr := &syncBuffer{}
+	stderr := &limitedSyncBuffer{max: 64 << 10}
 	cmd.Stderr = stderr
+	isolatePreStart(cmd)
 	if err := cmd.Start(); err != nil {
 		return nil, fmt.Errorf("demarrage %s: %w", cfg.Command, err)
 	}
-	t := &stdioTransport{cmd: cmd, stdin: stdin, pending: map[int64]chan rpcMessage{}}
+	t := &stdioTransport{cmd: cmd, stdin: stdin, pending: map[int64]chan rpcMessage{}, job: isolatePostStart(cmd)}
 	go t.readLoop(stdout, stderr)
 	return t, nil
 }
 
-func (t *stdioTransport) readLoop(stdout io.Reader, stderr *syncBuffer) {
+func (t *stdioTransport) readLoop(stdout io.Reader, stderr *limitedSyncBuffer) {
 	sc := bufio.NewScanner(stdout)
 	sc.Buffer(make([]byte, 0, 64*1024), maxMessageSize)
 	for sc.Scan() {
@@ -175,6 +186,11 @@ func (t *stdioTransport) Call(ctx context.Context, method string, params any) (j
 
 	select {
 	case <-ctx.Done():
+		// Nettoyage : sans ca, chaque appel annule laisse un canal orphelin
+		// dans pending (fuite memoire sur les longues sessions).
+		t.mu.Lock()
+		delete(t.pending, id)
+		t.mu.Unlock()
 		return nil, ctx.Err()
 	case m, ok := <-ch:
 		if !ok {
@@ -226,9 +242,7 @@ func (t *stdioTransport) reply(id int64, rerr *rpcError) {
 
 func (t *stdioTransport) Close() error {
 	t.finish(nil)
-	if t.cmd.Process != nil {
-		_ = t.cmd.Process.Kill()
-	}
+	killTree(t.cmd, t.job)
 	return t.cmd.Wait()
 }
 

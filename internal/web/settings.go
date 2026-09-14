@@ -8,12 +8,14 @@ import (
 )
 
 type uiSettings struct {
-	Theme           string `json:"theme"`
-	Family          string `json:"family"`
-	Mode            string `json:"mode"`
-	AppMode         string `json:"app_mode"`
-	WebDefault      bool   `json:"web_default"`
-	MCPDefault      *bool  `json:"mcp_default,omitempty"`
+	Theme      string `json:"theme"`
+	Family     string `json:"family"`
+	Mode       string `json:"mode"`
+	AppMode    string `json:"app_mode"`
+	WebDefault bool   `json:"web_default"`
+	MCPDefault *bool  `json:"mcp_default,omitempty"`
+	// WebSearchMode : "auto" (defaut), "natif", "outils" ou "off".
+	WebSearchMode   string `json:"websearch_mode"`
 	ThinkingDefault bool   `json:"thinking_default"`
 	ThinkingEffort  string `json:"thinking_effort"`
 	// MaxTokens : tokens max par reponse (300..32768, defaut 4096).
@@ -29,7 +31,7 @@ func validEffort(e string) bool {
 }
 
 func defaultUISettings() uiSettings {
-	return uiSettings{Theme: "ocean", Family: "samagent-n4", Mode: "standard", AppMode: "chat", MaxTokens: 4096}
+	return uiSettings{Theme: "ocean", Family: "samagent-n4", Mode: "standard", AppMode: "chat", WebSearchMode: "auto", MaxTokens: 4096}
 }
 
 func validAppMode(m string) bool {
@@ -55,6 +57,14 @@ func validTheme(t string) bool {
 	return false
 }
 
+func validWebSearchMode(m string) bool {
+	switch m {
+	case "", "auto", "natif", "outils", "off":
+		return true
+	}
+	return false
+}
+
 func (s *Server) storedSettings(user string) uiSettings {
 	out := defaultUISettings()
 	if raw, ok := s.st.GetSetting(user, "ui"); ok {
@@ -67,6 +77,9 @@ func (s *Server) storedSettings(user string) uiSettings {
 	}
 	if !validAppMode(out.AppMode) {
 		out.AppMode = defaultUISettings().AppMode
+	}
+	if !validWebSearchMode(out.WebSearchMode) {
+		out.WebSearchMode = "auto"
 	}
 	if out.ThinkingEffort == "" || !validEffort(out.ThinkingEffort) {
 		out.ThinkingEffort = "default"
@@ -100,6 +113,7 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		AppMode         *string `json:"app_mode"`
 		WebDefault      *bool   `json:"web_default"`
 		MCPDefault      *bool   `json:"mcp_default"`
+		WebSearchMode   *string `json:"websearch_mode"`
 		ThinkingDefault *bool   `json:"thinking_default"`
 		ThinkingEffort  *string `json:"thinking_effort"`
 		MaxTokens       *int    `json:"max_tokens"`
@@ -131,6 +145,16 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 	}
 	if body.WebDefault != nil {
 		cur.WebDefault = *body.WebDefault
+	}
+	if body.WebSearchMode != nil {
+		if !validWebSearchMode(*body.WebSearchMode) {
+			writeError(w, http.StatusBadRequest, "websearch_mode invalide (auto|natif|outils|off)")
+			return
+		}
+		cur.WebSearchMode = *body.WebSearchMode
+		if cur.WebSearchMode == "" {
+			cur.WebSearchMode = "auto"
+		}
 	}
 	if body.MCPDefault != nil {
 		cur.MCPDefault = body.MCPDefault

@@ -1002,3 +1002,144 @@
   border-top: 1px dashed var(--border, #2a2f3a);
   border-bottom: 1px dashed var(--border, #2a2f3a);
 }
+
+/* ---- Recherche web : indicateur + panneau Sources ---- */
+.search-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px;
+  color: var(--text-secondary, #9aa3b2);
+  font-size: 0.85rem;
+}
+.search-spinner {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  border: 2px solid var(--border-light, #2a2f3a);
+  border-top-color: var(--accent, #4aa8ff);
+  animation: search-spin 0.7s linear infinite;
+}
+@keyframes search-spin {
+  to { transform: rotate(360deg); }
+}
+.citations-block {
+  margin: 12px 0 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light, #2a2f3a);
+}
+.citations-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary, #9aa3b2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.citations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+@media (max-width: 900px) {
+  .citations-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.citation-hidden { display: none; }
+.citation-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 10px 12px;
+  background: var(--bg-hover, rgba(255,255,255,0.04));
+  border: 1px solid var(--border-light, #2a2f3a);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text, #e8ecf1);
+  transition: border-color 0.15s, transform 0.1s;
+}
+.citation-card:hover {
+  border-color: var(--accent, #4aa8ff);
+  transform: translateY(-1px);
+}
+.citation-card-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.citation-favicon {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex: none;
+}
+.citation-domain {
+  font-size: 0.72rem;
+  color: var(--text-secondary, #9aa3b2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.citation-num {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-secondary, #9aa3b2);
+  flex: none;
+}
+.citation-card-title {
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.citation-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  padding: 10px 12px;
+  background: var(--bg-hover, rgba(255,255,255,0.04));
+  border: 1px dashed var(--border-light, #2a2f3a);
+  border-radius: 10px;
+  color: var(--text-secondary, #9aa3b2);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.citation-more:hover {
+  color: var(--text, #e8ecf1);
+  border-color: var(--accent, #4aa8ff);
+}
+
+/* --- Réglages : bouton Recharger (plugins) ------------------------------ */
+.audio-setting-btn {
+  background: var(--bg-input, #1a2230);
+  border: 1px solid var(--border-input, #2c3a4f);
+  border-radius: 6px;
+  color: var(--text, #e8ecf1);
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+.audio-setting-btn:hover {
+  border-color: var(--accent, #4aa8ff);
+  color: var(--accent, #4aa8ff);
+}
+.audio-setting-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.rp-mcp-status {
+  font-size: 0.78rem;
+  color: var(--text-dim, #9aa7ba);
+  text-align: right;
+  flex: 1;
+  min-width: 0;
+}

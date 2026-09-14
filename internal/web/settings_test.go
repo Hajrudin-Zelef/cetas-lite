@@ -218,3 +218,28 @@ func TestSettingsMaxTokensValidation(t *testing.T) {
 		t.Fatalf("max_tokens=32768 : status = %d (%s)", rec.Code, rec.Body.String())
 	}
 }
+
+func TestSettingsWebSearchMode(t *testing.T) {
+	s := newTestServer(t, true)
+	h := s.Handler()
+	tok := registerAndLogin(t, h, "sam")
+
+	rec := doJSON(t, h, http.MethodGet, "/api/settings", tok, nil)
+	if body := decode(t, rec); body["websearch_mode"] != "auto" {
+		t.Fatalf("defaut websearch_mode = %v", body["websearch_mode"])
+	}
+
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", tok, map[string]any{"websearch_mode": "natif"})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("put natif status = %d (%s)", rec.Code, rec.Body.String())
+	}
+	rec = doJSON(t, h, http.MethodGet, "/api/settings", tok, nil)
+	if body := decode(t, rec); body["websearch_mode"] != "natif" {
+		t.Fatalf("round-trip websearch_mode = %v", body["websearch_mode"])
+	}
+
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", tok, map[string]any{"websearch_mode": "partout"})
+	if rec.Code != http.StatusBadRequest {
+		t.Fatalf("mode invalide status = %d", rec.Code)
+	}
+}

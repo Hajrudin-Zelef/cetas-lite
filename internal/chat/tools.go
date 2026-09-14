@@ -39,6 +39,9 @@ type DiffLine struct {
 type ToolResult struct {
 	Text string
 	Diff []DiffLine
+	// Meta : donnees structurees jointes au delta SSE (ex. sources d'une
+	// recherche web : {"sources": [{"title","url"}], "search_provider": ...}).
+	Meta map[string]any
 }
 
 var execAllowlist = map[string]bool{

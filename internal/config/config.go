@@ -16,6 +16,7 @@ type Config struct {
 	MemoryDir        string
 	MCPPath          string
 	ToolsPath        string
+	PluginsDir       string
 	DBPath           string
 	RegistrationMode string
 	AllowScript      bool
@@ -90,6 +91,7 @@ func Load() (*Config, error) {
 		MemoryDir:        filepath.Join(home, "memory"),
 		MCPPath:          filepath.Join(home, "mcp.json"),
 		ToolsPath:        filepath.Join(home, "tools.json"),
+		PluginsDir:       filepath.Join(home, "plugins"),
 		DBPath:           filepath.Join(home, "cetas-lite.db"),
 		RegistrationMode: registrationMode,
 		AllowScript:      allowScript,
@@ -97,7 +99,7 @@ func Load() (*Config, error) {
 		Sandbox:          sandbox,
 	}
 
-	for _, dir := range []string{cfg.Home, cfg.DataDir, cfg.WorkspaceDir, cfg.MemoryDir} {
+	for _, dir := range []string{cfg.Home, cfg.DataDir, cfg.WorkspaceDir, cfg.MemoryDir, cfg.PluginsDir} {
 		if err := os.MkdirAll(dir, 0o700); err != nil {
 			return nil, fmt.Errorf("creation de %s: %w", dir, err)
 		}

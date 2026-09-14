@@ -26,6 +26,7 @@ Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.
 - Mémoire : pages Markdown par user sous `$CETAS_LITE_HOME/memory/<user>/`, index `MEMORY.md` auto, recherche TF-IDF.
 - MCP : serveurs déclarés dans `$CETAS_LITE_HOME/mcp.json` (`stdio` ou `http`), outils exposés à l'agent sous `mcp_<serveur>_<outil>` (diagnostic : `./bin/cetas-lite mcp`).
 - Custom tools : outils HTTP définis dans `$CETAS_LITE_HOME/tools.json`, exposés sous `custom_<outil>` (diagnostic : `./bin/cetas-lite tools`).
+- Plugins externes : dossiers `$CETAS_LITE_HOME/plugins/<nom>/plugin.json`, outils `exec` (tout langage, JSON sur stdin/stdout) ou `http`, exposés sous `plugin_<plugin>_<outil>` (exemple : `examples/plugins/horloge/`, doc : `docs/plugins.md`).
 - Rôle : **cetas-lite = tuteur/professeur senior** (chat général, pédagogique) ; l'**agent = code pur** (outils).
 - Thinking : **off par défaut** en chat (toggle `Think`), **forcé** en agent ; effort `défaut/faible/moyen/max`.
 - Lecture : **images** (vision, modèles déclarés dans Settings → Capacités) et **documents** (PDF/texte/HTML) en pièces jointes (bouton + drag & drop). Pas d'Office (convertir en PDF).
@@ -129,6 +130,7 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 - `internal/memory` — pages Markdown + index + TF-IDF
 - `internal/mcp` — client MCP (stdio + HTTP, outils `mcp_*`)
 - `internal/customtools` — outils HTTP d'opérateur (`custom_*`)
+- `internal/plugins` — plugins externes (`plugin_*` : manifeste + exec/HTTP)
 - `internal/docs` / `internal/attach` — extraction documents + pièces jointes
 - `internal/modelcaps` — capacités provider/model (vision/tts/stt)
 - `internal/backup` — bundle tar.gz (base + mcp.json), restauration anti-traversée

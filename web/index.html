@@ -756,6 +756,15 @@
                         <label class="plus-menu-toggle"><input type="checkbox" id="cfg-web-default"><span class="plus-menu-toggle-slider"></span></label>
                     </div>
                     <div class="audio-setting-row">
+                        <span class="audio-setting-label">Mode de recherche web</span>
+                        <select id="cfg-websearch-mode" class="audio-setting-select">
+                            <option value="auto">Auto (natif si dispo, sinon outils)</option>
+                            <option value="natif">Natif uniquement (OpenRouter)</option>
+                            <option value="outils">Outils uniquement (Tavily/Exa/Brave/Jina)</option>
+                            <option value="off">Désactivée</option>
+                        </select>
+                    </div>
+                    <div class="audio-setting-row">
                         <span class="audio-setting-label">Réflexion par défaut</span>
                         <label class="plus-menu-toggle"><input type="checkbox" id="cfg-thinking-default"><span class="plus-menu-toggle-slider"></span></label>
                     </div>
@@ -775,6 +784,14 @@
                     <div class="audio-setting-row">
                         <span class="audio-setting-label">État MCP</span>
                         <span id="cfg-mcp-status" class="rp-mcp-status"></span>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Plugins externes</span>
+                        <button id="cfg-plugins-reload" class="audio-setting-btn" type="button">Recharger</button>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">État plugins</span>
+                        <span id="cfg-plugins-status" class="rp-mcp-status"></span>
                     </div>
                 </div>
             </div>

@@ -42,6 +42,71 @@ function summarizeArgs(args) {
   return args.command || args.file_path || args.pattern || args.query || "";
 }
 
+// Indicateur visuel "recherche web en cours" : spinner + libellé simple.
+function renderSearchStatus(label) {
+  const row = el("div", "search-status");
+  row.appendChild(el("span", "search-spinner"));
+  const txt = el("span", "search-status-text");
+  txt.textContent = "Recherche web en cours" + (label ? " : " + label : "") + "…";
+  row.appendChild(txt);
+  return row;
+}
+
+function searchLabel(name, args) {
+  args = args || {};
+  if (name === "web_fetch" && args.url) return String(args.url);
+  if (args.query) return String(args.query);
+  return "";
+}
+
+// Panneau "Sources" : cartes des pages consultees (style de la reference).
+function renderSources(sources) {
+  const VISIBLE = 4;
+  const block = el("div", "citations-block");
+  block.appendChild(el("div", "citations-title", "Sources"));
+  const list = el("ul", "citations-list");
+  sources.forEach((s, i) => {
+    const url = typeof s === "string" ? s : s.url || "";
+    const title = typeof s === "string" ? "" : s.title || "";
+    let host = url;
+    try {
+      host = new URL(url).hostname.replace(/^www\./, "");
+    } catch (e) { /* url non parsable : on affiche telle quelle */ }
+    const li = el("li");
+    if (i >= VISIBLE) li.classList.add("citation-hidden");
+    const a = el("a", "citation-card");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.title = url;
+    const head = el("div", "citation-card-head");
+    const fav = el("img", "citation-favicon");
+    fav.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(host) + "&sz=32";
+    fav.alt = "";
+    fav.loading = "lazy";
+    fav.onerror = () => fav.remove();
+    head.appendChild(fav);
+    head.appendChild(el("span", "citation-domain", host));
+    head.appendChild(el("span", "citation-num", "[" + (i + 1) + "]"));
+    a.appendChild(head);
+    a.appendChild(el("div", "citation-card-title", title || host));
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+  if (sources.length > VISIBLE) {
+    const more = el("li");
+    const btn = el("div", "citation-more", "+" + (sources.length - VISIBLE) + " sources");
+    btn.addEventListener("click", () => {
+      list.querySelectorAll(".citation-hidden").forEach((x) => x.classList.remove("citation-hidden"));
+      more.remove();
+    });
+    more.appendChild(btn);
+    list.appendChild(more);
+  }
+  block.appendChild(list);
+  return block;
+}
+
 function renderTodos(todos) {
   const list = el("ul", "chat-todo-list");
   for (const t of todos) {
@@ -139,6 +204,8 @@ export class ThreadView {
     this.waitIdx = 0;
     this.toolBoxes = new Map();
     this.approvalCards = new Map();
+    // Indicateur de recherche web native (plugin provider) en cours.
+    this.searchStatus = null;
     // Suivi du tour en cours (pied de message "modèle · temps · tokens").
     this.turnStartTs = 0;
     this.turnStats = null;
@@ -523,6 +590,9 @@ export class ThreadView {
       if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
         body.appendChild(renderTodos(ev.args.todos));
       }
+      if (ev.name === "web_search" || ev.name === "web_fetch") {
+        body.appendChild(renderSearchStatus(searchLabel(ev.name, ev.args)));
+      }
       box.appendChild(body);
       this.log.appendChild(box);
       this.toolBoxes.set(key, body);
@@ -533,6 +603,15 @@ export class ThreadView {
     }
     const body = this.toolBoxes.get(key);
     if (!body) return;
+    // Fin d'une recherche web : l'indicateur laisse place au panneau Sources.
+    const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
+    const status = body.querySelector(".search-status");
+    if (status) status.remove();
+    if (isSearch && Array.isArray(ev.sources) && ev.sources.length) {
+      body.appendChild(renderSources(ev.sources));
+      this.requestFollow();
+      return;
+    }
     if (Array.isArray(ev.diff) && ev.diff.length) {
       body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
     }
@@ -542,6 +621,32 @@ export class ThreadView {
       body.appendChild(pre);
     }
     this.requestFollow();
+  }
+
+  // Recherche web native du provider (hors outils) : indicateur pendant la
+  // generation, puis panneau "Sources" a partir des annotations recues.
+  handleSearch(s) {
+    if (!s || typeof s !== "object") return;
+    if (s.phase === "start") {
+      this.clearEmpty();
+      this.hideWait();
+      if (!this.searchStatus) {
+        this.searchStatus = renderSearchStatus("");
+        this.log.appendChild(this.searchStatus);
+      }
+      this.requestFollow();
+      return;
+    }
+    if (this.searchStatus) {
+      this.searchStatus.remove();
+      this.searchStatus = null;
+    }
+    const srcs = Array.isArray(s.sources) ? s.sources : [];
+    if (srcs.length) {
+      this.clearEmpty();
+      this.log.appendChild(renderSources(srcs));
+      this.requestFollow();
+    }
   }
 
   summarizeApprovalArgs(tool, args) {
@@ -691,6 +796,7 @@ export class ThreadView {
     this.reasoningText = "";
     this.toolBoxes.clear();
     this.approvalCards.clear();
+    this.searchStatus = null;
     this.generating = false;
     this.turnStartTs = 0;
     this.turnStats = null;
@@ -753,6 +859,10 @@ export class ThreadView {
     }
     if (ev.tool !== undefined) {
       this.addTool(ev.tool);
+      return;
+    }
+    if (ev.search !== undefined) {
+      this.handleSearch(ev.search);
       return;
     }
     if (ev.approval !== undefined) {

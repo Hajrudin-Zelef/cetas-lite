@@ -65,7 +65,7 @@ func (e *Engine) webExecute(ctx context.Context, user, name, argsJSON string) To
 			}
 			return ToolResult{Text: "[info] recherche web: " + msg}
 		}
-		return ToolResult{Text: formatHits(res)}
+		return ToolResult{Text: formatHits(res), Meta: searchResultMeta(res)}
 	case "web_fetch":
 		raw := strings.TrimSpace(strArg(args, "url"))
 		if raw == "" {
@@ -87,6 +87,16 @@ func formatHits(res search.Result) string {
 		fmt.Fprintf(&b, "[%d] %s\n%s\n%s\n", i+1, h.Title, h.URL, h.Description)
 	}
 	return truncate(b.String(), toolMaxOutput)
+}
+
+// searchResultMeta expose les sources d'une recherche au frontend (panneau
+// "Sources" + indicateur visuel), en plus du texte pour le modele.
+func searchResultMeta(res search.Result) map[string]any {
+	srcs := make([]map[string]any, 0, len(res.Hits))
+	for _, h := range res.Hits {
+		srcs = append(srcs, map[string]any{"title": h.Title, "url": h.URL})
+	}
+	return map[string]any{"sources": srcs, "search_provider": res.Provider}
 }
 
 func formatFetch(title, md string) string {

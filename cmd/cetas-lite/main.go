@@ -28,6 +28,7 @@ import (
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/memory"
 	"cetas-lite/internal/modelcaps"
+	"cetas-lite/internal/plugins"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
@@ -157,6 +158,18 @@ func buildApp() (*app, error) {
 		return nil, err
 	}
 	engine.SetCustom(customManager)
+	pluginManager := plugins.NewManager(cfg.PluginsDir, client)
+	if err := pluginManager.Load(); err != nil {
+		_ = st.Close()
+		return nil, err
+	}
+	engine.SetPlugins(pluginManager)
+	if infos := pluginManager.Plugins(); len(infos) > 0 {
+		slog.Info("plugins charges", "count", len(infos), "dir", cfg.PluginsDir)
+	}
+	for _, perr := range pluginManager.Errors() {
+		slog.Warn("plugin ignore", "erreur", perr)
+	}
 	mcpManager, err := mcp.NewManager(cfg.MCPPath, version)
 	if err != nil {
 		_ = st.Close()

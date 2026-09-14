@@ -76,7 +76,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		c.appendDelta(epoch, routeDelta(m, in.Family, in.Mode, false, res.fallback))
 
 		emitted := false
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens})
+		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: e.useNativeWebSearch(in, m.Provider, m.Model), webFallback: e.webToolsFor(in)})
 		if err == nil {
 			c.appendAssistant(epoch, content)
 			return
@@ -111,6 +111,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	// seulement apres validation du plan par l'utilisateur.
 	fullTools := tools
 	planApproved := false
+	nativeFallbackDone := false
 	if opts.plan {
 		tools = readOnlyTools(tools)
 		msgs = append(msgs, provider.Message{Role: "system", Content: planModePrompt()})
@@ -147,7 +148,12 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		if !disableTools {
 			toolSet = tools
 		}
-		resp, err := e.streamWithRetry(ctx, p, provider.Request{
+		// Recherche native : les outils web deviennent redondants, on les
+		// retire pour eviter une double recherche (natif + outils).
+		if opts.nativeWeb {
+			toolSet = dropWebTools(toolSet)
+		}
+		req := provider.Request{
 			Model:           m.Model,
 			Messages:        normalizeSystemMessages(msgs),
 			Tools:           toolSet,
@@ -155,10 +161,27 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			MaxTokens:       opts.maxTokens,
 			EnableReasoning: true,
 			ReasoningEffort: effort,
-		}, emit, emitted)
+		}
+		if opts.nativeWeb {
+			req.Extra = nativeWebExtra()
+			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
+		}
+		resp, err := e.streamWithRetry(ctx, p, req, emit, emitted)
+		if err == nil && opts.nativeWeb {
+			c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
+		}
 		if err != nil {
 			if ctx.Err() != nil {
 				return last, nil
+			}
+			// Repli natif -> outils : la recherche native a echoue avant
+			// toute emission. On retente une seule fois sans le plugin natif :
+			// les outils web (retires pour le natif) sont reinjectes.
+			if opts.nativeWeb && !*emitted && !nativeFallbackDone && opts.webFallback {
+				nativeFallbackDone = true
+				opts.nativeWeb = false
+				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(nil, true)})
+				continue
 			}
 			var he *provider.HTTPError
 			if errors.As(err, &he) && !disableTools && len(tools) > 0 {
@@ -242,10 +265,20 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 						}
 					}
 				}
-				c.appendDelta(epoch, map[string]any{"tool": map[string]any{
+				toolDelta := map[string]any{
 					"name": tc.Function.Name, "args": args, "phase": "end",
 					"result": truncate(out.Text, toolMaxOutput), "diff": truncateDiff(out.Diff, 300),
-				}})
+				}
+				// Sources structurees (recherche web) pour le panneau "Sources".
+				if out.Meta != nil {
+					if srcs, ok := out.Meta["sources"]; ok {
+						toolDelta["sources"] = srcs
+					}
+					if sp, ok := out.Meta["search_provider"]; ok {
+						toolDelta["search_provider"] = sp
+					}
+				}
+				c.appendDelta(epoch, map[string]any{"tool": toolDelta})
 				msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: tc.ID, Content: out.Text})
 				if followup != nil {
 					msgs = append(msgs, *followup)
@@ -365,6 +398,12 @@ type agentOpts struct {
 	plan bool
 	// maxTokens limite les tokens generes par reponse (0 = defaut).
 	maxTokens int
+	// nativeWeb : la recherche web passe par le plugin natif du provider
+	// (OpenRouter) au lieu des outils web_search/web_fetch.
+	nativeWeb bool
+	// webFallback : si la recherche native echoue avant toute emission,
+	// retenter une fois avec les outils web_search/web_fetch (mode auto).
+	webFallback bool
 }
 
 // needsApproval indique si un outil exige une validation utilisateur avant
@@ -374,7 +413,7 @@ func needsApproval(name string) bool {
 	case "Write", "Edit", "Bash", "RunScript":
 		return true
 	}
-	return strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_")
+	return strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || strings.HasPrefix(name, "plugin_")
 }
 
 // readOnlyTools ne garde que les outils de lecture et de planification.
@@ -468,7 +507,7 @@ func routeDelta(m alias.ResolvedMember, family, mode string, local, fallback boo
 }
 
 func dedupableTool(name string) bool {
-	if strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || name == "ViewImage" {
+	if strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || strings.HasPrefix(name, "plugin_") || name == "ViewImage" {
 		return false
 	}
 	return name != "Bash" && name != "RunScript"

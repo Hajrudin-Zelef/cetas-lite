@@ -211,6 +211,8 @@ function initConfigModal() {
     set("cfg-mcp-default", prefs && typeof prefs.mcp_default === "boolean" ? prefs.mcp_default : true);
     const eff = document.getElementById("cfg-thinking-effort");
     if (eff) eff.value = (prefs && prefs.thinking_effort) || "default";
+    const wsm = document.getElementById("cfg-websearch-mode");
+    if (wsm) wsm.value = (prefs && prefs.websearch_mode) || "auto";
     const theme = document.getElementById("cfg-theme");
     if (theme) theme.value = document.documentElement.dataset.theme || "ocean";
     const mcpStatus = document.getElementById("cfg-mcp-status");
@@ -221,12 +223,27 @@ function initConfigModal() {
         ? servers.length + " serveur(s) : " + servers.map((s) => s.name || s.id).join(", ")
         : "Aucun serveur configuré (mcp.json)";
     }
+    await loadPluginsStatus();
+  }
+
+  async function loadPluginsStatus() {
+    const el = document.getElementById("cfg-plugins-status");
+    if (!el) return;
+    const data = await api("/api/plugins").catch(() => null);
+    const list = (data && data.plugins) || [];
+    const errs = (data && data.errors) || [];
+    const names = list.map((p) => p.name + (p.version ? " v" + p.version : ""));
+    let txt = names.length ? names.length + " plugin(s) : " + names.join(", ") : "Aucun plugin (dossier plugins/)";
+    if (errs.length) txt += " — " + errs.length + " erreur(s) : " + errs.join(" ; ");
+    el.textContent = txt;
+    el.title = txt;
   }
 
   function bindFeatureToggles() {
     const save = () => {
       const body = {
         web_default: document.getElementById("cfg-web-default")?.checked || false,
+        websearch_mode: document.getElementById("cfg-websearch-mode")?.value || "auto",
         thinking_default: document.getElementById("cfg-thinking-default")?.checked || false,
         thinking_effort: document.getElementById("cfg-thinking-effort")?.value || "default",
         mcp_default: document.getElementById("cfg-mcp-default")?.checked || false,
@@ -237,9 +254,19 @@ function initConfigModal() {
       document.getElementById(id)?.addEventListener("change", save);
     });
     document.getElementById("cfg-thinking-effort")?.addEventListener("change", save);
+    document.getElementById("cfg-websearch-mode")?.addEventListener("change", save);
     document.getElementById("cfg-theme")?.addEventListener("change", (e) => {
       applyTheme(e.target.value);
       putPrefs({ theme: e.target.value }).catch(() => {});
+    });
+    document.getElementById("cfg-plugins-reload")?.addEventListener("click", async (e) => {
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      try {
+        await api("/api/plugins/reload", { method: "POST" });
+      } catch (_) {}
+      await loadPluginsStatus();
+      btn.disabled = false;
     });
   }
   bindFeatureToggles();

@@ -21,6 +21,9 @@ type Manager struct {
 	version string
 	ttl     time.Duration
 	timeout time.Duration
+	// callTimeout borne chaque appel d'outil : un serveur MCP bloque ne doit
+	// jamais figer un tour de conversation.
+	callTimeout time.Duration
 
 	mu       sync.Mutex
 	config   Config
@@ -40,15 +43,16 @@ func NewManager(path, version string) (*Manager, error) {
 		return nil, err
 	}
 	return &Manager{
-		path:    path,
-		version: version,
-		ttl:     60 * time.Second,
-		timeout: 10 * time.Second,
-		config:  cfg,
-		clients: map[string]*Client{},
-		lastErr: map[string]string{},
-		counts:  map[string]int{},
-		byName:  map[string]Tool{},
+		path:        path,
+		version:     version,
+		ttl:         60 * time.Second,
+		timeout:     10 * time.Second,
+		callTimeout: 120 * time.Second,
+		config:      cfg,
+		clients:     map[string]*Client{},
+		lastErr:     map[string]string{},
+		counts:      map[string]int{},
+		byName:      map[string]Tool{},
 	}, nil
 }
 
@@ -105,30 +109,53 @@ func (m *Manager) refresh(ctx context.Context) {
 	cfg := m.config
 	m.mu.Unlock()
 
+	// Rafraichissement parallele : un serveur lent ou bloque ne retarde pas
+	// les autres (chaque serveur garde son propre timeout).
+	type srvRes struct {
+		name  string
+		tools []Tool
+		err   string
+	}
+	names := cfg.names()
+	results := make(chan srvRes, len(names))
+	var wg sync.WaitGroup
+	for _, name := range names {
+		wg.Add(1)
+		go func(name string) {
+			defer wg.Done()
+			sc := cfg.MCP[name]
+			c, err := m.getClient(name, sc)
+			if err != nil {
+				m.dropClient(name)
+				results <- srvRes{name: name, err: err.Error()}
+				return
+			}
+			cctx, cancel := context.WithTimeout(ctx, m.timeout)
+			tools, err := c.ListTools(cctx)
+			cancel()
+			if err != nil {
+				m.dropClient(name)
+				results <- srvRes{name: name, err: err.Error()}
+				return
+			}
+			results <- srvRes{name: name, tools: tools}
+		}(name)
+	}
+	wg.Wait()
+	close(results)
+
 	var all []Tool
 	byName := map[string]Tool{}
 	errs := map[string]string{}
 	counts := map[string]int{}
-
-	for _, name := range cfg.names() {
-		sc := cfg.MCP[name]
-		c, err := m.getClient(name, sc)
-		if err != nil {
-			errs[name] = err.Error()
-			m.dropClient(name)
+	for r := range results {
+		if r.err != "" {
+			errs[r.name] = r.err
 			continue
 		}
-		cctx, cancel := context.WithTimeout(ctx, m.timeout)
-		tools, err := c.ListTools(cctx)
-		cancel()
-		if err != nil {
-			errs[name] = err.Error()
-			m.dropClient(name)
-			continue
-		}
-		counts[name] = len(tools)
-		for _, t := range tools {
-			exposed := exposeName(name, t.Name)
+		counts[r.name] = len(r.tools)
+		for _, t := range r.tools {
+			exposed := exposeName(r.name, t.Name)
 			for {
 				if _, exists := byName[exposed]; !exists {
 					break
@@ -201,7 +228,9 @@ func (m *Manager) Call(ctx context.Context, exposed string, args map[string]any)
 	if err != nil {
 		return "", err
 	}
-	out, err := c.CallTool(ctx, t.Name, args)
+	cctx, cancel := context.WithTimeout(ctx, m.callTimeout)
+	defer cancel()
+	out, err := c.CallTool(cctx, t.Name, args)
 	if err != nil {
 		m.dropClient(t.Server)
 		return "", err

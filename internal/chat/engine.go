@@ -30,6 +30,7 @@ type Engine struct {
 	mem         MemoryTools
 	ext         MCPTools
 	custom      CustomTools
+	pluginMgr   PluginManager
 	attach      *attach.Store
 	caps        modelcaps.Map
 	sandboxMode string
@@ -367,17 +368,25 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 
 	msgs = append([]provider.Message{{Role: "system", Content: chatSystemPrompt()}}, msgs...)
 
-	if in.Web && in.User != "" {
+	// Choix du moteur de recherche AVANT toute pre-recherche : si le membre
+	// principal utilise la recherche native du provider, la pre-recherche
+	// locale est inutile (elle doublerait latence et cout). La decision est
+	// calculee une seule fois pour ne pas consommer le limiteur deux fois.
+	nativePrimary := len(res.members) > 0 && e.useNativeWebSearch(in, res.members[0].Provider, res.members[0].Model)
+	webDone := false
+	nativeOff := false
+	if e.webToolsFor(in) && !nativePrimary {
 		if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
 			msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
 		}
+		webDone = true
 	}
 
 	var content strings.Builder
 	emitted := false
 	var lastErr error
 
-	for _, m := range res.members {
+	for i, m := range res.members {
 		if ctx.Err() != nil {
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Génération interrompue._"})
 			return
@@ -393,14 +402,30 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			"local": res.local, "fallback": res.fallback,
 		}})
 
-		resp, err := p.Stream(ctx, provider.Request{
+		// Recherche web native du provider (OpenRouter) : le plugin "web"
+		// cherche pendant la generation ; les outils web_search/web_fetch
+		// deviennent redondants pour ce membre.
+		native := false
+		if !nativeOff {
+			if i == 0 {
+				native = nativePrimary
+			} else {
+				native = e.useNativeWebSearch(in, m.Provider, m.Model)
+			}
+		}
+		req := provider.Request{
 			Model:           m.Model,
 			Messages:        msgs,
 			Temperature:     0.7,
 			MaxTokens:       in.MaxTokens,
 			EnableReasoning: in.Think,
 			ReasoningEffort: resolveEffort(false, in.Think, in.Text, in.Effort),
-		}, func(ev provider.Event) bool {
+		}
+		if native {
+			req.Extra = nativeWebExtra()
+			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
+		}
+		resp, err := p.Stream(ctx, req, func(ev provider.Event) bool {
 			if ev.Reasoning != "" && in.Think {
 				c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})
 			}
@@ -418,6 +443,9 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			return true
 		})
 		if err == nil {
+			if native {
+				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
+			}
 			c.appendAssistant(epoch, resp.Content)
 			return
 		}
@@ -429,6 +457,18 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		if emitted {
 			c.appendDelta(epoch, map[string]any{"error": err.Error()})
 			return
+		}
+		// Repli natif -> outils : la recherche native a echoue avant toute
+		// emission et le mode "auto" autorise les outils. On ferme l'indicateur
+		// natif, on fait une seule pre-recherche locale, puis les membres
+		// suivants tournent sans natif (pas de double recherche).
+		if native && !webDone && e.webToolsFor(in) {
+			c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(nil, true)})
+			if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
+				msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
+			}
+			webDone = true
+			nativeOff = true
 		}
 	}
 	if lastErr == nil {
