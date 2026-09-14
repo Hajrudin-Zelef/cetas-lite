@@ -70,6 +70,21 @@ func (s *Store) Close() error {
 	return s.db.Close()
 }
 
+func (s *Store) UserCount() int {
+	n := 0
+	_ = s.db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket(bUsers)
+		if b == nil {
+			return nil
+		}
+		return b.ForEach(func(_, _ []byte) error {
+			n++
+			return nil
+		})
+	})
+	return n
+}
+
 func (s *Store) GetUser(username string) (*User, bool) {
 	var (
 		u  User

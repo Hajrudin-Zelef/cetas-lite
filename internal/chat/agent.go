@@ -39,6 +39,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		tools = append(tools, WebToolSchemas()...)
 	}
 	sb.AllowScript = e.scriptAllowed()
+	sb.Isolation = e.isolation()
 	msgs := normalizeSystemMessages(append([]provider.Message{{Role: "system", Content: agentSystemPrompt()}}, base...))
 
 	var lastErr error

@@ -34,9 +34,20 @@ func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) handleConfig(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{
-		"registration_open": s.cfg.RegistrationOpen,
+		"registration_open": s.registrationAllowed(),
 		"version":           s.version,
 	})
+}
+
+func (s *Server) registrationAllowed() bool {
+	switch s.cfg.RegistrationMode {
+	case "open":
+		return true
+	case "closed":
+		return false
+	default:
+		return s.st.UserCount() == 0
+	}
 }
 
 type credentials struct {
@@ -45,8 +56,8 @@ type credentials struct {
 }
 
 func (s *Server) handleRegister(w http.ResponseWriter, r *http.Request) {
-	if !s.cfg.RegistrationOpen {
-		writeError(w, http.StatusForbidden, "inscription fermee")
+	if !s.registrationAllowed() {
+		writeError(w, http.StatusForbidden, "inscription fermee (definir CETAS_LITE_REGISTRATION_OPEN=true)")
 		return
 	}
 	var body credentials

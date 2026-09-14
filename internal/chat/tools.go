@@ -424,7 +424,8 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 	}
 	cctx, cancel := context.WithTimeout(ctx, time.Duration(timeout)*time.Second)
 	defer cancel()
-	cmd := exec.CommandContext(cctx, tokens[0], tokens[1:]...)
+	argv := wrapCommand(s.Isolation, s.root, tokens)
+	cmd := exec.CommandContext(cctx, argv[0], argv[1:]...)
 	if err := os.MkdirAll(s.root, 0o700); err == nil {
 		cmd.Dir = s.root
 	}
@@ -543,7 +544,8 @@ func (s *Sandbox) toolRunScript(ctx context.Context, args map[string]any) string
 
 	cctx, cancel := context.WithTimeout(ctx, time.Duration(timeout)*time.Second)
 	defer cancel()
-	cmd := exec.CommandContext(cctx, runner, fpath)
+	argv := wrapCommand(s.Isolation, s.root, []string{runner, fpath})
+	cmd := exec.CommandContext(cctx, argv[0], argv[1:]...)
 	cmd.Dir = s.root
 	cmd.WaitDelay = 2 * time.Second
 	cmd.Env = []string{

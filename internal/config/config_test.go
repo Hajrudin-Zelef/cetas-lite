@@ -30,8 +30,14 @@ func TestLoadDefaults(t *testing.T) {
 	if cfg.DBPath != filepath.Join(home, "cetas-lite.db") {
 		t.Errorf("DBPath = %q", cfg.DBPath)
 	}
-	if !cfg.RegistrationOpen {
-		t.Error("RegistrationOpen devrait etre vrai par defaut")
+	if cfg.RegistrationMode != "bootstrap" {
+		t.Errorf("RegistrationMode = %q, want bootstrap", cfg.RegistrationMode)
+	}
+	if cfg.TrustProxy {
+		t.Error("TrustProxy doit etre faux par defaut")
+	}
+	if cfg.Sandbox != "none" {
+		t.Errorf("Sandbox = %q, want none", cfg.Sandbox)
 	}
 	for _, dir := range []string{cfg.Home, cfg.DataDir, cfg.WorkspaceDir, cfg.MemoryDir} {
 		if !isDir(dir) {
@@ -45,6 +51,8 @@ func TestLoadOverrides(t *testing.T) {
 	t.Setenv("CETAS_LITE_HOME", home)
 	t.Setenv("CETAS_LITE_ADDR", "0.0.0.0:9000")
 	t.Setenv("CETAS_LITE_REGISTRATION_OPEN", "false")
+	t.Setenv("CETAS_LITE_TRUST_PROXY", "true")
+	t.Setenv("CETAS_LITE_SANDBOX", "auto")
 
 	cfg, err := Load()
 	if err != nil {
@@ -53,8 +61,14 @@ func TestLoadOverrides(t *testing.T) {
 	if cfg.Addr != "0.0.0.0:9000" {
 		t.Errorf("Addr = %q", cfg.Addr)
 	}
-	if cfg.RegistrationOpen {
-		t.Error("RegistrationOpen devrait etre faux")
+	if cfg.RegistrationMode != "closed" {
+		t.Errorf("RegistrationMode = %q, want closed", cfg.RegistrationMode)
+	}
+	if !cfg.TrustProxy {
+		t.Error("TrustProxy devrait etre vrai")
+	}
+	if cfg.Sandbox != "auto" {
+		t.Errorf("Sandbox = %q, want auto", cfg.Sandbox)
 	}
 }
 
@@ -63,6 +77,14 @@ func TestLoadInvalidRegistrationFlag(t *testing.T) {
 	t.Setenv("CETAS_LITE_REGISTRATION_OPEN", "peut-etre")
 	if _, err := Load(); err == nil {
 		t.Fatal("Load devrait echouer sur un flag invalide")
+	}
+}
+
+func TestLoadInvalidSandbox(t *testing.T) {
+	t.Setenv("CETAS_LITE_HOME", t.TempDir())
+	t.Setenv("CETAS_LITE_SANDBOX", "containers")
+	if _, err := Load(); err == nil {
+		t.Fatal("Load devrait echouer sur un mode d'isolation invalide")
 	}
 }
 

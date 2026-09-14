@@ -47,7 +47,9 @@ Usage:
 Variables:
   CETAS_LITE_HOME                 repertoire de donnees (defaut: config/cetas-lite)
   CETAS_LITE_ADDR                 adresse d'ecoute (defaut: 127.0.0.1:8787)
-  CETAS_LITE_REGISTRATION_OPEN    autoriser l'inscription (defaut: true)
+  CETAS_LITE_REGISTRATION_OPEN    inscription: non defini = 1er compte puis ferme ; true = ouvert ; false = ferme
+  CETAS_LITE_TRUST_PROXY          faire confiance a X-Forwarded-For (derriere nginx) (defaut: false)
+  CETAS_LITE_SANDBOX              isolation Bash/RunScript: none|auto|bwrap (defaut: none)
   CETAS_LITE_VAULT_PASSWORD       mot de passe du coffre (requis pour keys)
 `)
 }
@@ -107,6 +109,14 @@ func runServe() error {
 	families := loadFamilies(st)
 	engine := chat.NewEngine(registry, families, st, discover, cfg.WorkspaceDir)
 	engine.SetAllowScript(cfg.AllowScript)
+	iso, err := chat.ResolveIsolation(cfg.Sandbox, cfg.WorkspaceDir)
+	if err != nil {
+		return err
+	}
+	engine.SetIsolation(iso)
+	if iso == chat.IsolationBwrap {
+		slog.Info("isolation bwrap active")
+	}
 	engine.SetSearcher(search.New(keys, client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
 	mcpManager, err := mcp.NewManager(cfg.MCPPath, version)

@@ -182,3 +182,42 @@ func TestStaticIndex(t *testing.T) {
 		t.Fatal("index.html non servi")
 	}
 }
+
+func TestRegisterBootstrapThenClosed(t *testing.T) {
+	t.Setenv("CETAS_LITE_HOME", t.TempDir())
+	t.Setenv("CETAS_LITE_REGISTRATION_OPEN", "")
+	cfg, err := config.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	st, err := store.Open(cfg.DBPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer func() { _ = st.Close() }()
+	m, err := auth.New(st)
+	if err != nil {
+		t.Fatal(err)
+	}
+	engine := chat.NewEngine(provider.NewRegistry(), alias.Defaults(), st, nil, "")
+	h := New(cfg, st, m, engine, "test").Handler()
+
+	rec := doJSON(t, h, http.MethodGet, "/api/config", "", nil)
+	if decode(t, rec)["registration_open"] != true {
+		t.Fatal("en mode bootstrap, l'inscription doit etre ouverte tant qu'aucun compte n'existe")
+	}
+
+	rec = doJSON(t, h, http.MethodPost, "/api/auth/register", "", map[string]string{"username": "sam", "password": "motdepasse"})
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("1er register status = %d (%s)", rec.Code, rec.Body.String())
+	}
+
+	rec = doJSON(t, h, http.MethodPost, "/api/auth/register", "", map[string]string{"username": "alice", "password": "motdepasse"})
+	if rec.Code != http.StatusForbidden {
+		t.Fatalf("2e register doit etre refuse, status = %d", rec.Code)
+	}
+	rec = doJSON(t, h, http.MethodGet, "/api/config", "", nil)
+	if decode(t, rec)["registration_open"] != false {
+		t.Fatal("registration_open doit passer a false apres le 1er compte")
+	}
+}

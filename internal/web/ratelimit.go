@@ -3,6 +3,7 @@ package web
 import (
 	"net"
 	"net/http"
+	"strings"
 	"sync"
 	"time"
 
@@ -40,7 +41,18 @@ func (l *ipLimiter) allow(key string) bool {
 	return lim.Allow()
 }
 
-func clientIP(r *http.Request) string {
+func clientIP(r *http.Request, trustProxy bool) string {
+	if trustProxy {
+		if xff := r.Header.Get("X-Forwarded-For"); xff != "" {
+			parts := strings.Split(xff, ",")
+			if last := strings.TrimSpace(parts[len(parts)-1]); last != "" {
+				return last
+			}
+		}
+		if xr := strings.TrimSpace(r.Header.Get("X-Real-IP")); xr != "" {
+			return xr
+		}
+	}
 	host, _, err := net.SplitHostPort(r.RemoteAddr)
 	if err != nil {
 		return r.RemoteAddr
@@ -50,7 +62,7 @@ func clientIP(r *http.Request) string {
 
 func (s *Server) withAuthRateLimit(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if !s.authLimiter.allow(clientIP(r)) {
+		if !s.authLimiter.allow(clientIP(r, s.cfg.TrustProxy)) {
 			writeError(w, http.StatusTooManyRequests, "trop de tentatives, reessaie dans une minute")
 			return
 		}

@@ -11,6 +11,7 @@ import (
 type Sandbox struct {
 	root        string
 	AllowScript bool
+	Isolation   string
 }
 
 var errOutsideSandbox = errors.New("chemin hors sandbox")

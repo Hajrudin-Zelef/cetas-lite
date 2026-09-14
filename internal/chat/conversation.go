@@ -184,7 +184,6 @@ func (c *Conversation) MessagesSnapshot() []provider.Message {
 func (c *Conversation) finishTurn(epoch int, elapsed time.Duration) {
 	c.mu.Lock()
 	if c.epoch == epoch {
-		c.Generating = false
 		c.cancel = nil
 		c.Log = coalesceCompletedTurns(c.Log)
 	}
@@ -193,6 +192,12 @@ func (c *Conversation) finishTurn(epoch int, elapsed time.Duration) {
 	if c.persist != nil {
 		c.persist(c)
 	}
+	c.mu.Lock()
+	if c.epoch == epoch {
+		c.Generating = false
+	}
+	c.cond.Broadcast()
+	c.mu.Unlock()
 }
 
 func (c *Conversation) appendAssistant(epoch int, content string) {

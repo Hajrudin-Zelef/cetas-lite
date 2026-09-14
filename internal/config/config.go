@@ -16,8 +16,10 @@ type Config struct {
 	MemoryDir        string
 	MCPPath          string
 	DBPath           string
-	RegistrationOpen bool
+	RegistrationMode string
 	AllowScript      bool
+	TrustProxy       bool
+	Sandbox          string
 }
 
 func Load() (*Config, error) {
@@ -39,13 +41,16 @@ func Load() (*Config, error) {
 		addr = "127.0.0.1:8787"
 	}
 
-	registrationOpen := true
+	registrationMode := "bootstrap"
 	if raw := strings.TrimSpace(os.Getenv("CETAS_LITE_REGISTRATION_OPEN")); raw != "" {
-		v, err := strconv.ParseBool(raw)
-		if err != nil {
+		switch strings.ToLower(raw) {
+		case "true", "1", "yes":
+			registrationMode = "open"
+		case "false", "0", "no":
+			registrationMode = "closed"
+		default:
 			return nil, fmt.Errorf("CETAS_LITE_REGISTRATION_OPEN invalide: %q", raw)
 		}
-		registrationOpen = v
 	}
 
 	allowScript := false
@@ -57,6 +62,25 @@ func Load() (*Config, error) {
 		allowScript = v
 	}
 
+	trustProxy := false
+	if raw := strings.TrimSpace(os.Getenv("CETAS_LITE_TRUST_PROXY")); raw != "" {
+		v, err := strconv.ParseBool(raw)
+		if err != nil {
+			return nil, fmt.Errorf("CETAS_LITE_TRUST_PROXY invalide: %q", raw)
+		}
+		trustProxy = v
+	}
+
+	sandbox := strings.ToLower(strings.TrimSpace(os.Getenv("CETAS_LITE_SANDBOX")))
+	if sandbox == "" {
+		sandbox = "none"
+	}
+	switch sandbox {
+	case "none", "auto", "bwrap":
+	default:
+		return nil, fmt.Errorf("CETAS_LITE_SANDBOX invalide: %q (none|auto|bwrap)", sandbox)
+	}
+
 	cfg := &Config{
 		Home:             home,
 		Addr:             addr,
@@ -65,8 +89,10 @@ func Load() (*Config, error) {
 		MemoryDir:        filepath.Join(home, "memory"),
 		MCPPath:          filepath.Join(home, "mcp.json"),
 		DBPath:           filepath.Join(home, "cetas-lite.db"),
-		RegistrationOpen: registrationOpen,
+		RegistrationMode: registrationMode,
 		AllowScript:      allowScript,
+		TrustProxy:       trustProxy,
+		Sandbox:          sandbox,
 	}
 
 	for _, dir := range []string{cfg.Home, cfg.DataDir, cfg.WorkspaceDir, cfg.MemoryDir} {

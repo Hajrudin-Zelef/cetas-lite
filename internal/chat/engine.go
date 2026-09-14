@@ -26,6 +26,7 @@ type Engine struct {
 	searcher    WebTools
 	mem         MemoryTools
 	ext         MCPTools
+	sandboxMode string
 
 	mu         sync.Mutex
 	families   []alias.Family
@@ -135,6 +136,18 @@ func (e *Engine) scriptAllowed() bool {
 	e.mu.Lock()
 	defer e.mu.Unlock()
 	return e.allowScript
+}
+
+func (e *Engine) SetIsolation(mode string) {
+	e.mu.Lock()
+	e.sandboxMode = mode
+	e.mu.Unlock()
+}
+
+func (e *Engine) isolation() string {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	return e.sandboxMode
 }
 
 func (e *Engine) Conversation(user string) *Conversation {

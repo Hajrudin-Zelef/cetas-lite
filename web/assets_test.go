@@ -9,6 +9,7 @@ import (
 func TestAssetsEmbedded(t *testing.T) {
 	for _, p := range []string{
 		"index.html",
+		"favicon.svg",
 		"css/variables.css", "css/ocean.css", "css/app.css",
 		"js/app.js", "js/api.js", "js/auth.js", "js/chat.js",
 		"js/model-select.js", "js/settings.js", "js/theme.js",
@@ -47,7 +48,7 @@ func TestIndexHasIDs(t *testing.T) {
 			t.Errorf("index.html manque %s", id)
 		}
 	}
-	for _, src := range []string{"/js/vendor/marked.umd.min.js", "/js/vendor/purify.min.js", "/js/app.js"} {
+	for _, src := range []string{"/js/vendor/marked.umd.min.js", "/js/vendor/purify.min.js", "/js/app.js", "/favicon.svg"} {
 		if !strings.Contains(html, src) {
 			t.Errorf("index.html manque le script %s", src)
 		}
