@@ -7,6 +7,7 @@
 @import 'base/layout.css';
 @import 'features/chat.css';
 @import 'features/logs-events.css';
+@import 'features/agents-terminal.css';
 @import 'components/components.css';
 @import 'components/canvas.css';
 @import 'components/catalog.css';

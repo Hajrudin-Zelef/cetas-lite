@@ -19,6 +19,7 @@ import (
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/terminal"
 )
 
 type fakeProvider struct{ content string }
@@ -60,7 +61,8 @@ func newTestServerWith(t *testing.T, fp provider.Provider) *Server {
 		Modes: []alias.Mode{{ID: "standard", Agent: true, Pool: []alias.Member{{Provider: "fake", Model: "ok"}}}},
 	}}
 	engine := chat.NewEngine(reg, fams, st, nil, t.TempDir())
-	return New(cfg, st, m, engine, "test")
+	termMgr := terminal.NewManager(cfg.WorkspaceDir, t.TempDir())
+	return New(cfg, st, m, engine, termMgr, "test")
 }
 
 func tokenFor(t *testing.T, base string) string {

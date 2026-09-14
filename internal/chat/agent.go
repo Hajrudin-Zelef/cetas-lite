@@ -27,6 +27,33 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	}
 	sb.AllowScript = e.scriptAllowed()
 	sb.Isolation = e.isolation()
+	// Worktree d'isolation : l'agent travaille dans un checkout dedie du
+	// depot au lieu du workspace partage. En cas d'echec, on continue sur
+	// le workspace normal (erreur explicite, pas de silence).
+	if in.Worktree {
+		if repo := strings.TrimSpace(in.Repo); repo != "" {
+			if wm := e.worktreeManager(); wm != nil {
+				if wtPath, werr := wm.Ensure(repo, c.ID); werr == nil {
+					if wsb, serr := NewSandbox(wtPath); serr == nil {
+						wsb.AllowScript = sb.AllowScript
+						wsb.Isolation = sb.Isolation
+						sb = wsb
+						e.noteWorktreeRepo(c.ID, repo)
+						if run := e.agentForConv(c.ID); run != nil {
+							run.setWorktreePath(wtPath)
+						}
+						c.appendDelta(epoch, map[string]any{"worktree": map[string]any{"path": wtPath, "repo": repo}})
+					} else {
+						c.appendDelta(epoch, map[string]any{"worktree_error": serr.Error()})
+					}
+				} else {
+					c.appendDelta(epoch, map[string]any{"worktree_error": werr.Error()})
+				}
+			}
+		} else {
+			c.appendDelta(epoch, map[string]any{"worktree_error": "option worktree activee mais aucun depot indique"})
+		}
+	}
 	reg := e.toolRegistry(in, sb)
 	tools := reg.schemas(ctx)
 	sys := []provider.Message{{Role: "system", Content: agentSystemPrompt()}}

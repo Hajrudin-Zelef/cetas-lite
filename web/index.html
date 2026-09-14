@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/css/cetas.css">
 <link rel="stylesheet" href="/css/cetas-ocean.css">
 <link rel="stylesheet" href="/css/cetas-lite.css">
+<link rel="stylesheet" href="/css/xterm.css">
 <script src="/js/theme-init.js"></script>
 </head>
 <body class="ocean-theme">
@@ -47,6 +48,11 @@
   <span class="sidebar-credit">Kouassi Marius</span>
 
   <button id="new-chat-btn" class="new-chat-btn">Nouvelle conversation</button>
+
+  <div class="sidebar-tools">
+    <button id="agents-btn" class="tool-btn" type="button" title="Agents parallèles" aria-label="Agents parallèles">🤖 Agents</button>
+    <button id="terminal-btn" class="tool-btn" type="button" title="Terminal intégré" aria-label="Terminal intégré">⌨️ Terminal</button>
+  </div>
 
   <div class="conv-section">
     <div class="conv-head">
@@ -231,6 +237,8 @@
 
 <script src="/js/vendor/marked.umd.min.js"></script>
 <script src="/js/vendor/purify.min.js"></script>
+<script src="/js/vendor/xterm.js"></script>
+<script src="/js/vendor/xterm-addon-fit.js"></script>
 <script type="module" src="/js/app.js"></script>
 </body>
 </html>

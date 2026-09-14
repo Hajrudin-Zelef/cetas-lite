@@ -4,6 +4,8 @@ import { initConversations } from "./conversations.js";
 import { initModels } from "./model-select.js";
 import { initSettings } from "./settings.js";
 import { initTheme } from "./theme.js";
+import { initAgents } from "./agents.js";
+import { initTerminal } from "./terminal.js";
 
 initTheme();
 
@@ -17,6 +19,8 @@ initAuth(async () => {
   initSettings({ reloadModels });
   initChat();
   initConversations();
+  initAgents();
+  initTerminal();
 
   const sidebar = document.getElementById("sidebar");
   const toggle = document.getElementById("sidebar-toggle");

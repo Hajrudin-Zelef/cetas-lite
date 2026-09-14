@@ -15,6 +15,7 @@ import (
 	"cetas-lite/internal/modelcaps"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/worktree"
 
 	"golang.org/x/time/rate"
 )
@@ -37,6 +38,13 @@ type Engine struct {
 	families   []alias.Family
 	convs      map[string]*Conversation
 	webLimiter map[string]*rate.Limiter
+	worktrees  *worktree.Manager
+
+	// Runs d'agents paralleles et depot associe aux worktrees par
+	// conversation (chat principal inclus).
+	agentsMu sync.Mutex
+	agents   map[string]*AgentRun
+	wtRepos  map[string]string
 }
 
 func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc *local.Discoverer, workspace string) *Engine {
@@ -189,6 +197,9 @@ func (e *Engine) Conversation(user string) *Conversation {
 func (e *Engine) ArchiveAndReset(user string) {
 	c := e.Conversation(user)
 	e.archiveCurrent(user, c)
+	if repo := e.takeWorktreeRepo(c.ID); repo != "" {
+		e.releaseConversationWorktree(c.ID, repo)
+	}
 	c.Reset()
 }
 
@@ -226,7 +237,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Attachments: last.Attachments}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, Attachments: last.Attachments}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)

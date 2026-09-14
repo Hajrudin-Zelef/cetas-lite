@@ -7,6 +7,7 @@ import (
 	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/terminal"
 	webassets "cetas-lite/web"
 
 	"golang.org/x/time/rate"
@@ -17,14 +18,15 @@ type Server struct {
 	st          *store.Store
 	auth        *auth.Manager
 	engine      *chat.Engine
+	terminals   *terminal.Manager
 	version     string
 	authLimiter *ipLimiter
 	handler     http.Handler
 }
 
-func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *chat.Engine, version string) *Server {
+func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *chat.Engine, termMgr *terminal.Manager, version string) *Server {
 	s := &Server{
-		cfg: cfg, st: st, auth: authMgr, engine: engine, version: version,
+		cfg: cfg, st: st, auth: authMgr, engine: engine, terminals: termMgr, version: version,
 		authLimiter: newIPLimiter(rate.Every(authLimitEvery), authLimitBurst),
 	}
 
@@ -43,6 +45,20 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("PUT /api/aliases", s.requireAuth(s.handleAliasesPut))
 	mux.HandleFunc("GET /api/catalog", s.requireAuth(s.handleCatalogGet))
 	mux.HandleFunc("POST /api/chat/send", s.requireAuth(s.handleChatSend))
+	mux.HandleFunc("POST /api/agents", s.requireAuth(s.handleAgentsCreate))
+	mux.HandleFunc("GET /api/agents", s.requireAuth(s.handleAgentsList))
+	mux.HandleFunc("GET /api/agents/{id}/stream", s.requireAuth(s.handleAgentStream))
+	mux.HandleFunc("GET /api/agents/{id}/state", s.requireAuth(s.handleAgentState))
+	mux.HandleFunc("POST /api/agents/{id}/message", s.requireAuth(s.handleAgentMessage))
+	mux.HandleFunc("POST /api/agents/{id}/stop", s.requireAuth(s.handleAgentStop))
+	mux.HandleFunc("POST /api/agents/{id}/approve", s.requireAuth(s.handleAgentApprove))
+	mux.HandleFunc("DELETE /api/agents/{id}", s.requireAuth(s.handleAgentDelete))
+	mux.HandleFunc("POST /api/terminal", s.requireAuth(s.handleTerminalCreate))
+	mux.HandleFunc("GET /api/terminal", s.requireAuth(s.handleTerminalList))
+	mux.HandleFunc("GET /api/terminal/{id}/stream", s.requireAuth(s.handleTerminalStream))
+	mux.HandleFunc("POST /api/terminal/{id}/input", s.requireAuth(s.handleTerminalInput))
+	mux.HandleFunc("POST /api/terminal/{id}/resize", s.requireAuth(s.handleTerminalResize))
+	mux.HandleFunc("DELETE /api/terminal/{id}", s.requireAuth(s.handleTerminalDelete))
 	mux.HandleFunc("POST /api/chat/attach", s.requireAuth(s.handleAttachUpload))
 	mux.HandleFunc("GET /api/chat/attach/{id}", s.requireAuth(s.handleAttachGet))
 	mux.HandleFunc("DELETE /api/chat/attach/{id}", s.requireAuth(s.handleAttachDelete))

@@ -33,6 +33,16 @@ Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.
 - Archives : liste/restauration/suppression/export dans la sidebar ; export Markdown ou JSON de l'active.
 - Confort : copier/régénérer un message, jetons affichés, compaction visible, citations cliquables, notice de session expirée.
 - Sauvegarde : `cetas-lite backup <fichier.tar.gz>` / `restore <fichier>` (serveur arrêté).
+- **Terminal intégré** : tiroir bas avec onglets, xterm.js embarqué (fonctionne hors-ligne),
+  vrai PTY natif (Unix) / **ConPTY** (Windows, via l'API pseudo-console : redimensionnement
+  et programmes interactifs supportés), jusqu'à 6 sessions par utilisateur, `cwd` confiné au
+  workspace, sortie diffusée en SSE (base64), redimensionnement dynamique.
+- **Worktrees d'isolation** : chaque run agent peut s'exécuter dans un `git worktree --detach`
+  dédié sous `$CETAS_LITE_HOME/worktrees` (toggle dans le modal), nettoyé à la suppression.
+- **Multi-agents en parallèle** : panneau « Agents » (création via modal : mission, famille/mode
+  agent, approbations, plan, worktree), chaque agent a son fil SSE, ses approbations et son
+  worktree ; suivi/stop/suppression, état `running/done/stopped/error`, persistance après
+  redémarrage (reprise à l'arrêt).
 
 ## Démarrage
 

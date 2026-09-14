@@ -16,6 +16,7 @@ import (
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/terminal"
 )
 
 func newTestServer(t *testing.T, registrationOpen bool) *Server {
@@ -36,7 +37,7 @@ func newTestServer(t *testing.T, registrationOpen bool) *Server {
 		t.Fatal(err)
 	}
 	engine := chat.NewEngine(provider.NewRegistry(), alias.Defaults(), st, nil, "")
-	return New(cfg, st, m, engine, "test")
+	return New(cfg, st, m, engine, terminal.NewManager(t.TempDir()), "test")
 }
 
 func doJSON(t *testing.T, h http.Handler, method, path, token string, body any) *httptest.ResponseRecorder {
@@ -200,7 +201,7 @@ func TestRegisterBootstrapThenClosed(t *testing.T) {
 		t.Fatal(err)
 	}
 	engine := chat.NewEngine(provider.NewRegistry(), alias.Defaults(), st, nil, "")
-	h := New(cfg, st, m, engine, "test").Handler()
+	h := New(cfg, st, m, engine, terminal.NewManager(t.TempDir()), "test").Handler()
 
 	rec := doJSON(t, h, http.MethodGet, "/api/config", "", nil)
 	if decode(t, rec)["registration_open"] != true {

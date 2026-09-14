@@ -39,6 +39,10 @@ type TurnInput struct {
 	// Plan active le mode plan : l'agent explore puis propose un plan
 	// a valider avant d'executer (agent uniquement).
 	Plan bool
+	// Worktree isole le tour dans un worktree git dedie (agent uniquement).
+	// Repo est le chemin du depot a cloner en worktree.
+	Worktree bool
+	Repo     string
 }
 
 type Runner interface {
@@ -93,7 +97,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Attachments: in.Attachments}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, Attachments: in.Attachments}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()

@@ -32,7 +32,9 @@ import (
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/terminal"
 	"cetas-lite/internal/web"
+	"cetas-lite/internal/worktree"
 )
 
 var version = "dev"
@@ -164,12 +166,20 @@ func buildApp() (*app, error) {
 	if mcpManager.Configured() {
 		slog.Info("mcp configure", "path", cfg.MCPPath)
 	}
+	wtMgr, err := worktree.NewManager(filepath.Join(cfg.Home, "worktrees"))
+	if err != nil {
+		_ = st.Close()
+		return nil, err
+	}
+	engine.SetWorktreeManager(wtMgr)
+	termMgr := terminal.NewManager(cfg.WorkspaceDir, wtMgr.Root())
 
-	srv := web.New(cfg, st, authMgr, engine, version)
+	srv := web.New(cfg, st, authMgr, engine, termMgr, version)
 	return &app{
 		cfg:     cfg,
 		handler: srv.Handler(),
 		cleanup: func() {
+			termMgr.Close()
 			mcpManager.Close()
 			_ = st.Close()
 		},
