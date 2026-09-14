@@ -14,7 +14,11 @@ export function initSettings({ reloadModels } = {}) {
   const capsAdd = document.getElementById("caps-add");
   const capsAddInput = document.getElementById("caps-add-input");
   const capsStatus = document.getElementById("caps-status");
+
   let families = [];
+  let catalog = [];
+  let draft = {};
+  let activeFamily = "";
   let caps = {};
   let capKeys = [];
 
@@ -31,51 +35,238 @@ export function initSettings({ reloadModels } = {}) {
     b.addEventListener("click", () => selectTab(b.dataset.tab));
   });
 
-  function render() {
-    editor.innerHTML = "";
-    for (const f of families) {
-      const modes = (f.modes || []).filter((m) => !m.local && (m.pool || []).length > 0);
-      if (!modes.length) continue;
-      const group = document.createElement("div");
-      group.className = "alias-group";
-      const h = document.createElement("h3");
-      h.textContent = f.label;
-      group.appendChild(h);
-      for (const m of modes) {
-        const wrap = document.createElement("div");
-        wrap.className = "alias-mode";
-        const label = document.createElement("label");
-        label.textContent = m.label;
-        const ta = document.createElement("textarea");
-        ta.dataset.family = f.id;
-        ta.dataset.mode = m.mode;
-        ta.value = (m.pool || []).map((p) => p.provider + " " + p.model).join("\n");
-        wrap.appendChild(label);
-        wrap.appendChild(ta);
-        group.appendChild(wrap);
+  function modelInfo(provider, model) {
+    for (const p of catalog) {
+      if (p.id !== provider) continue;
+      for (const m of p.models) {
+        if (m.id === model) return m;
       }
-      editor.appendChild(group);
+    }
+    return null;
+  }
+
+  function hasCloudModes(f) {
+    return (f.modes || []).some((m) => !m.local);
+  }
+
+  function buildDraft() {
+    draft = {};
+    for (const f of families) {
+      if (f.local) continue;
+      draft[f.id] = {};
+      for (const m of f.modes || []) {
+        if (m.local) continue;
+        draft[f.id][m.mode] = (m.pool || []).map((p) => ({ provider: p.provider, model: p.model }));
+      }
+    }
+    if (!draft[activeFamily]) {
+      activeFamily = families.find((f) => !f.local && hasCloudModes(f))?.id || "";
     }
   }
 
-  async function load() {
-    const data = await api("/api/aliases");
-    families = data.families || [];
+  function modelLabel(provider, model) {
+    const info = modelInfo(provider, model);
+    return info ? info.label : model;
+  }
+
+  function modelPrice(provider, model) {
+    const info = modelInfo(provider, model);
+    if (!info) return "";
+    if (!info.input_per_1m && !info.output_per_1m) return "gratuit";
+    return "$" + info.input_per_1m + " / $" + info.output_per_1m;
+  }
+
+  function modeBlock(family, mode) {
+    const list = draft[family.id][mode.mode] || [];
+    const block = document.createElement("div");
+    block.className = "mode-block";
+
+    const head = document.createElement("div");
+    head.className = "mode-head";
+    const title = document.createElement("span");
+    title.className = "mode-title";
+    title.textContent = mode.label;
+    head.appendChild(title);
+    if (mode.agent) {
+      const pill = document.createElement("span");
+      pill.className = "agent-pill";
+      pill.textContent = "Agent";
+      head.appendChild(pill);
+    }
+    if (mode.rule) {
+      const rule = document.createElement("span");
+      rule.className = "mode-rule";
+      rule.textContent = mode.rule;
+      head.appendChild(rule);
+    }
+    block.appendChild(head);
+
+    const ul = document.createElement("ol");
+    ul.className = "pool-list";
+    if (!list.length) {
+      const empty = document.createElement("li");
+      empty.className = "pool-empty";
+      empty.textContent = "Aucun modele : ajoute-en un ci-dessous.";
+      ul.appendChild(empty);
+    }
+    list.forEach((entry, idx) => {
+      ul.appendChild(poolItem(family, mode, idx));
+    });
+    block.appendChild(ul);
+    block.appendChild(addRow(family, mode));
+    return block;
+  }
+
+  function poolItem(family, mode, idx) {
+    const entry = draft[family.id][mode.mode][idx];
+    const li = document.createElement("li");
+    li.className = "pool-item";
+
+    const rank = document.createElement("span");
+    rank.className = "pool-rank";
+    rank.textContent = "#" + (idx + 1);
+    li.appendChild(rank);
+
+    const name = document.createElement("span");
+    name.className = "pool-name";
+    name.textContent = modelLabel(entry.provider, entry.model);
+    name.title = entry.provider + " " + entry.model;
+    li.appendChild(name);
+
+    const prov = document.createElement("span");
+    prov.className = "pool-provider";
+    prov.textContent = entry.provider;
+    li.appendChild(prov);
+
+    const price = modelPrice(entry.provider, entry.model);
+    if (price) {
+      const pr = document.createElement("span");
+      pr.className = "pool-price";
+      pr.textContent = price;
+      li.appendChild(pr);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "pool-actions";
+    actions.appendChild(poolButton("↑", "Monter", idx > 0, () => move(family.id, mode.mode, idx, -1)));
+    actions.appendChild(poolButton("↓", "Descendre", idx < draft[family.id][mode.mode].length - 1, () => move(family.id, mode.mode, idx, 1)));
+    actions.appendChild(poolButton("×", "Retirer", true, () => removeEntry(family.id, mode.mode, idx), true));
+    li.appendChild(actions);
+    return li;
+  }
+
+  function poolButton(label, title, enabled, onClick, danger) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "pool-btn" + (danger ? " danger" : "");
+    b.textContent = label;
+    b.title = title;
+    b.setAttribute("aria-label", title);
+    b.disabled = !enabled;
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function move(familyId, modeId, idx, delta) {
+    const list = draft[familyId][modeId];
+    const next = idx + delta;
+    if (next < 0 || next >= list.length) return;
+    [list[idx], list[next]] = [list[next], list[idx]];
     render();
   }
 
-  function parsePool(value) {
-    const pool = [];
-    for (const raw of value.split("\n")) {
-      const line = raw.trim();
-      if (!line) continue;
-      const i = line.indexOf(" ");
-      if (i < 0) continue;
-      const provider = line.slice(0, i).trim();
-      const model = line.slice(i + 1).trim();
-      if (provider && model) pool.push({ provider, model });
+  function removeEntry(familyId, modeId, idx) {
+    draft[familyId][modeId].splice(idx, 1);
+    render();
+  }
+
+  function addRow(family, mode) {
+    const row = document.createElement("div");
+    row.className = "pool-add";
+
+    const select = document.createElement("select");
+    select.className = "pool-model-select";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Choisir un modele...";
+    select.appendChild(placeholder);
+    for (const p of catalog) {
+      const group = document.createElement("optgroup");
+      group.label = p.label;
+      for (const m of p.models) {
+        const opt = document.createElement("option");
+        opt.value = p.id + "|" + m.id;
+        const price = !m.input_per_1m && !m.output_per_1m ? "gratuit" : "$" + m.input_per_1m + " / $" + m.output_per_1m;
+        opt.textContent = m.label + "  ·  " + price;
+        group.appendChild(opt);
+      }
+      select.appendChild(group);
     }
-    return pool;
+    row.appendChild(select);
+
+    const add = document.createElement("button");
+    add.type = "button";
+    add.className = "small-btn";
+    add.textContent = "Ajouter";
+    add.addEventListener("click", () => {
+      const value = select.value;
+      if (!value) return;
+      const i = value.indexOf("|");
+      const provider = value.slice(0, i);
+      const model = value.slice(i + 1);
+      const list = draft[family.id][mode.mode];
+      if (list.some((e) => e.provider === provider && e.model === model)) return;
+      list.push({ provider, model });
+      render();
+    });
+    row.appendChild(add);
+    return row;
+  }
+
+  function render() {
+    editor.innerHTML = "";
+    const tabs = document.createElement("div");
+    tabs.className = "fam-tabs";
+    for (const f of families) {
+      if (f.local || !hasCloudModes(f)) continue;
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "fam-tab" + (f.id === activeFamily ? " active" : "");
+      b.textContent = f.label;
+      b.addEventListener("click", () => {
+        activeFamily = f.id;
+        render();
+      });
+      tabs.appendChild(b);
+    }
+    editor.appendChild(tabs);
+
+    const content = document.createElement("div");
+    content.className = "provider-content";
+    const fam = families.find((f) => f.id === activeFamily);
+    if (!fam) {
+      const p = document.createElement("p");
+      p.className = "settings-status";
+      p.textContent = "Aucune famille cloud configuree.";
+      content.appendChild(p);
+    } else {
+      for (const m of fam.modes || []) {
+        if (m.local) continue;
+        content.appendChild(modeBlock(fam, m));
+      }
+    }
+    editor.appendChild(content);
+  }
+
+  async function load() {
+    const [aliasData, catalogData] = await Promise.all([
+      api("/api/aliases"),
+      api("/api/catalog").catch(() => ({ providers: [] })),
+    ]);
+    families = aliasData.families || [];
+    catalog = catalogData.providers || [];
+    buildDraft();
+    render();
   }
 
   function renderMCP(servers) {
@@ -221,11 +412,12 @@ export function initSettings({ reloadModels } = {}) {
 
   saveBtn.addEventListener("click", async () => {
     const ov = {};
-    for (const ta of editor.querySelectorAll("textarea")) {
-      const pool = parsePool(ta.value);
-      if (!pool.length) continue;
-      if (!ov[ta.dataset.family]) ov[ta.dataset.family] = {};
-      ov[ta.dataset.family][ta.dataset.mode] = pool;
+    for (const [familyId, modes] of Object.entries(draft)) {
+      for (const [modeId, list] of Object.entries(modes)) {
+        if (!list.length) continue;
+        if (!ov[familyId]) ov[familyId] = {};
+        ov[familyId][modeId] = list.map((e) => ({ provider: e.provider, model: e.model }));
+      }
     }
     try {
       await api("/api/aliases", { method: "PUT", body: ov });

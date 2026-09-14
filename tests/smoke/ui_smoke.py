@@ -35,6 +35,26 @@ FAMILIES = {
 
 SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard"}
 
+CATALOG = {
+    "providers": [
+        {
+            "id": "deepseek",
+            "label": "DeepSeek",
+            "models": [
+                {"id": "deepseek-flash", "label": "DeepSeek Flash", "input_per_1m": 0.15, "output_per_1m": 0.6},
+                {"id": "deepseek-v4-pro", "label": "DeepSeek V4 Pro", "input_per_1m": 0.66, "output_per_1m": 1.98},
+            ],
+        },
+        {
+            "id": "openrouter",
+            "label": "OpenRouter",
+            "models": [
+                {"id": "deepseek/deepseek-v4-flash-0731", "label": "V4 Flash 0731", "input_per_1m": 0.14, "output_per_1m": 0.28}
+            ],
+        },
+    ]
+}
+
 MCP_SERVERS = {"servers": [{"name": "demo", "transport": "stdio", "connected": True, "tools": 2, "error": ""}]}
 
 CONVERSATIONS = {
@@ -98,6 +118,7 @@ def route_mocks(page):
     page.route("**/api/config", lambda r: r.fulfill(json={"registration_open": False, "version": "smoke"}))
     page.route("**/api/me", lambda r: r.fulfill(json={"username": "test", "role": "user"}))
     page.route("**/api/aliases", lambda r: r.fulfill(json=FAMILIES))
+    page.route("**/api/catalog", lambda r: r.fulfill(json=CATALOG))
 
     def settings(route):
         if route.request.method == "PUT":
@@ -230,7 +251,13 @@ def check(page, url, reduced):
 
     page.locator("#settings-btn").click()
     page.wait_for_selector("#settings-overlay:not([hidden])", timeout=4000)
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(300)
+    assert page.locator(".apikeys-tabs .apikeys-tab").count() >= 4, "onglets de reglages attendus"
+    assert page.locator("#aliases-editor .fam-tab").count() >= 1, "onglets de familles attendus"
+    page.locator('.fam-tab:has-text("Code")').click()
+    page.wait_for_timeout(150)
+    assert page.locator("#aliases-editor .mode-block .agent-pill").count() >= 1, "mode Agent attendu (Code)"
+    assert page.locator("#aliases-editor .pool-item").count() >= 1, "liste de modeles structuree attendue"
     assert page.locator("#mcp-panel .mcp-name").count() == 1, "serveur MCP liste attendu"
     mcpname = page.locator("#mcp-panel .mcp-name").first.inner_text()
     assert mcpname == "demo", f"nom MCP = {mcpname!r}"
