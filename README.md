@@ -6,11 +6,16 @@
 
 ## État
 
-**Phases P0–P5 faites** : socle (bbolt, coffre AES-256-GCM, auth JWT), alias, moteur de chat stable
+**Phases P0–P9 faites** : socle (bbolt, coffre AES-256-GCM, auth JWT), alias, moteur de chat stable
 (journal rejouable, reconnexion `?from=`, stop/reset, heartbeat SSE, failover), outils agent + sandbox,
 UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Markdown (`mem_*`).
 **P6** : durcissement (rate-limit auth, fuzz, tests de reconnexion) + packaging 6 binaires + CI.
 **P7** : compaction du contexte + archives multi-sessions. **P8.1** : client MCP (`mcp_*`).
+**Tier 1–4** : archives UI, export/régénérer, inscription bootstrap + proxy + bwrap + favicon,
+custom tools HTTP (`custom_*`). **Lots 0/A/C/B/D** : prompts pédagogiques + `MAREX.md`, lecture de
+documents (PDF/texte/HTML), thinking+effort, vision, voix navigateur. **P9** : registre d'outils + docs.
+
+Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.cpp/GPU — différé).
 
 - Alias à 2 niveaux : `SamAgent Nano` (free), `SamAgent N4` (flash/standard), `SamAgent N8` (flash/standard/elite), `Code` (flash/standard/elite, agent), `SamGen` (local : nano=llama.cpp, n4=Ollama, n8=LM Studio).
 - Chat serveur : journal rejouable, reconnexion (`?from=`), stop/reset non bloquants, heartbeat SSE, failover de pool.
@@ -19,6 +24,10 @@ UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Mark
 - Mémoire : pages Markdown par user sous `$CETAS_LITE_HOME/memory/<user>/`, index `MEMORY.md` auto, recherche TF-IDF.
 - MCP : serveurs déclarés dans `$CETAS_LITE_HOME/mcp.json` (`stdio` ou `http`), outils exposés à l'agent sous `mcp_<serveur>_<outil>` (diagnostic : `./bin/cetas-lite mcp`).
 - Custom tools : outils HTTP définis dans `$CETAS_LITE_HOME/tools.json`, exposés sous `custom_<outil>` (diagnostic : `./bin/cetas-lite tools`).
+- Rôle : **cetas-lite = tuteur/professeur senior** (chat général, pédagogique) ; l'**agent = code pur** (outils).
+- Thinking : **off par défaut** en chat (toggle `Think`), **forcé** en agent ; effort `défaut/faible/moyen/max`.
+- Lecture : **images** (vision, modèles déclarés dans Settings → Capacités) et **documents** (PDF/texte/HTML) en pièces jointes (bouton + drag & drop). Pas d'Office (convertir en PDF).
+- Voix : TTS (« Lire ») et STT (micro) via le **navigateur** ; backend non implémenté.
 - Archives : liste/restauration/suppression/export dans la sidebar ; export Markdown ou JSON de l'active.
 - Confort : copier/régénérer un message, jetons affichés, compaction visible, citations cliquables, notice de session expirée.
 - Sauvegarde : `cetas-lite backup <fichier.tar.gz>` / `restore <fichier>` (serveur arrêté).
@@ -85,12 +94,14 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 - `internal/store` — bbolt (users, settings, conversations, secrets)
 - `internal/cryptovault` — AES-256-GCM + scrypt
 - `internal/auth` — scrypt + JWT HS256
-- `internal/chat` — conversation/journaux, agent, outils, sandbox
+- `internal/chat` — conversation/journaux, agent, registre d'outils, sandbox/isolation
 - `internal/provider` / `internal/local` — providers cloud + découverte locale
 - `internal/search` — web search + fetch (garde SSRF)
 - `internal/memory` — pages Markdown + index + TF-IDF
 - `internal/mcp` — client MCP (stdio + HTTP, outils `mcp_*`)
 - `internal/customtools` — outils HTTP d'opérateur (`custom_*`)
+- `internal/docs` / `internal/attach` — extraction documents + pièces jointes
+- `internal/modelcaps` — capacités provider/model (vision/tts/stt)
 - `internal/backup` — bundle tar.gz (base + mcp.json), restauration anti-traversée
 - `internal/web` — routeur HTTP + middleware
 - `web/` — assets embarqués (`go:embed`)
