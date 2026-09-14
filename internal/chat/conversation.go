@@ -223,6 +223,29 @@ func (c *Conversation) load(s snapshot) {
 	c.cancel = nil
 }
 
+func (c *Conversation) isEmpty() bool {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return len(c.Messages) == 0 && len(c.Log) == 0
+}
+
+func (c *Conversation) restore(s snapshot) {
+	c.Stop()
+	c.mu.Lock()
+	c.ID = s.ID
+	c.Messages = s.Messages
+	c.Log = s.Log
+	c.Seq = s.Seq
+	c.Generating = false
+	c.cancel = nil
+	c.epoch++
+	c.cond.Broadcast()
+	c.mu.Unlock()
+	if c.persist != nil {
+		c.persist(c)
+	}
+}
+
 func (c *Conversation) Subscribe(ctx context.Context, from int, emit func(map[string]any) bool) {
 	go func() {
 		<-ctx.Done()

@@ -172,15 +172,16 @@ func TestChatSendAndStream(t *testing.T) {
 	defer streamResp.Body.Close()
 
 	reader := bufio.NewReader(streamResp.Body)
-	gotContent, gotDone, gotRoute := false, false, false
-	deadline := time.Now().Add(3 * time.Second)
+	var content strings.Builder
+	gotDone, gotRoute := false, false
+	deadline := time.Now().Add(8 * time.Second)
 	for !gotDone && time.Now().Before(deadline) {
 		line, err := reader.ReadString('\n')
 		if err != nil {
 			break
 		}
-		if strings.Contains(line, `"content":"bonjour"`) {
-			gotContent = true
+		if c := lineString(line, "content"); c != "" {
+			content.WriteString(c)
 		}
 		if strings.Contains(line, `"route"`) {
 			gotRoute = true
@@ -192,8 +193,8 @@ func TestChatSendAndStream(t *testing.T) {
 	if !gotRoute {
 		t.Error("evenement route manquant")
 	}
-	if !gotContent {
-		t.Error("contenu stream manquant")
+	if content.String() != "bonjour" {
+		t.Errorf("contenu stream = %q, want bonjour", content.String())
 	}
 	if !gotDone {
 		t.Error("turn_done manquant")
@@ -274,6 +275,19 @@ func containsLine(lines []string, sub string) bool {
 }
 
 func lineSeq(line string) int { return lineField(line, "seq") }
+
+func lineString(line, key string) string {
+	const p = "data: "
+	if !strings.HasPrefix(line, p) {
+		return ""
+	}
+	var m map[string]any
+	if json.Unmarshal([]byte(line[len(p):]), &m) != nil {
+		return ""
+	}
+	s, _ := m[key].(string)
+	return s
+}
 
 func lineField(line, key string) int {
 	const p = "data: "

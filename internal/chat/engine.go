@@ -128,21 +128,32 @@ func (e *Engine) Conversation(user string) *Conversation {
 
 func (e *Engine) ArchiveAndReset(user string) {
 	c := e.Conversation(user)
-	if e.st != nil {
-		data, err := c.save()
-		if err == nil && len(data) > 2 {
-			_ = e.st.ArchiveConversation(user, c.ID, data)
-		}
-	}
+	e.archiveCurrent(user, c)
 	c.Reset()
 }
 
+func (e *Engine) archiveCurrent(user string, c *Conversation) {
+	if e.st == nil || c.isEmpty() {
+		return
+	}
+	data, err := c.save()
+	if err == nil {
+		_ = e.st.ArchiveConversation(user, c.ID, data)
+	}
+}
+
 func (e *Engine) ListArchives(user string) []string {
+	if e.st == nil {
+		return nil
+	}
 	out, _ := e.st.ListArchives(user)
 	return out
 }
 
 func (e *Engine) RestoreArchive(user, archiveID string) bool {
+	if e.st == nil {
+		return false
+	}
 	raw, ok := e.st.GetArchive(user, archiveID)
 	if !ok {
 		return false
@@ -152,13 +163,8 @@ func (e *Engine) RestoreArchive(user, archiveID string) bool {
 		return false
 	}
 	c := e.Conversation(user)
-	c.load(s)
-	if e.st != nil {
-		data, _ := c.save()
-		if len(data) > 2 {
-			_ = e.st.PutConversation(user, "active", data)
-		}
-	}
+	e.archiveCurrent(user, c)
+	c.restore(s)
 	return true
 }
 
