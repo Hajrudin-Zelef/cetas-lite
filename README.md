@@ -14,6 +14,8 @@ UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Mark
 **Tier 1–4** : archives UI, export/régénérer, inscription bootstrap + proxy + bwrap + favicon,
 custom tools HTTP (`custom_*`). **Lots 0/A/C/B/D** : prompts pédagogiques + `MAREX.md`, lecture de
 documents (PDF/texte/HTML), thinking+effort, vision, voix navigateur. **P9** : registre d'outils + docs.
+**UI** : le front reprend le design de Cetas (thèmes clair/ocean/sombre, glassmorphism, sidebar +
+`input-area` + `plus-menu`, messages `.message-wrapper`) adapté au backend cetas-lite.
 
 Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.cpp/GPU — différé).
 
