@@ -18,6 +18,9 @@ UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Mark
 - Outils agent : fichiers (Ls/Read/Write/Edit/Grep/Glob), Bash, RunScript (désactivé par défaut), TodoWrite, web (`web_search`/`web_fetch`), mémoire (`mem_*`), MCP (`mcp_*`).
 - Mémoire : pages Markdown par user sous `$CETAS_LITE_HOME/memory/<user>/`, index `MEMORY.md` auto, recherche TF-IDF.
 - MCP : serveurs déclarés dans `$CETAS_LITE_HOME/mcp.json` (`stdio` ou `http`), outils exposés à l'agent sous `mcp_<serveur>_<outil>` (diagnostic : `./bin/cetas-lite mcp`).
+- Archives : liste/restauration/suppression/export dans la sidebar ; export Markdown ou JSON de l'active.
+- Confort : copier/régénérer un message, jetons affichés, compaction visible, citations cliquables, notice de session expirée.
+- Sauvegarde : `cetas-lite backup <fichier.tar.gz>` / `restore <fichier>` (serveur arrêté).
 
 ## Démarrage
 
@@ -66,7 +69,7 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 
 ## Architecture
 
-- `cmd/cetas-lite` — CLI (`serve`, `keys`, `mcp`, `version`)
+- `cmd/cetas-lite` — CLI (`serve`, `keys`, `mcp`, `backup`, `restore`, `version`)
 - `internal/config` — configuration et répertoires
 - `internal/store` — bbolt (users, settings, conversations, secrets)
 - `internal/cryptovault` — AES-256-GCM + scrypt
@@ -76,6 +79,7 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 - `internal/search` — web search + fetch (garde SSRF)
 - `internal/memory` — pages Markdown + index + TF-IDF
 - `internal/mcp` — client MCP (stdio + HTTP, outils `mcp_*`)
+- `internal/backup` — bundle tar.gz (base + mcp.json), restauration anti-traversée
 - `internal/web` — routeur HTTP + middleware
 - `web/` — assets embarqués (`go:embed`)
 
