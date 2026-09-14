@@ -22,5 +22,7 @@ type snapshotTurn struct {
 	Text        string   `json:"text"`
 	Web         bool     `json:"web,omitempty"`
 	MCP         bool     `json:"mcp,omitempty"`
+	Think       bool     `json:"think,omitempty"`
+	Effort      string   `json:"effort,omitempty"`
 	Attachments []string `json:"attachments,omitempty"`
 }

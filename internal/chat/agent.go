@@ -62,7 +62,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		c.appendDelta(epoch, routeDelta(m, in.Family, in.Mode, false, res.fallback))
 
 		emitted := false
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, sb, in.User, &emitted)
+		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, sb, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted)
 		if err == nil {
 			c.appendAssistant(epoch, content)
 			return
@@ -83,7 +83,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	c.appendDelta(epoch, map[string]any{"error": lastErr.Error()})
 }
 
-func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, sb *Sandbox, user string, emitted *bool) (string, error) {
+func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, sb *Sandbox, user, effort string, emitted *bool) (string, error) {
 	const maxNudges = 2
 	msgs := append([]provider.Message(nil), base...)
 	done := map[string]string{}
@@ -101,10 +101,12 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			toolSet = tools
 		}
 		resp, err := p.Stream(ctx, provider.Request{
-			Model:       m.Model,
-			Messages:    normalizeSystemMessages(msgs),
-			Tools:       toolSet,
-			Temperature: 0.7,
+			Model:           m.Model,
+			Messages:        normalizeSystemMessages(msgs),
+			Tools:           toolSet,
+			Temperature:     0.7,
+			EnableReasoning: true,
+			ReasoningEffort: effort,
 		}, func(ev provider.Event) bool {
 			if ev.Reasoning != "" {
 				c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})

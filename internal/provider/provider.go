@@ -50,10 +50,12 @@ type Usage struct {
 }
 
 type Request struct {
-	Model       string
-	Messages    []Message
-	Tools       []Tool
-	Temperature float64
+	Model           string
+	Messages        []Message
+	Tools           []Tool
+	Temperature     float64
+	EnableReasoning bool
+	ReasoningEffort string
 }
 
 type Response struct {
@@ -153,6 +155,7 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 		payload["tools"] = req.Tools
 		payload["parallel_tool_calls"] = false
 	}
+	applyReasoning(payload, p.endpoint.Provider, req.EnableReasoning, req.ReasoningEffort)
 	body, err := json.Marshal(payload)
 	if err != nil {
 		return resp, fmt.Errorf("encodage requete: %w", err)
@@ -287,6 +290,26 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 		resp.ToolCalls = append(resp.ToolCalls, tc)
 	}
 	return resp, nil
+}
+
+func applyReasoning(payload map[string]any, providerID string, enable bool, effort string) {
+	if !enable {
+		switch providerID {
+		case "openrouter":
+			payload["reasoning"] = map[string]any{"enabled": false}
+		case "deepseek", "llamacpp", "ollama", "lmstudio":
+			payload["chat_template_kwargs"] = map[string]any{"enable_thinking": false}
+		}
+		return
+	}
+	switch effort {
+	case "low", "medium", "high":
+		if providerID == "openrouter" {
+			payload["reasoning"] = map[string]any{"effort": effort}
+		} else {
+			payload["reasoning_effort"] = effort
+		}
+	}
 }
 
 func sortInts(a []int) {

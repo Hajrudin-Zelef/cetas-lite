@@ -20,6 +20,8 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		Message     string   `json:"message"`
 		Web         bool     `json:"web"`
 		MCP         bool     `json:"mcp"`
+		Think       bool     `json:"think"`
+		Effort      string   `json:"effort"`
 		Attachments []string `json:"attachments"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
@@ -31,7 +33,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	c := s.engine.Conversation(claims.Username)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Attachments: body.Attachments})
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Attachments: body.Attachments})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return

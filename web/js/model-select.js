@@ -14,6 +14,20 @@ export function applyMCPToggle(on) {
   el.classList.toggle("active", !!on);
 }
 
+let thinkingPref = false;
+
+export function applyThinkingToggle(on) {
+  const el = document.getElementById("thinking-toggle");
+  if (!el || el.disabled) return;
+  el.setAttribute("aria-pressed", on ? "true" : "false");
+  el.classList.toggle("active", !!on);
+}
+
+export function setThinking(on) {
+  thinkingPref = !!on;
+  applyThinkingToggle(thinkingPref);
+}
+
 export function persistPrefs() {
   const body = {};
   const theme = document.documentElement.dataset.theme;
@@ -28,6 +42,9 @@ export function persistPrefs() {
   if (mcpToggle && !mcpToggle.hidden) {
     body.mcp_default = mcpToggle.getAttribute("aria-pressed") === "true";
   }
+  body.thinking_default = thinkingPref;
+  const effort = document.getElementById("effort-select");
+  if (effort && effort.value) body.thinking_effort = effort.value;
   return putPrefs(body);
 }
 
@@ -44,7 +61,21 @@ export async function initModels() {
 
   function updateAgent() {
     const m = modesFor(familySel.value).find((x) => x.mode === modeSel.value);
-    agentPill.hidden = !(m && m.agent);
+    const agent = !!(m && m.agent);
+    agentPill.hidden = !agent;
+    const th = document.getElementById("thinking-toggle");
+    if (th) {
+      if (agent) {
+        th.disabled = true;
+        th.setAttribute("aria-pressed", "true");
+        th.classList.add("active");
+        th.title = "Raisonnement (actif en mode Agent)";
+      } else {
+        th.disabled = false;
+        th.title = "Raisonnement";
+        applyThinkingToggle(thinkingPref);
+      }
+    }
   }
 
   function persist() {
@@ -87,6 +118,10 @@ export async function initModels() {
     const prefs = await getPrefs().catch(() => null);
     if (prefs && prefs.theme) applyTheme(prefs.theme);
     applyWebToggle(!!(prefs && prefs.web_default));
+    thinkingPref = !!(prefs && prefs.thinking_default);
+    applyThinkingToggle(thinkingPref);
+    const effortSel = document.getElementById("effort-select");
+    if (effortSel) effortSel.value = (prefs && prefs.thinking_effort) || "default";
 
     const mcp = await api("/api/mcp").catch(() => null);
     const mcpToggle = document.getElementById("mcp-toggle");

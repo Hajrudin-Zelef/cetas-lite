@@ -8,11 +8,21 @@ import (
 )
 
 type uiSettings struct {
-	Theme      string `json:"theme"`
-	Family     string `json:"family"`
-	Mode       string `json:"mode"`
-	WebDefault bool   `json:"web_default"`
-	MCPDefault *bool  `json:"mcp_default,omitempty"`
+	Theme           string `json:"theme"`
+	Family          string `json:"family"`
+	Mode            string `json:"mode"`
+	WebDefault      bool   `json:"web_default"`
+	MCPDefault      *bool  `json:"mcp_default,omitempty"`
+	ThinkingDefault bool   `json:"thinking_default"`
+	ThinkingEffort  string `json:"thinking_effort"`
+}
+
+func validEffort(e string) bool {
+	switch e {
+	case "", "default", "low", "medium", "high":
+		return true
+	}
+	return false
 }
 
 func defaultUISettings() uiSettings {
@@ -37,6 +47,9 @@ func (s *Server) storedSettings(user string) uiSettings {
 	if !validTheme(out.Theme) {
 		out.Theme = defaultUISettings().Theme
 	}
+	if out.ThinkingEffort == "" || !validEffort(out.ThinkingEffort) {
+		out.ThinkingEffort = "default"
+	}
 	return out
 }
 
@@ -56,11 +69,13 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var body struct {
-		Theme      *string `json:"theme"`
-		Family     *string `json:"family"`
-		Mode       *string `json:"mode"`
-		WebDefault *bool   `json:"web_default"`
-		MCPDefault *bool   `json:"mcp_default"`
+		Theme           *string `json:"theme"`
+		Family          *string `json:"family"`
+		Mode            *string `json:"mode"`
+		WebDefault      *bool   `json:"web_default"`
+		MCPDefault      *bool   `json:"mcp_default"`
+		ThinkingDefault *bool   `json:"thinking_default"`
+		ThinkingEffort  *string `json:"thinking_effort"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -85,6 +100,16 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 	}
 	if body.MCPDefault != nil {
 		cur.MCPDefault = body.MCPDefault
+	}
+	if body.ThinkingDefault != nil {
+		cur.ThinkingDefault = *body.ThinkingDefault
+	}
+	if body.ThinkingEffort != nil {
+		if !validEffort(*body.ThinkingEffort) {
+			writeError(w, http.StatusBadRequest, "effort invalide")
+			return
+		}
+		cur.ThinkingEffort = *body.ThinkingEffort
 	}
 	if cur.Family != "" && cur.Mode != "" {
 		if _, ok := alias.Resolve(s.engine.Families(), cur.Family, cur.Mode); !ok {

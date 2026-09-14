@@ -14,6 +14,7 @@ import (
 
 type scriptStep struct {
 	content   string
+	reasoning string
 	toolCalls []provider.ToolCall
 	err       error
 }
@@ -40,6 +41,11 @@ func (s *scriptedProvider) Stream(ctx context.Context, req provider.Request, emi
 	s.mu.Unlock()
 	if step.err != nil {
 		return provider.Response{}, step.err
+	}
+	if step.reasoning != "" {
+		if !emit(provider.Event{Reasoning: step.reasoning}) {
+			return provider.Response{Reasoning: step.reasoning}, nil
+		}
 	}
 	for _, r := range step.content {
 		if !emit(provider.Event{Content: string(r)}) {

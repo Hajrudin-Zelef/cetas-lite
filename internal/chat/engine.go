@@ -224,7 +224,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Attachments: last.Attachments}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Attachments: last.Attachments}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)
@@ -371,11 +371,13 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		}})
 
 		resp, err := p.Stream(ctx, provider.Request{
-			Model:       m.Model,
-			Messages:    msgs,
-			Temperature: 0.7,
+			Model:           m.Model,
+			Messages:        msgs,
+			Temperature:     0.7,
+			EnableReasoning: in.Think,
+			ReasoningEffort: resolveEffort(false, in.Think, in.Text, in.Effort),
 		}, func(ev provider.Event) bool {
-			if ev.Reasoning != "" {
+			if ev.Reasoning != "" && in.Think {
 				c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})
 			}
 			if ev.Content != "" {

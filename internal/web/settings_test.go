@@ -152,3 +152,32 @@ func TestSettingsPartialMerge(t *testing.T) {
 		t.Fatalf("famille/mode perdus: %v", body)
 	}
 }
+
+func TestSettingsThinking(t *testing.T) {
+	s := newTestServer(t, true)
+	h := s.Handler()
+	token := registerAndLogin(t, h, "sam")
+
+	rec := doJSON(t, h, http.MethodGet, "/api/settings", token, nil)
+	body := decode(t, rec)
+	if body["thinking_default"] != false || body["thinking_effort"] != "default" {
+		t.Fatalf("defauts thinking = %v", body)
+	}
+
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{
+		"thinking_default": true, "thinking_effort": "high",
+	})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("put status = %d (%s)", rec.Code, rec.Body.String())
+	}
+	rec = doJSON(t, h, http.MethodGet, "/api/settings", token, nil)
+	body = decode(t, rec)
+	if body["thinking_default"] != true || body["thinking_effort"] != "high" {
+		t.Fatalf("round-trip thinking = %v", body)
+	}
+
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{"thinking_effort": "ultra"})
+	if rec.Code != http.StatusBadRequest {
+		t.Fatalf("effort invalide status = %d", rec.Code)
+	}
+}

@@ -42,6 +42,7 @@ func TestIndexHasIDs(t *testing.T) {
 		`id="composer"`, `id="prompt-input"`, `id="send-btn"`, `id="stop-btn"`,
 		`id="settings-overlay"`, `id="aliases-editor"`, `id="aliases-save"`, `id="aliases-status"`,
 		`id="agent-toggle"`, `id="web-toggle"`, `id="mcp-toggle"`,
+		`id="thinking-toggle"`, `id="effort-select"`,
 		`id="conv-list"`, `id="stats-badge"`, `id="export-btn"`,
 		`id="attach-chips"`, `id="attach-input"`, `id="attach-btn"`,
 	} {

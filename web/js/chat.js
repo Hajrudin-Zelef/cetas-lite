@@ -1,7 +1,7 @@
 import { api, getToken, readSSE } from "./api.js";
 import { appendLinkified, renderInto } from "./markdown.js";
 import { createStreamRenderer } from "./stream-render.js";
-import { applyWebToggle, applyMCPToggle, persistPrefs } from "./model-select.js";
+import { applyWebToggle, applyMCPToggle, persistPrefs, setThinking } from "./model-select.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
@@ -60,11 +60,15 @@ export function initChat() {
 
   function selection() {
     const mcpToggle = document.getElementById("mcp-toggle");
+    const thinkingToggle = document.getElementById("thinking-toggle");
+    const effortSel = document.getElementById("effort-select");
     return {
       family: document.getElementById("family-select").value,
       mode: document.getElementById("mode-select").value,
       web: !!(webToggle && webToggle.getAttribute("aria-pressed") === "true"),
       mcp: !!(mcpToggle && !mcpToggle.hidden && mcpToggle.getAttribute("aria-pressed") === "true"),
+      think: !!(thinkingToggle && thinkingToggle.getAttribute("aria-pressed") === "true"),
+      effort: effortSel ? effortSel.value : "default",
     };
   }
 
@@ -437,7 +441,7 @@ export function initChat() {
     input.value = "";
     autoGrow();
     try {
-      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp, attachments: attachments.map((a) => a.id) } });
+      await api("/api/chat/send", { method: "POST", body: { family: sel.family, mode: sel.mode, message: text, web: sel.web, mcp: sel.mcp, think: sel.think, effort: sel.effort, attachments: attachments.map((a) => a.id) } });
       attachments = [];
       renderChips();
       generating = true;
@@ -488,6 +492,19 @@ export function initChat() {
       applyMCPToggle(next);
       persistPrefs().catch(() => {});
     });
+  }
+  const thinkingToggle = document.getElementById("thinking-toggle");
+  if (thinkingToggle) {
+    thinkingToggle.addEventListener("click", () => {
+      if (thinkingToggle.disabled) return;
+      const next = thinkingToggle.getAttribute("aria-pressed") !== "true";
+      setThinking(next);
+      persistPrefs().catch(() => {});
+    });
+  }
+  const effortSel = document.getElementById("effort-select");
+  if (effortSel) {
+    effortSel.addEventListener("change", () => persistPrefs().catch(() => {}));
   }
 
   if (attachBtn && attachInput) {

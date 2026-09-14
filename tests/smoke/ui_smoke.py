@@ -193,6 +193,12 @@ def check(page, url, reduced):
     assert mcp.get_attribute("aria-pressed") == "true", "mcp doit se reactiver"
     page.wait_for_timeout(100)
 
+    think = page.locator("#thinking-toggle")
+    assert think.count() == 1, "thinking toggle absent"
+    assert think.is_disabled(), "thinking doit etre force en mode agent"
+    assert think.get_attribute("aria-pressed") == "true", "thinking doit etre actif en agent"
+    assert page.locator("#effort-select").input_value() == "default", "effort defaut attendu"
+
     stats = page.locator("#stats-badge")
     assert stats.is_visible(), "stats badge visible attendu"
     stext = stats.inner_text()
@@ -233,6 +239,8 @@ def check(page, url, reduced):
     body = STATE["send_body"] or {}
     assert body.get("web") is True, f"le tour doit porter web=true: {body!r}"
     assert body.get("mcp") is True, f"le tour doit porter mcp=true: {body!r}"
+    assert body.get("think") is True, f"le mode agent doit porter think=true: {body!r}"
+    assert body.get("effort") == "default", f"effort par defaut attendu: {body!r}"
 
     assert not errors, f"erreurs page: {errors}"
     label = "reduced" if reduced else "normal"

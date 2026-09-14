@@ -30,6 +30,8 @@ type TurnInput struct {
 	Text        string
 	Web         bool
 	MCP         bool
+	Think       bool
+	Effort      string
 	Attachments []string
 }
 
@@ -82,7 +84,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Attachments: in.Attachments}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Attachments: in.Attachments}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()
