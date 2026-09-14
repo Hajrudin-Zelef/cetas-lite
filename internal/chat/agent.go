@@ -24,25 +24,10 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		c.appendDelta(epoch, map[string]any{"error": err.Error()})
 		return
 	}
-	tools := ToolSchemas()
-	if !e.scriptAllowed() {
-		tools = filterTools(tools, "RunScript")
-	}
-	tools = append(tools, viewImageSchema())
-	if e.memoryTools() != nil {
-		tools = append(tools, MemoryToolSchemas()...)
-	}
-	if ct := e.customTools(); ct != nil {
-		tools = append(tools, CustomToolSchemas(ct.Defs())...)
-	}
-	if in.MCP {
-		tools = append(tools, e.mcpSchemas(ctx)...)
-	}
-	if in.Web && e.webTools() != nil {
-		tools = append(tools, WebToolSchemas()...)
-	}
 	sb.AllowScript = e.scriptAllowed()
 	sb.Isolation = e.isolation()
+	reg := e.toolRegistry(in, sb)
+	tools := reg.schemas(ctx)
 	sys := []provider.Message{{Role: "system", Content: agentSystemPrompt()}}
 	if mm, ok := e.marexMessage(in.User); ok {
 		sys = append(sys, mm)
@@ -63,7 +48,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		c.appendDelta(epoch, routeDelta(m, in.Family, in.Mode, false, res.fallback))
 
 		emitted := false
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, sb, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted)
+		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted)
 		if err == nil {
 			c.appendAssistant(epoch, content)
 			return
@@ -84,7 +69,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	c.appendDelta(epoch, map[string]any{"error": lastErr.Error()})
 }
 
-func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, sb *Sandbox, user, effort string, emitted *bool) (string, error) {
+func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, reg toolRegistry, user, effort string, emitted *bool) (string, error) {
 	const maxNudges = 2
 	msgs := append([]provider.Message(nil), base...)
 	done := map[string]string{}
@@ -159,19 +144,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 					repeats[key]++
 					out.Text = repeatedCallResult(prev, repeats[key])
 				} else {
-					if tc.Function.Name == "web_search" || tc.Function.Name == "web_fetch" {
-						out = e.webExecute(ctx, user, tc.Function.Name, tc.Function.Arguments)
-					} else if tc.Function.Name == "ViewImage" {
-						out, followup = e.viewImage(m, sb, tc.Function.Arguments)
-					} else if strings.HasPrefix(tc.Function.Name, "mem_") {
-						out = e.memExecute(user, tc.Function.Name, tc.Function.Arguments)
-					} else if strings.HasPrefix(tc.Function.Name, "mcp_") {
-						out = e.mcpExecute(ctx, tc.Function.Name, tc.Function.Arguments)
-					} else if strings.HasPrefix(tc.Function.Name, "custom_") {
-						out = e.customExecute(ctx, tc.Function.Name, tc.Function.Arguments)
-					} else {
-						out = sb.Execute(ctx, tc.Function.Name, tc.Function.Arguments)
-					}
+					out, followup = reg.execute(ctx, toolEnv{user: user, member: m}, tc.Function.Name, tc.Function.Arguments)
 					if !strings.HasPrefix(out.Text, "[erreur]") {
 						done[key] = out.Text
 					}
