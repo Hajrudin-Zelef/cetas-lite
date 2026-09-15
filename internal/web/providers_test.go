@@ -124,9 +124,21 @@ func TestProvidersPutErrors(t *testing.T) {
 	if rec := doJSON(t, h, http.MethodDelete, "/api/providers/nope", token, nil); rec.Code != http.StatusNotFound {
 		t.Fatalf("delete inconnu: status = %d, attendu 404", rec.Code)
 	}
-	// Provider local : PUT refuse (pas de cle API gerable ici).
-	if rec := doJSON(t, h, http.MethodPut, "/api/providers/ollama", token, map[string]any{"key": "x"}); rec.Code != http.StatusNotFound {
-		t.Fatalf("put local: status = %d, attendu 404", rec.Code)
+	// Provider local : PUT cle refuse (pas de cle API ici, seule l'URL est gerable).
+	if rec := doJSON(t, h, http.MethodPut, "/api/providers/ollama", token, map[string]any{"key": "x"}); rec.Code != http.StatusBadRequest {
+		t.Fatalf("put local cle: status = %d, attendu 400", rec.Code)
+	}
+	// Provider local : PUT URL invalide -> 400.
+	if rec := doJSON(t, h, http.MethodPut, "/api/providers/ollama", token, map[string]any{"url": "notaurl"}); rec.Code != http.StatusBadRequest {
+		t.Fatalf("put local url invalide: status = %d, attendu 400", rec.Code)
+	}
+	// Provider local : PUT URL valide -> 200.
+	if rec := doJSON(t, h, http.MethodPut, "/api/providers/ollama", token, map[string]any{"url": "http://192.168.1.10:11434"}); rec.Code != http.StatusOK {
+		t.Fatalf("put local url: status = %d, attendu 200", rec.Code)
+	}
+	// Provider cloud : PUT URL refuse -> 400.
+	if rec := doJSON(t, h, http.MethodPut, "/api/providers/deepseek", token, map[string]any{"url": "http://x"}); rec.Code != http.StatusBadRequest {
+		t.Fatalf("put cloud url: status = %d, attendu 400", rec.Code)
 	}
 }
 

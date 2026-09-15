@@ -3,6 +3,7 @@ import { applyTheme, persistPrefs } from "./model-select.js";
 import { getCategories, saveCategories } from "./sidebar.js";
 import { saveRoles } from "./right-panel.js";
 import { renderConnectorsInto, openNewProjectModal, ProjectsAPI } from "./projects.js";
+import { initApiModelesPanel } from "./apimodeles.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -107,108 +108,6 @@ function initConfigModal() {
     if (ans) ans.style.display = "none";
   });
 
-  async function loadProviders() {
-    const list = document.getElementById("providers-list");
-    if (!list) return;
-    list.innerHTML = '<div class="conv-list-loading">Chargement…</div>';
-    let providers;
-    try {
-      const data = await api("/api/providers");
-      providers = (data && data.providers) || [];
-    } catch (e) {
-      list.innerHTML = '<div class="models-error">Impossible de charger les fournisseurs : ' + e.message + "</div>";
-      return;
-    }
-    list.innerHTML = "";
-    for (const p of providers) {
-      const row = document.createElement("div");
-      row.className = "provider-row" + (p.configured ? " configured" : "");
-      const head = document.createElement("div");
-      head.className = "provider-row-head";
-      const name = document.createElement("span");
-      name.className = "provider-row-name";
-      name.textContent = p.label || p.id;
-      const badge = document.createElement("span");
-      badge.className = "provider-badge " + (p.configured ? "on" : "off");
-      badge.textContent = p.configured ? "Configuré" : "Non configuré";
-      head.appendChild(name);
-      head.appendChild(badge);
-      const body = document.createElement("div");
-      body.className = "provider-row-body";
-      const input = document.createElement("input");
-      input.type = "password";
-      input.className = "sp-modal-input";
-      input.placeholder = p.configured ? "•••••••• (laisser vide pour conserver)" : "Coller la clé API…";
-      input.autocomplete = "off";
-      const actions = document.createElement("div");
-      actions.className = "provider-row-actions";
-      const save = document.createElement("button");
-      save.type = "button";
-      save.className = "models-save-btn";
-      save.textContent = "Enregistrer";
-      save.addEventListener("click", async () => {
-        const key = input.value.trim();
-        if (!key) return;
-        save.disabled = true;
-        try {
-          await api("/api/providers/" + encodeURIComponent(p.id), { method: "PUT", body: { key } });
-          input.value = "";
-          await loadProviders();
-        } catch (e) {
-          alertDialog("Échec de l'enregistrement : " + e.message);
-        } finally {
-          save.disabled = false;
-        }
-      });
-      actions.appendChild(save);
-      if (p.configured) {
-        const del = document.createElement("button");
-        del.type = "button";
-        del.className = "models-cancel-btn";
-        del.textContent = "Supprimer";
-        del.addEventListener("click", async () => {
-          const ok = await confirmDialog("Supprimer la clé du fournisseur « " + (p.label || p.id) + " » ?", { okLabel: "Supprimer", danger: true });
-          if (!ok) return;
-          try {
-            await api("/api/providers/" + encodeURIComponent(p.id), { method: "DELETE" });
-            await loadProviders();
-          } catch (e) {
-            alertDialog("Échec de la suppression : " + e.message);
-          }
-        });
-        actions.appendChild(del);
-      }
-      body.appendChild(input);
-      body.appendChild(actions);
-      row.appendChild(head);
-      row.appendChild(body);
-      list.appendChild(row);
-    }
-  }
-
-  async function loadFamilies() {
-    const list = document.getElementById("families-list");
-    if (!list) return;
-    try {
-      const data = await api("/api/aliases");
-      list.innerHTML = "";
-      for (const f of data.families || []) {
-        const row = document.createElement("div");
-        row.className = "family-row";
-        const name = document.createElement("span");
-        name.className = "family-row-name";
-        name.textContent = f.label;
-        const modes = document.createElement("span");
-        modes.className = "family-row-modes";
-        modes.textContent = (f.modes || []).map((m) => m.label).join(" · ");
-        row.appendChild(name);
-        row.appendChild(modes);
-        list.appendChild(row);
-      }
-    } catch (e) {
-      list.innerHTML = '<div class="models-error">Chargement impossible.</div>';
-    }
-  }
 
   async function loadFeatureDefaults() {
     const prefs = await getPrefs().catch(() => null);
@@ -309,8 +208,7 @@ function initConfigModal() {
 
   window.addEventListener("cetas:open-config", () => {
     openOverlay("apikeys-modal-overlay");
-    loadProviders();
-    loadFamilies();
+    initApiModelesPanel();
     loadFeatureDefaults();
     loadMarex();
   });

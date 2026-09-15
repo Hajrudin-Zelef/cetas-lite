@@ -32,8 +32,9 @@
 <link rel="stylesheet" href="/css/features/marex-agents.css">
 <link rel="stylesheet" href="/css/features/mx-modes.css">
 <link rel="stylesheet" href="/css/features/mx-module.css">
-<link rel="stylesheet" href="/css/features/mx-docs.css">
 <link rel="stylesheet" href="/css/features/mx-menus.css">
+<link rel="stylesheet" href="/css/features/mx-docs.css">
+<link rel="stylesheet" href="/css/features/mx-apimodeles.css">
 <link rel="stylesheet" href="/css/cetas-lite.css">
 <script src="/js/theme-init.js"></script>
 </head>
@@ -741,14 +742,16 @@
             <!-- Panel API et Modèles -->
             <div class="apikeys-panel active" id="panel-apimodeles">
                 <h3>API et Modèles</h3>
-                <p class="apikey-intro">Renseignez vos clés API pour activer les fournisseurs. Les clés sont chiffrées et stockées sur votre serveur Cetas Lite.</p>
+                <p class="apikey-intro">Sélectionnez un fournisseur pour configurer sa clé API et choisir les modèles à afficher dans le sélecteur principal.</p>
                 <div class="apikeys-panel-body">
-                    <div id="providers-list" class="providers-list"></div>
+                    <div id="providers-tabs" class="providers-tabs"></div>
+                    <div id="provider-content" class="provider-content">
+                        <!-- Sections par fournisseur, rendues par JS -->
+                    </div>
                 </div>
-                <h3 style="margin-top:18px">Familles de modèles</h3>
-                <p class="apikey-intro">Familles disponibles, configurées côté serveur.</p>
-                <div class="apikeys-panel-body">
-                    <div id="families-list" class="families-list"></div>
+                <div class="models-save-row apimodeles-save-row">
+                    <span class="apikey-autosave-note">Tous les paramètres sont sauvegardés automatiquement.</span>
+                    <button type="button" id="apimodeles-save-btn" class="models-save-btn">Sauvegarder tout</button>
                 </div>
             </div>
             <!-- Panel Fonctionnalités -->

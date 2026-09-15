@@ -134,6 +134,13 @@ func buildApp() (*app, error) {
 
 	client := provider.NewHTTPClient()
 	localURLs := localURLsFromEnv()
+	// Les URL definies depuis l'interface (Configuration -> API et Modeles,
+	// meta "local_url_<id>") priment sur les variables d'environnement.
+	for _, id := range provider.LocalEngines {
+		if raw, ok := st.GetMeta("local_url_" + id); ok && len(raw) > 0 {
+			localURLs[id] = string(raw)
+		}
+	}
 	keys := loadProviderKeys(st)
 	registry := provider.Build(keys, localURLs, client)
 	discover := local.New(local.DefaultEngines(localURLs), client)
