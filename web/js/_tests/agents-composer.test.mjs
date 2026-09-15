@@ -1,7 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-// jsdom : dependance de test declaree dans package.json (npm install).
-import { JSDOM } from "jsdom";
+import { createRequire } from "node:module";
+// jsdom : résolution standard (node_modules du projet) puis repli /tmp.
+const require = createRequire(import.meta.url);
+let JSDOM;
+try {
+  ({ JSDOM } = require("jsdom"));
+} catch {
+  ({ JSDOM } = await import("/tmp/node_modules/jsdom/lib/api.js"));
+}
 
 const dom = new JSDOM("<!doctype html><html><body></body></html>", {
   pretendToBeVisual: true,
@@ -58,12 +65,25 @@ test("globe : bascule active et persistance", () => {
   assert.equal(localStorage.getItem("mx.mx_web"), "0");
 });
 
-test("thinking : toujours actif et verrouillé pour l'agent", () => {
+test("thinking : interrupteur réel, N&B éteint / couleur allumé, persisté", () => {
   const btn = $("#mx-think");
-  assert.ok(btn.classList.contains("active"), "actif");
-  assert.ok(btn.classList.contains("locked"), "verrouillé");
+  localStorage.removeItem("mx.mx_think");
+  // État initial : actif (défaut), couleur, sans verrou.
+  assert.ok(btn.classList.contains("active"), "actif par défaut");
+  assert.ok(!btn.classList.contains("locked"), "cliquable, plus verrouillé");
+  assert.ok(!btn.classList.contains("off"), "pas en N&B");
+  assert.equal(btn.getAttribute("aria-pressed"), "true");
+  // Clic : extinction -> noir et blanc.
   btn.click();
-  assert.ok(btn.classList.contains("active"), "reste actif après clic");
+  assert.ok(btn.classList.contains("off"), "N&B quand éteint");
+  assert.ok(!btn.classList.contains("active"), "plus de couleur");
+  assert.equal(btn.getAttribute("aria-pressed"), "false");
+  assert.equal(localStorage.getItem("mx.mx_think"), "0", "persisté éteint");
+  // Re-clic : rallumage.
+  btn.click();
+  assert.ok(btn.classList.contains("active"), "couleur quand allumé");
+  assert.ok(!btn.classList.contains("off"), "plus de N&B");
+  assert.equal(localStorage.getItem("mx.mx_think"), "1", "persisté allumé");
 });
 
 test("effort : 4 options, labels FR, persistance", () => {

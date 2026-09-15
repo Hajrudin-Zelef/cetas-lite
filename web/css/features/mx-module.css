@@ -15,3 +15,92 @@
   border-color:var(--accent, #5EC8F2);
   color:var(--text);
 }
+
+/* Pastille d'activité : au moins un agent en cours d'exécution.
+   Visible même quand la vue Agents est fermée. */
+.dev-module-btn[data-module="agents"]{
+  position:relative;
+}
+.dev-module-btn[data-module="agents"] .mod-activity-dot{
+  position:absolute;
+  top:7px;
+  right:9px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#3ddc84;
+  pointer-events:none;
+}
+.dev-module-btn[data-module="agents"].has-running .mod-activity-dot{
+  animation:mod-dot-pulse 1.6s ease-out infinite;
+}
+@keyframes mod-dot-pulse{
+  0%{box-shadow:0 0 0 0 rgba(61,220,132,.55);}
+  70%{box-shadow:0 0 0 7px rgba(61,220,132,0);}
+  100%{box-shadow:0 0 0 0 rgba(61,220,132,0);}
+}
+
+/* Bouton Thinking : allumé = couleur (accent), éteint = noir et blanc. */
+#marex-view #mx-think.off{
+  filter:grayscale(1);
+  opacity:.55;
+  color:var(--text-primary);
+  background:transparent;
+}
+#marex-view #mx-think.off:hover{
+  filter:grayscale(1);
+  opacity:.8;
+}
+
+/* Pièces jointes du composer Agents : chips + alerte vision. */
+#marex-view .mx-attach-row{
+  display:flex; flex-wrap:wrap; gap:6px;
+  padding:6px 14px 0;
+}
+#marex-view .mx-attach-chip{
+  display:inline-flex; align-items:center; gap:6px;
+  max-width:220px; padding:3px 6px 3px 8px;
+  font-size:11px; color:var(--text-primary);
+  background:var(--bg-input-btn); border:1px solid var(--border);
+  border-radius:20px; white-space:nowrap;
+}
+#marex-view .mx-attach-chip .n{
+  overflow:hidden; text-overflow:ellipsis;
+}
+#marex-view .mx-attach-chip button{
+  border:none; background:transparent; color:var(--text-secondary);
+  cursor:pointer; font-size:12px; line-height:1; padding:0 2px;
+}
+#marex-view .mx-attach-chip button:hover{ color:var(--danger, #e05252); }
+#marex-view .mx-vision-warn{
+  margin:6px 14px 0; padding:8px 10px;
+  font-size:11.5px; line-height:1.5; color:#f0b429;
+  background:rgba(240,180,41,.08); border:1px solid rgba(240,180,41,.35);
+  border-radius:8px;
+}
+#marex-view .mx-vision-warn button{
+  margin:2px 4px 2px 0; padding:2px 8px; font-size:11px;
+  color:var(--text-primary); background:var(--bg-input-btn);
+  border:1px solid var(--border); border-radius:12px; cursor:pointer;
+}
+#marex-view .mx-vision-warn button:hover{ border-color:var(--accent); }
+/* Champ de recherche dans le menu projet. */
+#marex-view .cdrop-search{
+  width:calc(100% - 12px); margin:6px;
+  padding:6px 8px; font-size:12px; color:var(--text-primary);
+  background:var(--bg-input, rgba(255,255,255,.04));
+  border:1px solid var(--border); border-radius:8px; outline:none;
+}
+#marex-view .cdrop-search:focus{ border-color:var(--accent); }
+/* Description sous les actions du menu +. */
+#marex-view .cdrop-item-desc{
+  font-size:11px; color:var(--text-secondary);
+  padding:0 12px 8px; line-height:1.4;
+}
+
+/* La modale "Nouveau projet" / lecteur de fichiers doit passer AU-DESSUS
+   de la vue Agents plein écran (z-index 400) et de la Configuration (1000).
+   (Fichier généré marex-agents.css intact : override dans cette couche.) */
+.mx-modal-overlay{
+  z-index:1500;
+}

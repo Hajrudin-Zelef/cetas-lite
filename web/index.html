@@ -729,6 +729,8 @@
             <button class="apikeys-tab active" data-tab="apimodeles">API et Modèles</button>
             <button class="apikeys-tab" data-tab="models">Fonctionnalités</button>
             <button class="apikeys-tab" data-tab="connecteurs">Connecteurs</button>
+            <button class="apikeys-tab" data-tab="remote">Remote</button>
+            <button class="apikeys-tab" data-tab="competences">Compétences</button>
             <button class="apikeys-tab" data-tab="appearance">Apparence</button>
             <div class="apikeys-tabs-spacer"></div>
             <button class="apikeys-tab" data-tab="faq">FAQ</button>
@@ -811,6 +813,18 @@
                 <h3>Connecteurs</h3>
                 <p class="apikey-intro">Comptes connectés que l'agent peut utiliser (git, etc.). Les secrets sont chiffrés avant stockage.</p>
                 <div class="apikeys-panel-body" id="connectors-body"></div>
+            </div>
+            <!-- Panel Remote (SFTP) -->
+            <div class="apikeys-panel" id="panel-remote">
+                <h3>Remote</h3>
+                <p class="apikey-intro">Serveurs distants (SFTP) utilisables comme projets par l'agent. La clé d'hôte est validée à la première connexion (TOFU) ; les secrets sont chiffrés avant stockage.</p>
+                <div class="apikeys-panel-body" id="remote-body"></div>
+            </div>
+            <!-- Panel Compétences -->
+            <div class="apikeys-panel" id="panel-competences">
+                <h3>Compétences</h3>
+                <p class="apikey-intro">Instructions réutilisables injectées dans le prompt système de l'agent. Seules les compétences activées sont prises en compte.</p>
+                <div class="apikeys-panel-body" id="skills-body"></div>
             </div>
             <!-- Panel Apparence -->
             <div class="apikeys-panel" id="panel-appearance">

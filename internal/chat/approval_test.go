@@ -300,3 +300,42 @@ func TestToolApprovalDenied(t *testing.T) {
 		t.Fatalf("le modele aurait du continuer apres le refus : %q", got)
 	}
 }
+
+// TestWriteModeExecutesWithoutApproval : en mode "Espace Write"
+// (approve=false, plan=false), un outil d'ecriture s'execute directement,
+// sans aucune demande d'approbation a l'utilisateur.
+func TestWriteModeExecutesWithoutApproval(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{toolCall("w1", "Write", `{"file_path":"note.txt","content":"hello"}`)}},
+		{content: "Fichier cree"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := runAgentTurn(t, e, "sam", TurnInput{
+		Family: "code", Mode: "standard", Text: "cree note.txt",
+		Approve: false, Plan: false, Think: true,
+	})
+
+	// Aucune demande d'approbation ne doit apparaitre dans le journal.
+	c.mu.Lock()
+	for _, ev := range c.Log {
+		if _, ok := ev.Delta["approval"]; ok {
+			c.mu.Unlock()
+			t.Fatal("Espace Write : aucune approbation ne doit etre demandee")
+		}
+	}
+	c.mu.Unlock()
+
+	// L'outil Write doit s'etre execute jusqu'au bout (phase end).
+	if !hasToolEvent(c, "end") {
+		t.Fatal("Espace Write : l'outil Write aurait du s'executer")
+	}
+	var sawErr bool
+	for _, r := range toolResults(c) {
+		if strings.HasPrefix(r, "[erreur]") || strings.HasPrefix(r, "[refuse]") {
+			sawErr = true
+		}
+	}
+	if sawErr {
+		t.Fatalf("Espace Write : l'ecriture aurait du reussir, resultats=%v", toolResults(c))
+	}
+}

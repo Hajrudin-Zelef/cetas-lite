@@ -120,6 +120,51 @@ func (s *Store) Delete(user, id string) error {
 	return nil
 }
 
+// CleanOlderThan supprime les pièces jointes (métadonnées + fichier)
+// dont la date de création dépasse maxAge. Appelé au démarrage du moteur :
+// les fichiers ne sont plus supprimés à l'envoi (le tour agent les lit de
+// façon asynchrone et la régénération peut les relire), ce nettoyage évite
+// l'accumulation des orphelins.
+func (s *Store) CleanOlderThan(maxAge time.Duration) int {
+	if s == nil || maxAge <= 0 {
+		return 0
+	}
+	cutoff := time.Now().Add(-maxAge).UnixMilli()
+	removed := 0
+	users, err := os.ReadDir(s.root)
+	if err != nil {
+		return 0
+	}
+	for _, u := range users {
+		if !u.IsDir() {
+			continue
+		}
+		dir := filepath.Join(s.root, u.Name())
+		entries, err := os.ReadDir(dir)
+		if err != nil {
+			continue
+		}
+		for _, en := range entries {
+			name := en.Name()
+			if !strings.HasSuffix(name, ".json") {
+				continue
+			}
+			raw, err := os.ReadFile(filepath.Join(dir, name))
+			if err != nil {
+				continue
+			}
+			var a Attachment
+			if err := json.Unmarshal(raw, &a); err != nil || a.Created >= cutoff {
+				continue
+			}
+			_ = os.Remove(filepath.Join(dir, name))
+			_ = os.Remove(filepath.Join(dir, strings.TrimSuffix(name, ".json")+"."+a.Ext))
+			removed++
+		}
+	}
+	return removed
+}
+
 func (s *Store) userDir(user string) (string, error) {
 	safe := strings.NewReplacer("/", "_", "\\", "_").Replace(strings.TrimSpace(user))
 	if safe == "" || safe == "." || safe == ".." {

@@ -52,6 +52,11 @@ type TurnInput struct {
 	ProjectID string
 	// MaxTokens limite les tokens generes par reponse (0 = defaut).
 	MaxTokens int
+	// WebDepth regle la profondeur de recherche web de l'agent :
+	// "deep" = recherche approfondie (requetes multiples, resultats
+	// elargis, pages lues en entier, recoupement des sources).
+	// Toute autre valeur = recherche standard.
+	WebDepth string
 }
 
 // Bornes du reglage "tokens max par reponse".
@@ -127,7 +132,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, WebDepth: in.WebDepth, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()

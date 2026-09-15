@@ -15,16 +15,35 @@ func logHasReasoning(c *Conversation) bool {
 	return false
 }
 
-func TestAgentForcesReasoning(t *testing.T) {
+func TestAgentThinkingOnEnablesReasoning(t *testing.T) {
 	sp := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok"}}}
 	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
-	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "fais"})
+	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "fais", Think: true})
 	reqs := sp.requests()
 	if len(reqs) == 0 || !reqs[0].EnableReasoning {
-		t.Fatal("l'agent doit forcer le raisonnement")
+		t.Fatal("l'agent avec thinking actif doit activer le raisonnement")
 	}
 	if reqs[0].ReasoningEffort == "" {
 		t.Fatal("effort attendu en mode agent")
+	}
+}
+
+// TestAgentThinkingOffDisablesReasoning : le bouton Thinking eteint doit
+// etre respecte de bout en bout — pas de raisonnement cote provider, pas
+// de contenu de raisonnement diffuse, directive systeme "reponse directe".
+func TestAgentThinkingOffDisablesReasoning(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok", reasoning: "reflexion privee"}}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "fais vite", Think: false})
+	reqs := sp.requests()
+	if len(reqs) == 0 {
+		t.Fatal("aucune requete emise")
+	}
+	if reqs[0].EnableReasoning {
+		t.Fatal("l'agent avec thinking eteint ne doit pas activer le raisonnement provider")
+	}
+	if logHasReasoning(c) {
+		t.Fatal("aucun contenu de raisonnement ne doit etre diffuse quand le thinking est eteint")
 	}
 }
 
@@ -53,20 +72,24 @@ func TestChatThinkingOnEmitsReasoning(t *testing.T) {
 }
 
 func TestResolveEffort(t *testing.T) {
-	if got := resolveEffort(false, false, "court", "default"); got != "" {
+	if got := resolveEffort(false, "court", "default"); got != "" {
 		t.Fatalf("effort sans thinking = %q", got)
 	}
-	if got := resolveEffort(false, true, "court", "default"); got != "low" {
+	if got := resolveEffort(true, "court", "default"); got != "low" {
 		t.Fatalf("auto court = %q", got)
 	}
 	long := make([]rune, 500)
 	for i := range long {
 		long[i] = 'x'
 	}
-	if got := resolveEffort(false, true, string(long), "default"); got != "medium" {
+	if got := resolveEffort(true, string(long), "default"); got != "medium" {
 		t.Fatalf("auto long = %q", got)
 	}
-	if got := resolveEffort(true, true, "court", "high"); got != "high" {
+	if got := resolveEffort(true, "court", "high"); got != "high" {
 		t.Fatalf("effort explicite = %q", got)
+	}
+	// Durcissement : un effort explicite ne survit pas à think=false.
+	if got := resolveEffort(false, "court", "high"); got != "" {
+		t.Fatalf("effort explicite + think=false = %q, attendu vide", got)
 	}
 }

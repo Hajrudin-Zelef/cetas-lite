@@ -1,8 +1,11 @@
 package attach
 
 import (
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestSaveGetDelete(t *testing.T) {
@@ -69,5 +72,41 @@ func TestSizeLimitAndName(t *testing.T) {
 	}
 	if strings.Contains(a.Name, "/") {
 		t.Fatal("pas de separateur dans le nom")
+	}
+}
+
+// TestCleanOlderThan : seules les pièces jointes plus anciennes que maxAge
+// sont purgées (métadonnées + fichier), les récentes sont conservées.
+func TestCleanOlderThan(t *testing.T) {
+	s := New(t.TempDir(), 1<<20)
+	old, err := s.Save("sam", "vieux.md", []byte("vieux"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	recent, err := s.Save("sam", "recent.md", []byte("recent"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	dir, err := s.userDir("sam")
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Vieillit artificiellement la première pièce jointe (created = 1 ms).
+	rawOld := `{"id":"` + old.ID + `","name":"vieux.md","kind":"text","ext":"md","size":5,"created":1}`
+	if err := os.WriteFile(filepath.Join(dir, old.ID+".json"), []byte(rawOld), 0o600); err != nil {
+		t.Fatal(err)
+	}
+
+	if n := s.CleanOlderThan(7 * 24 * time.Hour); n != 1 {
+		t.Fatalf("1 pièce purgée attendue, obtenu %d", n)
+	}
+	if _, _, err := s.Get("sam", old.ID); err == nil {
+		t.Fatal("la vieille pièce jointe doit être purgée")
+	}
+	if _, _, err := s.Get("sam", recent.ID); err != nil {
+		t.Fatalf("la pièce récente doit être conservée: %v", err)
+	}
+	if n := s.CleanOlderThan(0); n != 0 {
+		t.Fatalf("maxAge <= 0 : rien à purger, obtenu %d", n)
 	}
 }

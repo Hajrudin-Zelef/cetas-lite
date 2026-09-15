@@ -95,6 +95,17 @@ func TestWebToolsFor(t *testing.T) {
 	if e.webToolsFor(mkIn(false)) {
 		t.Error("web=false : pas d'outils web")
 	}
+	// Recherche approfondie : les outils sont requis meme en mode "natif"
+	// (le natif est desactive pour ce tour), mais pas si le web est coupe.
+	setWebSearchMode(t, e, "u", "natif")
+	deep := TurnInput{User: "u", Web: true, WebDepth: "deep"}
+	if !e.webToolsFor(deep) {
+		t.Error("deep+natif : outils attendus (natif desactive pour ce tour)")
+	}
+	setWebSearchMode(t, e, "u", "off")
+	if e.webToolsFor(deep) {
+		t.Error("deep+off : pas d'outils web")
+	}
 }
 
 func TestDropWebTools(t *testing.T) {
@@ -329,5 +340,44 @@ func TestReplaceWebDirective(t *testing.T) {
 	again := replaceWebDirective(out, oldDir, newDir)
 	if s2, _ := again[0].Content.(string); s2 != s {
 		t.Fatal("remplacement idempotent attendu")
+	}
+}
+
+// TestAgentDeepWebDisablesNative : en recherche approfondie, le plugin
+// natif est desactive (pas de Extra "plugins") meme avec un provider natif
+// (openrouter), les outils web_search/web_fetch restent disponibles et la
+// directive DEEP WEB RESEARCH est injectee.
+func TestAgentDeepWebDisablesNative(t *testing.T) {
+	sp := &scriptedProvider{id: "openrouter", steps: []scriptStep{{content: "ok"}}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "openrouter", Model: "openai/gpt-5"}))
+	e.SetSearcher(stubWebTools{})
+	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "cherche des infos recentes", Web: true, WebDepth: "deep", Think: false})
+	reqs := sp.requests()
+	if len(reqs) == 0 {
+		t.Fatal("aucune requete emise")
+	}
+	if reqs[0].Extra != nil {
+		t.Fatalf("deep : aucun plugin natif attendu, obtenu Extra=%v", reqs[0].Extra)
+	}
+	foundSearch, foundFetch := false, false
+	for _, tl := range reqs[0].Tools {
+		if tl.Function.Name == "web_search" {
+			foundSearch = true
+		}
+		if tl.Function.Name == "web_fetch" {
+			foundFetch = true
+		}
+	}
+	if !foundSearch || !foundFetch {
+		t.Fatal("deep : web_search et web_fetch attendus dans les outils")
+	}
+	deepFound := false
+	for _, m := range reqs[0].Messages {
+		if s, ok := m.Content.(string); ok && m.Role == "system" && strings.Contains(s, "DEEP WEB RESEARCH") {
+			deepFound = true
+		}
+	}
+	if !deepFound {
+		t.Fatal("deep : directive DEEP WEB RESEARCH attendue dans les messages systeme")
 	}
 }

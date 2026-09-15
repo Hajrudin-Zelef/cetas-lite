@@ -151,7 +151,14 @@ func buildApp() (*app, error) {
 	}
 	engine.SetSearcher(search.New(keys, client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
-	engine.SetAttachments(attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20))
+	attachStore := attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20)
+	engine.SetAttachments(attachStore)
+	// Les pièces jointes ne sont plus supprimées à l'envoi (le tour agent
+	// les lit de façon asynchrone, la régénération peut les relire) : on
+	// purge ici les orphelins de plus de 7 jours à chaque démarrage.
+	if n := attachStore.CleanOlderThan(7 * 24 * time.Hour); n > 0 {
+		slog.Info("pieces jointes orphelines purgees", "count", n)
+	}
 	engine.SetCapabilities(modelcaps.Load(st))
 	engine.SetMarexPath(filepath.Join(cfg.Home, "MAREX.md"))
 	customManager, err := customtools.NewManager(cfg.ToolsPath, client)

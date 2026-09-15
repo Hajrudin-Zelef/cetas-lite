@@ -2,7 +2,7 @@ import { api, getPrefs, putPrefs } from "./api.js";
 import { applyTheme, persistPrefs } from "./model-select.js";
 import { getCategories, saveCategories } from "./sidebar.js";
 import { saveRoles } from "./right-panel.js";
-import { renderConnectorsInto } from "./projects.js";
+import { renderConnectorsInto, openNewProjectModal, ProjectsAPI } from "./projects.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -84,6 +84,10 @@ function initConfigModal() {
         const body = document.getElementById("connectors-body");
         if (body) renderConnectorsInto(body);
       }
+      // Onglet Remote : liste des serveurs SFTP.
+      if (tab.dataset.tab === "remote") loadRemoteTab();
+      // Onglet Compétences : éditeur de skills.
+      if (tab.dataset.tab === "competences") loadSkillsTab();
     });
   });
   document.getElementById("apikeys-close-btn")?.addEventListener("click", () => closeOverlay("apikeys-modal-overlay"));
@@ -315,10 +319,263 @@ function initConfigModal() {
     overlay.querySelectorAll(".apikeys-tab").forEach((t) => t.classList.toggle("active", t.dataset.tab === "faq"));
     overlay.querySelectorAll(".apikeys-panel").forEach((p) => p.classList.toggle("active", p.id === "panel-faq"));
   });
+  // Ouverture de la Configuration sur un onglet précis (depuis la vue Agents).
+  window.addEventListener("cetas:open-config-tab", (e) => {
+    const tab = (e && e.detail && e.detail.tab) || "apimodeles";
+    openOverlay("apikeys-modal-overlay");
+    const btn = overlay.querySelector('.apikeys-tab[data-tab="' + tab + '"]');
+    if (btn) btn.click();
+    else {
+      overlay.querySelectorAll(".apikeys-tab").forEach((t) => t.classList.toggle("active", t.dataset.tab === tab));
+      overlay.querySelectorAll(".apikeys-panel").forEach((p) => p.classList.toggle("active", p.id === "panel-" + tab));
+    }
+  });
   window.addEventListener("cetas:theme", (e) => {
     applyTheme(e.detail || "ocean");
     putPrefs({ theme: document.documentElement.dataset.theme }).catch(() => {});
   });
+}
+
+// --- Onglet Remote (SFTP) de la Configuration ---
+async function loadRemoteTab() {
+  const body = document.getElementById("remote-body");
+  if (!body) return;
+  body.textContent = "Chargement…";
+  let remotes = [];
+  try {
+    const d = await ProjectsAPI.list();
+    remotes = ((d && d.projects) || []).filter((p) => p.mode === "sftp");
+  } catch (e) {
+    body.textContent = "Erreur de chargement : " + (e.message || e);
+    return;
+  }
+  body.innerHTML = "";
+  const addBtn = document.createElement("button");
+  addBtn.type = "button";
+  addBtn.className = "audio-setting-btn";
+  addBtn.textContent = "Nouveau serveur…";
+  addBtn.addEventListener("click", () => {
+    closeOverlay("apikeys-modal-overlay");
+    // Après création : on rouvre la Configuration sur l'onglet Remote
+    // (le clic sur l'onglet recharge la liste via le chargement paresseux).
+    openNewProjectModal(() => {
+      window.dispatchEvent(new CustomEvent("cetas:open-config-tab", { detail: { tab: "remote" } }));
+    }, { tab: "sftp" });
+  });
+  body.appendChild(addBtn);
+  if (!remotes.length) {
+    const p = document.createElement("p");
+    p.className = "apikey-intro";
+    p.textContent = "Aucun serveur distant configuré.";
+    body.appendChild(p);
+    return;
+  }
+  for (const r of remotes) {
+    const row = document.createElement("div");
+    row.className = "audio-setting-row";
+    const label = document.createElement("span");
+    label.className = "audio-setting-label";
+    const strong = document.createElement("b");
+    strong.textContent = r.name;
+    const small = document.createElement("small");
+    small.style.color = "var(--text-secondary)";
+    small.textContent = " " + r.user + "@" + r.host + ":" + r.remote_path;
+    label.appendChild(strong);
+    label.appendChild(document.createElement("br"));
+    label.appendChild(small);
+    row.appendChild(label);
+    const actions = document.createElement("span");
+    actions.style.display = "flex";
+    actions.style.gap = "8px";
+    const useBtn = document.createElement("button");
+    useBtn.type = "button";
+    useBtn.className = "audio-setting-btn";
+    useBtn.textContent = "Utiliser";
+    useBtn.title = "Définir comme projet actif";
+    useBtn.addEventListener("click", async () => {
+      try {
+        await ProjectsAPI.setActive(r.id);
+        useBtn.textContent = "Actif ✓";
+        setTimeout(() => loadRemoteTab(), 800);
+      } catch (e) {
+        alert("Sélection impossible : " + (e.message || e));
+      }
+    });
+    const delBtn = document.createElement("button");
+    delBtn.type = "button";
+    delBtn.className = "audio-setting-btn";
+    delBtn.textContent = "Supprimer";
+    delBtn.addEventListener("click", async () => {
+      if (!confirm("Supprimer le serveur « " + r.name + " » ?")) return;
+      try {
+        await ProjectsAPI.remove(r.id);
+        loadRemoteTab();
+      } catch (e) {
+        alert("Suppression impossible : " + (e.message || e));
+      }
+    });
+    actions.appendChild(useBtn);
+    actions.appendChild(delBtn);
+    row.appendChild(actions);
+    body.appendChild(row);
+  }
+}
+
+// --- Onglet Compétences de la Configuration ---
+let cfgSkills = null; // cache local édité, sauvegardé via PUT /api/skills
+
+async function loadSkillsTab() {
+  const body = document.getElementById("skills-body");
+  if (!body) return;
+  if (cfgSkills === null) {
+    body.textContent = "Chargement…";
+    try {
+      const d = await api("/api/skills");
+      cfgSkills = (d && d.skills) || [];
+    } catch (e) {
+      body.textContent = "Erreur de chargement : " + (e.message || e);
+      return;
+    }
+  }
+  renderSkillsTab(body);
+}
+
+function renderSkillsTab(body) {
+  body.innerHTML = "";
+  const bar = document.createElement("div");
+  bar.style.display = "flex";
+  bar.style.gap = "8px";
+  bar.style.marginBottom = "12px";
+  const addBtn = document.createElement("button");
+  addBtn.type = "button";
+  addBtn.className = "audio-setting-btn";
+  addBtn.textContent = "+ Nouvelle compétence";
+  addBtn.addEventListener("click", () => {
+    cfgSkills.unshift({ id: "", name: "", description: "", instructions: "", enabled: true, _open: true });
+    renderSkillsTab(body);
+  });
+  const saveBtn = document.createElement("button");
+  saveBtn.type = "button";
+  saveBtn.className = "audio-setting-btn";
+  saveBtn.textContent = "Enregistrer";
+  saveBtn.addEventListener("click", async () => {
+    const payload = cfgSkills.map((s) => ({
+      id: s.id,
+      name: s.name,
+      description: s.description,
+      instructions: s.instructions,
+      enabled: !!s.enabled,
+    }));
+    try {
+      const d = await api("/api/skills", { method: "PUT", body: { skills: payload } });
+      cfgSkills = (d && d.skills) || [];
+      renderSkillsTab(body);
+      // Notifie la vue Agents : elle recharge le compteur du menu +.
+      window.dispatchEvent(new CustomEvent("cetas:skills-changed"));
+      const ok = document.createElement("span");
+      ok.className = "rp-mcp-status";
+      ok.textContent = "Enregistré ✓";
+      bar.appendChild(ok);
+      setTimeout(() => ok.remove(), 2000);
+    } catch (e) {
+      alert("Enregistrement impossible : " + (e.message || e));
+    }
+  });
+  bar.appendChild(addBtn);
+  bar.appendChild(saveBtn);
+  body.appendChild(bar);
+
+  if (!cfgSkills.length) {
+    const p = document.createElement("p");
+    p.className = "apikey-intro";
+    p.textContent = "Aucune compétence. Créez-en une : elle sera injectée dans le prompt système de l'agent.";
+    body.appendChild(p);
+    return;
+  }
+  for (const s of cfgSkills) {
+    const card = document.createElement("div");
+    card.className = "audio-setting-row";
+    card.style.flexDirection = "column";
+    card.style.alignItems = "stretch";
+    card.style.gap = "6px";
+
+    const head = document.createElement("div");
+    head.style.display = "flex";
+    head.style.alignItems = "center";
+    head.style.gap = "10px";
+    const nameEl = document.createElement("b");
+    nameEl.textContent = s.name || "(sans nom)";
+    nameEl.style.flex = "1";
+    const toggle = document.createElement("label");
+    toggle.className = "plus-menu-toggle";
+    toggle.title = "Compétence activée";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = !!s.enabled;
+    cb.addEventListener("change", () => { s.enabled = cb.checked; });
+    const slider = document.createElement("span");
+    slider.className = "plus-menu-toggle-slider";
+    toggle.appendChild(cb);
+    toggle.appendChild(slider);
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "audio-setting-btn";
+    editBtn.textContent = s._open ? "Réduire" : "Modifier";
+    const delBtn = document.createElement("button");
+    delBtn.type = "button";
+    delBtn.className = "audio-setting-btn";
+    delBtn.textContent = "Supprimer";
+    delBtn.addEventListener("click", () => {
+      if (!confirm("Supprimer la compétence « " + (s.name || "(sans nom)") + " » ?")) return;
+      cfgSkills = cfgSkills.filter((x) => x !== s);
+      renderSkillsTab(body);
+    });
+    head.appendChild(nameEl);
+    head.appendChild(toggle);
+    head.appendChild(editBtn);
+    head.appendChild(delBtn);
+    card.appendChild(head);
+
+    if (s.description) {
+      const d = document.createElement("div");
+      d.style.fontSize = "12px";
+      d.style.color = "var(--text-secondary)";
+      d.textContent = s.description;
+      card.appendChild(d);
+    }
+
+    const form = document.createElement("div");
+    form.style.display = s._open ? "grid" : "none";
+    form.style.gap = "6px";
+    const nameIn = document.createElement("input");
+    nameIn.className = "audio-setting-select";
+    nameIn.placeholder = "Nom (80 caractères max)";
+    nameIn.maxLength = 80;
+    nameIn.value = s.name || "";
+    nameIn.addEventListener("input", () => { s.name = nameIn.value; nameEl.textContent = s.name || "(sans nom)"; });
+    const descIn = document.createElement("input");
+    descIn.className = "audio-setting-select";
+    descIn.placeholder = "Description courte (optionnel)";
+    descIn.maxLength = 300;
+    descIn.value = s.description || "";
+    descIn.addEventListener("input", () => { s.description = descIn.value; });
+    const instrIn = document.createElement("textarea");
+    instrIn.className = "audio-setting-select";
+    instrIn.placeholder = "Instructions injectées dans le prompt système de l'agent…";
+    instrIn.rows = 4;
+    instrIn.value = s.instructions || "";
+    instrIn.addEventListener("input", () => { s.instructions = instrIn.value; });
+    form.appendChild(nameIn);
+    form.appendChild(descIn);
+    form.appendChild(instrIn);
+    card.appendChild(form);
+
+    editBtn.addEventListener("click", () => {
+      s._open = !s._open;
+      renderSkillsTab(body);
+    });
+    body.appendChild(card);
+  }
 }
 
 // --- Modale Sauvegarde ---

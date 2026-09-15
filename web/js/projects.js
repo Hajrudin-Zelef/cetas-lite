@@ -309,7 +309,7 @@ export async function openFileReader(projectId, path) {
 
 // ---------------- modal nouveau projet ----------------
 
-export function openNewProjectModal(onCreated) {
+export function openNewProjectModal(onCreated, opts) {
   const overlay = document.createElement("div");
   overlay.className = "mx-modal-overlay";
   overlay.innerHTML =
@@ -357,14 +357,19 @@ export function openNewProjectModal(onCreated) {
   const $ = (sel) => overlay.querySelector(sel);
 
   // Onglets
+  const switchTab = (name) => {
+    overlay.querySelectorAll(".mx-modal-tab").forEach((x) => x.classList.remove("active"));
+    overlay.querySelectorAll(".mx-modal-pane").forEach((x) => x.classList.add("hidden"));
+    const t = overlay.querySelector('.mx-modal-tab[data-tab="' + name + '"]');
+    const p = overlay.querySelector('[data-pane="' + name + '"]');
+    if (t) t.classList.add("active");
+    if (p) p.classList.remove("hidden");
+  };
   overlay.querySelectorAll(".mx-modal-tab").forEach((t) =>
-    t.addEventListener("click", () => {
-      overlay.querySelectorAll(".mx-modal-tab").forEach((x) => x.classList.remove("active"));
-      overlay.querySelectorAll(".mx-modal-pane").forEach((x) => x.classList.add("hidden"));
-      t.classList.add("active");
-      overlay.querySelector('[data-pane="' + t.dataset.tab + '"]').classList.remove("hidden");
-    })
+    t.addEventListener("click", () => switchTab(t.dataset.tab))
   );
+  // Onglet initial (ex. "sftp" quand on vient du volet Remote).
+  if (opts && opts.tab) switchTab(opts.tab);
   // Bascule mot de passe / clé
   $("#mx-np-auth").addEventListener("change", (e) => {
     const isKey = e.target.value === "key";

@@ -12,6 +12,7 @@ import (
 
 	"cetas-lite/internal/alias"
 	"cetas-lite/internal/provider"
+	"cetas-lite/internal/skills"
 )
 
 func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res resolution, base []provider.Message, in TurnInput) {
@@ -66,15 +67,33 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	if login := githubLogin(e.st); login != "" {
 		sys = append(sys, githubPromptMessage(login))
 	}
-	// Directive de raisonnement (imperative, en anglais) : le thinking est
-	// obligatoire pour l'agent, avec le niveau d'effort demande.
-	sys = append(sys, provider.Message{Role: "system", Content: thinkDirective(true, false, in.Effort)})
+	// Directive de raisonnement (imperative, en anglais) : le bouton
+	// Thinking du composer pilote le raisonnement de l'agent.
+	sys = append(sys, provider.Message{Role: "system", Content: thinkDirective(true, in.Think, in.Effort)})
+	// Competences actives (Configuration -> Competences) : instructions
+	// utilisateur injectees dans le prompt systeme de l'agent.
+	if e.st != nil {
+		if sk := skills.ActiveInstructions(e.st, in.User); sk != "" {
+			sys = append(sys, provider.Message{Role: "system", Content: sk})
+		}
+	}
 	// Recherche native du membre principal, calculee une seule fois (limiteur).
-	nativePrimary := len(res.members) > 0 && e.useNativeWebSearch(in, res.members[0].Provider, res.members[0].Model)
+	// En recherche approfondie ("deep"), le natif est desactive : l'agent
+	// passe par les outils web_search/web_fetch pour multiplier les
+	// requetes et lire les pages en entier (le plugin natif, borne a
+	// 5 resultats, ne le permet pas).
+	deep := in.WebDepth == "deep"
+	nativePrimary := len(res.members) > 0 && !deep && e.useNativeWebSearch(in, res.members[0].Provider, res.members[0].Model)
 	// Directive de recherche web (imperative, en anglais) : le globe est
-	// l'interrupteur principal. Le thinking est obligatoire pour l'agent
-	// (payload), avec effort selectionnable via in.Effort.
+	// l'interrupteur principal. Le bouton Thinking pilote le
+	// raisonnement (payload), avec effort selectionnable via in.Effort.
 	sys = append(sys, provider.Message{Role: "system", Content: searchDirective(e.webEnabled(in), nativePrimary)})
+	// Recherche approfondie : l'agent multiplie les requetes, elargit les
+	// resultats et lit les pages en entier au lieu de se contenter des
+	// extraits.
+	if in.WebDepth == "deep" && e.webEnabled(in) {
+		sys = append(sys, provider.Message{Role: "system", Content: deepWebDirective()})
+	}
 	if mm, ok, notice := e.marexForSession(c.ID); ok {
 		sys = append(sys, mm)
 		if notice {
@@ -101,14 +120,14 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 
 		emitted := false
 		native := nativePrimary
-		if i > 0 {
+		if i > 0 && !deep {
 			native = e.useNativeWebSearch(in, m.Provider, m.Model)
 		}
 		if dir := searchDirective(e.webEnabled(in), native); dir != webDir {
 			msgs = replaceWebDirective(msgs, webDir, dir)
 			webDir = dir
 		}
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: native, webFallback: e.webToolsFor(in)})
+		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(in.Think, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: native, webFallback: e.webToolsFor(in), think: in.Think})
 		if err == nil {
 			c.appendAssistant(epoch, content)
 			return
@@ -156,7 +175,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	alwaysApproved := false
 
 	emit := func(ev provider.Event) bool {
-		if ev.Reasoning != "" {
+		if ev.Reasoning != "" && opts.think {
 			c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})
 		}
 		if ev.Content != "" {
@@ -191,7 +210,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			Tools:           toolSet,
 			Temperature:     0.7,
 			MaxTokens:       opts.maxTokens,
-			EnableReasoning: true,
+			EnableReasoning: opts.think,
 			ReasoningEffort: effort,
 		}
 		if opts.nativeWeb {
@@ -452,6 +471,10 @@ type agentOpts struct {
 	// webFallback : si la recherche native echoue avant toute emission,
 	// retenter une fois avec les outils web_search/web_fetch (mode auto).
 	webFallback bool
+	// think pilote le raisonnement du modele (bouton Thinking du
+	// composer) : false desactive le raisonnement cote provider et la
+	// directive systeme ordonne une reponse directe.
+	think bool
 }
 
 // needsApproval indique si un outil exige une validation utilisateur avant

@@ -57,6 +57,8 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("PUT /api/marex", s.requireAuth(s.handleMarex))
 	mux.HandleFunc("GET /api/capabilities", s.requireAuth(s.handleCapabilitiesGet))
 	mux.HandleFunc("PUT /api/capabilities", s.requireAuth(s.handleCapabilitiesPut))
+	mux.HandleFunc("GET /api/skills", s.requireAuth(s.handleSkillsGet))
+	mux.HandleFunc("PUT /api/skills", s.requireAuth(s.handleSkillsPut))
 	mux.HandleFunc("GET /api/aliases", s.requireAuth(s.handleAliasesGet))
 	mux.HandleFunc("PUT /api/aliases", s.requireAuth(s.handleAliasesPut))
 	mux.HandleFunc("GET /api/catalog", s.requireAuth(s.handleCatalogGet))

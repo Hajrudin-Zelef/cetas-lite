@@ -176,11 +176,14 @@ func TestThinkDirective(t *testing.T) {
 	if d := thinkDirective(false, true, ""); !strings.Contains(d, "think before answering") {
 		t.Fatalf("chat avec thinking : raisonnement attendu, obtenu %q", d)
 	}
-	if d := thinkDirective(true, false, ""); !strings.Contains(d, "mandatory") {
-		t.Fatalf("agent : raisonnement obligatoire attendu, obtenu %q", d)
+	if d := thinkDirective(true, true, ""); !strings.Contains(d, "mandatory") {
+		t.Fatalf("agent avec thinking : raisonnement obligatoire attendu, obtenu %q", d)
 	}
-	if d := thinkDirective(true, false, "high"); !strings.Contains(d, "high") {
-		t.Fatalf("agent : effort demande attendu, obtenu %q", d)
+	if d := thinkDirective(true, true, "high"); !strings.Contains(d, "high") {
+		t.Fatalf("agent avec thinking : effort demande attendu, obtenu %q", d)
+	}
+	if d := thinkDirective(true, false, ""); !strings.Contains(d, "Answer directly") {
+		t.Fatalf("agent sans thinking : reponse directe attendue, obtenu %q", d)
 	}
 }
 
@@ -188,7 +191,7 @@ func TestThinkDirective(t *testing.T) {
 func TestThinkDirectiveInjected(t *testing.T) {
 	sp := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok"}}}
 	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
-	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "x", Effort: "high"})
+	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "x", Effort: "high", Think: true})
 	reqs := sp.requests()
 	found := false
 	for _, m := range reqs[0].Messages {
@@ -200,6 +203,22 @@ func TestThinkDirectiveInjected(t *testing.T) {
 	}
 	if !found {
 		t.Fatal("directive thinking agent (effort high) attendue dans la requete")
+	}
+
+	// Agent avec thinking eteint : la directive ordonne une reponse directe.
+	sp0 := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok"}}}
+	e0 := newAgentEngine(t, sp0, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	runAgentTurn(t, e0, "sam", TurnInput{Family: "code", Mode: "standard", Text: "x", Think: false})
+	found = false
+	for _, m := range sp0.requests()[0].Messages {
+		if m.Role == "system" {
+			if s, _ := m.Content.(string); strings.Contains(s, "Answer directly") {
+				found = true
+			}
+		}
+	}
+	if !found {
+		t.Fatal("directive 'Answer directly' attendue quand le thinking agent est eteint")
 	}
 
 	sp2 := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok"}}}

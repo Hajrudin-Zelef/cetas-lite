@@ -47,11 +47,13 @@ func verifyCommandHeuristic(cmd string) bool {
 }
 
 // thinkDirective retourne la directive de raisonnement du tour, en anglais.
-//   - Agent : raisonnement obligatoire, avec le niveau d'effort demande.
+//   - Agent avec thinking : raisonnement obligatoire, avec le niveau
+//     d'effort demande.
+//   - Agent sans thinking : reponse directe, sans raisonnement etendu.
 //   - Chat avec thinking : raisonner avant de repondre.
 //   - Chat sans thinking : reponse directe, sans raisonnement etendu.
 func thinkDirective(agent, think bool, effort string) string {
-	if agent {
+	if agent && think {
 		switch effort {
 		case "low", "medium", "high":
 			return "Reasoning is mandatory: think carefully through the task before answering or calling tools. Requested reasoning effort: " + effort + "."

@@ -108,6 +108,17 @@ func searchDirective(web, native bool) string {
 		"You MUST search the web rather than guessing in those cases. Cite your sources."
 }
 
+// deepWebDirective ordonne une recherche approfondie : l'agent ne se
+// contente pas des extraits, il multiplie les angles et lit les sources
+// en entier. Injectee uniquement quand WebDepth == "deep".
+func deepWebDirective() string {
+	return "DEEP WEB RESEARCH for this turn: do not stop at snippets. " +
+		"Run several web_search calls with varied query angles (set max_results up to 10), " +
+		"then web_fetch the most relevant pages and read their full content. " +
+		"Cross-check important facts across at least two independent sources before answering, " +
+		"and cite every source you relied on."
+}
+
 // useNativeWebSearch decide, pour un tour donne, si la recherche web passe
 // par le natif du provider (avec consommation du limiteur de debit partage).
 func (e *Engine) useNativeWebSearch(in TurnInput, providerID, modelID string) bool {
@@ -143,11 +154,16 @@ func replaceWebDirective(msgs []provider.Message, old, new string) []provider.Me
 // webToolsFor indique si les outils web_search/web_fetch sont proposes au
 // modele pour ce tour (chemin de repli).
 func (e *Engine) webToolsFor(in TurnInput) bool {
-	if !in.Web || in.User == "" || e.webTools() == nil {
+	if !e.webEnabled(in) || in.User == "" || e.webTools() == nil {
 		return false
 	}
-	switch e.webSearchMode(in.User) {
-	case WebSearchOff, WebSearchNative:
+	// Recherche approfondie : le natif est desactive pour ce tour, les
+	// outils sont donc requis quel que soit le mode global (sauf web
+	// coupe, deja exclu par webEnabled).
+	if in.WebDepth == "deep" {
+		return true
+	}
+	if e.webSearchMode(in.User) == WebSearchNative {
 		return false
 	}
 	return true

@@ -1,4 +1,4 @@
-import { api } from "./api.js";
+import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
 import { estimateTokens } from "./turn-tokens.js";
 import { logout } from "./auth.js";
@@ -145,6 +145,9 @@ const VIEW_HTML = `
           </div>
           <div class="mx-pbar" id="mx-project-bar"></div>
           <textarea id="mx-input" rows="1" placeholder="Décrivez la tâche de code à réaliser... (glissez des images ici)"></textarea>
+          <div class="mx-attach-row" id="mx-attach-row" style="display:none"></div>
+          <div class="mx-vision-warn" id="mx-vision-warn" style="display:none"></div>
+          <input type="file" id="mx-file-input" multiple hidden>
           <div class="composer-info-bar"><span id="mx-token-counter"></span><span class="mx-mode-hint">Tab : Plan / Build</span><span id="mx-queue" style="display:none"></span></div>
           <div class="composer-footer">
             <div class="composer-footer-left">
@@ -153,7 +156,7 @@ const VIEW_HTML = `
                 <div class="cdrop-menu" id="mx-menu-plus"></div>
               </div>
               <button class="icon-btn" id="mx-web" title="Recherche web" aria-label="Recherche web">${I.globe}</button>
-              <button class="icon-btn locked" id="mx-think" title="Réflexion (toujours active pour les agents)" aria-label="Réflexion">${I.think}</button>
+              <button class="icon-btn" id="mx-think" title="Réflexion : activée" aria-label="Réflexion" aria-pressed="true">${I.think}</button>
               <div class="cdrop" id="mx-dd-effort">
                 <button class="selector" id="mx-btn-effort" title="Niveau d'effort de réflexion">${I.think}<span id="mx-label-effort">Défaut</span>${I.chevron}</button>
                 <div class="cdrop-menu" id="mx-menu-effort"></div>
@@ -204,6 +207,7 @@ const PERMS = {
 const LS = {
   get(k, d) { try { const v = localStorage.getItem("mx." + k); return v == null ? d : v; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem("mx." + k, v); } catch (e) {} },
+  del(k) { try { localStorage.removeItem("mx." + k); } catch (e) {} },
   getJSON(k, d) { try { const v = localStorage.getItem("mx." + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
   setJSON(k, v) { try { localStorage.setItem("mx." + k, JSON.stringify(v)); } catch (e) {} },
 };
@@ -270,6 +274,27 @@ export function positionMenu(viewRect, btnRect, menuW, menuH, opts = {}) {
   }
   if (top + menuH > vh - 8) top = Math.max(8, vh - menuH - 8);
   return { left: Math.round(left), top: Math.round(top) };
+}
+
+// Signature de la liste des discussions : permet de ne reconstruire le DOM
+// que lorsque quelque chose a réellement changé (statut, titre, favori,
+// sélection, filtre). Fonction pure, testable sans DOM.
+export function discSignature(list, titles, favorites, currentId, filter) {
+  const lbl = (a) => {
+    const t = (titles && titles[a.id]) || (a && a.preview) || "";
+    const s = String(t).replace(/\s+/g, " ").trim();
+    return s.length > 42 ? s.slice(0, 42) + "…" : s;
+  };
+  return JSON.stringify({
+    f: filter || "",
+    items: (list || []).map((a) => [
+      a.id,
+      a.status || "",
+      favorites && favorites.has(a.id) ? 1 : 0,
+      a.id === currentId ? 1 : 0,
+      lbl(a),
+    ]),
+  });
 }
 
 export function initAgents() {
@@ -350,6 +375,12 @@ export function initAgents() {
   // Globe (recherche web) et effort de réflexion (thinking obligatoire).
   let mxWeb = LS.get("mx_web", "0") === "1";
   let mxEffort = LS.get("mx_effort", "default");
+  // Thinking de l'agent : interrupteur réel (défaut actif, comme avant).
+  let mxThink = LS.get("mx_think", "1") === "1";
+  // Profondeur de recherche web : "standard" | "deep".
+  let mxWebDepth = LS.get("mx_webdepth", "standard") === "deep" ? "deep" : "standard";
+  // Pièces jointes du tour en cours (ids renvoyés par /api/chat/attach).
+  let mxAttachments = [];
   if (!["default", "low", "medium", "high"].includes(mxEffort)) mxEffort = "default";
   const EFFORT_LABELS = { default: "Défaut", low: "Faible", medium: "Moyen", high: "Max" };
   let favorites = new Set(LS.getJSON("favs", []));
@@ -361,6 +392,18 @@ export function initAgents() {
   let metricsTimer = null;
   let discTimer = null;
   let prevNet = null;
+  // Dernière signature rendue de la liste des discussions : évite de
+  // reconstruire le DOM à chaque polling quand rien n'a changé.
+  let lastDiscSig = "";
+  // Brouillon du composer, persisté par discussion ("new" si aucune).
+  let draftTimer = null;
+  const draftKey = () => "draft:" + (currentId || "new");
+  function saveDraftNow() { LS.set(draftKey(), input.value); }
+  function loadDraft() {
+    input.value = LS.get(draftKey(), "");
+    autosize();
+    updateCounter();
+  }
   let prevNetTs = 0;
   let spUserClosed = false;
   const undoStack = [];
@@ -431,28 +474,57 @@ export function initAgents() {
     LS.set("mx_web", mxWeb ? "1" : "0");
     refreshMxWeb();
   });
-  // Réflexion obligatoire pour l'agent : le bouton n'est pas désactivable.
-  $("#mx-think").addEventListener("click", () => {});
+  // ---------------- thinking (interrupteur réel) ----------------
+  function refreshMxThink() {
+    const b = $("#mx-think");
+    // Allumé : couleur (accent). Éteint : noir et blanc.
+    b.classList.toggle("active", mxThink);
+    b.classList.toggle("off", !mxThink);
+    b.classList.remove("locked");
+    b.title = mxThink ? "Réflexion : activée" : "Réflexion : désactivée";
+    b.setAttribute("aria-pressed", mxThink ? "true" : "false");
+  }
+  $("#mx-think").addEventListener("click", () => {
+    mxThink = !mxThink;
+    LS.set("mx_think", mxThink ? "1" : "0");
+    refreshMxThink();
+  });
+
+  // ---------------- pièces jointes : input + glisser-déposer ----------------
+  $("#mx-file-input").addEventListener("change", (e) => {
+    if (e.target.files && e.target.files.length) mxUploadFiles(e.target.files);
+    e.target.value = "";
+  });
+  const composerEl = $("#mx-composer");
+  composerEl.addEventListener("dragover", (e) => e.preventDefault());
+  composerEl.addEventListener("drop", (e) => {
+    e.preventDefault();
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+      mxUploadFiles(e.dataTransfer.files);
+    }
+  });
 
 
+  // Libellé du modèle : uniquement le mode (Flash, Standard, Elite…),
+  // sans le préfixe de la famille.
   function modeLabel(family, mode) {
     const f = families.find((x) => x.id === family);
     const m = f && (f.modes || []).find((x) => x.mode === mode);
-    return (f ? f.label || family : family) + " · " + (m ? m.label || mode : mode);
+    return m ? m.label || mode : mode;
   }
 
   // ---------------- menu modèle ----------------
   function buildModelMenu() {
     const menu = $("#mx-menu-model");
     menu.innerHTML = "";
+    // Vue Agents : uniquement les modes agent (Flash / Standard / Elite),
+    // liste plate sans préfixe ni en-tête de famille. Les identifiants
+    // internes famille + mode restent intacts pour l'API.
     let html = "";
     for (const f of families) {
-      const modes = (f.modes || []).filter((m) => m.agent);
-      if (!modes.length) continue;
-      html += '<div class="cdrop-section-label">' + esc(f.label || f.id) + "</div>";
-      for (const m of modes) {
+      for (const m of (f.modes || []).filter((m) => m.agent)) {
         html += cdropItemHTML(m.label || m.mode, m.rule || "", f.id === selFamily && m.mode === selMode, "",
-        'data-f="' + esc(f.id) + '" data-m="' + esc(m.mode) + '"');
+          'data-f="' + esc(f.id) + '" data-m="' + esc(m.mode) + '"');
       }
     }
     menu.innerHTML = html || '<div class="sb-tree-empty">Aucun modèle agent disponible.</div>';
@@ -466,6 +538,7 @@ export function initAgents() {
         closeAllDrops();
         buildModelMenu();
         updateCounter();
+        checkVisionWarning();
       });
     });
   }
@@ -490,6 +563,7 @@ export function initAgents() {
     }
     $("#mx-label-model").textContent = selFamily ? modeLabel(selFamily, selMode) : "Choisir un modèle";
     buildModelMenu();
+    checkVisionWarning();
   }
 
   // ---------------- menu permissions ----------------
@@ -510,21 +584,278 @@ export function initAgents() {
   }
 
   // ---------------- menu + ----------------
+  // Ouvre la modale Configuration sur un onglet précis (Remote,
+  // Compétences, Fonctionnalités…).
+  function openConfigTab(tab) {
+    closeAllDrops();
+    window.dispatchEvent(new CustomEvent("cetas:open-config-tab", { detail: { tab } }));
+  }
+
+  // Profondeur de recherche web : standard | deep.
+  function setWebDepth(v) {
+    mxWebDepth = v === "deep" ? "deep" : "standard";
+    LS.set("mx_webdepth", mxWebDepth);
+    // Choisir une profondeur implique la recherche web : on allume le globe.
+    if (!mxWeb) {
+      mxWeb = true;
+      LS.set("mx_web", "1");
+      refreshMxWeb();
+    }
+    buildPlusMenu();
+  }
+
   function buildPlusMenu() {
     const menu = $("#mx-menu-plus");
-    menu.innerHTML =
+    const skillCount = mxSkills.filter((s) => s.enabled).length;
+    const skillDesc = mxSkills.length
+      ? skillCount + " active" + (skillCount > 1 ? "s" : "") + " / " + mxSkills.length
+      : "Aucune compétence définie";
+    let html = '<div class="cdrop-section-label">Fichiers</div>';
+    html +=
+      '<button class="cdrop-upload-btn" data-action="files">' +
+      I.upload +
+      " Ajouter des fichiers…</button>" +
+      '<div class="cdrop-item-desc">Texte, code, PDF, images — lus par l’agent</div>';
+    html += '<div class="cdrop-section-label">Projet</div>';
+    html +=
+      '<button class="cdrop-upload-btn" data-action="project">' +
+      I.folder +
+      " Ajouter un projet…</button>" +
+      '<div class="cdrop-item-desc">Rechercher ou créer un projet</div>';
+    html += '<div class="cdrop-section-label">Compétences</div>';
+    html +=
+      '<button class="cdrop-upload-btn" data-action="skills">' +
+      I.star +
+      " Compétences…</button>" +
+      '<div class="cdrop-item-desc">' +
+      esc(skillDesc) +
+      "</div>";
+    html += '<div class="cdrop-section-label">Recherche web</div>';
+    html += cdropItemHTML(
+      "Standard",
+      "Réponse rapide, quelques sources",
+      mxWebDepth === "standard",
+      I.globe,
+      'data-action="webdepth" data-v="standard"'
+    );
+    html += cdropItemHTML(
+      "Approfondie",
+      "Requêtes multiples, pages lues en entier, sources recoupées",
+      mxWebDepth === "deep",
+      I.globe,
+      'data-action="webdepth" data-v="deep"'
+    );
+    html += '<div class="cdrop-section-label">Plugins</div>';
+    html +=
+      '<button class="cdrop-upload-btn" data-action="plugins">' +
+      I.plus +
+      " Ajouter des plugins…</button>" +
+      '<div class="cdrop-item-desc">Dossier plugins/ du serveur</div>';
+    html += '<div class="cdrop-divider"></div>';
+    html +=
       '<div class="cdrop-row"><span class="cdrop-row-label">' +
       I.folder +
       "<span>Worktree git isolé</span></span>" +
       '<label class="cdrop-toggle"><input type="checkbox" id="mx-wt-toggle"' +
       (useWorktree ? " checked" : "") +
       '><span class="cdrop-toggle-slider"></span></label></div>';
-    const t = menu.querySelector("#mx-wt-toggle");
-    t.addEventListener("change", () => {
-      useWorktree = t.checked;
+    menu.innerHTML = html;
+    menu.querySelector("#mx-wt-toggle").addEventListener("change", (e) => {
+      useWorktree = e.target.checked;
       LS.set("worktree", useWorktree ? "1" : "0");
     });
+    menu.querySelectorAll("[data-action]").forEach((it) => {
+      it.addEventListener("click", () => {
+        const a = it.dataset.action;
+        if (a === "files") {
+          closeAllDrops();
+          $("#mx-file-input").click();
+        } else if (a === "project") {
+          closeAllDrops();
+          openNewProjectModal();
+        } else if (a === "skills") {
+          openConfigTab("competences");
+        } else if (a === "plugins") {
+          openConfigTab("models"); // onglet Fonctionnalités : état + rechargement plugins
+        } else if (a === "webdepth") {
+          setWebDepth(it.dataset.v);
+          closeAllDrops();
+        }
+      });
+    });
   }
+
+  // ---------------- pièces jointes ----------------
+  function renderMxAttachments() {
+    const row = $("#mx-attach-row");
+    if (!mxAttachments.length) {
+      row.style.display = "none";
+      row.innerHTML = "";
+      return;
+    }
+    row.style.display = "flex";
+    row.innerHTML = "";
+    for (const a of mxAttachments) {
+      const chip = document.createElement("span");
+      chip.className = "mx-attach-chip";
+      chip.title = a.name;
+      const icon = a.kind === "image" ? "🖼️" : "📄";
+      chip.innerHTML =
+        '<span class="ic">' + icon + '</span><span class="n">' + esc(a.name) + "</span>";
+      const x = document.createElement("button");
+      x.type = "button";
+      x.textContent = "✕";
+      x.title = "Retirer";
+      x.addEventListener("click", () => removeMxAttachment(a));
+      chip.appendChild(x);
+      row.appendChild(chip);
+    }
+  }
+
+  function removeMxAttachment(entry) {
+    mxAttachments = mxAttachments.filter((a) => a !== entry);
+    renderMxAttachments();
+    checkVisionWarning();
+    api("/api/chat/attach/" + encodeURIComponent(entry.id), { method: "DELETE" }).catch(() => {});
+  }
+
+  // Vide le composer après envoi. Les fichiers restent côté serveur : le
+  // tour de l'agent les lit de façon asynchrone et la régénération peut
+  // les relire plus tard. Le nettoyage des orphelins est fait par TTL
+  // côté serveur (attach.Store.CleanOlderThan). Ne PAS supprimer ici :
+  // le DELETE partirait en course avec le chargement par l'agent.
+  function clearAttachments() {
+    mxAttachments = [];
+    renderMxAttachments();
+    checkVisionWarning();
+  }
+
+  const IMAGE_EXTS = [".png", ".jpg", ".jpeg", ".gif", ".webp"];
+  function isImageName(name) {
+    const n = String(name || "").toLowerCase();
+    return IMAGE_EXTS.some((e) => n.endsWith(e));
+  }
+
+  async function mxUploadFiles(files) {
+    for (const f of files) {
+      try {
+        const fd = new FormData();
+        fd.append("file", f);
+        const resp = await fetch("/api/chat/attach", {
+          method: "POST",
+          headers: { Authorization: "Bearer " + getToken() },
+          body: fd,
+        });
+        if (!resp.ok) throw new Error("échec du téléversement (" + resp.status + ")");
+        const data = await resp.json();
+        mxAttachments.push({
+          id: data.id,
+          name: data.name || f.name,
+          kind: isImageName(data.name || f.name) ? "image" : "file",
+        });
+      } catch (e) {
+        tokenCounter.textContent = "Pièce jointe : " + e.message;
+      }
+    }
+    renderMxAttachments();
+    checkVisionWarning();
+  }
+
+  // ---------------- alerte vision ----------------
+  // Si une image est jointe et que le modèle sélectionné ne sait pas la
+  // lire, on l'écrit explicitement et on propose les modèles compatibles.
+  let mxCaps = null;
+  async function loadMxCaps() {
+    if (mxCaps) return mxCaps;
+    try {
+      const d = await api("/api/capabilities");
+      mxCaps = (d && d.caps) || {};
+    } catch (_) {
+      mxCaps = {};
+    }
+    return mxCaps;
+  }
+  function modePool(familyId, modeId) {
+    const f = families.find((x) => x.id === familyId);
+    const m = f && (f.modes || []).find((x) => x.mode === modeId);
+    return (m && m.pool) || [];
+  }
+  function poolHasVision(pool, caps) {
+    return pool.some((mb) => caps[mb.provider + "/" + mb.model] && caps[mb.provider + "/" + mb.model].vision);
+  }
+  function visionModes() {
+    const out = [];
+    for (const f of families) {
+      for (const m of (f.modes || []).filter((x) => x.agent)) {
+        if (poolHasVision(m.pool || [], mxCaps || {})) {
+          out.push({ family: f.id, mode: m.mode, label: m.label || m.mode });
+        }
+      }
+    }
+    return out;
+  }
+  async function checkVisionWarning() {
+    const box = $("#mx-vision-warn");
+    const hasImage = mxAttachments.some((a) => a.kind === "image");
+    if (!hasImage || !selFamily || !selMode) {
+      box.style.display = "none";
+      box.innerHTML = "";
+      return;
+    }
+    const caps = await loadMxCaps();
+    if (poolHasVision(modePool(selFamily, selMode), caps)) {
+      box.style.display = "none";
+      box.innerHTML = "";
+      return;
+    }
+    const compat = visionModes().slice(0, 4);
+    box.style.display = "block";
+    box.innerHTML =
+      "⚠️ <b>" +
+      esc(modeLabel(selFamily, selMode)) +
+      "</b> ne sait pas lire les images. " +
+      (compat.length
+        ? "Modèles compatibles : " +
+          compat
+            .map(
+              (c) =>
+                '<button type="button" data-f="' +
+                esc(c.family) +
+                '" data-m="' +
+                esc(c.mode) +
+                '">' +
+                esc(c.label) +
+                "</button>"
+            )
+            .join("")
+        : "Déclarez un modèle vision dans Configuration → Capacités des modèles.");
+    box.querySelectorAll("button[data-f]").forEach((b) => {
+      b.addEventListener("click", () => {
+        selFamily = b.dataset.f;
+        selMode = b.dataset.m;
+        LS.set("family", selFamily);
+        LS.set("mode", selMode);
+        $("#mx-label-model").textContent = modeLabel(selFamily, selMode);
+        buildModelMenu();
+        updateCounter();
+        checkVisionWarning();
+      });
+    });
+  }
+
+  // ---------------- compétences (comptage pour le menu +) ----------------
+  let mxSkills = [];
+  async function loadMxSkills() {
+    try {
+      const d = await api("/api/skills");
+      mxSkills = (d && d.skills) || [];
+    } catch (_) {
+      mxSkills = [];
+    }
+    buildPlusMenu();
+  }
+  // La Configuration notifie après chaque sauvegarde (PUT /api/skills).
+  window.addEventListener("cetas:skills-changed", loadMxSkills);
 
   // ---------------- globe (web) + effort de réflexion ----------------
   function refreshMxWeb() {
@@ -575,22 +906,52 @@ export function initAgents() {
     renderProjectsList($("#mx-projects-list"), $("#mx-projects-empty"));
     renderActiveTree($("#mx-active-tree"));
   }
-  function buildProjectMenu() {
+  function buildProjectMenu(filter) {
     const menu = $("#mx-menu-project");
-    let html = '<div class="cdrop-section-label">Projet</div>';
-    html += cdropItemHTML("Espace partagé", "Workspace partagé, sans projet", !Projects.activeId, I.folder, 'data-pid="__shared__"');
+    const q = (filter || "").toLowerCase();
+    const match = (name) => !q || String(name || "").toLowerCase().includes(q);
+    let html = '<input class="cdrop-search" id="mx-project-filter" type="text" placeholder="Rechercher un projet…" autocomplete="off">';
+    html += '<div class="cdrop-section-label">Projet</div>';
+    if (match("Espace partagé")) {
+      html += cdropItemHTML("Espace partagé", "Workspace partagé, sans projet", !Projects.activeId, I.folder, 'data-pid="__shared__"');
+    }
     for (const p of Projects.list) {
+      if (p.mode === "sftp" || !match(p.name)) continue;
       html += cdropItemHTML(
         p.name,
-        p.mode === "sftp" ? p.user + "@" + p.host : "Projet local",
+        "Projet local",
         p.id === Projects.activeId,
         I.folder,
         'data-pid="' + esc(p.id) + '"'
       );
     }
+    // Volet Remote : dossiers distants via SFTP.
+    html += '<div class="cdrop-section-label">Remote</div>';
+    for (const p of Projects.list) {
+      if (p.mode !== "sftp" || !match(p.name)) continue;
+      html += cdropItemHTML(
+        p.name,
+        p.user + "@" + p.host + ":" + p.remote_path,
+        p.id === Projects.activeId,
+        I.upload,
+        'data-pid="' + esc(p.id) + '"'
+      );
+    }
+    html += '<button class="cdrop-upload-btn" data-action="sftp">' + I.upload + " Serveur distant (SFTP)…</button>";
     html += '<div class="cdrop-divider"></div>';
     html += '<button class="cdrop-upload-btn" id="mx-pick-repo">' + I.upload + " Nouveau projet…</button>";
     menu.innerHTML = html;
+    const filterInput = menu.querySelector("#mx-project-filter");
+    filterInput.value = filter || "";
+    filterInput.addEventListener("input", () => {
+      const v = filterInput.value;
+      buildProjectMenu(v);
+      const inp = menu.querySelector("#mx-project-filter");
+      inp.focus();
+      inp.setSelectionRange(v.length, v.length);
+    });
+    // Le clic dans le champ ne doit pas fermer le menu.
+    filterInput.addEventListener("click", (e) => e.stopPropagation());
     menu.querySelectorAll(".cdrop-item[data-pid]").forEach((it) => {
       it.addEventListener("click", async () => {
         try {
@@ -600,6 +961,10 @@ export function initAgents() {
         }
         closeAllDrops();
       });
+    });
+    menu.querySelector('[data-action="sftp"]').addEventListener("click", () => {
+      closeAllDrops();
+      openNewProjectModal(null, { tab: "sftp" });
     });
     menu.querySelector("#mx-pick-repo").addEventListener("click", () => {
       closeAllDrops();
@@ -637,11 +1002,54 @@ async function refreshAgents() {
   } catch (e) {
     return;
   }
-  renderDiscussions(searchInput.value.trim().toLowerCase());
+  updateActivityDot();
+  const filter = searchInput.value.trim().toLowerCase();
+  const sig = discSignature(agents, missionTitles, favorites, currentId, filter);
+  if (sig === lastDiscSig) return; // aucun changement visible : pas de reflow
+  renderDiscussions(filter);
   updateStatusBadge();
 }
 
+// Pastille pulsante sur le bouton module quand au moins un agent travaille,
+// visible même quand la vue Agents est fermée.
+let dotTimer = null;
+function updateActivityDot() {
+  const running = agents.filter((a) => a.status === "running").length;
+  let dot = toolbarBtn.querySelector(".mod-activity-dot");
+  if (!dot) {
+    dot = document.createElement("span");
+    dot.className = "mod-activity-dot";
+    dot.setAttribute("aria-hidden", "true");
+    toolbarBtn.appendChild(dot);
+  }
+  dot.hidden = running === 0;
+  toolbarBtn.classList.toggle("has-running", running > 0);
+  // Vue fermée : on continue de surveiller en arrière-plan à cadence réduite
+  // (uniquement tant qu'un agent travaille) pour éteindre la pastille à temps.
+  // Vue ouverte : le polling des discussions (5 s) prend le relais.
+  if (!opened) {
+    if (running > 0 && !dotTimer) {
+      dotTimer = setInterval(async () => {
+        try {
+          const data = await api("/api/agents");
+          agents = data.agents || [];
+        } catch (e) {
+          return;
+        }
+        updateActivityDot();
+      }, 15000);
+    } else if (running === 0 && dotTimer) {
+      clearInterval(dotTimer);
+      dotTimer = null;
+    }
+  } else if (dotTimer) {
+    clearInterval(dotTimer);
+    dotTimer = null;
+  }
+}
+
 function renderDiscussions(filter) {
+  lastDiscSig = discSignature(agents, missionTitles, favorites, currentId, filter);
   discList.innerHTML = "";
   const items = agents.filter((a) => !filter || discLabel(a).toLowerCase().includes(filter));
   discEmpty.style.display = items.length ? "none" : "";
@@ -681,6 +1089,7 @@ async function deleteAgent(id) {
   LS.setJSON("titles", missionTitles);
   favorites.delete(id);
   LS.setJSON("favs", [...favorites]);
+  LS.del("draft:" + id); // brouillon orphelin
   if (currentId === id) newConversation();
   else refreshAgents();
 }
@@ -846,14 +1255,19 @@ function buildThread(id) {
     sendURL: "/api/agents/" + encodeURIComponent(id) + "/message",
     stopURL: "/api/agents/" + encodeURIComponent(id) + "/stop",
     approveURL: "/api/agents/" + encodeURIComponent(id) + "/approve",
-    getPayload: (text) => ({
-      message: text,
-      approve: PERMS[perm].approve,
-      plan: PERMS[perm].plan,
-      web: mxWeb,
-      think: true, // réflexion obligatoire pour l'agent
-      effort: mxEffort,
-    }),
+    getPayload: (text) => {
+      const p = {
+        message: text,
+        approve: PERMS[perm].approve,
+        plan: PERMS[perm].plan,
+        web: mxWeb,
+        web_depth: mxWebDepth,
+        think: mxThink,
+        effort: mxEffort,
+      };
+      if (mxAttachments.length) p.attachments = mxAttachments.map((a) => a.id);
+      return p;
+    },
     reasonHooks,
     onEvent: handleMxEvent,
     onDone: () => {
@@ -879,14 +1293,14 @@ function handleMxEvent(ev) {
 function newConversation() {
   disconnectThread();
   clearMxTodos();
+  clearTimeout(draftTimer);
+  saveDraftNow(); // brouillon de la discussion quittée (currentId encore positionné)
   currentId = null;
   hero.classList.remove("has-chat");
   chatPanel.style.display = "none";
   chatLog.innerHTML = "";
   mxResetReason();
-  input.value = "";
-  autosize();
-  updateCounter();
+  loadDraft(); // restaure le brouillon "new" (ou vide)
   updateFav();
   renderDiscussions(searchInput.value.trim().toLowerCase());
   updateStatusBadge();
@@ -895,10 +1309,13 @@ function newConversation() {
 function openDiscussion(id) {
   if (currentId === id && thread) return;
   clearMxTodos();
+  clearTimeout(draftTimer);
+  saveDraftNow(); // brouillon de la discussion quittée
   currentId = id;
   enterChat();
   chatLog.innerHTML = "";
   mxResetReason();
+  loadDraft(); // restaure le brouillon de cette discussion
   buildThread(id);
   thread.connect();
   renderDiscussions(searchInput.value.trim().toLowerCase());
@@ -916,6 +1333,8 @@ async function send() {
     document.getElementById("mx-menu-model").classList.add("open");
     return;
   }
+  const sentDraftKey = draftKey(); // clé du brouillon AVANT création éventuelle de l'agent
+  clearTimeout(draftTimer);
   input.disabled = true;
   try {
     if (!currentId) {
@@ -931,7 +1350,10 @@ async function send() {
           repo,
           project_id: Projects.activeId || undefined,
           web: mxWeb,
-          effort: mxEffort, // think est forcé côté serveur pour les agents
+          web_depth: mxWebDepth,
+          think: mxThink,
+          effort: mxEffort,
+          attachments: mxAttachments.length ? mxAttachments.map((a) => a.id) : undefined,
         },
       });
       missionTitles[res.id] = text;
@@ -954,6 +1376,8 @@ async function send() {
       }
     }
     input.value = "";
+    LS.del(sentDraftKey); // brouillon envoyé : on le purge (clé d'avant l'envoi)
+    clearAttachments(); // pièces jointes envoyées : on les purge
     pushUndo("");
     autosize();
     updateCounter();
@@ -1011,11 +1435,14 @@ function openView() {
     if (opened && !document.hidden) refreshAgents();
   };
   discTimer = setInterval(tickDisc, 5000);
+  loadDraft();
   setTimeout(() => input.focus(), 60);
 }
 function closeView() {
   if (!opened) return;
   opened = false;
+  clearTimeout(draftTimer);
+  saveDraftNow(); // ne jamais perdre le texte en cours
   view.classList.remove("open");
   toolbarBtn.classList.remove("active");
   document.body.style.overflow = "";
@@ -1049,6 +1476,8 @@ input.addEventListener("input", () => {
   updateCounter();
   clearTimeout(undoTimer);
   undoTimer = setTimeout(() => pushUndo(input.value), 600);
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(saveDraftNow, 400);
 });
 $("#mx-undo").addEventListener("click", () => {
   if (!undoStack.length) return;
@@ -1148,9 +1577,11 @@ refreshProjectLabels();
 renderProjects();
 Projects.refresh(); // charge /api/projects (+ projet actif), re-rend via onChange
 refreshMxWeb();
-$("#mx-think").classList.add("active"); // réflexion obligatoire pour l'agent
+refreshMxThink();
+loadMxSkills(); // recharge aussi le menu + (compteur de compétences)
 mxResetReason();
 syncUndoBtns();
+refreshAgents(); // état initial (pastille d'activité même vue fermée)
 api("/api/me")
   .then((me) => {
     const name = (me && me.username) || "Utilisateur";
