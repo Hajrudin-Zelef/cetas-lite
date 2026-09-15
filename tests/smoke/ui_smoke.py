@@ -33,7 +33,7 @@ FAMILIES = {
     ]
 }
 
-SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard", "web_default": False, "mcp_default": True}
+SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard"}
 
 CATALOG = {
     "providers": [
@@ -42,12 +42,18 @@ CATALOG = {
             "label": "DeepSeek",
             "models": [
                 {"id": "deepseek-flash", "label": "DeepSeek Flash", "input_per_1m": 0.15, "output_per_1m": 0.6},
+                {"id": "deepseek-v4-pro", "label": "DeepSeek V4 Pro", "input_per_1m": 0.66, "output_per_1m": 1.98},
             ],
-        }
+        },
+        {
+            "id": "openrouter",
+            "label": "OpenRouter",
+            "models": [
+                {"id": "deepseek/deepseek-v4-flash-0731", "label": "V4 Flash 0731", "input_per_1m": 0.14, "output_per_1m": 0.28}
+            ],
+        },
     ]
 }
-
-PROVIDERS = {"providers": [{"id": "deepseek", "label": "DeepSeek", "configured": True}]}
 
 MCP_SERVERS = {"servers": [{"name": "demo", "transport": "stdio", "connected": True, "tools": 2, "error": ""}]}
 
@@ -109,15 +115,10 @@ def wait_health(base, timeout=10):
 
 
 def route_mocks(page):
-    # Catch-all : tout endpoint /api non mocke explicitement renvoie un objet vide
-    # (evite les 401 -> deconnexion pendant l'init). Les routes specifiques,
-    # enregistrees ensuite, ont la priorite.
-    page.route("**/api/**", lambda r: r.fulfill(json={}))
     page.route("**/api/config", lambda r: r.fulfill(json={"registration_open": False, "version": "smoke"}))
     page.route("**/api/me", lambda r: r.fulfill(json={"username": "test", "role": "user"}))
     page.route("**/api/aliases", lambda r: r.fulfill(json=FAMILIES))
     page.route("**/api/catalog", lambda r: r.fulfill(json=CATALOG))
-    page.route("**/api/providers", lambda r: r.fulfill(json=PROVIDERS))
 
     def settings(route):
         if route.request.method == "PUT":
@@ -174,47 +175,53 @@ def check(page, url, reduced):
     page.on("pageerror", lambda e: errors.append(str(e)))
     page.on("dialog", lambda d: d.accept())
     page.goto(url)
-    # Le splash disparait et le chat devient visible.
-    page.wait_for_selector("#kiro-splash", state="detached", timeout=8000)
-    page.wait_for_selector("#chat-container", state="visible", timeout=8000)
-    page.wait_for_selector(".msg-tool .tool-diff .diff-add", state="attached", timeout=8000)
-    page.wait_for_selector(".message-wrapper-assistant .message-text pre code", timeout=8000)
+    page.wait_for_selector("#app:not([hidden])", state="visible", timeout=8000)
+    page.wait_for_selector("#chat-log[aria-busy='false']", timeout=8000)
+    page.wait_for_selector(".tool-diff .diff-add", state="attached", timeout=8000)
+    page.wait_for_selector(".message-assistant .message-text pre code", timeout=8000)
 
-    title = page.locator(".message-wrapper-assistant .message-text h2").first.inner_text()
+    title = page.locator(".message-assistant .message-text h2").first.inner_text()
     assert title.strip() == "Titre", f"markdown titre = {title!r}"
 
     diff = page.locator(".tool-diff .diff-add").first.text_content()
     assert diff and "LIGNE" in diff, f"diff = {diff!r}"
 
-    text = page.locator("#chat-container").inner_text()
+    text = page.locator("#chat-log").inner_text()
     for marker in ["Titre", "gras", "console.log(1)"]:
         assert marker in text, f"contenu tronque, manque {marker!r}"
 
-    # Toggle web (checkbox dans le menu plus, hors ecran : pilotage via change)
-    web = page.locator("#web-toggle")
-    assert web.count() == 1, "web toggle absent"
-    assert not web.is_checked(), "web toggle doit demarrer desactive"
-    page.eval_on_selector("#web-toggle", "el => { el.checked = true; el.dispatchEvent(new Event('change', {bubbles:true})); }")
-    assert web.is_checked(), "web toggle doit s'activer"
+    busy = page.get_attribute("#chat-log", "aria-busy")
+    assert busy == "false", f"aria-busy = {busy!r}"
+
+    toggle = page.locator("#web-toggle")
+    assert toggle.count() == 1, "web toggle absent"
+    assert toggle.get_attribute("aria-pressed") == "false", "web toggle doit demarrer desactive"
+    toggle.click()
+    assert toggle.get_attribute("aria-pressed") == "true", "web toggle doit s'activer"
     page.wait_for_timeout(100)
     put = STATE["put_settings"] or {}
     assert put.get("web_default") is True, f"web_default non persiste: {put!r}"
 
-    # Toggle MCP (checkbox) : actif par defaut (serveurs configures)
     mcp = page.locator("#mcp-toggle")
     assert mcp.count() == 1, "mcp toggle absent"
-    assert mcp.is_checked(), "mcp doit demarrer actif (auto)"
-
-    # Bascule top-level en mode Agent : thinking verrouille/actif.
-    page.eval_on_selector("#mode-agent-btn", "el => el.click()")
+    assert mcp.is_visible(), "mcp toggle doit etre visible si des serveurs sont configures"
+    assert mcp.get_attribute("aria-pressed") == "true", "mcp doit demarrer actif (auto)"
+    mcp.click()
+    assert mcp.get_attribute("aria-pressed") == "false", "mcp doit se desactiver"
     page.wait_for_timeout(100)
+    put = STATE["put_settings"] or {}
+    assert put.get("mcp_default") is False, f"mcp_default non persiste: {put!r}"
+    mcp.click()
+    assert mcp.get_attribute("aria-pressed") == "true", "mcp doit se reactiver"
+    page.wait_for_timeout(100)
+
     think = page.locator("#thinking-toggle")
     assert think.count() == 1, "thinking toggle absent"
     assert think.is_disabled(), "thinking doit etre force en mode agent"
-    assert think.is_checked(), "thinking doit etre actif en agent"
+    assert think.get_attribute("aria-pressed") == "true", "thinking doit etre actif en agent"
     assert page.locator("#effort-select").input_value() == "default", "effort defaut attendu"
 
-    stats = page.locator("#cost-info")
+    stats = page.locator("#stats-badge")
     assert stats.is_visible(), "stats badge visible attendu"
     stext = stats.inner_text()
     assert "10" in stext and "5" in stext, f"stats = {stext!r}"
@@ -225,10 +232,8 @@ def check(page, url, reduced):
     ctitle = page.locator(".conv-item-title").first.inner_text()
     assert "Ancienne question" in ctitle, f"titre archive = {ctitle!r}"
 
-    page.eval_on_selector(".conv-item-actions .danger", "el => el.click()")
-    page.wait_for_selector("#custom-dialog-overlay", state="visible", timeout=4000)
-    page.eval_on_selector("#custom-dialog-ok", "el => el.click()")
-    page.wait_for_timeout(150)
+    page.locator(".conv-item-actions .danger").first.click()
+    page.wait_for_timeout(100)
     assert STATE.get("deleted") == "20260101_120000_1", f"DELETE archive attendu: {STATE.get('deleted')!r}"
 
     assert page.locator('.tool-result a[href="https://go.dev"]').count() >= 1, "citation cliquable attendue"
@@ -236,28 +241,34 @@ def check(page, url, reduced):
     assert page.locator(".message-btn-row").count() >= 1, "actions message attendues"
     assert page.locator(".message-tts-btn").count() >= 1, "bouton TTS (navigateur) attendu"
     assert page.locator("#mic-btn").count() == 1, "bouton micro present"
-    page.eval_on_selector(".regen-btn", "el => el.click()")
+    page.locator(".regen-btn").last.click()
     page.wait_for_timeout(100)
     assert STATE.get("regenerated"), "regeneration attendue"
 
-    # Export via le menu partage.
-    page.eval_on_selector("#share-btn", "el => el.click()")
-    page.eval_on_selector("#share-menu-md", "el => el.click()")
-    page.wait_for_timeout(150)
+    page.locator("#export-btn").click()
+    page.wait_for_timeout(100)
     assert STATE.get("exported"), "export actif attendu"
 
-    # Modale de reglages (API et Modeles).
-    page.locator("#apikeys-btn").click()
-    page.wait_for_selector("#apikeys-modal-overlay", state="visible", timeout=4000)
+    page.locator("#settings-btn").click()
+    page.wait_for_selector("#settings-overlay:not([hidden])", timeout=4000)
     page.wait_for_timeout(300)
     assert page.locator(".apikeys-tabs .apikeys-tab").count() >= 4, "onglets de reglages attendus"
-    assert page.locator("#providers-list .provider-row").count() >= 1, "providers listes attendus"
-    assert page.locator("#families-list .family-row").count() >= 1, "familles listees attendues"
-    page.locator("#apikeys-close-btn").click()
+    assert page.locator("#aliases-editor .fam-tab").count() >= 1, "onglets de familles attendus"
+    page.locator('.fam-tab:has-text("Code")').click()
+    page.wait_for_timeout(150)
+    assert page.locator("#aliases-editor .mode-block .agent-pill").count() >= 1, "mode Agent attendu (Code)"
+    assert page.locator("#aliases-editor .pool-item").count() >= 1, "liste de modeles structuree attendue"
+    assert page.locator("#mcp-panel .mcp-name").count() == 1, "serveur MCP liste attendu"
+    mcpname = page.locator("#mcp-panel .mcp-name").first.inner_text()
+    assert mcpname == "demo", f"nom MCP = {mcpname!r}"
+    caps = page.locator("#caps-panel .caps-name")
+    assert caps.count() >= 1, "capacites modeles attendues"
+    assert "fake/ok" == page.locator("#caps-panel .caps-name").first.inner_text(), "modele d'alias attendu"
+    page.locator("#settings-close").click()
 
     page.fill("#prompt-input", "question web")
     page.press("#prompt-input", "Enter")
-    page.wait_for_timeout(150)
+    page.wait_for_timeout(100)
     body = STATE["send_body"] or {}
     assert body.get("web") is True, f"le tour doit porter web=true: {body!r}"
     assert body.get("mcp") is True, f"le tour doit porter mcp=true: {body!r}"

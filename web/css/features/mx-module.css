@@ -1,46 +1,10 @@
 /* ============================================================
-   Module Agent — vue Marexcode portée dans la zone principale.
-   La vue #marex-view (générée, trait pour trait Marexcode) est
-   hébergée par #module-agents au lieu d'un overlay plein écran.
-   NE PAS toucher à marex-agents.css (fichier généré).
+   Module Agent — la vue Marexcode s'ouvre en page complète plein
+   écran (positionnement du CSS généré marex-agents.css, intact).
+   Ce fichier ne gère que l'état du bouton module "Agents".
    ============================================================ */
 
-/* Conteneur du module dans <main> : occupe toute la zone principale */
-#module-agents{
-  flex:1;
-  min-height:0;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-#module-agents[hidden]{ display:none !important; }
-
-/* La vue agents devient un panneau intégré (plus un overlay fixed) */
-#module-agents #marex-view{
-  position:relative;
-  inset:auto;
-  z-index:auto;
-  width:100%;
-  height:100%;
-  flex:1;
-  min-height:0;
-  display:none;
-}
-#module-agents #marex-view.open{ display:block; }
-#module-agents #marex-view .mx-frame{
-  width:100%;
-  height:100%;
-}
-
-/* Quand le module Agent est actif, le chat principal est masqué */
-main.module-agents-active #chat-container,
-main.module-agents-active #model-alert,
-main.module-agents-active .token-bar,
-main.module-agents-active .input-area{
-  display:none !important;
-}
-
-/* Bouton du module Agent : état actif (module réel, pas "dev") */
+/* Bouton du module Agent : module réel, pas "dev" */
 .dev-module-btn[data-module="agents"]{
   opacity:1;
   border-style:solid;

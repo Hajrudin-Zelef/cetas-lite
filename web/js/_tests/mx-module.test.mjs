@@ -1,11 +1,18 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { JSDOM } from "jsdom";
+import { createRequire } from "node:module";
+// jsdom : résolution standard (node_modules du projet) puis repli /tmp.
+const require = createRequire(import.meta.url);
+let JSDOM;
+try {
+  ({ JSDOM } = require("jsdom"));
+} catch {
+  ({ JSDOM } = await import("/tmp/node_modules/jsdom/lib/api.js"));
+}
 
 // ---------------------------------------------------------------------------
-// 1. Structure du HTML livré : métriques au-dessus du module Agent,
-//    conteneur #module-agents dans <main>.
+// 1. Structure du HTML livré : métriques au-dessus du module Agent.
 // ---------------------------------------------------------------------------
 const indexHtml = fs.readFileSync(new URL("../../index.html", import.meta.url), "utf8");
 
@@ -19,24 +26,16 @@ test("sidebar : MÉTRIQUES placées juste au-dessus du module Agent", () => {
   assert.ok(iMetrics < iAgentBtn, "métriques avant le bouton Agent");
 });
 
-test("main : conteneur #module-agents présent et masqué par défaut", () => {
-  const iMain = indexHtml.indexOf("<main");
-  const iMainEnd = indexHtml.indexOf("</main>");
-  const iMod = indexHtml.indexOf('id="module-agents"');
-  assert.ok(iMain > -1 && iMainEnd > iMain, "<main> présent");
-  assert.ok(iMod > iMain && iMod < iMainEnd, "#module-agents dans <main>");
-  assert.ok(/id="module-agents"[^>]*hidden/.test(indexHtml), "#module-agents masqué par défaut");
-});
-
 test("index.html référence le CSS du module", () => {
   assert.ok(indexHtml.includes("/css/features/mx-module.css"), "mx-module.css lié");
 });
 
 // ---------------------------------------------------------------------------
-// 2. Comportement : la vue agents vit dans le module (plus d'overlay).
+// 2. Comportement : le bouton module Agents ouvre la page complète
+//    Marexcode en plein écran (overlay), pas un panneau intégré.
 // ---------------------------------------------------------------------------
 const cssModule = fs.readFileSync(new URL("../../css/features/mx-module.css", import.meta.url), "utf8");
-// Extrait minimal des règles générées (positionnement overlay d'origine).
+// Extrait minimal des règles générées (positionnement plein écran d'origine).
 const cssGenerated = "#marex-view{position:fixed;inset:0;z-index:400;display:none;}#marex-view.open{display:block;}";
 
 const dom = new JSDOM("<!doctype html><html><head></head><body></body></html>", {
@@ -73,18 +72,6 @@ sideBtn.className = "dev-module-btn";
 sideBtn.dataset.module = "agents";
 document.body.appendChild(sideBtn);
 
-const main = document.createElement("main");
-main.className = "main";
-const chatContainer = document.createElement("div");
-chatContainer.id = "chat-container";
-main.appendChild(chatContainer);
-const host = document.createElement("div");
-host.id = "module-agents";
-host.className = "module-view";
-host.hidden = true;
-main.appendChild(host);
-document.body.appendChild(main);
-
 const { initAgents } = await import("../agents.js");
 initAgents();
 await new Promise((r) => setTimeout(r, 50));
@@ -92,32 +79,29 @@ await new Promise((r) => setTimeout(r, 50));
 const $ = (s) => document.querySelector(s);
 const toggle = () => window.dispatchEvent(new dom.window.CustomEvent("cetas:toggle-agents"));
 
-test("toggle : ouvre le module Agent (vue intégrée, chat masqué)", () => {
+test("toggle : ouvre la page Agents en plein écran", () => {
   toggle();
   const view = $("#marex-view");
   assert.ok(view, "#marex-view créée");
-  assert.equal(view.parentElement.id, "module-agents", "vue hébergée par #module-agents");
+  assert.equal(view.parentElement, document.body, "vue rattachée au body (page complète)");
   assert.ok(view.classList.contains("open"), "vue ouverte");
-  assert.equal(host.hidden, false, "conteneur module visible");
-  assert.ok(main.classList.contains("module-agents-active"), "main marqué module-agents-active");
   assert.ok(sideBtn.classList.contains("active"), "bouton module actif");
-  assert.equal(getComputedStyle(view).position, "relative", "plus de position:fixed (fini l'overlay)");
+  assert.equal(getComputedStyle(view).position, "fixed", "plein écran (position:fixed)");
+  assert.equal(document.body.style.overflow, "hidden", "scroll du fond bloqué");
 });
 
-test("toggle : referme le module et revient au chat", () => {
+test("toggle : referme la page et revient au chat", () => {
   toggle();
   const view = $("#marex-view");
   assert.ok(!view.classList.contains("open"), "vue fermée");
-  assert.equal(host.hidden, true, "conteneur module masqué");
-  assert.ok(!main.classList.contains("module-agents-active"), "main sans marqueur");
   assert.ok(!sideBtn.classList.contains("active"), "bouton module inactif");
+  assert.equal(document.body.style.overflow, "", "scroll restauré");
 });
 
 test("cetas:open-agents ouvre, cetas:close-agents referme (retour chat)", () => {
   window.dispatchEvent(new dom.window.CustomEvent("cetas:open-agents"));
   assert.ok($("#marex-view").classList.contains("open"), "ouvert via open-agents");
-  assert.ok(main.classList.contains("module-agents-active"), "main marqué");
+  assert.equal(getComputedStyle($("#marex-view")).position, "fixed", "toujours plein écran");
   window.dispatchEvent(new dom.window.CustomEvent("cetas:close-agents"));
   assert.ok(!$("#marex-view").classList.contains("open"), "fermé via close-agents");
-  assert.ok(!main.classList.contains("module-agents-active"), "main dé-marqué");
 });

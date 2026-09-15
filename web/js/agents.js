@@ -258,9 +258,7 @@ export function initAgents() {
   view.id = "marex-view";
   view.setAttribute("data-accent", "sky");
   view.innerHTML = VIEW_HTML;
-  // Hébergement : module intégré dans <main> (repli : body, ex. tests).
-  const host = document.getElementById("module-agents") || document.body;
-  host.appendChild(view);
+  document.body.appendChild(view);
   const $ = (s) => view.querySelector(s);
 
   const hero = $("#mx-hero"),
@@ -943,21 +941,13 @@ function updateFav() {
   favBtn.title = on ? "Retirer des favoris" : "Ajouter aux favoris";
 }
 
-// ---------------- ouverture / fermeture (module intégré) ----------------
-function moduleEls() {
-  return {
-    main: document.querySelector("main.main"),
-    host: document.getElementById("module-agents"),
-  };
-}
+// ---------------- ouverture / fermeture (page complète plein écran) ----------------
 function openView() {
   if (opened) return;
   opened = true;
-  const { main, host } = moduleEls();
-  if (host) host.hidden = false;
-  if (main) main.classList.add("module-agents-active");
   view.classList.add("open");
   toolbarBtn.classList.add("active");
+  document.body.style.overflow = "hidden";
   loadFamilies();
   refreshAgents();
   pollMetrics();
@@ -971,11 +961,9 @@ function openView() {
 function closeView() {
   if (!opened) return;
   opened = false;
-  const { main, host } = moduleEls();
   view.classList.remove("open");
-  if (host) host.hidden = true;
-  if (main) main.classList.remove("module-agents-active");
   toolbarBtn.classList.remove("active");
+  document.body.style.overflow = "";
   clearInterval(metricsTimer);
   clearInterval(discTimer);
   metricsTimer = discTimer = null;

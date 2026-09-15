@@ -55,6 +55,45 @@ export function renderInto(el, text) {
   el.innerHTML = renderMarkdown(text);
   wrapTables(el);
   addCopyButtons(el);
+  highlightNewCode(el);
+}
+
+// ---------------------------------------------------------------------------
+// Coloration syntaxique (highlight.js vendored) :
+// - chargement paresseux au premier bloc de code (jamais de coût si aucun
+//   code affiché) ;
+// - jamais pendant le streaming (update par frame) : la coloration est
+//   appliquée sur les rendus stables (render, finalize, renderInto) ;
+// - chaque bloc n'est coloré qu'une fois (garde data-hl) ;
+// - échec silencieux : sans coloration, le code reste lisible.
+// ---------------------------------------------------------------------------
+
+let hljsPromise = null;
+function getHljs() {
+  if (!hljsPromise) {
+    hljsPromise = import("/js/vendor/highlight.esm.min.js")
+      .then((m) => m.default || m.HighlightJS || null)
+      .catch(() => null);
+  }
+  return hljsPromise;
+}
+
+export function highlightNewCode(root) {
+  if (!root || !root.querySelectorAll) return;
+  const blocks = root.querySelectorAll("pre code:not([data-hl])");
+  if (!blocks.length) return;
+  getHljs().then((hljs) => {
+    if (!hljs || typeof hljs.highlightElement !== "function") return;
+    for (const code of blocks) {
+      if (code.dataset.hl) continue;
+      try {
+        hljs.highlightElement(code);
+      } catch {
+        /* bloc laissé tel quel */
+      }
+      code.dataset.hl = "1";
+    }
+  });
 }
 
 const URL_RE = /(https?:\/\/[^\s<>()"']+)/g;
@@ -173,6 +212,7 @@ export function createMarkdownRenderer() {
       cancel(container);
       pending.set(container, String(text == null ? "" : text));
       renderSync(container, text, false);
+      highlightNewCode(container);
     },
     // Streaming : bufferise et rend au plus une fois par frame.
     update(container, text) {
@@ -192,6 +232,7 @@ export function createMarkdownRenderer() {
       const value = text === undefined ? pending.get(container) || "" : text;
       pending.set(container, String(value));
       renderSync(container, value, false);
+      highlightNewCode(container);
     },
     // Texte integral connu pour ce conteneur.
     text(container) {

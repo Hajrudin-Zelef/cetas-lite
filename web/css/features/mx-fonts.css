@@ -1,0 +1,10 @@
+/* Inter auto-hébergée (variable, latin) — compatible CSP, 100% offline.
+   La police n'est téléchargée que si une règle l'utilise (marex-agents.css).
+   NE PAS remplacer par Google Fonts : le CSP style-src 'self' bloque les
+   feuilles externes. */
+@font-face{
+  font-family:"Inter";
+  src:url("/fonts/inter/inter-latin.woff2") format("woff2");
+  font-weight:100 900;
+  font-display:swap;
+}

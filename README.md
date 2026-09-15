@@ -90,10 +90,6 @@ Moteurs locaux (optionnel) : `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`,
 - `CETAS_LITE_SANDBOX=none|auto|bwrap` (défaut `none`) : isole `Bash`/`RunScript` dans **bubblewrap**
   (système en lecture seule, bind du seul workspace) ; sonde au démarrage, repli sûr.
 - `CETAS_LITE_ALLOW_SCRIPT` (défaut `false`) : active l'outil `RunScript`.
-- **Terminal intégré** : il exécute un **vrai shell** dont le `cwd` est confiné au workspace (et aux
-  worktrees). Il ne passe **pas** par la sandbox des outils agent ni par `bwrap`. En usage local
-  mono-utilisateur c'est acceptable ; **avant toute exposition réseau**, désactive-le ou encadre-le
-  (reverse proxy + auth) — c'est la surface la plus large de l'application.
 
 ## Clés providers (chiffrées)
 
