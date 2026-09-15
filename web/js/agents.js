@@ -86,23 +86,21 @@ const VIEW_HTML = `
         <div class="mx-search-wrap"><input class="mx-search-input" id="mx-search" placeholder="Rechercher des conversations" autocomplete="off"></div>
         <div class="sb-divider"></div>
 
-        <div class="sb-group-label">Projets</div>
-        <button class="sb-section-toggle" id="mx-toggle-active"><span>Projet actif</span>${I.chevSm}</button>
-        <div class="sb-collapsible" id="mx-panel-active">
-          <div class="sb-project-header">${I.folder}<span id="mx-active-name">Espace partagé</span></div>
-          <div class="sb-tree-empty" id="mx-active-sub">Aucun projet actif.</div>
-          <div id="mx-active-tree"></div>
-        </div>
-        <button class="sb-section-toggle" id="mx-toggle-projects"><span>Mes projets</span>${I.chevSm}</button>
+        <button class="sb-group-toggle" id="mx-toggle-projects"><span class="sb-group-label">Projets</span>${I.chevSm}</button>
         <div class="sb-collapsible" id="mx-panel-projects">
+          <div class="sb-project-header">
+            <span id="mx-active-icon">${I.folder}</span><span id="mx-active-name">Espace partagé</span><span class="sb-active-badge" id="mx-active-badge" hidden>Actif</span>
+          </div>
+          <div class="sb-active-sub" id="mx-active-sub" hidden></div>
+          <div id="mx-active-tree"></div>
+          <div class="sb-mini-label" id="mx-projects-label">Tous les projets</div>
           <div class="sb-tree-empty" id="mx-projects-empty">Aucun projet importé.</div>
           <div id="mx-projects-list"></div>
           <button id="mx-new-project" class="sb-new-project-btn">+ Nouveau projet</button>
         </div>
 
         <div class="sb-divider"></div>
-        <div class="sb-group-label">Discussions</div>
-        <button class="sb-section-toggle" id="mx-toggle-disc"><span>Toutes les discussions</span>${I.chevSm}</button>
+        <button class="sb-group-toggle" id="mx-toggle-disc"><span class="sb-group-label">Discussions</span>${I.chevSm}</button>
         <div class="sb-collapsible" id="mx-panel-disc">
           <div class="sb-tree-empty" id="mx-disc-empty">Aucune discussion.</div>
           <div id="mx-disc-list"></div>
@@ -909,15 +907,22 @@ export function initAgents() {
     $("#mx-label-project").textContent = activeProjectName();
     $("#mx-active-name").textContent = activeProjectName();
     const p = Projects.active;
-    $("#mx-active-sub").textContent = p
-      ? p.mode === "sftp"
-        ? p.user + "@" + p.host + ":" + p.remote_path
-        : "Projet local"
-      : "Aucun projet actif.";
+    $("#mx-active-icon").innerHTML = p && p.mode === "sftp" ? I.upload : I.folder;
+    $("#mx-active-badge").hidden = !p;
+    const sub = $("#mx-active-sub");
+    if (p) {
+      sub.hidden = false;
+      sub.textContent = p.mode === "sftp" ? p.user + "@" + p.host + ":" + p.remote_path : "Projet local";
+    } else {
+      sub.hidden = true;
+      sub.textContent = "";
+    }
+    $("#mx-active-tree").style.display = p ? "" : "none";
     renderProjectBar($("#mx-project-bar"));
   }
   function renderProjects() {
     renderProjectsList($("#mx-projects-list"), $("#mx-projects-empty"));
+    $("#mx-projects-label").style.display = Projects.list.length ? "" : "none";
     renderActiveTree($("#mx-active-tree"));
   }
   function buildProjectMenu(filter) {
@@ -1560,7 +1565,6 @@ function wireToggle(btnSel, panelSel) {
     btn.querySelector("svg").classList.toggle("collapsed", panel.classList.contains("hidden"));
   });
 }
-wireToggle("#mx-toggle-active", "#mx-panel-active");
 wireToggle("#mx-toggle-projects", "#mx-panel-projects");
 wireToggle("#mx-toggle-disc", "#mx-panel-disc");
 

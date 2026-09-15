@@ -138,10 +138,7 @@ function renderTreeNodes(container, node, projectId, prefix) {
 export async function renderActiveTree(container) {
   container.innerHTML = "";
   const p = Projects.active;
-  if (!p) {
-    container.innerHTML = '<div class="sb-tree-empty">Aucun projet actif.</div>';
-    return;
-  }
+  if (!p) return;
   const loading = document.createElement("div");
   loading.className = "sb-tree-empty";
   loading.textContent = "Chargement…";

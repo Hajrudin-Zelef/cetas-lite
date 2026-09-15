@@ -104,3 +104,64 @@
 .mx-modal-overlay{
   z-index:1500;
 }
+
+/* ---- Sidebar Agents : sections Projets / Discussions restructurées ----
+   Les intitulés de groupe (PROJETS, DISCUSSIONS) sont eux-mêmes les toggles :
+   plus de sous-sections « Projet actif » / « Mes projets » /
+   « Toutes les discussions » redondantes. */
+#marex-view .sb-group-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  padding:12px 10px 2px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font-family:inherit;
+  border-radius:6px;
+}
+#marex-view .sb-group-toggle:hover{ background:var(--bg-hover); }
+#marex-view .sb-group-toggle .sb-group-label{ padding:0; }
+#marex-view .sb-group-toggle svg{
+  color:var(--text-tertiary);
+  transition:transform .15s ease;
+  flex-shrink:0;
+}
+#marex-view .sb-group-toggle svg.collapsed{ transform:rotate(-90deg); }
+
+/* Badge « Actif » sur le projet courant. */
+#marex-view .sb-active-badge{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--accent);
+  background:var(--bg-hover);
+  border:1px solid var(--border);
+  padding:1px 7px;
+  border-radius:999px;
+  margin-left:auto;
+  flex-shrink:0;
+}
+#marex-view #mx-active-icon{ display:inline-flex; flex-shrink:0; }
+
+/* Détail du projet actif (Projet local / user@host:path), sous le nom. */
+#marex-view .sb-active-sub{
+  font-size:11px;
+  color:var(--text-tertiary);
+  padding:0 10px 4px 32px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Mini-intitulé « Tous les projets » au-dessus de la liste. */
+#marex-view .sb-mini-label{
+  font-size:10.5px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--text-tertiary);
+  font-weight:700;
+  padding:10px 10px 2px;
+}
