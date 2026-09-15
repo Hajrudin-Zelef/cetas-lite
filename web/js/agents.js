@@ -258,7 +258,9 @@ export function initAgents() {
   view.id = "marex-view";
   view.setAttribute("data-accent", "sky");
   view.innerHTML = VIEW_HTML;
-  document.body.appendChild(view);
+  // Hébergement : module intégré dans <main> (repli : body, ex. tests).
+  const host = document.getElementById("module-agents") || document.body;
+  host.appendChild(view);
   const $ = (s) => view.querySelector(s);
 
   const hero = $("#mx-hero"),
@@ -941,13 +943,21 @@ function updateFav() {
   favBtn.title = on ? "Retirer des favoris" : "Ajouter aux favoris";
 }
 
-// ---------------- ouverture / fermeture ----------------
+// ---------------- ouverture / fermeture (module intégré) ----------------
+function moduleEls() {
+  return {
+    main: document.querySelector("main.main"),
+    host: document.getElementById("module-agents"),
+  };
+}
 function openView() {
   if (opened) return;
   opened = true;
+  const { main, host } = moduleEls();
+  if (host) host.hidden = false;
+  if (main) main.classList.add("module-agents-active");
   view.classList.add("open");
   toolbarBtn.classList.add("active");
-  document.body.style.overflow = "hidden";
   loadFamilies();
   refreshAgents();
   pollMetrics();
@@ -961,9 +971,11 @@ function openView() {
 function closeView() {
   if (!opened) return;
   opened = false;
+  const { main, host } = moduleEls();
   view.classList.remove("open");
+  if (host) host.hidden = true;
+  if (main) main.classList.remove("module-agents-active");
   toolbarBtn.classList.remove("active");
-  document.body.style.overflow = "";
   clearInterval(metricsTimer);
   clearInterval(discTimer);
   metricsTimer = discTimer = null;
@@ -1028,10 +1040,20 @@ favBtn.addEventListener("click", () => {
 $("#mx-new").addEventListener("click", newConversation);
 $("#mx-mobile-new").addEventListener("click", newConversation);
 $("#mx-back").addEventListener("click", closeView);
-toolbarBtn.addEventListener("click", () => (opened ? closeView() : openView()));
+// Le bouton module de la sidebar pilote via "cetas:toggle-agents" (sidebar.js).
+// Le clic direct n'est câblé que si le bouton n'est pas un bouton module
+// (ex. #agents-btn historique / tests jsdom) — sinon double bascule.
+if (!toolbarBtn.classList.contains("dev-module-btn")) {
+  toolbarBtn.addEventListener("click", () => (opened ? closeView() : openView()));
+}
 window.addEventListener("cetas:open-agents", () => {
   if (!opened) openView();
 });
+window.addEventListener("cetas:toggle-agents", () => {
+  if (opened) closeView();
+  else openView();
+});
+window.addEventListener("cetas:close-agents", closeView);
 
 searchInput.addEventListener("input", () => {
   renderDiscussions(searchInput.value.trim().toLowerCase());

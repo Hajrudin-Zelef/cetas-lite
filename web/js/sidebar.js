@@ -266,6 +266,8 @@ export function initSidebar() {
 
   if (newBtn) {
     newBtn.addEventListener("click", async () => {
+      // "Nouvelle conversation" concerne le chat : on quitte le module Agent.
+      window.dispatchEvent(new CustomEvent("cetas:close-agents"));
       const state = await api("/api/chat/state").catch(() => ({}));
       if ((state.turns || 0) > 0) {
         const ok = await confirmDialog("Démarrer une nouvelle conversation ? La conversation actuelle sera archivée.", { okLabel: "Nouvelle conversation" });
@@ -341,7 +343,7 @@ export function initSidebar() {
   document.querySelectorAll(".dev-module-btn").forEach((b) => {
     b.addEventListener("click", () => {
       const mod = b.dataset.module;
-      if (mod === "agents") window.dispatchEvent(new CustomEvent("cetas:open-agents"));
+      if (mod === "agents") window.dispatchEvent(new CustomEvent("cetas:toggle-agents"));
       else if (mod === "terminal") window.dispatchEvent(new CustomEvent("cetas:toggle-terminal"));
       else toastDev();
     });

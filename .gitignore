@@ -10,4 +10,5 @@ docs/index.md
 docs/report-*.md
 docs/plans/
 docs/*.zip
+docs/*.tar.gz
 node_modules/
