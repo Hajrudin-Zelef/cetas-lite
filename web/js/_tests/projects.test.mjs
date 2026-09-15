@@ -132,3 +132,36 @@ await test("renderConnectorsInto affiche la carte GitHub", async () => {
   assert.ok(box.querySelector("#mx-gh-token"), "champ token présent");
   assert.ok(box.querySelector("#mx-gh-connect"), "bouton connecter présent");
 });
+
+await test("la modale projet définit sa palette hors #marex-view (anti texte noir)", async () => {
+  // L'overlay est inséré dans document.body : les variables du thème Agents
+  // (#marex-view) n'y sont pas héritées. Ce test verrouille leur redéfinition
+  // locale — sans elle, le texte tombe en noir sur fond noir (bug constaté).
+  const { readFileSync } = await import("node:fs");
+  const { fileURLToPath } = await import("node:url");
+  const { dirname, join } = await import("node:path");
+  const css = readFileSync(
+    join(dirname(fileURLToPath(import.meta.url)), "..", "..", "css", "features", "marex-agents.css"),
+    "utf8"
+  );
+  const style = document.createElement("style");
+  style.textContent = css;
+  document.head.appendChild(style);
+  const overlay = document.createElement("div");
+  overlay.className = "mx-modal-overlay";
+  document.body.appendChild(overlay);
+  const cs = window.getComputedStyle(overlay);
+  assert.equal(cs.getPropertyValue("--text-primary").trim(), "#f2f2f4");
+  assert.equal(cs.getPropertyValue("--bg-input-btn").trim(), "#1f2024");
+  assert.equal(cs.getPropertyValue("--border").trim(), "#25262b");
+  assert.equal(cs.getPropertyValue("--text-secondary").trim(), "#9a9ba3");
+  const card = document.createElement("div");
+  card.className = "mx-conn-card";
+  document.body.appendChild(card);
+  const cs2 = window.getComputedStyle(card);
+  assert.ok(cs2.getPropertyValue("--text-primary").trim(), "carte connecteurs : --text-primary défini");
+  assert.ok(cs2.getPropertyValue("--bg-input-btn").trim(), "carte connecteurs : --bg-input-btn défini");
+  overlay.remove();
+  card.remove();
+  style.remove();
+});

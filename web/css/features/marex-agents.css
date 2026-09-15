@@ -1739,10 +1739,41 @@
 #marex-view .mx-pbar-sub{ color:var(--text-tertiary); font-size:11.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* ---- Modales (nouveau projet, lecteur) ---- */
+/* L'overlay est inséré dans document.body (hors #marex-view) et la carte
+   connecteurs est rendue dans la modale Configuration : les variables du
+   thème Agents n'y sont pas héritées. Sans redéfinition, le texte tombe en
+   noir sur fond noir. La modale projet garde sa palette sombre assortie au
+   fond #0d1622 ; la carte connecteurs s'aligne sur le thème de l'app
+   principale (repli sombre sinon). */
 .mx-modal-overlay{
+  --bg-panel:#0d1622;
+  --bg-input-btn:#1f2024;
+  --border:#25262b;
+  --text-primary:#f2f2f4;
+  --text-secondary:#9a9ba3;
+  --text-tertiary:#6b6d76;
+  --accent:#5EC8F2;
+  --bg-hover:#1c1c1f;
+  color-scheme:dark;
   position:fixed; inset:0; background:rgba(4,10,18,.62); backdrop-filter:blur(2px);
   display:flex; align-items:center; justify-content:center; z-index:200;
 }
+.mx-conn-card{
+  --bg-input-btn:var(--bg-input,#1f2024);
+  --border:var(--border-input,#25262b);
+  --text-primary:var(--text,#f2f2f4);
+  --text-secondary:var(--text,#9a9ba3);
+  --text-tertiary:#6b6d76;
+  --accent:var(--accent,#5EC8F2);
+  --bg-hover:var(--bg-hover,#1c1c1f);
+}
+.mx-modal-overlay .mx-field input::placeholder,
+.mx-modal-overlay .mx-field textarea::placeholder,
+.mx-conn-card .mx-field input::placeholder{ color:var(--text-tertiary); opacity:1; }
+.mx-modal-overlay .mx-field input:focus,
+.mx-modal-overlay .mx-field select:focus,
+.mx-modal-overlay .mx-field textarea:focus,
+.mx-conn-card .mx-field input:focus{ outline:none; border-color:var(--accent); }
 .mx-modal{
   width:min(560px, calc(100vw - 32px)); max-height:calc(100vh - 64px); overflow:auto;
   background:var(--bg-panel, #0d1622); border:1px solid var(--border); border-radius:14px;
