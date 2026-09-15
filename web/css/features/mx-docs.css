@@ -1,0 +1,262 @@
+/* Centre d'aide Cetas Lite — vue plein écran façon "help center".
+   Palette locale autonome : la vue est hors #marex-view, les variables
+   Agents n'y sont donc pas héritées (même leçon que .mx-modal-overlay). */
+#cetas-docs{
+  --docs-bg:#0b0d12;
+  --docs-sidebar:#12141a;
+  --docs-elev:#1a1d24;
+  --docs-hover:#1e2129;
+  --docs-border:#25262b;
+  --docs-border-strong:#30363d;
+  --docs-text:#f2f2f4;
+  --docs-text-2:#9a9ba3;
+  --docs-text-3:#6b6d76;
+  --docs-accent:#5EC8F2;
+  --docs-accent-dim:rgba(94,200,242,.14);
+  --docs-danger:#e05252;
+  position:fixed;
+  inset:0;
+  z-index:600;
+  display:none;
+  background:var(--docs-bg);
+  color:var(--docs-text);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  color-scheme:dark;
+}
+#cetas-docs.open{ display:flex; flex-direction:column; }
+#cetas-docs *{ margin:0; padding:0; box-sizing:border-box; }
+#cetas-docs button{ font-family:inherit; }
+body.docs-open{ overflow:hidden; }
+
+/* ---------- en-tête ---------- */
+#cetas-docs .docs-header{
+  display:flex; align-items:center; gap:16px;
+  height:60px; flex-shrink:0;
+  padding:0 20px;
+  background:var(--docs-sidebar);
+  border-bottom:1px solid var(--docs-border);
+}
+#cetas-docs .docs-burger{
+  display:none;
+  background:transparent; border:none; color:var(--docs-text-2);
+  cursor:pointer; padding:6px; border-radius:6px;
+}
+#cetas-docs .docs-burger:hover{ color:var(--docs-text); background:var(--docs-hover); }
+#cetas-docs .docs-burger svg{ transform:rotate(180deg); }
+#cetas-docs .docs-brand{
+  display:flex; align-items:center; gap:8px;
+  font-size:15px; font-weight:650; white-space:nowrap;
+}
+#cetas-docs .docs-brand-mark{ color:var(--docs-accent); font-size:18px; }
+#cetas-docs .docs-search-wrap{
+  position:relative; flex:1; max-width:520px; margin:0 auto;
+  display:flex; align-items:center;
+}
+#cetas-docs .docs-search-icon{
+  position:absolute; left:12px; color:var(--docs-text-3);
+  display:flex; pointer-events:none;
+}
+#cetas-docs .docs-search{
+  width:100%; height:36px;
+  padding:0 64px 0 36px;
+  background:var(--docs-elev);
+  border:1px solid var(--docs-border);
+  border-radius:8px; color:var(--docs-text);
+  font-size:13.5px; outline:none;
+}
+#cetas-docs .docs-search::placeholder{ color:var(--docs-text-3); }
+#cetas-docs .docs-search:focus{ border-color:var(--docs-accent); box-shadow:0 0 0 3px var(--docs-accent-dim); }
+#cetas-docs .docs-search-kbd{
+  position:absolute; right:10px;
+  font-size:11px; color:var(--docs-text-3);
+  border:1px solid var(--docs-border); border-radius:4px;
+  padding:2px 6px; background:var(--docs-bg);
+  font-family:inherit; pointer-events:none;
+}
+#cetas-docs .docs-close{
+  background:transparent; border:none; color:var(--docs-text-2);
+  cursor:pointer; padding:8px; border-radius:8px; display:flex;
+}
+#cetas-docs .docs-close:hover{ color:var(--docs-text); background:var(--docs-hover); }
+
+/* ---------- corps 3 colonnes ---------- */
+#cetas-docs .docs-body{
+  display:flex; flex:1; min-height:0;
+}
+#cetas-docs .docs-sidebar{
+  width:280px; flex-shrink:0;
+  background:var(--docs-sidebar);
+  border-right:1px solid var(--docs-border);
+  overflow-y:auto; padding:16px 12px 32px;
+}
+#cetas-docs .docs-coll{ margin-bottom:4px; }
+#cetas-docs .docs-coll-head{
+  display:flex; align-items:center; gap:10px; width:100%;
+  background:transparent; border:none; color:var(--docs-text);
+  font-size:13.5px; font-weight:600; text-align:left;
+  padding:9px 10px; border-radius:8px; cursor:pointer;
+}
+#cetas-docs .docs-coll-head:hover{ background:var(--docs-hover); }
+#cetas-docs .docs-coll-icon{ color:var(--docs-text-2); display:flex; flex-shrink:0; }
+#cetas-docs .docs-coll.active .docs-coll-icon{ color:var(--docs-accent); }
+#cetas-docs .docs-coll-title{ flex:1; }
+#cetas-docs .docs-coll-chev{ color:var(--docs-text-3); display:flex; transition:transform .15s; }
+#cetas-docs .docs-coll.active .docs-coll-chev{ transform:rotate(90deg); }
+#cetas-docs .docs-coll-arts{ display:none; padding:2px 0 6px 34px; }
+#cetas-docs .docs-coll.active .docs-coll-arts{ display:block; }
+#cetas-docs .docs-art-link{
+  display:block; width:100%;
+  background:transparent; border:none; color:var(--docs-text-2);
+  font-size:13px; text-align:left; cursor:pointer;
+  padding:7px 10px; border-radius:7px; line-height:1.35;
+  border-left:2px solid transparent;
+}
+#cetas-docs .docs-art-link:hover{ color:var(--docs-text); background:var(--docs-hover); }
+#cetas-docs .docs-art-link.active{ color:var(--docs-accent); background:var(--docs-accent-dim); border-left-color:var(--docs-accent); }
+
+/* ---------- article ---------- */
+#cetas-docs .docs-main{
+  flex:1; min-width:0; overflow-y:auto;
+  padding:36px 48px 80px;
+  scroll-behavior:smooth;
+}
+#cetas-docs .docs-main:focus{ outline:none; }
+#cetas-docs .docs-crumbs{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  font-size:12.5px; margin-bottom:18px;
+}
+#cetas-docs .docs-crumbs button{
+  background:none; border:none; cursor:pointer;
+  color:var(--docs-text-2); font-size:12.5px; padding:0;
+}
+#cetas-docs .docs-crumbs button:hover{ color:var(--docs-accent); text-decoration:underline; }
+#cetas-docs .docs-crumb-sep{ color:var(--docs-text-3); display:flex; }
+#cetas-docs .docs-crumb-current{ color:var(--docs-text-3); }
+#cetas-docs .docs-h1{
+  font-size:30px; font-weight:700; letter-spacing:-.02em;
+  margin-bottom:28px; max-width:760px;
+}
+#cetas-docs .docs-sec{ max-width:760px; margin-bottom:30px; scroll-margin-top:16px; }
+#cetas-docs .docs-h2{
+  font-size:19px; font-weight:650; margin-bottom:12px;
+  padding-top:6px; letter-spacing:-.01em;
+}
+#cetas-docs .docs-prose{ color:#d6d7dc; font-size:14.5px; line-height:1.75; }
+#cetas-docs .docs-prose p{ margin-bottom:12px; }
+#cetas-docs .docs-prose ul, #cetas-docs .docs-prose ol{ margin:0 0 12px 4px; padding-left:20px; }
+#cetas-docs .docs-prose li{ margin-bottom:7px; }
+#cetas-docs .docs-prose li::marker{ color:var(--docs-accent); }
+#cetas-docs .docs-prose strong{ color:var(--docs-text); font-weight:650; }
+#cetas-docs .docs-prose em{ color:var(--docs-text-2); }
+#cetas-docs .docs-prose code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12.5px; background:var(--docs-elev);
+  border:1px solid var(--docs-border); border-radius:5px;
+  padding:1px 6px; color:var(--docs-accent);
+}
+/* ---------- sommaire "Sur cette page" ---------- */
+#cetas-docs .docs-toc{
+  width:250px; flex-shrink:0;
+  overflow-y:auto; padding:36px 24px 40px 8px;
+}
+#cetas-docs .docs-toc-title{
+  font-size:12px; font-weight:650; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--docs-text); margin-bottom:12px;
+}
+#cetas-docs .docs-toc-link{
+  display:block; width:100%;
+  background:none; border:none; cursor:pointer; text-align:left;
+  color:var(--docs-text-2); font-size:13px; line-height:1.4;
+  padding:6px 0 6px 14px; border-left:2px solid var(--docs-border);
+}
+#cetas-docs .docs-toc-link:hover{ color:var(--docs-text); }
+#cetas-docs .docs-toc-link.active{ color:var(--docs-accent); border-left-color:var(--docs-accent); }
+
+/* ---------- accueil : cartes ---------- */
+#cetas-docs .docs-home{ max-width:900px; }
+#cetas-docs .docs-lead{ color:var(--docs-text-2); font-size:15px; margin:-18px 0 30px; }
+#cetas-docs .docs-cards{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px;
+}
+#cetas-docs .docs-card{
+  display:flex; flex-direction:column; gap:6px; align-items:flex-start; text-align:left;
+  background:var(--docs-sidebar); border:1px solid var(--docs-border);
+  border-radius:12px; padding:18px; cursor:pointer; color:var(--docs-text);
+  transition:border-color .15s, transform .15s;
+}
+#cetas-docs .docs-card:hover{ border-color:var(--docs-accent); transform:translateY(-2px); }
+#cetas-docs .docs-card-icon{
+  width:36px; height:36px; border-radius:9px;
+  background:var(--docs-accent-dim); color:var(--docs-accent);
+  display:flex; align-items:center; justify-content:center; margin-bottom:6px;
+}
+#cetas-docs .docs-card-title{ font-size:15px; font-weight:650; }
+#cetas-docs .docs-card-count{ font-size:12px; color:var(--docs-text-3); }
+#cetas-docs .docs-card-first{ font-size:12.5px; color:var(--docs-text-2); line-height:1.5; }
+
+/* ---------- recherche ---------- */
+#cetas-docs .docs-results{ max-width:760px; }
+#cetas-docs .docs-results-count{ color:var(--docs-text-2); font-size:13px; margin-bottom:16px; }
+#cetas-docs .docs-result{
+  display:flex; flex-direction:column; gap:4px; align-items:flex-start; text-align:left;
+  width:100%; background:var(--docs-sidebar);
+  border:1px solid var(--docs-border); border-radius:10px;
+  padding:14px 16px; margin-bottom:10px; cursor:pointer; color:var(--docs-text);
+}
+#cetas-docs .docs-result:hover{ border-color:var(--docs-accent); }
+#cetas-docs .docs-result-coll{ font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--docs-accent); font-weight:650; }
+#cetas-docs .docs-result-title{ font-size:14.5px; font-weight:650; }
+#cetas-docs .docs-result-snippet{ font-size:13px; color:var(--docs-text-2); line-height:1.55; }
+#cetas-docs .docs-no-result{ color:var(--docs-text-2); font-size:14px; padding:24px 0; }
+
+/* ---------- précédent / suivant ---------- */
+#cetas-docs .docs-prevnext{
+  display:flex; justify-content:space-between; gap:12px;
+  max-width:760px; margin-top:44px; padding-top:24px;
+  border-top:1px solid var(--docs-border);
+}
+#cetas-docs .docs-pn{
+  display:flex; flex-direction:column; gap:4px; align-items:flex-start; text-align:left;
+  background:transparent; border:1px solid var(--docs-border); border-radius:10px;
+  padding:12px 16px; cursor:pointer; color:var(--docs-text); max-width:48%;
+}
+#cetas-docs .docs-pn:hover{ border-color:var(--docs-accent); }
+#cetas-docs .docs-pn-next{ align-items:flex-end; text-align:right; margin-left:auto; }
+#cetas-docs .docs-pn-label{ font-size:12px; color:var(--docs-text-3); }
+#cetas-docs .docs-pn-title{ font-size:13.5px; font-weight:600; }
+
+/* ---------- bouton docs dans la sidebar Agents ---------- */
+#marex-view .sb-user-row{ display:flex; align-items:center; gap:6px; }
+#marex-view .sb-user-row .sb-user-btn{ flex:1; min-width:0; }
+#marex-view .sb-user-row .sb-user-btn #mx-user-name{
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+#marex-view .sb-docs-btn{
+  flex-shrink:0;
+  width:34px; height:34px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:8px; border:1px solid var(--border);
+  background:transparent; color:var(--text-secondary);
+  cursor:pointer;
+}
+#marex-view .sb-docs-btn:hover{ background:var(--bg-hover); color:var(--accent); border-color:var(--accent); }
+
+/* ---------- responsive ---------- */
+@media (max-width:1200px){
+  #cetas-docs .docs-toc{ display:none; }
+}
+@media (max-width:900px){
+  #cetas-docs .docs-sidebar{
+    position:absolute; top:60px; bottom:0; left:0; z-index:5;
+    transform:translateX(-100%); transition:transform .2s;
+    box-shadow:8px 0 24px rgba(0,0,0,.45);
+  }
+  #cetas-docs .docs-sidebar.open{ transform:none; }
+  #cetas-docs .docs-burger{ display:flex; }
+  #cetas-docs .docs-main{ padding:24px 20px 60px; }
+  #cetas-docs .docs-search-kbd{ display:none; }
+  #cetas-docs .docs-prevnext{ flex-direction:column; }
+  #cetas-docs .docs-pn{ max-width:100%; }
+  #cetas-docs .docs-pn-next{ align-items:flex-start; text-align:left; margin-left:0; }
+}
