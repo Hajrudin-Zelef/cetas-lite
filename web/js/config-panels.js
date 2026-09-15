@@ -32,7 +32,7 @@ const FEATURE_DEFS = [
 ];
 
 let featuresLoaded = false;
-async function loadFeaturesPanel() {
+export async function loadFeaturesPanel() {
   const wrap = document.getElementById("features-rows");
   if (!wrap || featuresLoaded) return;
   featuresLoaded = true;
@@ -88,7 +88,7 @@ async function refreshSearchSettings() {
   return searchState;
 }
 
-async function loadSearchPanel() {
+export async function loadSearchPanel() {
   const tabsEl = document.getElementById("search-providers-tabs");
   const contentEl = document.getElementById("search-provider-content");
   if (!tabsEl || !contentEl || searchLoaded) return;
@@ -297,7 +297,7 @@ function fmtSessionDate(ts) {
   }
 }
 
-async function loadSessionsPanel() {
+export async function loadSessionsPanel() {
   const chatEl = document.getElementById("sessions-chat");
   const agentsEl = document.getElementById("sessions-agents");
   const filterEl = document.getElementById("sessions-filter");
@@ -426,7 +426,7 @@ function agentStatusLabel(st) {
 
 // --- Panneau Apparence : swatches de palettes ---
 let appearanceLoaded = false;
-async function loadAppearancePanel() {
+export async function loadAppearancePanel() {
   if (appearanceLoaded) return;
   appearanceLoaded = true;
   renderPaletteSwatches();
