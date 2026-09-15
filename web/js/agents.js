@@ -191,6 +191,7 @@ const VIEW_HTML = `
       <div class="side-panel-body" id="mx-sp-body"><div class="side-panel-empty">Le raisonnement de l'agent s'affichera ici.</div></div>
     </div>
     <button class="mx-think-fab" id="mx-think-fab">Raisonnement</button>
+    <div class="mx-menu-layer" id="mx-menu-layer" aria-hidden="true"></div>
   </div>
 </div>`;
 
@@ -245,6 +246,30 @@ export function renderMxTodos(todos) {
 export function clearMxTodos() {
   const panel = document.querySelector("#mx-todos");
   if (panel) { panel.style.display = "none"; panel.innerHTML = ""; }
+}
+
+// Placement d'un menu du composer dans le calque #mx-menu-layer.
+// Mathématiques pures (rects + dimensions) : testable sans DOM.
+// - par défaut le menu s'ouvre VERS LE HAUT (boutons du pied de composer) ;
+// - `down:true` : vers le bas (sélecteur projet, en haut du composer) ;
+// - `right:true` : aligné à droite du bouton (menu modèle) ;
+// - repli : si pas la place en haut, ouvre en bas ; clampé à la vue.
+export function positionMenu(viewRect, btnRect, menuW, menuH, opts = {}) {
+  const gap = 8;
+  const vw = viewRect.width;
+  const vh = viewRect.height;
+  let left = btnRect.left - (viewRect.left || 0);
+  if (opts.right) left = btnRect.right - (viewRect.left || 0) - menuW;
+  left = Math.max(8, Math.min(left, vw - menuW - 8));
+  let top;
+  if (opts.down) {
+    top = btnRect.bottom - (viewRect.top || 0) + gap;
+  } else {
+    top = btnRect.top - (viewRect.top || 0) - menuH - gap;
+    if (top < 8) top = btnRect.bottom - (viewRect.top || 0) + gap;
+  }
+  if (top + menuH > vh - 8) top = Math.max(8, vh - menuH - 8);
+  return { left: Math.round(left), top: Math.round(top) };
 }
 
 export function initAgents() {
@@ -342,18 +367,48 @@ export function initAgents() {
   const redoStack = [];
   let lastPushed = "";
 
-  // ---------------- dropdowns ----------------
+  // ---------------- dropdowns (portalés) ----------------
+  // Les menus sont déplacés dans #mx-menu-layer (enfant direct de
+  // #marex-view) : .mx-composer a overflow:hidden (coins arrondis) qui
+  // rognait les menus, et le positionnement vers le haut n'existait
+  // que sous 600px. Le calque n'est rogné par aucun ancêtre.
   function closeAllDrops() {
     view.querySelectorAll(".cdrop-menu.open").forEach((m) => m.classList.remove("open"));
     const um = $("#mx-user-menu");
     if (um) um.classList.remove("open");
   }
   document.addEventListener("click", (e) => {
-    if (opened && !e.target.closest(".cdrop")) closeAllDrops();
+    if (opened && !e.target.closest(".cdrop") && !e.target.closest(".mx-menu-layer")) closeAllDrops();
   });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeAllDrops();
   });
+  // Un menu ouvert se ferme si la vue défile ou est redimensionnée
+  // (le positionnement absolu ne suivrait plus le bouton).
+  view.addEventListener(
+    "scroll",
+    (e) => {
+      if (e.target.closest && e.target.closest(".cdrop-menu")) return; // scroll interne au menu : garder ouvert
+      closeAllDrops();
+    },
+    true
+  );
+  window.addEventListener("resize", closeAllDrops);
+  function placeMenu(btn, menu) {
+    const layer = $("#mx-menu-layer");
+    if (menu.parentElement !== layer) layer.appendChild(menu);
+    menu.classList.add("open");
+    const viewRect = view.getBoundingClientRect();
+    const r = btn.getBoundingClientRect();
+    const p = positionMenu(viewRect, r, menu.offsetWidth, menu.offsetHeight, {
+      down: menu.id === "mx-menu-project", // sélecteur projet (haut du composer) : ouvre vers le bas
+      right: menu.classList.contains("up-right"), // menu modèle : aligné à droite
+    });
+    menu.style.left = p.left + "px";
+    menu.style.top = p.top + "px";
+    menu.style.right = "auto";
+    menu.style.bottom = "auto";
+  }
   function wireDrop(btnSel, menuSel) {
     const btn = $(btnSel),
       menu = $(menuSel);
@@ -361,7 +416,7 @@ export function initAgents() {
       e.stopPropagation();
       const was = menu.classList.contains("open");
       closeAllDrops();
-      if (!was) menu.classList.add("open");
+      if (!was) placeMenu(btn, menu);
     });
     menu.addEventListener("click", (e) => e.stopPropagation());
   }

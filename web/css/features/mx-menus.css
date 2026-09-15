@@ -1,0 +1,18 @@
+/* Menus du composer "portalés" dans un calque dédié.
+   Pourquoi : les .cdrop-menu sont construits dans .mx-composer, qui a
+   overflow:hidden (requis pour ses coins arrondis) ; de plus le
+   positionnement vers le haut n'existait que sous 600px. Résultat sur
+   desktop : menus rognés / invisibles. Le calque sort les menus du flux
+   rogné ; agents.js les y déplace et les positionne en JS. */
+#marex-view .mx-menu-layer{
+  position:absolute;
+  inset:0;
+  z-index:500;
+  pointer-events:none;
+  overflow:visible;
+}
+#marex-view .mx-menu-layer .cdrop-menu{
+  position:absolute;
+  pointer-events:auto;
+  margin:0;
+}
