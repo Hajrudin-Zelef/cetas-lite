@@ -110,7 +110,7 @@ let featuresLoaded = false;
 let featuresSaved = null;
 let featuresStaged = null;
 
-async function loadFeaturesPanel() {
+export async function loadFeaturesPanel() {
   const wrap = document.getElementById("features-rows");
   if (!wrap || featuresLoaded) return;
   featuresLoaded = true;
@@ -186,7 +186,7 @@ async function refreshSearchSettings() {
   return searchState;
 }
 
-async function loadSearchPanel() {
+export async function loadSearchPanel() {
   const tabsEl = document.getElementById("search-providers-tabs");
   const contentEl = document.getElementById("search-provider-content");
   if (!tabsEl || !contentEl || searchLoaded) return;
@@ -414,7 +414,7 @@ let appearanceLoaded = false;
 let appearanceSaved = null;
 let appearanceStaged = null;
 
-async function loadAppearancePanel() {
+export async function loadAppearancePanel() {
   if (appearanceLoaded) return;
   appearanceLoaded = true;
   const themeSel = document.getElementById("cfg-theme");
