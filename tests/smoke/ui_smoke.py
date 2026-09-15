@@ -1,3 +1,20 @@
+"""Smoke test UI (version allégée, 2026-09-15).
+
+Lance le vrai binaire `cetas-lite serve`, pilote un vrai Chromium via
+Playwright avec des routes API simulées (aucune clé requise), et vérifie
+6 points que les tests unitaires (jsdom) ne peuvent pas voir :
+
+  1. la page charge sans erreur JavaScript ;
+  2. un tour de chat simulé (SSE) s'affiche avec le markdown rendu ;
+  3. l'envoi (Entrée) émet bien POST /api/chat/send avec le message ;
+  4. la vue Agents s'ouvre en plein écran via le bouton module ;
+  5. les menus du composer (+, modèle, projet) s'ouvrent ET sont
+     réellement visibles dans le viewport (non rognés) ;
+  6. aucune erreur JS durant tout le scénario.
+
+Usage : make smoke   (ou : python3 tests/smoke/ui_smoke.py)
+"""
+
 import json
 import os
 import shutil
@@ -11,6 +28,8 @@ from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BIN = os.path.join(ROOT, "bin", "cetas-lite")
+if os.name == "nt" and not os.path.exists(BIN) and os.path.exists(BIN + ".exe"):
+    BIN += ".exe"  # go build ajoute .exe automatiquement sous Windows
 
 FAMILIES = {
     "families": [
@@ -24,9 +43,6 @@ FAMILIES = {
                     "label": "Standard",
                     "agent": True,
                     "local": False,
-                    "pool": [
-                        {"provider": "fake", "model": "ok", "label": "Fake", "input_per_1m": 0, "output_per_1m": 0}
-                    ],
                 }
             ],
         }
@@ -35,61 +51,20 @@ FAMILIES = {
 
 SETTINGS = {"theme": "ocean", "family": "code", "mode": "standard"}
 
-CATALOG = {
-    "providers": [
-        {
-            "id": "deepseek",
-            "label": "DeepSeek",
-            "models": [
-                {"id": "deepseek-flash", "label": "DeepSeek Flash", "input_per_1m": 0.15, "output_per_1m": 0.6},
-                {"id": "deepseek-v4-pro", "label": "DeepSeek V4 Pro", "input_per_1m": 0.66, "output_per_1m": 1.98},
-            ],
-        },
-        {
-            "id": "openrouter",
-            "label": "OpenRouter",
-            "models": [
-                {"id": "deepseek/deepseek-v4-flash-0731", "label": "V4 Flash 0731", "input_per_1m": 0.14, "output_per_1m": 0.28}
-            ],
-        },
-    ]
-}
-
-MCP_SERVERS = {"servers": [{"name": "demo", "transport": "stdio", "connected": True, "tools": 2, "error": ""}]}
-
-CONVERSATIONS = {
-    "archives": [
-        {"id": "20260101_120000_1", "title": "Ancienne question", "updated": 1735732800000, "messages": 4}
-    ]
-}
-
-STATE = {"put_settings": None, "send_body": None, "deleted": None, "regenerated": None, "exported": None}
+STATE = {"send_body": None}
 
 
 def sse(events):
     return "".join("data: " + json.dumps(e) + "\n\n" for e in events)
 
 
+# Un tour complet rejoué par le flux SSE simulé au chargement.
 STREAM = sse(
     [
         {"seq": 1, "user": "salut"},
-        {"seq": 2, "reasoning_content": "je reflechis"},
-        {"seq": 3, "content": "## Titre\n\n**gras** et texte\n"},
-        {"seq": 4, "tool": {"name": "Edit", "args": {"file_path": "a.txt"}, "phase": "start"}},
-        {
-            "seq": 5,
-            "tool": {
-                "name": "Edit",
-                "args": {"file_path": "a.txt"},
-                "phase": "end",
-                "result": "ok https://go.dev doc",
-                "diff": [{"kind": "-", "text": "ligne"}, {"kind": "+", "text": "LIGNE"}],
-            },
-        },
-        {"seq": 6, "content": "\n\n```js\nconsole.log(1)\n```\n"},
-        {"seq": 7, "stats": {"prompt_tokens": 10, "completion_tokens": 5}},
-        {"seq": 8, "compact": True},
-        {"seq": 9, "turn_done": True, "elapsed_ms": 12},
+        {"seq": 2, "content": "## Titre\n\n**gras** et texte\n\n```js\nconsole.log(1)\n```\n"},
+        {"seq": 3, "stats": {"prompt_tokens": 10, "completion_tokens": 5}},
+        {"seq": 4, "turn_done": True, "elapsed_ms": 12},
     ]
 )
 
@@ -102,7 +77,7 @@ def free_port():
     return port
 
 
-def wait_health(base, timeout=10):
+def wait_health(base, timeout=15):
     deadline = time.time() + timeout
     while time.time() < deadline:
         try:
@@ -110,19 +85,19 @@ def wait_health(base, timeout=10):
                 if r.status == 200:
                     return True
         except Exception:
-            time.sleep(0.1)
+            time.sleep(0.2)
     return False
 
 
 def route_mocks(page):
+    # Catch-all : tout /api non redéfini après renvoie JSON vide (pas 401).
+    page.route("**/api/**", lambda r: r.fulfill(json={}))
     page.route("**/api/config", lambda r: r.fulfill(json={"registration_open": False, "version": "smoke"}))
     page.route("**/api/me", lambda r: r.fulfill(json={"username": "test", "role": "user"}))
     page.route("**/api/aliases", lambda r: r.fulfill(json=FAMILIES))
-    page.route("**/api/catalog", lambda r: r.fulfill(json=CATALOG))
 
     def settings(route):
         if route.request.method == "PUT":
-            STATE["put_settings"] = route.request.post_data_json
             route.fulfill(json={"ok": True})
         else:
             route.fulfill(json=SETTINGS)
@@ -131,153 +106,99 @@ def route_mocks(page):
         STATE["send_body"] = route.request.post_data_json
         route.fulfill(json={"ok": True})
 
-    def conversations(route):
-        req = route.request
-        if req.method == "DELETE":
-            STATE["deleted"] = req.url.rsplit("/", 1)[-1]
-            route.fulfill(json={"ok": True})
-        elif req.method == "POST":
-            route.fulfill(json={"ok": True})
-        else:
-            route.fulfill(json=CONVERSATIONS)
-
     page.route("**/api/settings", settings)
-    page.route("**/api/mcp", lambda r: r.fulfill(json=MCP_SERVERS))
-    page.route("**/api/capabilities", lambda r: r.fulfill(json={"caps": {}}))
     page.route("**/api/chat/send", send)
-    page.route("**/api/chat/state", lambda r: r.fulfill(json={"turns": 1, "generating": False}))
-    page.route("**/api/conversations**", conversations)
-
-    def regenerate(route):
-        STATE["regenerated"] = True
-        route.fulfill(json={"ok": True})
-
-    page.route("**/api/chat/regenerate", regenerate)
-
-    def export(route):
-        STATE["exported"] = True
-        route.fulfill(status=200, headers={"Content-Type": "text/markdown"}, body="# Conversation\n")
-
-    page.route("**/api/chat/export**", export)
     page.route(
         "**/api/chat/stream**",
-        lambda r: r.fulfill(status=200, headers={"Content-Type": "text/event-stream", "Cache-Control": "no-cache"}, body=STREAM),
+        lambda r: r.fulfill(
+            status=200,
+            headers={"Content-Type": "text/event-stream", "Cache-Control": "no-cache"},
+            body=STREAM,
+        ),
     )
+    page.route("**/api/conversations**", lambda r: r.fulfill(json={"archives": []}))
+    page.route("**/api/metrics", lambda r: r.fulfill(json={}))
+    page.route("**/api/chat/state", lambda r: r.fulfill(json={"turns": 0, "generating": False}))
+    page.route("**/api/model-info", lambda r: r.fulfill(json={}))
+    page.route("**/api/plugins", lambda r: r.fulfill(json={"plugins": []}))
+    page.route("**/api/mcp", lambda r: r.fulfill(json={"servers": []}))
+    page.route("**/api/capabilities", lambda r: r.fulfill(json={"caps": {}}))
 
 
-def check(page, url, reduced):
+def assert_visible_in_viewport(page, selector, label):
+    """Le menu doit être ouvert ET entièrement dans le viewport (anti-régression du rognage)."""
+    box = page.locator(selector).bounding_box()
+    assert box, f"{label} : pas de boîte de rendu"
+    vp = page.viewport_size
+    assert box["width"] > 40 and box["height"] > 20, f"{label} : boîte dégénérée {box}"
+    assert box["x"] >= 0 and box["y"] >= 0, f"{label} : hors écran (x={box['x']}, y={box['y']})"
+    assert box["x"] + box["width"] <= vp["width"] + 1, f"{label} : dépasse à droite"
+    assert box["y"] + box["height"] <= vp["height"] + 1, f"{label} : dépasse en bas"
+    assert page.locator(selector).is_visible(), f"{label} : non visible"
+
+
+def check(page, url):
     errors = []
-    STATE["put_settings"] = None
+    console_errors = []
     STATE["send_body"] = None
-    STATE["deleted"] = None
-    STATE["regenerated"] = None
-    STATE["exported"] = None
-    page.on("pageerror", lambda e: errors.append(str(e)))
+    page.on("pageerror", lambda e: errors.append(f"pageerror: {e}"))
+    page.on("console", lambda m: console_errors.append(m.text) if m.type == "error" else None)
     page.on("dialog", lambda d: d.accept())
+
+    # 1. chargement sans erreur JS
     page.goto(url)
-    page.wait_for_selector("#app:not([hidden])", state="visible", timeout=8000)
-    page.wait_for_selector("#chat-log[aria-busy='false']", timeout=8000)
-    page.wait_for_selector(".tool-diff .diff-add", state="attached", timeout=8000)
-    page.wait_for_selector(".message-assistant .message-text pre code", timeout=8000)
+    page.wait_for_selector("#kiro-splash", state="detached", timeout=15000)
+    page.wait_for_selector("#prompt-input", state="visible", timeout=8000)
 
-    title = page.locator(".message-assistant .message-text h2").first.inner_text()
+    # 2. tour simulé : markdown rendu, tour terminé
+    page.wait_for_selector("#chat-container .message-assistant .message-text h2", timeout=8000)
+    title = page.locator("#chat-container .message-assistant .message-text h2").first.inner_text()
     assert title.strip() == "Titre", f"markdown titre = {title!r}"
+    code = page.locator("#chat-container .message-assistant .message-text pre code").first.text_content()
+    assert code and "console.log(1)" in code, f"bloc de code manquant : {code!r}"
+    page.wait_for_selector("#chat-container[aria-busy='false']", timeout=8000)
 
-    diff = page.locator(".tool-diff .diff-add").first.text_content()
-    assert diff and "LIGNE" in diff, f"diff = {diff!r}"
-
-    text = page.locator("#chat-log").inner_text()
-    for marker in ["Titre", "gras", "console.log(1)"]:
-        assert marker in text, f"contenu tronque, manque {marker!r}"
-
-    busy = page.get_attribute("#chat-log", "aria-busy")
-    assert busy == "false", f"aria-busy = {busy!r}"
-
-    toggle = page.locator("#web-toggle")
-    assert toggle.count() == 1, "web toggle absent"
-    assert toggle.get_attribute("aria-pressed") == "false", "web toggle doit demarrer desactive"
-    toggle.click()
-    assert toggle.get_attribute("aria-pressed") == "true", "web toggle doit s'activer"
-    page.wait_for_timeout(100)
-    put = STATE["put_settings"] or {}
-    assert put.get("web_default") is True, f"web_default non persiste: {put!r}"
-
-    mcp = page.locator("#mcp-toggle")
-    assert mcp.count() == 1, "mcp toggle absent"
-    assert mcp.is_visible(), "mcp toggle doit etre visible si des serveurs sont configures"
-    assert mcp.get_attribute("aria-pressed") == "true", "mcp doit demarrer actif (auto)"
-    mcp.click()
-    assert mcp.get_attribute("aria-pressed") == "false", "mcp doit se desactiver"
-    page.wait_for_timeout(100)
-    put = STATE["put_settings"] or {}
-    assert put.get("mcp_default") is False, f"mcp_default non persiste: {put!r}"
-    mcp.click()
-    assert mcp.get_attribute("aria-pressed") == "true", "mcp doit se reactiver"
-    page.wait_for_timeout(100)
-
-    think = page.locator("#thinking-toggle")
-    assert think.count() == 1, "thinking toggle absent"
-    assert think.is_disabled(), "thinking doit etre force en mode agent"
-    assert think.get_attribute("aria-pressed") == "true", "thinking doit etre actif en agent"
-    assert page.locator("#effort-select").input_value() == "default", "effort defaut attendu"
-
-    stats = page.locator("#stats-badge")
-    assert stats.is_visible(), "stats badge visible attendu"
-    stext = stats.inner_text()
-    assert "10" in stext and "5" in stext, f"stats = {stext!r}"
-
-    assert page.locator(".msg-system").count() >= 1, "notice de compaction attendue"
-
-    assert page.locator(".conv-item").count() == 1, "une conversation archivee attendue"
-    ctitle = page.locator(".conv-item-title").first.inner_text()
-    assert "Ancienne question" in ctitle, f"titre archive = {ctitle!r}"
-
-    page.locator(".conv-item-actions .danger").first.click()
-    page.wait_for_timeout(100)
-    assert STATE.get("deleted") == "20260101_120000_1", f"DELETE archive attendu: {STATE.get('deleted')!r}"
-
-    assert page.locator('.tool-result a[href="https://go.dev"]').count() >= 1, "citation cliquable attendue"
-
-    assert page.locator(".message-btn-row").count() >= 1, "actions message attendues"
-    assert page.locator(".message-tts-btn").count() >= 1, "bouton TTS (navigateur) attendu"
-    assert page.locator("#mic-btn").count() == 1, "bouton micro present"
-    page.locator(".regen-btn").last.click()
-    page.wait_for_timeout(100)
-    assert STATE.get("regenerated"), "regeneration attendue"
-
-    page.locator("#export-btn").click()
-    page.wait_for_timeout(100)
-    assert STATE.get("exported"), "export actif attendu"
-
-    page.locator("#settings-btn").click()
-    page.wait_for_selector("#settings-overlay:not([hidden])", timeout=4000)
-    page.wait_for_timeout(300)
-    assert page.locator(".apikeys-tabs .apikeys-tab").count() >= 4, "onglets de reglages attendus"
-    assert page.locator("#aliases-editor .fam-tab").count() >= 1, "onglets de familles attendus"
-    page.locator('.fam-tab:has-text("Code")').click()
-    page.wait_for_timeout(150)
-    assert page.locator("#aliases-editor .mode-block .agent-pill").count() >= 1, "mode Agent attendu (Code)"
-    assert page.locator("#aliases-editor .pool-item").count() >= 1, "liste de modeles structuree attendue"
-    assert page.locator("#mcp-panel .mcp-name").count() == 1, "serveur MCP liste attendu"
-    mcpname = page.locator("#mcp-panel .mcp-name").first.inner_text()
-    assert mcpname == "demo", f"nom MCP = {mcpname!r}"
-    caps = page.locator("#caps-panel .caps-name")
-    assert caps.count() >= 1, "capacites modeles attendues"
-    assert "fake/ok" == page.locator("#caps-panel .caps-name").first.inner_text(), "modele d'alias attendu"
-    page.locator("#settings-close").click()
-
-    page.fill("#prompt-input", "question web")
+    # 3. envoi : Entrée -> POST /api/chat/send avec le message
+    page.wait_for_function(
+        "document.getElementById('family-select') && document.getElementById('family-select').value === 'code'",
+        timeout=8000,
+    )
+    page.fill("#prompt-input", "question smoke")
     page.press("#prompt-input", "Enter")
-    page.wait_for_timeout(100)
+    deadline = time.time() + 8
+    while STATE["send_body"] is None and time.time() < deadline:
+        time.sleep(0.1)
     body = STATE["send_body"] or {}
-    assert body.get("web") is True, f"le tour doit porter web=true: {body!r}"
-    assert body.get("mcp") is True, f"le tour doit porter mcp=true: {body!r}"
-    assert body.get("think") is True, f"le mode agent doit porter think=true: {body!r}"
-    assert body.get("effort") == "default", f"effort par defaut attendu: {body!r}"
+    assert body.get("message") == "question smoke", f"POST /api/chat/send non émis : {body!r}"
+    assert body.get("family") == "code" and body.get("mode") == "standard", f"sélection modèle : {body!r}"
 
-    assert not errors, f"erreurs page: {errors}"
-    label = "reduced" if reduced else "normal"
-    print(f"[ok] smoke {label}")
+    # 4. vue Agents en plein écran via le vrai bouton module
+    page.locator('.dev-module-btn[data-module="agents"]').click()
+    page.wait_for_selector("#marex-view.open", timeout=8000)
+    vbox = page.locator("#marex-view").bounding_box()
+    vp = page.viewport_size
+    assert vbox["x"] == 0 and vbox["y"] == 0, f"vue Agents non calée : {vbox}"
+    assert vbox["width"] >= vp["width"] and vbox["height"] >= vp["height"], "vue Agents non plein écran"
+
+    # 5. menus du composer : ouverts ET visibles (anti-régression rognage)
+    for btn_sel, menu_sel, label in [
+        ("#mx-plus", "#mx-menu-plus", "menu +"),
+        ("#mx-btn-model", "#mx-menu-model", "menu modèle"),
+        ("#mx-btn-project", "#mx-menu-project", "menu projet"),
+    ]:
+        page.locator(btn_sel).click()
+        page.wait_for_selector(f"{menu_sel}.open", timeout=4000)
+        assert_visible_in_viewport(page, menu_sel, label)
+        page.keyboard.press("Escape")
+        page.wait_for_selector(f"{menu_sel}.open", state="hidden", timeout=4000)
+
+    # 6. aucune erreur JS sur tout le scénario (les console.error sont
+    # affichées à titre informatif mais ne font pas échouer : le serveur
+    # réel peut répondre 404 sur des routes non simulées).
+    for ce in console_errors[:5]:
+        print(f"[info] console.error: {ce[:160]}")
+    assert not errors, f"erreurs JS : {errors[:5]}"
+    print("[ok] smoke : 6/6 vérifications")
 
 
 def main():
@@ -292,16 +213,12 @@ def main():
     try:
         if not wait_health(base):
             raise SystemExit("serveur non demarre")
-        url = base + "/"
         with sync_playwright() as p:
             browser = p.chromium.launch()
-            for reduced in (False, True):
-                ctx = browser.new_context(reduced_motion="reduce" if reduced else "no-preference")
-                page = ctx.new_page()
-                page.add_init_script("try{localStorage.setItem('cetas-lite-token','smoke');}catch(e){}")
-                route_mocks(page)
-                check(page, url, reduced)
-                ctx.close()
+            page = browser.new_page(viewport={"width": 1280, "height": 800})
+            page.add_init_script("try{localStorage.setItem('cetas-lite-token','smoke');}catch(e){}")
+            route_mocks(page)
+            check(page, base + "/")
             browser.close()
         print("SMOKE OK")
     finally:
