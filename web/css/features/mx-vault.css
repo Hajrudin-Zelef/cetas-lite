@@ -1,0 +1,107 @@
+/* Coffre — panneau Configuration. Ne touche pas au CSS généré. */
+#panel-vault .vault-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 560px;
+}
+#panel-vault .vault-input {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--border, #d7dce3);
+  border-radius: 8px;
+  background: var(--input-bg, #fff);
+  color: inherit;
+  font-size: 13px;
+}
+#panel-vault .vault-err {
+  color: #dc2626;
+  font-size: 12.5px;
+  min-height: 18px;
+}
+#panel-vault .vault-ok {
+  color: #16a34a;
+  font-size: 12.5px;
+}
+#panel-vault .vault-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+#panel-vault .vault-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--border, #d7dce3);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: var(--row-bg, rgba(0, 0, 0, 0.02));
+}
+#panel-vault .vault-key {
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#panel-vault .vault-val {
+  flex: 1;
+  font-family: ui-monospace, monospace;
+  font-size: 12.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted, #6b7280);
+}
+#panel-vault .vault-actions {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+#panel-vault .vault-mini-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  border: 1px solid var(--border, #d7dce3);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+#panel-vault .vault-mini-btn:hover {
+  background: var(--hover-bg, rgba(0, 0, 0, 0.05));
+}
+#panel-vault .vault-mini-btn.vault-danger {
+  color: #dc2626;
+  border-color: #f0b6b6;
+}
+#panel-vault .vault-empty {
+  color: var(--muted, #6b7280);
+  font-size: 13px;
+}
+#panel-vault .vault-add {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #d7dce3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#panel-vault .vault-change {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #d7dce3);
+}
+#panel-vault .vault-change summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+#panel-vault .vault-change .audio-setting-row {
+  margin-bottom: 10px;
+}

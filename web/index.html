@@ -36,6 +36,7 @@
 <link rel="stylesheet" href="/css/features/mx-docs.css">
 <link rel="stylesheet" href="/css/features/mx-apimodeles.css">
 <link rel="stylesheet" href="/css/features/mx-config.css">
+<link rel="stylesheet" href="/css/features/mx-vault.css">
 <link rel="stylesheet" href="/css/cetas-lite.css">
 <script src="/js/theme-init.js"></script>
 </head>
@@ -736,6 +737,7 @@
             <button class="apikeys-tab" data-tab="competences">Compétences</button>
             <button class="apikeys-tab" data-tab="search">Recherche Web</button>
             <button class="apikeys-tab" data-tab="appearance">Apparence</button>
+            <button class="apikeys-tab" data-tab="vault">Coffre</button>
             <div class="apikeys-tabs-spacer"></div>
             <button class="apikeys-tab" data-tab="faq">FAQ</button>
         </div>
@@ -881,6 +883,12 @@
                 <div class="config-panel-save">
                     <button type="button" class="config-save-btn config-panel-save-btn" data-tab="appearance">Enregistrer</button>
                 </div>
+            </div>
+            <!-- Panel Coffre -->
+            <div class="apikeys-panel" id="panel-vault">
+                <h3>Coffre</h3>
+                <p class="apikey-intro">Secrets chiffrés (AES-256-GCM, Scrypt) dans un fichier unique, protégés par un mot de passe maître. Verrouillage automatique après 15 minutes d'inactivité.</p>
+                <div class="apikeys-panel-body" id="vault-body"></div>
             </div>
             <!-- Panel FAQ -->
             <div class="apikeys-panel" id="panel-faq">

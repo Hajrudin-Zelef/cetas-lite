@@ -2,6 +2,7 @@ package web
 
 import (
 	"net/http"
+	"path/filepath"
 
 	"cetas-lite/internal/auth"
 	"cetas-lite/internal/chat"
@@ -28,6 +29,8 @@ type Server struct {
 	handler     http.Handler
 	// projects gère les projets de l'agent (upload local / dossier SFTP).
 	projects *workspace.Manager
+	// vault — coffre chiffré (clé dérivée en mémoire, verrouillage auto).
+	vault *vaultSession
 }
 
 // SetWorkspaceManager branche le gestionnaire de projets sur le serveur.
@@ -40,6 +43,7 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 		cfg: cfg, st: st, auth: authMgr, engine: engine, terminals: termMgr,
 		registry: registry, httpClient: httpClient, version: version,
 		authLimiter: newIPLimiter(rate.Every(authLimitEvery), authLimitBurst),
+		vault:       newVaultSession(filepath.Join(cfg.Home, "vault.enc")),
 	}
 
 	mux := http.NewServeMux()
@@ -114,6 +118,16 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("GET /api/conversations/{id}/export", s.requireAuth(s.handleArchiveExport))
 	mux.HandleFunc("GET /api/search/settings", s.requireAuth(s.handleSearchSettingsGet))
 	mux.HandleFunc("PUT /api/search/settings", s.requireAuth(s.handleSearchSettingsPut))
+	// Coffre chiffré (securevault, format V4 compatible CETAS).
+	mux.HandleFunc("GET /api/vault/status", s.requireAuth(s.handleVaultStatus))
+	mux.HandleFunc("POST /api/vault/init", s.requireAuth(s.handleVaultInit))
+	mux.HandleFunc("POST /api/vault/unlock", s.requireAuth(s.withAuthRateLimit(s.handleVaultUnlock)))
+	mux.HandleFunc("POST /api/vault/lock", s.requireAuth(s.handleVaultLock))
+	mux.HandleFunc("GET /api/vault/entries", s.requireAuth(s.handleVaultListKeys))
+	mux.HandleFunc("GET /api/vault/entries/{key}", s.requireAuth(s.handleVaultGetEntry))
+	mux.HandleFunc("PUT /api/vault/entries/{key}", s.requireAuth(s.handleVaultSetEntry))
+	mux.HandleFunc("DELETE /api/vault/entries/{key}", s.requireAuth(s.handleVaultDeleteEntry))
+	mux.HandleFunc("POST /api/vault/change-password", s.requireAuth(s.handleVaultChangePassword))
 	mux.Handle("GET /", http.FileServerFS(webassets.FS))
 
 	s.handler = withRecovery(withSecurityHeaders(mux))

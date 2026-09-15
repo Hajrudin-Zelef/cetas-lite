@@ -390,6 +390,15 @@ CETAS_DOCS.collections.push(
         ],
       },
       {
+        id: "coffre",
+        title: "Coffre",
+        sections: [
+          { h: "Principe", html: `<p>Le <strong>Coffre</strong> stocke vos secrets (clés API, tokens…) <strong>chiffrés</strong> dans un fichier unique (<em>vault.enc</em>), protégé par un <strong>mot de passe maître</strong> (12 caractères minimum).</p><p>Le chiffrement utilise des standards éprouvés (dérivation de clé à coût mémoire élevé, chiffrement authentifié) avec écriture atomique sur disque. Le mot de passe n'est conservé qu'en mémoire, jamais sur disque.</p>` },
+          { h: "Verrouillage", html: `<p>Le coffre se <strong>verrouille</strong> manuellement (bouton Verrouiller) ou <strong>automatiquement après 15 minutes d'inactivité</strong>. Un mot de passe incorrect ne déconnecte pas votre session : seul le coffre reste fermé.</p>` },
+          { h: "Mot de passe maître", html: `<p>Changez-le depuis le panneau dépliable <strong>« Changer le mot de passe maître »</strong> : le coffre est rechiffré avec un nouveau sel. En cas d'oubli, aucun mécanisme de récupération n'existe — conservez-le en lieu sûr.</p>` },
+        ],
+      },
+      {
         id: "apparence",
         title: "Apparence",
         sections: [

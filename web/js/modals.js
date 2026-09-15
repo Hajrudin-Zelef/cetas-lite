@@ -7,6 +7,7 @@ import { saveRoles } from "./right-panel.js";
 import { renderConnectorsInto, openNewProjectModal, ProjectsAPI } from "./projects.js";
 import { initApiModelesPanel } from "./apimodeles.js";
 import { loadFeaturesPanel, loadSearchPanel, loadAppearancePanel, registerPanelSaver, notifyConfigDirty, saveConfigPanel, saveAllConfigPanels } from "./config-panels.js";
+import { loadVaultPanel } from "./vault.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -65,6 +66,8 @@ function initConfigModal() {
       if (tab.dataset.tab === "search") loadSearchPanel();
       // Onglet Apparence : palettes.
       if (tab.dataset.tab === "appearance") loadAppearancePanel();
+      // Onglet Coffre : secrets chiffrés.
+      if (tab.dataset.tab === "vault") loadVaultPanel();
     });
   });
   document.getElementById("apikeys-close-btn")?.addEventListener("click", () => closeOverlay("apikeys-modal-overlay"));
