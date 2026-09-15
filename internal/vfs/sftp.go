@@ -281,6 +281,22 @@ func (s *SFTPFS) Remove(ctx context.Context, rel string) error {
 	return cl.Remove(rp)
 }
 
+func (s *SFTPFS) Rename(ctx context.Context, oldrel, newrel string) error {
+	cl, err := s.client(ctx)
+	if err != nil {
+		return err
+	}
+	oldp, err := s.rpath(oldrel)
+	if err != nil {
+		return err
+	}
+	newp, err := s.rpath(newrel)
+	if err != nil {
+		return err
+	}
+	return cl.Rename(oldp, newp)
+}
+
 func toEntrySFTP(rel string, fi os.FileInfo) Entry {
 	e := Entry{Path: rel, IsDir: fi.IsDir(), Size: fi.Size(), ModTime: fi.ModTime()}
 	if e.IsDir && !strings.HasSuffix(e.Path, "/") {

@@ -39,6 +39,8 @@ type FS interface {
 	WriteFile(ctx context.Context, rel string, data []byte, perm os.FileMode) error
 	MkdirAll(ctx context.Context, rel string) error
 	Remove(ctx context.Context, rel string) error
+	// Rename déplace/renomme un fichier ou dossier à l'intérieur de la racine.
+	Rename(ctx context.Context, oldrel, newrel string) error
 	Stat(ctx context.Context, rel string) (Entry, error)
 	ReadDir(ctx context.Context, rel string) ([]Entry, error)
 	// Walk parcourt récursivement en profondeur, en ignorant les entrées

@@ -166,6 +166,18 @@ func (l *LocalFS) Remove(ctx context.Context, rel string) error {
 	return nil
 }
 
+func (l *LocalFS) Rename(ctx context.Context, oldrel, newrel string) error {
+	oldp, err := l.abs(oldrel)
+	if err != nil {
+		return err
+	}
+	newp, err := l.abs(newrel)
+	if err != nil {
+		return err
+	}
+	return os.Rename(oldp, newp)
+}
+
 func toEntry(rel string, fi os.FileInfo) Entry {
 	rel = filepath.ToSlash(rel)
 	e := Entry{Path: rel, IsDir: fi.IsDir(), Size: fi.Size(), ModTime: fi.ModTime()}

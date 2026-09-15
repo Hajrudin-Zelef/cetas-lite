@@ -21,8 +21,10 @@ func newTestSandbox(t *testing.T) *Sandbox {
 }
 
 func TestToolSchemasCount(t *testing.T) {
-	if got := len(ToolSchemas()); got != 9 {
-		t.Fatalf("schemas = %d, want 9", got)
+	// 9 outils de base + 8 outils encadrés (Tree, Cat, Echo, Mkdir, Mv,
+	// Sed, Awk, Curl). Glob reste natif et n'est pas dupliqué.
+	if got := len(ToolSchemas()); got != 17 {
+		t.Fatalf("schemas = %d, want 17", got)
 	}
 }
 

@@ -65,7 +65,7 @@ func ToolSchemas() []provider.Tool {
 	str := func(props map[string]any, required ...string) map[string]any {
 		return map[string]any{"type": "object", "properties": props, "required": required}
 	}
-	return []provider.Tool{
+	out := []provider.Tool{
 		{Type: "function", Function: provider.ToolFunction{Name: "Ls", Description: "List the workspace file tree. Use this first.", Parameters: str(map[string]any{})}},
 		{Type: "function", Function: provider.ToolFunction{Name: "Read", Description: "Read a file, with offset/limit pagination.", Parameters: str(map[string]any{
 			"file_path": map[string]any{"type": "string", "description": "Chemin relatif"},
@@ -105,6 +105,7 @@ func ToolSchemas() []provider.Tool {
 			}}},
 		}, "todos")}},
 	}
+	return append(out, extraToolSchemas()...)
 }
 
 func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult {
@@ -152,6 +153,43 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 		return ToolResult{Text: s.toolRunScript(ctx, args)}
 	case "TodoWrite":
 		return ToolResult{Text: "[ok] liste mise a jour"}
+	case "Tree":
+		return s.toolTree(ctx, args)
+	case "Cat":
+		if f := missingArg(args, "file_path"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
+		return s.toolCat(ctx, args)
+	case "Echo":
+		if f := missingArg(args, "text"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
+		return s.toolEcho(ctx, args)
+	case "Mkdir":
+		if f := missingArg(args, "path"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
+		return s.toolMkdir(ctx, args)
+	case "Mv":
+		if f := missingArg(args, "src", "dst"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
+		return s.toolMv(ctx, args)
+	case "Sed":
+		if f := missingArg(args, "expression"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
+		return s.toolSed(ctx, args)
+	case "Awk":
+		if f := missingArg(args, "program"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
+		return s.toolAwk(ctx, args)
+	case "Curl":
+		if f := missingArg(args, "url"); f != "" {
+			return ToolResult{Text: missingArgErr(name, f)}
+		}
+		return s.toolCurl(ctx, args)
 	default:
 		return ToolResult{Text: "[erreur] outil inconnu: " + name}
 	}

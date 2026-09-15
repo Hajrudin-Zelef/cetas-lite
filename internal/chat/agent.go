@@ -249,13 +249,13 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				case tc.InvalidCall():
 					out = ToolResult{Text: "[erreur] appel d'outil irrecevable (nom vide ou arguments JSON incomplets). " +
 						"Renvoie exactement le meme appel avec un nom d'outil valide et des arguments JSON complets."}
-				case opts.plan && !planApproved && needsApproval(tc.Function.Name):
+				case opts.plan && !planApproved && needsApprovalFor(tc.Function.Name, args):
 					out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration. " +
 						"Les outils d'ecriture et d'execution sont interdits tant que le plan n'est pas valide. " +
 						"Construis ton plan avec TodoWrite puis presente-le."}
 				case denied[key]:
 					out = ToolResult{Text: "[refuse] l'utilisateur a deja refuse cet appel pendant ce tour."}
-				case opts.approve && !alwaysApproved && needsApproval(tc.Function.Name):
+				case opts.approve && !alwaysApproved && needsApprovalFor(tc.Function.Name, args):
 					d, aerr := c.RequestApproval(ctx, epoch, ApprovalRequest{
 						Kind: "tool", Tool: tc.Function.Name, Args: args,
 					})
@@ -396,12 +396,25 @@ func (e *Engine) streamWithRetry(ctx context.Context, p provider.Provider, req p
 	}
 }
 
-// trackModification enregistre les fichiers touches par Write/Edit reussis.
+// trackModification enregistre les fichiers/dossiers touches par les outils
+// d'ecriture reussis (revue de fin de tour).
 func trackModification(tool string, args map[string]any, modified map[string]bool) {
-	if tool != "Write" && tool != "Edit" {
+	var f string
+	switch tool {
+	case "Write", "Edit":
+		f, _ = args["file_path"].(string)
+	case "Mkdir":
+		f, _ = args["path"].(string)
+	case "Mv":
+		f, _ = args["dst"].(string)
+	case "Sed":
+		if b, ok := args["in_place"].(bool); ok && b {
+			f, _ = args["file"].(string)
+		}
+	default:
 		return
 	}
-	if f, ok := args["file_path"].(string); ok && strings.TrimSpace(f) != "" {
+	if strings.TrimSpace(f) != "" {
 		modified[f] = true
 	}
 }
@@ -445,15 +458,32 @@ type agentOpts struct {
 // execution (ecriture, execution, outils externes).
 func needsApproval(name string) bool {
 	switch name {
-	case "Write", "Edit", "Bash", "RunScript":
+	case "Write", "Edit", "Bash", "RunScript", "Mkdir", "Mv", "Curl":
 		return true
 	}
 	return strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || strings.HasPrefix(name, "plugin_")
 }
 
+// needsApprovalFor affine needsApproval en tenant compte des arguments :
+// Sed et Awk n'exigent une approbation que pour leurs usages a effets de
+// bord (sed -i, commandes d'execution/ecriture, system(), tubes shell...).
+// En mode flux pur (lecture seule), ils s'executent sans friction.
+func needsApprovalFor(name string, args map[string]any) bool {
+	if needsApproval(name) {
+		return true
+	}
+	switch name {
+	case "Sed":
+		return sedNeedsApproval(args)
+	case "Awk":
+		return awkNeedsApproval(args)
+	}
+	return false
+}
+
 // readOnlyTools ne garde que les outils de lecture et de planification.
 func readOnlyTools(tools []provider.Tool) []provider.Tool {
-	keep := map[string]bool{"Ls": true, "Read": true, "Grep": true, "Glob": true, "TodoWrite": true}
+	keep := map[string]bool{"Ls": true, "Read": true, "Grep": true, "Glob": true, "Tree": true, "Cat": true, "Echo": true, "TodoWrite": true}
 	out := make([]provider.Tool, 0, len(tools))
 	for _, t := range tools {
 		if keep[t.Function.Name] {
@@ -465,7 +495,7 @@ func readOnlyTools(tools []provider.Tool) []provider.Tool {
 
 func planModePrompt() string {
 	return "PLAN MODE: you are in the exploration phase. Use only read tools " +
-		"(Ls, Read, Grep, Glob) and TodoWrite to build an action plan. " +
+		"(Ls, Tree, Read, Cat, Grep, Glob) and TodoWrite to build an action plan. " +
 		"When exploration is done, present your plan clearly in your answer " +
 		"(numbered steps) and wait for validation: do NOT call any write " +
 		"or execution tool during this phase."

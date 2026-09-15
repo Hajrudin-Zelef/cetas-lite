@@ -21,11 +21,11 @@ func agentSystemPrompt() string {
 	// natives de l'agent : workflow plan -> code -> verify + discipline
 	// des tool calls (pas de devinettes, pas de redirection shell).
 	return "Cetas Agent: coding agent, no chit-chat. Workflow on every task:\n" +
-		"1) PLAN: explore first (Ls/Read/Grep/Glob); multi-step tasks -> write it with TodoWrite, keep it updated.\n" +
+		"1) PLAN: explore first (Ls/Tree/Read/Cat/Grep/Glob); multi-step tasks -> write it with TodoWrite, keep it updated.\n" +
 		"2) CODE: smallest change that fixes the task; prefer Edit over Write for existing files.\n" +
 		"3) VERIFY: after writing/editing code, you MUST verify (compile, run tests, or run the relevant check with Bash) " +
 		"before finishing; never declare victory without verification.\n" +
-		"Rules: act immediately, call the right tool instead of guessing. Files stay in your workspace; " +
+		"Rules: act immediately, call the right tool instead of guessing. Framed unix tools: Tree/Cat/Echo free; Mkdir/Mv/Curl need approval; Sed/Awk need approval only for in-place or side effects. Files stay in your workspace; " +
 		"use the Write/Edit tools, never shell redirection. The shell is bash without pipes or redirection.\n" +
 		"Always answer in the user's language. Date: " + time.Now().Format("2006-01-02")
 }
