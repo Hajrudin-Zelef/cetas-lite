@@ -1,73 +1,95 @@
 package chat
 
 import (
+	"context"
 	"errors"
-	"fmt"
-	"os"
-	"path/filepath"
 	"strings"
+
+	"cetas-lite/internal/vfs"
 )
 
+// Sandbox confine les outils fichiers de l'agent à un système de fichiers
+// (local ou distant via SFTP). Tous les chemins manipulés sont relatifs.
 type Sandbox struct {
-	root        string
+	fs vfs.FS
+	// GitHubToken, si non nil, fournit le token GitHub connecté pour
+	// authentifier les opérations git (commit/diff/push) sans toucher
+	// aux fichiers de configuration du dépôt.
+	GitHubToken func() string
+
 	AllowScript bool
 	Isolation   string
 }
 
-var errOutsideSandbox = errors.New("chemin hors sandbox")
+var errOutsideSandbox = vfs.ErrOutsideRoot
 
+// NewSandbox crée un sandbox local confiné à root (créé si absent).
 func NewSandbox(root string) (*Sandbox, error) {
-	root = strings.TrimSpace(root)
-	if root == "" {
-		return nil, errors.New("racine sandbox vide")
-	}
-	abs, err := filepath.Abs(root)
+	lfs, err := vfs.NewLocal(root, "")
 	if err != nil {
 		return nil, err
 	}
-	if err := os.MkdirAll(abs, 0o700); err != nil {
-		return nil, fmt.Errorf("creation sandbox: %w", err)
-	}
-	if real, err := filepath.EvalSymlinks(abs); err == nil {
-		abs = real
-	}
-	return &Sandbox{root: abs}, nil
+	return &Sandbox{fs: lfs}, nil
 }
 
-func (s *Sandbox) Root() string { return s.root }
+// NewSandboxFS crée un sandbox sur un FS déjà ouvert (local ou SFTP).
+func NewSandboxFS(fsys vfs.FS) *Sandbox {
+	return &Sandbox{fs: fsys}
+}
 
+// FS expose le système de fichiers sous-jacent.
+func (s *Sandbox) FS() vfs.FS { return s.fs }
+
+// Remote indique si le sandbox pointe vers un dossier distant.
+func (s *Sandbox) Remote() bool { return s.fs.Remote() }
+
+// Root retourne un libellé d'affichage de la racine.
+func (s *Sandbox) Root() string { return s.fs.Name() }
+
+// localRoot retourne le chemin local, ou "" si distant.
+func (s *Sandbox) localRoot() string {
+	if lfs, ok := s.fs.(*vfs.LocalFS); ok {
+		return lfs.RootPath()
+	}
+	return ""
+}
+
+// Resolve vérifie le confinement et retourne le chemin relatif canonique.
+// (Le chemin absolu n'est plus exposé car il n'a pas de sens en distant.)
 func (s *Sandbox) Resolve(rel string) (string, error) {
-	rel = strings.TrimSpace(strings.ReplaceAll(rel, "\\", "/"))
-	if rel == "" {
-		return "", errors.New("chemin vide")
-	}
-	if filepath.IsAbs(rel) || strings.HasPrefix(rel, "/") {
-		return "", errOutsideSandbox
-	}
-	cand := filepath.Join(s.root, filepath.FromSlash(rel))
+	return s.fs.Resolve(rel)
+}
 
-	dir := cand
-	for {
-		if _, err := os.Lstat(dir); err == nil {
-			break
-		}
-		parent := filepath.Dir(dir)
-		if parent == dir {
-			break
-		}
-		dir = parent
-	}
-	realDir, err := filepath.EvalSymlinks(dir)
+// ReadFile lit un fichier via le FS (local ou distant).
+func (s *Sandbox) ReadFile(ctx context.Context, rel string) ([]byte, error) {
+	clean, err := s.fs.Resolve(rel)
 	if err != nil {
-		return "", errOutsideSandbox
+		return nil, err
 	}
-	rest, err := filepath.Rel(dir, cand)
-	if err != nil {
-		return "", errOutsideSandbox
+	if clean == "" {
+		return nil, errors.New("chemin vide")
 	}
-	real := filepath.Join(realDir, rest)
-	if real != s.root && !strings.HasPrefix(real, s.root+string(os.PathSeparator)) {
-		return "", errOutsideSandbox
+	return s.fs.ReadFile(ctx, clean)
+}
+
+// githubToken retourne le token GitHub connecté, ou "".
+func (s *Sandbox) githubToken() string {
+	if s.GitHubToken == nil {
+		return ""
 	}
-	return real, nil
+	return strings.TrimSpace(s.GitHubToken())
+}
+
+// gitEnv construit l'environnement git pour authentifier les opérations
+// GitHub via le token, sans modifier aucun fichier du dépôt.
+func gitEnv(token string) map[string]string {
+	if token == "" {
+		return nil
+	}
+	return map[string]string{
+		"GIT_CONFIG_COUNT":    "1",
+		"GIT_CONFIG_KEY_0":    "url.https://oauth2:" + token + "@github.com/.insteadOf",
+		"GIT_CONFIG_VALUE_0":  "https://github.com/",
+		"GIT_TERMINAL_PROMPT": "0",
+	}
 }

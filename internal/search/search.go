@@ -112,6 +112,13 @@ func (s *Searcher) Search(ctx context.Context, query string, maxResults int) Res
 		return r
 	}
 
+	// Fan-out parallele a premier-gagnant par priorite : tous les providers
+	// configurés sont interrogés en meme temps, mais on retourne des que le
+	// provider le plus prioritaire avec des resultats a repondu (les autres
+	// sont annulés). La latence devient celle du meilleur provider, pas celle
+	// du plus lent — contrairement a une attente de tous les resultats.
+	cctx, cancel := context.WithCancel(ctx)
+	defer cancel()
 	type outcome struct {
 		idx  int
 		hits []Hit
@@ -119,39 +126,63 @@ func (s *Searcher) Search(ctx context.Context, query string, maxResults int) Res
 	}
 	ch := make(chan outcome, len(active))
 	var wg sync.WaitGroup
+	var launched []int
 	for i, id := range active {
 		fn := s.provider(id)
 		if fn == nil {
 			continue
 		}
+		launched = append(launched, i)
 		wg.Add(1)
 		go func(i int, fn providerFn) {
 			defer wg.Done()
-			cctx, cancel := context.WithTimeout(ctx, searchTimeout)
-			defer cancel()
-			hits, err := fn(cctx, query, maxResults)
-			ch <- outcome{idx: i, hits: hits, err: err}
+			pctx, pcancel := context.WithTimeout(cctx, searchTimeout)
+			defer pcancel()
+			hits, err := fn(pctx, query, maxResults)
+			select {
+			case ch <- outcome{idx: i, hits: hits, err: err}:
+			case <-cctx.Done():
+			}
 		}(i, fn)
 	}
-	wg.Wait()
-	close(ch)
+	go func() {
+		wg.Wait()
+		close(ch)
+	}()
 
-	var best *outcome
+	pending := make(map[int]bool, len(launched))
+	for _, i := range launched {
+		pending[i] = true
+	}
 	var errs []string
+	best := -1
+	var bestHits []Hit
 	for o := range ch {
+		delete(pending, o.idx)
 		if len(o.hits) > 0 {
-			if best == nil || o.idx < best.idx {
-				cp := o
-				best = &cp
+			if best == -1 || o.idx < best {
+				best = o.idx
+				bestHits = o.hits
 			}
-			continue
-		}
-		if o.err != nil {
+		} else if o.err != nil {
 			errs = append(errs, active[o.idx]+": "+o.err.Error())
 		}
+		// Inutile d'attendre les providers moins prioritaires que le
+		// meilleur resultat deja obtenu.
+		minPending := -1
+		for idx := range pending {
+			if minPending == -1 || idx < minPending {
+				minPending = idx
+			}
+		}
+		if best != -1 && (minPending == -1 || minPending > best) {
+			break
+		}
 	}
-	if best != nil {
-		res := Result{Hits: best.hits, Provider: active[best.idx]}
+	cancel() // libere les providers encore en vol
+
+	if best != -1 {
+		res := Result{Hits: bestHits, Provider: active[best]}
 		s.store(key, res)
 		return res
 	}

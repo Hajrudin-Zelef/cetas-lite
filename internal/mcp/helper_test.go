@@ -16,11 +16,17 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
+// CETAS_MCP_HANG=1 : le serveur lit mais ne repond jamais (simule un serveur
+// bloque — pour tester timeouts et nettoyages).
 func runFakeServer() {
+	hang := os.Getenv("CETAS_MCP_HANG") == "1"
 	sc := bufio.NewScanner(os.Stdin)
 	sc.Buffer(make([]byte, 0, 64*1024), 1<<20)
 	w := bufio.NewWriter(os.Stdout)
 	for sc.Scan() {
+		if hang {
+			continue // lit, ne repond jamais
+		}
 		line := sc.Bytes()
 		if len(line) == 0 {
 			continue

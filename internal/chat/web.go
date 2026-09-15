@@ -23,7 +23,7 @@ func WebToolSchemas() []provider.Tool {
 				"type": "object",
 				"properties": map[string]any{
 					"query":       map[string]any{"type": "string"},
-					"max_results": map[string]any{"type": "integer", "description": "Defaut 5, max 10"},
+					"max_results": map[string]any{"type": "integer", "description": "Default 5, max 10"},
 				},
 				"required": []string{"query"},
 			},
@@ -65,7 +65,7 @@ func (e *Engine) webExecute(ctx context.Context, user, name, argsJSON string) To
 			}
 			return ToolResult{Text: "[info] recherche web: " + msg}
 		}
-		return ToolResult{Text: formatHits(res)}
+		return ToolResult{Text: formatHits(res), Meta: searchResultMeta(res)}
 	case "web_fetch":
 		raw := strings.TrimSpace(strArg(args, "url"))
 		if raw == "" {
@@ -89,6 +89,16 @@ func formatHits(res search.Result) string {
 	return truncate(b.String(), toolMaxOutput)
 }
 
+// searchResultMeta expose les sources d'une recherche au frontend (panneau
+// "Sources" + indicateur visuel), en plus du texte pour le modele.
+func searchResultMeta(res search.Result) map[string]any {
+	srcs := make([]map[string]any, 0, len(res.Hits))
+	for _, h := range res.Hits {
+		srcs = append(srcs, map[string]any{"title": h.Title, "url": h.URL})
+	}
+	return map[string]any{"sources": srcs, "search_provider": res.Provider}
+}
+
 func formatFetch(title, md string) string {
 	if title != "" {
 		return truncate(title+"\n\n"+md, toolMaxOutput)
@@ -109,7 +119,7 @@ func (e *Engine) webContext(ctx context.Context, user, query string) string {
 	for i, h := range res.Hits {
 		lines = append(lines, fmt.Sprintf("[%d] %s\n%s\n%s", i+1, h.Title, h.URL, h.Description))
 	}
-	return "Resultats de recherche web pour la requete : \"" + query + "\"\n\n" +
+	return "Web search results for the query: \"" + query + "\"\n\n" +
 		strings.Join(lines, "\n\n") +
-		"\n\nUtilise ces informations pour repondre et cite tes sources par leur numero [1], [2], etc."
+		"\n\nUse this information to answer and cite your sources by their number [1], [2], etc."
 }

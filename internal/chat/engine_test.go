@@ -88,7 +88,7 @@ func lastError(c *Conversation) string {
 func TestEngineStreamsContent(t *testing.T) {
 	fp := &fakeProvider{id: "fake", content: map[string]string{"ok": "Bonjour le monde"}}
 	e := newEngine(t, fp, codeFamily(alias.Member{Provider: "fake", Model: "ok"}))
-	c := runTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut"})
+	c := runTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut", AgentMode: true})
 	if got := logText(c); got != "Bonjour le monde" {
 		t.Fatalf("contenu = %q", got)
 	}
@@ -107,7 +107,7 @@ func TestEngineFailover(t *testing.T) {
 		alias.Member{Provider: "fake", Model: "bad"},
 		alias.Member{Provider: "fake", Model: "ok"},
 	))
-	c := runTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut"})
+	c := runTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut", AgentMode: true})
 	if got := logText(c); got != "secours" {
 		t.Fatalf("failover contenu = %q", got)
 	}
@@ -122,7 +122,7 @@ func TestEngineAllFail(t *testing.T) {
 		alias.Member{Provider: "fake", Model: "bad"},
 		alias.Member{Provider: "fake", Model: "worse"},
 	))
-	c := runTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut"})
+	c := runTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut", AgentMode: true})
 	if err := lastError(c); err == "" {
 		t.Fatal("une erreur doit etre remontee")
 	}
@@ -155,7 +155,7 @@ func TestConversationPersistence(t *testing.T) {
 	fams := codeFamily(alias.Member{Provider: "fake", Model: "ok"})
 
 	e1 := NewEngine(reg, fams, st, nil, t.TempDir())
-	c1 := runTurn(t, e1, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut"})
+	c1 := runTurn(t, e1, "sam", TurnInput{Family: "code", Mode: "standard", Text: "salut", AgentMode: true})
 	if got := logText(c1); got != "memoire" {
 		t.Fatalf("contenu = %q", got)
 	}

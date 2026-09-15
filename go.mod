@@ -9,6 +9,7 @@ require (
 	github.com/dslipak/pdf v0.0.2
 	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/jchv/go-webview2 v0.0.0-20260205173254-56598839c808
+	github.com/pkg/sftp v1.13.9
 	go.etcd.io/bbolt v1.5.0
 	golang.org/x/crypto v0.57.0
 	golang.org/x/sys v0.48.0
@@ -22,6 +23,7 @@ require (
 	github.com/gogs/chardet v0.0.0-20211120154057-b7413eaefb8f // indirect
 	github.com/itlightning/dateparse v0.2.1 // indirect
 	github.com/jchv/go-winloader v0.0.0-20250406163304-c1995be93bd1 // indirect
+	github.com/kr/fs v0.1.0 // indirect
 	golang.org/x/net v0.58.0 // indirect
 	golang.org/x/text v0.42.0 // indirect
 )

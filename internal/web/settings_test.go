@@ -181,3 +181,65 @@ func TestSettingsThinking(t *testing.T) {
 		t.Fatalf("effort invalide status = %d", rec.Code)
 	}
 }
+
+func TestSettingsMaxTokensRoundTrip(t *testing.T) {
+	s := newTestServer(t, true)
+	h := s.Handler()
+	token := registerAndLogin(t, h, "mtuser")
+
+	rec := doJSON(t, h, http.MethodGet, "/api/settings", token, nil)
+	if decode(t, rec)["max_tokens"].(float64) != 4096 {
+		t.Fatalf("defaut max_tokens = %v", decode(t, rec)["max_tokens"])
+	}
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{"max_tokens": 8000})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("put status = %d (%s)", rec.Code, rec.Body.String())
+	}
+	rec = doJSON(t, h, http.MethodGet, "/api/settings", token, nil)
+	if decode(t, rec)["max_tokens"].(float64) != 8000 {
+		t.Fatalf("round-trip = %v", decode(t, rec)["max_tokens"])
+	}
+}
+
+func TestSettingsMaxTokensValidation(t *testing.T) {
+	s := newTestServer(t, true)
+	h := s.Handler()
+	token := registerAndLogin(t, h, "mtuser2")
+
+	for _, v := range []int{299, 32769, -5} {
+		rec := doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{"max_tokens": v})
+		if rec.Code != http.StatusBadRequest {
+			t.Fatalf("max_tokens=%d : status = %d, attendu 400", v, rec.Code)
+		}
+	}
+	// borne haute exacte acceptée
+	rec := doJSON(t, h, http.MethodPut, "/api/settings", token, map[string]any{"max_tokens": 32768})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("max_tokens=32768 : status = %d (%s)", rec.Code, rec.Body.String())
+	}
+}
+
+func TestSettingsWebSearchMode(t *testing.T) {
+	s := newTestServer(t, true)
+	h := s.Handler()
+	tok := registerAndLogin(t, h, "sam")
+
+	rec := doJSON(t, h, http.MethodGet, "/api/settings", tok, nil)
+	if body := decode(t, rec); body["websearch_mode"] != "auto" {
+		t.Fatalf("defaut websearch_mode = %v", body["websearch_mode"])
+	}
+
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", tok, map[string]any{"websearch_mode": "natif"})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("put natif status = %d (%s)", rec.Code, rec.Body.String())
+	}
+	rec = doJSON(t, h, http.MethodGet, "/api/settings", tok, nil)
+	if body := decode(t, rec); body["websearch_mode"] != "natif" {
+		t.Fatalf("round-trip websearch_mode = %v", body["websearch_mode"])
+	}
+
+	rec = doJSON(t, h, http.MethodPut, "/api/settings", tok, map[string]any{"websearch_mode": "partout"})
+	if rec.Code != http.StatusBadRequest {
+		t.Fatalf("mode invalide status = %d", rec.Code)
+	}
+}

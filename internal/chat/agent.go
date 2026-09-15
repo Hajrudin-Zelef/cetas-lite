@@ -15,18 +15,11 @@ import (
 )
 
 func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res resolution, base []provider.Message, in TurnInput) {
-	root, err := userWorkspacePath(e.workspace, in.User)
+	sb, err := e.agentSandbox(in)
 	if err != nil {
 		c.appendDelta(epoch, map[string]any{"error": err.Error()})
 		return
 	}
-	sb, err := NewSandbox(root)
-	if err != nil {
-		c.appendDelta(epoch, map[string]any{"error": err.Error()})
-		return
-	}
-	sb.AllowScript = e.scriptAllowed()
-	sb.Isolation = e.isolation()
 	// Worktree d'isolation : l'agent travaille dans un checkout dedie du
 	// depot au lieu du workspace partage. En cas d'echec, on continue sur
 	// le workspace normal (erreur explicite, pas de silence).
@@ -37,6 +30,7 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 					if wsb, serr := NewSandbox(wtPath); serr == nil {
 						wsb.AllowScript = sb.AllowScript
 						wsb.Isolation = sb.Isolation
+						wsb.GitHubToken = sb.GitHubToken
 						sb = wsb
 						e.noteWorktreeRepo(c.ID, repo)
 						if run := e.agentForConv(c.ID); run != nil {
@@ -57,13 +51,43 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	reg := e.toolRegistry(in, sb)
 	tools := reg.schemas(ctx)
 	sys := []provider.Message{{Role: "system", Content: agentSystemPrompt()}}
-	if mm, ok := e.marexMessage(in.User); ok {
+	// Snapshot du workspace : le modèle voit la structure réelle et ne
+	// devine jamais les chemins. Nom du projet si renseigné.
+	projectName := ""
+	if pid := strings.TrimSpace(in.ProjectID); pid != "" {
+		if wm := e.workspaceManager(); wm != nil {
+			if p, perr := wm.Get(pid); perr == nil {
+				projectName = p.Name
+			}
+		}
+	}
+	sys = append(sys, workspaceSnapshotMessage(ctx, sb, projectName))
+	// GitHub connecté : l'agent sait qu'il peut commit/diff/push.
+	if login := githubLogin(e.st); login != "" {
+		sys = append(sys, githubPromptMessage(login))
+	}
+	// Directive de raisonnement (imperative, en anglais) : le thinking est
+	// obligatoire pour l'agent, avec le niveau d'effort demande.
+	sys = append(sys, provider.Message{Role: "system", Content: thinkDirective(true, false, in.Effort)})
+	// Recherche native du membre principal, calculee une seule fois (limiteur).
+	nativePrimary := len(res.members) > 0 && e.useNativeWebSearch(in, res.members[0].Provider, res.members[0].Model)
+	// Directive de recherche web (imperative, en anglais) : le globe est
+	// l'interrupteur principal. Le thinking est obligatoire pour l'agent
+	// (payload), avec effort selectionnable via in.Effort.
+	sys = append(sys, provider.Message{Role: "system", Content: searchDirective(e.webEnabled(in), nativePrimary)})
+	if mm, ok, notice := e.marexForSession(c.ID); ok {
 		sys = append(sys, mm)
+		if notice {
+			c.appendDelta(epoch, map[string]any{"system": "MAREX.md chargé"})
+		}
 	}
 	msgs := normalizeSystemMessages(append(sys, base...))
+	// Directive web courante : recalculee par membre, car un membre non natif
+	// ne doit pas recevoir la directive "provider-native" du membre principal.
+	webDir := searchDirective(e.webEnabled(in), nativePrimary)
 
 	var lastErr error
-	for _, m := range res.members {
+	for i, m := range res.members {
 		if ctx.Err() != nil {
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Génération interrompue._"})
 			return
@@ -76,7 +100,15 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		c.appendDelta(epoch, routeDelta(m, in.Family, in.Mode, false, res.fallback))
 
 		emitted := false
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan})
+		native := nativePrimary
+		if i > 0 {
+			native = e.useNativeWebSearch(in, m.Provider, m.Model)
+		}
+		if dir := searchDirective(e.webEnabled(in), native); dir != webDir {
+			msgs = replaceWebDirective(msgs, webDir, dir)
+			webDir = dir
+		}
+		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(true, true, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: native, webFallback: e.webToolsFor(in)})
 		if err == nil {
 			c.appendAssistant(epoch, content)
 			return
@@ -111,6 +143,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	// seulement apres validation du plan par l'utilisateur.
 	fullTools := tools
 	planApproved := false
+	nativeFallbackDone := false
 	if opts.plan {
 		tools = readOnlyTools(tools)
 		msgs = append(msgs, provider.Message{Role: "system", Content: planModePrompt()})
@@ -147,22 +180,48 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		if !disableTools {
 			toolSet = tools
 		}
-		resp, err := e.streamWithRetry(ctx, p, provider.Request{
+		// Recherche native : les outils web deviennent redondants, on les
+		// retire pour eviter une double recherche (natif + outils).
+		if opts.nativeWeb {
+			toolSet = dropWebTools(toolSet)
+		}
+		req := provider.Request{
 			Model:           m.Model,
 			Messages:        normalizeSystemMessages(msgs),
 			Tools:           toolSet,
 			Temperature:     0.7,
+			MaxTokens:       opts.maxTokens,
 			EnableReasoning: true,
 			ReasoningEffort: effort,
-		}, emit, emitted)
+		}
+		if opts.nativeWeb {
+			req.Extra = nativeWebExtraFor(m.Provider)
+			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
+		}
+		resp, err := e.streamWithRetry(ctx, p, req, emit, emitted)
+		if err == nil && opts.nativeWeb {
+			c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
+		}
 		if err != nil {
 			if ctx.Err() != nil {
 				return last, nil
 			}
+			// Repli natif -> outils : la recherche native a echoue avant
+			// toute emission. On retente une seule fois sans le plugin natif :
+			// les outils web (retires pour le natif) sont reinjectes.
+			if opts.nativeWeb && !*emitted && !nativeFallbackDone && opts.webFallback {
+				nativeFallbackDone = true
+				opts.nativeWeb = false
+				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(nil, true)})
+				// Le natif est desactive pour la 2e tentative : la directive
+				// ne doit plus parler de recherche native.
+				msgs = replaceWebDirective(msgs, searchDirective(true, true), searchDirective(true, false))
+				continue
+			}
 			var he *provider.HTTPError
 			if errors.As(err, &he) && !disableTools && len(tools) > 0 {
 				disableTools = true
-				msgs = append(msgs, provider.Message{Role: "system", Content: "N'appelle plus d'outil. Reponds maintenant directement a partir des informations deja obtenues."})
+				msgs = append(msgs, provider.Message{Role: "system", Content: "Stop calling tools. Answer directly now using only the information already gathered."})
 				continue
 			}
 			return last, err
@@ -190,13 +249,13 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				case tc.InvalidCall():
 					out = ToolResult{Text: "[erreur] appel d'outil irrecevable (nom vide ou arguments JSON incomplets). " +
 						"Renvoie exactement le meme appel avec un nom d'outil valide et des arguments JSON complets."}
-				case opts.plan && !planApproved && needsApproval(tc.Function.Name):
-					out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration. " +
-						"Les outils d'ecriture et d'execution sont interdits tant que le plan n'est pas valide. " +
+				case opts.plan && !planApproved && !planToolAllowed(tc.Function.Name):
+					out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration LECTURE SEULE. " +
+						"Seuls Ls, Tree, Read, Cat, Grep, Glob et TodoWrite sont autorises tant que le plan n'est pas valide. " +
 						"Construis ton plan avec TodoWrite puis presente-le."}
 				case denied[key]:
 					out = ToolResult{Text: "[refuse] l'utilisateur a deja refuse cet appel pendant ce tour."}
-				case opts.approve && !alwaysApproved && needsApproval(tc.Function.Name):
+				case opts.approve && !alwaysApproved && needsApprovalFor(tc.Function.Name, args):
 					d, aerr := c.RequestApproval(ctx, epoch, ApprovalRequest{
 						Kind: "tool", Tool: tc.Function.Name, Args: args,
 					})
@@ -241,10 +300,20 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 						}
 					}
 				}
-				c.appendDelta(epoch, map[string]any{"tool": map[string]any{
+				toolDelta := map[string]any{
 					"name": tc.Function.Name, "args": args, "phase": "end",
 					"result": truncate(out.Text, toolMaxOutput), "diff": truncateDiff(out.Diff, 300),
-				}})
+				}
+				// Sources structurees (recherche web) pour le panneau "Sources".
+				if out.Meta != nil {
+					if srcs, ok := out.Meta["sources"]; ok {
+						toolDelta["sources"] = srcs
+					}
+					if sp, ok := out.Meta["search_provider"]; ok {
+						toolDelta["search_provider"] = sp
+					}
+				}
+				c.appendDelta(epoch, map[string]any{"tool": toolDelta})
 				msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: tc.ID, Content: out.Text})
 				if followup != nil {
 					msgs = append(msgs, *followup)
@@ -292,8 +361,8 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			}
 			planApproved = true
 			tools = fullTools
-			msgs = append(msgs, provider.Message{Role: "system", Content: "Plan valide par l'utilisateur. Execute-le maintenant avec tous les outils, " +
-				"puis VERIFIE ton travail (compile/teste) avant de conclure."})
+			msgs = append(msgs, provider.Message{Role: "system", Content: "Plan approved by the user. Execute it now with all tools, " +
+				"then VERIFY your work (compile/test) before concluding."})
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Plan valide, execution en cours..._\n\n"})
 			continue
 		}
@@ -327,12 +396,25 @@ func (e *Engine) streamWithRetry(ctx context.Context, p provider.Provider, req p
 	}
 }
 
-// trackModification enregistre les fichiers touches par Write/Edit reussis.
+// trackModification enregistre les fichiers/dossiers touches par les outils
+// d'ecriture reussis (revue de fin de tour).
 func trackModification(tool string, args map[string]any, modified map[string]bool) {
-	if tool != "Write" && tool != "Edit" {
+	var f string
+	switch tool {
+	case "Write", "Edit":
+		f, _ = args["file_path"].(string)
+	case "Mkdir":
+		f, _ = args["path"].(string)
+	case "Mv":
+		f, _ = args["dst"].(string)
+	case "Sed":
+		if b, ok := args["in_place"].(bool); ok && b {
+			f, _ = args["file"].(string)
+		}
+	default:
 		return
 	}
-	if f, ok := args["file_path"].(string); ok && strings.TrimSpace(f) != "" {
+	if strings.TrimSpace(f) != "" {
 		modified[f] = true
 	}
 }
@@ -362,24 +444,61 @@ type agentOpts struct {
 	// plan active le mode plan : exploration en lecture seule, puis
 	// validation du plan avant execution.
 	plan bool
+	// maxTokens limite les tokens generes par reponse (0 = defaut).
+	maxTokens int
+	// nativeWeb : la recherche web passe par le plugin natif du provider
+	// (OpenRouter / DeepSeek) au lieu des outils web_search/web_fetch.
+	nativeWeb bool
+	// webFallback : si la recherche native echoue avant toute emission,
+	// retenter une fois avec les outils web_search/web_fetch (mode auto).
+	webFallback bool
 }
 
 // needsApproval indique si un outil exige une validation utilisateur avant
 // execution (ecriture, execution, outils externes).
 func needsApproval(name string) bool {
 	switch name {
-	case "Write", "Edit", "Bash", "RunScript":
+	case "Write", "Edit", "Bash", "RunScript", "Mkdir", "Mv", "Curl":
 		return true
 	}
-	return strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_")
+	return strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || strings.HasPrefix(name, "plugin_")
 }
 
-// readOnlyTools ne garde que les outils de lecture et de planification.
+// needsApprovalFor affine needsApproval en tenant compte des arguments :
+// Sed et Awk n'exigent une approbation que pour leurs usages a effets de
+// bord (sed -i, commandes d'execution/ecriture, system(), tubes shell...).
+// En mode flux pur (lecture seule), ils s'executent sans friction.
+func needsApprovalFor(name string, args map[string]any) bool {
+	if needsApproval(name) {
+		return true
+	}
+	switch name {
+	case "Sed":
+		return sedNeedsApproval(args)
+	case "Awk":
+		return awkNeedsApproval(args)
+	}
+	return false
+}
+
+// planAllowedTools est l'allowlist stricte du mode plan : lecture seule
+// (exploration du workspace) + TodoWrite pour construire le plan.
+// Tout autre outil est refuse a l'execution tant que le plan n'est pas
+// valide, meme s'il n'exigerait pas d'approbation hors mode plan.
+var planAllowedTools = map[string]bool{
+	"Ls": true, "Tree": true, "Read": true, "Cat": true,
+	"Grep": true, "Glob": true, "Echo": true, "TodoWrite": true,
+}
+
+// planToolAllowed indique si un outil peut s'executer en mode plan
+// avant validation du plan.
+func planToolAllowed(name string) bool { return planAllowedTools[name] }
+
+// readOnlyTools ne garde que les outils autorises en mode plan.
 func readOnlyTools(tools []provider.Tool) []provider.Tool {
-	keep := map[string]bool{"Ls": true, "Read": true, "Grep": true, "Glob": true, "TodoWrite": true}
 	out := make([]provider.Tool, 0, len(tools))
 	for _, t := range tools {
-		if keep[t.Function.Name] {
+		if planAllowedTools[t.Function.Name] {
 			out = append(out, t)
 		}
 	}
@@ -387,11 +506,11 @@ func readOnlyTools(tools []provider.Tool) []provider.Tool {
 }
 
 func planModePrompt() string {
-	return "MODE PLAN : tu es en phase d'exploration. Utilise uniquement les outils " +
-		"de lecture (Ls, Read, Grep, Glob) et TodoWrite pour construire un plan d'action. " +
-		"Quand ton exploration est terminee, presente ton plan clairement dans ta reponse " +
-		"(etapes numerotees) et attends la validation : n'appelle AUCUN outil d'ecriture " +
-		"ou d'execution pendant cette phase."
+	return "PLAN MODE: you are in the exploration phase. Use only read tools " +
+		"(Ls, Tree, Read, Cat, Grep, Glob) and TodoWrite to build an action plan. " +
+		"When exploration is done, present your plan clearly in your answer " +
+		"(numbered steps) and wait for validation: do NOT call any write " +
+		"or execution tool during this phase."
 }
 
 // buildPlanText reconstitue le plan a soumettre : derniers todos + conclusion.
@@ -465,7 +584,7 @@ func routeDelta(m alias.ResolvedMember, family, mode string, local, fallback boo
 }
 
 func dedupableTool(name string) bool {
-	if strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || name == "ViewImage" {
+	if strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || strings.HasPrefix(name, "plugin_") || name == "ViewImage" {
 		return false
 	}
 	return name != "Bash" && name != "RunScript"

@@ -36,6 +36,10 @@ type TurnInput struct {
 	// Approve demande une validation utilisateur avant chaque outil
 	// d'ecriture/execution (agent uniquement).
 	Approve bool
+	// AgentMode est le mode top-level choisi dans l'UI ("Chat" ou "Agent").
+	// Les outils ne sont actifs que si AgentMode est vrai ET que la
+	// famille/mode resolue supporte l'agent.
+	AgentMode bool
 	// Plan active le mode plan : l'agent explore puis propose un plan
 	// a valider avant d'executer (agent uniquement).
 	Plan bool
@@ -43,6 +47,32 @@ type TurnInput struct {
 	// Repo est le chemin du depot a cloner en worktree.
 	Worktree bool
 	Repo     string
+	// ProjectID est le projet (upload local ou dossier SFTP) sur lequel
+	// l'agent travaille. Vide = espace partagé historique.
+	ProjectID string
+	// MaxTokens limite les tokens generes par reponse (0 = defaut).
+	MaxTokens int
+}
+
+// Bornes du reglage "tokens max par reponse".
+const (
+	MinMaxTokens = 300
+	MaxMaxTokens = 32768
+)
+
+// ClampMaxTokens ramene n dans [MinMaxTokens, MaxMaxTokens].
+// Une valeur <= 0 retourne 0 (defaut du provider).
+func ClampMaxTokens(n int) int {
+	if n <= 0 {
+		return 0
+	}
+	if n < MinMaxTokens {
+		return MinMaxTokens
+	}
+	if n > MaxMaxTokens {
+		return MaxMaxTokens
+	}
+	return n
 }
 
 type Runner interface {
@@ -97,7 +127,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, Attachments: in.Attachments}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()

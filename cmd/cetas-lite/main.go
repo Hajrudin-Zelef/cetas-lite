@@ -22,18 +22,20 @@ import (
 	"cetas-lite/internal/backup"
 	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
-	"cetas-lite/internal/cryptovault"
 	"cetas-lite/internal/customtools"
 	"cetas-lite/internal/desktop"
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/memory"
 	"cetas-lite/internal/modelcaps"
+	"cetas-lite/internal/plugins"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/terminal"
+	"cetas-lite/internal/vault"
 	"cetas-lite/internal/web"
+	"cetas-lite/internal/workspace"
 	"cetas-lite/internal/worktree"
 )
 
@@ -151,12 +153,25 @@ func buildApp() (*app, error) {
 	engine.SetMemory(memory.New(cfg.MemoryDir))
 	engine.SetAttachments(attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20))
 	engine.SetCapabilities(modelcaps.Load(st))
+	engine.SetMarexPath(filepath.Join(cfg.Home, "MAREX.md"))
 	customManager, err := customtools.NewManager(cfg.ToolsPath, client)
 	if err != nil {
 		_ = st.Close()
 		return nil, err
 	}
 	engine.SetCustom(customManager)
+	pluginManager := plugins.NewManager(cfg.PluginsDir, client)
+	if err := pluginManager.Load(); err != nil {
+		_ = st.Close()
+		return nil, err
+	}
+	engine.SetPlugins(pluginManager)
+	if infos := pluginManager.Plugins(); len(infos) > 0 {
+		slog.Info("plugins charges", "count", len(infos), "dir", cfg.PluginsDir)
+	}
+	for _, perr := range pluginManager.Errors() {
+		slog.Warn("plugin ignore", "erreur", perr)
+	}
 	mcpManager, err := mcp.NewManager(cfg.MCPPath, version)
 	if err != nil {
 		_ = st.Close()
@@ -172,18 +187,43 @@ func buildApp() (*app, error) {
 		return nil, err
 	}
 	engine.SetWorktreeManager(wtMgr)
+	// Projets de l'agent : upload local ou dossier distant SFTP.
+	wsMgr := workspace.New(cfg.Home, st, vaultLazy{st: st})
+	engine.SetWorkspaceManager(wsMgr)
 	termMgr := terminal.NewManager(cfg.WorkspaceDir, wtMgr.Root())
 
-	srv := web.New(cfg, st, authMgr, engine, termMgr, version)
+	srv := web.New(cfg, st, authMgr, engine, termMgr, registry, client, version)
+	srv.SetWorkspaceManager(wsMgr)
 	return &app{
 		cfg:     cfg,
 		handler: srv.Handler(),
 		cleanup: func() {
+			wsMgr.CloseAll()
 			termMgr.Close()
 			mcpManager.Close()
 			_ = st.Close()
 		},
 	}, nil
+}
+
+// vaultLazy ouvre le coffre chiffré à la demande pour le gestionnaire de
+// projets (les secrets SFTP sont chiffrés avant stockage).
+type vaultLazy struct{ st *store.Store }
+
+func (v vaultLazy) Encrypt(plain, aad []byte) ([]byte, error) {
+	vv, err := vault.Open(v.st)
+	if err != nil {
+		return nil, err
+	}
+	return vv.Encrypt(plain, aad)
+}
+
+func (v vaultLazy) Decrypt(data, aad []byte) ([]byte, error) {
+	vv, err := vault.Open(v.st)
+	if err != nil {
+		return nil, err
+	}
+	return vv.Decrypt(data, aad)
 }
 
 func runServe() error {
@@ -317,7 +357,7 @@ func runKeys(args []string) error {
 		if value == "" {
 			return errors.New("valeur vide")
 		}
-		vault, err := openVault(st)
+		vault, err := vault.Open(st)
 		if err != nil {
 			return err
 		}
@@ -446,7 +486,7 @@ func loadProviderKeys(st *store.Store) map[string]string {
 	if err != nil || len(names) == 0 {
 		return keys
 	}
-	vault, err := openVault(st)
+	vault, err := vault.Open(st)
 	if err != nil {
 		slog.Warn("cles chiffrees ignorees (coffre indisponible)", "raison", err)
 		return keys
@@ -476,23 +516,4 @@ func loadFamilies(st *store.Store) []alias.Family {
 		return fams
 	}
 	return alias.Apply(fams, ov)
-}
-
-func openVault(st *store.Store) (*cryptovault.Vault, error) {
-	password := os.Getenv("CETAS_LITE_VAULT_PASSWORD")
-	if password == "" {
-		return nil, errors.New("CETAS_LITE_VAULT_PASSWORD requis")
-	}
-	salt, ok := st.GetMeta("vault_salt")
-	if !ok {
-		var err error
-		salt, err = cryptovault.NewSalt()
-		if err != nil {
-			return nil, err
-		}
-		if err := st.PutMeta("vault_salt", salt); err != nil {
-			return nil, err
-		}
-	}
-	return cryptovault.New(password, salt)
 }

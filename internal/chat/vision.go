@@ -1,8 +1,8 @@
 package chat
 
 import (
+	"context"
 	"encoding/base64"
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -24,20 +24,16 @@ func viewImageSchema() provider.Tool {
 	}}
 }
 
-func (e *Engine) viewImage(m alias.ResolvedMember, sb *Sandbox, argsJSON string) (ToolResult, *provider.Message) {
+func (e *Engine) viewImage(ctx context.Context, m alias.ResolvedMember, sb *Sandbox, argsJSON string) (ToolResult, *provider.Message) {
 	if !e.capabilities().Vision(m.Provider, m.Model) {
 		return ToolResult{Text: "[erreur] ce modele ne lit pas les images ; choisis un modele vision (Settings -> Capacites des modeles)."}, nil
 	}
 	rel := strings.TrimSpace(strArg(parseArgs(argsJSON), "file_path"))
-	p, err := sb.Resolve(rel)
+	data, err := sb.ReadFile(ctx, rel)
 	if err != nil {
 		return ToolResult{Text: "[erreur] " + err.Error()}, nil
 	}
-	data, err := os.ReadFile(p)
-	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}, nil
-	}
-	ext := strings.TrimPrefix(strings.ToLower(filepath.Ext(p)), ".")
+	ext := strings.TrimPrefix(strings.ToLower(filepath.Ext(rel)), ".")
 	switch ext {
 	case "png", "jpg", "jpeg", "gif", "webp":
 	default:

@@ -2,7 +2,10 @@ package provider
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
+	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -168,5 +171,41 @@ func TestBuildRegistry(t *testing.T) {
 	}
 	if _, ok := r.Get("opencode"); ok {
 		t.Error("opencode sans cle ne doit pas etre enregistre")
+	}
+}
+
+func TestStreamAnnotationsEtExtra(t *testing.T) {
+	var payload map[string]any
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		raw, _ := io.ReadAll(r.Body)
+		_ = json.Unmarshal(raw, &payload)
+		w.Header().Set("Content-Type", "text/event-stream")
+		fmt.Fprint(w, "data: {\"choices\":[{\"delta\":{\"content\":\"Voici\",\"annotations\":[{\"type\":\"url_citation\",\"url_citation\":{\"url\":\"https://a.example\",\"title\":\"Source A\"}},{\"type\":\"url_citation\",\"url_citation\":{\"url\":\"https://a.example\",\"title\":\"Doublon\"}},{\"url\":\"https://b.example\",\"title\":\"Source B\"}]}}]}\n\n")
+		fmt.Fprint(w, "data: {\"choices\":[{\"delta\":{},\"finish_reason\":\"stop\"}]}\n\n")
+		fmt.Fprint(w, "data: [DONE]\n\n")
+	}))
+	t.Cleanup(srv.Close)
+	p := providerFor(t, srv, "/chat/completions")
+
+	resp, err := p.Stream(context.Background(), Request{
+		Model:    "m",
+		Messages: []Message{{Role: "user", Content: "cherche"}},
+		Extra:    map[string]any{"plugins": []any{map[string]any{"id": "web"}}},
+	}, func(ev Event) bool { return true })
+	if err != nil {
+		t.Fatalf("Stream: %v", err)
+	}
+	plugs, ok := payload["plugins"].([]any)
+	if !ok || len(plugs) != 1 {
+		t.Fatalf("plugins non transmis dans le payload: %v", payload["plugins"])
+	}
+	if len(resp.Annotations) != 2 {
+		t.Fatalf("annotations dedup attendues (2), obtenues: %+v", resp.Annotations)
+	}
+	if resp.Annotations[0].URL != "https://a.example" || resp.Annotations[0].Title != "Source A" {
+		t.Fatalf("annotation 0 inattendue: %+v", resp.Annotations[0])
+	}
+	if resp.Annotations[1].URL != "https://b.example" {
+		t.Fatalf("annotation 1 inattendue: %+v", resp.Annotations[1])
 	}
 }

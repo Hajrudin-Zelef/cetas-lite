@@ -1,6 +1,10 @@
 package provider
 
-import "net/http"
+import (
+	"net/http"
+	"sort"
+	"sync"
+)
 
 type endpointDef struct {
 	base string
@@ -15,6 +19,22 @@ var cloudEndpoints = map[string]endpointDef{
 }
 
 var LocalEngines = []string{"llamacpp", "ollama", "lmstudio"}
+
+// CloudProviderIDs retourne les IDs des providers cloud connus, tries.
+func CloudProviderIDs() []string {
+	out := make([]string, 0, len(cloudEndpoints))
+	for id := range cloudEndpoints {
+		out = append(out, id)
+	}
+	sort.Strings(out)
+	return out
+}
+
+// IsCloudProvider indique si l'ID correspond a un provider cloud connu.
+func IsCloudProvider(id string) bool {
+	_, ok := cloudEndpoints[id]
+	return ok
+}
 
 func CloudEndpoint(providerID, apiKey string) (Endpoint, bool) {
 	def, ok := cloudEndpoints[providerID]
@@ -36,6 +56,7 @@ func LocalEndpoint(engine, baseURL string) Endpoint {
 }
 
 type Registry struct {
+	mu        sync.RWMutex
 	providers map[string]Provider
 }
 
@@ -44,20 +65,33 @@ func NewRegistry() *Registry {
 }
 
 func (r *Registry) Set(p Provider) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
 	r.providers[p.ID()] = p
 }
 
 func (r *Registry) Get(id string) (Provider, bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
 	p, ok := r.providers[id]
 	return p, ok
 }
 
 func (r *Registry) IDs() []string {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
 	out := make([]string, 0, len(r.providers))
 	for id := range r.providers {
 		out = append(out, id)
 	}
 	return out
+}
+
+// Delete retire un provider du registre. Sans effet s'il est absent.
+func (r *Registry) Delete(id string) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	delete(r.providers, id)
 }
 
 func Build(keys map[string]string, localURLs map[string]string, client *http.Client) *Registry {

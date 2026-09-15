@@ -727,3 +727,454 @@
     background: rgba(0, 0, 0, 0.45);
   }
 }
+
+/* --- Sélecteur de mode Chat / Agent --- */
+.mode-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--bg-tertiary, rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.mode-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mode-switch-btn:hover {
+  color: var(--text-primary);
+}
+
+.mode-switch-btn.active {
+  background: var(--bg, #fff);
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.mode-switch-btn.active[data-mode="agent"] {
+  color: var(--accent, #3b87ce);
+}
+
+.mode-switch-btn svg {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Panneau Raisonnement (slide-out droit)
+   ============================================================ */
+.reason-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  max-width: 85vw;
+  height: 100dvh;
+  background: var(--bg-sidebar);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(102%);
+  transition: transform 0.25s ease;
+  z-index: 120;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12);
+}
+.reason-panel.open {
+  transform: translateX(0);
+}
+.reason-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.reason-panel-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reason-spinner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent, #2563eb);
+  animation: reason-spin 0.8s linear infinite;
+}
+@keyframes reason-spin {
+  to { transform: rotate(360deg); }
+}
+.reason-panel-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #8b949e);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+.reason-panel-close:hover {
+  background: var(--bg-hover, rgba(127, 127, 127, 0.15));
+  color: var(--text);
+}
+.reason-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 16px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-secondary, #8b949e);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.reason-panel-empty {
+  color: var(--text-muted, #6b7280);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+.reason-panel-reopen {
+  position: fixed;
+  right: 14px;
+  bottom: 96px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  color: var(--accent, #2563eb);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  z-index: 119;
+}
+.reason-panel-reopen:hover {
+  background: var(--bg-hover, rgba(127, 127, 127, 0.15));
+}
+
+/* ============================================================
+   Pied de message : "Modèle · temps · tokens (tok/s)"
+   ============================================================ */
+.turn-stats {
+  font-size: 0.72rem;
+  color: var(--text-muted, #6b7280);
+  margin-top: 6px;
+  padding-left: 2px;
+  user-select: text;
+}
+.message-wrapper.assistant-wrapper .turn-stats {
+  color: var(--text-secondary, #8b949e);
+}
+
+/* ============================================================
+   Ligne de tokens au-dessus du champ de saisie
+   ============================================================ */
+.turn-token-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--text-secondary, #8b949e);
+  padding: 0 10px 6px;
+}
+.turn-token-sep {
+  opacity: 0.5;
+}
+
+/* ============================================================
+   Métriques de la sidebar
+   ============================================================ */
+.sb-metrics {
+  margin: 10px 0 6px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+}
+.sb-metrics-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted, #6b7280);
+  margin-bottom: 8px;
+}
+.sb-metric {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+}
+.sb-metric:last-child {
+  margin-bottom: 0;
+}
+.sb-metric-label {
+  width: 44px;
+  flex-shrink: 0;
+  color: var(--text-secondary, #8b949e);
+}
+.sb-metric-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-hover, rgba(127, 127, 127, 0.18));
+  overflow: hidden;
+}
+.sb-metric-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 3px;
+  background: var(--success, #22c55e);
+  transition: width 0.6s ease, background 0.6s ease;
+}
+.sb-metric-val {
+  min-width: 64px;
+  text-align: right;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.sb-metric-net .sb-metric-val {
+  min-width: 0;
+  flex: 1;
+  text-align: right;
+}
+
+/* ---- Défilement ThreadView (façon référence) ---- */
+.thread-to-bottom {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border, #2a2f3a);
+  background: var(--surface-2, #1a1f2b);
+  color: var(--text, #e6e9f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0.92;
+  transition: transform 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+}
+.thread-to-bottom:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+  border-color: var(--accent, #4f8cff);
+}
+.thread-to-bottom.has-new {
+  border-color: var(--accent, #4f8cff);
+  animation: thread-to-bottom-pulse 1.6s ease-in-out infinite;
+}
+@keyframes thread-to-bottom-pulse {
+  0%, 100% { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+  50% { box-shadow: 0 6px 22px rgba(79, 140, 255, 0.55); }
+}
+
+/* Sentinelle d'élagage : début de conversation retiré du DOM (historique serveur intact). */
+.history-cut {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim, #8b93a5);
+  padding: 10px 16px;
+  margin: 8px auto;
+  max-width: 560px;
+  border-top: 1px dashed var(--border, #2a2f3a);
+  border-bottom: 1px dashed var(--border, #2a2f3a);
+}
+
+/* ---- Recherche web : indicateur + panneau Sources ---- */
+.search-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px;
+  color: var(--text-secondary, #9aa3b2);
+  font-size: 0.85rem;
+}
+.search-spinner {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  border: 2px solid var(--border-light, #2a2f3a);
+  border-top-color: var(--accent, #4aa8ff);
+  animation: search-spin 0.7s linear infinite;
+}
+@keyframes search-spin {
+  to { transform: rotate(360deg); }
+}
+.citations-block {
+  margin: 12px 0 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light, #2a2f3a);
+}
+.citations-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary, #9aa3b2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.citations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+@media (max-width: 900px) {
+  .citations-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.citation-hidden { display: none; }
+.citation-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 10px 12px;
+  background: var(--bg-hover, rgba(255,255,255,0.04));
+  border: 1px solid var(--border-light, #2a2f3a);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text, #e8ecf1);
+  transition: border-color 0.15s, transform 0.1s;
+}
+.citation-card:hover {
+  border-color: var(--accent, #4aa8ff);
+  transform: translateY(-1px);
+}
+.citation-card-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.citation-favicon {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex: none;
+}
+.citation-domain {
+  font-size: 0.72rem;
+  color: var(--text-secondary, #9aa3b2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.citation-num {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-secondary, #9aa3b2);
+  flex: none;
+}
+.citation-card-title {
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.citation-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  padding: 10px 12px;
+  background: var(--bg-hover, rgba(255,255,255,0.04));
+  border: 1px dashed var(--border-light, #2a2f3a);
+  border-radius: 10px;
+  color: var(--text-secondary, #9aa3b2);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.citation-more:hover {
+  color: var(--text, #e8ecf1);
+  border-color: var(--accent, #4aa8ff);
+}
+
+/* --- Réglages : bouton Recharger (plugins) ------------------------------ */
+.audio-setting-btn {
+  background: var(--bg-input, #1a2230);
+  border: 1px solid var(--border-input, #2c3a4f);
+  border-radius: 6px;
+  color: var(--text, #e8ecf1);
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+.audio-setting-btn:hover {
+  border-color: var(--accent, #4aa8ff);
+  color: var(--accent, #4aa8ff);
+}
+.audio-setting-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.rp-mcp-status {
+  font-size: 0.78rem;
+  color: var(--text-dim, #9aa7ba);
+  text-align: right;
+  flex: 1;
+  min-width: 0;
+}
+
+/* --- Globe / Thinking du composer (mode Agent : thinking verrouillé) --- */
+.input-icon-btn.locked {
+  cursor: default;
+}
+.input-icon-btn.locked:hover {
+  color: inherit;
+}
+
+/* --- Éditeur MAREX.md (Réglages) --- */
+.marex-editor-block {
+  padding: 4px 18px 14px;
+}
+.marex-textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 140px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #d9dee6);
+  background: var(--input-bg, #fff);
+  color: var(--text-primary, #1c2333);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.marex-textarea:focus {
+  outline: none;
+  border-color: var(--accent, #3B87CE);
+}
+.marex-editor-block .rp-mcp-status {
+  display: block;
+  margin-top: 6px;
+  text-align: left;
+}

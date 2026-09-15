@@ -3,7 +3,8 @@ import { el } from "./thread-view.js";
 
 // Terminal integre : tiroir bas avec onglets, xterm.js, PTY cote serveur.
 export function initTerminal() {
-  const toolbarBtn = document.getElementById("terminal-btn");
+  const toolbarBtn = document.getElementById("terminal-btn") ||
+    document.querySelector('.dev-module-btn[data-module="terminal"]');
   if (!toolbarBtn) return;
   if (typeof Terminal === "undefined") {
     toolbarBtn.disabled = true;
@@ -142,8 +143,8 @@ export function initTerminal() {
     activeId = id;
     for (const [sid, sess] of sessions) {
       const on = sid === id;
-      if (on && !sess.term) makeTerm(sess);
       if (sess.container) sess.container.hidden = !on;
+      if (on && !sess.term) makeTerm(sess);
       if (on) subscribe(sess);
     }
     refreshTabs();
@@ -259,4 +260,5 @@ export function initTerminal() {
   }
 
   toolbarBtn.addEventListener("click", toggleDrawer);
+  window.addEventListener("cetas:toggle-terminal", toggleDrawer);
 }

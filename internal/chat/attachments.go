@@ -47,13 +47,13 @@ func (e *Engine) attachmentContext(user string, ids []string) string {
 		}
 		text, _, err := docs.Extract(a.Name, data)
 		if err != nil {
-			parts = append(parts, "Piece jointe \""+a.Name+"\": "+err.Error())
+			parts = append(parts, "Attachment \""+a.Name+"\": "+err.Error())
 			continue
 		}
-		parts = append(parts, "Piece jointe \""+a.Name+"\":\n\n"+text)
+		parts = append(parts, "Attachment \""+a.Name+"\":\n\n"+text)
 	}
 	if len(parts) == 0 {
 		return ""
 	}
-	return "Documents joints par l'utilisateur (a utiliser comme contexte):\n\n" + strings.Join(parts, "\n\n---\n\n")
+	return "Documents attached by the user (use as context):\n\n" + strings.Join(parts, "\n\n---\n\n")
 }

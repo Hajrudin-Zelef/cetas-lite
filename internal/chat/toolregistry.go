@@ -53,10 +53,13 @@ func (e *Engine) toolRegistry(in TurnInput, sb *Sandbox) toolRegistry {
 	if ct := e.customTools(); ct != nil {
 		families = append(families, customFamily{e: e, defs: ct.Defs()})
 	}
+	if e.pluginManager() != nil {
+		families = append(families, pluginFamily{e: e})
+	}
 	if in.MCP {
 		families = append(families, mcpFamily{e: e})
 	}
-	if in.Web && e.webTools() != nil {
+	if e.webToolsFor(in) {
 		families = append(families, webFamily{e: e})
 	}
 	return toolRegistry{families: families, fallback: builtinFamily{sb: sb, allowScript: e.scriptAllowed()}}
@@ -92,8 +95,8 @@ func (visionFamily) schemas(context.Context) []provider.Tool {
 
 func (visionFamily) handles(name string) bool { return name == "ViewImage" }
 
-func (f visionFamily) execute(_ context.Context, env toolEnv, _ string, argsJSON string) (ToolResult, *provider.Message) {
-	return f.e.viewImage(env.member, f.sb, argsJSON)
+func (f visionFamily) execute(ctx context.Context, env toolEnv, _ string, argsJSON string) (ToolResult, *provider.Message) {
+	return f.e.viewImage(ctx, env.member, f.sb, argsJSON)
 }
 
 type memoryFamily struct{ e *Engine }
@@ -127,6 +130,21 @@ func (customFamily) handles(name string) bool { return strings.HasPrefix(name, "
 
 func (f customFamily) execute(ctx context.Context, _ toolEnv, name, argsJSON string) (ToolResult, *provider.Message) {
 	return f.e.customExecute(ctx, name, argsJSON), nil
+}
+
+type pluginFamily struct{ e *Engine }
+
+func (f pluginFamily) schemas(context.Context) []provider.Tool {
+	if pm := f.e.pluginManager(); pm != nil {
+		return PluginToolSchemas(pm.Defs())
+	}
+	return nil
+}
+
+func (pluginFamily) handles(name string) bool { return strings.HasPrefix(name, "plugin_") }
+
+func (f pluginFamily) execute(ctx context.Context, _ toolEnv, name, argsJSON string) (ToolResult, *provider.Message) {
+	return f.e.pluginExecute(ctx, name, argsJSON), nil
 }
 
 type webFamily struct{ e *Engine }

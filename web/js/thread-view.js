@@ -1,8 +1,34 @@
 import { api, getToken, readSSE } from "./api.js";
-import { appendLinkified, renderInto } from "./markdown.js";
-import { createStreamRenderer } from "./stream-render.js";
+import { appendLinkified, createMarkdownRenderer } from "./markdown.js";
+import {
+  appendReasoningPanel,
+  finishReasoningPanel,
+  resetReasonPanel,
+} from "./reasoning-panel.js";
+import { setTurnStats } from "./turn-tokens.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+
+// Défilement calqué sur la vue de référence (ChatView.tsx) :
+// seuil d'épinglage, échantillonnage des gestes lecteur, borne DOM.
+const FOLLOW_THRESHOLD = 24; // px : en-deçà du bas = "épinglé"
+const SCROLL_SAMPLE_MS = 500; // debounce d'échantillonnage du scroll lecteur
+const MAX_LOG_NODES = 500; // au-delà, les anciens nœuds sont élagués
+const PRUNE_KEEP_TAIL = 120; // la queue active n'est jamais élaguée
+
+// Moteur de rendu streaming accelere (technique Marexcode) : coalesce les
+// deltas sur une seule frame + ne re-rend que les blocs markdown modifies.
+const mdRenderer = createMarkdownRenderer();
+
+function rafTick(fn) {
+  if (typeof requestAnimationFrame === "function") return requestAnimationFrame(fn);
+  return setTimeout(fn, 16);
+}
+
+function cancelRafTick(id) {
+  if (typeof cancelAnimationFrame === "function") cancelAnimationFrame(id);
+  else clearTimeout(id);
+}
 
 export function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -14,6 +40,71 @@ export function el(tag, cls, text) {
 function summarizeArgs(args) {
   if (!args) return "";
   return args.command || args.file_path || args.pattern || args.query || "";
+}
+
+// Indicateur visuel "recherche web en cours" : spinner + libellé simple.
+function renderSearchStatus(label) {
+  const row = el("div", "search-status");
+  row.appendChild(el("span", "search-spinner"));
+  const txt = el("span", "search-status-text");
+  txt.textContent = "Recherche web en cours" + (label ? " : " + label : "") + "…";
+  row.appendChild(txt);
+  return row;
+}
+
+function searchLabel(name, args) {
+  args = args || {};
+  if (name === "web_fetch" && args.url) return String(args.url);
+  if (args.query) return String(args.query);
+  return "";
+}
+
+// Panneau "Sources" : cartes des pages consultees (style de la reference).
+function renderSources(sources) {
+  const VISIBLE = 4;
+  const block = el("div", "citations-block");
+  block.appendChild(el("div", "citations-title", "Sources"));
+  const list = el("ul", "citations-list");
+  sources.forEach((s, i) => {
+    const url = typeof s === "string" ? s : s.url || "";
+    const title = typeof s === "string" ? "" : s.title || "";
+    let host = url;
+    try {
+      host = new URL(url).hostname.replace(/^www\./, "");
+    } catch (e) { /* url non parsable : on affiche telle quelle */ }
+    const li = el("li");
+    if (i >= VISIBLE) li.classList.add("citation-hidden");
+    const a = el("a", "citation-card");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.title = url;
+    const head = el("div", "citation-card-head");
+    const fav = el("img", "citation-favicon");
+    fav.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(host) + "&sz=32";
+    fav.alt = "";
+    fav.loading = "lazy";
+    fav.onerror = () => fav.remove();
+    head.appendChild(fav);
+    head.appendChild(el("span", "citation-domain", host));
+    head.appendChild(el("span", "citation-num", "[" + (i + 1) + "]"));
+    a.appendChild(head);
+    a.appendChild(el("div", "citation-card-title", title || host));
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+  if (sources.length > VISIBLE) {
+    const more = el("li");
+    const btn = el("div", "citation-more", "+" + (sources.length - VISIBLE) + " sources");
+    btn.addEventListener("click", () => {
+      list.querySelectorAll(".citation-hidden").forEach((x) => x.classList.remove("citation-hidden"));
+      more.remove();
+    });
+    more.appendChild(btn);
+    list.appendChild(more);
+  }
+  block.appendChild(list);
+  return block;
 }
 
 function renderTodos(todos) {
@@ -75,6 +166,11 @@ function speakable(md) {
 //   actions : affiche les boutons Copier/Lire (+ Regenerer si regenerateURL)
 //   regenerateURL : endpoint de regeneration (optionnel)
 //   onFirstUser, onDone : callbacks optionnels
+//   reasonPanel : affiche le raisonnement dans le panneau lateral (vue principale)
+//   reasonHooks : { append(text, replace), finish(), reset() } — panneau custom
+//     (ex. vue Agents façon Marexcode) ; prioritaire sur reasonPanel.
+//   trackTokens : met a jour la ligne de tokens du composer (vue principale)
+//   onEvent : callback(ev) appele pour chaque evenement SSE (ex. panneau Todos)
 export class ThreadView {
   constructor(opts) {
     this.log = opts.log;
@@ -90,11 +186,17 @@ export class ThreadView {
     this.actions = opts.actions !== false;
     this.regenerateURL = opts.regenerateURL || null;
     this.onDone = opts.onDone || null;
+    this.reasonPanel = opts.reasonPanel === true;
+    this.reasonHooks = opts.reasonHooks || null;
+    this.trackTokens = opts.trackTokens === true;
+    this.onEvent = typeof opts.onEvent === "function" ? opts.onEvent : null;
 
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
     this.assistant = null;
-    this.textRenderer = null;
+    this.assistantBody = null;
+    this.assistantText = "";
+    this.assistantStarted = false;
     this.reasoningEl = null;
     this.reasoningText = "";
     this.controller = null;
@@ -104,6 +206,23 @@ export class ThreadView {
     this.waitIdx = 0;
     this.toolBoxes = new Map();
     this.approvalCards = new Map();
+    // Indicateur de recherche web native (plugin provider) en cours.
+    this.searchStatus = null;
+    // Suivi du tour en cours (pied de message "modèle · temps · tokens").
+    this.turnStartTs = 0;
+    this.turnStats = null;
+    this.turnRoute = null;
+    this.turnElapsedMs = null;
+    // État du suivi de défilement (cf. initScrollFollow) : même comportement
+    // que la vue de référence (pinned-follow 24px + ledger lecteur/programmatique).
+    this.pinned = true;
+    this.observedTop = 0;
+    this.followFrame = 0;
+    this.sampleTimer = 0;
+    this.newWhileUnpinned = false;
+    this.toBottomBtn = null;
+    this.prunedCount = 0;
+    this.initScrollFollow();
   }
 
   clearEmpty() {
@@ -116,12 +235,166 @@ export class ThreadView {
     this.empty = this.log.querySelector("[data-empty]");
   }
 
-  atBottom() {
-    return this.log.scrollHeight - this.log.scrollTop - this.log.clientHeight < 80;
+  // ---- Défilement : même comportement que la vue de référence ----
+  //
+  // Principe (ChatView.tsx du fichier fourni) :
+  // - "pinned" = le lecteur est à <= 24px du bas -> le nouveau contenu fait
+  //   suivre la vue ; on ne re-épingle jamais sur un simple re-render
+  //   (sinon les scrolls inertiels seraient "snappés" jusqu'en bas).
+  // - observedTop enregistre chaque écriture programmatique de scrollTop ;
+  //   un événement scroll qui n'en dévie pas n'est PAS un geste lecteur
+  //   (pas de changement de propriété pinned).
+  // - les gestes lecteur sont échantillonnés (500ms + scrollend).
+
+  initScrollFollow() {
+    const log = this.log;
+    const onScroll = () => {
+      if (this.pinned) {
+        const floor = this.floorTop();
+        // Livraison non-lecteur (écriture programmatique différée, clamp
+        // navigateur) : échantillonner aussitôt sans toucher à pinned.
+        if (Math.abs(log.scrollTop - Math.min(this.observedTop, floor)) <= 0.5) {
+          this.sampleScroll();
+          return;
+        }
+      }
+      if (!this.sampleTimer) {
+        this.sampleTimer = setTimeout(() => {
+          this.sampleTimer = 0;
+          this.sampleScroll();
+        }, SCROLL_SAMPLE_MS);
+      }
+    };
+    log.addEventListener("scroll", onScroll, { passive: true });
+    log.addEventListener("scrollend", () => this.sampleScroll(), { passive: true });
+    this.buildToBottomBtn();
   }
 
-  scroll(force) {
-    if (force || this.atBottom()) this.log.scrollTop = this.log.scrollHeight;
+  floorTop() {
+    return Math.max(0, this.log.scrollHeight - this.log.clientHeight);
+  }
+
+  // Ne change la propriété "pinned" que sur un geste lecteur réel.
+  sampleScroll() {
+    const top = this.log.scrollTop;
+    const floor = this.floorTop();
+    const readerMoved = Math.abs(top - Math.min(this.observedTop, floor)) > 0.5;
+    if (!readerMoved) return; // livraison programmatique : on garde l'état
+    const near = floor - top <= FOLLOW_THRESHOLD + 1;
+    this.pinned = near;
+    this.observedTop = top;
+    if (near) this.newWhileUnpinned = false;
+    this.updateToBottomBtn();
+  }
+
+  writeBottom() {
+    this.log.scrollTop = this.log.scrollHeight;
+    this.observedTop = this.log.scrollTop;
+  }
+
+  // Force le bas : nouveau message utilisateur, carte d'approbation,
+  // rattrapage d'historique, clic sur le bouton flottant.
+  toBottom() {
+    if (this.followFrame) {
+      cancelRafTick(this.followFrame);
+      this.followFrame = 0;
+    }
+    this.newWhileUnpinned = false;
+    this.writeBottom();
+    this.pinned = true;
+    this.updateToBottomBtn();
+    this.maybePrune();
+  }
+
+  // Suivi coalescé sur une frame : le contenu qui grandit (streaming,
+  // tool boxes, raisonnement) ne fait défiler que si épinglé.
+  requestFollow() {
+    if (this.followFrame) return;
+    this.followFrame = rafTick(() => {
+      this.followFrame = 0;
+      this.maybePrune(); // borne DOM même quand le lecteur lit plus haut
+      if (!this.pinned) {
+        this.newWhileUnpinned = true;
+        this.updateToBottomBtn();
+        return;
+      }
+      this.writeBottom();
+    });
+  }
+
+  buildToBottomBtn() {
+    const parent = this.log.parentElement;
+    if (!parent || parent.querySelector(":scope > .thread-to-bottom")) return;
+    if (getComputedStyle(parent).position === "static") parent.style.position = "relative";
+    const btn = el("button", "thread-to-bottom");
+    btn.type = "button";
+    btn.hidden = true;
+    btn.setAttribute("aria-label", "Retour en bas");
+    btn.innerHTML = "<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M8 3v9M4.5 8.5 8 12l3.5-3.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>";
+    btn.addEventListener("click", () => this.toBottom());
+    parent.appendChild(btn);
+    this.toBottomBtn = btn;
+  }
+
+  updateToBottomBtn() {
+    const btn = this.toBottomBtn;
+    if (!btn) return;
+    const show = !this.pinned && this.log.scrollHeight > this.log.clientHeight + 8;
+    btn.hidden = !show;
+    btn.classList.toggle("has-new", this.newWhileUnpinned && show);
+    btn.setAttribute(
+      "aria-label",
+      this.newWhileUnpinned && show ? "Retour en bas — nouveaux messages" : "Retour en bas",
+    );
+  }
+
+  // ---- Borne DOM : les longues sessions restent fluides ----
+  //
+  // Au-delà de MAX_LOG_NODES, les nœuds les plus anciens sont retirés
+  // (l'historique serveur reste intact). Protégés : cartes d'approbation
+  // en attente, tool boxes en cours de stream, queue active, placeholder.
+  maybePrune() {
+    if (this.log.children.length <= MAX_LOG_NODES) return;
+    let cut = this.log.querySelector(":scope > .history-cut");
+    const tailStart = this.log.children.length - PRUNE_KEEP_TAIL;
+    let i = 0;
+    while (i < tailStart && this.log.children.length > MAX_LOG_NODES) {
+      const n = this.log.children[i];
+      if (
+        n === cut ||
+        n === this.empty ||
+        n.classList.contains("streaming") ||
+        (n.classList.contains("msg-approval") && !n.hasAttribute("data-resolved"))
+      ) {
+        i++;
+        continue;
+      }
+      n.remove();
+      this.prunedCount++;
+      // pas d'incrément : le nœud suivant glisse à l'index i
+    }
+    if (this.prunedCount > 0) {
+      if (!cut) {
+        cut = el("div", "history-cut");
+        this.log.prepend(cut);
+      }
+      cut.textContent =
+        "… " + this.prunedCount + " message(s) précédent(s) masqué(s) pour garder l'interface fluide …";
+    }
+  }
+
+  // Fige le rendu du message assistant en cours (fin de tour, outil, approbation).
+  finalizeAssistant() {
+    if (this.assistantBody) mdRenderer.finalize(this.assistantBody, this.assistantText);
+  }
+
+  resetAssistantState() {
+    this.assistant = null;
+    this.assistantBody = null;
+    this.assistantText = "";
+    this.assistantStarted = false;
+    this.reasoningEl = null;
+    this.reasoningText = "";
   }
 
   setBusy(v) {
@@ -137,7 +410,7 @@ export class ThreadView {
       this.waitIdx = (this.waitIdx + 1) % BRAILLE.length;
       if (this.waitEl && this.waitEl.firstChild) this.waitEl.firstChild.textContent = BRAILLE[this.waitIdx];
     }, 80);
-    this.scroll(true);
+    this.toBottom();
   }
 
   hideWait() {
@@ -158,7 +431,7 @@ export class ThreadView {
     bubble.appendChild(el("div", "message-text", text));
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
-    this.scroll(true);
+    this.toBottom();
   }
 
   ensureAssistant() {
@@ -170,19 +443,29 @@ export class ThreadView {
       this.assistant.appendChild(body);
       wrapper.appendChild(this.assistant);
       this.log.appendChild(wrapper);
-      this.textRenderer = createStreamRenderer({
-        onRender: (t) => renderInto(body, t),
-        onFirst: () => this.hideWait(),
-      });
+      this.assistantBody = body;
+      this.assistantText = "";
+      this.assistantStarted = false;
     }
     return this.assistant;
   }
 
   appendContent(text, isReplace) {
     this.ensureAssistant();
-    if (isReplace) this.textRenderer.replace(text);
-    else this.textRenderer.add(text);
-    this.scroll();
+    if (!this.assistantStarted) {
+      this.assistantStarted = true;
+      this.hideWait();
+    }
+    // Streaming accelere (technique Marexcode) : update() bufferise et rend
+    // au plus une fois par frame, en ne re-rendant que les blocs modifies.
+    if (isReplace) {
+      this.assistantText = String(text);
+      mdRenderer.render(this.assistantBody, text);
+    } else {
+      this.assistantText += String(text);
+      mdRenderer.update(this.assistantBody, this.assistantText);
+    }
+    this.requestFollow();
   }
 
   ensureReasoning() {
@@ -198,10 +481,32 @@ export class ThreadView {
   }
 
   appendReasoning(text, isReplace) {
-    this.ensureReasoning();
-    this.reasoningText = isReplace ? String(text) : this.reasoningText + String(text);
-    this.reasoningEl.querySelector(".thinking-content").textContent = this.reasoningText;
-    this.scroll();
+    if (this.reasonHooks) {
+      this.reasonHooks.append(text, isReplace);
+      return;
+    }
+    if (this.reasonPanel) {
+      appendReasoningPanel(text, isReplace);
+      return;
+    }
+    const box = this.ensureReasoning().querySelector(".thinking-content");
+    // Rendu incremental : on n'ajoute QUE le nouveau morceau au noeud texte
+    // (appendData). Jamais de textContent sur tout le texte -> pas de O(n)
+    // par delta quand le raisonnement est long (technique Marexcode).
+    if (isReplace) {
+      box.textContent = String(text);
+      this.reasoningText = String(text);
+    } else {
+      this.reasoningText += String(text);
+      let node = box.firstChild;
+      if (!node || node.nodeType !== 3) {
+        box.textContent = "";
+        node = document.createTextNode("");
+        box.appendChild(node);
+      }
+      node.appendData(String(text));
+    }
+    this.requestFollow();
   }
 
   removeReasoning() {
@@ -221,13 +526,13 @@ export class ThreadView {
     bubble.appendChild(el("div", "message-text", text));
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
-    this.scroll();
+    this.requestFollow();
   }
 
   addSystem(text) {
     this.clearEmpty();
     this.log.appendChild(el("div", "msg-system", text));
-    this.scroll();
+    this.requestFollow();
   }
 
   addActions(box, raw) {
@@ -287,19 +592,28 @@ export class ThreadView {
       if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
         body.appendChild(renderTodos(ev.args.todos));
       }
+      if (ev.name === "web_search" || ev.name === "web_fetch") {
+        body.appendChild(renderSearchStatus(searchLabel(ev.name, ev.args)));
+      }
       box.appendChild(body);
       this.log.appendChild(box);
       this.toolBoxes.set(key, body);
-      if (this.textRenderer) this.textRenderer.flush();
-      this.assistant = null;
-      this.textRenderer = null;
-      this.reasoningEl = null;
-      this.reasoningText = "";
-      this.scroll(true);
+      this.finalizeAssistant();
+      this.resetAssistantState();
+      this.requestFollow();
       return;
     }
     const body = this.toolBoxes.get(key);
     if (!body) return;
+    // Fin d'une recherche web : l'indicateur laisse place au panneau Sources.
+    const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
+    const status = body.querySelector(".search-status");
+    if (status) status.remove();
+    if (isSearch && Array.isArray(ev.sources) && ev.sources.length) {
+      body.appendChild(renderSources(ev.sources));
+      this.requestFollow();
+      return;
+    }
     if (Array.isArray(ev.diff) && ev.diff.length) {
       body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
     }
@@ -308,7 +622,33 @@ export class ThreadView {
       appendLinkified(pre, ev.result);
       body.appendChild(pre);
     }
-    this.scroll();
+    this.requestFollow();
+  }
+
+  // Recherche web native du provider (hors outils) : indicateur pendant la
+  // generation, puis panneau "Sources" a partir des annotations recues.
+  handleSearch(s) {
+    if (!s || typeof s !== "object") return;
+    if (s.phase === "start") {
+      this.clearEmpty();
+      this.hideWait();
+      if (!this.searchStatus) {
+        this.searchStatus = renderSearchStatus("");
+        this.log.appendChild(this.searchStatus);
+      }
+      this.requestFollow();
+      return;
+    }
+    if (this.searchStatus) {
+      this.searchStatus.remove();
+      this.searchStatus = null;
+    }
+    const srcs = Array.isArray(s.sources) ? s.sources : [];
+    if (srcs.length) {
+      this.clearEmpty();
+      this.log.appendChild(renderSources(srcs));
+      this.requestFollow();
+    }
   }
 
   summarizeApprovalArgs(tool, args) {
@@ -332,6 +672,7 @@ export class ThreadView {
   setApprovalResolved(id, approved, timeout) {
     const card = this.approvalCards.get(id);
     if (!card) return;
+    card.setAttribute("data-resolved", "1");
     const btns = card.querySelectorAll("button");
     btns.forEach((b) => { b.disabled = true; });
     const status = card.querySelector(".approval-status");
@@ -339,7 +680,7 @@ export class ThreadView {
       status.textContent = timeout ? "Expirée (10 min sans réponse)" : approved ? "Approuvé" : "Refusé";
       status.classList.add(approved && !timeout ? "approved" : "denied");
     }
-    this.scroll();
+    this.requestFollow();
   }
 
   addApproval(ev) {
@@ -392,40 +733,90 @@ export class ThreadView {
     card.appendChild(row);
     this.log.appendChild(card);
     this.approvalCards.set(id, card);
-    if (this.textRenderer) this.textRenderer.flush();
-    this.scroll(true);
+    this.finalizeAssistant();
+    this.toBottom();
+  }
+
+  addTurnStats(box) {
+    const s = this.turnStats || {};
+    const inTok = s.prompt_tokens || 0;
+    const outTok = s.completion_tokens || 0;
+    const r = this.turnRoute || {};
+    const model = r.label || r.model || "";
+    let secs = 0;
+    if (this.turnElapsedMs != null) secs = this.turnElapsedMs / 1000;
+    else if (this.turnStartTs) secs = (Date.now() - this.turnStartTs) / 1000;
+    const parts = [];
+    if (model) parts.push(model);
+    parts.push(secs.toFixed(secs < 10 ? 1 : 0) + "s");
+    let tokTxt = outTok.toLocaleString("fr") + " tokens";
+    if (secs > 0 && outTok > 0) tokTxt += " (" + Math.round(outTok / secs) + "/s)";
+    parts.push(tokTxt);
+    const wrapper = box.closest(".message-wrapper") || box;
+    const div = el("div", "turn-stats", parts.join(" · "));
+    div.title =
+      "Entrée : " + inTok.toLocaleString("fr") + " tokens · Sortie : " + outTok.toLocaleString("fr") + " tokens";
+    wrapper.appendChild(div);
   }
 
   finishTurn() {
-    if (this.textRenderer) this.textRenderer.flush();
+    this.finalizeAssistant();
     const box = this.assistant;
-    const raw = this.textRenderer ? this.textRenderer.text() : "";
+    const raw = this.assistantText;
     if (box) box.classList.remove("streaming");
     this.hideWait();
     this.setBusy(false);
     this.generating = false;
     if (this.stopBtn) this.stopBtn.hidden = true;
-    if (box && raw.trim()) this.addActions(box, raw);
-    this.assistant = null;
-    this.textRenderer = null;
-    this.reasoningEl = null;
-    this.reasoningText = "";
+    if (this.reasonPanel) finishReasoningPanel();
+    else if (this.reasonHooks) this.reasonHooks.finish();
+    if (box && raw.trim()) {
+      this.addTurnStats(box);
+      this.addActions(box, raw);
+    }
+    this.resetAssistantState();
+    this.turnStartTs = 0;
+    this.turnStats = null;
+    this.turnRoute = null;
+    this.turnElapsedMs = null;
     if (this.onDone) this.onDone();
   }
 
   reset() {
     this.hideWait();
     this.setBusy(false);
+    if (this.reasonPanel) resetReasonPanel();
+      else if (this.reasonHooks) this.reasonHooks.reset();
     this.log.innerHTML = this.emptyHTML;
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
     this.assistant = null;
-    this.textRenderer = null;
+    this.assistantBody = null;
+    this.assistantText = "";
+    this.assistantStarted = false;
     this.reasoningEl = null;
     this.reasoningText = "";
     this.toolBoxes.clear();
     this.approvalCards.clear();
+    this.searchStatus = null;
     this.generating = false;
+    this.turnStartTs = 0;
+    this.turnStats = null;
+    this.turnRoute = null;
+    this.turnElapsedMs = null;
+    if (this.followFrame) {
+      cancelRafTick(this.followFrame);
+      this.followFrame = 0;
+    }
+    if (this.sampleTimer) {
+      clearTimeout(this.sampleTimer);
+      this.sampleTimer = 0;
+    }
+    this.pinned = true;
+    this.observedTop = 0;
+    this.newWhileUnpinned = false;
+    this.prunedCount = 0;
+    this.updateToBottomBtn();
     if (this.stopBtn) this.stopBtn.hidden = true;
     if (this.routeBadge) this.routeBadge.hidden = true;
     if (this.statsBadge) {
@@ -436,21 +827,27 @@ export class ThreadView {
 
   handleEvent(ev) {
     if (typeof ev.seq === "number" && ev.seq > this.lastSeq) this.lastSeq = ev.seq;
+    if (this.onEvent) {
+      try { this.onEvent(ev); } catch (e) { /* jamais bloquant pour le fil */ }
+    }
     if (ev.reset) {
       this.reset();
       return;
     }
     if (ev.pad !== undefined) return;
     if (ev.caught_up) {
-      this.scroll(true);
+      this.toBottom();
       return;
     }
     if (ev.user !== undefined) {
       this.addUser(String(ev.user));
-      this.assistant = null;
-      this.textRenderer = null;
-      this.reasoningEl = null;
-      this.reasoningText = "";
+      this.resetAssistantState();
+      this.turnStartTs = Date.now();
+      this.turnStats = null;
+      this.turnRoute = null;
+      this.turnElapsedMs = null;
+      if (this.reasonPanel) resetReasonPanel();
+      else if (this.reasonHooks) this.reasonHooks.reset();
       this.generating = true;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.showWait();
@@ -469,6 +866,10 @@ export class ThreadView {
       this.addTool(ev.tool);
       return;
     }
+    if (ev.search !== undefined) {
+      this.handleSearch(ev.search);
+      return;
+    }
     if (ev.approval !== undefined) {
       this.addApproval(ev.approval);
       return;
@@ -484,6 +885,8 @@ export class ThreadView {
     }
     if (ev.stats !== undefined) {
       const s = ev.stats || {};
+      this.turnStats = s;
+      if (this.trackTokens) setTurnStats(s.prompt_tokens, s.completion_tokens);
       if (this.statsBadge) {
         this.statsBadge.hidden = false;
         this.statsBadge.textContent = "↑" + (s.prompt_tokens || 0) + " ↓" + (s.completion_tokens || 0);
@@ -494,8 +897,13 @@ export class ThreadView {
       this.addSystem("Contexte compacté pour rester dans la fenêtre du modèle.");
       return;
     }
+    if (ev.system !== undefined) {
+      this.addSystem(String(ev.system));
+      return;
+    }
     if (ev.route !== undefined) {
       const r = ev.route || {};
+      this.turnRoute = r;
       if (this.routeBadge) {
         this.routeBadge.hidden = false;
         const name = r.label || r.model || "";
@@ -513,6 +921,8 @@ export class ThreadView {
       return;
     }
     if (ev.turn_done !== undefined) {
+      const td = ev.turn_done || {};
+      if (td.elapsed_ms != null) this.turnElapsedMs = td.elapsed_ms;
       this.finishTurn();
     }
   }
@@ -555,7 +965,7 @@ export class ThreadView {
       this.generating = true;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.setBusy(true);
-      this.scroll(true);
+      this.toBottom();
       return true;
     } catch (err) {
       if (/en cours/i.test(err.message)) {

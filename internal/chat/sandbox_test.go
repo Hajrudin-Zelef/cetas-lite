@@ -24,9 +24,8 @@ func TestSandboxResolveNestedMissing(t *testing.T) {
 	if err != nil {
 		t.Fatalf("chemin imbrique doit etre accepte: %v", err)
 	}
-	want := filepath.Join(root, "a", "b", "c.txt")
-	if got != want {
-		t.Fatalf("resolve = %q, want %q", got, want)
+	if got != "a/b/c.txt" {
+		t.Fatalf("resolve = %q, want %q", got, "a/b/c.txt")
 	}
 }
 
@@ -108,7 +107,7 @@ func TestSandboxResolveAllowsInsideSymlink(t *testing.T) {
 	if err != nil {
 		t.Fatalf("symlink interne refuse: %v", err)
 	}
-	if !strings.HasPrefix(got, root+string(os.PathSeparator)) {
-		t.Fatalf("chemin resolu hors racine: %q", got)
+	if got != "link/f.txt" {
+		t.Fatalf("chemin resolu inattendu: %q", got)
 	}
 }

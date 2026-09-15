@@ -36,6 +36,24 @@ func TestReadOnlyTools(t *testing.T) {
 	}
 }
 
+// TestPlanToolAllowed verifie l'allowlist stricte du mode plan :
+// lecture seule + TodoWrite, tout le reste est refuse avant validation.
+func TestPlanToolAllowed(t *testing.T) {
+	for _, name := range []string{"Ls", "Tree", "Read", "Cat", "Grep", "Glob", "Echo", "TodoWrite"} {
+		if !planToolAllowed(name) {
+			t.Errorf("%s devrait etre autorise en mode plan", name)
+		}
+	}
+	for _, name := range []string{
+		"Write", "Edit", "Bash", "RunScript", "Mkdir", "Mv", "Curl",
+		"Sed", "Awk", "mcp_fetch", "custom_x", "plugin_y",
+	} {
+		if planToolAllowed(name) {
+			t.Errorf("%s ne doit PAS etre autorise en mode plan avant validation", name)
+		}
+	}
+}
+
 func TestFormatTodos(t *testing.T) {
 	args := map[string]any{"todos": []any{
 		map[string]any{"content": "explorer", "status": "completed"},
@@ -195,7 +213,7 @@ func TestPlanModeExplorationThenApproval(t *testing.T) {
 	defer close(stop)
 	autoResolveApprovals(t, c, true, stop)
 
-	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "corrige le bug", Plan: true, User: "sam"}); err != nil {
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "corrige le bug", Plan: true, User: "sam", AgentMode: true}); err != nil {
 		t.Fatalf("StartTurn: %v", err)
 	}
 	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
@@ -239,7 +257,7 @@ func TestPlanModeDenied(t *testing.T) {
 	defer close(stop)
 	autoResolveApprovals(t, c, false, stop)
 
-	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "fais quelque chose", Plan: true, User: "sam"}); err != nil {
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "fais quelque chose", Plan: true, User: "sam", AgentMode: true}); err != nil {
 		t.Fatalf("StartTurn: %v", err)
 	}
 	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
@@ -264,7 +282,7 @@ func TestToolApprovalDenied(t *testing.T) {
 	defer close(stop)
 	autoResolveApprovals(t, c, false, stop)
 
-	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "ecris un fichier", Approve: true, User: "sam"}); err != nil {
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "ecris un fichier", Approve: true, User: "sam", AgentMode: true}); err != nil {
 		t.Fatalf("StartTurn: %v", err)
 	}
 	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")

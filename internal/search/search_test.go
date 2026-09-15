@@ -10,6 +10,7 @@ import (
 	"strings"
 	"sync/atomic"
 	"testing"
+	"time"
 )
 
 func TestNormalizeHitAliases(t *testing.T) {
@@ -202,5 +203,67 @@ func TestFetchExtractsReadable(t *testing.T) {
 	if !strings.HasPrefix(md, "#") && !strings.Contains(md, "**") {
 		// le contenu doit rester lisible ; on tolere le repli texte
 		t.Logf("markdown sans balise de titre detectee: %q", md)
+	}
+}
+
+func TestSearchFirstWinLatency(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		switch r.URL.Path {
+		case "/tavily":
+			_ = json.NewEncoder(w).Encode(map[string]any{"results": []any{
+				map[string]any{"title": "T", "url": "https://t.example"},
+			}})
+		case "/exa", "/brave":
+			time.Sleep(400 * time.Millisecond)
+			_ = json.NewEncoder(w).Encode(map[string]any{"results": []any{
+				map[string]any{"title": "Lent", "url": "https://lent.example"},
+			}})
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer srv.Close()
+
+	s := New(map[string]string{"tavily": "k1", "exa": "k2", "brave": "k3"}, srv.Client())
+	s.endpoints["tavily"] = srv.URL + "/tavily"
+	s.endpoints["exa"] = srv.URL + "/exa"
+	s.endpoints["brave"] = srv.URL + "/brave"
+
+	start := time.Now()
+	res := s.Search(context.Background(), "vitesse", 5)
+	elapsed := time.Since(start)
+	if res.Provider != "tavily" || len(res.Hits) != 1 {
+		t.Fatalf("resultat prioritaire attendu: %+v", res)
+	}
+	if elapsed > 350*time.Millisecond {
+		t.Fatalf("les providers lents ne doivent pas retarder le resultat (pris %v)", elapsed)
+	}
+}
+
+func TestSearchFirstWinWaitsPriorityOnError(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		switch r.URL.Path {
+		case "/tavily":
+			http.Error(w, "boom", http.StatusInternalServerError)
+		case "/exa":
+			time.Sleep(150 * time.Millisecond)
+			_ = json.NewEncoder(w).Encode(map[string]any{"results": []any{
+				map[string]any{"title": "E", "url": "https://e.example"},
+			}})
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer srv.Close()
+
+	s := New(map[string]string{"tavily": "k1", "exa": "k2"}, srv.Client())
+	s.endpoints["tavily"] = srv.URL + "/tavily"
+	s.endpoints["exa"] = srv.URL + "/exa"
+
+	res := s.Search(context.Background(), "repli", 5)
+	if res.Provider != "exa" || len(res.Hits) != 1 {
+		t.Fatalf("repli vers exa attendu: %+v", res)
 	}
 }

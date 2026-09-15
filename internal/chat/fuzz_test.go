@@ -25,7 +25,12 @@ func FuzzSandboxResolve(f *testing.F) {
 		if err != nil {
 			return
 		}
-		if p != sb.Root() && !strings.HasPrefix(p, sb.Root()+string(os.PathSeparator)) {
+		// Le chemin résolu doit rester relatif et confiné : pas de
+		// remontée, pas d'absolu, pas de segment "..".
+		if p == "" {
+			return
+		}
+		if strings.HasPrefix(p, "/") || p == ".." || strings.HasPrefix(p, "../") || strings.Contains(p, "/../") {
 			t.Fatalf("evasion sandbox: %q -> %q", rel, p)
 		}
 	})

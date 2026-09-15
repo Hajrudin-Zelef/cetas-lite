@@ -62,6 +62,18 @@ type Request struct {
 	Temperature     float64
 	EnableReasoning bool
 	ReasoningEffort string
+	// MaxTokens limite le nombre de tokens generes par reponse (0 = defaut du provider).
+	MaxTokens int
+	// Extra : parametres supplementaires fusionnes dans le payload
+	// (ex. plugins de recherche web natifs d'OpenRouter).
+	Extra map[string]any
+}
+
+// WebAnnotation : citation web renvoyee par une recherche native du provider
+// (ex. plugin web d'OpenRouter).
+type WebAnnotation struct {
+	URL   string
+	Title string
 }
 
 type Response struct {
@@ -70,6 +82,8 @@ type Response struct {
 	ToolCalls    []ToolCall
 	Usage        Usage
 	FinishReason string
+	// Annotations : citations web d'une recherche native du provider.
+	Annotations []WebAnnotation
 }
 
 type Event struct {
@@ -109,12 +123,23 @@ func NewOpenAICompat(e Endpoint, client *http.Client) *OpenAICompat {
 
 func (p *OpenAICompat) ID() string { return p.endpoint.Provider }
 
+type streamAnnotation struct {
+	Type        string `json:"type"`
+	URLCitation struct {
+		URL   string `json:"url"`
+		Title string `json:"title"`
+	} `json:"url_citation"`
+	URL   string `json:"url"`
+	Title string `json:"title"`
+}
+
 type streamChunk struct {
 	Choices []struct {
 		Delta struct {
-			Content          string `json:"content"`
-			ReasoningContent string `json:"reasoning_content"`
-			Reasoning        string `json:"reasoning"`
+			Content          string             `json:"content"`
+			ReasoningContent string             `json:"reasoning_content"`
+			Reasoning        string             `json:"reasoning"`
+			Annotations      []streamAnnotation `json:"annotations"`
 			ToolCalls        []struct {
 				Index    int    `json:"index"`
 				ID       string `json:"id"`
@@ -125,6 +150,30 @@ type streamChunk struct {
 		FinishReason string `json:"finish_reason"`
 	} `json:"choices"`
 	Usage *Usage `json:"usage"`
+}
+
+// webAnnotationsOf extrait les citations web (recherche native, ex. plugin
+// web d'OpenRouter) d'un delta de stream, en dedupliquant par URL.
+func webAnnotationsOf(raw []streamAnnotation) []WebAnnotation {
+	seen := map[string]bool{}
+	var out []WebAnnotation
+	for _, a := range raw {
+		u := a.URLCitation.URL
+		if u == "" {
+			u = a.URL
+		}
+		u = strings.TrimSpace(u)
+		if u == "" || seen[u] {
+			continue
+		}
+		seen[u] = true
+		title := a.URLCitation.Title
+		if title == "" {
+			title = a.Title
+		}
+		out = append(out, WebAnnotation{URL: u, Title: strings.TrimSpace(title)})
+	}
+	return out
 }
 
 var ErrStreamCut = errors.New("flux de reponse coupe")
@@ -160,6 +209,12 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 	if len(req.Tools) > 0 {
 		payload["tools"] = req.Tools
 		payload["parallel_tool_calls"] = false
+	}
+	if req.MaxTokens > 0 {
+		payload["max_tokens"] = req.MaxTokens
+	}
+	for k, v := range req.Extra {
+		payload[k] = v
 	}
 	applyReasoning(payload, p.endpoint.Provider, req.EnableReasoning, req.ReasoningEffort)
 	body, err := json.Marshal(payload)
@@ -267,6 +322,9 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 			if !emit(Event{Content: ch.Delta.Content}) {
 				return resp, nil
 			}
+		}
+		if len(ch.Delta.Annotations) > 0 {
+			resp.Annotations = append(resp.Annotations, webAnnotationsOf(ch.Delta.Annotations)...)
 		}
 	}
 

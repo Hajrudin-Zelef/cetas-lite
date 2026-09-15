@@ -15,6 +15,7 @@ import (
 	"cetas-lite/internal/modelcaps"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
+	"cetas-lite/internal/workspace"
 	"cetas-lite/internal/worktree"
 
 	"golang.org/x/time/rate"
@@ -30,6 +31,7 @@ type Engine struct {
 	mem         MemoryTools
 	ext         MCPTools
 	custom      CustomTools
+	pluginMgr   PluginManager
 	attach      *attach.Store
 	caps        modelcaps.Map
 	sandboxMode string
@@ -45,6 +47,15 @@ type Engine struct {
 	agentsMu sync.Mutex
 	agents   map[string]*AgentRun
 	wtRepos  map[string]string
+
+	// Projets (upload local / dossier SFTP) : workspace de l'agent.
+	wsProjects *workspace.Manager
+
+	// MAREX.md : chemin du fichier renseigne par l'utilisateur, et cache
+	// du contenu lu au demarrage de chaque session (par ID de conversation).
+	marexMu       sync.Mutex
+	marexPath     string
+	marexSessions map[string]*marexEntry
 }
 
 func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc *local.Discoverer, workspace string) *Engine {
@@ -237,7 +248,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, Attachments: last.Attachments}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, ProjectID: last.ProjectID, Attachments: last.Attachments}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)
@@ -319,7 +330,7 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 	if !ok {
 		return resolution{}
 	}
-	return resolution{members: rm.Pool, agent: rm.Agent}
+	return resolution{members: rm.Pool, agent: rm.Agent && in.AgentMode}
 }
 
 func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInput) {
@@ -366,18 +377,43 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	}
 
 	msgs = append([]provider.Message{{Role: "system", Content: chatSystemPrompt()}}, msgs...)
+	// Directive de raisonnement (imperative, en anglais) : le bouton
+	// Thinking du composer est l'interrupteur principal en mode chat.
+	msgs = append([]provider.Message{{Role: "system", Content: thinkDirective(false, in.Think, in.Effort)}}, msgs...)
 
-	if in.Web && in.User != "" {
+	// Choix du moteur de recherche AVANT toute pre-recherche : si le membre
+	// principal utilise la recherche native du provider, la pre-recherche
+	// locale est inutile (elle doublerait latence et cout). La decision est
+	// calculee une seule fois pour ne pas consommer le limiteur deux fois.
+	nativePrimary := len(res.members) > 0 && e.useNativeWebSearch(in, res.members[0].Provider, res.members[0].Model)
+
+	// Directive de recherche web (imperative, en anglais) : le globe est
+	// l'interrupteur principal, le mode "off" coupe aussi la recherche.
+	msgs = append([]provider.Message{{Role: "system", Content: searchDirective(e.webEnabled(in), nativePrimary)}}, msgs...)
+
+	// MAREX.md : lu une seule fois au demarrage de la session ; s'il est
+	// rempli, un message discret "MAREX.md chargé" s'affiche dans le chat.
+	if mm, ok, notice := e.marexForSession(c.ID); ok {
+		msgs = append([]provider.Message{mm}, msgs...)
+		if notice {
+			c.appendDelta(epoch, map[string]any{"system": "MAREX.md chargé"})
+		}
+	}
+
+	webDone := false
+	nativeOff := false
+	if e.webToolsFor(in) && !nativePrimary {
 		if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
 			msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
 		}
+		webDone = true
 	}
 
 	var content strings.Builder
 	emitted := false
 	var lastErr error
 
-	for _, m := range res.members {
+	for i, m := range res.members {
 		if ctx.Err() != nil {
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Génération interrompue._"})
 			return
@@ -393,13 +429,30 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			"local": res.local, "fallback": res.fallback,
 		}})
 
-		resp, err := p.Stream(ctx, provider.Request{
+		// Recherche web native du provider (OpenRouter, DeepSeek) : le natif
+		// cherche pendant la generation ; les outils web_search/web_fetch
+		// deviennent redondants pour ce membre.
+		native := false
+		if !nativeOff {
+			if i == 0 {
+				native = nativePrimary
+			} else {
+				native = e.useNativeWebSearch(in, m.Provider, m.Model)
+			}
+		}
+		req := provider.Request{
 			Model:           m.Model,
 			Messages:        msgs,
 			Temperature:     0.7,
+			MaxTokens:       in.MaxTokens,
 			EnableReasoning: in.Think,
 			ReasoningEffort: resolveEffort(false, in.Think, in.Text, in.Effort),
-		}, func(ev provider.Event) bool {
+		}
+		if native {
+			req.Extra = nativeWebExtraFor(m.Provider)
+			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
+		}
+		resp, err := p.Stream(ctx, req, func(ev provider.Event) bool {
 			if ev.Reasoning != "" && in.Think {
 				c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})
 			}
@@ -417,6 +470,9 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			return true
 		})
 		if err == nil {
+			if native {
+				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
+			}
 			c.appendAssistant(epoch, resp.Content)
 			return
 		}
@@ -428,6 +484,21 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		if emitted {
 			c.appendDelta(epoch, map[string]any{"error": err.Error()})
 			return
+		}
+		// Repli natif -> outils : la recherche native a echoue avant toute
+		// emission et le mode "auto" autorise les outils. On ferme l'indicateur
+		// natif, on fait une seule pre-recherche locale, puis les membres
+		// suivants tournent sans natif (pas de double recherche).
+		if native && !webDone && e.webToolsFor(in) {
+			c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(nil, true)})
+			if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
+				msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
+			}
+			webDone = true
+			nativeOff = true
+			// Le natif est desactive : la directive ne doit plus parler de
+			// recherche native pour les membres suivants.
+			msgs = replaceWebDirective(msgs, searchDirective(true, true), searchDirective(true, false))
 		}
 	}
 	if lastErr == nil {

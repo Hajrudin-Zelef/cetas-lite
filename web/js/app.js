@@ -1,44 +1,83 @@
-import { initAuth } from "./auth.js";
+import { api, getToken, clearSession, getUser } from "./api.js";
+import { initAuth, showLogin } from "./auth.js";
+import { initSidebar } from "./sidebar.js";
 import { initChat } from "./chat.js";
-import { initConversations } from "./conversations.js";
 import { initModels } from "./model-select.js";
-import { initSettings } from "./settings.js";
-import { initTheme } from "./theme.js";
+import { initRightPanel } from "./right-panel.js";
+import { initModals } from "./modals.js";
 import { initAgents } from "./agents.js";
 import { initTerminal } from "./terminal.js";
+import { initMetrics } from "./metrics.js";
 
-initTheme();
+const SPLASH_MIN_MS = 1400;
 
-initAuth(async () => {
-  let reloadModels = null;
+function hideSplash() {
+  const sp = document.getElementById("kiro-splash");
+  if (!sp) return;
+  sp.classList.add("fading-out");
+  setTimeout(() => sp.remove(), 600);
+}
+
+async function boot() {
+  const t0 = Date.now();
+  // Version + registration
   try {
-    reloadModels = await initModels();
+    const cfg = await api("/api/config");
+    const badge = document.getElementById("version-badge");
+    if (badge && cfg && cfg.version) badge.textContent = "v" + cfg.version;
+    window.CETAS_CONFIG = { registrationOpen: !!(cfg && cfg.registration_open) };
   } catch (e) {
-    console.error("chargement des alias impossible", e);
-  }
-  initSettings({ reloadModels });
-  initChat();
-  initConversations();
-  initAgents();
-  initTerminal();
-
-  const sidebar = document.getElementById("sidebar");
-  const toggle = document.getElementById("sidebar-toggle");
-  const mobile = window.matchMedia("(max-width: 768px)");
-
-  function applySidebar(open) {
-    sidebar.classList.toggle("collapsed", !open);
-    toggle.classList.toggle("collapsed", !open);
-    document.body.classList.toggle("sidebar-open", open && mobile.matches);
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    window.CETAS_CONFIG = { registrationOpen: false };
   }
 
-  applySidebar(!mobile.matches);
-  toggle.addEventListener("click", () => applySidebar(sidebar.classList.contains("collapsed")));
-  sidebar.addEventListener("click", (e) => {
-    if (mobile.matches && e.target.closest(".conv-item")) applySidebar(false);
+  // Auth
+  let me = null;
+  if (getToken()) {
+    try {
+      me = await api("/api/me");
+    } catch (e) {
+      me = null;
+    }
+  }
+  if (!me) {
+    const wait = Math.max(0, SPLASH_MIN_MS - (Date.now() - t0));
+    setTimeout(() => {
+      hideSplash();
+      showLogin();
+    }, wait);
+    initAuth(() => boot());
+    return;
+  }
+
+  // Session OK — init des modules
+  const initials = document.getElementById("user-avatar-initials");
+  const uname = (me && me.username) || getUser().username || "?";
+  if (initials) initials.textContent = String(uname).slice(0, 2).toUpperCase();
+
+  try {
+    initSidebar();
+    initModels();
+    initChat();
+    initRightPanel();
+    initModals();
+    initAgents();
+    initTerminal();
+    initMetrics();
+  } catch (e) {
+    console.error("[app] init modules:", e);
+  }
+
+  const wait = Math.max(0, SPLASH_MIN_MS - (Date.now() - t0));
+  setTimeout(hideSplash, wait);
+
+  window.addEventListener("cetas:unauthorized", () => {
+    clearSession();
+    showLogin();
   });
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") applySidebar(false);
-  });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}

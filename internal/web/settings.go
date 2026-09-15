@@ -8,13 +8,18 @@ import (
 )
 
 type uiSettings struct {
-	Theme           string `json:"theme"`
-	Family          string `json:"family"`
-	Mode            string `json:"mode"`
-	WebDefault      bool   `json:"web_default"`
-	MCPDefault      *bool  `json:"mcp_default,omitempty"`
+	Theme      string `json:"theme"`
+	Family     string `json:"family"`
+	Mode       string `json:"mode"`
+	AppMode    string `json:"app_mode"`
+	WebDefault bool   `json:"web_default"`
+	MCPDefault *bool  `json:"mcp_default,omitempty"`
+	// WebSearchMode : "auto" (defaut), "natif", "outils" ou "off".
+	WebSearchMode   string `json:"websearch_mode"`
 	ThinkingDefault bool   `json:"thinking_default"`
 	ThinkingEffort  string `json:"thinking_effort"`
+	// MaxTokens : tokens max par reponse (300..32768, defaut 4096).
+	MaxTokens int `json:"max_tokens"`
 }
 
 func validEffort(e string) bool {
@@ -26,12 +31,35 @@ func validEffort(e string) bool {
 }
 
 func defaultUISettings() uiSettings {
-	return uiSettings{Theme: "ocean", Family: "samagent-n4", Mode: "standard"}
+	return uiSettings{Theme: "ocean", Family: "samagent-n4", Mode: "standard", AppMode: "chat", WebSearchMode: "auto", MaxTokens: 4096}
+}
+
+func validAppMode(m string) bool {
+	return m == "chat" || m == "agent"
+}
+
+// clampMaxTokensSetting borne le reglage "tokens max par reponse".
+func clampMaxTokensSetting(n int) int {
+	if n < 300 {
+		return 300
+	}
+	if n > 32768 {
+		return 32768
+	}
+	return n
 }
 
 func validTheme(t string) bool {
 	switch t {
 	case "ocean", "sombre", "clair":
+		return true
+	}
+	return false
+}
+
+func validWebSearchMode(m string) bool {
+	switch m {
+	case "", "auto", "natif", "outils", "off":
 		return true
 	}
 	return false
@@ -47,9 +75,19 @@ func (s *Server) storedSettings(user string) uiSettings {
 	if !validTheme(out.Theme) {
 		out.Theme = defaultUISettings().Theme
 	}
+	if !validAppMode(out.AppMode) {
+		out.AppMode = defaultUISettings().AppMode
+	}
+	if !validWebSearchMode(out.WebSearchMode) {
+		out.WebSearchMode = "auto"
+	}
 	if out.ThinkingEffort == "" || !validEffort(out.ThinkingEffort) {
 		out.ThinkingEffort = "default"
 	}
+	if out.MaxTokens <= 0 {
+		out.MaxTokens = defaultUISettings().MaxTokens
+	}
+	out.MaxTokens = clampMaxTokensSetting(out.MaxTokens)
 	return out
 }
 
@@ -72,10 +110,13 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		Theme           *string `json:"theme"`
 		Family          *string `json:"family"`
 		Mode            *string `json:"mode"`
+		AppMode         *string `json:"app_mode"`
 		WebDefault      *bool   `json:"web_default"`
 		MCPDefault      *bool   `json:"mcp_default"`
+		WebSearchMode   *string `json:"websearch_mode"`
 		ThinkingDefault *bool   `json:"thinking_default"`
 		ThinkingEffort  *string `json:"thinking_effort"`
+		MaxTokens       *int    `json:"max_tokens"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -95,8 +136,25 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 	if body.Mode != nil {
 		cur.Mode = *body.Mode
 	}
+	if body.AppMode != nil {
+		if !validAppMode(*body.AppMode) {
+			writeError(w, http.StatusBadRequest, "mode applicatif invalide")
+			return
+		}
+		cur.AppMode = *body.AppMode
+	}
 	if body.WebDefault != nil {
 		cur.WebDefault = *body.WebDefault
+	}
+	if body.WebSearchMode != nil {
+		if !validWebSearchMode(*body.WebSearchMode) {
+			writeError(w, http.StatusBadRequest, "websearch_mode invalide (auto|natif|outils|off)")
+			return
+		}
+		cur.WebSearchMode = *body.WebSearchMode
+		if cur.WebSearchMode == "" {
+			cur.WebSearchMode = "auto"
+		}
 	}
 	if body.MCPDefault != nil {
 		cur.MCPDefault = body.MCPDefault
@@ -110,6 +168,13 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		cur.ThinkingEffort = *body.ThinkingEffort
+	}
+	if body.MaxTokens != nil {
+		if *body.MaxTokens < 300 || *body.MaxTokens > 32768 {
+			writeError(w, http.StatusBadRequest, "max_tokens invalide (300..32768)")
+			return
+		}
+		cur.MaxTokens = *body.MaxTokens
 	}
 	if cur.Family != "" && cur.Mode != "" {
 		if _, ok := alias.Resolve(s.engine.Families(), cur.Family, cur.Mode); !ok {

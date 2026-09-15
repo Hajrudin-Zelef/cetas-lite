@@ -2,239 +2,867 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="color-scheme" content="light dark">
 <title>Cetas Lite</title>
-<link rel="icon" type="image/png" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" href="/images/Cetas42.png">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cetas Lite">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="stylesheet" href="/css/cetas.css">
-<link rel="stylesheet" href="/css/cetas-ocean.css">
-<link rel="stylesheet" href="/css/cetas-lite.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+<link rel="stylesheet" href="/css/ref/base/variables.css">
+<link rel="stylesheet" href="/css/ref/base/layout.css">
+<link rel="stylesheet" href="/css/ref/features/chat.css">
+<link rel="stylesheet" href="/css/ref/features/logs-events.css">
+<link rel="stylesheet" href="/css/ref/components/components.css">
+<link rel="stylesheet" href="/css/ref/components/canvas.css">
+<link rel="stylesheet" href="/css/ref/components/catalog.css">
+<link rel="stylesheet" href="/css/ref/components/storage.css">
+<link rel="stylesheet" href="/css/ref/components/menu.css">
+<link rel="stylesheet" href="/css/ref/themes/ocean.css">
+<link rel="stylesheet" href="/css/ref/ocean.css">
+<link rel="stylesheet" href="/js/vendor/highlight-github-dark.min.css">
 <link rel="stylesheet" href="/css/xterm.css">
+<link rel="stylesheet" href="/css/features/agents-terminal.css">
+<link rel="stylesheet" href="/css/features/marex-agents.css">
+<link rel="stylesheet" href="/css/features/mx-modes.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/cetas-lite.css">
 <script src="/js/theme-init.js"></script>
 </head>
 <body class="ocean-theme">
+<svg style="display:none" aria-hidden="true"><use href="/images/icons.svg"/></svg>
 
-<div id="login-overlay" class="login-overlay">
-  <div class="login-card">
-    <img class="login-logo" src="/images/Cetas42.png" alt="Cetas Lite">
-    <h1 class="login-title">Cetas Lite</h1>
-    <p class="login-subtitle">Assistant IA auto-heberge</p>
-    <form id="login-form" class="login-form">
-      <div class="login-field">
-        <label for="login-username">Nom d'utilisateur</label>
-        <input type="text" id="login-username" autocomplete="username" placeholder="utilisateur" required>
-      </div>
-      <div class="login-field">
-        <label for="login-password">Mot de passe</label>
-        <input type="password" id="login-password" autocomplete="current-password" placeholder="........" required>
-      </div>
-      <div id="login-error" class="login-error" hidden></div>
-      <button type="submit" id="login-submit" class="login-submit">Se connecter</button>
-    </form>
-    <button type="button" id="login-toggle" class="login-toggle">Creer un compte</button>
-  </div>
+<!-- Splash -->
+<div id="kiro-splash" class="kiro-splash" aria-hidden="true">
+    <img src="/images/Cetas42.png" alt="" class="kiro-splash-logo">
+    <p class="kiro-splash-text">Bienvenue sur Cetas Lite !</p>
+    <div class="kiro-splash-spinner" aria-hidden="true"></div>
 </div>
 
-<button id="sidebar-toggle" class="sidebar-toggle" title="Masquer le panneau" aria-label="Ouvrir ou fermer le panneau" aria-controls="sidebar" aria-expanded="true">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-</button>
-
-<aside class="sidebar" id="sidebar">
-  <h1 class="sidebar-title">
-    <img src="/images/Cetas42.png" class="sidebar-logo" alt="Cetas Lite">
-    Cetas Lite
-  </h1>
-  <span class="sidebar-credit">Kouassi Marius</span>
-
-  <button id="new-chat-btn" class="new-chat-btn">Nouvelle conversation</button>
-
-  <div class="sidebar-tools">
-    <button id="agents-btn" class="tool-btn" type="button" title="Agents parallèles" aria-label="Agents parallèles">🤖 Agents</button>
-    <button id="terminal-btn" class="tool-btn" type="button" title="Terminal intégré" aria-label="Terminal intégré">⌨️ Terminal</button>
-  </div>
-
-  <div class="conv-section">
-    <div class="conv-head">
-      <span class="conv-head-label">Conversations</span>
-      <button type="button" id="export-btn" class="icon-btn" title="Exporter la conversation active (Markdown)" aria-label="Exporter la conversation active">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      </button>
+<!-- Overlay de connexion -->
+<div id="login-overlay" class="login-overlay" style="display:none">
+    <div class="login-card">
+        <img src="/images/Cetas42.png" alt="Cetas Lite" class="login-logo">
+        <h1 class="login-title">Cetas Lite</h1>
+        <p class="login-subtitle">Assistant IA auto-hébergé</p>
+        <form id="login-form" class="login-form">
+            <div class="login-field">
+                <label for="login-username">Nom d'utilisateur</label>
+                <input type="text" id="login-username" autocomplete="username" placeholder="utilisateur">
+            </div>
+            <div class="login-field">
+                <label for="login-password">Mot de passe</label>
+                <input type="password" id="login-password" autocomplete="current-password" placeholder="••••••••">
+            </div>
+            <div id="login-error" class="login-error" style="display:none"></div>
+            <button type="submit" id="login-btn" class="login-btn">Se connecter</button>
+            <div class="login-footer">
+                <a href="#" id="login-mode-toggle" class="login-forgot">Créer un compte</a>
+            </div>
+        </form>
     </div>
-    <div id="conv-list" class="conv-list"></div>
-  </div>
+</div>
 
-  <div class="user-menu-wrapper">
-    <span class="user-avatar-initials" id="user-initials"></span>
-    <span id="user-name"></span>
-    <button type="button" id="settings-btn" class="sidebar-config-btn" title="Configuration" aria-label="Configuration">
-      <svg width="16" height="16" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-settings"/></svg>
-    </button>
-    <button type="button" id="logout-btn" class="sidebar-config-btn" title="Se deconnecter" aria-label="Se deconnecter">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-    </button>
-  </div>
+<!-- Barre latérale -->
+<button id="sidebar-toggle" class="sidebar-toggle" title="Masquer le panneau">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+</button>
+<aside class="sidebar" id="sidebar">
+    <h1 class="sidebar-title"><img src="/images/Cetas42.png" class="sidebar-logo" alt="Cetas Lite"> Cetas Lite <span class="version-badge" id="version-badge"></span></h1>
+    <span class="sidebar-credit">Assistant IA auto-hébergé</span>
+    <div class="dev-modules">
+        <button class="dev-module-btn" data-module="agents">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>Agents</button>
+        <button class="dev-module-btn" data-module="terminal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Terminal</button>
+        <button class="dev-module-btn" data-module="plugins">Plugins</button>
+        <button class="dev-module-btn" data-module="competences">Compétences</button>
+    </div>
+    <div id="dev-toast" class="dev-toast" style="display:none">🚧 Développement</div>
+    <button id="new-chat-btn" class="new-chat-btn">Nouvelle conversation</button>
+
+    <div class="fav-section" id="fav-section" style="display:none">
+        <div class="fav-header">
+            <span class="fav-header-icon">★</span>
+            <span class="fav-header-label">Favoris</span>
+        </div>
+        <div id="fav-list" class="fav-list"></div>
+    </div>
+
+    <div id="sp-list" style="display:none"></div>
+    <div id="pr-list" style="display:none"></div>
+
+    <div class="conv-section">
+        <div class="cat-select-row">
+            <div id="cat-select" class="cat-select-custom">
+                <span class="cat-select-label">Toutes les catégories</span>
+                <svg class="cat-select-arrow" width="8" height="8" viewBox="0 0 8 8"><path d="M1 3 L4 6 L7 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <button id="cat-manage-btn" class="cat-manage-btn" title="Gérer les catégories">
+                <svg width="14" height="14" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-settings"/></svg>
+            </button>
+        </div>
+        <div id="cat-select-dropdown" class="cat-select-dropdown" style="display:none"></div>
+        <input type="text" id="conv-search" class="conv-search" placeholder="Rechercher...">
+        <div class="conv-list-container">
+            <div id="conv-list" class="conv-list"><div class="conv-list-loading"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div></div>
+        </div>
+    </div>
+
+    <div class="sb-metrics" id="sb-metrics">
+        <div class="sb-metrics-title">Métriques</div>
+        <div class="sb-metric sb-metric-net">
+            <span class="sb-metric-label">Modèle</span>
+            <span class="sb-metric-val" id="sb-m-model-val" title="Modèle sélectionné · tokens consommés ce tour">—</span>
+        </div>
+        <div class="sb-metric">
+            <span class="sb-metric-label">CPU</span>
+            <div class="sb-metric-bar"><div class="sb-metric-fill" id="sb-m-cpu-fill"></div></div>
+            <span class="sb-metric-val" id="sb-m-cpu-val">—</span>
+        </div>
+        <div class="sb-metric">
+            <span class="sb-metric-label">RAM</span>
+            <div class="sb-metric-bar"><div class="sb-metric-fill" id="sb-m-ram-fill"></div></div>
+            <span class="sb-metric-val" id="sb-m-ram-val">—</span>
+        </div>
+        <div class="sb-metric">
+            <span class="sb-metric-label">Disque</span>
+            <div class="sb-metric-bar"><div class="sb-metric-fill" id="sb-m-disk-fill"></div></div>
+            <span class="sb-metric-val" id="sb-m-disk-val">—</span>
+        </div>
+        <div class="sb-metric sb-metric-net">
+            <span class="sb-metric-label">Réseau</span>
+            <span class="sb-metric-val" id="sb-m-net-val" title="Débit réseau (↓ réception / ↑ envoi)">—</span>
+        </div>
+    </div>
+
+    <div class="user-menu-wrapper">
+        <div style="position:relative">
+            <button id="user-avatar-btn" class="user-avatar-btn" title="Menu utilisateur">
+                <span id="user-avatar-initials" class="user-avatar-initials"></span>
+            </button>
+            <div id="user-menu-dropdown" class="user-menu-dropdown" style="display:none">
+                <button id="sidebar-roles-btn" class="user-menu-item" title="Gérer les rôles enregistrés">
+                    <svg width="14" height="14" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-user"/></svg>
+                    Rôles
+                </button>
+                <button id="sidebar-prompts-btn" class="user-menu-item" title="Gérer les prompts enregistrés">
+                    <svg width="14" height="14" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-document"/></svg>
+                    Prompts
+                </button>
+                <button id="dashboard-btn" class="user-menu-item" title="Sauvegarder ou importer une sauvegarde">
+                    <svg width="14" height="14" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-save"/></svg>
+                    Sauvegardes
+                </button>
+                <button id="sidebar-faq-btn" class="user-menu-item" title="Foire aux questions">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    FAQ
+                </button>
+                <button id="theme-cycle-btn" class="user-menu-item" title="Changer de thème">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    Thème
+                </button>
+                <button id="logout-btn" class="user-menu-item user-menu-item-logout" title="Se déconnecter">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Déconnexion
+                </button>
+            </div>
+        </div>
+        <button id="apikeys-btn" class="sidebar-config-btn" title="Configuration">
+            <svg width="16" height="16" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-settings"/></svg>
+        </button>
+        <button id="clear-all-btn" class="sidebar-config-btn" title="Effacer toutes les conversations" style="color:var(--danger,#dc2626);margin-top:4px">
+            <svg width="16" height="16" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-trash"/></svg>
+        </button>
+        <input type="file" id="import-file-input" accept=".json" hidden>
+    </div>
 </aside>
 
-<main class="main" id="app" hidden>
-  <div id="chat-log" class="chat-container" role="log" aria-live="polite" aria-relevant="additions text">
-    <div class="empty-chat-placeholder" id="empty-chat">
-      <img src="/images/Cetas42.png" alt="Cetas Lite" class="empty-chat-logo">
-      <p class="empty-chat-text">Choisis un modele dans le menu +, puis pose ta question. Le mode Code active les outils.</p>
-    </div>
-  </div>
-
-  <div class="token-bar" id="token-bar">
-    <span id="stats-badge" hidden></span>
-    <span id="route-badge" hidden></span>
-  </div>
-
-  <form class="input-area" id="composer">
-    <div id="attach-chips" class="attach-chips" hidden></div>
-    <div class="input-row">
-      <div class="input-wrapper">
-        <button type="button" id="plus-menu-btn" class="input-icon-btn" title="Plus d'options" aria-label="Plus d'options">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <div class="input-content">
-          <div class="input-line-1">
-            <textarea id="prompt-input" class="prompt-input" rows="1" placeholder="Ecrivez votre message..."></textarea>
-          </div>
-          <div class="input-line-2">
-            <div class="input-line-2-left">
-              <button type="button" id="attach-btn" class="input-icon-btn" title="Joindre un document" aria-label="Joindre un document">
-                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-attach"/></svg>
-              </button>
-              <button type="button" id="web-toggle" class="input-icon-btn" title="Recherche web" aria-label="Recherche web" aria-pressed="false">
-                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-globe"/></svg>
-              </button>
-              <button type="button" id="mcp-toggle" class="input-icon-btn" title="Outils MCP" aria-label="Outils MCP" aria-pressed="false" hidden>MCP</button>
-              <button type="button" id="thinking-toggle" class="input-icon-btn" title="Mode Reflexion" aria-label="Mode Reflexion" aria-pressed="false">
-                <img src="/images/cetas-thinking.png" alt="Thinking" width="18" height="18" style="border-radius:3px">
-              </button>
-              <span id="agent-toggle" class="agent-pill" hidden>Agent</span>
-              <button type="button" id="approve-toggle" class="input-icon-btn" title="Approbations : demander avant chaque ecriture/execution" aria-label="Approbations" aria-pressed="false" hidden>
-                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-shield"/></svg>
-              </button>
-              <button type="button" id="plan-toggle" class="input-icon-btn" title="Mode plan : valider le plan avant execution" aria-label="Mode plan" aria-pressed="false" hidden>
-                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-plan"/></svg>
-              </button>
+<!-- Zone principale -->
+    <main class="main">
+        <div id="budget-alert-overlay" class="budget-alert-overlay" style="display:none">
+            <div class="budget-alert-popup">
+                <div class="budget-alert-icon">⚠️</div>
+                <div id="budget-alert-text" class="budget-alert-text"></div>
+                <button id="budget-alert-close" class="budget-alert-close">Compris</button>
             </div>
-            <div class="input-line-2-right">
-              <button type="button" id="mic-btn" class="mic-btn" title="Dicter" aria-label="Dicter">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="1" width="6" height="12" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-              </button>
-              <button type="button" id="stop-btn" class="stop-btn" hidden>Stop</button>
-              <button type="submit" id="send-btn" class="send-btn" title="Envoyer" aria-label="Envoyer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              </button>
+        </div>
+        <div id="clear-all-overlay" class="budget-alert-overlay" style="display:none">
+            <div class="budget-alert-popup" style="max-width:440px">
+                <div class="budget-alert-icon">🗑️</div>
+                <div class="budget-alert-text">
+                    <strong>Effacer TOUTES les conversations ?</strong><br><br>
+                    Cette action est <strong style="color:#ef4444">irréversible</strong>.
+                    Toutes vos conversations seront supprimées définitivement.
+                </div>
+                <div style="text-align:left;margin-bottom:10px">
+                    <label style="font-size:0.82rem;color:var(--text-secondary)">Recopiez ce code pour confirmer :<br><strong id="clear-all-code" style="font-family:monospace;letter-spacing:3px;font-size:1.2rem;color:var(--text)"></strong></label>
+                    <input type="text" id="clear-all-code-input" class="sp-modal-input" placeholder="Code à 6 caractères" maxlength="6" style="width:100%;box-sizing:border-box;margin-top:8px;font-family:monospace;letter-spacing:2px;font-size:1.1rem;text-align:center">
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end">
+                    <button id="clear-all-cancel" class="models-cancel-btn">Annuler</button>
+                    <button id="clear-all-confirm" class="models-save-btn" style="background:var(--danger,#ef4444);color:#fff;border-color:var(--danger,#ef4444)" disabled>Effacer tout</button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+        <div id="no-model-alert-overlay" class="budget-alert-overlay" style="display:none">
+            <div class="budget-alert-popup">
+                <div class="budget-alert-icon">⚠️</div>
+                <div id="no-model-alert-text" class="budget-alert-text"></div>
+                <button id="no-model-alert-close" class="budget-alert-close">Compris</button>
+            </div>
+        </div>
+        <!-- Custom Alert / Confirm -->
+        <div id="custom-dialog-overlay" class="custom-dialog-overlay" style="display:none">
+            <div class="custom-dialog">
+                <div id="custom-dialog-icon" class="custom-dialog-icon"></div>
+                <div id="custom-dialog-message" class="custom-dialog-message"></div>
+                <div id="custom-dialog-actions" class="custom-dialog-actions">
+                    <button id="custom-dialog-cancel" class="custom-dialog-btn custom-dialog-btn-cancel">Annuler</button>
+                    <button id="custom-dialog-ok" class="custom-dialog-btn custom-dialog-btn-ok">OK</button>
+                </div>
+            </div>
+        </div>
+        <div id="chat-container" class="chat-container">
+            <div id="empty-chat-placeholder" class="empty-chat-placeholder">
+                <img src="/images/Cetas42.png" alt="Cetas" class="empty-chat-logo">
+                <p class="empty-chat-text">Sélectionnez une conversation ou démarrez-en une nouvelle en saisissant votre message ci-dessous.</p>
+                <div id="empty-chat-category" class="empty-chat-category" style="display:none"></div>
+            </div>
+        </div>
+        <div id="model-alert" class="model-alert" style="display:none">
+            <span id="model-alert-text">Veuillez choisir un modèle (texte ou image) avant d'envoyer.</span>
+            <button id="model-alert-close" class="model-alert-close" type="button" aria-label="Fermer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="token-bar" id="token-bar">
+            <div class="export-btns-group">
+                <div class="share-btn-wrapper" style="position:relative">
+                    <button id="share-btn" class="export-action-btn" title="Télécharger" style="display:none">
+                        <svg width="16" height="16" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-download"/></svg>
+                    </button>
+                    <div id="share-menu" class="share-menu">
+                        <div class="share-menu-item" id="share-menu-md">Télécharger la conversation au format Markdown</div>
+                        <div class="share-menu-item" id="share-menu-html">Télécharger la conversation au format HTML</div>
+                    </div>
+                </div>
+                <button id="summary-btn" class="export-action-btn" title="Résumé IA pour nouvelle conversation" style="display:none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/><line x1="4" y1="18" x2="10" y2="18"/></svg>
+                </button>
+            </div>
+            <span id="token-info"></span>
+            <span id="cost-info"></span>
+        </div>
+
+        <div class="input-area">
+            <div id="attach-preview"></div>
+            <div class="turn-token-line" id="turn-token-line" style="display:none">
+                <span id="turn-token-io">↑ 0 (input) ↓ 0 (output) Tokens</span>
+                <span class="turn-token-sep">·</span>
+                <span id="turn-token-cost">Coût estimé : —</span>
+            </div>
+            <div class="input-row">
+            <div class="input-wrapper">
+                <input type="file" id="file-input" accept="image/*,.pdf,.txt,.md,.csv,.json,.xml,.log,.js,.py,.html,.css" multiple hidden>
+                <!-- model-select conservé caché pour compatibilité JS (STATE, _customValue, etc.) -->
+                <select id="model-select" class="model-select" style="display:none"><option value="">—</option></select>
+                <!-- Contenu principal (textarea + ligne 2) à droite du sélecteur -->
+                <div class="input-content">
+                    <!-- Ligne 1 : textarea -->
+                    <div class="input-line-1">
+                        <textarea
+                            id="prompt-input"
+                            class="prompt-input"
+                            placeholder="Écrivez votre message..."
+                            rows="1"
+                        ></textarea>
+                        <div id="ctx-counter" class="ctx-counter-input" style="display:none"></div>
+                    </div>
+                    <!-- Ligne 2 -->
+                    <div class="input-line-2">
+                        <div class="input-line-2-left">
+                            <button id="plus-menu-btn" class="input-icon-btn" title="Plus d'options"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                            <button id="attach-btn" title="Joindre un fichier" style="display:none"><svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-attach"/></svg></button>
+                            <button id="web-search-btn" class="input-icon-btn custom-select-info" title="Recherche web"><svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-globe"/></svg></button>
+                            <button id="thinking-toggle-btn" class="input-icon-btn custom-select-info" title="Mode Réflexion"><img src="/images/cetas-thinking.png" alt="Thinking" width="18" height="18" style="border-radius:3px"></button>
+                            <button id="canvas-toggle-btn" class="input-icon-btn" title="Activer le Canvas pour cette conversation" style="display:none"><svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-canvas"/></svg></button>
+                        </div>
+                        <div class="input-line-2-center">
+                            <button id="toolbar-insert-btn" class="prompt-toolbar-btn" title="Insérer un prompt enregistré" style="display:none">
+                                <svg width="14" height="14" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-document"/></svg>
+                                <span class="btn-label">Insérer un prompt</span>
+                            </button>
+                            <button id="toolbar-enhance-btn" class="prompt-toolbar-btn" title="Améliorer le prompt" style="display:none">
+                                <svg width="14" height="14" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-sparkle"/></svg>
+                                <span class="btn-label">Améliorer le prompt</span>
+                            </button>
+                            <button id="toolbar-save-btn" class="prompt-toolbar-btn" title="Enregistrer le prompt" style="display:none">
+                                <svg width="14" height="14" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-save"/></svg>
+                                <span class="btn-label">Enregistrer le prompt</span>
+                            </button>
+                        </div>
+                        <div class="input-line-2-right">
+                            <button id="stop-btn" class="input-icon-btn" title="Arrêter la génération" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+                            <button id="mobile-send-btn" class="mobile-send-btn" title="Envoyer" style="display:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+                            <button id="mic-btn" class="mic-btn" title="Dicter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="1" width="6" height="12" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+                        </div>
+                    </div>
+                </div>
+                <div id="prompt-picker-dropdown-wrapper" class="prompt-picker-dropdown-wrapper" style="display:none"><div id="prompt-picker-dropdown" class="prompt-picker-dropdown"></div></div>
+                <!-- Éléments cachés conservés pour compatibilité -->
+                <button id="enhance-prompt-btn" class="enhance-prompt-btn" style="display:none!important" disabled></button>
+                <button id="prompt-picker-btn" style="display:none"></button>
+                <button id="send-btn" class="send-btn" style="display:none!important" disabled></button>
+                <div id="prompt-toolbar" class="prompt-toolbar" style="display:none!important"></div>
+            </div>
+            <div class="mode-switch" role="tablist" aria-label="Mode de conversation">
+                <button type="button" id="mode-chat-btn" class="mode-switch-btn active" data-mode="chat" role="tab" aria-selected="true" title="Chat général : conversation simple, sans outils">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>Chat</span>
+                </button>
+                <button type="button" id="mode-agent-btn" class="mode-switch-btn" data-mode="agent" role="tab" aria-selected="false" title="Agent : utilise des outils (lecture, écriture, exécution) avec votre approbation">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                    <span>Agent</span>
+                </button>
+            </div>
+            <button id="chat-header-settings" class="input-settings-btn" title="Réglages de la conversation">
+                <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-settings"/></svg>
+            </button>
+            </div>
+            <div id="plus-menu-dropdown" class="plus-menu-dropdown" style="display:none">
+                <!-- Section Fichiers -->
+                <button type="button" class="plus-menu-item" data-action="attach">
+                    <span class="plus-menu-item-icon"><svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-attach"/></svg></span>
+                    <span class="plus-menu-item-text">
+                        <span class="plus-menu-item-title">Ajouter des fichiers</span>
+                        <span class="plus-menu-item-desc">Images, PDF, .md, .txt, .csv…</span>
+                    </span>
+                </button>
+                <div class="plus-menu-sep"></div>
+                <!-- Section Modèles -->
+                <div class="plus-menu-section" id="plus-model-section">
+                    <div class="plus-menu-section-title">Modèles</div>
+                    <div class="plus-model-tabs" id="plus-model-tabs">
+                        <button type="button" class="plus-model-tab active" data-tab="text">Texte</button>
+                        <button type="button" class="plus-model-tab" data-tab="image">Image</button>
+                        <button type="button" class="plus-model-tab" data-tab="search">Recherche</button>
+                    </div>
+                    <div id="plus-model-list" class="plus-model-list"></div>
+                </div>
+                <div class="plus-menu-sep"></div>
+                <!-- Section Mode Réflexion -->
+                <div class="plus-menu-section">
+                    <div class="plus-menu-row">
+                        <span class="plus-menu-row-label">
+                            <span class="plus-menu-row-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></span>
+                            Mode Réflexion
+                        </span>
+                        <label class="plus-menu-toggle" id="plus-reflection-toggle-label">
+                            <input type="checkbox" id="plus-reflection-toggle">
+                            <span class="plus-menu-toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="plus-menu-sep"></div>
+                <!-- Section Effort -->
+                <div class="plus-menu-section">
+                    <div class="plus-menu-section-title">Effort</div>
+                    <div class="plus-menu-pills" id="plus-effort-pills">
+                        <button type="button" class="plus-menu-pill" data-effort="default">Défaut <span class="plus-menu-pill-hint">Auto</span></button>
+                        <button type="button" class="plus-menu-pill" data-effort="low">Faible <span class="plus-menu-pill-hint">Rapide</span></button>
+                        <button type="button" class="plus-menu-pill active" data-effort="medium">Moyen <span class="plus-menu-pill-hint">Équilibré</span></button>
+                        <button type="button" class="plus-menu-pill" data-effort="high">Max <span class="plus-menu-pill-hint">Qualité</span></button>
+                    </div>
+                </div>
+                <div class="plus-menu-sep"></div>
+                <!-- Section Compétences -->
+                <div class="plus-menu-section">
+                    <div class="plus-menu-section-title">Compétences</div>
+                    <div id="plus-menu-skills" class="plus-menu-skills"></div>
+                </div>
+                <div class="plus-menu-sep"></div>
+                <!-- Section Recherche web -->
+                <div class="plus-menu-section">
+                    <div class="plus-menu-row">
+                        <span class="plus-menu-row-label">
+                            <span class="plus-menu-row-icon"><svg width="16" height="16" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-globe"/></svg></span>
+                            Recherche web
+                        </span>
+                        <label class="plus-menu-toggle" id="plus-websearch-toggle-label">
+                            <input type="checkbox" id="plus-websearch-toggle">
+                            <span class="plus-menu-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="plus-menu-pills plus-menu-pills-tight" id="plus-websearch-depth" style="display:none">
+                        <button type="button" class="plus-menu-pill active" data-depth="standard">Standard</button>
+                        <button type="button" class="plus-menu-pill" data-depth="deep">Approfondi</button>
+                    </div>
+                </div>
+                <div class="plus-menu-sep"></div>
+                <!-- Section Tokens max -->
+                <div class="plus-menu-section">
+                    <div class="plus-menu-section-title">Tokens max par réponse</div>
+                    <div class="plus-menu-row" style="flex-direction:column;gap:4px;padding:4px 0">
+                        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-secondary,#8b949e)"><span>300</span><span id="plus-max-tok-val" style="font-weight:600;color:var(--text)">32K</span><span>32K</span></div>
+                        <input type="range" id="plus-max-tok-slider" min="300" max="32768" step="100" value="32768" style="width:100%;accent-color:var(--accent,#2563eb)">
+                        <div style="font-size:10px;color:var(--text-secondary,#8b949e);text-align:center">Nombre max de tokens que l'IA peut générer par réponse</div>
+                    </div>
+                </div>
+            </div>
+            <span class="input-hint" id="input-hint"></span>
+        </div>
+    </main>
+
+<!-- Panneau droit : réglages de la conversation -->
+<aside class="right-panel" id="right-panel" style="display:none" hidden>
+    <div class="rp-panel-title">
+        Réglages de la conversation
     </div>
+    <div class="rp-tab-content active" id="rp-tab-general">
+        <div class="right-panel-section" id="rp-model-section">
+            <div class="right-panel-header">
+                <span class="right-panel-title">Modèle</span>
+            </div>
+            <div class="right-panel-select-row">
+                <select id="family-select" class="model-select" aria-label="Famille de modèles"></select>
+            </div>
+            <div class="right-panel-select-row" style="margin-top:8px">
+                <select id="mode-select" class="model-select" aria-label="Mode"></select>
+            </div>
+            <div id="agent-pill-row" style="margin-top:8px;display:none">
+                <span id="agent-toggle" class="agent-pill" title="Ce mode utilise l'agent avec outils">Agent</span>
+            </div>
+        </div>
 
-    <input type="file" id="attach-input" hidden multiple accept=".png,.jpg,.jpeg,.gif,.webp,.md,.markdown,.txt,.text,.log,.csv,.tsv,.json,.yaml,.yml,.toml,.ini,.cfg,.conf,.env,.py,.js,.mjs,.cjs,.ts,.tsx,.jsx,.go,.rs,.java,.kt,.c,.h,.cpp,.hpp,.cs,.rb,.php,.sh,.bash,.zsh,.sql,.xml,.css,.scss,.vue,.svelte,.swift,.pl,.lua,.r,.dart,.scala,.clj,.ex,.exs,.erl,.hs,.elm,.tf,.gradle,.properties,.pdf,.html,.htm">
+        <div class="right-panel-section" id="rp-approvals-section">
+            <div class="right-panel-header">
+                <span class="rp-title-group"><span class="right-panel-title">Approbations</span><span class="rp-hint-btn custom-select-info" data-tooltip="Demande votre validation avant que l'agent écrive, modifie ou exécute des commandes.">?</span></span>
+                <label class="plus-menu-toggle">
+                    <input type="checkbox" id="approve-toggle">
+                    <span class="plus-menu-toggle-slider"></span>
+                </label>
+            </div>
+        </div>
 
-    <div id="plus-menu-dropdown" class="plus-menu-dropdown" hidden>
-      <div class="plus-menu-section">
-        <div class="plus-menu-section-title">Modele</div>
-        <div class="plus-menu-row">
-          <select id="family-select" class="plus-menu-select" title="Famille"></select>
-          <select id="mode-select" class="plus-menu-select" title="Mode"></select>
+        <div class="right-panel-section" id="rp-plan-section">
+            <div class="right-panel-header">
+                <span class="rp-title-group"><span class="right-panel-title">Mode plan</span><span class="rp-hint-btn custom-select-info" data-tooltip="L'agent explore et propose un plan d'abord, sans modifier de fichiers, puis exécute après votre validation.">?</span></span>
+                <label class="plus-menu-toggle">
+                    <input type="checkbox" id="plan-toggle">
+                    <span class="plus-menu-toggle-slider"></span>
+                </label>
+            </div>
         </div>
-      </div>
-      <div class="plus-menu-sep"></div>
-      <div class="plus-menu-section">
-        <div class="plus-menu-section-title">Effort</div>
-        <div class="plus-menu-row">
-          <select id="effort-select" class="plus-menu-select">
-            <option value="default">Defaut</option>
-            <option value="low">Faible</option>
-            <option value="medium">Moyen</option>
-            <option value="high">Max</option>
-          </select>
-        </div>
-      </div>
-      <div class="plus-menu-sep"></div>
-      <div class="plus-menu-section">
-        <div class="plus-menu-row">
-          <span class="plus-menu-row-label">Reflexion</span>
-          <span id="thinking-state" class="plus-menu-state">Off</span>
-        </div>
-      </div>
-    </div>
-  </form>
-</main>
 
-<div id="settings-overlay" class="sp-modal-overlay" hidden>
-  <div class="sp-modal apikeys-modal">
-    <div class="apikeys-tabs" id="settings-tabs">
-      <button class="apikeys-tab active" data-tab="apimodeles">API et Modeles</button>
-      <button class="apikeys-tab" data-tab="models">Fonctionnalites</button>
-      <button class="apikeys-tab" data-tab="websearch">Recherche Web</button>
-      <button class="apikeys-tab" data-tab="appearance">Apparence</button>
-    </div>
-    <div class="apikeys-tab-content">
-      <button type="button" id="settings-close" class="apikeys-close-btn" title="Fermer">&times;</button>
+        <div class="right-panel-section" id="rp-role-section">
+            <div class="right-panel-header">
+                <span class="right-panel-title">Rôle</span>
+            </div>
+            <div class="right-panel-select-row">
+                <select id="sp-select" class="model-select">
+                    <option value="">Sélectionner un rôle enregistré</option>
+                </select>
+            </div>
+            <textarea id="sp-textarea" class="sp-textarea" placeholder="Sélectionnez un rôle (prompt système) ou renseignez-en un ici."></textarea>
+            <div class="right-panel-role-actions" id="rp-role-actions" style="display:none">
+                <button id="sp-apply-btn" class="rp-role-btn" title="Insérer dans la zone de saisie">
+                    <svg width="13" height="13" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-send"/></svg>
+                    Insérer dans la saisie
+                </button>
+            </div>
+        </div>
 
-      <div class="apikeys-panel active" id="panel-apimodeles">
-        <h3>API et Modeles</h3>
-        <p class="apikey-intro">Choisis une famille, puis compose la liste ordonnee des modeles par mode. Le premier est prioritaire (repli en cascade).</p>
-        <div class="apikeys-panel-body">
-          <div id="aliases-editor"></div>
+        <div class="right-panel-section" id="rp-web-section">
+            <div class="right-panel-header">
+                <span class="rp-title-group"><span class="right-panel-title">Recherche web</span><span class="rp-hint-btn custom-select-info" data-tooltip="Autorise l'agent à rechercher des informations à jour sur le web.">?</span></span>
+                <label class="plus-menu-toggle">
+                    <input type="checkbox" id="web-toggle">
+                    <span class="plus-menu-toggle-slider"></span>
+                </label>
+            </div>
         </div>
-        <div class="models-save-row">
-          <span id="aliases-status" class="settings-status"></span>
-          <button type="button" id="aliases-save" class="models-save-btn">Sauvegarder</button>
-        </div>
-      </div>
 
-      <div class="apikeys-panel" id="panel-models">
-        <h3>Fonctionnalites</h3>
-        <p class="apikey-intro">Coche les capacites reelles de chaque modele (vision, synthese vocale, transcription).</p>
-        <div class="apikeys-panel-body">
-          <div id="caps-panel" class="caps-panel"></div>
-          <div class="caps-add">
-            <input type="text" id="caps-add-input" class="sp-modal-input" placeholder="provider/model">
-            <button type="button" id="caps-add" class="small-btn">Ajouter</button>
-          </div>
+        <div class="right-panel-section" id="rp-mcp-section">
+            <div class="right-panel-header">
+                <span class="rp-title-group"><span class="right-panel-title">Serveurs MCP</span><span class="rp-hint-btn custom-select-info" data-tooltip="Expose les outils des serveurs MCP configurés à l'agent.">?</span></span>
+                <label class="plus-menu-toggle">
+                    <input type="checkbox" id="mcp-toggle">
+                    <span class="plus-menu-toggle-slider"></span>
+                </label>
+            </div>
+            <div id="mcp-status-line" class="rp-mcp-status" style="display:none"></div>
         </div>
-        <div class="models-save-row">
-          <span id="caps-status" class="settings-status"></span>
-          <button type="button" id="caps-save" class="models-save-btn">Sauvegarder</button>
-        </div>
-      </div>
 
-      <div class="apikeys-panel" id="panel-websearch">
-        <h3>Recherche Web</h3>
-        <p class="apikey-intro">Serveurs MCP connectes a l'agent (declares dans <code>mcp.json</code>).</p>
-        <div class="apikeys-panel-body">
-          <div id="mcp-panel" class="mcp-panel"></div>
-        </div>
-        <div class="models-save-row">
-          <button type="button" id="mcp-refresh" class="models-cancel-btn">Rafraichir</button>
-        </div>
-      </div>
-
-      <div class="apikeys-panel" id="panel-appearance">
-        <h3>Apparence</h3>
-        <p class="apikey-intro">Theme de l'interface.</p>
-        <div class="apikeys-panel-body">
-          <div class="audio-setting-row">
-            <label class="audio-setting-label" for="theme-select">Theme</label>
-            <select id="theme-select" class="audio-setting-select theme-select">
-              <option value="ocean">Ocean</option>
-              <option value="clair">Clair</option>
-              <option value="sombre">Sombre</option>
+        <div class="right-panel-section" id="rp-thinking-section">
+            <div class="right-panel-header">
+                <span class="rp-title-group"><span class="right-panel-title">Réflexion</span><span class="rp-hint-btn custom-select-info" data-tooltip="Active le mode réflexion pour des réponses plus approfondies.">?</span></span>
+                <label class="plus-menu-toggle">
+                    <input type="checkbox" id="thinking-toggle">
+                    <span class="plus-menu-toggle-slider"></span>
+                </label>
+            </div>
+            <div class="right-panel-header" style="margin-top:10px">
+                <span class="rp-title-group"><span class="right-panel-title">Effort</span></span>
+            </div>
+            <select id="effort-select" class="model-select rp-cat-select">
+                <option value="default">Défaut</option>
+                <option value="low">Faible</option>
+                <option value="medium">Moyen</option>
+                <option value="high">Élevé</option>
             </select>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</aside>
+
+<!-- Panneau Raisonnement : affiche le raisonnement du modele (slide-out droit) -->
+<aside class="reason-panel" id="reason-panel" aria-label="Raisonnement">
+    <div class="reason-panel-header">
+        <span class="reason-panel-title">
+            <span class="reason-spinner" id="reason-spinner" style="display:none"></span>
+            <span>Raisonnement</span>
+        </span>
+        <button class="reason-panel-close" id="reason-panel-close" aria-label="Fermer le panneau raisonnement">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <div class="reason-panel-body" id="reason-panel-body">
+        <div class="reason-panel-empty" id="reason-panel-empty">Le raisonnement du modèle s'affichera ici pendant la génération.</div>
+    </div>
+</aside>
+<button class="reason-panel-reopen" id="reason-panel-reopen" title="Afficher le raisonnement" style="display:none">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1.5z"/></svg>
+</button>
+    <!-- Modale Rôle -->
+    <div id="sp-modal-overlay" class="sp-modal-overlay" style="display:none">
+        <div class="sp-modal">
+            <h3 id="sp-modal-title">Nouveau rôle</h3>
+            <label class="sp-modal-label" for="sp-modal-nom">Nom</label>
+            <input type="text" id="sp-modal-nom" class="sp-modal-input" placeholder="Ex : Assistant technique" required>
+            <label class="sp-modal-label" for="sp-modal-contenu">Contenu</label>
+            <div class="sp-modal-textarea-wrap">
+                <textarea id="sp-modal-contenu" class="sp-modal-textarea" rows="8" placeholder="Tu es un assistant..." required></textarea>
+                <button id="sp-modal-optimize" class="sp-modal-enhance-inside"><svg width="12" height="12" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-sparkle"/></svg> Améliorer avec l'IA</button>
+            </div>
+            <div class="sp-modal-actions">
+                <button id="sp-modal-delete" class="cat-modal-delete-btn" style="display:none">Supprimer</button>
+                <span class="sp-modal-spacer"></span>
+                <button id="sp-modal-cancel" class="sp-modal-btn sp-modal-btn-cancel">&#8249; Retour</button>
+                <button id="sp-modal-save" class="sp-modal-btn sp-modal-btn-save">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Prompt enregistré -->
+    <div id="pr-modal-overlay" class="sp-modal-overlay" style="display:none">
+        <div class="sp-modal">
+            <h3 id="pr-modal-title">Nouveau Prompt</h3>
+            <label class="sp-modal-label" for="pr-modal-nom">Nom</label>
+            <input type="text" id="pr-modal-nom" class="sp-modal-input" placeholder="Ex : Résume ce texte" required>
+            <label class="sp-modal-label" for="pr-modal-contenu">Contenu</label>
+            <div class="sp-modal-textarea-wrap">
+                <textarea id="pr-modal-contenu" class="sp-modal-textarea" rows="8" placeholder="Résume le texte suivant en 3 points..." required></textarea>
+                <button id="pr-modal-enhance" class="sp-modal-enhance-inside"><svg width="12" height="12" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-sparkle"/></svg> Améliorer avec l'IA</button>
+            </div>
+            <div class="sp-modal-actions">
+                <button id="pr-modal-delete" class="cat-modal-delete-btn" style="display:none">Supprimer</button>
+                <span class="sp-modal-spacer"></span>
+                <button id="pr-modal-cancel" class="sp-modal-btn sp-modal-btn-cancel">&#8249; Retour</button>
+                <button id="pr-modal-save" class="sp-modal-btn sp-modal-btn-save">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="lightbox-overlay" class="lightbox-overlay" style="display:none">
+        <button id="lightbox-close" class="lightbox-close">&times;</button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    </div>
+
+    <div id="file-viewer-overlay" class="lightbox-overlay" style="display:none">
+        <button id="file-viewer-close" class="lightbox-close">&times;</button>
+        <div id="file-viewer-container" class="file-viewer-container">
+            <div id="file-viewer-title" class="file-viewer-title"></div>
+            <iframe id="file-viewer-iframe" class="file-viewer-iframe" sandbox="allow-scripts"></iframe>
+        </div>
+    </div>
+
+<!-- Modale Configuration -->
+
+    <!-- Modale Sauvegarde / Import-Export -->
+    <div id="save-modal-overlay" class="sp-modal-overlay" style="display:none">
+        <div class="sp-modal save-modal">
+            <button id="save-modal-close" class="save-modal-close-x" title="Fermer">&times;</button>
+            <div class="save-modal-header">
+                <div class="save-modal-icon-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24"><use href="images/icons.svg#icon-save"/></svg>
+                </div>
+                <h3>Sauvegarde des données</h3>
+            </div>
+            <div class="save-modal-warning">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="save-modal-warning-icon"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <p>Vos conversations sont stockées sur votre serveur Cetas Lite.</p>
+            </div>
+            <p class="save-modal-desc">Exportez régulièrement une sauvegarde pour ne rien perdre. Vous pourrez la réimporter à tout moment.</p>
+            <label class="save-modal-option" for="save-modal-include-keys">
+                <input type="checkbox" id="save-modal-include-keys">
+                <span>
+                    <strong>Inclure les clés API dans l'export</strong>
+                    <small>À n'activer que pour un usage personnel. Ne partagez jamais un fichier contenant vos clés API (cloud, forum, email…).</small>
+                </span>
+            </label>
+            <div class="save-modal-btns">
+                <button id="save-modal-export-btn" class="save-modal-action-btn save-modal-action-btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span class="save-modal-btn-content">
+                        <strong>Exporter</strong>
+                        <small>Télécharger un fichier de sauvegarde</small>
+                    </span>
+                </button>
+                <button id="save-modal-import-btn" class="save-modal-action-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24"><use href="images/icons.svg#icon-download"/></svg>
+                    <span class="save-modal-btn-content">
+                        <strong>Importer</strong>
+                        <small>Restaurer depuis un fichier</small>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Gestion des Rôles -->
+    <div id="roles-manage-overlay" class="sp-modal-overlay" style="display:none">
+        <div class="sp-modal manage-list-modal">
+            <div class="manage-list-header">
+                <h3>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Gestion des rôles
+                </h3>
+                <button id="roles-manage-close" class="cat-manage-close-btn" title="Fermer">&times;</button>
+            </div>
+            <div id="roles-manage-list" class="manage-list-items"></div>
+            <div class="manage-list-empty" id="roles-manage-empty" style="display:none">Aucun rôle enregistré</div>
+            <div class="manage-list-footer">
+                <button id="roles-manage-add" class="cat-manage-add-btn">+ Nouveau rôle</button>
+                <button id="roles-manage-import" class="cat-manage-add-btn cat-manage-add-btn-icon" title="Importer un rôle"><svg width="13" height="13" viewBox="0 0 24 24"><use href="images/icons.svg#icon-download"/></svg> Importer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Gestion des Prompts -->
+    <div id="prompts-manage-overlay" class="sp-modal-overlay" style="display:none">
+        <div class="sp-modal manage-list-modal">
+            <div class="manage-list-header">
+                <h3>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    Prompts enregistrés
+                </h3>
+                <button id="prompts-manage-close" class="cat-manage-close-btn" title="Fermer">&times;</button>
+            </div>
+            <div id="prompts-manage-list" class="manage-list-items"></div>
+            <div class="manage-list-empty" id="prompts-manage-empty" style="display:none">Aucun prompt enregistré</div>
+            <div class="manage-list-footer">
+                <button id="prompts-manage-add" class="cat-manage-add-btn">+ Nouveau prompt</button>
+                <button id="prompts-manage-import" class="cat-manage-add-btn cat-manage-add-btn-icon" title="Importer un prompt"><svg width="13" height="13" viewBox="0 0 24 24"><use href="images/icons.svg#icon-download"/></svg> Importer</button>
+            </div>
+            <input type="file" id="pr-import-file" accept=".json" hidden>
+        </div>
+    </div>
+
+    <!-- Modale Gestion des catégories -->
+    <div id="cat-modal-overlay" class="sp-modal-overlay" style="display:none">
+        <div class="sp-modal cat-manage-modal">
+            <!-- Vue liste -->
+            <div id="cat-manage-list-view">
+                <div class="cat-manage-header">
+                    <h3>Gestion des catégories</h3>
+                    <button id="cat-manage-close" class="cat-manage-close-btn" title="Fermer">&times;</button>
+                </div>
+                <div id="cat-manage-list" class="cat-manage-list"></div>
+                <button id="cat-manage-add-btn" class="cat-manage-add-btn">+ Nouvelle catégorie</button>
+            </div>
+            <!-- Vue édition -->
+            <div id="cat-manage-edit-view" style="display:none">
+                <div class="cat-manage-header">
+                    <h3 id="cat-modal-title">Nouvelle catégorie</h3>
+                </div>
+                <div class="cat-name-row-labels">
+                    <span class="sp-modal-label cat-label-emoji">Emoji</span>
+                    <span class="sp-modal-label">Nom</span>
+                </div>
+                <div class="cat-name-row">
+                    <div class="emoji-picker-wrapper">
+                        <button type="button" id="cat-modal-icone-btn" class="emoji-picker-btn" title="Choisir un emoji">
+                            <span id="cat-modal-icone-preview">?</span>
+                        </button>
+                        <input type="hidden" id="cat-modal-icone">
+                        <div id="emoji-picker" class="emoji-picker" style="display:none">
+                            <input type="text" id="emoji-search" class="emoji-search" placeholder="Rechercher...">
+                            <div id="emoji-tabs" class="emoji-tabs"></div>
+                            <div id="emoji-grid" class="emoji-grid"></div>
+                        </div>
+                    </div>
+                    <input type="text" id="cat-modal-nom" class="sp-modal-input" placeholder="Ex : Travail">
+                </div>
+                <label class="sp-modal-label">Couleur</label>
+                <div id="cat-color-grid" class="cat-color-grid"></div>
+                <div class="sp-modal-actions">
+                    <button id="cat-modal-delete" class="cat-modal-delete-btn" style="display:none">Supprimer</button>
+                    <span class="sp-modal-spacer"></span>
+                    <button id="cat-modal-back" class="sp-modal-btn sp-modal-btn-cancel">&#8249; Retour</button>
+                    <button id="cat-modal-cancel" class="sp-modal-btn sp-modal-btn-cancel" style="display:none">Annuler</button>
+                    <button id="cat-modal-save" class="sp-modal-btn sp-modal-btn-save">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="apikeys-modal-overlay" class="sp-modal-overlay" style="display:none">
+    <div class="sp-modal apikeys-modal">
+        <div class="apikeys-tabs">
+            <button class="apikeys-tab active" data-tab="apimodeles">API et Modèles</button>
+            <button class="apikeys-tab" data-tab="models">Fonctionnalités</button>
+            <button class="apikeys-tab" data-tab="connecteurs">Connecteurs</button>
+            <button class="apikeys-tab" data-tab="appearance">Apparence</button>
+            <div class="apikeys-tabs-spacer"></div>
+            <button class="apikeys-tab" data-tab="faq">FAQ</button>
+        </div>
+        <div class="apikeys-tab-content">
+            <button type="button" id="apikeys-close-btn" class="apikeys-close-btn" title="Fermer">&times;</button>
+            <!-- Panel API et Modèles -->
+            <div class="apikeys-panel active" id="panel-apimodeles">
+                <h3>API et Modèles</h3>
+                <p class="apikey-intro">Renseignez vos clés API pour activer les fournisseurs. Les clés sont chiffrées et stockées sur votre serveur Cetas Lite.</p>
+                <div class="apikeys-panel-body">
+                    <div id="providers-list" class="providers-list"></div>
+                </div>
+                <h3 style="margin-top:18px">Familles de modèles</h3>
+                <p class="apikey-intro">Familles disponibles, configurées côté serveur.</p>
+                <div class="apikeys-panel-body">
+                    <div id="families-list" class="families-list"></div>
+                </div>
+            </div>
+            <!-- Panel Fonctionnalités -->
+            <div class="apikeys-panel" id="panel-models">
+                <h3>Fonctionnalités</h3>
+                <p class="apikey-intro">Valeurs par défaut appliquées aux nouvelles conversations.</p>
+                <div class="apikeys-panel-body">
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Recherche web par défaut</span>
+                        <label class="plus-menu-toggle"><input type="checkbox" id="cfg-web-default"><span class="plus-menu-toggle-slider"></span></label>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Mode de recherche web</span>
+                        <select id="cfg-websearch-mode" class="audio-setting-select">
+                            <option value="auto">Auto (natif si dispo, sinon outils)</option>
+                            <option value="natif">Natif uniquement (OpenRouter / DeepSeek)</option>
+                            <option value="outils">Outils uniquement (Tavily/Exa/Brave/Jina)</option>
+                            <option value="off">Désactivée</option>
+                        </select>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Réflexion par défaut</span>
+                        <label class="plus-menu-toggle"><input type="checkbox" id="cfg-thinking-default"><span class="plus-menu-toggle-slider"></span></label>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Effort de réflexion</span>
+                        <select id="cfg-thinking-effort" class="audio-setting-select">
+                            <option value="default">Défaut</option>
+                            <option value="low">Faible</option>
+                            <option value="medium">Moyen</option>
+                            <option value="high">Élevé</option>
+                        </select>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Serveurs MCP</span>
+                        <label class="plus-menu-toggle"><input type="checkbox" id="cfg-mcp-default"><span class="plus-menu-toggle-slider"></span></label>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">État MCP</span>
+                        <span id="cfg-mcp-status" class="rp-mcp-status"></span>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Plugins externes</span>
+                        <button id="cfg-plugins-reload" class="audio-setting-btn" type="button">Recharger</button>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">État plugins</span>
+                        <span id="cfg-plugins-status" class="rp-mcp-status"></span>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">MAREX.md</span>
+                        <button id="cfg-marex-save" class="audio-setting-btn" type="button">Enregistrer</button>
+                    </div>
+                    <div class="marex-editor-block">
+                        <p class="apikey-intro">Contexte personnel lu par CETAS et les agents au début de chaque nouvelle session. Vide : ignoré.</p>
+                        <textarea id="cfg-marex-content" class="marex-textarea" rows="10" placeholder="Instructions, préférences, style de code…"></textarea>
+                        <span id="cfg-marex-status" class="rp-mcp-status"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel Connecteurs -->
+            <div class="apikeys-panel" id="panel-connecteurs">
+                <h3>Connecteurs</h3>
+                <p class="apikey-intro">Comptes connectés que l'agent peut utiliser (git, etc.). Les secrets sont chiffrés avant stockage.</p>
+                <div class="apikeys-panel-body" id="connectors-body"></div>
+            </div>
+            <!-- Panel Apparence -->
+            <div class="apikeys-panel" id="panel-appearance">
+                <h3>Apparence</h3>
+                <p class="apikey-intro">Choisissez le thème de l'interface.</p>
+                <div class="apikeys-panel-body">
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Thème</span>
+                        <select id="cfg-theme" class="audio-setting-select">
+                            <option value="ocean">Océan</option>
+                            <option value="sombre">Sombre</option>
+                            <option value="clair">Clair</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel FAQ -->
+            <div class="apikeys-panel" id="panel-faq">
+                <h3>FAQ</h3>
+                <div class="apikeys-panel-body" id="faq-body">
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">Comment ajouter une clé API ?</button>
+                        <div class="faq-answer"><p>Ouvrez la Configuration (engrenage en bas de la barre latérale), onglet « API et Modèles », puis renseignez la clé du fournisseur souhaité. Elle est chiffrée avant d'être stockée sur votre serveur.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">Qu'est-ce que le mode Agent ?</button>
+                        <div class="faq-answer"><p>Certains modes (famille Code, par exemple) activent l'agent : il peut lire, écrire et exécuter dans un bac à sable, avec votre approbation si les approbations sont activées.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">À quoi servent les Agents parallèles ?</button>
+                        <div class="faq-answer"><p>Les agents sont des conversations indépendantes qui travaillent en parallèle, chacune dans son propre espace (worktree Git isolé). Ouvrez le panneau Agents depuis les modules en haut de la barre latérale.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">Comment fonctionne le Terminal intégré ?</button>
+                        <div class="faq-answer"><p>Le terminal ouvre un vrai shell confiné à votre espace de travail, directement dans l'interface. Ouvrez-le depuis les modules en haut de la barre latérale.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">Mes données sont-elles envoyées dans le cloud ?</button>
+                        <div class="faq-answer"><p>Cetas Lite est auto-hébergé : vos conversations restent sur votre serveur. Seuls les messages envoyés à l'IA transitent vers le fournisseur du modèle choisi.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Conteneurs pour les panneaux dynamiques -->
+<div id="agents-root"></div>
+<div id="terminal-root"></div>
+
+<!-- Scripts -->
 <script src="/js/vendor/marked.umd.min.js"></script>
 <script src="/js/vendor/purify.min.js"></script>
 <script src="/js/vendor/xterm.js"></script>
