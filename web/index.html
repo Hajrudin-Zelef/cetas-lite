@@ -35,10 +35,11 @@
 <link rel="stylesheet" href="/css/features/mx-menus.css">
 <link rel="stylesheet" href="/css/features/mx-docs.css">
 <link rel="stylesheet" href="/css/features/mx-apimodeles.css">
+<link rel="stylesheet" href="/css/features/mx-config.css">
 <link rel="stylesheet" href="/css/cetas-lite.css">
 <script src="/js/theme-init.js"></script>
 </head>
-<body class="ocean-theme">
+<body>
 <svg style="display:none" aria-hidden="true"><use href="/images/icons.svg"/></svg>
 
 <!-- Splash -->
@@ -733,6 +734,8 @@
             <button class="apikeys-tab" data-tab="connecteurs">Connecteurs</button>
             <button class="apikeys-tab" data-tab="remote">Remote</button>
             <button class="apikeys-tab" data-tab="competences">Compétences</button>
+            <button class="apikeys-tab" data-tab="search">Recherche Web</button>
+            <button class="apikeys-tab" data-tab="sessions">Sessions</button>
             <button class="apikeys-tab" data-tab="appearance">Apparence</button>
             <div class="apikeys-tabs-spacer"></div>
             <button class="apikeys-tab" data-tab="faq">FAQ</button>
@@ -757,59 +760,59 @@
             <!-- Panel Fonctionnalités -->
             <div class="apikeys-panel" id="panel-models">
                 <h3>Fonctionnalités</h3>
-                <p class="apikey-intro">Valeurs par défaut appliquées aux nouvelles conversations.</p>
+                <p class="apikey-intro">Choisissez le fournisseur à utiliser pour chaque fonctionnalité.</p>
                 <div class="apikeys-panel-body">
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">Recherche web par défaut</span>
-                        <label class="plus-menu-toggle"><input type="checkbox" id="cfg-web-default"><span class="plus-menu-toggle-slider"></span></label>
+                    <div id="features-rows"></div>
+                    <div class="models-save-row">
+                        <span class="apikey-autosave-note">Tous les paramètres sont sauvegardés automatiquement.</span>
                     </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">Mode de recherche web</span>
-                        <select id="cfg-websearch-mode" class="audio-setting-select">
-                            <option value="auto">Auto (natif si dispo, sinon outils)</option>
-                            <option value="natif">Natif uniquement (OpenRouter / DeepSeek)</option>
-                            <option value="outils">Outils uniquement (Tavily/Exa/Brave/Jina)</option>
-                            <option value="off">Désactivée</option>
-                        </select>
-                    </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">Réflexion par défaut</span>
-                        <label class="plus-menu-toggle"><input type="checkbox" id="cfg-thinking-default"><span class="plus-menu-toggle-slider"></span></label>
-                    </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">Effort de réflexion</span>
-                        <select id="cfg-thinking-effort" class="audio-setting-select">
-                            <option value="default">Défaut</option>
-                            <option value="low">Faible</option>
-                            <option value="medium">Moyen</option>
-                            <option value="high">Élevé</option>
-                        </select>
-                    </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">Serveurs MCP</span>
-                        <label class="plus-menu-toggle"><input type="checkbox" id="cfg-mcp-default"><span class="plus-menu-toggle-slider"></span></label>
-                    </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">État MCP</span>
-                        <span id="cfg-mcp-status" class="rp-mcp-status"></span>
-                    </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">Plugins externes</span>
-                        <button id="cfg-plugins-reload" class="audio-setting-btn" type="button">Recharger</button>
-                    </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">État plugins</span>
-                        <span id="cfg-plugins-status" class="rp-mcp-status"></span>
-                    </div>
-                    <div class="audio-setting-row">
-                        <span class="audio-setting-label">MAREX.md</span>
-                        <button id="cfg-marex-save" class="audio-setting-btn" type="button">Enregistrer</button>
-                    </div>
-                    <div class="marex-editor-block">
-                        <p class="apikey-intro">Contexte personnel lu par CETAS et les agents au début de chaque nouvelle session. Vide : ignoré.</p>
-                        <textarea id="cfg-marex-content" class="marex-textarea" rows="10" placeholder="Instructions, préférences, style de code…"></textarea>
-                        <span id="cfg-marex-status" class="rp-mcp-status"></span>
-                    </div>
+                    <details class="feat-advanced" id="feat-advanced">
+                        <summary>Réglages avancés</summary>
+                        <div class="feat-advanced-body">
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">Recherche web par défaut</span>
+                                <label class="plus-menu-toggle"><input type="checkbox" id="cfg-web-default"><span class="plus-menu-toggle-slider"></span></label>
+                            </div>
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">Réflexion par défaut</span>
+                                <label class="plus-menu-toggle"><input type="checkbox" id="cfg-thinking-default"><span class="plus-menu-toggle-slider"></span></label>
+                            </div>
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">Effort de réflexion</span>
+                                <select id="cfg-thinking-effort" class="audio-setting-select">
+                                    <option value="default">Défaut</option>
+                                    <option value="low">Faible</option>
+                                    <option value="medium">Moyen</option>
+                                    <option value="high">Élevé</option>
+                                </select>
+                            </div>
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">Serveurs MCP</span>
+                                <label class="plus-menu-toggle"><input type="checkbox" id="cfg-mcp-default"><span class="plus-menu-toggle-slider"></span></label>
+                            </div>
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">État MCP</span>
+                                <span id="cfg-mcp-status" class="rp-mcp-status"></span>
+                            </div>
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">Plugins externes</span>
+                                <button id="cfg-plugins-reload" class="audio-setting-btn" type="button">Recharger</button>
+                            </div>
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">État plugins</span>
+                                <span id="cfg-plugins-status" class="rp-mcp-status"></span>
+                            </div>
+                            <div class="audio-setting-row">
+                                <span class="audio-setting-label">MAREX.md</span>
+                                <button id="cfg-marex-save" class="audio-setting-btn" type="button">Enregistrer</button>
+                            </div>
+                            <div class="marex-editor-block">
+                                <p class="apikey-intro">Contexte personnel lu par CETAS et les agents au début de chaque nouvelle session. Vide : ignoré.</p>
+                                <textarea id="cfg-marex-content" class="marex-textarea" rows="10" placeholder="Instructions, préférences, style de code…"></textarea>
+                                <span id="cfg-marex-status" class="rp-mcp-status"></span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
             </div>
             <!-- Panel Connecteurs -->
@@ -830,18 +833,62 @@
                 <p class="apikey-intro">Instructions réutilisables injectées dans le prompt système de l'agent. Seules les compétences activées sont prises en compte.</p>
                 <div class="apikeys-panel-body" id="skills-body"></div>
             </div>
+            <!-- Panel Recherche Web -->
+            <div class="apikeys-panel" id="panel-search">
+                <h3>Recherche Web</h3>
+                <p class="apikey-intro">Clés API pour la chaîne de recherche web (Brave → Tavily → Jina → Exa → DuckDuckGo). Sans clé, seul DuckDuckGo est utilisé. S'applique à CETAS et aux Agents.</p>
+                <div class="apikeys-panel-body">
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Mode de recherche</span>
+                        <select id="search-mode" class="audio-setting-select">
+                            <option value="race">Rapide — le premier qui répond</option>
+                            <option value="priority">Qualité — ordre de priorité</option>
+                        </select>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Comportement</span>
+                        <select id="cfg-websearch-mode" class="audio-setting-select">
+                            <option value="auto">Auto (natif si dispo, sinon outils)</option>
+                            <option value="natif">Natif uniquement (OpenRouter / DeepSeek)</option>
+                            <option value="outils">Outils uniquement (chaîne ci-dessus)</option>
+                            <option value="off">Désactivée</option>
+                        </select>
+                    </div>
+                    <div id="search-providers-tabs" class="providers-tabs"></div>
+                    <div id="search-provider-content" class="provider-content"></div>
+                    <div class="models-save-row">
+                        <span class="apikey-autosave-note">Tous les paramètres sont sauvegardés automatiquement.</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel Sessions -->
+            <div class="apikeys-panel" id="panel-sessions">
+                <h3>Sessions</h3>
+                <p class="apikey-intro">Historique des conversations : CETAS et Agents.</p>
+                <div class="apikeys-panel-body">
+                    <input id="sessions-filter" class="sess-filter" type="search" placeholder="Rechercher une session…" autocomplete="off">
+                    <div class="sess-section-label">CETAS</div>
+                    <div id="sessions-chat" class="sess-list"></div>
+                    <div class="sess-section-label">Agents</div>
+                    <div id="sessions-agents" class="sess-list"></div>
+                </div>
+            </div>
             <!-- Panel Apparence -->
             <div class="apikeys-panel" id="panel-appearance">
                 <h3>Apparence</h3>
-                <p class="apikey-intro">Choisissez le thème de l'interface.</p>
+                <p class="apikey-intro">Choisissez le thème de l'interface et la palette de couleurs.</p>
                 <div class="apikeys-panel-body">
                     <div class="audio-setting-row">
                         <span class="audio-setting-label">Thème</span>
                         <select id="cfg-theme" class="audio-setting-select">
-                            <option value="ocean">Océan</option>
-                            <option value="sombre">Sombre</option>
                             <option value="clair">Clair</option>
+                            <option value="sombre">Sombre</option>
+                            <option value="hard_dark">Hard Dark</option>
                         </select>
+                    </div>
+                    <div class="audio-setting-row">
+                        <span class="audio-setting-label">Palette</span>
+                        <div id="palette-swatches" class="palette-swatches"></div>
                     </div>
                 </div>
             </div>

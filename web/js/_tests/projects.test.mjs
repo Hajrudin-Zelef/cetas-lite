@@ -10,6 +10,7 @@ const dom = new JSDOM("<!doctype html><html><body></body></html>", {
 globalThis.window = dom.window;
 globalThis.document = dom.window.document;
 globalThis.localStorage = dom.window.localStorage;
+globalThis.window.confirm = () => true; // confirmDialog() y replie hors modale HTML.
 globalThis.requestAnimationFrame = dom.window.requestAnimationFrame.bind(dom.window);
 
 const PROJECTS = [
@@ -30,6 +31,7 @@ const TREE = {
   truncated: false,
 };
 let activeId = "p1";
+let ghConnected = false;
 const calls = [];
 globalThis.fetch = async (url, opts = {}) => {
   const u = String(url);
@@ -50,7 +52,9 @@ globalThis.fetch = async (url, opts = {}) => {
   }
   if (u === "/api/projects/p1/tree") return json(TREE);
   if (u.startsWith("/api/projects/p1/file?path=src%2Fmain.go")) return json({ content: "package main", size: 12 });
-  if (u === "/api/connectors") return json({ github: { connected: false } });
+  if (u === "/api/connectors") return json({ github: { connected: ghConnected, login: ghConnected ? "tester" : "" } });
+  if (u === "/api/connectors/github" && (opts.method || "GET") === "PUT") { ghConnected = true; return json({ ok: true }); }
+  if (u === "/api/connectors/github" && (opts.method || "GET") === "DELETE") { ghConnected = false; return json({ ok: true }); }
   return json({});
 };
 
@@ -124,13 +128,75 @@ await test("renderProjectBar montre le projet et le workspace", async () => {
   await Projects.setActive("p1");
 });
 
-await test("renderConnectorsInto affiche la carte GitHub", async () => {
+await test("renderConnectorsInto affiche les sections Connecté/Disponible", async () => {
   const box = document.createElement("div");
   document.body.appendChild(box);
   await renderConnectorsInto(box);
   assert.match(box.innerHTML, /GitHub/);
-  assert.ok(box.querySelector("#mx-gh-token"), "champ token présent");
-  assert.ok(box.querySelector("#mx-gh-connect"), "bouton connecter présent");
+  assert.match(box.innerHTML, /Disponible/);
+  assert.ok(box.querySelector(".conn-assoc"), "bouton Associer présent");
+  assert.ok(box.querySelector(".conn-menu-btn"), "menu ⋮ présent");
+});
+
+await test("Associer ouvre la modale puis Connecter associe le connecteur", async () => {
+  const box = document.createElement("div");
+  document.body.appendChild(box);
+  await renderConnectorsInto(box);
+  box.querySelector(".conn-assoc").click();
+  const modal = document.querySelector("#conn-modal-overlay .conn-modal");
+  assert.ok(modal, "modale Associer ouverte");
+  const input = modal.querySelector("input");
+  assert.ok(input, "champ token présent");
+  input.value = "ghp_test";
+  const connectBtn = [...modal.querySelectorAll("button")].find((b) => b.textContent === "Connecter");
+  assert.ok(connectBtn, "bouton Connecter présent");
+  connectBtn.click();
+  await new Promise((r) => setTimeout(r, 50));
+  assert.ok(!document.querySelector("#conn-modal-overlay"), "modale fermée après connexion");
+  assert.match(box.innerHTML, /Connecté/, "section Connecté affichée");
+  assert.ok(!box.querySelector(".conn-assoc"), "plus de bouton Associer une fois connecté");
+});
+
+await test("menu ⋮ : clic extérieur ferme le menu, même après re-rendu", async () => {
+  const box = document.createElement("div");
+  document.body.appendChild(box);
+  await renderConnectorsInto(box);
+  box.querySelector(".conn-menu-btn").click();
+  const menu = box.querySelector(".conn-menu");
+  assert.notEqual(menu.style.display, "none", "menu ouvert");
+  document.body.click();
+  assert.equal(menu.style.display, "none", "menu fermé au clic extérieur");
+  // Un clic extérieur « perdu » (sans menu ouvert) ne doit pas casser la
+  // fermeture suivante — le listener n'est plus en { once:true }.
+  document.body.click();
+  await renderConnectorsInto(box);
+  box.querySelector(".conn-menu-btn").click();
+  const menu2 = box.querySelector(".conn-menu");
+  assert.notEqual(menu2.style.display, "none", "menu rouvert après re-rendu");
+  document.body.click();
+  assert.equal(menu2.style.display, "none", "fermeture fiable après re-rendu");
+});
+
+await test("menu ⋮ : favoris puis Dissocier", async () => {
+  localStorage.removeItem("cetas-lite-conn-favs");
+  const box = document.createElement("div");
+  document.body.appendChild(box);
+  await renderConnectorsInto(box);
+  // Ajouter aux favoris via le menu ⋮.
+  box.querySelector(".conn-menu-btn").click();
+  const favItem = [...box.querySelectorAll(".conn-menu-item")].find((b) => b.textContent === "Ajouter aux favoris");
+  assert.ok(favItem, "item favori présent");
+  favItem.click();
+  await new Promise((r) => setTimeout(r, 20));
+  assert.ok(box.querySelector(".conn-star"), "étoile affichée");
+  // Dissocier via le menu ⋮ (le connecteur est associé depuis le test précédent).
+  box.querySelector(".conn-menu-btn").click();
+  const disItem = [...box.querySelectorAll(".conn-menu-item")].find((b) => b.textContent === "Dissocier");
+  assert.ok(disItem, "item Dissocier présent");
+  disItem.click();
+  await new Promise((r) => setTimeout(r, 50));
+  assert.ok(box.querySelector(".conn-assoc"), "bouton Associer de retour après dissociation");
+  assert.ok(box.querySelector(".conn-star"), "favori conservé après dissociation");
 });
 
 await test("la modale projet définit sa palette hors #marex-view (anti texte noir)", async () => {

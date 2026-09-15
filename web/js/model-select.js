@@ -4,6 +4,27 @@ let families = [];
 let thinkingPref = false;
 let appMode = "chat"; // "chat" | "agent" : mode top-level choisi dans l'UI
 
+// --- Préférences Fonctionnalités (panneau Configuration) ---
+// Cache local des choix tts / transcription / prompt_enhance / summarizer /
+// title_gen / error_analysis. Rafraîchi au chargement des prefs et sur
+// l'événement "cetas:features-changed" émis par le panneau.
+const featurePrefs = {};
+export function getFeaturePref(key, fallback) {
+  const v = featurePrefs[key];
+  return v === undefined ? fallback : v;
+}
+function refreshFeaturePrefs(prefs) {
+  if (!prefs) return;
+  for (const k of ["tts", "transcription", "prompt_enhance", "summarizer", "title_gen", "error_analysis"]) {
+    if (prefs[k] !== undefined && prefs[k] !== "") featurePrefs[k] = prefs[k];
+  }
+}
+if (typeof window !== "undefined") {
+  window.addEventListener("cetas:features-changed", () => {
+    getPrefs().then(refreshFeaturePrefs).catch(() => {});
+  });
+}
+
 function setCheck(id, on) {
   const el = document.getElementById(id);
   if (el) el.checked = !!on;
@@ -263,15 +284,40 @@ function renderPlusModelList() {
   }
 }
 
-export function applyTheme(theme) {
-  if (!["ocean", "sombre", "clair"].includes(theme)) return;
-  document.documentElement.dataset.theme = theme;
-  document.body.className =
-    theme === "sombre" ? "ocean-theme dark" : theme === "ocean" ? "ocean-theme" : "";
-  const sel = document.getElementById("cfg-theme");
-  if (sel) sel.value = theme;
+export const THEME_PALETTES = [
+  { id: "bleu", label: "Bleu", color: "#3b87ce" },
+  { id: "violet", label: "Violet", color: "#8b5cf6" },
+  { id: "vert", label: "Vert", color: "#22c55e" },
+  { id: "vert_pur", label: "Vert pur", color: "#00e676" },
+  { id: "bleu_ocean", label: "Bleu océan", color: "#0ea5e9" },
+  { id: "jaune_or", label: "Jaune or", color: "#d4a017" },
+  { id: "rouge", label: "Rouge", color: "#ef4444" },
+];
+
+export function applyPalette(palette) {
+  const ids = THEME_PALETTES.map((p) => p.id);
+  const p = ids.includes(palette) ? palette : "bleu";
+  document.documentElement.dataset.palette = p;
   try {
-    localStorage.setItem("cetas-lite-theme", theme);
+    localStorage.setItem("cetas-lite-palette", p);
+  } catch (e) {}
+  const name = document.querySelector(".palette-name");
+  const found = THEME_PALETTES.find((x) => x.id === p);
+  if (name && found) name.textContent = found.label;
+  document.querySelectorAll(".palette-swatch").forEach((s) => {
+    s.classList.toggle("active", s.dataset.palette === p);
+  });
+}
+
+export function applyTheme(theme) {
+  const t = theme === "ocean" ? "clair" : theme; // ancien nom
+  if (!["sombre", "hard_dark", "clair"].includes(t)) return;
+  document.documentElement.dataset.theme = t;
+  document.body.className = t === "sombre" ? "dark" : t === "hard_dark" ? "dark hard-dark" : "";
+  const sel = document.getElementById("cfg-theme");
+  if (sel) sel.value = t;
+  try {
+    localStorage.setItem("cetas-lite-theme", t);
   } catch (e) {}
 }
 
@@ -356,7 +402,9 @@ export async function initModels() {
     const data = await api("/api/aliases");
     families = data.families || [];
     const prefs = await getPrefs().catch(() => null);
+    refreshFeaturePrefs(prefs);
     if (prefs && prefs.theme) applyTheme(prefs.theme);
+    if (prefs && prefs.palette) applyPalette(prefs.palette);
     applyWebToggle(!!(prefs && prefs.web_default));
     thinkingPref = !!(prefs && prefs.thinking_default);
     applyThinkingToggle(thinkingPref);

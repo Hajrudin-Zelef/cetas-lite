@@ -657,13 +657,13 @@ export function initAgents() {
       I.globe,
       'data-action="webdepth" data-v="deep"'
     );
+    html += '<div class="cdrop-divider"></div>';
     html += '<div class="cdrop-section-label">Plugins</div>';
     html +=
       '<button class="cdrop-upload-btn" data-action="plugins">' +
       I.plus +
       " Ajouter des plugins…</button>" +
       '<div class="cdrop-item-desc">Dossier plugins/ du serveur</div>';
-    html += '<div class="cdrop-divider"></div>';
     html +=
       '<div class="cdrop-row"><span class="cdrop-row-label">' +
       I.folder +
@@ -688,7 +688,9 @@ export function initAgents() {
         } else if (a === "skills") {
           openConfigTab("competences");
         } else if (a === "plugins") {
-          openConfigTab("models"); // onglet Fonctionnalités : état + rechargement plugins
+          // Plugins externes : gérés dans l'onglet API et Modèles
+          // (rechargement). Fonctionnalités reste inaccessible depuis Agents.
+          openConfigTab("apimodeles");
         } else if (a === "webdepth") {
           setWebDepth(it.dataset.v);
           closeAllDrops();
@@ -1532,6 +1534,13 @@ if (!toolbarBtn.classList.contains("dev-module-btn")) {
 }
 window.addEventListener("cetas:open-agents", () => {
   if (!opened) openView();
+});
+// Ouverture d'un agent précis (panneau Sessions de la Configuration).
+window.addEventListener("cetas:open-agent", (e) => {
+  const id = e && e.detail && e.detail.id;
+  if (!id) return;
+  if (!opened) openView();
+  openDiscussion(id);
 });
 window.addEventListener("cetas:toggle-agents", () => {
   if (opened) closeView();

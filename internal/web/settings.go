@@ -20,6 +20,18 @@ type uiSettings struct {
 	ThinkingEffort  string `json:"thinking_effort"`
 	// MaxTokens : tokens max par reponse (300..32768, defaut 4096).
 	MaxTokens int `json:"max_tokens"`
+	// Palette d'accent : "bleu" (defaut), "violet", "vert", "vert_pur",
+	// "bleu_ocean", "jaune_or", "rouge".
+	Palette string `json:"palette"`
+	// Fonctionnalites (module CETAS uniquement) : choix par fonctionnalite.
+	// TTS / Transcription : "system" (navigateur) ou "none".
+	TTS           string `json:"tts"`
+	Transcription string `json:"transcription"`
+	// Les autres : id provider, "none", et "conversation" pour TitleGen.
+	PromptEnhance string `json:"prompt_enhance"`
+	Summarizer    string `json:"summarizer"`
+	TitleGen      string `json:"title_gen"`
+	ErrorAnalysis string `json:"error_analysis"`
 }
 
 func validEffort(e string) bool {
@@ -31,7 +43,14 @@ func validEffort(e string) bool {
 }
 
 func defaultUISettings() uiSettings {
-	return uiSettings{Theme: "ocean", Family: "samagent-n4", Mode: "standard", AppMode: "chat", WebSearchMode: "auto", MaxTokens: 4096}
+	return uiSettings{
+		Theme: "clair", Family: "samagent-n4", Mode: "standard", AppMode: "chat",
+		WebSearchMode: "auto", MaxTokens: 4096,
+		Palette: "bleu",
+		TTS:     "system", Transcription: "system",
+		PromptEnhance: "none", Summarizer: "none",
+		TitleGen: "conversation", ErrorAnalysis: "none",
+	}
 }
 
 func validAppMode(m string) bool {
@@ -51,10 +70,37 @@ func clampMaxTokensSetting(n int) int {
 
 func validTheme(t string) bool {
 	switch t {
-	case "ocean", "sombre", "clair":
+	case "ocean", "sombre", "clair", "hard_dark":
 		return true
 	}
 	return false
+}
+
+// validPalette valide la palette d'accent.
+func validPalette(p string) bool {
+	switch p {
+	case "", "bleu", "violet", "vert", "vert_pur", "bleu_ocean", "jaune_or", "rouge":
+		return true
+	}
+	return false
+}
+
+// validFeatureValue valide un choix de fonctionnalite : "none", "system",
+// "conversation" ou un identifiant de provider.
+func validFeatureValue(v string) bool {
+	switch v {
+	case "", "none", "system", "conversation":
+		return true
+	}
+	if len(v) > 64 {
+		return false
+	}
+	for _, r := range v {
+		if r != '_' && r != '-' && (r < 'a' || r > 'z') && (r < '0' || r > '9') {
+			return false
+		}
+	}
+	return true
 }
 
 func validWebSearchMode(m string) bool {
@@ -74,6 +120,27 @@ func (s *Server) storedSettings(user string) uiSettings {
 	}
 	if !validTheme(out.Theme) {
 		out.Theme = defaultUISettings().Theme
+	}
+	// "ocean" est l'ancien nom du theme clair.
+	if out.Theme == "ocean" {
+		out.Theme = "clair"
+	}
+	if !validPalette(out.Palette) {
+		out.Palette = defaultUISettings().Palette
+	}
+	for _, f := range []*string{&out.TTS, &out.Transcription, &out.PromptEnhance, &out.Summarizer, &out.TitleGen, &out.ErrorAnalysis} {
+		if !validFeatureValue(*f) {
+			*f = "none"
+		}
+	}
+	if out.TTS == "" {
+		out.TTS = "system"
+	}
+	if out.Transcription == "" {
+		out.Transcription = "system"
+	}
+	if out.TitleGen == "" {
+		out.TitleGen = "conversation"
 	}
 	if !validAppMode(out.AppMode) {
 		out.AppMode = defaultUISettings().AppMode
@@ -117,6 +184,13 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		ThinkingDefault *bool   `json:"thinking_default"`
 		ThinkingEffort  *string `json:"thinking_effort"`
 		MaxTokens       *int    `json:"max_tokens"`
+		Palette         *string `json:"palette"`
+		TTS             *string `json:"tts"`
+		Transcription   *string `json:"transcription"`
+		PromptEnhance   *string `json:"prompt_enhance"`
+		Summarizer      *string `json:"summarizer"`
+		TitleGen        *string `json:"title_gen"`
+		ErrorAnalysis   *string `json:"error_analysis"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -175,6 +249,38 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		cur.MaxTokens = *body.MaxTokens
+	}
+	if body.Palette != nil {
+		if !validPalette(*body.Palette) {
+			writeError(w, http.StatusBadRequest, "palette invalide")
+			return
+		}
+		cur.Palette = *body.Palette
+		if cur.Palette == "" {
+			cur.Palette = defaultUISettings().Palette
+		}
+	}
+	features := []struct {
+		name string
+		body **string
+		cur  *string
+	}{
+		{"tts", &body.TTS, &cur.TTS},
+		{"transcription", &body.Transcription, &cur.Transcription},
+		{"prompt_enhance", &body.PromptEnhance, &cur.PromptEnhance},
+		{"summarizer", &body.Summarizer, &cur.Summarizer},
+		{"title_gen", &body.TitleGen, &cur.TitleGen},
+		{"error_analysis", &body.ErrorAnalysis, &cur.ErrorAnalysis},
+	}
+	for _, f := range features {
+		if *f.body == nil {
+			continue
+		}
+		if !validFeatureValue(**f.body) {
+			writeError(w, http.StatusBadRequest, "fonctionnalite invalide: "+f.name)
+			return
+		}
+		*f.cur = **f.body
 	}
 	if cur.Family != "" && cur.Mode != "" {
 		if _, ok := alias.Resolve(s.engine.Families(), cur.Family, cur.Mode); !ok {

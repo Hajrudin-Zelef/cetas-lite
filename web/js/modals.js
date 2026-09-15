@@ -1,9 +1,12 @@
 import { api, getPrefs, putPrefs } from "./api.js";
-import { applyTheme, persistPrefs } from "./model-select.js";
+import { applyTheme, applyPalette, persistPrefs, THEME_PALETTES } from "./model-select.js";
+import { confirmDialog, alertDialog } from "./dialogs.js";
+export { confirmDialog, alertDialog };
 import { getCategories, saveCategories } from "./sidebar.js";
 import { saveRoles } from "./right-panel.js";
 import { renderConnectorsInto, openNewProjectModal, ProjectsAPI } from "./projects.js";
 import { initApiModelesPanel } from "./apimodeles.js";
+import { loadFeaturesPanel, loadSearchPanel, loadSessionsPanel, loadAppearancePanel } from "./config-panels.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -20,44 +23,7 @@ function savePrompts(p) {
   } catch (e) {}
 }
 
-// --- Dialogue personnalisé (alert/confirm) ---
-export function confirmDialog(message, opts = {}) {
-  return new Promise((resolve) => {
-    const overlay = document.getElementById("custom-dialog-overlay");
-    const icon = document.getElementById("custom-dialog-icon");
-    const msg = document.getElementById("custom-dialog-message");
-    const okBtn = document.getElementById("custom-dialog-ok");
-    const cancelBtn = document.getElementById("custom-dialog-cancel");
-    if (!overlay) {
-      resolve(window.confirm(message));
-      return;
-    }
-    msg.textContent = message;
-    icon.textContent = opts.danger ? "⚠️" : "❓";
-    okBtn.textContent = opts.okLabel || "OK";
-    cancelBtn.style.display = opts.hideCancel ? "none" : "";
-    const done = (v) => {
-      overlay.style.display = "none";
-      okBtn.removeEventListener("click", onOk);
-      cancelBtn.removeEventListener("click", onCancel);
-      overlay.removeEventListener("click", onBg);
-      resolve(v);
-    };
-    const onOk = () => done(true);
-    const onCancel = () => done(false);
-    const onBg = (e) => {
-      if (e.target === overlay) done(false);
-    };
-    okBtn.addEventListener("click", onOk);
-    cancelBtn.addEventListener("click", onCancel);
-    overlay.addEventListener("click", onBg);
-    overlay.style.display = "";
-  });
-}
-
-export function alertDialog(message) {
-  return confirmDialog(message, { okLabel: "Compris", hideCancel: true });
-}
+// --- Dialogue personnalisé (alert/confirm) : voir ./dialogs.js ---
 
 function openOverlay(id) {
   const el = document.getElementById(id);
@@ -89,6 +55,14 @@ function initConfigModal() {
       if (tab.dataset.tab === "remote") loadRemoteTab();
       // Onglet Compétences : éditeur de skills.
       if (tab.dataset.tab === "competences") loadSkillsTab();
+      // Onglet Fonctionnalités : six lignes de choix.
+      if (tab.dataset.tab === "models") loadFeaturesPanel();
+      // Onglet Recherche Web : moteurs + mode.
+      if (tab.dataset.tab === "search") loadSearchPanel();
+      // Onglet Sessions : historique chat + agents.
+      if (tab.dataset.tab === "sessions") loadSessionsPanel();
+      // Onglet Apparence : palettes.
+      if (tab.dataset.tab === "appearance") loadAppearancePanel();
     });
   });
   document.getElementById("apikeys-close-btn")?.addEventListener("click", () => closeOverlay("apikeys-modal-overlay"));
@@ -123,7 +97,7 @@ function initConfigModal() {
     const wsm = document.getElementById("cfg-websearch-mode");
     if (wsm) wsm.value = (prefs && prefs.websearch_mode) || "auto";
     const theme = document.getElementById("cfg-theme");
-    if (theme) theme.value = document.documentElement.dataset.theme || "ocean";
+    if (theme) theme.value = document.documentElement.dataset.theme || "clair";
     const mcpStatus = document.getElementById("cfg-mcp-status");
     if (mcpStatus) {
       const mcp = await api("/api/mcp").catch(() => null);
@@ -229,7 +203,7 @@ function initConfigModal() {
     }
   });
   window.addEventListener("cetas:theme", (e) => {
-    applyTheme(e.detail || "ocean");
+    applyTheme(e.detail || "clair");
     putPrefs({ theme: document.documentElement.dataset.theme }).catch(() => {});
   });
 }
@@ -240,9 +214,11 @@ async function loadRemoteTab() {
   if (!body) return;
   body.textContent = "Chargement…";
   let remotes = [];
+  let activeId = "";
   try {
     const d = await ProjectsAPI.list();
     remotes = ((d && d.projects) || []).filter((p) => p.mode === "sftp");
+    activeId = (d && d.active) || "";
   } catch (e) {
     body.textContent = "Erreur de chargement : " + (e.message || e);
     return;
@@ -250,8 +226,8 @@ async function loadRemoteTab() {
   body.innerHTML = "";
   const addBtn = document.createElement("button");
   addBtn.type = "button";
-  addBtn.className = "audio-setting-btn";
-  addBtn.textContent = "Nouveau serveur…";
+  addBtn.className = "mod-add-btn";
+  addBtn.textContent = "+ Nouveau serveur";
   addBtn.addEventListener("click", () => {
     closeOverlay("apikeys-modal-overlay");
     // Après création : on rouvre la Configuration sur l'onglet Remote
@@ -262,60 +238,69 @@ async function loadRemoteTab() {
   });
   body.appendChild(addBtn);
   if (!remotes.length) {
-    const p = document.createElement("p");
-    p.className = "apikey-intro";
-    p.textContent = "Aucun serveur distant configuré.";
-    body.appendChild(p);
+    const empty = document.createElement("div");
+    empty.className = "mod-empty";
+    const icon = document.createElement("span");
+    icon.className = "mod-empty-icon";
+    icon.textContent = "\U0001F5A5\uFE0F";
+    empty.appendChild(icon);
+    empty.appendChild(document.createTextNode("Aucun serveur distant configuré."));
+    body.appendChild(empty);
     return;
   }
   for (const r of remotes) {
-    const row = document.createElement("div");
-    row.className = "audio-setting-row";
-    const label = document.createElement("span");
-    label.className = "audio-setting-label";
-    const strong = document.createElement("b");
-    strong.textContent = r.name;
-    const small = document.createElement("small");
-    small.style.color = "var(--text-secondary)";
-    small.textContent = " " + r.user + "@" + r.host + ":" + r.remote_path;
-    label.appendChild(strong);
-    label.appendChild(document.createElement("br"));
-    label.appendChild(small);
-    row.appendChild(label);
-    const actions = document.createElement("span");
-    actions.style.display = "flex";
-    actions.style.gap = "8px";
+    const card = document.createElement("div");
+    card.className = "mod-card";
+    const head = document.createElement("div");
+    head.className = "mod-card-head";
+    const title = document.createElement("div");
+    title.className = "mod-card-title";
+    title.textContent = r.name;
+    head.appendChild(title);
+    const isActive = r.id === activeId;
+    const badge = document.createElement("span");
+    badge.className = "mod-badge" + (isActive ? " on" : " off");
+    badge.textContent = isActive ? "Actif" : "SFTP";
+    head.appendChild(badge);
+    card.appendChild(head);
+    const desc = document.createElement("div");
+    desc.className = "mod-card-desc";
+    desc.textContent = r.user + "@" + r.host + ":" + r.remote_path;
+    card.appendChild(desc);
+    const actions = document.createElement("div");
+    actions.className = "mod-card-actions";
     const useBtn = document.createElement("button");
     useBtn.type = "button";
-    useBtn.className = "audio-setting-btn";
-    useBtn.textContent = "Utiliser";
+    useBtn.className = "sess-btn";
+    useBtn.textContent = isActive ? "Actif ✓" : "Utiliser";
     useBtn.title = "Définir comme projet actif";
+    useBtn.disabled = isActive;
     useBtn.addEventListener("click", async () => {
       try {
         await ProjectsAPI.setActive(r.id);
-        useBtn.textContent = "Actif ✓";
-        setTimeout(() => loadRemoteTab(), 800);
+        loadRemoteTab();
       } catch (e) {
-        alert("Sélection impossible : " + (e.message || e));
+        alertDialog("Sélection impossible : " + (e.message || e));
       }
     });
     const delBtn = document.createElement("button");
     delBtn.type = "button";
-    delBtn.className = "audio-setting-btn";
+    delBtn.className = "sess-btn danger";
     delBtn.textContent = "Supprimer";
     delBtn.addEventListener("click", async () => {
-      if (!confirm("Supprimer le serveur « " + r.name + " » ?")) return;
+      const ok = await confirmDialog("Supprimer le serveur « " + r.name + " » ?", { okLabel: "Supprimer", danger: true });
+      if (!ok) return;
       try {
         await ProjectsAPI.remove(r.id);
         loadRemoteTab();
       } catch (e) {
-        alert("Suppression impossible : " + (e.message || e));
+        alertDialog("Suppression impossible : " + (e.message || e));
       }
     });
     actions.appendChild(useBtn);
     actions.appendChild(delBtn);
-    row.appendChild(actions);
-    body.appendChild(row);
+    card.appendChild(actions);
+    body.appendChild(card);
   }
 }
 
@@ -341,12 +326,13 @@ async function loadSkillsTab() {
 function renderSkillsTab(body) {
   body.innerHTML = "";
   const bar = document.createElement("div");
-  bar.style.display = "flex";
-  bar.style.gap = "8px";
-  bar.style.marginBottom = "12px";
+  bar.className = "mod-card-actions";
+  bar.style.marginTop = "0";
+  bar.style.marginBottom = "14px";
   const addBtn = document.createElement("button");
   addBtn.type = "button";
-  addBtn.className = "audio-setting-btn";
+  addBtn.className = "mod-add-btn";
+  addBtn.style.marginTop = "0";
   addBtn.textContent = "+ Nouvelle compétence";
   addBtn.addEventListener("click", () => {
     cfgSkills.unshift({ id: "", name: "", description: "", instructions: "", enabled: true, _open: true });
@@ -354,7 +340,8 @@ function renderSkillsTab(body) {
   });
   const saveBtn = document.createElement("button");
   saveBtn.type = "button";
-  saveBtn.className = "audio-setting-btn";
+  saveBtn.className = "sess-btn";
+  saveBtn.style.alignSelf = "center";
   saveBtn.textContent = "Enregistrer";
   saveBtn.addEventListener("click", async () => {
     const payload = cfgSkills.map((s) => ({
@@ -376,7 +363,7 @@ function renderSkillsTab(body) {
       bar.appendChild(ok);
       setTimeout(() => ok.remove(), 2000);
     } catch (e) {
-      alert("Enregistrement impossible : " + (e.message || e));
+      alertDialog("Enregistrement impossible : " + (e.message || e));
     }
   });
   bar.appendChild(addBtn);
@@ -384,94 +371,108 @@ function renderSkillsTab(body) {
   body.appendChild(bar);
 
   if (!cfgSkills.length) {
-    const p = document.createElement("p");
-    p.className = "apikey-intro";
-    p.textContent = "Aucune compétence. Créez-en une : elle sera injectée dans le prompt système de l'agent.";
-    body.appendChild(p);
+    const empty = document.createElement("div");
+    empty.className = "mod-empty";
+    const icon = document.createElement("span");
+    icon.className = "mod-empty-icon";
+    icon.textContent = "\U0001F9E0";
+    empty.appendChild(icon);
+    empty.appendChild(document.createTextNode("Aucune compétence. Créez-en une : elle sera injectée dans le prompt système de l'agent."));
+    body.appendChild(empty);
     return;
   }
   for (const s of cfgSkills) {
     const card = document.createElement("div");
-    card.className = "audio-setting-row";
-    card.style.flexDirection = "column";
-    card.style.alignItems = "stretch";
-    card.style.gap = "6px";
+    card.className = "mod-card";
 
     const head = document.createElement("div");
-    head.style.display = "flex";
-    head.style.alignItems = "center";
-    head.style.gap = "10px";
-    const nameEl = document.createElement("b");
+    head.className = "mod-card-head";
+    const nameEl = document.createElement("div");
+    nameEl.className = "mod-card-title";
     nameEl.textContent = s.name || "(sans nom)";
-    nameEl.style.flex = "1";
-    const toggle = document.createElement("label");
-    toggle.className = "plus-menu-toggle";
-    toggle.title = "Compétence activée";
-    const cb = document.createElement("input");
-    cb.type = "checkbox";
-    cb.checked = !!s.enabled;
-    cb.addEventListener("change", () => { s.enabled = cb.checked; });
-    const slider = document.createElement("span");
-    slider.className = "plus-menu-toggle-slider";
-    toggle.appendChild(cb);
-    toggle.appendChild(slider);
-    const editBtn = document.createElement("button");
-    editBtn.type = "button";
-    editBtn.className = "audio-setting-btn";
-    editBtn.textContent = s._open ? "Réduire" : "Modifier";
-    const delBtn = document.createElement("button");
-    delBtn.type = "button";
-    delBtn.className = "audio-setting-btn";
-    delBtn.textContent = "Supprimer";
-    delBtn.addEventListener("click", () => {
-      if (!confirm("Supprimer la compétence « " + (s.name || "(sans nom)") + " » ?")) return;
-      cfgSkills = cfgSkills.filter((x) => x !== s);
-      renderSkillsTab(body);
-    });
     head.appendChild(nameEl);
-    head.appendChild(toggle);
-    head.appendChild(editBtn);
-    head.appendChild(delBtn);
+    const badge = document.createElement("span");
+    badge.className = "mod-badge" + (s.enabled ? " on" : " off");
+    badge.textContent = s.enabled ? "Activée" : "Désactivée";
+    head.appendChild(badge);
     card.appendChild(head);
 
-    if (s.description) {
+    if (s.description && !s._open) {
       const d = document.createElement("div");
-      d.style.fontSize = "12px";
-      d.style.color = "var(--text-secondary)";
+      d.className = "mod-card-desc";
       d.textContent = s.description;
       card.appendChild(d);
     }
 
     const form = document.createElement("div");
-    form.style.display = s._open ? "grid" : "none";
-    form.style.gap = "6px";
+    form.className = "skill-form";
+    form.style.display = s._open ? "" : "none";
     const nameIn = document.createElement("input");
-    nameIn.className = "audio-setting-select";
+    nameIn.className = "sp-modal-input";
     nameIn.placeholder = "Nom (80 caractères max)";
     nameIn.maxLength = 80;
     nameIn.value = s.name || "";
+    nameIn.setAttribute("aria-label", "Nom de la compétence");
     nameIn.addEventListener("input", () => { s.name = nameIn.value; nameEl.textContent = s.name || "(sans nom)"; });
     const descIn = document.createElement("input");
-    descIn.className = "audio-setting-select";
+    descIn.className = "sp-modal-input";
     descIn.placeholder = "Description courte (optionnel)";
     descIn.maxLength = 300;
     descIn.value = s.description || "";
+    descIn.setAttribute("aria-label", "Description");
     descIn.addEventListener("input", () => { s.description = descIn.value; });
     const instrIn = document.createElement("textarea");
-    instrIn.className = "audio-setting-select";
+    instrIn.className = "sp-modal-input";
     instrIn.placeholder = "Instructions injectées dans le prompt système de l'agent…";
     instrIn.rows = 4;
     instrIn.value = s.instructions || "";
+    instrIn.setAttribute("aria-label", "Instructions");
     instrIn.addEventListener("input", () => { s.instructions = instrIn.value; });
     form.appendChild(nameIn);
     form.appendChild(descIn);
     form.appendChild(instrIn);
     card.appendChild(form);
 
+    const actions = document.createElement("div");
+    actions.className = "mod-card-actions";
+    const toggleWrap = document.createElement("label");
+    toggleWrap.className = "plus-menu-toggle";
+    toggleWrap.title = "Compétence activée";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = !!s.enabled;
+    cb.setAttribute("aria-label", "Activer la compétence");
+    cb.addEventListener("change", () => {
+      s.enabled = cb.checked;
+      badge.className = "mod-badge" + (s.enabled ? " on" : " off");
+      badge.textContent = s.enabled ? "Activée" : "Désactivée";
+    });
+    const slider = document.createElement("span");
+    slider.className = "plus-menu-toggle-slider";
+    toggleWrap.appendChild(cb);
+    toggleWrap.appendChild(slider);
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "sess-btn";
+    editBtn.textContent = s._open ? "Réduire" : "Modifier";
     editBtn.addEventListener("click", () => {
       s._open = !s._open;
       renderSkillsTab(body);
     });
+    const delBtn = document.createElement("button");
+    delBtn.type = "button";
+    delBtn.className = "sess-btn danger";
+    delBtn.textContent = "Supprimer";
+    delBtn.addEventListener("click", async () => {
+      const ok = await confirmDialog("Supprimer la compétence « " + (s.name || "(sans nom)") + " » ?", { okLabel: "Supprimer", danger: true });
+      if (!ok) return;
+      cfgSkills = cfgSkills.filter((x) => x !== s);
+      renderSkillsTab(body);
+    });
+    actions.appendChild(toggleWrap);
+    actions.appendChild(editBtn);
+    actions.appendChild(delBtn);
+    card.appendChild(actions);
     body.appendChild(card);
   }
 }

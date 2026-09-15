@@ -37,7 +37,7 @@ func TestSettingsDefaults(t *testing.T) {
 		t.Fatalf("status = %d (%s)", rec.Code, rec.Body.String())
 	}
 	body := decode(t, rec)
-	if body["theme"] != "ocean" || body["family"] != "samagent-n4" || body["mode"] != "standard" {
+	if body["theme"] != "clair" || body["family"] != "samagent-n4" || body["mode"] != "standard" {
 		t.Fatalf("defauts = %v", body)
 	}
 }
@@ -94,7 +94,7 @@ func TestSettingsIsolationPerUser(t *testing.T) {
 	}
 	rec = doJSON(t, h, http.MethodGet, "/api/settings", alice, nil)
 	body := decode(t, rec)
-	if body["theme"] != "ocean" || body["mode"] != "standard" {
+	if body["theme"] != "clair" || body["mode"] != "standard" {
 		t.Fatalf("alice ne doit pas voir les reglages de sam: %v", body)
 	}
 }

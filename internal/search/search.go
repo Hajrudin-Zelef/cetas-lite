@@ -35,15 +35,33 @@ type Result struct {
 }
 
 type Searcher struct {
-	keys        map[string]string
 	client      *http.Client
 	fetchClient *http.Client
-	order       []string
 	endpoints   map[string]string
+
+	cfgMu   sync.RWMutex
+	keys    map[string]string // id -> cle API
+	enabled map[string]bool   // id -> interrupteur (defaut : utilisable)
+	order   []string
+	mode    string // "race" (le premier qui repond gagne) ou "priority"
 
 	mu    sync.Mutex
 	cache map[string]cacheEntry
 }
+
+// Config decrit la configuration du Searcher.
+type Config struct {
+	Keys    map[string]string
+	Enabled map[string]bool
+	Order   []string
+	Mode    string // "race" (rapidite) ou "priority" (qualite)
+}
+
+// DefaultOrder : Brave -> Tavily -> Jina -> Exa -> DuckDuckGo.
+var DefaultOrder = []string{"brave", "tavily", "jina", "exa", "duckduckgo"}
+
+// keylessID indique si le provider fonctionne sans cle.
+func keylessID(id string) bool { return id == "duckduckgo" }
 
 type cacheEntry struct {
 	at     time.Time
@@ -51,14 +69,28 @@ type cacheEntry struct {
 }
 
 func New(keys map[string]string, client *http.Client) *Searcher {
+	return NewWithConfig(Config{Keys: keys, Mode: "priority"}, client)
+}
+
+func NewWithConfig(cfg Config, client *http.Client) *Searcher {
 	if client == nil {
 		client = &http.Client{Timeout: searchTimeout}
 	}
+	order := cfg.Order
+	if len(order) == 0 {
+		order = append([]string(nil), DefaultOrder...)
+	}
+	mode := cfg.Mode
+	if mode != "race" && mode != "priority" {
+		mode = "priority"
+	}
 	return &Searcher{
-		keys:        keys,
+		keys:        cfg.Keys,
+		enabled:     cfg.Enabled,
+		order:       order,
+		mode:        mode,
 		client:      client,
 		fetchClient: newFetchClient(),
-		order:       []string{"tavily", "exa", "brave", "jina"},
 		endpoints: map[string]string{
 			"tavily": "https://api.tavily.com/search",
 			"exa":    "https://api.exa.ai/search",
@@ -69,10 +101,51 @@ func New(keys map[string]string, client *http.Client) *Searcher {
 	}
 }
 
+// SetConfig remplace la configuration a chaud (sans redemarrage).
+func (s *Searcher) SetConfig(cfg Config) {
+	s.cfgMu.Lock()
+	defer s.cfgMu.Unlock()
+	s.keys = cfg.Keys
+	s.enabled = cfg.Enabled
+	if len(cfg.Order) > 0 {
+		s.order = append([]string(nil), cfg.Order...)
+	}
+	if cfg.Mode == "race" || cfg.Mode == "priority" {
+		s.mode = cfg.Mode
+	}
+}
+
+func (s *Searcher) key(id string) string {
+	s.cfgMu.RLock()
+	defer s.cfgMu.RUnlock()
+	return s.keys[id]
+}
+
+func (s *Searcher) getMode() string {
+	s.cfgMu.RLock()
+	defer s.cfgMu.RUnlock()
+	return s.mode
+}
+
+// usableLocked : le provider est active et utilisable (cle presente ou sans cle).
+func (s *Searcher) usableLocked(id string) bool {
+	if s.enabled != nil {
+		if en, ok := s.enabled[id]; ok && !en {
+			return false
+		}
+	}
+	if keylessID(id) {
+		return true
+	}
+	return strings.TrimSpace(s.keys[id]) != ""
+}
+
 func (s *Searcher) activeProviders() []string {
+	s.cfgMu.RLock()
+	defer s.cfgMu.RUnlock()
 	var out []string
 	for _, id := range s.order {
-		if strings.TrimSpace(s.keys[id]) != "" {
+		if s.usableLocked(id) {
 			out = append(out, id)
 		}
 	}
@@ -91,6 +164,8 @@ func (s *Searcher) provider(id string) providerFn {
 		return s.searchBrave
 	case "jina":
 		return s.searchJina
+	case "duckduckgo":
+		return s.searchDuckDuckGo
 	}
 	return nil
 }
@@ -105,18 +180,17 @@ func (s *Searcher) Search(ctx context.Context, query string, maxResults int) Res
 	}
 	active := s.activeProviders()
 	if len(active) == 0 {
-		return Result{Error: "recherche web non configuree (keys set tavily|exa|brave|jina)"}
+		return Result{Provider: "none", Error: "recherche web non configuree (Configuration -> Recherche Web)"}
 	}
 	key := cacheKey(query, maxResults, active)
 	if r, ok := s.cached(key); ok {
 		return r
 	}
 
-	// Fan-out parallele a premier-gagnant par priorite : tous les providers
-	// configurés sont interrogés en meme temps, mais on retourne des que le
-	// provider le plus prioritaire avec des resultats a repondu (les autres
-	// sont annulés). La latence devient celle du meilleur provider, pas celle
-	// du plus lent — contrairement a une attente de tous les resultats.
+	// Fan-out parallele : tous les providers actifs sont interroges en meme
+	// temps. En mode "race", le premier qui repond avec des resultats gagne
+	// (latence minimale). En mode "priority", on retourne le provider le
+	// plus prioritaire des qu'il a repondu, les autres sont annules.
 	cctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 	type outcome struct {
@@ -157,26 +231,37 @@ func (s *Searcher) Search(ctx context.Context, query string, maxResults int) Res
 	var errs []string
 	best := -1
 	var bestHits []Hit
+	race := s.getMode() == "race"
 	for o := range ch {
 		delete(pending, o.idx)
 		if len(o.hits) > 0 {
-			if best == -1 || o.idx < best {
+			// Mode "race" (rapidite) : le premier provider qui repond avec
+			// des resultats gagne, les autres sont annules. La latence est
+			// celle du provider le plus rapide, pas celle du plus prioritaire.
+			// Mode "priority" (qualite) : on prefere le provider le plus
+			// prioritaire parmi ceux qui ont repondu.
+			if race || best == -1 || o.idx < best {
 				best = o.idx
 				bestHits = o.hits
+			}
+			if race {
+				break
 			}
 		} else if o.err != nil {
 			errs = append(errs, active[o.idx]+": "+o.err.Error())
 		}
-		// Inutile d'attendre les providers moins prioritaires que le
-		// meilleur resultat deja obtenu.
-		minPending := -1
-		for idx := range pending {
-			if minPending == -1 || idx < minPending {
-				minPending = idx
+		if !race {
+			// Inutile d'attendre les providers moins prioritaires que le
+			// meilleur resultat deja obtenu.
+			minPending := -1
+			for idx := range pending {
+				if minPending == -1 || idx < minPending {
+					minPending = idx
+				}
 			}
-		}
-		if best != -1 && (minPending == -1 || minPending > best) {
-			break
+			if best != -1 && (minPending == -1 || minPending > best) {
+				break
+			}
 		}
 	}
 	cancel() // libere les providers encore en vol
@@ -296,7 +381,7 @@ func (s *Searcher) searchTavily(ctx context.Context, query string, maxResults in
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Authorization", "Bearer "+s.keys["tavily"])
+	req.Header.Set("Authorization", "Bearer "+s.key("tavily"))
 	data, err := s.do(req)
 	if err != nil {
 		return nil, err
@@ -311,7 +396,7 @@ func (s *Searcher) searchExa(ctx context.Context, query string, maxResults int) 
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("x-api-key", s.keys["exa"])
+	req.Header.Set("x-api-key", s.key("exa"))
 	data, err := s.do(req)
 	if err != nil {
 		return nil, err
@@ -329,7 +414,7 @@ func (s *Searcher) searchBrave(ctx context.Context, query string, maxResults int
 		return nil, err
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("X-Subscription-Token", s.keys["brave"])
+	req.Header.Set("X-Subscription-Token", s.key("brave"))
 	data, err := s.do(req)
 	if err != nil {
 		return nil, err
@@ -345,7 +430,7 @@ func (s *Searcher) searchJina(ctx context.Context, query string, maxResults int)
 		return nil, err
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("Authorization", "Bearer "+s.keys["jina"])
+	req.Header.Set("Authorization", "Bearer "+s.key("jina"))
 	data, err := s.do(req)
 	if err != nil {
 		return nil, err

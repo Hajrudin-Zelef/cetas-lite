@@ -1,6 +1,6 @@
 import { api, getToken } from "./api.js";
 import { logout } from "./auth.js";
-import { confirmDialog } from "./modals.js";
+import { confirmDialog } from "./dialogs.js";
 
 const CATS_KEY = "cetas-lite-cats";
 const CONV_CATS_KEY = "cetas-lite-conv-cats";

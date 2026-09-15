@@ -6,6 +6,7 @@ import {
   resetReasonPanel,
 } from "./reasoning-panel.js";
 import { setTurnStats } from "./turn-tokens.js";
+import { getFeaturePref } from "./model-select.js";
 
 const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
@@ -563,7 +564,7 @@ export class ThreadView {
       });
       bar.appendChild(regen);
     }
-    if (window.speechSynthesis) {
+    if (window.speechSynthesis && getFeaturePref("tts", "system") !== "none") {
       const speak = el("button", "message-tts-btn", "Lire");
       speak.type = "button";
       speak.addEventListener("click", () => {

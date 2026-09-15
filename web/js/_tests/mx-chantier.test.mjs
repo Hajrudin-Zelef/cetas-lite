@@ -21,6 +21,8 @@ globalThis.requestAnimationFrame = dom.window.requestAnimationFrame.bind(dom.win
 globalThis.cancelAnimationFrame = dom.window.cancelAnimationFrame.bind(dom.window);
 globalThis.getComputedStyle = dom.window.getComputedStyle.bind(dom.window);
 globalThis.localStorage = dom.window.localStorage;
+globalThis.CustomEvent = dom.window.CustomEvent;
+globalThis.Event = dom.window.Event;
 globalThis.EventSource = class {
   constructor() {}
   close() {}
@@ -100,6 +102,18 @@ test("menu + : les 5 sections demandées", () => {
 test("menu + : compteur de compétences actives", () => {
   const t = $("#mx-menu-plus").textContent;
   assert.ok(t.includes("1 active / 2"), "compteur 1 active / 2, obtenu: " + t.slice(0, 200));
+});
+
+test("menu + : Plugins ouvre API et Modèles, jamais Fonctionnalités", () => {
+  let got = null;
+  const h = (e) => { got = e.detail && e.detail.tab; };
+  window.addEventListener("cetas:open-config-tab", h);
+  const btn = document.querySelector('#mx-menu-plus [data-action="plugins"]');
+  assert.ok(btn, "action plugins présente");
+  btn.click();
+  window.removeEventListener("cetas:open-config-tab", h);
+  assert.equal(got, "apimodeles", "plugins -> onglet API et Modèles");
+  assert.notEqual(got, "models", "jamais l'onglet Fonctionnalités depuis Agents");
 });
 
 test("menu + : choisir une profondeur allume le globe", () => {

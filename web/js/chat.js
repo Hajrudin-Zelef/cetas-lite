@@ -1,7 +1,7 @@
 import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
 import { currentSelection } from "./model-select.js";
-import { getFamilies, getMaxTokens } from "./model-select.js";
+import { getFamilies, getMaxTokens, getFeaturePref } from "./model-select.js";
 import { initReasonPanel } from "./reasoning-panel.js";
 import {
   estimateTokens,
@@ -238,8 +238,16 @@ export function initChat() {
     });
   }
 
-  // Micro
+  // Micro — masqué si la transcription est désactivée dans Fonctionnalités.
   const micBtn = document.getElementById("mic-btn");
+  const applyMicPref = () => {
+    if (!micBtn) return;
+    if (!(window.SpeechRecognition || window.webkitSpeechRecognition)) {
+      micBtn.style.display = "none";
+      return;
+    }
+    micBtn.style.display = getFeaturePref("transcription", "system") === "none" ? "none" : "";
+  };
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (micBtn && SR) {
     const rec = new SR();
@@ -261,6 +269,8 @@ export function initChat() {
     });
     rec.addEventListener("end", () => micBtn.classList.remove("active"));
     rec.addEventListener("error", () => micBtn.classList.remove("active"));
+    applyMicPref();
+    window.addEventListener("cetas:features-changed", applyMicPref);
   } else if (micBtn) {
     micBtn.style.display = "none";
   }

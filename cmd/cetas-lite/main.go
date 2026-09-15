@@ -156,7 +156,7 @@ func buildApp() (*app, error) {
 	if iso == chat.IsolationBwrap {
 		slog.Info("isolation bwrap active")
 	}
-	engine.SetSearcher(search.New(keys, client))
+	engine.SetSearcher(search.NewWithConfig(web.LoadSearchConfig(st, keys), client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
 	attachStore := attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20)
 	engine.SetAttachments(attachStore)

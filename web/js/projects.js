@@ -4,6 +4,7 @@
 // Câblé sur /api/projects et /api/connectors.
 // ============================================================================
 import { api, getToken } from "./api.js";
+import { confirmDialog, alertDialog } from "./dialogs.js";
 
 function esc(s) {
   return String(s == null ? "" : s)
@@ -500,62 +501,249 @@ export function openNewProjectModal(onCreated, opts) {
 
 // ---------------- connecteurs (Réglages) ----------------
 
+// ---------------- connecteurs (Réglages) ----------------
+// Registre des connecteurs : chaque entrée décrit le connecteur et les
+// champs demandés par la modale « Associer ». Ajouter une entrée ici suffit
+// pour exposer un nouveau connecteur.
+const CONNECTOR_DEFS = [
+  {
+    id: "github",
+    name: "GitHub",
+    icon: "🐙",
+    desc: "Permet à l'agent d'utiliser git (commit, diff, push) sur vos dépôts. Le token est chiffré avant stockage.",
+    fields: [
+      { key: "token", label: "Token personnel (scope repo)", type: "password", placeholder: "ghp_…" },
+    ],
+    connectLabel: "Connecter",
+    // state: { connected, login } — issu de GET /api/connectors
+    statusOf: (st) => st || { connected: false },
+    badgeOf: (st) => (st.connected ? "Connecté · " + (st.login || "") : "Déconnecté"),
+    onConnect: async (values) => {
+      const token = (values.token || "").trim();
+      if (!token) throw new Error("Collez votre token GitHub.");
+      await ProjectsAPI.githubConnect(token);
+    },
+    onDisconnect: async () => {
+      await ProjectsAPI.githubDisconnect();
+    },
+  },
+];
+
+const CONN_FAVS_KEY = "cetas-lite-conn-favs";
+function connFavs() {
+  try {
+    const v = JSON.parse(localStorage.getItem(CONN_FAVS_KEY) || "[]");
+    return Array.isArray(v) ? v : [];
+  } catch (e) {
+    return [];
+  }
+}
+function setConnFav(id, on) {
+  let favs = connFavs();
+  favs = on ? [...new Set([...favs, id])] : favs.filter((x) => x !== id);
+  try {
+    localStorage.setItem(CONN_FAVS_KEY, JSON.stringify(favs));
+  } catch (e) {}
+}
+
+function connEl(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+// Modale « Associer » : saisie des champs du connecteur, validée par « Connecter ».
+function openConnectorModal(def, done) {
+  closeConnectorModal();
+  const overlay = connEl("div", "sp-modal-overlay conn-modal-overlay");
+  overlay.id = "conn-modal-overlay";
+  const modal = connEl("div", "sp-modal conn-modal");
+  modal.appendChild(connEl("h3", "conn-modal-title", "Associer " + def.name));
+  modal.appendChild(connEl("p", "apikey-intro", def.desc));
+  const fields = {};
+  for (const f of def.fields || []) {
+    const lab = connEl("label", "mx-field");
+    lab.appendChild(connEl("span", null, f.label));
+    const input = document.createElement("input");
+    input.type = f.type || "text";
+    input.placeholder = f.placeholder || "";
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    lab.appendChild(input);
+    fields[f.key] = input;
+    modal.appendChild(lab);
+  }
+  const errEl = connEl("div", "mx-modal-error");
+  modal.appendChild(errEl);
+  const row = connEl("div", "conn-modal-actions");
+  const cancelBtn = connEl("button", "mx-btn", "Annuler");
+  cancelBtn.type = "button";
+  cancelBtn.addEventListener("click", closeConnectorModal);
+  const okBtn = connEl("button", "mx-btn primary", def.connectLabel || "Connecter");
+  okBtn.type = "button";
+  okBtn.addEventListener("click", async () => {
+    errEl.textContent = "";
+    okBtn.disabled = true;
+    okBtn.textContent = "Vérification…";
+    try {
+      const values = {};
+      for (const k of Object.keys(fields)) values[k] = fields[k].value;
+      await def.onConnect(values);
+      closeConnectorModal();
+      done();
+    } catch (e) {
+      errEl.textContent = e.message || String(e);
+      okBtn.disabled = false;
+      okBtn.textContent = def.connectLabel || "Connecter";
+    }
+  });
+  row.appendChild(cancelBtn);
+  row.appendChild(okBtn);
+  modal.appendChild(row);
+  overlay.appendChild(modal);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeConnectorModal();
+  });
+  document.body.appendChild(overlay);
+  const first = modal.querySelector("input");
+  if (first) first.focus();
+}
+
+function closeConnectorModal() {
+  document.getElementById("conn-modal-overlay")?.remove();
+}
+
 export async function renderConnectorsInto(container) {
-  container.innerHTML = '<div class="sb-tree-empty">Chargement…</div>';
+  container.innerHTML = "";
+  container.appendChild(connEl("div", "sb-tree-empty", "Chargement…"));
   let state = { github: { connected: false } };
   try {
     state = await ProjectsAPI.connectors();
   } catch (e) {
-    container.innerHTML = '<div class="sb-tree-empty">Connecteurs injoignables.</div>';
+    container.innerHTML = "";
+    container.appendChild(connEl("div", "sb-tree-empty", "Connecteurs injoignables."));
     return;
   }
-  const gh = state.github || {};
-  container.innerHTML =
-    '<div class="mx-conn-card">' +
-    '<div class="mx-conn-head"><span class="mx-conn-name">GitHub</span>' +
-    (gh.connected
-      ? '<span class="mx-conn-badge on">Connecté · ' + esc(gh.login || "") + "</span>"
-      : '<span class="mx-conn-badge off">Déconnecté</span>') +
-    "</div>" +
-    '<p class="mx-conn-desc">Permet à l\'agent d\'utiliser git (commit, diff, push) sur vos dépôts. Le token est chiffré avant stockage.</p>' +
-    (gh.connected
-      ? '<button type="button" class="mx-btn" id="mx-gh-disconnect">Déconnecter</button>'
-      : '<label class="mx-field"><span>Token personnel (scope repo)</span>' +
-        '<input type="password" id="mx-gh-token" placeholder="ghp_…" autocomplete="off"></label>' +
-        '<div class="mx-modal-error" id="mx-gh-error"></div>' +
-        '<button type="button" class="mx-btn primary" id="mx-gh-connect">Connecter</button>') +
-    "</div>";
-  const errEl = container.querySelector("#mx-gh-error");
-  const connBtn = container.querySelector("#mx-gh-connect");
-  if (connBtn) {
-    connBtn.addEventListener("click", async () => {
-      const token = container.querySelector("#mx-gh-token").value.trim();
-      if (!token) {
-        errEl.textContent = "Collez votre token GitHub.";
-        return;
-      }
-      connBtn.disabled = true;
-      connBtn.textContent = "Vérification…";
+  const favs = connFavs();
+  const items = CONNECTOR_DEFS.map((def) => {
+    const st = def.statusOf(state[def.id]);
+    return { def, st, connected: !!st.connected, fav: favs.includes(def.id) };
+  });
+  const sortItems = (arr) =>
+    arr.sort((a, b) => (b.fav - a.fav) || a.def.name.localeCompare(b.def.name));
+  const connected = sortItems(items.filter((x) => x.connected));
+  const available = sortItems(items.filter((x) => !x.connected));
+
+  container.innerHTML = "";
+  const rerender = () => renderConnectorsInto(container);
+
+  const makeCard = (item) => {
+    const { def, st, connected: isConn, fav } = item;
+    const card = connEl("div", "conn-card" + (fav ? " fav" : ""));
+    // Menu ⋮ devant le nom.
+    const menuWrap = connEl("div", "conn-menu-wrap");
+    const menuBtn = connEl("button", "conn-menu-btn", "⋮");
+    menuBtn.type = "button";
+    menuBtn.title = "Options";
+    menuBtn.setAttribute("aria-label", "Options " + def.name);
+    const menu = connEl("div", "conn-menu");
+    menu.style.display = "none";
+    const addItem = (label, cls, fn) => {
+      const b = connEl("button", "conn-menu-item" + (cls ? " " + cls : ""), label);
+      b.type = "button";
+      b.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        menu.style.display = "none";
+        await fn();
+      });
+      menu.appendChild(b);
+    };
+    if (isConn) {
+      addItem("Dissocier", "", async () => {
+        const ok = await confirmDialog("Dissocier " + def.name + " ?", { okLabel: "Dissocier" });
+        if (!ok) return;
+        try {
+          await def.onDisconnect();
+          rerender();
+        } catch (e) {
+          alertDialog("Dissociation impossible : " + (e.message || e));
+        }
+      });
+    }
+    addItem(fav ? "Retirer des favoris" : "Ajouter aux favoris", "", async () => {
+      setConnFav(def.id, !fav);
+      rerender();
+    });
+    // « Supprimer » : réinitialise la configuration du connecteur (dissocie +
+    // retire des favoris). Pour un connecteur intégré comme GitHub, la
+    // définition subsiste : il réapparaît dans « Disponible ».
+    addItem("Supprimer", "danger", async () => {
+      const ok = await confirmDialog(
+        "Supprimer le connecteur " + def.name + " ?" + (isConn ? " Il sera dissocié." : ""),
+        { okLabel: "Supprimer", danger: true }
+      );
+      if (!ok) return;
       try {
-        await ProjectsAPI.githubConnect(token);
-        await renderConnectorsInto(container);
+        if (isConn) await def.onDisconnect();
+        setConnFav(def.id, false);
+        rerender();
       } catch (e) {
-        errEl.textContent = e.message || String(e);
-        connBtn.disabled = false;
-        connBtn.textContent = "Connecter";
+        alertDialog("Suppression impossible : " + (e.message || e));
       }
     });
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      document.querySelectorAll(".conn-menu").forEach((m) => {
+        if (m !== menu) m.style.display = "none";
+      });
+      menu.style.display = menu.style.display === "none" ? "" : "none";
+    });
+    menuWrap.appendChild(menuBtn);
+    menuWrap.appendChild(menu);
+    card.appendChild(menuWrap);
+    // Icône + infos
+    card.appendChild(connEl("div", "conn-icon", def.icon || "🔌"));
+    const info = connEl("div", "conn-info");
+    const nameRow = connEl("div", "conn-name", def.name);
+    if (fav) nameRow.appendChild(connEl("span", "conn-star", "★"));
+    info.appendChild(nameRow);
+    info.appendChild(connEl("div", "conn-desc", def.desc));
+    card.appendChild(info);
+    card.appendChild(connEl("span", "conn-badge " + (isConn ? "on" : "off"), def.badgeOf(st)));
+    if (!isConn) {
+      const assoc = connEl("button", "conn-assoc", "Associer");
+      assoc.type = "button";
+      assoc.addEventListener("click", () => openConnectorModal(def, rerender));
+      card.appendChild(assoc);
+    }
+    return card;
+  };
+
+  if (connected.length) {
+    container.appendChild(connEl("div", "conn-section-label", "Connecté"));
+    for (const item of connected) container.appendChild(makeCard(item));
   }
-  const disBtn = container.querySelector("#mx-gh-disconnect");
-  if (disBtn) {
-    disBtn.addEventListener("click", async () => {
-      if (!confirm("Déconnecter GitHub ?")) return;
-      try {
-        await ProjectsAPI.githubDisconnect();
-        await renderConnectorsInto(container);
-      } catch (e) {
-        alert("Déconnexion impossible : " + (e.message || e));
+  if (available.length) {
+    container.appendChild(connEl("div", "conn-section-label", "Disponible"));
+    for (const item of available) container.appendChild(makeCard(item));
+  }
+  if (!connected.length && !available.length) {
+    container.appendChild(connEl("div", "sb-tree-empty", "Aucun connecteur."));
+  }
+  // Fermeture des menus ⋮ au clic extérieur : un seul listener document stable
+  // (pas de { once:true } recréé à chaque rendu, qui pouvait être consommé
+  // par un clic antérieur et laisser ensuite les menus ouverts).
+  if (!connOutsideCloseInstalled) {
+    connOutsideCloseInstalled = true;
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest || !e.target.closest(".conn-menu-wrap")) {
+        document.querySelectorAll(".conn-menu").forEach((m) => (m.style.display = "none"));
       }
     });
   }
 }
+
+// Installé une seule fois (voir renderConnectorsInto).
+let connOutsideCloseInstalled = false;
+

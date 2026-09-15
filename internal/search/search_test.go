@@ -39,9 +39,11 @@ func TestNormalizeHitStripsControl(t *testing.T) {
 }
 
 func TestSearchNoKeys(t *testing.T) {
-	s := New(nil, nil)
+	// Sans cle, seul DuckDuckGo (sans cle) reste actif : on le desactive
+	// explicitement pour retrouver l'erreur de configuration.
+	s := NewWithConfig(Config{Keys: nil, Enabled: map[string]bool{"duckduckgo": false}}, nil)
 	res := s.Search(context.Background(), "test", 5)
-	if len(res.Hits) != 0 || res.Provider != "" || !strings.Contains(res.Error, "keys set") {
+	if len(res.Hits) != 0 || res.Provider != "none" || !strings.Contains(res.Error, "non configuree") {
 		t.Fatalf("erreur de configuration attendue: %+v", res)
 	}
 }
@@ -64,7 +66,11 @@ func TestSearchCascadePrefersEarlier(t *testing.T) {
 	}))
 	defer srv.Close()
 
-	s := New(map[string]string{"tavily": "k1", "exa": "k2"}, srv.Client())
+	s := NewWithConfig(Config{
+		Keys:    map[string]string{"tavily": "k1", "exa": "k2"},
+		Enabled: map[string]bool{"duckduckgo": false}, // hermetique : pas de reseau reel
+		Mode:    "priority",
+	}, srv.Client())
 	s.endpoints["tavily"] = srv.URL + "/tavily"
 	s.endpoints["exa"] = srv.URL + "/exa"
 
@@ -93,7 +99,11 @@ func TestSearchFallbackWhenFirstEmpty(t *testing.T) {
 	}))
 	defer srv.Close()
 
-	s := New(map[string]string{"tavily": "k1", "exa": "k2"}, srv.Client())
+	s := NewWithConfig(Config{
+		Keys:    map[string]string{"tavily": "k1", "exa": "k2"},
+		Enabled: map[string]bool{"duckduckgo": false}, // hermetique : pas de reseau reel
+		Mode:    "priority",
+	}, srv.Client())
 	s.endpoints["tavily"] = srv.URL + "/tavily"
 	s.endpoints["exa"] = srv.URL + "/exa"
 
@@ -114,7 +124,11 @@ func TestSearchCache(t *testing.T) {
 	}))
 	defer srv.Close()
 
-	s := New(map[string]string{"tavily": "k1"}, srv.Client())
+	s := NewWithConfig(Config{
+		Keys:    map[string]string{"tavily": "k1"},
+		Enabled: map[string]bool{"duckduckgo": false}, // hermetique : pas de reseau reel
+		Mode:    "priority",
+	}, srv.Client())
 	s.endpoints["tavily"] = srv.URL + "/search"
 
 	_ = s.Search(context.Background(), "meme requete", 5)
@@ -225,7 +239,11 @@ func TestSearchFirstWinLatency(t *testing.T) {
 	}))
 	defer srv.Close()
 
-	s := New(map[string]string{"tavily": "k1", "exa": "k2", "brave": "k3"}, srv.Client())
+	s := NewWithConfig(Config{
+		Keys:    map[string]string{"tavily": "k1", "exa": "k2", "brave": "k3"},
+		Enabled: map[string]bool{"brave": false, "duckduckgo": false}, // hermetique : pas de reseau reel
+		Mode:    "priority",
+	}, srv.Client())
 	s.endpoints["tavily"] = srv.URL + "/tavily"
 	s.endpoints["exa"] = srv.URL + "/exa"
 	s.endpoints["brave"] = srv.URL + "/brave"
@@ -258,7 +276,11 @@ func TestSearchFirstWinWaitsPriorityOnError(t *testing.T) {
 	}))
 	defer srv.Close()
 
-	s := New(map[string]string{"tavily": "k1", "exa": "k2"}, srv.Client())
+	s := NewWithConfig(Config{
+		Keys:    map[string]string{"tavily": "k1", "exa": "k2"},
+		Enabled: map[string]bool{"duckduckgo": false}, // hermetique : pas de reseau reel
+		Mode:    "priority",
+	}, srv.Client())
 	s.endpoints["tavily"] = srv.URL + "/tavily"
 	s.endpoints["exa"] = srv.URL + "/exa"
 
