@@ -735,7 +735,6 @@
             <button class="apikeys-tab" data-tab="remote">Remote</button>
             <button class="apikeys-tab" data-tab="competences">Compétences</button>
             <button class="apikeys-tab" data-tab="search">Recherche Web</button>
-            <button class="apikeys-tab" data-tab="sessions">Sessions</button>
             <button class="apikeys-tab" data-tab="appearance">Apparence</button>
             <div class="apikeys-tabs-spacer"></div>
             <button class="apikeys-tab" data-tab="faq">FAQ</button>
@@ -763,9 +762,6 @@
                 <p class="apikey-intro">Choisissez le fournisseur à utiliser pour chaque fonctionnalité.</p>
                 <div class="apikeys-panel-body">
                     <div id="features-rows"></div>
-                    <div class="models-save-row">
-                        <span class="apikey-autosave-note">Tous les paramètres sont sauvegardés automatiquement.</span>
-                    </div>
                     <details class="feat-advanced" id="feat-advanced">
                         <summary>Réglages avancés</summary>
                         <div class="feat-advanced-body">
@@ -814,6 +810,9 @@
                         </div>
                     </details>
                 </div>
+                <div class="config-panel-save">
+                    <button type="button" class="config-save-btn config-panel-save-btn" data-tab="models">Enregistrer</button>
+                </div>
             </div>
             <!-- Panel Connecteurs -->
             <div class="apikeys-panel" id="panel-connecteurs">
@@ -856,21 +855,9 @@
                     </div>
                     <div id="search-providers-tabs" class="providers-tabs"></div>
                     <div id="search-provider-content" class="provider-content"></div>
-                    <div class="models-save-row">
-                        <span class="apikey-autosave-note">Tous les paramètres sont sauvegardés automatiquement.</span>
-                    </div>
                 </div>
-            </div>
-            <!-- Panel Sessions -->
-            <div class="apikeys-panel" id="panel-sessions">
-                <h3>Sessions</h3>
-                <p class="apikey-intro">Historique des conversations : CETAS et Agents.</p>
-                <div class="apikeys-panel-body">
-                    <input id="sessions-filter" class="sess-filter" type="search" placeholder="Rechercher une session…" autocomplete="off">
-                    <div class="sess-section-label">CETAS</div>
-                    <div id="sessions-chat" class="sess-list"></div>
-                    <div class="sess-section-label">Agents</div>
-                    <div id="sessions-agents" class="sess-list"></div>
+                <div class="config-panel-save">
+                    <button type="button" class="config-save-btn config-panel-save-btn" data-tab="search">Enregistrer</button>
                 </div>
             </div>
             <!-- Panel Apparence -->
@@ -890,6 +877,9 @@
                         <span class="audio-setting-label">Palette</span>
                         <div id="palette-swatches" class="palette-swatches"></div>
                     </div>
+                </div>
+                <div class="config-panel-save">
+                    <button type="button" class="config-save-btn config-panel-save-btn" data-tab="appearance">Enregistrer</button>
                 </div>
             </div>
             <!-- Panel FAQ -->
@@ -917,6 +907,11 @@
                         <div class="faq-answer"><p>Cetas Lite est auto-hébergé : vos conversations restent sur votre serveur. Seuls les messages envoyés à l'IA transitent vers le fournisseur du modèle choisi.</p></div>
                     </div>
                 </div>
+            </div>
+            <!-- Barre de sauvegarde générale : visible dès qu'un onglet a des modifications non enregistrées -->
+            <div class="config-savebar" id="config-savebar" style="display:none">
+                <span class="config-savebar-hint" id="config-savebar-hint">Modifications non enregistrées</span>
+                <button type="button" id="config-save-all" class="config-save-btn">Enregistrer</button>
             </div>
         </div>
     </div>

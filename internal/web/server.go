@@ -112,7 +112,6 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("POST /api/conversations/restore", s.requireAuth(s.handleConversationRestore))
 	mux.HandleFunc("DELETE /api/conversations/{id}", s.requireAuth(s.handleConversationDelete))
 	mux.HandleFunc("GET /api/conversations/{id}/export", s.requireAuth(s.handleArchiveExport))
-	mux.HandleFunc("GET /api/sessions", s.requireAuth(s.handleSessionsList))
 	mux.HandleFunc("GET /api/search/settings", s.requireAuth(s.handleSearchSettingsGet))
 	mux.HandleFunc("PUT /api/search/settings", s.requireAuth(s.handleSearchSettingsPut))
 	mux.Handle("GET /", http.FileServerFS(webassets.FS))

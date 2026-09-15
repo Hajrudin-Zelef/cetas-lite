@@ -136,6 +136,9 @@ await test("renderConnectorsInto affiche les sections Connecté/Disponible", asy
   assert.match(box.innerHTML, /Disponible/);
   assert.ok(box.querySelector(".conn-assoc"), "bouton Associer présent");
   assert.ok(box.querySelector(".conn-menu-btn"), "menu ⋮ présent");
+  const iconSvg = box.querySelector(".conn-icon svg");
+  assert.ok(iconSvg, "logo GitHub en SVG (pas d'emoji)");
+  assert.equal(iconSvg.getAttribute("viewBox"), "0 0 98 96");
 });
 
 await test("Associer ouvre la modale puis Connecter associe le connecteur", async () => {

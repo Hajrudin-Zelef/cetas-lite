@@ -14,12 +14,12 @@ const dom = new JSDOM(
   `<!doctype html><html><body>
   <div id="features-rows"></div>
   <select id="search-mode"><option value="race">Rapide</option><option value="priority">Priorité</option></select>
+  <select id="cfg-websearch-mode"><option value="auto">Auto</option><option value="natif">Natif</option><option value="outils">Outils</option><option value="off">Off</option></select>
   <div id="search-providers-tabs"></div>
   <div id="search-provider-content"></div>
-  <input id="sessions-filter" type="search">
-  <div id="sessions-chat"></div>
-  <div id="sessions-agents"></div>
+  <select id="cfg-theme"><option value="clair">Clair</option><option value="sombre">Sombre</option><option value="hard_dark">Hard Dark</option></select>
   <div id="palette-swatches"></div>
+  <div id="config-savebar" style="display:none"><span id="config-savebar-hint">Modifications non enregistrées</span></div>
 </body></html>`,
   { pretendToBeVisual: true, url: "http://localhost/" }
 );
@@ -28,12 +28,6 @@ globalThis.document = dom.window.document;
 globalThis.localStorage = dom.window.localStorage;
 globalThis.CustomEvent = dom.window.CustomEvent;
 globalThis.Event = dom.window.Event;
-// confirmDialog() replie sur window.confirm hors modale HTML.
-let confirmMsg = null;
-globalThis.window.confirm = (m) => { confirmMsg = m; return confirmAnswer; };
-let confirmAnswer = true;
-let chatTurns = 0;
-const restoreCalls = [];
 
 // --- Mocks ---
 const putBodies = [];
@@ -45,19 +39,12 @@ let searchMock = {
     { id: "duckduckgo", label: "DuckDuckGo", enabled: true, configured: false, keyless: true },
   ],
 };
-const sessionsMock = {
-  chat: [
-    { id: "c1", kind: "chat", title: "Recette carbonara", updated: 1757932800000, messages: 12 },
-    { id: "c2", kind: "chat", title: "Debug panique Go", updated: 1757846400000, messages: 4 },
-  ],
-  agents: [{ id: "a1", kind: "agent", title: "Refactor auth", updated: 1757932800, status: "running", family: "code", mode: "build" }],
-};
 globalThis.fetch = async (url, opts = {}) => {
   const u = String(url);
   const method = opts.method || "GET";
   const json = (body) => ({ ok: true, status: 200, text: async () => JSON.stringify(body) });
   if (u === "/api/settings" && method === "GET")
-    return json({ theme: "clair", palette: "bleu", tts: "system", transcription: "system", prompt_enhance: "none", summarizer: "none", title_gen: "conversation", error_analysis: "none" });
+    return json({ theme: "clair", palette: "bleu", tts: "system", transcription: "system", prompt_enhance: "none", summarizer: "none", title_gen: "conversation", error_analysis: "none", websearch_mode: "auto" });
   if (u === "/api/settings" && method === "PUT") {
     putBodies.push(JSON.parse(opts.body));
     return json({ ok: true });
@@ -76,22 +63,12 @@ globalThis.fetch = async (url, opts = {}) => {
     }
     return json(searchMock);
   }
-  if (u === "/api/sessions") return json(sessionsMock);
-  if (u === "/api/chat/state") return json({ turns: chatTurns });
-  if (u === "/api/conversations/restore") { restoreCalls.push(JSON.parse(opts.body)); return json({ ok: true }); }
-  if (u.startsWith("/api/conversations/") && method === "DELETE") {
-    sessionsMock.chat = sessionsMock.chat.filter((s) => !u.endsWith(s.id));
-    return json({ ok: true });
-  }
-  if (u.startsWith("/api/agents/") && method === "DELETE") {
-    sessionsMock.agents = sessionsMock.agents.filter((s) => !u.endsWith(s.id));
-    return json({ ok: true });
-  }
   return json({});
 };
 
 const panels = await import("../config-panels.js");
 const { _test } = panels;
+const savebar = () => document.getElementById("config-savebar");
 
 await test("Fonctionnalités : six lignes rendues avec les bonnes options", async () => {
   await _test.loadFeaturesPanel();
@@ -110,27 +87,31 @@ await test("Fonctionnalités : six lignes rendues avec les bonnes options", asyn
   assert.ok([...peSel.options].some((o) => o.value === "openrouter"), "providers proposés");
 });
 
-await test("Fonctionnalités : changement persisté via PUT /api/settings", async () => {
+await test("Fonctionnalités : changement stagé (pas de PUT), Enregistrer persiste", async () => {
   putBodies.length = 0;
   const ttsSel = document.querySelector('select[data-feature="tts"]');
   ttsSel.value = "none";
   ttsSel.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
-  await new Promise((r) => setTimeout(r, 30));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(putBodies.length, 0, "aucun PUT immédiat");
+  assert.ok(_test.isConfigDirty(), "onglet marqué sale");
+  assert.notEqual(savebar().style.display, "none", "barre de sauvegarde visible");
+  await _test.saveConfigPanel("models");
   assert.equal(putBodies.length, 1);
   assert.deepEqual(putBodies[0], { tts: "none" });
+  assert.ok(!_test.isConfigDirty(), "plus rien à sauvegarder");
+  assert.match(document.getElementById("config-savebar-hint").textContent, /Enregistré/, "confirmation affichée");
 });
 
-await test("Recherche Web : onglets moteurs + mode + DuckDuckGo sans clé", async () => {
+await test("Recherche Web : onglets moteurs + DuckDuckGo sans clé", async () => {
   await _test.loadSearchPanel();
   const tabs = [...document.querySelectorAll("#search-providers-tabs .provider-tab")].map((t) => t.textContent);
   assert.deepEqual(tabs, ["Brave", "Tavily", "DuckDuckGo"]);
   assert.equal(document.getElementById("search-mode").value, "race");
-  // Panneau DuckDuckGo : pas de champ clé.
   const ddgSec = document.querySelector('#search-provider-content .provider-section[data-provider="duckduckgo"]');
   assert.ok(ddgSec, "section DuckDuckGo présente");
   assert.equal(ddgSec.querySelector(".apikey-input"), null, "aucun champ clé pour DuckDuckGo");
   assert.match(ddgSec.textContent, /Aucune clé requise/);
-  // Panneau Brave : champ clé + œil + lien.
   const braveSec = document.querySelector('#search-provider-content .provider-section[data-provider="brave"]');
   const input = braveSec.querySelector('input[type="password"]');
   assert.ok(input, "champ clé Brave présent");
@@ -142,101 +123,106 @@ await test("Recherche Web : onglets moteurs + mode + DuckDuckGo sans clé", asyn
   assert.equal(input.type, "password", "œil masque à nouveau");
   const link = braveSec.querySelector(".apikey-get-link");
   assert.ok(link && link.href.includes("brave.com"), "lien d'obtention présent");
+  assert.equal(braveSec.querySelector(".search-key-actions button.models-save-btn"), null, "plus de bouton par fournisseur");
 });
 
-await test("Recherche Web : toggle d'activation persisté", async () => {
+await test("Recherche Web : toggle stagé puis persisté à l'enregistrement", async () => {
   const tavSec = document.querySelector('#search-provider-content .provider-section[data-provider="tavily"]');
   const cb = tavSec.querySelector('input[type="checkbox"]');
   assert.equal(cb.checked, false);
   cb.checked = true;
   cb.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
-  await new Promise((r) => setTimeout(r, 30));
-  assert.equal(searchMock.providers.find((p) => p.id === "tavily").enabled, true);
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(searchMock.providers.find((p) => p.id === "tavily").enabled, false, "pas de PUT immédiat");
+  assert.match(tavSec.querySelector(".search-key-staged").textContent, /Enregistrer/);
+  await _test.saveConfigPanel("search");
+  assert.equal(searchMock.providers.find((p) => p.id === "tavily").enabled, true, "persisté après Enregistrer");
 });
 
-await test("Recherche Web : changement de mode persisté", async () => {
+await test("Recherche Web : clé API stagée puis persistée", async () => {
+  const braveSec = document.querySelector('#search-provider-content .provider-section[data-provider="brave"]');
+  const input = braveSec.querySelector('input[type="password"]');
+  input.value = "brave-secret-123";
+  input.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(searchMock.providers.find((p) => p.id === "brave").configured, false, "clé pas encore envoyée");
+  await _test.saveConfigPanel("search");
+  assert.equal(searchMock.providers.find((p) => p.id === "brave").configured, true, "clé persistée");
+});
+
+await test("Recherche Web : mode moteur + comportement stagés", async () => {
   const modeSel = document.getElementById("search-mode");
   modeSel.value = "priority";
   modeSel.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
-  await new Promise((r) => setTimeout(r, 30));
-  assert.equal(searchMock.mode, "priority");
+  const wsmSel = document.getElementById("cfg-websearch-mode");
+  wsmSel.value = "off";
+  wsmSel.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(searchMock.mode, "race", "mode pas encore persisté");
+  putBodies.length = 0;
+  await _test.saveConfigPanel("search");
+  assert.equal(searchMock.mode, "priority", "mode moteur persisté");
+  assert.deepEqual(putBodies[0], { websearch_mode: "off" }, "comportement persisté via /api/settings");
 });
 
-await test("Sessions : listes CETAS + Agents rendues", async () => {
-  await _test.loadSessionsPanel();
-  const chatRows = document.querySelectorAll("#sessions-chat .sess-row");
-  assert.equal(chatRows.length, 2, "deux conversations");
-  assert.match(chatRows[0].querySelector(".sess-title").textContent, /carbonara/);
-  assert.match(chatRows[0].querySelector(".sess-meta").textContent, /12 messages/);
-  const agentRows = document.querySelectorAll("#sessions-agents .sess-row");
-  assert.equal(agentRows.length, 1, "un agent");
-  assert.match(agentRows[0].querySelector(".sess-meta").textContent, /En cours/);
+await test("Sauvegarde générale : saveAllConfigPanels persiste tous les onglets sales", async () => {
+  putBodies.length = 0;
+  const trSel = document.querySelector('select[data-feature="transcription"]');
+  trSel.value = "none";
+  trSel.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+  const braveSec = document.querySelector('#search-provider-content .provider-section[data-provider="brave"]');
+  const cb = braveSec.querySelector('input[type="checkbox"]');
+  cb.checked = false;
+  cb.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.ok(_test.isConfigDirty());
+  await _test.saveAllConfigPanels();
+  assert.ok(putBodies.some((b) => b.transcription === "none"), "fonctionnalité persistée");
+  assert.equal(searchMock.providers.find((p) => p.id === "brave").enabled, false, "recherche persistée");
+  assert.ok(!_test.isConfigDirty());
 });
 
-await test("Sessions : filtre + suppression", async () => {
-  const filter = document.getElementById("sessions-filter");
-  filter.value = "go";
-  filter.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
-  assert.equal(document.querySelectorAll("#sessions-chat .sess-row").length, 1, "filtre appliqué");
-  filter.value = "";
-  filter.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
-  const delBtn = [...document.querySelectorAll("#sessions-chat .sess-btn.danger")].find((b) => b.textContent === "Supprimer");
-  delBtn.click();
-  await new Promise((r) => setTimeout(r, 30));
-  assert.equal(document.querySelectorAll("#sessions-chat .sess-row").length, 1, "conversation supprimée");
-});
-
-await test("Apparence : sept swatches, clic applique la palette", async () => {
+await test("Apparence : sept swatches, clic = aperçu sans PUT, Enregistrer persiste", async () => {
   await _test.loadAppearancePanel();
   const swatches = document.querySelectorAll("#palette-swatches .palette-swatch");
   assert.equal(swatches.length, 7, "sept palettes");
   const violet = [...swatches].find((s) => s.dataset.palette === "violet");
+  assert.ok(violet.style.getPropertyValue("--sw"), "couleur du swatch définie");
   putBodies.length = 0;
   violet.click();
-  await new Promise((r) => setTimeout(r, 30));
-  assert.equal(document.documentElement.dataset.palette, "violet");
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(document.documentElement.dataset.palette, "violet", "aperçu immédiat");
   assert.ok(violet.classList.contains("active"));
+  assert.equal(putBodies.length, 0, "aucun PUT avant Enregistrer");
+  await _test.saveConfigPanel("appearance");
   assert.deepEqual(putBodies[0], { palette: "violet" });
 });
 
-await test("Sessions : restauration demande confirmation si la conversation courante n'est pas vide", async () => {
-  // Recharge le panneau (sessionsMock.chat a été réduit par le test précédent).
-  sessionsMock.chat = [
-    { id: "c1", kind: "chat", title: "Recette carbonara", updated: 1757932800000, messages: 12 },
-  ];
-  const { refreshSessionsPanel } = _test;
-  await refreshSessionsPanel();
-  const openBtn = [...document.querySelectorAll("#sessions-chat .sess-btn")].find((b) => b.textContent === "Ouvrir");
-  assert.ok(openBtn, "bouton Ouvrir présent");
-
-  // Cas 1 : conversation courante vide -> pas de confirmation, restauration directe.
-  chatTurns = 0; confirmAnswer = true; confirmMsg = null; restoreCalls.length = 0;
-  openBtn.click();
-  await new Promise((r) => setTimeout(r, 50));
-  assert.equal(confirmMsg, null, "aucune confirmation si rien à archiver");
-  assert.equal(restoreCalls.length, 1, "restauration appelée");
-
-  // Cas 2 : conversation courante non vide -> confirmation, refus = pas de restauration.
-  chatTurns = 3; confirmAnswer = false; confirmMsg = null; restoreCalls.length = 0;
-  openBtn.click();
-  await new Promise((r) => setTimeout(r, 50));
-  assert.match(confirmMsg || "", /archivée/, "message d'archivage affiché");
-  assert.equal(restoreCalls.length, 0, "restauration annulée");
-
-  // Cas 3 : confirmation acceptée -> restauration.
-  confirmAnswer = true; restoreCalls.length = 0;
-  openBtn.click();
-  await new Promise((r) => setTimeout(r, 50));
-  assert.equal(restoreCalls.length, 1, "restauration appelée après confirmation");
-  assert.equal(restoreCalls[0].id, "c1");
+await test("Apparence : thème stagé avec aperçu, revertUnsavedConfig replie", async () => {
+  const themeSel = document.getElementById("cfg-theme");
+  themeSel.value = "sombre";
+  themeSel.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.ok(document.body.classList.contains("dark"), "aperçu sombre appliqué");
+  putBodies.length = 0;
+  const swatches = document.querySelectorAll("#palette-swatches .palette-swatch");
+  const rouge = [...swatches].find((s) => s.dataset.palette === "rouge");
+  rouge.click();
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(document.documentElement.dataset.palette, "rouge");
+  _test.revertUnsavedConfig();
+  assert.equal(document.documentElement.dataset.palette, "violet", "palette repliée sur la sauvegardée");
+  assert.ok(!document.body.classList.contains("dark"), "thème replié");
+  assert.equal(putBodies.length, 0, "rien persisté");
+  assert.ok(!_test.isConfigDirty());
+  // Enregistrer le thème sombre pour de bon, puis vérifier la persistance.
+  themeSel.value = "sombre";
+  themeSel.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+  await _test.saveConfigPanel("appearance");
+  assert.deepEqual(putBodies[0], { theme: "sombre" });
 });
 
-await test("helpers : agentStatusLabel / fmtSessionDate / searchStatusText", () => {
-  assert.equal(_test.agentStatusLabel("running"), "En cours");
-  assert.equal(_test.agentStatusLabel("done"), "Terminé");
-  assert.equal(_test.agentStatusLabel("stopped"), "Arrêté");
-  assert.match(_test.fmtSessionDate(1757932800000), /\d/);
-  assert.equal(_test.fmtSessionDate(0), "");
+await test("helpers : searchStatusText", () => {
   assert.match(_test.searchStatusText({ enabled: false }), /Désactivé/);
   assert.match(_test.searchStatusText({ enabled: true, keyless: true }), /sans clé/);
   assert.match(_test.searchStatusText({ enabled: true, configured: true }), /configurée/);

@@ -138,23 +138,6 @@ func TestSearchSettingsPutKeyPersists(t *testing.T) {
 	}
 }
 
-func TestSessionsList(t *testing.T) {
-	s := newTestServer(t, true)
-	token := registerAndLogin(t, s.Handler(), "sam")
-
-	rec := doJSON(t, s.Handler(), http.MethodGet, "/api/sessions", token, nil)
-	if rec.Code != http.StatusOK {
-		t.Fatalf("get status = %d", rec.Code)
-	}
-	body := decode(t, rec)
-	if _, ok := body["chat"]; !ok {
-		t.Fatal("cle 'chat' absente")
-	}
-	if _, ok := body["agents"]; !ok {
-		t.Fatal("cle 'agents' absente")
-	}
-}
-
 func TestSettingsFeatures(t *testing.T) {
 	s := newTestServer(t, true)
 	token := registerAndLogin(t, s.Handler(), "sam")

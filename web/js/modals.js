@@ -6,7 +6,7 @@ import { getCategories, saveCategories } from "./sidebar.js";
 import { saveRoles } from "./right-panel.js";
 import { renderConnectorsInto, openNewProjectModal, ProjectsAPI } from "./projects.js";
 import { initApiModelesPanel } from "./apimodeles.js";
-import { loadFeaturesPanel, loadSearchPanel, loadSessionsPanel, loadAppearancePanel } from "./config-panels.js";
+import { loadFeaturesPanel, loadSearchPanel, loadAppearancePanel, registerPanelSaver, notifyConfigDirty, saveConfigPanel, saveAllConfigPanels } from "./config-panels.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -32,6 +32,10 @@ function openOverlay(id) {
 function closeOverlay(id) {
   const el = document.getElementById(id);
   if (el) el.style.display = "none";
+  if (id === "apikeys-modal-overlay") {
+    // Les aperçus non sauvegardés (thème/palette) sont repliés.
+    window.dispatchEvent(new CustomEvent("cetas:config-closed"));
+  }
 }
 
 // --- Modale Configuration ---
@@ -59,13 +63,29 @@ function initConfigModal() {
       if (tab.dataset.tab === "models") loadFeaturesPanel();
       // Onglet Recherche Web : moteurs + mode.
       if (tab.dataset.tab === "search") loadSearchPanel();
-      // Onglet Sessions : historique chat + agents.
-      if (tab.dataset.tab === "sessions") loadSessionsPanel();
       // Onglet Apparence : palettes.
       if (tab.dataset.tab === "appearance") loadAppearancePanel();
     });
   });
   document.getElementById("apikeys-close-btn")?.addEventListener("click", () => closeOverlay("apikeys-modal-overlay"));
+  // Sauvegarde : bouton par onglet + barre générale (modifs « stagées »).
+  document.getElementById("config-save-all")?.addEventListener("click", async (e) => {
+    const btn = e.currentTarget;
+    btn.disabled = true;
+    try {
+      await saveAllConfigPanels();
+    } catch (_) {}
+    btn.disabled = false;
+  });
+  overlay.querySelectorAll(".config-panel-save-btn").forEach((b) => {
+    b.addEventListener("click", async () => {
+      b.disabled = true;
+      try {
+        await saveConfigPanel(b.dataset.tab);
+      } catch (_) {}
+      b.disabled = false;
+    });
+  });
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) closeOverlay("apikeys-modal-overlay");
   });
@@ -98,6 +118,7 @@ function initConfigModal() {
     if (wsm) wsm.value = (prefs && prefs.websearch_mode) || "auto";
     const theme = document.getElementById("cfg-theme");
     if (theme) theme.value = document.documentElement.dataset.theme || "clair";
+    advPrefsSaved = readAdvancedPrefs(); // base de comparaison du staging
     const mcpStatus = document.getElementById("cfg-mcp-status");
     if (mcpStatus) {
       const mcp = await api("/api/mcp").catch(() => null);
@@ -122,25 +143,43 @@ function initConfigModal() {
     el.title = txt;
   }
 
-  function bindFeatureToggles() {
-    const save = () => {
-      const body = {
-        web_default: document.getElementById("cfg-web-default")?.checked || false,
-        websearch_mode: document.getElementById("cfg-websearch-mode")?.value || "auto",
-        thinking_default: document.getElementById("cfg-thinking-default")?.checked || false,
-        thinking_effort: document.getElementById("cfg-thinking-effort")?.value || "default",
-        mcp_default: document.getElementById("cfg-mcp-default")?.checked || false,
-      };
-      putPrefs(body).then(() => persistPrefs().catch(() => {})).catch(() => {});
+  // Réglages avancés de l'onglet Fonctionnalités : « stagés » comme le reste
+  // (sauvegardés via le bouton Enregistrer de l'onglet ou la barre générale).
+  // #cfg-websearch-mode est stagé par le panneau Recherche Web,
+  // #cfg-theme par le panneau Apparence : ils ne sont plus ici.
+  let advPrefsSaved = null;
+  function readAdvancedPrefs() {
+    const mcpEl = document.getElementById("cfg-mcp-default");
+    return {
+      web_default: !!document.getElementById("cfg-web-default")?.checked,
+      thinking_default: !!document.getElementById("cfg-thinking-default")?.checked,
+      thinking_effort: document.getElementById("cfg-thinking-effort")?.value || "default",
+      mcp_default: mcpEl ? !!mcpEl.checked : true,
     };
+  }
+
+  function bindFeatureToggles() {
+    const onAdvChange = () => notifyConfigDirty();
     ["cfg-web-default", "cfg-thinking-default", "cfg-mcp-default"].forEach((id) => {
-      document.getElementById(id)?.addEventListener("change", save);
+      document.getElementById(id)?.addEventListener("change", onAdvChange);
     });
-    document.getElementById("cfg-thinking-effort")?.addEventListener("change", save);
-    document.getElementById("cfg-websearch-mode")?.addEventListener("change", save);
-    document.getElementById("cfg-theme")?.addEventListener("change", (e) => {
-      applyTheme(e.target.value);
-      putPrefs({ theme: e.target.value }).catch(() => {});
+    document.getElementById("cfg-thinking-effort")?.addEventListener("change", onAdvChange);
+    registerPanelSaver("models", {
+      isDirty: () => {
+        if (!advPrefsSaved) return false;
+        const cur = readAdvancedPrefs();
+        return Object.keys(cur).some((k) => cur[k] !== advPrefsSaved[k]);
+      },
+      save: async () => {
+        const cur = readAdvancedPrefs();
+        const body = {};
+        for (const k of Object.keys(cur)) if (cur[k] !== advPrefsSaved[k]) body[k] = cur[k];
+        if (Object.keys(body).length) {
+          await putPrefs(body);
+          try { persistPrefs(); } catch (e) {}
+        }
+        advPrefsSaved = cur;
+      },
     });
     document.getElementById("cfg-plugins-reload")?.addEventListener("click", async (e) => {
       const btn = e.currentTarget;
@@ -242,7 +281,7 @@ async function loadRemoteTab() {
     empty.className = "mod-empty";
     const icon = document.createElement("span");
     icon.className = "mod-empty-icon";
-    icon.textContent = "\U0001F5A5\uFE0F";
+    icon.textContent = "\u{1F5A5}\uFE0F";
     empty.appendChild(icon);
     empty.appendChild(document.createTextNode("Aucun serveur distant configuré."));
     body.appendChild(empty);

@@ -616,6 +616,7 @@
     height: 30px;
     border-radius: 50%;
     border: 2px solid transparent;
+    background: var(--sw, #9aa0a6);
     cursor: pointer;
     padding: 0;
     outline: 2px solid transparent;
@@ -713,4 +714,102 @@ html[data-palette="rouge"] {
         flex-direction: column;
         align-items: stretch;
     }
+}
+
+/* --- Sauvegarde : bouton par module + barre générale --- */
+.config-panel-save {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 30px 6px;
+    flex-shrink: 0;
+}
+.config-savebar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 12px 30px;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+    flex-shrink: 0;
+}
+.config-savebar-hint {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+.config-savebar-hint.saved {
+    color: var(--accent);
+    font-weight: 600;
+}
+.config-save-btn {
+    padding: 9px 24px;
+    border-radius: 9px;
+    border: none;
+    background: #0284c7;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+}
+.config-save-btn:hover {
+    background: #0369a1;
+}
+.config-save-btn:disabled {
+    opacity: 0.55;
+    cursor: default;
+}
+
+/* --- Boutons d'ajout Remote / Compétences : bleu océan --- */
+#panel-remote .mod-add-btn,
+#panel-competences .mod-add-btn {
+    background: #0284c7;
+    color: #fff;
+}
+#panel-remote .mod-add-btn:hover,
+#panel-competences .mod-add-btn:hover {
+    background: #0369a1;
+}
+
+/* --- Recherche Web : zone clé (layout propre, sans héritage API/Modèles) --- */
+.search-provider-pane .apikey-label-row {
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+.search-provider-pane .apikey-field {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+.search-provider-pane .apikey-input-wrap {
+    position: static;
+    display: flex;
+    flex: 1;
+    min-width: 0;
+}
+.search-provider-pane .apikey-input {
+    padding-right: 12px;
+}
+.search-provider-pane .search-eye-btn {
+    align-self: center;
+}
+.search-provider-pane .search-key-actions {
+    margin-top: 10px;
+}
+.search-key-staged {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-top: 8px;
+    min-height: 1.2em;
+}
+
+/* --- Connecteurs : logo SVG --- */
+.conn-icon svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+.conn-icon {
+    color: var(--text);
 }
