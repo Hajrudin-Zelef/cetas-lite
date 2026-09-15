@@ -481,7 +481,9 @@ type agentOpts struct {
 // execution (ecriture, execution, outils externes).
 func needsApproval(name string) bool {
 	switch name {
-	case "Write", "Edit", "Bash", "RunScript", "Mkdir", "Mv", "Curl":
+	case "Write", "Edit", "Bash", "RunScript", "Mkdir", "Mv", "Curl",
+		"GitHubRepoCreate", "GitHubIssueCreate", "GitHubIssueComment",
+		"GitHubPRCreate", "GitHubPRMerge":
 		return true
 	}
 	return strings.HasPrefix(name, "mcp_") || strings.HasPrefix(name, "custom_") || strings.HasPrefix(name, "plugin_")
@@ -511,6 +513,7 @@ func needsApprovalFor(name string, args map[string]any) bool {
 var planAllowedTools = map[string]bool{
 	"Ls": true, "Tree": true, "Read": true, "Cat": true,
 	"Grep": true, "Glob": true, "Echo": true, "TodoWrite": true,
+	"GitHubRepos": true, "GitHubIssues": true, "GitHubIssueGet": true, "GitHubPRs": true,
 }
 
 // planToolAllowed indique si un outil peut s'executer en mode plan

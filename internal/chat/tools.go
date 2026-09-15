@@ -105,7 +105,7 @@ func ToolSchemas() []provider.Tool {
 			}}},
 		}, "todos")}},
 	}
-	return append(out, extraToolSchemas()...)
+	return append(append(out, extraToolSchemas()...), githubToolSchemas()...)
 }
 
 func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult {
@@ -190,6 +190,10 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolCurl(ctx, args)
+	case "GitHubRepos", "GitHubIssues", "GitHubIssueGet", "GitHubPRs",
+		"GitHubRepoCreate", "GitHubIssueCreate", "GitHubIssueComment",
+		"GitHubPRCreate", "GitHubPRMerge":
+		return s.toolGitHub(ctx, name, args)
 	default:
 		return ToolResult{Text: "[erreur] outil inconnu: " + name}
 	}
