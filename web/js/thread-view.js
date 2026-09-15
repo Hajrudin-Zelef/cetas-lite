@@ -170,6 +170,7 @@ function speakable(md) {
 //   reasonHooks : { append(text, replace), finish(), reset() } — panneau custom
 //     (ex. vue Agents façon Marexcode) ; prioritaire sur reasonPanel.
 //   trackTokens : met a jour la ligne de tokens du composer (vue principale)
+//   onEvent : callback(ev) appele pour chaque evenement SSE (ex. panneau Todos)
 export class ThreadView {
   constructor(opts) {
     this.log = opts.log;
@@ -188,6 +189,7 @@ export class ThreadView {
     this.reasonPanel = opts.reasonPanel === true;
     this.reasonHooks = opts.reasonHooks || null;
     this.trackTokens = opts.trackTokens === true;
+    this.onEvent = typeof opts.onEvent === "function" ? opts.onEvent : null;
 
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
@@ -825,6 +827,9 @@ export class ThreadView {
 
   handleEvent(ev) {
     if (typeof ev.seq === "number" && ev.seq > this.lastSeq) this.lastSeq = ev.seq;
+    if (this.onEvent) {
+      try { this.onEvent(ev); } catch (e) { /* jamais bloquant pour le fil */ }
+    }
     if (ev.reset) {
       this.reset();
       return;

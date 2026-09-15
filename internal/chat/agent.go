@@ -249,9 +249,9 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				case tc.InvalidCall():
 					out = ToolResult{Text: "[erreur] appel d'outil irrecevable (nom vide ou arguments JSON incomplets). " +
 						"Renvoie exactement le meme appel avec un nom d'outil valide et des arguments JSON complets."}
-				case opts.plan && !planApproved && needsApprovalFor(tc.Function.Name, args):
-					out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration. " +
-						"Les outils d'ecriture et d'execution sont interdits tant que le plan n'est pas valide. " +
+				case opts.plan && !planApproved && !planToolAllowed(tc.Function.Name):
+					out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration LECTURE SEULE. " +
+						"Seuls Ls, Tree, Read, Cat, Grep, Glob et TodoWrite sont autorises tant que le plan n'est pas valide. " +
 						"Construis ton plan avec TodoWrite puis presente-le."}
 				case denied[key]:
 					out = ToolResult{Text: "[refuse] l'utilisateur a deja refuse cet appel pendant ce tour."}
@@ -481,12 +481,24 @@ func needsApprovalFor(name string, args map[string]any) bool {
 	return false
 }
 
-// readOnlyTools ne garde que les outils de lecture et de planification.
+// planAllowedTools est l'allowlist stricte du mode plan : lecture seule
+// (exploration du workspace) + TodoWrite pour construire le plan.
+// Tout autre outil est refuse a l'execution tant que le plan n'est pas
+// valide, meme s'il n'exigerait pas d'approbation hors mode plan.
+var planAllowedTools = map[string]bool{
+	"Ls": true, "Tree": true, "Read": true, "Cat": true,
+	"Grep": true, "Glob": true, "Echo": true, "TodoWrite": true,
+}
+
+// planToolAllowed indique si un outil peut s'executer en mode plan
+// avant validation du plan.
+func planToolAllowed(name string) bool { return planAllowedTools[name] }
+
+// readOnlyTools ne garde que les outils autorises en mode plan.
 func readOnlyTools(tools []provider.Tool) []provider.Tool {
-	keep := map[string]bool{"Ls": true, "Read": true, "Grep": true, "Glob": true, "Tree": true, "Cat": true, "Echo": true, "TodoWrite": true}
 	out := make([]provider.Tool, 0, len(tools))
 	for _, t := range tools {
-		if keep[t.Function.Name] {
+		if planAllowedTools[t.Function.Name] {
 			out = append(out, t)
 		}
 	}

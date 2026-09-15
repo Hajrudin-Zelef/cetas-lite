@@ -1,0 +1,143 @@
+/* ============================================================
+   Vue Agents — Modes Plan/Build + panneau Todos.
+   Fichier d'extension (le CSS généré marex-agents.css ne doit pas
+   être édité à la main). Scopé sous #marex-view.
+   ============================================================ */
+
+/* Barre colorée à gauche du composer : jaune = Plan, bleu = Build */
+#marex-view .mx-composer {
+  position: relative;
+}
+#marex-view .mx-composer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  z-index: 2;
+}
+#marex-view .mx-composer.mode-plan::before {
+  background-color: #eab308;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.55);
+}
+#marex-view .mx-composer.mode-build::before {
+  background-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.55);
+}
+
+/* Badge de mode dans la rangée des sélecteurs (cliquable = Tab) */
+#marex-view .mx-mode-badge {
+  align-self: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+#marex-view .mx-mode-badge.plan {
+  color: #facc15;
+  border-color: rgba(234, 179, 8, 0.55);
+  background: rgba(234, 179, 8, 0.12);
+}
+#marex-view .mx-mode-badge.build {
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.55);
+  background: rgba(59, 130, 246, 0.12);
+}
+#marex-view .mx-mode-badge:hover {
+  filter: brightness(1.25);
+}
+
+/* Hint discret dans la barre d'info du composer */
+#marex-view .mx-mode-hint {
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.45;
+  white-space: nowrap;
+}
+
+/* Panneau Todos : strip persistant au-dessus du composer */
+#marex-view .mx-todos {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto 8px auto;
+  background: var(--bg-app);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 12px 10px 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+#marex-view .mx-todos::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background-color: #a78bfa;
+  box-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
+}
+#marex-view .mx-todos-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+#marex-view .mx-todos-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+#marex-view .mx-todos-progress {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+#marex-view .mx-todos-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 132px;
+  overflow-y: auto;
+}
+#marex-view .mx-todo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+#marex-view .mx-todo-mark {
+  flex: 0 0 auto;
+  width: 16px;
+  text-align: center;
+}
+#marex-view .mx-todo-item.todo-completed {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+#marex-view .mx-todo-item.todo-completed .mx-todo-mark {
+  color: #4ade80;
+  text-decoration: none;
+}
+#marex-view .mx-todo-item.todo-in_progress .mx-todo-mark {
+  color: #facc15;
+}
+#marex-view .mx-todo-item.todo-pending .mx-todo-mark {
+  opacity: 0.5;
+}

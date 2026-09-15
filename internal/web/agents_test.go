@@ -209,11 +209,20 @@ func TestAgentSpawnForwardsWebEffortAndForcesThinking(t *testing.T) {
 		t.Fatal("id manquant")
 	}
 
-	// Attendre la fin du tour.
+	// Attendre la fin du tour. On ne sort que sur "generating": false
+	// explicite : l'ancienne lecture de state["running"] (cle inexistante)
+	// cassait la boucle des le premier poll, ce qui rendait le test
+	// flaky (course avec la goroutine de l'agent).
 	deadline := time.Now().Add(10 * time.Second)
 	for {
-		_, state := doAuthed(t, http.MethodGet, ts.URL+"/api/agents/"+id+"/state", tok, nil)
-		if running, _ := state["running"].(bool); !running {
+		code, state := doAuthed(t, http.MethodGet, ts.URL+"/api/agents/"+id+"/state", tok, nil)
+		done := false
+		if code == http.StatusOK {
+			if g, ok := state["generating"].(bool); ok && !g {
+				done = true
+			}
+		}
+		if done {
 			break
 		}
 		if time.Now().After(deadline) {

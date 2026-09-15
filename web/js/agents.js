@@ -134,8 +134,10 @@ const VIEW_HTML = `
         </div>
         <div class="mx-agent-status" id="mx-status" style="display:none"><span class="dot"></span><span id="mx-status-text"></span></div>
 
-        <div class="mx-composer" id="mx-composer">
+        <div class="mx-todos" id="mx-todos" style="display:none" aria-live="polite"></div>
+        <div class="mx-composer mode-build" id="mx-composer">
           <div class="composer-selectors">
+            <span class="mx-mode-badge build" id="mx-mode-badge" title="Tab : basculer Plan / Build">BUILD</span>
             <div class="cdrop" id="mx-dd-project">
               <button class="selector" id="mx-btn-project">${I.folder13}<span id="mx-label-project">Espace partagé</span>${I.chevron}</button>
               <div class="cdrop-menu" id="mx-menu-project"></div>
@@ -143,7 +145,7 @@ const VIEW_HTML = `
           </div>
           <div class="mx-pbar" id="mx-project-bar"></div>
           <textarea id="mx-input" rows="1" placeholder="Décrivez la tâche de code à réaliser... (glissez des images ici)"></textarea>
-          <div class="composer-info-bar"><span id="mx-token-counter"></span><span id="mx-queue" style="display:none"></span></div>
+          <div class="composer-info-bar"><span id="mx-token-counter"></span><span class="mx-mode-hint">Tab : Plan / Build</span><span id="mx-queue" style="display:none"></span></div>
           <div class="composer-footer">
             <div class="composer-footer-left">
               <div class="cdrop" id="mx-dd-plus">
@@ -216,6 +218,35 @@ function cdropItemHTML(t, d, selected, icon, attrs) {
     (d ? '<span class="d">' + esc(d) + "</span>" : "") + "</span></span>" + I.check + "</button>";
 }
 
+// ---------------- panneau Todos (gestion des tâches de l'agent) ----------------
+// Fonctions pures au niveau module (testables) ; le panneau vit dans #marex-view.
+export function renderMxTodos(todos) {
+  const panel = document.querySelector("#mx-todos");
+  if (!panel) return;
+  if (!Array.isArray(todos) || !todos.length) {
+    panel.style.display = "none";
+    panel.innerHTML = "";
+    return;
+  }
+  const done = todos.filter((t) => t.status === "completed").length;
+  const marks = { completed: "✓", in_progress: "◐", pending: "○" };
+  let html = '<div class="mx-todos-head"><span class="mx-todos-title">Tâches</span>' +
+    '<span class="mx-todos-progress">' + done + "/" + todos.length + "</span></div>" +
+    '<ul class="mx-todos-list">';
+  for (const t of todos) {
+    const st = t.status || "pending";
+    const content = String(t.content || "").replace(/</g, "&lt;");
+    html += '<li class="mx-todo-item todo-' + st + '"><span class="mx-todo-mark">' +
+      (marks[st] || "○") + "</span><span>" + content + "</span></li>";
+  }
+  panel.innerHTML = html + "</ul>";
+  panel.style.display = "";
+}
+export function clearMxTodos() {
+  const panel = document.querySelector("#mx-todos");
+  if (panel) { panel.style.display = "none"; panel.innerHTML = ""; }
+}
+
 export function initAgents() {
   const toolbarBtn =
     document.getElementById("agents-btn") ||
@@ -255,6 +286,40 @@ export function initAgents() {
   let selMode = LS.get("mode", null);
   let perm = LS.get("perm", "write");
   if (!PERMS[perm]) perm = "write";
+  // Mode Plan/Build : "plan" <=> perm "read" (lecture seule), "build" <=>
+  // derniere permission d'ecriture ("write" ou "ask"). Tab bascule l'un
+  // vers l'autre ; le payload agent envoie plan: PERMS[perm].plan.
+  let lastBuildPerm = perm === "read" ? "write" : perm;
+  const mxMode = () => (perm === "read" ? "plan" : "build");
+  function setPerm(p) {
+    if (!PERMS[p]) return;
+    if (p !== "read") lastBuildPerm = p;
+    perm = p;
+    LS.set("perm", perm);
+    $("#mx-label-perm").textContent = PERMS[perm].label;
+    buildPermMenu();
+    applyMxModeVisual();
+  }
+  function setMxMode(mode) {
+    setPerm(mode === "plan" ? "read" : lastBuildPerm || "write");
+  }
+  function applyMxModeVisual() {
+    const mode = mxMode();
+    const composer = $("#mx-composer");
+    if (composer) {
+      composer.classList.toggle("mode-plan", mode === "plan");
+      composer.classList.toggle("mode-build", mode === "build");
+    }
+    const badge = $("#mx-mode-badge");
+    if (badge) {
+      badge.textContent = mode === "plan" ? "PLAN" : "BUILD";
+      badge.classList.toggle("plan", mode === "plan");
+      badge.classList.toggle("build", mode === "build");
+      badge.title = mode === "plan"
+        ? "Mode Plan — lecture seule (Tab pour passer en Build)"
+        : "Mode Build — l'agent peut modifier (Tab pour passer en Plan)";
+    }
+  }
   let repo = LS.get("repo", "");
   let useWorktree = LS.get("worktree", "1") !== "0";
   // Globe (recherche web) et effort de réflexion (thinking obligatoire).
@@ -383,11 +448,8 @@ export function initAgents() {
     menu.innerHTML = html;
     menu.querySelectorAll(".cdrop-item[data-perm]").forEach((it) => {
       it.addEventListener("click", () => {
-        perm = it.dataset.perm;
-        LS.set("perm", perm);
-        $("#mx-label-perm").textContent = PERMS[perm].label;
+        setPerm(it.dataset.perm);
         closeAllDrops();
-        buildPermMenu();
       });
     });
   }
@@ -738,6 +800,7 @@ function buildThread(id) {
       effort: mxEffort,
     }),
     reasonHooks,
+    onEvent: handleMxEvent,
     onDone: () => {
       if (statsBadge.textContent) tokenCounter.textContent = statsBadge.textContent;
       refreshAgents();
@@ -750,8 +813,17 @@ function enterChat() {
   chatPanel.style.display = "flex";
 }
 
+function handleMxEvent(ev) {
+  // Les événements d'historique rejouent aussi ici : le dernier TodoWrite gagne.
+  if (ev && ev.tool && ev.tool.name === "TodoWrite" && ev.tool.args && Array.isArray(ev.tool.args.todos)) {
+    renderMxTodos(ev.tool.args.todos);
+  }
+  if (ev && ev.reset) clearMxTodos();
+}
+
 function newConversation() {
   disconnectThread();
+  clearMxTodos();
   currentId = null;
   hero.classList.remove("has-chat");
   chatPanel.style.display = "none";
@@ -767,6 +839,7 @@ function newConversation() {
 
 function openDiscussion(id) {
   if (currentId === id && thread) return;
+  clearMxTodos();
   currentId = id;
   enterChat();
   chatLog.innerHTML = "";
@@ -901,10 +974,20 @@ function closeView() {
 // ---------------- câblage ----------------
 sendBtn.addEventListener("click", send);
 input.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") {
+    e.preventDefault();
+    setMxMode(mxMode() === "plan" ? "build" : "plan");
+    return;
+  }
   if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault();
     send();
   }
+});
+// Clic sur le badge : même bascule que Tab.
+$("#mx-mode-badge").addEventListener("click", () => {
+  setMxMode(mxMode() === "plan" ? "build" : "plan");
+  input.focus();
 });
 input.addEventListener("input", () => {
   autosize();
@@ -990,6 +1073,7 @@ $("#mx-logout").addEventListener("click", () => {
 
 // ---------------- init ----------------
 $("#mx-label-perm").textContent = PERMS[perm].label;
+applyMxModeVisual();
 $("#mx-label-effort").textContent = EFFORT_LABELS[mxEffort] || "Défaut";
 buildPermMenu();
 buildPlusMenu();
