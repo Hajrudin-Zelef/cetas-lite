@@ -10,3 +10,4 @@ docs/index.md
 docs/report-*.md
 docs/plans/
 docs/*.zip
+node_modules/

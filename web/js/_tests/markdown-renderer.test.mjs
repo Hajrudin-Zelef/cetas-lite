@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-// ESM : NODE_PATH ne s'applique pas aux imports, chemin absolu requis.
-import { JSDOM } from "/tmp/node_modules/jsdom/lib/api.js";
+// jsdom : dependance de test declaree dans package.json (npm install).
+import { JSDOM } from "jsdom";
 
 // jsdom (meme version que le harnais agents) pour le DOM.
 const dom = new JSDOM("<!doctype html><html><body></body></html>", {
