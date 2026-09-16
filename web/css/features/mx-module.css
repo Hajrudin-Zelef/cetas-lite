@@ -105,6 +105,26 @@
   z-index:1500;
 }
 
+/* ---- Modale "Nouveau projet" : suit le thème + la palette ----
+   marex-agents.css force des variables sombres en dur sur .mx-modal-overlay
+   (fichier généré : on surcharge ici, sans le toucher). */
+/* L'accent suit la palette choisie (html[data-palette]), quel que soit le thème. */
+.mx-modal-overlay{
+  --accent:inherit;
+}
+/* Thème clair : fond blanc, champs et textes du thème clair. */
+html[data-theme="clair"] .mx-modal-overlay{
+  --bg-panel:#ffffff;
+  --bg-input-btn:#f4f5f7;
+  --border:#d7dce3;
+  --text-primary:#1a1d21;
+  --text-secondary:#5b6470;
+  --text-tertiary:#8a93a0;
+  --bg-hover:rgba(0,0,0,.05);
+  color-scheme:light;
+  background:rgba(15,23,42,.45);
+}
+
 /* ---- Sidebar Agents : sections Projets / Discussions restructurées ----
    Les intitulés de groupe (PROJETS, DISCUSSIONS) sont eux-mêmes les toggles :
    plus de sous-sections « Projet actif » / « Mes projets » /
