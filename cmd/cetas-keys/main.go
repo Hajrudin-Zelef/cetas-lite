@@ -513,7 +513,10 @@ func (c *cli) configureProvider(pw string, p keysetup.Provider) {
 		}
 	}
 	for {
-		key := c.readSecret(white(fmt.Sprintf("  Clé %s (%s) : ", p.Label, p.Hint)))
+		// Trim explicite : l'interface web trimme les clés API avant stockage
+		// (internal/web/providers.go) — le copier-coller ajoute souvent des
+		// espaces parasites. Le mot de passe maître, lui, n'est jamais trimmé.
+		key := strings.TrimSpace(c.readSecret(white(fmt.Sprintf("  Clé %s (%s) : ", p.Label, p.Hint))))
 		defer wipe([]byte(key))
 		if key == "" {
 			fmt.Println(gray(fmt.Sprintf("  %s ignoré.\n", p.Label)))
@@ -598,6 +601,9 @@ func (c *cli) readLine() string {
 }
 
 // readSecret lit une saisie sans écho (jamais affichée, jamais loggée).
+// Renvoie la valeur BRUTE, sans trim : comme l'interface web, qui ne trimme
+// pas le mot de passe maître (le trim des clés API est appliqué
+// explicitement aux sites de saisie, cf. configureProvider).
 func (c *cli) readSecret(prompt string) string {
 	fmt.Print(prompt)
 	raw, err := term.ReadPassword(int(os.Stdin.Fd()))
@@ -605,7 +611,7 @@ func (c *cli) readSecret(prompt string) string {
 	if err != nil {
 		return ""
 	}
-	return strings.TrimSpace(string(raw))
+	return string(raw)
 }
 
 func (c *cli) readPasswordTwice(prompt string) (string, bool) {

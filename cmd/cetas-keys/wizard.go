@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"cetas-lite/internal/keysetup"
 	"cetas-lite/internal/securevault"
@@ -126,7 +127,7 @@ func (c *cli) wizardQuickSetup(pw string) {
 
 // configureProviderQuick — variante silencieuse : une seule saisie, Entrée = passer.
 func (c *cli) configureProviderQuick(pw string, p keysetup.Provider) {
-	key := c.readSecret(fmt.Sprintf("  %-15s (%s) : ", p.Label, p.Hint))
+	key := strings.TrimSpace(c.readSecret(fmt.Sprintf("  %-15s (%s) : ", p.Label, p.Hint)))
 	defer wipe([]byte(key))
 	if key == "" {
 		fmt.Println(gray(fmt.Sprintf("  %s ignoré.", p.Label)))
