@@ -330,7 +330,13 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 	if !ok {
 		return resolution{}
 	}
-	return resolution{members: rm.Pool, agent: rm.Agent && in.AgentMode}
+	members := rm.Pool
+	if in.Family == "samagent-nano" {
+		// Nano : tirage aleatoire du premier modele gratuit, puis
+		// fallback sequentiel sur le reste en cas d'echec.
+		members = alias.ShufflePool(members)
+	}
+	return resolution{members: members, agent: rm.Agent && in.AgentMode}
 }
 
 func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInput) {

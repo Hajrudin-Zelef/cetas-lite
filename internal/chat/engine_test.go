@@ -143,6 +143,56 @@ func TestResolveLocalFallbackWhenEngineDown(t *testing.T) {
 	}
 }
 
+func TestResolveNanoShufflesPool(t *testing.T) {
+	fp := &fakeProvider{id: "fake"}
+	e := newEngine(t, fp, alias.Defaults())
+	in := TurnInput{Family: "samagent-nano", Mode: "free"}
+	ref, ok := alias.Resolve(alias.Defaults(), "samagent-nano", "free")
+	if !ok {
+		t.Fatal("nano free introuvable")
+	}
+	firsts := map[string]bool{}
+	for i := 0; i < 30; i++ {
+		res := e.resolve(context.Background(), in)
+		if len(res.members) != len(ref.Pool) {
+			t.Fatalf("resolve %d: %d membres, want %d", i, len(res.members), len(ref.Pool))
+		}
+		// permutation : meme ensemble, sans perte ni doublon
+		seen := map[string]bool{}
+		for _, m := range res.members {
+			k := m.Provider + "/" + m.Model
+			if seen[k] {
+				t.Fatalf("resolve %d: doublon %s", i, k)
+			}
+			seen[k] = true
+		}
+		for _, m := range ref.Pool {
+			if !seen[m.Provider+"/"+m.Model] {
+				t.Fatalf("resolve %d: %s/%s perdu", i, m.Provider, m.Model)
+			}
+		}
+		firsts[res.members[0].Provider+"/"+res.members[0].Model] = true
+	}
+	if len(firsts) < 2 {
+		t.Fatal("le pool nano doit etre melange : 30 tirages, une seule tete")
+	}
+}
+
+func TestResolveNonNanoKeepsOrder(t *testing.T) {
+	fp := &fakeProvider{id: "fake"}
+	e := newEngine(t, fp, alias.Defaults())
+	ref, _ := alias.Resolve(alias.Defaults(), "samagent-n4", "flash")
+	res := e.resolve(context.Background(), TurnInput{Family: "samagent-n4", Mode: "flash"})
+	if len(res.members) != len(ref.Pool) {
+		t.Fatalf("%d membres, want %d", len(res.members), len(ref.Pool))
+	}
+	for i := range ref.Pool {
+		if res.members[i].Model != ref.Pool[i].Model {
+			t.Fatalf("ordre modifie a l'index %d", i)
+		}
+	}
+}
+
 func TestConversationPersistence(t *testing.T) {
 	fp := &fakeProvider{id: "fake", content: map[string]string{"ok": "memoire"}}
 	st, err := store.Open(filepath.Join(t.TempDir(), "persist.db"))

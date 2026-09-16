@@ -17,32 +17,108 @@ func TestDefaultsStructure(t *testing.T) {
 
 func TestN4PoolsRespectPriceRules(t *testing.T) {
 	fams := Defaults()
-	flash, ok := Resolve(fams, "samagent-n4", "flash")
-	if !ok {
-		t.Fatal("N4 flash introuvable")
+	// paliers cumulatifs, seuils stricts (<)
+	cases := []struct {
+		mode  string
+		max   float64
+		count int
+	}{
+		{"flash", 1.0, 14},
+		{"standard", 1.5, 20},
+		{"elite", 6.0, 24},
 	}
-	if len(flash.Pool) == 0 {
-		t.Fatal("N4 flash vide")
+	for _, c := range cases {
+		rm, ok := Resolve(fams, "samagent-n4", c.mode)
+		if !ok {
+			t.Fatalf("N4 %s introuvable", c.mode)
+		}
+		if len(rm.Pool) != c.count {
+			t.Fatalf("N4 %s = %d modeles, want %d", c.mode, len(rm.Pool), c.count)
+		}
+		seen := map[string]bool{}
+		for i, m := range rm.Pool {
+			if m.Provider != "openrouter" {
+				t.Errorf("N4 %s membre %d provider = %q", c.mode, i, m.Provider)
+			}
+			if m.OutputPer1M <= 0 || m.OutputPer1M >= c.max {
+				t.Errorf("N4 %s membre %d (%s) output = %v, want < %v", c.mode, i, m.Model, m.OutputPer1M, c.max)
+			}
+			if seen[m.Model] {
+				t.Errorf("N4 %s doublon: %s", c.mode, m.Model)
+			}
+			seen[m.Model] = true
+			if i > 0 && rm.Pool[i-1].OutputPer1M > m.OutputPer1M {
+				t.Errorf("N4 %s non trie par prix: %v > %v", c.mode, rm.Pool[i-1].OutputPer1M, m.OutputPer1M)
+			}
+		}
 	}
-	for i, m := range flash.Pool {
-		if m.Provider != "openrouter" {
-			t.Errorf("N4 flash membre %d provider = %q", i, m.Provider)
+	// composition exacte : la selection des 24, rien d'autre
+	elite, _ := Resolve(fams, "samagent-n4", "elite")
+	if len(n4Selection) != 24 {
+		t.Fatalf("n4Selection = %d, want 24", len(n4Selection))
+	}
+	for _, id := range n4Selection {
+		found := false
+		for _, m := range elite.Pool {
+			if m.Model == id {
+				found = true
+				break
+			}
 		}
-		if m.OutputPer1M <= 0 || m.OutputPer1M > 0.30 {
-			t.Errorf("N4 flash membre %d output = %v", i, m.OutputPer1M)
-		}
-		if i > 0 && flash.Pool[i-1].OutputPer1M > m.OutputPer1M {
-			t.Errorf("N4 flash non trie par prix: %v > %v", flash.Pool[i-1].OutputPer1M, m.OutputPer1M)
+		if !found {
+			t.Errorf("N4 elite: %s manquant", id)
 		}
 	}
+}
 
-	std, ok := Resolve(fams, "samagent-n4", "standard")
+func TestNanoPool(t *testing.T) {
+	fams := Defaults()
+	rm, ok := Resolve(fams, "samagent-nano", "free")
 	if !ok {
-		t.Fatal("N4 standard introuvable")
+		t.Fatal("nano free introuvable")
 	}
-	for i, m := range std.Pool {
-		if m.OutputPer1M <= 0 || m.OutputPer1M >= 1.20 {
-			t.Errorf("N4 standard membre %d output = %v", i, m.OutputPer1M)
+	want := []Member{
+		{"openrouter", "openrouter/free"},
+		{"opencode", "big-pickle-zen"},
+		{"opencode", "ling-3.0-flash-fin-free-zen"},
+		{"opencode", "mimo-v2.5-free-zen"},
+		{"opencode", "nemotron-3-ultra-free-zen"},
+		{"opencode", "nemotron-3.5-lightning-free-zen"},
+	}
+	if len(rm.Pool) != len(want) {
+		t.Fatalf("nano = %d modeles, want %d", len(rm.Pool), len(want))
+	}
+	for i, w := range want {
+		if rm.Pool[i].Provider != w.Provider || rm.Pool[i].Model != w.Model {
+			t.Errorf("nano[%d] = %v, want %v", i, rm.Pool[i], w)
+		}
+	}
+}
+
+func TestShufflePool(t *testing.T) {
+	fams := Defaults()
+	rm, _ := Resolve(fams, "samagent-nano", "free")
+	orig := append([]ResolvedMember(nil), rm.Pool...)
+	got := ShufflePool(rm.Pool)
+	if len(got) != len(orig) {
+		t.Fatalf("shuffle = %d, want %d", len(got), len(orig))
+	}
+	// ni perte ni doublon
+	seen := map[string]int{}
+	for _, m := range got {
+		seen[m.Provider+"/"+m.Model]++
+	}
+	for _, m := range orig {
+		k := m.Provider + "/" + m.Model
+		if seen[k] != 1 {
+			t.Errorf("shuffle: %s present %d fois", k, seen[k])
+		}
+	}
+	// l'original ne doit pas avoir bouge
+	for i := range orig {
+		if rm.Pool[i] != orig[i] {
+			t.Error("ShufflePool a mute le pool d'origine")
+			break
 		}
 	}
 }
@@ -63,8 +139,22 @@ func TestN8Mappings(t *testing.T) {
 		}
 	}
 	standard, _ := Resolve(fams, "samagent-n8", "standard")
-	if len(standard.Pool) < 2 || standard.Pool[1].Provider != "openrouter" {
-		t.Fatalf("N8 standard doit avoir un failover openrouter: %+v", standard.Pool)
+	if len(standard.Pool) < 2 || standard.Pool[1].Provider != "opencode-go" {
+		t.Fatalf("N8 standard doit avoir un failover opencode-go: %+v", standard.Pool)
+	}
+	for _, m := range standard.Pool[1:] {
+		if m.OutputPer1M <= 0 || m.OutputPer1M >= 1.2 {
+			t.Errorf("N8 standard failover %s output = %v, want < 1.2", m.Model, m.OutputPer1M)
+		}
+	}
+	elite, _ := Resolve(fams, "samagent-n8", "elite")
+	if len(elite.Pool) < 2 || elite.Pool[1].Provider != "opencode" {
+		t.Fatalf("N8 elite doit avoir un failover opencode: %+v", elite.Pool)
+	}
+	for _, m := range elite.Pool[1:] {
+		if m.OutputPer1M <= 1.5 {
+			t.Errorf("N8 elite failover %s output = %v, want > 1.5", m.Model, m.OutputPer1M)
+		}
 	}
 }
 
