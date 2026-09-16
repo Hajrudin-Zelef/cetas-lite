@@ -23,7 +23,7 @@ import (
 
 type Engine struct {
 	reg         *provider.Registry
-	discover    *local.Discoverer
+	discover    LocalDiscoverer
 	st          *store.Store
 	workspace   string
 	allowScript bool
@@ -58,7 +58,13 @@ type Engine struct {
 	marexSessions map[string]*marexEntry
 }
 
-func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc *local.Discoverer, workspace string) *Engine {
+// LocalDiscoverer fournit les modeles decouverts sur les moteurs locaux.
+// *local.Discoverer l'implemente ; les tests injectent un faux.
+type LocalDiscoverer interface {
+	ModelsForEngine(ctx context.Context, engine string) []local.Model
+}
+
+func NewEngine(reg *provider.Registry, families []alias.Family, st *store.Store, disc LocalDiscoverer, workspace string) *Engine {
 	if families == nil {
 		families = alias.Defaults()
 	}
@@ -75,6 +81,19 @@ func (e *Engine) SetFamilies(f []alias.Family) {
 	e.mu.Lock()
 	e.families = f
 	e.mu.Unlock()
+}
+
+// LocalModels retourne les modeles decouverts pour un moteur local
+// (llamacpp, ollama, lmstudio). Utilise par le selecteur de modeles.
+func (e *Engine) LocalModels(ctx context.Context, engine string) []string {
+	if e.discover == nil {
+		return nil
+	}
+	var out []string
+	for _, m := range e.discover.ModelsForEngine(ctx, engine) {
+		out = append(out, m.ID)
+	}
+	return out
 }
 
 func (e *Engine) SetAllowScript(v bool) {
@@ -309,13 +328,31 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 			if m.ID != in.Mode {
 				continue
 			}
+			// Selection locale (selecteur de modeles) : si le mode a un pool
+			// configure, on ne garde que les modeles decouverts selectionnes.
+			// Pool vide = tous les modeles decouverts (comportement historique).
+			var selected map[string]bool
+			if len(m.Pool) > 0 {
+				selected = make(map[string]bool, len(m.Pool))
+				for _, p := range m.Pool {
+					selected[p.Model] = true
+				}
+			}
 			if e.discover != nil {
 				if models := e.discover.ModelsForEngine(ctx, m.Engine); len(models) > 0 {
 					var members []alias.ResolvedMember
 					for _, mod := range models {
+						if selected != nil && !selected[mod.ID] {
+							continue
+						}
 						members = append(members, alias.ResolvedMember{Provider: m.Engine, Model: mod.ID, Label: mod.ID})
 					}
-					return resolution{members: members, local: true}
+					if len(members) > 0 {
+						if len(members) > 1 {
+							members = alias.ShufflePool(members)
+						}
+						return resolution{members: members, local: true}
+					}
 				}
 			}
 			fb, ok := alias.Resolve(e.Families(), "samagent-n4", "standard")
@@ -331,9 +368,10 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 		return resolution{}
 	}
 	members := rm.Pool
-	if in.Family == "samagent-nano" {
-		// Nano : tirage aleatoire du premier modele gratuit, puis
-		// fallback sequentiel sur le reste en cas d'echec.
+	if len(members) > 1 {
+		// Fallback : tirage aleatoire du premier modele a chaque requete,
+		// puis parcours sequentiel du reste en cas d'echec. Un pool d'un
+		// seul membre = modele fixe, pas de fallback.
 		members = alias.ShufflePool(members)
 	}
 	return resolution{members: members, agent: rm.Agent && in.AgentMode}

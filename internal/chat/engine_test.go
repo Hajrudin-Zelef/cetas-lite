@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"cetas-lite/internal/alias"
+	"cetas-lite/internal/local"
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/store"
 )
@@ -179,17 +180,124 @@ func TestResolveNanoShufflesPool(t *testing.T) {
 }
 
 func TestResolveNonNanoKeepsOrder(t *testing.T) {
+	// Regle du selecteur de modeles : tout pool de >1 membre est melange
+	// a chaque requete (fallback aleatoire) ; un pool d'un seul membre
+	// reste fixe, sans fallback.
 	fp := &fakeProvider{id: "fake"}
 	e := newEngine(t, fp, alias.Defaults())
-	ref, _ := alias.Resolve(alias.Defaults(), "samagent-n4", "flash")
-	res := e.resolve(context.Background(), TurnInput{Family: "samagent-n4", Mode: "flash"})
-	if len(res.members) != len(ref.Pool) {
-		t.Fatalf("%d membres, want %d", len(res.members), len(ref.Pool))
+
+	// N8 flash = 1 membre : ordre et contenu inchanges.
+	ref1, _ := alias.Resolve(alias.Defaults(), "samagent-n8", "flash")
+	res1 := e.resolve(context.Background(), TurnInput{Family: "samagent-n8", Mode: "flash"})
+	if len(res1.members) != 1 || res1.members[0].Model != ref1.Pool[0].Model {
+		t.Fatalf("pool singleton modifie : %+v", res1.members)
 	}
-	for i := range ref.Pool {
-		if res.members[i].Model != ref.Pool[i].Model {
-			t.Fatalf("ordre modifie a l'index %d", i)
+
+	// N4 flash = 14 membres : melange (permutation, tete variable).
+	refN, _ := alias.Resolve(alias.Defaults(), "samagent-n4", "flash")
+	firsts := map[string]bool{}
+	for i := 0; i < 30; i++ {
+		res := e.resolve(context.Background(), TurnInput{Family: "samagent-n4", Mode: "flash"})
+		if len(res.members) != len(refN.Pool) {
+			t.Fatalf("resolve %d: %d membres, want %d", i, len(res.members), len(refN.Pool))
 		}
+		seen := map[string]bool{}
+		for _, m := range res.members {
+			k := m.Provider + "/" + m.Model
+			if seen[k] {
+				t.Fatalf("resolve %d: doublon %s", i, k)
+			}
+			seen[k] = true
+		}
+		for _, m := range refN.Pool {
+			if !seen[m.Provider+"/"+m.Model] {
+				t.Fatalf("resolve %d: %s/%s perdu", i, m.Provider, m.Model)
+			}
+		}
+		firsts[res.members[0].Provider+"/"+res.members[0].Model] = true
+	}
+	if len(firsts) < 2 {
+		t.Fatal("le pool n4 flash doit etre melange : 30 tirages, une seule tete")
+	}
+}
+
+// fakeDiscoverer simule la decouverte de modeles locaux.
+type fakeDiscoverer struct {
+	models map[string][]string
+}
+
+func (f *fakeDiscoverer) ModelsForEngine(ctx context.Context, engine string) []local.Model {
+	var out []local.Model
+	for _, id := range f.models[engine] {
+		out = append(out, local.Model{Engine: engine, ID: id})
+	}
+	return out
+}
+
+func newEngineWithDiscoverer(t *testing.T, fams []alias.Family, disc LocalDiscoverer) *Engine {
+	t.Helper()
+	st, err := store.Open(filepath.Join(t.TempDir(), "chat.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = st.Close() })
+	reg := provider.NewRegistry()
+	return NewEngine(reg, fams, st, disc, t.TempDir())
+}
+
+func TestResolveLocalModelSelection(t *testing.T) {
+	disc := &fakeDiscoverer{models: map[string][]string{
+		"ollama": {"llama3.1:8b", "qwen2.5:14b", "mistral:7b"},
+	}}
+	samgen := []alias.Family{{
+		ID: "samgen", Label: "SamGen", Local: true,
+		Modes: []alias.Mode{{ID: "n4", Label: "N4 (Ollama)", Local: true, Engine: "ollama"}},
+	}}
+
+	// Sans selection : tous les modeles decouverts, melanges (fallback).
+	e := newEngineWithDiscoverer(t, samgen, disc)
+	res := e.resolve(context.Background(), TurnInput{Family: "samgen", Mode: "n4"})
+	if len(res.members) != 3 || !res.local {
+		t.Fatalf("sans selection: 3 modeles locaux attendus, got %+v", res.members)
+	}
+
+	// Selection "1 modele" : un seul membre, fixe.
+	sel := []alias.Family{{
+		ID: "samgen", Label: "SamGen", Local: true,
+		Modes: []alias.Mode{{ID: "n4", Label: "N4 (Ollama)", Local: true, Engine: "ollama",
+			Pool: []alias.Member{{Provider: "ollama", Model: "qwen2.5:14b"}}}},
+	}}
+	e2 := newEngineWithDiscoverer(t, sel, disc)
+	res2 := e2.resolve(context.Background(), TurnInput{Family: "samgen", Mode: "n4"})
+	if len(res2.members) != 1 || res2.members[0].Model != "qwen2.5:14b" {
+		t.Fatalf("selection 1 modele: got %+v", res2.members)
+	}
+
+	// Selection fallback : sous-ensemble, melange.
+	sel2 := []alias.Family{{
+		ID: "samgen", Label: "SamGen", Local: true,
+		Modes: []alias.Mode{{ID: "n4", Label: "N4 (Ollama)", Local: true, Engine: "ollama",
+			Pool: []alias.Member{
+				{Provider: "ollama", Model: "llama3.1:8b"},
+				{Provider: "ollama", Model: "mistral:7b"},
+			}}},
+	}}
+	e3 := newEngineWithDiscoverer(t, sel2, disc)
+	firsts := map[string]bool{}
+	for i := 0; i < 20; i++ {
+		r := e3.resolve(context.Background(), TurnInput{Family: "samgen", Mode: "n4"})
+		if len(r.members) != 2 {
+			t.Fatalf("fallback local: 2 membres attendus, got %d", len(r.members))
+		}
+		for _, m := range r.members {
+			if m.Model == "qwen2.5:14b" {
+				t.Fatalf("fallback local: modele non selectionne present : %s", m.Model)
+			}
+		}
+		firsts[r.members[0].Model] = true
+	}
+	if len(firsts) < 2 {
+		t.Fatal("le fallback local doit etre melange")
 	}
 }
 

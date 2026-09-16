@@ -5,6 +5,7 @@ import (
 	"errors"
 	"path/filepath"
 	"strings"
+	"sync"
 	"sync/atomic"
 	"testing"
 
@@ -235,29 +236,65 @@ func TestChatNonNatifAvecPreRechercheLocale(t *testing.T) {
 
 // Repli chat : le natif echoue avant toute emission -> une seule
 // pre-recherche locale, puis le membre suivant tourne SANS natif.
+// Le pool est melange a chaque requete : les deux membres partagent le
+// provider "openrouter" (natif supporte), seul l'ordre du tirage varie.
+type failFirstProvider struct {
+	id   string
+	mu   sync.Mutex
+	reqs []provider.Request
+	once int32
+}
+
+func (p *failFirstProvider) ID() string { return p.id }
+
+func (p *failFirstProvider) Stream(ctx context.Context, req provider.Request, emit func(provider.Event) bool) (provider.Response, error) {
+	p.mu.Lock()
+	p.reqs = append(p.reqs, req)
+	p.mu.Unlock()
+	if atomic.CompareAndSwapInt32(&p.once, 0, 1) {
+		return provider.Response{}, errors.New("natif hs")
+	}
+	emit(provider.Event{Content: "ok"})
+	return provider.Response{Content: "ok"}, nil
+}
+
+func (p *failFirstProvider) requests() []provider.Request {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	return append([]provider.Request(nil), p.reqs...)
+}
+
 func TestChatRepliNatifVersOutils(t *testing.T) {
 	stub := stubWebWithHit()
-	or := &scriptedProvider{id: "openrouter", steps: []scriptStep{{err: errors.New("natif hs")}}}
-	fb := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok"}}}
-	e := newChatEngine(t, []*scriptedProvider{or, fb}, plainFamily(
-		alias.Member{Provider: "openrouter", Model: "m"},
-		alias.Member{Provider: "fake", Model: "m"},
-	))
+	fp := &failFirstProvider{id: "openrouter"}
+	st, err := store.Open(filepath.Join(t.TempDir(), "chat.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = st.Close() })
+	reg := provider.NewRegistry()
+	reg.Set(fp)
+	e := NewEngine(reg, plainFamily(
+		alias.Member{Provider: "openrouter", Model: "m1"},
+		alias.Member{Provider: "openrouter", Model: "m2"},
+	), st, nil, t.TempDir())
 	e.SetSearcher(stub)
 	c := runTurn(t, e, "sam", TurnInput{User: "sam", Family: "plain", Mode: "standard", Text: "quoi de neuf ?", Web: true})
 
 	if n := atomic.LoadInt32(&stub.searchCalls); n != 1 {
 		t.Fatalf("repli : 1 pre-recherche locale attendue (appels=%d)", n)
 	}
-	oreqs := or.requests()
-	if len(oreqs) != 1 || !hasNativePlugin(oreqs[0]) {
-		t.Fatalf("le 1er membre doit tenter le natif : %+v", oreqs)
+	reqs := fp.requests()
+	if len(reqs) != 2 {
+		t.Fatalf("2 tentatives attendues, got %d", len(reqs))
 	}
-	freqs := fb.requests()
-	if len(freqs) != 1 || hasNativePlugin(freqs[0]) {
-		t.Fatalf("le membre de repli ne doit pas reutiliser le natif : %+v", freqs)
+	if !hasNativePlugin(reqs[0]) {
+		t.Fatalf("le 1er membre tente doit tenter le natif : %+v", reqs[0])
 	}
-	for _, m := range freqs[0].Messages {
+	if hasNativePlugin(reqs[1]) {
+		t.Fatalf("le membre de repli ne doit pas reutiliser le natif : %+v", reqs[1])
+	}
+	for _, m := range reqs[1].Messages {
 		if m.Role == "system" {
 			if s, _ := m.Content.(string); strings.Contains(s, "provider-native") {
 				t.Fatal("le membre de repli ne doit plus voir la directive native")

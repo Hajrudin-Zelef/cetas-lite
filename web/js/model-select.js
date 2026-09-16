@@ -1,4 +1,5 @@
 import { api, getPrefs, putPrefs } from "./api.js";
+import { modeSubtitle, familyShortLabel } from "./model-selector.js";
 
 let families = [];
 let thinkingPref = false;
@@ -111,11 +112,13 @@ function renderModes() {
   const familySel = document.getElementById("family-select");
   const modeSel = document.getElementById("mode-select");
   if (!familySel || !modeSel) return;
+  const fam = families.find((x) => x.id === familySel.value);
   modeSel.innerHTML = "";
   for (const m of modesFor(familySel.value)) {
     const opt = document.createElement("option");
     opt.value = m.mode;
-    opt.textContent = m.label + (m.rule ? " · " + m.rule : "");
+    const sub = fam ? modeSubtitle(fam, m) : "";
+    opt.textContent = m.label + (sub ? " · " + sub : "");
     modeSel.appendChild(opt);
   }
 }
@@ -129,7 +132,7 @@ function renderPlusModelList() {
     group.className = "plus-model-group";
     const label = document.createElement("div");
     label.className = "plus-model-group-label";
-    label.textContent = f.label;
+    label.textContent = familyShortLabel(f);
     group.appendChild(label);
     for (const m of f.modes) {
       const btn = document.createElement("button");
@@ -142,19 +145,16 @@ function renderPlusModelList() {
       if (familySel && modeSel && familySel.value === f.id && modeSel.value === m.mode) {
         btn.classList.add("active");
       }
+      const sub = modeSubtitle(f, m);
       btn.innerHTML =
         '<span class="plus-model-option-main">' +
         '<span class="plus-model-option-name"></span>' +
-        '<span class="plus-model-option-rule"></span>' +
+        (sub ? '<span class="plus-model-option-rule"></span>' : "") +
         "</span>";
       btn.querySelector(".plus-model-option-name").textContent = m.label;
       const ruleEl = btn.querySelector(".plus-model-option-rule");
-      if (m.rule) {
-        ruleEl.textContent = m.rule;
-      } else {
-        ruleEl.remove();
-      }
-      btn.title = f.label + " · " + m.label + (m.rule ? " — " + m.rule : "");
+      if (ruleEl) ruleEl.textContent = sub;
+      btn.title = familyShortLabel(f) + " · " + m.label + (sub ? " — " + sub : "");
       btn.addEventListener("click", () => {
         if (familySel) familySel.value = f.id;
         renderModes();
@@ -333,6 +333,42 @@ export async function initModels() {
 
 export function getFamilies() {
   return families;
+}
+
+// Recharge les alias (apres une sauvegarde du selecteur de modeles)
+// et rafraichit les selects + le menu +.
+export async function refreshFamilies() {
+  const familySel = document.getElementById("family-select");
+  const modeSel = document.getElementById("mode-select");
+  const prevF = familySel ? familySel.value : "";
+  const prevM = modeSel ? modeSel.value : "";
+  try {
+    const data = await api("/api/aliases");
+    families = data.families || [];
+  } catch (e) {
+    return;
+  }
+  if (familySel) {
+    familySel.innerHTML = "";
+    for (const f of families) {
+      const opt = document.createElement("option");
+      opt.value = f.id;
+      opt.textContent = f.label;
+      familySel.appendChild(opt);
+    }
+    if (prevF && families.some((f) => f.id === prevF)) familySel.value = prevF;
+  }
+  renderModes();
+  if (modeSel && prevM && familySel && modesFor(familySel.value).some((m) => m.mode === prevM)) {
+    modeSel.value = prevM;
+  }
+  renderPlusModelList();
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("cetas:aliases-changed", () => {
+    refreshFamilies().catch(() => {});
+  });
 }
 
 // --- Slider "Tokens max par réponse" (menu +) ---

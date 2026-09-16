@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="/css/features/mx-menus.css">
 <link rel="stylesheet" href="/css/features/mx-docs.css">
 <link rel="stylesheet" href="/css/features/mx-apimodeles.css">
+<link rel="stylesheet" href="/css/features/mx-model-selector.css">
 <link rel="stylesheet" href="/css/features/mx-config.css">
 <link rel="stylesheet" href="/css/features/mx-vault.css">
 <link rel="stylesheet" href="/css/cetas-lite.css">
@@ -698,6 +699,7 @@
     <div class="sp-modal apikeys-modal">
         <div class="apikeys-tabs">
             <button class="apikeys-tab active" data-tab="apimodeles">API et Modèles</button>
+            <button class="apikeys-tab" data-tab="selector">Sélecteur de modèles</button>
             <button class="apikeys-tab" data-tab="models">Fonctionnalités</button>
             <button class="apikeys-tab" data-tab="connecteurs">Connecteurs</button>
             <button class="apikeys-tab" data-tab="remote">Remote</button>
@@ -723,6 +725,14 @@
                 <div class="models-save-row apimodeles-save-row">
                     <span class="apikey-autosave-note">Tous les paramètres sont sauvegardés automatiquement.</span>
                     <button type="button" id="apimodeles-save-btn" class="models-save-btn">Sauvegarder tout</button>
+                </div>
+            </div>
+            <!-- Panel Sélecteur de modèles -->
+            <div class="apikeys-panel" id="panel-selector">
+                <h3>Sélecteur de modèles <span id="selector-save-state" class="ms-save-state"></span></h3>
+                <p class="apikey-intro">Pour chaque alias, choisissez <strong>1 modèle</strong> (fixe, pas de fallback) ou un ensemble en <strong>Fallback</strong> (tirage aléatoire à chaque requête, puis bascule séquentielle en cas d'échec). Modifiable à tout moment, sans casser le fil de la discussion.</p>
+                <div class="apikeys-panel-body">
+                    <div id="selector-body"></div>
                 </div>
             </div>
             <!-- Panel Fonctionnalités -->

@@ -31,12 +31,25 @@ const FAMILIES = [
   {
     id: "samagent-nano",
     label: "SamAgent Nano",
-    modes: [{ id: "free", mode: "free", label: "Free", rule: "offres gratuites", agent: false }],
+    modes: [
+      {
+        id: "free", mode: "free", label: "Free", rule: "offres gratuites", agent: false,
+        pool: [
+          { provider: "openrouter", model: "openrouter/free", label: "Free Models Router" },
+          { provider: "opencode", model: "big-pickle-zen", label: "Big Pickle" },
+        ],
+      },
+    ],
   },
   {
     id: "code",
     label: "Code",
-    modes: [{ id: "flash", mode: "flash", label: "Flash", rule: "deepseek flash", agent: true }],
+    modes: [
+      {
+        id: "flash", mode: "flash", label: "Flash", rule: "deepseek flash", agent: true,
+        pool: [{ provider: "deepseek", model: "deepseek-flash", label: "DeepSeek V4.1 Flash" }],
+      },
+    ],
   },
 ];
 
@@ -60,14 +73,21 @@ await test("menu + : structure premium de la liste des modèles", () => {
   const list = document.getElementById("plus-model-list");
   const groups = list.querySelectorAll(".plus-model-group");
   assert.equal(groups.length, 2);
-  assert.equal(groups[0].querySelector(".plus-model-group-label").textContent, "SamAgent Nano");
+  // Alias courts uniquement : "Nano", pas "SamAgent Nano".
+  assert.equal(groups[0].querySelector(".plus-model-group-label").textContent, "Nano");
+  assert.equal(groups[1].querySelector(".plus-model-group-label").textContent, "Code");
   const opts = list.querySelectorAll(".plus-model-option");
   assert.equal(opts.length, 2);
-  // Nom + règle en sous-titre.
   const main = opts[0].querySelector(".plus-model-option-main");
   assert.ok(main, ".plus-model-option-main présent");
   assert.equal(main.querySelector(".plus-model-option-name").textContent, "Free");
-  assert.equal(main.querySelector(".plus-model-option-rule").textContent, "offres gratuites");
+  // Sous-titre propre : "Fallback · 2 modèles", jamais la règle technique.
+  assert.equal(main.querySelector(".plus-model-option-rule").textContent, "Fallback · 2 modèles");
+  assert.ok(!main.textContent.includes("offres gratuites"), "pas de règle technique");
+  // 1 modèle -> le label du modèle en sous-titre.
+  const main2 = opts[1].querySelector(".plus-model-option-main");
+  assert.equal(main2.querySelector(".plus-model-option-rule").textContent, "DeepSeek V4.1 Flash");
+  assert.ok(!main2.textContent.includes("deepseek flash"), "pas de règle technique");
   // Pas de badge Agent : le chat général est pur chat, l'agent vit dans le module Agents.
   assert.equal(opts[0].querySelector(".plus-model-option-badge"), null);
   assert.equal(opts[1].querySelector(".plus-model-option-badge"), null);
