@@ -11,12 +11,7 @@ import (
 // argument, il guide pas à pas (création du coffre, clés, validation,
 // export .env, synchro). Aucune ligne de commande à retenir.
 func (c *cli) runWizard() int {
-	fmt.Println()
-	fmt.Println("  ╔══════════════════════════════════════════════════╗")
-	fmt.Println("  ║        CETAS LITE — Gestion des clés API         ║")
-	fmt.Println("  ╚══════════════════════════════════════════════════╝")
-	fmt.Println()
-
+	printSetupBanner()
 	pw, ok := c.wizardOpenOrCreate()
 	if !ok {
 		return exitErr
@@ -24,17 +19,17 @@ func (c *cli) runWizard() int {
 
 	for {
 		fmt.Println()
-		fmt.Println("  ┌─ Que voulez-vous faire ? ───────────────────────┐")
-		fmt.Println("  │  1. Ajouter / modifier une clé API               │")
-		fmt.Println("  │  2. Tester les clés enregistrées                 │")
-		fmt.Println("  │  3. Voir les clés (masquées)                     │")
-		fmt.Println("  │  4. Supprimer une clé                            │")
-		fmt.Println("  │  5. Synchroniser vers l'application              │")
-		fmt.Println("  │  6. Régénérer le .env scellé                     │")
-		fmt.Println("  │  7. Changer le mot de passe maître               │")
-		fmt.Println("  │  0. Quitter                                      │")
-		fmt.Println("  └──────────────────────────────────────────────────┘")
-		fmt.Print("  Votre choix : ")
+		frame("QUE VOULEZ-VOUS FAIRE ?")
+		fmt.Println(white("  1. Ajouter / Modifier une clé API"))
+		fmt.Println(white("  2. Tester les clés enregistrées"))
+		fmt.Println(white("  3. Voir les clés (masquées)"))
+		fmt.Println(white("  4. Supprimer une clé"))
+		fmt.Println(white("  5. Synchroniser vers l'application"))
+		fmt.Println(white("  6. Régénérer le .env scellé"))
+		fmt.Println(white("  7. Changer le mot de passe maître"))
+		fmt.Println(white("  0. Quitter"))
+		fmt.Println()
+		fmt.Print(white("  Votre choix : "))
 		switch c.readLine() {
 		case "1":
 			c.wizardAdd(pw)
@@ -57,13 +52,13 @@ func (c *cli) runWizard() int {
 			}
 		case "0":
 			if err := c.exportEnvQuiet(pw); err != nil {
-				fmt.Printf("  Erreur d'export .env : %v\n", err)
+				errLine(fmt.Sprintf("Erreur d'export .env : %v", err))
 				return exitErr
 			}
-			fmt.Println("  Au revoir.")
+			fmt.Println(gray("  Au revoir.\n"))
 			return exitOK
 		default:
-			fmt.Println("  Choix invalide.")
+			errLine("Choix invalide.")
 		}
 	}
 }
@@ -73,9 +68,10 @@ func (c *cli) runWizard() int {
 // (3 tentatives).
 func (c *cli) wizardOpenOrCreate() (string, bool) {
 	if !c.st.Exists() {
-		fmt.Println("  ── Création du coffre ──")
+		frame("ETAPE 1 : Coffre chiffré")
+		fmt.Println()
 		if !keysetup.PepperSet() {
-			fmt.Println("  Note : CETAS_PEPPER n'est pas défini (recommandé en production).")
+			fmt.Println(yellow("  CETAS_PEPPER non défini — protection réduite."))
 		}
 		if suggest, err := securevault.GeneratePassword(20); err == nil {
 			fmt.Printf("  Suggestion de mot de passe fort : %s\n\n", suggest)
@@ -85,24 +81,23 @@ func (c *cli) wizardOpenOrCreate() (string, bool) {
 			return "", false
 		}
 		if err := c.st.Init(pw); err != nil {
-			fmt.Printf("  Erreur : %v\n", err)
+			errLine(fmt.Sprintf("Erreur : %v\n", err))
 			return "", false
 		}
-		fmt.Printf("  Coffre créé : %s\n", c.st.Path())
-		fmt.Println("  Chiffrement : AES-256-GCM | Scrypt (N=2^16) | pepper CETAS_PEPPER")
+		okLine(fmt.Sprintf("Coffre créé : %s", c.st.Path()))
+		infoLine("Chiffrement : AES-256-GCM | Scrypt (N=2^16) | pepper CETAS_PEPPER")
 		c.wizardQuickSetup(pw)
 		return pw, true
 	}
 	for attempt := 1; attempt <= 3; attempt++ {
-		pw := c.readSecret("  Mot de passe maître : ")
+		pw := c.readSecret(white("  Mot de passe du coffre : "))
 		if _, err := c.st.Load(pw); err == nil {
-			fmt.Println("  Coffre ouvert.")
+			okLine("Coffre ouvert.\n")
 			return pw, true
-		} else {
-			fmt.Printf("  Mot de passe incorrect (%d tentative(s) restante(s)).\n", 3-attempt)
 		}
+		errLine(fmt.Sprintf("Mot de passe incorrect (%d tentative(s) restante(s)).\n", 3-attempt))
 	}
-	fmt.Println("  Accès refusé.")
+	errLine("Accès refusé.\n")
 	return "", false
 }
 
@@ -134,19 +129,19 @@ func (c *cli) configureProviderQuick(pw string, p keysetup.Provider) {
 	key := c.readSecret(fmt.Sprintf("  %-15s (%s) : ", p.Label, p.Hint))
 	defer wipe([]byte(key))
 	if key == "" {
-		fmt.Printf("  %s ignoré.\n", p.Label)
+		fmt.Println(gray(fmt.Sprintf("  %s ignoré.", p.Label)))
 		return
 	}
 	fmt.Printf("  Test de la clé %s ... ", p.Label)
 	ok, reason := keysetup.TestKey(p, key)
 	if !ok {
-		fmt.Printf("ÉCHEC — %s\n", reason)
-		fmt.Printf("  %s ignoré (recommencez via le menu 1).\n", p.Label)
+		fmt.Println(red(fmt.Sprintf("  Échec : %s", reason)))
+		fmt.Println(gray(fmt.Sprintf("  %s ignoré (recommencez via le menu 1).", p.Label)))
 		return
 	}
-	fmt.Println("OK")
+	fmt.Println(green("OK"))
 	if err := c.st.SetAPIKey(pw, p.ID, key); err != nil {
-		fmt.Printf("  Erreur d'enregistrement : %v\n", err)
+		errLine(fmt.Sprintf("Erreur d'enregistrement : %v", err))
 	}
 }
 
@@ -164,12 +159,12 @@ func (c *cli) wizardAdd(pw string) {
 func (c *cli) wizardTest(pw string) {
 	data, err := c.st.Load(pw)
 	if err != nil {
-		fmt.Printf("  Erreur : %v\n", err)
+		errLine(fmt.Sprintf("Erreur : %v", err))
 		return
 	}
 	keys := keysetup.APIKeys(data)
 	if len(keys) == 0 {
-		fmt.Println("  Aucune clé enregistrée.")
+		infoLine("Aucune clé enregistrée.")
 		return
 	}
 	failed := 0
@@ -183,24 +178,24 @@ func (c *cli) wizardTest(pw string) {
 		}
 	}
 	if failed == 0 {
-		fmt.Println("  Toutes les clés sont valides.")
+		okLine("Toutes les clés sont valides.")
 	} else {
-		fmt.Printf("  %d clé(s) en échec.\n", failed)
+		errLine(fmt.Sprintf("%d clé(s) en échec.", failed))
 	}
 }
 
 func (c *cli) wizardList(pw string) {
 	data, err := c.st.Load(pw)
 	if err != nil {
-		fmt.Printf("  Erreur : %v\n", err)
+		errLine(fmt.Sprintf("Erreur : %v", err))
 		return
 	}
 	keys := keysetup.APIKeys(data)
 	if len(keys) == 0 {
-		fmt.Println("  Aucune clé API enregistrée.")
+		infoLine("Aucune clé API enregistrée.")
 		return
 	}
-	fmt.Println("  Clés API enregistrées :")
+	subtitle("Clés enregistrées")
 	for _, id := range sortedKeys(keys) {
 		label := id
 		if p, found := keysetup.ByID(id); found {
@@ -218,7 +213,7 @@ func (c *cli) wizardDelete(pw string) {
 	}
 	keys := keysetup.APIKeys(data)
 	if len(keys) == 0 {
-		fmt.Println("  Aucune clé à supprimer.")
+		infoLine("Aucune clé à supprimer.")
 		return
 	}
 	ids := sortedKeys(keys)
@@ -230,7 +225,7 @@ func (c *cli) wizardDelete(pw string) {
 		}
 		fmt.Printf("    %d. %s\n", i+1, label)
 	}
-	fmt.Print("  Numéro à supprimer (Entrée=annuler) : ")
+	fmt.Print(white("  Numéro à supprimer (Entrée=annuler) : "))
 	sel := c.readLine()
 	if sel == "" {
 		return
@@ -244,7 +239,7 @@ func (c *cli) wizardDelete(pw string) {
 		}
 	}
 	if idx < 0 {
-		fmt.Println("  Choix invalide.")
+		errLine("Choix invalide.")
 		return
 	}
 	id := ids[idx]
@@ -252,8 +247,8 @@ func (c *cli) wizardDelete(pw string) {
 	if p, found := keysetup.ByID(id); found {
 		label = p.Label
 	}
-	if !c.confirm(fmt.Sprintf("  Supprimer %s ? [o/N] : ", label)) {
-		fmt.Println("  Annulé.")
+	if !c.confirm(red(fmt.Sprintf("  Supprimer %s ? [o/N] : ", label))) {
+		infoLine("Annulé.")
 		return
 	}
 	deleted, err := c.st.DeleteAPIKey(pw, id)
@@ -265,7 +260,7 @@ func (c *cli) wizardDelete(pw string) {
 		if err := c.exportEnv(pw); err != nil {
 			fmt.Printf("  Erreur d'export .env : %v\n", err)
 		}
-		fmt.Printf("  %s supprimé.\n", label)
+		okLine(fmt.Sprintf("%s supprimé.", label))
 	}
 }
 
@@ -278,16 +273,16 @@ func (c *cli) wizardSync(pw string) {
 // changePassword — variante réutilisable (wizard + commande passwd).
 // Retourne le nouveau mot de passe en cas de succès.
 func (c *cli) changePassword(pw string) (string, bool) {
-	fmt.Println("  ── Changement du mot de passe maître ──")
+	frame("Changement du mot de passe maître")
 	newPw, ok := c.readPasswordTwice("  Nouveau mot de passe")
 	if !ok {
 		return "", false
 	}
 	if err := c.st.ChangePassword(pw, newPw); err != nil {
-		fmt.Printf("  Erreur : %v\n", err)
+		errLine(fmt.Sprintf("Erreur : %v", err))
 		return "", false
 	}
-	fmt.Println("  Mot de passe modifié, coffre re-chiffré.")
+	okLine("Mot de passe modifié, coffre re-chiffré.")
 	return newPw, true
 }
 

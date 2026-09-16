@@ -137,49 +137,53 @@ func run(args []string) int {
 func (c *cli) checkSetupAuth() bool {
 	if !keysetup.AuthExists(c.home) {
 		fmt.Println()
-		fmt.Println("  ── Protection de l'outil ──")
+		frame("Authentification")
+		fmt.Println()
 		// Anti-contournement : si un coffre existe déjà, la (re)définition
 		// du mot de passe de protection exige le mot de passe maître.
 		// Supprimer setup.auth ne suffit donc pas à passer outre.
 		if c.st.Exists() {
-			fmt.Println("  Un coffre existe déjà : le mot de passe maître est requis")
-			fmt.Println("  pour (re)définir la protection de l'outil.")
+			fmt.Println(red("  Un coffre existe déjà : le mot de passe maître est requis"))
+			fmt.Println(red("  pour (re)définir la protection de l'outil."))
 			masterOk := false
 			for attempt := 1; attempt <= 3; attempt++ {
-				mpw := c.readSecret("  Mot de passe maître du coffre : ")
+				mpw := c.readSecret(white("  Mot de passe maître du coffre : "))
 				if _, err := c.st.Load(mpw); err == nil {
 					masterOk = true
 					break
 				}
-				fmt.Printf("  Mot de passe incorrect (%d tentative(s) restante(s)).\n", 3-attempt)
+				errLine(fmt.Sprintf("Mot de passe incorrect (%d tentative(s) restante(s)).", 3-attempt))
 			}
 			if !masterOk {
-				fmt.Println("  Accès refusé.")
+				errLine("Accès refusé.")
 				return false
 			}
 		} else {
-			fmt.Println("  Ce mot de passe protège cetas-keys lui-même (anti-vol).")
+			infoLine("Ce mot de passe protège cetas-keys lui-même (anti-vol).")
 		}
-		fmt.Println("  Il est stocké sous forme d'empreinte chiffrée, jamais en clair.")
-		pw, ok := c.readPasswordTwice("  Mot de passe de protection")
+		infoLine("Stocké sous forme d'empreinte chiffrée, jamais en clair.")
+		pw, ok := c.readPasswordTwice(white("  Mot de passe de protection"))
 		if !ok {
 			return false
 		}
 		if err := keysetup.SetAuthPassword(c.home, pw); err != nil {
-			fmt.Printf("  Erreur : %v\n", err)
+			errLine(fmt.Sprintf("Erreur : %v", err))
 			return false
 		}
-		fmt.Println("  Protection activée.")
+		okLine("Protection activée.")
 		return true
 	}
+	frame("Authentification")
+	fmt.Println()
 	for attempt := 1; attempt <= 3; attempt++ {
-		pw := c.readSecret("  Mot de passe de l'outil : ")
+		pw := c.readSecret(white("  Mot de passe de l'outil : "))
 		if keysetup.VerifyAuthPassword(c.home, pw) {
+			okLine("Accès autorisé.\n")
 			return true
 		}
-		fmt.Printf("  Mot de passe incorrect (%d tentative(s) restante(s)).\n", 3-attempt)
+		errLine(fmt.Sprintf("Mot de passe incorrect (%d tentative(s) restante(s)).\n", 3-attempt))
 	}
-	fmt.Println("  Accès refusé.")
+	errLine("Accès refusé.\n")
 	return false
 }
 
@@ -457,23 +461,27 @@ func (c *cli) syncToApp(pw, apiURL string) int {
 func (c *cli) chooseProvider(pw string) string {
 	data, err := c.st.Load(pw)
 	if err != nil {
-		fmt.Printf("Erreur : %v\n", err)
+		errLine(fmt.Sprintf("Erreur : %v", err))
 		return ""
 	}
 	keys := keysetup.APIKeys(data)
 	fmt.Println()
-	fmt.Println("Providers :")
+	fmt.Println(cyanS("  ────────────────────────────────────────────────────────"))
+	fmt.Println(white("  Providers disponibles :"))
+	fmt.Println()
 	for i, p := range keysetup.Providers {
-		mark := "─ non configuré"
-		if k, has := keys[p.ID]; has {
-			mark = "✓ " + keysetup.Mask(k)
-		} else if p.TestURL == "" {
-			mark = "─ désactivé"
+		var status string
+		if k, has := keys[p.ID]; has && k != "" {
+			status = green("✓ " + keysetup.Mask(k))
+		} else {
+			status = gray("─ Non configuré")
 		}
-		fmt.Printf("  %2d. %-15s %s\n", i+1, p.Label, mark)
+		fmt.Println(white(fmt.Sprintf("  %d. %-15s", i+1, p.Label)) + "  " + status)
 	}
-	fmt.Println("   0. Terminer")
-	fmt.Print("Choix : ")
+	fmt.Println()
+	fmt.Println(yellow("  0. Retour"))
+	fmt.Println()
+	fmt.Print(white("  Choisir un provider à configurer (ou 0) : "))
 	choice := c.readLine()
 	if choice == "0" || choice == "" {
 		return ""
@@ -483,7 +491,7 @@ func (c *cli) chooseProvider(pw string) string {
 			return p.ID
 		}
 	}
-	fmt.Println("Choix invalide.")
+	errLine("Choix invalide.\n")
 	return c.chooseProvider(pw)
 }
 
@@ -491,58 +499,59 @@ func (c *cli) chooseProvider(pw string) string {
 func (c *cli) configureProvider(pw string, p keysetup.Provider) {
 	data, err := c.st.Load(pw)
 	if err != nil {
-		fmt.Printf("Erreur : %v\n", err)
+		errLine(fmt.Sprintf("Erreur : %v", err))
 		return
 	}
 	existing := keysetup.APIKeys(data)[p.ID]
-	fmt.Printf("\n── %s ──\n", p.Label)
+	fmt.Println()
+	fmt.Println(cyanS(fmt.Sprintf("  ── Configuration de %s ──", p.Label)))
 	if existing != "" {
-		fmt.Printf("Clé actuelle : %s\n", keysetup.Mask(existing))
-		if !c.confirm("Modifier cette clé ? [O/n] : ") {
-			fmt.Printf("%s conservé.\n", p.Label)
+		fmt.Println(gray(fmt.Sprintf("  Clé actuelle : %s", keysetup.Mask(existing))))
+		if !c.confirm(yellow("  Modifier cette clé ? [O/n] : ")) {
+			fmt.Println(gray(fmt.Sprintf("  %s conservé.\n", p.Label)))
 			return
 		}
 	}
 	for {
-		key := c.readSecret(fmt.Sprintf("Clé %s (%s) : ", p.Label, p.Hint))
+		key := c.readSecret(white(fmt.Sprintf("  Clé %s (%s) : ", p.Label, p.Hint)))
 		defer wipe([]byte(key))
 		if key == "" {
-			fmt.Printf("%s ignoré.\n", p.Label)
+			fmt.Println(gray(fmt.Sprintf("  %s ignoré.\n", p.Label)))
 			return
 		}
-		fmt.Printf("Test de la clé %s ... ", p.Label)
+		fmt.Printf("  Test de la clé %s ... ", p.Label)
 		ok, reason := keysetup.TestKey(p, key)
 		if ok {
-			fmt.Println("OK")
+			fmt.Println(green("OK"))
 		} else {
-			fmt.Printf("ÉCHEC — %s\n", reason)
-			if !c.confirm("Réessayer ? [O/n] : ") {
-				fmt.Printf("%s ignoré.\n", p.Label)
+			fmt.Println(red(fmt.Sprintf("Échec : %s", reason)))
+			if !c.confirm(yellow("  Réessayer ? [O/n] : ")) {
+				fmt.Println(gray(fmt.Sprintf("  %s ignoré.\n", p.Label)))
 				return
 			}
 			continue
 		}
 		if err := c.st.SetAPIKey(pw, p.ID, key); err != nil {
-			fmt.Printf("Erreur d'enregistrement : %v\n", err)
+			errLine(fmt.Sprintf("Erreur d'enregistrement : %v", err))
 			return
 		}
 		if err := c.exportEnv(pw); err != nil {
-			fmt.Printf("Clé enregistrée, mais export .env impossible : %v\n", err)
+			errLine(fmt.Sprintf("Clé enregistrée, mais export .env impossible : %v", err))
 			return
 		}
-		fmt.Printf("Clé %s enregistrée et .env mis à jour.\n", p.Label)
+		okLine(fmt.Sprintf("Clé %s enregistrée et .env mis à jour.\n", p.Label))
 		return
 	}
 }
 
 func (c *cli) testOne(p keysetup.Provider, key string) int {
-	fmt.Printf("Test de la clé %s ... ", p.Label)
+	fmt.Printf("  Test de la clé %s ... ", p.Label)
 	ok, reason := keysetup.TestKey(p, key)
 	if ok {
-		fmt.Println("OK")
+		fmt.Println(green("OK"))
 		return exitOK
 	}
-	fmt.Printf("ÉCHEC — %s\n", reason)
+	fmt.Println(red(fmt.Sprintf("Échec : %s", reason)))
 	return exitErr
 }
 
