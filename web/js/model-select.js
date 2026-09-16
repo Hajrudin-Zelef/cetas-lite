@@ -266,9 +266,18 @@ function renderPlusModelList() {
         btn.classList.add("active");
       }
       btn.innerHTML =
+        '<span class="plus-model-option-main">' +
         '<span class="plus-model-option-name"></span>' +
+        '<span class="plus-model-option-rule"></span>' +
+        "</span>" +
         (m.agent ? '<span class="plus-model-option-badge">Agent</span>' : "");
       btn.querySelector(".plus-model-option-name").textContent = m.label;
+      const ruleEl = btn.querySelector(".plus-model-option-rule");
+      if (m.rule) {
+        ruleEl.textContent = m.rule;
+      } else {
+        ruleEl.remove();
+      }
       btn.title = f.label + " · " + m.label + (m.rule ? " — " + m.rule : "");
       btn.addEventListener("click", () => {
         if (familySel) familySel.value = f.id;
