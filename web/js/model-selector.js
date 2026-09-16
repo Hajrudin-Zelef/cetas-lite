@@ -130,7 +130,7 @@ function el(tag, cls, txt) {
 async function persist() {
   setSaveState("Enregistrement…", "ms-saving");
   try {
-    const data = await api("/api/aliases", { method: "PUT", body: JSON.stringify(staged) });
+    const data = await api("/api/aliases", { method: "PUT", body: staged });
     families = data.families || families;
     setSaveState("Enregistré ✓", "ms-ok");
     setTimeout(() => setSaveState("", ""), 2500);

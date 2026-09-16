@@ -323,6 +323,12 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 	if !ok {
 		return resolution{}
 	}
+	// Mode "auto" (menu +) : union des pools effectifs de tous les modes de
+	// la famille, dedupliquee, tirage aleatoire a chaque requete. Choix
+	// rapide "tout le fallback de l'alias", sans passer par le selecteur.
+	if in.Mode == "auto" {
+		return e.resolveAuto(ctx, fam)
+	}
 	if fam.Local {
 		for _, m := range fam.Modes {
 			if m.ID != in.Mode {
@@ -375,6 +381,70 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 		members = alias.ShufflePool(members)
 	}
 	return resolution{members: members, agent: rm.Agent && in.AgentMode}
+}
+
+// resolveAuto construit la resolution du mode "auto" : l'union des pools
+// effectifs de tous les modes de la famille (dedupliquee). Pour les familles
+// locales, l'union des modeles decouverts (selection du selecteur honoree).
+func (e *Engine) resolveAuto(ctx context.Context, fam alias.Family) resolution {
+	if fam.Local {
+		seen := make(map[string]bool)
+		var members []alias.ResolvedMember
+		for _, m := range fam.Modes {
+			var selected map[string]bool
+			if len(m.Pool) > 0 {
+				selected = make(map[string]bool, len(m.Pool))
+				for _, p := range m.Pool {
+					selected[p.Model] = true
+				}
+			}
+			if e.discover == nil {
+				continue
+			}
+			for _, mod := range e.discover.ModelsForEngine(ctx, m.Engine) {
+				if selected != nil && !selected[mod.ID] {
+					continue
+				}
+				k := m.Engine + "/" + mod.ID
+				if seen[k] {
+					continue
+				}
+				seen[k] = true
+				members = append(members, alias.ResolvedMember{Provider: m.Engine, Model: mod.ID, Label: mod.ID})
+			}
+		}
+		if len(members) == 0 {
+			fb, ok := alias.Resolve(e.Families(), "samagent-n4", "standard")
+			if ok {
+				return resolution{members: fb.Pool, fallback: true}
+			}
+			return resolution{}
+		}
+		if len(members) > 1 {
+			members = alias.ShufflePool(members)
+		}
+		return resolution{members: members, local: true, fallback: len(members) > 1}
+	}
+	seen := make(map[string]bool)
+	var members []alias.ResolvedMember
+	for _, m := range fam.Modes {
+		rm, ok := alias.Resolve(e.Families(), fam.ID, m.ID)
+		if !ok {
+			continue
+		}
+		for _, p := range rm.Pool {
+			k := p.Provider + "/" + p.Model
+			if seen[k] {
+				continue
+			}
+			seen[k] = true
+			members = append(members, p)
+		}
+	}
+	if len(members) > 1 {
+		members = alias.ShufflePool(members)
+	}
+	return resolution{members: members, fallback: len(members) > 1}
 }
 
 func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInput) {

@@ -324,3 +324,113 @@ func TestConversationPersistence(t *testing.T) {
 		t.Fatal("conversation non rechargee depuis le store")
 	}
 }
+
+// TestResolveAutoUnionCloud : le mode "auto" unit les pools effectifs de
+// tous les modes de la famille, dedupliques, melanges a chaque requete.
+func TestResolveAutoUnionCloud(t *testing.T) {
+	fams := []alias.Family{{
+		ID: "samagent-n4", Label: "N4",
+		Modes: []alias.Mode{
+			{ID: "flash", Label: "Flash", Pool: []alias.Member{
+				{Provider: "deepseek", Model: "deepseek-flash"},
+				{Provider: "openrouter", Model: "mimo-v2.5-flash"},
+			}},
+			{ID: "standard", Label: "Standard", Pool: []alias.Member{
+				{Provider: "openrouter", Model: "mimo-v2.5-flash"}, // doublon volontaire
+				{Provider: "openrouter", Model: "glm-5-flash"},
+			}},
+		},
+	}}
+	e := newEngineWithDiscoverer(t, fams, nil)
+	in := TurnInput{Family: "samagent-n4", Mode: "auto"}
+	seen := map[string]int{}
+	for i := 0; i < 30; i++ {
+		res := e.resolve(context.Background(), in)
+		if len(res.members) != 3 {
+			t.Fatalf("auto doit unir les pools dedupliques : %d membres", len(res.members))
+		}
+		if !res.fallback {
+			t.Fatal("auto multi-membres doit etre signale comme fallback")
+		}
+		keys := map[string]bool{}
+		for _, m := range res.members {
+			k := m.Provider + "/" + m.Model
+			if keys[k] {
+				t.Fatalf("doublon dans l'union auto : %s", k)
+			}
+			keys[k] = true
+			seen[m.Model]++
+		}
+	}
+	for _, want := range []string{"deepseek-flash", "mimo-v2.5-flash", "glm-5-flash"} {
+		if seen[want] == 0 {
+			t.Fatalf("modele manquant dans l'union auto : %s", want)
+		}
+	}
+}
+
+// TestResolveAutoSingleMember : un seul membre au total = pas de fallback.
+func TestResolveAutoSingleMember(t *testing.T) {
+	fams := []alias.Family{{
+		ID: "samagent-nano", Label: "Nano",
+		Modes: []alias.Mode{
+			{ID: "free", Label: "Free", Pool: []alias.Member{{Provider: "openrouter", Model: "openrouter/free"}}},
+		},
+	}}
+	e := newEngineWithDiscoverer(t, fams, nil)
+	res := e.resolve(context.Background(), TurnInput{Family: "samagent-nano", Mode: "auto"})
+	if len(res.members) != 1 || res.fallback {
+		t.Fatalf("auto singleton : 1 membre, pas de fallback (got %d, fallback=%v)", len(res.members), res.fallback)
+	}
+	if res.members[0].Model != "openrouter/free" {
+		t.Fatalf("membre inattendu : %s", res.members[0].Model)
+	}
+}
+
+// TestResolveAutoUnknownFamily : famille inconnue -> resolution vide.
+func TestResolveAutoUnknownFamily(t *testing.T) {
+	e := newEngineWithDiscoverer(t, nil, nil)
+	res := e.resolve(context.Background(), TurnInput{Family: "nope", Mode: "auto"})
+	if len(res.members) != 0 {
+		t.Fatalf("famille inconnue : resolution vide attendue, got %d", len(res.members))
+	}
+}
+
+// TestResolveAutoLocal : auto sur famille locale = union des modeles
+// decouverts sur tous les moteurs, selection du selecteur honoree.
+func TestResolveAutoLocal(t *testing.T) {
+	disc := &fakeDiscoverer{models: map[string][]string{
+		"ollama":   {"llama3.1:8b", "qwen2.5:14b"},
+		"llamacpp": {"qwen2.5:14b", "mistral:7b"}, // qwen2.5:14b en doublon inter-moteurs
+	}}
+	samgen := []alias.Family{{
+		ID: "samgen", Label: "SamGen", Local: true,
+		Modes: []alias.Mode{
+			{ID: "n4", Label: "N4 (Ollama)", Local: true, Engine: "ollama",
+				Pool: []alias.Member{{Provider: "ollama", Model: "llama3.1:8b"}}},
+			{ID: "nano", Label: "Nano (llama.cpp)", Local: true, Engine: "llamacpp"},
+		},
+	}}
+	e := newEngineWithDiscoverer(t, samgen, disc)
+	res := e.resolve(context.Background(), TurnInput{Family: "samgen", Mode: "auto"})
+	if !res.local {
+		t.Fatal("auto local doit etre marque local")
+	}
+	// Attendu : ollama/llama3.1:8b (selection) + llamacpp/qwen2.5:14b + llamacpp/mistral:7b.
+	// "ollama/qwen2.5:14b" est exclu par la selection du mode n4.
+	if len(res.members) != 3 {
+		t.Fatalf("union locale attendue : 3 membres, got %d", len(res.members))
+	}
+	keys := map[string]bool{}
+	for _, m := range res.members {
+		keys[m.Provider+"/"+m.Model] = true
+	}
+	for _, want := range []string{"ollama/llama3.1:8b", "llamacpp/qwen2.5:14b", "llamacpp/mistral:7b"} {
+		if !keys[want] {
+			t.Fatalf("membre manquant dans l'union locale : %s", want)
+		}
+	}
+	if keys["ollama/qwen2.5:14b"] {
+		t.Fatal("la selection du selecteur doit etre honoree en mode auto local")
+	}
+}

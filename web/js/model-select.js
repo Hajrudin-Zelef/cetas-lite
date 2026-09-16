@@ -103,9 +103,21 @@ export function persistPrefs() {
   return putPrefs(body);
 }
 
-function modesFor(id) {
-  const f = families.find((x) => x.id === id);
-  return f ? f.modes : [];
+// Options de modes pour une famille : "Auto (fallback)" en tête pour les
+// familles cloud (union des pools de l'alias, résolue côté moteur), puis les
+// modes configurés. SamGen (local) n'a pas d'Auto : on choisit la route.
+export function modeOptionsFor(fam) {
+  const modes = fam ? fam.modes || [] : [];
+  if (fam && !fam.local) return [{ mode: "auto", label: "Auto (fallback)", auto: true }, ...modes];
+  return modes;
+}
+
+// Familles affichées dans le menu + : Nano, N4, N8, SamGen. Pas Code :
+// l'agent vit désormais dans son propre module.
+const PLUS_MENU_ORDER = ["samagent-nano", "samagent-n4", "samagent-n8", "samgen"];
+export function plusMenuFamilies() {
+  const byId = new Map(families.map((f) => [f.id, f]));
+  return PLUS_MENU_ORDER.map((id) => byId.get(id)).filter(Boolean);
 }
 
 function renderModes() {
@@ -114,55 +126,67 @@ function renderModes() {
   if (!familySel || !modeSel) return;
   const fam = families.find((x) => x.id === familySel.value);
   modeSel.innerHTML = "";
-  for (const m of modesFor(familySel.value)) {
+  for (const m of modeOptionsFor(fam)) {
     const opt = document.createElement("option");
     opt.value = m.mode;
-    const sub = fam ? modeSubtitle(fam, m) : "";
-    opt.textContent = m.label + (sub ? " · " + sub : "");
+    if (m.auto) {
+      opt.textContent = m.label;
+    } else {
+      const sub = fam ? modeSubtitle(fam, m) : "";
+      opt.textContent = m.label + (sub ? " · " + sub : "");
+    }
     modeSel.appendChild(opt);
   }
+}
+
+function plusOptionRow(f, modeId, name, sub) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "plus-model-option";
+  btn.dataset.family = f.id;
+  btn.dataset.mode = modeId;
+  const familySel = document.getElementById("family-select");
+  const modeSel = document.getElementById("mode-select");
+  if (familySel && modeSel && familySel.value === f.id && modeSel.value === modeId) {
+    btn.classList.add("active");
+  }
+  btn.innerHTML =
+    '<span class="plus-model-option-main">' +
+    '<span class="plus-model-option-name"></span>' +
+    (sub ? '<span class="plus-model-option-rule"></span>' : "") +
+    "</span>";
+  btn.querySelector(".plus-model-option-name").textContent = name;
+  const ruleEl = btn.querySelector(".plus-model-option-rule");
+  if (ruleEl) ruleEl.textContent = sub;
+  btn.title = familyShortLabel(f) + " · " + name + (sub ? " — " + sub : "");
+  btn.addEventListener("click", () => {
+    if (familySel) familySel.value = f.id;
+    renderModes();
+    if (modeSel) modeSel.value = modeId;
+    persistPrefs().catch(() => {});
+    renderPlusModelList();
+  });
+  return btn;
 }
 
 function renderPlusModelList() {
   const list = document.getElementById("plus-model-list");
   if (!list) return;
   list.innerHTML = "";
-  for (const f of families) {
+  for (const f of plusMenuFamilies()) {
     const group = document.createElement("div");
     group.className = "plus-model-group";
     const label = document.createElement("div");
     label.className = "plus-model-group-label";
     label.textContent = familyShortLabel(f);
     group.appendChild(label);
-    for (const m of f.modes) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "plus-model-option";
-      btn.dataset.family = f.id;
-      btn.dataset.mode = m.mode;
-      const familySel = document.getElementById("family-select");
-      const modeSel = document.getElementById("mode-select");
-      if (familySel && modeSel && familySel.value === f.id && modeSel.value === m.mode) {
-        btn.classList.add("active");
-      }
-      const sub = modeSubtitle(f, m);
-      btn.innerHTML =
-        '<span class="plus-model-option-main">' +
-        '<span class="plus-model-option-name"></span>' +
-        (sub ? '<span class="plus-model-option-rule"></span>' : "") +
-        "</span>";
-      btn.querySelector(".plus-model-option-name").textContent = m.label;
-      const ruleEl = btn.querySelector(".plus-model-option-rule");
-      if (ruleEl) ruleEl.textContent = sub;
-      btn.title = familyShortLabel(f) + " · " + m.label + (sub ? " — " + sub : "");
-      btn.addEventListener("click", () => {
-        if (familySel) familySel.value = f.id;
-        renderModes();
-        if (modeSel) modeSel.value = m.mode;
-              persistPrefs().catch(() => {});
-        renderPlusModelList();
-      });
-      group.appendChild(btn);
+    // "Auto (fallback)" : tout l'alias en fallback (familles cloud).
+    if (!f.local) group.appendChild(plusOptionRow(f, "auto", "Auto (fallback)", ""));
+    const modes = f.modes || [];
+    for (const m of modes) {
+      // Famille à un seul mode (Nano) : "Modèle — [sélection effective]".
+      const name = modes.length === 1 ? "Modèle" : m.label;
+      group.appendChild(plusOptionRow(f, m.mode, name, modeSubtitle(f, m)));
     }
     list.appendChild(group);
   }
@@ -321,7 +345,7 @@ export async function initModels() {
       if (prevF && families.some((f) => f.id === prevF)) familySel.value = prevF;
     }
     renderModes();
-    if (modeSel && prevM && modesFor(familySel.value).some((m) => m.mode === prevM)) {
+    if (modeSel && prevM && [...modeSel.options].some((o) => o.value === prevM)) {
       modeSel.value = prevM;
         }
     renderPlusModelList();
@@ -359,7 +383,7 @@ export async function refreshFamilies() {
     if (prevF && families.some((f) => f.id === prevF)) familySel.value = prevF;
   }
   renderModes();
-  if (modeSel && prevM && familySel && modesFor(familySel.value).some((m) => m.mode === prevM)) {
+  if (modeSel && prevM && [...modeSel.options].some((o) => o.value === prevM)) {
     modeSel.value = prevM;
   }
   renderPlusModelList();
