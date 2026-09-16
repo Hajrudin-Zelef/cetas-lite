@@ -6,7 +6,7 @@
 
 ## État
 
-**Phases P0–P9 faites** : socle (bbolt, coffre AES-256-GCM, auth JWT), alias, moteur de chat stable
+**Phases P0–P11 faites** : socle (bbolt, coffre AES-256-GCM, auth JWT), alias, moteur de chat stable
 (journal rejouable, reconnexion `?from=`, stop/reset, heartbeat SSE, failover), outils agent + sandbox,
 UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Markdown (`mem_*`).
 **P6** : durcissement (rate-limit auth, fuzz, tests de reconnexion) + packaging 6 binaires + CI.
@@ -14,6 +14,9 @@ UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Mark
 **Tier 1–4** : archives UI, export/régénérer, inscription bootstrap + proxy + bwrap + favicon,
 custom tools HTTP (`custom_*`). **Lots 0/A/C/B/D** : prompts pédagogiques + `MAREX.md`, lecture de
 documents (PDF/texte/HTML), thinking+effort, vision, voix navigateur. **P9** : registre d'outils + docs.
+**P10** : skills, WebDepth, GitHub tools, pièces jointes TTL, menus composer portalés.
+**P11** : coffre **V4** (`internal/securevault`) + UI Coffre, CLI **`cetas-keys`**, panneaux
+API Modèles / Configuration / centre d'aide, sidebar Agents plate, thème modale.
 **UI** : le front reprend le design de Cetas (thèmes clair/ocean/sombre, glassmorphism, sidebar +
 `input-area` + `plus-menu`, messages `.message-wrapper`) adapté au backend cetas-lite.
 
@@ -21,8 +24,11 @@ Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.
 
 - Alias à 2 niveaux : `SamAgent Nano` (free), `SamAgent N4` (flash/standard), `SamAgent N8` (flash/standard/elite), `Code` (flash/standard/elite, agent), `SamGen` (local : nano=llama.cpp, n4=Ollama, n8=LM Studio).
 - Chat serveur : journal rejouable, reconnexion (`?from=`), stop/reset non bloquants, heartbeat SSE, failover de pool.
-- Providers cloud : DeepSeek, OpenCode Zen, OpenCode Go, OpenRouter. Local : Ollama/LM Studio/llama.cpp (découverte auto).
-- Outils agent : fichiers (Ls/Read/Write/Edit/Grep/Glob), Bash, RunScript (désactivé par défaut), TodoWrite, web (`web_search`/`web_fetch`), mémoire (`mem_*`), MCP (`mcp_*`).
+- Providers cloud : DeepSeek, OpenCode Zen, OpenCode Go, OpenRouter (en-tête `x-opencode-session` requis par la gateway). Local : Ollama/LM Studio/llama.cpp (découverte auto). Panneau **API Modèles** (catalogue, tarifs, logos, toggle textes/images).
+- **Coffre chiffré** : `internal/securevault`, format **V4** compatible CETAS/Python (`$CETAS_LITE_HOME/vault.enc`, AES-256-GCM + Scrypt N=2^16 + nonce HKDF + pepper `CETAS_PEPPER`), migration V2/V3, verrouillage auto 15 min, UI onglet « Coffre ».
+- **`cetas-keys`** : CLI séparée (`cmd/cetas-keys`) pour gérer le coffre et un `.env` **scellé** (`init/add/list/test/delete/export/passwd/status/sync`), validation **live** des clés, bannière TUI, 16 providers.
+- **Panneaux UI** : API Modèles, Configuration (onglets Fonctionnalités / Recherche Web / Apparence / Remote SFTP / Compétences, sauvegarde par onglet), centre d'aide intégré (recherche plein-texte), sidebar Agents à 2 sections plates.
+- Outils agent : fichiers (Ls/Read/Write/Edit/Grep/Glob), Bash, RunScript (désactivé par défaut), TodoWrite, web (`web_search`/`web_fetch`), mémoire (`mem_*`), MCP (`mcp_*`), GitHub (repos/issues/PRs).
 - Mémoire : pages Markdown par user sous `$CETAS_LITE_HOME/memory/<user>/`, index `MEMORY.md` auto, recherche TF-IDF.
 - MCP : serveurs déclarés dans `$CETAS_LITE_HOME/mcp.json` (`stdio` ou `http`), outils exposés à l'agent sous `mcp_<serveur>_<outil>` (diagnostic : `./bin/cetas-lite mcp`).
 - Custom tools : outils HTTP définis dans `$CETAS_LITE_HOME/tools.json`, exposés sous `custom_<outil>` (diagnostic : `./bin/cetas-lite tools`).
@@ -90,13 +96,24 @@ Moteurs locaux (optionnel) : `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`,
 - `CETAS_LITE_SANDBOX=none|auto|bwrap` (défaut `none`) : isole `Bash`/`RunScript` dans **bubblewrap**
   (système en lecture seule, bind du seul workspace) ; sonde au démarrage, repli sûr.
 - `CETAS_LITE_ALLOW_SCRIPT` (défaut `false`) : active l'outil `RunScript`.
+- `CETAS_PEPPER` : pepper du coffre V4 (`internal/securevault`), préfixé au mot de passe maître avant Scrypt.
+  **Le perdre rend le coffre `vault.enc` indéchiffrable.**
 
 ## Clés providers (chiffrées)
 
+Deux coffres coexistent :
+
 ```bash
+# clés providers côté serveur (bbolt `secrets`, cryptovault, serveur arrêté)
 export CETAS_LITE_VAULT_PASSWORD='...'
 ./bin/cetas-lite keys set deepseek 'sk-...'
 ./bin/cetas-lite keys list
+
+# coffre V4 + .env scellé (CLI séparée, serveur peut tourner)
+go build -o bin/cetas-keys ./cmd/cetas-keys/
+export CETAS_PEPPER='...'
+./bin/cetas-keys            # assistant interactif
+./bin/cetas-keys list
 ```
 
 ## Tests
@@ -112,6 +129,7 @@ make smoke         # smoke UI Playwright (python3 + playwright + chromium)
 ```bash
 make build         # binaire local -> bin/cetas-lite
 make cross         # linux/windows/darwin x amd64/arm64 -> bin/
+make desktop       # app bureau Windows (amd64 + arm64, subsystem GUI -> bin/*.exe)
 ```
 
 `CGO_ENABLED=0`, `-trimpath`, `-ldflags "-s -w -X main.version=..."`. CI GitHub Actions : tests
@@ -120,9 +138,12 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 ## Architecture
 
 - `cmd/cetas-lite` — CLI (`serve`, `keys`, `mcp`, `tools`, `backup`, `restore`, `version`)
+- `cmd/cetas-keys` — CLI du coffre V4 (assistant + `init/add/list/test/delete/export/passwd/status/sync`)
 - `internal/config` — configuration et répertoires
 - `internal/store` — bbolt (users, settings, conversations, secrets)
-- `internal/cryptovault` — AES-256-GCM + scrypt
+- `internal/cryptovault` — AES-256-GCM + scrypt (clés `keys`, N=32768)
+- `internal/securevault` — coffre V4 `vault.enc` (Scrypt N=2^16, nonce HKDF, pepper `CETAS_PEPPER`)
+- `internal/keysetup` — logique du CLI `cetas-keys` (seal, validation live, `.env` scellé)
 - `internal/auth` — scrypt + JWT HS256
 - `internal/chat` — conversation/journaux, agent, registre d'outils, sandbox/isolation
 - `internal/provider` / `internal/local` — providers cloud + découverte locale
