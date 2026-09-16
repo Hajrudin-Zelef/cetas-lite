@@ -1,7 +1,8 @@
 import { api, getPrefs, putPrefs } from "./api.js";
-import { modeSubtitle, familyShortLabel } from "./model-selector.js";
+import { modeSubtitle, familyShortLabel, buildStaged } from "./model-selector.js";
 
 let families = [];
+let aliasDefaults = [];
 let thinkingPref = false;
 
 // --- Préférences Fonctionnalités (panneau Configuration) ---
@@ -139,110 +140,303 @@ function renderModes() {
   }
 }
 
-function plusOptionRow(f, modeId, name, sub) {
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "plus-model-option";
-  btn.dataset.family = f.id;
-  btn.dataset.mode = modeId;
+// ===== Menu + : cascade multi-niveaux =====
+// Famille › → [Auto (= fallback de l'alias), Mode › → …]
+// Mode › → [Auto (= fallback du mode), Models › → modèles] — le fallback,
+//           c'est le mode Auto ; en dessous, sélection manuelle du modèle.
+// Nano (mode unique Free) : Free › → groupes par fournisseur
+// (« Free de OpenRouter », « Zen Free »), chacun en cascade.
+// SamGen (local) : routes directes, sans Auto.
+//
+// Un item : { label, sub, active, onPick } (feuille) ou
+// { label, sub, active, children } (branche → sous-menu au niveau suivant).
+
+// Groupes du mode Free de Nano : les gratuits OpenRouter, puis les
+// gratuits OpenCode (aliasés « Zen Free »).
+const NANO_FREE_GROUPS = [
+  { provider: "openrouter", label: "Free de OpenRouter" },
+  { provider: "opencode", label: "Zen Free" },
+];
+
+function effPoolOf(famId, modeId) {
+  const f = families.find((x) => x.id === famId);
+  const m = f && (f.modes || []).find((x) => x.mode === modeId);
+  return (m && m.pool) || [];
+}
+
+// Tous les modèles proposables pour un mode : pool par défaut + effectifs
+// (dédupliqués). Nécessaire car le pool effectif peut être réduit à
+// « 1 modèle » alors que l'utilisateur veut choisir parmi tous.
+function allModeModels(f, mode) {
+  const def = (aliasDefaults.find((d) => d.id === f.id) || {}).modes || [];
+  const dm = def.find((x) => x.mode === mode.mode);
+  const seen = new Set();
+  const out = [];
+  for (const p of [...((dm && dm.pool) || []), ...(mode.pool || [])]) {
+    const k = p.provider + "/" + p.model;
+    if (!seen.has(k)) {
+      seen.add(k);
+      out.push(p);
+    }
+  }
+  return out;
+}
+
+function pickFamilyMode(f, modeId) {
   const familySel = document.getElementById("family-select");
   const modeSel = document.getElementById("mode-select");
-  if (familySel && modeSel && familySel.value === f.id && modeSel.value === modeId) {
-    btn.classList.add("active");
-  }
-  btn.innerHTML =
-    '<span class="plus-model-option-main">' +
-    '<span class="plus-model-option-name"></span>' +
-    (sub ? '<span class="plus-model-option-rule"></span>' : "") +
-    "</span>";
-  btn.querySelector(".plus-model-option-name").textContent = name;
-  const ruleEl = btn.querySelector(".plus-model-option-rule");
-  if (ruleEl) ruleEl.textContent = sub;
-  btn.title = familyShortLabel(f) + " · " + name + (sub ? " — " + sub : "");
-  btn.addEventListener("click", () => {
-    if (familySel) familySel.value = f.id;
-    renderModes();
-    if (modeSel) modeSel.value = modeId;
-    persistPrefs().catch(() => {});
-    renderPlusModelList(); // referme aussi le sous-menu
-    // Le hint du composer (chat.js) se rafraîchit sur cet événement.
-    window.dispatchEvent(new CustomEvent("cetas:model-changed"));
-  });
-  return btn;
+  if (familySel) familySel.value = f.id;
+  renderModes();
+  if (modeSel) modeSel.value = modeId;
+  persistPrefs().catch(() => {});
+  renderPlusModelList(); // referme aussi les sous-menus
+  // Le hint du composer (chat.js) se rafraîchit sur cet événement.
+  window.dispatchEvent(new CustomEvent("cetas:model-changed"));
 }
 
-// Options du sous-menu d'une famille : "Auto (fallback)" puis un rang par
-// mode ("Modèle" pour les familles à un seul mode comme Nano).
-export function submenuOptions(f) {
-  const opts = [];
-  if (!f.local) opts.push({ mode: "auto", name: "Auto (fallback)", sub: "" });
-  const modes = f.modes || [];
-  for (const m of modes) {
-    opts.push({ mode: m.mode, name: modes.length === 1 ? "Modèle" : m.label, sub: modeSubtitle(f, m) });
+// Persiste l'override d'un mode. Le PUT /api/aliases REMPLACE tous les
+// overrides : on reconstruit donc l'ensemble depuis le serveur (GET +
+// buildStaged) avant d'appliquer le changement, pour ne jamais écraser
+// les réglages des autres modes.
+async function persistModeOverride(famId, modeId, members) {
+  const data = await api("/api/aliases");
+  const staged = buildStaged(data.families || [], data.defaults || []);
+  if (!staged[famId]) staged[famId] = {};
+  staged[famId][modeId] = members.map((m) => ({ provider: m.provider, model: m.model }));
+  const updated = await api("/api/aliases", { method: "PUT", body: staged });
+  families = (updated && updated.families) || families;
+  // renderModes() reconstruit les options : préserver la sélection courante.
+  const sel = currentSelection();
+  renderModes();
+  const modeSel = document.getElementById("mode-select");
+  if (modeSel && sel.mode && [...modeSel.options].some((o) => o.value === sel.mode)) {
+    modeSel.value = sel.mode;
   }
-  return opts;
+  renderPlusModelList();
+  // "cetas:model-changed" est émis par pickFamilyMode (sélection appliquée
+  // avant la persistance) : pas de double émission ici.
+  window.dispatchEvent(new CustomEvent("cetas:aliases-changed", { detail: { source: "plus" } }));
 }
 
-// Sous-menu en cascade (cf. capture de référence) : un seul élément partagé,
-// position:fixed au niveau du body (le dropdown parent a overflow-y:auto qui
-// rognerait un positionnement absolute).
-let submenuEl = null;
-let submenuFamId = null;
-let submenuCloseTimer = null;
-
-function ensureSubmenu() {
-  if (!submenuEl || !submenuEl.isConnected) {
-    submenuEl = document.createElement("div");
-    submenuEl.id = "plus-model-submenu";
-    submenuEl.className = "plus-model-submenu";
-    submenuEl.style.display = "none";
-    document.body.appendChild(submenuEl);
-    submenuEl.addEventListener("mouseenter", () => clearTimeout(submenuCloseTimer));
-    submenuEl.addEventListener("mouseleave", scheduleSubmenuClose);
+// « Auto » d'un mode : tout le pool en fallback.
+// La sélection est appliquée d'abord (feedback immédiat), la persistance
+// suit : le rafraîchissement async déclenché par "cetas:aliases-changed"
+// fige sinon les anciennes valeurs et écrase la sélection.
+async function pickModeAuto(f, mode) {
+  const members = allModeModels(f, mode);
+  if (!members.length) return;
+  pickFamilyMode(f, mode.mode);
+  try {
+    await persistModeOverride(f.id, mode.mode, members);
+  } catch (e) {
+    // L'override n'a pas été persisté ; la sélection reste affichée.
   }
-  return submenuEl;
 }
 
-export function plusModelSubmenuContains(el) {
-  return !!(submenuEl && el && submenuEl.contains(el));
+// Choix manuel d'un modèle : le mode passe en « 1 modèle » sur celui-ci.
+async function pickModel(f, mode, m) {
+  pickFamilyMode(f, mode.mode);
+  try {
+    await persistModeOverride(f.id, mode.mode, [m]);
+  } catch (e) {
+    // L'override n'a pas été persisté ; la sélection reste affichée.
+  }
+}
+
+function modelLeafItems(f, mode, models) {
+  const sel = currentSelection();
+  const pool = effPoolOf(f.id, mode.mode);
+  return models.map((m) => ({
+    label: m.label || m.model,
+    sub: m.provider,
+    active:
+      sel.family === f.id &&
+      sel.mode === mode.mode &&
+      pool.length === 1 &&
+      pool[0].provider + "/" + pool[0].model === m.provider + "/" + m.model,
+    onPick: () => pickModel(f, mode, m),
+  }));
+}
+
+// Contenu du sous-menu d'un mode : « Auto » (= le fallback) puis la
+// sélection manuelle (groupes par fournisseur pour Nano/Free, « Models »
+// sinon).
+function modeChildren(f, mode) {
+  const sel = currentSelection();
+  const pool = effPoolOf(f.id, mode.mode);
+  const models = allModeModels(f, mode);
+  const items = [];
+  const isNanoFree = f.id === "samagent-nano";
+  if (!isNanoFree) {
+    items.push({
+      label: "Auto",
+      sub: "",
+      active: sel.family === f.id && sel.mode === mode.mode && pool.length > 1,
+      onPick: () => pickModeAuto(f, mode),
+    });
+  }
+  if (isNanoFree) {
+    for (const g of NANO_FREE_GROUPS) {
+      const gm = models.filter((m) => m.provider === g.provider);
+      if (!gm.length) continue;
+      items.push({ label: g.label, sub: "", children: modelLeafItems(f, mode, gm) });
+    }
+    const rest = models.filter((m) => !NANO_FREE_GROUPS.some((g) => g.provider === m.provider));
+    if (rest.length) items.push({ label: "Autres", sub: "", children: modelLeafItems(f, mode, rest) });
+  } else if (models.length) {
+    items.push({ label: "Models", sub: "", children: modelLeafItems(f, mode, models) });
+  }
+  return items;
+}
+
+// Contenu du sous-menu d'une famille : « Auto » (= fallback de l'alias)
+// puis un rang par mode (le libellé du mode : « Free » pour Nano).
+function familyChildren(f) {
+  const sel = currentSelection();
+  const items = [];
+  if (!f.local) {
+    items.push({
+      label: "Auto",
+      sub: "",
+      active: sel.family === f.id && sel.mode === "auto",
+      onPick: () => pickFamilyMode(f, "auto"),
+    });
+  }
+  for (const m of f.modes || []) {
+    const isSel = sel.family === f.id && sel.mode === m.mode;
+    if (f.local) {
+      items.push({ label: m.label, sub: "", active: isSel, onPick: () => pickFamilyMode(f, m.mode) });
+    } else {
+      items.push({
+        label: m.label,
+        sub: modeSubtitle(f, m),
+        active: isSel,
+        children: modeChildren(f, m),
+      });
+    }
+  }
+  return items;
+}
+
+// --- Pile de sous-menus (un par niveau de cascade) ---
+// Chaque niveau est un élément body-level en position:fixed : le dropdown
+// parent a overflow-y:auto, un absolute y serait rogné.
+const submenuLevels = []; // [{ el, timer, anchor }]
+
+function submenuLevel(i) {
+  while (submenuLevels.length <= i) {
+    const entry = { el: null, timer: null, anchor: null };
+    const el = document.createElement("div");
+    el.className = "plus-model-submenu";
+    el.style.display = "none";
+    document.body.appendChild(el);
+    el.addEventListener("mouseenter", () => clearTimeout(entry.timer));
+    el.addEventListener("mouseleave", () => scheduleCloseFrom(submenuLevels.indexOf(entry)));
+    entry.el = el;
+    submenuLevels.push(entry);
+  }
+  const e = submenuLevels[i];
+  if (!e.el.isConnected) document.body.appendChild(e.el);
+  return e;
+}
+
+function scheduleCloseFrom(level) {
+  for (let i = level; i < submenuLevels.length; i++) {
+    const e = submenuLevels[i];
+    clearTimeout(e.timer);
+    e.timer = setTimeout(() => {
+      e.el.style.display = "none";
+      if (e.anchor) e.anchor.classList.remove("open");
+      e.anchor = null;
+    }, 140);
+  }
+}
+
+function closeSubmenusImmediate(from) {
+  for (let i = from; i < submenuLevels.length; i++) {
+    const e = submenuLevels[i];
+    clearTimeout(e.timer);
+    e.timer = null;
+    e.el.style.display = "none";
+    if (e.anchor) e.anchor.classList.remove("open");
+    e.anchor = null;
+  }
 }
 
 export function closePlusModelSubmenu() {
-  clearTimeout(submenuCloseTimer);
-  submenuCloseTimer = null;
-  if (submenuEl) submenuEl.style.display = "none";
-  submenuFamId = null;
-  document.querySelectorAll(".plus-model-family-row.open").forEach((b) => b.classList.remove("open"));
+  closeSubmenusImmediate(0);
 }
 
-function scheduleSubmenuClose() {
-  clearTimeout(submenuCloseTimer);
-  submenuCloseTimer = setTimeout(closePlusModelSubmenu, 140);
+export function plusModelSubmenuContains(el) {
+  return !!el && submenuLevels.some((e) => e.el.contains(el));
 }
 
-function openFamilySubmenu(f, anchor) {
-  const menu = ensureSubmenu();
-  clearTimeout(submenuCloseTimer);
-  submenuCloseTimer = null;
-  if (submenuFamId === f.id && menu.style.display !== "none") return; // déjà ouvert
-  submenuFamId = f.id;
-  menu.innerHTML = "";
-  for (const o of submenuOptions(f)) menu.appendChild(plusOptionRow(f, o.mode, o.name, o.sub));
-  document.querySelectorAll(".plus-model-family-row.open").forEach((b) => b.classList.remove("open"));
-  anchor.classList.add("open");
-  // Mesure puis positionne : à droite de la ligne, avec bascule si besoin.
-  menu.style.visibility = "hidden";
-  menu.style.display = "block";
+function positionSubmenu(el, anchor) {
+  el.style.visibility = "hidden";
+  el.style.display = "block";
   const r = anchor.getBoundingClientRect();
-  const w = menu.offsetWidth || 240;
-  const h = menu.offsetHeight || submenuOptions(f).length * 44 + 12;
+  const w = el.offsetWidth || 244;
+  const h = el.offsetHeight || 120;
   let left = r.right + 8;
   if (left + w > window.innerWidth - 8) left = Math.max(8, r.left - 8 - w);
-  let top = r.top - 6;
+  let top = Math.max(8, r.top - 6);
   if (top + h > window.innerHeight - 8) top = Math.max(8, window.innerHeight - h - 8);
-  menu.style.left = left + "px";
-  menu.style.top = Math.max(8, top) + "px";
-  menu.style.visibility = "";
+  el.style.left = left + "px";
+  el.style.top = top + "px";
+  el.style.visibility = "";
+}
+
+function touchOnly() {
+  return !!(window.matchMedia && window.matchMedia("(hover: none)").matches);
+}
+
+function openSubmenu(level, items, anchor) {
+  if (!items || !items.length) return;
+  // Ferme les niveaux plus profonds, garde les parents.
+  closeSubmenusImmediate(level + 1);
+  const entry = submenuLevel(level);
+  clearTimeout(entry.timer);
+  entry.timer = null;
+  // Bascule tactile : même ancrage déjà ouvert → on referme.
+  if (entry.anchor === anchor && entry.el.style.display !== "none") {
+    closeSubmenusImmediate(level);
+    return;
+  }
+  if (entry.anchor) entry.anchor.classList.remove("open");
+  entry.anchor = anchor;
+  anchor.classList.add("open");
+  fillSubmenu(entry.el, items, level);
+  positionSubmenu(entry.el, anchor);
+}
+
+function fillSubmenu(el, items, level) {
+  el.innerHTML = "";
+  for (const it of items) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "plus-model-option";
+    if (it.active) btn.classList.add("active");
+    btn.innerHTML =
+      '<span class="plus-model-option-main">' +
+      '<span class="plus-model-option-name"></span>' +
+      (it.sub ? '<span class="plus-model-option-rule"></span>' : "") +
+      "</span>" +
+      (it.children ? '<span class="plus-model-family-chev">›</span>' : "");
+    btn.querySelector(".plus-model-option-name").textContent = it.label;
+    const ruleEl = btn.querySelector(".plus-model-option-rule");
+    if (ruleEl) ruleEl.textContent = it.sub;
+    btn.title = it.label + (it.sub ? " — " + it.sub : "");
+    if (it.children) {
+      btn.addEventListener("mouseenter", () => openSubmenu(level + 1, it.children, btn));
+      btn.addEventListener("mouseleave", () => scheduleCloseFrom(level + 1));
+      btn.addEventListener("focus", () => openSubmenu(level + 1, it.children, btn));
+      // Tactile : le survol n'existe pas, la tape bascule le sous-menu.
+      if (touchOnly()) btn.addEventListener("click", () => openSubmenu(level + 1, it.children, btn));
+    } else if (it.onPick) {
+      btn.addEventListener("click", () => it.onPick());
+    }
+    el.appendChild(btn);
+  }
 }
 
 function renderPlusModelList() {
@@ -250,8 +444,7 @@ function renderPlusModelList() {
   if (!list) return;
   closePlusModelSubmenu();
   list.innerHTML = "";
-  const familySel = document.getElementById("family-select");
-  const touchOnly = window.matchMedia && window.matchMedia("(hover: none)").matches;
+  const sel = currentSelection();
   for (const f of plusMenuFamilies()) {
     const wrap = document.createElement("div");
     wrap.className = "plus-model-family";
@@ -259,17 +452,17 @@ function renderPlusModelList() {
     row.type = "button";
     row.className = "plus-model-family-row";
     row.dataset.family = f.id;
-    if (familySel && familySel.value === f.id) row.classList.add("active");
+    if (sel.family === f.id) row.classList.add("active");
     row.innerHTML =
       '<span class="plus-model-family-name"></span>' +
       '<span class="plus-model-family-chev">›</span>';
     row.querySelector(".plus-model-family-name").textContent = familyShortLabel(f);
     row.title = familyShortLabel(f);
-    row.addEventListener("mouseenter", () => openFamilySubmenu(f, row));
-    row.addEventListener("mouseleave", scheduleSubmenuClose);
-    row.addEventListener("focus", () => openFamilySubmenu(f, row));
+    row.addEventListener("mouseenter", () => openSubmenu(0, familyChildren(f), row));
+    row.addEventListener("mouseleave", () => scheduleCloseFrom(0));
+    row.addEventListener("focus", () => openSubmenu(0, familyChildren(f), row));
     // Tactile : le survol n'existe pas, la tape bascule le sous-menu.
-    if (touchOnly) row.addEventListener("click", () => openFamilySubmenu(f, row));
+    if (touchOnly()) row.addEventListener("click", () => openSubmenu(0, familyChildren(f), row));
     wrap.appendChild(row);
     list.appendChild(wrap);
   }
@@ -383,6 +576,7 @@ export async function initModels() {
   async function load() {
     const data = await api("/api/aliases");
     families = data.families || [];
+    aliasDefaults = data.defaults || [];
     const prefs = await getPrefs().catch(() => null);
     refreshFeaturePrefs(prefs);
     if (prefs && prefs.theme) applyTheme(prefs.theme);
@@ -452,6 +646,7 @@ export async function refreshFamilies() {
   try {
     const data = await api("/api/aliases");
     families = data.families || [];
+    aliasDefaults = data.defaults || [];
   } catch (e) {
     return;
   }
@@ -473,7 +668,10 @@ export async function refreshFamilies() {
 }
 
 if (typeof window !== "undefined") {
-  window.addEventListener("cetas:aliases-changed", () => {
+  window.addEventListener("cetas:aliases-changed", (e) => {
+    // Notre propre sauvegarde (source: "plus") a déjà rafraîchi depuis la
+    // réponse PUT : éviter un second GET + un écrasement de sélection.
+    if (e.detail && e.detail.source === "plus") return;
     refreshFamilies().catch(() => {});
   });
 }

@@ -134,7 +134,7 @@ async function persist() {
     families = data.families || families;
     setSaveState("Enregistré ✓", "ms-ok");
     setTimeout(() => setSaveState("", ""), 2500);
-    window.dispatchEvent(new CustomEvent("cetas:aliases-changed"));
+    window.dispatchEvent(new CustomEvent("cetas:aliases-changed", { detail: { source: "selector" } }));
   } catch (e) {
     setSaveState("Erreur : " + (e.message || e), "ms-err");
   }
@@ -244,7 +244,13 @@ function renderModeCard(fam, mode) {
     if (newKind === kind) return;
     const checked = [...list.querySelectorAll("input:checked")]
       .map((i) => ({ provider: i.dataset.provider, model: i.dataset.model }));
-    const members = newKind === "single" ? checked.slice(0, 1) : (checked.length ? checked : avail.slice(0, 1));
+    // Bascule vers Fallback : tout l'ensemble disponible. On conserve une
+    // sélection manuelle existante si elle couvre déjà plusieurs modèles ;
+    // sinon (cas « 1 modèle »), on coche tout — sinon le pool resterait à
+    // 1 modèle et l'onglet semblerait ne rien faire (bug constaté).
+    const members = newKind === "single"
+      ? checked.slice(0, 1)
+      : (checked.length > 1 ? checked : avail.map((m) => ({ provider: m.provider, model: m.model })));
     setModeSelection(fam.id, mode.mode, members);
     refreshModeCard(fam, mode);
   };
@@ -333,4 +339,19 @@ export async function loadSelectorPanel() {
 // Rafraîchit le panneau après une sauvegarde externe.
 export function resetSelectorPanel() {
   selectorLoaded = false;
+}
+
+if (typeof window !== "undefined") {
+  // Le menu + peut modifier les overrides (Auto / choix manuel par mode) :
+  // recharger le panneau s'il est affiché. On ignore notre propre sauvegarde
+  // (source: "selector"), déjà reflétée dans l'état local.
+  window.addEventListener("cetas:aliases-changed", (e) => {
+    if (e.detail && e.detail.source === "selector") return;
+    if (!selectorLoaded) return;
+    const body = document.getElementById("selector-body");
+    if (body && body.isConnected) {
+      selectorLoaded = false;
+      loadSelectorPanel();
+    }
+  });
 }

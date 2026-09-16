@@ -66,3 +66,24 @@ await test("PUT /api/aliases : le corps est un objet JSON, pas une chaîne doubl
     "samagent-nano": { free: [{ provider: "openrouter", model: "openrouter/free" }] },
   });
 });
+
+await test("onglet Fallback : re-bascule depuis « 1 modèle » (tout l'ensemble)", async () => {
+  // État : le test précédent a basculé le mode en « 1 modèle » (1 radio).
+  // Avant le correctif, cliquer « Fallback » ne faisait rien : switchKind
+  // conservait le seul modèle coché, le pool restait à 1, kind = "single".
+  const btnFallback = [...document.querySelectorAll(".ms-seg-btn")].find(
+    (b) => b.textContent === "Fallback"
+  );
+  assert.ok(btnFallback, "bouton Fallback présent");
+  btnFallback.click();
+  await new Promise((r) => setTimeout(r, 800)); // persist() débouncé (450 ms)
+  const inputs = [...document.querySelectorAll("#selector-body input")];
+  assert.ok(inputs.length >= 2, "liste des modèles affichée");
+  assert.equal(inputs[0].type, "checkbox", "retour en mode Fallback (cases à cocher)");
+  const decoded = JSON.parse(putBody);
+  assert.equal(
+    decoded["samagent-nano"].free.length,
+    2,
+    "l'override couvre tout l'ensemble, pas le seul modèle coché"
+  );
+});
