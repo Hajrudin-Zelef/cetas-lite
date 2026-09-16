@@ -157,6 +157,13 @@ func TestCloudEndpoint(t *testing.T) {
 	if or.Headers["X-Title"] == "" {
 		t.Fatal("openrouter doit porter X-Title")
 	}
+	// Depuis 2026-09-05 la gateway OpenCode exige x-opencode-session (HTTP 400 sinon).
+	for _, id := range []string{"opencode", "opencode-go"} {
+		ep, _ := CloudEndpoint(id, "sk")
+		if ep.Headers["x-opencode-session"] == "" {
+			t.Fatalf("%s doit porter x-opencode-session", id)
+		}
+	}
 	if _, ok := CloudEndpoint("inconnu", "sk"); ok {
 		t.Fatal("provider inconnu ne doit pas resoudre")
 	}

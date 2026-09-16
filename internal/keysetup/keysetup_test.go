@@ -300,3 +300,17 @@ func TestAuthPassword(t *testing.T) {
 		t.Fatal("la protection devrait être réinitialisée")
 	}
 }
+
+// TestOpenCodeSessionHeader — depuis 2026-09-05 la gateway OpenCode exige
+// x-opencode-session (sinon HTTP 400) ; la validation l'envoie donc.
+func TestOpenCodeSessionHeader(t *testing.T) {
+	for _, id := range []string{"opencode", "opencode-go"} {
+		p, ok := ByID(id)
+		if !ok {
+			t.Fatalf("provider %s introuvable", id)
+		}
+		if v := p.Headers["x-opencode-session"]; v == "" {
+			t.Errorf("provider %s : x-opencode-session manquant", id)
+		}
+	}
+}

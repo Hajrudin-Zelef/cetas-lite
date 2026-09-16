@@ -96,12 +96,22 @@ var Providers = []Provider{
 	{ID: "opencode", Label: "OpenCode Zen", Hint: "sk-...",
 		TestURL:   "https://opencode.ai/zen/v1/chat/completions",
 		TestModel: "glm-5", Mode: ModeChat,
-		AppID: "opencode"},
+		Headers: map[string]string{openCodeSessionHeader: openCodeSessionValue},
+		AppID:   "opencode"},
 	{ID: "opencode-go", Label: "OpenCode Go", Hint: "sk-...",
 		TestURL:   "https://opencode.ai/zen/go/v1/chat/completions",
 		TestModel: "hy3", Mode: ModeChat,
-		AppID: "opencode-go"},
+		Headers: map[string]string{openCodeSessionHeader: openCodeSessionValue},
+		AppID:   "opencode-go"},
 }
+
+// openCodeSessionHeader — depuis 2026-09-05, la gateway OpenCode (Zen et Go)
+// exige un x-opencode-session (ID stable par conversation, pour le routage
+// et la réutilisation du cache de prompt) ; sans lui : HTTP 400
+// « Request is missing x-opencode-session ». Pour la validation (test en
+// un coup), un UUID fixe suffit.
+const openCodeSessionHeader = "x-opencode-session"
+const openCodeSessionValue = "6ba7b811-9dad-11d1-80b4-00c04fd430c8"
 
 // freellmURL — FreeLLMAPI n'est testable que si CETAS_FREELLM_URL est défini.
 func freellmURL() string {

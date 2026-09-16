@@ -48,6 +48,16 @@ func CloudEndpoint(providerID, apiKey string) (Endpoint, bool) {
 			"X-Title":      "cetas-lite",
 		}
 	}
+	if providerID == "opencode" || providerID == "opencode-go" {
+		// Depuis 2026-09-05, la gateway OpenCode exige x-opencode-session
+		// (ID stable par conversation : routage + réutilisation du cache
+		// de prompt) ; sans lui : HTTP 400. Ici : UUID stable par instance
+		// (les appelants n'ont pas d'ID de conversation sous la main) —
+		// le per-conversation restera une optimisation ultérieure.
+		ep.Headers = map[string]string{
+			"x-opencode-session": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
+		}
+	}
 	return ep, true
 }
 
