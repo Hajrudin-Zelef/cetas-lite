@@ -164,31 +164,114 @@ function plusOptionRow(f, modeId, name, sub) {
     renderModes();
     if (modeSel) modeSel.value = modeId;
     persistPrefs().catch(() => {});
-    renderPlusModelList();
+    renderPlusModelList(); // referme aussi le sous-menu
+    // Le hint du composer (chat.js) se rafraîchit sur cet événement.
+    window.dispatchEvent(new CustomEvent("cetas:model-changed"));
   });
   return btn;
+}
+
+// Options du sous-menu d'une famille : "Auto (fallback)" puis un rang par
+// mode ("Modèle" pour les familles à un seul mode comme Nano).
+export function submenuOptions(f) {
+  const opts = [];
+  if (!f.local) opts.push({ mode: "auto", name: "Auto (fallback)", sub: "" });
+  const modes = f.modes || [];
+  for (const m of modes) {
+    opts.push({ mode: m.mode, name: modes.length === 1 ? "Modèle" : m.label, sub: modeSubtitle(f, m) });
+  }
+  return opts;
+}
+
+// Sous-menu en cascade (cf. capture de référence) : un seul élément partagé,
+// position:fixed au niveau du body (le dropdown parent a overflow-y:auto qui
+// rognerait un positionnement absolute).
+let submenuEl = null;
+let submenuFamId = null;
+let submenuCloseTimer = null;
+
+function ensureSubmenu() {
+  if (!submenuEl || !submenuEl.isConnected) {
+    submenuEl = document.createElement("div");
+    submenuEl.id = "plus-model-submenu";
+    submenuEl.className = "plus-model-submenu";
+    submenuEl.style.display = "none";
+    document.body.appendChild(submenuEl);
+    submenuEl.addEventListener("mouseenter", () => clearTimeout(submenuCloseTimer));
+    submenuEl.addEventListener("mouseleave", scheduleSubmenuClose);
+  }
+  return submenuEl;
+}
+
+export function plusModelSubmenuContains(el) {
+  return !!(submenuEl && el && submenuEl.contains(el));
+}
+
+export function closePlusModelSubmenu() {
+  clearTimeout(submenuCloseTimer);
+  submenuCloseTimer = null;
+  if (submenuEl) submenuEl.style.display = "none";
+  submenuFamId = null;
+  document.querySelectorAll(".plus-model-family-row.open").forEach((b) => b.classList.remove("open"));
+}
+
+function scheduleSubmenuClose() {
+  clearTimeout(submenuCloseTimer);
+  submenuCloseTimer = setTimeout(closePlusModelSubmenu, 140);
+}
+
+function openFamilySubmenu(f, anchor) {
+  const menu = ensureSubmenu();
+  clearTimeout(submenuCloseTimer);
+  submenuCloseTimer = null;
+  if (submenuFamId === f.id && menu.style.display !== "none") return; // déjà ouvert
+  submenuFamId = f.id;
+  menu.innerHTML = "";
+  for (const o of submenuOptions(f)) menu.appendChild(plusOptionRow(f, o.mode, o.name, o.sub));
+  document.querySelectorAll(".plus-model-family-row.open").forEach((b) => b.classList.remove("open"));
+  anchor.classList.add("open");
+  // Mesure puis positionne : à droite de la ligne, avec bascule si besoin.
+  menu.style.visibility = "hidden";
+  menu.style.display = "block";
+  const r = anchor.getBoundingClientRect();
+  const w = menu.offsetWidth || 240;
+  const h = menu.offsetHeight || submenuOptions(f).length * 44 + 12;
+  let left = r.right + 8;
+  if (left + w > window.innerWidth - 8) left = Math.max(8, r.left - 8 - w);
+  let top = r.top - 6;
+  if (top + h > window.innerHeight - 8) top = Math.max(8, window.innerHeight - h - 8);
+  menu.style.left = left + "px";
+  menu.style.top = Math.max(8, top) + "px";
+  menu.style.visibility = "";
 }
 
 function renderPlusModelList() {
   const list = document.getElementById("plus-model-list");
   if (!list) return;
+  closePlusModelSubmenu();
   list.innerHTML = "";
+  const familySel = document.getElementById("family-select");
+  const touchOnly = window.matchMedia && window.matchMedia("(hover: none)").matches;
   for (const f of plusMenuFamilies()) {
-    const group = document.createElement("div");
-    group.className = "plus-model-group";
-    const label = document.createElement("div");
-    label.className = "plus-model-group-label";
-    label.textContent = familyShortLabel(f);
-    group.appendChild(label);
-    // "Auto (fallback)" : tout l'alias en fallback (familles cloud).
-    if (!f.local) group.appendChild(plusOptionRow(f, "auto", "Auto (fallback)", ""));
-    const modes = f.modes || [];
-    for (const m of modes) {
-      // Famille à un seul mode (Nano) : "Modèle — [sélection effective]".
-      const name = modes.length === 1 ? "Modèle" : m.label;
-      group.appendChild(plusOptionRow(f, m.mode, name, modeSubtitle(f, m)));
-    }
-    list.appendChild(group);
+    const wrap = document.createElement("div");
+    wrap.className = "plus-model-family";
+    const row = document.createElement("button");
+    row.type = "button";
+    row.className = "plus-model-family-row";
+    row.dataset.family = f.id;
+    if (familySel && familySel.value === f.id) row.classList.add("active");
+    row.innerHTML =
+      '<span class="plus-model-family-name"></span>' +
+      '<span class="plus-model-family-chev">›</span>';
+    row.querySelector(".plus-model-family-name").textContent = familyShortLabel(f);
+    row.title = familyShortLabel(f);
+    row.addEventListener("mouseenter", () => openFamilySubmenu(f, row));
+    row.addEventListener("mouseleave", scheduleSubmenuClose);
+    row.addEventListener("focus", () => openFamilySubmenu(f, row));
+    // Tactile : le survol n'existe pas, la tape bascule le sous-menu.
+    if (touchOnly) row.addEventListener("click", () => openFamilySubmenu(f, row));
+    wrap.appendChild(row);
+    list.appendChild(wrap);
   }
 }
 

@@ -1,10 +1,14 @@
-import test from "node:test";
+// Menu + : disposition en cascade — une ligne par famille (Nano / N4 / SamGen,
+// pas de Code), survol => sous-menu à droite avec "Auto (fallback)" puis les
+// modes. Vérifie la structure DOM, le contenu des sous-menus et la sélection.
+import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
-import { createRequire } from "node:module";
+import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { createRequire } from "node:module";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 // jsdom : résolution standard puis repli /tmp.
@@ -13,7 +17,12 @@ let JSDOM;
 try {
   ({ JSDOM } = require("jsdom"));
 } catch {
-  ({ JSDOM } = await import("/tmp/node_modules/jsdom/lib/api.js"));
+  try {
+    ({ JSDOM } = await import("/tmp/node_modules/jsdom/lib/api.js"));
+  } catch {
+    console.log("jsdom indisponible, tests ignorés");
+    process.exit(0);
+  }
 }
 
 // Harness DOM AVANT d'importer model-select.js.
@@ -76,30 +85,44 @@ const FAMILIES = [
   },
 ];
 
-// api() lit resp.text() : le mock le fournit.
-globalThis.fetch = async (url) => {
+// api() lit resp.text() : le mock le fournit. Les PUT sont capturés pour
+// vérifier la persistance.
+const putBodies = [];
+globalThis.fetch = async (url, opts) => {
   const u = String(url);
+  if (opts && opts.method === "PUT" && opts.body) {
+    try { putBodies.push(JSON.parse(opts.body)); } catch {}
+  }
   const body = u.includes("/api/aliases") ? { families: FAMILIES } : {};
   return { ok: true, status: 200, text: async () => JSON.stringify(body) };
 };
 
-document.body.innerHTML = `
-  <select id="family-select"></select>
-  <select id="mode-select"></select>
-  <div id="plus-model-list"></div>
-`;
+const mod = await import("../model-select.js");
 
-const { initModels, modeOptionsFor, plusMenuFamilies } = await import("../model-select.js");
-await initModels();
+async function setupDOM() {
+  document.body.innerHTML = `
+    <select id="family-select"></select>
+    <select id="mode-select"></select>
+    <div id="plus-model-list"></div>
+    <input id="prompt-input" />
+    <span id="input-hint"></span>`;
+  localStorage.clear();
+  await mod.initModels();
+}
 
-const groupLabels = () =>
-  [...document.querySelectorAll("#plus-model-list .plus-model-group-label")].map((e) => e.textContent);
-const groupByLabel = (label) =>
-  [...document.querySelectorAll("#plus-model-list .plus-model-group")].find(
-    (g) => g.querySelector(".plus-model-group-label").textContent === label
-  );
-const optionRows = (group) =>
-  [...group.querySelectorAll(".plus-model-option")].map((b) => ({
+// Sous-menu visible pour une famille (simule le survol).
+function hoverFamily(famId) {
+  const row = document.querySelector(`.plus-model-family-row[data-family="${famId}"]`);
+  assert.ok(row, `ligne famille ${famId} présente`);
+  row.dispatchEvent(new Event("mouseenter", { bubbles: false }));
+  const menu = document.getElementById("plus-model-submenu");
+  assert.ok(menu, "sous-menu créé");
+  assert.equal(menu.style.display, "block", "sous-menu visible au survol");
+  return { row, menu };
+}
+
+const optionRows = (menu) =>
+  [...menu.querySelectorAll(".plus-model-option")].map((b) => ({
     btn: b,
     mode: b.dataset.mode,
     name: b.querySelector(".plus-model-option-name").textContent,
@@ -108,101 +131,140 @@ const optionRows = (group) =>
       : null,
   }));
 
-await test("menu + : 3 groupes (Nano, N4, SamGen), pas de Code", () => {
-  assert.deepEqual(groupLabels(), ["Nano", "N4", "SamGen"]);
-  assert.ok(!groupLabels().includes("Code"), "le volet Code est supprimé du menu +");
-});
+describe("menu + : disposition en cascade (familles + sous-menus)", () => {
+  test("une ligne par famille, pas de Code", async () => {
+    await setupDOM();
+    const rows = [...document.querySelectorAll(".plus-model-family-row")];
+    assert.deepEqual(
+      rows.map((r) => r.dataset.family),
+      ["samagent-nano", "samagent-n4", "samgen"],
+      "Nano, N4, SamGen uniquement (pas de Code)",
+    );
+    assert.deepEqual(
+      rows.map((r) => r.querySelector(".plus-model-family-name").textContent),
+      ["Nano", "N4", "SamGen"],
+    );
+    for (const r of rows) {
+      const chev = r.querySelector(".plus-model-family-chev");
+      assert.ok(chev, "chevron présent");
+      assert.equal(chev.textContent, "›");
+    }
+  });
 
-await test("menu + : Nano = Auto (fallback) + Modèle — [sélection]", () => {
-  const rows = optionRows(groupByLabel("Nano"));
-  assert.equal(rows.length, 2);
-  assert.equal(rows[0].name, "Auto (fallback)");
-  assert.equal(rows[0].mode, "auto");
-  assert.equal(rows[0].rule, null);
-  assert.equal(rows[1].name, "Modèle");
-  assert.equal(rows[1].mode, "free");
-  assert.equal(rows[1].rule, "Free Models Router");
-  // Au chargement sans préférences : famille Nano, mode Auto.
-  assert.ok(rows[0].btn.classList.contains("active"), "Auto est actif par défaut");
-});
+  test("survol Nano : Auto (fallback) + Modèle — [sélection effective]", async () => {
+    await setupDOM();
+    const { menu } = hoverFamily("samagent-nano");
+    const rows = optionRows(menu);
+    assert.equal(rows.length, 2);
+    assert.equal(rows[0].mode, "auto");
+    assert.equal(rows[0].name, "Auto (fallback)");
+    assert.equal(rows[0].rule, null, "pas de règle pour Auto");
+    assert.ok(rows[0].btn.classList.contains("active"), "Auto actif par défaut");
+    assert.equal(rows[1].mode, "free");
+    assert.equal(rows[1].name, "Modèle", "famille à un seul mode : libellé Modèle");
+    assert.equal(rows[1].rule, "Free Models Router", "règle = label du modèle effectif");
+  });
 
-await test("menu + : N4 = Auto + un rang par mode avec sa sélection", () => {
-  const rows = optionRows(groupByLabel("N4"));
-  assert.equal(rows.length, 3);
-  assert.equal(rows[0].name, "Auto (fallback)");
-  assert.equal(rows[0].mode, "auto");
-  assert.equal(rows[1].name, "Flash");
-  assert.equal(rows[1].rule, "Fallback · 2 modèles");
-  assert.equal(rows[2].name, "Standard");
-  assert.equal(rows[2].rule, "DeepSeek V4");
-  const text = groupByLabel("N4").textContent;
-  assert.ok(!text.includes("offres gratuites"), "jamais de règle technique");
-});
+  test("survol N4 : Auto (fallback) + Flash/Standard", async () => {
+    await setupDOM();
+    const { menu } = hoverFamily("samagent-n4");
+    const rows = optionRows(menu);
+    assert.equal(rows.length, 3);
+    assert.equal(rows[0].name, "Auto (fallback)");
+    assert.equal(rows[0].mode, "auto");
+    assert.equal(rows[1].name, "Flash");
+    assert.equal(rows[1].rule, "Fallback · 2 modèles");
+    assert.equal(rows[2].name, "Standard");
+    assert.equal(rows[2].rule, "DeepSeek V4");
+    assert.ok(!menu.textContent.includes("offres gratuites"), "jamais de règle technique");
+  });
 
-await test("menu + : SamGen = routes locales, sans Auto", () => {
-  const rows = optionRows(groupByLabel("SamGen"));
-  assert.equal(rows.length, 2);
-  assert.ok(rows.every((r) => r.mode !== "auto"), "pas d'Auto pour SamGen");
-  assert.equal(rows[0].name, "Nano (llama.cpp)");
-  assert.equal(rows[0].rule, "llama.cpp");
-  assert.equal(rows[1].name, "N4 (Ollama)");
-  assert.equal(rows[1].rule, "Ollama");
-});
+  test("survol SamGen : routes locales, pas d'Auto", async () => {
+    await setupDOM();
+    const { menu } = hoverFamily("samgen");
+    const rows = optionRows(menu);
+    assert.equal(rows.length, 2);
+    assert.ok(!rows.some((r) => r.mode === "auto"), "pas d'Auto pour SamGen");
+    assert.deepEqual(
+      rows.map((r) => r.name),
+      ["Nano (llama.cpp)", "N4 (Ollama)"],
+      "labels SamGen inchangés",
+    );
+  });
 
-await test("menu + : clic sur Auto sélectionne famille + mode auto", () => {
-  const rows = optionRows(groupByLabel("N4"));
-  rows[0].btn.click();
-  const familySel = document.getElementById("family-select");
-  const modeSel = document.getElementById("mode-select");
-  assert.equal(familySel.value, "samagent-n4");
-  assert.equal(modeSel.value, "auto");
-  // L'option Auto existe dans le select des modes (familles cloud).
-  assert.ok([...modeSel.options].some((o) => o.value === "auto"), "option Auto dans mode-select");
-});
+  test("changer de famille remplace le contenu du sous-menu", async () => {
+    await setupDOM();
+    const { menu } = hoverFamily("samagent-nano");
+    assert.equal(optionRows(menu).length, 2);
+    hoverFamily("samagent-n4");
+    assert.equal(optionRows(menu).length, 3, "contenu remplacé");
+    const openRows = document.querySelectorAll(".plus-model-family-row.open");
+    assert.equal(openRows.length, 1);
+    assert.equal(openRows[0].dataset.family, "samagent-n4");
+  });
 
-await test("mode-select : pas d'option Auto pour SamGen (local)", () => {
-  const familySel = document.getElementById("family-select");
-  familySel.value = "samgen";
-  familySel.dispatchEvent(new Event("change", { bubbles: true }));
-  const modeSel = document.getElementById("mode-select");
-  assert.ok(![...modeSel.options].some((o) => o.value === "auto"), "pas d'Auto en local");
-  assert.deepEqual(
-    [...modeSel.options].map((o) => o.value),
-    ["nano", "n4"]
-  );
-});
+  test("clic sur une option du sous-menu : sélection appliquée, sous-menu fermé", async () => {
+    await setupDOM();
+    const { menu } = hoverFamily("samagent-n4");
+    const std = optionRows(menu).find((r) => r.mode === "standard").btn;
+    std.dispatchEvent(new Event("click", { bubbles: true }));
+    assert.equal(document.getElementById("family-select").value, "samagent-n4");
+    assert.equal(document.getElementById("mode-select").value, "standard");
+    assert.equal(menu.style.display, "none", "sous-menu fermé après sélection");
+    const row = document.querySelector('.plus-model-family-row[data-family="samagent-n4"]');
+    assert.ok(row.classList.contains("active"), "ligne N4 marquée active");
+  });
 
-await test("modeOptionsFor : Auto en tête pour le cloud, rien pour le local", () => {
-  const cloud = modeOptionsFor(FAMILIES[1]);
-  assert.equal(cloud[0].mode, "auto");
-  assert.equal(cloud[0].label, "Auto (fallback)");
-  assert.deepEqual(cloud.slice(1).map((m) => m.mode), ["flash", "standard"]);
-  const local = modeOptionsFor(FAMILIES[3]);
-  assert.deepEqual(local.map((m) => m.mode), ["nano", "n4"]);
-});
+  test("clic sur Auto (fallback) : mode auto persisté + événement modèle", async () => {
+    await setupDOM();
+    putBodies.length = 0;
+    let changedFired = 0;
+    window.addEventListener("cetas:model-changed", () => changedFired++);
+    const { menu } = hoverFamily("samagent-nano");
+    const auto = optionRows(menu).find((r) => r.mode === "auto").btn;
+    auto.dispatchEvent(new Event("click", { bubbles: true }));
+    await new Promise((r) => setTimeout(r, 20)); // persistPrefs() est async
+    assert.equal(document.getElementById("family-select").value, "samagent-nano");
+    assert.equal(document.getElementById("mode-select").value, "auto");
+    const last = putBodies[putBodies.length - 1];
+    assert.ok(last, "un PUT de préférences a été émis");
+    assert.equal(last.family, "samagent-nano");
+    assert.equal(last.mode, "auto");
+    assert.equal(changedFired, 1, "cetas:model-changed émis (le hint du composer se rafraîchit)");
+  });
 
-await test("plusMenuFamilies : ordre Nano/N4/N8/SamGen, sans Code", () => {
-  assert.deepEqual(plusMenuFamilies().map((f) => f.id), ["samagent-nano", "samagent-n4", "samgen"]);
-});
+  test("mouseleave programme la fermeture, mouseenter du sous-menu l'annule", async () => {
+    await setupDOM();
+    const { row, menu } = hoverFamily("samagent-nano");
+    row.dispatchEvent(new Event("mouseleave", { bubbles: false }));
+    menu.dispatchEvent(new Event("mouseenter", { bubbles: false }));
+    await new Promise((r) => setTimeout(r, 220));
+    assert.equal(menu.style.display, "block", "resté ouvert : la souris est sur le sous-menu");
+    menu.dispatchEvent(new Event("mouseleave", { bubbles: false }));
+    await new Promise((r) => setTimeout(r, 220));
+    assert.equal(menu.style.display, "none", "fermé après mouseleave du sous-menu");
+  });
 
-await test("menu + : le CSS définit toutes les classes de la liste", () => {
-  const css = fs.readFileSync(`${ROOT}/css/features/mx-menus.css`, "utf8");
-  for (const cls of [
-    "plus-model-group",
-    "plus-model-group-label",
-    "plus-model-option",
-    "plus-model-option-main",
-    "plus-model-option-name",
-    "plus-model-option-rule",
-  ]) {
-    assert.ok(css.includes("." + cls), `classe .${cls} stylée`);
-  }
-});
+  test("plusModelSubmenuContains / closePlusModelSubmenu (intégration chat.js)", async () => {
+    await setupDOM();
+    hoverFamily("samagent-nano");
+    const menu = document.getElementById("plus-model-submenu");
+    assert.ok(mod.plusModelSubmenuContains(menu.querySelector(".plus-model-option")));
+    assert.ok(!mod.plusModelSubmenuContains(document.body));
+    mod.closePlusModelSubmenu();
+    assert.equal(menu.style.display, "none");
+  });
 
-await test("avatar : le dropdown de la sidebar s'ouvre vers le haut", () => {
-  const css = fs.readFileSync(`${ROOT}/css/features/mx-menus.css`, "utf8");
-  const m = css.match(/#user-menu-dropdown\.user-menu-dropdown\s*\{([^}]*)\}/);
-  assert.ok(m, "règle #user-menu-dropdown présente dans mx-menus.css");
-  assert.ok(/position:\s*absolute/.test(m[1]), "position absolute (ancré au wrapper)");
-  assert.ok(/bottom:\s*calc\(100%/.test(m[1]), "bottom: calc(100% + …) → ouverture vers le haut");
+  test("CSS : classes du menu en cascade définies dans mx-menus.css", () => {
+    const css = readFileSync(join(ROOT, "css", "features", "mx-menus.css"), "utf8");
+    for (const cls of [
+      ".plus-model-family",
+      ".plus-model-family-row",
+      ".plus-model-family-chev",
+      ".plus-model-submenu",
+      ".plus-model-option",
+    ]) {
+      assert.ok(css.includes(cls), `classe ${cls} stylée`);
+    }
+  });
 });

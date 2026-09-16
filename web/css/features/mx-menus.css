@@ -98,3 +98,61 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ===== Menu + en cascade : une ligne par famille, sous-menu à droite ===== */
+/* Le sous-menu est en position:fixed au niveau du body : le dropdown parent
+   a overflow-y:auto, un absolute y serait rogné. */
+.plus-model-family {
+  position: relative;
+  margin: 1px 0;
+}
+.plus-model-family-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.83rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.plus-model-family-row:hover,
+.plus-model-family-row.open {
+  background: var(--bg-hover);
+}
+.plus-model-family-row.active {
+  background: var(--accent-light);
+}
+.plus-model-family-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.plus-model-family-chev {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text-secondary);
+}
+.plus-model-submenu {
+  position: fixed;
+  display: none;
+  z-index: 300;
+  width: 244px;
+  padding: 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  animation: fadeIn 0.12s ease;
+}

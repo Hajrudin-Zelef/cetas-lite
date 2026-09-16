@@ -1,7 +1,7 @@
 import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
 import { currentSelection } from "./model-select.js";
-import { getFamilies, getMaxTokens, getFeaturePref } from "./model-select.js";
+import { getFamilies, getMaxTokens, getFeaturePref, plusModelSubmenuContains, closePlusModelSubmenu } from "./model-select.js";
 import { initReasonPanel } from "./reasoning-panel.js";
 import {
   estimateTokens,
@@ -102,6 +102,7 @@ export function initChat() {
   document.getElementById("family-select")?.addEventListener("change", refreshHint);
   document.getElementById("mode-select")?.addEventListener("change", refreshHint);
   window.addEventListener("cetas:composer-toggles", refreshHint);
+  window.addEventListener("cetas:model-changed", refreshHint); // choix depuis le menu +
 
   function renderPreview() {
     if (!attachPreview) return;
@@ -199,8 +200,9 @@ export function initChat() {
       plusMenu.style.display = open ? "" : "none";
     });
     document.addEventListener("click", (e) => {
-      if (plusMenu.style.display !== "none" && !plusMenu.contains(e.target) && e.target !== plusBtn && !plusBtn.contains(e.target)) {
+      if (plusMenu.style.display !== "none" && !plusMenu.contains(e.target) && !plusModelSubmenuContains(e.target) && e.target !== plusBtn && !plusBtn.contains(e.target)) {
         plusMenu.style.display = "none";
+        closePlusModelSubmenu();
       }
     });
     plusMenu.querySelectorAll(".plus-menu-item").forEach((item) => {
