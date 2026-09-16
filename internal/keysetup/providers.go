@@ -35,6 +35,9 @@ type Provider struct {
 	TestURL string
 	// TestModel utilisé pour l'appel de validation.
 	TestModel string
+	// FallbackModel essayé quand TestModel échoue (modèle désactivé/renommé
+	// côté provider). Vide = pas de repli.
+	FallbackModel string
 	// Mode de validation.
 	Mode TestMode
 	// Headers supplémentaires pour la validation (ex. OpenRouter).
@@ -94,8 +97,9 @@ var Providers = []Provider{
 		TestURL:   "https://open.bigmodel.cn/api/paas/v4/chat/completions",
 		TestModel: "glm-4-plus", Mode: ModeChat},
 	{ID: "opencode", Label: "OpenCode Zen", Hint: "sk-...",
-		TestURL:   "https://opencode.ai/zen/v1/chat/completions",
-		TestModel: "glm-5.3", Mode: ModeChat,
+		TestURL:       "https://opencode.ai/zen/v1/chat/completions",
+		TestModel:     "big-pickle",
+		FallbackModel: "mimo-v2.5-free", Mode: ModeChat,
 		Headers: map[string]string{openCodeSessionHeader: openCodeSessionValue},
 		AppID:   "opencode"},
 	{ID: "opencode-go", Label: "OpenCode Go", Hint: "sk-...",

@@ -17,6 +17,8 @@ const validationTimeout = 30 * time.Second
 // TestKey valide une clé contre l'API réelle du provider.
 // Retourne (true, "") si la clé fonctionne, sinon (false, raison lisible).
 // Une erreur réseau (DNS, timeout) est distinguée d'une clé rejetée (401/403).
+// Si FallbackModel est défini, il est essayé quand le modèle principal échoue
+// (modèle désactivé/renommé côté provider, sans que la clé soit en cause).
 func TestKey(p Provider, key string) (bool, string) {
 	if p.TestURL == "" {
 		return false, "provider désactivé (URL de test non configurée)"
@@ -28,15 +30,38 @@ func TestKey(p Provider, key string) (bool, string) {
 	ctx, cancel := context.WithTimeout(context.Background(), validationTimeout)
 	defer cancel()
 
+	models := []string{p.TestModel}
+	if p.FallbackModel != "" {
+		models = append(models, p.FallbackModel)
+	}
+
+	var reason string
+	for _, model := range models {
+		ok, r := testKeyModel(ctx, p, key, model)
+		if ok {
+			return true, ""
+		}
+		reason = r
+		// Quota épuisé, provider injoignable : la clé n'est pas en cause,
+		// réessayer avec un autre modèle ne changerait rien.
+		if strings.Contains(r, "HTTP 429") || strings.HasPrefix(r, "réseau") {
+			return false, r
+		}
+	}
+	return false, reason
+}
+
+// testKeyModel effectue UNE validation avec un modèle donné.
+func testKeyModel(ctx context.Context, p Provider, key, model string) (bool, string) {
 	var req *http.Request
 	var err error
 	switch p.Mode {
 	case ModeResponses:
-		req, err = responsesRequest(ctx, p, key)
+		req, err = responsesRequest(ctx, p, key, model)
 	case ModeAnthropic:
-		req, err = anthropicRequest(ctx, p, key)
+		req, err = anthropicRequest(ctx, p, key, model)
 	default:
-		req, err = chatRequest(ctx, p, key)
+		req, err = chatRequest(ctx, p, key, model)
 	}
 	if err != nil {
 		return false, "requête impossible : " + err.Error()
@@ -71,9 +96,9 @@ func TestKey(p Provider, key string) (bool, string) {
 // httpClient — client partagé, timeouts bornés (jamais de client sans timeout).
 var httpClient = &http.Client{Timeout: validationTimeout + 5*time.Second}
 
-func chatRequest(ctx context.Context, p Provider, key string) (*http.Request, error) {
+func chatRequest(ctx context.Context, p Provider, key, model string) (*http.Request, error) {
 	payload := map[string]any{
-		"model":      p.TestModel,
+		"model":      model,
 		"messages":   []map[string]string{{"role": "user", "content": "Hi"}},
 		"max_tokens": 1,
 		"stream":     false,
@@ -81,16 +106,16 @@ func chatRequest(ctx context.Context, p Provider, key string) (*http.Request, er
 	return jsonBearerRequest(ctx, "POST", p.TestURL, key, payload, p.Headers)
 }
 
-func responsesRequest(ctx context.Context, p Provider, key string) (*http.Request, error) {
-	payload := map[string]any{"model": p.TestModel, "input": "Hi"}
+func responsesRequest(ctx context.Context, p Provider, key, model string) (*http.Request, error) {
+	payload := map[string]any{"model": model, "input": "Hi"}
 	return jsonBearerRequest(ctx, "POST", p.TestURL, key, payload, p.Headers)
 }
 
 // anthropicRequest — l'API Anthropic native n'est PAS compatible OpenAI :
 // auth via x-api-key + version d'API, corps {model, max_tokens, messages}.
-func anthropicRequest(ctx context.Context, p Provider, key string) (*http.Request, error) {
+func anthropicRequest(ctx context.Context, p Provider, key, model string) (*http.Request, error) {
 	payload := map[string]any{
-		"model":      p.TestModel,
+		"model":      model,
 		"max_tokens": 1,
 		"messages":   []map[string]string{{"role": "user", "content": "Hi"}},
 	}

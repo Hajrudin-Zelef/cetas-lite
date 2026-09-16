@@ -2,6 +2,9 @@ package keysetup
 
 import (
 	"crypto/rand"
+	"encoding/json"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"strings"
@@ -312,5 +315,35 @@ func TestOpenCodeSessionHeader(t *testing.T) {
 		if v := p.Headers["x-opencode-session"]; v == "" {
 			t.Errorf("provider %s : x-opencode-session manquant", id)
 		}
+	}
+}
+
+func TestTestKeyFallback(t *testing.T) {
+	// Le modèle principal est désactivé (401), le repli répond 200 : la clé
+	// doit être acceptée via le fallback.
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		var body struct {
+			Model string `json:"model"`
+		}
+		_ = json.NewDecoder(r.Body).Decode(&body)
+		if body.Model == "primary" {
+			w.WriteHeader(http.StatusUnauthorized)
+			_, _ = w.Write([]byte(`{"error":{"message":"Model is disabled"}}`))
+			return
+		}
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"choices":[]}`))
+	}))
+	defer srv.Close()
+
+	p := Provider{ID: "x", TestURL: srv.URL, TestModel: "primary", FallbackModel: "fallback", Mode: ModeChat}
+	if ok, reason := TestKey(p, "sk-test"); !ok {
+		t.Fatalf("fallback attendu, obtenu refus : %s", reason)
+	}
+
+	// Sans repli, la même clé est refusée (modèle principal désactivé).
+	p.FallbackModel = ""
+	if ok, _ := TestKey(p, "sk-test"); ok {
+		t.Fatal("sans repli, la clé doit être refusée")
 	}
 }
