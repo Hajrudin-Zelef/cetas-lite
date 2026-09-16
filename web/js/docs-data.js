@@ -38,7 +38,7 @@ export const CETAS_DOCS = {
           title: "Choisir un modèle",
           sections: [
             { h: "Le sélecteur de modèle", html: `<p>Le sélecteur, au-dessus de la zone de saisie, regroupe les modèles par <strong>familles</strong> : chaque famille correspond à un usage (discussion, code, génération locale).</p>` },
-            { h: "Les familles", html: `<ul><li><strong>SamAgent Nano</strong> — léger et rapide, idéal pour les questions simples.</li><li><strong>SamAgent N4 / N8</strong> — polyvalents, en versions <em>flash</em> (rapidité) ou <em>standard</em> (équilibre).</li><li><strong>Code</strong> — optimisée pour le développement, active le <strong>mode Agent</strong>.</li><li><strong>SamGen</strong> — vos modèles <strong>locaux</strong> (Ollama, LM Studio, llama.cpp).</li></ul>` },
+            { h: "Les familles", html: `<ul><li><strong>SamAgent Nano</strong> — léger et rapide, idéal pour les questions simples.</li><li><strong>SamAgent N4 / N8</strong> — polyvalents, en versions <em>flash</em> (rapidité) ou <em>standard</em> (équilibre).</li><li><strong>Code</strong> — optimisée pour le développement.</li><li><strong>SamGen</strong> — vos modèles <strong>locaux</strong> (Ollama, LM Studio, llama.cpp).</li></ul>` },
             { h: "Quel modèle choisir ?", html: `<p>Pour discuter, un modèle léger suffit. Pour du code ou des missions complexes, préférez la famille <strong>Code</strong> ou une version <em>standard/elite</em>. Vous pouvez changer de modèle à chaque message.</p>` },
           ],
         },

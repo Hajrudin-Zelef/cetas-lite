@@ -2,7 +2,6 @@ import { api, getPrefs, putPrefs } from "./api.js";
 
 let families = [];
 let thinkingPref = false;
-let appMode = "chat"; // "chat" | "agent" : mode top-level choisi dans l'UI
 
 // --- Préférences Fonctionnalités (panneau Configuration) ---
 // Cache local des choix tts / transcription / prompt_enhance / summarizer /
@@ -58,59 +57,31 @@ function syncGlobeButton() {
   btn.title = on ? "Recherche web : activée" : "Recherche web : désactivée";
 }
 
-// Bouton Thinking du composer (a cote du globe) : en mode Agent la reflexion
-// est obligatoire et le bouton est verrouille.
+// Bouton Thinking du composer (a cote du globe) : reflete l'etat du toggle.
 function syncThinkingButton() {
   const btn = document.getElementById("thinking-toggle-btn");
   if (!btn) return;
-  const locked = isAgentActive();
-  const on = locked || getCheck("thinking-toggle");
+  const on = getCheck("thinking-toggle");
   btn.classList.toggle("active", on);
-  btn.classList.toggle("locked", locked);
   btn.setAttribute("aria-pressed", on ? "true" : "false");
-  btn.title = locked ? "Réflexion (toujours active en mode Agent)" : on ? "Réflexion : activée" : "Réflexion : désactivée";
+  btn.title = on ? "Réflexion : activée" : "Réflexion : désactivée";
 }
 export function setThinking(on) {
   thinkingPref = !!on;
   applyThinkingToggle(thinkingPref);
-}
-export function applyApproveToggle(on) {
-  setCheck("approve-toggle", on);
-}
-export function applyPlanToggle(on) {
-  setCheck("plan-toggle", on);
-}
-
-export function getAppMode() {
-  return appMode;
-}
-
-// Capacité agent de la famille/mode sélectionnée (indépendant du mode top-level).
-export function isFamilyAgent() {
-  const familySel = document.getElementById("family-select");
-  return !!(familySel && familySel.dataset.agent === "1");
-}
-
-// Agent réellement actif : mode "Agent" choisi ET famille compatible.
-export function isAgentActive() {
-  return appMode === "agent" && isFamilyAgent();
 }
 
 export function currentSelection() {
   const family = document.getElementById("family-select");
   const mode = document.getElementById("mode-select");
   const effortSel = document.getElementById("effort-select");
-  const agent = isAgentActive();
   return {
-    appMode,
     family: family ? family.value : "",
     mode: mode ? mode.value : "",
     web: getCheck("web-toggle"),
     mcp: getCheck("mcp-toggle"),
     think: getCheck("thinking-toggle"),
     effort: effortSel ? effortSel.value : "default",
-    approve: agent && getCheck("approve-toggle"),
-    plan: agent && getCheck("plan-toggle"),
   };
 }
 
@@ -128,105 +99,12 @@ export function persistPrefs() {
   if (mcpEl && mcpEl.closest(".right-panel-section") && !mcpEl.disabled) {
     body.mcp_default = sel.mcp;
   }
-  body.app_mode = appMode;
   return putPrefs(body);
 }
 
 function modesFor(id) {
   const f = families.find((x) => x.id === id);
   return f ? f.modes : [];
-}
-
-function updateAgent() {
-  const familySel = document.getElementById("family-select");
-  const modeSel = document.getElementById("mode-select");
-  if (!familySel || !modeSel) return;
-  const m = modesFor(familySel.value).find((x) => x.mode === modeSel.value);
-  const agent = !!(m && m.agent);
-  familySel.dataset.agent = agent ? "1" : "";
-  const active = appMode === "agent" && agent;
-  const pillRow = document.getElementById("agent-pill-row");
-  if (pillRow) pillRow.style.display = active ? "" : "none";
-  const th = document.getElementById("thinking-toggle");
-  if (th) {
-    if (active) {
-      th.checked = true;
-      th.disabled = true;
-      th.title = "Réflexion (active en mode Agent)";
-    } else {
-      th.disabled = false;
-      th.title = "Réflexion";
-      th.checked = thinkingPref;
-    }
-  }
-  syncThinkingButton();
-  updateAppModeUI();
-}
-
-// Première famille/mode compatible agent (pour basculer automatiquement).
-function firstAgentFamily() {
-  for (const f of families) {
-    const m = (f.modes || []).find((x) => x.agent);
-    if (m) return { family: f.id, mode: m.mode };
-  }
-  return null;
-}
-
-// Met à jour l'UI en fonction du mode top-level (sans changer appMode).
-function updateAppModeUI() {
-  const chatBtn = document.getElementById("mode-chat-btn");
-  const agentBtn = document.getElementById("mode-agent-btn");
-  for (const [btn, mode] of [[chatBtn, "chat"], [agentBtn, "agent"]]) {
-    if (!btn) continue;
-    const on = appMode === mode;
-    btn.classList.toggle("active", on);
-    btn.setAttribute("aria-selected", on ? "true" : "false");
-  }
-  const isAgent = appMode === "agent";
-  for (const id of ["rp-approvals-section", "rp-plan-section"]) {
-    const sec = document.getElementById(id);
-    if (sec) sec.style.display = isAgent ? "" : "none";
-  }
-  const input = document.getElementById("prompt-input");
-  if (input) {
-    input.placeholder = isAgent
-      ? "Décrivez la tâche à accomplir…"
-      : "Écrivez votre message…";
-  }
-  document.body.classList.toggle("app-mode-agent", isAgent);
-  document.body.classList.toggle("app-mode-chat", !isAgent);
-  updateAgentPillOnly();
-}
-
-function updateAgentPillOnly() {
-  const pillRow = document.getElementById("agent-pill-row");
-  if (pillRow) pillRow.style.display = isAgentActive() ? "" : "none";
-}
-
-export function setAppMode(mode, opts = {}) {
-  if (mode !== "chat" && mode !== "agent") return;
-  if (appMode === mode && !opts.force) {
-    updateAppModeUI();
-    return;
-  }
-  appMode = mode;
-  // En mode Agent, basculer sur une famille compatible si besoin.
-  if (mode === "agent" && !isFamilyAgent()) {
-    const target = firstAgentFamily();
-    if (target) {
-      const familySel = document.getElementById("family-select");
-      const modeSel = document.getElementById("mode-select");
-      if (familySel) familySel.value = target.family;
-      renderModes();
-      if (modeSel) modeSel.value = target.mode;
-    }
-  }
-  updateAgent();
-  updateAppModeUI();
-  if (opts.persist !== false) {
-    putPrefs({ app_mode: appMode }).catch(() => {});
-  }
-  window.dispatchEvent(new CustomEvent("cetas:app-mode-changed", { detail: appMode }));
 }
 
 function renderModes() {
@@ -240,7 +118,6 @@ function renderModes() {
     opt.textContent = m.label + (m.rule ? " · " + m.rule : "");
     modeSel.appendChild(opt);
   }
-  updateAgent();
 }
 
 function renderPlusModelList() {
@@ -269,8 +146,7 @@ function renderPlusModelList() {
         '<span class="plus-model-option-main">' +
         '<span class="plus-model-option-name"></span>' +
         '<span class="plus-model-option-rule"></span>' +
-        "</span>" +
-        (m.agent ? '<span class="plus-model-option-badge">Agent</span>' : "");
+        "</span>";
       btn.querySelector(".plus-model-option-name").textContent = m.label;
       const ruleEl = btn.querySelector(".plus-model-option-rule");
       if (m.rule) {
@@ -283,8 +159,7 @@ function renderPlusModelList() {
         if (familySel) familySel.value = f.id;
         renderModes();
         if (modeSel) modeSel.value = m.mode;
-        updateAgent();
-        persistPrefs().catch(() => {});
+              persistPrefs().catch(() => {});
         renderPlusModelList();
       });
       group.appendChild(btn);
@@ -356,8 +231,6 @@ export async function initModels() {
   bindCheck("mcp-toggle", applyMCPToggle);
   bindCheck("thinking-toggle", applyThinkingToggle);
   bindCheck("plus-reflection-toggle", applyThinkingToggle);
-  bindCheck("approve-toggle", applyApproveToggle, false);
-  bindCheck("plan-toggle", applyPlanToggle, false);
 
   // Boutons globe / Thinking du composer (a cote du bouton +).
   const globeBtn = document.getElementById("web-search-btn");
@@ -371,7 +244,6 @@ export async function initModels() {
   const thinkBtn = document.getElementById("thinking-toggle-btn");
   if (thinkBtn) {
     thinkBtn.addEventListener("click", () => {
-      if (isAgentActive()) return; // reflexion obligatoire en mode Agent
       setThinking(!getCheck("thinking-toggle"));
       persistPrefs().catch(() => {});
       window.dispatchEvent(new CustomEvent("cetas:composer-toggles"));
@@ -399,13 +271,7 @@ export async function initModels() {
   }
 
   if (familySel) familySel.addEventListener("change", () => { renderModes(); persistPrefs().catch(() => {}); renderPlusModelList(); });
-  if (modeSel) modeSel.addEventListener("change", () => { updateAgent(); persistPrefs().catch(() => {}); renderPlusModelList(); });
-
-  // Sélecteur top-level Chat / Agent
-  const chatBtn = document.getElementById("mode-chat-btn");
-  const agentBtn = document.getElementById("mode-agent-btn");
-  if (chatBtn) chatBtn.addEventListener("click", () => setAppMode("chat"));
-  if (agentBtn) agentBtn.addEventListener("click", () => setAppMode("agent"));
+  if (modeSel) modeSel.addEventListener("change", () => { persistPrefs().catch(() => {}); renderPlusModelList(); });
 
   async function load() {
     const data = await api("/api/aliases");
@@ -457,11 +323,7 @@ export async function initModels() {
     renderModes();
     if (modeSel && prevM && modesFor(familySel.value).some((m) => m.mode === prevM)) {
       modeSel.value = prevM;
-      updateAgent();
-    }
-    renderPlusModelList();
-    // Restaure le mode top-level Chat / Agent enregistré.
-    setAppMode(prefs && prefs.app_mode === "agent" ? "agent" : "chat", { persist: false, force: true });
+        }
     renderPlusModelList();
   }
 

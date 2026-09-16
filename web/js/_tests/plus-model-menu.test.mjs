@@ -68,9 +68,9 @@ await test("menu + : structure premium de la liste des modèles", () => {
   assert.ok(main, ".plus-model-option-main présent");
   assert.equal(main.querySelector(".plus-model-option-name").textContent, "Free");
   assert.equal(main.querySelector(".plus-model-option-rule").textContent, "offres gratuites");
-  // Badge Agent uniquement sur le mode agent.
+  // Pas de badge Agent : le chat général est pur chat, l'agent vit dans le module Agents.
   assert.equal(opts[0].querySelector(".plus-model-option-badge"), null);
-  assert.equal(opts[1].querySelector(".plus-model-option-badge").textContent, "Agent");
+  assert.equal(opts[1].querySelector(".plus-model-option-badge"), null);
   // Le mode courant est marqué actif.
   assert.ok(
     opts[0].classList.contains("active") || opts[1].classList.contains("active"),
@@ -87,7 +87,6 @@ await test("menu + : le CSS définit toutes les classes de la liste", () => {
     "plus-model-option-main",
     "plus-model-option-name",
     "plus-model-option-rule",
-    "plus-model-option-badge",
   ]) {
     assert.ok(css.includes("." + cls), `classe .${cls} stylée`);
   }

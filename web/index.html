@@ -326,16 +326,6 @@
                 <button id="send-btn" class="send-btn" style="display:none!important" disabled></button>
                 <div id="prompt-toolbar" class="prompt-toolbar" style="display:none!important"></div>
             </div>
-            <div class="mode-switch" role="tablist" aria-label="Mode de conversation">
-                <button type="button" id="mode-chat-btn" class="mode-switch-btn active" data-mode="chat" role="tab" aria-selected="true" title="Chat général : conversation simple, sans outils">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    <span>Chat</span>
-                </button>
-                <button type="button" id="mode-agent-btn" class="mode-switch-btn" data-mode="agent" role="tab" aria-selected="false" title="Agent : utilise des outils (lecture, écriture, exécution) avec votre approbation">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
-                    <span>Agent</span>
-                </button>
-            </div>
             <button id="chat-header-settings" class="input-settings-btn" title="Réglages de la conversation">
                 <svg width="18" height="18" viewBox="0 0 24 24"><use href="/images/icons.svg#icon-settings"/></svg>
             </button>
@@ -440,29 +430,6 @@
             <div class="right-panel-select-row" style="margin-top:8px">
                 <select id="mode-select" class="model-select" aria-label="Mode"></select>
             </div>
-            <div id="agent-pill-row" style="margin-top:8px;display:none">
-                <span id="agent-toggle" class="agent-pill" title="Ce mode utilise l'agent avec outils">Agent</span>
-            </div>
-        </div>
-
-        <div class="right-panel-section" id="rp-approvals-section">
-            <div class="right-panel-header">
-                <span class="rp-title-group"><span class="right-panel-title">Approbations</span><span class="rp-hint-btn custom-select-info" data-tooltip="Demande votre validation avant que l'agent écrive, modifie ou exécute des commandes.">?</span></span>
-                <label class="plus-menu-toggle">
-                    <input type="checkbox" id="approve-toggle">
-                    <span class="plus-menu-toggle-slider"></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="right-panel-section" id="rp-plan-section">
-            <div class="right-panel-header">
-                <span class="rp-title-group"><span class="right-panel-title">Mode plan</span><span class="rp-hint-btn custom-select-info" data-tooltip="L'agent explore et propose un plan d'abord, sans modifier de fichiers, puis exécute après votre validation.">?</span></span>
-                <label class="plus-menu-toggle">
-                    <input type="checkbox" id="plan-toggle">
-                    <span class="plus-menu-toggle-slider"></span>
-                </label>
-            </div>
         </div>
 
         <div class="right-panel-section" id="rp-role-section">
@@ -485,7 +452,7 @@
 
         <div class="right-panel-section" id="rp-web-section">
             <div class="right-panel-header">
-                <span class="rp-title-group"><span class="right-panel-title">Recherche web</span><span class="rp-hint-btn custom-select-info" data-tooltip="Autorise l'agent à rechercher des informations à jour sur le web.">?</span></span>
+                <span class="rp-title-group"><span class="right-panel-title">Recherche web</span><span class="rp-hint-btn custom-select-info" data-tooltip="Autorise la recherche d'informations à jour sur le web.">?</span></span>
                 <label class="plus-menu-toggle">
                     <input type="checkbox" id="web-toggle">
                     <span class="plus-menu-toggle-slider"></span>
@@ -495,7 +462,7 @@
 
         <div class="right-panel-section" id="rp-mcp-section">
             <div class="right-panel-header">
-                <span class="rp-title-group"><span class="right-panel-title">Serveurs MCP</span><span class="rp-hint-btn custom-select-info" data-tooltip="Expose les outils des serveurs MCP configurés à l'agent.">?</span></span>
+                <span class="rp-title-group"><span class="right-panel-title">Serveurs MCP</span><span class="rp-hint-btn custom-select-info" data-tooltip="Expose les outils des serveurs MCP configurés.">?</span></span>
                 <label class="plus-menu-toggle">
                     <input type="checkbox" id="mcp-toggle">
                     <span class="plus-menu-toggle-slider"></span>
@@ -899,8 +866,8 @@
                         <div class="faq-answer"><p>Ouvrez la Configuration (engrenage en bas de la barre latérale), onglet « API et Modèles », puis renseignez la clé du fournisseur souhaité. Elle est chiffrée avant d'être stockée sur votre serveur.</p></div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question" type="button">Qu'est-ce que le mode Agent ?</button>
-                        <div class="faq-answer"><p>Certains modes (famille Code, par exemple) activent l'agent : il peut lire, écrire et exécuter dans un bac à sable, avec votre approbation si les approbations sont activées.</p></div>
+                        <button class="faq-question" type="button">Où est passé le mode Agent ?</button>
+                        <div class="faq-answer"><p>Le travail agentique (lecture, écriture, exécution avec approbation) se fait désormais dans le module <strong>Agents</strong> : des conversations indépendantes qui travaillent en parallèle, chacune dans son propre espace (worktree Git isolé). Ouvrez-le depuis les modules en haut de la barre latérale. Le chat général reste une conversation simple, sans outils.</p></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" type="button">À quoi servent les Agents parallèles ?</button>

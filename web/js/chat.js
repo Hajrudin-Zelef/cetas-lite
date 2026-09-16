@@ -68,9 +68,8 @@ export function initChat() {
         mcp: sel.mcp,
         think: sel.think,
         effort: sel.effort,
-        approve: sel.approve,
-        plan: sel.plan,
-        agent_mode: sel.appMode === "agent",
+        approve: false,
+        plan: false,
         max_tokens: getMaxTokens(),
         attachments: attachments.map((a) => a.id),
       };
@@ -91,20 +90,16 @@ export function initChat() {
     const f = fams.find((x) => x.id === sel.family);
     const m = f ? f.modes.find((x) => x.mode === sel.mode) : null;
     const parts = [];
-    parts.push(sel.appMode === "agent" ? "Agent" : "Chat");
     if (f) parts.push(f.label);
     if (m) parts.push(m.label);
     const extra = [];
     if (sel.web) extra.push("web");
     if (sel.think) extra.push("réflexion");
-    if (sel.approve) extra.push("approbations");
-    if (sel.plan) extra.push("plan");
     inputHint.textContent = parts.join(" · ") + (extra.length ? " — " + extra.join(", ") : "");
     refreshModelMeta();
   }
   document.getElementById("family-select")?.addEventListener("change", refreshHint);
   document.getElementById("mode-select")?.addEventListener("change", refreshHint);
-  window.addEventListener("cetas:app-mode-changed", refreshHint);
   window.addEventListener("cetas:composer-toggles", refreshHint);
 
   function renderPreview() {

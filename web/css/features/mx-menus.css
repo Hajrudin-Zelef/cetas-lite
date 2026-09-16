@@ -98,16 +98,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.plus-model-option-badge {
-  flex: 0 0 auto;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  line-height: 1.5;
-  color: var(--accent);
-  background: var(--accent-light);
-  border: 1px solid var(--accent);
-  padding: 1px 8px;
-  border-radius: 999px;
-}
