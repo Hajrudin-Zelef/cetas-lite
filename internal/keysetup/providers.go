@@ -95,7 +95,7 @@ var Providers = []Provider{
 		TestModel: "glm-4-plus", Mode: ModeChat},
 	{ID: "opencode", Label: "OpenCode Zen", Hint: "sk-...",
 		TestURL:   "https://opencode.ai/zen/v1/chat/completions",
-		TestModel: "glm-5", Mode: ModeChat,
+		TestModel: "glm-5.3", Mode: ModeChat,
 		Headers: map[string]string{openCodeSessionHeader: openCodeSessionValue},
 		AppID:   "opencode"},
 	{ID: "opencode-go", Label: "OpenCode Go", Hint: "sk-...",
