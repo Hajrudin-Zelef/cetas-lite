@@ -236,9 +236,12 @@
             </div>
         </div>
         <div id="chat-container" class="chat-container">
-            <div id="empty-chat-placeholder" class="empty-chat-placeholder">
-                <img src="/images/Cetas42.png" alt="Cetas" class="empty-chat-logo">
-                <p class="empty-chat-text">Sélectionnez une conversation ou démarrez-en une nouvelle en saisissant votre message ci-dessous.</p>
+            <div id="empty-chat-placeholder" class="empty-chat-placeholder" data-empty>
+                <div class="chat-hero">
+                    <div class="hero-glow" aria-hidden="true"></div>
+                    <h1 class="hero-title">Par où commencer ?</h1>
+                    <div id="hero-composer-slot" class="hero-composer-slot"></div>
+                </div>
                 <div id="empty-chat-category" class="empty-chat-category" style="display:none"></div>
             </div>
         </div>

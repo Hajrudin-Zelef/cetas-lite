@@ -1495,3 +1495,87 @@ body.dark .thread-to-bottom {
   background: var(--bg-hover, rgba(127, 140, 160, 0.14));
   border-left: 2px solid var(--accent);
 }
+
+/* ---------- Hero façon Gemini (chat vide) ---------- */
+/* Le placeholder hérite d'une opacité 0.5 : le hero doit être opaque. */
+.empty-chat-placeholder:has(.chat-hero) {
+  opacity: 1;
+  gap: 0;
+}
+.chat-hero {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+/* Halo d'ambiance derrière le composer (mode clair : discret). */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(620px 340px at 50% 46%, rgba(59, 130, 246, 0.13), transparent 70%),
+    radial-gradient(440px 260px at 42% 40%, rgba(168, 85, 247, 0.09), transparent 70%);
+}
+/* Mode sombre : halo bleu/violet plus présent, comme la référence. */
+body.dark .hero-glow {
+  background:
+    radial-gradient(660px 370px at 50% 46%, rgba(59, 130, 246, 0.20), transparent 70%),
+    radial-gradient(480px 300px at 42% 40%, rgba(139, 92, 246, 0.14), transparent 70%);
+}
+.hero-title {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 36px;
+  text-align: center;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+body.dark .hero-title {
+  color: #d7d7d7;
+  font-weight: 400;
+}
+.hero-composer-slot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 768px;
+}
+/* Le vrai composer, remonté dans le hero : carte flottante arrondie. */
+.hero-composer-slot .input-area {
+  background: transparent;
+  padding: 0;
+}
+.hero-composer-slot .input-row {
+  max-width: none;
+}
+.hero-composer-slot .input-wrapper {
+  border-radius: 28px;
+  padding: 10px 14px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.10);
+}
+body.dark .hero-composer-slot .input-wrapper {
+  box-shadow: 0 14px 48px rgba(0, 0, 0, 0.50);
+}
+/* En mode hero, la barre de tokens du bas n'a rien à afficher. */
+body.hero-mode .token-bar {
+  display: none;
+}
+/* L'alerte modèle remonte avec le composer : pleine largeur du slot. */
+.hero-composer-slot .model-alert {
+  margin: 0 0 12px;
+}
+/* L'indicateur de sélection (famille · mode) sous le composer du hero. */
+.hero-composer-slot .input-hint {
+  max-width: none;
+  padding-top: 10px;
+}

@@ -4,6 +4,7 @@ import { currentSelection } from "./model-select.js";
 import { getFamilies, getMaxTokens, getFeaturePref, plusModelSubmenuContains, closePlusModelSubmenu } from "./model-select.js";
 import { initReasonPanel } from "./reasoning-panel.js";
 import { initRequestsPanel } from "./requests-panel.js";
+import { initChatHero } from "./chat-hero.js";
 import {
   estimateTokens,
   refreshCtxCounter,
@@ -344,5 +345,7 @@ export function initChat() {
   refreshHint();
   refreshCtxCounter();
   view.connect();
+  // Hero façon Gemini : le composer remonte au centre quand le chat est vide.
+  initChatHero();
   return view;
 }
