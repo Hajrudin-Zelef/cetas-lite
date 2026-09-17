@@ -171,6 +171,63 @@ func TestCodeEnablesAgent(t *testing.T) {
 	}
 }
 
+func TestCodeAgentPools(t *testing.T) {
+	fams := Defaults()
+	want := map[string][][2]string{
+		"flash": {
+			{"deepseek", "deepseek/deepseek-v4.1-flash"},
+			{"opencode", "qwen/qwen3.8-flash"},
+			{"opencode", "z-ai/glm-5.3-flash"},
+			{"opencode", "xiaomi/mimo-v2.5"},
+			{"opencode", "openai/gpt-oss-20b"},
+			{"openrouter", "inclusionai/ling-3.0-flash-fin"},
+		},
+		"standard": {
+			{"opencode", "openai/gpt-5.6-luna"},
+			{"opencode", "meituan/longcat-2.0"},
+			{"opencode", "tencent/hy3"},
+			{"opencode", "qwen/qwen3.7-flash"},
+			{"openrouter", "meta/muse-spark-1.3-contributor"},
+			{"openrouter", "google/gemma-4-26b-a4b-it"},
+			{"openrouter", "openai/gpt-oss-120b"},
+			{"openrouter", "mistralai/mistral-small-2603"},
+			{"openrouter", "meta-llama/llama-4-maverick"},
+			{"openrouter", "openai/gpt-5-nano"},
+			{"openrouter", "inception/mercury-2.5"},
+			{"openrouter", "inclusionai/ling-3.0-flash"},
+			{"openrouter", "poolside/laguna-s-2.1"},
+			{"openrouter", "qwen/qwen3-coder-next"},
+		},
+		"elite": {
+			{"opencode", "z-ai/glm-5.2"},
+			{"opencode", "z-ai/glm-5.3-flash"},
+			{"opencode", "deepseek/deepseek-v4-pro"},
+			{"opencode", "qwen/qwen3.7-plus"},
+			{"deepseek", "deepseek-v4-pro"},
+			{"openrouter", "anthropic/claude-haiku-4.5"},
+			{"openrouter", "moonshotai/kimi-k2.6"},
+			{"openrouter", "qwen/qwen3.8-27b"},
+			{"openrouter", "qwen/qwen3-next-80b-a3b-instruct"},
+			{"openrouter", "anthropic/claude-sonnet-4.5"},
+		},
+	}
+	for mode, members := range want {
+		rm, ok := Resolve(fams, "code", mode)
+		if !ok {
+			t.Fatalf("code %s introuvable", mode)
+		}
+		if len(rm.Pool) != len(members) {
+			t.Fatalf("code %s pool = %d membres, want %d", mode, len(rm.Pool), len(members))
+		}
+		for i, m := range members {
+			if rm.Pool[i].Provider != m[0] || rm.Pool[i].Model != m[1] {
+				t.Errorf("code %s pool[%d] = %s/%s, want %s/%s",
+					mode, i, rm.Pool[i].Provider, rm.Pool[i].Model, m[0], m[1])
+			}
+		}
+	}
+}
+
 func TestSamGenLocal(t *testing.T) {
 	fams := Defaults()
 	engines := map[string]string{"nano": "llamacpp", "n4": "ollama", "n8": "lmstudio"}
