@@ -19,6 +19,10 @@ func (s *Server) handleAliasesGet(w http.ResponseWriter, r *http.Request) {
 
 // validateOverrides refuse les couples provider/modele inconnus : un
 // selecteur qui pointe vers un modele inexistant casserait les tours.
+// Un modele est connu s'il figure au catalogue statique OU dans le pool
+// par defaut du mode : les defauts eux-memes peuvent contenir des modeles
+// recents absents du catalogue (l'ID est transmis tel quel au provider,
+// seule autorite sur l'existence reelle du modele).
 func validateOverrides(ov alias.Overrides) error {
 	for fam, modes := range ov {
 		f, ok := alias.Find(alias.Defaults(), fam)
@@ -49,13 +53,32 @@ func validateOverrides(ov alias.Overrides) error {
 				if !provider.IsCloudProvider(mb.Provider) {
 					return fmt.Errorf("%s/%s : fournisseur inconnu : %s", fam, mode, mb.Provider)
 				}
-				if _, ok := catalog.Lookup(mb.Provider, mb.Model); !ok {
+				if mb.Model == "" {
+					return fmt.Errorf("%s/%s : modele vide", fam, mode)
+				}
+				if _, ok := catalog.Lookup(mb.Provider, mb.Model); !ok && !inDefaultPool(fam, mode, mb) {
 					return fmt.Errorf("%s/%s : modele inconnu : %s/%s", fam, mode, mb.Provider, mb.Model)
 				}
 			}
 		}
 	}
 	return nil
+}
+
+// inDefaultPool : le couple provider/modele figure-t-il dans le pool par
+// defaut du mode ? Les defauts peuvent contenir des modeles recents
+// absents du catalogue statique (pools agent definis par l'utilisateur).
+func inDefaultPool(famID, modeID string, mb alias.Member) bool {
+	rm, ok := alias.Resolve(alias.Defaults(), famID, modeID)
+	if !ok {
+		return false
+	}
+	for _, m := range rm.Pool {
+		if m.Provider == mb.Provider && m.Model == mb.Model {
+			return true
+		}
+	}
+	return false
 }
 
 func (s *Server) handleAliasesPut(w http.ResponseWriter, r *http.Request) {

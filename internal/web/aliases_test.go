@@ -17,6 +17,13 @@ func TestValidateOverridesOK(t *testing.T) {
 	if err := validateOverrides(ov); err != nil {
 		t.Fatalf("overrides valides refuses : %v", err)
 	}
+	// Modele du pool par defaut mais absent du catalogue statique : accepte.
+	defOnly := alias.Overrides{
+		"code": {"flash": {{Provider: "opencode", Model: "qwen/qwen3.8-flash"}}},
+	}
+	if err := validateOverrides(defOnly); err != nil {
+		t.Fatalf("modele du pool par defaut refuse : %v", err)
+	}
 	if err := validateOverrides(nil); err != nil {
 		t.Fatalf("overrides vides refuses : %v", err)
 	}
