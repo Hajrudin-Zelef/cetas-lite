@@ -699,6 +699,7 @@
             <button class="apikeys-tab active" data-tab="apimodeles">API et Modèles</button>
             <button class="apikeys-tab" data-tab="selector">Sélecteur de modèles</button>
             <button class="apikeys-tab" data-tab="selector-agent">Sélecteur agent</button>
+            <button class="apikeys-tab" data-tab="deepthink">DeepThink Global</button>
             <button class="apikeys-tab" data-tab="models">Fonctionnalités</button>
             <button class="apikeys-tab" data-tab="connecteurs">Connecteurs</button>
             <button class="apikeys-tab" data-tab="remote">Remote</button>
@@ -740,6 +741,14 @@
                 <p class="apikey-intro">Modèles utilisés par la <strong>vue Agents</strong>, par alias (Nano / N4 / N8) et par niveau (Flash / Standard / Elite) : <strong>1 modèle</strong> fixe ou <strong>Fallback</strong> (tirage aléatoire à chaque requête, puis bascule séquentielle en cas d'échec).</p>
                 <div class="apikeys-panel-body">
                     <div id="selector-agent-body"></div>
+                </div>
+            </div>
+            <!-- Panel DeepThink Global : traduction du raisonnement -->
+            <div class="apikeys-panel" id="panel-deepthink">
+                <h3>DeepThink Global <span id="deepthink-save-state" class="ms-save-state"></span></h3>
+                <p class="apikey-intro">Traduction à la demande du <strong>raisonnement</strong> affiché dans le panneau latéral : choisissez la langue cible et le modèle traducteur (léger et économique).</p>
+                <div class="apikeys-panel-body">
+                    <div id="deepthink-body"></div>
                 </div>
             </div>
             <!-- Panel Fonctionnalités -->

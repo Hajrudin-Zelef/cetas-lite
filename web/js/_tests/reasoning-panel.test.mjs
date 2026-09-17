@@ -32,13 +32,27 @@ globalThis.getComputedStyle = dom.window.getComputedStyle.bind(dom.window);
 globalThis.localStorage = dom.window.localStorage;
 
 // Mock fetch avec text() (api() lit resp.text()).
-globalThis.fetch = async (url) => {
+const translateCalls = [];
+let translateShouldFail = false;
+globalThis.fetch = async (url, opts = {}) => {
   if (String(url).startsWith("/api/model-info")) {
     return {
       ok: true,
       status: 200,
       text: async () =>
         JSON.stringify({ context_window: 131072, input_per_1m: 0.15, output_per_1m: 0.6 }),
+    };
+  }
+  if (String(url) === "/api/deepthink/translate" && (opts.method || "GET") === "POST") {
+    const body = JSON.parse(opts.body || "{}");
+    translateCalls.push(body.text);
+    if (translateShouldFail) {
+      return { ok: false, status: 502, text: async () => JSON.stringify({ error: "boom" }) };
+    }
+    return {
+      ok: true,
+      status: 200,
+      text: async () => JSON.stringify({ translation: "TRADUIT: " + body.text }),
     };
   }
   return { ok: false, status: 404, text: async () => JSON.stringify({ error: "nope" }) };
@@ -105,7 +119,10 @@ describe("panneau raisonnement : bloc infos", () => {
         "Coût : ",
       ]);
       assert.equal(document.querySelector(".ri-model").textContent, "MiMo V2.5");
-      assert.equal(document.querySelector(".reason-sec").textContent, "REASONING");
+      assert.equal(document.querySelector(".reason-sec-label").textContent, "REASONING");
+      const tbtn = document.querySelector(".reason-translate-btn");
+      assert.ok(tbtn, "bouton de traduction présent dans l'en-tête REASONING");
+      assert.equal(tbtn.textContent, "🌐 Traduire");
       assert.ok(document.querySelector(".reason-text").textContent.includes("je réfléchis"));
     } finally {
       panelMod.resetReasonPanel();
@@ -163,7 +180,7 @@ describe("panneau raisonnement : bloc infos", () => {
     }
   });
 
-  test("finalize + restore : instantané réutilisable par le bouton de la requête", () => {
+  test("finalize + restore : instantané réutilisable par le bouton de la réponse", () => {
     setupPanelDom();
     panelMod.resetReasonPanel();
     panelMod.beginReasonTurn({ label: "MiMo V2.5", provider: "opencode", model: "mimo" });
@@ -191,25 +208,31 @@ describe("panneau raisonnement : bloc infos", () => {
   });
 });
 
-describe("thread-view : bouton par requête + spinner de streaming", () => {
-  test("cycle complet : bouton caché → visible, auto-hide, spinner, snapshot", async () => {
+describe("thread-view : bouton par réponse + loader rond", () => {
+  test("cycle complet : bouton caché → visible, auto-hide, loader, snapshot", async () => {
     const log = setupPanelDom();
     const view = makeView(log);
     try {
       view.handleEvent({ user: "salut" });
-      const wrapper = log.querySelector(".message-wrapper-user");
-      assert.ok(wrapper, "message utilisateur créé");
-      const btn = wrapper.querySelector(".reason-btn");
-      assert.ok(btn, "bouton Raisonnement présent");
-      assert.equal(btn.hidden, true, "caché avant raisonnement");
-      assert.equal(btn.textContent, "Raisonnement");
+      const btnBefore = log.querySelector(".reason-btn");
+      assert.ok(btnBefore, "bouton existe (caché) avant la réponse");
+      assert.equal(btnBefore.hidden, true, "bouton caché avant la réponse");
 
       view.handleEvent({ route: { label: "MiMo V2.5", provider: "opencode", model: "mimo" } });
       view.handleEvent({ reasoning_content: "je réfléchis…" });
-      assert.equal(btn.hidden, false, "visible dès le premier delta");
       assert.ok(document.getElementById("reason-panel").classList.contains("open"), "panneau ouvert");
 
       view.handleEvent({ content: "bonjour" });
+      const bubble = log.querySelector(".message-assistant");
+      assert.ok(bubble, "bulle assistant créée");
+      // Le bouton Raisonnement est dans le wrapper user (pas l'assistant).
+      const wrapper = log.querySelector(".message-wrapper-user");
+      assert.ok(wrapper, "wrapper user");
+      const btn = wrapper.querySelector(".reason-btn");
+      assert.ok(btn, "bouton Raisonnement dans le wrapper user");
+      assert.equal(btn.hidden, false, "visible dès le premier delta");
+      assert.equal(btn.textContent, "Raisonnement");
+
       await nextFrame();
       assert.ok(!document.getElementById("reason-panel").classList.contains("open"), "panneau auto-masqué");
       const loader = log.querySelector(".marex-loader");
@@ -225,8 +248,9 @@ describe("thread-view : bouton par requête + spinner de streaming", () => {
       assert.equal(view.assistantBody, null, "état assistant réinitialisé");
       assert.equal(log.querySelector(".marex-loader"), null, "loader retiré en fin de tour");
       assert.equal(log.querySelector(".gen-stats-live"), null, "stats live retirées en fin de tour");
-      assert.ok(wrapper._reasonSnap, "instantané stocké sur la requête");
-      assert.ok(wrapper._reasonSnap.text.includes("je réfléchis"));
+      const uwrapper = log.querySelector(".message-wrapper-user");
+      assert.ok(uwrapper._reasonSnap, "instantané stocké sur la réponse user");
+      assert.ok(uwrapper._reasonSnap.text.includes("je réfléchis"));
       assert.equal(btn.hidden, false, "bouton toujours visible");
 
       // Clic : le panneau se rouvre avec l'instantané du tour.
@@ -250,11 +274,11 @@ describe("thread-view : bouton par requête + spinner de streaming", () => {
       view.handleEvent({ content: "réponse directe" });
       view.handleEvent({ turn_done: { elapsed_ms: 1000 } });
       const btn = log.querySelector(".reason-btn");
-      assert.ok(btn, "bouton créé");
+      assert.ok(btn, "bouton créé dans la bulle assistant");
       assert.equal(btn.hidden, true, "reste caché sans raisonnement");
       assert.equal(document.querySelector(".reason-info"), null, "pas de bloc infos");
-      const wrapper = log.querySelector(".message-wrapper-user");
-      assert.equal(wrapper._reasonSnap, undefined, "pas d'instantané");
+      const awrapper = log.querySelector(".message-wrapper-assistant");
+      assert.equal(awrapper._reasonSnap, undefined, "pas d'instantané");
     } finally {
       view.reset();
       panelMod.resetReasonPanel();
@@ -303,6 +327,104 @@ describe("thread-view : bouton par requête + spinner de streaming", () => {
       assert.equal(log.querySelector(".stream-waiting"), null, "zone d'attente retirée");
     } finally {
       view.reset();
+      panelMod.resetReasonPanel();
+      document.body.innerHTML = "";
+    }
+  });
+});
+
+describe("panneau raisonnement : traduction DeepThink", () => {
+  function setupTranslated() {
+    setupPanelDom();
+    panelMod.resetReasonPanel();
+    panelMod.beginReasonTurn({ label: "X", provider: "p", model: "m" });
+    panelMod.appendReasoningPanel("The user says hello.");
+    return {
+      btn: document.querySelector(".reason-translate-btn"),
+      text: () => document.querySelector(".reason-text").textContent,
+    };
+  }
+
+  test("clic -> traduit, second clic -> revient à l'original", async () => {
+    translateCalls.length = 0;
+    const { btn, text } = setupTranslated();
+    try {
+      btn.click();
+      await flush();
+      await flush();
+      assert.equal(translateCalls.length, 1, "un appel POST /api/deepthink/translate");
+      assert.equal(translateCalls[0], "The user says hello.", "le texte source est envoyé");
+      assert.ok(text().startsWith("TRADUIT:"), "traduction affichée, obtenu " + text());
+      assert.equal(btn.textContent, "↩ Original");
+      assert.ok(btn.classList.contains("on"));
+      btn.click();
+      assert.equal(text(), "The user says hello.", "retour au texte original");
+      assert.equal(btn.textContent, "🌐 Traduire");
+      assert.ok(!btn.classList.contains("on"));
+    } finally {
+      panelMod.resetReasonPanel();
+      document.body.innerHTML = "";
+    }
+  });
+
+  test("nouveau delta après traduction -> retour à l'original", async () => {
+    const { btn, text } = setupTranslated();
+    try {
+      btn.click();
+      await flush();
+      await flush();
+      assert.ok(text().startsWith("TRADUIT:"));
+      panelMod.appendReasoningPanel(" And more.");
+      assert.equal(text(), "The user says hello. And more.", "original restauré + delta ajouté");
+      assert.equal(btn.textContent, "🌐 Traduire", "bouton réinitialisé");
+    } finally {
+      panelMod.resetReasonPanel();
+      document.body.innerHTML = "";
+    }
+  });
+
+  test("échec de traduction -> bouton Réessayer", async () => {
+    translateShouldFail = true;
+    const { btn, text } = setupTranslated();
+    try {
+      btn.click();
+      await flush();
+      await flush();
+      assert.equal(btn.textContent, "⚠ Réessayer");
+      assert.equal(text(), "The user says hello.", "le texte original est conservé");
+    } finally {
+      translateShouldFail = false;
+      panelMod.resetReasonPanel();
+      document.body.innerHTML = "";
+    }
+  });
+
+  test("finalizeReasonTurn garde le texte original dans l'instantané", async () => {
+    const { btn } = setupTranslated();
+    try {
+      btn.click();
+      await flush();
+      await flush();
+      const snap = panelMod.finalizeReasonTurn(1200);
+      assert.equal(snap.text, "The user says hello.", "l'instantané ne contient pas la traduction");
+    } finally {
+      panelMod.resetReasonPanel();
+      document.body.innerHTML = "";
+    }
+  });
+
+  test("nouveau tour -> bouton réinitialisé", async () => {
+    const { btn, text } = setupTranslated();
+    try {
+      btn.click();
+      await flush();
+      await flush();
+      assert.ok(text().startsWith("TRADUIT:"));
+      // Nouveau tour : le bloc persiste mais l'état de traduction est remis à zéro.
+      panelMod.beginReasonTurn({ label: "Y", provider: "p", model: "m" });
+      assert.equal(btn.textContent, "🌐 Traduire", "bouton réinitialisé au nouveau tour");
+      assert.ok(!btn.classList.contains("on"));
+    } finally {
       panelMod.resetReasonPanel();
       document.body.innerHTML = "";
     }

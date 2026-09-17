@@ -38,6 +38,11 @@ const turn = {
 // Cache des infos modele (contexte + tarifs) par "provider/model".
 const modelInfoCache = new Map();
 
+// Etat de la traduction DeepThink du tour affiché (bouton "Traduire" de
+// l'en-tête REASONING). Un clic traduit le texte via POST
+// /api/deepthink/translate ; un second clic revient à l'original.
+const tr = { active: false, busy: false, original: "" };
+
 function panel() {
   return document.getElementById("reason-panel");
 }
@@ -98,12 +103,81 @@ function ensureInfoBlock() {
   info.appendChild(riRow("Contexte :", "ri-ctx", "—", false));
   info.appendChild(riRow("Coût :", "ri-cost", "—", false));
   b.appendChild(info);
-  b.appendChild(el("div", "reason-sec", "REASONING"));
+  const sec = el("div", "reason-sec");
+  sec.appendChild(el("span", "reason-sec-label", "REASONING"));
+  const tbtn = el("button", "reason-translate-btn", "🌐 Traduire");
+  tbtn.type = "button";
+  tbtn.title = "Traduire le raisonnement (DeepThink Global)";
+  tbtn.addEventListener("click", toggleReasonTranslation);
+  sec.appendChild(tbtn);
+  b.appendChild(sec);
   const t = el("div", "reason-text");
   b.appendChild(t);
   startTick();
   // Le modele et ses infos ont pu arriver avant le premier delta.
   renderUsage();
+}
+
+// Remet le bouton de traduction à l'état initial (nouveau tour, nouvel
+// instantané, ou nouveau contenu en streaming : la traduction affichée
+// serait périmée).
+function resetReasonTranslation() {
+  tr.active = false;
+  tr.busy = false;
+  tr.original = "";
+  const b = body();
+  const btn = b && b.querySelector(".reason-translate-btn");
+  if (btn) {
+    btn.textContent = "🌐 Traduire";
+    btn.classList.remove("on");
+    btn.disabled = false;
+    btn.title = "Traduire le raisonnement (DeepThink Global)";
+  }
+}
+
+// Bascule original <-> traduction du raisonnement affiché.
+async function toggleReasonTranslation() {
+  const b = body();
+  const t = b && b.querySelector(".reason-text");
+  const btn = b && b.querySelector(".reason-translate-btn");
+  if (!t || !btn || tr.busy) return;
+  if (tr.active) {
+    t.textContent = tr.original;
+    resetReasonTranslation();
+    return;
+  }
+  const src = t.textContent || "";
+  if (!src.trim()) return;
+  tr.busy = true;
+  tr.original = src;
+  btn.disabled = true;
+  btn.textContent = "…";
+  try {
+    const data = await api("/api/deepthink/translate", {
+      method: "POST",
+      body: { text: src },
+    });
+    const translated = data && typeof data.translation === "string" ? data.translation.trim() : "";
+    if (!translated) throw new Error("Traduction vide.");
+    // Le stream a pu avancer pendant l'appel : l'original de repli est le
+    // texte le plus récent, pas celui envoyé à la traduction.
+    tr.original = t.textContent;
+    t.textContent = translated;
+    tr.active = true;
+    btn.textContent = "↩ Original";
+    btn.classList.add("on");
+    btn.title = "Revenir au raisonnement original";
+  } catch (e) {
+    btn.textContent = "⚠ Réessayer";
+    btn.title = (e && e.message) || "Échec de la traduction";
+    const retryT = setTimeout(() => {
+      if (!tr.active && !tr.busy) resetReasonTranslation();
+    }, 3000);
+    if (retryT && typeof retryT.unref === "function") retryT.unref();
+  } finally {
+    tr.busy = false;
+    btn.disabled = false;
+  }
 }
 
 function riRow(label, valueCls, value, accent) {
@@ -191,7 +265,7 @@ function fetchModelInfo() {
 }
 
 function applyModelInfo(info) {
-  if (!info) return;
+  if (!info || info.unknown) return;
   if (info.context_window) turn.ctxMax = info.context_window;
   if (info.input_per_1m != null) turn.inputPer1M = info.input_per_1m;
   if (info.output_per_1m != null) turn.outputPer1M = info.output_per_1m;
@@ -236,6 +310,7 @@ export function beginReasonTurn(info) {
   turn.outputPer1M = null;
   turn.cost = null;
   turn.elapsedMs = null;
+  resetReasonTranslation();
 }
 
 // L'evenement route apporte le modele : met a jour le bloc infos et
@@ -254,6 +329,7 @@ export function setReasonModel(label, provider, model) {
 export function resetReasonPanel() {
   userClosed = false;
   stopTick();
+  resetReasonTranslation();
   turn.modelLabel = "";
   turn.provider = "";
   turn.model = "";
@@ -275,6 +351,14 @@ export function resetReasonPanel() {
 
 export function appendReasoningPanel(text, replace) {
   ensureInfoBlock();
+  if (tr.active) {
+    // Le stream a repris alors qu'une traduction était affichée : on
+    // revient à l'original avant d'ajouter le nouveau contenu.
+    const b0 = body();
+    const t0 = b0 && b0.querySelector(".reason-text");
+    if (t0) t0.textContent = tr.original;
+    resetReasonTranslation();
+  }
   const b = body();
   if (!b) return;
   let t = b.querySelector(".reason-text");
@@ -328,6 +412,8 @@ export function finalizeReasonTurn(elapsedMs) {
   renderUsage();
   const b = body();
   const t = b && b.querySelector(".reason-text");
+  // L'instantané garde toujours le texte ORIGINAL, jamais la traduction.
+  const snapText = t ? (tr.active ? tr.original : t.textContent) : "";
   return {
     modelLabel: turn.modelLabel,
     startTs: turn.startTs,
@@ -337,7 +423,7 @@ export function finalizeReasonTurn(elapsedMs) {
     inputPer1M: turn.inputPer1M,
     outputPer1M: turn.outputPer1M,
     elapsedMs: turn.elapsedMs,
-    text: t ? t.textContent : "",
+    text: snapText,
   };
 }
 

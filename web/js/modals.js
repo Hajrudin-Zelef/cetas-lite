@@ -9,6 +9,7 @@ import { initApiModelesPanel } from "./apimodeles.js";
 import { loadFeaturesPanel, loadSearchPanel, loadAppearancePanel, registerPanelSaver, notifyConfigDirty, saveConfigPanel, saveAllConfigPanels } from "./config-panels.js";
 import { loadVaultPanel } from "./vault.js";
 import { loadSelectorPanel, loadAgentSelectorPanel } from "./model-selector.js";
+import { loadDeepThinkPanel } from "./deepthink.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -65,6 +66,8 @@ function initConfigModal() {
       if (tab.dataset.tab === "selector") loadSelectorPanel();
       // Onglet Sélecteur agent : idem, dédié aux familles agent.
       if (tab.dataset.tab === "selector-agent") loadAgentSelectorPanel();
+      // Onglet DeepThink Global : langue + modèle de traduction du raisonnement.
+      if (tab.dataset.tab === "deepthink") loadDeepThinkPanel();
       // Onglet Fonctionnalités : six lignes de choix.
       if (tab.dataset.tab === "models") loadFeaturesPanel();
       // Onglet Recherche Web : moteurs + mode.

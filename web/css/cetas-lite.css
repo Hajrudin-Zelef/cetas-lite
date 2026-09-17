@@ -915,6 +915,44 @@
   letter-spacing: 0.08em;
   color: var(--text-secondary, #8b949e);
   margin: 2px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* Bouton de traduction du raisonnement (DeepThink Global). */
+.reason-translate-btn {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border, #d0d7de);
+  background: transparent;
+  color: var(--text-secondary, #8b949e);
+  cursor: pointer;
+  font-family: inherit;
+}
+.reason-translate-btn:hover:not(:disabled) {
+  color: var(--accent, #2563eb);
+  border-color: var(--accent, #2563eb);
+}
+.reason-translate-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.reason-translate-btn.on {
+  color: var(--accent, #2563eb);
+  border-color: var(--accent, #2563eb);
+}
+/* DeepThink Global : titres de lignes de réglages. */
+.dt-row-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 14px 0 6px;
+  color: var(--text, inherit);
+}
+.dt-row-title:first-child {
+  margin-top: 2px;
 }
 .reason-text {
   white-space: pre-wrap;
