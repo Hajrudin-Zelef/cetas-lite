@@ -35,8 +35,16 @@ export function initRequestsPanel() {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "request-item";
-      b.textContent = label;
       b.title = label;
+      // Façon DeepSeek : un simple trait par défaut, le contenu ne se
+      // révèle qu'au survol.
+      const trait = document.createElement("span");
+      trait.className = "request-item-trait";
+      trait.setAttribute("aria-hidden", "true");
+      const lbl = document.createElement("span");
+      lbl.className = "request-item-label";
+      lbl.textContent = label;
+      b.append(trait, lbl);
       b.addEventListener("click", () => {
         if (u.scrollIntoView) u.scrollIntoView({ behavior: "smooth", block: "start" });
       });

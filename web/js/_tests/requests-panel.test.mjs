@@ -167,8 +167,32 @@ test("css : panneau requêtes scrollable, responsive", () => {
   const css = read("web/css/cetas-lite.css");
   assert.match(css, /\.requests-panel\s*\{[^}]*overflow-y:\s*auto/);
   assert.match(css, /\.requests-panel\s*\{[^}]*max-height:\s*46vh/);
-  assert.match(css, /\.request-item\s*\{[^}]*text-overflow:\s*ellipsis/);
+  assert.match(css, /\.request-item-label\s*\{[^}]*text-overflow:\s*ellipsis/);
   assert.match(css, /@media\s*\(max-width:\s*1100px\)/);
+});
+
+test("requêtes : traits par défaut, contenu révélé au survol (façon DeepSeek)", () => {
+  setupDom();
+  addUserMessage("troisième requête");
+  initRequestsPanel();
+  const items = document.querySelectorAll(".request-item");
+  assert.equal(items.length, 3);
+  for (const b of items) {
+    const trait = b.querySelector(".request-item-trait");
+    const label = b.querySelector(".request-item-label");
+    assert.ok(trait, "chaque ligne a un trait");
+    assert.ok(label, "chaque ligne a un libellé");
+    assert.equal(label.textContent, b.title, "le libellé porte le contenu");
+  }
+  assert.equal(
+    items[2].querySelector(".request-item-label").textContent,
+    "troisième requête"
+  );
+  const css = read("web/css/cetas-lite.css");
+  // Par défaut : libellé replié (max-width: 0), révélé au survol.
+  assert.match(css, /\.request-item-label\s*\{[^}]*max-width:\s*0/);
+  assert.match(css, /\.request-item:hover\s+\.request-item-label\s*\{[^}]*max-width:/);
+  assert.match(css, /\.request-item-trait\s*\{[^}]*background:/);
 });
 
 test("chat : initRequestsPanel câblé + flèche ancrée au composer", () => {
