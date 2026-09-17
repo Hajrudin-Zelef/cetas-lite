@@ -1334,8 +1334,10 @@ body.dark .thread-to-bottom {
 }
 
 /* ============================================================
-   Panneau flottant "Requêtes" façon DeepSeek : conversations sur
-   le côté du chat, scroll haut/bas, clic pour basculer.
+   Panneau flottant "Requêtes" façon DeepSeek : sommaire des requêtes
+   sur le côté du chat. Fond transparent : au repos on ne voit que des
+   traits ; le texte de la requête apparaît au survol, juste à côté
+   du trait. Clic = défilement vers le message.
    Vue principale uniquement.
    ============================================================ */
 .requests-panel {
@@ -1344,63 +1346,62 @@ body.dark .thread-to-bottom {
   top: 50%;
   transform: translateY(-50%);
   z-index: 25;
-  width: 230px;
   max-height: 46vh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--bg, #ffffff);
-  border: 1px solid var(--border, #eaeaea);
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-  padding: 8px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 6px 2px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-}
-body.dark .requests-panel {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  align-items: flex-end;
+  gap: 5px;
 }
 .requests-panel[hidden] {
   display: none;
 }
-/* Façon DeepSeek : texte tronqué à gauche, petit trait à droite.
-   Survol / ligne active : texte et trait en accent. */
 .request-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
+  justify-content: flex-end;
+  width: auto;
   background: none;
   border: none;
-  border-radius: 8px;
-  padding: 7px 8px;
+  padding: 5px 2px;
   font-family: inherit;
-  font-size: 0.8rem;
-  color: var(--text-secondary, #6b7280);
   cursor: pointer;
-}
-.request-item-label {
-  flex: 1;
-  min-width: 0;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .request-item-trait {
   flex: none;
-  width: 16px;
+  width: 22px;
   height: 3px;
   border-radius: 2px;
   background: var(--text-tertiary, #c3c9d2);
   transition: background 0.15s ease;
 }
-.request-item:hover .request-item-label,
-.request-item.active .request-item-label {
+/* Le texte est replié par défaut : seul le trait est visible. */
+.request-item-label {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6b7280);
+  transition: max-width 0.18s ease, opacity 0.15s ease, margin 0.18s ease;
+}
+/* Au survol : le texte se déploie juste à côté du trait. */
+.request-item:hover .request-item-label {
+  max-width: 200px;
+  opacity: 1;
+  margin-right: 6px;
   color: var(--accent, #2563eb);
 }
-.request-item:hover .request-item-trait,
+.request-item:hover .request-item-trait {
+  background: var(--accent, #2563eb);
+}
+/* Ligne active (requête la plus proche du haut) : trait accentué. */
 .request-item.active .request-item-trait {
   background: var(--accent, #2563eb);
 }

@@ -171,7 +171,7 @@ test("css : panneau requêtes scrollable, responsive", () => {
   assert.match(css, /@media\s*\(max-width:\s*1100px\)/);
 });
 
-test("requêtes : texte tronqué à gauche, petit trait à droite (façon DeepSeek)", () => {
+test("requêtes : fond transparent, traits seuls, texte au survol près du trait", () => {
   setupDom();
   addUserMessage("troisième requête");
   initRequestsPanel();
@@ -192,10 +192,19 @@ test("requêtes : texte tronqué à gauche, petit trait à droite (façon DeepSe
     "troisième requête"
   );
   const css = read("web/css/cetas-lite.css");
-  assert.match(css, /\.request-item-label\s*\{[^}]*text-overflow:\s*ellipsis/);
-  assert.match(css, /\.request-item\s*\{[^}]*justify-content:\s*space-between/);
-  assert.match(css, /\.request-item:hover\s+\.request-item-label/);
-  assert.match(css, /\.request-item:hover\s+\.request-item-trait/);
+  // Panneau transparent, sans carte.
+  assert.match(css, /\.requests-panel\s*\{[^}]*background:\s*transparent/);
+  // Libellé replié par défaut, déployé au survol juste à côté du trait.
+  assert.match(css, /\.request-item-label\s*\{[^}]*max-width:\s*0/);
+  assert.match(css, /\.request-item-label\s*\{[^}]*opacity:\s*0/);
+  assert.match(
+    css,
+    /\.request-item:hover\s+\.request-item-label\s*\{[^}]*max-width:/
+  );
+  assert.match(
+    css,
+    /\.request-item:hover\s+\.request-item-label\s*\{[^}]*margin-right:\s*6px/
+  );
 });
 
 test("chat : initRequestsPanel câblé + flèche ancrée au composer", () => {
