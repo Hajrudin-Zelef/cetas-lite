@@ -1,3 +1,5 @@
+import { clearSessionCache } from "./session-cache.js";
+
 const TOKEN_KEY = "cetas-lite-token";
 const USER_KEY = "cetas-lite-user";
 
@@ -20,6 +22,11 @@ export function clearSession() {
   try {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+  } catch (e) {}
+  // Le cache des sessions est scopé par utilisateur : on le purge pour ne
+  // laisser aucune métadonnée d'un compte précédent sur la machine.
+  try {
+    clearSessionCache();
   } catch (e) {}
 }
 

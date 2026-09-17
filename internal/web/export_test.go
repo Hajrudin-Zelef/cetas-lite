@@ -53,27 +53,23 @@ func TestArchiveExport(t *testing.T) {
 	tok := tokenFor(t, ts.URL)
 	sendAndWait(t, ts.URL, tok, "salut")
 
-	rec := doJSON(t, s.Handler(), http.MethodPost, "/api/chat/reset", tok, nil)
-	if rec.Code != http.StatusOK {
-		t.Fatalf("reset status = %d", rec.Code)
-	}
-	list := doJSON(t, s.Handler(), http.MethodGet, "/api/conversations", tok, nil)
+	list := doJSON(t, s.Handler(), http.MethodGet, "/api/sessions", tok, nil)
 	body := decode(t, list)
-	archives, _ := body["archives"].([]any)
-	if len(archives) != 1 {
-		t.Fatalf("archives = %v", archives)
+	sessions, _ := body["sessions"].([]any)
+	if len(sessions) != 1 {
+		t.Fatalf("sessions = %v", sessions)
 	}
-	id := archives[0].(map[string]any)["id"].(string)
+	id := sessions[0].(map[string]any)["id"].(string)
 
-	rec = doJSON(t, s.Handler(), http.MethodGet, "/api/conversations/"+id+"/export?format=md", tok, nil)
+	rec := doJSON(t, s.Handler(), http.MethodGet, "/api/sessions/"+id+"/export?format=md", tok, nil)
 	if rec.Code != http.StatusOK {
 		t.Fatalf("export status = %d (%s)", rec.Code, rec.Body.String())
 	}
 	if !strings.Contains(rec.Body.String(), "salut") {
-		t.Fatalf("archive export = %q", rec.Body.String())
+		t.Fatalf("session export = %q", rec.Body.String())
 	}
 
-	rec = doJSON(t, s.Handler(), http.MethodGet, "/api/conversations/inconnu/export", tok, nil)
+	rec = doJSON(t, s.Handler(), http.MethodGet, "/api/sessions/inconnu/export", tok, nil)
 	if rec.Code != http.StatusNotFound {
 		t.Fatalf("export inconnu status = %d", rec.Code)
 	}

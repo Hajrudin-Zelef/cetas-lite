@@ -2,7 +2,6 @@ package chat
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"strings"
 	"sync"
@@ -208,29 +207,31 @@ func (e *Engine) isolation() string {
 func (e *Engine) Conversation(user string) *Conversation {
 	e.mu.Lock()
 	defer e.mu.Unlock()
+	return e.conversationLocked(user)
+}
+
+// conversationLocked retourne la conversation de la session courante de
+// l'utilisateur, en la restaurant depuis le store si besoin.
+// e.mu doit être verrouillé par l'appelant.
+func (e *Engine) conversationLocked(user string) *Conversation {
 	if c, ok := e.convs[user]; ok {
 		return c
 	}
-	c := NewConversation(newID(), e, func(c *Conversation) { e.save(user, c) })
-	if e.st != nil {
-		if raw, ok := e.st.GetConversation(user, "active"); ok {
-			var s snapshot
-			if err := json.Unmarshal(raw, &s); err == nil && s.ID != "" {
-				c.load(s)
-			}
+	e.ensureMigratedLocked(user)
+	c := NewConversation(newID(), e, func(c *Conversation) { e.saveSession(user, c) })
+	if id := e.currentIDLocked(user); id != "" {
+		if rec, ok := e.getSessionLocked(user, id); ok {
+			c.load(rec.Snapshot)
+		} else {
+			// Session courante sans enregistrement (ex. vierge) : on garde
+			// son ID pour que _current reste stable.
+			c.ID = id
 		}
+	} else {
+		e.setCurrentLocked(user, c.ID)
 	}
 	e.convs[user] = c
 	return c
-}
-
-func (e *Engine) ArchiveAndReset(user string) {
-	c := e.Conversation(user)
-	e.archiveCurrent(user, c)
-	if repo := e.takeWorktreeRepo(c.ID); repo != "" {
-		e.releaseConversationWorktree(c.ID, repo)
-	}
-	c.Reset()
 }
 
 func (e *Engine) Regenerate(user string) error {
@@ -273,42 +274,6 @@ func (e *Engine) Regenerate(user string) error {
 		c.persist(c)
 	}
 	return c.StartTurn(in)
-}
-
-func (e *Engine) archiveCurrent(user string, c *Conversation) {
-	if e.st == nil || c.isEmpty() {
-		return
-	}
-	data, err := c.save()
-	if err == nil {
-		_ = e.st.ArchiveConversation(user, c.ID, data)
-	}
-}
-
-func (e *Engine) RestoreArchive(user, archiveID string) bool {
-	if e.st == nil {
-		return false
-	}
-	raw, ok := e.st.GetArchive(user, archiveID)
-	if !ok {
-		return false
-	}
-	var s snapshot
-	if err := json.Unmarshal(raw, &s); err != nil || s.ID == "" {
-		return false
-	}
-	c := e.Conversation(user)
-	e.archiveCurrent(user, c)
-	c.restore(s)
-	return true
-}
-
-func (e *Engine) save(user string, c *Conversation) {
-	data, err := json.Marshal(c.marshal())
-	if err != nil {
-		return
-	}
-	_ = e.st.PutConversation(user, "active", data)
 }
 
 type resolution struct {

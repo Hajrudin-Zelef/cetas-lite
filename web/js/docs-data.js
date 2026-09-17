@@ -62,8 +62,8 @@ export const CETAS_DOCS = {
           id: "conversations",
           title: "Gérer vos conversations",
           sections: [
-            { h: "Nouvelle conversation", html: `<p>Le bouton <strong>Nouvelle conversation</strong> en haut de la barre latérale démarre un fil vierge. L'historique des conversations précédentes reste accessible en dessous.</p>` },
-            { h: "Favoris et archives", html: `<p>Épinglez vos fils importants en <strong>favoris</strong> pour les retrouver instantanément. Les conversations archivées restent consultables et restaurables depuis la liste.</p>` },
+            { h: "Nouvelle conversation", html: `<p>Le bouton <strong>Nouvelle conversation</strong> en haut de la barre latérale démarre une session vierge. Chaque session est isolée et conservée sur le serveur : cliquez sur une session de la liste pour la rouvrir, son historique complet est rejoué.</p>` },
+            { h: "Favoris et sessions", html: `<p>Épinglez vos fils importants en <strong>favoris</strong> pour les retrouver instantanément. <strong>Supprimer</strong> efface définitivement la session, partout — elle ne réapparaîtra pas.</p>` },
             { h: "Exporter", html: `<p>Exportez la conversation active en <strong>Markdown</strong> ou <strong>JSON</strong> pour la conserver ou la partager hors de l'application.</p>` },
           ],
         },

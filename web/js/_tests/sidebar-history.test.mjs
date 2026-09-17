@@ -38,18 +38,21 @@ const DAY = 86400000;
 const now = Date.now();
 // Mock fetch avec text() (api() lit resp.text()).
 globalThis.fetch = async (url) => {
-  if (String(url).startsWith("/api/conversations")) {
+  if (String(url).startsWith("/api/sessions/current")) {
+    return { ok: true, status: 200, text: async () => JSON.stringify({ id: "a1" }) };
+  }
+  if (String(url).startsWith("/api/sessions")) {
     return {
       ok: true,
       status: 200,
       text: async () =>
         JSON.stringify({
-          archives: [
-            { id: "a1", title: "récente", updated: now - 3600000, messages: 4 },
-            { id: "a2", title: "il y a 3 jours", updated: now - 3 * DAY, messages: 2 },
-            { id: "a3", title: "il y a 10 jours", updated: now - 10 * DAY, messages: 7 },
-            { id: "a4", title: "il y a 40 jours", updated: now - 40 * DAY, messages: 1 },
-            { id: "a5", title: "sans date", updated: 0, messages: 1 },
+          sessions: [
+            { id: "a1", title: "récente", createdAt: now - 3600000, updatedAt: now - 3600000, messages: 4 },
+            { id: "a2", title: "il y a 3 jours", createdAt: now - 3 * DAY, updatedAt: now - 3 * DAY, messages: 2 },
+            { id: "a3", title: "il y a 10 jours", createdAt: now - 10 * DAY, updatedAt: now - 10 * DAY, messages: 7 },
+            { id: "a4", title: "il y a 40 jours", createdAt: now - 40 * DAY, updatedAt: now - 40 * DAY, messages: 1 },
+            { id: "a5", title: "sans date", createdAt: 0, updatedAt: 0, messages: 1 },
           ],
         }),
     };
@@ -114,4 +117,66 @@ test("historique : lignes épurées façon DeepSeek (titre seul)", async () => {
 test("css : en-têtes de section stylés", () => {
   const css = read("web/css/cetas-lite.css");
   assert.match(css, /\.conv-section-header\s*\{/);
+});
+
+test("session courante surlignée", async () => {
+  setupDom();
+  initSidebar();
+  await flush();
+  const active = document.querySelector(".conv-item.active .conv-item-title");
+  assert.ok(active, "une session doit porter la classe active");
+  assert.equal(active.textContent, "récente");
+});
+
+test("ouvrir une session supprimée ailleurs : retirée du cache, pas de fantôme", async () => {
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    if (String(url).includes("/open")) {
+      return { ok: false, status: 404, text: async () => JSON.stringify({ error: "session introuvable" }) };
+    }
+    return origFetch(url);
+  };
+  try {
+    setupDom();
+    initSidebar();
+    await flush();
+    assert.equal(document.querySelectorAll(".conv-item").length, 5);
+    const rows = [...document.querySelectorAll(".conv-item")];
+    const target = rows.find((r) => r.querySelector(".conv-item-title").textContent === "il y a 3 jours");
+    target.querySelector(".conv-item-content").click();
+    await flush();
+    const titles = [...document.querySelectorAll(".conv-item-title")].map((t) => t.textContent);
+    assert.ok(!titles.includes("il y a 3 jours"), "la ligne fantôme est retirée");
+  } finally {
+    globalThis.fetch = origFetch;
+  }
+});
+
+test("clic sur une session : ouvre via POST /api/sessions/{id}/open", async () => {
+  const calls = [];
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    calls.push(String(url) + " " + ((opts && opts.method) || "GET"));
+    return origFetch(url, opts);
+  };
+  try {
+    setupDom();
+    initSidebar();
+    await flush();
+    const rows = [...document.querySelectorAll(".conv-item")];
+    const target = rows.find((r) => r.querySelector(".conv-item-title").textContent === "il y a 3 jours");
+    assert.ok(target, "ligne a2 présente");
+    target.querySelector(".conv-item-content").click();
+    await flush();
+    assert.ok(
+      calls.some((c) => c === "/api/sessions/a2/open POST"),
+      "open appelé, got: " + JSON.stringify(calls)
+    );
+    // render() reconstruit le DOM : on re-requête la ligne.
+    const active = document.querySelector(".conv-item.active .conv-item-title");
+    assert.ok(active, "une session doit être active après ouverture");
+    assert.equal(active.textContent, "il y a 3 jours");
+  } finally {
+    globalThis.fetch = origFetch;
+  }
 });

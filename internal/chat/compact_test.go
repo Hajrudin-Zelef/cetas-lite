@@ -4,7 +4,6 @@ import (
 	"context"
 	"strings"
 	"testing"
-	"time"
 
 	"cetas-lite/internal/alias"
 	"cetas-lite/internal/provider"
@@ -105,108 +104,5 @@ func TestCoalesceCompletedTurns(t *testing.T) {
 	}
 	if s, _ := log[1].Delta["content"].(string); s != "bon" {
 		t.Fatalf("le log d'origine ne doit pas etre mute: %q", s)
-	}
-}
-
-func TestArchiveAndRestore(t *testing.T) {
-	fp := &fakeProvider{id: "fake", content: map[string]string{"ok": "bonjour"}}
-	e := newEngine(t, fp, codeFamily(alias.Member{Provider: "fake", Model: "ok"}))
-	c := e.Conversation("sam")
-	if err := c.StartTurn(TurnInput{User: "sam", Family: "code", Mode: "standard", Text: "salut"}); err != nil {
-		t.Fatal(err)
-	}
-	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
-
-	e.ArchiveAndReset("sam")
-	archives := e.ListArchives("sam")
-	if len(archives) != 1 {
-		t.Fatalf("archives = %v", archives)
-	}
-	if len(e.Conversation("sam").MessagesSnapshot()) != 0 {
-		t.Fatal("reset doit vider les messages")
-	}
-	if e.RestoreArchive("sam", "inconnu") {
-		t.Fatal("archive inconnue doit echouer")
-	}
-	if !e.RestoreArchive("sam", archives[0].ID) {
-		t.Fatal("restauration attendue")
-	}
-	if len(e.Conversation("sam").MessagesSnapshot()) == 0 {
-		t.Fatal("messages restaures attendus")
-	}
-}
-
-func TestRestoreArchivesCurrent(t *testing.T) {
-	fp := &fakeProvider{id: "fake", content: map[string]string{"ok": "bonjour"}}
-	e := newEngine(t, fp, codeFamily(alias.Member{Provider: "fake", Model: "ok"}))
-
-	if err := e.Conversation("sam").StartTurn(TurnInput{User: "sam", Family: "code", Mode: "standard", Text: "un"}); err != nil {
-		t.Fatal(err)
-	}
-	waitFor(t, func() bool { return !e.Conversation("sam").IsGenerating() }, "tour 1")
-	e.ArchiveAndReset("sam")
-	archives := e.ListArchives("sam")
-	if len(archives) != 1 {
-		t.Fatalf("archives = %v", archives)
-	}
-
-	c := e.Conversation("sam")
-	if err := c.StartTurn(TurnInput{User: "sam", Family: "code", Mode: "standard", Text: "deux"}); err != nil {
-		t.Fatal(err)
-	}
-	waitFor(t, func() bool { return !c.IsGenerating() }, "tour 2")
-
-	if !e.RestoreArchive("sam", archives[0].ID) {
-		t.Fatal("restauration attendue")
-	}
-	if got := len(e.ListArchives("sam")); got != 2 {
-		t.Fatalf("l'active non vide doit etre archivee avant restauration: archives=%d", got)
-	}
-}
-
-func TestRestoreEmitsReset(t *testing.T) {
-	fp := &fakeProvider{id: "fake", content: map[string]string{"ok": "bonjour"}}
-	e := newEngine(t, fp, codeFamily(alias.Member{Provider: "fake", Model: "ok"}))
-	c := e.Conversation("sam")
-	if err := c.StartTurn(TurnInput{User: "sam", Family: "code", Mode: "standard", Text: "un"}); err != nil {
-		t.Fatal(err)
-	}
-	waitFor(t, func() bool { return !c.IsGenerating() }, "tour")
-	e.ArchiveAndReset("sam")
-	archives := e.ListArchives("sam")
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-	ready := make(chan struct{}, 1)
-	gotReset := make(chan struct{}, 1)
-	go c.Subscribe(ctx, 0, func(ev map[string]any) bool {
-		if _, ok := ev["caught_up"]; ok {
-			select {
-			case ready <- struct{}{}:
-			default:
-			}
-		}
-		if r, ok := ev["reset"].(bool); ok && r {
-			select {
-			case gotReset <- struct{}{}:
-			default:
-			}
-			return false
-		}
-		return true
-	})
-	select {
-	case <-ready:
-	case <-time.After(2 * time.Second):
-		t.Fatal("abonnement non pret")
-	}
-
-	if !e.RestoreArchive("sam", archives[0].ID) {
-		t.Fatal("restauration attendue")
-	}
-	select {
-	case <-gotReset:
-	case <-time.After(2 * time.Second):
-		t.Fatal("evenement reset attendu apres restauration")
 	}
 }

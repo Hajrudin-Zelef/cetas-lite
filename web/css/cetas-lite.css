@@ -1403,3 +1403,9 @@ body.dark .requests-panel {
   text-transform: none;
   user-select: none;
 }
+
+/* --- Sessions : surlignage de la session affichée --- */
+.conv-item.active {
+  background: var(--bg-hover, rgba(127, 140, 160, 0.14));
+  border-left: 2px solid var(--accent);
+}

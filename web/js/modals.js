@@ -534,7 +534,7 @@ function initSaveModal() {
   document.getElementById("save-modal-export-btn")?.addEventListener("click", async () => {
     try {
       const [convs, prefs] = await Promise.all([
-        api("/api/conversations").catch(() => ({ archives: [] })),
+        api("/api/sessions").catch(() => ({ sessions: [] })),
         getPrefs().catch(() => ({})),
       ]);
       const includePrefs = document.getElementById("save-modal-include-keys")?.checked;
@@ -542,7 +542,7 @@ function initSaveModal() {
         app: "cetas-lite",
         version: 1,
         exported_at: new Date().toISOString(),
-        conversations: convs.archives || [],
+        conversations: convs.sessions || [],
         prefs: includePrefs ? prefs : undefined,
       };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });

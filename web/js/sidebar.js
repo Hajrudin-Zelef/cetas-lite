@@ -1,6 +1,12 @@
 import { api, getToken } from "./api.js";
 import { logout } from "./auth.js";
 import { confirmDialog } from "./dialogs.js";
+import {
+  getCachedSessions,
+  setCachedSessions,
+  upsertCachedSession,
+  removeCachedSession,
+} from "./session-cache.js";
 
 const CATS_KEY = "cetas-lite-cats";
 const CONV_CATS_KEY = "cetas-lite-conv-cats";
@@ -72,38 +78,68 @@ export function initSidebar() {
   const catDropdown = document.getElementById("cat-select-dropdown");
   const catLabel = catSelect ? catSelect.querySelector(".cat-select-label") : null;
   let activeCat = "";
-  let archives = [];
+  let sessions = [];
+  // Session affichée dans le chat. Référence locale + serveur (source vraie).
+  let activeId = null;
+
+  // Bascule l'affichage vers la session id (déjà ouverte côté serveur).
+  function showSession(id) {
+    activeId = id;
+    render();
+    // chat.js : déconnecte le stream, vide la vue, reconnecte sur la
+    // nouvelle session (rejouée depuis 0).
+    window.dispatchEvent(new CustomEvent("cetas:session-open"));
+    // Puis les panneaux (Requêtes, Raisonnement…) se réinitialisent.
+    // Synchrone : le rejouement SSE n'a pas encore commencé, view.reset()
+    // est donc sans effet de bord.
+    window.dispatchEvent(new CustomEvent("cetas:chat-reset"));
+  }
+
+  async function open(id) {
+    if (!id || id === activeId) return;
+    try {
+      await api("/api/sessions/" + encodeURIComponent(id) + "/open", { method: "POST" });
+    } catch (e) {
+      // Session supprimée ailleurs (autre onglet) : on la retire du cache
+      // au lieu d'afficher une ligne fantôme.
+      removeCachedSession(id);
+      sessions = sessions.filter((s) => s.id !== id);
+      render();
+      return;
+    }
+    showSession(id);
+  }
 
   function filtered() {
     const q = (searchInput ? searchInput.value : "").trim().toLowerCase();
     const convCats = getConvCats();
-    return archives.filter((a) => {
+    return sessions.filter((a) => {
       if (activeCat && convCats[a.id] !== activeCat) return false;
       if (q && !(a.title || "").toLowerCase().includes(q)) return false;
       return true;
     });
   }
 
-  async function restore(id) {
-    const state = await api("/api/chat/state").catch(() => ({}));
-    if ((state.turns || 0) > 0) {
-      const ok = await confirmDialog("Restaurer cette conversation ? La conversation actuelle sera archivée.", { okLabel: "Restaurer" });
-      if (!ok) return;
-    }
-    try {
-      await api("/api/conversations/restore", { method: "POST", body: { id } });
-      window.dispatchEvent(new CustomEvent("cetas:chat-reset"));
-      await refresh();
-    } catch (e) {}
-  }
-
   async function remove(id) {
-    const ok = await confirmDialog("Supprimer définitivement cette conversation ?", { okLabel: "Supprimer", danger: true });
+    const ok = await confirmDialog("Supprimer définitivement cette session ? Son historique sera effacé partout.", { okLabel: "Supprimer", danger: true });
     if (!ok) return;
+    let currentId = null;
     try {
-      await api("/api/conversations/" + encodeURIComponent(id), { method: "DELETE" });
-      await refresh();
-    } catch (e) {}
+      const res = await api("/api/sessions/" + encodeURIComponent(id), { method: "DELETE" });
+      currentId = res && res.currentId;
+    } catch (e) {
+      return;
+    }
+    // Write-through : la session supprimée disparaît du cache aussitôt —
+    // elle ne réapparaîtra pas, même fugitivement, au prochain refresh.
+    removeCachedSession(id);
+    sessions = sessions.filter((s) => s.id !== id);
+    if (currentId && currentId !== activeId) {
+      // C'était la session affichée : le serveur en a créé une vierge.
+      showSession(currentId);
+    } else {
+      render();
+    }
   }
 
   function convItem(a) {
@@ -120,7 +156,8 @@ export function initSidebar() {
     title.textContent = a.title || "(sans titre)";
     title.title = a.title || "";
     content.appendChild(title);
-    content.addEventListener("click", () => restore(a.id));
+    if (a.id === activeId) row.classList.add("active");
+    content.addEventListener("click", () => open(a.id));
 
     const actions = document.createElement("div");
     actions.className = "conv-item-actions";
@@ -143,7 +180,7 @@ export function initSidebar() {
     exp.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
     exp.addEventListener("click", (e) => {
       e.stopPropagation();
-      download("/api/conversations/" + encodeURIComponent(a.id) + "/export?format=md", (a.title || a.id) + ".md");
+      download("/api/sessions/" + encodeURIComponent(a.id) + "/export?format=md", (a.title || a.id) + ".md");
     });
 
     const del = document.createElement("button");
@@ -166,20 +203,27 @@ export function initSidebar() {
 
   async function refresh() {
     if (!list) return;
-    let data;
-    try {
-      data = await api("/api/conversations");
-    } catch (e) {
-      return;
+    // Peinture instantanée depuis le cache local.
+    const cached = getCachedSessions();
+    if (cached) {
+      sessions = cached;
+      render();
     }
-    archives = (data && data.archives) || [];
-    render();
+    // Revalidation serveur (source de vérité), puis mise à jour du cache.
+    try {
+      const data = await api("/api/sessions");
+      sessions = (data && data.sessions) || [];
+      setCachedSessions(sessions);
+      render();
+    } catch (e) {
+      if (!cached) render();
+    }
   }
 
   // Groupes de dates façon DeepSeek : Aujourd'hui / 7 derniers jours /
   // 30 derniers jours / Plus anciens.
   function sectionFor(a) {
-    const upd = a.updated || 0;
+    const upd = a.updatedAt || 0;
     if (!upd) return "Plus anciens";
     const day = 86400000;
     const startOfDay = (ts) => {
@@ -202,7 +246,7 @@ export function initSidebar() {
     if (!items.length) {
       const empty = document.createElement("div");
       empty.className = "conv-empty";
-      empty.textContent = archives.length ? "Aucun résultat." : "Aucune conversation archivée.";
+      empty.textContent = sessions.length ? "Aucun résultat." : "Aucune session. Créez-en une avec « Nouvelle conversation ».";
       list.appendChild(empty);
       return;
     }
@@ -229,7 +273,7 @@ export function initSidebar() {
     const favList = document.getElementById("fav-list");
     if (!favSection || !favList) return;
     const favs = getFavs();
-    const favItems = archives.filter((a) => favs.includes(a.id));
+    const favItems = sessions.filter((a) => favs.includes(a.id));
     favSection.style.display = favItems.length ? "" : "none";
     favList.innerHTML = "";
     for (const a of favItems.slice(0, 8)) {
@@ -238,7 +282,7 @@ export function initSidebar() {
       b.className = "fav-item";
       b.title = a.title || "";
       b.textContent = "★ " + (a.title || "(sans titre)");
-      b.addEventListener("click", () => restore(a.id));
+      b.addEventListener("click", () => open(a.id));
       favList.appendChild(b);
     }
   }
@@ -286,16 +330,18 @@ export function initSidebar() {
     newBtn.addEventListener("click", async () => {
       // "Nouvelle conversation" concerne le chat : on quitte le module Agent.
       window.dispatchEvent(new CustomEvent("cetas:close-agents"));
-      const state = await api("/api/chat/state").catch(() => ({}));
-      if ((state.turns || 0) > 0) {
-        const ok = await confirmDialog("Démarrer une nouvelle conversation ? La conversation actuelle sera archivée.", { okLabel: "Nouvelle conversation" });
-        if (!ok) return;
-      }
+      // Pas de dialogue : la session précédente est déjà persistée à chaque
+      // tour, rien n'est perdu ni "archivé".
+      let id = null;
       try {
-        await api("/api/chat/reset", { method: "POST" });
+        const res = await api("/api/sessions", { method: "POST" });
+        id = res && res.id;
       } catch (e) {}
-      window.dispatchEvent(new CustomEvent("cetas:chat-reset"));
-      await refresh();
+      if (!id) return;
+      // Write-through : la nouvelle session apparaît aussitôt en tête.
+      upsertCachedSession({ id, title: "(sans titre)", createdAt: Date.now(), updatedAt: Date.now(), messages: 0 });
+      sessions = getCachedSessions() || sessions;
+      showSession(id);
     });
   }
 
@@ -395,17 +441,30 @@ export function initSidebar() {
     if (confirmBtn) {
       confirmBtn.addEventListener("click", async () => {
         confirmBtn.disabled = true;
-        const items = archives.slice();
+        let currentId = null;
+        const items = sessions.slice();
         for (const a of items) {
           try {
-            await api("/api/conversations/" + encodeURIComponent(a.id), { method: "DELETE" });
+            const res = await api("/api/sessions/" + encodeURIComponent(a.id), { method: "DELETE" });
+            if (res && res.currentId) currentId = res.currentId;
+            removeCachedSession(a.id);
           } catch (e) {}
         }
         clearOverlay.style.display = "none";
-        await refresh();
+        sessions = getCachedSessions() || [];
+        if (currentId) showSession(currentId);
+        else await refresh();
       });
     }
   }
+
+  // Session courante au démarrage (surlignage).
+  api("/api/sessions/current").then((res) => {
+    if (res && res.id) {
+      activeId = res.id;
+      render();
+    }
+  }).catch(() => {});
 
   window.addEventListener("cetas:chat-changed", refresh);
   window.addEventListener("cetas:cats-changed", () => {

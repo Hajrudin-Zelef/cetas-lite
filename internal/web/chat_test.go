@@ -67,7 +67,12 @@ func newTestServerWith(t *testing.T, fp provider.Provider) *Server {
 
 func tokenFor(t *testing.T, base string) string {
 	t.Helper()
-	body, _ := json.Marshal(map[string]string{"username": "sam", "password": "motdepasse"})
+	return tokenForUser(t, base, "sam")
+}
+
+func tokenForUser(t *testing.T, base, username string) string {
+	t.Helper()
+	body, _ := json.Marshal(map[string]string{"username": username, "password": "motdepasse"})
 	resp, err := http.Post(base+"/api/auth/register", "application/json", bytes.NewReader(body))
 	if err != nil {
 		t.Fatal(err)
@@ -427,13 +432,17 @@ func TestChatStreamEmitsReset(t *testing.T) {
 	stream := newSSEStream(resp.Body)
 	stream.readUntil(func(l string) bool { return strings.Contains(l, "caught_up") }, 2*time.Second)
 
-	rreq, _ := http.NewRequest(http.MethodPost, ts.URL+"/api/chat/reset", nil)
-	rreq.Header.Set("Authorization", "Bearer "+tok)
-	rresp, err := http.DefaultClient.Do(rreq)
-	if err != nil {
-		t.Fatal(err)
+	// Basculer vers une autre session : le serveur rebascule la conversation
+	// live et émet reset sur le stream (c.epoch++ via restore()).
+	rec := doJSON(t, s.Handler(), http.MethodPost, "/api/sessions", tok, nil)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("create session status = %d", rec.Code)
 	}
-	rresp.Body.Close()
+	id := decode(t, rec)["id"].(string)
+	orec := doJSON(t, s.Handler(), http.MethodPost, "/api/sessions/"+id+"/open", tok, nil)
+	if orec.Code != http.StatusOK {
+		t.Fatalf("open session status = %d", orec.Code)
+	}
 
 	lines := stream.readUntil(func(l string) bool { return strings.Contains(l, `"reset":true`) }, 2*time.Second)
 	if !containsLine(lines, `"reset":true`) {
@@ -441,80 +450,108 @@ func TestChatStreamEmitsReset(t *testing.T) {
 	}
 }
 
-func TestConversationsArchives(t *testing.T) {
+func TestSessionsAPI(t *testing.T) {
 	s := newTestServerWith(t, &fakeProvider{content: "bonjour"})
 	ts := httptest.NewServer(s.Handler())
 	defer ts.Close()
 	tok := tokenFor(t, ts.URL)
+	tokBob := tokenForUser(t, ts.URL, "bob")
 	sendAndWait(t, ts.URL, tok, "salut")
 
-	rreq, _ := http.NewRequest(http.MethodPost, ts.URL+"/api/chat/reset", nil)
-	rreq.Header.Set("Authorization", "Bearer "+tok)
-	rresp, err := http.DefaultClient.Do(rreq)
-	if err != nil {
-		t.Fatal(err)
-	}
-	rresp.Body.Close()
-
-	lreq, _ := http.NewRequest(http.MethodGet, ts.URL+"/api/conversations", nil)
-	lreq.Header.Set("Authorization", "Bearer "+tok)
-	lresp, err := http.DefaultClient.Do(lreq)
-	if err != nil {
-		t.Fatal(err)
-	}
-	var list struct {
-		Archives []struct {
-			ID       string `json:"id"`
-			Title    string `json:"title"`
-			Updated  int64  `json:"updated"`
-			Messages int    `json:"messages"`
-		} `json:"archives"`
-	}
-	_ = json.NewDecoder(lresp.Body).Decode(&list)
-	lresp.Body.Close()
-	if len(list.Archives) != 1 {
-		t.Fatalf("archives = %v", list.Archives)
-	}
-	if list.Archives[0].Title != "salut" {
-		t.Fatalf("titre = %q", list.Archives[0].Title)
-	}
-	if list.Archives[0].Updated == 0 || list.Archives[0].Messages != 2 {
-		t.Fatalf("meta archive = %+v", list.Archives[0])
-	}
-	id := list.Archives[0].ID
-
-	body, _ := json.Marshal(map[string]string{"id": id})
-	rreq2, _ := http.NewRequest(http.MethodPost, ts.URL+"/api/conversations/restore", bytes.NewReader(body))
-	rreq2.Header.Set("Authorization", "Bearer "+tok)
-	rreq2.Header.Set("Content-Type", "application/json")
-	rresp2, err := http.DefaultClient.Do(rreq2)
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer rresp2.Body.Close()
-	if rresp2.StatusCode != http.StatusOK {
-		t.Fatalf("restore status = %d", rresp2.StatusCode)
+	auth := func(method, url string, body any) *httptest.ResponseRecorder {
+		return doJSON(t, s.Handler(), method, url, tok, body)
 	}
 
-	dreq, _ := http.NewRequest(http.MethodDelete, ts.URL+"/api/conversations/"+id, nil)
-	dreq.Header.Set("Authorization", "Bearer "+tok)
-	dresp, err := http.DefaultClient.Do(dreq)
-	if err != nil {
-		t.Fatal(err)
+	// Liste : 1 session, titre issu du 1er message.
+	rec := auth(http.MethodGet, "/api/sessions", nil)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("list status = %d", rec.Code)
 	}
-	dresp.Body.Close()
-	if dresp.StatusCode != http.StatusOK {
-		t.Fatalf("delete status = %d", dresp.StatusCode)
+	body := decode(t, rec)
+	sessions, _ := body["sessions"].([]any)
+	if len(sessions) != 1 {
+		t.Fatalf("sessions = %v", sessions)
+	}
+	s0 := sessions[0].(map[string]any)
+	if s0["title"] != "salut" {
+		t.Fatalf("titre = %v", s0["title"])
+	}
+	if s0["messages"] != float64(2) {
+		t.Fatalf("messages = %v", s0["messages"])
+	}
+	id := s0["id"].(string)
+
+	// Isolation : bob ne voit rien, ne peut ni ouvrir ni supprimer.
+	recBob := doJSON(t, s.Handler(), http.MethodGet, "/api/sessions", tokBob, nil)
+	if bl := decode(t, recBob)["sessions"].([]any); len(bl) != 0 {
+		t.Fatalf("bob voit les sessions de sam: %v", bl)
+	}
+	if rec := doJSON(t, s.Handler(), http.MethodPost, "/api/sessions/"+id+"/open", tokBob, nil); rec.Code != http.StatusNotFound {
+		t.Fatalf("open cross-user status = %d", rec.Code)
+	}
+	if rec := doJSON(t, s.Handler(), http.MethodDelete, "/api/sessions/"+id, tokBob, nil); rec.Code != http.StatusNotFound {
+		t.Fatalf("delete cross-user status = %d", rec.Code)
 	}
 
-	dreq2, _ := http.NewRequest(http.MethodDelete, ts.URL+"/api/conversations/"+id, nil)
-	dreq2.Header.Set("Authorization", "Bearer "+tok)
-	dresp2, err := http.DefaultClient.Do(dreq2)
-	if err != nil {
-		t.Fatal(err)
+	// Courante.
+	rec = auth(http.MethodGet, "/api/sessions/current", nil)
+	if decode(t, rec)["id"] != id {
+		t.Fatalf("current = %v, want %v", decode(t, rec)["id"], id)
 	}
-	dresp2.Body.Close()
-	if dresp2.StatusCode != http.StatusNotFound {
-		t.Fatalf("delete inconnu status = %d", dresp2.StatusCode)
+
+	// Nouvelle session : devient courante, apparaît dans la liste.
+	rec = auth(http.MethodPost, "/api/sessions", nil)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("create status = %d", rec.Code)
+	}
+	id2 := decode(t, rec)["id"].(string)
+	if id2 == id {
+		t.Fatal("la nouvelle session doit avoir un id distinct")
+	}
+	if decode(t, auth(http.MethodGet, "/api/sessions/current", nil))["id"] != id2 {
+		t.Fatal("la nouvelle session doit devenir courante")
+	}
+	if len(decode(t, auth(http.MethodGet, "/api/sessions", nil))["sessions"].([]any)) != 2 {
+		t.Fatal("2 sessions attendues")
+	}
+
+	// Ouverture de l'ancienne : redevient courante, contenu restauré.
+	if rec := auth(http.MethodPost, "/api/sessions/"+id+"/open", nil); rec.Code != http.StatusOK {
+		t.Fatalf("open status = %d", rec.Code)
+	}
+	if decode(t, auth(http.MethodGet, "/api/sessions/current", nil))["id"] != id {
+		t.Fatal("l'ancienne session doit redevenir courante")
+	}
+	if rec := auth(http.MethodPost, "/api/sessions/inconnue/open", nil); rec.Code != http.StatusNotFound {
+		t.Fatalf("open inconnu status = %d", rec.Code)
+	}
+
+	// Suppression : définitive, ne réapparaît pas à la relecture.
+	if rec := auth(http.MethodDelete, "/api/sessions/"+id2, nil); rec.Code != http.StatusOK {
+		t.Fatalf("delete status = %d", rec.Code)
+	}
+	if got := decode(t, auth(http.MethodGet, "/api/sessions", nil))["sessions"].([]any); len(got) != 1 {
+		t.Fatalf("sessions après suppression = %v", got)
+	}
+	if rec := auth(http.MethodDelete, "/api/sessions/"+id2, nil); rec.Code != http.StatusNotFound {
+		t.Fatalf("re-delete status = %d", rec.Code)
+	}
+
+	// Suppression de la courante : une session vierge la remplace.
+	rec = auth(http.MethodDelete, "/api/sessions/"+id, nil)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("delete current status = %d", rec.Code)
+	}
+	cur := decode(t, rec)["currentId"].(string)
+	if cur == "" || cur == id {
+		t.Fatalf("currentId après suppression = %q", cur)
+	}
+	if len(decode(t, auth(http.MethodGet, "/api/sessions", nil))["sessions"].([]any)) != 0 {
+		t.Fatal("aucune session ne doit subsister")
+	}
+
+	// Sans token : 401 partout.
+	if rec := doJSON(t, s.Handler(), http.MethodGet, "/api/sessions", "", nil); rec.Code != http.StatusUnauthorized {
+		t.Fatalf("list sans token = %d", rec.Code)
 	}
 }

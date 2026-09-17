@@ -27,7 +27,7 @@ func (s *Server) handleChatExport(w http.ResponseWriter, r *http.Request) {
 	writeDownload(w, format, "conversation-"+id, content)
 }
 
-func (s *Server) handleArchiveExport(w http.ResponseWriter, r *http.Request) {
+func (s *Server) handleSessionExport(w http.ResponseWriter, r *http.Request) {
 	claims := claimsFrom(r)
 	if claims == nil {
 		writeError(w, http.StatusUnauthorized, "non authentifie")
@@ -39,9 +39,9 @@ func (s *Server) handleArchiveExport(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	format := exportFormat(r)
-	content, ok := s.engine.ExportArchive(claims.Username, id, format)
+	content, ok := s.engine.ExportSession(claims.Username, id, format)
 	if !ok {
-		writeError(w, http.StatusNotFound, "archive introuvable")
+		writeError(w, http.StatusNotFound, "session introuvable")
 		return
 	}
 	writeDownload(w, format, id, content)

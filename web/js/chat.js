@@ -317,6 +317,21 @@ export function initChat() {
     refreshHint();
   });
 
+  // Ouverture / création / suppression de session (sidebar) : le serveur a
+  // déjà basculé la session courante. On déconnecte le stream de l'ancienne
+  // session, on vide la vue, puis on reconnecte : la nouvelle session est
+  // rejouée depuis 0 via SSE.
+  window.addEventListener("cetas:session-open", () => {
+    view.disconnect();
+    view.reset();
+    attachments = [];
+    renderPreview();
+    resetTurnTokens();
+    refreshHint();
+    refreshCtxCounter();
+    view.connect();
+  });
+
   initReasonPanel();
   initRequestsPanel();
   // Flèche "retour en bas" ancrée au-dessus du composer, centrée

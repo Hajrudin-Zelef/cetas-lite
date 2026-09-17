@@ -23,22 +23,26 @@ func (e *Engine) ExportActive(user, format string) (string, string, bool) {
 	return s.ID, exportMarkdown(s.Messages), true
 }
 
-func (e *Engine) ExportArchive(user, id, format string) (string, bool) {
+// ExportSession exporte une session (courante ou non) au format md/json.
+func (e *Engine) ExportSession(user, id, format string) (string, bool) {
 	if e.st == nil {
 		return "", false
 	}
-	raw, ok := e.st.GetArchive(user, id)
+	e.mu.Lock()
+	e.ensureMigratedLocked(user)
+	rec, ok := e.getSessionLocked(user, id)
+	e.mu.Unlock()
 	if !ok {
 		return "", false
 	}
 	if format == "json" {
-		return string(raw), true
+		data, err := json.MarshalIndent(rec.Snapshot, "", "  ")
+		if err != nil {
+			return "", false
+		}
+		return string(data), true
 	}
-	var s snapshot
-	if json.Unmarshal(raw, &s) != nil {
-		return "", false
-	}
-	return exportMarkdown(s.Messages), true
+	return exportMarkdown(rec.Snapshot.Messages), true
 }
 
 func exportMarkdown(msgs []provider.Message) string {
