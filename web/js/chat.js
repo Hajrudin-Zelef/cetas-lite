@@ -3,6 +3,7 @@ import { ThreadView, el } from "./thread-view.js";
 import { currentSelection } from "./model-select.js";
 import { getFamilies, getMaxTokens, getFeaturePref, plusModelSubmenuContains, closePlusModelSubmenu } from "./model-select.js";
 import { initReasonPanel } from "./reasoning-panel.js";
+import { initRequestsPanel } from "./requests-panel.js";
 import {
   estimateTokens,
   refreshCtxCounter,
@@ -317,6 +318,14 @@ export function initChat() {
   });
 
   initReasonPanel();
+  initRequestsPanel();
+  // Flèche "retour en bas" ancrée au-dessus du composer, centrée
+  // (façon DeepSeek) plutôt qu'en bas à droite.
+  const inputArea = document.querySelector(".input-area");
+  if (view.toBottomBtn && inputArea) {
+    if (getComputedStyle(inputArea).position === "static") inputArea.style.position = "relative";
+    inputArea.appendChild(view.toBottomBtn);
+  }
   refreshHint();
   refreshCtxCounter();
   view.connect();
