@@ -47,22 +47,25 @@ func verifyCommandHeuristic(cmd string) bool {
 }
 
 // thinkDirective retourne la directive de raisonnement du tour, en anglais.
-//   - Agent avec thinking : raisonnement obligatoire, avec le niveau
-//     d'effort demande.
-//   - Agent sans thinking : reponse directe, sans raisonnement etendu.
-//   - Chat avec thinking : raisonner avant de repondre.
-//   - Chat sans thinking : reponse directe, sans raisonnement etendu.
+// thinkDirective construit la directive de raisonnement du system prompt.
+// effort est l'effort de raisonnement RESOLU ("" si le thinking est
+// désactivé) : le niveau demandé est rappelé au modèle en chat comme en
+// agent, pour que l'effort reste effectif même si un provider ignore le
+// champ reasoning_effort du payload.
 func thinkDirective(agent, think bool, effort string) string {
-	if agent && think {
-		switch effort {
-		case "low", "medium", "high":
-			return "Reasoning is mandatory: think carefully through the task before answering or calling tools. Requested reasoning effort: " + effort + "."
-		default:
-			return "Reasoning is mandatory: think carefully through the task before answering or calling tools."
-		}
+	if !think {
+		return "Answer directly and concisely. Do not engage in extended reasoning; give the answer straight away."
 	}
-	if think {
-		return "Reasoning is enabled: think before answering."
+	var base string
+	if agent {
+		base = "Reasoning is mandatory: think carefully through the task before answering or calling tools."
+	} else {
+		base = "Reasoning is enabled: think before answering."
 	}
-	return "Answer directly and concisely. Do not engage in extended reasoning; give the answer straight away."
+	switch effort {
+	case "low", "medium", "high":
+		return base + " Requested reasoning effort: " + effort + "."
+	default:
+		return base
+	}
 }

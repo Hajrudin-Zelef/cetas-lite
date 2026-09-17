@@ -1,5 +1,6 @@
 // Menu + : cascade multi-niveaux.
-// Famille › → [Auto (= fallback de l'alias), Mode › → …]
+// Famille › → [Défaut (= routage par effort de l'alias, valeur "auto"), Mode › → …]
+//   (Défaut affiché seulement si l'alias a plus d'un mode ; Nano n'a que Free)
 // Mode › → [Auto (= fallback du mode), Models › → modèles] — le fallback,
 //           c'est le mode Auto ; en dessous, sélection manuelle du modèle.
 // Nano : Free › → groupes par fournisseur (« Free de OpenRouter », « Zen Free »).
@@ -86,8 +87,18 @@ const clone = (o) => JSON.parse(JSON.stringify(o));
 
 // PUT capturés pour vérifier la fusion des overrides.
 const putBodies = [];
+const settingsPuts = [];
+let mockPrefs = {};
 globalThis.fetch = async (url, init = {}) => {
   const u = String(url);
+  if (u.includes("/api/settings") && (init.method || "GET") === "PUT") {
+    try { settingsPuts.push(JSON.parse(init.body)); } catch {}
+    Object.assign(mockPrefs, JSON.parse(init.body));
+    return { ok: true, status: 200, text: async () => JSON.stringify({ ok: true }) };
+  }
+  if (u.includes("/api/settings")) {
+    return { ok: true, status: 200, text: async () => JSON.stringify(clone(mockPrefs)) };
+  }
   if (u.includes("/api/aliases") && (init.method || "GET") === "PUT") {
     try { putBodies.push(JSON.parse(init.body)); } catch {}
     return { ok: true, status: 200, text: async () => JSON.stringify({ ok: true, families: clone(FAMILIES) }) };
@@ -104,11 +115,25 @@ async function setupDOM() {
   document.body.innerHTML = `
     <select id="family-select"></select>
     <select id="mode-select"></select>
+    <select id="effort-select">
+      <option value="default">Défaut</option>
+      <option value="low">Faible</option>
+      <option value="medium">Moyen</option>
+      <option value="high">Max</option>
+    </select>
+    <div id="plus-effort-pills">
+      <button type="button" class="plus-menu-pill" data-effort="default">Défaut</button>
+      <button type="button" class="plus-menu-pill" data-effort="low">Faible</button>
+      <button type="button" class="plus-menu-pill" data-effort="medium">Moyen</button>
+      <button type="button" class="plus-menu-pill" data-effort="high">Max</button>
+    </div>
     <div id="plus-model-list"></div>
     <input id="prompt-input" />
     <span id="input-hint"></span>`;
   localStorage.clear();
   putBodies.length = 0;
+  settingsPuts.length = 0;
+  mockPrefs = {};
   await mod.initModels();
 }
 
@@ -155,10 +180,10 @@ describe("menu + : cascade multi-niveaux", () => {
     for (const r of rows) assert.equal(r.querySelector(".plus-model-family-chev").textContent, "›");
   });
 
-  test("Nano › : Auto + Free (pas « Modèle — Free Model Router »)", async () => {
+  test("Nano › : Free seul (Défaut retiré : mode unique, doublon exact)", async () => {
     await setupDOM();
     const { menu } = hoverFamily("samagent-nano");
-    assert.deepEqual(rowLabels(menu), ["Auto", "Free"]);
+    assert.deepEqual(rowLabels(menu), ["Free"]);
     const free = submenuRow(menu, "Free");
     assert.equal(free.querySelector(".plus-model-option-rule").textContent, "Fallback · 4 modèles");
     assert.ok(free.querySelector(".plus-model-family-chev"), "Free ouvre une cascade");
@@ -197,10 +222,12 @@ describe("menu + : cascade multi-niveaux", () => {
     assert.deepEqual(rowLabels(visibleSubmenus()[2]), ["Free Model Router"]);
   });
 
-  test("N4 › : Auto + Flash + Standard ; Flash › : Auto + Models", async () => {
+  test("N4 › : Défaut + Flash + Standard ; Flash › : Auto + Models", async () => {
     await setupDOM();
     const { menu } = hoverFamily("samagent-n4");
-    assert.deepEqual(rowLabels(menu), ["Auto", "Flash", "Standard"]);
+    assert.deepEqual(rowLabels(menu), ["Défaut", "Flash", "Standard"]);
+    const defaut = submenuRow(menu, "Défaut");
+    assert.equal(defaut.querySelector(".plus-model-option-rule").textContent, "Routage par effort");
     assert.equal(submenuRow(menu, "Flash").querySelector(".plus-model-option-rule").textContent, "DeepSeek V4.1 Flash");
     assert.equal(submenuRow(menu, "Standard").querySelector(".plus-model-option-rule").textContent, "Fallback · 2 modèles");
     hover(submenuRow(menu, "Flash"));
@@ -267,13 +294,15 @@ describe("menu + : cascade multi-niveaux", () => {
     assert.equal(document.getElementById("mode-select").value, "free");
   });
 
-  test("clic Auto d'un alias : sélection auto, sans PUT d'aliases", async () => {
+  test("clic Défaut d'un alias : routage par effort, sans PUT d'aliases", async () => {
     await setupDOM();
-    const { menu } = hoverFamily("samagent-nano");
-    submenuRow(menu, "Auto").click();
+    const { menu } = hoverFamily("samagent-n4");
+    submenuRow(menu, "Défaut").click();
     await new Promise((r) => setTimeout(r, 30));
-    assert.equal(putBodies.length, 0, "pas de PUT /api/aliases pour l'auto d'alias");
-    assert.equal(document.getElementById("mode-select").value, "auto");
+    assert.equal(putBodies.length, 0, "pas de PUT /api/aliases pour le Défaut d'alias");
+    assert.equal(document.getElementById("mode-select").value, "auto", "valeur interne inchangée");
+    const opt = document.querySelector('#mode-select option[value="auto"]');
+    assert.equal(opt.textContent, "Défaut", "libellé du sélecteur : Défaut");
   });
 
   test("changer de famille referme les niveaux profonds", async () => {
@@ -285,7 +314,7 @@ describe("menu + : cascade multi-niveaux", () => {
     hoverFamily("samagent-n4");
     const menus = visibleSubmenus();
     assert.equal(menus.length, 1, "seul le niveau 0 reste");
-    assert.deepEqual(rowLabels(menus[0]), ["Auto", "Flash", "Standard"]);
+    assert.deepEqual(rowLabels(menus[0]), ["Défaut", "Flash", "Standard"]);
   });
 
   test("mouseleave programme la fermeture, mouseenter du sous-menu l'annule", async () => {
@@ -322,5 +351,61 @@ describe("menu + : cascade multi-niveaux", () => {
     ]) {
       assert.ok(css.includes(cls), `classe ${cls} stylée`);
     }
+  });
+
+  test("pills d'effort : clic → select + persistance thinking_effort", async () => {
+    await setupDOM();
+    const pill = document.querySelector('#plus-effort-pills .plus-menu-pill[data-effort="high"]');
+    pill.click();
+    await new Promise((r) => setTimeout(r, 30));
+    assert.equal(document.getElementById("effort-select").value, "high");
+    assert.ok(pill.classList.contains("active"), "pill cliqué actif");
+    assert.equal(
+      document.querySelectorAll('#plus-effort-pills .plus-menu-pill.active').length,
+      1,
+      "un seul pill actif"
+    );
+    assert.ok(settingsPuts.length >= 1, "PUT /api/settings émis");
+    assert.equal(settingsPuts[settingsPuts.length - 1].thinking_effort, "high");
+  });
+
+  test("pills d'effort : changement du select → pill actif synchronisé", async () => {
+    await setupDOM();
+    const sel = document.getElementById("effort-select");
+    sel.value = "low";
+    sel.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((r) => setTimeout(r, 30));
+    const pill = document.querySelector('#plus-effort-pills .plus-menu-pill[data-effort="low"]');
+    assert.ok(pill.classList.contains("active"), "pill low actif après change");
+    assert.equal(settingsPuts[settingsPuts.length - 1].thinking_effort, "low");
+  });
+
+  test("pills d'effort : restauration depuis les prefs au chargement", async () => {
+    mockPrefs = { thinking_effort: "medium" };
+    // Recharge le DOM avec des prefs pré-remplies (sans réinitialiser mockPrefs).
+    document.body.innerHTML = `
+      <select id="family-select"></select>
+      <select id="mode-select"></select>
+      <select id="effort-select">
+        <option value="default">Défaut</option>
+        <option value="low">Faible</option>
+        <option value="medium">Moyen</option>
+        <option value="high">Max</option>
+      </select>
+      <div id="plus-effort-pills">
+        <button type="button" class="plus-menu-pill" data-effort="default">Défaut</button>
+        <button type="button" class="plus-menu-pill" data-effort="low">Faible</button>
+        <button type="button" class="plus-menu-pill" data-effort="medium">Moyen</button>
+        <button type="button" class="plus-menu-pill" data-effort="high">Max</button>
+      </div>
+      <div id="plus-model-list"></div>
+      <input id="prompt-input" />
+      <span id="input-hint"></span>`;
+    await mod.initModels();
+    assert.equal(document.getElementById("effort-select").value, "medium");
+    assert.ok(
+      document.querySelector('#plus-effort-pills .plus-menu-pill[data-effort="medium"]').classList.contains("active"),
+      "pill medium actif depuis les prefs"
+    );
   });
 });

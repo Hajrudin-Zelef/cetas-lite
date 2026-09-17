@@ -908,8 +908,13 @@ export class ThreadView {
       if (this.routeBadge) {
         this.routeBadge.hidden = false;
         const name = r.label || r.model || "";
+        // L'effort affiché est celui RÉSOLU par le moteur ("" si thinking
+        // désactivé) : rend visible la résolution du mode "Défaut"
+        // (texte long > 400 caractères → Moyen).
+        const effortFr = { low: "Faible", medium: "Moyen", high: "Max" }[r.effort];
         this.routeBadge.textContent =
-          (r.provider ? r.provider + "/" : "") + name + (r.local ? " (local)" : "") + (r.fallback ? " (repli)" : "");
+          (r.provider ? r.provider + "/" : "") + name + (r.local ? " (local)" : "") + (r.fallback ? " (repli)" : "") +
+          (effortFr ? " · effort " + effortFr : "");
       }
       return;
     }

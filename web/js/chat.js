@@ -91,7 +91,7 @@ export function initChat() {
     const m = f ? f.modes.find((x) => x.mode === sel.mode) : null;
     const parts = [];
     if (f) parts.push(f.label);
-    if (sel.mode === "auto") parts.push("Auto (fallback)");
+    if (sel.mode === "auto") parts.push("Défaut");
     else if (m) parts.push(m.label);
     const extra = [];
     if (sel.web) extra.push("web");

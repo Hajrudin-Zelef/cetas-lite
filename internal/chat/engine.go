@@ -316,6 +316,7 @@ type resolution struct {
 	local    bool
 	fallback bool
 	agent    bool
+	tier     string // mode "auto" : tier choisi par le routage par effort
 }
 
 func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
@@ -327,7 +328,7 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 	// la famille, dedupliquee, tirage aleatoire a chaque requete. Choix
 	// rapide "tout le fallback de l'alias", sans passer par le selecteur.
 	if in.Mode == "auto" {
-		return e.resolveAuto(ctx, fam)
+		return e.resolveAuto(ctx, fam, in)
 	}
 	if fam.Local {
 		for _, m := range fam.Modes {
@@ -383,10 +384,15 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 	return resolution{members: members, agent: rm.Agent && in.AgentMode}
 }
 
-// resolveAuto construit la resolution du mode "auto" : l'union des pools
-// effectifs de tous les modes de la famille (dedupliquee). Pour les familles
-// locales, l'union des modeles decouverts (selection du selecteur honoree).
-func (e *Engine) resolveAuto(ctx context.Context, fam alias.Family) resolution {
+// resolveAuto construit la resolution du mode "auto" (menu + : « Défaut »).
+// Pour les familles cloud : routage par effort — le tier (mode) est choisi
+// via autoTierFor (jamais le plus cher sans effort "high" explicite), puis
+// le pool effectif du tier est mélangé (fallback intra-tier préservé :
+// tirage aléatoire + repli séquentiel en cas d'échec). Si le tier choisi est
+// vide (mauvaise configuration), repli sur l'union dédupliquée des pools
+// effectifs (comportement historique). Pour les familles locales, l'union
+// des modeles decouverts (selection du selecteur honoree).
+func (e *Engine) resolveAuto(ctx context.Context, fam alias.Family, in TurnInput) resolution {
 	if fam.Local {
 		seen := make(map[string]bool)
 		var members []alias.ResolvedMember
@@ -425,6 +431,17 @@ func (e *Engine) resolveAuto(ctx context.Context, fam alias.Family) resolution {
 		}
 		return resolution{members: members, local: true, fallback: len(members) > 1}
 	}
+	// Routage par effort : un seul tier, choisi selon l'effort demandé.
+	if tier := autoTierFor(fam.Modes, in.Effort, in.Text); tier != "" {
+		if rm, ok := alias.Resolve(e.Families(), fam.ID, tier); ok && len(rm.Pool) > 0 {
+			members := rm.Pool
+			if len(members) > 1 {
+				members = alias.ShufflePool(members)
+			}
+			return resolution{members: members, fallback: len(members) > 1, tier: tier}
+		}
+	}
+	// Repli : union dédupliquée des pools effectifs (tier vide ou inconnu).
 	seen := make(map[string]bool)
 	var members []alias.ResolvedMember
 	for _, m := range fam.Modes {
@@ -467,6 +484,10 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	}
 	msgs := c.MessagesSnapshot()
 
+	// Effort de raisonnement résolu une fois pour le tour : pilotage du
+	// payload provider, de la directive system et de l'affichage (badge).
+	reasoningEffort := resolveEffort(in.Think, in.Text, in.Effort)
+
 	needsVision := e.hasImageAttachment(in.User, in.Attachments)
 	if needsVision {
 		res.members = e.filterVision(res.members)
@@ -493,7 +514,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	msgs = append([]provider.Message{{Role: "system", Content: chatSystemPrompt()}}, msgs...)
 	// Directive de raisonnement (imperative, en anglais) : le bouton
 	// Thinking du composer est l'interrupteur principal en mode chat.
-	msgs = append([]provider.Message{{Role: "system", Content: thinkDirective(false, in.Think, in.Effort)}}, msgs...)
+	msgs = append([]provider.Message{{Role: "system", Content: thinkDirective(false, in.Think, reasoningEffort)}}, msgs...)
 
 	// Choix du moteur de recherche AVANT toute pre-recherche : si le membre
 	// principal utilise la recherche native du provider, la pre-recherche
@@ -541,6 +562,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			"provider": m.Provider, "model": m.Model, "label": m.Label,
 			"family": in.Family, "mode": in.Mode,
 			"local": res.local, "fallback": res.fallback,
+			"effort": reasoningEffort, "tier": res.tier,
 		}})
 
 		// Recherche web native du provider (OpenRouter, DeepSeek) : le natif
@@ -560,7 +582,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			Temperature:     0.7,
 			MaxTokens:       in.MaxTokens,
 			EnableReasoning: in.Think,
-			ReasoningEffort: resolveEffort(in.Think, in.Text, in.Effort),
+			ReasoningEffort: reasoningEffort,
 		}
 		if native {
 			req.Extra = nativeWebExtraFor(m.Provider)

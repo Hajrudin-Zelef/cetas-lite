@@ -325,47 +325,77 @@ func TestConversationPersistence(t *testing.T) {
 	}
 }
 
-// TestResolveAutoUnionCloud : le mode "auto" unit les pools effectifs de
-// tous les modes de la famille, dedupliques, melanges a chaque requete.
-func TestResolveAutoUnionCloud(t *testing.T) {
+// TestResolveAutoRoutesByEffort : le mode "auto" (menu + : « Défaut »)
+// route vers UN SEUL tier selon l'effort demandé — jamais de tirage
+// aléatoire inter-tiers (les tiers n'ont pas le même prix).
+func TestResolveAutoRoutesByEffort(t *testing.T) {
 	fams := []alias.Family{{
 		ID: "samagent-n4", Label: "N4",
 		Modes: []alias.Mode{
 			{ID: "flash", Label: "Flash", Pool: []alias.Member{
 				{Provider: "deepseek", Model: "deepseek-flash"},
-				{Provider: "openrouter", Model: "mimo-v2.5-flash"},
 			}},
 			{ID: "standard", Label: "Standard", Pool: []alias.Member{
-				{Provider: "openrouter", Model: "mimo-v2.5-flash"}, // doublon volontaire
+				{Provider: "openrouter", Model: "glm-5-flash"},
+			}},
+			{ID: "elite", Label: "Elite", Pool: []alias.Member{
+				{Provider: "deepseek", Model: "deepseek-v4-pro"},
+			}},
+		},
+	}}
+	e := newEngineWithDiscoverer(t, fams, nil)
+	long := strings.Repeat("x ", 300)
+	cases := []struct {
+		name   string
+		effort string
+		text   string
+		tier   string
+		model  string
+	}{
+		{"high explicite -> elite", "high", "court", "elite", "deepseek-v4-pro"},
+		{"medium -> standard", "medium", "court", "standard", "glm-5-flash"},
+		{"low -> flash", "low", "court", "flash", "deepseek-flash"},
+		{"default court -> flash", "default", "court", "flash", "deepseek-flash"},
+		{"default long -> standard", "default", long, "standard", "glm-5-flash"},
+		{"default tres long -> jamais elite", "", strings.Repeat("x ", 2000), "standard", "glm-5-flash"},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			in := TurnInput{Family: "samagent-n4", Mode: "auto", Effort: c.effort, Text: c.text}
+			res := e.resolve(context.Background(), in)
+			if res.tier != c.tier {
+				t.Fatalf("tier = %q, want %q", res.tier, c.tier)
+			}
+			if len(res.members) != 1 {
+				t.Fatalf("auto par tier : 1 membre attendu, got %d", len(res.members))
+			}
+			if res.members[0].Model != c.model {
+				t.Fatalf("model = %q, want %q", res.members[0].Model, c.model)
+			}
+			if res.fallback {
+				t.Fatal("pool singleton : pas de fallback")
+			}
+		})
+	}
+}
+
+// TestResolveAutoTierFallbackUnion : si le tier choisi est vide
+// (mauvaise configuration), repli sur l'union dédupliquée des pools.
+func TestResolveAutoTierFallbackUnion(t *testing.T) {
+	fams := []alias.Family{{
+		ID: "samagent-n4", Label: "N4",
+		Modes: []alias.Mode{
+			{ID: "flash", Label: "Flash"}, // pool vide
+			{ID: "standard", Label: "Standard", Pool: []alias.Member{
 				{Provider: "openrouter", Model: "glm-5-flash"},
 			}},
 		},
 	}}
 	e := newEngineWithDiscoverer(t, fams, nil)
-	in := TurnInput{Family: "samagent-n4", Mode: "auto"}
-	seen := map[string]int{}
-	for i := 0; i < 30; i++ {
-		res := e.resolve(context.Background(), in)
-		if len(res.members) != 3 {
-			t.Fatalf("auto doit unir les pools dedupliques : %d membres", len(res.members))
-		}
-		if !res.fallback {
-			t.Fatal("auto multi-membres doit etre signale comme fallback")
-		}
-		keys := map[string]bool{}
-		for _, m := range res.members {
-			k := m.Provider + "/" + m.Model
-			if keys[k] {
-				t.Fatalf("doublon dans l'union auto : %s", k)
-			}
-			keys[k] = true
-			seen[m.Model]++
-		}
-	}
-	for _, want := range []string{"deepseek-flash", "mimo-v2.5-flash", "glm-5-flash"} {
-		if seen[want] == 0 {
-			t.Fatalf("modele manquant dans l'union auto : %s", want)
-		}
+	in := TurnInput{Family: "samagent-n4", Mode: "auto", Effort: "low", Text: "court"}
+	res := e.resolve(context.Background(), in)
+	if len(res.members) != 1 || res.members[0].Model != "glm-5-flash" {
+		t.Fatalf("repli union attendu sur le pool standard, got %+v", res.members)
 	}
 }
 

@@ -104,12 +104,14 @@ export function persistPrefs() {
   return putPrefs(body);
 }
 
-// Options de modes pour une famille : "Auto (fallback)" en tête pour les
-// familles cloud (union des pools de l'alias, résolue côté moteur), puis les
-// modes configurés. SamGen (local) n'a pas d'Auto : on choisit la route.
+// Options de modes pour une famille : « Défaut » en tête pour les
+// familles cloud (routage par effort côté moteur : Faible → Flash,
+// Moyen → Standard, Max → Elite ; jamais Elite sans Max explicite),
+// puis les modes configurés. SamGen (local) n'a pas de Défaut :
+// on choisit la route.
 export function modeOptionsFor(fam) {
   const modes = fam ? fam.modes || [] : [];
-  if (fam && !fam.local) return [{ mode: "auto", label: "Auto (fallback)", auto: true }, ...modes];
+  if (fam && !fam.local) return [{ mode: "auto", label: "Défaut", auto: true }, ...modes];
   return modes;
 }
 
@@ -141,7 +143,8 @@ function renderModes() {
 }
 
 // ===== Menu + : cascade multi-niveaux =====
-// Famille › → [Auto (= fallback de l'alias), Mode › → …]
+// Famille › → [Défaut (= routage par effort de l'alias), Mode › → …]
+//   (Défaut affiché seulement si l'alias a plus d'un mode ; Nano n'a que Free)
 // Mode › → [Auto (= fallback du mode), Models › → modèles] — le fallback,
 //           c'est le mode Auto ; en dessous, sélection manuelle du modèle.
 // Nano (mode unique Free) : Free › → groupes par fournisseur
@@ -289,15 +292,18 @@ function modeChildren(f, mode) {
   return items;
 }
 
-// Contenu du sous-menu d'une famille : « Auto » (= fallback de l'alias)
-// puis un rang par mode (le libellé du mode : « Free » pour Nano).
+// Contenu du sous-menu d'une famille : « Défaut » (= routage par effort
+// de l'alias, valeur interne "auto") puis un rang par mode (le libellé du
+// mode : « Free » pour Nano). Le rang « Défaut » n'est affiché que si
+// l'alias a plus d'un mode : pour Nano (un seul mode), il serait un
+// doublon exact de Free.
 function familyChildren(f) {
   const sel = currentSelection();
   const items = [];
-  if (!f.local) {
+  if (!f.local && (f.modes || []).length > 1) {
     items.push({
-      label: "Auto",
-      sub: "",
+      label: "Défaut",
+      sub: "Routage par effort",
       active: sel.family === f.id && sel.mode === "auto",
       onPick: () => pickFamilyMode(f, "auto"),
     });
