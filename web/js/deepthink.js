@@ -100,7 +100,7 @@ export async function loadDeepThinkPanel() {
   bodyEl.textContent = "Chargement…";
   try {
     const data = await api("/api/deepthink");
-    settings = (data && data.settings) || { lang: "fr", provider: "openrouter", model: "openrouter/free" };
+    settings = (data && data.settings) || { lang: "fr", provider: "deepseek", model: "deepseek-chat" };
     render(bodyEl, data || {});
   } catch (e) {
     bodyEl.textContent = "Erreur de chargement : " + ((e && e.message) || e);

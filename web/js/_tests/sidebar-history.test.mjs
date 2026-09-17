@@ -35,7 +35,10 @@ globalThis.getComputedStyle = dom.window.getComputedStyle.bind(dom.window);
 globalThis.localStorage = dom.window.localStorage;
 
 const DAY = 86400000;
-const now = Date.now();
+// Utiliser un timestamp à midi UTC pour éviter les problèmes de timezone
+// (setHours(0,0,0,0) utilise l'heure locale).
+const now = new Date().setHours(12, 0, 0, 0);
+Date.now = () => now;
 // Mock fetch avec text() (api() lit resp.text()).
 globalThis.fetch = async (url) => {
   if (String(url).startsWith("/api/sessions/current")) {
@@ -63,6 +66,7 @@ globalThis.fetch = async (url) => {
 const { initSidebar } = await import("../sidebar.js");
 
 function setupDom() {
+  localStorage.clear();
   document.body.innerHTML = `
     <button id="new-chat-btn"></button>
     <div class="fav-section" id="fav-section" style="display:none"><div id="fav-list"></div></div>
@@ -72,7 +76,7 @@ function setupDom() {
     <div class="conv-list-container"><div id="conv-list" class="conv-list"></div></div>`;
 }
 
-const flush = () => new Promise((r) => setTimeout(r, 30));
+const flush = () => new Promise((r) => setTimeout(r, 200));
 
 function itemsOf(headerText) {
   const headers = [...document.querySelectorAll(".conv-section-header")];

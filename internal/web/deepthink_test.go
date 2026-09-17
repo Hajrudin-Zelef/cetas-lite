@@ -2,8 +2,10 @@ package web
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"net/http"
+	"strings"
 	"testing"
 
 	"cetas-lite/internal/provider"
@@ -64,7 +66,7 @@ func TestDeepThinkDefaults(t *testing.T) {
 	if st["lang"] != "fr" {
 		t.Fatalf("langue par defaut = %v, want fr", st["lang"])
 	}
-	if st["provider"] != "openrouter" || st["model"] != "openrouter/free" {
+	if st["provider"] != "deepseek" || st["model"] != "deepseek-chat" {
 		t.Fatalf("modele par defaut = %v/%v", st["provider"], st["model"])
 	}
 	if langs, _ := body["langs"].([]any); len(langs) != 5 {
@@ -227,4 +229,103 @@ func containsStr(s, sub string) bool {
 func strOf(v any) string {
 	s, _ := v.(string)
 	return s
+}
+
+// TestDeepThinkMigrationFromFreeDefault : les réglages restés sur l'ancien
+// défaut openrouter/free basculent une seule fois vers deepseek-chat ; un
+// choix explicite ultérieur pour openrouter/free est respecté.
+func TestDeepThinkMigrationFromFreeDefault(t *testing.T) {
+	s := newTestServer(t, true)
+	put := func(st DeepThinkSettings) {
+		raw, _ := json.Marshal(st)
+		if err := s.st.PutMeta("deepthink", raw); err != nil {
+			t.Fatalf("PutMeta : %v", err)
+		}
+	}
+	put(DeepThinkSettings{Lang: "fr", Provider: "openrouter", Model: "openrouter/free"})
+	got := s.loadDeepThinkSettings()
+	if got.Provider != "deepseek" || got.Model != "deepseek-chat" {
+		t.Fatalf("migration = %v/%v, want deepseek/deepseek-chat", got.Provider, got.Model)
+	}
+	if got.Lang != "fr" {
+		t.Fatalf("langue perdue pendant la migration : %v", got.Lang)
+	}
+	// Second appel : déjà migré, pas de re-migration.
+	if got2 := s.loadDeepThinkSettings(); got2.Provider != "deepseek" {
+		t.Fatalf("re-migration inattendue : %v", got2)
+	}
+	// Choix explicite ultérieur pour openrouter/free : respecté.
+	put(DeepThinkSettings{Lang: "fr", Provider: "openrouter", Model: "openrouter/free"})
+	if got3 := s.loadDeepThinkSettings(); got3.Provider != "openrouter" || got3.Model != "openrouter/free" {
+		t.Fatalf("choix explicite écrasé : %v", got3)
+	}
+}
+
+// seqDeepThinkProvider : provider factice à réponses séquentielles.
+type seqDeepThinkProvider struct {
+	id       string
+	contents []string
+	calls    int
+	lastReqs []provider.Request
+}
+
+func (m *seqDeepThinkProvider) ID() string { return m.id }
+
+func (m *seqDeepThinkProvider) Stream(ctx context.Context, req provider.Request, emit func(provider.Event) bool) (provider.Response, error) {
+	m.calls++
+	m.lastReqs = append(m.lastReqs, req)
+	c := m.contents[len(m.contents)-1]
+	if m.calls <= len(m.contents) {
+		c = m.contents[m.calls-1]
+	}
+	return provider.Response{Content: c}, nil
+}
+
+// TestTranslateTextRetryOnShortOutput : quand le modèle "répond" au lieu de
+// traduire (sortie anormalement courte), une seule relance a lieu avec une
+// consigne de rappel explicite.
+func TestTranslateTextRetryOnShortOutput(t *testing.T) {
+	longSrc := strings.Repeat("The user greeted with salut and I should respond warmly and concisely. ", 12)
+	if len([]rune(longSrc)) <= 150 {
+		t.Fatalf("source de test trop courte : %d runes", len([]rune(longSrc)))
+	}
+	goodTranslation := strings.Repeat("L'utilisateur a salué avec salut et je dois répondre chaleureusement et avec concision. ", 12)
+	mock := &seqDeepThinkProvider{id: "deepseek", contents: []string{
+		"Salut ! Comment puis-je t'aider ?", // le modèle "répond" au lieu de traduire
+		goodTranslation,
+	}}
+	st := DeepThinkSettings{Lang: "fr", Provider: "deepseek", Model: "deepseek-chat"}
+	out, err := translateText(context.Background(), mock, st, longSrc)
+	if err != nil {
+		t.Fatalf("traduction : %v", err)
+	}
+	if mock.calls != 2 {
+		t.Fatalf("provider appelé %d fois, want 2 (1 tentative + 1 relance)", mock.calls)
+	}
+	if out != strings.TrimSpace(goodTranslation) {
+		t.Fatalf("sortie = %q, want la traduction du 2e appel", out)
+	}
+	sys, _ := mock.lastReqs[1].Messages[0].Content.(string)
+	if !containsStr(sys, "was NOT a translation") {
+		t.Fatalf("consigne de rappel absente du 2e appel : %q", sys)
+	}
+}
+
+// TestTranslateTextNoRetryOnNormalOutput : une traduction de longueur
+// normale ne déclenche aucune relance.
+func TestTranslateTextNoRetryOnNormalOutput(t *testing.T) {
+	longSrc := strings.Repeat("The user greeted with salut. ", 20)
+	goodTranslation := strings.Repeat("L'utilisateur a salué avec salut. ", 20)
+	mock := &seqDeepThinkProvider{id: "deepseek", contents: []string{goodTranslation}}
+	st := DeepThinkSettings{Lang: "fr", Provider: "deepseek", Model: "deepseek-chat"}
+	out, err := translateText(context.Background(), mock, st, longSrc)
+	if err != nil {
+		t.Fatalf("traduction : %v", err)
+	}
+	if mock.calls != 1 {
+		t.Fatalf("provider appelé %d fois, want 1 (pas de relance)", mock.calls)
+	}
+	if out != strings.TrimSpace(goodTranslation) {
+		t.Fatalf("sortie = %q", out)
+	}
 }
