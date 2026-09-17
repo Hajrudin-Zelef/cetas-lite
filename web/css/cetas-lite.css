@@ -1286,3 +1286,17 @@
 #chat-container .message-text h3 {
   margin: 0.5em 0 0.25em 0;
 }
+
+/* ============================================================
+   Blocs de code du chat : fond integre au design (plus de gris
+   flottant) + bordure fine. Le <code> interne reste transparent
+   pour laisser parler le fond du <pre>. Vue principale
+   uniquement (la vue Agents reste identique a Marexcode).
+   ============================================================ */
+#chat-container .message-text pre {
+  background: var(--bg-sidebar, #fafafa);
+  border: 1px solid var(--border, #eaeaea);
+}
+#chat-container .message-text pre code {
+  background: transparent;
+}

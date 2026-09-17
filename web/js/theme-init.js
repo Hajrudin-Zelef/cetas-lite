@@ -17,6 +17,19 @@
     } catch (e) {}
     if (PALETTES.indexOf(p) === -1) p = "bleu";
     document.documentElement.dataset.palette = p;
+    // Coloration syntaxique : theme highlight.js assorti au mode clair/sombre.
+    var darkMode = t === "sombre" || t === "hard_dark";
+    var hlDark = document.getElementById("hljs-theme-dark");
+    var hlLight = document.getElementById("hljs-theme-light");
+    if (hlDark) hlDark.disabled = !darkMode;
+    if (hlLight) hlLight.disabled = darkMode;
+    window.cetasHljsTheme = function (tt) {
+      var d = tt === "sombre" || tt === "hard_dark";
+      var a = document.getElementById("hljs-theme-dark");
+      var b = document.getElementById("hljs-theme-light");
+      if (a) a.disabled = !d;
+      if (b) b.disabled = d;
+    };
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", apply);

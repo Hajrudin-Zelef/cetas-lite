@@ -504,6 +504,7 @@ export function applyTheme(theme) {
   if (!["sombre", "hard_dark", "clair"].includes(t)) return;
   document.documentElement.dataset.theme = t;
   document.body.className = t === "sombre" ? "dark" : t === "hard_dark" ? "dark hard-dark" : "";
+  if (window.cetasHljsTheme) window.cetasHljsTheme(t);
   const sel = document.getElementById("cfg-theme");
   if (sel) sel.value = t;
   try {
