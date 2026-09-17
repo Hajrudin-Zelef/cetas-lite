@@ -44,7 +44,8 @@ export function initRequestsPanel() {
       const lbl = document.createElement("span");
       lbl.className = "request-item-label";
       lbl.textContent = label;
-      b.append(trait, lbl);
+      // Façon DeepSeek : texte (tronqué) à gauche, petit trait à droite.
+      b.append(lbl, trait);
       b.addEventListener("click", () => {
         if (u.scrollIntoView) u.scrollIntoView({ behavior: "smooth", block: "start" });
       });

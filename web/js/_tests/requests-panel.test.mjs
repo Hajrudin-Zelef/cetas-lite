@@ -171,28 +171,31 @@ test("css : panneau requêtes scrollable, responsive", () => {
   assert.match(css, /@media\s*\(max-width:\s*1100px\)/);
 });
 
-test("requêtes : traits par défaut, contenu révélé au survol (façon DeepSeek)", () => {
+test("requêtes : texte tronqué à gauche, petit trait à droite (façon DeepSeek)", () => {
   setupDom();
   addUserMessage("troisième requête");
   initRequestsPanel();
   const items = document.querySelectorAll(".request-item");
   assert.equal(items.length, 3);
   for (const b of items) {
-    const trait = b.querySelector(".request-item-trait");
     const label = b.querySelector(".request-item-label");
-    assert.ok(trait, "chaque ligne a un trait");
+    const trait = b.querySelector(".request-item-trait");
     assert.ok(label, "chaque ligne a un libellé");
+    assert.ok(trait, "chaque ligne a un trait");
     assert.equal(label.textContent, b.title, "le libellé porte le contenu");
+    // Ordre DOM : libellé puis trait (trait à droite via CSS).
+    assert.equal(b.children[0].className, "request-item-label");
+    assert.equal(b.children[1].className, "request-item-trait");
   }
   assert.equal(
     items[2].querySelector(".request-item-label").textContent,
     "troisième requête"
   );
   const css = read("web/css/cetas-lite.css");
-  // Par défaut : libellé replié (max-width: 0), révélé au survol.
-  assert.match(css, /\.request-item-label\s*\{[^}]*max-width:\s*0/);
-  assert.match(css, /\.request-item:hover\s+\.request-item-label\s*\{[^}]*max-width:/);
-  assert.match(css, /\.request-item-trait\s*\{[^}]*background:/);
+  assert.match(css, /\.request-item-label\s*\{[^}]*text-overflow:\s*ellipsis/);
+  assert.match(css, /\.request-item\s*\{[^}]*justify-content:\s*space-between/);
+  assert.match(css, /\.request-item:hover\s+\.request-item-label/);
+  assert.match(css, /\.request-item:hover\s+\.request-item-trait/);
 });
 
 test("chat : initRequestsPanel câblé + flèche ancrée au composer", () => {

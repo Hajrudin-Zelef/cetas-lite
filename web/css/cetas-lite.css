@@ -1363,50 +1363,46 @@ body.dark .requests-panel {
 .requests-panel[hidden] {
   display: none;
 }
+/* Façon DeepSeek : texte tronqué à gauche, petit trait à droite.
+   Survol / ligne active : texte et trait en accent. */
 .request-item {
-  position: relative;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   width: 100%;
   background: none;
   border: none;
   border-radius: 8px;
-  padding: 6px 4px;
+  padding: 7px 8px;
   font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6b7280);
   cursor: pointer;
 }
-/* Le trait : tout ce qu'on voit par défaut. */
+.request-item-label {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .request-item-trait {
-  width: 24px;
+  flex: none;
+  width: 16px;
   height: 3px;
   border-radius: 2px;
   background: var(--text-tertiary, #c3c9d2);
-  transition: background 0.15s ease, width 0.15s ease;
-  flex: none;
+  transition: background 0.15s ease;
 }
-/* Le contenu : révélé au survol, à gauche du trait. */
-.request-item-label {
-  max-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  opacity: 0;
-  font-size: 0.8rem;
-  color: var(--text, #111827);
-  transition: max-width 0.18s ease, opacity 0.15s ease, margin 0.18s ease;
+.request-item:hover .request-item-label,
+.request-item.active .request-item-label {
+  color: var(--accent, #2563eb);
 }
-.request-item:hover .request-item-label {
-  max-width: 180px;
-  opacity: 1;
-  margin-right: 8px;
-}
-.request-item:hover .request-item-trait {
-  background: var(--accent, #2563eb);
-}
+.request-item:hover .request-item-trait,
 .request-item.active .request-item-trait {
   background: var(--accent, #2563eb);
-  width: 30px;
 }
 @media (max-width: 1100px) {
   .requests-panel {
