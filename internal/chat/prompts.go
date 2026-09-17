@@ -57,6 +57,9 @@ func thinkDirective(agent, think bool, effort string) string {
 	if !think {
 		return "Answer directly and concisely. Do not engage in extended reasoning; give the answer straight away."
 	}
+	// Le raisonnement doit rester lisible par l'utilisateur : il se fait
+	// dans la langue de sa requete, pas en anglais par defaut.
+	const reasonLang = " Do your reasoning in the user's language (the language of the user's request)."
 	if agent {
 		// L'agent réfléchit toujours, mais le volume de raisonnement doit
 		// rester proportionnel à la tâche : un simple "salut" ne doit pas
@@ -64,15 +67,15 @@ func thinkDirective(agent, think bool, effort string) string {
 		switch effort {
 		case "low":
 			return "Reasoning is mandatory but brief: a few short sentences at most, then answer or act. " +
-				"For trivial messages (greetings, simple questions), answer directly with minimal reasoning and no tool calls unless truly needed."
+				"For trivial messages (greetings, simple questions), answer directly with minimal reasoning and no tool calls unless truly needed." + reasonLang
 		case "high":
-			return "Reasoning is mandatory: think carefully through the task before answering or calling tools."
+			return "Reasoning is mandatory: think carefully through the task before answering or calling tools." + reasonLang
 		default: // medium ou effort résolu par défaut
 			return "Reasoning is mandatory: think through the task before answering or calling tools, " +
-				"but keep reasoning concise and proportional to the task — no padding."
+				"but keep reasoning concise and proportional to the task — no padding." + reasonLang
 		}
 	}
-	base := "Reasoning is enabled: think before answering."
+	base := "Reasoning is enabled: think before answering." + reasonLang
 	switch effort {
 	case "low", "medium", "high":
 		return base + " Requested reasoning effort: " + effort + "."

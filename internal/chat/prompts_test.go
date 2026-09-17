@@ -191,6 +191,21 @@ func TestThinkDirective(t *testing.T) {
 	if d := thinkDirective(true, false, ""); !strings.Contains(d, "Answer directly") {
 		t.Fatalf("agent sans thinking : reponse directe attendue, obtenu %q", d)
 	}
+	// Le raisonnement doit se faire dans la langue de la requete (chat comme agent).
+	for _, d := range []string{
+		thinkDirective(false, true, ""),
+		thinkDirective(false, true, "high"),
+		thinkDirective(true, true, ""),
+		thinkDirective(true, true, "low"),
+		thinkDirective(true, true, "high"),
+	} {
+		if !strings.Contains(d, "reasoning in the user's language") {
+			t.Fatalf("raisonnement : langue de l'utilisateur attendue, obtenu %q", d)
+		}
+	}
+	if d := thinkDirective(false, false, ""); strings.Contains(d, "reasoning in the user's language") {
+		t.Fatalf("sans thinking : pas de consigne de raisonnement attendue, obtenu %q", d)
+	}
 }
 
 // La directive thinking est injectee dans les requetes chat et agent.
