@@ -1392,3 +1392,14 @@ body.dark .requests-panel {
     display: none;
   }
 }
+
+/* ---- Historique façon DeepSeek : sections par date ---- */
+.conv-section-header {
+  padding: 10px 10px 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary, #9aa0aa);
+  text-transform: none;
+  user-select: none;
+}

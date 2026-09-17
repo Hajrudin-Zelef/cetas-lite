@@ -1,4 +1,5 @@
-// Panneau "Requêtes" façon DeepSeek + flèche retour-en-bas.
+// Panneau "Requêtes" façon DeepSeek : sommaire des requêtes de la
+// conversation en cours, clic = scroll vers le message.
 // (Ref : capture DeepSeek fournie par l'utilisateur.)
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -32,113 +33,132 @@ globalThis.CustomEvent = dom.window.CustomEvent;
 globalThis.Event = dom.window.Event;
 globalThis.getComputedStyle = dom.window.getComputedStyle.bind(dom.window);
 globalThis.localStorage = dom.window.localStorage;
+globalThis.requestAnimationFrame =
+  dom.window.requestAnimationFrame?.bind(dom.window) || ((fn) => setTimeout(fn, 16));
+globalThis.MutationObserver = dom.window.MutationObserver;
 
-// Mock fetch avec text() (api() lit resp.text()).
-const calls = [];
-globalThis.fetch = async (url, opts = {}) => {
-  calls.push({ url: String(url), method: opts.method || "GET", body: opts.body });
-  if (String(url).startsWith("/api/conversations/restore")) {
-    return { ok: true, status: 200, text: async () => "{}" };
-  }
-  if (String(url).startsWith("/api/conversations")) {
-    return {
-      ok: true,
-      status: 200,
-      text: async () =>
-        JSON.stringify({
-          archives: [
-            { id: "c1", title: "comment appelle ton une fonction qui…" },
-            { id: "c2", title: "ok corrigeons 2 points, je veux…" },
-          ],
-        }),
-    };
-  }
-  if (String(url).startsWith("/api/chat/state")) {
-    return { ok: true, status: 200, text: async () => JSON.stringify({ id: "c2", turns: 0 }) };
-  }
-  return { ok: false, status: 404, text: async () => JSON.stringify({ error: "nope" }) };
+// scrollIntoView : jsdom ne l'implémente pas, on l'enregistre.
+const scrolledTo = [];
+dom.window.Element.prototype.scrollIntoView = function (opts) {
+  scrolledTo.push({ el: this, opts });
 };
 
 const { initRequestsPanel } = await import("../requests-panel.js");
 
 function setupDom() {
+  scrolledTo.length = 0;
   document.body.innerHTML = `
     <main class="main">
-      <div id="chat-container"></div>
+      <div id="chat-container">
+        <div class="message-wrapper message-wrapper-user">
+          <div class="message message-user"><div class="message-text">première requête
+deuxième ligne</div></div>
+        </div>
+        <div class="message-wrapper"><div class="message message-assistant"><div class="message-text">réponse</div></div></div>
+        <div class="message-wrapper message-wrapper-user">
+          <div class="message message-user"><div class="message-text">seconde requête</div></div>
+        </div>
+      </div>
       <div class="input-area"></div>
     </main>`;
 }
 
-const flush = () => new Promise((r) => setTimeout(r, 20));
+function addUserMessage(text) {
+  const log = document.getElementById("chat-container");
+  const wrapper = document.createElement("div");
+  wrapper.className = "message-wrapper message-wrapper-user";
+  const bubble = document.createElement("div");
+  bubble.className = "message message-user";
+  const t = document.createElement("div");
+  t.className = "message-text";
+  t.textContent = text;
+  bubble.appendChild(t);
+  wrapper.appendChild(bubble);
+  log.appendChild(wrapper);
+  return bubble;
+}
 
-test("panneau : construit avec les conversations, active surlignée", async () => {
+const flush = () => new Promise((r) => setTimeout(r, 30));
+
+test("panneau : sommaire des requêtes de la conversation en cours", async () => {
   setupDom();
-  calls.length = 0;
   const ctl = initRequestsPanel();
   assert.ok(ctl, "contrôleur retourné");
-  await flush();
   const panel = document.querySelector("main.main > .requests-panel");
   assert.ok(panel, "panneau dans main.main");
-  assert.equal(panel.hidden, false, "visible quand il y a des archives");
+  assert.equal(panel.hidden, false);
   const items = panel.querySelectorAll(".request-item");
-  assert.equal(items.length, 2);
-  assert.equal(items[0].textContent, "comment appelle ton une fonction qui…");
-  assert.equal(items[0].title, "comment appelle ton une fonction qui…");
-  assert.equal(items[0].dataset.id, "c1");
-  assert.ok(!items[0].classList.contains("active"), "c1 non active");
-  assert.ok(items[1].classList.contains("active"), "c2 active (id courant)");
+  assert.equal(items.length, 2, "2 requêtes utilisateur, pas les réponses");
+  assert.equal(items[0].textContent, "première requête", "première ligne uniquement");
+  assert.equal(items[0].title, "première requête");
+  assert.equal(items[1].textContent, "seconde requête");
 });
 
-test("panneau : clic restaure la conversation et notifie", async () => {
+test("panneau : clic scrolle vers le message", async () => {
   setupDom();
-  calls.length = 0;
-  let resetFired = false;
-  window.addEventListener("cetas:chat-reset", () => (resetFired = true), { once: true });
   initRequestsPanel();
-  await flush();
   const items = document.querySelectorAll(".request-item");
-  items[0].click();
-  await flush();
-  const restore = calls.find((c) => c.url.startsWith("/api/conversations/restore"));
-  assert.ok(restore, "POST restore appelé");
-  assert.equal(restore.method, "POST");
-  assert.match(restore.body, /"c1"/);
-  assert.ok(resetFired, "événement cetas:chat-reset émis");
+  items[1].click();
+  assert.equal(scrolledTo.length, 1);
+  assert.ok(scrolledTo[0].el.classList.contains("message-user"));
+  assert.equal(
+    scrolledTo[0].el.querySelector(".message-text").textContent,
+    "seconde requête",
+    "c'est le bon message qui est ciblé"
+  );
+  assert.equal(scrolledTo[0].opts.behavior, "smooth");
 });
 
-test("panneau : masqué quand aucune archive", async () => {
+test("panneau : requête la plus proche du haut surlignée", async () => {
   setupDom();
-  const origFetch = globalThis.fetch;
-  globalThis.fetch = async (url, opts = {}) => {
-    if (String(url).startsWith("/api/conversations") && !String(url).includes("restore")) {
-      return { ok: true, status: 200, text: async () => JSON.stringify({ archives: [] }) };
-    }
-    return origFetch(url, opts);
-  };
-  try {
-    initRequestsPanel();
-    await flush();
-    const panel = document.querySelector("main.main > .requests-panel");
-    assert.ok(panel, "panneau créé");
-    assert.equal(panel.hidden, true, "masqué sans archives");
-  } finally {
-    globalThis.fetch = origFetch;
-  }
+  initRequestsPanel();
+  const items = document.querySelectorAll(".request-item");
+  // jsdom : tous les rects à 0 → la première gagne (déterministe).
+  assert.ok(items[0].classList.contains("active"));
+  assert.ok(!items[1].classList.contains("active"));
+});
+
+test("panneau : se reconstruit à l'arrivée d'un message", async () => {
+  setupDom();
+  initRequestsPanel();
+  addUserMessage("troisième requête");
+  await flush(); // MutationObserver
+  const items = document.querySelectorAll(".request-item");
+  assert.equal(items.length, 3);
+  assert.equal(items[2].textContent, "troisième requête");
+});
+
+test("panneau : masqué sans requête", async () => {
+  scrolledTo.length = 0;
+  document.body.innerHTML = `
+    <main class="main"><div id="chat-container"></div><div class="input-area"></div></main>`;
+  initRequestsPanel();
+  const panel = document.querySelector("main.main > .requests-panel");
+  assert.ok(panel);
+  assert.equal(panel.hidden, true);
 });
 
 test("panneau : pas de doublon à l'init répétée", async () => {
   setupDom();
   initRequestsPanel();
   initRequestsPanel();
-  await flush();
   assert.equal(document.querySelectorAll("main.main > .requests-panel").length, 1);
+});
+
+test("panneau : reset du chat reconstruit le sommaire", async () => {
+  setupDom();
+  initRequestsPanel();
+  document.getElementById("chat-container").innerHTML = "";
+  window.dispatchEvent(new CustomEvent("cetas:chat-reset"));
+  await flush();
+  const panel = document.querySelector("main.main > .requests-panel");
+  assert.equal(panel.hidden, true, "plus de requêtes après reset");
+  assert.equal(panel.querySelectorAll(".request-item").length, 0);
 });
 
 test("css : flèche pastille blanche en mode clair + centrée au-dessus du composer", () => {
   const css = read("web/css/cetas-lite.css");
-  // Fond blanc en mode clair (fini le tout-noir).
   assert.match(css, /\.thread-to-bottom\s*\{[^}]*background:\s*#ffffff/);
-  // Ancrage au-dessus du composer, centré (vue principale).
   assert.match(css, /\.input-area > \.thread-to-bottom\s*\{[^}]*left:\s*50%/);
   assert.match(css, /\.input-area > \.thread-to-bottom\s*\{[^}]*bottom:\s*calc\(100% \+ 10px\)/);
 });

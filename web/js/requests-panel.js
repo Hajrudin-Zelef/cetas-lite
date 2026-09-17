@@ -1,12 +1,12 @@
-// Panneau flottant "Requêtes" façon DeepSeek : la liste des conversations
-// affichée sur le côté du chat, scrollable haut/bas, clic pour basculer.
+// Panneau flottant "Requêtes" façon DeepSeek : sommaire des requêtes
+// (messages utilisateur) de la CONVERSATION EN COURS, affiché sur le
+// côté du chat avec scroll haut/bas. Clic sur une requête = défilement
+// vers ce message. La requête la plus proche du haut est surlignée.
 // Vue principale uniquement (la vue Agents reste identique à Marexcode).
-import { api } from "./api.js";
-import { confirmDialog } from "./dialogs.js";
-
 export function initRequestsPanel() {
   const main = document.querySelector("main.main");
-  if (!main || !document.getElementById("chat-container")) return null;
+  const log = document.getElementById("chat-container");
+  if (!main || !log) return null;
   if (main.querySelector(":scope > .requests-panel")) return null;
   if (getComputedStyle(main).position === "static") main.style.position = "relative";
 
@@ -16,57 +16,68 @@ export function initRequestsPanel() {
   panel.hidden = true;
   main.appendChild(panel);
 
-  async function currentId() {
-    try {
-      const st = await api("/api/chat/state");
-      return st && st.id ? st.id : null;
-    } catch (e) {
-      return null;
-    }
+  /** @type {{btn: HTMLButtonElement, target: Element}[]} */
+  const items = [];
+
+  function labelFor(userEl) {
+    const txt =
+      userEl.querySelector(".message-text")?.textContent || userEl.textContent || "";
+    return txt.trim().split("\n")[0] || "(requête)";
   }
 
-  async function restore(id) {
-    let state = {};
-    try {
-      state = await api("/api/chat/state");
-    } catch (e) {}
-    if ((state.turns || 0) > 0) {
-      const ok = await confirmDialog(
-        "Restaurer cette conversation ? La conversation actuelle sera archivée.",
-        { okLabel: "Restaurer" }
-      );
-      if (!ok) return;
-    }
-    try {
-      await api("/api/conversations/restore", { method: "POST", body: { id } });
-      window.dispatchEvent(new CustomEvent("cetas:chat-reset"));
-      await refresh();
-    } catch (e) {}
-  }
-
-  async function refresh() {
-    let archives = [];
-    try {
-      const data = await api("/api/conversations");
-      archives = (data && data.archives) || [];
-    } catch (e) {}
-    const cur = await currentId();
+  function rebuild() {
+    const users = log.querySelectorAll(".message-user");
     panel.innerHTML = "";
-    panel.hidden = archives.length === 0;
-    for (const a of archives) {
+    items.length = 0;
+    panel.hidden = users.length === 0;
+    users.forEach((u) => {
+      const label = labelFor(u);
       const b = document.createElement("button");
       b.type = "button";
-      b.className = "request-item" + (cur && a.id === cur ? " active" : "");
-      b.title = a.title || "(sans titre)";
-      b.textContent = a.title || "(sans titre)";
-      b.dataset.id = a.id;
-      b.addEventListener("click", () => restore(a.id));
+      b.className = "request-item";
+      b.textContent = label;
+      b.title = label;
+      b.addEventListener("click", () => {
+        if (u.scrollIntoView) u.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
       panel.appendChild(b);
-    }
+      items.push({ btn: b, target: u });
+    });
+    updateActive();
   }
 
-  window.addEventListener("cetas:chat-reset", refresh);
-  window.addEventListener("cetas:chat-changed", refresh);
-  refresh();
-  return { refresh, panel };
+  function updateActive() {
+    if (!items.length) return;
+    const top = log.getBoundingClientRect().top;
+    let best = null;
+    let bestDist = Infinity;
+    for (const it of items) {
+      if (!it.target.isConnected) continue;
+      const d = Math.abs(it.target.getBoundingClientRect().top - top);
+      if (d < bestDist) {
+        bestDist = d;
+        best = it;
+      }
+    }
+    for (const it of items) it.btn.classList.toggle("active", it === best);
+  }
+
+  let raf = 0;
+  function onScroll() {
+    if (raf) return;
+    const r = window.requestAnimationFrame || ((fn) => setTimeout(fn, 16));
+    raf = r(() => {
+      raf = 0;
+      updateActive();
+    });
+  }
+  log.addEventListener("scroll", onScroll, { passive: true });
+
+  // Nouveaux messages / élagage du DOM : on reconstruit le sommaire.
+  const mo = new MutationObserver(() => rebuild());
+  mo.observe(log, { childList: true });
+
+  window.addEventListener("cetas:chat-reset", rebuild);
+  rebuild();
+  return { refresh: rebuild, panel };
 }

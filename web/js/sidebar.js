@@ -46,16 +46,6 @@ export function toggleFav(convId) {
   return favs.includes(convId);
 }
 
-function fmtDate(ms) {
-  if (!ms) return "";
-  try {
-    return new Date(ms).toLocaleDateString(undefined, { day: "numeric", month: "short" }) +
-      " " + new Date(ms).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
-  } catch (e) {
-    return "";
-  }
-}
-
 async function download(url, name) {
   let resp;
   try {
@@ -129,12 +119,7 @@ export function initSidebar() {
     title.className = "conv-item-title";
     title.textContent = a.title || "(sans titre)";
     title.title = a.title || "";
-    const dateLine = document.createElement("div");
-    dateLine.className = "conv-item-date-line";
-    const n = a.messages || 0;
-    dateLine.textContent = n + " message" + (n > 1 ? "s" : "") + (a.updated ? " · " + fmtDate(a.updated) : "");
     content.appendChild(title);
-    content.appendChild(dateLine);
     content.addEventListener("click", () => restore(a.id));
 
     const actions = document.createElement("div");
@@ -191,6 +176,25 @@ export function initSidebar() {
     render();
   }
 
+  // Groupes de dates façon DeepSeek : Aujourd'hui / 7 derniers jours /
+  // 30 derniers jours / Plus anciens.
+  function sectionFor(a) {
+    const upd = a.updated || 0;
+    if (!upd) return "Plus anciens";
+    const day = 86400000;
+    const startOfDay = (ts) => {
+      const d = new Date(ts);
+      d.setHours(0, 0, 0, 0);
+      return d.getTime();
+    };
+    const days = Math.floor((startOfDay(Date.now()) - startOfDay(upd)) / day);
+    if (days <= 0) return "Aujourd'hui";
+    if (days < 7) return "7 derniers jours";
+    if (days < 30) return "30 derniers jours";
+    return "Plus anciens";
+  }
+  const SECTION_ORDER = ["Aujourd'hui", "7 derniers jours", "30 derniers jours", "Plus anciens"];
+
   function render() {
     if (!list) return;
     list.innerHTML = "";
@@ -202,7 +206,21 @@ export function initSidebar() {
       list.appendChild(empty);
       return;
     }
-    for (const a of items) list.appendChild(convItem(a));
+    const groups = new Map();
+    for (const a of items) {
+      const s = sectionFor(a);
+      if (!groups.has(s)) groups.set(s, []);
+      groups.get(s).push(a);
+    }
+    for (const s of SECTION_ORDER) {
+      const g = groups.get(s);
+      if (!g || !g.length) continue;
+      const header = document.createElement("div");
+      header.className = "conv-section-header";
+      header.textContent = s;
+      list.appendChild(header);
+      for (const a of g) list.appendChild(convItem(a));
+    }
     renderFavs();
   }
 
