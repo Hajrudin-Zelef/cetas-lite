@@ -718,6 +718,20 @@
 }
 
 /* ============================================================
+   Spinner de streaming (braille) — repris de Marexcode/CETAS complet.
+   Couleur = var(--accent) : suit le theme et la palette selectionnee.
+   ============================================================ */
+.stream-spinner {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-size: 1.1em;
+  line-height: 1;
+  color: var(--accent, #6c63ff);
+  font-family: monospace;
+}
+
+/* ============================================================
    Panneau Raisonnement (slide-out droit)
    ============================================================ */
 .reason-panel {
@@ -792,25 +806,61 @@
   font-style: italic;
   font-size: 0.8rem;
 }
-.reason-panel-reopen {
-  position: fixed;
-  right: 14px;
-  bottom: 96px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+
+/* Bloc informations de la requete (cf. capture : Modèle, Temps de
+   génération, Input, Output - t/s, Contexte, Coût). */
+.reason-info {
+  white-space: normal;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  line-height: 1.75;
+}
+.ri-row {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+.ri-k {
+  color: var(--text-secondary, #8b949e);
+  flex-shrink: 0;
+}
+.ri-accent {
+  color: var(--accent, #2563eb);
+  font-weight: 600;
+}
+/* En-tête "REASONING" au-dessus du texte de raisonnement. */
+.reason-sec {
+  white-space: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary, #8b949e);
+  margin: 2px 0 8px;
+}
+.reason-text {
+  white-space: pre-wrap;
+}
+
+/* Bouton "Raisonnement" au-dessus de chaque requete ayant produit du
+   raisonnement : reconsulte le panneau (remplace le bouton flottant). */
+.reason-btn {
+  align-self: flex-end;
+  margin: 2px 2px 6px 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--bg-sidebar);
-  color: var(--accent, #2563eb);
+  color: var(--text-secondary, #8b949e);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-  z-index: 119;
+  font-family: inherit;
 }
-.reason-panel-reopen:hover {
-  background: var(--bg-hover, rgba(127, 127, 127, 0.15));
+.reason-btn:hover {
+  color: var(--accent, #2563eb);
+  border-color: var(--accent, #2563eb);
 }
 
 /* ============================================================

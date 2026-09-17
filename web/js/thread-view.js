@@ -2,8 +2,14 @@ import { api, getToken, readSSE } from "./api.js";
 import { appendLinkified, createMarkdownRenderer } from "./markdown.js";
 import {
   appendReasoningPanel,
-  finishReasoningPanel,
+  beginReasonTurn,
+  finalizeReasonTurn,
+  finishReasoning,
+  reopenReasonPanel,
   resetReasonPanel,
+  restoreReasonSnapshot,
+  setReasonModel,
+  updateReasonUsage,
 } from "./reasoning-panel.js";
 import { setTurnStats } from "./turn-tokens.js";
 import { getFeaturePref } from "./model-select.js";
@@ -200,6 +206,12 @@ export class ThreadView {
     this.assistantStarted = false;
     this.reasoningEl = null;
     this.reasoningText = "";
+    this.reasoningActive = false;
+    this.reasonBtn = null;
+    this.reasonUserWrapper = null;
+    this.streamSpinnerEl = null;
+    this.streamSpinnerTimer = 0;
+    this.streamSpinnerIdx = 0;
     this.controller = null;
     this.generating = false;
     this.waitEl = null;
@@ -386,6 +398,7 @@ export class ThreadView {
 
   // Fige le rendu du message assistant en cours (fin de tour, outil, approbation).
   finalizeAssistant() {
+    this.stopStreamSpinner();
     if (this.assistantBody) mdRenderer.finalize(this.assistantBody, this.assistantText);
   }
 
@@ -396,6 +409,10 @@ export class ThreadView {
     this.assistantStarted = false;
     this.reasoningEl = null;
     this.reasoningText = "";
+    this.reasoningActive = false;
+    this.reasonBtn = null;
+    this.reasonUserWrapper = null;
+    this.stopStreamSpinner();
   }
 
   setBusy(v) {
@@ -411,6 +428,8 @@ export class ThreadView {
       this.waitIdx = (this.waitIdx + 1) % BRAILLE.length;
       if (this.waitEl && this.waitEl.firstChild) this.waitEl.firstChild.textContent = BRAILLE[this.waitIdx];
     }, 80);
+    // Node (tests) : ne pas retenir la boucle d'evenements.
+    if (this.waitTimer && typeof this.waitTimer.unref === "function") this.waitTimer.unref();
     this.toBottom();
   }
 
@@ -425,9 +444,64 @@ export class ThreadView {
     }
   }
 
+  // Spinner de streaming (braille, repris de Marexcode/CETAS complet) :
+  // visible a la fin du texte pendant que la reponse streame. La couleur
+  // suit var(--accent), donc theme + palette selectionnee.
+  startStreamSpinner() {
+    if (this.streamSpinnerEl) return;
+    this.ensureAssistant();
+    if (!this.assistantBody) return;
+    this.streamSpinnerEl = el("span", "stream-spinner", BRAILLE[0]);
+    this.assistantBody.appendChild(this.streamSpinnerEl);
+    this.streamSpinnerIdx = 0;
+    this.streamSpinnerTimer = setInterval(() => {
+      // Le moteur markdown peut retirer le spinner en re-rendant les
+      // blocs : on le re-ancre en fin de corps a chaque tick.
+      if (!this.streamSpinnerEl) return;
+      if (this.assistantBody && this.streamSpinnerEl.parentNode !== this.assistantBody) {
+        this.assistantBody.appendChild(this.streamSpinnerEl);
+      } else if (this.assistantBody && this.streamSpinnerEl !== this.assistantBody.lastChild) {
+        this.assistantBody.appendChild(this.streamSpinnerEl);
+      }
+      this.streamSpinnerIdx = (this.streamSpinnerIdx + 1) % BRAILLE.length;
+      this.streamSpinnerEl.textContent = BRAILLE[this.streamSpinnerIdx];
+    }, 80);
+    // Node (tests) : ne pas retenir la boucle d'evenements.
+    if (this.streamSpinnerTimer && typeof this.streamSpinnerTimer.unref === "function") {
+      this.streamSpinnerTimer.unref();
+    }
+  }
+
+  stopStreamSpinner() {
+    if (this.streamSpinnerTimer) {
+      clearInterval(this.streamSpinnerTimer);
+      this.streamSpinnerTimer = 0;
+    }
+    if (this.streamSpinnerEl) {
+      this.streamSpinnerEl.remove();
+      this.streamSpinnerEl = null;
+    }
+  }
+
   addUser(text) {
     this.clearEmpty();
     const wrapper = el("div", "message-wrapper message-wrapper-user");
+    // Bouton "Raisonnement" au-dessus de la requete : reconsulte le panneau
+    // une fois le raisonnement termine (visible seulement en mode panneau,
+    // i.e. vue principale, et quand le tour a produit du raisonnement).
+    if (this.reasonPanel) {
+      const btn = el("button", "reason-btn", "Raisonnement");
+      btn.type = "button";
+      btn.hidden = true;
+      btn.addEventListener("click", () => {
+        const snap = wrapper._reasonSnap;
+        if (snap && snap.text) restoreReasonSnapshot(snap);
+        else reopenReasonPanel();
+      });
+      wrapper.appendChild(btn);
+      this.reasonBtn = btn;
+      this.reasonUserWrapper = wrapper;
+    }
     const bubble = el("div", "message message-user");
     bubble.appendChild(el("div", "message-text", text));
     wrapper.appendChild(bubble);
@@ -457,6 +531,13 @@ export class ThreadView {
       this.assistantStarted = true;
       this.hideWait();
     }
+    // Fin de la phase de raisonnement : le panneau se masque tout seul.
+    if (this.reasoningActive) {
+      this.reasoningActive = false;
+      if (this.reasonPanel) finishReasoning();
+      else if (this.reasonHooks) this.reasonHooks.finish();
+    }
+    this.startStreamSpinner();
     // Streaming accelere (technique Marexcode) : update() bufferise et rend
     // au plus une fois par frame, en ne re-rendant que les blocs modifies.
     if (isReplace) {
@@ -488,6 +569,8 @@ export class ThreadView {
     }
     if (this.reasonPanel) {
       appendReasoningPanel(text, isReplace);
+      this.reasoningActive = true;
+      if (this.reasonBtn) this.reasonBtn.hidden = false;
       return;
     }
     const box = this.ensureReasoning().querySelector(".thinking-content");
@@ -511,6 +594,12 @@ export class ThreadView {
   }
 
   removeReasoning() {
+    if (this.reasonPanel) {
+      resetReasonPanel();
+      this.reasoningActive = false;
+      if (this.reasonBtn) this.reasonBtn.hidden = true;
+      return;
+    }
     if (this.reasoningEl) {
       this.reasoningEl.remove();
       this.reasoningEl = null;
@@ -769,8 +858,21 @@ export class ThreadView {
     this.setBusy(false);
     this.generating = false;
     if (this.stopBtn) this.stopBtn.hidden = true;
-    if (this.reasonPanel) finishReasoningPanel();
-    else if (this.reasonHooks) this.reasonHooks.finish();
+    if (this.reasonPanel) {
+      // Fige les infos du panneau et garde un instantane pour le bouton
+      // "Raisonnement" de la requete.
+      const snap = finalizeReasonTurn(this.turnElapsedMs);
+      if (this.reasonUserWrapper && snap.text && snap.text.trim()) {
+        this.reasonUserWrapper._reasonSnap = snap;
+        if (this.reasonBtn) this.reasonBtn.hidden = false;
+      }
+      // Sécurité : si le raisonnement n'a jamais basculé sur du contenu
+      // (tour sans réponse), on masque quand même le panneau.
+      if (this.reasoningActive) {
+        this.reasoningActive = false;
+        finishReasoning();
+      }
+    } else if (this.reasonHooks) this.reasonHooks.finish();
     if (box && raw.trim()) {
       this.addTurnStats(box);
       this.addActions(box, raw);
@@ -797,6 +899,10 @@ export class ThreadView {
     this.assistantStarted = false;
     this.reasoningEl = null;
     this.reasoningText = "";
+    this.reasoningActive = false;
+    this.reasonBtn = null;
+    this.reasonUserWrapper = null;
+    this.stopStreamSpinner();
     this.toolBoxes.clear();
     this.approvalCards.clear();
     this.searchStatus = null;
@@ -841,14 +947,16 @@ export class ThreadView {
       return;
     }
     if (ev.user !== undefined) {
-      this.addUser(String(ev.user));
       this.resetAssistantState();
+      this.addUser(String(ev.user));
       this.turnStartTs = Date.now();
       this.turnStats = null;
       this.turnRoute = null;
       this.turnElapsedMs = null;
-      if (this.reasonPanel) resetReasonPanel();
-      else if (this.reasonHooks) this.reasonHooks.reset();
+      if (this.reasonPanel) {
+        resetReasonPanel();
+        beginReasonTurn();
+      } else if (this.reasonHooks) this.reasonHooks.reset();
       this.generating = true;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.showWait();
@@ -887,6 +995,7 @@ export class ThreadView {
     if (ev.stats !== undefined) {
       const s = ev.stats || {};
       this.turnStats = s;
+      if (this.reasonPanel) updateReasonUsage(s);
       if (this.trackTokens) setTurnStats(s.prompt_tokens, s.completion_tokens);
       if (this.statsBadge) {
         this.statsBadge.hidden = false;
@@ -905,6 +1014,7 @@ export class ThreadView {
     if (ev.route !== undefined) {
       const r = ev.route || {};
       this.turnRoute = r;
+      if (this.reasonPanel) setReasonModel(r.label || r.model || "", r.provider || "", r.model || "");
       if (this.routeBadge) {
         this.routeBadge.hidden = false;
         const name = r.label || r.model || "";
