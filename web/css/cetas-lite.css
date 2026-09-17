@@ -944,6 +944,27 @@
   color: var(--accent, #2563eb);
   border-color: var(--accent, #2563eb);
 }
+/* Bloc de traduction DeepThink : affiché SOUS le raisonnement original,
+   jamais en remplacement. */
+.reason-translation {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border, #d0d7de);
+}
+.reason-trans-sec {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent, #2563eb);
+  margin-bottom: 6px;
+}
+.reason-translation-text {
+  white-space: pre-wrap;
+}
+.reason-translation-error .reason-translation-text {
+  color: var(--text-secondary, #8b949e);
+  font-style: italic;
+}
 /* DeepThink Global : titres de lignes de réglages. */
 .dt-row-title {
   font-weight: 600;

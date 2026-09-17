@@ -151,7 +151,7 @@ func (s *Server) handleDeepThinkTranslate(w http.ResponseWriter, r *http.Request
 		writeError(w, http.StatusBadGateway, err.Error())
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]any{"translation": out})
+	writeJSON(w, http.StatusOK, map[string]any{"translation": out, "lang": st.Lang})
 }
 
 // Cache des traductions : le meme raisonnement est souvent re-affiche

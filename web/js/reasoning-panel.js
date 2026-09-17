@@ -38,10 +38,151 @@ const turn = {
 // Cache des infos modele (contexte + tarifs) par "provider/model".
 const modelInfoCache = new Map();
 
-// Etat de la traduction DeepThink du tour affiché (bouton "Traduire" de
-// l'en-tête REASONING). Un clic traduit le texte via POST
-// /api/deepthink/translate ; un second clic revient à l'original.
-const tr = { active: false, busy: false, original: "" };
+// --- Traduction DeepThink ---
+// Le bouton "Traduire" ne remplace JAMAIS le raisonnement : la traduction
+// s'affiche SOUS l'original (bloc .reason-translation). Un clic traduit le
+// tour affiché immédiatement ET active le mode auto : chaque raisonnement
+// suivant est traduit automatiquement 5 secondes après sa fin. Un second
+// clic désactive le mode auto. Le mode auto persiste (localStorage).
+const DT_AUTO_KEY = "cetas.deepthink.auto";
+let dtAutoDelayMs = 5000;
+
+// Réglable pour les tests (évite d'attendre 5s réelles).
+export function _setAutoTranslateDelayForTests(ms) {
+  dtAutoDelayMs = ms;
+}
+
+let translating = false;
+let pendingAutoTimer = 0;
+
+function isAutoTranslate() {
+  try {
+    return localStorage.getItem(DT_AUTO_KEY) === "1";
+  } catch (e) {
+    return false;
+  }
+}
+
+function setAutoTranslate(on) {
+  try {
+    if (on) localStorage.setItem(DT_AUTO_KEY, "1");
+    else localStorage.removeItem(DT_AUTO_KEY);
+  } catch (e) {}
+}
+
+// État du bouton selon le mode auto (appelé à la création du bloc et à
+// chaque changement de mode).
+function refreshTranslateBtn() {
+  const b = body();
+  const btn = b && b.querySelector(".reason-translate-btn");
+  if (!btn) return;
+  if (isAutoTranslate()) {
+    btn.textContent = "🌐 Auto ✓";
+    btn.classList.add("on");
+    btn.title = "Traduction automatique activée — cliquer pour désactiver";
+  } else {
+    btn.textContent = "🌐 Traduire";
+    btn.classList.remove("on");
+    btn.title = "Traduire le raisonnement + activer la traduction auto (DeepThink Global)";
+  }
+  if (!translating) btn.disabled = false;
+}
+
+// Supprime le bloc de traduction affiché (nouveau contenu en streaming :
+// la traduction serait périmée).
+function clearTranslation() {
+  const b = body();
+  const box = b && b.querySelector(".reason-translation");
+  if (box) box.remove();
+}
+
+function translationBlock(translated, lang, isError) {
+  const box = el(
+    "div",
+    "reason-translation" + (isError ? " reason-translation-error" : "")
+  );
+  box.appendChild(
+    el("div", "reason-trans-sec", "TRADUCTION" + (lang ? " · " + String(lang).toUpperCase() : ""))
+  );
+  box.appendChild(el("div", "reason-translation-text", (isError ? "⚠ " : "") + translated));
+  return box;
+}
+
+// Traduit le raisonnement affiché et l'ajoute SOUS l'original (jamais de
+// remplacement). Rouvre le panneau sauf fermeture manuelle.
+async function translateCurrentTurn() {
+  const b = body();
+  const t = b && b.querySelector(".reason-text");
+  if (!t || translating) return;
+  const src = (t.textContent || "").trim();
+  if (!src || b.querySelector(".reason-translation")) return;
+  translating = true;
+  const btn = b.querySelector(".reason-translate-btn");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "…";
+  }
+  try {
+    const data = await api("/api/deepthink/translate", { method: "POST", body: { text: src } });
+    const translated = data && typeof data.translation === "string" ? data.translation.trim() : "";
+    if (!translated) throw new Error("Traduction vide.");
+    const b2 = body();
+    // Le bloc a pu être reconstruit pendant l'appel : on ne touche que le
+    // même nœud texte, sinon on annule.
+    if (b2 && b2.querySelector(".reason-text") === t) {
+      b2.appendChild(translationBlock(translated, (data && data.lang) || "", false));
+      if (!userClosed) openReasonPanel();
+      schedulePanelScroll();
+    }
+  } catch (e) {
+    const b2 = body();
+    if (b2 && b2.querySelector(".reason-text") === t) {
+      b2.appendChild(translationBlock((e && e.message) || "Échec de la traduction", "", true));
+    }
+  } finally {
+    translating = false;
+    refreshTranslateBtn();
+  }
+}
+
+// Clic sur le bouton : OFF -> traduit maintenant + active l'auto ;
+// ON -> désactive l'auto.
+async function toggleReasonTranslation() {
+  const b = body();
+  const btn = b && b.querySelector(".reason-translate-btn");
+  if (!b || !btn || translating) return;
+  if (isAutoTranslate()) {
+    setAutoTranslate(false);
+    refreshTranslateBtn();
+    return;
+  }
+  setAutoTranslate(true);
+  refreshTranslateBtn();
+  await translateCurrentTurn();
+}
+
+// Fin d'un raisonnement : si l'auto est actif, traduction automatique
+// 5 secondes après. Vérification d'identité au déclenchement : si le
+// panneau affiche un autre texte entre-temps, on annule.
+function scheduleAutoTranslate() {
+  if (pendingAutoTimer) {
+    clearTimeout(pendingAutoTimer);
+    pendingAutoTimer = 0;
+  }
+  if (!isAutoTranslate()) return;
+  const b = body();
+  const t = b && b.querySelector(".reason-text");
+  const src = t ? (t.textContent || "").trim() : "";
+  if (!src) return;
+  pendingAutoTimer = setTimeout(() => {
+    pendingAutoTimer = 0;
+    const b2 = body();
+    const t2 = b2 && b2.querySelector(".reason-text");
+    if (!t2 || (t2.textContent || "").trim() !== src) return;
+    translateCurrentTurn();
+  }, dtAutoDelayMs);
+  if (pendingAutoTimer && typeof pendingAutoTimer.unref === "function") pendingAutoTimer.unref();
+}
 
 function panel() {
   return document.getElementById("reason-panel");
@@ -111,73 +252,12 @@ function ensureInfoBlock() {
   tbtn.addEventListener("click", toggleReasonTranslation);
   sec.appendChild(tbtn);
   b.appendChild(sec);
+  refreshTranslateBtn(); // reflète le mode auto persisté
   const t = el("div", "reason-text");
   b.appendChild(t);
   startTick();
   // Le modele et ses infos ont pu arriver avant le premier delta.
   renderUsage();
-}
-
-// Remet le bouton de traduction à l'état initial (nouveau tour, nouvel
-// instantané, ou nouveau contenu en streaming : la traduction affichée
-// serait périmée).
-function resetReasonTranslation() {
-  tr.active = false;
-  tr.busy = false;
-  tr.original = "";
-  const b = body();
-  const btn = b && b.querySelector(".reason-translate-btn");
-  if (btn) {
-    btn.textContent = "🌐 Traduire";
-    btn.classList.remove("on");
-    btn.disabled = false;
-    btn.title = "Traduire le raisonnement (DeepThink Global)";
-  }
-}
-
-// Bascule original <-> traduction du raisonnement affiché.
-async function toggleReasonTranslation() {
-  const b = body();
-  const t = b && b.querySelector(".reason-text");
-  const btn = b && b.querySelector(".reason-translate-btn");
-  if (!t || !btn || tr.busy) return;
-  if (tr.active) {
-    t.textContent = tr.original;
-    resetReasonTranslation();
-    return;
-  }
-  const src = t.textContent || "";
-  if (!src.trim()) return;
-  tr.busy = true;
-  tr.original = src;
-  btn.disabled = true;
-  btn.textContent = "…";
-  try {
-    const data = await api("/api/deepthink/translate", {
-      method: "POST",
-      body: { text: src },
-    });
-    const translated = data && typeof data.translation === "string" ? data.translation.trim() : "";
-    if (!translated) throw new Error("Traduction vide.");
-    // Le stream a pu avancer pendant l'appel : l'original de repli est le
-    // texte le plus récent, pas celui envoyé à la traduction.
-    tr.original = t.textContent;
-    t.textContent = translated;
-    tr.active = true;
-    btn.textContent = "↩ Original";
-    btn.classList.add("on");
-    btn.title = "Revenir au raisonnement original";
-  } catch (e) {
-    btn.textContent = "⚠ Réessayer";
-    btn.title = (e && e.message) || "Échec de la traduction";
-    const retryT = setTimeout(() => {
-      if (!tr.active && !tr.busy) resetReasonTranslation();
-    }, 3000);
-    if (retryT && typeof retryT.unref === "function") retryT.unref();
-  } finally {
-    tr.busy = false;
-    btn.disabled = false;
-  }
 }
 
 function riRow(label, valueCls, value, accent) {
@@ -310,7 +390,7 @@ export function beginReasonTurn(info) {
   turn.outputPer1M = null;
   turn.cost = null;
   turn.elapsedMs = null;
-  resetReasonTranslation();
+  clearTranslation();
 }
 
 // L'evenement route apporte le modele : met a jour le bloc infos et
@@ -329,7 +409,6 @@ export function setReasonModel(label, provider, model) {
 export function resetReasonPanel() {
   userClosed = false;
   stopTick();
-  resetReasonTranslation();
   turn.modelLabel = "";
   turn.provider = "";
   turn.model = "";
@@ -351,14 +430,8 @@ export function resetReasonPanel() {
 
 export function appendReasoningPanel(text, replace) {
   ensureInfoBlock();
-  if (tr.active) {
-    // Le stream a repris alors qu'une traduction était affichée : on
-    // revient à l'original avant d'ajouter le nouveau contenu.
-    const b0 = body();
-    const t0 = b0 && b0.querySelector(".reason-text");
-    if (t0) t0.textContent = tr.original;
-    resetReasonTranslation();
-  }
+  // Nouveau contenu en streaming : la traduction affichée serait périmée.
+  clearTranslation();
   const b = body();
   if (!b) return;
   let t = b.querySelector(".reason-text");
@@ -396,10 +469,12 @@ export function updateReasonUsage(stats) {
 }
 
 // Fin de la phase de raisonnement : le panneau se masque automatiquement.
+// Si le mode auto DeepThink est actif, la traduction démarre 5 secondes après.
 export function finishReasoning() {
   setReasoningStreaming(false);
   stopTick();
   renderTime();
+  scheduleAutoTranslate();
   closeReasonPanel(false);
 }
 
@@ -412,8 +487,9 @@ export function finalizeReasonTurn(elapsedMs) {
   renderUsage();
   const b = body();
   const t = b && b.querySelector(".reason-text");
-  // L'instantané garde toujours le texte ORIGINAL, jamais la traduction.
-  const snapText = t ? (tr.active ? tr.original : t.textContent) : "";
+  // Le texte du raisonnement n'est jamais remplacé (la traduction s'affiche
+  // dans un bloc séparé) : l'instantané contient toujours l'original.
+  const snapText = t ? t.textContent : "";
   return {
     modelLabel: turn.modelLabel,
     startTs: turn.startTs,

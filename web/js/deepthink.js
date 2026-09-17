@@ -87,7 +87,7 @@ function render(bodyEl, data) {
   const note = el(
     "p",
     "apikey-intro",
-    "Le bouton 🌐 de l'en-tête REASONING (panneau latéral) traduit le raisonnement affiché dans la langue choisie, via le modèle traducteur. Un second clic revient au texte original."
+    "Le bouton 🌐 de l'en-tête REASONING (panneau latéral) traduit le raisonnement affiché et l'affiche sous l'original — sans jamais le remplacer. Le premier clic active aussi le mode auto : chaque raisonnement suivant est traduit automatiquement 5 secondes après sa fin. Un second clic désactive l'auto."
   );
   note.style.marginTop = "14px";
   bodyEl.appendChild(note);

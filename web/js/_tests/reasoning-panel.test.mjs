@@ -333,100 +333,192 @@ describe("thread-view : bouton par réponse + loader rond", () => {
   });
 });
 
+
 describe("panneau raisonnement : traduction DeepThink", () => {
-  function setupTranslated() {
-    setupPanelDom();
-    panelMod.resetReasonPanel();
-    panelMod.beginReasonTurn({ label: "X", provider: "p", model: "m" });
-    panelMod.appendReasoningPanel("The user says hello.");
-    return {
-      btn: document.querySelector(".reason-translate-btn"),
-      text: () => document.querySelector(".reason-text").textContent,
+  let translateCalls;
+  let translateShouldFail;
+
+  // Mock fetch : compte les appels de traduction, jamais de remplacement.
+  function mockFetchTranslate() {
+    translateCalls = [];
+    translateShouldFail = false;
+    globalThis.fetch = async (url, opts) => {
+      if (String(url).includes("/api/deepthink/translate")) {
+        const body = JSON.parse(opts.body);
+        translateCalls.push(body.text);
+        if (translateShouldFail) {
+          return {
+            ok: false,
+            status: 500,
+            statusText: "boom",
+            text: async () => "boom",
+          };
+        }
+        return {
+          ok: true,
+          text: async () => JSON.stringify({ translation: "TRADUIT: " + body.text, lang: "fr" }),
+        };
+      }
+      throw new Error("fetch inattendu: " + url);
     };
   }
 
-  test("clic -> traduit, second clic -> revient à l'original", async () => {
-    translateCalls.length = 0;
-    const { btn, text } = setupTranslated();
+  function setupTranslated() {
+    mockFetchTranslate();
+    localStorage.removeItem("cetas.deepthink.auto");
+    panelMod._setAutoTranslateDelayForTests(5000);
+    setupPanelDom();
+    panelMod.resetReasonPanel();
+    panelMod.beginReasonTurn({ label: "MiMo", provider: "opencode", model: "xiaomi/mimo-v2.5" });
+    panelMod.appendReasoningPanel("The user says hello.");
+  }
+
+  function teardownTranslated() {
+    panelMod.resetReasonPanel();
+    localStorage.removeItem("cetas.deepthink.auto");
+    panelMod._setAutoTranslateDelayForTests(5000);
+    document.body.innerHTML = "";
+  }
+
+  function clickTranslateBtn() {
+    const btn = document.querySelector(".reason-translate-btn");
+    assert.ok(btn, "bouton Traduire présent");
+    btn.click();
+  }
+
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  test("clic : traduction affichée SOUS l'original, jamais de remplacement, auto activé", async () => {
+    setupTranslated();
     try {
-      btn.click();
-      await flush();
-      await flush();
-      assert.equal(translateCalls.length, 1, "un appel POST /api/deepthink/translate");
-      assert.equal(translateCalls[0], "The user says hello.", "le texte source est envoyé");
-      assert.ok(text().startsWith("TRADUIT:"), "traduction affichée, obtenu " + text());
-      assert.equal(btn.textContent, "↩ Original");
-      assert.ok(btn.classList.contains("on"));
-      btn.click();
-      assert.equal(text(), "The user says hello.", "retour au texte original");
-      assert.equal(btn.textContent, "🌐 Traduire");
-      assert.ok(!btn.classList.contains("on"));
+      clickTranslateBtn();
+      await wait(50);
+      assert.equal(translateCalls.length, 1, "un appel /api/deepthink/translate");
+      assert.equal(translateCalls[0], "The user says hello.", "texte original envoyé");
+      // L'original est intact…
+      const t = document.querySelector(".reason-text");
+      assert.equal(t.textContent, "The user says hello.", "original non remplacé");
+      // …et la traduction est affichée en dessous.
+      const box = document.querySelector(".reason-translation");
+      assert.ok(box, "bloc de traduction présent");
+      assert.match(box.textContent, /TRADUCTION · FR/, "en-tête avec la langue");
+      assert.match(box.textContent, /TRADUIT: The user says hello\./, "traduction affichée");
+      // Le bouton est passé en mode auto.
+      const btn = document.querySelector(".reason-translate-btn");
+      assert.equal(btn.textContent, "🌐 Auto ✓", "bouton en mode auto");
+      assert.equal(localStorage.getItem("cetas.deepthink.auto"), "1", "auto persisté");
     } finally {
-      panelMod.resetReasonPanel();
-      document.body.innerHTML = "";
+      teardownTranslated();
     }
   });
 
-  test("nouveau delta après traduction -> retour à l'original", async () => {
-    const { btn, text } = setupTranslated();
+  test("second clic : désactive l'auto, la traduction affichée reste", async () => {
+    setupTranslated();
     try {
-      btn.click();
-      await flush();
-      await flush();
-      assert.ok(text().startsWith("TRADUIT:"));
-      panelMod.appendReasoningPanel(" And more.");
-      assert.equal(text(), "The user says hello. And more.", "original restauré + delta ajouté");
-      assert.equal(btn.textContent, "🌐 Traduire", "bouton réinitialisé");
+      clickTranslateBtn();
+      await wait(50);
+      assert.ok(document.querySelector(".reason-translation"), "traduction affichée");
+      clickTranslateBtn();
+      await wait(20);
+      const btn = document.querySelector(".reason-translate-btn");
+      assert.equal(btn.textContent, "🌐 Traduire", "bouton revenu à l'état initial");
+      assert.equal(localStorage.getItem("cetas.deepthink.auto"), null, "auto désactivé");
+      assert.equal(translateCalls.length, 1, "aucun nouvel appel de traduction");
+      assert.ok(document.querySelector(".reason-translation"), "traduction conservée à l'écran");
     } finally {
-      panelMod.resetReasonPanel();
-      document.body.innerHTML = "";
+      teardownTranslated();
     }
   });
 
-  test("échec de traduction -> bouton Réessayer", async () => {
-    translateShouldFail = true;
-    const { btn, text } = setupTranslated();
+  test("auto : 5s après la fin du raisonnement, traduction automatique sous l'original", async () => {
+    setupTranslated();
+    panelMod._setAutoTranslateDelayForTests(40);
+    localStorage.setItem("cetas.deepthink.auto", "1");
     try {
-      btn.click();
-      await flush();
-      await flush();
-      assert.equal(btn.textContent, "⚠ Réessayer");
-      assert.equal(text(), "The user says hello.", "le texte original est conservé");
+      panelMod.finishReasoning();
+      assert.equal(translateCalls.length, 0, "pas de traduction immédiate");
+      await wait(200);
+      assert.equal(translateCalls.length, 1, "traduction auto déclenchée après le délai");
+      const t = document.querySelector(".reason-text");
+      assert.equal(t.textContent, "The user says hello.", "original intact");
+      const box = document.querySelector(".reason-translation");
+      assert.ok(box, "traduction auto affichée");
+      assert.match(box.textContent, /TRADUIT: The user says hello\./);
     } finally {
-      translateShouldFail = false;
-      panelMod.resetReasonPanel();
-      document.body.innerHTML = "";
+      teardownTranslated();
     }
   });
 
-  test("finalizeReasonTurn garde le texte original dans l'instantané", async () => {
-    const { btn } = setupTranslated();
+  test("auto : si le texte a changé entre-temps, la traduction est annulée", async () => {
+    setupTranslated();
+    panelMod._setAutoTranslateDelayForTests(40);
+    localStorage.setItem("cetas.deepthink.auto", "1");
     try {
-      btn.click();
-      await flush();
-      await flush();
+      panelMod.finishReasoning();
+      // Un nouveau contenu arrive avant la fin du délai (tour suivant).
+      panelMod.appendReasoningPanel("Contenu du tour suivant.");
+      await wait(200);
+      assert.equal(translateCalls.length, 0, "traduction annulée (texte différent)");
+      assert.equal(document.querySelector(".reason-translation"), null, "aucun bloc affiché");
+    } finally {
+      teardownTranslated();
+    }
+  });
+
+  test("auto : pas de double traduction si déjà traduite (clic manuel)", async () => {
+    setupTranslated();
+    panelMod._setAutoTranslateDelayForTests(40);
+    try {
+      clickTranslateBtn(); // traduit maintenant + active l'auto
+      await wait(50);
+      assert.equal(translateCalls.length, 1, "traduction manuelle faite");
+      panelMod.finishReasoning(); // fin du même raisonnement
+      await wait(200);
+      assert.equal(translateCalls.length, 1, "pas de second appel (déjà traduite)");
+    } finally {
+      teardownTranslated();
+    }
+  });
+
+  test("échec de traduction : bloc d'erreur sous l'original, original intact", async () => {
+    setupTranslated();
+    try {
+      translateShouldFail = true;
+      clickTranslateBtn();
+      await wait(50);
+      const t = document.querySelector(".reason-text");
+      assert.equal(t.textContent, "The user says hello.", "original intact après échec");
+      const box = document.querySelector(".reason-translation-error");
+      assert.ok(box, "bloc d'erreur affiché");
+      assert.match(box.textContent, /⚠/, "marqueur d'erreur présent");
+    } finally {
+      teardownTranslated();
+    }
+  });
+
+  test("le bouton reflète le mode auto persisté à la reconstruction du bloc", async () => {
+    setupTranslated();
+    try {
+      localStorage.setItem("cetas.deepthink.auto", "1");
+      panelMod.resetReasonPanel();
+      panelMod.beginReasonTurn({ label: "MiMo", provider: "opencode", model: "xiaomi/mimo-v2.5" });
+      panelMod.appendReasoningPanel("Bonjour.");
+      const btn = document.querySelector(".reason-translate-btn");
+      assert.equal(btn.textContent, "🌐 Auto ✓", "mode auto restauré après rebuild");
+    } finally {
+      teardownTranslated();
+    }
+  });
+
+  test("finalizeReasonTurn : l'instantané garde toujours le texte original", async () => {
+    setupTranslated();
+    try {
+      clickTranslateBtn();
+      await wait(50);
       const snap = panelMod.finalizeReasonTurn(1200);
-      assert.equal(snap.text, "The user says hello.", "l'instantané ne contient pas la traduction");
+      assert.equal(snap.text, "The user says hello.", "instantané = original");
     } finally {
-      panelMod.resetReasonPanel();
-      document.body.innerHTML = "";
-    }
-  });
-
-  test("nouveau tour -> bouton réinitialisé", async () => {
-    const { btn, text } = setupTranslated();
-    try {
-      btn.click();
-      await flush();
-      await flush();
-      assert.ok(text().startsWith("TRADUIT:"));
-      // Nouveau tour : le bloc persiste mais l'état de traduction est remis à zéro.
-      panelMod.beginReasonTurn({ label: "Y", provider: "p", model: "m" });
-      assert.equal(btn.textContent, "🌐 Traduire", "bouton réinitialisé au nouveau tour");
-      assert.ok(!btn.classList.contains("on"));
-    } finally {
-      panelMod.resetReasonPanel();
-      document.body.innerHTML = "";
+      teardownTranslated();
     }
   });
 });
