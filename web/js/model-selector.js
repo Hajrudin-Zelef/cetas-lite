@@ -73,15 +73,26 @@ export function fmtPrice(m) {
   return f(m.input_per_1m) + " → " + f(m.output_per_1m) + " /1M";
 }
 
-let selectorLoaded = false;
+const BODY_MAIN = "selector-body";
+const BODY_AGENT = "selector-agent-body";
+const SAVE_MAIN = "selector-save-state";
+const SAVE_AGENT = "selector-agent-save-state";
+// Onglet actif ("selector" = chat, "selector-agent" = vue Agents) : détermine
+// le corps et l'indicateur de sauvegarde utilisés par les helpers.
+let activeTab = "selector";
+const loadedBodies = { [BODY_MAIN]: false, [BODY_AGENT]: false };
 let families = [];
 let defaults = [];
 let staged = {};
 let discovered = {}; // engine -> [ids]
 let saveTimer = null;
 
+function activeBodyId() {
+  return activeTab === "selector-agent" ? BODY_AGENT : BODY_MAIN;
+}
+
 function setSaveState(txt, cls) {
-  const el = document.getElementById("selector-save-state");
+  const el = document.getElementById(activeTab === "selector-agent" ? SAVE_AGENT : SAVE_MAIN);
   if (!el) return;
   el.textContent = txt;
   el.className = "ms-save-state" + (cls ? " " + cls : "");
@@ -134,7 +145,7 @@ async function persist() {
     families = data.families || families;
     setSaveState("Enregistré ✓", "ms-ok");
     setTimeout(() => setSaveState("", ""), 2500);
-    window.dispatchEvent(new CustomEvent("cetas:aliases-changed", { detail: { source: "selector" } }));
+    window.dispatchEvent(new CustomEvent("cetas:aliases-changed", { detail: { source: activeTab } }));
   } catch (e) {
     setSaveState("Erreur : " + (e.message || e), "ms-err");
   }
@@ -142,7 +153,20 @@ async function persist() {
 
 function schedulePersist() {
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(persist, 450);
+  // Fige l'onglet d'origine : l'utilisateur peut changer d'onglet pendant
+  // le debounce, la sauvegarde doit rester rattachée au bon panneau.
+  const tab = activeTab;
+  saveTimer = setTimeout(() => persistAs(tab), 450);
+}
+
+async function persistAs(tab) {
+  const prev = activeTab;
+  activeTab = tab;
+  try {
+    await persist();
+  } finally {
+    activeTab = prev;
+  }
 }
 
 function setModeSelection(famId, modeId, members) {
@@ -276,14 +300,21 @@ function refreshModeCard(fam, mode) {
       if (fam.local) m.pool = [];
     }
   }
-  const body = document.getElementById("selector-body");
+  const body = document.getElementById(activeBodyId());
   if (body) {
     const idx = [...body.querySelectorAll(".ms-family-card")].findIndex((c) => c.dataset.fam === fam.id);
     if (idx >= 0) {
-      const fresh = renderFamilyCard(fam);
+      const fresh = renderFamilyCard(filterFamilyForTab(fam));
       body.children[idx].replaceWith(fresh);
     }
   }
+}
+
+// Vue filtrée d'une famille pour l'onglet actif : l'onglet agent ne montre
+// que les modes agent (m.agent), l'onglet principal montre tout.
+function filterFamilyForTab(fam) {
+  if (activeTab !== "selector-agent") return fam;
+  return { ...fam, modes: (fam.modes || []).filter((m) => m.agent) };
 }
 
 function renderFamilyCard(fam) {
@@ -300,9 +331,20 @@ function renderFamilyCard(fam) {
 }
 
 export async function loadSelectorPanel() {
-  const body = document.getElementById("selector-body");
-  if (!body || selectorLoaded) return;
-  selectorLoaded = true;
+  return loadInto("selector", BODY_MAIN);
+}
+
+// Onglet "Sélecteur agent" : mêmes réglages (1 modèle / Fallback) mais
+// limités aux familles et modes agent (vue Agents).
+export async function loadAgentSelectorPanel() {
+  return loadInto("selector-agent", BODY_AGENT);
+}
+
+async function loadInto(tab, bodyId) {
+  activeTab = tab;
+  const body = document.getElementById(bodyId);
+  if (!body || loadedBodies[bodyId]) return;
+  loadedBodies[bodyId] = true;
   body.innerHTML = "";
   body.appendChild(el("div", "ms-loading", "Chargement…"));
   try {
@@ -325,33 +367,37 @@ export async function loadSelectorPanel() {
   } catch (e) {
     body.innerHTML = "";
     body.appendChild(el("div", "ms-empty", "Impossible de charger : " + (e.message || e)));
-    selectorLoaded = false;
+    loadedBodies[bodyId] = false;
     return;
   }
   body.innerHTML = "";
   const order = ["samagent-nano", "samagent-n4", "samagent-n8", "code", "samgen"];
   const sorted = [...families].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   for (const fam of sorted) {
-    body.appendChild(renderFamilyCard(fam));
+    const view = filterFamilyForTab(fam);
+    if ((view.modes || []).length === 0) continue;
+    body.appendChild(renderFamilyCard(view));
   }
 }
 
-// Rafraîchit le panneau après une sauvegarde externe.
+// Rafraîchit les panneaux après une sauvegarde externe.
 export function resetSelectorPanel() {
-  selectorLoaded = false;
+  loadedBodies[BODY_MAIN] = false;
+  loadedBodies[BODY_AGENT] = false;
 }
 
 if (typeof window !== "undefined") {
-  // Le menu + peut modifier les overrides (Auto / choix manuel par mode) :
-  // recharger le panneau s'il est affiché. On ignore notre propre sauvegarde
-  // (source: "selector"), déjà reflétée dans l'état local.
+  // Le menu + ou l'autre onglet peut modifier les overrides : recharger le
+  // panneau affiché. On ignore notre propre sauvegarde (déjà reflétée).
   window.addEventListener("cetas:aliases-changed", (e) => {
-    if (e.detail && e.detail.source === "selector") return;
-    if (!selectorLoaded) return;
-    const body = document.getElementById("selector-body");
-    if (body && body.isConnected) {
-      selectorLoaded = false;
-      loadSelectorPanel();
+    const src = e.detail && e.detail.source;
+    for (const [bodyId, tab] of [[BODY_MAIN, "selector"], [BODY_AGENT, "selector-agent"]]) {
+      if (src === tab || !loadedBodies[bodyId]) continue;
+      const body = document.getElementById(bodyId);
+      if (body && body.isConnected) {
+        loadedBodies[bodyId] = false;
+        loadInto(tab, bodyId);
+      }
     }
   });
 }

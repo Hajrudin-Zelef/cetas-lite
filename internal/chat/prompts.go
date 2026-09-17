@@ -27,6 +27,7 @@ func agentSystemPrompt() string {
 		"before finishing; never declare victory without verification.\n" +
 		"Rules: act immediately, call the right tool instead of guessing. Framed unix tools: Tree/Cat/Echo free; Mkdir/Mv/Curl need approval; Sed/Awk need approval only for in-place or side effects. GitHub tools (GitHubRepos/Issues/PRs…) use the connected GitHub account; creations, comments and merges need approval. Files stay in your workspace; " +
 		"use the Write/Edit tools, never shell redirection. The shell is bash without pipes or redirection.\n" +
+		"Be concise: match response length to the task — a greeting or simple question gets a short reply, no tools, no padding.\n" +
 		"Always answer in the user's language. Date: " + time.Now().Format("2006-01-02")
 }
 
@@ -56,12 +57,22 @@ func thinkDirective(agent, think bool, effort string) string {
 	if !think {
 		return "Answer directly and concisely. Do not engage in extended reasoning; give the answer straight away."
 	}
-	var base string
 	if agent {
-		base = "Reasoning is mandatory: think carefully through the task before answering or calling tools."
-	} else {
-		base = "Reasoning is enabled: think before answering."
+		// L'agent réfléchit toujours, mais le volume de raisonnement doit
+		// rester proportionnel à la tâche : un simple "salut" ne doit pas
+		// générer des milliers de tokens de réflexion.
+		switch effort {
+		case "low":
+			return "Reasoning is mandatory but brief: a few short sentences at most, then answer or act. " +
+				"For trivial messages (greetings, simple questions), answer directly with minimal reasoning and no tool calls unless truly needed."
+		case "high":
+			return "Reasoning is mandatory: think carefully through the task before answering or calling tools."
+		default: // medium ou effort résolu par défaut
+			return "Reasoning is mandatory: think through the task before answering or calling tools, " +
+				"but keep reasoning concise and proportional to the task — no padding."
+		}
 	}
+	base := "Reasoning is enabled: think before answering."
 	switch effort {
 	case "low", "medium", "high":
 		return base + " Requested reasoning effort: " + effort + "."

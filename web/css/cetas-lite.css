@@ -919,6 +919,15 @@
 .reason-text {
   white-space: pre-wrap;
 }
+/* Vue Agents : le texte de raisonnement du panneau latéral n'a aucune
+   couleur définie et hérite d'un contexte sombre -> invisible sur fond
+   noir. On force la couleur claire du thème Marex (toujours dark).
+   (marex-agents.css est généré : ne pas y toucher.) */
+#marex-view .side-panel-body .reason-text {
+  color: var(--text-primary, #f2f2f4);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
 
 /* Bouton "Raisonnement" au-dessus de chaque requete ayant produit du
    raisonnement : reconsulte le panneau (remplace le bouton flottant). */

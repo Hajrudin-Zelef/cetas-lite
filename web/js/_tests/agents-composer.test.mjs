@@ -1,6 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const read = (p) => fs.readFileSync(path.join(__dirname, "..", "..", p), "utf8");
 // jsdom : résolution standard (node_modules du projet) puis repli /tmp.
 const require = createRequire(import.meta.url);
 let JSDOM;
@@ -45,10 +50,11 @@ await new Promise((r) => setTimeout(r, 50));
 const $ = (s) => document.querySelector(s);
 const view = $("#marex-view");
 
-test("composer agent : globe + thinking + effort presents", () => {
+test("composer agent : globe + effort presents, pas d'interrupteur thinking", () => {
   assert.ok(view, "vue agents montée");
   assert.ok($("#mx-web"), "bouton globe");
-  assert.ok($("#mx-think"), "bouton thinking");
+  // Réflexion obligatoire pour l'agent : plus d'interrupteur on/off.
+  assert.equal($("#mx-think"), null, "pas de bouton thinking");
   assert.ok($("#mx-btn-effort"), "sélecteur effort");
   assert.ok($("#mx-menu-effort"), "menu effort");
 });
@@ -65,25 +71,11 @@ test("globe : bascule active et persistance", () => {
   assert.equal(localStorage.getItem("mx.mx_web"), "0");
 });
 
-test("thinking : interrupteur réel, N&B éteint / couleur allumé, persisté", () => {
-  const btn = $("#mx-think");
-  localStorage.removeItem("mx.mx_think");
-  // État initial : actif (défaut), couleur, sans verrou.
-  assert.ok(btn.classList.contains("active"), "actif par défaut");
-  assert.ok(!btn.classList.contains("locked"), "cliquable, plus verrouillé");
-  assert.ok(!btn.classList.contains("off"), "pas en N&B");
-  assert.equal(btn.getAttribute("aria-pressed"), "true");
-  // Clic : extinction -> noir et blanc.
-  btn.click();
-  assert.ok(btn.classList.contains("off"), "N&B quand éteint");
-  assert.ok(!btn.classList.contains("active"), "plus de couleur");
-  assert.equal(btn.getAttribute("aria-pressed"), "false");
-  assert.equal(localStorage.getItem("mx.mx_think"), "0", "persisté éteint");
-  // Re-clic : rallumage.
-  btn.click();
-  assert.ok(btn.classList.contains("active"), "couleur quand allumé");
-  assert.ok(!btn.classList.contains("off"), "plus de N&B");
-  assert.equal(localStorage.getItem("mx.mx_think"), "1", "persisté allumé");
+test("thinking : toujours actif pour l'agent (pas d'interrupteur)", () => {
+  assert.equal($("#mx-think"), null, "l'interrupteur thinking n'existe plus");
+  // La réflexion reste obligatoire : le payload doit forcer think: true.
+  const src = read("js/agents.js");
+  assert.match(src, /think:\s*true,\s*\/\/ réflexion obligatoire/);
 });
 
 test("effort : 4 options, labels FR, persistance", () => {

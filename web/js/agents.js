@@ -166,7 +166,6 @@ const VIEW_HTML = `
                 <div class="cdrop-menu" id="mx-menu-plus"></div>
               </div>
               <button class="icon-btn" id="mx-web" title="Recherche web" aria-label="Recherche web">${I.globe}</button>
-              <button class="icon-btn" id="mx-think" title="Réflexion : activée" aria-label="Réflexion" aria-pressed="true">${I.think}</button>
               <div class="cdrop" id="mx-dd-effort">
                 <button class="selector" id="mx-btn-effort" title="Niveau d'effort de réflexion">${I.think}<span id="mx-label-effort">Défaut</span>${I.chevron}</button>
                 <div class="cdrop-menu" id="mx-menu-effort"></div>
@@ -382,11 +381,10 @@ export function initAgents() {
   }
   let repo = LS.get("repo", "");
   let useWorktree = LS.get("worktree", "1") !== "0";
-  // Globe (recherche web) et effort de réflexion (thinking obligatoire).
+  // Globe (recherche web) et effort de réflexion (thinking obligatoire :
+  // l'agent réfléchit toujours, pas d'interrupteur).
   let mxWeb = LS.get("mx_web", "0") === "1";
   let mxEffort = LS.get("mx_effort", "default");
-  // Thinking de l'agent : interrupteur réel (défaut actif, comme avant).
-  let mxThink = LS.get("mx_think", "1") === "1";
   // Profondeur de recherche web : "standard" | "deep".
   let mxWebDepth = LS.get("mx_webdepth", "standard") === "deep" ? "deep" : "standard";
   // Pièces jointes du tour en cours (ids renvoyés par /api/chat/attach).
@@ -483,21 +481,6 @@ export function initAgents() {
     mxWeb = !mxWeb;
     LS.set("mx_web", mxWeb ? "1" : "0");
     refreshMxWeb();
-  });
-  // ---------------- thinking (interrupteur réel) ----------------
-  function refreshMxThink() {
-    const b = $("#mx-think");
-    // Allumé : couleur (accent). Éteint : noir et blanc.
-    b.classList.toggle("active", mxThink);
-    b.classList.toggle("off", !mxThink);
-    b.classList.remove("locked");
-    b.title = mxThink ? "Réflexion : activée" : "Réflexion : désactivée";
-    b.setAttribute("aria-pressed", mxThink ? "true" : "false");
-  }
-  $("#mx-think").addEventListener("click", () => {
-    mxThink = !mxThink;
-    LS.set("mx_think", mxThink ? "1" : "0");
-    refreshMxThink();
   });
 
   // ---------------- pièces jointes : input + glisser-déposer ----------------
@@ -1281,7 +1264,7 @@ function buildThread(id) {
         plan: PERMS[perm].plan,
         web: mxWeb,
         web_depth: mxWebDepth,
-        think: mxThink,
+        think: true, // réflexion obligatoire pour l'agent
         effort: mxEffort,
       };
       if (mxAttachments.length) p.attachments = mxAttachments.map((a) => a.id);
@@ -1370,7 +1353,7 @@ async function send() {
           project_id: Projects.activeId || undefined,
           web: mxWeb,
           web_depth: mxWebDepth,
-          think: mxThink,
+          think: true, // réflexion obligatoire pour l'agent
           effort: mxEffort,
           attachments: mxAttachments.length ? mxAttachments.map((a) => a.id) : undefined,
         },
@@ -1625,7 +1608,6 @@ refreshProjectLabels();
 renderProjects();
 Projects.refresh(); // charge /api/projects (+ projet actif), re-rend via onChange
 refreshMxWeb();
-refreshMxThink();
 loadMxSkills(); // recharge aussi le menu + (compteur de compétences)
 mxResetReason();
 syncUndoBtns();

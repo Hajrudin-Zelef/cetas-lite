@@ -102,7 +102,9 @@ test("modals.js importe bien loadSelectorPanel depuis model-selector.js", async 
   const m = src.match(/import\s*\{([^}]+)\}\s*from\s*"\.\/model-selector\.js"/);
   assert.ok(m, "import de model-selector.js trouvé dans modals.js");
   assert.ok(m[1].split(",").map((s) => s.trim()).includes("loadSelectorPanel"));
+  assert.ok(m[1].split(",").map((s) => s.trim()).includes("loadAgentSelectorPanel"));
   assert.ok(src.includes('tab.dataset.tab === "selector"'), "onglet selector câblé");
+  assert.ok(src.includes('tab.dataset.tab === "selector-agent"'), "onglet selector-agent câblé");
 });
 
 test("index.html : onglet + panneau sélecteur présents", async () => {
@@ -112,4 +114,19 @@ test("index.html : onglet + panneau sélecteur présents", async () => {
   assert.ok(html.includes('id="panel-selector"'), "panneau sélecteur");
   assert.ok(html.includes('id="selector-body"'), "conteneur selector-body");
   assert.ok(html.includes("mx-model-selector.css"), "CSS du sélecteur chargé");
+});
+
+test("index.html : onglet + panneau sélecteur agent présents", async () => {
+  const fs = await import("node:fs");
+  const html = fs.readFileSync(new URL("../../index.html", import.meta.url), "utf8");
+  assert.ok(html.includes('data-tab="selector-agent"'), "bouton onglet sélecteur agent");
+  assert.ok(html.includes('id="panel-selector-agent"'), "panneau sélecteur agent");
+  assert.ok(html.includes('id="selector-agent-body"'), "conteneur selector-agent-body");
+  assert.ok(html.includes('id="selector-agent-save-state"'), "indicateur de sauvegarde agent");
+});
+
+test("model-selector.js exporte loadAgentSelectorPanel", async () => {
+  const mod = await import("../model-selector.js");
+  assert.equal(typeof mod.loadAgentSelectorPanel, "function");
+  assert.equal(typeof mod.loadSelectorPanel, "function");
 });

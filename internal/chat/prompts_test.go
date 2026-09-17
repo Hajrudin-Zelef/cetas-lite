@@ -179,8 +179,14 @@ func TestThinkDirective(t *testing.T) {
 	if d := thinkDirective(true, true, ""); !strings.Contains(d, "mandatory") {
 		t.Fatalf("agent avec thinking : raisonnement obligatoire attendu, obtenu %q", d)
 	}
-	if d := thinkDirective(true, true, "high"); !strings.Contains(d, "high") {
-		t.Fatalf("agent avec thinking : effort demande attendu, obtenu %q", d)
+	if d := thinkDirective(true, true, "high"); !strings.Contains(d, "think carefully") {
+		t.Fatalf("agent avec thinking high : raisonnement approfondi attendu, obtenu %q", d)
+	}
+	if d := thinkDirective(true, true, "low"); !strings.Contains(d, "brief") {
+		t.Fatalf("agent avec thinking low : raisonnement bref attendu, obtenu %q", d)
+	}
+	if d := thinkDirective(true, true, "low"); !strings.Contains(d, "trivial") {
+		t.Fatalf("agent avec thinking low : consigne messages triviaux attendue, obtenu %q", d)
 	}
 	if d := thinkDirective(true, false, ""); !strings.Contains(d, "Answer directly") {
 		t.Fatalf("agent sans thinking : reponse directe attendue, obtenu %q", d)
@@ -196,7 +202,7 @@ func TestThinkDirectiveInjected(t *testing.T) {
 	found := false
 	for _, m := range reqs[0].Messages {
 		if m.Role == "system" {
-			if s, _ := m.Content.(string); strings.Contains(s, "Reasoning is mandatory") && strings.Contains(s, "high") {
+			if s, _ := m.Content.(string); strings.Contains(s, "Reasoning is mandatory") && strings.Contains(s, "think carefully") {
 				found = true
 			}
 		}

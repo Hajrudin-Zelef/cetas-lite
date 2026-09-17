@@ -698,6 +698,7 @@
         <div class="apikeys-tabs">
             <button class="apikeys-tab active" data-tab="apimodeles">API et Modèles</button>
             <button class="apikeys-tab" data-tab="selector">Sélecteur de modèles</button>
+            <button class="apikeys-tab" data-tab="selector-agent">Sélecteur agent</button>
             <button class="apikeys-tab" data-tab="models">Fonctionnalités</button>
             <button class="apikeys-tab" data-tab="connecteurs">Connecteurs</button>
             <button class="apikeys-tab" data-tab="remote">Remote</button>
@@ -731,6 +732,14 @@
                 <p class="apikey-intro">Pour chaque alias, choisissez <strong>1 modèle</strong> (fixe, pas de fallback) ou un ensemble en <strong>Fallback</strong> (tirage aléatoire à chaque requête, puis bascule séquentielle en cas d'échec). Modifiable à tout moment, sans casser le fil de la discussion.</p>
                 <div class="apikeys-panel-body">
                     <div id="selector-body"></div>
+                </div>
+            </div>
+            <!-- Panel Sélecteur agent : mêmes réglages, dédiés aux familles agent -->
+            <div class="apikeys-panel" id="panel-selector-agent">
+                <h3>Sélecteur agent <span id="selector-agent-save-state" class="ms-save-state"></span></h3>
+                <p class="apikey-intro">Modèles utilisés par la <strong>vue Agents</strong>, par alias (Nano / N4 / N8) et par niveau (Flash / Standard / Elite) : <strong>1 modèle</strong> fixe ou <strong>Fallback</strong> (tirage aléatoire à chaque requête, puis bascule séquentielle en cas d'échec).</p>
+                <div class="apikeys-panel-body">
+                    <div id="selector-agent-body"></div>
                 </div>
             </div>
             <!-- Panel Fonctionnalités -->

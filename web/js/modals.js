@@ -8,7 +8,7 @@ import { renderConnectorsInto, openNewProjectModal, ProjectsAPI } from "./projec
 import { initApiModelesPanel } from "./apimodeles.js";
 import { loadFeaturesPanel, loadSearchPanel, loadAppearancePanel, registerPanelSaver, notifyConfigDirty, saveConfigPanel, saveAllConfigPanels } from "./config-panels.js";
 import { loadVaultPanel } from "./vault.js";
-import { loadSelectorPanel } from "./model-selector.js";
+import { loadSelectorPanel, loadAgentSelectorPanel } from "./model-selector.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -63,6 +63,8 @@ function initConfigModal() {
       if (tab.dataset.tab === "competences") loadSkillsTab();
       // Onglet Sélecteur de modèles : 1 modèle ou fallback par alias.
       if (tab.dataset.tab === "selector") loadSelectorPanel();
+      // Onglet Sélecteur agent : idem, dédié aux familles agent.
+      if (tab.dataset.tab === "selector-agent") loadAgentSelectorPanel();
       // Onglet Fonctionnalités : six lignes de choix.
       if (tab.dataset.tab === "models") loadFeaturesPanel();
       // Onglet Recherche Web : moteurs + mode.
