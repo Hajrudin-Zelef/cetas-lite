@@ -978,6 +978,26 @@
 .reason-text {
   white-space: pre-wrap;
 }
+/* Historique des tours : un bloc par tour, les suivants s'ajoutent EN
+   DESSOUS des précédents (jamais de remplacement). */
+.reason-turn + .reason-turn {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border, #d0d7de);
+}
+/* Surlignage bref quand le bouton "Raisonnement" fait défiler vers un tour. */
+.reason-turn.reason-flash {
+  animation: reason-flash 1.6s ease-out;
+}
+@keyframes reason-flash {
+  0% {
+    background: color-mix(in srgb, var(--accent, #2563eb) 14%, transparent);
+    border-radius: 6px;
+  }
+  100% {
+    background: transparent;
+  }
+}
 /* Vue Agents : le texte de raisonnement du panneau latéral n'a aucune
    couleur définie et hérite d'un contexte sombre -> invisible sur fond
    noir. On force la couleur claire du thème Marex (toujours dark).

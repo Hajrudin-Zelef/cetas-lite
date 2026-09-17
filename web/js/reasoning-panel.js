@@ -1,10 +1,13 @@
 // Panneau lateral droit "Raisonnement" : affiche les informations de la
 // requete (modele, temps de generation, tokens, contexte, cout) puis le
-// raisonnement du modele en streaming. S'ouvre automatiquement au premier
-// delta sauf si l'utilisateur l'a ferme manuellement pendant le tour en
-// cours. Quand le raisonnement est termine, le panneau se masque
-// automatiquement ; chaque requete garde son bouton "Raisonnement"
-// (au-dessus du message utilisateur) pour le reconsulter.
+// raisonnement du modele en streaming. HISTORIQUE : le panneau conserve UN
+// BLOC PAR TOUR (.reason-turn) — le raisonnement d'un nouveau tour s'ajoute
+// EN DESSOUS des precedents, il ne les remplace jamais. Seule une nouvelle
+// conversation vide le panneau. S'ouvre automatiquement au premier delta
+// sauf si l'utilisateur l'a ferme manuellement pendant le tour en cours.
+// Quand le raisonnement est termine, le panneau se masque automatiquement ;
+// chaque reponse garde son bouton "Raisonnement" pour reconsulter son tour
+// (defilement vers le bloc dans l'historique).
 
 import { api } from "./api.js";
 
@@ -38,12 +41,32 @@ const turn = {
 // Cache des infos modele (contexte + tarifs) par "provider/model".
 const modelInfoCache = new Map();
 
+// --- Historique des tours --------------------------------------------------
+// Le panneau conserve UN BLOC PAR TOUR (.reason-turn) : le raisonnement d'un
+// nouveau tour s'ajoute EN DESSOUS des précédents, il ne les remplace jamais.
+// Seule une nouvelle conversation (reset) vide le panneau.
+let turnSeq = 0;
+
+// Dernier bloc de tour, scellé ou non.
+function lastTurnEl() {
+  const b = body();
+  const turns = b ? b.querySelectorAll(".reason-turn") : [];
+  return turns.length ? turns[turns.length - 1] : null;
+}
+
+// Bloc du tour en cours (non scellé), ou null s'il n'y en a pas.
+function currentTurnEl() {
+  const te = lastTurnEl();
+  return te && !te.hasAttribute("data-sealed") ? te : null;
+}
+
 // --- Traduction DeepThink ---
 // Le bouton "Traduire" ne remplace JAMAIS le raisonnement : la traduction
-// s'affiche SOUS l'original (bloc .reason-translation). Un clic traduit le
-// tour affiché immédiatement ET active le mode auto : chaque raisonnement
-// suivant est traduit automatiquement 5 secondes après sa fin. Un second
-// clic désactive le mode auto. Le mode auto persiste (localStorage).
+// s'affiche SOUS l'original (bloc .reason-translation), dans le bloc du tour
+// concerné. Chaque tour a son propre bouton : un clic traduit CE tour
+// immédiatement ET active le mode auto ; chaque raisonnement suivant est
+// alors traduit automatiquement 5 secondes après sa fin. Un second clic
+// désactive le mode auto. Le mode auto persiste (localStorage).
 const DT_AUTO_KEY = "cetas.deepthink.auto";
 let dtAutoDelayMs = 5000;
 
@@ -52,8 +75,9 @@ export function _setAutoTranslateDelayForTests(ms) {
   dtAutoDelayMs = ms;
 }
 
-let translating = false;
-let pendingAutoTimer = 0;
+// Tours en cours de traduction (un par bloc : deux tours peuvent traduire
+// en parallèle sans se bloquer mutuellement).
+const translatingTurns = new Set();
 
 function isAutoTranslate() {
   try {
@@ -70,29 +94,33 @@ function setAutoTranslate(on) {
   } catch (e) {}
 }
 
-// État du bouton selon le mode auto (appelé à la création du bloc et à
-// chaque changement de mode).
-function refreshTranslateBtn() {
-  const b = body();
-  const btn = b && b.querySelector(".reason-translate-btn");
-  if (!btn) return;
-  if (isAutoTranslate()) {
-    btn.textContent = "🌐 Auto ✓";
-    btn.classList.add("on");
-    btn.title = "Traduction automatique activée — cliquer pour désactiver";
-  } else {
-    btn.textContent = "🌐 Traduire";
-    btn.classList.remove("on");
-    btn.title = "Traduire le raisonnement + activer la traduction auto (DeepThink Global)";
-  }
-  if (!translating) btn.disabled = false;
+// État des boutons selon le mode auto (à la création d'un bloc et à chaque
+// changement de mode). Les boutons des tours en cours de traduction
+// affichent "…" et restent désactivés.
+function refreshTranslateBtns() {
+  const auto = isAutoTranslate();
+  document.querySelectorAll("#reason-panel-body .reason-translate-btn").forEach((btn) => {
+    const te = btn.closest(".reason-turn");
+    if (te && translatingTurns.has(te)) return;
+    if (auto) {
+      btn.textContent = "🌐 Auto ✓";
+      btn.classList.add("on");
+      btn.title = "Traduction automatique activée — cliquer pour désactiver";
+    } else {
+      btn.textContent = "🌐 Traduire";
+      btn.classList.remove("on");
+      btn.title = "Traduire le raisonnement + activer la traduction auto (DeepThink Global)";
+    }
+    btn.disabled = false;
+  });
 }
 
-// Supprime le bloc de traduction affiché (nouveau contenu en streaming :
-// la traduction serait périmée).
+// Supprime le bloc de traduction du tour en cours (nouveau contenu en
+// streaming : la traduction serait périmée). Ne touche jamais aux tours
+// scellés : leur traduction fait partie de l'historique.
 function clearTranslation() {
-  const b = body();
-  const box = b && b.querySelector(".reason-translation");
+  const te = currentTurnEl();
+  const box = te && te.querySelector(".reason-translation");
   if (box) box.remove();
 }
 
@@ -108,16 +136,17 @@ function translationBlock(translated, lang, isError) {
   return box;
 }
 
-// Traduit le raisonnement affiché et l'ajoute SOUS l'original (jamais de
-// remplacement). Rouvre le panneau sauf fermeture manuelle.
-async function translateCurrentTurn() {
-  const b = body();
-  const t = b && b.querySelector(".reason-text");
-  if (!t || translating) return;
+// Traduit le raisonnement d'un tour et ajoute la traduction SOUS l'original
+// (jamais de remplacement), dans le bloc de ce tour. Rouvre le panneau sauf
+// fermeture manuelle.
+async function translateTurn(te) {
+  if (!te || translatingTurns.has(te)) return;
+  const t = te.querySelector(".reason-text");
+  if (!t) return;
   const src = (t.textContent || "").trim();
-  if (!src || b.querySelector(".reason-translation")) return;
-  translating = true;
-  const btn = b.querySelector(".reason-translate-btn");
+  if (!src || te.querySelector(".reason-translation")) return;
+  translatingTurns.add(te);
+  const btn = te.querySelector(".reason-translate-btn");
   if (btn) {
     btn.disabled = true;
     btn.textContent = "…";
@@ -126,62 +155,60 @@ async function translateCurrentTurn() {
     const data = await api("/api/deepthink/translate", { method: "POST", body: { text: src } });
     const translated = data && typeof data.translation === "string" ? data.translation.trim() : "";
     if (!translated) throw new Error("Traduction vide.");
-    const b2 = body();
-    // Le bloc a pu être reconstruit pendant l'appel : on ne touche que le
-    // même nœud texte, sinon on annule.
-    if (b2 && b2.querySelector(".reason-text") === t) {
-      b2.appendChild(translationBlock(translated, (data && data.lang) || "", false));
+    // Le bloc a pu être supprimé pendant l'appel (nouvelle conversation) :
+    // on ne touche que le même nœud texte, sinon on annule.
+    if (te.isConnected && te.querySelector(".reason-text") === t) {
+      te.appendChild(translationBlock(translated, (data && data.lang) || "", false));
       if (!userClosed) openReasonPanel();
       schedulePanelScroll();
     }
   } catch (e) {
-    const b2 = body();
-    if (b2 && b2.querySelector(".reason-text") === t) {
-      b2.appendChild(translationBlock((e && e.message) || "Échec de la traduction", "", true));
+    if (te.isConnected && te.querySelector(".reason-text") === t) {
+      te.appendChild(translationBlock((e && e.message) || "Échec de la traduction", "", true));
     }
   } finally {
-    translating = false;
-    refreshTranslateBtn();
+    translatingTurns.delete(te);
+    refreshTranslateBtns();
   }
 }
 
-// Clic sur le bouton : OFF -> traduit maintenant + active l'auto ;
-// ON -> désactive l'auto.
-async function toggleReasonTranslation() {
-  const b = body();
-  const btn = b && b.querySelector(".reason-translate-btn");
-  if (!b || !btn || translating) return;
+// Clic sur le bouton d'un tour : OFF -> traduit CE tour maintenant + active
+// l'auto ; ON -> désactive l'auto.
+async function toggleReasonTranslation(e) {
+  const btn = e && e.currentTarget;
+  const te = btn && btn.closest(".reason-turn");
+  if (!te || translatingTurns.has(te)) return;
   if (isAutoTranslate()) {
     setAutoTranslate(false);
-    refreshTranslateBtn();
+    refreshTranslateBtns();
     return;
   }
   setAutoTranslate(true);
-  refreshTranslateBtn();
-  await translateCurrentTurn();
+  refreshTranslateBtns();
+  await translateTurn(te);
 }
 
-// Fin d'un raisonnement : si l'auto est actif, traduction automatique
-// 5 secondes après. Vérification d'identité au déclenchement : si le
-// panneau affiche un autre texte entre-temps, on annule.
-function scheduleAutoTranslate() {
-  if (pendingAutoTimer) {
-    clearTimeout(pendingAutoTimer);
-    pendingAutoTimer = 0;
+// Fin d'un raisonnement : si l'auto est actif, traduction automatique de CE
+// tour 5 secondes après. Vérification d'identité au déclenchement : si le
+// bloc a été supprimé ou son texte a changé entre-temps, on annule.
+function scheduleAutoTranslate(te) {
+  if (!te) return;
+  if (te._autoTimer) {
+    clearTimeout(te._autoTimer);
+    te._autoTimer = 0;
   }
   if (!isAutoTranslate()) return;
-  const b = body();
-  const t = b && b.querySelector(".reason-text");
+  const t = te.querySelector(".reason-text");
   const src = t ? (t.textContent || "").trim() : "";
-  if (!src) return;
-  pendingAutoTimer = setTimeout(() => {
-    pendingAutoTimer = 0;
-    const b2 = body();
-    const t2 = b2 && b2.querySelector(".reason-text");
+  if (!src || te.querySelector(".reason-translation")) return;
+  te._autoTimer = setTimeout(() => {
+    te._autoTimer = 0;
+    if (!te.isConnected) return;
+    const t2 = te.querySelector(".reason-text");
     if (!t2 || (t2.textContent || "").trim() !== src) return;
-    translateCurrentTurn();
+    translateTurn(te);
   }, dtAutoDelayMs);
-  if (pendingAutoTimer && typeof pendingAutoTimer.unref === "function") pendingAutoTimer.unref();
+  if (te._autoTimer && typeof te._autoTimer.unref === "function") te._autoTimer.unref();
 }
 
 function panel() {
@@ -231,11 +258,21 @@ function fmtSecs(ms) {
   return (s < 10 ? s.toFixed(1) : Math.round(s)) + "s";
 }
 
-// Construit le bloc infos + l'en-tete REASONING s'ils n'existent pas.
-function ensureInfoBlock() {
+// Construit le bloc du tour en cours (.reason-turn : infos + en-tête
+// REASONING + texte) s'il n'existe pas, et le retourne. Chaque nouveau tour
+// crée son propre bloc EN DESSOUS des précédents : l'historique n'est jamais
+// écrasé. Retourne null si le panneau est absent.
+function ensureTurnBlock() {
+  let te = currentTurnEl();
+  if (te) return te;
   const b = body();
-  if (!b || b.querySelector(".reason-info")) return;
-  b.innerHTML = "";
+  if (!b) return null;
+  // Retire l'état vide ("Le raisonnement du modèle s'affichera ici...")
+  const empty = b.querySelector(".reason-panel-empty");
+  if (empty) empty.remove();
+  turnSeq += 1;
+  te = el("div", "reason-turn");
+  te.dataset.turnId = String(turnSeq);
   const info = el("div", "reason-info");
   info.appendChild(riRow("Modèle :", "ri-model", turn.modelLabel || "—", true));
   info.appendChild(riRow("Temps de génération :", "ri-time", "0s", false));
@@ -243,7 +280,7 @@ function ensureInfoBlock() {
   info.appendChild(riRow("Output - t/s :", "ri-output", "—", false));
   info.appendChild(riRow("Contexte :", "ri-ctx", "—", false));
   info.appendChild(riRow("Coût :", "ri-cost", "—", false));
-  b.appendChild(info);
+  te.appendChild(info);
   const sec = el("div", "reason-sec");
   sec.appendChild(el("span", "reason-sec-label", "REASONING"));
   const tbtn = el("button", "reason-translate-btn", "🌐 Traduire");
@@ -251,13 +288,14 @@ function ensureInfoBlock() {
   tbtn.title = "Traduire le raisonnement (DeepThink Global)";
   tbtn.addEventListener("click", toggleReasonTranslation);
   sec.appendChild(tbtn);
-  b.appendChild(sec);
-  refreshTranslateBtn(); // reflète le mode auto persisté
-  const t = el("div", "reason-text");
-  b.appendChild(t);
+  te.appendChild(sec);
+  te.appendChild(el("div", "reason-text"));
+  b.appendChild(te);
+  refreshTranslateBtns(); // reflète le mode auto persisté (après attachement au DOM)
   startTick();
   // Le modele et ses infos ont pu arriver avant le premier delta.
-  renderUsage();
+  renderUsage(te);
+  return te;
 }
 
 function riRow(label, valueCls, value, accent) {
@@ -268,17 +306,17 @@ function riRow(label, valueCls, value, accent) {
   return row;
 }
 
-function setRow(cls, text, html) {
-  const b = body();
-  const e = b && b.querySelector("." + cls);
+function setRow(te, cls, text, html) {
+  const e = te && te.querySelector("." + cls);
   if (!e) return;
   if (html !== undefined) e.innerHTML = html;
   else e.textContent = text;
 }
 
-function renderTime() {
+function renderTime(te) {
+  te = te || currentTurnEl() || lastTurnEl();
   const ms = turn.elapsedMs != null ? turn.elapsedMs : Date.now() - turn.startTs;
-  setRow("ri-time", fmtSecs(Math.max(0, ms)));
+  setRow(te, "ri-time", fmtSecs(Math.max(0, ms)));
 }
 
 function startTick() {
@@ -297,13 +335,14 @@ function stopTick() {
   }
 }
 
-function renderUsage() {
-  if (turn.inputTok != null) setRow("ri-input", turn.inputTok.toLocaleString("fr") + " tok");
+function renderUsage(te) {
+  te = te || currentTurnEl() || lastTurnEl();
+  if (turn.inputTok != null) setRow(te, "ri-input", turn.inputTok.toLocaleString("fr") + " tok");
   if (turn.outputTok != null) {
     let txt = turn.outputTok.toLocaleString("fr") + " tok";
     const ms = turn.elapsedMs != null ? turn.elapsedMs : Date.now() - turn.startTs;
     if (ms > 0) txt += " (" + Math.round((turn.outputTok / ms) * 1000) + "/s)";
-    setRow("ri-output", txt);
+    setRow(te, "ri-output", txt);
   }
   if (turn.inputTok != null || turn.outputTok != null) {
     const used = (turn.inputTok || 0) + (turn.outputTok || 0);
@@ -311,18 +350,19 @@ function renderUsage() {
       const pct = Math.min(100, Math.round((used / turn.ctxMax) * 100));
       const color = pct >= 90 ? "#ef4444" : pct >= 70 ? "#eab308" : "#22c55e";
       setRow(
+        te,
         "ri-ctx",
         undefined,
         '<span style="color:' + color + '">' + fmtTok(used) + " / " + fmtTok(turn.ctxMax) + "</span> · " + pct + "% utilisé"
       );
     } else {
-      setRow("ri-ctx", fmtTok(used) + " tok");
+      setRow(te, "ri-ctx", fmtTok(used) + " tok");
     }
   }
-  if (turn.cost != null) setRow("ri-cost", "$" + turn.cost.toFixed(4));
+  if (turn.cost != null) setRow(te, "ri-cost", "$" + turn.cost.toFixed(4));
   else if (turn.inputTok != null && turn.inputPer1M != null) {
     const c = (turn.inputTok / 1e6) * turn.inputPer1M + ((turn.outputTok || 0) / 1e6) * (turn.outputPer1M || 0);
-    setRow("ri-cost", "$" + c.toFixed(4));
+    setRow(te, "ri-cost", "$" + c.toFixed(4));
   }
 }
 
@@ -377,8 +417,11 @@ export function isReasonPanelOpen() {
 }
 
 // Debut d'un tour : memorise le modele (si connu) pour le bloc infos.
+// Le bloc du tour précédent a été scellé par sealReasonTurn() : le prochain
+// delta créera un nouveau bloc EN DESSOUS.
 export function beginReasonTurn(info) {
   info = info || {};
+  stopTick();
   turn.modelLabel = info.label || "";
   turn.provider = info.provider || "";
   turn.model = info.model || "";
@@ -402,10 +445,12 @@ export function setReasonModel(label, provider, model) {
   // Les infos modele (contexte, tarifs) sont chargees des que le modele est
   // connu, meme si le bloc n'existe pas encore (il les reprendra).
   fetchModelInfo();
-  const b = body();
-  if (b && b.querySelector(".reason-info")) setRow("ri-model", turn.modelLabel || "—");
+  const te = currentTurnEl();
+  if (te) setRow(te, "ri-model", turn.modelLabel || "—");
 }
 
+// Nouvelle conversation : vide TOUT le panneau (seul cas où l'historique
+// est effacé).
 export function resetReasonPanel() {
   userClosed = false;
   stopTick();
@@ -422,22 +467,73 @@ export function resetReasonPanel() {
   turn.elapsedMs = null;
   const b = body();
   if (b) {
+    b.querySelectorAll(".reason-turn").forEach((te) => {
+      if (te._autoTimer) {
+        clearTimeout(te._autoTimer);
+        te._autoTimer = 0;
+      }
+    });
+    translatingTurns.clear();
     b.innerHTML = "";
     b.appendChild(el("div", "reason-panel-empty", EMPTY_HTML));
   }
   setReasoningStreaming(false);
 }
 
+// Nouveau tour (nouveau message utilisateur) : fige le tour précédent
+// (temps final, bloc scellé) SANS vider le panneau — le prochain
+// raisonnement créera son bloc en dessous. Idempotent.
+export function sealReasonTurn() {
+  stopTick();
+  const te = lastTurnEl();
+  if (te) {
+    renderTime(te);
+    te.setAttribute("data-sealed", "1");
+  }
+  setReasoningStreaming(false);
+}
+
+// Le serveur demande d'abandonner le raisonnement du tour en cours
+// (ex. régénération) : on retire le bloc de CE tour, pas tout l'historique.
+export function dropCurrentReasonTurn() {
+  stopTick();
+  const te = currentTurnEl();
+  if (te) {
+    if (te._autoTimer) {
+      clearTimeout(te._autoTimer);
+      te._autoTimer = 0;
+    }
+    translatingTurns.delete(te);
+    te.remove();
+  }
+  const b = body();
+  if (b && !b.querySelector(".reason-turn")) {
+    b.innerHTML = "";
+    b.appendChild(el("div", "reason-panel-empty", EMPTY_HTML));
+  }
+  turn.modelLabel = "";
+  turn.provider = "";
+  turn.model = "";
+  turn.startTs = 0;
+  turn.inputTok = null;
+  turn.outputTok = null;
+  turn.ctxMax = null;
+  turn.inputPer1M = null;
+  turn.outputPer1M = null;
+  turn.cost = null;
+  turn.elapsedMs = null;
+  setReasoningStreaming(false);
+}
+
 export function appendReasoningPanel(text, replace) {
-  ensureInfoBlock();
+  const te = ensureTurnBlock();
+  if (!te) return;
   // Nouveau contenu en streaming : la traduction affichée serait périmée.
   clearTranslation();
-  const b = body();
-  if (!b) return;
-  let t = b.querySelector(".reason-text");
+  let t = te.querySelector(".reason-text");
   if (!t) {
     t = el("div", "reason-text");
-    b.appendChild(t);
+    te.appendChild(t);
   }
   // Rendu incremental : on n'ajoute QUE le nouveau morceau au noeud texte
   // (appendData). Jamais de textContent sur tout le texte -> pas de O(n)
@@ -464,33 +560,39 @@ export function updateReasonUsage(stats) {
   stats = stats || {};
   if (stats.prompt_tokens != null) turn.inputTok = stats.prompt_tokens;
   if (stats.completion_tokens != null) turn.outputTok = stats.completion_tokens;
-  const b = body();
-  if (b && b.querySelector(".reason-info")) renderUsage();
+  renderUsage();
 }
 
-// Fin de la phase de raisonnement : le panneau se masque automatiquement.
-// Si le mode auto DeepThink est actif, la traduction démarre 5 secondes après.
+// Fin de la phase de raisonnement : scelle le bloc du tour (il reste dans
+// l'historique) et masque automatiquement le panneau.
+// Si le mode auto DeepThink est actif, la traduction de CE tour démarre
+// 5 secondes après.
 export function finishReasoning() {
-  setReasoningStreaming(false);
+  const te = lastTurnEl();
   stopTick();
-  renderTime();
-  scheduleAutoTranslate();
+  if (te) {
+    renderTime(te);
+    te.setAttribute("data-sealed", "1");
+  }
+  setReasoningStreaming(false);
+  scheduleAutoTranslate(te);
   closeReasonPanel(false);
 }
 
 // Fin du tour : fige le temps et les stats, retourne un instantane
-// reutilisable par le bouton "Raisonnement" de la requete.
+// reutilisable par le bouton "Raisonnement" de la reponse.
 export function finalizeReasonTurn(elapsedMs) {
   stopTick();
   if (elapsedMs != null) turn.elapsedMs = elapsedMs;
-  renderTime();
-  renderUsage();
-  const b = body();
-  const t = b && b.querySelector(".reason-text");
+  const te = lastTurnEl();
+  renderTime(te);
+  renderUsage(te);
+  const t = te && te.querySelector(".reason-text");
   // Le texte du raisonnement n'est jamais remplacé (la traduction s'affiche
   // dans un bloc séparé) : l'instantané contient toujours l'original.
   const snapText = t ? t.textContent : "";
   return {
+    turnId: te && te.dataset ? te.dataset.turnId || null : null,
     modelLabel: turn.modelLabel,
     startTs: turn.startTs,
     inputTok: turn.inputTok,
@@ -503,9 +605,35 @@ export function finalizeReasonTurn(elapsedMs) {
   };
 }
 
-// Re-affiche un instantane precedent (bouton "Raisonnement").
+// Fait défiler le panneau jusqu'au bloc d'un tour et le signale brièvement.
+function scrollTurnIntoView(te) {
+  const b = body();
+  try {
+    if (typeof te.scrollIntoView === "function") te.scrollIntoView({ block: "start" });
+    else if (b) b.scrollTop = te.offsetTop;
+  } catch (e) {
+    if (b) b.scrollTop = te.offsetTop;
+  }
+  te.classList.add("reason-flash");
+  const flashTimer = setTimeout(() => te.classList.remove("reason-flash"), 1600);
+  if (flashTimer && typeof flashTimer.unref === "function") flashTimer.unref();
+}
+
+// Re-affiche un tour precedent (bouton "Raisonnement"). Cas courant : le
+// tour est déjà dans l'historique du panneau — on fait simplement défiler
+// jusqu'à son bloc (l'historique n'est jamais vidé pour reconsulter un
+// tour). Repli : le tour n'y est plus (ex. session restaurée) — on
+// reconstruit un bloc scellé unique avec l'instantané.
 export function restoreReasonSnapshot(snap) {
   if (!snap) return;
+  const b = body();
+  const te = snap.turnId && b ? b.querySelector('.reason-turn[data-turn-id="' + snap.turnId + '"]') : null;
+  if (te) {
+    userClosed = false;
+    openReasonPanel();
+    scrollTurnIntoView(te);
+    return;
+  }
   resetReasonPanel();
   turn.modelLabel = snap.modelLabel || "";
   turn.inputTok = snap.inputTok;
@@ -515,12 +643,14 @@ export function restoreReasonSnapshot(snap) {
   turn.outputPer1M = snap.outputPer1M;
   turn.elapsedMs = snap.elapsedMs;
   turn.startTs = snap.startTs || Date.now();
-  ensureInfoBlock();
-  renderUsage();
-  renderTime();
-  const b = body();
-  const t = b && b.querySelector(".reason-text");
+  const te2 = ensureTurnBlock();
+  if (!te2) return;
+  renderUsage(te2);
+  renderTime(te2);
+  const t = te2.querySelector(".reason-text");
   if (t) t.textContent = snap.text || "";
+  te2.setAttribute("data-sealed", "1");
+  stopTick();
   userClosed = false;
   openReasonPanel();
 }

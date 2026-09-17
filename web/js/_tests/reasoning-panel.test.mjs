@@ -214,9 +214,7 @@ describe("thread-view : bouton par réponse + loader rond", () => {
     const view = makeView(log);
     try {
       view.handleEvent({ user: "salut" });
-      const btnBefore = log.querySelector(".reason-btn");
-      assert.ok(btnBefore, "bouton existe (caché) avant la réponse");
-      assert.equal(btnBefore.hidden, true, "bouton caché avant la réponse");
+      assert.equal(log.querySelector(".reason-btn"), null, "pas de bouton avant la réponse");
 
       view.handleEvent({ route: { label: "MiMo V2.5", provider: "opencode", model: "mimo" } });
       view.handleEvent({ reasoning_content: "je réfléchis…" });
@@ -225,13 +223,11 @@ describe("thread-view : bouton par réponse + loader rond", () => {
       view.handleEvent({ content: "bonjour" });
       const bubble = log.querySelector(".message-assistant");
       assert.ok(bubble, "bulle assistant créée");
-      // Le bouton Raisonnement est dans le wrapper user (pas l'assistant).
-      const wrapper = log.querySelector(".message-wrapper-user");
-      assert.ok(wrapper, "wrapper user");
-      const btn = wrapper.querySelector(".reason-btn");
-      assert.ok(btn, "bouton Raisonnement dans le wrapper user");
+      const btn = bubble.querySelector(".reason-btn");
+      assert.ok(btn, "bouton Raisonnement dans la bulle assistant");
+      assert.equal(bubble.firstChild, btn, "bouton en tête de la bulle");
+      assert.equal(btn.textContent, "▸ Raisonnement");
       assert.equal(btn.hidden, false, "visible dès le premier delta");
-      assert.equal(btn.textContent, "Raisonnement");
 
       await nextFrame();
       assert.ok(!document.getElementById("reason-panel").classList.contains("open"), "panneau auto-masqué");
@@ -248,9 +244,9 @@ describe("thread-view : bouton par réponse + loader rond", () => {
       assert.equal(view.assistantBody, null, "état assistant réinitialisé");
       assert.equal(log.querySelector(".marex-loader"), null, "loader retiré en fin de tour");
       assert.equal(log.querySelector(".gen-stats-live"), null, "stats live retirées en fin de tour");
-      const uwrapper = log.querySelector(".message-wrapper-user");
-      assert.ok(uwrapper._reasonSnap, "instantané stocké sur la réponse user");
-      assert.ok(uwrapper._reasonSnap.text.includes("je réfléchis"));
+      const awrapper = log.querySelector(".message-wrapper-assistant");
+      assert.ok(awrapper._reasonSnap, "instantané stocké sur la réponse");
+      assert.ok(awrapper._reasonSnap.text.includes("je réfléchis"));
       assert.equal(btn.hidden, false, "bouton toujours visible");
 
       // Clic : le panneau se rouvre avec l'instantané du tour.
@@ -449,17 +445,41 @@ describe("panneau raisonnement : traduction DeepThink", () => {
     }
   });
 
-  test("auto : si le texte a changé entre-temps, la traduction est annulée", async () => {
+  test("auto : le tour scellé est traduit même si un nouveau tour a commencé", async () => {
+    setupTranslated();
+    panelMod._setAutoTranslateDelayForTests(40);
+    localStorage.setItem("cetas.deepthink.auto", "1");
+    try {
+      panelMod.finishReasoning(); // scelle le tour 1, programme son auto-traduction
+      // Un nouveau tour commence avant la fin du délai : son bloc se crée
+      // EN DESSOUS, le texte du tour 1 ne change plus -> son auto part.
+      panelMod.beginReasonTurn({ label: "MiMo", provider: "opencode", model: "x" });
+      panelMod.appendReasoningPanel("Contenu du tour suivant.");
+      await wait(200);
+      assert.equal(translateCalls.length, 1, "le tour 1 scellé est traduit");
+      assert.equal(translateCalls[0], "The user says hello.", "texte du tour 1 envoyé");
+      const turns = document.querySelectorAll(".reason-turn");
+      assert.equal(turns.length, 2, "deux blocs dans l'historique");
+      assert.ok(turns[0].querySelector(".reason-translation"), "traduction dans le bloc du tour 1");
+      assert.equal(turns[1].querySelector(".reason-translation"), null, "pas de traduction pour le tour 2 en cours");
+      assert.ok(
+        turns[1].querySelector(".reason-text").textContent.includes("Contenu du tour suivant."),
+        "texte du tour 2 intact"
+      );
+    } finally {
+      teardownTranslated();
+    }
+  });
+
+  test("auto : annulée si le bloc disparaît avant le délai (nouvelle conversation)", async () => {
     setupTranslated();
     panelMod._setAutoTranslateDelayForTests(40);
     localStorage.setItem("cetas.deepthink.auto", "1");
     try {
       panelMod.finishReasoning();
-      // Un nouveau contenu arrive avant la fin du délai (tour suivant).
-      panelMod.appendReasoningPanel("Contenu du tour suivant.");
+      panelMod.resetReasonPanel(); // nouvelle conversation : le bloc n'existe plus
       await wait(200);
-      assert.equal(translateCalls.length, 0, "traduction annulée (texte différent)");
-      assert.equal(document.querySelector(".reason-translation"), null, "aucun bloc affiché");
+      assert.equal(translateCalls.length, 0, "traduction annulée (bloc supprimé)");
     } finally {
       teardownTranslated();
     }
@@ -521,4 +541,174 @@ describe("panneau raisonnement : traduction DeepThink", () => {
       teardownTranslated();
     }
   });
+});
+
+describe("panneau raisonnement : historique des tours", () => {
+  function setupHistory() {
+    setupPanelDom();
+    panelMod.resetReasonPanel();
+    localStorage.removeItem("cetas.deepthink.auto");
+    return document.getElementById("log");
+  }
+
+  function teardownHistory() {
+    panelMod.resetReasonPanel();
+    localStorage.removeItem("cetas.deepthink.auto");
+    document.body.innerHTML = "";
+  }
+
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  test("nouveau tour : le précédent est conservé, le suivant s'ajoute en dessous", () => {
+    setupHistory();
+    try {
+      panelMod.beginReasonTurn({ label: "M1", provider: "p", model: "m1" });
+      panelMod.appendReasoningPanel("raisonnement du tour 1");
+      panelMod.finishReasoning();
+      // Nouveau message utilisateur : scelle le tour 1, ne vide pas.
+      panelMod.sealReasonTurn();
+      panelMod.beginReasonTurn({ label: "M2", provider: "p", model: "m2" });
+      panelMod.appendReasoningPanel("raisonnement du tour 2");
+      const turns = document.querySelectorAll(".reason-turn");
+      assert.equal(turns.length, 2, "deux blocs dans l'historique");
+      assert.ok(turns[0].querySelector(".reason-text").textContent.includes("tour 1"), "tour 1 conservé");
+      assert.ok(turns[1].querySelector(".reason-text").textContent.includes("tour 2"), "tour 2 en dessous");
+      assert.ok(turns[0].hasAttribute("data-sealed"), "tour 1 scellé");
+      assert.ok(!turns[1].hasAttribute("data-sealed"), "tour 2 en cours");
+      assert.equal(turns[0].querySelector(".ri-model").textContent, "M1", "infos du tour 1 intactes");
+      assert.equal(turns[1].querySelector(".ri-model").textContent, "M2", "infos du tour 2");
+    } finally {
+      teardownHistory();
+    }
+  });
+
+  test("chaque tour a son bouton Traduire (traduction ciblée)", async () => {
+    const calls = [];
+    globalThis.fetch = async (url, opts) => {
+      if (String(url).includes("/api/deepthink/translate")) {
+        const body = JSON.parse(opts.body);
+        calls.push(body.text);
+        return { ok: true, text: async () => JSON.stringify({ translation: "TRADUIT", lang: "fr" }) };
+      }
+      throw new Error("fetch inattendu: " + url);
+    };
+    setupHistory();
+    try {
+      panelMod.beginReasonTurn({ label: "M1" });
+      panelMod.appendReasoningPanel("texte un");
+      panelMod.finishReasoning();
+      panelMod.sealReasonTurn();
+      panelMod.beginReasonTurn({ label: "M2" });
+      panelMod.appendReasoningPanel("texte deux");
+      const btns = document.querySelectorAll(".reason-turn .reason-translate-btn");
+      assert.equal(btns.length, 2, "un bouton par tour");
+      btns[1].click(); // traduit le tour 2 uniquement
+      await wait(50);
+      assert.equal(calls.length, 1, "un seul appel");
+      assert.equal(calls[0], "texte deux", "le texte du tour 2 est envoyé");
+      const turns = document.querySelectorAll(".reason-turn");
+      assert.equal(turns[0].querySelector(".reason-translation"), null, "tour 1 non traduit");
+      assert.ok(turns[1].querySelector(".reason-translation"), "traduction dans le bloc du tour 2");
+      assert.ok(turns[0].querySelector(".reason-text").textContent.includes("texte un"), "original tour 1 intact");
+      assert.ok(turns[1].querySelector(".reason-text").textContent.includes("texte deux"), "original tour 2 intact");
+    } finally {
+      teardownHistory();
+    }
+  });
+
+  test("bouton Raisonnement : défile vers le tour dans l'historique sans vider", () => {
+    setupHistory();
+    try {
+      panelMod.beginReasonTurn({ label: "M1" });
+      panelMod.appendReasoningPanel("raisonnement un");
+      const snap = panelMod.finalizeReasonTurn(1000);
+      assert.ok(snap.turnId, "instantané avec turnId");
+      panelMod.finishReasoning();
+      panelMod.sealReasonTurn();
+      panelMod.beginReasonTurn({ label: "M2" });
+      panelMod.appendReasoningPanel("raisonnement deux");
+      panelMod.finishReasoning();
+      assert.equal(document.querySelectorAll(".reason-turn").length, 2);
+      panelMod.restoreReasonSnapshot(snap);
+      assert.equal(document.querySelectorAll(".reason-turn").length, 2, "historique conservé");
+      const target = document.querySelector('.reason-turn[data-turn-id="' + snap.turnId + '"]');
+      assert.ok(target, "bloc du tour retrouvé");
+      assert.ok(target.classList.contains("reason-flash"), "surlignage du tour ciblé");
+      assert.ok(target.querySelector(".reason-text").textContent.includes("raisonnement un"));
+      assert.ok(document.getElementById("reason-panel").classList.contains("open"), "panneau rouvert");
+    } finally {
+      teardownHistory();
+    }
+  });
+
+  test("dropCurrentReasonTurn : retire le tour en cours, garde l'historique", () => {
+    setupHistory();
+    try {
+      panelMod.beginReasonTurn({ label: "M1" });
+      panelMod.appendReasoningPanel("tour un");
+      panelMod.finishReasoning();
+      panelMod.beginReasonTurn({ label: "M2" });
+      panelMod.appendReasoningPanel("tour deux en cours");
+      panelMod.dropCurrentReasonTurn();
+      const turns = document.querySelectorAll(".reason-turn");
+      assert.equal(turns.length, 1, "seul le tour en cours est retiré");
+      assert.ok(turns[0].querySelector(".reason-text").textContent.includes("tour un"), "tour 1 conservé");
+    } finally {
+      teardownHistory();
+    }
+  });
+
+  test("nouveau message via thread-view : le tour précédent n'est pas remplacé", () => {
+    const log = setupHistory();
+    const view = makeView(log);
+    try {
+      view.handleEvent({ user: "q1" });
+      view.handleEvent({ reasoning_content: "premier raisonnement" });
+      view.handleEvent({ turn_done: {} });
+      view.handleEvent({ user: "q2" }); // scelle le tour 1
+      view.handleEvent({ reasoning_content: "deuxième raisonnement" });
+      const turns = document.querySelectorAll(".reason-turn");
+      assert.equal(turns.length, 2, "deux blocs, pas de remplacement");
+      assert.ok(turns[0].querySelector(".reason-text").textContent.includes("premier raisonnement"));
+      assert.ok(turns[1].querySelector(".reason-text").textContent.includes("deuxième raisonnement"));
+    } finally {
+      view.reset();
+      teardownHistory();
+    }
+  });
+
+  test("nouvelle conversation : l'historique est vidé", () => {
+    const log = setupHistory();
+    const view = makeView(log);
+    try {
+      view.handleEvent({ user: "q1" });
+      view.handleEvent({ reasoning_content: "raisonnement un" });
+      view.handleEvent({ turn_done: {} });
+      view.handleEvent({ user: "q2" });
+      view.handleEvent({ reasoning_content: "raisonnement deux" });
+      view.handleEvent({ turn_done: {} });
+      assert.equal(document.querySelectorAll(".reason-turn").length, 2, "deux tours dans l'historique");
+      view.reset(); // nouvelle conversation
+      assert.equal(document.querySelectorAll(".reason-turn").length, 0, "historique vidé");
+      assert.ok(document.querySelector(".reason-panel-empty"), "état vide affiché");
+    } finally {
+      view.reset();
+      teardownHistory();
+    }
+  });
+});
+
+await test("exports : tout ce que thread-view.js importe de reasoning-panel.js existe", async () => {
+  // Non-régression : un import statique manquant casse tout le chat dans le
+  // navigateur (« does not provide an export named ... »). Couvre sealReasonTurn
+  // et dropCurrentReasonTurn ajoutés pour l'historique des tours.
+  const fs = await import("node:fs");
+  const src = fs.readFileSync(new URL("../thread-view.js", import.meta.url), "utf8");
+  const m = src.match(/import\s*\{([^}]+)\}\s*from\s*"\.\/reasoning-panel\.js"/);
+  assert.ok(m, "import de reasoning-panel.js trouvé dans thread-view.js");
+  const names = m[1].split(",").map((s) => s.trim()).filter(Boolean);
+  assert.ok(names.length > 0, "au moins un nom importé");
+  for (const name of names) {
+    assert.equal(typeof panelMod[name], "function", `reasoning-panel.js doit exporter ${name}`);
+  }
 });

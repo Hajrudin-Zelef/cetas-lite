@@ -3,11 +3,13 @@ import { appendLinkified, createMarkdownRenderer } from "./markdown.js";
 import {
   appendReasoningPanel,
   beginReasonTurn,
+  dropCurrentReasonTurn,
   finalizeReasonTurn,
   finishReasoning,
   reopenReasonPanel,
   resetReasonPanel,
   restoreReasonSnapshot,
+  sealReasonTurn,
   setReasonModel,
   updateReasonUsage,
 } from "./reasoning-panel.js";
@@ -221,7 +223,7 @@ export class ThreadView {
     this.reasoningText = "";
     this.reasoningActive = false;
     this.reasonBtn = null;
-    this.reasonUserWrapper = null;
+    this.reasonAssistantWrapper = null;
     this.streamSpinnerEl = null;
     this.liveStatsEl = null;
     this.liveStatsTimer = 0;
@@ -422,7 +424,7 @@ export class ThreadView {
     this.reasoningText = "";
     this.reasoningActive = false;
     this.reasonBtn = null;
-    this.reasonUserWrapper = null;
+    this.reasonAssistantWrapper = null;
     this.stopStreamSpinner();
   }
 
@@ -508,22 +510,6 @@ export class ThreadView {
   addUser(text) {
     this.clearEmpty();
     const wrapper = el("div", "message-wrapper message-wrapper-user");
-    // Bouton "Raisonnement" au-dessus de la requete : reconsulte le panneau
-    // une fois le raisonnement termine (visible seulement en mode panneau,
-    // i.e. vue principale, et quand le tour a produit du raisonnement).
-    if (this.reasonPanel) {
-      const btn = el("button", "reason-btn", "Raisonnement");
-      btn.type = "button";
-      btn.hidden = true;
-      btn.addEventListener("click", () => {
-        const snap = wrapper._reasonSnap;
-        if (snap && snap.text) restoreReasonSnapshot(snap);
-        else reopenReasonPanel();
-      });
-      wrapper.appendChild(btn);
-      this.reasonBtn = btn;
-      this.reasonUserWrapper = wrapper;
-    }
     const bubble = el("div", "message message-user");
     bubble.appendChild(el("div", "message-text", text));
     wrapper.appendChild(bubble);
@@ -536,6 +522,26 @@ export class ThreadView {
       this.clearEmpty();
       const wrapper = el("div", "message-wrapper message-wrapper-assistant");
       this.assistant = el("div", "message message-assistant streaming");
+      // Bouton "Raisonnement" en tete de la bulle assistant, comme dans le
+      // CETAS complet : reconsulte le panneau une fois le raisonnement
+      // termine (visible seulement en mode panneau, i.e. vue principale,
+      // et quand le tour a produit du raisonnement).
+      if (this.reasonPanel) {
+        const btn = el("button", "reason-btn", "▸ Raisonnement");
+        btn.type = "button";
+        btn.hidden = true;
+        btn.addEventListener("click", () => {
+          const snap = wrapper._reasonSnap;
+          if (snap && snap.text) restoreReasonSnapshot(snap);
+          else reopenReasonPanel();
+        });
+        this.assistant.appendChild(btn);
+        this.reasonBtn = btn;
+        this.reasonAssistantWrapper = wrapper;
+        // Le raisonnement a pu demarrer avant le premier contenu : l'en-tete
+        // est alors visible des l'apparition de la bulle.
+        if (this.reasoningActive) btn.hidden = false;
+      }
       const body = el("div", "message-text");
       this.assistant.appendChild(body);
       wrapper.appendChild(this.assistant);
@@ -617,7 +623,7 @@ export class ThreadView {
 
   removeReasoning() {
     if (this.reasonPanel) {
-      resetReasonPanel();
+      dropCurrentReasonTurn();
       this.reasoningActive = false;
       if (this.reasonBtn) this.reasonBtn.hidden = true;
       return;
@@ -882,11 +888,16 @@ export class ThreadView {
     if (this.stopBtn) this.stopBtn.hidden = true;
     if (this.reasonPanel) {
       // Fige les infos du panneau et garde un instantane pour le bouton
-      // "Raisonnement" de la requete.
+      // "Raisonnement" de la reponse.
       const snap = finalizeReasonTurn(this.turnElapsedMs);
-      if (this.reasonUserWrapper && snap.text && snap.text.trim()) {
-        this.reasonUserWrapper._reasonSnap = snap;
-        if (this.reasonBtn) this.reasonBtn.hidden = false;
+      if (snap.text && snap.text.trim()) {
+        // Tour sans contenu : on cree quand meme la bulle pour accueillir
+        // l'en-tete, le raisonnement reste reconsultable.
+        if (!this.reasonBtn) this.ensureAssistant();
+        if (this.reasonAssistantWrapper) {
+          this.reasonAssistantWrapper._reasonSnap = snap;
+          if (this.reasonBtn) this.reasonBtn.hidden = false;
+        }
       }
       // Sécurité : si le raisonnement n'a jamais basculé sur du contenu
       // (tour sans réponse), on masque quand même le panneau.
@@ -923,7 +934,7 @@ export class ThreadView {
     this.reasoningText = "";
     this.reasoningActive = false;
     this.reasonBtn = null;
-    this.reasonUserWrapper = null;
+    this.reasonAssistantWrapper = null;
     this.stopStreamSpinner();
     this.toolBoxes.clear();
     this.approvalCards.clear();
@@ -976,7 +987,7 @@ export class ThreadView {
       this.turnRoute = null;
       this.turnElapsedMs = null;
       if (this.reasonPanel) {
-        resetReasonPanel();
+        sealReasonTurn();
         beginReasonTurn();
       } else if (this.reasonHooks) this.reasonHooks.reset();
       this.generating = true;
