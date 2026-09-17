@@ -1,5 +1,5 @@
 // Panneau Raisonnement : bloc infos requete, auto-masquage, bouton par
-// requete, spinner de streaming. (Refs : CETAS complet / Marexcode.)
+// requete, loader rond de streaming. (Refs : CETAS complet / Marexcode.)
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
@@ -212,13 +212,19 @@ describe("thread-view : bouton par requête + spinner de streaming", () => {
       view.handleEvent({ content: "bonjour" });
       await nextFrame();
       assert.ok(!document.getElementById("reason-panel").classList.contains("open"), "panneau auto-masqué");
-      const spinner = view.assistantBody.querySelector(".stream-spinner");
-      assert.ok(spinner, "spinner de streaming présent pendant le stream");
+      const loader = log.querySelector(".marex-loader");
+      assert.ok(loader, "loader rond présent pendant le stream");
+      assert.ok(loader.querySelector(".loader__inner"), "point central présent");
+      assert.equal(loader.querySelectorAll(".loader__dot").length, 4, "4 satellites");
+      const liveStats = log.querySelector(".gen-stats-live");
+      assert.ok(liveStats, "stats live présentes pendant le stream");
+      assert.match(liveStats.textContent, /^\d+s/, "format 'Ns'");
 
       view.handleEvent({ stats: { prompt_tokens: 443, completion_tokens: 95 } });
       view.handleEvent({ turn_done: { elapsed_ms: 5000 } });
       assert.equal(view.assistantBody, null, "état assistant réinitialisé");
-      assert.equal(log.querySelector(".stream-spinner"), null, "spinner retiré en fin de tour");
+      assert.equal(log.querySelector(".marex-loader"), null, "loader retiré en fin de tour");
+      assert.equal(log.querySelector(".gen-stats-live"), null, "stats live retirées en fin de tour");
       assert.ok(wrapper._reasonSnap, "instantané stocké sur la requête");
       assert.ok(wrapper._reasonSnap.text.includes("je réfléchis"));
       assert.equal(btn.hidden, false, "bouton toujours visible");
@@ -256,7 +262,7 @@ describe("thread-view : bouton par requête + spinner de streaming", () => {
     }
   });
 
-  test("le spinner survit au re-rendu markdown (re-ancrage)", async () => {
+  test("le loader survit au re-rendu markdown (hors du corps)", async () => {
     const log = setupPanelDom();
     const view = makeView(log);
     try {
@@ -264,15 +270,37 @@ describe("thread-view : bouton par requête + spinner de streaming", () => {
       view.handleEvent({ content: "premier" });
       await nextFrame();
       await nextFrame();
-      assert.ok(log.querySelector(".stream-spinner"), "spinner présent après rendu");
-      // Le moteur markdown retire les enfants excédentaires : on simule en
-      // le retirant à la main, le tick suivant le ré-ancre.
-      const sp = log.querySelector(".stream-spinner");
-      sp.remove();
-      await new Promise((r) => setTimeout(r, 120));
-      assert.ok(log.querySelector(".stream-spinner"), "spinner ré-ancré par le tick");
+      assert.ok(log.querySelector(".marex-loader"), "loader présent après rendu");
+      // Le moteur markdown ne touche qu'au corps : on vide le corps comme
+      // le ferait un re-rendu complet, le loader (en tête de bulle) survit.
+      const body = log.querySelector(".message-assistant .message-text");
+      assert.ok(body, "corps présent");
+      body.innerHTML = "";
+      assert.ok(log.querySelector(".marex-loader"), "loader intact après vidage du corps");
+      // Les stats live suivent le texte : format "Ns · X tok".
+      const live = log.querySelector(".gen-stats-live");
+      assert.ok(live, "stats live présentes");
+      assert.match(live.textContent, /^\d+s/, "format 'Ns'");
       view.handleEvent({ turn_done: {} });
-      assert.equal(log.querySelector(".stream-spinner"), null, "spinner retiré");
+      assert.equal(log.querySelector(".marex-loader"), null, "loader retiré");
+      assert.equal(log.querySelector(".gen-stats-live"), null, "stats live retirées");
+    } finally {
+      view.reset();
+      panelMod.resetReasonPanel();
+      document.body.innerHTML = "";
+    }
+  });
+
+  test("showWait affiche le loader rond (aucun timer braille)", async () => {
+    const log = setupPanelDom();
+    const view = makeView(log);
+    try {
+      view.showWait();
+      const loader = log.querySelector(".stream-waiting .marex-loader");
+      assert.ok(loader, "loader rond dans la zone d'attente");
+      assert.equal(view.waitTimer, undefined, "plus de timer d'attente");
+      view.hideWait();
+      assert.equal(log.querySelector(".stream-waiting"), null, "zone d'attente retirée");
     } finally {
       view.reset();
       panelMod.resetReasonPanel();

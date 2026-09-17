@@ -14,7 +14,20 @@ import {
 import { setTurnStats } from "./turn-tokens.js";
 import { getFeaturePref } from "./model-select.js";
 
-const BRAILLE = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+// Loader rond "Marex" pendant la generation — repris trait pour trait du
+// CETAS complet (marexcode) : point central lumineux + anneau (arc visible)
+// + 4 satellites en orbite. La couleur vient de currentColor, heritee de
+// .marex-loader (var(--accent)) : suit le theme et la palette selectionnee.
+function buildMarexLoader() {
+  const root = el("div", "marex-loader");
+  const ring = el("div", "loader");
+  ring.appendChild(el("div", "loader__inner"));
+  const orbit = el("div", "loader__orbit");
+  for (let i = 0; i < 4; i++) orbit.appendChild(el("div", "loader__dot"));
+  ring.appendChild(orbit);
+  root.appendChild(ring);
+  return root;
+}
 
 // Défilement calqué sur la vue de référence (ChatView.tsx) :
 // seuil d'épinglage, échantillonnage des gestes lecteur, borne DOM.
@@ -210,13 +223,11 @@ export class ThreadView {
     this.reasonBtn = null;
     this.reasonUserWrapper = null;
     this.streamSpinnerEl = null;
-    this.streamSpinnerTimer = 0;
-    this.streamSpinnerIdx = 0;
+    this.liveStatsEl = null;
+    this.liveStatsTimer = 0;
     this.controller = null;
     this.generating = false;
     this.waitEl = null;
-    this.waitTimer = null;
-    this.waitIdx = 0;
     this.toolBoxes = new Map();
     this.approvalCards = new Map();
     // Indicateur de recherche web native (plugin provider) en cours.
@@ -419,64 +430,75 @@ export class ThreadView {
     this.log.setAttribute("aria-busy", v ? "true" : "false");
   }
 
+  // Attente du premier token : le loader rond s'affiche immediatement,
+  // comme dans le CETAS complet (animation 100 % CSS, aucun timer JS).
   showWait() {
     if (this.waitEl) return;
     this.waitEl = el("div", "stream-waiting");
-    this.waitEl.appendChild(el("span", "stream-spinner", BRAILLE[0]));
+    this.waitEl.appendChild(buildMarexLoader());
     this.log.appendChild(this.waitEl);
-    this.waitTimer = setInterval(() => {
-      this.waitIdx = (this.waitIdx + 1) % BRAILLE.length;
-      if (this.waitEl && this.waitEl.firstChild) this.waitEl.firstChild.textContent = BRAILLE[this.waitIdx];
-    }, 80);
-    // Node (tests) : ne pas retenir la boucle d'evenements.
-    if (this.waitTimer && typeof this.waitTimer.unref === "function") this.waitTimer.unref();
     this.toBottom();
   }
 
   hideWait() {
-    if (this.waitTimer) {
-      clearInterval(this.waitTimer);
-      this.waitTimer = null;
-    }
     if (this.waitEl) {
       this.waitEl.remove();
       this.waitEl = null;
     }
   }
 
-  // Spinner de streaming (braille, repris de Marexcode/CETAS complet) :
-  // visible a la fin du texte pendant que la reponse streame. La couleur
-  // suit var(--accent), donc theme + palette selectionnee.
+  // Loader rond + stats live pendant le streaming (repris du CETAS complet) :
+  // le loader est insere en tete de la bulle assistant, hors du corps
+  // markdown — il est donc insensible aux re-rendus (plus de re-ancrage).
+  // Les stats ("5s · 35 tok · 7.8 tok/s", monospace) suivent le texte,
+  // actualisees toutes les 500 ms, et sont retirees en fin de tour.
   startStreamSpinner() {
     if (this.streamSpinnerEl) return;
     this.ensureAssistant();
-    if (!this.assistantBody) return;
-    this.streamSpinnerEl = el("span", "stream-spinner", BRAILLE[0]);
-    this.assistantBody.appendChild(this.streamSpinnerEl);
-    this.streamSpinnerIdx = 0;
-    this.streamSpinnerTimer = setInterval(() => {
-      // Le moteur markdown peut retirer le spinner en re-rendant les
-      // blocs : on le re-ancre en fin de corps a chaque tick.
-      if (!this.streamSpinnerEl) return;
-      if (this.assistantBody && this.streamSpinnerEl.parentNode !== this.assistantBody) {
-        this.assistantBody.appendChild(this.streamSpinnerEl);
-      } else if (this.assistantBody && this.streamSpinnerEl !== this.assistantBody.lastChild) {
-        this.assistantBody.appendChild(this.streamSpinnerEl);
+    if (!this.assistant) return;
+    this.streamSpinnerEl = buildMarexLoader();
+    this.assistant.insertBefore(this.streamSpinnerEl, this.assistantBody);
+    this.startLiveStats();
+  }
+
+  startLiveStats() {
+    this.stopLiveStats();
+    if (!this.assistant) return;
+    const span = el("div", "gen-stats-live", "0s");
+    this.assistant.appendChild(span);
+    this.liveStatsEl = span;
+    const start = Date.now();
+    const tick = () => {
+      const secs = (Date.now() - start) / 1000;
+      const tok = Math.ceil((this.assistantText || "").length / 4);
+      let txt = secs.toFixed(0) + "s";
+      if (tok > 0) {
+        txt += " · " + tok + " tok";
+        if (secs >= 1) txt += " · " + (tok / secs).toFixed(1) + " tok/s";
       }
-      this.streamSpinnerIdx = (this.streamSpinnerIdx + 1) % BRAILLE.length;
-      this.streamSpinnerEl.textContent = BRAILLE[this.streamSpinnerIdx];
-    }, 80);
+      if (this.liveStatsEl) this.liveStatsEl.textContent = txt;
+    };
+    tick();
+    this.liveStatsTimer = setInterval(tick, 500);
     // Node (tests) : ne pas retenir la boucle d'evenements.
-    if (this.streamSpinnerTimer && typeof this.streamSpinnerTimer.unref === "function") {
-      this.streamSpinnerTimer.unref();
+    if (this.liveStatsTimer && typeof this.liveStatsTimer.unref === "function") {
+      this.liveStatsTimer.unref();
+    }
+  }
+
+  stopLiveStats() {
+    if (this.liveStatsTimer) {
+      clearInterval(this.liveStatsTimer);
+      this.liveStatsTimer = 0;
+    }
+    if (this.liveStatsEl) {
+      this.liveStatsEl.remove();
+      this.liveStatsEl = null;
     }
   }
 
   stopStreamSpinner() {
-    if (this.streamSpinnerTimer) {
-      clearInterval(this.streamSpinnerTimer);
-      this.streamSpinnerTimer = 0;
-    }
+    this.stopLiveStats();
     if (this.streamSpinnerEl) {
       this.streamSpinnerEl.remove();
       this.streamSpinnerEl = null;
