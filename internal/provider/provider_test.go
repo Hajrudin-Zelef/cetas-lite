@@ -216,3 +216,40 @@ func TestStreamAnnotationsEtExtra(t *testing.T) {
 		t.Fatalf("annotation 1 inattendue: %+v", resp.Annotations[1])
 	}
 }
+
+// apiModel : le catalogue CETAS suffixe les modeles OpenCode (-zen/-go) pour
+// les distinguer ; l'API attend le nom brut. On verifie la fonction ET que le
+// payload envoye porte bien l'identifiant brut.
+func TestAPIModelStripsProviderSuffix(t *testing.T) {
+	cases := []struct{ provider, model, want string }{
+		{"opencode", "glm-5-zen", "glm-5"},
+		{"opencode", "qwen3.6-plus-zen", "qwen3.6-plus"},
+		{"opencode", "big-pickle-zen", "big-pickle"},
+		{"opencode-go", "hy3-go", "hy3"},
+		{"opencode-go", "mimo-v2.5-go", "mimo-v2.5"},
+		{"openrouter", "z-ai/glm-5.3-flash", "z-ai/glm-5.3-flash"},
+		{"deepseek", "deepseek-flash", "deepseek-flash"},
+	}
+	for _, c := range cases {
+		if got := apiModel(c.provider, c.model); got != c.want {
+			t.Errorf("apiModel(%q, %q) = %q, want %q", c.provider, c.model, got, c.want)
+		}
+	}
+}
+
+func TestStreamSendsStrippedModel(t *testing.T) {
+	var got map[string]any
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_ = json.NewDecoder(r.Body).Decode(&got)
+		w.Header().Set("Content-Type", "text/event-stream")
+		_, _ = w.Write([]byte("data: [DONE]\n\n"))
+	}))
+	t.Cleanup(srv.Close)
+	p := NewOpenAICompat(Endpoint{Provider: "opencode", BaseURL: srv.URL, Path: "/chat/completions", APIKey: "k"}, srv.Client())
+	if _, err := p.Stream(context.Background(), Request{Model: "glm-5-zen", Messages: []Message{{Role: "user", Content: "x"}}}, func(Event) bool { return true }); err != nil {
+		t.Fatalf("Stream: %v", err)
+	}
+	if got["model"] != "glm-5" {
+		t.Fatalf("model envoye = %v, want glm-5 (suffixe -zen retire)", got["model"])
+	}
+}

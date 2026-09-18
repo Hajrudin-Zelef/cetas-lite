@@ -17,15 +17,29 @@ func TestValidateOverridesOK(t *testing.T) {
 	if err := validateOverrides(ov); err != nil {
 		t.Fatalf("overrides valides refuses : %v", err)
 	}
-	// Modele du pool par defaut mais absent du catalogue statique : accepte.
+	// Modele du pool par defaut : accepte (via le catalogue OU le pool).
 	defOnly := alias.Overrides{
-		"code": {"flash": {{Provider: "opencode", Model: "qwen/qwen3.8-flash"}}},
+		"code": {"flash": {{Provider: "opencode", Model: "qwen3.6-plus-zen"}}},
 	}
 	if err := validateOverrides(defOnly); err != nil {
 		t.Fatalf("modele du pool par defaut refuse : %v", err)
 	}
 	if err := validateOverrides(nil); err != nil {
 		t.Fatalf("overrides vides refuses : %v", err)
+	}
+}
+
+// inDefaultPool : exception a la validation catalogue (l'ID d'un modele du
+// pool par defaut est transmis tel quel au provider, seule autorite reelle).
+func TestInDefaultPool(t *testing.T) {
+	if !inDefaultPool("code", "flash", alias.Member{Provider: "opencode", Model: "qwen3.6-plus-zen"}) {
+		t.Fatal("modele du pool code/flash doit etre reconnu")
+	}
+	if inDefaultPool("code", "flash", alias.Member{Provider: "opencode", Model: "inconnu"}) {
+		t.Fatal("modele absent du pool ne doit pas etre reconnu")
+	}
+	if inDefaultPool("code", "nope", alias.Member{Provider: "opencode", Model: "qwen3.6-plus-zen"}) {
+		t.Fatal("mode inconnu ne doit pas etre reconnu")
 	}
 }
 

@@ -146,8 +146,19 @@ func TestAliasesPutOverride(t *testing.T) {
 		Families []alias.ResolvedFamily `json:"families"`
 	}
 	_ = json.NewDecoder(resp.Body).Decode(&out)
-	if out.Families[0].Modes[0].Pool[0].Model != "anthropic/claude-sonnet-4.5" {
-		t.Fatalf("override non applique: %+v", out.Families[0].Modes[0].Pool)
+	var std alias.ResolvedMode
+	for _, f := range out.Families {
+		if f.ID != "code" {
+			continue
+		}
+		for _, m := range f.Modes {
+			if m.Mode == "standard" {
+				std = m
+			}
+		}
+	}
+	if len(std.Pool) == 0 || std.Pool[0].Model != "anthropic/claude-sonnet-4.5" {
+		t.Fatalf("override non applique: %+v", std.Pool)
 	}
 }
 
@@ -553,5 +564,58 @@ func TestSessionsAPI(t *testing.T) {
 	// Sans token : 401 partout.
 	if rec := doJSON(t, s.Handler(), http.MethodGet, "/api/sessions", "", nil); rec.Code != http.StatusUnauthorized {
 		t.Fatalf("list sans token = %d", rec.Code)
+	}
+}
+
+// Un PUT /api/aliases remplace TOUS les overrides : un mode absent du corps
+// revient au defaut (sinon un override retire resterait applique).
+func TestAliasesPutResetsOmittedModes(t *testing.T) {
+	s := newTestServerWith(t, &fakeProvider{content: "x"})
+	ts := httptest.NewServer(s.Handler())
+	defer ts.Close()
+	tok := tokenFor(t, ts.URL)
+
+	put := func(body string) map[string]alias.ResolvedMode {
+		req, _ := http.NewRequest(http.MethodPut, ts.URL+"/api/aliases", strings.NewReader(body))
+		req.Header.Set("Authorization", "Bearer "+tok)
+		req.Header.Set("Content-Type", "application/json")
+		resp, err := http.DefaultClient.Do(req)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer resp.Body.Close()
+		if resp.StatusCode != http.StatusOK {
+			t.Fatalf("status = %d", resp.StatusCode)
+		}
+		var out struct {
+			Families []alias.ResolvedFamily `json:"families"`
+		}
+		_ = json.NewDecoder(resp.Body).Decode(&out)
+		modes := map[string]alias.ResolvedMode{}
+		for _, f := range out.Families {
+			if f.ID != "code" {
+				continue
+			}
+			for _, m := range f.Modes {
+				modes[m.Mode] = m
+			}
+		}
+		return modes
+	}
+
+	// 1) override de code.standard.
+	modes := put(`{"code":{"standard":[{"provider":"openrouter","model":"anthropic/claude-sonnet-4.5"}]}}`)
+	if modes["standard"].Pool[0].Model != "anthropic/claude-sonnet-4.5" {
+		t.Fatalf("override standard non applique: %+v", modes["standard"].Pool)
+	}
+
+	// 2) PUT sans code -> code.standard revient au defaut.
+	modes = put(`{}`)
+	def, _ := alias.Resolve(alias.Defaults(), "code", "standard")
+	if len(modes["standard"].Pool) != len(def.Pool) {
+		t.Fatalf("standard non reinitialise: %d modeles, want %d", len(modes["standard"].Pool), len(def.Pool))
+	}
+	if modes["standard"].Pool[0].Model != def.Pool[0].Model {
+		t.Fatalf("standard pool = %+v, want %+v", modes["standard"].Pool, def.Pool)
 	}
 }

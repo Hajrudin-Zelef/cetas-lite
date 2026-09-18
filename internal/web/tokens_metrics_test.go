@@ -143,6 +143,17 @@ func TestModelInfoEndpoint(t *testing.T) {
 	if rec.Code != http.StatusNotFound {
 		t.Fatalf("status = %d, attendu 404", rec.Code)
 	}
+
+	// Repli catalogue : modele absent de la table statique mais present au
+	// catalogue (ex. routeur gratuit OpenRouter) -> 200, contexte inconnu.
+	rec = doJSON(t, h, http.MethodGet, "/api/model-info?provider=openrouter&model=openrouter/free", token, nil)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("openrouter/free : status = %d (%s), attendu 200", rec.Code, rec.Body.String())
+	}
+	body = decode(t, rec)
+	if body["context_window"].(float64) != 0 {
+		t.Fatalf("context_window = %v, attendu 0 (inconnu)", body["context_window"])
+	}
 }
 
 func TestMetricsEndpoint(t *testing.T) {

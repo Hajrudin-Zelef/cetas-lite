@@ -99,7 +99,10 @@ func (s *Server) handleAliasesPut(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, err.Error())
 		return
 	}
-	fams := alias.Apply(s.engine.Families(), ov)
+	// PUT = remplacement complet des overrides : on repart des DEFAUTS, sinon
+	// un override retiré (mode absent du corps) resterait appliqué parce que
+	// Apply copie le pool courant quand l'override ne mentionne pas le mode.
+	fams := alias.Apply(alias.Defaults(), ov)
 	s.engine.SetFamilies(fams)
 	if raw, err := json.Marshal(ov); err == nil {
 		_ = s.st.PutMeta("aliases", raw)

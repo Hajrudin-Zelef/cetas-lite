@@ -123,6 +123,21 @@ func NewOpenAICompat(e Endpoint, client *http.Client) *OpenAICompat {
 
 func (p *OpenAICompat) ID() string { return p.endpoint.Provider }
 
+// apiModel retire le suffixe interne de desambiguisation avant l'appel HTTP.
+// Le catalogue CETAS nomme distinctement le meme modele selon la passerelle
+// OpenCode (-zen pour opencode, -go pour opencode-go) pour que l'UI et les
+// capacites (provider/model) ne les confondent pas ; les API OpenCode
+// attendent le nom brut (ex. glm-5-zen -> glm-5, hy3-go -> hy3).
+func apiModel(providerID, model string) string {
+	switch providerID {
+	case "opencode":
+		return strings.TrimSuffix(model, "-zen")
+	case "opencode-go":
+		return strings.TrimSuffix(model, "-go")
+	}
+	return model
+}
+
 type streamAnnotation struct {
 	Type        string `json:"type"`
 	URLCitation struct {
@@ -198,7 +213,7 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 		req.Temperature = 0.7
 	}
 	payload := map[string]any{
-		"model":       req.Model,
+		"model":       apiModel(p.endpoint.Provider, req.Model),
 		"messages":    req.Messages,
 		"stream":      true,
 		"temperature": req.Temperature,
