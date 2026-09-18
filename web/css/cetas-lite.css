@@ -1714,3 +1714,78 @@ body.hero-mode .token-bar {
   max-width: none;
   padding-top: 10px;
 }
+
+/* --- Thème sombre : tout le texte des conversations en blanc ---
+   Verrou anti "texte noir sur fond noir" : ces règles ciblées par ID
+   priment sur tout le reste. La coloration syntaxique (spans hljs dans
+   pre code) est préservée : les spans ne sont pas ciblés. */
+body.dark #marex-view .message-text,
+body.dark #chat-container .message-text,
+body.dark #marex-view .message-text p,
+body.dark #chat-container .message-text p,
+body.dark #marex-view .message-text li,
+body.dark #chat-container .message-text li,
+body.dark #marex-view .message-text div,
+body.dark #chat-container .message-text div,
+body.dark #marex-view .message-text strong,
+body.dark #chat-container .message-text strong,
+body.dark #marex-view .message-text em,
+body.dark #chat-container .message-text em,
+body.dark #marex-view .message-text b,
+body.dark #chat-container .message-text b,
+body.dark #marex-view .message-text i,
+body.dark #chat-container .message-text i,
+body.dark #marex-view .message-text h1,
+body.dark #chat-container .message-text h1,
+body.dark #marex-view .message-text h2,
+body.dark #chat-container .message-text h2,
+body.dark #marex-view .message-text h3,
+body.dark #chat-container .message-text h3,
+body.dark #marex-view .message-text h4,
+body.dark #chat-container .message-text h4,
+body.dark #marex-view .message-text blockquote,
+body.dark #chat-container .message-text blockquote,
+body.dark #marex-view .message-text td,
+body.dark #chat-container .message-text td,
+body.dark #marex-view .message-text th,
+body.dark #chat-container .message-text th,
+body.dark #marex-view .message-text pre,
+body.dark #chat-container .message-text pre,
+body.dark #marex-view .message-text code,
+body.dark #chat-container .message-text code,
+body.dark #marex-view .message-text a,
+body.dark #chat-container .message-text a {
+  color: #f2f2f4;
+}
+
+body.dark #marex-view .message-text a,
+body.dark #chat-container .message-text a {
+  text-decoration: underline;
+}
+
+/* Lignes d'outils, résultats, stats : blanc lisible aussi. */
+body.dark #marex-view .msg-tool.harness-tool > summary,
+body.dark #chat-container .msg-tool.harness-tool > summary,
+body.dark #marex-view .msg-tool.harness-tool .tool-kind,
+body.dark #chat-container .msg-tool.harness-tool .tool-kind,
+body.dark #marex-view .msg-tool.harness-tool .tool-name,
+body.dark #chat-container .msg-tool.harness-tool .tool-name,
+body.dark #marex-view .msg-tool.harness-tool .tool-hint,
+body.dark #chat-container .msg-tool.harness-tool .tool-hint,
+body.dark #marex-view .msg-tool.harness-tool .tool-sep,
+body.dark #chat-container .msg-tool.harness-tool .tool-sep,
+body.dark #marex-view .tool-result,
+body.dark #chat-container .tool-result,
+body.dark #marex-view .search-status-text,
+body.dark #chat-container .search-status-text {
+  color: #f2f2f4;
+}
+
+body.dark #marex-view .turn-stats,
+body.dark #chat-container .turn-stats,
+body.dark #marex-view .wait-label,
+body.dark #chat-container .wait-label,
+body.dark #marex-view .gen-stats-live,
+body.dark #chat-container .gen-stats-live {
+  color: #dcdcdf;
+}
