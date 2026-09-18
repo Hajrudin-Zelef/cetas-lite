@@ -1789,3 +1789,32 @@ body.dark #marex-view .gen-stats-live,
 body.dark #chat-container .gen-stats-live {
   color: #dcdcdf;
 }
+
+/* === Thème sombre : blanc intégral — sidebar + composer (zones marquées) ===
+   Ces libellés sont gris par design (texte secondaire) ; en thème sombre
+   ils passent en blanc explicite, sélecteurs scopés par ID donc prioritaires. */
+body.dark #marex-view .mx-search-input,
+body.dark #marex-view .mx-search-input::placeholder,
+body.dark #marex-view .sb-group-label,
+body.dark #marex-view .sb-project-header,
+body.dark #marex-view .sb-project-header span,
+body.dark #marex-view .sb-active-sub,
+body.dark #marex-view .sb-tree-empty,
+body.dark #marex-view .sb-mini-label,
+body.dark #marex-view .sb-new-project-btn,
+body.dark #marex-view .sb-hist-item,
+body.dark #marex-view .sb-hist-item .sb-hist-label,
+body.dark #marex-view .mx-pbar-name,
+body.dark #marex-view .mx-pbar-sub,
+body.dark #marex-view #mx-input,
+body.dark #marex-view #mx-input::placeholder,
+body.dark #marex-view #mx-token-counter,
+body.dark #marex-view .mx-mode-hint {
+  color: #f2f2f4;
+}
+
+/* Les placeholders restent à pleine opacité (sinon le navigateur les atténue). */
+body.dark #marex-view .mx-search-input::placeholder,
+body.dark #marex-view #mx-input::placeholder {
+  opacity: 1;
+}
