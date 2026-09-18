@@ -21,15 +21,17 @@ import (
 )
 
 const (
-	toolMaxOutput  = 8000
-	bashDefault    = 10
-	bashMax        = 60
-	scriptDefault  = 30
-	scriptMax      = 60
-	lsMaxEntries   = 500
-	globMaxEntries = 500
-	grepMaxMatches = 100
-	grepMaxFile    = 2 * 1024 * 1024
+	toolMaxOutput = 8000
+	// Lignes max renvoyées par Read quand aucun "limit" n'est précisé.
+	defaultReadLines = 400
+	bashDefault      = 10
+	bashMax          = 60
+	scriptDefault    = 30
+	scriptMax        = 60
+	lsMaxEntries     = 500
+	globMaxEntries   = 500
+	grepMaxMatches   = 100
+	grepMaxFile      = 2 * 1024 * 1024
 )
 
 type DiffLine struct {
@@ -263,8 +265,15 @@ func (s *Sandbox) toolRead(ctx context.Context, args map[string]any) ToolResult 
 		start = total
 	}
 	end := total
-	if lim := intArg(args, "limit"); lim > 0 && start+lim < end {
+	lim := intArg(args, "limit")
+	switch {
+	case lim > 0 && start+lim < end:
 		end = start + lim
+	case lim <= 0 && end-start > defaultReadLines:
+		// Garde-fou : un Read sans limite sur un gros fichier noierait le
+		// contexte du tour (tokens). Le compteur ci-dessous indique au
+		// modèle comment paginer avec offset/limit.
+		end = start + defaultReadLines
 	}
 	out := strings.Join(lines[start:end], "\n")
 	if end < total {
@@ -744,6 +753,23 @@ func truncate(s string, max int) string {
 		return s
 	}
 	return string(r[:max]) + "\n…[tronque]"
+}
+
+// toolModelMaxChars borne la taille d'un résultat d'outil injecté dans le
+// contexte du modèle. Sans borne, un simple Read sur un gros README fait
+// exploser les tokens d'entrée (constaté : 14k tokens pour 2 requêtes
+// simples). Le modèle peut toujours paginer (Read offset/limit) ou affiner
+// sa requête pour obtenir la suite. L'affichage UI garde sa propre borne
+// (toolMaxOutput) : les deux consommateurs sont indépendants.
+const toolModelMaxChars = 6000
+
+func truncateToolForModel(s string) string {
+	r := []rune(s)
+	if len(r) <= toolModelMaxChars {
+		return s
+	}
+	return string(r[:toolModelMaxChars]) + "\n…[resultat tronque a 6000 caracteres pour limiter le contexte — " +
+		"pagine avec Read offset/limit ou affine ta requete pour obtenir la suite]"
 }
 
 func strArg(args map[string]any, key string) string {

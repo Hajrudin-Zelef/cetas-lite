@@ -474,6 +474,36 @@
   text-decoration: underline;
 }
 
+/* --- Pastilles d'outils en thème sombre : fond et texte explicites ---
+   Les variables suffisent en théorie, mais en pratique des pastilles
+   blanches ont été observées en mode sombre : ces règles plus spécifiques
+   garantissent un rendu sombre quoi qu'il arrive. */
+body.dark .msg-tool {
+  background: #2b2b2b;
+  border-color: #3d3d3d;
+}
+
+body.dark .msg-tool summary {
+  color: #d2d2d2;
+}
+
+body.dark .msg-tool .tool-name {
+  color: #f0f0f0;
+}
+
+body.dark .msg-tool .tool-hint {
+  color: #a9a9a9;
+}
+
+body.dark .msg-tool .tool-result {
+  color: #d8d8d8;
+}
+
+body.dark.hard-dark .msg-tool {
+  background: #0b0b0b;
+  border-color: #242424;
+}
+
 .tool-diff {
   display: flex;
   flex-direction: column;

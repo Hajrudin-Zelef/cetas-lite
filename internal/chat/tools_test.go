@@ -238,3 +238,43 @@ func TestUnknownTool(t *testing.T) {
 		t.Fatalf("outil inconnu: %q", out.Text)
 	}
 }
+
+func TestTruncateToolForModel(t *testing.T) {
+	short := "petit resultat"
+	if got := truncateToolForModel(short); got != short {
+		t.Fatalf("texte court modifié : %q", got)
+	}
+	long := strings.Repeat("x", toolModelMaxChars+500)
+	got := truncateToolForModel(long)
+	if len([]rune(got)) > toolModelMaxChars+200 {
+		t.Fatalf("texte long non tronqué : %d runes", len([]rune(got)))
+	}
+	if !strings.Contains(got, "Read offset/limit") {
+		t.Fatalf("indice de pagination manquant : %q", got[len(got)-120:])
+	}
+}
+
+func TestReadDefaultLimit(t *testing.T) {
+	sb := newTestSandbox(t)
+	var b strings.Builder
+	for i := 1; i <= 500; i++ {
+		b.WriteString("ligne " + strconv.Itoa(i) + "\n")
+	}
+	if res := sb.Execute(context.Background(), "Write", `{"file_path":"gros.txt","content":`+strconv.Quote(b.String())+`}`); strings.HasPrefix(res.Text, "[erreur]") {
+		t.Fatalf("write: %s", res.Text)
+	}
+	got := sb.Execute(context.Background(), "Read", `{"file_path":"gros.txt"}`)
+	lines := strings.Split(strings.TrimSuffix(got.Text, "\n"), "\n")
+	// 400 lignes + la ligne de compteur "… (500 lignes au total, …)".
+	if len(lines) != defaultReadLines+1 {
+		t.Fatalf("read sans limite = %d lignes, want %d", len(lines), defaultReadLines+1)
+	}
+	if !strings.Contains(got.Text, "lignes au total") {
+		t.Fatalf("compteur de pagination manquant : %q", got.Text[len(got.Text)-80:])
+	}
+	// Une limite explicite reste honorée.
+	got2 := sb.Execute(context.Background(), "Read", `{"file_path":"gros.txt","limit":10}`)
+	if n := len(strings.Split(strings.TrimSpace(got2.Text), "\n")); n != 11 {
+		t.Fatalf("read limit=10 = %d lignes, want 11 (10 + compteur)", n)
+	}
+}

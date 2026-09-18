@@ -359,7 +359,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 					}
 				}
 				c.appendDelta(epoch, map[string]any{"tool": toolDelta})
-				msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: tc.ID, Content: out.Text})
+				msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: tc.ID, Content: truncateToolForModel(out.Text)})
 				if followup != nil {
 					msgs = append(msgs, *followup)
 				}
