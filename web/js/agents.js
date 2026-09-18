@@ -243,9 +243,13 @@ export function renderMxTodos(todos) {
     return;
   }
   const done = todos.filter((t) => t.status === "completed").length;
+  const inprog = todos.filter((t) => t.status === "in_progress").length;
+  const pending = todos.length - done - inprog;
   const marks = { completed: "✓", in_progress: "◐", pending: "○" };
-  let html = '<div class="mx-todos-head"><span class="mx-todos-title">Tâches</span>' +
-    '<span class="mx-todos-progress">' + done + "/" + todos.length + "</span></div>" +
+  // En-tête façon Harness : "≣ To-dos · 1 in progress · 1 pending".
+  let html = '<div class="mx-todos-head"><span class="mx-todos-title">≣ To-dos</span>' +
+    '<span class="mx-todos-progress">' + done + "/" + todos.length +
+    " · " + inprog + " in progress · " + pending + " pending</span></div>" +
     '<ul class="mx-todos-list">';
   for (const t of todos) {
     const st = t.status || "pending";

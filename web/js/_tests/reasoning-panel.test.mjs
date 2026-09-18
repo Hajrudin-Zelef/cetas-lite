@@ -311,16 +311,21 @@ describe("thread-view : bouton par réponse + loader rond", () => {
     }
   });
 
-  test("showWait affiche le loader rond (aucun timer braille)", async () => {
+  test("showWait affiche le loader rond + libellé d'attente (timer nettoyé)", async () => {
     const log = setupPanelDom();
     const view = makeView(log);
     try {
       view.showWait();
       const loader = log.querySelector(".stream-waiting .marex-loader");
       assert.ok(loader, "loader rond dans la zone d'attente");
-      assert.equal(view.waitTimer, undefined, "plus de timer d'attente");
+      // Libellé façon Harness avec secondes écoulées.
+      const label = log.querySelector(".stream-waiting .wait-label");
+      assert.ok(label, "libellé d'attente présent");
+      assert.match(label.textContent, /En cours…\s*\d+s/);
+      assert.ok(view.waitTimer, "timer du compteur actif pendant l'attente");
       view.hideWait();
       assert.equal(log.querySelector(".stream-waiting"), null, "zone d'attente retirée");
+      assert.equal(view.waitTimer, 0, "timer libéré après hideWait");
     } finally {
       view.reset();
       panelMod.resetReasonPanel();

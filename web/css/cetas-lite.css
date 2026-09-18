@@ -504,6 +504,91 @@ body.dark.hard-dark .msg-tool {
   border-color: #242424;
 }
 
+/* --- Lignes d'outils façon Harness : une ligne compacte, pas de pastille ---
+   "✨ Tool call · Read · chemin" — le détail (args/résultat) reste
+   accessible en dépliant la ligne. */
+.msg-tool.harness-tool,
+body.dark .msg-tool.harness-tool,
+body.dark.hard-dark .msg-tool.harness-tool {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 2px auto;
+  overflow: visible;
+}
+
+.msg-tool.harness-tool > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  list-style: none;
+  border-radius: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.msg-tool.harness-tool > summary::-webkit-details-marker {
+  display: none;
+}
+
+.msg-tool.harness-tool > summary:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.msg-tool.harness-tool .tool-spark {
+  font-size: 0.72rem;
+  flex: 0 0 auto;
+}
+
+.msg-tool.harness-tool.running .tool-spark {
+  animation: harness-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes harness-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+.msg-tool.harness-tool .tool-kind {
+  flex: 0 0 auto;
+}
+
+.msg-tool.harness-tool .tool-sep {
+  opacity: 0.45;
+  flex: 0 0 auto;
+}
+
+.msg-tool.harness-tool .tool-name {
+  flex: 0 0 auto;
+}
+
+.msg-tool.harness-tool .tool-hint {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.msg-tool.harness-tool .tool-body {
+  border-top: none;
+  border-left: 2px solid var(--border);
+  margin: 2px 0 8px 20px;
+  border-radius: 0;
+}
+
+/* Libellé d'attente façon Harness sous le loader ("✨ En cours… 12s"). */
+.wait-label {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
 .tool-diff {
   display: flex;
   flex-direction: column;

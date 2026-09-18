@@ -64,6 +64,15 @@ function summarizeArgs(args) {
   return args.command || args.file_path || args.pattern || args.query || "";
 }
 
+// Format compact façon Harness : 950 -> "950", 13700 -> "13,7k".
+function fmtK(n) {
+  n = Math.round(n || 0);
+  if (n < 1000) return String(n);
+  const v = n / 1000;
+  const txt = v >= 100 ? String(Math.round(v)) : v.toFixed(1).replace(".", ",").replace(/,0$/, "");
+  return txt + "k";
+}
+
 // Indicateur visuel "recherche web en cours" : spinner + libellé simple.
 function renderSearchStatus(label) {
   const row = el("div", "search-status");
@@ -230,8 +239,19 @@ export class ThreadView {
     this.controller = null;
     this.generating = false;
     this.waitEl = null;
+    this.waitLabel = null;
+    this.waitTimer = 0;
+    this.waitStart = 0;
     this.toolBoxes = new Map();
     this.approvalCards = new Map();
+    // Compteurs façon Harness pour la barre de statut : tours, outils,
+    // tokens cumulés sur la conversation.
+    this.convTurns = 0;
+    this.convTools = 0;
+    this.convIn = 0;
+    this.convOut = 0;
+    this.turnInTok = 0;
+    this.turnOutTok = 0;
     // Indicateur de recherche web native (plugin provider) en cours.
     this.searchStatus = null;
     // Suivi du tour en cours (pied de message "modèle · temps · tokens").
@@ -432,17 +452,31 @@ export class ThreadView {
     this.log.setAttribute("aria-busy", v ? "true" : "false");
   }
 
-  // Attente du premier token : le loader rond s'affiche immediatement,
-  // comme dans le CETAS complet (animation 100 % CSS, aucun timer JS).
+  // Attente du premier token : le loader rond s'affiche immediatement
+  // (animation 100 % CSS). Libellé façon Harness avec secondes écoulées
+  // ("En cours… 12s") — seul le compteur utilise un timer JS.
   showWait() {
     if (this.waitEl) return;
     this.waitEl = el("div", "stream-waiting");
     this.waitEl.appendChild(buildMarexLoader());
+    this.waitStart = Date.now();
+    this.waitLabel = el("div", "wait-label", "✨ En cours… 0s");
+    this.waitEl.appendChild(this.waitLabel);
+    this.waitTimer = setInterval(() => {
+      if (this.waitLabel)
+        this.waitLabel.textContent =
+          "✨ En cours… " + Math.floor((Date.now() - this.waitStart) / 1000) + "s";
+    }, 1000);
     this.log.appendChild(this.waitEl);
     this.toBottom();
   }
 
   hideWait() {
+    if (this.waitTimer) {
+      clearInterval(this.waitTimer);
+      this.waitTimer = 0;
+    }
+    this.waitLabel = null;
     if (this.waitEl) {
       this.waitEl.remove();
       this.waitEl = null;
@@ -700,11 +734,19 @@ export class ThreadView {
     if (ev.phase === "start") {
       this.clearEmpty();
       this.hideWait();
-      const box = el("details", "msg-tool");
+      this.convTools++;
+      // Ligne compacte façon Harness : "✨ Tool call · Read · chemin".
+      const box = el("details", "msg-tool harness-tool running");
       const summary = el("summary");
+      summary.appendChild(el("span", "tool-spark", "✨"));
+      summary.appendChild(el("span", "tool-kind", "Tool call"));
+      summary.appendChild(el("span", "tool-sep", "·"));
       summary.appendChild(el("span", "tool-name", ev.name));
       const hint = summarizeArgs(ev.args);
-      if (hint) summary.appendChild(el("span", "tool-hint", " " + hint));
+      if (hint) {
+        summary.appendChild(el("span", "tool-sep", "·"));
+        summary.appendChild(el("span", "tool-hint", hint));
+      }
       box.appendChild(summary);
       const body = el("div", "tool-body");
       if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
@@ -723,6 +765,8 @@ export class ThreadView {
     }
     const body = this.toolBoxes.get(key);
     if (!body) return;
+    const det = body.closest("details");
+    if (det) det.classList.remove("running");
     // Fin d'une recherche web : l'indicateur laisse place au panneau Sources.
     const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
     const status = body.querySelector(".search-status");
@@ -855,6 +899,25 @@ export class ThreadView {
     this.toBottom();
   }
 
+  // Barre de statut façon Harness : "2 tours · 6 outils · ↑13,7k ↓1,2k".
+  // Alimente statsBadge, recopié vers le compteur du composer par onDone.
+  updateConvBadge() {
+    if (!this.statsBadge) return;
+    this.statsBadge.hidden = false;
+    const inT = this.convIn + this.turnInTok;
+    const outT = this.convOut + this.turnOutTok;
+    const t = this.convTurns;
+    const parts = [
+      t + (t > 1 ? " tours" : " tour"),
+      this.convTools + (this.convTools > 1 ? " outils" : " outil"),
+      "↑" + fmtK(inT) + " ↓" + fmtK(outT),
+    ];
+    this.statsBadge.textContent = parts.join(" · ");
+    this.statsBadge.title =
+      "Entrée : " + inT.toLocaleString("fr") + " tokens · Sortie : " +
+      outT.toLocaleString("fr") + " tokens (conversation)";
+  }
+
   addTurnStats(box) {
     const s = this.turnStats || {};
     const inTok = s.prompt_tokens || 0;
@@ -885,6 +948,12 @@ export class ThreadView {
     this.hideWait();
     this.setBusy(false);
     this.generating = false;
+    // Valide les tokens du tour vers le cumul de la conversation.
+    this.convIn += this.turnInTok;
+    this.convOut += this.turnOutTok;
+    this.turnInTok = 0;
+    this.turnOutTok = 0;
+    this.updateConvBadge();
     if (this.stopBtn) this.stopBtn.hidden = true;
     if (this.reasonPanel) {
       // Fige les infos du panneau et garde un instantane pour le bouton
@@ -944,6 +1013,12 @@ export class ThreadView {
     this.turnStats = null;
     this.turnRoute = null;
     this.turnElapsedMs = null;
+    this.convTurns = 0;
+    this.convTools = 0;
+    this.convIn = 0;
+    this.convOut = 0;
+    this.turnInTok = 0;
+    this.turnOutTok = 0;
     if (this.followFrame) {
       cancelRafTick(this.followFrame);
       this.followFrame = 0;
@@ -986,6 +1061,8 @@ export class ThreadView {
       this.turnStats = null;
       this.turnRoute = null;
       this.turnElapsedMs = null;
+      this.convTurns++;
+      this.updateConvBadge();
       if (this.reasonPanel) {
         sealReasonTurn();
         beginReasonTurn();
@@ -1038,12 +1115,13 @@ export class ThreadView {
     if (ev.stats !== undefined) {
       const s = ev.stats || {};
       this.turnStats = s;
+      // Les stats partent à chaque appel provider du tour : on remplace
+      // (pas de cumul ici), la validation vers le cumul se fait au turn_done.
+      this.turnInTok = s.prompt_tokens || 0;
+      this.turnOutTok = s.completion_tokens || 0;
+      this.updateConvBadge();
       if (this.reasonPanel) updateReasonUsage(s);
       if (this.trackTokens) setTurnStats(s.prompt_tokens, s.completion_tokens);
-      if (this.statsBadge) {
-        this.statsBadge.hidden = false;
-        this.statsBadge.textContent = "↑" + (s.prompt_tokens || 0) + " ↓" + (s.completion_tokens || 0);
-      }
       return;
     }
     if (ev.compact) {
