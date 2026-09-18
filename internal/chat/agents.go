@@ -147,7 +147,7 @@ func (e *Engine) GetAgent(user, id string) *AgentRun {
 // restoreAgent recharge un run persiste (apres redemarrage) sans relancer
 // de tour : statut "stopped", reprise possible par message.
 func (e *Engine) restoreAgent(user, id string) *AgentRun {
-	if e.st == nil {
+	if e.st == nil || agentDeleted(user, id) {
 		return nil
 	}
 	raw, ok := e.st.GetConversation(user, agentStoreKey(id))
@@ -190,11 +190,26 @@ func (e *Engine) saveAgent(run *AgentRun, c *Conversation) {
 	if e.st == nil {
 		return
 	}
+	// Un agent supprime ne doit jamais etre ressuscite par la persistance
+	// differee d'un tour encore en vol (meme pierre tombale que les sessions).
+	if agentDeleted(run.User, run.ID) {
+		return
+	}
 	data, err := c.save()
 	if err != nil {
 		return
 	}
 	_ = e.st.PutConversation(run.User, agentStoreKey(run.ID), data)
+}
+
+// Pierre tombale d'agent : cle prefixee pour ne jamais entrer en collision
+// avec les ids de session dans la map partagee.
+func agentDeleted(user, id string) bool { return isTombstoned(user, "agent:"+id) }
+
+func tombstoneAgent(user, id string) {
+	sessMu.Lock()
+	tombstoneLocked(user, "agent:"+id)
+	sessMu.Unlock()
 }
 
 // ListAgents retourne les runs de l'utilisateur : en memoire d'abord,
@@ -219,7 +234,7 @@ func (e *Engine) ListAgents(user string) []AgentSummary {
 					continue
 				}
 				id := strings.TrimPrefix(k, "agent:")
-				if seen[id] {
+				if seen[id] || agentDeleted(user, id) {
 					continue
 				}
 				if s := e.storedAgentSummary(user, k, id); s != nil {
@@ -356,6 +371,9 @@ func (e *Engine) DeleteAgent(user, id string) bool {
 		delete(e.agents, id)
 	}
 	e.agentsMu.Unlock()
+	// Pierre tombale AVANT l'arret/effacement : si un tour est encore en vol,
+	// sa persistance differee (saveAgent) sera ignoree.
+	tombstoneAgent(user, id)
 	if !ok {
 		// Run connu uniquement via le store : supprimer la cle si elle existe.
 		if e.st != nil {
