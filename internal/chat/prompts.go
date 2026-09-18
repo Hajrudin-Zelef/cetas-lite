@@ -21,6 +21,9 @@ func agentSystemPrompt() string {
 	// natives de l'agent : workflow plan -> code -> verify + discipline
 	// des tool calls (pas de devinettes, pas de redirection shell).
 	return "Cetas Agent: coding agent, no chit-chat. Workflow on every task:\n" +
+		"RULE 1 — trivial messages: if the user's message is a greeting, acknowledgment, thanks, or otherwise contains NO actionable task " +
+		"(e.g. \"salut\", \"bonjour\", \"ok\", \"bien\", \"merci\", \"ça va ?\"), reply in ONE short sentence and DO NOT call any tool. " +
+		"Never explore the workspace 'just in case' for these messages.\n" +
 		"1) PLAN: explore first (Ls/Tree/Read/Cat/Grep/Glob); multi-step tasks -> write it with TodoWrite, keep it updated.\n" +
 		"2) CODE: smallest change that fixes the task; prefer Edit over Write for existing files.\n" +
 		"3) VERIFY: after writing/editing code, you MUST verify (compile, run tests, or run the relevant check with Bash) " +
@@ -63,16 +66,22 @@ func thinkDirective(agent, think bool, effort string) string {
 	if agent {
 		// L'agent réfléchit toujours, mais le volume de raisonnement doit
 		// rester proportionnel à la tâche : un simple "salut" ne doit pas
-		// générer des milliers de tokens de réflexion.
+		// générer des milliers de tokens de réflexion, et surtout aucun
+		// appel d'outil (les petits modèles ont tendance à explorer le
+		// workspace "au cas où" même pour un simple bonjour).
+		const trivial = " For trivial messages (greetings, acknowledgments, thanks — no actionable task), " +
+			"answer directly in one short sentence with minimal reasoning and NO tool calls."
 		switch effort {
 		case "low":
-			return "Reasoning is mandatory but brief: a few short sentences at most, then answer or act. " +
-				"For trivial messages (greetings, simple questions), answer directly with minimal reasoning and no tool calls unless truly needed." + reasonLang
+			return "Reasoning is mandatory but brief: a few short sentences at most, then answer or act." +
+				trivial + reasonLang
 		case "high":
-			return "Reasoning is mandatory: think carefully through the task before answering or calling tools." + reasonLang
+			return "Reasoning is mandatory: think carefully through the task before answering or calling tools." +
+				trivial + reasonLang
 		default: // medium ou effort résolu par défaut
 			return "Reasoning is mandatory: think through the task before answering or calling tools, " +
-				"but keep reasoning concise and proportional to the task — no padding." + reasonLang
+				"but keep reasoning concise and proportional to the task — no padding." +
+				trivial + reasonLang
 		}
 	}
 	base := "Reasoning is enabled: think before answering." + reasonLang

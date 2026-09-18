@@ -380,7 +380,9 @@ export function initAgents() {
     }
   }
   let repo = LS.get("repo", "");
-  let useWorktree = LS.get("worktree", "1") !== "0";
+  // Worktree DÉSACTIVÉ par défaut : l'option n'a de sens qu'avec un dépôt
+  // renseigné, sinon chaque run affichait "Worktree indisponible…".
+  let useWorktree = LS.get("worktree", "0") === "1";
   // Globe (recherche web) et effort de réflexion (thinking obligatoire :
   // l'agent réfléchit toujours, pas d'interrupteur).
   let mxWeb = LS.get("mx_web", "0") === "1";

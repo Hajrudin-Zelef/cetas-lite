@@ -15,12 +15,45 @@ import (
 	"cetas-lite/internal/skills"
 )
 
+// agentWorkspaceLabel retourne le libellé d'affichage de l'espace de
+// travail lié au run : nom du projet si renseigné, sinon l'espace partagé
+// historique. Utilisé pour l'annonce en tête de fil (événement
+// "workspace") et le message de repli worktree.
+func agentWorkspaceLabel(in TurnInput, sb *Sandbox, projectName string) (string, string) {
+	if strings.TrimSpace(in.ProjectID) == "" {
+		return "Espace partagé", "espace partagé"
+	}
+	label := strings.TrimSpace(projectName)
+	if label == "" {
+		label = sb.Root()
+	}
+	mode := "projet local"
+	if sb.Remote() {
+		mode = "projet distant (SFTP)"
+	}
+	return label, mode
+}
+
 func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res resolution, base []provider.Message, in TurnInput) {
 	sb, err := e.agentSandbox(in)
 	if err != nil {
 		c.appendDelta(epoch, map[string]any{"error": err.Error()})
 		return
 	}
+	// Espace de travail lié au run : nom du projet si renseigné, sinon
+	// l'espace partagé historique. Annoncé en tête de fil pour que
+	// l'utilisateur voie toujours OÙ l'agent travaille (un agent lancé
+	// sans projet ne travaille PAS dans le projet affiché ailleurs).
+	projectName := ""
+	if pid := strings.TrimSpace(in.ProjectID); pid != "" {
+		if wm := e.workspaceManager(); wm != nil {
+			if p, perr := wm.Get(pid); perr == nil {
+				projectName = p.Name
+			}
+		}
+	}
+	wsLabel, wsMode := agentWorkspaceLabel(in, sb, projectName)
+	c.appendDelta(epoch, map[string]any{"workspace": map[string]any{"name": wsLabel, "mode": wsMode}})
 	// Worktree d'isolation : l'agent travaille dans un checkout dedie du
 	// depot au lieu du workspace partage. En cas d'echec, on continue sur
 	// le workspace normal (erreur explicite, pas de silence).
@@ -46,22 +79,15 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 				}
 			}
 		} else {
-			c.appendDelta(epoch, map[string]any{"worktree_error": "option worktree activee mais aucun depot indique"})
+			c.appendDelta(epoch, map[string]any{"worktree_error": "option worktree activee mais aucun depot indique — repli sur « " + wsLabel + " »"})
 		}
 	}
 	reg := e.toolRegistry(in, sb)
 	tools := reg.schemas(ctx)
 	sys := []provider.Message{{Role: "system", Content: agentSystemPrompt()}}
 	// Snapshot du workspace : le modèle voit la structure réelle et ne
-	// devine jamais les chemins. Nom du projet si renseigné.
-	projectName := ""
-	if pid := strings.TrimSpace(in.ProjectID); pid != "" {
-		if wm := e.workspaceManager(); wm != nil {
-			if p, perr := wm.Get(pid); perr == nil {
-				projectName = p.Name
-			}
-		}
-	}
+	// devine jamais les chemins. projectName calculé plus haut (annonce
+	// de l'espace de travail en tête de fil).
 	sys = append(sys, workspaceSnapshotMessage(ctx, sb, projectName))
 	// GitHub connecté : l'agent sait qu'il peut commit/diff/push.
 	if login := githubLogin(e.st); login != "" {

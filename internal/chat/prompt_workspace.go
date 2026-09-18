@@ -30,7 +30,10 @@ func workspaceSnapshotMessage(ctx context.Context, sb *Sandbox, projectName stri
 
 	cctx, cancel := context.WithTimeout(ctx, 15*time.Second)
 	defer cancel()
-	files, truncated, err := vfs.FlatList(cctx, sb.FS(), 400)
+	// Plafond volontairement bas : ce snapshot est injecté à CHAQUE tour,
+	// chaque fichier listé coûte des tokens d'entrée. 120 entrées suffisent
+	// à orienter le modèle ; au-delà, il explore avec Ls/Glob.
+	files, truncated, err := vfs.FlatList(cctx, sb.FS(), 120)
 	if err != nil {
 		b.WriteString("File listing unavailable (" + err.Error() + ") — call Ls first, never guess paths.\n")
 	} else if len(files) == 0 {

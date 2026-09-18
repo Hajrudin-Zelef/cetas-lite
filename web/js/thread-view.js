@@ -1016,13 +1016,23 @@ export class ThreadView {
       this.addApproval(ev.approval);
       return;
     }
+    if (ev.workspace !== undefined) {
+      // Espace de travail lié au run, annoncé en tête de fil par le
+      // backend : l'utilisateur voit toujours OÙ l'agent travaille
+      // (projet lié ou espace partagé).
+      const w = ev.workspace || {};
+      const wname = String(w.name || "?");
+      const wmode = w.mode ? " (" + String(w.mode) + ")" : "";
+      this.addSystem("📁 Espace de travail : " + wname + wmode);
+      return;
+    }
     if (ev.worktree !== undefined) {
       const wt = ev.worktree || {};
       this.addSystem("🌿 Worktree isolé : " + (wt.path || ""));
       return;
     }
     if (ev.worktree_error !== undefined) {
-      this.addSystem("⚠️ Worktree indisponible (" + String(ev.worktree_error) + ") — repli sur le workspace partagé.");
+      this.addSystem("⚠️ Worktree indisponible : " + String(ev.worktree_error) + ".");
       return;
     }
     if (ev.stats !== undefined) {
