@@ -136,7 +136,7 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("POST /api/vault/change-password", s.requireAuth(s.handleVaultChangePassword))
 	mux.Handle("GET /", http.FileServerFS(webassets.FS))
 
-	s.handler = withRecovery(withSecurityHeaders(mux))
+	s.handler = withRecovery(withSecurityHeaders(s.withAssetRevalidation(mux)))
 	return s
 }
 

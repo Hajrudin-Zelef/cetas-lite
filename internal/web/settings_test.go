@@ -2,6 +2,7 @@ package web
 
 import (
 	"net/http"
+	"net/http/httptest"
 	"strings"
 	"testing"
 )
@@ -117,8 +118,27 @@ func TestAssetCacheHeader(t *testing.T) {
 	if req.Code != http.StatusOK {
 		t.Fatalf("status = %d", req.Code)
 	}
-	if got := req.Header().Get("Cache-Control"); !strings.Contains(got, "max-age=3600") {
-		t.Fatalf("cache asset = %q", got)
+	// Asset embarqué : jamais servi en cache long — revalidation obligatoire,
+	// sinon un rebuild du binaire n'est pas visible (UI figée).
+	if got := req.Header().Get("Cache-Control"); !strings.Contains(got, "no-cache") {
+		t.Fatalf("cache asset = %q, attendu no-cache", got)
+	}
+	etag := req.Header().Get("ETag")
+	if etag == "" {
+		t.Fatal("ETag attendu sur un asset (revalidation 304)")
+	}
+	// Seconde requete avec le meme ETag -> 304 (pas de rechargement).
+	req2 := httptest.NewRequest(http.MethodGet, "/js/app.js", nil)
+	req2.Header.Set("If-None-Match", etag)
+	rec2 := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec2, req2)
+	if rec2.Code != http.StatusNotModified {
+		t.Fatalf("If-None-Match = %d, attendu 304", rec2.Code)
+	}
+	// Autre asset -> ETag different.
+	req3 := doJSON(t, s.Handler(), http.MethodGet, "/css/cetas-lite.css", "", nil)
+	if req3.Header().Get("ETag") == etag {
+		t.Fatal("ETag identique pour deux assets differents")
 	}
 }
 

@@ -37,6 +37,16 @@ func (s *Server) requireAuth(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
+// isAssetPath : ressources embarquées dans le binaire (CSS/JS/images). Elles
+// changent à chaque déploiement : elles ne doivent JAMAIS être servies depuis
+// le cache navigateur sans revalidation (sinon l'UI reste figée jusqu'à une
+// heure après un rebuild).
+func isAssetPath(p string) bool {
+	return strings.HasPrefix(p, "/js/") || strings.HasPrefix(p, "/css/") ||
+		strings.HasPrefix(p, "/images/") ||
+		strings.HasPrefix(p, "/fonts/") || strings.HasPrefix(p, "/favicon")
+}
+
 func withSecurityHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		h := w.Header()
@@ -47,11 +57,23 @@ func withSecurityHeaders(next http.Handler) http.Handler {
 			"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "+
 				"img-src 'self' data:; connect-src 'self'; "+
 				"frame-ancestors 'none'; base-uri 'self'; form-action 'self'")
-		if strings.HasPrefix(r.URL.Path, "/js/") || strings.HasPrefix(r.URL.Path, "/css/") ||
-			strings.HasPrefix(r.URL.Path, "/images/") {
-			h.Set("Cache-Control", "public, max-age=3600")
-		} else {
-			h.Set("Cache-Control", "no-cache")
+		h.Set("Cache-Control", "no-cache")
+		next.ServeHTTP(w, r)
+	})
+}
+
+// withAssetRevalidation : pour les assets, « no-cache » (revalidation) + ETag
+// dérivé de la version du binaire. Tant que le binaire ne change pas, le
+// navigateur reçoit 304 ; après un rebuild, la version change et il recharge.
+func (s *Server) withAssetRevalidation(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if isAssetPath(r.URL.Path) {
+			etag := `"` + s.version + `:` + r.URL.Path + `"`
+			w.Header().Set("ETag", etag)
+			if r.Header.Get("If-None-Match") == etag {
+				w.WriteHeader(http.StatusNotModified)
+				return
+			}
 		}
 		next.ServeHTTP(w, r)
 	})
