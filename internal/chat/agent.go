@@ -406,31 +406,15 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			return last, err
 		}
 
-		// Certains modeles emettent leurs appels d'outils en texte DSML
-		// (surtout sans function-calls natifs ou apres une erreur) : on les
-		// convertit en vrais appels d'outils executes par le pipeline
-		// standard (approbation, blocs d'outils, suivi des modifications).
-		// Le balisage est retire du texte affiche dans tous les cas.
+		// Phase 1 : filet unique "appels en texte" (DSML ou pseudo-appel
+		// isole) — un seul point d'entree, voir parseFallbackToolCalls.
+		// Les appels convertis passent par le pipeline standard
+		// (approbation, blocs d'outils, suivi des modifications) et le
+		// balisage est retire du texte affiche dans tous les cas.
 		if len(resp.ToolCalls) == 0 {
-			if dsml := parseDSMLCalls(resp.Content); len(dsml) > 0 {
-				for i := range dsml {
-					dsml[i].Name = canonicalDSMLName(dsml[i].Name, tools)
-				}
-				resp.ToolCalls = dsmlToToolCalls(dsml)
-			}
-			// Etape 1b : certains modeles ecrivent l'appel en texte
-			// (ex: Cat "fichier") au lieu d'un function call. Si toute la
-			// reponse n'est qu'un pseudo-appel vers un outil de lecture,
-			// on le convertit en vrai appel (garde-fous dans textcall.go) ;
-			// le texte d'origine est retire de l'affichage.
-			if len(resp.ToolCalls) == 0 {
-				if tc := parseTextToolCall(resp.Content, tools); tc != nil {
-					resp.ToolCalls = []provider.ToolCall{*tc}
-					resp.Content = ""
-				}
-			}
-		}
-		if hasDSML(resp.Content) {
+			tcalls, stripped := parseFallbackToolCalls(resp.Content, tools)
+			resp.ToolCalls, resp.Content = tcalls, stripped
+		} else if hasDSML(resp.Content) {
 			resp.Content = stripDSMLFinal(resp.Content)
 		}
 
@@ -551,6 +535,12 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		}
 
 		last = resp.Content
+		// Phase 1 : le nudge "tentative d'appel en texte" est supprime.
+		// Les pseudo-appels isoles sont desormais executes directement par
+		// le filet unique (parseFallbackToolCalls) au lieu de couter un
+		// aller-retour modele ; le texte que le filet refuse reste visible
+		// dans le fil (last) au lieu d'etre perdu. Seul le nudge "reponse
+		// vide" subsiste (autre cas d'echec, sans rapport).
 		if strings.TrimSpace(resp.Content) == "" {
 			if !disableTools && nudges < maxNudges && len(tools) > 0 {
 				nudges++
@@ -559,17 +549,6 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				continue
 			}
 			c.appendDelta(epoch, map[string]any{"content": "_(le modele n'a pas produit de reponse)_"})
-		} else if toolName, ok := looksLikeToolAttempt(resp.Content, tools); ok {
-			// Etape 1b : le modele a decrit un appel d'outil en texte
-			// (pseudo-appel non isole, ou outil a effet de bord que le
-			// parser refuse de convertir seul) au lieu de l'executer :
-			// nudge cible pour auto-correction, borne comme les autres.
-			if !disableTools && nudges < maxNudges && len(tools) > 0 {
-				nudges++
-				c.appendDelta(epoch, map[string]any{"drop_reasoning": true})
-				msgs = append(msgs, provider.Message{Role: "user", Content: toolAttemptNudgeText(toolName)})
-				continue
-			}
 		}
 		// Phase VERIFY du workflow : si du code a ete ecrit mais jamais verifie,
 		// exiger une verification avant de conclure (une seule fois).

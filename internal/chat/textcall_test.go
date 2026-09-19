@@ -85,37 +85,3 @@ func TestParseTextToolCallNoFalsePositive(t *testing.T) {
 		}
 	}
 }
-
-func TestLooksLikeToolAttempt(t *testing.T) {
-	tools := textCallTools()
-	if name, ok := looksLikeToolAttempt("Je vais appeler l'outil Read pour lire le fichier.", tools); !ok || name != "Read" {
-		t.Errorf("intention FR non detectee: %q %v", name, ok)
-	}
-	if _, ok := looksLikeToolAttempt("Let me call the Cat tool on this file.", tools); !ok {
-		t.Error("intention EN non detectee")
-	}
-	if name, ok := looksLikeToolAttempt("Cat \"dnsmasq.conf\"", tools); !ok || name != "Cat" {
-		t.Errorf("pseudo-appel isole non detecte: %q %v", name, ok)
-	}
-	// Longue explication avec exemple : pas de nudge.
-	long := "Voici comment lire un fichier dans cet environnement de travail. " +
-		"Tu peux utiliser l'outil Cat suivi du chemin entre guillemets, par exemple " +
-		"Cat \"exemple.txt\" pour afficher le contenu. Pense aussi a verifier les permissions " +
-		"avant toute ecriture, et a documenter chaque etape de ton raisonnement en detail."
-	if _, ok := looksLikeToolAttempt(long, tools); ok {
-		t.Error("faux positif sur longue explication")
-	}
-	if _, ok := looksLikeToolAttempt("Le fichier contient trois sections principales.", tools); ok {
-		t.Error("faux positif sur texte normal")
-	}
-}
-
-func TestToolAttemptNudgeText(t *testing.T) {
-	s := toolAttemptNudgeText("Read")
-	if s == "" {
-		t.Fatal("nudge vide")
-	}
-	if s2 := toolAttemptNudgeText(""); s2 == "" {
-		t.Fatal("nudge generique vide")
-	}
-}

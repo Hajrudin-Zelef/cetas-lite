@@ -28,7 +28,7 @@ import (
 //     reellement annonce dans ce tour : jamais d'outil invente ;
 //   - conversion restreinte aux outils sans effet de bord (parallelSafe) :
 //     une erreur d'interpretation ne peut au pire declencher qu'une
-//     lecture. Les autres outils (Write, Bash, ...) passent par le nudge ;
+//     lecture ;
 //   - l'unique argument positionnel est mappe sur le parametre "string"
 //     evident du schema (l'unique requis, sinon l'unique existant) :
 //     jamais de devinette sur un schema ambigu.
@@ -154,77 +154,4 @@ func parseTextToolCall(content string, tools []provider.Tool) *provider.ToolCall
 			Arguments: string(argsJSON),
 		},
 	}
-}
-
-// toolAttemptPhrases : formulations (FR/EN) par lesquelles un modele annonce
-// un appel d'outil qu'il n'emet finalement pas en function call.
-var toolAttemptPhrases = []string{
-	"let me call", "i'll call", "i will call", "i'm calling",
-	"need to call", "j'appelle l'outil",
-	"je vais appeler", "je dois appeler",
-}
-
-// looksLikeToolAttempt detecte une reponse qui ressemble a une tentative
-// d'appel d'outil non emise en function call. Retourne le nom canonique de
-// l'outil vise, ou "" si la tentative est generique. Second retour : vrai
-// si une tentative est detectee.
-//
-// La detection reste volontairement conservative : une ligne pseudo-appel
-// isolee dans une reponse courte, ou une formulation d'intention explicite.
-// Les longues explications contenant un exemple de code ne declenchent rien.
-func looksLikeToolAttempt(content string, tools []provider.Tool) (string, bool) {
-	lower := strings.ToLower(content)
-	for _, p := range toolAttemptPhrases {
-		if strings.Contains(lower, p) {
-			return toolNameInText(content, tools), true
-		}
-	}
-	s := stripCodeFences(content)
-	if runeCount(s) > 300 {
-		return "", false
-	}
-	for _, line := range strings.Split(s, "\n") {
-		line = strings.TrimSpace(line)
-		if line == "" {
-			continue
-		}
-		m := textCallRe.FindStringSubmatch(line)
-		if m == nil {
-			continue
-		}
-		for i := range tools {
-			if strings.EqualFold(tools[i].Function.Name, m[1]) {
-				return tools[i].Function.Name, true
-			}
-		}
-	}
-	return "", false
-}
-
-// toolNameInText cherche un nom d'outil connu dans le texte (pour cibler
-// le nudge). Chaine vide si aucun.
-func toolNameInText(content string, tools []provider.Tool) string {
-	lower := strings.ToLower(content)
-	for i := range tools {
-		if strings.Contains(lower, strings.ToLower(tools[i].Function.Name)) {
-			return tools[i].Function.Name
-		}
-	}
-	return ""
-}
-
-func runeCount(s string) int { return len([]rune(s)) }
-
-// toolAttemptNudgeText construit le nudge envoye quand le modele a decrit
-// un appel d'outil en texte au lieu de l'executer (inspire du pattern
-// d'opencode : retour d'erreur explicite pour auto-correction).
-func toolAttemptNudgeText(toolName string) string {
-	target := "the right tool"
-	if toolName != "" {
-		target = "the " + toolName + " tool"
-	}
-	return "You just described a tool call in plain text instead of executing it — " +
-		"writing it as text does NOTHING. In your NEXT message, call " + target +
-		" NOW with a real function call (no confirmation question, no text version). " +
-		"Text is for communicating with the user; tools are for acting."
 }
