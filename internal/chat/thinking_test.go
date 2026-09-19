@@ -1,6 +1,7 @@
 package chat
 
 import (
+	"strings"
 	"testing"
 
 	"cetas-lite/internal/alias"
@@ -107,5 +108,57 @@ func TestResolveAgentEffort(t *testing.T) {
 	}
 	if got := resolveAgentEffort(false, "high"); got != "" {
 		t.Fatalf("agent think=false = %q, attendu vide", got)
+	}
+}
+
+// Tests Phase 4 : détection des tours mécaniques (thinking allégé).
+
+func TestMechanicalTurn(t *testing.T) {
+	tests := []struct {
+		in   string
+		want bool
+	}{
+		{"lis le fichier dnsmasq.conf", true},
+		{"Lis README.md", true},
+		{"montre-moi le dossier src", true},
+		{"liste les fichiers", true},
+		{"cherche TODO dans le code", true},
+		{"read package.json", true},
+		{"list files", true},
+		{"salut", false},
+		{"", false},
+		{"lis le fichier et corrige le bug", false},    // verbe d'action
+		{"montre le code puis modifie-le", false},      // verbe d'action
+		{"cherche l'erreur et fix le problème", false}, // verbe d'action
+		{"explique-moi ce fichier", false},             // pas un verbe de lecture
+		{strings.Repeat("lis ", 50), false},            // trop long
+	}
+	for _, tt := range tests {
+		if got := mechanicalTurn(tt.in); got != tt.want {
+			t.Errorf("mechanicalTurn(%q) = %v, attendu %v", tt.in, got, tt.want)
+		}
+	}
+}
+
+func TestAgentThinkDirective(t *testing.T) {
+	// Tour mécanique + thinking + effort par défaut -> directive allégée.
+	d := agentThinkDirective(true, "lis le fichier x.txt", "")
+	if !strings.Contains(d, "No reasoning needed") {
+		t.Errorf("tour mécanique : directive allégée attendue, obtenu %q", d)
+	}
+	// Effort explicite de l'utilisateur -> directive standard respectée.
+	d = agentThinkDirective(true, "lis le fichier x.txt", "high")
+	if strings.Contains(d, "No reasoning needed") {
+		t.Errorf("effort explicite : la directive standard aurait dû être gardée")
+	}
+	// Message non mécanique -> directive standard.
+	d = agentThinkDirective(true, "corrige le bug de connexion", "")
+	if strings.Contains(d, "No reasoning needed") {
+		t.Errorf("tâche de code : la directive standard aurait dû être gardée")
+	}
+	// Thinking désactivé -> réponse directe, jamais de raisonnement.
+	d = agentThinkDirective(false, "lis le fichier x.txt", "")
+	if !strings.Contains(d, "Answer directly") {
+		t.Errorf("thinking off : attendu 'Answer directly', obtenu %q", d)
 	}
 }

@@ -68,9 +68,16 @@ function summarizeArgs(args) {
 // Libellé de statut façon OpenCode selon l'outil : "Writing command"
 // quand l'agent écrit une commande, "Preparing edit" quand il prépare une
 // modification. null = aucun statut particulier.
-function agentStatusForTool(name) {
+function agentStatusForTool(name, args) {
   if (name === "Bash" || name === "RunScript") return "Writing command";
   if (name === "Edit" || name === "Write") return "Preparing edit";
+  // Phase 4 : progression en direct et en français pendant les lectures —
+  // "Lecture de X…" au lieu d'attendre le bloc final.
+  if (name === "Read" && args && args.file_path) return "Lecture de " + args.file_path + "…";
+  if (name === "Ls") return "Liste des fichiers…";
+  if (name === "Tree") return "Exploration de l'arborescence…";
+  if (name === "Grep" && args && args.pattern) return "Recherche de « " + args.pattern + " »…";
+  if (name === "Glob" && args && args.pattern) return "Recherche de " + args.pattern + "…";
   return null;
 }
 
@@ -880,8 +887,8 @@ export class ThreadView {
       this.log.appendChild(box);
       this.toolBoxes.set(key, body);
       // Statut façon OpenCode pendant l'exécution ("Writing command",
-      // "Preparing edit").
-      const stLabel = agentStatusForTool(ev.name);
+      // "Preparing edit", "Lecture de X…").
+      const stLabel = agentStatusForTool(ev.name, ev.args);
       if (stLabel) this.pushAgentStatus(key, stLabel);
       this.finalizeAssistant();
       this.resetAssistantState();
@@ -911,7 +918,7 @@ export class ThreadView {
     if (typeof ev.result === "string" && ev.result) {
       // Lectures de fichiers : 10 premières lignes + Expand/Collapse.
       const rlines = ev.result.split("\n");
-      if ((ev.name === "Read" || ev.name === "Cat") && rlines.length > 10) {
+      if ((ev.name === "Read") && rlines.length > 10) {
         body.appendChild(renderReadMore(ev.result, rlines.length));
       } else {
         const pre = el("pre", "tool-result");
@@ -1500,7 +1507,6 @@ export class ThreadView {
     text = String(text || "").trim();
     if (!text || this.generating) return false;
     const payload = this.getPayload(text);
-    this.lastSendError = null;
     try {
       await api(this.sendURL, { method: "POST", body: payload });
       this.generating = true;
@@ -1510,13 +1516,14 @@ export class ThreadView {
       this.toBottom();
       return true;
     } catch (err) {
-      this.lastSendError = err.message;
       if (/en cours/i.test(err.message)) {
         this.generating = true;
+        this.lastSendError = null;
         if (this.stopBtn) this.stopBtn.hidden = false;
         this.setBusy(true);
         return true;
       }
+      this.lastSendError = err.message;
       this.addError(err.message);
       return false;
     }

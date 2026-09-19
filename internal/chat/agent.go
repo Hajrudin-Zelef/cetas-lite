@@ -95,8 +95,10 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 		sys = append(sys, githubPromptMessage(login))
 	}
 	// Directive de raisonnement (imperative, en anglais) : le bouton
-	// Thinking du composer pilote le raisonnement de l'agent.
-	sys = append(sys, provider.Message{Role: "system", Content: thinkDirective(true, in.Think, resolveEffort(in.Think, in.Text, in.Effort))})
+	// Thinking du composer pilote le raisonnement de l'agent. Phase 4 :
+	// les tours purement mécaniques (simple demande de lecture) n'ont
+	// pas de raisonnement obligatoire — action directe.
+	sys = append(sys, provider.Message{Role: "system", Content: agentThinkDirective(in.Think, in.Text, in.Effort)})
 	// Competences actives (Configuration -> Competences) : instructions
 	// utilisateur injectees dans le prompt systeme de l'agent.
 	if e.st != nil {

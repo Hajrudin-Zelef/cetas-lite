@@ -106,10 +106,23 @@ test("RunScript → « Writing command », Edit/Write → « Preparing edit »",
   assert.equal(findByClass(log, "agent-status")[0].textContent, "Preparing edit");
 });
 
-test("Read → aucun statut", () => {
+test("Read → statut « Lecture de … » (phase 4)", () => {
   const { v, log } = makeView();
   toolStart(v, 1, "Read", { file_path: "a.txt" });
-  assert.equal(findByClass(log, "agent-status").length, 0, "pas de statut pour Read");
+  const st = findByClass(log, "agent-status");
+  assert.equal(st.length, 1, "une ligne de statut");
+  assert.equal(st[0].textContent, "Lecture de a.txt…");
+  toolEnd(v, 2, "Read", { file_path: "a.txt" });
+  assert.equal(findByClass(log, "agent-status").length, 0, "statut retiré");
+});
+
+test("Grep/Ls → statuts français (phase 4)", () => {
+  const { v, log } = makeView();
+  toolStart(v, 1, "Grep", { pattern: "TODO" });
+  assert.equal(findByClass(log, "agent-status")[0].textContent, "Recherche de « TODO »…");
+  toolEnd(v, 2, "Grep", { pattern: "TODO" });
+  toolStart(v, 3, "Ls", {});
+  assert.equal(findByClass(log, "agent-status")[0].textContent, "Liste des fichiers…");
 });
 
 test("fin d'outil → statut retiré", () => {
