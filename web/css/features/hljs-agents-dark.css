@@ -1,0 +1,28 @@
+/* Coloration hljs de la vue Agents (toujours sombre).
+   ------------------------------------------------------------
+   #marex-view est toujours sombre (#000) mais l'application peut
+   être en thème clair : le thème hljs clair s'applique alors et le
+   code devient sombre (illisible) sur le fond noir. On scope donc
+   le thème hljs SOMBRE à #marex-view dans une feuille TOUJOURS
+   chargée (jamais désactivée), sans dépendre du JS.
+   Généré depuis vendor/highlight-github-dark.min.css. */
+
+#marex-view pre code.hljs{display:block;overflow-x:auto;padding:1em}
+#marex-view code.hljs{padding:3px 5px}
+#marex-view .hljs{color:#c9d1d9;background:#0d1117}
+#marex-view .hljs-doctag,#marex-view .hljs-keyword,#marex-view .hljs-meta .hljs-keyword,#marex-view .hljs-template-tag,#marex-view .hljs-template-variable,#marex-view .hljs-type,#marex-view .hljs-variable.language_{color:#ff7b72}
+#marex-view .hljs-title,#marex-view .hljs-title.class_,#marex-view .hljs-title.class_.inherited__,#marex-view .hljs-title.function_{color:#d2a8ff}
+#marex-view .hljs-attr,#marex-view .hljs-attribute,#marex-view .hljs-literal,#marex-view .hljs-meta,#marex-view .hljs-number,#marex-view .hljs-operator,#marex-view .hljs-selector-attr,#marex-view .hljs-selector-class,#marex-view .hljs-selector-id,#marex-view .hljs-variable{color:#79c0ff}
+#marex-view .hljs-meta .hljs-string,#marex-view .hljs-regexp,#marex-view .hljs-string{color:#a5d6ff}
+#marex-view .hljs-built_in,#marex-view .hljs-symbol{color:#ffa657}
+#marex-view .hljs-code,#marex-view .hljs-comment,#marex-view .hljs-formula{color:#8b949e}
+#marex-view .hljs-name,#marex-view .hljs-quote,#marex-view .hljs-selector-pseudo,#marex-view .hljs-selector-tag{color:#7ee787}
+#marex-view .hljs-subst{color:#c9d1d9}
+#marex-view .hljs-section{color:#1f6feb;font-weight:700}
+#marex-view .hljs-bullet{color:#f2cc60}
+#marex-view .hljs-emphasis{color:#c9d1d9;font-style:italic}
+#marex-view .hljs-strong{color:#c9d1d9;font-weight:700}
+#marex-view .hljs-addition{color:#aff5b4;background-color:#033a16}
+#marex-view .hljs-deletion{color:#ffdcd7;background-color:#67060c}
+#marex-view .mx-chat-log pre{background:#0d1117;border:1px solid #30363d}
+#marex-view .mx-chat-log pre code{background:transparent}

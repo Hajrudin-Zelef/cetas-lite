@@ -1455,16 +1455,10 @@ function updateFav() {
 }
 
 // ---------------- ouverture / fermeture (page complète plein écran) ----------------
-// La vue Agents est TOUJOURS sombre (fond #000). La coloration syntaxique
-// hljs suit normalement le thème de l'application : en thème clair, les
-// blocs de code de la vue Agents seraient rendus avec le thème hljs clair
-// (texte sombre) sur fond noir. On force donc le thème hljs sombre tant que
-// la vue est ouverte, et on restaure celui de l'application à la fermeture.
-function setAgentsHljsTheme(insideAgents) {
-  if (typeof window.cetasHljsTheme !== "function") return;
-  const appTheme = document.documentElement.dataset.theme || "clair";
-  window.cetasHljsTheme(insideAgents ? "sombre" : appTheme);
-}
+// La vue Agents est TOUJOURS sombre (fond #000). La coloration hljs y est
+// garantie par la feuille toujours active /css/features/hljs-agents-dark.css
+// (scopée #marex-view), indépendante du thème applicatif et du JS : en thème
+// clair, les blocs de code restent clairs sur sombre.
 
 function openView() {
   if (opened) return;
@@ -1474,7 +1468,6 @@ function openView() {
   try {
     sessionStorage.setItem("cetas.agents.open", "1");
   } catch (e) {}
-  setAgentsHljsTheme(true);
   view.classList.add("open");
   toolbarBtn.classList.add("active");
   document.body.style.overflow = "hidden";
@@ -1496,7 +1489,6 @@ function closeView() {
     sessionStorage.removeItem("cetas.agents.open");
     sessionStorage.removeItem("cetas.agents.current");
   } catch (e) {}
-  setAgentsHljsTheme(false);
   clearTimeout(draftTimer);
   saveDraftNow(); // ne jamais perdre le texte en cours
   view.classList.remove("open");
