@@ -61,7 +61,7 @@ Variables:
   CETAS_LITE_ADDR                 adresse d'ecoute (defaut: 127.0.0.1:8787)
   CETAS_LITE_REGISTRATION_OPEN    inscription: non defini = 1er compte puis ferme ; true = ouvert ; false = ferme
   CETAS_LITE_TRUST_PROXY          faire confiance a X-Forwarded-For (derriere nginx) (defaut: false)
-  CETAS_LITE_SANDBOX              isolation Bash/RunScript: none|auto|bwrap (defaut: none)
+  CETAS_LITE_SANDBOX              isolation Bash/RunScript: none|auto|bwrap (defaut: auto)
   CETAS_LITE_VAULT_PASSWORD       mot de passe du coffre (requis pour keys)
 `)
 }
@@ -155,6 +155,8 @@ func buildApp() (*app, error) {
 	engine.SetIsolation(iso)
 	if iso == chat.IsolationBwrap {
 		slog.Info("isolation bwrap active")
+	} else if cfg.Sandbox == "auto" {
+		slog.Info("bwrap indisponible : repli sans isolation (none)")
 	}
 	engine.SetSearcher(search.NewWithConfig(web.LoadSearchConfig(st, keys), client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))

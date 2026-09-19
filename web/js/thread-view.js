@@ -53,6 +53,17 @@ function cancelRafTick(id) {
   else clearTimeout(id);
 }
 
+// Vue Agents sur mobile/tablette (≤1024px, même seuil que le CSS) : le
+// raisonnement s'affiche EN LIGNE, au-dessus de la réponse, dans un bloc
+// repliable. Sur desktop le panneau latéral reste le seul affichage.
+function isMobileViewport() {
+  return (
+    typeof window !== "undefined" &&
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(max-width: 1024px)").matches
+  );
+}
+
 export function el(tag, cls, text) {
   const e = document.createElement(tag);
   if (cls) e.className = cls;
@@ -353,6 +364,14 @@ export class ThreadView {
     this.waitTimer = 0;
     this.waitStart = 0;
     this.toolBoxes = new Map();
+    // Compteur incrémental unique par appel d'outil (F8) : name+JSON(args)
+    // seul collisionne quand le modèle appelle deux fois le même outil avec
+    // les mêmes arguments. toolPending associe chaque clé de base à la file
+    // des clés uniques en cours, dans l'ordre des "start".
+    this.toolSeq = 0;
+    this.toolPending = new Map();
+    // Reconnexions SSE (F9) : backoff exponentiel, plafond de tentatives.
+    this.sseRetries = 0;
     this.approvalCards = new Map();
     // Dernier événement reçu (pour "+ Thought: Xs" façon OpenCode).
     this.lastEventTs = 0;
@@ -779,6 +798,13 @@ export class ThreadView {
   appendReasoning(text, isReplace) {
     // L'agent réfléchit : "thinking" + spinner visibles dans le fil.
     this.showThinking();
+    // Vue Agents sur mobile : bloc "Raisonnement" repliable en tête de la
+    // bulle, au-dessus de la réponse — le panneau latéral ne reçoit rien
+    // (pas de doublon) et reste réservé au desktop.
+    if (this.reasonHooks && isMobileViewport()) {
+      this.appendReasoningInline(text, isReplace);
+      return;
+    }
     if (this.reasonHooks) {
       this.reasonHooks.append(text, isReplace);
       return;
@@ -789,6 +815,13 @@ export class ThreadView {
       if (this.reasonBtn) this.reasonBtn.hidden = false;
       return;
     }
+    this.appendReasoningInline(text, isReplace);
+  }
+
+  // Bloc "Raisonnement" repliable (<details> natif : chevron + toggle
+  // collapse/expand) inséré en tête de la bulle assistant, au-dessus du
+  // contenu de la réponse.
+  appendReasoningInline(text, isReplace) {
     const box = this.ensureReasoning().querySelector(".thinking-content");
     // Rendu incremental : on n'ajoute QUE le nouveau morceau au noeud texte
     // (appendData). Jamais de textContent sur tout le texte -> pas de O(n)
@@ -859,7 +892,7 @@ export class ThreadView {
     });
     bar.appendChild(copy);
     if (this.regenerateURL) {
-      const regen = el("button", "regen-btn", "Regenerer");
+      const regen = el("button", "regen-btn", "Régénérer");
       regen.type = "button";
       regen.addEventListener("click", async () => {
         if (this.generating) return;
@@ -891,11 +924,39 @@ export class ThreadView {
     return this.agentic && getAgenticStyle() === AGENTIC_STYLE_OPENCODE;
   }
 
+  // Clé unique par appel d'outil : deux "start" identiques (même nom,
+  // mêmes arguments) ne doivent pas partager la même carte, sinon le
+  // second écrase le premier et un bloc "running" fantôme subsiste.
+  toolKeyStart(ev) {
+    const base = ev.name + "|" + JSON.stringify(ev.args || {});
+    const key = base + "#" + (++this.toolSeq);
+    let q = this.toolPending.get(base);
+    if (!q) { q = []; this.toolPending.set(base, q); }
+    q.push(key);
+    return key;
+  }
+  // Chaque "end" reprend la plus ancienne clé en attente pour sa base
+  // (les fins arrivent dans l'ordre des débuts pour des appels identiques).
+  toolKeyEnd(ev) {
+    const base = ev.name + "|" + JSON.stringify(ev.args || {});
+    const q = this.toolPending.get(base);
+    if (q && q.length) {
+      const key = q.shift();
+      if (!q.length) this.toolPending.delete(base);
+      return key;
+    }
+    // Repli : "end" sans "start" vu (replay partiel, etc.).
+    for (const k of this.toolBoxes.keys()) {
+      if (k === base || k.startsWith(base + "#")) return k;
+    }
+    return base;
+  }
+
   addTool(ev, gapMs) {
     // Vue Agents + style OpenCode : rendu fidele au TUI OpenCode.
     if (this.agenticIsOpenCode()) return this.addToolOpenCode(ev, gapMs);
-    const key = ev.name + "|" + JSON.stringify(ev.args || {});
     if (ev.phase === "start") {
+      const key = this.toolKeyStart(ev);
       this.clearEmpty();
       this.hideWait();
       this.hideThinking();
@@ -933,6 +994,7 @@ export class ThreadView {
       this.requestFollow();
       return;
     }
+    const key = this.toolKeyEnd(ev);
     const body = this.toolBoxes.get(key);
     if (!body) return;
     const det = body.closest("details");
@@ -972,8 +1034,8 @@ export class ThreadView {
   // epaisse, en-tete "Nom: parametres" ("Nom: action..." pendant
   // l'execution), resultats bornes a 10 lignes, erreurs en rouge.
   addToolOpenCode(ev, gapMs) {
-    const key = ev.name + "|" + JSON.stringify(ev.args || {});
     if (ev.phase === "start") {
+      const key = this.toolKeyStart(ev);
       this.clearEmpty();
       this.hideWait();
       this.hideThinking();
@@ -1001,6 +1063,7 @@ export class ThreadView {
       this.requestFollow();
       return;
     }
+    const key = this.toolKeyEnd(ev);
     const slot = this.toolBoxes.get(key);
     if (!slot || !slot.body) return;
     slot.root.classList.remove("running");
@@ -1142,6 +1205,11 @@ export class ThreadView {
     if (args.command) return String(args.command);
     if (args.pattern) return String(args.pattern);
     if (args.query) return String(args.query);
+    // Sed / Awk : afficher l'expression ou le programme (première ligne)
+    // au lieu de laisser la carte sans résumé.
+    if (args.expression) return String(args.expression).split("\n")[0].slice(0, 200);
+    if (args.script) return String(args.script).split("\n")[0].slice(0, 200);
+    if (args.program) return String(args.program).split("\n")[0].slice(0, 200);
     return "";
   }
 
@@ -1194,8 +1262,17 @@ export class ThreadView {
       det.appendChild(el("summary", "", "Détails"));
       const pre = el("pre");
       const shown = Object.assign({}, ev.args);
+      const truncated = [];
       for (const k of ["content", "code", "new"]) {
-        if (typeof shown[k] === "string" && shown[k].length > 600) shown[k] = shown[k].slice(0, 600) + "…";
+        if (typeof shown[k] === "string" && shown[k].length > 600) {
+          shown[k] = shown[k].slice(0, 600) + "…";
+          truncated.push(k);
+        }
+      }
+      if (truncated.length) {
+        det.appendChild(el("div", "approval-truncated",
+          "Contenu tronqué à 600 caractères (" + truncated.join(", ") +
+          ") : relis la valeur complète avant d'approuver."));
       }
       pre.textContent = JSON.stringify(shown, null, 2);
       det.appendChild(pre);
@@ -1344,6 +1421,7 @@ export class ThreadView {
     this.reasonAssistantWrapper = null;
     this.stopStreamSpinner();
     this.toolBoxes.clear();
+    this.toolPending.clear();
     this.approvalCards.clear();
     this.searchStatus = null;
     this.lastEventTs = 0;
@@ -1526,6 +1604,7 @@ export class ThreadView {
   connect() {
     if (this.controller) this.controller.abort();
     this.controller = new AbortController();
+    this.sseRetries = 0;
     const url = this.streamURL(this.lastSeq);
     const run = async () => {
       try {
@@ -1533,16 +1612,40 @@ export class ThreadView {
           headers: { Authorization: "Bearer " + getToken() },
           signal: this.controller.signal,
         });
-        if (!resp.ok || !resp.body) return;
+        if (resp.status === 401) {
+          // Session expirée : même signal que le reste du code (api.js).
+          window.dispatchEvent(new CustomEvent("cetas:unauthorized"));
+          return;
+        }
+        if (!resp.ok || !resp.body) {
+          this.scheduleReconnect(run);
+          return;
+        }
+        this.sseRetries = 0; // connexion réussie : on repart de zéro
         await readSSE(resp, (ev) => this.handleEvent(ev));
       } catch (e) {
         if (e && e.name === "AbortError") return;
-        setTimeout(() => {
-          if (this.controller && !this.controller.signal.aborted) run();
-        }, 1500);
+        this.scheduleReconnect(run);
       }
     };
     run();
+  }
+
+  // Reconnexion SSE avec backoff exponentiel et plafond de tentatives :
+  // plus de boucle infinie silencieuse, et un message visible quand le
+  // plafond est atteint.
+  scheduleReconnect(run) {
+    if (!this.controller || this.controller.signal.aborted) return;
+    const maxRetries = 8;
+    if (this.sseRetries >= maxRetries) {
+      this.addError("Connexion temps réel perdue après plusieurs tentatives. Recharge la page pour reprendre le fil.");
+      return;
+    }
+    const delay = Math.min(1500 * Math.pow(2, this.sseRetries), 30000);
+    this.sseRetries++;
+    setTimeout(() => {
+      if (this.controller && !this.controller.signal.aborted) run();
+    }, delay);
   }
 
   disconnect() {

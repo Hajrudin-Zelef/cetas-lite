@@ -16,6 +16,7 @@ func TestLoadDefaults(t *testing.T) {
 	t.Setenv("CETAS_LITE_HOME", home)
 	t.Setenv("CETAS_LITE_ADDR", "")
 	t.Setenv("CETAS_LITE_REGISTRATION_OPEN", "")
+	t.Setenv("CETAS_LITE_SANDBOX", "")
 
 	cfg, err := Load()
 	if err != nil {
@@ -36,8 +37,8 @@ func TestLoadDefaults(t *testing.T) {
 	if cfg.TrustProxy {
 		t.Error("TrustProxy doit etre faux par defaut")
 	}
-	if cfg.Sandbox != "none" {
-		t.Errorf("Sandbox = %q, want none", cfg.Sandbox)
+	if cfg.Sandbox != "auto" {
+		t.Errorf("Sandbox = %q, want auto", cfg.Sandbox)
 	}
 	for _, dir := range []string{cfg.Home, cfg.DataDir, cfg.WorkspaceDir, cfg.MemoryDir} {
 		if !isDir(dir) {

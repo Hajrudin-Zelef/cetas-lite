@@ -75,7 +75,9 @@ func Load() (*Config, error) {
 
 	sandbox := strings.ToLower(strings.TrimSpace(os.Getenv("CETAS_LITE_SANDBOX")))
 	if sandbox == "" {
-		sandbox = "none"
+		// M4 : défaut "auto" (bwrap quand disponible, repli "none" sinon)
+		// plutôt que "none" pur.
+		sandbox = "auto"
 	}
 	switch sandbox {
 	case "none", "auto", "bwrap":

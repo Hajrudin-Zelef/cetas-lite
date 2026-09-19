@@ -82,14 +82,16 @@ func (s *Sandbox) githubToken() string {
 
 // gitEnv construit l'environnement git pour authentifier les opérations
 // GitHub via le token, sans modifier aucun fichier du dépôt.
+// Le token transite par http.extraHeader (jamais dans l'URL) : un
+// `git config --list` ne l'expose plus via la clé de configuration.
 func gitEnv(token string) map[string]string {
 	if token == "" {
 		return nil
 	}
 	return map[string]string{
 		"GIT_CONFIG_COUNT":    "1",
-		"GIT_CONFIG_KEY_0":    "url.https://oauth2:" + token + "@github.com/.insteadOf",
-		"GIT_CONFIG_VALUE_0":  "https://github.com/",
+		"GIT_CONFIG_KEY_0":    "http.https://github.com/.extraheader",
+		"GIT_CONFIG_VALUE_0":  "Authorization: Bearer " + token,
 		"GIT_TERMINAL_PROMPT": "0",
 	}
 }

@@ -16,6 +16,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -401,7 +402,8 @@ func isWordByte(c byte) bool {
 
 // sedRisk analyse heuristiquement une expression sed et signale les
 // constructions à effets de bord : exécution de commande (commande `e`,
-// flag `e` de s///) et écriture de fichier (commandes w/W, flag w de s///).
+// flag `e` de s///), écriture de fichier (commandes w/W, flag w de s///)
+// et lecture de fichier arbitraire (commandes r/R).
 // Le reste (s///g, p, d, adresses…) est du flux pur, sans approbation.
 func sedRisk(expr string) (exec, write bool) {
 	i, n := 0, len(expr)
@@ -447,25 +449,70 @@ func sedRisk(expr string) (exec, write bool) {
 				}
 			}
 		}
-		// Commandes d'un caractère : e (exec), w/W (write).
-		if (c == 'e' || c == 'w' || c == 'W') && (i == 0 || !isWordByte(expr[i-1])) {
-			// 'w' suivi d'un nom de fichier ; 'e' seul. Évite les faux
-			// positifs du type "...where..." : exige un séparateur après.
+		// Adresse /.../ : on la saute pour ne pas confondre un 'r'/'w'
+		// d'adresse (ex. /root/d) avec une commande.
+		if c == '/' && (i == 0 || isSedAddrStart(expr[i-1])) {
+			j := i + 1
+			for j < n {
+				if expr[j] == '\\' {
+					j += 2
+					continue
+				}
+				if expr[j] == '/' {
+					break
+				}
+				j++
+			}
+			i = j + 1
+			continue
+		}
+		// Les formes collées (w/tmp/x, r/etc/passwd) sont réelles en GNU
+		// sed : pour w/W/r/R on ne peut pas exiger un séparateur après
+		// (seul 'e' le garde, contre les faux positifs du type "...where...").
+		if (c == 'e' || c == 'w' || c == 'W' || c == 'r' || c == 'R') && (i == 0 || !isWordByte(expr[i-1])) {
 			next := byte(0)
 			if i+1 < n {
 				next = expr[i+1]
 			}
-			if next == 0 || next == ' ' || next == '\t' || next == '\n' || next == ';' || next == '}' {
-				if c == 'e' {
+			matched := false
+			if c == 'e' {
+				if next == 0 || isSedSep(next) {
 					exec = true
-				} else {
-					write = true
+					matched = true
 				}
+			} else if next == 0 || isSedSep(next) || next == '/' || next == '.' || next == '~' || isASCIILetter(next) {
+				// r/R = lecture de fichier arbitraire (ex. r /etc/passwd) :
+				// traitée comme un effet de bord (approbation requise).
+				write = true
+				matched = true
+			}
+			if matched {
+				// La commande consomme le reste de la ligne (ex. `e whoami`) :
+				// on ne réanalyse pas son argument.
+				for i < n && expr[i] != '\n' {
+					i++
+				}
+				continue
 			}
 		}
 		i++
 	}
 	return exec, write
+}
+
+// isSedSep : séparateurs de commandes sed.
+func isSedSep(c byte) bool {
+	return c == ' ' || c == '\t' || c == '\n' || c == ';' || c == '}'
+}
+
+// isSedAddrStart : positions où un '/' ouvre une adresse /.../.
+func isSedAddrStart(c byte) bool {
+	return isSedSep(c) || c == ','
+}
+
+// isASCIILetter : lettre ASCII (pour les noms de fichiers collés : wfile).
+func isASCIILetter(c byte) bool {
+	return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z')
 }
 
 // awkRiskRe repère les programmes awk à effets de bord : appels system(),
@@ -489,6 +536,50 @@ func awkNeedsApproval(args map[string]any) bool {
 }
 
 // ---------------- Curl ----------------
+
+var errCurlBlockedAddr = errors.New("adresse reseau non autorisee (garde SSRF)")
+
+// curlDialContext : garde SSRF — même logique que web_fetch
+// (internal/search/fetch.go) : résolution DNS puis connexion uniquement
+// vers une IP publique. S'applique aussi aux redirections.
+func curlDialContext(ctx context.Context, network, addr string) (net.Conn, error) {
+	host, port, err := net.SplitHostPort(addr)
+	if err != nil {
+		return nil, err
+	}
+	ips, err := net.DefaultResolver.LookupIPAddr(ctx, host)
+	if err != nil {
+		return nil, err
+	}
+	d := &net.Dialer{Timeout: 5 * time.Second}
+	for _, ip := range ips {
+		if !curlIsPublicIP(ip.IP) {
+			continue
+		}
+		return d.DialContext(ctx, network, net.JoinHostPort(ip.String(), port))
+	}
+	return nil, errCurlBlockedAddr
+}
+
+// curlIsPublicIP : réplique minimale de la garde web_fetch. Les symboles
+// d'internal/search n'étant pas exportés, la logique est dupliquée ici
+// plutôt que d'élargir l'API du paquet search.
+func curlIsPublicIP(ip net.IP) bool {
+	if ip == nil || ip.IsLoopback() || ip.IsPrivate() || ip.IsUnspecified() ||
+		ip.IsLinkLocalUnicast() || ip.IsLinkLocalMulticast() || ip.IsMulticast() {
+		return false
+	}
+	if v4 := ip.To4(); v4 != nil {
+		if v4[0] == 100 && v4[1] >= 64 && v4[1] <= 127 {
+			return false
+		}
+		return true
+	}
+	if len(ip) == net.IPv6len && (ip[0]&0xfe) == 0xfc {
+		return false
+	}
+	return true
+}
 
 // toolCurl exécute une requête HTTP(S) encadrée : http/https uniquement
 // (redirections filtrées), timeout borné, corps de réponse plafonné à 2 Mo,
@@ -524,6 +615,12 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 	}
 	client := &http.Client{
 		Timeout: time.Duration(timeout) * time.Second,
+		Transport: &http.Transport{
+			// Pas de proxy : la garde SSRF ci-dessous s'applique
+			// toujours à la cible réelle (comme web_fetch).
+			Proxy:       nil,
+			DialContext: curlDialContext,
+		},
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			if len(via) >= 5 {
 				return errors.New("trop de redirections (max 5)")

@@ -61,7 +61,129 @@ var execBannedTokens = map[string]bool{
 	"curl": true, "wget": true,
 }
 
-var execBannedFlags = map[string]bool{"-c": true, "--eval": true, "-e": true}
+var execBannedFlags = map[string]bool{"-c": true, "--eval": true, "-e": true, "-exec": true, "-execdir": true}
+
+// execEvalFlagPrefixes : par binaire, les préfixes de flags d'évaluation
+// de code interdits. Le contrôle d'égalité exacte laissait passer les
+// formes collées (python3 -c<charge>, node --eval=<charge>) : pour ces
+// binaires on contrôle par préfixe. Scopé par binaire pour ne pas casser
+// les usages légitimes (grep -c, sed -e... restent soumis au seul
+// contrôle exact ci-dessus).
+var execEvalFlagPrefixes = map[string][]string{
+	"python":  {"-c"},
+	"python3": {"-c"},
+	"node":    {"-e", "--eval"},
+}
+
+// bannedEvalFlag détecte un flag d'évaluation de code, y compris collé à
+// sa charge (python3 -cprint(1), node --eval=...).
+func bannedEvalFlag(binary, tok string) bool {
+	for _, pfx := range execEvalFlagPrefixes[binary] {
+		if strings.HasPrefix(tok, pfx) {
+			return true
+		}
+	}
+	return false
+}
+
+// awkBashBinaries : variantes d'awk admises dans Bash.
+var awkBashBinaries = map[string]bool{"awk": true, "gawk": true, "mawk": true, "nawk": true}
+
+// bashEmbeddedProgram reconstitue le programme sed/awk embarqué dans une
+// commande Bash : les options sont ignorées (y compris -e<script> collé),
+// ainsi que l'argument des options qui en prennent un (awk -v var=val,
+// -F separateur, -f fichier ; sed -f fichier) — sans quoi cet argument
+// serait pris pour le programme et masquerait le vrai programme risqué.
+// Le premier opérande non-option restant est le programme (la suite =
+// fichiers).
+func bashEmbeddedProgram(binary string, args []string) string {
+	var takesArg map[string]bool
+	switch {
+	case awkBashBinaries[binary]:
+		takesArg = map[string]bool{"-v": true, "-F": true, "-f": true, "-W": true}
+	case binary == "sed":
+		takesArg = map[string]bool{"-f": true}
+	}
+	var parts []string
+	skipNext := false
+	for _, t := range args {
+		if t == "" {
+			continue
+		}
+		if skipNext {
+			skipNext = false
+			continue
+		}
+		if strings.HasPrefix(t, "-") {
+			if rest, ok := strings.CutPrefix(t, "-e"); ok && rest != "" {
+				parts = append(parts, rest)
+			} else if rest, ok := strings.CutPrefix(t, "--expression="); ok && rest != "" {
+				parts = append(parts, rest)
+			} else if takesArg[t] {
+				skipNext = true
+			}
+			// Sinon : option simple ou collée (-F:, -n...) ignorée.
+			continue
+		}
+		if len(parts) == 0 {
+			parts = append(parts, t)
+		}
+		break
+	}
+	return strings.Join(parts, "\n")
+}
+
+// bashProgramRisk applique aux programmes sed/awk embarqués via Bash les
+// mêmes détections que les outils dédiés (sedRisk, awkRiskRe).
+func bashProgramRisk(binary, prog string) string {
+	switch {
+	case binary == "sed":
+		if exec, write := sedRisk(prog); exec || write {
+			return "programme sed a effets de bord detecte : utilise l'outil Sed dedie (approbation requise)"
+		}
+	case awkBashBinaries[binary]:
+		if awkRiskRe.MatchString(prog) {
+			return "programme awk a effets de bord detecte : utilise l'outil Awk dedie (approbation requise)"
+		}
+	}
+	return ""
+}
+
+// gitShowsConfig détecte les commandes git qui affichent la configuration
+// (donc l'extraHeader d'authentification) : leur sortie est expurgée du token.
+func gitShowsConfig(binary string, tokens []string) bool {
+	if binary != "git" || len(tokens) < 2 {
+		return false
+	}
+	// La sous-commande peut être précédée d'options globales
+	// (git -c key=val config --list) : on les saute pour la trouver.
+	i := 1
+	for i < len(tokens) && strings.HasPrefix(tokens[i], "-") {
+		if tokens[i] == "-c" || tokens[i] == "-C" {
+			i++ // -c/-C prennent une valeur
+		}
+		i++
+	}
+	if i >= len(tokens) {
+		return false
+	}
+	rest := tokens[i+1:]
+	switch tokens[i] {
+	case "config":
+		for _, t := range rest {
+			if t == "--list" || t == "-l" {
+				return true
+			}
+		}
+	case "var":
+		for _, t := range rest {
+			if t == "-l" {
+				return true
+			}
+		}
+	}
+	return false
+}
 
 // toolAliases : outils historiques fusionnés -> outil canonique (phase 3).
 // Le modèle ne voit que le canonique dans les schémas, mais tout appel
@@ -495,6 +617,12 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 	if len(tokens) == 0 {
 		return "[erreur] commande vide"
 	}
+	// H6 : seul le nom de base était contrôlé mais le chemin complet était
+	// exécuté — outils/ls pouvait être un script malveillant du workspace.
+	// On impose le nom simple (résolution PATH), jamais un chemin.
+	if strings.Contains(tokens[0], "/") {
+		return "[erreur] chemin de binaire interdit (utilise le nom simple, ex. \"ls\"): " + tokens[0]
+	}
 	binary := filepath.Base(tokens[0])
 	if !execAllowlist[binary] {
 		return "[erreur] commande non autorisee: " + tokens[0]
@@ -508,9 +636,20 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 		if execBannedFlags[tok] {
 			return "[erreur] flag interdit: " + tok
 		}
+		// H1 : formes collées (python3 -c<charge>, node --eval=<charge>).
+		if bannedEvalFlag(binary, tok) {
+			return "[erreur] flag interdit: " + tok
+		}
 		if msg := s.checkArg(tok); msg != "" {
 			return "[erreur] " + msg
 		}
+	}
+	// H2/H5/H7 : un programme sed/awk à effets de bord passé via Bash
+	// échappait aux détections des outils dédiés. On applique ici les mêmes
+	// heuristiques : refusé dans Bash, le modèle passe par l'outil dédié
+	// (qui déclenche l'approbation).
+	if msg := bashProgramRisk(binary, bashEmbeddedProgram(binary, tokens[1:])); msg != "" {
+		return "[erreur] " + msg
 	}
 	timeout := intArg(args, "timeout")
 	if timeout <= 0 {
@@ -544,7 +683,13 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 	if err != nil && exit == 0 {
 		parts = append(parts, fmt.Sprintf("[erreur] %v", err))
 	}
-	return strings.Join(parts, "\n\n")
+	result := strings.Join(parts, "\n\n")
+	// H4 : le token GitHub ne remonte jamais au modèle, même via
+	// `git config --list` (l'extraHeader l'y affiche en clair).
+	if tok := s.githubToken(); tok != "" && gitShowsConfig(binary, tokens) {
+		result = strings.ReplaceAll(result, tok, "***")
+	}
+	return result
 }
 
 // isTimeoutErr détecte un dépassement de délai renvoyé par un FS.

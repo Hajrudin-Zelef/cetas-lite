@@ -279,3 +279,166 @@ func TestReadDefaultLimit(t *testing.T) {
 		t.Fatalf("read limit=10 = %d lignes, want 11 (10 + compteur)", n)
 	}
 }
+
+// TestBannedEvalFlag vérifie la détection des flags d'évaluation collés
+// (H1) : python3 -c<charge>, node --eval=<charge> — sans casser les usages
+// légitimes des autres binaires (grep -c, sed -e...).
+func TestBannedEvalFlag(t *testing.T) {
+	banned := [][2]string{
+		{"python3", "-c"}, {"python3", "-cprint(1)"}, {"python3", "-c print(1)"},
+		{"python", "-c"}, {"node", "-e"}, {"node", "-e1+1"},
+		{"node", "--eval"}, {"node", "--eval=1+1"},
+	}
+	for _, c := range banned {
+		if !bannedEvalFlag(c[0], c[1]) {
+			t.Errorf("bannedEvalFlag(%q, %q) = false, want true", c[0], c[1])
+		}
+	}
+	allowed := [][2]string{
+		{"grep", "-c"}, {"grep", "-e"}, {"grep", "--color"},
+		{"sed", "-e"}, {"sed", "--expression=s/a/b/"},
+		{"echo", "-e"}, {"ls", "-c"}, {"find", "-c"},
+		{"python3", "--version"}, {"node", "--version"},
+	}
+	for _, c := range allowed {
+		if bannedEvalFlag(c[0], c[1]) {
+			t.Errorf("bannedEvalFlag(%q, %q) = true, want false (usage legitime)", c[0], c[1])
+		}
+	}
+}
+
+// TestBashRejectsGluedEvalFlags vérifie de bout en bout que les formes
+// collées sont refusées avant toute exécution (H1).
+func TestBashRejectsGluedEvalFlags(t *testing.T) {
+	sb := newTestSandbox(t)
+	for _, cmd := range []string{
+		`python3 -cprint(1)`,
+		`python3 -c print(1)`,
+		`node --eval=1+1`,
+		`node -e1+1`,
+	} {
+		out := sb.Execute(context.Background(), "Bash", `{"command":`+strconv.Quote(cmd)+`}`)
+		if !strings.Contains(out.Text, "flag interdit") {
+			t.Errorf("commande %q aurait du etre refusee: %q", cmd, out.Text)
+		}
+	}
+}
+
+// TestBashRejectsFindExec vérifie que find -exec/-execdir est banni (H3).
+func TestBashRejectsFindExec(t *testing.T) {
+	sb := newTestSandbox(t)
+	for _, cmd := range []string{
+		`find . -exec echo {} \;`,
+		`find . -execdir echo {} \;`,
+	} {
+		out := sb.Execute(context.Background(), "Bash", `{"command":`+strconv.Quote(cmd)+`}`)
+		if !strings.Contains(out.Text, "flag interdit") {
+			t.Errorf("commande %q aurait du etre refusee: %q", cmd, out.Text)
+		}
+	}
+	// find sans -exec reste utilisable.
+	out := sb.Execute(context.Background(), "Bash", `{"command":"find . -maxdepth 1"}`)
+	if strings.Contains(out.Text, "flag interdit") {
+		t.Errorf("find simple ne devrait pas etre bloque: %q", out.Text)
+	}
+}
+
+// TestBashRejectsBinaryPath vérifie qu'un binaire passé par chemin
+// (shadowing) est refusé (H6).
+func TestBashRejectsBinaryPath(t *testing.T) {
+	sb := newTestSandbox(t)
+	for _, cmd := range []string{"outils/ls", "/bin/ls", "./ls", "../bin/ls"} {
+		out := sb.Execute(context.Background(), "Bash", `{"command":`+strconv.Quote(cmd)+`}`)
+		if !strings.Contains(out.Text, "chemin de binaire interdit") {
+			t.Errorf("commande %q aurait du etre refusee: %q", cmd, out.Text)
+		}
+	}
+}
+
+// TestBashEmbeddedProgram vérifie l'extraction du programme sed/awk
+// embarqué dans une commande Bash, y compris avec des options à argument
+// séparé (-v, -F) qui ne doivent pas masquer le vrai programme.
+func TestBashEmbeddedProgram(t *testing.T) {
+	cases := []struct {
+		binary string
+		args   []string
+		want   string
+	}{
+		{"sed", []string{"-n", "1,5p", "f.txt"}, "1,5p"},
+		{"awk", []string{"{print $1}", "f.txt"}, "{print $1}"},
+		{"awk", []string{"-F,", "{print $2}", "f.txt"}, "{print $2}"},
+		{"sed", []string{"-es/a/b/", "f.txt"}, "s/a/b/"},
+		{"sed", []string{"--expression=s/a/b/", "f.txt"}, "s/a/b/"},
+		{"awk", []string{"-v", "x=1", "{print $1}", "f.txt"}, "{print $1}"},
+		{"awk", []string{"-F", ":", "BEGIN{print}", "f.txt"}, "BEGIN{print}"},
+		{"awk", []string{"-v", "x=1", "BEGIN{system(\"id\")}", "f.txt"}, "BEGIN{system(\"id\")}"},
+		{"sed", []string{"-e", "s/a/b/", "f.txt"}, "s/a/b/"},
+	}
+	for _, c := range cases {
+		if got := bashEmbeddedProgram(c.binary, c.args); got != c.want {
+			t.Errorf("bashEmbeddedProgram(%s, %v) = %q, want %q", c.binary, c.args, got, c.want)
+		}
+	}
+}
+
+// TestBashProgramRisk vérifie la détection des programmes sed/awk à effets
+// de bord via Bash (H2, H5, H7) et l'absence de faux positifs courants.
+func TestBashProgramRisk(t *testing.T) {
+	risky := [][2]string{
+		{"awk", `BEGIN{system("id")}`},
+		{"gawk", `{print | "sort"}`},
+		{"mawk", `{print "x" > "/tmp/f"}`},
+		{"sed", "r /etc/passwd"},
+		{"sed", "r/etc/passwd"},
+		{"sed", "w/tmp/x"},
+		{"sed", "s/a/b/w /tmp/x"},
+		{"sed", "e whoami"},
+	}
+	for _, c := range risky {
+		if msg := bashProgramRisk(c[0], c[1]); msg == "" {
+			t.Errorf("bashProgramRisk(%q, %q) vide, risque attendu", c[0], c[1])
+		}
+	}
+	safe := [][2]string{
+		{"awk", "{print $1}"},
+		{"awk", "NR>1 {sum+=$3} END {print sum}"},
+		{"sed", "s/a/b/g"},
+		{"sed", "10,20p"},
+		{"sed", "/^#/d"},
+		{"sed", "/root/d"},
+		{"echo", "bonjour"},
+	}
+	for _, c := range safe {
+		if msg := bashProgramRisk(c[0], c[1]); msg != "" {
+			t.Errorf("bashProgramRisk(%q, %q) = %q, faux positif", c[0], c[1], msg)
+		}
+	}
+}
+
+// TestBashRejectsRiskyAwkProgram vérifie de bout en bout le refus d'un
+// programme awk à effets de bord via Bash (H2).
+func TestBashRejectsRiskyAwkProgram(t *testing.T) {
+	sb := newTestSandbox(t)
+	out := sb.Execute(context.Background(), "Bash", `{"command":"awk 'BEGIN{system(\"id\")}'"}`)
+	if !strings.Contains(out.Text, "outil Awk dedie") {
+		t.Fatalf("awk system() via Bash aurait du etre refuse: %q", out.Text)
+	}
+	out = sb.Execute(context.Background(), "Bash", `{"command":"sed 'r /etc/passwd'"}`)
+	if !strings.Contains(out.Text, "outil Sed dedie") {
+		t.Fatalf("sed r via Bash aurait du etre refuse: %q", out.Text)
+	}
+	// Une option à argument séparé (-v) ne doit pas masquer le programme.
+	out = sb.Execute(context.Background(), "Bash", `{"command":"awk -v x=1 'BEGIN{system(\"id\")}'"}`)
+	if !strings.Contains(out.Text, "outil Awk dedie") {
+		t.Fatalf("awk -v ... system() via Bash aurait du etre refuse: %q", out.Text)
+	}
+	// Un awk -v légitime reste utilisable.
+	sb2 := newTestSandbox(t)
+	if err := os.WriteFile(filepath.Join(sb2.localRoot(), "d.txt"), []byte("a b\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	out = sb2.Execute(context.Background(), "Bash", `{"command":"awk -v OFS=, '{print $1}' d.txt"}`)
+	if strings.Contains(out.Text, "outil Awk dedie") {
+		t.Fatalf("awk -v legitime refuse a tort: %q", out.Text)
+	}
+}

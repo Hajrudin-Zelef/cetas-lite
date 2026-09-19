@@ -2,7 +2,7 @@ package chat
 
 import (
 	"context"
-	"io"
+	"net"
 	"net/http"
 	"net/http/httptest"
 	"os/exec"
@@ -169,6 +169,15 @@ func TestSedRisk(t *testing.T) {
 		{"e whoami", true, false},         // commande e
 		{"s/a/b/w /tmp/out", false, true}, // flag w : écrit
 		{"w /tmp/out", false, true},       // commande w
+		{"w/tmp/out", false, true},        // H7 : w collé au fichier
+		{"W/tmp/out", false, true},        // H7 : W collé au fichier
+		{"wout.txt", false, true},         // H7 : w + nom relatif collé
+		{"r /etc/passwd", false, true},    // H5 : r + chemin
+		{"r/etc/passwd", false, true},     // H5 : r collé au chemin
+		{"R /etc/passwd", false, true},    // H5 : R + chemin
+		{"/root/d", false, false},         // 'r' d'adresse : pas de faux positif
+		{"/^warning/d", false, false},     // 'w' d'adresse : pas de faux positif
+		{"/pat/w/tmp/x", false, true},     // adresse + commande w réelle
 		{"s/where/there/g", false, false}, // 'e' dans un mot : pas de faux positif
 		{"s/foo\\/bar/baz/g", false, false},
 	}
@@ -281,11 +290,7 @@ func TestToolSedAwkStream(t *testing.T) {
 
 // TestToolCurl vérifie la version encadrée de curl.
 func TestToolCurl(t *testing.T) {
-	var gotMethod, gotHeader, gotBody string
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		gotMethod, gotHeader = r.Method, r.Header.Get("X-Test")
-		b, _ := io.ReadAll(r.Body)
-		gotBody = string(b)
 		w.Header().Set("Content-Type", "text/plain")
 		w.Write([]byte("pong"))
 	}))
@@ -294,13 +299,11 @@ func TestToolCurl(t *testing.T) {
 	sb := extraSandbox(t)
 
 	r := sb.Execute(ctx, "Curl", `{"url":"`+srv.URL+`"}`)
-	if !strings.Contains(r.Text, "HTTP 200") || !strings.Contains(r.Text, "pong") {
-		t.Fatalf("curl GET: %s", r.Text)
+	if !strings.Contains(r.Text, "non autorisee") {
+		t.Fatalf("curl vers loopback aurait du etre bloque (garde SSRF): %s", r.Text)
 	}
-	r = sb.Execute(ctx, "Curl", `{"url":"`+srv.URL+`/x","method":"POST","headers":{"X-Test":"yes"},"body":"hello"}`)
-	if gotMethod != "POST" || gotHeader != "yes" || gotBody != "hello" {
-		t.Fatalf("curl POST: method=%s header=%s body=%s", gotMethod, gotHeader, gotBody)
-	}
+	// (Le chemin nominal GET/POST n'est plus testable en local : la garde
+	// SSRF bloque 127.0.0.1. Voir TestCurlSSRFGuard.)
 	// Cadre : schémas non-http refusés.
 	for _, bad := range []string{"file:///etc/passwd", "ftp://x", "not a url", ""} {
 		r = sb.Execute(ctx, "Curl", `{"url":"`+bad+`"}`)
@@ -311,5 +314,57 @@ func TestToolCurl(t *testing.T) {
 	r = sb.Execute(ctx, "Curl", `{"url":"`+srv.URL+`","method":"TRACE"}`)
 	if !strings.Contains(r.Text, "[erreur]") {
 		t.Fatalf("curl TRACE aurait du etre refuse: %s", r.Text)
+	}
+}
+
+// TestCurlSSRFGuard vérifie la garde anti-SSRF de Curl : seules les IP
+// publiques sont joignables (même logique que web_fetch).
+func TestCurlSSRFGuard(t *testing.T) {
+	private := []string{
+		"127.0.0.1", "::1", "10.1.2.3", "172.16.5.4", "192.168.1.1",
+		"169.254.169.254", "100.64.0.1", "0.0.0.0", "::",
+		"224.0.0.1", "fe80::1", "fc00::1",
+	}
+	for _, s := range private {
+		if curlIsPublicIP(net.ParseIP(s)) {
+			t.Errorf("curlIsPublicIP(%q) = true, want false", s)
+		}
+	}
+	public := []string{"8.8.8.8", "1.1.1.1", "93.184.216.34", "2001:4860:4860::8888"}
+	for _, s := range public {
+		if !curlIsPublicIP(net.ParseIP(s)) {
+			t.Errorf("curlIsPublicIP(%q) = false, want true", s)
+		}
+	}
+	if curlIsPublicIP(nil) {
+		t.Error("curlIsPublicIP(nil) = true, want false")
+	}
+	// Le composeur refuse de joindre le loopback, par IP comme par nom.
+	ctx := context.Background()
+	if _, err := curlDialContext(ctx, "tcp", "127.0.0.1:80"); !isSSRFErr(err) {
+		t.Errorf("curlDialContext vers 127.0.0.1: got %v, want erreur SSRF", err)
+	}
+	if _, err := curlDialContext(ctx, "tcp", net.JoinHostPort("localhost", "80")); !isSSRFErr(err) {
+		t.Errorf("curlDialContext vers localhost: got %v, want erreur SSRF", err)
+	}
+}
+
+func isSSRFErr(err error) bool {
+	return err != nil && strings.Contains(err.Error(), "non autorisee")
+}
+
+// TestMarkExternalOutput vérifie le marquage des sorties à source externe
+// (M5) : GitHub* et Curl marqués, outils workspace inchangés.
+func TestMarkExternalOutput(t *testing.T) {
+	for _, n := range []string{"Curl", "GitHubIssues", "GitHubIssueGet", "GitHubPRs", "GitHubRepos", "GitHubIssueCreate"} {
+		got := markExternalOutput(n, "contenu")
+		if !strings.HasPrefix(got, externalOutputMarker) {
+			t.Errorf("markExternalOutput(%q) sans marque: %q", n, got)
+		}
+	}
+	for _, n := range []string{"Read", "Bash", "Grep", "Sed", "Awk", "WebFetch"} {
+		if got := markExternalOutput(n, "contenu"); got != "contenu" {
+			t.Errorf("markExternalOutput(%q) = %q, want inchange", n, got)
+		}
 	}
 }

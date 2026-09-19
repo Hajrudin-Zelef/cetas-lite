@@ -1348,6 +1348,10 @@
 
   #marex-view .mx-mobile-bar{ display:flex; }
   #marex-view .mx-side-panel{ display:none !important; }
+  /* Le panneau Raisonnement reste accessible sur mobile quand il est
+     ouvert : on réaffiche le flex (masqué par la règle ci-dessus) sans
+     toucher au comportement du chat général. */
+  #marex-view .mx-side-panel.open{ display:flex !important; width:320px; max-width:92vw; }
 
   #marex-view .mx-sidebar{
     position:absolute; top:0; bottom:0; left:0; z-index:70;

@@ -239,6 +239,9 @@ function cdropItemHTML(t, d, selected, icon, attrs) {
 
 // ---------------- panneau Todos (gestion des tâches de l'agent) ----------------
 // Fonctions pures au niveau module (testables) ; le panneau vit dans #marex-view.
+// Whitelist stricte des statuts : le statut vient du modèle, on ne l'interpole
+// jamais tel quel dans l'attribut class (XSS via fermeture de guillemet).
+const VALID_TODO_STATUSES = ["pending", "in_progress", "completed"];
 export function renderMxTodos(todos) {
   const panel = document.querySelector("#mx-todos");
   if (!panel) return;
@@ -257,10 +260,10 @@ export function renderMxTodos(todos) {
     " · " + inprog + " in progress · " + pending + " pending</span></div>" +
     '<ul class="mx-todos-list">';
   for (const t of todos) {
-    const st = t.status || "pending";
-    const content = String(t.content || "").replace(/</g, "&lt;");
+    const st = VALID_TODO_STATUSES.includes(t.status) ? t.status : "pending";
+    const content = esc(t.content);
     html += '<li class="mx-todo-item todo-' + st + '"><span class="mx-todo-mark">' +
-      (marks[st] || "○") + "</span><span>" + content + "</span></li>";
+      marks[st] + "</span><span>" + content + "</span></li>";
   }
   panel.innerHTML = html + "</ul>";
   panel.style.display = "";
@@ -1365,7 +1368,12 @@ function openDiscussion(id) {
   if (window.innerWidth <= 1024) sidebar.classList.remove("open");
 }
 
+// Verrou d'envoi synchrone : posé après les validations (qui sortent sans
+// passer par finally) et avant le premier await, pour qu'un double-clic sur
+// Envoyer ne crée pas deux agents (deux POST /api/agents).
+let sending = false;
 async function send() {
+  if (sending) return;
   const text = input.value.trim();
   if (!text) return;
   if (!selFamily || !selMode) {
@@ -1374,6 +1382,8 @@ async function send() {
     document.getElementById("mx-menu-model").classList.add("open");
     return;
   }
+  sending = true;
+  sendBtn.disabled = true;
   const sentDraftKey = draftKey(); // clé du brouillon AVANT création éventuelle de l'agent
   clearTimeout(draftTimer);
   input.disabled = true;
@@ -1447,6 +1457,8 @@ async function send() {
     if (thread) thread.addError(e.message);
     else tokenCounter.textContent = "Erreur : " + e.message;
   } finally {
+    sending = false;
+    sendBtn.disabled = false;
     input.disabled = false;
     input.focus();
   }
