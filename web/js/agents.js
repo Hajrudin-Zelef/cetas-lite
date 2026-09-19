@@ -1,6 +1,11 @@
 import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
 import { estimateTokens } from "./turn-tokens.js";
+import {
+  getAgenticStyle,
+  AGENTIC_STYLE_EVENT,
+  AGENTIC_STYLE_OPENCODE,
+} from "./agentic-style.js";
 import { logout } from "./auth.js";
 import { openDocs } from "./docs.js";
 import {
@@ -1295,6 +1300,9 @@ function buildThread(id) {
     },
     reasonHooks,
     onEvent: handleMxEvent,
+    // Module Agentic : le rendu du fil suit le style choisi dans
+    // Configuration > Agentic (Harness / OpenCode).
+    agentic: true,
     onDone: () => {
       if (statsBadge.textContent) tokenCounter.textContent = statsBadge.textContent;
       refreshAgents();
@@ -1476,6 +1484,7 @@ function openView() {
   } catch (e) {}
   setAgentsHljsTheme(true);
   view.classList.add("open");
+  applyAgenticStyle();
   toolbarBtn.classList.add("active");
   document.body.style.overflow = "hidden";
   loadFamilies();
@@ -1510,6 +1519,16 @@ function closeView() {
 }
 
 // ---------------- câblage ----------------
+// Module Agentic : applique le style choisi (Harness / OpenCode) à la vue,
+// immédiatement et à chaque changement (sans rechargement). Ne concerne
+// que les nouveaux messages : l'historique déjà rendu garde son style.
+function applyAgenticStyle() {
+  const oc = getAgenticStyle() === AGENTIC_STYLE_OPENCODE;
+  view.classList.toggle("ac-opencode", oc);
+  view.classList.toggle("ac-harness", !oc);
+}
+applyAgenticStyle();
+window.addEventListener(AGENTIC_STYLE_EVENT, applyAgenticStyle);
 sendBtn.addEventListener("click", send);
 // Le bouton Stop n'était câblé que dans le chat général : ici il doit
 // interrompre le tour de l'agent en cours.
