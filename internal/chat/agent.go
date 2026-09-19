@@ -156,9 +156,9 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 			msgs = replaceWebDirective(msgs, webDir, dir)
 			webDir = dir
 		}
-		content, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(in.Think, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: native, webFallback: e.webToolsFor(in), think: in.Think})
+		content, reasoning, err := e.agentMember(ctx, c, epoch, p, m, msgs, tools, reg, in.User, resolveEffort(in.Think, in.Text, in.Effort), &emitted, agentOpts{approve: in.Approve, plan: in.Plan, maxTokens: in.MaxTokens, nativeWeb: native, webFallback: e.webToolsFor(in), think: in.Think})
 		if err == nil {
-			c.appendAssistant(epoch, content)
+			c.appendAssistant(epoch, content, reasoning)
 			return
 		}
 		lastErr = err
@@ -462,7 +462,7 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 	return out, followup, false
 }
 
-func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, reg toolRegistry, user, effort string, emitted *bool, opts agentOpts) (string, error) {
+func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, reg toolRegistry, user, effort string, emitted *bool, opts agentOpts) (string, string, error) {
 	const maxNudges = 2
 	msgs := append([]provider.Message(nil), base...)
 	// Phase 2 : l'état mutable d'exécution des outils est regroupé pour
@@ -477,6 +477,10 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	disableTools := false
 	transientRetries := 0
 	last := ""
+	// lastReasoning suit last tour par tour : le raisonnement du dernier
+	// tour est persiste avec le message assistant final (point 2 du fix
+	// reasoning_content).
+	lastReasoning := ""
 
 	// Mode plan : phase 1 en lecture seule, la phase d'execution demarre
 	// seulement apres validation du plan par l'utilisateur.
@@ -531,7 +535,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 
 	for {
 		if ctx.Err() != nil {
-			return last, nil
+			return last, lastReasoning, nil
 		}
 		dsmlFilter = &dsmlStreamFilter{}
 		var toolSet []provider.Tool
@@ -563,7 +567,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		}
 		if err != nil {
 			if ctx.Err() != nil {
-				return last, nil
+				return last, lastReasoning, nil
 			}
 			// Repli natif -> outils : la recherche native a echoue avant
 			// toute emission. On retente une seule fois sans le plugin natif :
@@ -590,8 +594,15 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				msgs = append(msgs, provider.Message{Role: "system", Content: "Stop calling tools. Answer directly now using only the information already gathered."})
 				continue
 			}
-			return last, err
+			return last, lastReasoning, err
 		}
+
+		// Le reasoning du tour est capture avec son texte : il sera
+		// persiste avec le message assistant final (appendAssistant).
+		// En mode thinking, DeepSeek exige reasoning_content sur tous
+		// les messages assistant des qu'un seul en porte un — voir
+		// withReasoningContentForced.
+		lastReasoning = resp.Reasoning
 
 		// Phase 1 : filet unique "appels en texte" (DSML ou pseudo-appel
 		// isole) — un seul point d'entree, voir parseFallbackToolCalls.
@@ -611,12 +622,13 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			if resp.Content != "" {
 				assistant.Content = resp.Content
 			}
-			// Phase 0 : en mode thinking, le raisonnement du tour precedent
-			// doit etre renvoye dans le message assistant, sinon DeepSeek
-			// refuse le tour suivant (HTTP 400 sur reasoning_content).
-			if resp.Reasoning != "" {
-				assistant.ReasoningContent = resp.Reasoning
-			}
+			// Phase 0 (etendue) : en mode thinking, le raisonnement est
+			// attache a chaque message assistant, meme vide — DeepSeek
+			// exige le champ reasoning_content sur TOUS les messages
+			// assistant des qu'un seul en porte un (HTTP 400 sinon), pas
+			// seulement sur ceux avec tool_calls. La serialisation force
+			// le champ sur le wire, voir withReasoningContentForced.
+			assistant.ReasoningContent = resp.Reasoning
 			msgs = append(msgs, assistant)
 			// Phase 2 : le bloc est partitionné en runs parallélisables
 			// (suites maximales d'appels indépendants) ; chaque run de ≥2
@@ -624,7 +636,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			// dans l'ordre d'émission, avec les mêmes deltas et le même
 			// historique que la voie séquentielle. Voir executeToolBlock.
 			if e.executeToolBlock(ctx, c, epoch, reg, resp.ToolCalls, toolEnv{user: user, member: m}, opts, st, user, m, &msgs) {
-				return last, nil
+				return last, lastReasoning, nil
 			}
 			last = resp.Content
 			continue
@@ -666,11 +678,11 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				if ctx.Err() == nil {
 					c.appendDelta(epoch, map[string]any{"content": "\n\n_Approbation du plan expiree : tour interrompu._"})
 				}
-				return last, nil
+				return last, lastReasoning, nil
 			}
 			if !d.approved {
 				c.appendDelta(epoch, map[string]any{"content": "\n\n_Plan refuse par l'utilisateur._"})
-				return last, nil
+				return last, lastReasoning, nil
 			}
 			st.planApproved = true
 			tools = fullTools
@@ -679,7 +691,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Plan valide, execution en cours..._\n\n"})
 			continue
 		}
-		return last, nil
+		return last, lastReasoning, nil
 	}
 }
 

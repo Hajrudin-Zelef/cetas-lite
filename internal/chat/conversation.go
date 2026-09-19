@@ -264,13 +264,17 @@ func (c *Conversation) finishTurn(epoch int, elapsed time.Duration) {
 	c.mu.Unlock()
 }
 
-func (c *Conversation) appendAssistant(epoch int, content string) {
+// appendAssistant persiste le message assistant final du tour. Le
+// reasoning est conserve avec le message : en mode thinking, DeepSeek
+// exige reasoning_content sur tous les messages assistant de
+// l'historique (HTTP 400 sinon) — voir withReasoningContentForced.
+func (c *Conversation) appendAssistant(epoch int, content, reasoning string) {
 	if strings.TrimSpace(content) == "" {
 		return
 	}
 	c.mu.Lock()
 	if c.epoch == epoch {
-		c.Messages = append(c.Messages, provider.Message{Role: "assistant", Content: content})
+		c.Messages = append(c.Messages, provider.Message{Role: "assistant", Content: content, ReasoningContent: reasoning})
 	}
 	c.mu.Unlock()
 }

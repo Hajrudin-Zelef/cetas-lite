@@ -574,7 +574,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			if native {
 				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
 			}
-			c.appendAssistant(epoch, resp.Content)
+			c.appendAssistant(epoch, resp.Content, "")
 			return
 		}
 		lastErr = err

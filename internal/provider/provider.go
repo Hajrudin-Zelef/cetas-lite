@@ -19,10 +19,12 @@ type Message struct {
 	ToolCalls  []ToolCall `json:"tool_calls,omitempty"`
 	ToolCallID string     `json:"tool_call_id,omitempty"`
 	// ReasoningContent : raisonnement du modele renvoye tel quel dans la
-	// suite d'une conversation en mode thinking. DeepSeek l'exige : un
-	// message assistant avec tool_calls mais sans reasoning_content fait
-	// echouer le tour suivant en HTTP 400. omitempty : absent quand le
-	// thinking est desactive ou n'a rien produit.
+	// suite d'une conversation en mode thinking. DeepSeek l'exige sur
+	// TOUS les messages assistant des qu'un seul en porte un (pas
+	// seulement ceux avec tool_calls) : sinon le tour suivant echoue
+	// en HTTP 400. omitempty : absent quand aucun reasoning n'est en
+	// jeu ; withReasoningContentForced force le champ (meme vide) sur
+	// le wire des que du reasoning circule dans la conversation.
 	ReasoningContent string `json:"reasoning_content,omitempty"`
 }
 
@@ -220,7 +222,7 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 	}
 	payload := map[string]any{
 		"model":       apiModel(p.endpoint.Provider, req.Model),
-		"messages":    req.Messages,
+		"messages":    withReasoningContentForced(req.Messages),
 		"stream":      true,
 		"temperature": req.Temperature,
 		"stream_options": map[string]any{
@@ -464,6 +466,61 @@ func closeBrackets(s string) (string, bool) {
 		return "", false
 	}
 	return out, true
+}
+
+// messageWireForceReasoning : copie de Message sans omitempty sur
+// reasoning_content. Utilise uniquement quand du reasoning circule
+// dans la conversation (voir withReasoningContentForced) : DeepSeek
+// exige alors le champ sur TOUS les messages assistant, meme vide,
+// sous peine de HTTP 400. Garder les champs synchronises avec Message.
+type messageWireForceReasoning struct {
+	Role             string     `json:"role"`
+	Content          any        `json:"content,omitempty"`
+	ToolCalls        []ToolCall `json:"tool_calls,omitempty"`
+	ToolCallID       string     `json:"tool_call_id,omitempty"`
+	ReasoningContent string     `json:"reasoning_content"`
+}
+
+// withReasoningContentForced prepare les messages pour l'envoi.
+//
+// Declenchement : au moins un message assistant porte un
+// reasoning_content non vide. Dans ce cas, le champ est force (meme
+// vide : "") sur chaque message assistant — c'est le contrat
+// thinking de DeepSeek (HTTP 400 « The reasoning_content in the
+// thinking mode must be passed back to the API » sinon), partage par
+// Kimi et GLM, et traverse tel quel par OpenRouter. Seuls les
+// messages assistant sont convertis ; les autres roles gardent leur
+// serialisation d'origine a l'identique.
+//
+// Sans reasoning en jeu, les messages sont renvoyes tels quels : le
+// payload est strictement identique a avant (aucun risque de
+// regression pour les autres providers).
+func withReasoningContentForced(msgs []Message) any {
+	forced := false
+	for _, m := range msgs {
+		if m.Role == "assistant" && m.ReasoningContent != "" {
+			forced = true
+			break
+		}
+	}
+	if !forced {
+		return msgs
+	}
+	out := make([]any, len(msgs))
+	for i, m := range msgs {
+		if m.Role != "assistant" {
+			out[i] = m
+			continue
+		}
+		out[i] = messageWireForceReasoning{
+			Role:             m.Role,
+			Content:          m.Content,
+			ToolCalls:        m.ToolCalls,
+			ToolCallID:       m.ToolCallID,
+			ReasoningContent: m.ReasoningContent,
+		}
+	}
+	return out
 }
 
 func applyReasoning(payload map[string]any, providerID string, enable bool, effort string) {
