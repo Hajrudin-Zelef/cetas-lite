@@ -18,6 +18,12 @@ type Message struct {
 	Content    any        `json:"content,omitempty"`
 	ToolCalls  []ToolCall `json:"tool_calls,omitempty"`
 	ToolCallID string     `json:"tool_call_id,omitempty"`
+	// ReasoningContent : raisonnement du modele renvoye tel quel dans la
+	// suite d'une conversation en mode thinking. DeepSeek l'exige : un
+	// message assistant avec tool_calls mais sans reasoning_content fait
+	// echouer le tour suivant en HTTP 400. omitempty : absent quand le
+	// thinking est desactive ou n'a rien produit.
+	ReasoningContent string `json:"reasoning_content,omitempty"`
 }
 
 type ToolCall struct {

@@ -275,3 +275,24 @@ func TestStreamParallelToolCallsEnabled(t *testing.T) {
 		t.Fatalf("parallel_tool_calls = %v, want true (un aller-retour par outil sinon)", got["parallel_tool_calls"])
 	}
 }
+
+func TestMessageReasoningContentJSON(t *testing.T) {
+	// Phase 0 : le reasoning_content doit partir sur le fil (exige par
+	// DeepSeek en mode thinking), et etre omis quand il est vide.
+	m := Message{Role: "assistant", ReasoningContent: "parce que"}
+	raw, err := json.Marshal(m)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(raw), `"reasoning_content":"parce que"`) {
+		t.Fatalf("JSON = %s, want reasoning_content present", raw)
+	}
+	m2 := Message{Role: "user", Content: "x"}
+	raw2, err := json.Marshal(m2)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(raw2), "reasoning_content") {
+		t.Fatalf("le champ doit etre omis quand vide : %s", raw2)
+	}
+}

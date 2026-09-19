@@ -53,7 +53,7 @@ func (s *scriptedProvider) Stream(ctx context.Context, req provider.Request, emi
 			break
 		}
 	}
-	return provider.Response{Content: step.content, ToolCalls: step.toolCalls}, nil
+	return provider.Response{Content: step.content, Reasoning: step.reasoning, ToolCalls: step.toolCalls}, nil
 }
 
 func (s *scriptedProvider) requests() []provider.Request {
@@ -470,5 +470,55 @@ func TestAgentParallelReadsErrorIsolated(t *testing.T) {
 	}
 	if !strings.Contains(ends[1], "contenu OK") {
 		t.Fatalf("end[1] devrait contenir le fichier, got %q", ends[1])
+	}
+}
+
+func TestAgentEchoesReasoningContentAfterToolCall(t *testing.T) {
+	// Phase 0 : en mode thinking, le raisonnement emis avec un appel
+	// d'outils doit etre renvoye dans le message assistant
+	// (reasoning_content) au tour suivant, sinon DeepSeek refuse la
+	// requete en HTTP 400.
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{reasoning: "je dois lire le fichier", toolCalls: []provider.ToolCall{toolCall("c1", "TodoWrite", `{"todos":[]}`)}},
+		{content: "Termine"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "fais", Think: true})
+
+	reqs := sp.requests()
+	if len(reqs) != 2 {
+		t.Fatalf("requetes = %d, want 2", len(reqs))
+	}
+	found := false
+	for _, m := range reqs[1].Messages {
+		if m.Role == "assistant" && len(m.ToolCalls) > 0 {
+			found = true
+			if m.ReasoningContent != "je dois lire le fichier" {
+				t.Fatalf("reasoning_content = %q, want %q", m.ReasoningContent, "je dois lire le fichier")
+			}
+		}
+	}
+	if !found {
+		t.Fatal("message assistant avec tool_calls attendu dans la requete 2")
+	}
+}
+
+func TestAgentNoReasoningContentWhenNoReasoning(t *testing.T) {
+	// Sans thinking, aucun reasoning_content ne doit etre ajoute.
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{toolCall("c1", "TodoWrite", `{"todos":[]}`)}},
+		{content: "Termine"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "fais"})
+
+	reqs := sp.requests()
+	if len(reqs) != 2 {
+		t.Fatalf("requetes = %d, want 2", len(reqs))
+	}
+	for _, m := range reqs[1].Messages {
+		if m.Role == "assistant" && m.ReasoningContent != "" {
+			t.Fatalf("reasoning_content inattendu = %q", m.ReasoningContent)
+		}
 	}
 }

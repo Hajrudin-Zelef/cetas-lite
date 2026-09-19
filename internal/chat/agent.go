@@ -440,6 +440,12 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			if resp.Content != "" {
 				assistant.Content = resp.Content
 			}
+			// Phase 0 : en mode thinking, le raisonnement du tour precedent
+			// doit etre renvoye dans le message assistant, sinon DeepSeek
+			// refuse le tour suivant (HTTP 400 sur reasoning_content).
+			if resp.Reasoning != "" {
+				assistant.ReasoningContent = resp.Reasoning
+			}
 			msgs = append(msgs, assistant)
 			// Voie rapide : un bloc 100 % lecture seule s'exécute en
 			// parallèle (gros gain quand le modèle lit plusieurs fichiers
