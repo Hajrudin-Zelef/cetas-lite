@@ -478,6 +478,12 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	// (compteur dedie) : au-dela, le texte reste visible tel quel au lieu
 	// de couter des allers-retours modele.
 	const maxTextCallNudges = 2
+	// Filet global : plafond d'iterations de la boucle agent. Chaque
+	// mecanisme de nudge a son garde-fou individuel, mais leur enchainement
+	// (ou un futur mecanisme) pourrait boucler sans qu'aucun ne s'en
+	// apercoive. 20 allers-retours modele suffisent largement a un run
+	// legitime ; au-dela, on coupe proprement au lieu de tourner sans fin.
+	const maxAgentTurns = 20
 	msgs := append([]provider.Message(nil), base...)
 	// Phase 2 : l'état mutable d'exécution des outils est regroupé pour
 	// être partagé entre la voie parallèle (runs) et la voie séquentielle.
@@ -489,6 +495,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	}
 	nudges := 0
 	textCallNudges := 0
+	turns := 0
 	disableTools := false
 	transientRetries := 0
 	last := ""
@@ -549,6 +556,15 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	}
 
 	for {
+		// Filet global : meme si les garde-fous individuels des nudges
+		// laissent passer un enchainement pathologique, la boucle agent
+		// ne depasse jamais maxAgentTurns iterations.
+		turns++
+		if turns > maxAgentTurns {
+			log.Printf("chat: tour %d: plafond global d'iterations atteint (%d), fin du run agent", epoch, maxAgentTurns)
+			c.appendDelta(epoch, map[string]any{"content": "\n\n_(limite d'itérations atteinte)_"})
+			return last, lastReasoning, nil
+		}
 		if ctx.Err() != nil {
 			return last, lastReasoning, nil
 		}
