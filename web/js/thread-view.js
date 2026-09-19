@@ -147,8 +147,39 @@ function renderTodos(todos) {
   return list;
 }
 
-function renderDiff(lines, filePath) {
-  const wrap = el("div", "tool-diff");
+// "+ Thought: 227ms" / "+ Thought: 2.9s" : format compact façon OpenCode.
+function fmtThoughtMs(ms) {
+  if (ms < 1000) return Math.round(ms) + "ms";
+  return (ms / 1000).toFixed(1) + "s";
+}
+
+// Lecture de fichier : 10 premières lignes + bouton Expand/Collapse.
+function renderReadMore(text, totalLines) {
+  const wrap = el("div", "tool-result-wrap");
+  const lines = String(text).split("\n");
+  const preShort = el("pre", "tool-result");
+  appendLinkified(preShort, lines.slice(0, 10).join("\n"));
+  const preFull = el("pre", "tool-result");
+  appendLinkified(preFull, String(text));
+  preFull.hidden = true;
+  const btn = el("button", "tool-expand-btn");
+  const setLabel = (expanded) => {
+    btn.textContent = expanded ? "▲ Collapse" : "▼ Expand · " + totalLines + " lignes";
+  };
+  setLabel(false);
+  btn.addEventListener("click", () => {
+    const expanded = preFull.hidden;
+    preFull.hidden = !expanded;
+    preShort.hidden = expanded;
+    setLabel(expanded);
+  });
+  wrap.appendChild(preShort);
+  wrap.appendChild(preFull);
+  wrap.appendChild(btn);
+  return wrap;
+}
+
+function renderDiff(lines, filePath) {  const wrap = el("div", "tool-diff");
   let adds = 0, dels = 0;
   for (const line of lines) {
     if (line.kind === "+") adds++;
@@ -244,6 +275,10 @@ export class ThreadView {
     this.waitStart = 0;
     this.toolBoxes = new Map();
     this.approvalCards = new Map();
+    // Dernier événement reçu (pour "+ Thought: Xs" façon OpenCode).
+    this.lastEventTs = 0;
+    // Indicateur "thinking" + spinner dans le fil pendant la réflexion.
+    this.thinkingEl = null;
     // Compteurs façon Harness pour la barre de statut : tours, outils,
     // tokens cumulés sur la conversation.
     this.convTurns = 0;
@@ -599,6 +634,7 @@ export class ThreadView {
       if (this.reasonPanel) finishReasoning();
       else if (this.reasonHooks) this.reasonHooks.finish();
     }
+    this.hideThinking();
     this.startStreamSpinner();
     // Streaming accelere (technique Marexcode) : update() bufferise et rend
     // au plus une fois par frame, en ne re-rendant que les blocs modifies.
@@ -625,6 +661,8 @@ export class ThreadView {
   }
 
   appendReasoning(text, isReplace) {
+    // L'agent réfléchit : "thinking" + spinner visibles dans le fil.
+    this.showThinking();
     if (this.reasonHooks) {
       this.reasonHooks.append(text, isReplace);
       return;
@@ -671,6 +709,7 @@ export class ThreadView {
 
   addError(text) {
     this.hideWait();
+    this.hideThinking();
     this.setBusy(false);
     this.clearEmpty();
     const wrapper = el("div", "message-wrapper message-wrapper-assistant");
@@ -729,18 +768,20 @@ export class ThreadView {
     wrapper.appendChild(bar);
   }
 
-  addTool(ev) {
+  addTool(ev, gapMs) {
     const key = ev.name + "|" + JSON.stringify(ev.args || {});
     if (ev.phase === "start") {
       this.clearEmpty();
       this.hideWait();
+      this.hideThinking();
+      // Temps de réflexion écoulé depuis l'événement précédent, façon
+      // OpenCode ("+ Thought: 2.9s"). gapMs = 0 quand inconnu.
+      this.maybeAddThought(gapMs || 0);
       this.convTools++;
-      // Ligne compacte façon Harness : "✨ Tool call · Read · chemin".
+      // Ligne compacte : "✨ Read · chemin" (sans le verbiage "Tool call").
       const box = el("details", "msg-tool harness-tool running");
       const summary = el("summary");
       summary.appendChild(el("span", "tool-spark", "✨"));
-      summary.appendChild(el("span", "tool-kind", "Tool call"));
-      summary.appendChild(el("span", "tool-sep", "·"));
       summary.appendChild(el("span", "tool-name", ev.name));
       const hint = summarizeArgs(ev.args);
       if (hint) {
@@ -778,13 +819,51 @@ export class ThreadView {
     }
     if (Array.isArray(ev.diff) && ev.diff.length) {
       body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
+      // Les modifications ne sont pas masquées : le diff s'affiche déplié.
+      if (det) det.open = true;
     }
     if (typeof ev.result === "string" && ev.result) {
-      const pre = el("pre", "tool-result");
-      appendLinkified(pre, ev.result);
-      body.appendChild(pre);
+      // Lectures de fichiers : 10 premières lignes + Expand/Collapse.
+      const rlines = ev.result.split("\n");
+      if ((ev.name === "Read" || ev.name === "Cat") && rlines.length > 10) {
+        body.appendChild(renderReadMore(ev.result, rlines.length));
+      } else {
+        const pre = el("pre", "tool-result");
+        appendLinkified(pre, ev.result);
+        body.appendChild(pre);
+      }
     }
     this.requestFollow();
+  }
+
+  // "+ Thought: 2.9s" façon OpenCode : matérialise le temps de réflexion
+  // du modèle avant son action. Ignoré si trop bref (< 300 ms, rejouement
+  // d'historique ou enchaînement immédiat).
+  maybeAddThought(gapMs) {
+    if (!gapMs || gapMs < 300) return;
+    const line = el("div", "thought-line");
+    line.appendChild(el("span", "thought-prefix", "+ Thought: "));
+    line.appendChild(el("span", "thought-time", fmtThoughtMs(gapMs)));
+    this.log.appendChild(line);
+    this.requestFollow();
+  }
+
+  // Indicateur "thinking" + spinner dans le fil pendant la réflexion.
+  showThinking() {
+    if (this.thinkingEl) return;
+    this.hideWait();
+    this.thinkingEl = el("div", "thinking-indicator");
+    this.thinkingEl.appendChild(el("span", "thinking-spinner"));
+    this.thinkingEl.appendChild(el("span", "thinking-label", "thinking"));
+    this.log.appendChild(this.thinkingEl);
+    this.requestFollow();
+  }
+
+  hideThinking() {
+    if (this.thinkingEl) {
+      this.thinkingEl.remove();
+      this.thinkingEl = null;
+    }
   }
 
   // Recherche web native du provider (hors outils) : indicateur pendant la
@@ -946,6 +1025,7 @@ export class ThreadView {
     const raw = this.assistantText;
     if (box) box.classList.remove("streaming");
     this.hideWait();
+    this.hideThinking();
     this.setBusy(false);
     this.generating = false;
     // Valide les tokens du tour vers le cumul de la conversation.
@@ -1008,6 +1088,8 @@ export class ThreadView {
     this.toolBoxes.clear();
     this.approvalCards.clear();
     this.searchStatus = null;
+    this.lastEventTs = 0;
+    this.hideThinking();
     this.generating = false;
     this.turnStartTs = 0;
     this.turnStats = null;
@@ -1050,6 +1132,12 @@ export class ThreadView {
       return;
     }
     if (ev.pad !== undefined) return;
+    // Horodatage pour "+ Thought: Xs" : le délai entre deux événements
+    // mesure le temps de réflexion du modèle (les keepalives "pad"
+    // ne comptent pas).
+    const nowTs = Date.now();
+    const gapMs = this.lastEventTs ? nowTs - this.lastEventTs : 0;
+    this.lastEventTs = nowTs;
     if (ev.caught_up) {
       this.toBottom();
       return;
@@ -1082,7 +1170,7 @@ export class ThreadView {
       return;
     }
     if (ev.tool !== undefined) {
-      this.addTool(ev.tool);
+      this.addTool(ev.tool, gapMs);
       return;
     }
     if (ev.search !== undefined) {

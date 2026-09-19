@@ -2,6 +2,7 @@ package chat
 
 import (
 	"context"
+	"os"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -286,5 +287,188 @@ func TestChatModeDisablesAgentPath(t *testing.T) {
 	}
 	if got := len(sp.requests()); got != 1 {
 		t.Fatalf("requetes = %d, attendu 1 (pas de second appel avec resultat d'outil)", got)
+	}
+}
+
+func TestAgentParallelReads(t *testing.T) {
+	ws := t.TempDir()
+	// Le sandbox de l'agent est <workspace>/<user>.
+	sandboxDir := filepath.Join(ws, "sam")
+	if err := os.MkdirAll(sandboxDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sandboxDir, "a.txt"), []byte("contenu A"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sandboxDir, "b.txt"), []byte("contenu B"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{
+			toolCall("c1", "Read", `{"file_path":"a.txt"}`),
+			toolCall("c2", "Read", `{"file_path":"b.txt"}`),
+			toolCall("c3", "Cat", `{"file_path":"a.txt"}`),
+		}},
+		{content: "Termine"},
+	}}
+	st, err := store.Open(filepath.Join(t.TempDir(), "agent.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = st.Close() })
+	reg := provider.NewRegistry()
+	reg.Set(sp)
+	e := NewEngine(reg, codeFamily(alias.Member{Provider: "fake", Model: "m"}), st, nil, ws)
+	c := runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "lis"})
+
+	// Les 3 lectures du bloc ont été exécutées : résultats présents dans
+	// les deltas "end".
+	c.mu.Lock()
+	var toolResults strings.Builder
+	for _, ev := range c.Log {
+		if tm, ok := ev.Delta["tool"].(map[string]any); ok && tm["phase"] == "end" {
+			if r, ok := tm["result"].(string); ok {
+				toolResults.WriteString(r)
+			}
+		}
+	}
+	c.mu.Unlock()
+	for _, want := range []string{"contenu A", "contenu B"} {
+		if !strings.Contains(toolResults.String(), want) {
+			t.Fatalf("résultat manquant %q dans %q", want, toolResults.String())
+		}
+	}
+	// Ordre des événements : 3 start puis 3 end, dans l'ordre d'origine.
+	c.mu.Lock()
+	var phases []string
+	for _, ev := range c.Log {
+		if tm, ok := ev.Delta["tool"].(map[string]any); ok {
+			phases = append(phases, tm["name"].(string)+":"+tm["phase"].(string))
+		}
+	}
+	c.mu.Unlock()
+	want := []string{"Read:start", "Read:start", "Cat:start", "Read:end", "Read:end", "Cat:end"}
+	if strings.Join(phases, ",") != strings.Join(want, ",") {
+		t.Fatalf("ordre événements = %v, want %v", phases, want)
+	}
+	// Les messages d'outils suivent l'ordre des appels dans la requête 2.
+	reqs := sp.requests()
+	if len(reqs) != 2 {
+		t.Fatalf("requêtes = %d, want 2", len(reqs))
+	}
+	var ids []string
+	for _, m := range reqs[1].Messages {
+		if m.Role == "tool" {
+			ids = append(ids, m.ToolCallID)
+		}
+	}
+	if strings.Join(ids, ",") != "c1,c2,c3" {
+		t.Fatalf("ordre messages outils = %v, want c1,c2,c3", ids)
+	}
+}
+
+func TestAgentParallelReadsFallsBackOnWrite(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{
+			toolCall("c1", "Read", `{"file_path":"a.txt"}`),
+			toolCall("c2", "Bash", `{"command":"echo hi"}`),
+		}},
+		{content: "Termine"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "mixte"})
+	if got := logText(c); !strings.Contains(got, "Termine") {
+		t.Fatalf("contenu final = %q", got)
+	}
+	// Le bloc mixte lecture/écriture passe en séquentiel : les deux
+	// outils ont quand même été exécutés (start+end chacun).
+	if n := countEvents(c, "tool"); n != 4 {
+		t.Fatalf("événements tool = %d, want 4 (2 start + 2 end)", n)
+	}
+}
+
+func TestAgentParallelReadsFallsBackOnTodoWrite(t *testing.T) {
+	// TodoWrite n'est PAS parallélisable (état de la liste de tâches) :
+	// un bloc Read + TodoWrite retombe sur la voie séquentielle.
+	ws := t.TempDir()
+	sandboxDir := filepath.Join(ws, "sam")
+	if err := os.MkdirAll(sandboxDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sandboxDir, "a.txt"), []byte("contenu A"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{
+			toolCall("c1", "Read", `{"file_path":"a.txt"}`),
+			toolCall("c2", "TodoWrite", `{"todos":[{"content":"lire a.txt","status":"completed"}]}`),
+		}},
+		{content: "Termine"},
+	}}
+	st, err := store.Open(filepath.Join(t.TempDir(), "agent.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = st.Close() })
+	reg := provider.NewRegistry()
+	reg.Set(sp)
+	e := NewEngine(reg, codeFamily(alias.Member{Provider: "fake", Model: "m"}), st, nil, ws)
+	c := runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "lis et note"})
+	if got := logText(c); !strings.Contains(got, "Termine") {
+		t.Fatalf("contenu final = %q", got)
+	}
+	if n := countEvents(c, "tool"); n != 4 {
+		t.Fatalf("événements tool = %d, want 4 (2 start + 2 end)", n)
+	}
+	// Les deux outils ont été exécutés malgré le repli séquentiel.
+	if !hasToolEvent(c, "end") {
+		t.Fatal("aucun événement tool end")
+	}
+}
+
+func TestAgentParallelReadsErrorIsolated(t *testing.T) {
+	// Une erreur sur un appel du bloc ne casse pas les autres :
+	// chaque appel produit son événement "end", dans l'ordre.
+	ws := t.TempDir()
+	sandboxDir := filepath.Join(ws, "sam")
+	if err := os.MkdirAll(sandboxDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sandboxDir, "ok.txt"), []byte("contenu OK"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{
+			toolCall("c1", "Read", `{"file_path":"manquant.txt"}`),
+			toolCall("c2", "Read", `{"file_path":"ok.txt"}`),
+		}},
+		{content: "Termine"},
+	}}
+	st, err := store.Open(filepath.Join(t.TempDir(), "agent.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = st.Close() })
+	reg := provider.NewRegistry()
+	reg.Set(sp)
+	e := NewEngine(reg, codeFamily(alias.Member{Provider: "fake", Model: "m"}), st, nil, ws)
+	c := runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "lis"})
+	// Ordre des "end" : c1 (erreur) puis c2 (ok), comme l'ordre d'origine.
+	c.mu.Lock()
+	var ends []string
+	for _, ev := range c.Log {
+		if tm, ok := ev.Delta["tool"].(map[string]any); ok && tm["phase"] == "end" {
+			ends = append(ends, tm["result"].(string))
+		}
+	}
+	c.mu.Unlock()
+	if len(ends) != 2 {
+		t.Fatalf("événements end = %d, want 2", len(ends))
+	}
+	if !strings.Contains(ends[0], "[erreur]") {
+		t.Fatalf("end[0] devrait être l'erreur, got %q", ends[0])
+	}
+	if !strings.Contains(ends[1], "contenu OK") {
+		t.Fatalf("end[1] devrait contenir le fichier, got %q", ends[1])
 	}
 }

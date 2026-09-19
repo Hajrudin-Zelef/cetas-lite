@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"cetas-lite/internal/alias"
@@ -174,6 +175,107 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	c.appendDelta(epoch, map[string]any{"error": lastErr.Error()})
 }
 
+// parallelToolOut est le résultat d'un appel exécuté en parallèle.
+type parallelToolOut struct {
+	id       string
+	out      ToolResult
+	followup *provider.Message
+}
+
+// execParallelReads exécute en parallèle un bloc d'appels d'outils quand
+// c'est sans risque : au moins 2 appels, tous parallélisables
+// (parallelSafeTools), sans approbation, sans déduplication, sans doublon
+// dans le bloc. Les deltas "start" partent dans l'ordre d'origine, puis
+// les "end" suivent le même ordre : l'UI reste strictement cohérente
+// avec la voie séquentielle. Les messages d'outils sont retournés dans
+// l'ordre pour ajout à l'historique par l'appelant.
+// Retourne (nil, false) si le bloc doit passer par la voie séquentielle.
+func (e *Engine) execParallelReads(ctx context.Context, c *Conversation, epoch int, reg toolRegistry, tcs []provider.ToolCall, env toolEnv, opts agentOpts, planApproved, alwaysApproved bool, done map[string]string, denied map[string]bool) ([]parallelToolOut, bool) {
+	if len(tcs) < 2 {
+		return nil, false
+	}
+	type pending struct {
+		tc   provider.ToolCall
+		args map[string]any
+		key  string
+	}
+	items := make([]pending, 0, len(tcs))
+	seen := make(map[string]bool, len(tcs))
+	for _, tc := range tcs {
+		name := tc.Function.Name
+		// Parallélisable uniquement : écritures, appels invalides et tout
+		// cas particulier (plan, refus, approbation, déduplication)
+		// restent sur la voie séquentielle.
+		if !parallelSafeTools[name] || tc.InvalidCall() {
+			return nil, false
+		}
+		args := parseArgs(tc.Function.Arguments)
+		key := name + "\x00" + tc.Function.Arguments
+		if opts.plan && !planApproved && !planToolAllowed(name) {
+			return nil, false
+		}
+		if denied[key] {
+			return nil, false
+		}
+		if opts.approve && !alwaysApproved && needsApprovalFor(name, args) {
+			return nil, false
+		}
+		if _, dup := done[key]; dup && dedupableTool(name) {
+			return nil, false
+		}
+		if seen[key] {
+			return nil, false
+		}
+		seen[key] = true
+		items = append(items, pending{tc: tc, args: args, key: key})
+	}
+	// Deltas "start" dans l'ordre d'origine, comme en séquentiel.
+	for _, it := range items {
+		if ctx.Err() != nil {
+			return nil, false
+		}
+		c.appendDelta(epoch, map[string]any{"tool": map[string]any{
+			"name": it.tc.Function.Name, "args": it.args, "phase": "start",
+		}})
+	}
+	// Exécution concurrente ; résultats collectés par index pour garder
+	// l'ordre d'origine à la restitution.
+	outs := make([]parallelToolOut, len(items))
+	var wg sync.WaitGroup
+	for i, it := range items {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			out, followup := reg.execute(ctx, env, it.tc.Function.Name, it.tc.Function.Arguments)
+			outs[i] = parallelToolOut{id: it.tc.ID, out: out, followup: followup}
+		}()
+	}
+	wg.Wait()
+	// Restitution : deltas "end" et déduplication dans l'ordre, exactement
+	// comme la voie séquentielle. (L'annulation éventuelle est traitée en
+	// tête de boucle appelante.)
+	for i, it := range items {
+		o := &outs[i]
+		if !strings.HasPrefix(o.out.Text, "[erreur]") {
+			done[it.key] = o.out.Text
+		}
+		toolDelta := map[string]any{
+			"name": it.tc.Function.Name, "args": it.args, "phase": "end",
+			"result": truncate(o.out.Text, toolMaxOutput), "diff": truncateDiff(o.out.Diff, 300),
+		}
+		if o.out.Meta != nil {
+			if srcs, ok := o.out.Meta["sources"]; ok {
+				toolDelta["sources"] = srcs
+			}
+			if sp, ok := o.out.Meta["search_provider"]; ok {
+				toolDelta["search_provider"] = sp
+			}
+		}
+		c.appendDelta(epoch, map[string]any{"tool": toolDelta})
+	}
+	return outs, true
+}
+
 func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, reg toolRegistry, user, effort string, emitted *bool, opts agentOpts) (string, error) {
 	const maxNudges = 2
 	msgs := append([]provider.Message(nil), base...)
@@ -279,6 +381,20 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				assistant.Content = resp.Content
 			}
 			msgs = append(msgs, assistant)
+			// Voie rapide : un bloc 100 % lecture seule s'exécute en
+			// parallèle (gros gain quand le modèle lit plusieurs fichiers
+			// d'un coup). Les écritures et les cas particuliers restent
+			// séquentiels. Voir execParallelReads.
+			if pouts, ok := e.execParallelReads(ctx, c, epoch, reg, resp.ToolCalls, toolEnv{user: user, member: m}, opts, planApproved, alwaysApproved, done, denied); ok {
+				for _, po := range pouts {
+					msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: po.id, Content: truncateToolForModel(po.out.Text)})
+					if po.followup != nil {
+						msgs = append(msgs, *po.followup)
+					}
+				}
+				last = resp.Content
+				continue
+			}
 			for _, tc := range resp.ToolCalls {
 				if ctx.Err() != nil {
 					return last, nil
@@ -531,6 +647,23 @@ func needsApprovalFor(name string, args map[string]any) bool {
 	}
 	return false
 }
+
+// parallelSafeTools est l'allowlist explicite des outils parallélisables
+// par execParallelReads : lectures pures, sans aucun effet de bord.
+// TodoWrite est volontairement exclu : il mute la liste de tâches
+// (état UI + dérivation du plan) et ses appels ont une sémantique
+// d'ordre ("étape 1 terminée, étape 2 en cours"). Echo est pur
+// (simple renvoi de texte) et les outils GitHub listés sont des GET.
+var parallelSafeTools = map[string]bool{
+	"Read": true, "Cat": true, "Ls": true, "Tree": true,
+	"Grep": true, "Glob": true, "Echo": true,
+	"GitHubRepos": true, "GitHubIssues": true,
+	"GitHubIssueGet": true, "GitHubPRs": true,
+}
+
+// parallelSafe indique si un outil peut s'exécuter en concurrence avec
+// d'autres appels du même bloc.
+func parallelSafe(name string) bool { return parallelSafeTools[name] }
 
 // planAllowedTools est l'allowlist stricte du mode plan : lecture seule
 // (exploration du workspace) + TodoWrite pour construire le plan.

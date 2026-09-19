@@ -91,7 +91,7 @@ test("badge façon Harness : tours, outils, tokens cumulés", () => {
   assert.match(badge.textContent, /^2 tours · 3 outils · ↑28,5k ↓368$/);
 });
 
-test("ligne d'outil façon Harness : summary ✨ Tool call · nom · hint", () => {
+test("ligne d'outil : summary ✨ nom · hint (sans 'Tool call')", () => {
   const { v, log } = makeView();
   v.handleEvent({ seq: 1, tool: { name: "Read", phase: "start", args: { file_path: "NEVA PVE/README.md" } } });
   const det = log.children.find((c) => (c.className || "").includes("harness-tool"));
@@ -100,7 +100,7 @@ test("ligne d'outil façon Harness : summary ✨ Tool call · nom · hint", () =
   const sum = det.children[0];
   const txt = sum.children.map((c) => c.textContent).join("");
   assert.ok(txt.includes("✨"), "étincelle");
-  assert.ok(txt.includes("Tool call"), "libellé Tool call");
+  assert.ok(!txt.includes("Tool call"), "plus de libellé 'Tool call'");
   assert.ok(txt.includes("Read"), "nom de l'outil");
   assert.ok(txt.includes("NEVA PVE/README.md"), "hint");
   // Fin de l'appel : la classe running disparaît.
