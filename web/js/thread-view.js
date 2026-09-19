@@ -1500,14 +1500,17 @@ export class ThreadView {
     text = String(text || "").trim();
     if (!text || this.generating) return false;
     const payload = this.getPayload(text);
+    this.lastSendError = null;
     try {
       await api(this.sendURL, { method: "POST", body: payload });
       this.generating = true;
+      this.lastSendError = null;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.setBusy(true);
       this.toBottom();
       return true;
     } catch (err) {
+      this.lastSendError = err.message;
       if (/en cours/i.test(err.message)) {
         this.generating = true;
         if (this.stopBtn) this.stopBtn.hidden = false;

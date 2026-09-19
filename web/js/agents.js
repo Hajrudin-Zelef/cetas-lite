@@ -1414,7 +1414,13 @@ async function send() {
       if (!ok) {
         input.disabled = false;
         input.focus();
-        return; // agent déjà en génération : on garde le texte
+        // L'agent n'existe plus cote serveur (carte perimee, ex. apres
+        // un redemarrage) : resynchroniser la liste pour faire disparaitre
+        // la carte au lieu de laisser un fil mort.
+        if (thread.lastSendError && /introuvable/i.test(thread.lastSendError)) {
+          refreshAgents();
+        }
+        return;
       }
     }
     input.value = "";

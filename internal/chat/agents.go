@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"log"
 	"strings"
 	"sync"
 	"time"
@@ -147,15 +148,21 @@ func (e *Engine) GetAgent(user, id string) *AgentRun {
 // restoreAgent recharge un run persiste (apres redemarrage) sans relancer
 // de tour : statut "stopped", reprise possible par message.
 func (e *Engine) restoreAgent(user, id string) *AgentRun {
-	if e.st == nil || agentDeleted(user, id) {
+	if e.st == nil {
+		log.Printf("chat: restoreAgent %s: pas de store", id)
+		return nil
+	}
+	if agentDeleted(user, id) {
 		return nil
 	}
 	raw, ok := e.st.GetConversation(user, agentStoreKey(id))
 	if !ok {
+		log.Printf("chat: restoreAgent %s: cle absente du store", id)
 		return nil
 	}
 	var s snapshot
 	if err := json.Unmarshal(raw, &s); err != nil || s.ID == "" {
+		log.Printf("chat: restoreAgent %s: snapshot illisible (err=%v)", id, err)
 		return nil
 	}
 	run := &AgentRun{ID: id, User: user, Created: time.Now(), restored: true}
@@ -197,9 +204,12 @@ func (e *Engine) saveAgent(run *AgentRun, c *Conversation) {
 	}
 	data, err := c.save()
 	if err != nil {
+		log.Printf("chat: saveAgent %s: marshal impossible: %v", run.ID, err)
 		return
 	}
-	_ = e.st.PutConversation(run.User, agentStoreKey(run.ID), data)
+	if err := e.st.PutConversation(run.User, agentStoreKey(run.ID), data); err != nil {
+		log.Printf("chat: saveAgent %s: ecriture store impossible: %v", run.ID, err)
+	}
 }
 
 // Pierre tombale d'agent : cle prefixee pour ne jamais entrer en collision

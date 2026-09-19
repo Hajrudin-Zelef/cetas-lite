@@ -2,10 +2,12 @@ package chat
 
 import (
 	"errors"
+	"path/filepath"
 	"testing"
 	"time"
 
 	"cetas-lite/internal/provider"
+	"cetas-lite/internal/store"
 )
 
 func testEngine() *Engine {
@@ -116,5 +118,62 @@ func TestDeleteUnknownAgentStrict(t *testing.T) {
 	}
 	if e.DeleteAgent("u", "agent:autre") {
 		t.Fatal("supprimer un id hors format devrait retourner false")
+	}
+}
+
+// TestAgentRestoreAfterRestart prouve le cycle complet : creation d'un
+// agent, "redemarrage" (nouveau moteur sur le meme store, memoire vide),
+// puis restauration et reprise par message. Regression du bug
+// "agent introuvable" constate apres redemarrage du service.
+func TestAgentRestoreAfterRestart(t *testing.T) {
+	dir := t.TempDir()
+	dbPath := filepath.Join(dir, "test.db")
+	st, err := store.Open(dbPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	e1 := NewEngine(provider.NewRegistry(), nil, st, nil, "")
+	run, err := e1.SpawnAgent("u", TurnInput{Family: "code", Mode: "standard", Text: "bonjour"})
+	if err != nil {
+		t.Fatalf("spawn: %v", err)
+	}
+	// La persistance a lieu des le debut du tour (StartTurn), pas
+	// seulement a sa fin.
+	if _, ok := st.GetConversation("u", "agent:"+run.ID); !ok {
+		t.Fatal("l'agent devrait etre persiste des le demarrage du tour")
+	}
+	// Laisse le tour (voue a l'echec sans provider) se terminer.
+	deadline := time.Now().Add(10 * time.Second)
+	for run.conv.IsGenerating() && time.Now().Before(deadline) {
+		time.Sleep(20 * time.Millisecond)
+	}
+	if err := st.Close(); err != nil {
+		t.Fatal(err)
+	}
+	// "Redemarrage" : nouveau moteur, meme store, memoire vide.
+	st2, err := store.Open(dbPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer st2.Close()
+	e2 := NewEngine(provider.NewRegistry(), nil, st2, nil, "")
+	got := e2.GetAgent("u", run.ID)
+	if got == nil {
+		t.Fatal("l'agent devrait etre restaure depuis le store apres redemarrage")
+	}
+	if !got.restored {
+		t.Error("le run restaure devrait etre marque restored")
+	}
+	if err := e2.MessageAgent("u", run.ID, TurnInput{Text: "suite"}); err != nil {
+		t.Fatalf("MessageAgent apres restauration: %v", err)
+	}
+	found := false
+	for _, s := range e2.ListAgents("u") {
+		if s.ID == run.ID {
+			found = true
+		}
+	}
+	if !found {
+		t.Error("l'agent restaure devrait apparaitre dans ListAgents")
 	}
 }
