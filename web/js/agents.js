@@ -180,7 +180,7 @@ const VIEW_HTML = `
               <button class="icon-btn" id="mx-undo" disabled title="Annuler">${I.undo}</button>
               <button class="icon-btn" id="mx-redo" disabled title="Rétablir">${I.redo}</button>
               <div class="cdrop" id="mx-dd-model">
-                <button class="model-select" id="mx-btn-model"><span id="mx-label-model">Choisir un modèle</span>${I.chevron}</button>
+                <button class="model-select" id="mx-btn-model"><span id="mx-label-model">Choisir un niveau</span>${I.chevron}</button>
                 <div class="cdrop-menu up-right" id="mx-menu-model"></div>
               </div>
               <button class="stop-btn" id="mx-stop" aria-label="Arrêter" hidden>${I.stop}</button>
@@ -512,7 +512,24 @@ export function initAgents() {
     return m ? m.label || mode : mode;
   }
 
-  // ---------------- menu modèle ----------------
+  // Description du niveau à partir du pool EFFECTIF (overrides du
+  // Sélecteur agent appliqués) : le choix du modèle se fait uniquement
+  // dans Configuration → Sélecteur agent ; le composer n'affiche que le
+  // modèle réellement configuré pour chaque niveau.
+  function modeModelDesc(m) {
+    const pool = (m && m.pool) || [];
+    if (pool.length === 1) {
+      const p = pool[0];
+      return (p.label || p.model || "") + " · " + (p.provider || "");
+    }
+    if (pool.length > 1) return "Fallback · " + pool.length + " modèles";
+    return (m && m.rule) || "";
+  }
+
+  // ---------------- menu niveau ----------------
+  // Le composer choisit le NIVEAU (Flash / Standard / Elite). Le MODÈLE
+  // de chaque niveau se choisit exclusivement dans Configuration →
+  // Sélecteur agent : la description affiche le pool effectif.
   function buildModelMenu() {
     const menu = $("#mx-menu-model");
     menu.innerHTML = "";
@@ -522,7 +539,7 @@ export function initAgents() {
     let html = "";
     for (const f of families) {
       for (const m of (f.modes || []).filter((m) => m.agent)) {
-        html += cdropItemHTML(m.label || m.mode, m.rule || "", f.id === selFamily && m.mode === selMode, "",
+        html += cdropItemHTML(m.label || m.mode, modeModelDesc(m), f.id === selFamily && m.mode === selMode, "",
           'data-f="' + esc(f.id) + '" data-m="' + esc(m.mode) + '"');
       }
     }
@@ -560,7 +577,7 @@ export function initAgents() {
       LS.set("family", selFamily || "");
       LS.set("mode", selMode || "");
     }
-    $("#mx-label-model").textContent = selFamily ? modeLabel(selFamily, selMode) : "Choisir un modèle";
+    $("#mx-label-model").textContent = selFamily ? modeLabel(selFamily, selMode) : "Choisir un niveau";
     buildModelMenu();
     checkVisionWarning();
   }
@@ -1304,6 +1321,9 @@ function newConversation() {
   clearTimeout(draftTimer);
   saveDraftNow(); // brouillon de la discussion quittée (currentId encore positionné)
   currentId = null;
+  try {
+    sessionStorage.removeItem("cetas.agents.current");
+  } catch (e) {}
   hero.classList.remove("has-chat");
   chatPanel.style.display = "none";
   chatLog.innerHTML = "";
@@ -1320,6 +1340,9 @@ function openDiscussion(id) {
   clearTimeout(draftTimer);
   saveDraftNow(); // brouillon de la discussion quittée
   currentId = id;
+  try {
+    sessionStorage.setItem("cetas.agents.current", id);
+  } catch (e) {}
   enterChat();
   chatLog.innerHTML = "";
   mxResetReason();
@@ -1367,6 +1390,9 @@ async function send() {
       missionTitles[res.id] = text;
       LS.setJSON("titles", missionTitles);
       currentId = res.id;
+      try {
+        sessionStorage.setItem("cetas.agents.current", res.id);
+      } catch (e) {}
       enterChat();
       chatLog.innerHTML = "";
       mxResetReason();
@@ -1443,6 +1469,11 @@ function setAgentsHljsTheme(insideAgents) {
 function openView() {
   if (opened) return;
   opened = true;
+  // Persistance de navigation (session) : un rafraîchissement depuis la
+  // vue Agents doit y revenir, pas retomber sur le chat général.
+  try {
+    sessionStorage.setItem("cetas.agents.open", "1");
+  } catch (e) {}
   setAgentsHljsTheme(true);
   view.classList.add("open");
   toolbarBtn.classList.add("active");
@@ -1461,6 +1492,10 @@ function openView() {
 function closeView() {
   if (!opened) return;
   opened = false;
+  try {
+    sessionStorage.removeItem("cetas.agents.open");
+    sessionStorage.removeItem("cetas.agents.current");
+  } catch (e) {}
   setAgentsHljsTheme(false);
   clearTimeout(draftTimer);
   saveDraftNow(); // ne jamais perdre le texte en cours
@@ -1476,6 +1511,11 @@ function closeView() {
 
 // ---------------- câblage ----------------
 sendBtn.addEventListener("click", send);
+// Le bouton Stop n'était câblé que dans le chat général : ici il doit
+// interrompre le tour de l'agent en cours.
+stopBtn.addEventListener("click", () => {
+  if (thread) thread.stop();
+});
 input.addEventListener("keydown", (e) => {
   if (e.key === "Tab") {
     e.preventDefault();
@@ -1552,6 +1592,11 @@ window.addEventListener("cetas:open-agent", (e) => {
 window.addEventListener("cetas:toggle-agents", () => {
   if (opened) closeView();
   else openView();
+});
+// Le Sélecteur agent (Configuration) modifie les modèles : recharger les
+// familles pour que le composer affiche le pool effectif de chaque niveau.
+window.addEventListener("cetas:aliases-changed", () => {
+  loadFamilies();
 });
 window.addEventListener("cetas:close-agents", closeView);
 
@@ -1638,5 +1683,27 @@ api("/api/me")
     $("#mx-user-avatar").textContent = name.charAt(0).toUpperCase();
   })
   .catch(() => {});
+
+// Restauration après rafraîchissement : si la vue Agents était ouverte,
+// la rouvrir (et la discussion en cours, si elle existe toujours).
+try {
+  if (sessionStorage.getItem("cetas.agents.open") === "1") {
+    openView();
+    const rid = sessionStorage.getItem("cetas.agents.current");
+    if (rid) {
+      api("/api/agents")
+        .then((d) => {
+          const ids = new Set((d.agents || []).map((a) => a.id));
+          if (ids.has(rid)) openDiscussion(rid);
+          else {
+            try {
+              sessionStorage.removeItem("cetas.agents.current");
+            } catch (e) {}
+          }
+        })
+        .catch(() => {});
+    }
+  }
+} catch (e) {}
 
 }

@@ -64,6 +64,15 @@ function summarizeArgs(args) {
   return args.command || args.file_path || args.pattern || args.query || "";
 }
 
+// Libellé de statut façon OpenCode selon l'outil : "Writing command"
+// quand l'agent écrit une commande, "Preparing edit" quand il prépare une
+// modification. null = aucun statut particulier.
+function agentStatusForTool(name) {
+  if (name === "Bash" || name === "RunScript") return "Writing command";
+  if (name === "Edit" || name === "Write") return "Preparing edit";
+  return null;
+}
+
 // Format compact façon Harness : 950 -> "950", 13700 -> "13,7k".
 function fmtK(n) {
   n = Math.round(n || 0);
@@ -277,6 +286,10 @@ export class ThreadView {
     this.approvalCards = new Map();
     // Dernier événement reçu (pour "+ Thought: Xs" façon OpenCode).
     this.lastEventTs = 0;
+    // Statut façon OpenCode ("Writing command", "Preparing edit") : pile
+    // des outils en cours ayant un libellé, ligne transitoire en fin de fil.
+    this.agentStatusEl = null;
+    this.agentStatusStack = [];
     // Indicateur "thinking" + spinner dans le fil pendant la réflexion.
     this.thinkingEl = null;
     // Compteurs façon Harness pour la barre de statut : tours, outils,
@@ -799,6 +812,10 @@ export class ThreadView {
       box.appendChild(body);
       this.log.appendChild(box);
       this.toolBoxes.set(key, body);
+      // Statut façon OpenCode pendant l'exécution ("Writing command",
+      // "Preparing edit").
+      const stLabel = agentStatusForTool(ev.name);
+      if (stLabel) this.pushAgentStatus(key, stLabel);
       this.finalizeAssistant();
       this.resetAssistantState();
       this.requestFollow();
@@ -808,6 +825,8 @@ export class ThreadView {
     if (!body) return;
     const det = body.closest("details");
     if (det) det.classList.remove("running");
+    // Fin d'exécution : le statut façon OpenCode disparaît.
+    this.popAgentStatus(key);
     // Fin d'une recherche web : l'indicateur laisse place au panneau Sources.
     const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
     const status = body.querySelector(".search-status");
@@ -864,6 +883,45 @@ export class ThreadView {
       this.thinkingEl.remove();
       this.thinkingEl = null;
     }
+  }
+
+  // Statut façon OpenCode pendant l'exécution d'un outil : "Writing
+  // command" (Bash, RunScript), "Preparing edit" (Edit, Write). Pile pour
+  // les blocs parallèles : le dernier outil démarré donne le libellé.
+  pushAgentStatus(key, text) {
+    this.agentStatusStack = this.agentStatusStack.filter((s) => s.key !== key);
+    this.agentStatusStack.push({ key, text });
+    this.renderAgentStatus();
+  }
+
+  popAgentStatus(key) {
+    const n = this.agentStatusStack.length;
+    this.agentStatusStack = this.agentStatusStack.filter((s) => s.key !== key);
+    if (this.agentStatusStack.length !== n) this.renderAgentStatus();
+  }
+
+  clearAgentStatus() {
+    if (this.agentStatusStack.length || this.agentStatusEl) {
+      this.agentStatusStack = [];
+      this.renderAgentStatus();
+    }
+  }
+
+  renderAgentStatus() {
+    const top = this.agentStatusStack[this.agentStatusStack.length - 1];
+    if (!top) {
+      if (this.agentStatusEl) {
+        this.agentStatusEl.remove();
+        this.agentStatusEl = null;
+      }
+      return;
+    }
+    if (!this.agentStatusEl) {
+      this.agentStatusEl = el("div", "agent-status");
+      this.log.appendChild(this.agentStatusEl);
+    }
+    if (this.agentStatusEl.textContent !== top.text) this.agentStatusEl.textContent = top.text;
+    this.requestFollow();
   }
 
   // Recherche web native du provider (hors outils) : indicateur pendant la
@@ -1026,6 +1084,7 @@ export class ThreadView {
     if (box) box.classList.remove("streaming");
     this.hideWait();
     this.hideThinking();
+    this.clearAgentStatus();
     this.setBusy(false);
     this.generating = false;
     // Valide les tokens du tour vers le cumul de la conversation.
@@ -1090,6 +1149,7 @@ export class ThreadView {
     this.searchStatus = null;
     this.lastEventTs = 0;
     this.hideThinking();
+    this.clearAgentStatus();
     this.generating = false;
     this.turnStartTs = 0;
     this.turnStats = null;
@@ -1243,6 +1303,7 @@ export class ThreadView {
     }
     if (ev.error !== undefined) {
       this.addError(String(ev.error));
+      this.clearAgentStatus();
       return;
     }
     if (ev.turn_done !== undefined) {

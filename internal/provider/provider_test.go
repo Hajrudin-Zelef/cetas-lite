@@ -253,3 +253,25 @@ func TestStreamSendsStrippedModel(t *testing.T) {
 		t.Fatalf("model envoye = %v, want glm-5 (suffixe -zen retire)", got["model"])
 	}
 }
+
+func TestStreamParallelToolCallsEnabled(t *testing.T) {
+	var got map[string]any
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_ = json.NewDecoder(r.Body).Decode(&got)
+		w.Header().Set("Content-Type", "text/event-stream")
+		_, _ = w.Write([]byte("data: [DONE]\n\n"))
+	}))
+	t.Cleanup(srv.Close)
+	p := NewOpenAICompat(Endpoint{Provider: "opencode", BaseURL: srv.URL, Path: "/chat/completions", APIKey: "k"}, srv.Client())
+	req := Request{
+		Model:    "m",
+		Messages: []Message{{Role: "user", Content: "x"}},
+		Tools:    []Tool{{Type: "function", Function: ToolFunction{Name: "Read"}}},
+	}
+	if _, err := p.Stream(context.Background(), req, func(Event) bool { return true }); err != nil {
+		t.Fatalf("Stream: %v", err)
+	}
+	if got["parallel_tool_calls"] != true {
+		t.Fatalf("parallel_tool_calls = %v, want true (un aller-retour par outil sinon)", got["parallel_tool_calls"])
+	}
+}

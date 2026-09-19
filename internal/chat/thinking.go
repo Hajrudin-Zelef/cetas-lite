@@ -17,3 +17,19 @@ func resolveEffort(think bool, text, requested string) string {
 	}
 	return "low"
 }
+
+// resolveAgentEffort : effort de raisonnement pour la vue Agents. Le
+// "Défaut" du composer vaut "low" (et non "medium" selon la longueur) :
+// la boucle agentique itère déjà, un raisonnement long par itération
+// s'additionne et rend l'expérience lente. "low" = réfléchir brièvement
+// puis agir vite. Choix explicite Faible/Moyen/Max toujours honoré.
+func resolveAgentEffort(think bool, requested string) string {
+	if !think {
+		return ""
+	}
+	switch requested {
+	case "low", "medium", "high":
+		return requested
+	}
+	return "low"
+}

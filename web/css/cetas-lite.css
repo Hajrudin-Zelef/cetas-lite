@@ -1927,6 +1927,24 @@ body.dark #chat-container .thinking-spinner {
   to { transform: rotate(360deg); }
 }
 
+/* Statut façon OpenCode pendant l'exécution d'un outil ("Writing command",
+   "Preparing edit") : ligne transitoire, même esthétique que thought-line. */
+#marex-view .agent-status {
+  padding: 3px 2px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  color: #e8a33d;
+}
+#chat-container .agent-status {
+  padding: 3px 2px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  color: #b45309;
+}
+body.dark #chat-container .agent-status {
+  color: #e8a33d;
+}
+
 /* Bouton Expand / Collapse des lectures de fichiers. */
 #marex-view .tool-expand-btn,
 #chat-container .tool-expand-btn {

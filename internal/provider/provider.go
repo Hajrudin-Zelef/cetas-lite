@@ -223,7 +223,12 @@ func (p *OpenAICompat) Stream(ctx context.Context, req Request, emit func(Event)
 	}
 	if len(req.Tools) > 0 {
 		payload["tools"] = req.Tools
-		payload["parallel_tool_calls"] = false
+		// Appels d'outils parallèles autorisés (défaut OpenAI) : le modèle
+		// regroupe les appels indépendants en un seul tour au lieu d'un
+		// aller-retour par outil — gain majeur sur les boucles agentiques.
+		// L'assemblage streaming (index triés) et l'exécuteur agent gèrent
+		// déjà les appels multiples.
+		payload["parallel_tool_calls"] = true
 	}
 	if req.MaxTokens > 0 {
 		payload["max_tokens"] = req.MaxTokens

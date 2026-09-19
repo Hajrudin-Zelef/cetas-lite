@@ -93,3 +93,19 @@ func TestResolveEffort(t *testing.T) {
 		t.Fatalf("effort explicite + think=false = %q, attendu vide", got)
 	}
 }
+
+func TestResolveAgentEffort(t *testing.T) {
+	// Agent : le "Défaut" du composer vaut "low" (la boucle itère déjà,
+	// un raisonnement long par itération ralentit l'expérience).
+	if got := resolveAgentEffort(true, "default"); got != "low" {
+		t.Fatalf("agent defaut = %q, attendu low", got)
+	}
+	for _, tc := range [][2]string{{"low", "low"}, {"medium", "medium"}, {"high", "high"}} {
+		if got := resolveAgentEffort(true, tc[0]); got != tc[1] {
+			t.Fatalf("agent effort %q = %q", tc[0], got)
+		}
+	}
+	if got := resolveAgentEffort(false, "high"); got != "" {
+		t.Fatalf("agent think=false = %q, attendu vide", got)
+	}
+}
