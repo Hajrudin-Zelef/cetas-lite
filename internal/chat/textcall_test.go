@@ -66,14 +66,15 @@ func TestParseTextToolCallVariants(t *testing.T) {
 func TestParseTextToolCallNoFalsePositive(t *testing.T) {
 	tools := textCallTools()
 	// Ne jamais executer : exemples dans du texte, citations, prose,
-	// outils inconnus, outils a effet de bord, appels ambigus.
+	// outils inconnus, appels ambigus ou a schema non convertible
+	// (Write : plusieurs parametres). Les outils a effets de bord a
+	// parametre unique (Bash, Mkdir) sont convertis mais passent par
+	// l'approbation (voir TestParseTextToolCallDangerous).
 	negatives := []string{
 		"Pour lire un fichier, utilise :\nCat \"dnsmasq.conf\"\npuis analyse le contenu.",
 		"```go\n// Exemple : Cat \"fichier.txt\" lit un fichier\n```",
 		`Frobnicate "truc"`,
 		`Write "a.txt"`,
-		`Bash "rm -rf /"`,
-		`Mkdir "nouveau"`,
 		`Cat "a" "b"`,
 		`voici le contenu`,
 		`oui`,
@@ -83,6 +84,26 @@ func TestParseTextToolCallNoFalsePositive(t *testing.T) {
 	for _, in := range negatives {
 		if tc := parseTextToolCall(in, tools); tc != nil {
 			t.Errorf("%q: faux positif converti en %s", in, tc.Function.Name)
+		}
+	}
+}
+
+// TestParseTextToolCallDangerous : un pseudo-appel dangereux a parametre
+// unique (Bash, Mkdir) est converti en vrai ToolCall — mais le pipeline
+// standard exigera l'approbation utilisateur avant execution.
+func TestParseTextToolCallDangerous(t *testing.T) {
+	tools := textCallTools()
+	for _, in := range []string{`Bash "echo hello"`, `Mkdir "nouveau"`} {
+		tc := parseTextToolCall(in, tools)
+		if tc == nil {
+			t.Fatalf("%q: pseudo-appel dangereux non converti", in)
+		}
+		var args map[string]any
+		if err := json.Unmarshal([]byte(tc.Function.Arguments), &args); err != nil {
+			t.Fatal(err)
+		}
+		if !needsApprovalFor(tc.Function.Name, args) {
+			t.Fatalf("%q: %s devrait exiger une approbation", in, tc.Function.Name)
 		}
 	}
 }

@@ -15,8 +15,11 @@ import (
 //
 // Ordre d'essai :
 //  1. DSML : plusieurs appels possibles, meme noyes dans du texte ;
-//  2. pseudo-appel isole : un seul appel, garde-fous stricts (lecture seule,
-//     outil annonce, reponse entierement constituee de l'appel).
+//  2. pseudo-appel isole : un seul appel, garde-fous stricts (outil
+//     annonce, reponse entierement constituee de l'appel, parametre
+//     non ambigu). Les outils a effets de bord sont convertis eux
+//     aussi : l'approbation utilisateur du pipeline standard s'applique
+//     avant toute execution.
 //
 // Retourne les appels convertis (nil si rien de convertible) et le texte a
 // afficher : le balisage est retire dans tous les cas, et le pseudo-appel

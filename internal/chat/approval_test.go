@@ -339,3 +339,36 @@ func TestWriteModeExecutesWithoutApproval(t *testing.T) {
 		t.Fatalf("Espace Write : l'ecriture aurait du reussir, resultats=%v", toolResults(c))
 	}
 }
+
+// TestTextPseudoCallDangerousRequiresApproval : un pseudo-appel dangereux
+// ecrit en texte (ex : Bash "echo hello") est converti en vrai ToolCall et
+// passe par l'approbation utilisateur — ici refusee, rien ne s'execute.
+func TestTextPseudoCallDangerousRequiresApproval(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{content: `Bash "echo hello"`},
+		{content: "Compris, je propose autre chose."},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := e.Conversation("sam")
+	stop := make(chan struct{})
+	defer close(stop)
+	autoResolveApprovals(t, c, false, stop)
+
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "lance un test", Approve: true, User: "sam", AgentMode: true}); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+
+	var sawRefusal bool
+	for _, r := range toolResults(c) {
+		if strings.Contains(r, "[refuse]") {
+			sawRefusal = true
+		}
+		if strings.Contains(r, "hello") {
+			t.Fatalf("le pseudo-appel dangereux aurait du etre bloque par l'approbation, resultat : %q", r)
+		}
+	}
+	if !sawRefusal {
+		t.Fatal("le pseudo-appel dangereux aurait du declencher une demande d'approbation")
+	}
+}

@@ -1,6 +1,7 @@
 package chat
 
 import (
+	"encoding/json"
 	"strings"
 	"testing"
 
@@ -70,15 +71,26 @@ func TestFallbackStripsUnparseableDSML(t *testing.T) {
 	}
 }
 
-func TestFallbackRefusesUnsafeTextCall(t *testing.T) {
-	// Pseudo-appel vers un outil a effet de bord : refuse (garde-fou),
-	// texte conserve tel quel pour affichage.
+func TestFallbackConvertsUnsafeTextCallForApproval(t *testing.T) {
+	// Pseudo-appel vers un outil a effet de bord : converti (le pipeline
+	// standard exigera l'approbation utilisateur avant execution), texte
+	// retire de l'affichage (rendu comme bloc d'outil).
 	tcalls, stripped := parseFallbackToolCalls(`Bash "ls -la"`, fallbackTools())
-	if len(tcalls) != 0 {
-		t.Fatalf("attendu 0 appel (outil a effet de bord), obtenu %d", len(tcalls))
+	if len(tcalls) != 1 {
+		t.Fatalf("attendu 1 appel (outil a effet de bord -> approbation), obtenu %d", len(tcalls))
 	}
-	if stripped != `Bash "ls -la"` {
-		t.Errorf("texte modifie : %q", stripped)
+	if tcalls[0].Function.Name != "Bash" {
+		t.Fatalf("outil attendu Bash, obtenu %s", tcalls[0].Function.Name)
+	}
+	var args map[string]any
+	if err := json.Unmarshal([]byte(tcalls[0].Function.Arguments), &args); err != nil {
+		t.Fatal(err)
+	}
+	if !needsApprovalFor("Bash", args) {
+		t.Fatal("Bash devrait exiger une approbation")
+	}
+	if stripped != "" {
+		t.Errorf("texte non retire : %q", stripped)
 	}
 }
 

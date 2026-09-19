@@ -26,12 +26,15 @@ import (
 //     noye dans du texte, d'une citation ou d'une explication ;
 //   - le nom doit correspondre (insensible a la casse) a un outil
 //     reellement annonce dans ce tour : jamais d'outil invente ;
-//   - conversion restreinte aux outils sans effet de bord (parallelSafe) :
-//     une erreur d'interpretation ne peut au pire declencher qu'une
-//     lecture ;
+//   - les outils a effets de bord (Bash, Mkdir...) sont convertis eux
+//     aussi : ils passent par le pipeline standard et son approbation
+//     utilisateur avant toute execution — une erreur d'interpretation
+//     declenche au pire une carte d'approbation, jamais une execution
+//     silencieuse ;
 //   - l'unique argument positionnel est mappe sur le parametre "string"
 //     evident du schema (l'unique requis, sinon l'unique existant) :
-//     jamais de devinette sur un schema ambigu.
+//     jamais de devinette sur un schema ambigu (Edit/Write, a plusieurs
+//     parametres, ne sont pas convertibles par cette voie).
 
 // textCallRe reconnait un pseudo-appel : Nom, optionnellement suivi d'un
 // unique argument entre guillemets (ou nu), avec ou sans parentheses.
@@ -135,11 +138,10 @@ func parseTextToolCall(content string, tools []provider.Tool) *provider.ToolCall
 	if tool == nil {
 		return nil
 	}
-	// Conversion restreinte aux lectures pures : une meprise ne doit
-	// jamais declencher une ecriture ou une execution.
-	if !parallelSafe(tool.Function.Name) {
-		return nil
-	}
+	// Les outils a effets de bord sont convertis eux aussi : le pipeline
+	// standard exige l'approbation utilisateur avant execution
+	// (needsApprovalFor). Une erreur d'interpretation declenche au pire
+	// une carte d'approbation, jamais une execution silencieuse.
 	args := map[string]any{}
 	if arg != "" {
 		param := textCallParam(*tool)
