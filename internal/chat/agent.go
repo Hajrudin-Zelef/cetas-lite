@@ -284,6 +284,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	repeats := map[string]int{}
 	nudges := 0
 	disableTools := false
+	transientRetries := 0
 	last := ""
 
 	// Mode plan : phase 1 en lecture seule, la phase d'execution demarre
@@ -302,13 +303,21 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	verifyNudged := false
 	alwaysApproved := false
 
+	// Filtre DSML du tour : recree a chaque tentative dans la boucle.
+	var dsmlFilter *dsmlStreamFilter
+
 	emit := func(ev provider.Event) bool {
 		if ev.Reasoning != "" && opts.think {
 			c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})
 		}
 		if ev.Content != "" {
-			*emitted = true
-			c.appendDelta(epoch, map[string]any{"content": ev.Content})
+			// Les blocs DSML (appels d'outils en texte) sont masques pendant
+			// le streaming : ils seront convertis en vrais appels d'outils
+			// une fois le tour termine, jamais affiches en brut.
+			if visible := dsmlFilter.push(ev.Content); visible != "" {
+				*emitted = true
+				c.appendDelta(epoch, map[string]any{"content": visible})
+			}
 		}
 		if ev.Usage != nil {
 			c.appendDelta(epoch, map[string]any{"stats": map[string]any{
@@ -319,10 +328,25 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		return true
 	}
 
+	// flushDSML vide le reliquat de texte normal du filtre DSML vers le fil
+	// (jamais de DSML), puis repart sur un filtre neuf pour la tentative
+	// suivante. Chaque octet n'est emis qu'une fois : pas de duplication.
+	flushDSML := func() {
+		if dsmlFilter == nil {
+			return
+		}
+		if tail := dsmlFilter.flush(); tail != "" {
+			*emitted = true
+			c.appendDelta(epoch, map[string]any{"content": tail})
+		}
+		dsmlFilter = &dsmlStreamFilter{}
+	}
+
 	for {
 		if ctx.Err() != nil {
 			return last, nil
 		}
+		dsmlFilter = &dsmlStreamFilter{}
 		var toolSet []provider.Tool
 		if !disableTools {
 			toolSet = tools
@@ -346,6 +370,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
 		}
 		resp, err := e.streamWithRetry(ctx, p, req, emit, emitted)
+		flushDSML()
 		if err == nil && opts.nativeWeb {
 			c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
 		}
@@ -366,12 +391,36 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				continue
 			}
 			var he *provider.HTTPError
+			if errors.As(err, &he) && isTransientHTTP(he.Status) && !*emitted && transientRetries < 2 {
+				// Erreur transitoire avant toute emission visible : on rejoue
+				// la requete a l'identique, outils intacts. Aucune duplication
+				// possible (rien n'a ete montre ni execute).
+				transientRetries++
+				continue
+			}
 			if errors.As(err, &he) && !disableTools && len(tools) > 0 {
 				disableTools = true
 				msgs = append(msgs, provider.Message{Role: "system", Content: "Stop calling tools. Answer directly now using only the information already gathered."})
 				continue
 			}
 			return last, err
+		}
+
+		// Certains modeles emettent leurs appels d'outils en texte DSML
+		// (surtout sans function-calls natifs ou apres une erreur) : on les
+		// convertit en vrais appels d'outils executes par le pipeline
+		// standard (approbation, blocs d'outils, suivi des modifications).
+		// Le balisage est retire du texte affiche dans tous les cas.
+		if len(resp.ToolCalls) == 0 {
+			if dsml := parseDSMLCalls(resp.Content); len(dsml) > 0 {
+				for i := range dsml {
+					dsml[i].Name = canonicalDSMLName(dsml[i].Name, tools)
+				}
+				resp.ToolCalls = dsmlToToolCalls(dsml)
+			}
+		}
+		if hasDSML(resp.Content) {
+			resp.Content = stripDSMLFinal(resp.Content)
 		}
 
 		if len(resp.ToolCalls) > 0 {
@@ -531,21 +580,31 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	}
 }
 
-// streamWithRetry appelle le provider en reessayant les 429 (rate-limit
-// transitoire) avec backoff, tant que rien n'a encore ete diffuse (pas de
-// duplication). Les autres erreurs HTTP suivent le chemin degrade existant
+// isTransientHTTP : erreurs HTTP transitoires qui meritent un reessai
+// (rate-limit, timeout passerelle, passerelle indisponible...).
+func isTransientHTTP(status int) bool {
+	switch status {
+	case 408, 429, 502, 503, 504:
+		return true
+	}
+	return false
+}
+
+// streamWithRetry appelle le provider en reessayant les erreurs HTTP
+// transitoires avec backoff borne, tant que rien n'a encore ete diffuse (pas
+// de duplication). Les autres erreurs suivent le chemin degrade existant
 // (desactivation des outils / failover vers le membre suivant du pool).
 func (e *Engine) streamWithRetry(ctx context.Context, p provider.Provider, req provider.Request, emit func(provider.Event) bool, emitted *bool) (provider.Response, error) {
 	var resp provider.Response
 	var err error
-	backoffs := []time.Duration{time.Second, 2 * time.Second}
+	backoffs := []time.Duration{time.Second, 2 * time.Second, 4 * time.Second}
 	for attempt := 0; ; attempt++ {
 		resp, err = p.Stream(ctx, req, emit)
 		if err == nil {
 			return resp, nil
 		}
 		var he *provider.HTTPError
-		retryable := errors.As(err, &he) && he.Status == 429
+		retryable := errors.As(err, &he) && isTransientHTTP(he.Status)
 		if !retryable || *emitted || attempt >= len(backoffs) {
 			return resp, err
 		}
