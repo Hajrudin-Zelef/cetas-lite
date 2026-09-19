@@ -29,6 +29,8 @@ func (s *Server) handleAgentsCreate(w http.ResponseWriter, r *http.Request) {
 		Think       *bool    `json:"think"`
 		Effort      string   `json:"effort"`
 		Attachments []string `json:"attachments"`
+		// ClientMsgID : echo optimiste du message (voir chat.TurnInput).
+		ClientMsgID string `json:"client_msg_id"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -45,7 +47,8 @@ func (s *Server) handleAgentsCreate(w http.ResponseWriter, r *http.Request) {
 		Web: body.Web, WebDepth: body.WebDepth, Think: think, Effort: body.Effort,
 		AgentMode: true, Attachments: body.Attachments,
 		Worktree: body.Worktree, Repo: body.Repo, ProjectID: body.ProjectID,
-		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
+		ClientMsgID: body.ClientMsgID,
+		MaxTokens:   chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
 	})
 	if err != nil {
 		switch {
@@ -130,6 +133,8 @@ func (s *Server) handleAgentMessage(w http.ResponseWriter, r *http.Request) {
 		Effort      string   `json:"effort"`
 		ProjectID   string   `json:"project_id"`
 		Attachments []string `json:"attachments"`
+		// ClientMsgID : echo optimiste du message (voir chat.TurnInput).
+		ClientMsgID string `json:"client_msg_id"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -140,7 +145,8 @@ func (s *Server) handleAgentMessage(w http.ResponseWriter, r *http.Request) {
 		User: claims.Username, Text: body.Message, Approve: body.Approve, Plan: body.Plan,
 		Web: body.Web, WebDepth: body.WebDepth, Think: think, Effort: body.Effort,
 		AgentMode: true, ProjectID: body.ProjectID, Attachments: body.Attachments,
-		MaxTokens: chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
+		ClientMsgID: body.ClientMsgID,
+		MaxTokens:   chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens),
 	})
 	if err != nil {
 		switch {

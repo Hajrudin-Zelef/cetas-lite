@@ -57,6 +57,11 @@ type TurnInput struct {
 	// elargis, pages lues en entier, recoupement des sources).
 	// Toute autre valeur = recherche standard.
 	WebDepth string
+	// ClientMsgID est l'identifiant genere par le client pour l'echo
+	// optimiste : renvoye tel quel dans le delta "user", il permet au
+	// frontend de dedupliquer le message deja affiche avant la reponse
+	// du POST. Vide = pas d'echo optimiste (comportement historique).
+	ClientMsgID string
 }
 
 // Bornes du reglage "tokens max par reponse".
@@ -137,7 +142,14 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	runner := c.runner
 	c.mu.Unlock()
 
-	c.appendDelta(epoch, map[string]any{"user": in.Text})
+	// Echo optimiste : si le client a genere un identifiant, on le
+	// renvoie dans le meme delta pour qu'il deduplique son affichage
+	// immediat.
+	userDelta := map[string]any{"user": in.Text}
+	if id := strings.TrimSpace(in.ClientMsgID); id != "" {
+		userDelta["client_msg_id"] = id
+	}
+	c.appendDelta(epoch, userDelta)
 	if c.persist != nil {
 		c.persist(c)
 	}

@@ -5,18 +5,36 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/vfs"
 )
 
+// Cache du snapshot workspace : le walk FS (FlatList) est refait au plus
+// une fois par minute et par espace. Le snapshot est une orientation pour
+// le modèle (il doit appeler Ls pour explorer), pas une vérité temps
+// réel : un décalage < 60 s est sans conséquence, et les fichiers que le
+// modèle vient lui-même de créer sont dans l'historique du tour.
+var snapshotCache = struct {
+	sync.Mutex
+	entries map[string]snapshotEntry
+}{entries: map[string]snapshotEntry{}}
+
+type snapshotEntry struct {
+	msg provider.Message
+	at  time.Time
+}
+
+// snapshotCacheTTL : durée de validité d'un snapshot en cache.
+const snapshotCacheTTL = 60 * time.Second
+
 // workspaceSnapshotMessage construit le message système décrivant le
 // workspace du tour : nom, mode, liste des fichiers et règles strictes de
 // lecture. C'est ce qui permet au modèle de ne jamais se perdre : il voit
 // la structure réelle au lieu de la deviner.
 func workspaceSnapshotMessage(ctx context.Context, sb *Sandbox, projectName string) provider.Message {
-	var b strings.Builder
 	mode := "local"
 	if sb.Remote() {
 		mode = "remote (SFTP)"
@@ -25,6 +43,27 @@ func workspaceSnapshotMessage(ctx context.Context, sb *Sandbox, projectName stri
 	if name == "" {
 		name = sb.Root()
 	}
+	key := sb.Root() + "\x00" + mode + "\x00" + name
+
+	snapshotCache.Lock()
+	if e, ok := snapshotCache.entries[key]; ok && time.Since(e.at) < snapshotCacheTTL {
+		snapshotCache.Unlock()
+		return e.msg
+	}
+	snapshotCache.Unlock()
+
+	msg := buildWorkspaceSnapshot(ctx, sb, name, mode)
+
+	snapshotCache.Lock()
+	snapshotCache.entries[key] = snapshotEntry{msg: msg, at: time.Now()}
+	snapshotCache.Unlock()
+	return msg
+}
+
+// buildWorkspaceSnapshot fait le walk FS et assemble le message. Le cache
+// ci-dessus évite de le refaire à chaque tour.
+func buildWorkspaceSnapshot(ctx context.Context, sb *Sandbox, name, mode string) provider.Message {
+	var b strings.Builder
 	fmt.Fprintf(&b, "WORKSPACE: \"%s\" [%s]\n", name, mode)
 	fmt.Fprintf(&b, "Root: %s\n", sb.Root())
 

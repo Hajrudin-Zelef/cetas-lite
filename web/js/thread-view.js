@@ -326,6 +326,11 @@ export class ThreadView {
     // Module Agentic (vue Agents uniquement) : Harness = rendu actuel,
     // OpenCode = reproduction fidele du TUI OpenCode.
     this.agentic = opts.agentic === true;
+    // Écho optimiste à l'envoi (vue Agents uniquement) : le message et
+    // l'indicateur d'attente s'affichent sans attendre le POST. Le delta
+    // "user" du serveur porte le même client_msg_id et est dédupliqué.
+    // Désactivé par défaut : le chat général garde son comportement.
+    this.optimisticEcho = opts.optimisticEcho === true;
 
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
@@ -662,6 +667,39 @@ export class ThreadView {
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
     this.toBottom();
+    return wrapper;
+  }
+
+  // Écho optimiste : affiche le message immédiatement à l'envoi, sans
+  // attendre l'aller-retour POST. Le nœud est marqué data-optimistic
+  // jusqu'à ce que le delta "user" du serveur (même client_msg_id)
+  // le confirme — ou retiré si le POST échoue.
+  addUserOptimistic(text) {
+    const wrapper = this.addUser(text);
+    wrapper.setAttribute("data-optimistic", "1");
+    return wrapper;
+  }
+
+  removeOptimistic(wrapper) {
+    if (wrapper && wrapper.isConnected) wrapper.remove();
+    this.pendingUserId = null;
+  }
+
+  // Écho optimiste quand le POST est déjà parti (création d'agent) :
+  // affiche le message tout de suite, le delta "user" rejoué via SSE
+  // (même client_msg_id) le confirmera sans doublon.
+  primeOptimistic(text, clientMsgId) {
+    this.pendingUserId = clientMsgId;
+    this.addUserOptimistic(text);
+    this.showWait();
+    this.setBusy(true);
+  }
+
+  newClientMsgId() {
+    try {
+      if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
+    } catch (e) {}
+    return "m" + Date.now().toString(36) + Math.random().toString(36).slice(2);
   }
 
   ensureAssistant() {
@@ -1365,7 +1403,18 @@ export class ThreadView {
     }
     if (ev.user !== undefined) {
       this.resetAssistantState();
-      this.addUser(String(ev.user));
+      // Déduplication de l'écho optimiste : le message a déjà été affiché
+      // à l'envoi avec ce client_msg_id — on le confirme au lieu de le
+      // dupliquer. Le reste du traitement du tour reste identique.
+      if (ev.client_msg_id && ev.client_msg_id === this.pendingUserId) {
+        this.pendingUserId = null;
+        const opt = this.log.querySelector(
+          ':scope > .message-wrapper-user[data-optimistic="1"]'
+        );
+        if (opt) opt.removeAttribute("data-optimistic");
+      } else {
+        this.addUser(String(ev.user));
+      }
       this.turnStartTs = Date.now();
       this.turnStats = null;
       this.turnRoute = null;
@@ -1506,7 +1555,22 @@ export class ThreadView {
   async sendText(text) {
     text = String(text || "").trim();
     if (!text || this.generating) return false;
+    // Écho optimiste (vue Agents uniquement) : le message et l'indicateur
+    // d'attente s'affichent immédiatement, sans attendre l'aller-retour
+    // POST. Le delta "user" du serveur porte le même client_msg_id et
+    // sera dédupliqué dans handleEvent.
+    let clientMsgId = null;
+    let optimistic = null;
+    if (this.optimisticEcho) {
+      clientMsgId = this.newClientMsgId();
+      optimistic = this.addUserOptimistic(text);
+      this.pendingUserId = clientMsgId;
+      this.showWait();
+      this.setBusy(true);
+      if (this.stopBtn) this.stopBtn.hidden = false;
+    }
     const payload = this.getPayload(text);
+    if (clientMsgId) payload.client_msg_id = clientMsgId;
     try {
       await api(this.sendURL, { method: "POST", body: payload });
       this.generating = true;
@@ -1516,6 +1580,13 @@ export class ThreadView {
       this.toBottom();
       return true;
     } catch (err) {
+      if (this.optimisticEcho) {
+        // Échec du POST : on retire l'écho optimiste, le serveur n'émettra
+        // jamais le delta correspondant.
+        this.removeOptimistic(optimistic);
+        this.hideWait();
+        this.setBusy(false);
+      }
       if (/en cours/i.test(err.message)) {
         this.generating = true;
         this.lastSendError = null;

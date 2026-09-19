@@ -1303,6 +1303,8 @@ function buildThread(id) {
     // Module Agentic : la vue Agents choisit son rendu (Harness/OpenCode).
     // Le chat general (chat.js) ne passe pas cette option.
     agentic: true,
+    // Écho optimiste : message + attente affichés dès l'envoi.
+    optimisticEcho: true,
     onDone: () => {
       if (statsBadge.textContent) tokenCounter.textContent = statsBadge.textContent;
       refreshAgents();
@@ -1375,6 +1377,12 @@ async function send() {
   const sentDraftKey = draftKey(); // clé du brouillon AVANT création éventuelle de l'agent
   clearTimeout(draftTimer);
   input.disabled = true;
+  // Identifiant d'écho optimiste : le message s'affiche immédiatement,
+  // le delta "user" du serveur le confirmera sans doublon.
+  const clientMsgId =
+    typeof crypto !== "undefined" && crypto.randomUUID
+      ? crypto.randomUUID()
+      : "m" + Date.now().toString(36) + Math.random().toString(36).slice(2);
   try {
     if (!currentId) {
       const res = await api("/api/agents", {
@@ -1393,6 +1401,7 @@ async function send() {
           think: true, // réflexion obligatoire pour l'agent
           effort: mxEffort,
           attachments: mxAttachments.length ? mxAttachments.map((a) => a.id) : undefined,
+          client_msg_id: clientMsgId,
         },
       });
       missionTitles[res.id] = text;
@@ -1405,6 +1414,9 @@ async function send() {
       chatLog.innerHTML = "";
       mxResetReason();
       buildThread(res.id);
+      // Écho optimiste : le message s'affiche sans attendre le replay SSE,
+      // qui le confirmera via client_msg_id.
+      thread.primeOptimistic(text, clientMsgId);
       thread.connect();
       renderDiscussions(searchInput.value.trim().toLowerCase());
       updateStatusBadge();
