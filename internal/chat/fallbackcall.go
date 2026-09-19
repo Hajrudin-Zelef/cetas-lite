@@ -1,6 +1,8 @@
 package chat
 
 import (
+	"log"
+
 	"cetas-lite/internal/provider"
 )
 
@@ -15,8 +17,9 @@ import (
 //
 // Ordre d'essai :
 //  1. DSML : plusieurs appels possibles, meme noyes dans du texte ;
-//  2. pseudo-appel isole : un seul appel, garde-fous stricts (outil
-//     annonce, reponse entierement constituee de l'appel, parametre
+//  2. pseudo-appels en texte : un par ligne, avec ou sans label d'annonce
+//     ("Appel réel :", "Real call:", ...), garde-fous stricts (outil
+//     annonce, chaque ligne entierement constituee de l'appel, parametre
 //     non ambigu). Les outils a effets de bord sont convertis eux
 //     aussi : l'approbation utilisateur du pipeline standard s'applique
 //     avant toute execution.
@@ -39,11 +42,23 @@ func parseFallbackToolCalls(content string, tools []provider.Tool) ([]provider.T
 		}
 		return tcs, stripDSMLFinal(content)
 	}
-	if tc := parseTextToolCall(content, tools); tc != nil {
-		return []provider.ToolCall{*tc}, ""
+	if tcs := parseTextToolCalls(content, tools); len(tcs) > 0 {
+		return tcs, ""
 	}
 	if hasDSML(content) {
 		return nil, stripDSMLFinal(content)
+	}
+	// Diagnostic : le contenu ressemble a une tentative d'appel annoncee
+	// (nom d'outil connu + mot-cle d'annonce) mais le parsing strict l'a
+	// refusee — nouvelle formulation d'un modele, argument ambigu, etc.
+	// Loggue pour journalctl : c'est le signal direct pour la prochaine
+	// fois, au lieu d'un angle mort.
+	if looksLikeAnnouncedCall(content, tools) {
+		preview := content
+		if r := []rune(preview); len(r) > 200 {
+			preview = string(r[:200]) + "…"
+		}
+		log.Printf("chat: parseFallbackToolCalls: tentative d'appel en texte non convertible (contenu: %q)", preview)
 	}
 	return nil, content
 }

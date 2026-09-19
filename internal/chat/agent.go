@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -343,6 +344,15 @@ func (e *Engine) execParallelRun(ctx context.Context, c *Conversation, epoch int
 // l'ordre d'émission du modèle. Retourne abort=true si le tour doit
 // s'interrompre (approbation expirée).
 func (e *Engine) executeToolBlock(ctx context.Context, c *Conversation, epoch int, reg toolRegistry, tcs []provider.ToolCall, env toolEnv, opts agentOpts, st *toolExecState, user string, m alias.ResolvedMember, msgs *[]provider.Message) (abort bool) {
+	// Point C : un log par bloc d'outils execute — journalctl montre
+	// enfin l'activite du chemin chat tour par tour.
+	if len(tcs) > 0 {
+		names := make([]string, 0, len(tcs))
+		for _, tc := range tcs {
+			names = append(names, tc.Function.Name)
+		}
+		log.Printf("chat: tour %d: execution de %d appel(s) d'outil: %s", epoch, len(tcs), strings.Join(names, ", "))
+	}
 	appendOut := func(id string, out ToolResult, followup *provider.Message) {
 		*msgs = append(*msgs, provider.Message{Role: "tool", ToolCallID: id, Content: truncateToolForModel(out.Text)})
 		if followup != nil {
@@ -464,6 +474,10 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 
 func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, reg toolRegistry, user, effort string, emitted *bool, opts agentOpts) (string, string, error) {
 	const maxNudges = 2
+	// Point B : le nudge "tentative d'appel en texte" est borne separement
+	// (compteur dedie) : au-dela, le texte reste visible tel quel au lieu
+	// de couter des allers-retours modele.
+	const maxTextCallNudges = 2
 	msgs := append([]provider.Message(nil), base...)
 	// Phase 2 : l'état mutable d'exécution des outils est regroupé pour
 	// être partagé entre la voie parallèle (runs) et la voie séquentielle.
@@ -474,6 +488,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		modified: map[string]bool{},
 	}
 	nudges := 0
+	textCallNudges := 0
 	disableTools := false
 	transientRetries := 0
 	last := ""
@@ -643,12 +658,29 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		}
 
 		last = resp.Content
-		// Phase 1 : le nudge "tentative d'appel en texte" est supprime.
-		// Les pseudo-appels isoles sont desormais executes directement par
-		// le filet unique (parseFallbackToolCalls) au lieu de couter un
-		// aller-retour modele ; le texte que le filet refuse reste visible
-		// dans le fil (last) au lieu d'etre perdu. Seul le nudge "reponse
-		// vide" subsiste (autre cas d'echec, sans rapport).
+		// Phase 1 : le nudge "tentative d'appel en texte" est supprime...
+		// Point B : ...puis restaure sous forme bornee (filet de securite).
+		// Les pseudo-appels convertibles sont executes directement par le
+		// filet unique (parseFallbackToolCalls) sans aller-retour ; quand
+		// le contenu ressemble VRAIMENT a une tentative d'appel annoncee
+		// (nom d'outil connu + mot-cle d'annonce, voir
+		// looksLikeAnnouncedCall) mais que le parsing strict l'a refusee,
+		// on demande au modele de reemettre de vrais appels — au plus
+		// maxTextCallNudges fois par tour. Le declenchement exige un nom
+		// d'outil reconnu : jamais de nudge sur une reponse texte normale.
+		if strings.TrimSpace(resp.Content) != "" && !disableTools && len(tools) > 0 && looksLikeAnnouncedCall(resp.Content, tools) {
+			if textCallNudges < maxTextCallNudges {
+				textCallNudges++
+				log.Printf("chat: tour %d: tentative d'appel en texte non convertible, nudge %d/%d", epoch, textCallNudges, maxTextCallNudges)
+				msgs = append(msgs, provider.Message{Role: "user", Content: textCallNudgeText()})
+				continue
+			}
+			// Point C : budget epuise — le tour se termine sans outil
+			// alors que le texte ressemble a un appel : loggue pour
+			// journalctl au lieu de rester silencieux.
+			log.Printf("chat: tour %d: termine sans outil alors que le texte ressemble a un appel (budget nudge epuise)", epoch)
+		}
+		// Seul le nudge "reponse vide" subsiste (autre cas d'echec, sans rapport).
 		if strings.TrimSpace(resp.Content) == "" {
 			if !disableTools && nudges < maxNudges && len(tools) > 0 {
 				nudges++
@@ -969,6 +1001,13 @@ func nudgeText(n int) string {
 		return "You are stuck re-describing the same plan without executing it. Stop reasoning. In your NEXT message, either call ONE tool right now, or write your final answer in plain text using only what you already know — no more planning, no more thinking, act or answer this instant."
 	}
 	return "You reasoned but did not call a tool or answer. Act NOW: call the appropriate tool directly, or give your final answer if you already have the info. Don't explain, act."
+}
+
+// textCallNudgeText : nudge "tentative d'appel en texte" (point B), borne
+// a maxTextCallNudges par tour. Demande au modele de reemettre de vrais
+// appels au lieu d'annoncer en texte.
+func textCallNudgeText() string {
+	return "Your last message looked like a tool call written as text (e.g. \"Appel réel : ...\"), but no tool was actually called. In your NEXT message, emit the real tool call(s) directly as function calls, with no announcement text around them. Do not describe the call — make it."
 }
 
 func normalizeSystemMessages(msgs []provider.Message) []provider.Message {
