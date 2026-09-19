@@ -1,6 +1,11 @@
 import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
 import { estimateTokens } from "./turn-tokens.js";
+import {
+  getAgenticStyle,
+  AGENTIC_STYLE_OPENCODE,
+  AGENTIC_STYLE_EVENT,
+} from "./agentic-style.js";
 import { logout } from "./auth.js";
 import { openDocs } from "./docs.js";
 import {
@@ -1295,6 +1300,9 @@ function buildThread(id) {
     },
     reasonHooks,
     onEvent: handleMxEvent,
+    // Module Agentic : la vue Agents choisit son rendu (Harness/OpenCode).
+    // Le chat general (chat.js) ne passe pas cette option.
+    agentic: true,
     onDone: () => {
       if (statsBadge.textContent) tokenCounter.textContent = statsBadge.textContent;
       refreshAgents();
@@ -1460,6 +1468,19 @@ function updateFav() {
 // (scopée #marex-view), indépendante du thème applicatif et du JS : en thème
 // clair, les blocs de code restent clairs sur sombre.
 
+// Module Agentic : applique le style choisi (Harness/OpenCode) sur
+// #marex-view, sans rechargement. Harness = rendu actuel de la vue Agents,
+// OpenCode = reproduction fidele du TUI OpenCode (thread-view.js).
+function applyAgenticClass() {
+  if (typeof view === "undefined" || !view) return;
+  const oc = getAgenticStyle() === AGENTIC_STYLE_OPENCODE;
+  view.classList.toggle("ac-opencode", oc);
+  view.classList.toggle("ac-harness", !oc);
+}
+if (typeof window !== "undefined" && window.addEventListener) {
+  window.addEventListener(AGENTIC_STYLE_EVENT, applyAgenticClass);
+}
+
 function openView() {
   if (opened) return;
   opened = true;
@@ -1469,6 +1490,8 @@ function openView() {
     sessionStorage.setItem("cetas.agents.open", "1");
   } catch (e) {}
   view.classList.add("open");
+  // Module Agentic : applique le style choisi (Harness/OpenCode).
+  applyAgenticClass();
   toolbarBtn.classList.add("active");
   document.body.style.overflow = "hidden";
   loadFamilies();

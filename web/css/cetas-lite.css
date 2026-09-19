@@ -1983,3 +1983,134 @@ body.dark #chat-container .agent-status {
 #marex-view .diff-del .diff-sign {
   color: #f87171;
 }
+/* ============================================================
+   Module Agentic — style OpenCode (vue Agents uniquement)
+   ------------------------------------------------------------
+   Reproduction web du TUI opencode
+   (internal/tui/components/chat/message.go + theme/opencode.go) :
+   fond #212121, texte #e0e0e0, messages et outils en blocs à bordure
+   gauche épaisse (assistant : primaire #fab283, utilisateur :
+   secondaire #5c9cf5), outils en texte atténué #6a6a6a, erreurs
+   #e06c75, diffs aux couleurs du TUI.
+   Scopé #marex-view.ac-opencode SANS body.dark : la vue Agents est
+   toujours sombre quel que soit le thème applicatif.
+   ============================================================ */
+
+#marex-view.ac-opencode {
+  --text: #e0e0e0;
+  --text-primary: #e0e0e0;
+  background: #212121;
+  color: #e0e0e0;
+}
+
+/* Messages : blocs pleine largeur à bordure gauche épaisse, sans bulle. */
+#marex-view.ac-opencode .mx-chat-log .message-wrapper-user {
+  justify-content: flex-start;
+}
+#marex-view.ac-opencode .mx-chat-log .message {
+  max-width: 100%;
+  width: 100%;
+  padding: 4px 0 4px 12px;
+  border: none;
+  border-left: 3px solid #fab283;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #e0e0e0;
+}
+#marex-view.ac-opencode .mx-chat-log .message-wrapper-user .message {
+  border-left-color: #5c9cf5;
+}
+#marex-view.ac-opencode .mx-chat-log .message-wrapper-assistant .message {
+  border-left-color: #fab283;
+}
+#marex-view.ac-opencode .mx-chat-log .message-error {
+  border-left-color: #e06c75;
+  background: transparent;
+}
+#marex-view.ac-opencode .mx-chat-log .message-error .message-text {
+  color: #e06c75;
+}
+/* Pas d'effet shimmer en streaming : le TUI n'en a pas. */
+#marex-view.ac-opencode .mx-chat-log .message-assistant.streaming {
+  background: transparent;
+  animation: none;
+}
+#marex-view.ac-opencode .mx-chat-log .message-assistant.streaming::before {
+  display: none;
+}
+
+/* Outils : bordure atténuée, en-tête "Nom: paramètres". */
+#marex-view.ac-opencode .oc-tool {
+  border-left: 3px solid #6a6a6a;
+  padding: 2px 0 2px 12px;
+  margin: 10px 0;
+}
+#marex-view.ac-opencode .oc-tool-head {
+  color: #6a6a6a;
+  font-size: 0.85rem;
+}
+#marex-view.ac-opencode .oc-tool-head .oc-tool-name {
+  font-weight: 600;
+}
+#marex-view.ac-opencode .oc-tool-body {
+  margin-top: 4px;
+}
+#marex-view.ac-opencode .oc-tool-body .tool-result,
+#marex-view.ac-opencode .oc-tool-body pre.tool-result {
+  color: #6a6a6a;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 4px 0;
+}
+#marex-view.ac-opencode .oc-tool-error {
+  color: #e06c75;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 4px 0;
+  white-space: pre-wrap;
+}
+/* "Thinking..." façon TUI : primaire + gras. */
+#marex-view.ac-opencode .thinking-indicator {
+  color: #fab283;
+  font-weight: 700;
+}
+#marex-view.ac-opencode .thinking-spinner {
+  border-top-color: #fab283;
+}
+/* Pied de réponse : " modèle (durée)", atténué. */
+#marex-view.ac-opencode .oc-turn-stats {
+  color: #6a6a6a;
+  font-size: 0.75rem;
+  padding: 2px 0 2px 12px;
+}
+/* Diffs aux couleurs exactes du TUI opencode (mode sombre). */
+#marex-view.ac-opencode .tool-diff {
+  border-top: none;
+}
+#marex-view.ac-opencode .diff-head {
+  background: transparent;
+  padding-left: 0;
+}
+#marex-view.ac-opencode .diff-add {
+  background: #303a30;
+}
+#marex-view.ac-opencode .diff-add .diff-code,
+#marex-view.ac-opencode .diff-add .diff-sign {
+  color: #478247;
+}
+#marex-view.ac-opencode .diff-del {
+  background: #3a3030;
+}
+#marex-view.ac-opencode .diff-del .diff-code,
+#marex-view.ac-opencode .diff-del .diff-sign {
+  color: #7c4444;
+}
+#marex-view.ac-opencode .diff-gutter {
+  color: #888888;
+}
+#marex-view.ac-opencode .diff-ctx {
+  color: #6a6a6a;
+}

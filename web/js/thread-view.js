@@ -15,6 +15,7 @@ import {
 } from "./reasoning-panel.js";
 import { setTurnStats } from "./turn-tokens.js";
 import { getFeaturePref } from "./model-select.js";
+import { getAgenticStyle, AGENTIC_STYLE_OPENCODE } from "./agentic-style.js";
 
 // Loader rond "Marex" pendant la generation — repris trait pour trait du
 // CETAS complet (marexcode) : point central lumineux + anneau (arc visible)
@@ -215,6 +216,60 @@ function renderDiff(lines, filePath) {  const wrap = el("div", "tool-diff");
   return wrap;
 }
 
+// Reproduction web du TUI opencode (internal/tui/components/chat/message.go)
+// : blocs à bordure gauche épaisse, en-têtes "Nom: paramètres", résultats
+// bornés à 10 lignes, statuts exacts, erreurs en rouge, pied "modèle (durée)".
+
+// Libellé d'action affiché dans l'en-tête de l'outil PENDANT son exécution
+// (équivalent du "Working..." / "Building command..." du TUI).
+function ocToolAction(name) {
+  switch (name) {
+    case "Bash":
+    case "RunScript":
+      return "Building command...";
+    case "Edit":
+      return "Preparing edit...";
+    case "Write":
+      return "Preparing write...";
+    case "Read":
+    case "Cat":
+      return "Reading file...";
+    case "Grep":
+      return "Searching content...";
+    case "Glob":
+      return "Finding files...";
+    case "Ls":
+      return "Listing directory...";
+    case "TodoWrite":
+      return "Updating todos...";
+    case "web_search":
+      return "Searching web...";
+    case "web_fetch":
+      return "Fetching page...";
+    default:
+      return "Working...";
+  }
+}
+
+// Paramètre principal façon TUI (renderParams) : la valeur la plus
+// parlante de l'outil, tronquée à ~120 caractères.
+function ocToolParams(name, args) {
+  args = args || {};
+  const val =
+    args.file_path || args.command || args.path || args.pattern ||
+    args.query || args.url || args.text || args.diff || args.content;
+  if (val === undefined || val === null) return "";
+  let s = String(val);
+  const firstLine = s.split("\n")[0];
+  s = firstLine.length < s.length ? firstLine + "…" : firstLine;
+  return s.length > 120 ? s.slice(0, 119) + "…" : s;
+}
+
+// Un résultat d'outil est une erreur quand le backend le préfixe "[erreur]".
+function ocIsError(result) {
+  return /^\s*\[erreur\]/i.test(String(result || ""));
+}
+
 function speakable(md) {
   return String(md || "")
     .replace(/```[\s\S]*?```/g, " (bloc de code) ")
@@ -261,6 +316,9 @@ export class ThreadView {
     this.reasonHooks = opts.reasonHooks || null;
     this.trackTokens = opts.trackTokens === true;
     this.onEvent = typeof opts.onEvent === "function" ? opts.onEvent : null;
+    // Module Agentic (vue Agents uniquement) : Harness = rendu actuel,
+    // OpenCode = reproduction fidele du TUI OpenCode.
+    this.agentic = opts.agentic === true;
 
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
@@ -727,7 +785,8 @@ export class ThreadView {
     this.clearEmpty();
     const wrapper = el("div", "message-wrapper message-wrapper-assistant");
     const bubble = el("div", "message message-assistant message-error");
-    bubble.appendChild(el("div", "message-text", text));
+    // Module Agentic, style OpenCode : erreurs préfixées "Error:" (TUI).
+    bubble.appendChild(el("div", "message-text", this.agenticIsOpenCode() ? "Error: " + text : text));
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
     this.requestFollow();
@@ -781,7 +840,15 @@ export class ThreadView {
     wrapper.appendChild(bar);
   }
 
+  // Module Agentic : vrai uniquement pour la vue Agents en style OpenCode.
+  // Le chat general (Cetas) et le style Harness gardent le rendu actuel.
+  agenticIsOpenCode() {
+    return this.agentic && getAgenticStyle() === AGENTIC_STYLE_OPENCODE;
+  }
+
   addTool(ev, gapMs) {
+    // Vue Agents + style OpenCode : rendu fidele au TUI OpenCode.
+    if (this.agenticIsOpenCode()) return this.addToolOpenCode(ev, gapMs);
     const key = ev.name + "|" + JSON.stringify(ev.args || {});
     if (ev.phase === "start") {
       this.clearEmpty();
@@ -855,6 +922,79 @@ export class ThreadView {
     this.requestFollow();
   }
 
+  // Module Agentic, style OpenCode : reproduction fidele du TUI OpenCode
+  // (internal/tui/components/chat/message.go). Blocs a bordure gauche
+  // epaisse, en-tete "Nom: parametres" ("Nom: action..." pendant
+  // l'execution), resultats bornes a 10 lignes, erreurs en rouge.
+  addToolOpenCode(ev, gapMs) {
+    const key = ev.name + "|" + JSON.stringify(ev.args || {});
+    if (ev.phase === "start") {
+      this.clearEmpty();
+      this.hideWait();
+      this.hideThinking();
+      // Temps de reflexion ecoule depuis l'evenement precedent
+      // ("+ Thought: 2.9s"). gapMs = 0 quand inconnu.
+      this.maybeAddThought(gapMs || 0);
+      this.convTools++;
+      const box = el("div", "msg-tool oc-tool running");
+      const head = el("div", "oc-tool-head");
+      head.appendChild(el("span", "oc-tool-name", ev.name + ": "));
+      head.appendChild(el("span", "oc-tool-action", ocToolAction(ev.name)));
+      box.appendChild(head);
+      const body = el("div", "oc-tool-body");
+      if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
+        body.appendChild(renderTodos(ev.args.todos));
+      }
+      if (ev.name === "web_search" || ev.name === "web_fetch") {
+        body.appendChild(renderSearchStatus(searchLabel(ev.name, ev.args)));
+      }
+      box.appendChild(body);
+      this.log.appendChild(box);
+      this.toolBoxes.set(key, { root: box, head, body });
+      this.finalizeAssistant();
+      this.resetAssistantState();
+      this.requestFollow();
+      return;
+    }
+    const slot = this.toolBoxes.get(key);
+    if (!slot || !slot.body) return;
+    slot.root.classList.remove("running");
+    // Fin d'execution : l'en-tete affiche "Nom: parametres".
+    if (slot.head) {
+      slot.head.innerHTML = "";
+      slot.head.appendChild(el("span", "oc-tool-name", ev.name + ": "));
+      slot.head.appendChild(
+        el("span", "oc-tool-params", ocToolParams(ev.name, ev.args))
+      );
+    }
+    const body = slot.body;
+    const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
+    const status = body.querySelector(".search-status");
+    if (status) status.remove();
+    if (isSearch && Array.isArray(ev.sources) && ev.sources.length) {
+      body.appendChild(renderSources(ev.sources));
+      this.requestFollow();
+      return;
+    }
+    if (Array.isArray(ev.diff) && ev.diff.length) {
+      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
+    }
+    if (typeof ev.result === "string" && ev.result) {
+      if (ocIsError(ev.result)) {
+        body.appendChild(el("pre", "oc-tool-error", ev.result));
+      } else {
+        const rlines = ev.result.split("\n");
+        if (rlines.length > 10) body.appendChild(renderReadMore(ev.result, rlines.length));
+        else {
+          const pre = el("pre", "tool-result oc-result");
+          appendLinkified(pre, ev.result);
+          body.appendChild(pre);
+        }
+      }
+    }
+    this.requestFollow();
+  }
+
   // "+ Thought: 2.9s" façon OpenCode : matérialise le temps de réflexion
   // du modèle avant son action. Ignoré si trop bref (< 300 ms, rejouement
   // d'historique ou enchaînement immédiat).
@@ -873,7 +1013,8 @@ export class ThreadView {
     this.hideWait();
     this.thinkingEl = el("div", "thinking-indicator");
     this.thinkingEl.appendChild(el("span", "thinking-spinner"));
-    this.thinkingEl.appendChild(el("span", "thinking-label", "thinking"));
+    // Module Agentic, style OpenCode : libellé exact du TUI ("Thinking...").
+    this.thinkingEl.appendChild(el("span", "thinking-label", this.agenticIsOpenCode() ? "Thinking..." : "thinking"));
     this.log.appendChild(this.thinkingEl);
     this.requestFollow();
   }
@@ -1056,6 +1197,19 @@ export class ThreadView {
   }
 
   addTurnStats(box) {
+    // Module Agentic, style OpenCode : pied façon TUI " modèle (durée)".
+    if (this.agenticIsOpenCode()) {
+      const r = this.turnRoute || {};
+      const model = r.label || r.model || "";
+      let secs = 0;
+      if (this.turnElapsedMs != null) secs = this.turnElapsedMs / 1000;
+      else if (this.turnStartTs) secs = (Date.now() - this.turnStartTs) / 1000;
+      const txt =
+        " " + (model ? model + " " : "") + "(" + secs.toFixed(secs < 10 ? 1 : 0) + "s)";
+      const wrapper = box.closest(".message-wrapper") || box;
+      wrapper.appendChild(el("div", "oc-turn-stats", txt));
+      return;
+    }
     const s = this.turnStats || {};
     const inTok = s.prompt_tokens || 0;
     const outTok = s.completion_tokens || 0;
