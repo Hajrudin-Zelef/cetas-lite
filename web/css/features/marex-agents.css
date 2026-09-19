@@ -700,6 +700,18 @@
 #marex-view .selector:hover{ background:var(--bg-input-btn); color:var(--text-primary); }
 #marex-view .selector svg{ color:var(--text-primary); }
 #marex-view .selector .chevron{ color:var(--text-primary); margin-left:1px; }
+/* C1 : badge d'avertissement affiché quand le mode "Espace Write"
+   (écriture SANS validation) est actif. */
+#marex-view .mx-perm-warn{
+  font-size:11px; font-weight:700; white-space:nowrap;
+  color:#fff; background:var(--danger);
+  border-radius:6px; padding:3px 8px; margin-left:6px;
+  animation:mx-perm-warn-pulse 1.6s ease-in-out infinite;
+}
+@keyframes mx-perm-warn-pulse{
+  0%,100%{ opacity:1; } 50%{ opacity:.55; }
+}
+#marex-view.light .mx-perm-warn{ color:#fff; }
 
 #marex-view .mx-composer textarea{
   width:100%;

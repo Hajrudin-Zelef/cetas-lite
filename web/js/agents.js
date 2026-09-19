@@ -180,6 +180,7 @@ const VIEW_HTML = `
                 <button class="selector" id="mx-btn-perm" style="padding:0">${I.edit}<span id="mx-label-perm">Espace Write</span>${I.chevron}</button>
                 <div class="cdrop-menu" id="mx-menu-perm"></div>
               </div>
+              <span class="mx-perm-warn" id="mx-perm-warn" hidden title="Mode Écriture libre : l'agent modifie le workspace SANS te demander">⚠ Sans validation</span>
             </div>
             <div class="composer-footer-right">
               <button class="icon-btn" id="mx-undo" disabled title="Annuler">${I.undo}</button>
@@ -213,7 +214,7 @@ const VIEW_HTML = `
 </div>`;
 
 const PERMS = {
-  write: { label: "Espace Write", approve: false, plan: false, icon: "edit", desc: "L'agent lit et modifie librement le workspace" },
+  write: { label: "Espace Write", approve: false, plan: false, icon: "edit", desc: "⚠ L'agent lit et modifie librement le workspace, SANS validation" },
   ask: { label: "Ask permission", approve: true, plan: false, icon: "ask", desc: "Demande ta validation avant chaque modification" },
   read: { label: "Read only", approve: false, plan: true, icon: "eye", desc: "L'agent peut lire les fichiers, jamais les modifier" },
 };
@@ -355,12 +356,15 @@ export function initAgents() {
   let families = [];
   let selFamily = LS.get("family", null);
   let selMode = LS.get("mode", null);
-  let perm = LS.get("perm", "write");
-  if (!PERMS[perm]) perm = "write";
+  // C1 : par défaut, tout nouveau profil démarre en "Ask permission"
+  // (jamais d'écriture silencieuse). La préférence déjà stockée d'un
+  // utilisateur existant est conservée telle quelle.
+  let perm = LS.get("perm", "ask");
+  if (!PERMS[perm]) perm = "ask";
   // Mode Plan/Build : "plan" <=> perm "read" (lecture seule), "build" <=>
   // derniere permission d'ecriture ("write" ou "ask"). Tab bascule l'un
   // vers l'autre ; le payload agent envoie plan: PERMS[perm].plan.
-  let lastBuildPerm = perm === "read" ? "write" : perm;
+  let lastBuildPerm = perm === "read" ? "ask" : perm;
   const mxMode = () => (perm === "read" ? "plan" : "build");
   function setPerm(p) {
     if (!PERMS[p]) return;
@@ -368,11 +372,14 @@ export function initAgents() {
     perm = p;
     LS.set("perm", perm);
     $("#mx-label-perm").textContent = PERMS[perm].label;
+    // C1 : avertissement très visible quand l'écriture est silencieuse.
+    const pw = $("#mx-perm-warn");
+    if (pw) pw.hidden = perm !== "write";
     buildPermMenu();
     applyMxModeVisual();
   }
   function setMxMode(mode) {
-    setPerm(mode === "plan" ? "read" : lastBuildPerm || "write");
+    setPerm(mode === "plan" ? "read" : lastBuildPerm || "ask");
   }
   function applyMxModeVisual() {
     const mode = mxMode();
@@ -1672,6 +1679,18 @@ thinkFab.addEventListener("click", () => {
 
 $("#mx-hamburger").addEventListener("click", () => sidebar.classList.toggle("open"));
 $("#mx-sb-close").addEventListener("click", () => sidebar.classList.remove("open"));
+// F14 : sur mobile/tablette (<=1024px) la sidebar est un drawer : un tap
+// hors sidebar la referme (même classe de bug que la sidebar générale).
+// Actif uniquement en mode overlay, jamais sur desktop.
+const mqMxOverlay = window.matchMedia("(max-width: 1024px)");
+document.addEventListener("click", (e) => {
+  if (!mqMxOverlay.matches) return;
+  if (!sidebar.classList.contains("open")) return;
+  if (sidebar.contains(e.target)) return;
+  const burger = $("#mx-hamburger");
+  if (burger && burger.contains(e.target)) return;
+  sidebar.classList.remove("open");
+});
 
 $("#mx-user-btn").addEventListener("click", (e) => {
   e.stopPropagation();
@@ -1707,6 +1726,8 @@ $("#mx-logout").addEventListener("click", () => {
 
 // ---------------- init ----------------
 $("#mx-label-perm").textContent = PERMS[perm].label;
+// C1 : état initial du badge d'avertissement (écriture silencieuse).
+{ const pw = $("#mx-perm-warn"); if (pw) pw.hidden = perm !== "write"; }
 applyMxModeVisual();
 $("#mx-label-effort").textContent = EFFORT_LABELS[mxEffort] || "Défaut";
 buildPermMenu();

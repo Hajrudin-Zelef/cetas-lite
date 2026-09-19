@@ -372,3 +372,88 @@ func TestTextPseudoCallDangerousRequiresApproval(t *testing.T) {
 		t.Fatal("le pseudo-appel dangereux aurait du declencher une demande d'approbation")
 	}
 }
+
+// TestBashRequiresApprovalInWriteMode (C1, e2e) : en mode "Espace Write"
+// (approve=false), un appel Bash déclenche quand même une demande
+// d'approbation.
+func TestBashRequiresApprovalInWriteMode(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{toolCall("b1", "Bash", `{"command":"echo hello"}`)}},
+		{content: "Terminé"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := e.Conversation("sam")
+	stop := make(chan struct{})
+	defer close(stop)
+	autoResolveApprovals(t, c, true, stop)
+
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "dis hello", Approve: false, User: "sam", AgentMode: true}); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+
+	c.mu.Lock()
+	var sawApproval bool
+	for _, ev := range c.Log {
+		if _, ok := ev.Delta["approval"]; ok {
+			sawApproval = true
+			break
+		}
+	}
+	c.mu.Unlock()
+	if !sawApproval {
+		t.Fatal("C1 : Bash aurait du declencher une approbation meme en Espace Write")
+	}
+	// Approuvé : l'outil s'est exécuté (résultat "hello" transmis au modèle).
+	var sawHello bool
+	for _, r := range toolResults(c) {
+		if strings.Contains(r, "hello") {
+			sawHello = true
+		}
+	}
+	if !sawHello {
+		t.Fatalf("Bash approuve aurait du s'executer, resultats=%v", toolResults(c))
+	}
+}
+
+// TestBashSedInplaceRequiresApproval (réserve sed -i, e2e) : sed -i via
+// Bash exige une approbation comme l'outil Sed avec in_place, même en
+// mode "Espace Write".
+func TestBashSedInplaceRequiresApproval(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{toolCall("b1", "Bash", `{"command":"sed -i 's/a/b/' note.txt"}`)}},
+		{content: "Terminé"},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := e.Conversation("sam")
+	stop := make(chan struct{})
+	defer close(stop)
+	autoResolveApprovals(t, c, false, stop)
+
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "modifie note.txt", Approve: false, User: "sam", AgentMode: true}); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+
+	c.mu.Lock()
+	var sawApproval bool
+	for _, ev := range c.Log {
+		if _, ok := ev.Delta["approval"]; ok {
+			sawApproval = true
+			break
+		}
+	}
+	c.mu.Unlock()
+	if !sawApproval {
+		t.Fatal("sed -i via Bash aurait du declencher une approbation")
+	}
+	var sawRefusal bool
+	for _, r := range toolResults(c) {
+		if strings.Contains(r, "[refuse]") {
+			sawRefusal = true
+		}
+	}
+	if !sawRefusal {
+		t.Fatal("le refus d'approbation aurait du etre transmis au modele")
+	}
+}

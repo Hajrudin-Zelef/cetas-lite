@@ -133,10 +133,15 @@ function renderSources(sources) {
     } catch (e) { /* url non parsable : on affiche telle quelle */ }
     const li = el("li");
     if (i >= VISIBLE) li.classList.add("citation-hidden");
-    const a = el("a", "citation-card");
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
+    // F3 : on ne rend cliquable que les URL http(s) — jamais
+    // javascript:, data:, file:… (XSS via href).
+    const safeLink = /^https?:\/\//i.test(url);
+    const a = el(safeLink ? "a" : "span", "citation-card" + (safeLink ? "" : " citation-nolink"));
+    if (safeLink) {
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    }
     a.title = url;
     const head = el("div", "citation-card-head");
     const fav = el("img", "citation-favicon");
@@ -1215,9 +1220,26 @@ export class ThreadView {
 
   async decideApproval(id, approved, always) {
     if (!this.approveURL) return;
+    // F5 : feedback immédiat — on désactive les boutons dès le clic pour
+    // éviter les doubles décisions, avec un état "Envoi…" visible.
+    const card = this.approvalCards.get(id);
+    if (card && card.dataset.sending === "1") return; // déjà en cours d'envoi
+    let status = null;
+    if (card) {
+      card.dataset.sending = "1";
+      card.querySelectorAll("button").forEach((b) => { b.disabled = true; });
+      status = card.querySelector(".approval-status");
+      if (status) status.textContent = "Envoi…";
+    }
     try {
       await api(this.approveURL, { method: "POST", body: { id, approved, always: !!always } });
     } catch (e) {
+      // Échec : on réarme les boutons pour permettre un nouvel essai.
+      if (card) {
+        delete card.dataset.sending;
+        card.querySelectorAll("button").forEach((b) => { b.disabled = false; });
+        if (status) status.textContent = "En attente de ta décision…";
+      }
       this.addError("Approbation : " + e.message);
     }
   }
@@ -1407,7 +1429,16 @@ export class ThreadView {
     this.setBusy(false);
     if (this.reasonPanel) resetReasonPanel();
       else if (this.reasonHooks) this.reasonHooks.reset();
+    // F10 : on ne jette pas les cartes d'approbation en attente lors d'un
+    // reset — seules les cartes résolues sont retirées. Les cartes en
+    // attente sont mises de côté avant le vidage du fil puis réaffichées.
+    const pendingCards = [];
+    for (const [id, card] of this.approvalCards) {
+      if (card && !card.hasAttribute("data-resolved")) pendingCards.push(card);
+      else this.approvalCards.delete(id);
+    }
     this.log.innerHTML = this.emptyHTML;
+    for (const card of pendingCards) this.log.appendChild(card);
     this.empty = this.log.querySelector("[data-empty]");
     this.lastSeq = 0;
     this.assistant = null;
@@ -1422,7 +1453,6 @@ export class ThreadView {
     this.stopStreamSpinner();
     this.toolBoxes.clear();
     this.toolPending.clear();
-    this.approvalCards.clear();
     this.searchStatus = null;
     this.lastEventTs = 0;
     this.hideThinking();
@@ -1491,7 +1521,20 @@ export class ThreadView {
         );
         if (opt) opt.removeAttribute("data-optimistic");
       } else {
-        this.addUser(String(ev.user));
+        const text = String(ev.user);
+        // F16 : cas limite — le delta "user" du serveur arrive sans
+        // client_msg_id correspondant, mais un écho optimiste IDENTIQUE est
+        // déjà affiché : on le confirme au lieu d'ajouter un doublon.
+        const opt = this.log.querySelector(
+          ':scope > .message-wrapper-user[data-optimistic="1"]'
+        );
+        const optText = opt && opt.querySelector(".message-text");
+        if (opt && optText && optText.textContent === text) {
+          this.pendingUserId = ev.client_msg_id || null;
+          opt.removeAttribute("data-optimistic");
+        } else {
+          this.addUser(text);
+        }
       }
       this.turnStartTs = Date.now();
       this.turnStats = null;
@@ -1704,6 +1747,13 @@ export class ThreadView {
   }
 
   stop() {
-    if (this.stopURL) api(this.stopURL, { method: "POST" }).catch(() => {});
+    if (!this.stopURL) return;
+    // F12 : ne plus avaler silencieusement l'échec — on affiche l'erreur
+    // pour que l'utilisateur sache que l'arrêt n'est peut-être pas parti
+    // (le bouton reste visible pour réessayer ; le succès est confirmé par
+    // l'événement serveur qui masque le bouton).
+    api(this.stopURL, { method: "POST" }).catch((e) => {
+      this.addError("Stop : " + (e && e.message ? e.message : "requête non envoyée") + " — le tour continue peut-être encore.");
+    });
   }
 }

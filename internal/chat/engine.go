@@ -583,7 +583,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			return
 		}
 		if emitted {
-			c.appendDelta(epoch, map[string]any{"error": err.Error()})
+			c.appendDelta(epoch, map[string]any{"error": clientSafeError(err, "La génération a été interrompue par une erreur — réessaie dans un instant.")})
 			return
 		}
 		// Repli natif -> outils : la recherche native a echoue avant toute
@@ -605,5 +605,5 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	if lastErr == nil {
 		lastErr = fmt.Errorf("aucun modele disponible")
 	}
-	c.appendDelta(epoch, map[string]any{"error": lastErr.Error()})
+	c.appendDelta(epoch, map[string]any{"error": clientSafeError(lastErr, "Échec de la génération — réessaie dans un instant.")})
 }

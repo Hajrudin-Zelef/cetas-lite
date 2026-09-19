@@ -11,6 +11,13 @@ globalThis.window = dom.window;
 globalThis.document = dom.window.document;
 globalThis.requestAnimationFrame = dom.window.requestAnimationFrame.bind(dom.window);
 globalThis.cancelAnimationFrame = dom.window.cancelAnimationFrame.bind(dom.window);
+// jsdom ne fournit pas matchMedia : agents.js détecte l'overlay mobile via
+// window.matchMedia("(max-width: 1024px)") — stub par défaut (matches: false).
+dom.window.matchMedia = () => ({
+  matches: false,
+  addEventListener() {},
+  removeEventListener() {},
+});
 globalThis.getComputedStyle = dom.window.getComputedStyle.bind(dom.window);
 globalThis.localStorage = dom.window.localStorage;
 globalThis.EventSource = class {
@@ -50,7 +57,8 @@ test("mode : BUILD par défaut (barre bleue, badge, permission)", () => {
   assert.ok(badge.classList.contains("build"), "badge bleu");
   assert.ok(composer.classList.contains("mode-build"), "composer mode-build");
   assert.ok(!composer.classList.contains("mode-plan"), "pas mode-plan");
-  assert.equal($("#mx-label-perm").textContent, "Espace Write");
+  // C1 : un nouveau profil démarre en "Ask permission" (pas "Espace Write").
+  assert.equal($("#mx-label-perm").textContent, "Ask permission");
 });
 
 test("Tab : bascule vers PLAN (barre jaune, lecture seule)", () => {
@@ -65,12 +73,13 @@ test("Tab : bascule vers PLAN (barre jaune, lecture seule)", () => {
   assert.equal(localStorage.getItem("mx.perm"), "read", "persisté");
 });
 
-test("Tab : retour en BUILD, restaure la permission d'écriture", () => {
+test("Tab : retour en BUILD, restaure la permission par défaut (Ask permission)", () => {
   tabOnInput();
   assert.equal($("#mx-mode-badge").textContent, "BUILD");
   assert.ok($("#mx-composer").classList.contains("mode-build"));
-  assert.equal($("#mx-label-perm").textContent, "Espace Write", "permission restaurée");
-  assert.equal(localStorage.getItem("mx.perm"), "write");
+  // C1 : la permission d'écriture par défaut est "Ask permission" (ask).
+  assert.equal($("#mx-label-perm").textContent, "Ask permission", "permission restaurée");
+  assert.equal(localStorage.getItem("mx.perm"), "ask");
 });
 
 test("clic sur le badge : même bascule que Tab", () => {

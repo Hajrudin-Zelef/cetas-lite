@@ -365,7 +365,7 @@ func missingArgErr(tool, field string) string {
 
 func (s *Sandbox) toolLs(ctx context.Context) ToolResult {
 	var entries []string
-	_ = s.fs.Walk(ctx, func(e vfs.Entry) error {
+	walkErr := s.fs.Walk(ctx, func(e vfs.Entry) error {
 		entries = append(entries, e.Path)
 		if len(entries) >= lsMaxEntries {
 			return errWalkStopSandbox
@@ -376,6 +376,10 @@ func (s *Sandbox) toolLs(ctx context.Context) ToolResult {
 	out := fmt.Sprintf("%d entrees", len(entries))
 	if len(entries) > 0 {
 		out += "\n" + strings.Join(entries, "\n")
+	}
+	// B3 : erreur de parcours remontée au modèle, pas ignorée.
+	if walkErr != nil && !errors.Is(walkErr, errWalkStopSandbox) {
+		out += "\n[avertissement] parcours incomplet"
 	}
 	return ToolResult{Text: out}
 }
@@ -558,7 +562,7 @@ func (s *Sandbox) toolGrep(ctx context.Context, args map[string]any) ToolResult 
 			})
 		}
 	} else {
-		_ = s.fs.Walk(ctx, func(e vfs.Entry) error {
+		walkErr := s.fs.Walk(ctx, func(e vfs.Entry) error {
 			if !e.IsDir {
 				walkFile(strings.TrimSuffix(e.Path, "/"))
 			}
@@ -567,6 +571,10 @@ func (s *Sandbox) toolGrep(ctx context.Context, args map[string]any) ToolResult 
 			}
 			return nil
 		})
+		// B3 : erreur de parcours remontée au modèle, pas ignorée.
+		if walkErr != nil && !errors.Is(walkErr, errWalkStopSandbox) {
+			matches = append(matches, "[avertissement] parcours incomplet")
+		}
 	}
 	out := fmt.Sprintf("%d resultats", len(matches))
 	if len(matches) > 0 {
@@ -580,9 +588,14 @@ func (s *Sandbox) toolGlob(ctx context.Context, args map[string]any) ToolResult 
 	if pattern == "" {
 		return ToolResult{Text: "[erreur] pattern vide"}
 	}
+	// B2 : un motif comme **/**/** provoque une explosion combinatoire
+	// dans matchSegments — on borne le nombre de segments **.
+	if n := countGlobStars(pattern); n > maxGlobStars {
+		return ToolResult{Text: fmt.Sprintf("[erreur] motif trop complexe : %d segments ** (max %d)", n, maxGlobStars)}
+	}
 	pattern = strings.TrimPrefix(filepath.ToSlash(pattern), "./")
 	var files []string
-	_ = s.fs.Walk(ctx, func(e vfs.Entry) error {
+	walkErr := s.fs.Walk(ctx, func(e vfs.Entry) error {
 		if e.IsDir {
 			return nil
 		}
@@ -596,10 +609,18 @@ func (s *Sandbox) toolGlob(ctx context.Context, args map[string]any) ToolResult 
 		return nil
 	})
 	sort.Strings(files)
+	var out string
 	if len(files) == 0 {
-		return ToolResult{Text: "aucun fichier pour le motif: " + pattern}
+		out = "aucun fichier pour le motif: " + pattern
+	} else {
+		out = fmt.Sprintf("%d fichiers pour '%s'\n%s", len(files), pattern, strings.Join(files, "\n"))
 	}
-	return ToolResult{Text: fmt.Sprintf("%d fichiers pour '%s'\n%s", len(files), pattern, strings.Join(files, "\n"))}
+	// B3 : une erreur de parcours n'est plus silencieuse — avertissement
+	// au modèle (l'arrêt volontaire sur quota n'en est pas une).
+	if walkErr != nil && !errors.Is(walkErr, errWalkStopSandbox) {
+		out += "\n[avertissement] parcours incomplet"
+	}
+	return ToolResult{Text: out}
 }
 
 func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
@@ -818,6 +839,21 @@ func (s *Sandbox) toolRunScript(ctx context.Context, args map[string]any) string
 
 func skipEntry(name string) bool {
 	return vfs.SkipEntry(name)
+}
+
+// maxGlobStars borne les segments ** d'un motif Glob (B2 : explosion
+// combinatoire dans matchSegments au-delà).
+const maxGlobStars = 8
+
+// countGlobStars compte les segments exactement "**" d'un motif.
+func countGlobStars(pattern string) int {
+	n := 0
+	for _, seg := range strings.Split(pattern, "/") {
+		if seg == "**" {
+			n++
+		}
+	}
+	return n
 }
 
 func globMatch(pattern, name string) bool {

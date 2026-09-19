@@ -19,6 +19,13 @@ globalThis.window = dom.window;
 globalThis.document = dom.window.document;
 globalThis.requestAnimationFrame = dom.window.requestAnimationFrame.bind(dom.window);
 globalThis.cancelAnimationFrame = dom.window.cancelAnimationFrame.bind(dom.window);
+// jsdom ne fournit pas matchMedia : agents.js détecte l'overlay mobile via
+// window.matchMedia("(max-width: 1024px)") — stub par défaut (matches: false).
+dom.window.matchMedia = () => ({
+  matches: false,
+  addEventListener() {},
+  removeEventListener() {},
+});
 globalThis.getComputedStyle = dom.window.getComputedStyle.bind(dom.window);
 globalThis.localStorage = dom.window.localStorage;
 globalThis.CustomEvent = dom.window.CustomEvent;

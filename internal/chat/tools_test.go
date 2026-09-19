@@ -2,12 +2,16 @@ package chat
 
 import (
 	"context"
+	"errors"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"testing"
+	"unicode/utf8"
+
+	"cetas-lite/internal/vfs"
 )
 
 func newTestSandbox(t *testing.T) *Sandbox {
@@ -440,5 +444,154 @@ func TestBashRejectsRiskyAwkProgram(t *testing.T) {
 	out = sb2.Execute(context.Background(), "Bash", `{"command":"awk -v OFS=, '{print $1}' d.txt"}`)
 	if strings.Contains(out.Text, "outil Awk dedie") {
 		t.Fatalf("awk -v legitime refuse a tort: %q", out.Text)
+	}
+}
+
+// TestMustApproveFor (C1) : Bash/RunScript/Curl exigent une approbation
+// quel que soit le mode ; les autres outils gardent leur comportement.
+func TestMustApproveFor(t *testing.T) {
+	for _, name := range []string{"Bash", "RunScript", "Curl"} {
+		if !mustApproveFor(name, map[string]any{}) {
+			t.Fatalf("%s devrait exiger une approbation meme en Espace Write", name)
+		}
+	}
+	for _, name := range []string{"Write", "Edit", "Read", "Ls", "Echo"} {
+		if mustApproveFor(name, map[string]any{}) {
+			t.Fatalf("%s ne devrait pas etre force par mustApproveFor", name)
+		}
+	}
+	// Réserve sed -i : sed in-place via Bash force l'approbation
+	// (ici via l'appartenance de Bash à mustApproveTools ; la détection
+	// fine est testée unitairement dans TestBashHasSedInplace).
+	if !mustApproveFor("Bash", map[string]any{"command": "sed -i 's/a/b/' f.txt"}) {
+		t.Fatal("sed -i via Bash devrait forcer l'approbation")
+	}
+}
+
+// TestBashHasSedInplace : détection du flag in-place de sed via Bash.
+func TestBashHasSedInplace(t *testing.T) {
+	cases := []struct {
+		cmd  string
+		want bool
+	}{
+		{"sed -i 's/a/b/' f.txt", true},
+		{"sed -i.bak 's/a/b/' f.txt", true},
+		{`sed -i'' 's/a/b/' f.txt`, true},
+		{`sed -i "" 's/a/b/' f.txt`, true},
+		{"sed --in-place 's/a/b/' f.txt", true},
+		{"sed --in-place=.bak 's/a/b/' f.txt", true},
+		{"sed -in 's/a/b/' f.txt", true}, // -i -n combinés
+		{"sed -e 's/a/b/' -i f.txt", true},
+		{"sed -n 's/a/b/p' f.txt", false}, // flux pur
+		{"sed 's/a/b/' f.txt", false},     // flux pur
+		{"grep -i motif f.txt", false},    // -i de grep, pas sed
+		{"echo 'sed -i'", false},          // pas un appel sed
+		{"", false},
+	}
+	for _, c := range cases {
+		if got := bashHasSedInplace(map[string]any{"command": c.cmd}); got != c.want {
+			t.Fatalf("bashHasSedInplace(%q) = %v, want %v", c.cmd, got, c.want)
+		}
+	}
+}
+
+// TestToolEchoRuneTruncation (B1) : la troncature ne doit jamais couper
+// un rune UTF-8 en deux.
+func TestToolEchoRuneTruncation(t *testing.T) {
+	sb := &Sandbox{}
+	// "a" décale l'alignement : une troncature en octets couperait un "é".
+	text := "a" + strings.Repeat("é", echoMaxLen)
+	out := sb.toolEcho(context.Background(), map[string]any{"text": text})
+	if !utf8.ValidString(out.Text) {
+		t.Fatalf("sortie Echo invalide en UTF-8 : %q...", out.Text[:50])
+	}
+	if n := utf8.RuneCountInString(out.Text); n > echoMaxLen+20 {
+		t.Fatalf("tronqué trop long : %d runes", n)
+	}
+}
+
+// TestGlobStarBound (B2) : les motifs à trop de ** sont refusés avant
+// le parcours.
+func TestGlobStarBound(t *testing.T) {
+	sb := &Sandbox{}
+	r := sb.Execute(context.Background(), "Glob", `{"pattern":"**/**/**/**/**/**/**/**/**/x"}`)
+	if !strings.Contains(r.Text, "trop complexe") {
+		t.Fatalf("motif à 9 ** aurait du etre refuse : %q", r.Text)
+	}
+}
+
+// walkErrFS : FS dont le Walk échoue (B3).
+type walkErrFS struct {
+	vfs.FS
+	err error
+}
+
+func (f walkErrFS) Walk(ctx context.Context, fn func(vfs.Entry) error) error {
+	return f.err
+}
+
+// TestWalkErrorWarnsModel (B3) : une erreur de parcours remonte un
+// avertissement au modèle au lieu d'être silencieuse.
+func TestWalkErrorWarnsModel(t *testing.T) {
+	ctx := context.Background()
+	lfs, err := vfs.NewLocal(filepath.Join(t.TempDir(), "ws"), "test")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sb := NewSandboxFS(walkErrFS{FS: lfs, err: errors.New("boom")})
+	cases := map[string]string{
+		"Ls":   `{}`,
+		"Glob": `{"pattern":"*.go"}`,
+		"Grep": `{"pattern":"x"}`,
+	}
+	for name, args := range cases {
+		r := sb.Execute(ctx, name, args)
+		if !strings.Contains(r.Text, "[avertissement] parcours incomplet") {
+			t.Fatalf("%s : avertissement attendu, got %q", name, r.Text)
+		}
+	}
+}
+
+// TestCurlModelHeadersFiltersAuthorization (B4) : le modèle ne forge pas
+// d'en-tête Authorization.
+func TestCurlModelHeadersFiltersAuthorization(t *testing.T) {
+	hdrs := curlModelHeaders(map[string]any{"headers": map[string]any{
+		"Authorization": "Bearer secret-du-modele",
+		"X-Custom":      "ok",
+		"authorization": "Basic xyz",
+		"":              "vide",
+	}})
+	if _, ok := hdrs["Authorization"]; ok {
+		t.Fatal("Authorization aurait du etre filtre")
+	}
+	if _, ok := hdrs["authorization"]; ok {
+		t.Fatal("authorization (casse differente) aurait du etre filtre")
+	}
+	if hdrs["X-Custom"] != "ok" {
+		t.Fatal("les autres en-tetes doivent passer")
+	}
+}
+
+// TestToolCurlRejectsUserinfo (B4) : userinfo dans l'URL refusé sans réseau.
+func TestToolCurlRejectsUserinfo(t *testing.T) {
+	sb := &Sandbox{}
+	r := sb.toolCurl(context.Background(), map[string]any{"url": "http://user:pass@example.com/"})
+	if !strings.Contains(r.Text, "userinfo") {
+		t.Fatalf("userinfo aurait du etre refuse : %q", r.Text)
+	}
+}
+
+// TestClientSafeError (F15) : le message client est générique, le détail
+// ne fuit pas vers l'écran.
+func TestClientSafeError(t *testing.T) {
+	raw := errors.New("request req-abc-123 failed for model deepseek-x at /home/user/secret")
+	got := clientSafeError(raw, "Échec de la génération — réessaie dans un instant.")
+	if got != "Échec de la génération — réessaie dans un instant." {
+		t.Fatalf("message inattendu : %q", got)
+	}
+	for _, leak := range []string{"req-abc-123", "deepseek-x", "/home/user/secret"} {
+		if strings.Contains(got, leak) {
+			t.Fatalf("fuite de detail serveur vers le client : %q", leak)
+		}
 	}
 }

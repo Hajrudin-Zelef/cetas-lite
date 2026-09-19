@@ -16,7 +16,9 @@ export function renderMarkdown(text) {
     return "<p>" + escapeHtml(text) + "</p>";
   }
   const html = marked.parse(String(text || ""));
-  return purify && purify.sanitize ? purify.sanitize(html) : html;
+  // Repli sûr : si DOMPurify est absent (CDN en échec…), on n'injecte
+  // jamais le HTML brut — on l'échappe en texte (F2).
+  return purify && purify.sanitize ? purify.sanitize(html) : escapeHtml(html);
 }
 
 function wrapTables(root) {

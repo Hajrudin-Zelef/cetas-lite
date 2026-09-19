@@ -19,6 +19,7 @@ import (
 	"net"
 	"net/http"
 	"net/url"
+	"path/filepath"
 	"regexp"
 	"runtime"
 	"strings"
@@ -200,11 +201,9 @@ func isBinary(b []byte) bool {
 // ---------------- Echo ----------------
 
 func (s *Sandbox) toolEcho(_ context.Context, args map[string]any) ToolResult {
-	text := strArg(args, "text")
-	if len(text) > echoMaxLen {
-		text = text[:echoMaxLen] + "\n… (tronque)"
-	}
-	return ToolResult{Text: text}
+	// B1 : tronquer en runes (helper truncate), pas en octets — un
+	// text[:n] brut pouvait couper un rune UTF-8 en deux.
+	return ToolResult{Text: truncate(strArg(args, "text"), echoMaxLen)}
 }
 
 // ---------------- Mkdir / Mv ----------------
@@ -535,7 +534,66 @@ func awkNeedsApproval(args map[string]any) bool {
 	return awkRiskRe.MatchString(strArg(args, "program"))
 }
 
+// bashHasSedInplace détecte un appel à sed avec édition in-place (-i,
+// collé ou non) passé via l'outil Bash : traité comme l'outil Sed avec
+// in_place=true (approbation requise, réserve sed -i). Les usages en flux
+// pur (sed -n 's/x/y/p', sed 's/a/b/') ne déclenchent rien.
+func bashHasSedInplace(args map[string]any) bool {
+	tokens, err := splitCommand(strings.TrimSpace(strArg(args, "command")))
+	if err != nil || len(tokens) == 0 {
+		return false
+	}
+	for i, t := range tokens {
+		if filepath.Base(t) != "sed" {
+			continue
+		}
+		// Options de sed pour cette invocation (on s'arrête aux
+		// séparateurs shell pour ne pas lire l'invocation suivante).
+		// Les options peuvent suivre l'opérande (sed -e 's/a/b/' -i).
+		for _, o := range tokens[i+1:] {
+			switch o {
+			case ";", "&", "&&", "|", "||":
+				goto nextSed
+			}
+			if !strings.HasPrefix(o, "-") || o == "-" {
+				continue
+			}
+			switch {
+			case o == "-i" || o == "--in-place" || strings.HasPrefix(o, "--in-place="):
+				return true
+			case strings.HasPrefix(o, "-i"):
+				// Formes collées ou combinées : -i.bak, -i'', -in (= -i -n).
+				// Aucune autre option sed ne commence par -i.
+				return true
+			}
+		}
+	nextSed:
+	}
+	return false
+}
+
 // ---------------- Curl ----------------
+
+// curlModelHeaders filtre les en-têtes fournis par le modèle (B4) :
+// l'en-tête Authorization est refusé — le modèle ne forge pas
+// d'authentification (aucun usage légitime : l'auth éventuelle est
+// gérée côté serveur).
+func curlModelHeaders(args map[string]any) map[string]string {
+	out := map[string]string{}
+	if hdrs, ok := args["headers"].(map[string]any); ok {
+		for k, v := range hdrs {
+			sv, ok := v.(string)
+			if !ok || strings.TrimSpace(k) == "" {
+				continue
+			}
+			if strings.EqualFold(k, "Authorization") {
+				continue
+			}
+			out[k] = sv
+		}
+	}
+	return out
+}
 
 var errCurlBlockedAddr = errors.New("adresse reseau non autorisee (garde SSRF)")
 
@@ -590,6 +648,10 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 	if err != nil || u.Host == "" || (u.Scheme != "http" && u.Scheme != "https") {
 		return ToolResult{Text: "[erreur] URL http(s) valide requise"}
 	}
+	// B4 : userinfo (http://u:p@h/) refusé — identifiants dans l'URL.
+	if u.User != nil {
+		return ToolResult{Text: "[erreur] userinfo (identifiants) dans l'URL refuse"}
+	}
 	method := strings.ToUpper(strings.TrimSpace(strArg(args, "method")))
 	if method == "" {
 		method = http.MethodGet
@@ -636,12 +698,9 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 		return ToolResult{Text: "[erreur] " + err.Error()}
 	}
 	req.Header.Set("User-Agent", "cetas-lite-agent/1.0")
-	if hdrs, ok := args["headers"].(map[string]any); ok {
-		for k, v := range hdrs {
-			if sv, ok := v.(string); ok && strings.TrimSpace(k) != "" {
-				req.Header.Set(k, sv)
-			}
-		}
+	// B4 : en-têtes du modèle filtrés (Authorization refusé).
+	for k, sv := range curlModelHeaders(args) {
+		req.Header.Set(k, sv)
 	}
 	resp, err := client.Do(req)
 	if err != nil {

@@ -177,7 +177,16 @@ func TestAgentBashNotDeduped(t *testing.T) {
 		{content: "ok"},
 	}}
 	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
-	runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "echo"})
+	// C1 : Bash exige une approbation même en Espace Write — on l'accorde
+	// automatiquement pour tester la non-déduplication.
+	c := e.Conversation("sam")
+	stop := make(chan struct{})
+	defer close(stop)
+	autoResolveApprovals(t, c, true, stop)
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "echo", User: "sam", AgentMode: true}); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
 
 	reqs := sp.requests()
 	for _, m := range reqs[1].Messages {
@@ -379,7 +388,16 @@ func TestAgentParallelReadsFallsBackOnWrite(t *testing.T) {
 		{content: "Termine"},
 	}}
 	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
-	c := runAgentTurn(t, e, "sam", TurnInput{Family: "code", Mode: "standard", Text: "mixte"})
+	// C1 : Bash exige une approbation même en Espace Write — on l'accorde
+	// automatiquement pour tester le repli séquentiel.
+	c := e.Conversation("sam")
+	stop := make(chan struct{})
+	defer close(stop)
+	autoResolveApprovals(t, c, true, stop)
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "mixte", User: "sam", AgentMode: true}); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
 	if got := logText(c); !strings.Contains(got, "Termine") {
 		t.Fatalf("contenu final = %q", got)
 	}

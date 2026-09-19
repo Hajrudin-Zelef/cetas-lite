@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"log/slog"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -16,6 +17,18 @@ import (
 	"cetas-lite/internal/provider"
 	"cetas-lite/internal/skills"
 )
+
+// clientSafeError mappe une erreur interne en message générique sûr pour
+// le client SSE (F15) : plus de err.Error() verbatim vers l'écran (request
+// IDs, noms de modèles, chemins ne doivent pas fuir). Le détail reste dans
+// les logs serveur uniquement.
+func clientSafeError(err error, generic string) string {
+	slog.Error("agent: erreur interne", "err", err)
+	if generic == "" {
+		generic = "Une erreur interne est survenue."
+	}
+	return generic
+}
 
 // agentWorkspaceLabel retourne le libellé d'affichage de l'espace de
 // travail lié au run : nom du projet si renseigné, sinon l'espace partagé
@@ -39,7 +52,7 @@ func agentWorkspaceLabel(in TurnInput, sb *Sandbox, projectName string) (string,
 func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res resolution, base []provider.Message, in TurnInput) {
 	sb, err := e.agentSandbox(in)
 	if err != nil {
-		c.appendDelta(epoch, map[string]any{"error": err.Error()})
+		c.appendDelta(epoch, map[string]any{"error": clientSafeError(err, "Échec d'initialisation de l'espace de travail de l'agent.")})
 		return
 	}
 	// Espace de travail lié au run : nom du projet si renseigné, sinon
@@ -74,10 +87,10 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 						}
 						c.appendDelta(epoch, map[string]any{"worktree": map[string]any{"path": wtPath, "repo": repo}})
 					} else {
-						c.appendDelta(epoch, map[string]any{"worktree_error": serr.Error()})
+						c.appendDelta(epoch, map[string]any{"worktree_error": clientSafeError(serr, "Échec de préparation du worktree isolé — repli sur l'espace de travail normal.")})
 					}
 				} else {
-					c.appendDelta(epoch, map[string]any{"worktree_error": werr.Error()})
+					c.appendDelta(epoch, map[string]any{"worktree_error": clientSafeError(werr, "Échec de préparation du worktree isolé — repli sur l'espace de travail normal.")})
 				}
 			}
 		} else {
@@ -168,14 +181,14 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 			return
 		}
 		if emitted {
-			c.appendDelta(epoch, map[string]any{"error": err.Error()})
+			c.appendDelta(epoch, map[string]any{"error": clientSafeError(err, "La génération a été interrompue par une erreur — réessaie dans un instant.")})
 			return
 		}
 	}
 	if lastErr == nil {
 		lastErr = fmt.Errorf("aucun modele disponible")
 	}
-	c.appendDelta(epoch, map[string]any{"error": lastErr.Error()})
+	c.appendDelta(epoch, map[string]any{"error": clientSafeError(lastErr, "Échec de la génération — réessaie dans un instant.")})
 }
 
 // toolExecState regroupe l'état mutable d'exécution des outils pendant un
@@ -217,7 +230,9 @@ func parallelCheck(tc provider.ToolCall, opts agentOpts, st *toolExecState, seen
 	if st.denied[key] {
 		return nil, "", false
 	}
-	if opts.approve && !st.alwaysApproved && needsApprovalFor(name, args) {
+	// C1 : Bash/RunScript/Curl exigent une approbation quel que soit le
+	// mode ; le choix explicite « toujours approuver » reste respecté.
+	if !st.alwaysApproved && (mustApproveFor(name, args) || (opts.approve && needsApprovalFor(name, args))) {
 		return nil, "", false
 	}
 	if _, dup := st.done[key]; dup && dedupableTool(name) {
@@ -425,7 +440,9 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 			"Construis ton plan avec TodoWrite puis presente-le."}
 	case st.denied[key]:
 		out = ToolResult{Text: "[refuse] l'utilisateur a deja refuse cet appel pendant ce tour."}
-	case opts.approve && !st.alwaysApproved && needsApprovalFor(tc.Function.Name, args):
+	// C1 : Bash/RunScript/Curl exigent une approbation quel que soit le
+	// mode ; le choix explicite « toujours approuver » reste respecté.
+	case !st.alwaysApproved && (mustApproveFor(tc.Function.Name, args) || (opts.approve && needsApprovalFor(tc.Function.Name, args))):
 		d, aerr := c.RequestApproval(ctx, epoch, ApprovalRequest{
 			Kind: "tool", Tool: tc.Function.Name, Args: args,
 		})
@@ -881,6 +898,29 @@ func needsApprovalFor(name string, args map[string]any) bool {
 		return sedNeedsApproval(args)
 	case "Awk":
 		return awkNeedsApproval(args)
+	}
+	return false
+}
+
+// mustApproveTools : outils qui exigent une approbation QUEL QUE SOIT le
+// mode d'approbation du client (C1). En mode « Espace Write » (approve =
+// false), Bash/RunScript/Curl s'exécutaient sans aucune carte
+// d'approbation : exécution de code arbitraire et exfiltration réseau ne
+// doivent jamais passer en défaut silencieux. Le choix explicite
+// « Toujours approuver (ce tour) » de l'utilisateur (st.alwaysApproved)
+// reste respecté : c'est une décision utilisateur, pas un défaut.
+var mustApproveTools = map[string]bool{"Bash": true, "RunScript": true, "Curl": true}
+
+// mustApproveFor indique si un appel exige une approbation même quand le
+// flag client approve est false : outils mustApproveTools, ou sed in-place
+// passé via Bash (réserve sed -i : équivalent de l'outil Sed avec
+// in_place=true).
+func mustApproveFor(name string, args map[string]any) bool {
+	if mustApproveTools[name] {
+		return true
+	}
+	if name == "Bash" && bashHasSedInplace(args) {
+		return true
 	}
 	return false
 }
