@@ -345,12 +345,33 @@ export function initSidebar() {
     });
   }
 
-  // Toggle sidebar
+  // Toggle sidebar.
+  // Le CSS replie la sidebar via ".sidebar.collapsed" (et non via une
+  // classe sur <body>) ; sur mobile (<=768px) elle devient un overlay avec
+  // scrim (body.sidebar-open::after). Un tap hors sidebar la referme.
   const toggle = document.getElementById("sidebar-toggle");
   const sidebar = document.getElementById("sidebar");
+  const mqSidebarOverlay = window.matchMedia("(max-width: 768px)");
+  function setSidebarOpen(open) {
+    if (!sidebar) return;
+    sidebar.classList.toggle("collapsed", !open);
+    if (toggle) toggle.classList.toggle("collapsed", !open);
+    document.body.classList.toggle("sidebar-open", open && mqSidebarOverlay.matches);
+  }
+  function isSidebarOpen() {
+    return !!sidebar && !sidebar.classList.contains("collapsed");
+  }
   if (toggle && sidebar) {
     toggle.addEventListener("click", () => {
-      document.body.classList.toggle("sidebar-hidden");
+      setSidebarOpen(!isSidebarOpen());
+    });
+    // Tap dans le vide (scrim) => referme. Actif uniquement en mode
+    // overlay mobile (body.sidebar-open), jamais sur desktop.
+    document.addEventListener("click", (e) => {
+      if (!document.body.classList.contains("sidebar-open")) return;
+      if (sidebar.contains(e.target)) return;
+      if (toggle.contains(e.target)) return;
+      setSidebarOpen(false);
     });
   }
 
@@ -407,8 +428,12 @@ export function initSidebar() {
   document.querySelectorAll(".dev-module-btn").forEach((b) => {
     b.addEventListener("click", () => {
       const mod = b.dataset.module;
-      if (mod === "agents") window.dispatchEvent(new CustomEvent("cetas:toggle-agents"));
-      else if (mod === "terminal") window.dispatchEvent(new CustomEvent("cetas:toggle-terminal"));
+      if (mod === "agents") {
+        window.dispatchEvent(new CustomEvent("cetas:toggle-agents"));
+        // Sur mobile la sidebar est un overlay : la refermer pour
+        // dévoiler la vue Agents.
+        if (mqSidebarOverlay.matches) setSidebarOpen(false);
+      } else if (mod === "terminal") window.dispatchEvent(new CustomEvent("cetas:toggle-terminal"));
       else toastDev();
     });
   });

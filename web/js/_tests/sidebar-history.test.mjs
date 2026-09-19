@@ -33,6 +33,13 @@ globalThis.CustomEvent = dom.window.CustomEvent;
 globalThis.Event = dom.window.Event;
 globalThis.getComputedStyle = dom.window.getComputedStyle.bind(dom.window);
 globalThis.localStorage = dom.window.localStorage;
+// jsdom ne fournit pas matchMedia : sidebar.js détecte l'overlay mobile via
+// window.matchMedia("(max-width: 768px)") — stub desktop (matches: false).
+dom.window.matchMedia = () => ({
+  matches: false,
+  addEventListener() {},
+  removeEventListener() {},
+});
 
 const DAY = 86400000;
 // Utiliser un timestamp à midi UTC pour éviter les problèmes de timezone
