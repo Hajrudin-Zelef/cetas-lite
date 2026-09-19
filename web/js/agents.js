@@ -1531,6 +1531,14 @@ function openView() {
   applyAgenticClass();
   toolbarBtn.classList.add("active");
   document.body.style.overflow = "hidden";
+  // La vue Agents recouvre tout l'écran : sur mobile le toggle de la
+  // sidebar générale (z-index 1001) flotterait au-dessus et ouvrirait la
+  // mauvaise sidebar. On le masque et on referme la sidebar générale
+  // tant que la vue est ouverte.
+  document.body.classList.add("mx-open");
+  document.body.classList.remove("sidebar-open");
+  const genSidebar = document.getElementById("sidebar");
+  if (genSidebar) genSidebar.classList.add("collapsed");
   loadFamilies();
   refreshAgents();
   pollMetrics();
@@ -1554,6 +1562,7 @@ function closeView() {
   view.classList.remove("open");
   toolbarBtn.classList.remove("active");
   document.body.style.overflow = "";
+  document.body.classList.remove("mx-open");
   clearInterval(metricsTimer);
   clearInterval(discTimer);
   metricsTimer = discTimer = null;
