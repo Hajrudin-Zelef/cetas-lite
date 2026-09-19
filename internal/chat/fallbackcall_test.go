@@ -36,8 +36,9 @@ func TestFallbackTextCall(t *testing.T) {
 	if len(tcalls) != 1 {
 		t.Fatalf("attendu 1 appel, obtenu %d", len(tcalls))
 	}
-	if tcalls[0].Function.Name != "Cat" {
-		t.Errorf("nom = %q, attendu Cat", tcalls[0].Function.Name)
+	// Phase 3 : Cat est fusionné dans Read ; le pseudo-appel est réécrit.
+	if tcalls[0].Function.Name != "Read" {
+		t.Errorf("nom = %q, attendu Read", tcalls[0].Function.Name)
 	}
 	// Le pseudo-appel converti disparait de l'affichage (rendu en bloc).
 	if stripped != "" {
@@ -78,5 +79,38 @@ func TestFallbackRefusesUnsafeTextCall(t *testing.T) {
 	}
 	if stripped != `Bash "ls -la"` {
 		t.Errorf("texte modifie : %q", stripped)
+	}
+}
+
+// TestFallbackCatAliasPhase3 vérifie la fusion Cat -> Read (phase 3) :
+// Cat n'est plus annoncé dans les schémas, mais un appel résiduel
+// (DSML ou pseudo-texte) est réécrit en Read.
+func TestFallbackCatAliasPhase3(t *testing.T) {
+	for _, s := range ToolSchemas() {
+		if s.Function.Name == "Cat" {
+			t.Fatal("Cat est encore annoncé dans les schémas")
+		}
+	}
+	for name, want := range map[string]string{
+		"Cat": "Read", "cat": "Read", "CAT": "Read",
+		"Read": "Read", "Grep": "Grep",
+	} {
+		if got := canonicalToolName(name); got != want {
+			t.Errorf("canonicalToolName(%q) = %q, attendu %q", name, got, want)
+		}
+	}
+	// DSML avec l'ancien nom -> Read.
+	text := "<||DSML||calls>\n<||DSML||invoke name=\"cat\">\n<||DSML||parameter name=\"file_path\">docs/a.md</||DSML||parameter>\n</||DSML||invoke>\n</||DSML||calls>"
+	tcalls, _ := parseFallbackToolCalls(text, fallbackTools())
+	if len(tcalls) != 1 {
+		t.Fatalf("attendu 1 appel DSML, obtenu %d", len(tcalls))
+	}
+	if tcalls[0].Function.Name != "Read" {
+		t.Errorf("DSML cat -> %q, attendu Read", tcalls[0].Function.Name)
+	}
+	// Pseudo-texte avec l'ancien nom -> Read.
+	tcalls, _ = parseFallbackToolCalls(`Cat "dnsmasq.conf"`, fallbackTools())
+	if len(tcalls) != 1 || tcalls[0].Function.Name != "Read" {
+		t.Fatalf("pseudo-appel Cat non réécrit en Read : %+v", tcalls)
 	}
 }

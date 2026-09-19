@@ -14,8 +14,9 @@ func TestParseTextToolCallBasic(t *testing.T) {
 	if tc == nil {
 		t.Fatal("pseudo-appel Cat non converti")
 	}
-	if tc.Function.Name != "Cat" {
-		t.Fatalf("nom attendu Cat, recu %s", tc.Function.Name)
+	// Phase 3 : Cat est un alias de Read (fusion).
+	if tc.Function.Name != "Read" {
+		t.Fatalf("nom attendu Read, recu %s", tc.Function.Name)
 	}
 	var args map[string]any
 	if err := json.Unmarshal([]byte(tc.Function.Arguments), &args); err != nil {
@@ -36,7 +37,7 @@ func TestParseTextToolCallVariants(t *testing.T) {
 	}{
 		{`read 'docs/a.txt'`, "Read", "file_path", "docs/a.txt"},
 		{`Read("docs/a.txt")`, "Read", "file_path", "docs/a.txt"},
-		{"```\nCat \"dnsmasq.conf\"\n```", "Cat", "file_path", "dnsmasq.conf"},
+		{"```\nCat \"dnsmasq.conf\"\n```", "Read", "file_path", "dnsmasq.conf"},
 		{`Grep "func main"`, "Grep", "pattern", "func main"},
 		{`Glob "**/*.go"`, "Glob", "pattern", "**/*.go"},
 		{`Echo "bonjour"`, "Echo", "text", "bonjour"},

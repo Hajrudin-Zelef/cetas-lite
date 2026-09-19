@@ -122,6 +122,9 @@ func parseTextToolCall(content string, tools []provider.Tool) *provider.ToolCall
 		return nil
 	}
 	name, arg := m[1], strings.TrimSpace(m[2])
+	// Phase 3 : un pseudo-appel vers un outil fusionné (ex. Cat "f")
+	// est réécrit vers l'outil canonique (Read) avant le matching.
+	name = canonicalToolName(name)
 	var tool *provider.Tool
 	for i := range tools {
 		if strings.EqualFold(tools[i].Function.Name, name) {

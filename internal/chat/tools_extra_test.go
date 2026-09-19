@@ -36,13 +36,14 @@ func TestExtraToolSchemas(t *testing.T) {
 			}
 		}
 	}
-	for _, n := range []string{"Tree", "Cat", "Echo", "Mkdir", "Mv", "Sed", "Awk", "Curl"} {
+	// Phase 3 : Cat est fusionné dans Read — plus de schéma Cat.
+	for _, n := range []string{"Tree", "Echo", "Mkdir", "Mv", "Sed", "Awk", "Curl"} {
 		if !byName[n] {
 			t.Fatalf("schema manquant: %s", n)
 		}
 	}
 	check := map[string]string{
-		"Cat": "file_path", "Echo": "text", "Mkdir": "path",
+		"Echo": "text", "Mkdir": "path",
 		"Mv": "src", "Sed": "expression", "Awk": "program", "Curl": "url",
 	}
 	for tool, field := range check {
@@ -81,14 +82,15 @@ func TestToolTreeCatEcho(t *testing.T) {
 	if !strings.Contains(r.Text, "main.go") || strings.Contains(r.Text, "README.md") {
 		t.Fatalf("tree src: %s", r.Text)
 	}
-	// Cat head/tail.
+	// Phase 3 : Cat n'est plus un schéma, mais reste un alias de Read
+	// (filet de sécurité) : head -> limit, tail -> dernières lignes.
 	sb.Execute(ctx, "Write", `{"file_path":"n.txt","content":"l1\nl2\nl3\nl4\nl5"}`)
 	r = sb.Execute(ctx, "Cat", `{"file_path":"n.txt","head":2}`)
-	if r.Text != "l1\nl2\n… (5 lignes au total)" {
+	if r.Text != "l1\nl2\n… (5 lignes au total, affichees 1-2)" {
 		t.Fatalf("cat head: %q", r.Text)
 	}
 	r = sb.Execute(ctx, "Cat", `{"file_path":"n.txt","tail":2}`)
-	if r.Text != "l4\nl5\n… (5 lignes au total)" {
+	if r.Text != "l4\nl5" {
 		t.Fatalf("cat tail: %q", r.Text)
 	}
 	r = sb.Execute(ctx, "Cat", `{"file_path":"n.txt","head":1,"tail":1}`)

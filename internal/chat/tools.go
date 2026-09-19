@@ -63,44 +63,62 @@ var execBannedTokens = map[string]bool{
 
 var execBannedFlags = map[string]bool{"-c": true, "--eval": true, "-e": true}
 
+// toolAliases : outils historiques fusionnés -> outil canonique (phase 3).
+// Le modèle ne voit que le canonique dans les schémas, mais tout appel
+// résiduel avec l'ancien nom (natif, DSML, pseudo-texte) est réécrit.
+var toolAliases = map[string]string{
+	"Cat": "Read",
+}
+
+// canonicalToolName réécrit le nom d'un outil fusionné vers son canonique
+// (insensible à la casse). Retourne le nom inchangé sinon.
+func canonicalToolName(name string) string {
+	for old, canon := range toolAliases {
+		if strings.EqualFold(old, name) {
+			return canon
+		}
+	}
+	return name
+}
+
 func ToolSchemas() []provider.Tool {
 	str := func(props map[string]any, required ...string) map[string]any {
 		return map[string]any{"type": "object", "properties": props, "required": required}
 	}
 	out := []provider.Tool{
-		{Type: "function", Function: provider.ToolFunction{Name: "Ls", Description: "List the workspace file tree. Use this first.", Parameters: str(map[string]any{})}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Read", Description: "Read a file, with offset/limit pagination.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Ls", Description: "Liste l'arborescence du workspace. Appelle-moi en premier.", Parameters: str(map[string]any{})}},
+		{Type: "function", Function: provider.ToolFunction{Name: "Read", Description: "Lis un fichier (pagination offset/limit).", Parameters: str(map[string]any{
 			"file_path": map[string]any{"type": "string", "description": "Chemin relatif"},
-			"offset":    map[string]any{"type": "integer", "description": "Premiere ligne (1-based)"},
+			"offset":    map[string]any{"type": "integer", "description": "Première ligne (1-based)"},
 			"limit":     map[string]any{"type": "integer", "description": "Nombre max de lignes"},
 		}, "file_path")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Write", Description: "Write or overwrite a file.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Write", Description: "Écris ou écrase un fichier.", Parameters: str(map[string]any{
 			"file_path": map[string]any{"type": "string"},
 			"content":   map[string]any{"type": "string"},
 		}, "file_path", "content")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Edit", Description: "Replace one occurrence of text.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Edit", Description: "Remplace une occurrence de texte.", Parameters: str(map[string]any{
 			"file_path": map[string]any{"type": "string"},
-			"old":       map[string]any{"type": "string", "description": "Texte exact a remplacer"},
+			"old":       map[string]any{"type": "string", "description": "Texte exact à remplacer"},
 			"new":       map[string]any{"type": "string", "description": "Texte de remplacement"},
 		}, "file_path", "old", "new")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Grep", Description: "Search for a pattern in workspace files.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Grep", Description: "Cherche un motif dans les fichiers du workspace.", Parameters: str(map[string]any{
 			"pattern": map[string]any{"type": "string"},
-			"path":    map[string]any{"type": "string", "description": "Defaut: racine du workspace"},
+			"path":    map[string]any{"type": "string", "description": "Défaut : racine du workspace"},
 			"limit":   map[string]any{"type": "integer"},
 		}, "pattern")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Glob", Description: "Find files by pattern (e.g. **/*.go).", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Glob", Description: "Trouve des fichiers par motif (ex. **/*.go).", Parameters: str(map[string]any{
 			"pattern": map[string]any{"type": "string"},
 		}, "pattern")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Bash", Description: "Run an allowlisted command (no shell, no pipes). Timeout 10s default, 60s max.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Bash", Description: "Exécute une commande autorisée (sans shell, sans pipes). Timeout 10s par défaut, 60s max.", Parameters: str(map[string]any{
 			"command": map[string]any{"type": "string"},
-			"timeout": map[string]any{"type": "integer", "description": "Secondes (defaut 10, max 60)"},
+			"timeout": map[string]any{"type": "integer", "description": "Secondes (défaut 10, max 60)"},
 		}, "command")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "RunScript", Description: "Run a python/node script in the sandbox. Timeout 30s default, 60s max.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "RunScript", Description: "Exécute un script python/node dans le sandbox. Timeout 30s par défaut, 60s max.", Parameters: str(map[string]any{
 			"language": map[string]any{"type": "string", "enum": []string{"python", "node"}},
 			"code":     map[string]any{"type": "string"},
 			"timeout":  map[string]any{"type": "integer"},
 		}, "language", "code")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "TodoWrite", Description: "Update the task list (multi-step plan).", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "TodoWrite", Description: "Mets à jour la liste de tâches (plan multi-étapes).", Parameters: str(map[string]any{
 			"todos": map[string]any{"type": "array", "items": map[string]any{"type": "object", "properties": map[string]any{
 				"content": map[string]any{"type": "string"},
 				"status":  map[string]any{"type": "string", "enum": []string{"pending", "in_progress", "completed"}},
@@ -158,10 +176,13 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 	case "Tree":
 		return s.toolTree(ctx, args)
 	case "Cat":
+		// Phase 3 : Cat est fusionné dans Read et n'est plus annoncé au
+		// modèle. Filet de sécurité : un appel résiduel est réécrit en
+		// Read (head -> limit ; tail -> dernières lignes).
 		if f := missingArg(args, "file_path"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
-		return s.toolCat(ctx, args)
+		return s.toolCatAsRead(ctx, args)
 	case "Echo":
 		if f := missingArg(args, "text"); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}

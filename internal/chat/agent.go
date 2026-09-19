@@ -815,10 +815,13 @@ func needsApprovalFor(name string, args map[string]any) bool {
 // d'ordre ("étape 1 terminée, étape 2 en cours"). Echo est pur
 // (simple renvoi de texte) et les outils GitHub listés sont des GET.
 var parallelSafeTools = map[string]bool{
-	"Read": true, "Cat": true, "Ls": true, "Tree": true,
+	"Read": true, "Ls": true, "Tree": true,
 	"Grep": true, "Glob": true, "Echo": true,
 	"GitHubRepos": true, "GitHubIssues": true,
 	"GitHubIssueGet": true, "GitHubPRs": true,
+	// Phase 3 : Cat est fusionné dans Read (alias) ; un appel résiduel
+	// garde la sémantique lecture pure -> parallélisable.
+	"Cat": true,
 }
 
 // parallelSafe indique si un outil peut s'exécuter en concurrence avec
@@ -830,9 +833,11 @@ func parallelSafe(name string) bool { return parallelSafeTools[name] }
 // Tout autre outil est refuse a l'execution tant que le plan n'est pas
 // valide, meme s'il n'exigerait pas d'approbation hors mode plan.
 var planAllowedTools = map[string]bool{
-	"Ls": true, "Tree": true, "Read": true, "Cat": true,
+	"Ls": true, "Tree": true, "Read": true,
 	"Grep": true, "Glob": true, "Echo": true, "TodoWrite": true,
 	"GitHubRepos": true, "GitHubIssues": true, "GitHubIssueGet": true, "GitHubPRs": true,
+	// Phase 3 : alias de Read (fusion) — lecture pure autorisée en plan.
+	"Cat": true,
 }
 
 // planToolAllowed indique si un outil peut s'executer en mode plan

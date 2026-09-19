@@ -39,7 +39,7 @@ func TestReadOnlyTools(t *testing.T) {
 // TestPlanToolAllowed verifie l'allowlist stricte du mode plan :
 // lecture seule + TodoWrite, tout le reste est refuse avant validation.
 func TestPlanToolAllowed(t *testing.T) {
-	for _, name := range []string{"Ls", "Tree", "Read", "Cat", "Grep", "Glob", "Echo", "TodoWrite"} {
+	for _, name := range []string{"Ls", "Tree", "Read", "Grep", "Glob", "Echo", "TodoWrite"} {
 		if !planToolAllowed(name) {
 			t.Errorf("%s devrait etre autorise en mode plan", name)
 		}

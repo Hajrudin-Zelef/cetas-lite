@@ -26,25 +26,25 @@ func MemoryToolSchemas() []provider.Tool {
 		return map[string]any{"type": "object", "properties": props, "required": required}
 	}
 	return []provider.Tool{
-		{Type: "function", Function: provider.ToolFunction{Name: "mem_search", Description: "Search your persistent memory pages. Returns files, titles and snippets.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "mem_search", Description: "Cherche dans tes pages de mémoire persistante. Renvoie fichiers, titres et extraits.", Parameters: str(map[string]any{
 			"query": map[string]any{"type": "string"},
 			"limit": map[string]any{"type": "integer", "description": "Default 8, max 30"},
 		}, "query")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "mem_read", Description: "Read a memory page, line-numbered, with offset/limit.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "mem_read", Description: "Lis une page de mémoire, numérotée, avec offset/limit.", Parameters: str(map[string]any{
 			"name":   map[string]any{"type": "string", "description": "E.g. notes.md"},
 			"offset": map[string]any{"type": "integer", "description": "First line (1-based)"},
 			"limit":  map[string]any{"type": "integer"},
 		}, "name")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "mem_add", Description: "Create a new memory page (fails if it exists).", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "mem_add", Description: "Crée une page de mémoire (échoue si elle existe).", Parameters: str(map[string]any{
 			"name":    map[string]any{"type": "string"},
 			"content": map[string]any{"type": "string"},
 		}, "name", "content")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "mem_edit", Description: "Replace one occurrence of text in a memory page.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "mem_edit", Description: "Remplace une occurrence de texte dans une page de mémoire.", Parameters: str(map[string]any{
 			"name": map[string]any{"type": "string"},
 			"old":  map[string]any{"type": "string"},
 			"new":  map[string]any{"type": "string"},
 		}, "name", "old", "new")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "mem_delete", Description: "Delete a memory page.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "mem_delete", Description: "Supprime une page de mémoire.", Parameters: str(map[string]any{
 			"name": map[string]any{"type": "string"},
 		}, "name")}},
 	}

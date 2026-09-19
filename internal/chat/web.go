@@ -18,7 +18,7 @@ func WebToolSchemas() []provider.Tool {
 	return []provider.Tool{
 		{Type: "function", Function: provider.ToolFunction{
 			Name:        "web_search",
-			Description: "Search the web for current information. Returns titles, URLs and snippets.",
+			Description: "Cherche des informations récentes sur le web. Renvoie titres, URLs et extraits.",
 			Parameters: map[string]any{
 				"type": "object",
 				"properties": map[string]any{
@@ -30,7 +30,7 @@ func WebToolSchemas() []provider.Tool {
 		}},
 		{Type: "function", Function: provider.ToolFunction{
 			Name:        "web_fetch",
-			Description: "Fetch a URL and return its readable content as Markdown.",
+			Description: "Récupère une URL et renvoie son contenu lisible en Markdown.",
 			Parameters: map[string]any{
 				"type": "object",
 				"properties": map[string]any{

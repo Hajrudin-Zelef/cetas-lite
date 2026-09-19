@@ -307,6 +307,9 @@ func TestAgentParallelReads(t *testing.T) {
 		{toolCalls: []provider.ToolCall{
 			toolCall("c1", "Read", `{"file_path":"a.txt"}`),
 			toolCall("c2", "Read", `{"file_path":"b.txt"}`),
+			// Phase 3 : c3 utilise l'ancien nom Cat — le filet de
+			// sécurité le réécrit en Read, en parallèle comme une
+			// lecture pure.
 			toolCall("c3", "Cat", `{"file_path":"a.txt"}`),
 		}},
 		{content: "Termine"},

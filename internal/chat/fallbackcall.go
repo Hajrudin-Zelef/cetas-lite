@@ -26,7 +26,15 @@ func parseFallbackToolCalls(content string, tools []provider.Tool) ([]provider.T
 		for i := range dsml {
 			dsml[i].Name = canonicalDSMLName(dsml[i].Name, tools)
 		}
-		return dsmlToToolCalls(dsml), stripDSMLFinal(content)
+		tcs := dsmlToToolCalls(dsml)
+		// Phase 3 : les appels vers des outils fusionnés (ex. Cat, via
+		// DSML) sont réécrits vers l'outil canonique (Read) — le
+		// pipeline (approbation, parallélisme, déduplication) ne voit
+		// qu'un seul nom d'outil.
+		for i := range tcs {
+			tcs[i].Function.Name = canonicalToolName(tcs[i].Function.Name)
+		}
+		return tcs, stripDSMLFinal(content)
 	}
 	if tc := parseTextToolCall(content, tools); tc != nil {
 		return []provider.ToolCall{*tc}, ""

@@ -21,11 +21,12 @@ func newTestSandbox(t *testing.T) *Sandbox {
 }
 
 func TestToolSchemasCount(t *testing.T) {
-	// 9 outils de base + 8 outils encadrés (Tree, Cat, Echo, Mkdir, Mv,
-	// Sed, Awk, Curl) + 9 outils GitHub (repos, issues, PRs).
+	// 9 outils de base + 7 outils encadrés (Tree, Echo, Mkdir, Mv,
+	// Sed, Awk, Curl — Cat fusionné dans Read en phase 3) + 9 outils
+	// GitHub (repos, issues, PRs).
 	// Glob reste natif et n'est pas dupliqué.
-	if got := len(ToolSchemas()); got != 26 {
-		t.Fatalf("schemas = %d, want 26", got)
+	if got := len(ToolSchemas()); got != 25 {
+		t.Fatalf("schemas = %d, want 25", got)
 	}
 }
 

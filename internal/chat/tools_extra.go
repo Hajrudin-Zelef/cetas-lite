@@ -44,44 +44,39 @@ func extraToolSchemas() []provider.Tool {
 		return map[string]any{"type": "object", "properties": props, "required": required}
 	}
 	return []provider.Tool{
-		{Type: "function", Function: provider.ToolFunction{Name: "Tree", Description: "Show the workspace directory tree (bounded depth). Read-only.", Parameters: str(map[string]any{
-			"path":      map[string]any{"type": "string", "description": "Dossier relatif, defaut: racine"},
-			"max_depth": map[string]any{"type": "integer", "description": "Profondeur max (defaut 3, max 6)"},
+		{Type: "function", Function: provider.ToolFunction{Name: "Tree", Description: "Affiche l'arborescence du workspace (profondeur bornée). Lecture seule.", Parameters: str(map[string]any{
+			"path":      map[string]any{"type": "string", "description": "Dossier relatif, défaut : racine"},
+			"max_depth": map[string]any{"type": "integer", "description": "Profondeur max (défaut 3, max 6)"},
 		})}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Cat", Description: "Print a file (head/tail line selection). Read-only.", Parameters: str(map[string]any{
-			"file_path": map[string]any{"type": "string"},
-			"head":      map[string]any{"type": "integer", "description": "N premieres lignes"},
-			"tail":      map[string]any{"type": "integer", "description": "N dernieres lignes (exclusif avec head)"},
-		}, "file_path")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Echo", Description: "Print text back (4000 chars max). Read-only.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Echo", Description: "Renvoie le texte tel quel (4000 caractères max). Lecture seule.", Parameters: str(map[string]any{
 			"text": map[string]any{"type": "string"},
 		}, "text")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Mkdir", Description: "Create directories in the workspace (mkdir -p). Needs approval.", Parameters: str(map[string]any{
-			"path": map[string]any{"type": "string", "description": "Chemin relatif a creer"},
+		{Type: "function", Function: provider.ToolFunction{Name: "Mkdir", Description: "Crée des dossiers dans le workspace (mkdir -p). Approbation requise.", Parameters: str(map[string]any{
+			"path": map[string]any{"type": "string", "description": "Chemin relatif à créer"},
 		}, "path")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Mv", Description: "Move/rename a file or directory inside the workspace. Needs approval.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Mv", Description: "Déplace/renomme un fichier ou dossier du workspace. Approbation requise.", Parameters: str(map[string]any{
 			"src":       map[string]any{"type": "string"},
 			"dst":       map[string]any{"type": "string"},
-			"overwrite": map[string]any{"type": "boolean", "description": "Ecraser la destination existante (defaut false)"},
+			"overwrite": map[string]any{"type": "boolean", "description": "Écraser la destination existante (défaut false)"},
 		}, "src", "dst")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Sed", Description: "Stream-edit text with GNU sed (no shell). Stream mode is read-only; in_place=true modifies the file and needs approval, like Edit.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Sed", Description: "Édite du texte avec GNU sed (sans shell). Mode flux = lecture seule ; in_place=true modifie le fichier, approbation requise.", Parameters: str(map[string]any{
 			"expression": map[string]any{"type": "string", "description": "Expression sed, ex. s/foo/bar/g"},
 			"file":       map[string]any{"type": "string", "description": "Fichier du workspace (ou input)"},
-			"input":      map[string]any{"type": "string", "description": "Texte d'entree au lieu d'un fichier"},
-			"in_place":   map[string]any{"type": "boolean", "description": "Modifier le fichier sur place (defaut false)"},
+			"input":      map[string]any{"type": "string", "description": "Texte d'entrée au lieu d'un fichier"},
+			"in_place":   map[string]any{"type": "boolean", "description": "Modifier le fichier sur place (défaut false)"},
 		}, "expression")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Awk", Description: "Process text with awk (no shell). Pure stream processing is read-only; programs with side effects (system(), file writes, pipes to commands) need approval.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Awk", Description: "Traite du texte avec awk (sans shell). Flux pur = lecture seule ; effets de bord (system(), écritures) = approbation requise.", Parameters: str(map[string]any{
 			"program":         map[string]any{"type": "string", "description": "Programme awk, ex. {print $2}"},
 			"file":            map[string]any{"type": "string", "description": "Fichier du workspace (ou input)"},
 			"input":           map[string]any{"type": "string", "description": "Texte d'entree au lieu d'un fichier"},
-			"field_separator": map[string]any{"type": "string", "description": "Separateur de champs (-F)"},
+			"field_separator": map[string]any{"type": "string", "description": "Séparateur de champs (-F)"},
 		}, "program")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Curl", Description: "HTTP(S) request (framed: needs approval, 30s max, 2MB cap, http/https only).", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Curl", Description: "Requête HTTP(S) encadrée : approbation requise, 30s max, 2 Mo max, http/https uniquement.", Parameters: str(map[string]any{
 			"url":     map[string]any{"type": "string"},
-			"method":  map[string]any{"type": "string", "enum": []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"}, "description": "Defaut GET"},
-			"headers": map[string]any{"type": "object", "description": "En-tetes HTTP"},
-			"body":    map[string]any{"type": "string", "description": "Corps de requete"},
-			"timeout": map[string]any{"type": "integer", "description": "Secondes (defaut 15, max 30)"},
+			"method":  map[string]any{"type": "string", "enum": []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"}, "description": "Défaut GET"},
+			"headers": map[string]any{"type": "object", "description": "En-têtes HTTP"},
+			"body":    map[string]any{"type": "string", "description": "Corps de requête"},
+			"timeout": map[string]any{"type": "integer", "description": "Secondes (défaut 15, max 30)"},
 		}, "url")}},
 	}
 }
@@ -145,45 +140,47 @@ func renderTreeChildren(sb *strings.Builder, kids []*vfs.Node, prefix string) {
 	}
 }
 
-// ---------------- Cat ----------------
+// ---------------- Cat (alias historique -> Read) ----------------
 
-func (s *Sandbox) toolCat(ctx context.Context, args map[string]any) ToolResult {
+// toolCatAsRead réécrit un appel Cat résiduel en Read (phase 3 : Cat est
+// fusionné dans Read et n'est plus annoncé au modèle).
+// head=N -> limit=N ; tail=N -> dernières N lignes (Read ne fait pas de
+// tail : lecture directe puis coupe).
+func (s *Sandbox) toolCatAsRead(ctx context.Context, args map[string]any) ToolResult {
 	rel := strArg(args, "file_path")
-	clean, err := s.fs.Resolve(rel)
-	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
-	}
-	if clean == "" {
-		return ToolResult{Text: "[erreur] chemin vide"}
-	}
-	b, err := s.fs.ReadFile(ctx, clean)
-	if err != nil {
-		if errors.Is(err, vfs.ErrNotFound) {
-			return ToolResult{Text: "[erreur] fichier introuvable: " + rel}
-		}
-		return ToolResult{Text: "[erreur] " + err.Error()}
-	}
-	if isBinary(b) {
-		return ToolResult{Text: fmt.Sprintf("[binaire] %s : %d octets, contenu non affiche", rel, len(b))}
-	}
-	lines := strings.Split(string(b), "\n")
 	head, tail := intArg(args, "head"), intArg(args, "tail")
 	if head > 0 && tail > 0 {
-		return ToolResult{Text: "[erreur] head et tail sont exclusifs"}
+		return ToolResult{Text: "[erreur] Cat : head et tail sont exclusifs — corrige les arguments et renvoie l'appel."}
 	}
-	total := len(lines)
-	sel := lines
-	switch {
-	case head > 0 && head < total:
-		sel = lines[:head]
-	case tail > 0 && tail < total:
-		sel = lines[total-tail:]
+	if tail > 0 {
+		clean, err := s.fs.Resolve(rel)
+		if err != nil {
+			return ToolResult{Text: "[erreur] Cat : " + err.Error()}
+		}
+		if clean == "" {
+			return ToolResult{Text: "[erreur] Cat : chemin vide"}
+		}
+		b, err := s.fs.ReadFile(ctx, clean)
+		if err != nil {
+			if errors.Is(err, vfs.ErrNotFound) {
+				return ToolResult{Text: "[erreur] Cat : fichier introuvable: " + rel}
+			}
+			return ToolResult{Text: "[erreur] Cat : " + err.Error()}
+		}
+		lines := strings.Split(string(b), "\n")
+		if tail < len(lines) {
+			lines = lines[len(lines)-tail:]
+		}
+		return ToolResult{Text: truncate(strings.Join(lines, "\n"), toolMaxOutput)}
 	}
-	out := strings.Join(sel, "\n")
-	if len(sel) < total {
-		out += fmt.Sprintf("\n… (%d lignes au total)", total)
+	rargs := map[string]any{"file_path": rel}
+	if head > 0 {
+		rargs["limit"] = head
 	}
-	return ToolResult{Text: truncate(out, toolMaxOutput)}
+	if off := intArg(args, "offset"); off > 0 {
+		rargs["offset"] = off
+	}
+	return s.toolRead(ctx, rargs)
 }
 
 func isBinary(b []byte) bool {
