@@ -19,8 +19,10 @@ documents (PDF/texte/HTML), thinking+effort, vision, voix navigateur. **P9** : r
 API Modèles / Configuration / centre d'aide, sidebar Agents plate, thème modale.
 **P12** : **sessions multi-conversations**, sélecteur de modèles (menu + en cascade, mode **Défaut**
 routé par effort), **DeepThink** (traduction du raisonnement), panneau **Raisonnement** réécrit +
-historique, panneaux **Requêtes**, loader **Marex**, affichage **Harness/OpenCode**, **lectures
-d'outils en parallèle**, thème sombre/hljs, cache assets **ETag**.
+historique, panneaux **Requêtes**, loader **Marex**, **module Agentic** (rendu **Harness** ou
+**OpenCode** de la vue Agents), appels d'outils **parallèles** (`parallel_tool_calls`), statut
+d'exécution, reprise de navigation, coloration hljs de la vue Agents **garantie en CSS**, cache assets
+**ETag**.
 **UI** : le front reprend le design de Cetas (thèmes clair/ocean/sombre, glassmorphism, sidebar +
 `input-area` + `plus-menu`, messages `.message-wrapper`) adapté au backend cetas-lite.
 
