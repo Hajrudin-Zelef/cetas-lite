@@ -763,13 +763,74 @@ func truncate(s string, max int) string {
 // (toolMaxOutput) : les deux consommateurs sont indépendants.
 const toolModelMaxChars = 6000
 
+// Phase 2 : troncature intelligente. Au lieu de couper brutalement en tête,
+// on conserve le début ET la fin du résultat (la fin contient souvent la
+// conclusion ou le statut), avec un marqueur indiquant ce qui a été omis.
+// Le découpage se fait par lignes quand c'est pertinent (Read, Grep, Bash),
+// avec repli caractère pour les textes sans retours à la ligne (JSON
+// minifié...). Le total reste sous toolModelMaxChars.
 func truncateToolForModel(s string) string {
 	r := []rune(s)
 	if len(r) <= toolModelMaxChars {
 		return s
 	}
-	return string(r[:toolModelMaxChars]) + "\n…[resultat tronque a 6000 caracteres pour limiter le contexte — " +
-		"pagine avec Read offset/limit ou affine ta requete pour obtenir la suite]"
+	const headBudget = 4000
+	const tailBudget = 1500
+	hint := "pagine avec Read offset/limit ou affine ta requete pour obtenir la suite"
+	if lines := strings.Split(s, "\n"); len(lines) > 1 {
+		var head []string
+		used := 0
+		for _, ln := range lines {
+			if w := len([]rune(ln)) + 1; used+w > headBudget && len(head) > 0 {
+				break
+			} else {
+				head = append(head, ln)
+				used += w
+			}
+		}
+		var tail []string
+		used = 0
+		for i := len(lines) - 1; i >= 0; i-- {
+			if w := len([]rune(lines[i])) + 1; used+w > tailBudget && len(tail) > 0 {
+				break
+			} else {
+				tail = append([]string{lines[i]}, tail...)
+				used += w
+			}
+		}
+		if omitted := len(lines) - len(head) - len(tail); omitted > 0 {
+			marker := fmt.Sprintf("\n…[%d lignes omises — resultat tronque pour limiter le contexte ; %s]\n", omitted, hint)
+			return strings.Join(head, "\n") + marker + strings.Join(tail, "\n")
+		}
+		// Chevauchement tête/queue (peu de lignes très longues) : repli caractère.
+	}
+	omitted := len(r) - headBudget - tailBudget
+	return string(r[:headBudget]) +
+		fmt.Sprintf("\n…[%d caracteres omis — resultat tronque pour limiter le contexte ; %s]\n", omitted, hint) +
+		string(r[len(r)-tailBudget:])
+}
+
+// Phase 2 : erreurs d'outils uniformes et actionnables. Toute erreur remonte
+// au modèle sous la forme "[erreur] <outil> : <cause> — <consigne>", pour
+// qu'il se corrige en UN tour au lieu de dériver. Les messages déjà
+// explicites (nom de l'outil ou consigne de correction présents) sont
+// laissés intacts ; seuls les messages bruts (ex. erreur système nue)
+// sont enrichis. Appliqué au point de passage unique toolRegistry.execute.
+func uniformToolError(tool string, tr ToolResult) ToolResult {
+	const pfx = "[erreur]"
+	t := tr.Text
+	if !strings.HasPrefix(t, pfx) {
+		return tr
+	}
+	rest := strings.TrimSpace(strings.TrimPrefix(t, pfx))
+	lower := strings.ToLower(rest)
+	if strings.Contains(rest, tool) ||
+		strings.Contains(lower, "renvoie") || strings.Contains(lower, "corrige") ||
+		strings.Contains(lower, "utilise") || strings.Contains(lower, "ajoute") {
+		return tr // déjà uniforme et actionnable
+	}
+	tr.Text = pfx + " " + tool + " : " + rest + " — corrige les arguments et renvoie l'appel."
+	return tr
 }
 
 func strArg(args map[string]any, key string) string {

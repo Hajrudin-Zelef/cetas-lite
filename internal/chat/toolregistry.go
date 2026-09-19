@@ -36,11 +36,16 @@ func (r toolRegistry) schemas(ctx context.Context) []provider.Tool {
 func (r toolRegistry) execute(ctx context.Context, env toolEnv, name, argsJSON string) (ToolResult, *provider.Message) {
 	for _, f := range r.families {
 		if f.handles(name) {
-			return f.execute(ctx, env, name, argsJSON)
+			// Phase 2 : les erreurs sont uniformisées au point de passage
+			// unique ([erreur] <outil> : <cause> — <consigne>), quelle que
+			// soit la famille d'outils.
+			out, followup := f.execute(ctx, env, name, argsJSON)
+			return uniformToolError(name, out), followup
 		}
 	}
 	if r.fallback != nil {
-		return r.fallback.execute(ctx, env, name, argsJSON)
+		out, followup := r.fallback.execute(ctx, env, name, argsJSON)
+		return uniformToolError(name, out), followup
 	}
 	return ToolResult{Text: "[erreur] outil inconnu: " + name}, nil
 }

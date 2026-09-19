@@ -175,6 +175,19 @@ func (e *Engine) runAgent(ctx context.Context, c *Conversation, epoch int, res r
 	c.appendDelta(epoch, map[string]any{"error": lastErr.Error()})
 }
 
+// toolExecState regroupe l'état mutable d'exécution des outils pendant un
+// tour : partagé entre la voie parallèle (runs) et la voie séquentielle.
+// (Phase 2 : généralisation du parallélisme au-delà des blocs 100 % lecture.)
+type toolExecState struct {
+	done           map[string]string
+	denied         map[string]bool
+	repeats        map[string]int
+	modified       map[string]bool
+	verified       bool
+	alwaysApproved bool
+	planApproved   bool
+}
+
 // parallelToolOut est le résultat d'un appel exécuté en parallèle.
 type parallelToolOut struct {
 	id       string
@@ -182,15 +195,82 @@ type parallelToolOut struct {
 	followup *provider.Message
 }
 
-// execParallelReads exécute en parallèle un bloc d'appels d'outils quand
-// c'est sans risque : au moins 2 appels, tous parallélisables
-// (parallelSafeTools), sans approbation, sans déduplication, sans doublon
-// dans le bloc. Les deltas "start" partent dans l'ordre d'origine, puis
-// les "end" suivent le même ordre : l'UI reste strictement cohérente
-// avec la voie séquentielle. Les messages d'outils sont retournés dans
-// l'ordre pour ajout à l'historique par l'appelant.
-// Retourne (nil, false) si le bloc doit passer par la voie séquentielle.
-func (e *Engine) execParallelReads(ctx context.Context, c *Conversation, epoch int, reg toolRegistry, tcs []provider.ToolCall, env toolEnv, opts agentOpts, planApproved, alwaysApproved bool, done map[string]string, denied map[string]bool) ([]parallelToolOut, bool) {
+// parallelCheck : un appel peut-il rejoindre un run parallèle ?
+// Mêmes règles que l'ancien tout-ou-rien, mais évaluées appel par appel
+// pour permettre le partitionnement du bloc : parallélisable uniquement,
+// sans approbation, sans déduplication, sans doublon dans le run.
+// Retourne les arguments parsés et la clé de dédup, ou ok=false.
+// Ne mute jamais st (lecture seule + seen local au run).
+func parallelCheck(tc provider.ToolCall, opts agentOpts, st *toolExecState, seen map[string]bool) (args map[string]any, key string, ok bool) {
+	name := tc.Function.Name
+	if !parallelSafeTools[name] || tc.InvalidCall() {
+		return nil, "", false
+	}
+	args = parseArgs(tc.Function.Arguments)
+	key = name + "\x00" + tc.Function.Arguments
+	if opts.plan && !st.planApproved && !planToolAllowed(name) {
+		return nil, "", false
+	}
+	if st.denied[key] {
+		return nil, "", false
+	}
+	if opts.approve && !st.alwaysApproved && needsApprovalFor(name, args) {
+		return nil, "", false
+	}
+	if _, dup := st.done[key]; dup && dedupableTool(name) {
+		return nil, "", false
+	}
+	if seen[key] {
+		return nil, "", false
+	}
+	seen[key] = true
+	return args, key, true
+}
+
+// toolSegment est un morceau du bloc d'appels : soit un run parallèle
+// (appels éligibles consécutifs), soit un appel isolé en séquentiel.
+type toolSegment struct {
+	parallel bool
+	calls    []provider.ToolCall
+}
+
+// partitionToolBlock découpe le bloc en segments en préservant l'ordre :
+// suites maximales d'appels parallélisables -> runs, le reste -> séquentiel.
+// Fonction pure (testable) : l'exécution est faite par executeToolBlock.
+// L'ordre relatif entre un run et les appels qui l'entourent est conservé,
+// donc une lecture placée après une écriture voit toujours son effet.
+func partitionToolBlock(tcs []provider.ToolCall, opts agentOpts, st *toolExecState) []toolSegment {
+	var segs []toolSegment
+	i := 0
+	for i < len(tcs) {
+		seen := map[string]bool{}
+		j := i
+		for j < len(tcs) {
+			if _, _, ok := parallelCheck(tcs[j], opts, st, seen); !ok {
+				break
+			}
+			j++
+		}
+		if j > i {
+			segs = append(segs, toolSegment{parallel: true, calls: tcs[i:j]})
+			i = j
+		} else {
+			segs = append(segs, toolSegment{parallel: false, calls: tcs[i : i+1]})
+			i++
+		}
+	}
+	return segs
+}
+
+// execParallelRun exécute en parallèle un run d'appels quand c'est sans
+// risque : au moins 2 appels, tous validés par parallelCheck. Les deltas
+// "start" partent dans l'ordre d'origine, puis les "end" suivent le même
+// ordre : l'UI reste strictement cohérente avec la voie séquentielle. Les
+// messages d'outils sont retournés dans l'ordre pour ajout à l'historique
+// par l'appelant.
+// Retourne (nil, false) si le run doit passer par la voie séquentielle
+// (l'état a pu changer entre le partitionnement et l'exécution).
+func (e *Engine) execParallelRun(ctx context.Context, c *Conversation, epoch int, reg toolRegistry, tcs []provider.ToolCall, env toolEnv, opts agentOpts, st *toolExecState) ([]parallelToolOut, bool) {
 	if len(tcs) < 2 {
 		return nil, false
 	}
@@ -202,31 +282,10 @@ func (e *Engine) execParallelReads(ctx context.Context, c *Conversation, epoch i
 	items := make([]pending, 0, len(tcs))
 	seen := make(map[string]bool, len(tcs))
 	for _, tc := range tcs {
-		name := tc.Function.Name
-		// Parallélisable uniquement : écritures, appels invalides et tout
-		// cas particulier (plan, refus, approbation, déduplication)
-		// restent sur la voie séquentielle.
-		if !parallelSafeTools[name] || tc.InvalidCall() {
+		args, key, ok := parallelCheck(tc, opts, st, seen)
+		if !ok {
 			return nil, false
 		}
-		args := parseArgs(tc.Function.Arguments)
-		key := name + "\x00" + tc.Function.Arguments
-		if opts.plan && !planApproved && !planToolAllowed(name) {
-			return nil, false
-		}
-		if denied[key] {
-			return nil, false
-		}
-		if opts.approve && !alwaysApproved && needsApprovalFor(name, args) {
-			return nil, false
-		}
-		if _, dup := done[key]; dup && dedupableTool(name) {
-			return nil, false
-		}
-		if seen[key] {
-			return nil, false
-		}
-		seen[key] = true
 		items = append(items, pending{tc: tc, args: args, key: key})
 	}
 	// Deltas "start" dans l'ordre d'origine, comme en séquentiel.
@@ -257,7 +316,7 @@ func (e *Engine) execParallelReads(ctx context.Context, c *Conversation, epoch i
 	for i, it := range items {
 		o := &outs[i]
 		if !strings.HasPrefix(o.out.Text, "[erreur]") {
-			done[it.key] = o.out.Text
+			st.done[it.key] = o.out.Text
 		}
 		toolDelta := map[string]any{
 			"name": it.tc.Function.Name, "args": it.args, "phase": "end",
@@ -276,12 +335,142 @@ func (e *Engine) execParallelReads(ctx context.Context, c *Conversation, epoch i
 	return outs, true
 }
 
+// executeToolBlock exécute un bloc d'appels d'outils en partitionnant en
+// runs parallélisables (Phase 2) : chaque run de ≥2 appels éligibles part
+// en concurrence, tout le reste passe par la voie séquentielle — dans
+// l'ordre d'émission du modèle. Retourne abort=true si le tour doit
+// s'interrompre (approbation expirée).
+func (e *Engine) executeToolBlock(ctx context.Context, c *Conversation, epoch int, reg toolRegistry, tcs []provider.ToolCall, env toolEnv, opts agentOpts, st *toolExecState, user string, m alias.ResolvedMember, msgs *[]provider.Message) (abort bool) {
+	appendOut := func(id string, out ToolResult, followup *provider.Message) {
+		*msgs = append(*msgs, provider.Message{Role: "tool", ToolCallID: id, Content: truncateToolForModel(out.Text)})
+		if followup != nil {
+			*msgs = append(*msgs, *followup)
+		}
+	}
+	for _, seg := range partitionToolBlock(tcs, opts, st) {
+		if ctx.Err() != nil {
+			return false
+		}
+		if seg.parallel && len(seg.calls) >= 2 {
+			if pouts, ok := e.execParallelRun(ctx, c, epoch, reg, seg.calls, env, opts, st); ok {
+				for _, po := range pouts {
+					appendOut(po.id, po.out, po.followup)
+				}
+				continue
+			}
+			// Repli : l'état a changé depuis le partitionnement, on
+			// rejoue le run en séquentiel (la déduplication s'applique).
+		}
+		for _, tc := range seg.calls {
+			if ctx.Err() != nil {
+				return false
+			}
+			out, followup, ab := e.execSequentialCall(ctx, c, epoch, reg, tc, env, opts, st, user, m)
+			if ab {
+				return true
+			}
+			appendOut(tc.ID, out, followup)
+		}
+	}
+	return false
+}
+
+// execSequentialCall exécute UN appel via la voie séquentielle : appel
+// irrecevable, mode plan, refus mémorisé, approbation utilisateur,
+// déduplication, puis exécution. Émet les deltas start/end comme avant.
+// Retourne le résultat, un éventuel message de suivi, et abort=true si le
+// tour doit s'interrompre (approbation expirée).
+func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch int, reg toolRegistry, tc provider.ToolCall, env toolEnv, opts agentOpts, st *toolExecState, user string, m alias.ResolvedMember) (ToolResult, *provider.Message, bool) {
+	args := parseArgs(tc.Function.Arguments)
+	c.appendDelta(epoch, map[string]any{"tool": map[string]any{
+		"name": tc.Function.Name, "args": args, "phase": "start",
+	}})
+	key := tc.Function.Name + "\x00" + tc.Function.Arguments
+	var out ToolResult
+	var followup *provider.Message
+	switch {
+	case tc.InvalidCall():
+		out = ToolResult{Text: "[erreur] appel d'outil irrecevable (nom vide ou arguments JSON incomplets). " +
+			"Renvoie exactement le meme appel avec un nom d'outil valide et des arguments JSON complets."}
+	case opts.plan && !st.planApproved && !planToolAllowed(tc.Function.Name):
+		out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration LECTURE SEULE. " +
+			"Seuls Ls, Tree, Read, Cat, Grep, Glob et TodoWrite sont autorises tant que le plan n'est pas valide. " +
+			"Construis ton plan avec TodoWrite puis presente-le."}
+	case st.denied[key]:
+		out = ToolResult{Text: "[refuse] l'utilisateur a deja refuse cet appel pendant ce tour."}
+	case opts.approve && !st.alwaysApproved && needsApprovalFor(tc.Function.Name, args):
+		d, aerr := c.RequestApproval(ctx, epoch, ApprovalRequest{
+			Kind: "tool", Tool: tc.Function.Name, Args: args,
+		})
+		if aerr != nil {
+			if ctx.Err() != nil {
+				return ToolResult{}, nil, true
+			}
+			c.appendDelta(epoch, map[string]any{"content": "\n\n_Approbation expiree : tour interrompu._"})
+			return ToolResult{}, nil, true
+		}
+		if d.always {
+			st.alwaysApproved = true
+		}
+		if !d.approved {
+			st.denied[key] = true
+			out = ToolResult{Text: "[refuse] l'utilisateur a refuse l'execution de " + tc.Function.Name +
+				". Propose une alternative ou demande des precisions au lieu de reessayer a l'identique."}
+			break
+		}
+		out, followup = reg.execute(ctx, env, tc.Function.Name, tc.Function.Arguments)
+		if !strings.HasPrefix(out.Text, "[erreur]") {
+			st.done[key] = out.Text
+			trackModification(tc.Function.Name, args, st.modified)
+			if tc.Function.Name == "Bash" {
+				if cmd, ok := args["command"].(string); ok && verifyCommandHeuristic(cmd) {
+					st.verified = true
+				}
+			}
+		}
+	case func() bool { _, seen := st.done[key]; return seen && dedupableTool(tc.Function.Name) }():
+		st.repeats[key]++
+		out = ToolResult{Text: repeatedCallResult(st.done[key], st.repeats[key])}
+	default:
+		out, followup = reg.execute(ctx, env, tc.Function.Name, tc.Function.Arguments)
+		if !strings.HasPrefix(out.Text, "[erreur]") {
+			st.done[key] = out.Text
+			trackModification(tc.Function.Name, args, st.modified)
+			if tc.Function.Name == "Bash" {
+				if cmd, ok := args["command"].(string); ok && verifyCommandHeuristic(cmd) {
+					st.verified = true
+				}
+			}
+		}
+	}
+	toolDelta := map[string]any{
+		"name": tc.Function.Name, "args": args, "phase": "end",
+		"result": truncate(out.Text, toolMaxOutput), "diff": truncateDiff(out.Diff, 300),
+	}
+	// Sources structurees (recherche web) pour le panneau "Sources".
+	if out.Meta != nil {
+		if srcs, ok := out.Meta["sources"]; ok {
+			toolDelta["sources"] = srcs
+		}
+		if sp, ok := out.Meta["search_provider"]; ok {
+			toolDelta["search_provider"] = sp
+		}
+	}
+	c.appendDelta(epoch, map[string]any{"tool": toolDelta})
+	return out, followup, false
+}
+
 func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p provider.Provider, m alias.ResolvedMember, base []provider.Message, tools []provider.Tool, reg toolRegistry, user, effort string, emitted *bool, opts agentOpts) (string, error) {
 	const maxNudges = 2
 	msgs := append([]provider.Message(nil), base...)
-	done := map[string]string{}
-	denied := map[string]bool{}
-	repeats := map[string]int{}
+	// Phase 2 : l'état mutable d'exécution des outils est regroupé pour
+	// être partagé entre la voie parallèle (runs) et la voie séquentielle.
+	st := &toolExecState{
+		done:     map[string]string{},
+		denied:   map[string]bool{},
+		repeats:  map[string]int{},
+		modified: map[string]bool{},
+	}
 	nudges := 0
 	disableTools := false
 	transientRetries := 0
@@ -290,7 +479,6 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	// Mode plan : phase 1 en lecture seule, la phase d'execution demarre
 	// seulement apres validation du plan par l'utilisateur.
 	fullTools := tools
-	planApproved := false
 	nativeFallbackDone := false
 	if opts.plan {
 		tools = readOnlyTools(tools)
@@ -298,10 +486,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	}
 
 	// Suivi du workflow plan -> code -> verification.
-	modified := map[string]bool{}
-	verified := false
 	verifyNudged := false
-	alwaysApproved := false
 
 	// Filtre DSML du tour : recree a chaque tentative dans la boucle.
 	var dsmlFilter *dsmlStreamFilter
@@ -431,104 +616,13 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				assistant.ReasoningContent = resp.Reasoning
 			}
 			msgs = append(msgs, assistant)
-			// Voie rapide : un bloc 100 % lecture seule s'exécute en
-			// parallèle (gros gain quand le modèle lit plusieurs fichiers
-			// d'un coup). Les écritures et les cas particuliers restent
-			// séquentiels. Voir execParallelReads.
-			if pouts, ok := e.execParallelReads(ctx, c, epoch, reg, resp.ToolCalls, toolEnv{user: user, member: m}, opts, planApproved, alwaysApproved, done, denied); ok {
-				for _, po := range pouts {
-					msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: po.id, Content: truncateToolForModel(po.out.Text)})
-					if po.followup != nil {
-						msgs = append(msgs, *po.followup)
-					}
-				}
-				last = resp.Content
-				continue
-			}
-			for _, tc := range resp.ToolCalls {
-				if ctx.Err() != nil {
-					return last, nil
-				}
-				args := parseArgs(tc.Function.Arguments)
-				c.appendDelta(epoch, map[string]any{"tool": map[string]any{
-					"name": tc.Function.Name, "args": args, "phase": "start",
-				}})
-				key := tc.Function.Name + "\x00" + tc.Function.Arguments
-				var out ToolResult
-				var followup *provider.Message
-				switch {
-				case tc.InvalidCall():
-					out = ToolResult{Text: "[erreur] appel d'outil irrecevable (nom vide ou arguments JSON incomplets). " +
-						"Renvoie exactement le meme appel avec un nom d'outil valide et des arguments JSON complets."}
-				case opts.plan && !planApproved && !planToolAllowed(tc.Function.Name):
-					out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration LECTURE SEULE. " +
-						"Seuls Ls, Tree, Read, Cat, Grep, Glob et TodoWrite sont autorises tant que le plan n'est pas valide. " +
-						"Construis ton plan avec TodoWrite puis presente-le."}
-				case denied[key]:
-					out = ToolResult{Text: "[refuse] l'utilisateur a deja refuse cet appel pendant ce tour."}
-				case opts.approve && !alwaysApproved && needsApprovalFor(tc.Function.Name, args):
-					d, aerr := c.RequestApproval(ctx, epoch, ApprovalRequest{
-						Kind: "tool", Tool: tc.Function.Name, Args: args,
-					})
-					if aerr != nil {
-						if ctx.Err() != nil {
-							return last, nil
-						}
-						c.appendDelta(epoch, map[string]any{"content": "\n\n_Approbation expiree : tour interrompu._"})
-						return last, nil
-					}
-					if d.always {
-						alwaysApproved = true
-					}
-					if !d.approved {
-						denied[key] = true
-						out = ToolResult{Text: "[refuse] l'utilisateur a refuse l'execution de " + tc.Function.Name +
-							". Propose une alternative ou demande des precisions au lieu de reessayer a l'identique."}
-						break
-					}
-					out, followup = reg.execute(ctx, toolEnv{user: user, member: m}, tc.Function.Name, tc.Function.Arguments)
-					if !strings.HasPrefix(out.Text, "[erreur]") {
-						done[key] = out.Text
-						trackModification(tc.Function.Name, args, modified)
-						if tc.Function.Name == "Bash" {
-							if cmd, ok := args["command"].(string); ok && verifyCommandHeuristic(cmd) {
-								verified = true
-							}
-						}
-					}
-				case func() bool { _, seen := done[key]; return seen && dedupableTool(tc.Function.Name) }():
-					repeats[key]++
-					out = ToolResult{Text: repeatedCallResult(done[key], repeats[key])}
-				default:
-					out, followup = reg.execute(ctx, toolEnv{user: user, member: m}, tc.Function.Name, tc.Function.Arguments)
-					if !strings.HasPrefix(out.Text, "[erreur]") {
-						done[key] = out.Text
-						trackModification(tc.Function.Name, args, modified)
-						if tc.Function.Name == "Bash" {
-							if cmd, ok := args["command"].(string); ok && verifyCommandHeuristic(cmd) {
-								verified = true
-							}
-						}
-					}
-				}
-				toolDelta := map[string]any{
-					"name": tc.Function.Name, "args": args, "phase": "end",
-					"result": truncate(out.Text, toolMaxOutput), "diff": truncateDiff(out.Diff, 300),
-				}
-				// Sources structurees (recherche web) pour le panneau "Sources".
-				if out.Meta != nil {
-					if srcs, ok := out.Meta["sources"]; ok {
-						toolDelta["sources"] = srcs
-					}
-					if sp, ok := out.Meta["search_provider"]; ok {
-						toolDelta["search_provider"] = sp
-					}
-				}
-				c.appendDelta(epoch, map[string]any{"tool": toolDelta})
-				msgs = append(msgs, provider.Message{Role: "tool", ToolCallID: tc.ID, Content: truncateToolForModel(out.Text)})
-				if followup != nil {
-					msgs = append(msgs, *followup)
-				}
+			// Phase 2 : le bloc est partitionné en runs parallélisables
+			// (suites maximales d'appels indépendants) ; chaque run de ≥2
+			// appels part en concurrence, le reste passe en séquentiel —
+			// dans l'ordre d'émission, avec les mêmes deltas et le même
+			// historique que la voie séquentielle. Voir executeToolBlock.
+			if e.executeToolBlock(ctx, c, epoch, reg, resp.ToolCalls, toolEnv{user: user, member: m}, opts, st, user, m, &msgs) {
+				return last, nil
 			}
 			last = resp.Content
 			continue
@@ -552,9 +646,9 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		}
 		// Phase VERIFY du workflow : si du code a ete ecrit mais jamais verifie,
 		// exiger une verification avant de conclure (une seule fois).
-		if !verifyNudged && !verified && len(modified) > 0 && !disableTools && len(tools) > 0 {
+		if !verifyNudged && !st.verified && len(st.modified) > 0 && !disableTools && len(tools) > 0 {
 			verifyNudged = true
-			files := modifiedList(modified)
+			files := modifiedList(st.modified)
 			c.appendDelta(epoch, map[string]any{"drop_reasoning": true})
 			msgs = append(msgs, provider.Message{Role: "user", Content: "Tu as modifie ces fichiers sans les verifier : " + strings.Join(files, ", ") + ". " +
 				"Avant de conclure, VERIFIE ton travail maintenant : compile et/ou lance les tests " +
@@ -563,7 +657,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 		}
 		// Mode plan : la phase d'exploration est terminee, on soumet le plan
 		// a l'utilisateur avant de passer a l'execution.
-		if opts.plan && !planApproved && !disableTools {
+		if opts.plan && !st.planApproved && !disableTools {
 			planText := buildPlanText(msgs, last)
 			d, aerr := c.RequestApproval(ctx, epoch, ApprovalRequest{Kind: "plan", Plan: planText})
 			if aerr != nil {
@@ -576,7 +670,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				c.appendDelta(epoch, map[string]any{"content": "\n\n_Plan refuse par l'utilisateur._"})
 				return last, nil
 			}
-			planApproved = true
+			st.planApproved = true
 			tools = fullTools
 			msgs = append(msgs, provider.Message{Role: "system", Content: "Plan approved by the user. Execute it now with all tools, " +
 				"then VERIFY your work (compile/test) before concluding."})
@@ -715,7 +809,7 @@ func needsApprovalFor(name string, args map[string]any) bool {
 }
 
 // parallelSafeTools est l'allowlist explicite des outils parallélisables
-// par execParallelReads : lectures pures, sans aucun effet de bord.
+// par les runs parallèles : lectures pures, sans aucun effet de bord.
 // TodoWrite est volontairement exclu : il mute la liste de tâches
 // (état UI + dérivation du plan) et ses appels ont une sémantique
 // d'ordre ("étape 1 terminée, étape 2 en cours"). Echo est pur
