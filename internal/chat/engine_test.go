@@ -464,3 +464,40 @@ func TestResolveAutoLocal(t *testing.T) {
 		t.Fatal("la selection du selecteur doit etre honoree en mode auto local")
 	}
 }
+
+func TestResolveAutoAppendsFallbackLast(t *testing.T) {
+	fp := &fakeProvider{id: "fake"}
+	e := newEngine(t, fp, alias.Defaults())
+	ref, ok := alias.Resolve(alias.Defaults(), "code", "autotest")
+	if !ok {
+		t.Fatal("code autotest introuvable")
+	}
+	in := TurnInput{Family: "code", Mode: "autotest"}
+	for i := 0; i < 20; i++ {
+		res := e.resolve(context.Background(), in)
+		want := len(ref.Pool) + len(ref.Fallback)
+		if len(res.members) != want {
+			t.Fatalf("resolve %d: %d membres, want %d", i, len(res.members), want)
+		}
+		// Le pool primaire est melange mais complet, sans perte ni doublon.
+		seen := map[string]bool{}
+		for _, m := range res.members {
+			k := m.Provider + "/" + m.Model
+			if seen[k] {
+				t.Fatalf("resolve %d: doublon %s", i, k)
+			}
+			seen[k] = true
+		}
+		for _, m := range ref.Pool {
+			if !seen[m.Provider+"/"+m.Model] {
+				t.Fatalf("resolve %d: %s/%s perdu", i, m.Provider, m.Model)
+			}
+		}
+		// Le fallback Pareto reste TOUJOURS dernier, jamais melange.
+		last := res.members[len(res.members)-1]
+		if last.Provider != "openrouter" || last.Model != "openrouter/pareto-code" {
+			t.Fatalf("resolve %d: dernier membre = %s/%s, want openrouter/openrouter/pareto-code",
+				i, last.Provider, last.Model)
+		}
+	}
+}

@@ -11,6 +11,10 @@ var generated = []Model{
 	{ID: "mimo-v2.5-free-zen", Label: "MiMo V2.5 Free", Editeur: "opencode", InputPer1M: 0.0, OutputPer1M: 0.0},
 	{ID: "nemotron-3-ultra-free-zen", Label: "Nemotron 3 Ultra Free", Editeur: "opencode", InputPer1M: 0.0, OutputPer1M: 0.0},
 	{ID: "nemotron-3.5-lightning-free-zen", Label: "Nemotron 3.5 Lightning Free", Editeur: "opencode", InputPer1M: 0.0, OutputPer1M: 0.0},
+	// Ajout manuel 2026-09-20 (point 4, niveau Auto) : models.js externe indisponible.
+	{ID: "muse-spark-1.2-contributor-free-zen", Label: "Muse Spark 1.2 Contributor Free", Editeur: "opencode", InputPer1M: 0.0, OutputPer1M: 0.0},
+	{ID: "muse-spark-1.3-contributor-free-zen", Label: "Muse Spark 1.3 Contributor Free", Editeur: "opencode", InputPer1M: 0.0, OutputPer1M: 0.0},
+	{ID: "openrouter/pareto-code", Label: "Pareto Code Router", Editeur: "openrouter", InputPer1M: 0.0, OutputPer1M: 0.0},
 	{ID: "gpt-5.6-luna-zen", Label: "GPT 5.6 Luna", Editeur: "opencode", InputPer1M: 0.2, OutputPer1M: 1.2},
 	{ID: "minimax-m3-zen", Label: "MiniMax M3", Editeur: "opencode", InputPer1M: 0.3, OutputPer1M: 1.2},
 	{ID: "qwen3.5-plus-zen", Label: "Qwen3.5 Plus", Editeur: "opencode", InputPer1M: 0.2, OutputPer1M: 1.2},

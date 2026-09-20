@@ -346,6 +346,15 @@ func (e *Engine) resolve(ctx context.Context, in TurnInput) resolution {
 		// seul membre = modele fixe, pas de fallback.
 		members = alias.ShufflePool(members)
 	}
+	if len(rm.Fallback) > 0 {
+		// Repli apres epuisement du pool primaire : ajoute dans l'ordre
+		// declare, sans melange. Chemin agent uniquement (le chat general
+		// n'utilise pas ce champ).
+		combined := make([]alias.ResolvedMember, 0, len(members)+len(rm.Fallback))
+		combined = append(combined, members...)
+		combined = append(combined, rm.Fallback...)
+		members = combined
+	}
 	return resolution{members: members, agent: rm.Agent && in.AgentMode}
 }
 

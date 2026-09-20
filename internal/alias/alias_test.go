@@ -258,3 +258,64 @@ func TestApplyOverrides(t *testing.T) {
 		t.Fatalf("defaults modifies par Apply: %+v", orig.Pool)
 	}
 }
+
+func TestCodeAutoMode(t *testing.T) {
+	fams := Defaults()
+	fam, ok := Find(fams, "code")
+	if !ok {
+		t.Fatal("famille code introuvable")
+	}
+	// Auto (ID "autotest") en premier : "auto" est reserve par le moteur
+	// (choix union-des-pools du menu +).
+	if fam.Modes[0].ID != "autotest" {
+		t.Fatalf("premier mode code = %q, want autotest", fam.Modes[0].ID)
+	}
+	rm, ok := Resolve(fams, "code", "autotest")
+	if !ok {
+		t.Fatal("code autotest introuvable")
+	}
+	if !rm.Agent {
+		t.Error("code autotest doit activer l'agent")
+	}
+	if rm.Mode == "auto" {
+		t.Error("l'ID ne doit pas etre \"auto\" (collision moteur)")
+	}
+	wantPool := []string{
+		"big-pickle-zen",
+		"ling-3.0-flash-fin-free-zen",
+		"mimo-v2.5-free-zen",
+		"nemotron-3-ultra-free-zen",
+		"nemotron-3.5-lightning-free-zen",
+		"muse-spark-1.3-contributor-free-zen",
+		"muse-spark-1.2-contributor-free-zen",
+	}
+	if len(rm.Pool) != len(wantPool) {
+		t.Fatalf("pool autotest = %d membres, want %d", len(rm.Pool), len(wantPool))
+	}
+	for i, want := range wantPool {
+		if rm.Pool[i].Provider != "opencode" || rm.Pool[i].Model != want {
+			t.Errorf("pool[%d] = %s/%s, want opencode/%s", i, rm.Pool[i].Provider, rm.Pool[i].Model, want)
+		}
+	}
+	// Fallback Pareto : un seul membre, apres le pool, label du catalogue.
+	if len(rm.Fallback) != 1 {
+		t.Fatalf("fallback autotest = %d membres, want 1", len(rm.Fallback))
+	}
+	fb := rm.Fallback[0]
+	if fb.Provider != "openrouter" || fb.Model != "openrouter/pareto-code" {
+		t.Errorf("fallback = %s/%s, want openrouter/openrouter/pareto-code", fb.Provider, fb.Model)
+	}
+	if fb.Label != "Pareto Code Router" {
+		t.Errorf("label fallback = %q, want Pareto Code Router", fb.Label)
+	}
+	// Les autres niveaux code n'ont pas de fallback.
+	for _, mode := range []string{"flash", "standard", "elite"} {
+		rm2, ok := Resolve(fams, "code", mode)
+		if !ok {
+			t.Fatalf("code %s introuvable", mode)
+		}
+		if len(rm2.Fallback) != 0 {
+			t.Errorf("code %s ne doit pas avoir de fallback, got %d", mode, len(rm2.Fallback))
+		}
+	}
+}

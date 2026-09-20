@@ -21,6 +21,10 @@ type Mode struct {
 	Engine string   `json:"engine,omitempty"`
 	Rule   string   `json:"rule,omitempty"`
 	Pool   []Member `json:"pool,omitempty"`
+	// Fallback : membres essayes APRES epuisement du pool primaire,
+	// dans l'ordre declare, sans melange. Non touche par les overrides
+	// du pool (le repli reste celui des defauts).
+	Fallback []Member `json:"fallback,omitempty"`
 }
 
 type Family struct {
@@ -47,6 +51,8 @@ type ResolvedMode struct {
 	Engine string           `json:"engine,omitempty"`
 	Rule   string           `json:"rule,omitempty"`
 	Pool   []ResolvedMember `json:"pool"`
+	// Fallback : membres de repli resolus, essayes apres le pool.
+	Fallback []ResolvedMember `json:"fallback,omitempty"`
 }
 
 func Defaults() []Family {
@@ -78,6 +84,21 @@ func Defaults() []Family {
 		{
 			ID: "code", Label: "Code",
 			Modes: []Mode{
+				// ID "autotest" (et non "auto") : "auto" est deja intercepte
+				// par Engine.resolve() comme choix union-des-pools (menu +).
+				{ID: "autotest", Label: "Auto", Agent: true, Rule: "zen gratuits en tirage aleatoire, puis Pareto en repli",
+					Pool: []Member{
+						{"opencode", "big-pickle-zen"},
+						{"opencode", "ling-3.0-flash-fin-free-zen"},
+						{"opencode", "mimo-v2.5-free-zen"},
+						{"opencode", "nemotron-3-ultra-free-zen"},
+						{"opencode", "nemotron-3.5-lightning-free-zen"},
+						{"opencode", "muse-spark-1.3-contributor-free-zen"},
+						{"opencode", "muse-spark-1.2-contributor-free-zen"},
+					},
+					Fallback: []Member{
+						{"openrouter", "openrouter/pareto-code"},
+					}},
 				{ID: "flash", Label: "Flash", Agent: true, Rule: "deepseek v4.1 flash + pool opencode + openrouter",
 					Pool: []Member{
 						{"deepseek", "deepseek-flash"},
@@ -162,13 +183,9 @@ func Resolve(fams []Family, familyID, modeID string) (ResolvedMode, bool) {
 	return ResolvedMode{}, false
 }
 
-func resolveMode(f Family, m Mode) ResolvedMode {
-	rm := ResolvedMode{
-		Family: f.ID, Mode: m.ID, Label: m.Label,
-		Agent: m.Agent, Local: m.Local, Engine: m.Engine, Rule: m.Rule,
-		Pool: []ResolvedMember{},
-	}
-	for _, mem := range m.Pool {
+func resolveMembers(mems []Member) []ResolvedMember {
+	res := []ResolvedMember{}
+	for _, mem := range mems {
 		label := mem.Model
 		var in, out float64
 		if cm, ok := catalog.Lookup(mem.Provider, mem.Model); ok {
@@ -176,10 +193,23 @@ func resolveMode(f Family, m Mode) ResolvedMode {
 			in = cm.InputPer1M
 			out = cm.OutputPer1M
 		}
-		rm.Pool = append(rm.Pool, ResolvedMember{
+		res = append(res, ResolvedMember{
 			Provider: mem.Provider, Model: mem.Model, Label: label,
 			InputPer1M: in, OutputPer1M: out,
 		})
+	}
+	return res
+}
+
+func resolveMode(f Family, m Mode) ResolvedMode {
+	rm := ResolvedMode{
+		Family: f.ID, Mode: m.ID, Label: m.Label,
+		Agent: m.Agent, Local: m.Local, Engine: m.Engine, Rule: m.Rule,
+		Pool: []ResolvedMember{},
+	}
+	rm.Pool = resolveMembers(m.Pool)
+	if len(m.Fallback) > 0 {
+		rm.Fallback = resolveMembers(m.Fallback)
 	}
 	return rm
 }
