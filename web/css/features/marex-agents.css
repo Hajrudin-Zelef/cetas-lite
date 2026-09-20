@@ -2236,3 +2236,27 @@ body.mx-open #sidebar-toggle{ display:none !important; }
 #marex-view.ac-codex .cx-turn-stats{
   color:#8b8d98;font-size:.75rem;padding:2px 0 2px 12px;
 }
+
+/* ============ Phase 4 — polish : responsive + reduced-motion ============ */
+/* Petit écran : l'en-tête du diff peut passer sur deux lignes au lieu
+   d'écraser le chemin ; la colonne "clé" de la carte d'approbation se
+   resserre pour laisser la place à la valeur. */
+@media (max-width:600px){
+  #marex-view .diff-head{ flex-wrap:wrap; row-gap:2px; }
+  #marex-view .ap2-k{ min-width:84px; }
+}
+/* prefers-reduced-motion : les animations décoratives infinies de la vue
+   Agents deviennent statiques — éléments toujours visibles, aucun mouvement.
+   (text-shimmer, todo-checklist, spinner "running" des outils et pastille
+   ap2 ont déjà leur garde dédiée plus haut dans ce fichier.) */
+@media (prefers-reduced-motion: reduce){
+  #marex-view .think-spinner,
+  #marex-view .think-spinner-sm,
+  #marex-view .thinking-spinner,
+  #marex-view .mx-perm-warn,
+  #marex-view .sb-metric-dot.pulse,
+  #marex-view .marex-loader .loader::before,
+  #marex-view .marex-loader .loader::after,
+  #marex-view .marex-loader .loader__inner,
+  #marex-view .marex-loader .loader__orbit{ animation:none; }
+}
