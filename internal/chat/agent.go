@@ -443,6 +443,15 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 	// C1 : Bash/RunScript/Curl exigent une approbation quel que soit le
 	// mode ; le choix explicite « toujours approuver » reste respecté.
 	case !st.alwaysApproved && (mustApproveFor(tc.Function.Name, args) || (opts.approve && needsApprovalFor(tc.Function.Name, args))):
+		// Pre-validation : ne pas deranger l'utilisateur avec une carte
+		// d'approbation pour un appel qui echouera deterministement a la
+		// validation des arguments (ex : Edit sans "new", champ omis par
+		// le modele ou tronque puis "repare"). L'erreur part directement
+		// au modele, sans tour d'approbation inutile.
+		if f := missingArg(args, requiredFields(tc.Function.Name)...); f != "" {
+			out = ToolResult{Text: missingArgErr(tc.Function.Name, f)}
+			break
+		}
 		d, aerr := c.RequestApproval(ctx, epoch, ApprovalRequest{
 			Kind: "tool", Tool: tc.Function.Name, Args: args,
 		})

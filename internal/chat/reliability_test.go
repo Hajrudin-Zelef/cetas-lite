@@ -52,3 +52,43 @@ func TestTrackModification(t *testing.T) {
 		t.Fatalf("liste incorrecte: %v", got)
 	}
 }
+
+func TestRequiredFields(t *testing.T) {
+	cases := map[string][]string{
+		"Read": {"file_path"}, "Cat": {"file_path"},
+		"Write": {"file_path", "content"},
+		"Edit":  {"file_path", "old", "new"},
+		"Grep":  {"pattern"}, "Glob": {"pattern"},
+		"Bash":      {"command"},
+		"RunScript": {"language", "code"},
+		"Echo":      {"text"},
+		"Mkdir":     {"path"},
+		"Mv":        {"src", "dst"},
+		"Sed":       {"expression"},
+		"Awk":       {"program"},
+		"Curl":      {"url"},
+		// Outils sans champ requis au niveau Execute.
+		"Ls": {}, "Tree": {}, "TodoWrite": {},
+		"GitHubIssues": {}, "GitHubPRCreate": {}, "Inconnu": {},
+	}
+	for name, want := range cases {
+		got := requiredFields(name)
+		if len(got) != len(want) {
+			t.Fatalf("%s: attendu %v, got %v", name, want, got)
+		}
+		for i := range want {
+			if got[i] != want[i] {
+				t.Fatalf("%s: attendu %v, got %v", name, want, got)
+			}
+		}
+	}
+	// Le cas observe : Edit sans "new" est detecte avant approbation.
+	args := map[string]any{"file_path": "a.txt", "old": "foo"}
+	if f := missingArg(args, requiredFields("Edit")...); f != "new" {
+		t.Fatalf("Edit sans new: attendu \"new\", got %q", f)
+	}
+	args["new"] = "bar"
+	if f := missingArg(args, requiredFields("Edit")...); f != "" {
+		t.Fatalf("Edit complet: attendu vide, got %q", f)
+	}
+}

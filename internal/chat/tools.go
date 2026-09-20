@@ -250,6 +250,40 @@ func ToolSchemas() []provider.Tool {
 	return append(append(out, extraToolSchemas()...), githubToolSchemas()...)
 }
 
+// requiredFields centralise les champs requis par outil. Source unique
+// utilisee par Execute et par la validation pre-approbation (agent.go) :
+// un appel dont un champ requis manque ou est vide ne doit jamais arriver
+// jusqu'a la carte d'approbation utilisateur.
+func requiredFields(name string) []string {
+	switch name {
+	case "Read", "Cat":
+		return []string{"file_path"}
+	case "Write":
+		return []string{"file_path", "content"}
+	case "Edit":
+		return []string{"file_path", "old", "new"}
+	case "Grep", "Glob":
+		return []string{"pattern"}
+	case "Bash":
+		return []string{"command"}
+	case "RunScript":
+		return []string{"language", "code"}
+	case "Echo":
+		return []string{"text"}
+	case "Mkdir":
+		return []string{"path"}
+	case "Mv":
+		return []string{"src", "dst"}
+	case "Sed":
+		return []string{"expression"}
+	case "Awk":
+		return []string{"program"}
+	case "Curl":
+		return []string{"url"}
+	}
+	return nil
+}
+
 func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult {
 	args := map[string]any{}
 	if strings.TrimSpace(argsJSON) != "" {
@@ -259,37 +293,37 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 	case "Ls":
 		return s.toolLs(ctx)
 	case "Read":
-		if f := missingArg(args, "file_path"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolRead(ctx, args)
 	case "Write":
-		if f := missingArg(args, "file_path", "content"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolWrite(ctx, args)
 	case "Edit":
-		if f := missingArg(args, "file_path", "old", "new"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolEdit(ctx, args)
 	case "Grep":
-		if f := missingArg(args, "pattern"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolGrep(ctx, args)
 	case "Glob":
-		if f := missingArg(args, "pattern"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolGlob(ctx, args)
 	case "Bash":
-		if f := missingArg(args, "command"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return ToolResult{Text: s.toolBash(ctx, args)}
 	case "RunScript":
-		if f := missingArg(args, "language", "code"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return ToolResult{Text: s.toolRunScript(ctx, args)}
@@ -301,37 +335,37 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 		// Phase 3 : Cat est fusionné dans Read et n'est plus annoncé au
 		// modèle. Filet de sécurité : un appel résiduel est réécrit en
 		// Read (head -> limit ; tail -> dernières lignes).
-		if f := missingArg(args, "file_path"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolCatAsRead(ctx, args)
 	case "Echo":
-		if f := missingArg(args, "text"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolEcho(ctx, args)
 	case "Mkdir":
-		if f := missingArg(args, "path"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolMkdir(ctx, args)
 	case "Mv":
-		if f := missingArg(args, "src", "dst"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolMv(ctx, args)
 	case "Sed":
-		if f := missingArg(args, "expression"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolSed(ctx, args)
 	case "Awk":
-		if f := missingArg(args, "program"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolAwk(ctx, args)
 	case "Curl":
-		if f := missingArg(args, "url"); f != "" {
+		if f := missingArg(args, requiredFields(name)...); f != "" {
 			return ToolResult{Text: missingArgErr(name, f)}
 		}
 		return s.toolCurl(ctx, args)
