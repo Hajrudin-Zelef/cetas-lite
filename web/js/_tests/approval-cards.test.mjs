@@ -247,3 +247,19 @@ test("chat général : carte historique strictement inchangée", () => {
   assert.ok(findByClass(card, "approved").length > 0, "classe approved historique");
   assert.equal(findByClass(log, "ap2-trace").length, 0, "pas de trace premium");
 });
+
+test("détail Edit : Remplacer teinté rouge fade, Par vert fade", () => {
+  const { v, log } = newView();
+  v.addApproval({ id: "a7", phase: "request", kind: "tool", tool: "Edit",
+    args: { file_path: "a.txt", old: "foo", new: "bar" } });
+  const card = findByClass(log, "ap2")[0];
+  const tones = {};
+  for (const w of card.querySelectorAll(".ap2-codeblock")) {
+    const label = w.querySelector(".ap2-k");
+    const pre = w.querySelector("pre");
+    if (label && pre) tones[label.textContent] = pre.className;
+  }
+  assert.ok(tones["Remplacer"].includes("is-old"), "Remplacer : teinte rouge fade");
+  assert.ok(tones["Par"].includes("is-new"), "Par : teinte vert fade");
+  assert.ok(!tones["Remplacer"].includes("is-new") && !tones["Par"].includes("is-old"), "pas d'inversion");
+});

@@ -148,7 +148,7 @@ function approvalDetail(tool, args) {
     r.appendChild(el("span", "ap2-v", value));
     box.appendChild(r);
   };
-  const code = (label, text, maxLines) => {
+  const code = (label, text, maxLines, tone) => {
     if (!text) return;
     const lines = text.split("\n");
     const shown = maxLines && lines.length > maxLines
@@ -156,7 +156,8 @@ function approvalDetail(tool, args) {
       : text;
     const w = el("div", "ap2-codeblock");
     if (label) w.appendChild(el("div", "ap2-k", label));
-    const pre = el("pre", "ap2-code");
+    // tone "old"/"new" : teinte fade rouge/vert (carte Edit).
+    const pre = el("pre", "ap2-code" + (tone === "old" ? " is-old" : tone === "new" ? " is-new" : ""));
     pre.textContent = shown;
     w.appendChild(pre);
     box.appendChild(w);
@@ -177,8 +178,8 @@ function approvalDetail(tool, args) {
       break;
     case "Edit":
       row("Fichier", s(args.file_path));
-      code("Remplacer", s(args.old), 12);
-      code("Par", s(args.new), 12);
+      code("Remplacer", s(args.old), 12, "old");
+      code("Par", s(args.new), 12, "new");
       break;
     case "Mkdir":
       row("Dossier", s(args.path));

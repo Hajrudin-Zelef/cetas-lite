@@ -2260,3 +2260,14 @@ body.mx-open #sidebar-toggle{ display:none !important; }
   #marex-view .marex-loader .loader__inner,
   #marex-view .marex-loader .loader__orbit{ animation:none; }
 }
+
+/* Carte d'approbation (Edit) : teintes fades pour différencier l'ancien
+   du nouveau — visibles mais discrètes, pas les rouges/verts saturés. */
+#marex-view .ap2-code.is-old{
+  background:rgba(248,81,73,.07);
+  border-color:rgba(248,81,73,.28);
+}
+#marex-view .ap2-code.is-new{
+  background:rgba(63,185,80,.07);
+  border-color:rgba(63,185,80,.28);
+}
