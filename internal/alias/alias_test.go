@@ -178,8 +178,12 @@ func TestCodeAgentPools(t *testing.T) {
 			{"deepseek", "deepseek-flash"},
 			{"opencode", "qwen3.6-plus-zen"},
 			{"opencode", "minimax-m3-zen"},
+			{"opencode-go", "glm-5.3-flash-go"},
+			{"opencode-go", "muse-spark-1.3-contributor-go"},
+			{"opencode-go", "hy3-go"},
+			{"opencode-go", "qwen3.8-flash-go"},
+			{"opencode-go", "gpt-5-nano-go"},
 			{"openrouter", "deepseek/deepseek-v4-flash-0731"},
-			{"openrouter", "z-ai/glm-5.3-flash"},
 			{"openrouter", "xiaomi/mimo-v2.5"},
 			{"openrouter", "qwen/qwen3-coder-next"},
 		},
@@ -187,6 +191,9 @@ func TestCodeAgentPools(t *testing.T) {
 			{"opencode-go", "qwen3.6-plus-go"},
 			{"opencode-go", "minimax-m3-go"},
 			{"opencode-go", "longcat-2.0-go"},
+			{"opencode-go", "gpt-5.6-luna-go"},
+			{"opencode-go", "hy4-preview-go"},
+			{"opencode-go", "gemini-3-flash-go"},
 			{"openrouter", "meta/muse-spark-1.3-contributor"},
 			{"openrouter", "google/gemma-4-26b-a4b-it"},
 			{"openrouter", "mistralai/mistral-small-2603"},
@@ -196,6 +203,10 @@ func TestCodeAgentPools(t *testing.T) {
 		"elite": {
 			{"deepseek", "deepseek-v4-pro"},
 			{"opencode", "qwen3.6-plus-zen"},
+			{"opencode-go", "glm-5.2-go"},
+			{"opencode-go", "glm-5.3-go"},
+			{"opencode-go", "kimi-k3-go"},
+			{"opencode-go", "claude-sonnet-5-go"},
 			{"openrouter", "deepseek/deepseek-v4-pro"},
 			{"openrouter", "anthropic/claude-haiku-4.5"},
 			{"openrouter", "anthropic/claude-sonnet-4.5"},
@@ -280,21 +291,21 @@ func TestCodeAutoMode(t *testing.T) {
 	if rm.Mode == "auto" {
 		t.Error("l'ID ne doit pas etre \"auto\" (collision moteur)")
 	}
-	wantPool := []string{
-		"big-pickle-zen",
-		"ling-3.0-flash-fin-free-zen",
-		"mimo-v2.5-free-zen",
-		"nemotron-3-ultra-free-zen",
-		"nemotron-3.5-lightning-free-zen",
-		"muse-spark-1.3-contributor-free-zen",
-		"muse-spark-1.2-contributor-free-zen",
+	wantPool := [][2]string{
+		{"opencode", "big-pickle-zen"},
+		{"opencode", "ling-3.0-flash-fin-free-zen"},
+		{"opencode", "mimo-v2.5-free-zen"},
+		{"opencode", "nemotron-3-ultra-free-zen"},
+		{"opencode", "nemotron-3.5-lightning-free-zen"},
+		{"opencode", "muse-spark-1.3-contributor-free-zen"},
+		{"opencode", "muse-spark-1.2-contributor-free-zen"},
 	}
 	if len(rm.Pool) != len(wantPool) {
 		t.Fatalf("pool autotest = %d membres, want %d", len(rm.Pool), len(wantPool))
 	}
 	for i, want := range wantPool {
-		if rm.Pool[i].Provider != "opencode" || rm.Pool[i].Model != want {
-			t.Errorf("pool[%d] = %s/%s, want opencode/%s", i, rm.Pool[i].Provider, rm.Pool[i].Model, want)
+		if rm.Pool[i].Provider != want[0] || rm.Pool[i].Model != want[1] {
+			t.Errorf("pool[%d] = %s/%s, want %s/%s", i, rm.Pool[i].Provider, rm.Pool[i].Model, want[0], want[1])
 		}
 	}
 	// Fallback Pareto : un seul membre, apres le pool, label du catalogue.

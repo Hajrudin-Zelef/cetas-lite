@@ -11,6 +11,7 @@ import { loadVaultPanel } from "./vault.js";
 import { loadSelectorPanel, loadAgentSelectorPanel } from "./model-selector.js";
 import { loadDeepThinkPanel } from "./deepthink.js";
 import { loadAgenticPanel } from "./agentic-panel.js";
+import { loadCreditsPanel } from "./credits-panel.js";
 
 const PROMPTS_KEY = "cetas-lite-prompts";
 
@@ -67,6 +68,8 @@ function initConfigModal() {
       if (tab.dataset.tab === "selector") loadSelectorPanel();
       // Onglet Sélecteur agent : idem, dédié aux familles agent.
       if (tab.dataset.tab === "selector-agent") loadAgentSelectorPanel();
+      // Onglet Crédit API : suivi du crédit restant par provider.
+      if (tab.dataset.tab === "credits") loadCreditsPanel();
       // Onglet Agentic : style de rendu de la vue Agents (Harness/OpenCode).
       if (tab.dataset.tab === "agentic") loadAgenticPanel();
       // Onglet DeepThink Global : langue + modèle de traduction du raisonnement.

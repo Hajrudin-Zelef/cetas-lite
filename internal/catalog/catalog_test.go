@@ -4,14 +4,14 @@ import "testing"
 
 func TestCatalogCounts(t *testing.T) {
 	models := Models()
-	if len(models) != 66 {
-		t.Fatalf("catalogue = %d modeles, want 66", len(models))
+	if len(models) != 75 {
+		t.Fatalf("catalogue = %d modeles, want 75", len(models))
 	}
 	counts := map[string]int{}
 	for _, m := range models {
 		counts[m.Editeur]++
 	}
-	want := map[string]int{"deepseek": 3, "opencode": 14, "opencode-go": 8, "openrouter": 41}
+	want := map[string]int{"deepseek": 3, "opencode": 14, "opencode-go": 17, "openrouter": 41}
 	for ed, n := range want {
 		if counts[ed] != n {
 			t.Errorf("%s = %d, want %d", ed, counts[ed], n)

@@ -2114,3 +2114,46 @@ body.dark #chat-container .agent-status {
 #marex-view.ac-opencode .diff-ctx {
   color: #6a6a6a;
 }
+
+/* --- Panneau Crédit API (Paramètres) --- */
+.credit-row {
+  border: 1px solid var(--mx-border, #e0e0e0);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 12px;
+  align-items: center;
+}
+.credit-row.credit-exhausted {
+  border-color: #d33;
+  background: rgba(221, 51, 51, 0.06);
+}
+.credit-label { font-weight: 600; }
+.credit-value { font-size: 1.2em; font-weight: 700; grid-column: 2; grid-row: 1; }
+.credit-edit { grid-column: 1 / -1; display: flex; gap: 8px; align-items: center; }
+.credit-edit input { width: 160px; }
+.credit-badge {
+  display: inline-block;
+  font-size: 0.75em;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.credit-badge-ok { background: #1a7f37; color: #fff; }
+.credit-badge-bad { background: #d33; color: #fff; }
+.credit-badge-neutral { background: #888; color: #fff; }
+.credit-src { font-size: 0.8em; color: #888; font-weight: 400; }
+.credits-actions { margin-top: 12px; display: flex; gap: 10px; align-items: center; }
+/* --- Avertissement crédit épuisé (Sélecteur) --- */
+.credit-warn-banner {
+  border: 2px solid #d33;
+  background: rgba(221, 51, 51, 0.08);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  font-weight: 600;
+}

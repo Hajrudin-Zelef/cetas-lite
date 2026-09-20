@@ -703,6 +703,7 @@
             <button class="apikeys-tab active" data-tab="apimodeles">API et Modèles</button>
             <button class="apikeys-tab" data-tab="selector">Sélecteur de modèles</button>
             <button class="apikeys-tab" data-tab="selector-agent">Sélecteur agent</button>
+            <button class="apikeys-tab" data-tab="credits">Crédit API</button>
             <button class="apikeys-tab" data-tab="agentic">Agentic</button>
             <button class="apikeys-tab" data-tab="deepthink">DeepThink Global</button>
             <button class="apikeys-tab" data-tab="models">Fonctionnalités</button>
@@ -746,6 +747,18 @@
                 <p class="apikey-intro">Modèles utilisés par la <strong>vue Agents</strong>, par alias (Nano / N4 / N8) et par niveau (Flash / Standard / Elite) : <strong>1 modèle</strong> fixe ou <strong>Fallback</strong> (tirage aléatoire à chaque requête, puis bascule séquentielle en cas d'échec).</p>
                 <div class="apikeys-panel-body">
                     <div id="selector-agent-body"></div>
+                </div>
+            </div>
+            <!-- Panel Crédit API : suivi du crédit restant par provider -->
+            <div class="apikeys-panel" id="panel-credits">
+                <h3>Crédit API <span id="credits-save-state" class="ms-save-state"></span></h3>
+                <p class="apikey-intro">Renseignez votre <strong>crédit restant</strong> par provider. Si le crédit est <strong>épuisé</strong>, un avertissement clair s'affiche au moment de choisir un modèle — pas d'erreur silencieuse. OpenCode Zen/Go : <strong>saisie manuelle uniquement</strong> (pas d'endpoint public).</p>
+                <div class="apikeys-panel-body">
+                    <div id="credits-body"></div>
+                    <div class="credits-actions">
+                        <button type="button" class="config-save-btn" id="credits-refresh-btn">Actualiser OpenRouter / DeepSeek</button>
+                        <span id="credits-refresh-state" class="ms-save-state"></span>
+                    </div>
                 </div>
             </div>
             <!-- Panel Agentic : style de rendu de la vue Agents (Cetas non concerné) -->

@@ -10,6 +10,7 @@ import {
 } from "./agentic-style.js";
 import { logout } from "./auth.js";
 import { openDocs } from "./docs.js";
+import { confirmDialog } from "./dialogs.js";
 import {
   Projects,
   renderActiveTree,
@@ -573,6 +574,41 @@ export function initAgents() {
   // ---------------- menu niveau ----------------
   // Le composer choisit le NIVEAU (Flash / Standard / Elite). Le MODÈLE
   // de chaque niveau se choisit exclusivement dans Configuration →
+  // --- Crédit API : avertissement si épuisé ---
+  // provider (pool) -> provider (crédit).
+  const CREDIT_PROVIDER_MAP = {
+    "opencode": "opencode-zen",
+    "opencode-go": "opencode-go",
+    "openrouter": "openrouter",
+    "deepseek": "deepseek",
+  };
+  let creditCache = null;
+  let creditCacheAt = 0;
+  async function getCredits() {
+    // Cache 60 s pour ne pas spammer l'API à chaque ouverture du menu.
+    if (creditCache && Date.now() - creditCacheAt < 60000) return creditCache;
+    try {
+      creditCache = await api("/api/settings/credits");
+    } catch (e) {
+      creditCache = [];
+    }
+    creditCacheAt = Date.now();
+    return creditCache;
+  }
+  // true si tous les providers du pool du mode ont un crédit épuisé.
+  // Crédit non renseigné = pas d'avertissement (affiché simplement).
+  async function creditExhaustedForMode(famId, modeId) {
+    const fam = (families || []).find((f) => f.id === famId);
+    const mode = fam && (fam.modes || []).find((m) => m.mode === modeId);
+    const pool = (mode && mode.pool) || [];
+    const cps = [...new Set(pool.map((p) => CREDIT_PROVIDER_MAP[p.provider]).filter(Boolean))];
+    if (!cps.length) return false;
+    const credits = await getCredits();
+    const byId = {};
+    for (const c of credits) byId[c.provider] = c;
+    return cps.every((cp) => byId[cp] && byId[cp].exhausted);
+  }
+
   // Sélecteur agent : la description affiche le pool effectif.
   function buildModelMenu() {
     const menu = $("#mx-menu-model");
@@ -589,9 +625,22 @@ export function initAgents() {
     }
     menu.innerHTML = html || '<div class="sb-tree-empty">Aucun modèle agent disponible.</div>';
     menu.querySelectorAll(".cdrop-item[data-f]").forEach((it) => {
-      it.addEventListener("click", () => {
-        selFamily = it.dataset.f;
-        selMode = it.dataset.m;
+      it.addEventListener("click", async () => {
+        const f = it.dataset.f, m = it.dataset.m;
+        // Avertissement crédit épuisé : si tous les providers du pool du
+        // mode ont un crédit renseigné et épuisé, on prévient clairement
+        // au lieu de laisser l'échec silencieux.
+        if (await creditExhaustedForMode(f, m)) {
+          const ok = await confirmDialog(
+            "Crédit épuisé pour « " + modeLabel(f, m) + " ».\n" +
+            "Tous les providers de ce niveau ont un crédit à 0 — le modèle risque de ne pas répondre.\n" +
+            "Vérifiez Paramètres → Crédit API.",
+            { danger: true, okLabel: "Choisir quand même" }
+          );
+          if (!ok) return;
+        }
+        selFamily = f;
+        selMode = m;
         LS.set("family", selFamily);
         LS.set("mode", selMode);
         $("#mx-label-model").textContent = modeLabel(selFamily, selMode);
