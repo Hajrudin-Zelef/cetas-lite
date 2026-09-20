@@ -458,8 +458,12 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 		}
 		if !d.approved {
 			st.denied[key] = true
-			out = ToolResult{Text: "[refuse] l'utilisateur a refuse l'execution de " + tc.Function.Name +
-				". Propose une alternative ou demande des precisions au lieu de reessayer a l'identique."}
+			msg := "[refuse] l'utilisateur a refuse l'execution de " + tc.Function.Name + "."
+			if strings.TrimSpace(d.comment) != "" {
+				msg += " Indication de l'utilisateur : " + strings.TrimSpace(d.comment) + "."
+			}
+			msg += " Propose une alternative ou demande des precisions au lieu de reessayer a l'identique."
+			out = ToolResult{Text: msg}
 			break
 		}
 		out, followup = reg.execute(ctx, env, tc.Function.Name, tc.Function.Arguments)

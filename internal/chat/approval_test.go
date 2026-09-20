@@ -97,10 +97,10 @@ func TestApprovalRequestResolve(t *testing.T) {
 	if id == "" {
 		t.Fatal("aucune demande d'approbation")
 	}
-	if c.ResolveApproval("inconnu", true, false) {
+	if c.ResolveApproval("inconnu", true, false, "") {
 		t.Fatal("resolve d'un id inconnu devrait echouer")
 	}
-	if !c.ResolveApproval(id, true, true) {
+	if !c.ResolveApproval(id, true, true, "") {
 		t.Fatal("resolve a echoue")
 	}
 	select {
@@ -176,7 +176,7 @@ func autoResolveApprovals(t *testing.T, c *Conversation, approved bool, stop <-c
 			}
 			c.mu.Unlock()
 			for _, id := range ids {
-				c.ResolveApproval(id, approved, false)
+				c.ResolveApproval(id, approved, false, "")
 			}
 			time.Sleep(5 * time.Millisecond)
 		}
@@ -455,5 +455,54 @@ func TestBashSedInplaceRequiresApproval(t *testing.T) {
 	}
 	if !sawRefusal {
 		t.Fatal("le refus d'approbation aurait du etre transmis au modele")
+	}
+}
+
+// TestToolApprovalDeniedComment : le commentaire saisi lors d'un refus
+// ("que faire différemment ?") doit parvenir à l'agent dans le message
+// [refuse] (phase 2 refonte).
+func TestToolApprovalDeniedComment(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
+		{toolCalls: []provider.ToolCall{toolCall("1", "Write", `{"file_path": "x.go", "content": "y"}`)}},
+		{content: "J'ai compris, je propose autre chose."},
+	}}
+	e := newAgentEngine(t, sp, codeFamily(alias.Member{Provider: "fake", Model: "m"}))
+	c := e.Conversation("sam")
+	stop := make(chan struct{})
+	defer close(stop)
+	// Résout les demandes en attente avec un refus commenté.
+	go func() {
+		for {
+			select {
+			case <-stop:
+				return
+			default:
+			}
+			c.mu.Lock()
+			var ids []string
+			for id := range c.approvals {
+				ids = append(ids, id)
+			}
+			c.mu.Unlock()
+			for _, id := range ids {
+				c.ResolveApproval(id, false, false, "utilise Edit plutôt que Write")
+			}
+			time.Sleep(5 * time.Millisecond)
+		}
+	}()
+
+	if err := c.StartTurn(TurnInput{Family: "code", Mode: "standard", Text: "ecris un fichier", Approve: true, User: "sam", AgentMode: true}); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+
+	var sawComment bool
+	for _, r := range toolResults(c) {
+		if strings.Contains(r, "[refuse]") && strings.Contains(r, "utilise Edit plutôt que Write") {
+			sawComment = true
+		}
+	}
+	if !sawComment {
+		t.Fatal("le commentaire de refus aurait du etre transmis au modele dans [refuse]")
 	}
 }

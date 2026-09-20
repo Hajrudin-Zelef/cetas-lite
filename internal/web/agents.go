@@ -187,12 +187,13 @@ func (s *Server) handleAgentApprove(w http.ResponseWriter, r *http.Request) {
 		ID       string `json:"id"`
 		Approved bool   `json:"approved"`
 		Always   bool   `json:"always"`
+		Comment  string `json:"comment"`
 	}
 	if err := decodeJSON(r, &body); err != nil || body.ID == "" {
 		writeError(w, http.StatusBadRequest, "id requis")
 		return
 	}
-	if !s.engine.ResolveAgentApproval(claims.Username, r.PathValue("id"), body.ID, body.Approved, body.Always) {
+	if !s.engine.ResolveAgentApproval(claims.Username, r.PathValue("id"), body.ID, body.Approved, body.Always, body.Comment) {
 		writeError(w, http.StatusGone, "demande d'approbation introuvable ou expiree")
 		return
 	}

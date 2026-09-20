@@ -361,12 +361,12 @@ func (e *Engine) MessageAgent(user, id string, in TurnInput) error {
 }
 
 // ResolveAgentApproval transmet une decision d'approbation au run.
-func (e *Engine) ResolveAgentApproval(user, agentID, approvalID string, approved, always bool) bool {
+func (e *Engine) ResolveAgentApproval(user, agentID, approvalID string, approved, always bool, comment string) bool {
 	r := e.GetAgent(user, agentID)
 	if r == nil {
 		return false
 	}
-	return r.conv.ResolveApproval(approvalID, approved, always)
+	return r.conv.ResolveApproval(approvalID, approved, always, comment)
 }
 
 // DeleteAgent arrete le run, supprime son worktree et ses donnees.

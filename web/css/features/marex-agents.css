@@ -52,18 +52,11 @@ body.mx-open #sidebar-toggle{ display:none !important; }
    les variables globales du thème de l'app sont épinglés à la palette
    sombre de la vue, pour ne jamais apparaître blancs sur fond noir quand
    l'app est en thème clair. */
-#marex-view .msg-tool,
-#marex-view .msg-approval{ background:#1b1c21; border-color:#2a2b31; }
+#marex-view .msg-tool{ background:#1b1c21; border-color:#2a2b31; }
 #marex-view .msg-tool summary{ color:#9a9ba3; }
-#marex-view .msg-tool .tool-name,
-#marex-view .msg-approval .approval-title{ color:#f2f2f4; }
+#marex-view .msg-tool .tool-name{ color:#f2f2f4; }
 #marex-view .msg-tool .tool-hint,
-#marex-view .msg-tool .tool-result,
-#marex-view .msg-approval .approval-hint,
-#marex-view .msg-approval .approval-status{ color:#9a9ba3; }
-#marex-view .msg-approval .approval-plan{ background:rgba(255,255,255,0.04); color:#9a9ba3; }
-#marex-view .msg-approval .approval-args pre{ color:#c9cad1; }
-#marex-view .msg-approval .approval-actions button{ background:#1f2024; border-color:#2e2f35; color:#f2f2f4; }
+#marex-view .msg-tool .tool-result{ color:#9a9ba3; }
 #marex-view .thinking-block{ background:#15161b; border-color:#25262b; }
 #marex-view .thinking-block .thinking-content{ color:#9a9ba3; }
 
@@ -2056,4 +2049,159 @@ body.mx-open #sidebar-toggle{ display:none !important; }
   #marex-view .msg-tool.running summary::after,
   #marex-view .todo-checklist-item.todo-in_progress .todo-checklist-box,
   #marex-view .todo-checklist-fill{ animation:none;transition:none; }
+}
+
+/* ============================================================
+   PHASE 2 REFONTE (2026-09-20) — cartes d'approbation premium.
+   Identiques pour les 3 styles (Harness / OpenCode / Codex).
+   Scopé #marex-view ; le chat général n'émet jamais d'approbations.
+   ============================================================ */
+#marex-view .msg-approval.ap2{
+  max-width:640px;
+  margin:10px auto;
+  background:#141519;
+  border:1px solid rgba(210,153,34,.45);
+  border-radius:16px;
+  box-shadow:0 8px 28px rgba(0,0,0,.45), 0 0 0 1px rgba(210,153,34,.08);
+  padding:0;
+  overflow:hidden;
+}
+/* Bandeau d'attente. */
+#marex-view .ap2-banner{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px;
+  background:rgba(210,153,34,.10);
+  border-bottom:1px solid rgba(210,153,34,.25);
+  font-size:12px;font-weight:600;color:#e3b341;
+  letter-spacing:.02em;
+}
+#marex-view .ap2-dot{
+  width:8px;height:8px;border-radius:50%;flex:none;
+  background:#e3b341;
+  animation:p1-pulse 1.6s ease-in-out infinite;
+}
+@keyframes p1-pulse{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.45; transform:scale(.8); }
+}
+#marex-view .ap2-banner.is-ok{ background:rgba(63,185,80,.10); border-bottom-color:rgba(63,185,80,.30); }
+#marex-view .ap2-banner.is-ok .ap2-dot{ background:#3fb950; animation:none; }
+#marex-view .ap2-banner.is-ok .ap2-banner-text{ color:#3fb950; }
+#marex-view .ap2-banner.is-denied{ background:rgba(248,81,73,.10); border-bottom-color:rgba(248,81,73,.30); }
+#marex-view .ap2-banner.is-denied .ap2-dot{ background:#f85149; animation:none; }
+#marex-view .ap2-banner.is-denied .ap2-banner-text{ color:#f85149; }
+#marex-view .ap2-banner.is-timeout{ background:rgba(154,155,163,.10); border-bottom-color:rgba(154,155,163,.25); }
+#marex-view .ap2-banner.is-timeout .ap2-dot{ background:#9a9ba3; animation:none; }
+#marex-view .ap2-banner.is-timeout .ap2-banner-text{ color:#9a9ba3; }
+/* Headline : question d'action. */
+#marex-view .ap2-headline{
+  padding:14px 18px 4px;
+  font-size:15px;font-weight:700;color:#f2f2f4;
+}
+/* Ligne d'identité outil. */
+#marex-view .ap2-tool{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 18px 0;
+  font-size:13px;
+}
+#marex-view .ap2-tool .tool-glyph{ color:#9a9ba3; }
+#marex-view .ap2-tool .tool-name{ color:#f2f2f4;font-weight:600; }
+#marex-view .ap2-tool-arg{
+  font-family:var(--p1-mono);font-size:12px;color:#9a9ba3;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+/* Détail structuré. */
+#marex-view .ap2-detail{ padding:10px 18px 2px; }
+#marex-view .ap2-kv{
+  display:flex;gap:10px;align-items:baseline;
+  padding:3px 0;font-size:13px;
+}
+#marex-view .ap2-k{
+  flex:none;min-width:110px;
+  font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:#5c5d66;
+}
+#marex-view .ap2-v{ color:#c9cad1; overflow-wrap:anywhere; }
+#marex-view .ap2-codeblock{ margin:6px 0; }
+#marex-view .ap2-code{
+  font-family:var(--p1-mono);font-size:12px;color:#c9cad1;
+  background:rgba(255,255,255,.03);
+  border:1px solid #232428;border-radius:8px;
+  padding:8px 10px;margin:4px 0 0;
+  max-height:220px;overflow:auto;
+  white-space:pre-wrap;overflow-wrap:anywhere;
+}
+#marex-view .ap2-plan{
+  font-size:13px;color:#c9cad1;
+  background:rgba(255,255,255,.03);
+  border:1px solid #232428;border-radius:8px;
+  padding:10px 12px;margin:10px 18px 2px;
+  max-height:260px;overflow:auto;
+  white-space:pre-wrap;overflow-wrap:anywhere;
+}
+/* Zone de refus. */
+#marex-view .ap2-denybox{ padding:10px 18px 0; }
+#marex-view .ap2-deny-label{
+  display:block;font-size:12px;font-weight:600;color:#f2f2f4;margin-bottom:6px;
+}
+#marex-view .ap2-deny-input{
+  width:100%;box-sizing:border-box;resize:vertical;
+  background:#0e0f12;color:#f2f2f4;
+  border:1px solid #2e2f35;border-radius:8px;
+  padding:8px 10px;font-size:13px;font-family:inherit;
+}
+#marex-view .ap2-deny-input:focus{ outline:none;border-color:#f85149; }
+/* Statut + actions à droite. */
+#marex-view .ap2-status{
+  padding:8px 18px 0;font-size:12px;color:#9a9ba3;min-height:4px;
+}
+#marex-view .ap2-status.is-ok{ color:#3fb950;font-weight:600; }
+#marex-view .ap2-status.is-denied{ color:#f85149;font-weight:600; }
+#marex-view .ap2-status.is-timeout{ color:#9a9ba3; }
+#marex-view .ap2-actions{
+  display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;
+  padding:10px 18px 16px;
+}
+#marex-view .ap2-btn{
+  padding:7px 14px;border-radius:9px;font-size:13px;font-weight:600;
+  cursor:pointer;border:1px solid transparent;
+  transition:background .15s,border-color .15s,opacity .15s;
+}
+#marex-view .ap2-btn:disabled{ opacity:.45;cursor:default; }
+#marex-view .ap2-btn-approve{
+  background:#238636;border-color:#238636;color:#fff;
+}
+#marex-view .ap2-btn-approve:hover:not(:disabled){ background:#2ea043; }
+#marex-view .ap2-btn-always{
+  background:transparent;border-color:#2e2f35;color:#c9cad1;
+}
+#marex-view .ap2-btn-always:hover:not(:disabled){ border-color:#9a9ba3;color:#f2f2f4; }
+#marex-view .ap2-btn-deny{
+  background:transparent;border-color:#2e2f35;color:#c9cad1;
+}
+#marex-view .ap2-btn-deny:hover:not(:disabled){
+  border-color:#f85149;color:#f85149;background:rgba(248,81,73,.08);
+}
+#marex-view .ap2-btn-deny-solid{
+  background:#da3633;border-color:#da3633;color:#fff;
+}
+#marex-view .ap2-btn-deny-solid:hover:not(:disabled){ background:#f85149; }
+#marex-view .ap2-btn-ghost{
+  background:transparent;border-color:transparent;color:#9a9ba3;
+}
+#marex-view .ap2-btn-ghost:hover:not(:disabled){ color:#f2f2f4; }
+/* Carte figée après décision. */
+#marex-view .msg-approval.ap2[data-resolved="1"]{ opacity:.82; }
+/* Trace persistante dans le fil. */
+#marex-view .ap2-trace{
+  max-width:640px;margin:2px auto 10px;
+  font-size:12px;color:#9a9ba3;
+  padding:0 18px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+#marex-view .ap2-trace.is-ok{ color:#3fb950; }
+#marex-view .ap2-trace.is-denied{ color:#f85149; }
+@media (prefers-reduced-motion: reduce){
+  #marex-view .ap2-dot{ animation:none; }
+  #marex-view .ap2-btn{ transition:none; }
 }

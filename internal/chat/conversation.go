@@ -545,6 +545,9 @@ type ApprovalRequest struct {
 type approvalDecision struct {
 	approved bool
 	always   bool
+	// comment est l'indication libre saisie par l'utilisateur lors d'un
+	// refus ("que faire différemment ?"), transmise à l'agent.
+	comment string
 }
 
 const approvalTimeout = 10 * time.Minute
@@ -592,7 +595,7 @@ func (c *Conversation) RequestApproval(ctx context.Context, epoch int, req Appro
 }
 
 // ResolveApproval transmet la decision de l'utilisateur a une demande en attente.
-func (c *Conversation) ResolveApproval(id string, approved, always bool) bool {
+func (c *Conversation) ResolveApproval(id string, approved, always bool, comment string) bool {
 	c.mu.Lock()
 	ch, ok := c.approvals[id]
 	c.mu.Unlock()
@@ -600,7 +603,7 @@ func (c *Conversation) ResolveApproval(id string, approved, always bool) bool {
 		return false
 	}
 	select {
-	case ch <- approvalDecision{approved: approved, always: always}:
+	case ch <- approvalDecision{approved: approved, always: always, comment: comment}:
 		return true
 	default:
 		return false

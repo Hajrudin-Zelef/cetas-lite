@@ -99,6 +99,150 @@ function toolGlyph(name) {
   }
 }
 
+// Phase 2 refonte — cartes d'approbation premium : question d'action par
+// outil (le serveur n'envoie pas de "raison du modèle", la headline décrit
+// donc l'action demandée de façon explicite).
+function approvalHeadline(kind, tool) {
+  if (kind === "plan") return "Valider ce plan ?";
+  switch (tool) {
+    case "Bash":
+    case "RunScript":
+      return "Exécuter cette commande ?";
+    case "Write":
+      return "Écrire ce fichier ?";
+    case "Edit":
+      return "Modifier ce fichier ?";
+    case "Mkdir":
+      return "Créer ce dossier ?";
+    case "Mv":
+      return "Déplacer ce fichier ?";
+    case "Curl":
+      return "Appeler cette URL ?";
+    case "Sed":
+    case "Awk":
+      return "Appliquer cette transformation ?";
+    case "GitHubRepoCreate":
+      return "Créer ce dépôt GitHub ?";
+    case "GitHubIssueCreate":
+      return "Créer cette issue GitHub ?";
+    case "GitHubIssueComment":
+      return "Publier ce commentaire GitHub ?";
+    case "GitHubPRCreate":
+      return "Créer cette pull request ?";
+    case "GitHubPRMerge":
+      return "Fusionner cette pull request ?";
+    default:
+      return "Autoriser cet outil ?";
+  }
+}
+
+// Phase 2 refonte : détail d'approbation structuré par outil — jamais de
+// JSON brut. Lignes clé/valeur et blocs mono bornés.
+function approvalDetail(tool, args) {
+  const box = el("div", "ap2-detail");
+  const s = (v) => (v === undefined || v === null ? "" : String(v));
+  const row = (label, value) => {
+    if (!value) return;
+    const r = el("div", "ap2-kv");
+    r.appendChild(el("span", "ap2-k", label));
+    r.appendChild(el("span", "ap2-v", value));
+    box.appendChild(r);
+  };
+  const code = (label, text, maxLines) => {
+    if (!text) return;
+    const lines = text.split("\n");
+    const shown = maxLines && lines.length > maxLines
+      ? lines.slice(0, maxLines).join("\n") + "\n… (" + lines.length + " lignes au total)"
+      : text;
+    const w = el("div", "ap2-codeblock");
+    if (label) w.appendChild(el("div", "ap2-k", label));
+    const pre = el("pre", "ap2-code");
+    pre.textContent = shown;
+    w.appendChild(pre);
+    box.appendChild(w);
+  };
+  const repo = [s(args.owner), s(args.repo)].filter(Boolean).join("/");
+  switch (tool) {
+    case "Bash":
+      code("Commande", s(args.command));
+      if (args.timeout) row("Timeout", s(args.timeout) + " s");
+      break;
+    case "RunScript":
+      row("Langage", s(args.language));
+      code("Script", s(args.code), 30);
+      break;
+    case "Write":
+      row("Fichier", s(args.file_path));
+      code("Contenu", s(args.content), 30);
+      break;
+    case "Edit":
+      row("Fichier", s(args.file_path));
+      code("Remplacer", s(args.old), 12);
+      code("Par", s(args.new), 12);
+      break;
+    case "Mkdir":
+      row("Dossier", s(args.path));
+      break;
+    case "Mv":
+      row("Source", s(args.src));
+      row("Destination", s(args.dst));
+      if (args.overwrite === true || s(args.overwrite) === "true") row("Écrasement", "autorisé");
+      break;
+    case "Sed":
+      row("Expression", s(args.expression));
+      if (args.file) row("Fichier", s(args.file));
+      if (args.in_place === true || s(args.in_place) === "true") row("Mode", "modification sur place");
+      break;
+    case "Awk":
+      code("Programme", s(args.program), 20);
+      if (args.file) row("Fichier", s(args.file));
+      break;
+    case "Curl":
+      row("Méthode", s(args.method) || "GET");
+      row("URL", s(args.url));
+      if (args.body) code("Corps", s(args.body), 15);
+      break;
+    case "GitHubRepoCreate":
+      row("Dépôt", s(args.name));
+      if (args.description) row("Description", s(args.description));
+      row("Visibilité", s(args.private) === "false" ? "public" : "privé");
+      break;
+    case "GitHubIssueCreate":
+      if (repo) row("Dépôt", repo);
+      row("Titre", s(args.title));
+      if (args.body) code("Contenu", s(args.body), 20);
+      break;
+    case "GitHubIssueComment":
+      if (repo) row("Dépôt", repo);
+      if (args.number) row("Numéro", s(args.number));
+      code("Commentaire", s(args.body), 20);
+      break;
+    case "GitHubPRCreate":
+      if (repo) row("Dépôt", repo);
+      row("Titre", s(args.title));
+      if (args.head) row("Branche", s(args.head) + (args.base ? " → " + s(args.base) : ""));
+      if (args.body) code("Description", s(args.body), 20);
+      break;
+    case "GitHubPRMerge":
+      if (repo) row("Dépôt", repo);
+      if (args.number) row("Numéro", s(args.number));
+      row("Méthode", s(args.merge_method) || "merge");
+      break;
+    default: {
+      // Repli générique : lignes clé/valeur (jamais de JSON brut).
+      const keys = Object.keys(args || {}).filter(
+        (k) => args[k] !== undefined && args[k] !== null && typeof args[k] !== "object"
+      );
+      for (const k of keys.slice(0, 12)) {
+        const v = s(args[k]);
+        row(k, v.length > 300 ? v.slice(0, 300) + "…" : v);
+      }
+      break;
+    }
+  }
+  return box;
+}
+
 // Libellé de statut façon OpenCode selon l'outil : "Writing command"
 // quand l'agent écrit une commande, "Preparing edit" quand il prépare une
 // modification. null = aucun statut particulier.
@@ -1455,27 +1599,41 @@ export class ThreadView {
     return "";
   }
 
-  async decideApproval(id, approved, always) {
+  async decideApproval(id, approved, always, comment) {
     if (!this.approveURL) return;
     // F5 : feedback immédiat — on désactive les boutons dès le clic pour
     // éviter les doubles décisions, avec un état "Envoi…" visible.
     const card = this.approvalCards.get(id);
     if (card && card.dataset.sending === "1") return; // déjà en cours d'envoi
+    const premium = !!card && card.classList.contains("ap2");
     let status = null;
+    let bannerText = null;
     if (card) {
       card.dataset.sending = "1";
       card.querySelectorAll("button").forEach((b) => { b.disabled = true; });
-      status = card.querySelector(".approval-status");
+      status = card.querySelector(premium ? ".ap2-status" : ".approval-status");
       if (status) status.textContent = "Envoi…";
+      if (premium) {
+        bannerText = card.querySelector(".ap2-banner-text");
+        if (bannerText) bannerText.textContent = "Envoi de la décision…";
+        // Mémorise la décision pour la trace persistante (construite à la
+        // réception de l'événement "resolved").
+        card._ap2 = card._ap2 || {};
+        card._ap2.decision = { approved: !!approved, always: !!always, comment: comment || "" };
+      }
     }
     try {
-      await api(this.approveURL, { method: "POST", body: { id, approved, always: !!always } });
+      await api(this.approveURL, {
+        method: "POST",
+        body: { id, approved, always: !!always, comment: comment || "" },
+      });
     } catch (e) {
       // Échec : on réarme les boutons pour permettre un nouvel essai.
       if (card) {
         delete card.dataset.sending;
         card.querySelectorAll("button").forEach((b) => { b.disabled = false; });
-        if (status) status.textContent = "En attente de ta décision…";
+        if (status) status.textContent = premium ? "" : "En attente de ta décision…";
+        if (bannerText) bannerText.textContent = "En attente de décision";
       }
       this.addError("Approbation : " + e.message);
     }
@@ -1487,14 +1645,74 @@ export class ThreadView {
     card.setAttribute("data-resolved", "1");
     const btns = card.querySelectorAll("button");
     btns.forEach((b) => { b.disabled = true; });
-    const status = card.querySelector(".approval-status");
+    // Chat général : comportement historique strictement inchangé.
+    if (!card.classList.contains("ap2")) {
+      const status = card.querySelector(".approval-status");
+      if (status) {
+        status.textContent = timeout ? "Expirée (10 min sans réponse)" : approved ? "Approuvé" : "Refusé";
+        status.classList.add(approved && !timeout ? "approved" : "denied");
+      }
+      this.requestFollow();
+      return;
+    }
+    const denyBox = card.querySelector(".ap2-denybox");
+    if (denyBox) denyBox.hidden = true;
+    const info = card._ap2 || {};
+    const tool = info.tool || "";
+    const arg = info.arg || "";
+    const dec = info.decision || {};
+    // Trace persistante dans le fil : "✔ Approuvé · Edit · src/app.js".
+    let trace, traceCls, bannerLabel;
+    if (timeout) {
+      trace = "⌛ Approbation expirée (10 min sans réponse)";
+      traceCls = "is-timeout";
+      bannerLabel = "Expirée";
+    } else if (approved) {
+      trace = dec.always ? "✔ Toujours approuver (ce tour)" : "✔ Approuvé";
+      traceCls = "is-ok";
+      bannerLabel = "Décision enregistrée";
+    } else {
+      trace = "✖ Refusé";
+      traceCls = "is-denied";
+      bannerLabel = "Décision enregistrée";
+      if (dec.comment) trace += " — " + dec.comment;
+    }
+    if (tool) trace += " · " + tool;
+    if (arg) trace += " · " + arg;
+    const banner = card.querySelector(".ap2-banner");
+    if (banner) banner.classList.add(traceCls);
+    const dot = card.querySelector(".ap2-dot");
+    if (dot) dot.classList.add(traceCls);
+    const bannerText = card.querySelector(".ap2-banner-text");
+    if (bannerText) bannerText.textContent = bannerLabel;
+    const status = card.querySelector(".ap2-status");
     if (status) {
-      status.textContent = timeout ? "Expirée (10 min sans réponse)" : approved ? "Approuvé" : "Refusé";
-      status.classList.add(approved && !timeout ? "approved" : "denied");
+      status.textContent = timeout
+        ? "Expirée (10 min sans réponse)"
+        : approved ? (dec.always ? "Toujours approuver (ce tour)" : "Approuvé") : "Refusé";
+      status.classList.add(traceCls);
+    }
+    // La trace suit la carte dans le fil et survit au reset (cartes
+    // résolues retirées, trace conservée comme les autres messages).
+    const line = el("div", "ap2-trace " + traceCls, trace);
+    const parent = card.parentNode;
+    if (parent) {
+      const kids = parent.children;
+      let idx = -1;
+      for (let i = 0; i < kids.length; i++) {
+        if (kids[i] === card) { idx = i; break; }
+      }
+      parent.insertBefore(line, idx >= 0 && idx + 1 < kids.length ? kids[idx + 1] : null);
     }
     this.requestFollow();
   }
 
+  // Phase 2 refonte : carte d'approbation premium (vue Agents uniquement).
+  // Identique pour les 3 styles (Harness / OpenCode / Codex) : bandeau
+  // d'attente ambré, headline = question d'action, ligne d'identité outil
+  // (glyphe + nom + argument clé), détail structuré par outil (jamais de
+  // JSON brut), actions à droite, champ de commentaire au refus, trace
+  // persistante après décision.
   addApproval(ev) {
     const id = ev.id;
     if (ev.phase === "resolved") {
@@ -1502,6 +1720,110 @@ export class ThreadView {
       return;
     }
     if (ev.phase !== "request" || !id || this.approvalCards.has(id)) return;
+    // Chat général : carte historique strictement inchangée
+    // (hors périmètre de la refonte, préservation du comportement).
+    if (!this.agentic) {
+      this.addApprovalLegacy(ev);
+      return;
+    }
+    this.clearEmpty();
+    this.hideWait();
+    const isPlan = ev.kind === "plan";
+    const tool = ev.tool || "";
+    const args = ev.args && typeof ev.args === "object" ? ev.args : {};
+    const keyArg = isPlan ? "" : this.summarizeApprovalArgs(tool, args);
+
+    const card = el("div", "msg-approval ap2");
+    card._ap2 = { tool: isPlan ? "Plan" : tool, arg: keyArg };
+
+    // Bandeau d'attente : pastille pulsante + libellé.
+    const banner = el("div", "ap2-banner");
+    banner.appendChild(el("span", "ap2-dot"));
+    banner.appendChild(el("span", "ap2-banner-text", "En attente de décision"));
+    card.appendChild(banner);
+
+    // Headline : la question d'action.
+    card.appendChild(el("div", "ap2-headline", approvalHeadline(ev.kind, tool)));
+
+    // Ligne d'identité de l'outil.
+    if (!isPlan && tool) {
+      const ident = el("div", "ap2-tool");
+      ident.appendChild(el("span", "tool-glyph", toolGlyph(tool)));
+      ident.appendChild(el("span", "tool-name", tool));
+      if (keyArg) ident.appendChild(el("span", "ap2-tool-arg", keyArg));
+      card.appendChild(ident);
+    }
+
+    // Détail structuré (plan : texte borné).
+    if (isPlan && ev.plan) {
+      const pre = el("pre", "ap2-plan");
+      pre.textContent = String(ev.plan).slice(0, 4000);
+      card.appendChild(pre);
+    } else if (!isPlan) {
+      card.appendChild(approvalDetail(tool, args));
+    }
+
+    // Zone de refus : révélée au clic sur "Refuser".
+    const denyBox = el("div", "ap2-denybox");
+    denyBox.hidden = true;
+    denyBox.appendChild(el("label", "ap2-deny-label", "Que faire différemment ?"));
+    const denyInput = el("textarea", "ap2-deny-input");
+    denyInput.placeholder = "Ex. : utilise npm plutôt que yarn… (optionnel)";
+    denyInput.rows = 2;
+    denyBox.appendChild(denyInput);
+    card.appendChild(denyBox);
+
+    const status = el("div", "ap2-status", "");
+    card.appendChild(status);
+
+    // Actions à droite : Refuser (outline) / Toujours ce tour / Approuver.
+    const row = el("div", "ap2-actions");
+    const btnDeny = el("button", "ap2-btn ap2-btn-deny", "Refuser");
+    const btnAlways = el("button", "ap2-btn ap2-btn-always", "Toujours ce tour");
+    const btnApprove = el("button", "ap2-btn ap2-btn-approve", isPlan ? "Valider le plan" : "Approuver");
+    const btnCancelDeny = el("button", "ap2-btn ap2-btn-ghost", "Annuler");
+    btnCancelDeny.hidden = true;
+    const btnConfirmDeny = el("button", "ap2-btn ap2-btn-deny-solid", "Confirmer le refus");
+    btnConfirmDeny.hidden = true;
+
+    btnDeny.addEventListener("click", () => {
+      denyBox.hidden = false;
+      btnDeny.hidden = true;
+      btnApprove.hidden = true;
+      btnAlways.hidden = true;
+      btnCancelDeny.hidden = false;
+      btnConfirmDeny.hidden = false;
+      if (typeof denyInput.focus === "function") denyInput.focus();
+    });
+    btnCancelDeny.addEventListener("click", () => {
+      denyBox.hidden = true;
+      btnDeny.hidden = false;
+      btnApprove.hidden = false;
+      btnAlways.hidden = false;
+      btnCancelDeny.hidden = true;
+      btnConfirmDeny.hidden = true;
+    });
+    btnApprove.addEventListener("click", () => this.decideApproval(id, true, false, ""));
+    if (!isPlan) btnAlways.addEventListener("click", () => this.decideApproval(id, true, true, ""));
+    btnConfirmDeny.addEventListener("click", () =>
+      this.decideApproval(id, false, false, denyInput.value.trim()));
+    row.appendChild(btnDeny);
+    row.appendChild(btnCancelDeny);
+    if (!isPlan) row.appendChild(btnAlways);
+    row.appendChild(btnApprove);
+    row.appendChild(btnConfirmDeny);
+    card.appendChild(row);
+
+    this.log.appendChild(card);
+    this.approvalCards.set(id, card);
+    this.finalizeAssistant();
+    this.toBottom();
+  }
+
+  // Carte d'approbation historique du chat général — strictement inchangée
+  // (phase 2 refonte : périmètre = module Agents uniquement).
+  addApprovalLegacy(ev) {
+    const id = ev.id;
     this.clearEmpty();
     this.hideWait();
     const card = el("div", "msg-approval");
@@ -1541,14 +1863,14 @@ export class ThreadView {
     card.appendChild(status);
     const row = el("div", "approval-actions");
     const btnApprove = el("button", "btn-approve", isPlan ? "Valider le plan" : "Approuver");
-    btnApprove.addEventListener("click", () => this.decideApproval(id, true, false));
+    btnApprove.addEventListener("click", () => this.decideApproval(id, true, false, ""));
     const btnDeny = el("button", "btn-deny", "Refuser");
-    btnDeny.addEventListener("click", () => this.decideApproval(id, false, false));
+    btnDeny.addEventListener("click", () => this.decideApproval(id, false, false, ""));
     row.appendChild(btnApprove);
     row.appendChild(btnDeny);
     if (!isPlan) {
       const btnAlways = el("button", "btn-always", "Toujours approuver (ce tour)");
-      btnAlways.addEventListener("click", () => this.decideApproval(id, true, true));
+      btnAlways.addEventListener("click", () => this.decideApproval(id, true, true, ""));
       row.appendChild(btnAlways);
     }
     card.appendChild(row);

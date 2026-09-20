@@ -103,12 +103,13 @@ func (s *Server) handleChatApprove(w http.ResponseWriter, r *http.Request) {
 		ID       string `json:"id"`
 		Approved bool   `json:"approved"`
 		Always   bool   `json:"always"`
+		Comment  string `json:"comment"`
 	}
 	if err := decodeJSON(r, &body); err != nil || body.ID == "" {
 		writeError(w, http.StatusBadRequest, "id requis")
 		return
 	}
-	ok := s.engine.Conversation(claims.Username).ResolveApproval(body.ID, body.Approved, body.Always)
+	ok := s.engine.Conversation(claims.Username).ResolveApproval(body.ID, body.Approved, body.Always, body.Comment)
 	if !ok {
 		writeError(w, http.StatusGone, "demande d'approbation introuvable ou expiree")
 		return
