@@ -1329,10 +1329,16 @@ export class ThreadView {
     if (det) det.classList.remove("running");
     // Fin d'exécution : le statut façon OpenCode disparaît.
     this.popAgentStatus(key);
-    // Fin d'une recherche web : l'indicateur laisse place au panneau Sources.
+    // Fin d'une recherche web : l'indicateur disparaît.
     const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
     const status = body.querySelector(".search-status");
     if (status) status.remove();
+    if (this.agentic && isSearch) {
+      // Vue Agents : pas de panneau Sources ni de sortie brute — seul le
+      // résumé du modèle reste visible dans le fil.
+      this.requestFollow();
+      return;
+    }
     if (isSearch && Array.isArray(ev.sources) && ev.sources.length) {
       body.appendChild(renderSources(ev.sources));
       this.requestFollow();
@@ -1430,8 +1436,9 @@ export class ThreadView {
     const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
     const status = body.querySelector(".search-status");
     if (status) status.remove();
-    if (isSearch && Array.isArray(ev.sources) && ev.sources.length) {
-      body.appendChild(renderSources(ev.sources));
+    if (isSearch) {
+      // Vue Agents (style Codex) : pas de panneau Sources ni de sortie
+      // brute — seul le résumé du modèle reste visible dans le fil.
       this.requestFollow();
       return;
     }
@@ -1506,8 +1513,9 @@ export class ThreadView {
     const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
     const status = body.querySelector(".search-status");
     if (status) status.remove();
-    if (isSearch && Array.isArray(ev.sources) && ev.sources.length) {
-      body.appendChild(renderSources(ev.sources));
+    if (isSearch) {
+      // Vue Agents (style OpenCode) : pas de panneau Sources ni de sortie
+      // brute — seul le résumé du modèle reste visible dans le fil.
       this.requestFollow();
       return;
     }
@@ -1617,6 +1625,12 @@ export class ThreadView {
     if (this.searchStatus) {
       this.searchStatus.remove();
       this.searchStatus = null;
+    }
+    if (this.agentic) {
+      // Vue Agents : pas de panneau Sources — seul le résumé du modèle
+      // reste visible dans le fil.
+      this.requestFollow();
+      return;
     }
     const srcs = Array.isArray(s.sources) ? s.sources : [];
     if (srcs.length) {
