@@ -149,3 +149,44 @@ test("css : le calque laisse passer les clics sauf sur les menus", () => {
 test("index.html charge mx-menus.css", () => {
   assert.ok(indexHtml.includes("/css/features/mx-menus.css"), "mx-menus.css lié");
 });
+
+// ---------------------------------------------------------------------------
+// 3. aria-hidden : le calque de menus ne doit jamais exposer un focus caché.
+// ---------------------------------------------------------------------------
+test("aria-hidden : masqué au repos, exposé à l'ouverture, re-masqué à la fermeture", () => {
+  const layer = $("#mx-menu-layer");
+  const btn = $("#mx-btn-perm");
+  assert.equal(layer.getAttribute("aria-hidden"), "true", "masqué au repos");
+  btn.click(); // ouvre
+  assert.equal(layer.getAttribute("aria-hidden"), "false", "exposé quand le menu est ouvert");
+  btn.click(); // referme
+  assert.equal(layer.getAttribute("aria-hidden"), "true", "re-masqué après fermeture");
+});
+
+test("aria-hidden : le focus est rendu au déclencheur quand on ferme au clavier", () => {
+  const layer = $("#mx-menu-layer");
+  const btn = $("#mx-btn-perm");
+  const menu = $("#mx-menu-perm");
+  btn.click(); // ouvre
+  const item = menu.querySelector(".cdrop-item");
+  assert.ok(item, "item de menu focusable présent");
+  item.focus();
+  assert.equal(document.activeElement, item, "focus sur l'item du menu");
+  document.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+  assert.ok(!menu.classList.contains("open"), "menu fermé");
+  assert.equal(layer.getAttribute("aria-hidden"), "true", "calque re-masqué");
+  assert.equal(document.activeElement, btn, "focus rendu au bouton déclencheur");
+});
+
+test("aria-hidden : le focus est rendu au déclencheur après sélection d'un item", () => {
+  const layer = $("#mx-menu-layer");
+  const btn = $("#mx-btn-perm");
+  const menu = $("#mx-menu-perm");
+  btn.click(); // ouvre
+  const item = menu.querySelector(".cdrop-item");
+  item.focus();
+  item.click(); // sélectionne -> closeAllDrops() dans le handler
+  assert.ok(!menu.classList.contains("open"), "menu fermé");
+  assert.equal(layer.getAttribute("aria-hidden"), "true", "calque re-masqué");
+  assert.equal(document.activeElement, btn, "focus rendu au bouton déclencheur");
+});

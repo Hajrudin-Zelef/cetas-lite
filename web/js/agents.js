@@ -446,10 +446,34 @@ export function initAgents() {
   // #marex-view) : .mx-composer a overflow:hidden (coins arrondis) qui
   // rognait les menus, et le positionnement vers le haut n'existait
   // que sous 600px. Le calque n'est rogné par aucun ancêtre.
+  // Correctif aria-hidden : le calque porte aria-hidden="true" au repos car
+  // ses menus contiennent des boutons focusables ; à l'ouverture on l'expose
+  // (aria-hidden="false"), et à la fermeture on rend le focus au bouton
+  // déclencheur avant de le re-masquer — sinon DevTools signale un focus
+  // conservé dans un sous-arbre aria-hidden.
+  let lastMenuBtn = null;
   function closeAllDrops() {
+    const hadOpen = view.querySelectorAll(".cdrop-menu.open").length > 0;
     view.querySelectorAll(".cdrop-menu.open").forEach((m) => m.classList.remove("open"));
     const um = $("#mx-user-menu");
+    const umOpen = !!um && um.classList.contains("open");
     if (um) um.classList.remove("open");
+    const layer = $("#mx-menu-layer");
+    if (layer) {
+      const ae = document.activeElement;
+      const triggerGone = !lastMenuBtn || !document.contains(lastMenuBtn);
+      if (layer.contains(ae)) {
+        // Le focus est resté sur un item de menu : le rendre au déclencheur
+        // avant de re-masquer le calque.
+        if (!triggerGone) lastMenuBtn.focus();
+        else ae.blur();
+      } else if ((hadOpen || umOpen) && !triggerGone && (!ae || ae === document.body || !document.contains(ae))) {
+        // Le nœud focusé a été détruit (le menu est re-rendu à la sélection
+        // d'un item) : le focus est retombé sur body — le rendre au déclencheur.
+        lastMenuBtn.focus();
+      }
+      layer.setAttribute("aria-hidden", "true");
+    }
   }
   document.addEventListener("click", (e) => {
     if (opened && !e.target.closest(".cdrop") && !e.target.closest(".mx-menu-layer")) closeAllDrops();
@@ -471,6 +495,9 @@ export function initAgents() {
   function placeMenu(btn, menu) {
     const layer = $("#mx-menu-layer");
     if (menu.parentElement !== layer) layer.appendChild(menu);
+    lastMenuBtn = btn;
+    // Le calque contient désormais du contenu interactif visible.
+    layer.setAttribute("aria-hidden", "false");
     menu.classList.add("open");
     const viewRect = view.getBoundingClientRect();
     const r = btn.getBoundingClientRect();
