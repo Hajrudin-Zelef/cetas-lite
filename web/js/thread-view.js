@@ -15,7 +15,7 @@ import {
 } from "./reasoning-panel.js";
 import { setTurnStats } from "./turn-tokens.js";
 import { getFeaturePref } from "./model-select.js";
-import { getAgenticStyle, AGENTIC_STYLE_OPENCODE } from "./agentic-style.js";
+import { getAgenticStyle, AGENTIC_STYLE_OPENCODE, AGENTIC_STYLE_CODEX } from "./agentic-style.js";
 
 // Loader rond "Marex" pendant la generation — repris trait pour trait du
 // CETAS complet (marexcode) : point central lumineux + anneau (arc visible)
@@ -74,6 +74,29 @@ export function el(tag, cls, text) {
 function summarizeArgs(args) {
   if (!args) return "";
   return args.command || args.file_path || args.pattern || args.query || "";
+}
+
+// Icône sobre par outil pour les lignes d'outils (style Harness, phase 1
+// refonte) : fini l'étincelle ✨, chaque famille d'outils a son glyphe.
+// Façon opencode TUI (→ ✱ $) et Codex (•).
+function toolGlyph(name) {
+  switch (name) {
+    case "Bash":
+    case "RunScript":
+    case "Curl":
+      return "$";
+    case "Grep":
+    case "Glob":
+    case "Tree":
+      return "✱";
+    case "TodoWrite":
+      return "☑";
+    case "web_search":
+    case "web_fetch":
+      return "◈";
+    default:
+      return "→";
+  }
 }
 
 // Libellé de statut façon OpenCode selon l'outil : "Writing command"
@@ -171,6 +194,7 @@ function renderSources(sources) {
   return block;
 }
 
+
 function renderTodos(todos) {
   const list = el("ul", "chat-todo-list");
   for (const t of todos) {
@@ -207,6 +231,43 @@ function renderReadMore(text, totalLines) {
     setLabel(expanded);
   });
   wrap.appendChild(preShort);
+  wrap.appendChild(preFull);
+  wrap.appendChild(btn);
+  return wrap;
+}
+
+// Sortie bornée façon Codex (phase 1 refonte) : 5 premières + 5 dernières
+// lignes, ellipse "… +N lignes" au milieu, déplié complet au clic.
+// Mêmes classes que renderReadMore (tool-result-wrap, tool-expand-btn)
+// pour ne pas casser les harnais de test.
+function renderOutputMore(text) {
+  const lines = String(text).split("\n");
+  const total = lines.length;
+  const wrap = el("div", "tool-result-wrap");
+  const preShort = el("pre", "tool-result");
+  appendLinkified(preShort, lines.slice(0, 5).join("\n"));
+  const dots = el("div", "tool-result-ellipsis", "… +" + (total - 10) + " lignes");
+  const preTail = el("pre", "tool-result tool-result-tail");
+  appendLinkified(preTail, lines.slice(-5).join("\n"));
+  const preFull = el("pre", "tool-result");
+  appendLinkified(preFull, String(text));
+  preFull.hidden = true;
+  const btn = el("button", "tool-expand-btn");
+  const setLabel = (expanded) => {
+    btn.textContent = expanded ? "▲ Réduire" : "▼ Afficher tout · " + total + " lignes";
+  };
+  setLabel(false);
+  btn.addEventListener("click", () => {
+    const expanded = preFull.hidden;
+    preFull.hidden = !expanded;
+    preShort.hidden = expanded;
+    dots.hidden = expanded;
+    preTail.hidden = expanded;
+    setLabel(expanded);
+  });
+  wrap.appendChild(preShort);
+  wrap.appendChild(dots);
+  wrap.appendChild(preTail);
   wrap.appendChild(preFull);
   wrap.appendChild(btn);
   return wrap;
@@ -375,6 +436,11 @@ export class ThreadView {
     // des clés uniques en cours, dans l'ordre des "start".
     this.toolSeq = 0;
     this.toolPending = new Map();
+    // Phase 1 refonte : checklist TodoWrite "live" (un seul bloc mis à jour
+    // en place). threadGen invalide le bloc quand le fil est réinitialisé.
+    this.todoChecklistEl = null;
+    this.todoChecklistGen = 0;
+    this.threadGen = 0;
     // Reconnexions SSE (F9) : backoff exponentiel, plafond de tentatives.
     this.sseRetries = 0;
     this.approvalCards = new Map();
@@ -869,7 +935,7 @@ export class ThreadView {
     const wrapper = el("div", "message-wrapper message-wrapper-assistant");
     const bubble = el("div", "message message-assistant message-error");
     // Module Agentic, style OpenCode : erreurs préfixées "Error:" (TUI).
-    bubble.appendChild(el("div", "message-text", this.agenticIsOpenCode() ? "Error: " + text : text));
+    bubble.appendChild(el("div", "message-text", (this.agenticIsOpenCode() || this.agenticIsCodex()) ? "Error: " + text : text));
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
     this.requestFollow();
@@ -929,6 +995,11 @@ export class ThreadView {
     return this.agentic && getAgenticStyle() === AGENTIC_STYLE_OPENCODE;
   }
 
+  // Module Agentic : vrai uniquement pour la vue Agents en style Codex.
+  agenticIsCodex() {
+    return this.agentic && getAgenticStyle() === AGENTIC_STYLE_CODEX;
+  }
+
   // Clé unique par appel d'outil : deux "start" identiques (même nom,
   // mêmes arguments) ne doivent pas partager la même carte, sinon le
   // second écrase le premier et un bloc "running" fantôme subsiste.
@@ -957,9 +1028,63 @@ export class ThreadView {
     return base;
   }
 
+  // Checklist TodoWrite "live" (phase 1 refonte) : un seul bloc dans le
+  // fil, mis à jour en place à chaque appel TodoWrite au lieu d'empiler des
+  // instantanés. Tâche en cours = spinner, terminée = coche animée,
+  // en-tête avec compteur "n/m" et barre de progression.
+  upsertTodoChecklist(todos) {
+    if (!Array.isArray(todos) || !todos.length) return;
+    let wrap = this.todoChecklistEl;
+    if (!wrap || this.todoChecklistGen !== this.threadGen) {
+      wrap = el("div", "todo-checklist");
+      const head = el("div", "todo-checklist-head");
+      head.appendChild(el("span", "todo-checklist-title", "Tâches"));
+      const count = el("span", "todo-checklist-count", "");
+      head.appendChild(count);
+      const bar = el("div", "todo-checklist-bar");
+      const fill = el("div", "todo-checklist-fill");
+      bar.appendChild(fill);
+      head.appendChild(bar);
+      wrap.appendChild(head);
+      const list = el("ul", "todo-checklist-items");
+      wrap.appendChild(list);
+      // Références directes (pas de querySelector : les harnais de test
+      // utilisent un faux DOM minimal).
+      wrap._todoList = list;
+      wrap._todoCount = count;
+      wrap._todoFill = fill;
+      this.clearEmpty();
+      this.log.appendChild(wrap);
+      this.todoChecklistEl = wrap;
+      this.todoChecklistGen = this.threadGen;
+    }
+    const list = wrap._todoList;
+    const done = todos.filter((t) => (t.status || "pending") === "completed").length;
+    wrap._todoCount.textContent = done + "/" + todos.length;
+    wrap._todoFill.style.width = Math.round((done / todos.length) * 100) + "%";
+    todos.forEach((t, i) => {
+      const status = t.status || "pending";
+      let li = list.children[i] || null;
+      if (!li || li.tagName !== "LI") {
+        li = el("li", "todo-checklist-item");
+        li.appendChild(el("span", "todo-checklist-box"));
+        li.appendChild(el("span", "todo-checklist-text"));
+        list.insertBefore(li, list.children[i] || null);
+      }
+      li.className = "todo-checklist-item todo-" + status;
+      li.children[1].textContent = t.content || "";
+    });
+    while (list.children.length > todos.length) {
+      list.children[list.children.length - 1].remove();
+    }
+    this.requestFollow();
+  }
+
   addTool(ev, gapMs) {
     // Vue Agents + style OpenCode : rendu fidele au TUI OpenCode.
     if (this.agenticIsOpenCode()) return this.addToolOpenCode(ev, gapMs);
+    // Vue Agents + style Codex : rendu fidele au TUI Codex.
+    if (this.agenticIsCodex()) return this.addToolCodex(ev, gapMs);
     if (ev.phase === "start") {
       const key = this.toolKeyStart(ev);
       this.clearEmpty();
@@ -969,10 +1094,17 @@ export class ThreadView {
       // OpenCode ("+ Thought: 2.9s"). gapMs = 0 quand inconnu.
       this.maybeAddThought(gapMs || 0);
       this.convTools++;
-      // Ligne compacte : "✨ Read · chemin" (sans le verbiage "Tool call").
+      // Ligne compacte : "<glyphe> Read · chemin" (sans le verbiage
+      // "Tool call"). Phase 1 refonte (vue Agents uniquement) : icône
+      // sobre par outil (toolGlyph), fini l'étincelle ✨. Le chat général
+      // (hors Agents) garde son rendu d'origine.
       const box = el("details", "msg-tool harness-tool running");
       const summary = el("summary");
-      summary.appendChild(el("span", "tool-spark", "✨"));
+      if (this.agentic) {
+        summary.appendChild(el("span", "tool-glyph", toolGlyph(ev.name)));
+      } else {
+        summary.appendChild(el("span", "tool-spark", "✨"));
+      }
       summary.appendChild(el("span", "tool-name", ev.name));
       const hint = summarizeArgs(ev.args);
       if (hint) {
@@ -982,7 +1114,13 @@ export class ThreadView {
       box.appendChild(summary);
       const body = el("div", "tool-body");
       if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
-        body.appendChild(renderTodos(ev.args.todos));
+        if (this.agentic) {
+          // Phase 1 refonte : la checklist vit dans le fil et se coche au
+          // fur et à mesure, pas dans la carte d'outil.
+          this.upsertTodoChecklist(ev.args.todos);
+        } else {
+          body.appendChild(renderTodos(ev.args.todos));
+        }
       }
       if (ev.name === "web_search" || ev.name === "web_fetch") {
         body.appendChild(renderSearchStatus(searchLabel(ev.name, ev.args)));
@@ -1021,14 +1159,113 @@ export class ThreadView {
       if (det) det.open = true;
     }
     if (typeof ev.result === "string" && ev.result) {
-      // Lectures de fichiers : 10 premières lignes + Expand/Collapse.
-      const rlines = ev.result.split("\n");
-      if ((ev.name === "Read") && rlines.length > 10) {
-        body.appendChild(renderReadMore(ev.result, rlines.length));
+      if (this.agentic) {
+        // Vue Agents, phase 1 refonte : sorties longues en 5 premières +
+        // 5 dernières lignes, déplié complet au clic ; erreurs en rouge.
+        const rlines = ev.result.split("\n");
+        if (ocIsError(ev.result)) {
+          if (det) det.classList.add("is-error");
+        }
+        if (rlines.length > 12) {
+          body.appendChild(renderOutputMore(ev.result));
+        } else {
+          const pre = el("pre", "tool-result");
+          appendLinkified(pre, ev.result);
+          body.appendChild(pre);
+        }
       } else {
-        const pre = el("pre", "tool-result");
+        // Chat général : rendu d'origine inchangé (10 premières lignes +
+        // Expand/Collapse pour les lectures).
+        const rlines = ev.result.split("\n");
+        if ((ev.name === "Read") && rlines.length > 10) {
+          body.appendChild(renderReadMore(ev.result, rlines.length));
+        } else {
+          const pre = el("pre", "tool-result");
+          appendLinkified(pre, ev.result);
+          body.appendChild(pre);
+        }
+      }
+    }
+    this.requestFollow();
+  }
+
+  // Module Agentic, style Codex : reproduction du TUI Codex. Ligne
+  // "• Running <nom> <params>" pendant l'exécution, "• Ran <nom> <params>"
+  // après ; pastille verte/rouge selon le succès ; sorties en 5 premières
+  // + 5 dernières lignes avec compteur explicite.
+  addToolCodex(ev, gapMs) {
+    if (ev.phase === "start") {
+      const key = this.toolKeyStart(ev);
+      this.clearEmpty();
+      this.hideWait();
+      this.hideThinking();
+      // Temps de réflexion écoulé depuis l'événement précédent
+      // ("+ Thought: 2.9s"). gapMs = 0 quand inconnu.
+      this.maybeAddThought(gapMs || 0);
+      this.convTools++;
+      const box = el("div", "msg-tool cx-tool running");
+      const head = el("div", "cx-tool-head");
+      head.appendChild(el("span", "cx-bullet", "•"));
+      head.appendChild(el("span", "cx-verb", "Running"));
+      head.appendChild(el("span", "cx-name", ev.name));
+      const params = ocToolParams(ev.name, ev.args);
+      if (params) head.appendChild(el("span", "cx-params", params));
+      box.appendChild(head);
+      const body = el("div", "cx-tool-body");
+      box.appendChild(body);
+      this.log.appendChild(box);
+      this.toolBoxes.set(key, { root: box, head, body });
+      if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
+        this.upsertTodoChecklist(ev.args.todos);
+      }
+      if (ev.name === "web_search" || ev.name === "web_fetch") {
+        body.appendChild(renderSearchStatus(searchLabel(ev.name, ev.args)));
+      }
+      this.finalizeAssistant();
+      this.resetAssistantState();
+      this.requestFollow();
+      return;
+    }
+    const key = this.toolKeyEnd(ev);
+    const slot = this.toolBoxes.get(key);
+    if (!slot || !slot.body) return;
+    slot.root.classList.remove("running");
+    const isErr = ocIsError(ev.result);
+    // Fin d'exécution : "• Ran <nom> <params>", pastille verte/rouge.
+    if (slot.head) {
+      slot.head.innerHTML = "";
+      slot.head.appendChild(el("span", "cx-bullet", "•"));
+      slot.head.appendChild(el("span", "cx-verb", "Ran"));
+      slot.head.appendChild(el("span", "cx-name", ev.name));
+      const params = ocToolParams(ev.name, ev.args);
+      if (params) slot.head.appendChild(el("span", "cx-params", params));
+      slot.root.classList.add(isErr ? "is-error" : "is-ok");
+    }
+    const body = slot.body;
+    const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
+    const status = body.querySelector(".search-status");
+    if (status) status.remove();
+    if (isSearch && Array.isArray(ev.sources) && ev.sources.length) {
+      body.appendChild(renderSources(ev.sources));
+      this.requestFollow();
+      return;
+    }
+    if (Array.isArray(ev.diff) && ev.diff.length) {
+      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
+    }
+    if (typeof ev.result === "string" && ev.result) {
+      if (isErr) {
+        const pre = el("pre", "tool-result cx-tool-error");
         appendLinkified(pre, ev.result);
         body.appendChild(pre);
+      } else {
+        const rlines = ev.result.split("\n");
+        if (rlines.length > 12) body.appendChild(renderOutputMore(ev.result));
+        else {
+          const pre = el("pre", "tool-result");
+          appendLinkified(pre, ev.result);
+          body.appendChild(pre);
+        }
       }
     }
     this.requestFollow();
@@ -1055,7 +1292,7 @@ export class ThreadView {
       box.appendChild(head);
       const body = el("div", "oc-tool-body");
       if (ev.name === "TodoWrite" && ev.args && Array.isArray(ev.args.todos)) {
-        body.appendChild(renderTodos(ev.args.todos));
+        this.upsertTodoChecklist(ev.args.todos);
       }
       if (ev.name === "web_search" || ev.name === "web_fetch") {
         body.appendChild(renderSearchStatus(searchLabel(ev.name, ev.args)));
@@ -1453,6 +1690,10 @@ export class ThreadView {
     this.stopStreamSpinner();
     this.toolBoxes.clear();
     this.toolPending.clear();
+    // Phase 1 refonte : invalide la checklist TodoWrite live (le fil est
+    // vidé, le bloc sera recréé au prochain appel TodoWrite).
+    this.threadGen++;
+    this.todoChecklistEl = null;
     this.searchStatus = null;
     this.lastEventTs = 0;
     this.hideThinking();

@@ -15,8 +15,24 @@ function makeEl(tag) {
     hidden: false,
     open: false,
     classList: {
-      add() {}, remove() {}, toggle() {},
-      contains() { return false; },
+      // Version fidèle (phase 1 refonte) : manipule vraiment className,
+      // comme le DOM réel (les états running/is-ok/is-error sont testés).
+      add(...cls) {
+        const s = new Set((e.className || "").split(" ").filter(Boolean));
+        for (const c of cls) s.add(c);
+        e.className = [...s].join(" ");
+      },
+      remove(...cls) {
+        const s = new Set(cls);
+        e.className = (e.className || "").split(" ").filter((c) => c && !s.has(c)).join(" ");
+      },
+      toggle(cls, force) {
+        const has = (e.className || "").split(" ").includes(cls);
+        const on = force === undefined ? !has : !!force;
+        if (on) e.classList.add(cls); else e.classList.remove(cls);
+        return on;
+      },
+      contains(cls) { return (e.className || "").split(" ").includes(cls); },
     },
     appendChild(c) { kids.push(c); c.parentNode = e; return c; },
     append(...a) { for (const c of a) c.parentNode = e; kids.push(...a); return a[0]; },
@@ -146,7 +162,7 @@ test("setAgenticStyle : valeur invalide -> harness", () => {
 });
 
 // ---------- Vue Agents + Harness : améliorations 19/09 conservées ----------
-test("agentic+harness : ligne '✨ Read · chemin' (sans 'Tool call')", () => {
+test("agentic+harness : ligne '→ Read · chemin' (sans 'Tool call', sans ✨)", () => {
   resetStore();
   styleMod.setAgenticStyle("harness");
   const { v, log } = makeView(true);
@@ -155,6 +171,8 @@ test("agentic+harness : ligne '✨ Read · chemin' (sans 'Tool call')", () => {
   assert.ok(det, "details.harness-tool créé");
   const txt = textOf(det);
   assert.ok(!txt.includes("Tool call"), "pas de 'Tool call' (retiré le 19/09)");
+  assert.ok(!txt.includes("✨"), "plus d'étincelle (phase 1 refonte)");
+  assert.ok(txt.includes("→"), "glyphe sobre");
   assert.ok(txt.includes("Read"), "nom de l'outil");
   assert.ok(txt.includes("a.txt"), "hint");
 });
@@ -259,7 +277,7 @@ test("agentic+opencode : diff visible + pied ' modèle (durée)' + 'Error:'", ()
 });
 
 // ---------- Panneau Agentic ----------
-test("loadAgenticPanel : seg Harness/OpenCode, clic = choix immédiat", async () => {
+test("loadAgenticPanel : seg Harness/OpenCode/Codex, clic = choix immédiat", async () => {
   resetStore();
   const els = {};
   const bodyEl = makeEl("div");
@@ -283,10 +301,10 @@ test("loadAgenticPanel : seg Harness/OpenCode, clic = choix immédiat", async ()
     return out;
   };
   const btns = findBtns();
-  assert.equal(btns.length, 2, "deux choix");
+  assert.equal(btns.length, 3, "trois choix (phase 1 refonte)");
   assert.deepEqual(
     btns.map((b) => b.dataset.style).sort(),
-    ["harness", "opencode"]
+    ["codex", "harness", "opencode"]
   );
   btns.find((b) => b.dataset.style === "opencode").click();
   assert.equal(store["mx.agentic.style"], "opencode", "choix persisté");
@@ -312,4 +330,116 @@ test("non-agentic : rendu actuel préservé (mêmes améliorations 19/09)", () =
   assert.equal(findByClass(log, "oc-tool").length, 0, "pas de bloc opencode");
   v.handleEvent({ seq: 3, tool: { name: "Bash", phase: "start", args: { command: "x" } } });
   assert.equal(findByClass(log, "agent-status").length, 1, "statut conservé");
+});
+
+// ---------- Vue Agents + Codex : TUI Codex (phase 1 refonte) ----------
+test("agentic+codex : '• Running …' puis '• Ran …', pastille verte/rouge", () => {
+  resetStore();
+  styleMod.setAgenticStyle("codex");
+  const { v, log } = makeView(true);
+  v.handleEvent({ seq: 1, tool: { name: "Bash", phase: "start", args: { command: "ls -la" } } });
+  const box = findByClass(log, "cx-tool")[0];
+  assert.ok(box, "bloc cx-tool créé");
+  assert.ok((box.className || "").includes("running"), "classe running");
+  const head = findByClass(log, "cx-tool-head")[0];
+  assert.ok(head, "en-tête présent");
+  assert.ok(textOf(head).includes("Running"), "verbe Running pendant l'exécution");
+  assert.ok(textOf(head).includes("Bash"), "nom de l'outil");
+  assert.ok(textOf(head).includes("ls -la"), "paramètres");
+  assert.equal(findByClass(log, "harness-tool").length, 0, "pas de ligne harness");
+  assert.equal(findByClass(log, "oc-tool").length, 0, "pas de bloc opencode");
+  v.handleEvent({ seq: 2, tool: { name: "Bash", phase: "end", args: { command: "ls -la" }, result: "total 0" } });
+  assert.ok(!(box.className || "").includes("running"), "running retiré");
+  assert.ok((box.className || "").includes("is-ok"), "pastille verte (is-ok)");
+  assert.ok(textOf(head).includes("Ran"), "verbe Ran après exécution");
+});
+
+test("agentic+codex : erreur -> pastille rouge + bloc erreur", () => {
+  resetStore();
+  styleMod.setAgenticStyle("codex");
+  const { v, log } = makeView(true);
+  v.handleEvent({ seq: 1, tool: { name: "Bash", phase: "start", args: { command: "x" } } });
+  v.handleEvent({ seq: 2, tool: { name: "Bash", phase: "end", args: { command: "x" }, result: "[erreur] boom" } });
+  const box = findByClass(log, "cx-tool")[0];
+  assert.ok((box.className || "").includes("is-error"), "pastille rouge (is-error)");
+  const err = findByClass(log, "cx-tool-error");
+  assert.equal(err.length, 1, "bloc erreur");
+  assert.ok(textOf(err[0]).includes("boom"), "contenu d'erreur");
+});
+
+test("agentic+codex : sortie bornée 5+5 lignes avec compteur", () => {
+  resetStore();
+  styleMod.setAgenticStyle("codex");
+  const { v, log } = makeView(true);
+  const big = Array.from({ length: 25 }, (_, i) => "ligne " + (i + 1)).join("\n");
+  v.handleEvent({ seq: 1, tool: { name: "Read", phase: "start", args: { file_path: "g.txt" } } });
+  v.handleEvent({ seq: 2, tool: { name: "Read", phase: "end", args: { file_path: "g.txt" }, result: big } });
+  assert.equal(findByClass(log, "tool-result-wrap").length, 1, "bloc replié");
+  assert.equal(findByClass(log, "tool-expand-btn").length, 1, "bouton dépliage");
+  const dots = findByClass(log, "tool-result-ellipsis");
+  assert.equal(dots.length, 1, "ellipse");
+  assert.ok(dots[0].textContent.includes("+15 lignes"), "compteur explicite");
+});
+
+test("agentic+codex : défaut harness, chat général inchangé", () => {
+  resetStore();
+  assert.equal(styleMod.getAgenticStyle(), "harness", "défaut toujours harness");
+  styleMod.setAgenticStyle("codex");
+  const { v, log } = makeView(false); // chat général : pas de cx-tool
+  v.handleEvent({ seq: 1, tool: { name: "Read", phase: "start", args: { file_path: "a.txt" } } });
+  assert.equal(findByClass(log, "cx-tool").length, 0, "pas de bloc codex hors vue Agents");
+});
+
+// ---------- Checklist TodoWrite live (phase 1 refonte) ----------
+test("todowrite : un seul bloc live, coché au fur et à mesure", () => {
+  resetStore();
+  styleMod.setAgenticStyle("harness");
+  const { v, log } = makeView(true);
+  const t1 = [
+    { content: "lire le fichier", status: "in_progress" },
+    { content: "corriger", status: "pending" },
+  ];
+  v.handleEvent({ seq: 1, tool: { name: "TodoWrite", phase: "start", args: { todos: t1 } } });
+  assert.equal(findByClass(log, "todo-checklist").length, 1, "un bloc checklist");
+  // 2e appel : mise à jour en place, pas de 2e bloc.
+  const t2 = [
+    { content: "lire le fichier", status: "completed" },
+    { content: "corriger", status: "in_progress" },
+    { content: "tester", status: "pending" },
+  ];
+  v.handleEvent({ seq: 2, tool: { name: "TodoWrite", phase: "start", args: { todos: t2 } } });
+  assert.equal(findByClass(log, "todo-checklist").length, 1, "toujours un seul bloc");
+  const items = findByClass(log, "todo-checklist-item");
+  assert.equal(items.length, 3, "3 tâches");
+  assert.ok((items[0].className || "").includes("todo-completed"), "tâche 1 cochée");
+  assert.ok((items[1].className || "").includes("todo-in_progress"), "tâche 2 en cours");
+  const count = findByClass(log, "todo-checklist-count")[0];
+  assert.ok(count.textContent.includes("1/3"), "compteur 1/3");
+  // Reset du fil : la checklist est invalidée, recréée au prochain appel.
+  v.reset();
+  v.handleEvent({ seq: 3, tool: { name: "TodoWrite", phase: "start", args: { todos: t1 } } });
+  assert.equal(findByClass(log, "todo-checklist").length, 1, "bloc recréé après reset");
+});
+
+// ---------- Vue Agents + Harness : sorties 5+5 (phase 1 refonte) ----------
+test("agentic+harness : sortie longue en 5+5 lignes + erreur en rouge", () => {
+  resetStore();
+  styleMod.setAgenticStyle("harness");
+  const { v, log } = makeView(true);
+  const big = Array.from({ length: 25 }, (_, i) => "ligne " + (i + 1)).join("\n");
+  v.handleEvent({ seq: 1, tool: { name: "Bash", phase: "start", args: { command: "ls" } } });
+  v.handleEvent({ seq: 2, tool: { name: "Bash", phase: "end", args: { command: "ls" }, result: big } });
+  const pres = findByClass(log, "tool-result");
+  assert.equal(pres.length, 3, "trois <pre> (début + fin + complet)");
+  assert.equal(textOf(pres[0]).split("\n").length, 5, "5 premières lignes");
+  assert.equal(textOf(pres[1]).split("\n").length, 5, "5 dernières lignes");
+  assert.ok(textOf(pres[1]).includes("ligne 25"), "fin visible");
+  const dots = findByClass(log, "tool-result-ellipsis")[0];
+  assert.ok(dots.textContent.includes("+15 lignes"), "compteur explicite");
+  // Erreur : état rouge.
+  v.handleEvent({ seq: 3, tool: { name: "Bash", phase: "start", args: { command: "x" } } });
+  v.handleEvent({ seq: 4, tool: { name: "Bash", phase: "end", args: { command: "x" }, result: "[erreur] boom" } });
+  const dets = log.children.filter((c) => (c.className || "").includes("harness-tool"));
+  const last = dets[dets.length - 1];
+  assert.ok((last.className || "").includes("is-error"), "ligne en erreur (rouge)");
 });

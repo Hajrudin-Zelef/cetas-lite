@@ -94,6 +94,12 @@ function findByClass(log, cls) {
   return out;
 }
 
+function textOf(n) {
+  let s = n.textContent || "";
+  for (const k of n.children || []) s += textOf(k);
+  return s;
+}
+
 test("+ Thought: ligne insérée avant l'outil quand le délai >= 300ms", () => {
   const { v, log } = makeView();
   v.handleEvent({ seq: 1, user: "lis le fichier" });
@@ -135,7 +141,7 @@ test("lecture de fichier : 10 lignes + bouton Expand/Collapse", () => {
   const pres = findByClass(log, "tool-result");
   assert.equal(pres.length, 2, "deux <pre> (court + complet)");
   assert.ok(!pres[0].hidden && pres[1].hidden, "court visible, complet masqué");
-  assert.ok(pres[0].textContent.split("\n").length <= 10, "10 lignes max");
+  assert.equal(textOf(pres[0]).split("\n").length, 10, "10 premières lignes");
   const btn = findByClass(log, "tool-expand-btn")[0];
   assert.ok(btn, "bouton présent");
   assert.ok(btn.textContent.includes("25 lignes"), "compte de lignes");
@@ -144,6 +150,18 @@ test("lecture de fichier : 10 lignes + bouton Expand/Collapse", () => {
   assert.ok(btn.textContent.includes("Collapse"), "libellé Collapse");
   btn.click();
   assert.ok(!pres[0].hidden && pres[1].hidden, "collapse : retour");
+});
+
+test("chat général : ✨, liste todo statique et 10 lignes inchangés (phase 1 refonte)", () => {
+  const { v, log } = makeView(); // agentic:false = chat général
+  v.handleEvent({ seq: 1, tool: { name: "Read", phase: "start", args: { file_path: "a.txt" } } });
+  const det = log.children.find((c) => (c.className || "").includes("harness-tool"));
+  assert.ok(det, "ligne harness");
+  assert.ok(textOf(det).includes("✨"), "étincelle conservée hors Agents");
+  assert.equal(findByClass(log, "tool-glyph").length, 0, "pas de glyphe phase 1 hors Agents");
+  v.handleEvent({ seq: 2, tool: { name: "TodoWrite", phase: "start", args: { todos: [{ content: "x", status: "pending" }] } } });
+  assert.equal(findByClass(log, "chat-todo-list").length, 1, "liste statique d'origine");
+  assert.equal(findByClass(log, "todo-checklist").length, 0, "pas de checklist live hors Agents");
 });
 
 test("petite lecture : pas de bouton Expand", () => {

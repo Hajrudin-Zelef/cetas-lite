@@ -59,6 +59,9 @@ function makeView() {
     streamURL: () => "",
     sendURL: "",
     stopURL: "",
+    // Vue Agents (phase 1 refonte) : les lignes d'outils sobres (glyphes)
+    // et le 5+5 ne s'appliquent qu'ici ; le chat général garde son rendu.
+    agentic: true,
   });
   return { v, badge, log };
 }
@@ -91,7 +94,7 @@ test("badge façon Harness : tours, outils, tokens cumulés", () => {
   assert.match(badge.textContent, /^2 tours · 3 outils · ↑28,5k ↓368$/);
 });
 
-test("ligne d'outil : summary ✨ nom · hint (sans 'Tool call')", () => {
+test("ligne d'outil : summary glyphe sobre · nom · hint (sans 'Tool call', sans ✨)", () => {
   const { v, log } = makeView();
   v.handleEvent({ seq: 1, tool: { name: "Read", phase: "start", args: { file_path: "NEVA PVE/README.md" } } });
   const det = log.children.find((c) => (c.className || "").includes("harness-tool"));
@@ -99,7 +102,8 @@ test("ligne d'outil : summary ✨ nom · hint (sans 'Tool call')", () => {
   assert.ok((det.className || "").includes("running"), "classe running pendant l'appel");
   const sum = det.children[0];
   const txt = sum.children.map((c) => c.textContent).join("");
-  assert.ok(txt.includes("✨"), "étincelle");
+  assert.ok(!txt.includes("✨"), "plus d'étincelle (phase 1 refonte)");
+  assert.ok(txt.includes("→"), "glyphe sobre par outil");
   assert.ok(!txt.includes("Tool call"), "plus de libellé 'Tool call'");
   assert.ok(txt.includes("Read"), "nom de l'outil");
   assert.ok(txt.includes("NEVA PVE/README.md"), "hint");

@@ -3,7 +3,9 @@ import { ThreadView, el } from "./thread-view.js";
 import { estimateTokens } from "./turn-tokens.js";
 import {
   getAgenticStyle,
+  AGENTIC_STYLE_HARNESS,
   AGENTIC_STYLE_OPENCODE,
+  AGENTIC_STYLE_CODEX,
   AGENTIC_STYLE_EVENT,
 } from "./agentic-style.js";
 import { logout } from "./auth.js";
@@ -1505,14 +1507,16 @@ function updateFav() {
 // (scopée #marex-view), indépendante du thème applicatif et du JS : en thème
 // clair, les blocs de code restent clairs sur sombre.
 
-// Module Agentic : applique le style choisi (Harness/OpenCode) sur
+// Module Agentic : applique le style choisi (Harness/OpenCode/Codex) sur
 // #marex-view, sans rechargement. Harness = rendu actuel de la vue Agents,
-// OpenCode = reproduction fidele du TUI OpenCode (thread-view.js).
+// OpenCode = reproduction fidele du TUI OpenCode, Codex = reproduction du
+// TUI Codex (thread-view.js).
 function applyAgenticClass() {
   if (typeof view === "undefined" || !view) return;
-  const oc = getAgenticStyle() === AGENTIC_STYLE_OPENCODE;
-  view.classList.toggle("ac-opencode", oc);
-  view.classList.toggle("ac-harness", !oc);
+  const st = getAgenticStyle();
+  view.classList.toggle("ac-opencode", st === AGENTIC_STYLE_OPENCODE);
+  view.classList.toggle("ac-codex", st === AGENTIC_STYLE_CODEX);
+  view.classList.toggle("ac-harness", st === AGENTIC_STYLE_HARNESS);
 }
 if (typeof window !== "undefined" && window.addEventListener) {
   window.addEventListener(AGENTIC_STYLE_EVENT, applyAgenticClass);

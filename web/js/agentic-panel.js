@@ -1,7 +1,7 @@
 // Panneau "Agentic" des paramètres : choix du style d'affichage de la vue
-// Agents (Harness / OpenCode). Sauvegarde immédiate dans le localStorage
-// (mx.agentic.style), application instantanée sans rechargement. Le chat
-// général Cetas n'est pas concerné.
+// Agents (Harness / OpenCode / Codex). Sauvegarde immédiate dans le
+// localStorage (mx.agentic.style), application instantanée sans rechargement.
+// Le chat général Cetas n'est pas concerné.
 
 import { getAgenticStyle, setAgenticStyle } from "./agentic-style.js";
 
@@ -15,17 +15,21 @@ function el(tag, cls, text) {
 const STYLE_LABELS = {
   harness: "Harness",
   opencode: "OpenCode",
+  codex: "Codex",
 };
 
 const STYLE_DESCR = {
   harness:
-    "Rendu DeepSeek Harness : lignes d'outils compactes « ✨ Tool call · " +
-    "Nom · détail », loader Marex pendant l'attente, barre de statut " +
-    "tours / outils / tokens.",
+    "Rendu DeepSeek Harness : lignes d'outils compactes avec icônes sobres, " +
+    "loader Marex pendant l'attente, barre de statut tours / outils / tokens.",
   opencode:
     "Reproduction du TUI opencode : messages et outils en blocs à bordure " +
     "gauche épaisse, en-têtes « Nom: paramètres », résultats bornés à " +
     "10 lignes, statuts exacts, diffs aux couleurs du TUI.",
+  codex:
+    "Reproduction du TUI Codex : lignes « • Ran/Running <commande> », " +
+    "pastille verte/rouge selon le résultat, sorties en 5 premières + " +
+    "5 dernières lignes, trace des décisions dans le fil.",
 };
 
 function setSaveState(text) {
@@ -47,7 +51,7 @@ function render(bodyEl) {
       b.classList.toggle("active", b.dataset.style === cur);
     });
   };
-  for (const s of ["harness", "opencode"]) {
+  for (const s of Object.keys(STYLE_LABELS)) {
     const b = el("button", "ms-seg-btn", STYLE_LABELS[s]);
     b.type = "button";
     b.dataset.style = s;
@@ -62,7 +66,7 @@ function render(bodyEl) {
   bodyEl.appendChild(seg);
   refresh();
 
-  for (const s of ["harness", "opencode"]) {
+  for (const s of Object.keys(STYLE_LABELS)) {
     const p = el("p", "apikey-intro", STYLE_LABELS[s] + " — " + STYLE_DESCR[s]);
     p.style.marginTop = "8px";
     bodyEl.appendChild(p);

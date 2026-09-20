@@ -1882,3 +1882,178 @@ body.mx-open #sidebar-toggle{ display:none !important; }
 .mx-conn-badge.on{ background:rgba(46,160,90,.15); color:#3fb968; border:1px solid rgba(46,160,90,.4); }
 .mx-conn-badge.off{ background:var(--bg-input-btn); color:var(--text-tertiary); border:1px solid var(--border); }
 .mx-conn-desc{ font-size:12.5px; color:var(--text-secondary); line-height:1.5; margin:0 0 12px; }
+
+/* ============================================================
+   PHASE 1 REFONTE (manuel, 2026-09-20) — socle + lignes d'outils.
+   Section manuelle (comme le fix sidebar du 19/09 ci-dessus) : la partie
+   générée reste régénérable via scripts/gen-marex-css.py.
+   Tokens premium partagés par les 3 styles (harness / opencode / codex).
+   ============================================================ */
+#marex-view{
+  --p1-bg-tool:#101014;
+  --p1-border-tool:#232428;
+  --p1-text-1:#f2f2f4;
+  --p1-text-2:#9a9ba3;
+  --p1-text-3:#5c5d66;
+  --p1-green:#3fb950;
+  --p1-red:#f85149;
+  --p1-amber:#d29922;
+  --p1-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+/* Lignes d'outils premium : carte fine, 13px, hairline. */
+#marex-view .msg-tool{
+  background:var(--p1-bg-tool);
+  border:1px solid var(--p1-border-tool);
+  border-radius:10px;
+  padding:7px 12px;
+  margin:6px 0;
+  font-size:13px;
+  line-height:1.45;
+}
+#marex-view .msg-tool summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  color:var(--p1-text-2);
+}
+#marex-view .msg-tool summary::-webkit-details-marker{ display:none; }
+#marex-view .msg-tool .tool-glyph{
+  color:var(--p1-text-3);
+  font-size:12px;
+  width:14px;
+  text-align:center;
+  flex:none;
+}
+#marex-view .msg-tool .tool-name{ color:var(--p1-text-1); font-weight:600; }
+#marex-view .msg-tool .tool-sep{ color:var(--p1-text-3); }
+#marex-view .msg-tool .tool-hint{
+  color:var(--p1-text-2);
+  font-family:var(--p1-mono);
+  font-size:12px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+#marex-view .msg-tool .tool-body{ margin-top:6px; }
+#marex-view .msg-tool .tool-result{
+  font-family:var(--p1-mono);
+  font-size:12px;
+  color:var(--p1-text-2);
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--p1-border-tool);
+  border-radius:8px;
+  padding:8px 10px;
+  margin:6px 0 0;
+  overflow-x:auto;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+#marex-view .msg-tool .tool-result-ellipsis{
+  font-family:var(--p1-mono);
+  font-size:11px;
+  color:var(--p1-text-3);
+  padding:4px 2px;
+}
+#marex-view .msg-tool .tool-expand-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--p1-text-3);font-size:11px;margin-top:4px;padding:2px 0;
+}
+#marex-view .msg-tool .tool-expand-btn:hover{ color:var(--p1-text-1); }
+
+/* État "running" : spinner discret en bout de ligne. */
+#marex-view .msg-tool.running .tool-glyph{ color:var(--p1-text-1); }
+#marex-view .msg-tool.running summary::after{
+  content:"";
+  width:10px;height:10px;flex:none;align-self:center;
+  border-radius:50%;
+  border:2px solid var(--p1-border-tool);
+  border-top-color:var(--p1-text-1);
+  animation:p1-spin 0.9s linear infinite;
+}
+@keyframes p1-spin{ to{ transform:rotate(360deg); } }
+
+/* État erreur : liseré rouge + glyphe rouge. */
+#marex-view .msg-tool.is-error{ border-color:rgba(248,81,73,.45); }
+#marex-view .msg-tool.is-error .tool-glyph{ color:var(--p1-red); }
+
+/* ---- Style Codex : "• Ran/Running <nom> <params>" ---- */
+#marex-view.ac-codex .cx-tool{ font-family:var(--p1-mono); }
+#marex-view .cx-tool-head{
+  display:flex;align-items:baseline;gap:7px;
+  font-size:13px;color:var(--p1-text-2);
+}
+#marex-view .cx-bullet{ font-size:15px;line-height:1; }
+#marex-view .cx-tool.is-ok .cx-bullet{ color:var(--p1-green);font-weight:700; }
+#marex-view .cx-tool.is-error .cx-bullet{ color:var(--p1-red);font-weight:700; }
+#marex-view .cx-tool.running .cx-bullet{ color:var(--p1-amber); }
+#marex-view .cx-verb{ color:var(--p1-text-1); }
+#marex-view .cx-name{ color:var(--p1-text-1);font-weight:600; }
+#marex-view .cx-params{
+  color:var(--p1-text-3);font-size:12px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+#marex-view .cx-tool-body{ margin-top:6px; }
+#marex-view .cx-tool-error{ color:var(--p1-red); }
+
+/* ---- Checklist TodoWrite live ---- */
+#marex-view .todo-checklist{
+  background:var(--p1-bg-tool);
+  border:1px solid var(--p1-border-tool);
+  border-radius:10px;
+  padding:9px 12px;
+  margin:8px 0;
+  font-size:13px;
+}
+#marex-view .todo-checklist-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:7px;
+}
+#marex-view .todo-checklist-title{ color:var(--p1-text-1);font-weight:600; }
+#marex-view .todo-checklist-count{
+  font-family:var(--p1-mono);font-size:11px;color:var(--p1-text-3);
+}
+#marex-view .todo-checklist-bar{
+  flex:1;height:3px;border-radius:2px;background:var(--p1-border-tool);overflow:hidden;
+}
+#marex-view .todo-checklist-fill{
+  height:100%;width:0;border-radius:2px;background:var(--p1-green);
+  transition:width .4s ease;
+}
+#marex-view .todo-checklist-items{ list-style:none; }
+#marex-view .todo-checklist-item{
+  display:flex;align-items:flex-start;gap:9px;
+  padding:3px 0;color:var(--p1-text-2);
+}
+#marex-view .todo-checklist-box{
+  flex:none;width:15px;height:15px;margin-top:2px;
+  border:1.5px solid var(--p1-text-3);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:transparent;
+  transition:border-color .3s,color .3s;
+}
+#marex-view .todo-checklist-item.todo-in_progress .todo-checklist-box{
+  border-color:var(--p1-text-1);
+  border-top-color:transparent;
+  animation:p1-spin 0.9s linear infinite;
+}
+#marex-view .todo-checklist-item.todo-completed .todo-checklist-box{
+  border-color:var(--p1-green);background:var(--p1-green);color:#0b1220;
+}
+#marex-view .todo-checklist-item.todo-completed .todo-checklist-box::after{
+  content:"✓";
+}
+#marex-view .todo-checklist-item.todo-completed .todo-checklist-text{
+  color:var(--p1-text-3);text-decoration:line-through;
+}
+#marex-view .todo-checklist-item.todo-in_progress .todo-checklist-text{
+  color:var(--p1-text-1);
+}
+
+/* Accessibilité : pas d'animation si l'utilisateur préfère. */
+@media (prefers-reduced-motion: reduce){
+  #marex-view .msg-tool.running summary::after,
+  #marex-view .todo-checklist-item.todo-in_progress .todo-checklist-box,
+  #marex-view .todo-checklist-fill{ animation:none;transition:none; }
+}
