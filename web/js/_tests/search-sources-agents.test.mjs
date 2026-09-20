@@ -27,6 +27,7 @@ function makeEl(tag) {
       let n = el;
       while (n) {
         if (sel.startsWith(".") && String(n.className || "").split(" ").includes(sel.slice(1))) return n;
+        else if (sel === n.tag) return n;
         n = n.parentNode;
       }
       return null;
@@ -197,4 +198,50 @@ test("général : recherche native rend toujours le panneau Sources", () => {
   v.handleEvent({ search: { phase: "start", native: true } });
   v.handleEvent({ search: { phase: "done", native: true, sources: SOURCES } });
   assert.ok(log.querySelector(".citations-block"), "panneau Sources natif conservé");
+});
+
+// --- Recherche en échec : le signal visuel d'erreur est conservé ---
+test("agents/harness : recherche en échec garde la bordure rouge", () => {
+  const { v, log } = newView(true, "harness");
+  const args = { query: "prix du cuivre" };
+  v.addTool({ name: "web_search", args, phase: "start" });
+  v.addTool({ name: "web_search", args, phase: "end", result: "[erreur] recherche web: tous les backends ont échoué" });
+  const box = log.querySelector(".msg-tool");
+  assert.ok(box, "boîte d'outil attendue");
+  assert.ok(box.classList.contains("is-error"), "marquage d'erreur attendu");
+  assert.equal(log.querySelector(".citations-block"), null);
+  assert.equal(log.querySelector(".tool-result"), null);
+});
+
+test("agents/harness : recherche réussie sans marquage d'erreur", () => {
+  const { v, log } = newView(true, "harness");
+  const args = { query: "prix du cuivre" };
+  runSearch(v, "web_search", args);
+  const box = log.querySelector(".msg-tool");
+  assert.ok(box, "boîte d'outil attendue");
+  assert.ok(!box.classList.contains("is-error"), "pas de marquage d'erreur");
+});
+
+test("agents/opencode : recherche en échec garde la bordure rouge", () => {
+  const { v, log } = newView(true, "opencode");
+  const args = { query: "prix du cuivre" };
+  v.addTool({ name: "web_search", args, phase: "start" });
+  v.addTool({ name: "web_search", args, phase: "end", result: "[erreur] recherche web: limite atteinte" });
+  const box = log.querySelector(".oc-tool");
+  assert.ok(box, "bloc d'outil attendu");
+  assert.ok(box.classList.contains("is-error"), "marquage d'erreur attendu");
+  assert.equal(log.querySelector(".citations-block"), null);
+  assert.equal(log.querySelector(".tool-result"), null);
+});
+
+test("agents/codex : recherche en échec garde la pastille rouge", () => {
+  const { v, log } = newView(true, "codex");
+  const args = { query: "prix du cuivre" };
+  v.addTool({ name: "web_search", args, phase: "start" });
+  v.addTool({ name: "web_search", args, phase: "end", result: "[erreur] recherche web: timeout" });
+  const box = log.querySelector(".cx-tool");
+  assert.ok(box, "bloc d'outil attendu");
+  assert.ok(box.classList.contains("is-error"), "marquage d'erreur attendu");
+  assert.equal(log.querySelector(".citations-block"), null);
+  assert.equal(log.querySelector(".tool-result"), null);
 });

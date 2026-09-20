@@ -1335,7 +1335,9 @@ export class ThreadView {
     if (status) status.remove();
     if (this.agentic && isSearch) {
       // Vue Agents : pas de panneau Sources ni de sortie brute — seul le
-      // résumé du modèle reste visible dans le fil.
+      // résumé du modèle reste visible dans le fil. L'état d'erreur reste
+      // signalé visuellement (bordure rouge via .is-error).
+      if (ocIsError(ev.result) && det) det.classList.add("is-error");
       this.requestFollow();
       return;
     }
@@ -1516,6 +1518,8 @@ export class ThreadView {
     if (isSearch) {
       // Vue Agents (style OpenCode) : pas de panneau Sources ni de sortie
       // brute — seul le résumé du modèle reste visible dans le fil.
+      // L'état d'erreur reste signalé visuellement (bordure rouge).
+      if (ocIsError(ev.result)) slot.root.classList.add("is-error");
       this.requestFollow();
       return;
     }
