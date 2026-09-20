@@ -417,19 +417,51 @@ function renderOutputMore(text) {
   return wrap;
 }
 
-function renderDiff(lines, filePath) {  const wrap = el("div", "tool-diff");
+// Phase 3 refonte : verbe d'action affiché dans l'en-tête du diff
+// (vue Agents uniquement).
+export function diffVerb(toolName) {
+  switch (toolName) {
+    case "Write":
+      return "Écrit";
+    case "Edit":
+    case "Sed":
+      return "Modifié";
+    default:
+      return "Diff";
+  }
+}
+
+// Lignes du diff affichées avant "… N lignes de plus" (aperçu borné,
+// phase 3). Le serveur borne déjà les diffs à 300 lignes ; l'aperçu
+// n'affiche que le début.
+const DIFF_PREVIEW_LINES = 24;
+
+export function renderDiff(lines, filePath, verb) {  const wrap = el("div", "tool-diff");
   let adds = 0, dels = 0;
   for (const line of lines) {
     if (line.kind === "+") adds++;
     else if (line.kind === "-") dels++;
   }
   const head = el("div", "diff-head");
-  head.appendChild(el("span", "diff-file", filePath ? String(filePath) : "modification"));
-  head.appendChild(el("span", "diff-stats", "+" + adds + " / -" + dels));
+  if (verb) {
+    // Vue Agents, phase 3 : verbe + chemin + "+n -m" colorés.
+    head.appendChild(el("span", "diff-verb", verb));
+    head.appendChild(el("span", "diff-file", filePath ? String(filePath) : "modification"));
+    const stats = el("span", "diff-stats");
+    stats.appendChild(el("span", "diff-add-n", "+" + adds));
+    stats.appendChild(document.createTextNode(" "));
+    stats.appendChild(el("span", "diff-del-n", "-" + dels));
+    head.appendChild(stats);
+  } else {
+    // Chat général : en-tête historique strictement inchangé.
+    head.appendChild(el("span", "diff-file", filePath ? String(filePath) : "modification"));
+    head.appendChild(el("span", "diff-stats", "+" + adds + " / -" + dels));
+  }
   wrap.appendChild(head);
   const body = el("div", "diff-body");
   let oldN = 0, newN = 0;
-  for (const line of lines) {
+  const shown = lines.slice(0, DIFF_PREVIEW_LINES);
+  for (const line of shown) {
     const kind = line.kind === "+" ? "diff-add" : line.kind === "-" ? "diff-del" : "diff-ctx";
     const row = el("div", "diff-row " + kind);
     let gutter = "";
@@ -439,6 +471,10 @@ function renderDiff(lines, filePath) {  const wrap = el("div", "tool-diff");
     row.appendChild(el("span", "diff-sign", line.kind === "…" ? "…" : line.kind || " "));
     row.appendChild(el("span", "diff-code", line.text != null ? String(line.text) : ""));
     body.appendChild(row);
+  }
+  if (lines.length > shown.length) {
+    body.appendChild(el("div", "diff-row diff-more",
+      "… " + (lines.length - shown.length) + " lignes de plus"));
   }
   wrap.appendChild(body);
   return wrap;
@@ -1002,7 +1038,11 @@ export class ThreadView {
     if (!this.reasoningEl) {
       this.ensureAssistant();
       this.reasoningEl = el("details", "thinking-block");
-      this.reasoningEl.open = true;
+      // Phase 3 refonte (vue Agents uniquement) : sur mobile le bloc
+      // "Raisonnement" est replié par défaut — même seuil que le routage
+      // inline du raisonnement (isMobileViewport). Desktop et chat général :
+      // inchangés (déplié).
+      this.reasoningEl.open = !(this.agentic && isMobileViewport());
       this.reasoningEl.appendChild(el("summary", null, "Raisonnement"));
       this.reasoningEl.appendChild(el("div", "thinking-content"));
       this.assistant.insertBefore(this.reasoningEl, this.assistant.firstChild);
@@ -1298,7 +1338,7 @@ export class ThreadView {
       return;
     }
     if (Array.isArray(ev.diff) && ev.diff.length) {
-      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
+      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path, this.agentic ? diffVerb(ev.name) : null));
       // Les modifications ne sont pas masquées : le diff s'affiche déplié.
       if (det) det.open = true;
     }
@@ -1395,7 +1435,7 @@ export class ThreadView {
       return;
     }
     if (Array.isArray(ev.diff) && ev.diff.length) {
-      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
+      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path, this.agentic ? diffVerb(ev.name) : null));
     }
     if (typeof ev.result === "string" && ev.result) {
       if (isErr) {
@@ -1471,7 +1511,7 @@ export class ThreadView {
       return;
     }
     if (Array.isArray(ev.diff) && ev.diff.length) {
-      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path));
+      body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path, this.agentic ? diffVerb(ev.name) : null));
     }
     if (typeof ev.result === "string" && ev.result) {
       if (ocIsError(ev.result)) {
@@ -1900,6 +1940,24 @@ export class ThreadView {
   }
 
   addTurnStats(box) {
+    // Module Agentic, style Codex (phase 3 refonte) : ligne discrète
+    // "modèle · durée" façon TUI Codex, tokens en infobulle.
+    if (this.agenticIsCodex()) {
+      const r = this.turnRoute || {};
+      const model = r.label || r.model || "";
+      let secs = 0;
+      if (this.turnElapsedMs != null) secs = this.turnElapsedMs / 1000;
+      else if (this.turnStartTs) secs = (Date.now() - this.turnStartTs) / 1000;
+      const txt = (model ? model + " · " : "") + secs.toFixed(secs < 10 ? 1 : 0) + "s";
+      const wrapper = box.closest(".message-wrapper") || box;
+      const s = this.turnStats || {};
+      const div = el("div", "cx-turn-stats", txt);
+      div.title =
+        "Entrée : " + (s.prompt_tokens || 0).toLocaleString("fr") + " tokens · Sortie : " +
+        (s.completion_tokens || 0).toLocaleString("fr") + " tokens";
+      wrapper.appendChild(div);
+      return;
+    }
     // Module Agentic, style OpenCode : pied façon TUI " modèle (durée)".
     if (this.agenticIsOpenCode()) {
       const r = this.turnRoute || {};

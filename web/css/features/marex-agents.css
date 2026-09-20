@@ -2205,3 +2205,34 @@ body.mx-open #sidebar-toggle{ display:none !important; }
   #marex-view .ap2-dot{ animation:none; }
   #marex-view .ap2-btn{ transition:none; }
 }
+
+/* ============ Phase 3 refonte — diffs compacts + statuts discrets ============ */
+/* Vue Agents uniquement (#marex-view est hard-dark : couleurs épinglées, pas
+   de variables du thème clair de l'app). */
+/* En-tête du diff : verbe + chemin + "+n -m" colorés. */
+#marex-view .diff-verb{ color:var(--accent);font-weight:700;flex-shrink:0; }
+#marex-view .diff-file{ color:#e8e9eb; }
+#marex-view .diff-stats{ color:#9a9ba3; }
+#marex-view .diff-add-n{ color:#3fb950;font-weight:700; }
+#marex-view .diff-del-n{ color:#f85149;font-weight:700; }
+/* Aperçu borné : ligne "… N lignes de plus". */
+#marex-view .diff-more{
+  justify-content:center;color:#8b8d98;font-size:.72rem;
+  padding:6px 0;user-select:none;
+}
+/* Diff lisible sur fond sombre (les couleurs de cetas-lite.css visent un
+   fond clair : vert #15803d quasi invisible sur noir). */
+#marex-view .tool-diff{ border-top-color:#2a2b31; }
+#marex-view .diff-head{ background:#101114;border-bottom:1px solid #2a2b31; }
+#marex-view .diff-gutter{ color:#6e7078; }
+#marex-view .diff-add{ background:rgba(63,185,80,.10); }
+#marex-view .diff-add .diff-code,
+#marex-view .diff-add .diff-sign{ color:#7ee787; }
+#marex-view .diff-del{ background:rgba(248,81,73,.10); }
+#marex-view .diff-del .diff-code,
+#marex-view .diff-del .diff-sign{ color:#ffa198; }
+#marex-view .diff-ctx{ color:#9a9ba3; }
+/* Ligne de statut discrète, variante Codex ("modèle · durée"). */
+#marex-view.ac-codex .cx-turn-stats{
+  color:#8b8d98;font-size:.75rem;padding:2px 0 2px 12px;
+}
