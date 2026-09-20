@@ -19,6 +19,9 @@ const (
 	searchTimeout = 8 * time.Second
 	cacheTTL      = 300 * time.Second
 	defaultMax    = 10
+	// searchRetryDelay : delai avant l'unique retry sur echec total
+	// (tous les backends en erreur). Pas de retry sur "aucun resultat".
+	searchRetryDelay = time.Second
 )
 
 type Hit struct {
@@ -96,6 +99,9 @@ func NewWithConfig(cfg Config, client *http.Client) *Searcher {
 			"exa":    "https://api.exa.ai/search",
 			"brave":  "https://api.search.brave.com/res/v1/web/search",
 			"jina":   "https://s.jina.ai/",
+			// jina_reader : lecteur Jina, repli de web_fetch quand le fetch
+			// direct echoue (https://r.jina.ai/ + URL cible).
+			"jina_reader": "https://r.jina.ai/",
 		},
 		cache: map[string]cacheEntry{},
 	}
@@ -187,10 +193,37 @@ func (s *Searcher) Search(ctx context.Context, query string, maxResults int) Res
 		return r
 	}
 
-	// Fan-out parallele : tous les providers actifs sont interroges en meme
-	// temps. En mode "race", le premier qui repond avec des resultats gagne
-	// (latence minimale). En mode "priority", on retourne le provider le
-	// plus prioritaire des qu'il a repondu, les autres sont annules.
+	hits, provider, hadErr, errs := s.searchOnce(ctx, query, maxResults, active)
+	// Retry unique sur echec total avec erreurs (micro-coupure reseau,
+	// backend passagerement indisponible). Pas de retry quand les backends
+	// ont repondu mais sans resultats : une seconde tentative ne servirait
+	// a rien.
+	if provider == "none" && hadErr {
+		select {
+		case <-ctx.Done():
+		case <-time.After(searchRetryDelay):
+			hits, provider, _, errs = s.searchOnce(ctx, query, maxResults, active)
+		}
+	}
+
+	if provider != "none" {
+		res := Result{Hits: hits, Provider: provider}
+		s.store(key, res)
+		return res
+	}
+	if len(errs) == 0 {
+		errs = append(errs, "aucun resultat")
+	}
+	return Result{Hits: []Hit{}, Provider: "none", Error: strings.Join(errs, "; ")}
+}
+
+// searchOnce execute un tour de fan-out sur les providers actifs : tous sont
+// interroges en parallele. En mode "race", le premier qui repond avec des
+// resultats gagne (latence minimale). En mode "priority", on retourne le
+// provider le plus prioritaire des qu'il a repondu, les autres sont annules.
+// hadErr vaut true si au moins un provider a renvoye une erreur, par
+// opposition a une reponse vide ("aucun resultat").
+func (s *Searcher) searchOnce(ctx context.Context, query string, maxResults int, active []string) (hits []Hit, provider string, hadErr bool, errs []string) {
 	cctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 	type outcome struct {
@@ -228,7 +261,6 @@ func (s *Searcher) Search(ctx context.Context, query string, maxResults int) Res
 	for _, i := range launched {
 		pending[i] = true
 	}
-	var errs []string
 	best := -1
 	var bestHits []Hit
 	race := s.getMode() == "race"
@@ -267,14 +299,9 @@ func (s *Searcher) Search(ctx context.Context, query string, maxResults int) Res
 	cancel() // libere les providers encore en vol
 
 	if best != -1 {
-		res := Result{Hits: bestHits, Provider: active[best]}
-		s.store(key, res)
-		return res
+		return bestHits, active[best], false, nil
 	}
-	if len(errs) == 0 {
-		errs = append(errs, "aucun resultat")
-	}
-	return Result{Hits: []Hit{}, Provider: "none", Error: strings.Join(errs, "; ")}
+	return nil, "none", len(errs) > 0, errs
 }
 
 func (s *Searcher) cached(key string) (Result, bool) {

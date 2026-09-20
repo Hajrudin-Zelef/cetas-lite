@@ -48,7 +48,7 @@ func (e *Engine) webExecute(ctx context.Context, user, name, argsJSON string) To
 		return ToolResult{Text: "[erreur] recherche web indisponible"}
 	}
 	if !e.allowWeb(user) {
-		return ToolResult{Text: "[erreur] limite de recherche web atteinte, reessaie dans une minute"}
+		return ToolResult{Text: "[erreur] limite de recherche web atteinte, reessaie dans quelques secondes"}
 	}
 	args := parseArgs(argsJSON)
 	switch name {

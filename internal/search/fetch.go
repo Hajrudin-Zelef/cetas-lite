@@ -96,6 +96,24 @@ func (s *Searcher) Fetch(ctx context.Context, raw string) (string, string, error
 	if err != nil {
 		return "", "", err
 	}
+	if title, md, err := s.fetchDirect(ctx, u); err == nil {
+		return title, md, nil
+	} else {
+		// Repli : lecteur Jina (necessite la cle Jina, deja utilisee pour
+		// la recherche). Utile quand le fetch direct echoue : page
+		// JavaScript, 403, extraction impossible...
+		if key := strings.TrimSpace(s.key("jina")); key != "" {
+			if md, err := s.fetchViaJina(ctx, u.String(), key); err == nil {
+				return "", md, nil
+			}
+		}
+		return "", "", err
+	}
+}
+
+// fetchDirect recupere une page en HTTP direct et en extrait le contenu
+// lisible en Markdown (readability + html-to-markdown).
+func (s *Searcher) fetchDirect(ctx context.Context, u *url.URL) (string, string, error) {
 	client := s.fetchClient
 	if client == nil {
 		client = newFetchClient()
@@ -136,4 +154,43 @@ func (s *Searcher) Fetch(ctx context.Context, raw string) (string, string, error
 		return "", "", errors.New("contenu vide")
 	}
 	return sanitize(article.Title()), content, nil
+}
+
+// fetchViaJina recupere une page via le lecteur Jina (https://r.jina.ai/),
+// qui renvoie directement du Markdown lisible sans extraction locale.
+// Repli quand le fetch direct echoue.
+func (s *Searcher) fetchViaJina(ctx context.Context, target, apiKey string) (string, error) {
+	base := s.endpoints["jina_reader"]
+	if base == "" {
+		base = "https://r.jina.ai/"
+	}
+	ctx, cancel := context.WithTimeout(ctx, fetchTimeout)
+	defer cancel()
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, base+target, nil)
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("Authorization", "Bearer "+apiKey)
+	req.Header.Set("Accept", "text/plain")
+	client := s.client
+	if client == nil {
+		client = &http.Client{Timeout: fetchTimeout}
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("jina reader: HTTP %d", resp.StatusCode)
+	}
+	body, err := io.ReadAll(io.LimitReader(resp.Body, fetchMaxBody))
+	if err != nil {
+		return "", err
+	}
+	md := truncateRunes(strings.TrimSpace(string(body)), fetchMaxChars)
+	if md == "" {
+		return "", errors.New("contenu vide")
+	}
+	return md, nil
 }
