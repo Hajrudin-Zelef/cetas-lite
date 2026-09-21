@@ -23,13 +23,36 @@ const I = {
   server: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6" y2="6"/><line x1="6" y1="18" x2="6" y2="18"/></svg>',
 };
 
+// Icônes par type de fichier (phase 2) — même style stroke que les icônes
+// existantes, différenciées par la forme (pas la couleur).
+const FI = {
+  code: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  markdown:
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>',
+  pdf: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h6"/></svg>',
+  image:
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
+  audio:
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+  video:
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10 9 15 12 10 15 10 9"/></svg>',
+  archive:
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5" rx="1"/><line x1="10" y1="12" x2="14" y2="12"/></svg>',
+  data: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3H7a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1"/><path d="M16 3h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-1"/></svg>',
+  text: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+};
+
 // ---------------- API ----------------
 
 export const ProjectsAPI = {
   list: () => api("/api/projects"),
   create: (body) => api("/api/projects", { method: "POST", body }),
   remove: (id) => api("/api/projects/" + encodeURIComponent(id), { method: "DELETE" }),
-  tree: (id) => api("/api/projects/" + encodeURIComponent(id) + "/tree"),
+  tree: (id, path = "", depth = 1) => {
+    let u = "/api/projects/" + encodeURIComponent(id) + "/tree?depth=" + depth;
+    if (path) u += "&path=" + encodeURIComponent(path);
+    return api(u);
+  },
   file: (id, path) =>
     api("/api/projects/" + encodeURIComponent(id) + "/file?path=" + encodeURIComponent(path)),
   removeFile: (id, path) =>
@@ -100,42 +123,152 @@ export const Projects = {
 
 // ---------------- arborescence ----------------
 
-function fileIcon(name) {
-  return '<span class="mx-tree-file-dot"></span>';
+// Extension -> famille d'icône (phase 2).
+function iconFamily(name) {
+  const m = /\.([a-z0-9]+)$/i.exec(name || "");
+  const ext = (m && m[1].toLowerCase()) || "";
+  if (!ext) return "file";
+  if (
+    "js,jsx,ts,tsx,mjs,cjs,go,py,pyw,rb,java,kt,kts,swift,c,h,cpp,cc,cxx,rs,php,sh,bash,zsh,sql,lua,pl,pm,vue,svelte,css,scss,less,html,htm".split(
+      ","
+    ).includes(ext)
+  )
+    return "code";
+  if ("md,markdown,rst,adoc".split(",").includes(ext)) return "markdown";
+  if (ext === "pdf") return "pdf";
+  if ("png,jpg,jpeg,gif,webp,svg,bmp,ico,avif".split(",").includes(ext)) return "image";
+  if ("mp3,wav,ogg,flac,m4a,aac,opus".split(",").includes(ext)) return "audio";
+  if ("mp4,webm,mov,mkv,avi,m4v".split(",").includes(ext)) return "video";
+  if ("zip,tar,gz,tgz,bz2,xz,rar,7z".split(",").includes(ext)) return "archive";
+  if ("json,jsonl,csv,tsv,xml,yml,yaml,toml,ini,env".split(",").includes(ext)) return "data";
+  if ("txt,log,text,nfo".split(",").includes(ext)) return "text";
+  return "file";
 }
 
-function renderTreeNodes(container, node, projectId, prefix) {
-  const kids = node.children || [];
-  for (const c of kids) {
-    const path = c.path || (prefix ? prefix + "/" + c.name : c.name);
-    if (c.is_dir) {
-      const dirBtn = document.createElement("button");
-      dirBtn.type = "button";
-      dirBtn.className = "sb-tree-item sb-tree-dir";
-      dirBtn.innerHTML = I.chev + I.folder + "<span>" + esc(c.name) + "</span>";
-      const sub = document.createElement("div");
-      sub.className = "sb-tree-sub sb-ws-tree collapsed";
-      dirBtn.addEventListener("click", () => {
-        const collapsed = sub.classList.toggle("collapsed");
-        dirBtn.querySelector("svg").style.transform = collapsed ? "rotate(-90deg)" : "";
-      });
-      container.appendChild(dirBtn);
-      container.appendChild(sub);
-      renderTreeNodes(sub, c, projectId, path);
-    } else {
-      const fBtn = document.createElement("button");
-      fBtn.type = "button";
-      fBtn.className = "sb-tree-item";
-      fBtn.innerHTML = '<span class="sb-tree-leaf-spacer"></span>' + I.file + "<span>" + esc(c.name) + "</span>";
-      fBtn.title = path;
-      fBtn.addEventListener("click", () => openFileReader(projectId, path));
-      container.appendChild(fBtn);
+export function fileIcon(name) {
+  const fam = iconFamily(name);
+  if (fam === "file") return I.file;
+  return FI[fam] || I.file;
+}
+
+// Chemins des dossiers dépliés — conservés entre les re-rendus pour
+// restaurer l'état après un refresh (phase 2).
+const expandedPaths = new Set();
+
+// Nombre d'entrées affichées par lot dans un dossier (phase 2 : " + N autres ").
+const TREE_PAGE = 100;
+
+function renderTreeRow(container, c, projectId, path) {
+  if (c.is_dir) {
+    const dirBtn = document.createElement("button");
+    dirBtn.type = "button";
+    dirBtn.className = "sb-tree-item sb-tree-dir";
+    dirBtn.dataset.dirPath = path;
+    dirBtn.innerHTML = I.chev + I.folder + "<span>" + esc(c.name) + "</span>";
+    const sub = document.createElement("div");
+    sub.className = "sb-tree-sub sb-ws-tree collapsed";
+    dirBtn.addEventListener("click", () => toggleDir(projectId, path, dirBtn, sub));
+    container.appendChild(dirBtn);
+    container.appendChild(sub);
+  } else {
+    const fBtn = document.createElement("button");
+    fBtn.type = "button";
+    fBtn.className = "sb-tree-item";
+    fBtn.innerHTML =
+      '<span class="sb-tree-leaf-spacer"></span>' + fileIcon(c.name) + "<span>" + esc(c.name) + "</span>";
+    fBtn.title = path;
+    fBtn.addEventListener("click", () => openFileReader(projectId, path));
+    container.appendChild(fBtn);
+  }
+}
+
+function renderTreePage(container, kids, projectId, start) {
+  const page = kids.slice(start, start + TREE_PAGE);
+  for (const c of page) renderTreeRow(container, c, projectId, c.path || c.name);
+  const rest = kids.length - start - page.length;
+  if (rest > 0) {
+    const more = document.createElement("button");
+    more.type = "button";
+    more.className = "sb-tree-item sb-tree-more";
+    more.innerHTML = '<span class="sb-tree-leaf-spacer"></span><span>+ ' + rest + " autres</span>";
+    more.addEventListener("click", () => {
+      more.remove();
+      renderTreePage(container, kids, projectId, start + page.length);
+    });
+    container.appendChild(more);
+  }
+}
+
+function renderTreeLevel(container, kids, projectId) {
+  renderTreePage(container, kids, projectId, 0);
+}
+
+// Restaure les dossiers dépliés parmi les enfants directs du conteneur.
+function restoreExpandedPaths(scopeEl, projectId) {
+  for (const el of scopeEl.children) {
+    if (!el.classList || !el.classList.contains("sb-tree-dir")) continue;
+    if (!expandedPaths.has(el.dataset.dirPath)) continue;
+    const sub = el.nextElementSibling;
+    if (sub) toggleDir(projectId, el.dataset.dirPath, el, sub);
+  }
+}
+
+function toggleDir(projectId, path, dirBtn, sub) {
+  const willOpen = sub.classList.contains("collapsed");
+  sub.classList.toggle("collapsed");
+  const chev = dirBtn.querySelector("svg");
+  if (chev) chev.style.transform = willOpen ? "" : "rotate(-90deg)";
+  if (willOpen) {
+    expandedPaths.add(path);
+    ensureDirLoaded(projectId, path, sub); // asynchrone, sans bloquer le clic
+  } else {
+    expandedPaths.delete(path);
+  }
+}
+
+// Chargement paresseux (phase 2) : les enfants d'un dossier ne sont chargés
+// qu'à l'expansion — un seul niveau par requête.
+async function ensureDirLoaded(projectId, dirPath, sub) {
+  if (sub.dataset.loaded === "1" || sub.dataset.loading === "1") return;
+  sub.dataset.loading = "1";
+  const ph = document.createElement("div");
+  ph.className = "sb-tree-empty";
+  ph.textContent = "Chargement…";
+  sub.appendChild(ph);
+  try {
+    const data = await ProjectsAPI.tree(projectId, dirPath, 1);
+    sub.innerHTML = "";
+    // Le backend renvoie le nœud vfs directement (pas d'enveloppe {tree}).
+    const node = data || {};
+    const kids = node.children || [];
+    renderTreeLevel(sub, kids, projectId);
+    if (!kids.length) {
+      const e = document.createElement("div");
+      e.className = "sb-tree-empty";
+      e.textContent = "Dossier vide.";
+      sub.appendChild(e);
     }
+    if (node.truncated) {
+      const w = document.createElement("div");
+      w.className = "sb-tree-empty";
+      w.textContent = "Contenu tronqué (limite atteinte).";
+      sub.appendChild(w);
+    }
+    sub.dataset.loaded = "1";
+    restoreExpandedPaths(sub, projectId); // sous-dossiers dépliés avant refresh
+  } catch (e) {
+    sub.innerHTML =
+      '<div class="sb-tree-empty">Lecture impossible : ' + esc(e.message || e) + "</div>";
+  } finally {
+    delete sub.dataset.loading;
   }
 }
 
 // Affiche l'arborescence du projet actif dans le conteneur donné.
+// Phase 2 : chargement paresseux (un niveau par requête), état déplié et
+// position de scroll conservés entre les re-rendus.
 export async function renderActiveTree(container) {
+  const scrollTop = container.scrollTop;
   container.innerHTML = "";
   const p = Projects.active;
   if (!p) return;
@@ -144,20 +277,26 @@ export async function renderActiveTree(container) {
   loading.textContent = "Chargement…";
   container.appendChild(loading);
   try {
-    const data = await ProjectsAPI.tree(p.id);
+    const data = await ProjectsAPI.tree(p.id, "", 1);
     container.innerHTML = "";
-    const root = (data && data.tree) || { children: [] };
-    if (data && data.truncated) {
+    // Le backend renvoie le nœud vfs directement (pas d'enveloppe {tree}).
+    const root = data || {};
+    const kids = root.children || [];
+    if (root.truncated) {
       const w = document.createElement("div");
       w.className = "sb-tree-empty";
-      w.textContent = "Arborescence tronquée (2000 entrées max).";
+      w.textContent = "Arborescence tronquée (limite atteinte).";
       container.appendChild(w);
     }
-    if (!(root.children || []).length) {
+    if (!kids.length) {
       container.innerHTML += '<div class="sb-tree-empty">Projet vide.</div>';
       return;
     }
-    renderTreeNodes(container, root, p.id, "");
+    renderTreeLevel(container, kids, p.id);
+    // Restaure les dossiers dépliés avant le refresh (récursif via
+    // ensureDirLoaded -> restoreExpandedPaths).
+    restoreExpandedPaths(container, p.id);
+    container.scrollTop = scrollTop;
   } catch (e) {
     container.innerHTML =
       '<div class="sb-tree-empty">Lecture impossible : ' + esc(e.message || e) + "</div>";
@@ -279,6 +418,19 @@ export async function openFileReader(projectId, path) {
       const blob = await ProjectsAPI.fileBlob(projectId, path);
       const url = URL.createObjectURL(blob);
       body.innerHTML = '<iframe class="mx-reader-pdf" src="' + url + '"></iframe>';
+      const iv = setInterval(() => {
+        if (!document.body.contains(overlay)) {
+          URL.revokeObjectURL(url);
+          clearInterval(iv);
+        }
+      }, 2000);
+      return;
+    }
+    // Images (phase 2) : servies en binaire par /file, affichées via <img>.
+    if (/\.(png|jpe?g|gif|webp|bmp|ico|svg|avif)$/i.test(name)) {
+      const blob = await ProjectsAPI.fileBlob(projectId, path);
+      const url = URL.createObjectURL(blob);
+      body.innerHTML = '<img class="mx-reader-img" src="' + url + '" alt="' + esc(name) + '">';
       const iv = setInterval(() => {
         if (!document.body.contains(overlay)) {
           URL.revokeObjectURL(url);

@@ -17,19 +17,25 @@ const PROJECTS = [
   { id: "p1", name: "Site vitrine", mode: "local", created_at: "2026-09-14T10:00:00Z" },
   { id: "p2", name: "API prod", mode: "sftp", host: "srv.ex", port: 22, user: "deploy", remote_path: "/srv/api", created_at: "2026-09-14T11:00:00Z" },
 ];
-const TREE = {
-  tree: {
-    name: "/", path: "", is_dir: true,
-    children: [
-      {
-        name: "src", path: "src", is_dir: true,
-        children: [{ name: "main.go", path: "src/main.go", is_dir: false, size: 42 }],
-      },
-      { name: "README.md", path: "README.md", is_dir: false, size: 10 },
-    ],
-  },
-  truncated: false,
+const TREE_ROOT = {
+  name: "", path: "", is_dir: true, truncated: false,
+  children: [
+    { name: "src", path: "src", is_dir: true },
+    { name: "README.md", path: "README.md", is_dir: false, size: 10 },
+  ],
 };
+const TREE_SRC = {
+  name: "src", path: "src", is_dir: true, truncated: false,
+  children: [{ name: "main.go", path: "src/main.go", is_dir: false, size: 42 }],
+};
+const TREE_BIG = {
+  name: "big", path: "big", is_dir: true, truncated: false,
+  children: Array.from({ length: 250 }, (_, i) => ({
+    name: "f" + i + ".txt", path: "big/f" + i + ".txt", is_dir: false, size: 1,
+  })),
+};
+TREE_ROOT.children.push({ name: "big", path: "big", is_dir: true });
+// NB : le backend renvoie le nœud vfs directement (pas d'enveloppe {tree}).
 let activeId = "p1";
 let ghConnected = false;
 const calls = [];
@@ -50,7 +56,16 @@ globalThis.fetch = async (url, opts = {}) => {
     }
     return json({ active: activeId });
   }
-  if (u === "/api/projects/p1/tree") return json(TREE);
+  if (u.startsWith("/api/projects/p1/tree")) {
+    const qp = new URLSearchParams(u.split("?")[1] || "");
+    const p = qp.get("path") || "";
+    if (p === "src") return json(TREE_SRC);
+    if (p === "big") return json(TREE_BIG);
+    return json(TREE_ROOT);
+  }
+  if (u.startsWith("/api/projects/p1/file?path=logo.png")) {
+    return { ok: true, status: 200, blob: async () => new Blob(["fakepng"]) };
+  }
   if (u.startsWith("/api/projects/p1/file?path=src%2Fmain.go")) return json({ content: "package main", size: 12 });
   if (u === "/api/connectors") return json({ github: { connected: ghConnected, login: ghConnected ? "tester" : "" } });
   if (u === "/api/connectors/github" && (opts.method || "GET") === "PUT") { ghConnected = true; return json({ ok: true }); }
@@ -58,7 +73,7 @@ globalThis.fetch = async (url, opts = {}) => {
   return json({});
 };
 
-const { Projects, renderProjectsList, renderActiveTree, renderProjectBar, openFileReader, renderConnectorsInto } =
+const { Projects, renderProjectsList, renderActiveTree, renderProjectBar, openFileReader, renderConnectorsInto, fileIcon } =
   await import("../projects.js");
 
 const $ = (s) => document.querySelector(s);
@@ -88,7 +103,7 @@ await test("setActive change le projet actif", async () => {
   await Projects.setActive("p1");
 });
 
-await test("renderActiveTree affiche l'arborescence repliable", async () => {
+await test("renderActiveTree affiche l'arborescence repliable (lazy)", async () => {
   const box = document.createElement("div");
   document.body.appendChild(box);
   await renderActiveTree(box);
@@ -98,14 +113,22 @@ await test("renderActiveTree affiche l'arborescence repliable", async () => {
   assert.ok(dirBtn, "dossier cliquable");
   const sub = box.querySelector(".sb-tree-sub");
   assert.ok(sub.classList.contains("collapsed"));
+  assert.doesNotMatch(sub.innerHTML, /main\.go/, "enfants non chargés avant expansion");
   dirBtn.click();
   assert.ok(!sub.classList.contains("collapsed"), "déplié au clic");
+  await new Promise((r) => setTimeout(r, 50));
+  assert.match(sub.innerHTML, /main\.go/, "enfants chargés paresseusement");
+  // Replie pour ne pas polluer les tests suivants (état déplié conservé).
+  dirBtn.click();
 });
 
 await test("clic sur un fichier ouvre le lecteur", async () => {
   const box = document.createElement("div");
   document.body.appendChild(box);
   await renderActiveTree(box);
+  const dirBtn = box.querySelector(".sb-tree-dir");
+  dirBtn.click();
+  await new Promise((r) => setTimeout(r, 50));
   const fileBtn = [...box.querySelectorAll(".sb-tree-item")].find((b) => b.title === "src/main.go");
   assert.ok(fileBtn, "bouton fichier trouvé");
   fileBtn.click();
@@ -115,6 +138,77 @@ await test("clic sur un fichier ouvre le lecteur", async () => {
   assert.match(modal.innerHTML, /main\.go/);
   assert.match(document.querySelector(".mx-reader-code").textContent, /package main/);
   modal.closest(".mx-modal-overlay").remove();
+  dirBtn.click(); // replie
+});
+
+await test("fileIcon distingue les types de fichiers", () => {
+  const go = fileIcon("main.go");
+  const md = fileIcon("README.md");
+  const png = fileIcon("logo.png");
+  const zip = fileIcon("a.zip");
+  const unknown = fileIcon("fichier_sans_ext");
+  assert.notEqual(go, md, "code != markdown");
+  assert.notEqual(png, zip, "image != archive");
+  assert.notEqual(go, unknown, "code != générique");
+  assert.match(png, /<svg/, "icône image en SVG");
+});
+
+await test("clic sur une image ouvre l'aperçu image", async () => {
+  globalThis.URL.createObjectURL = globalThis.URL.createObjectURL || (() => "blob:faux");
+  globalThis.URL.revokeObjectURL = globalThis.URL.revokeObjectURL || (() => {});
+  const box = document.createElement("div");
+  document.body.appendChild(box);
+  await renderActiveTree(box);
+  // Ajoute temporairement une image à la racine mockée.
+  TREE_ROOT.children.push({ name: "logo.png", path: "logo.png", is_dir: false, size: 7 });
+  await renderActiveTree(box);
+  const fileBtn = [...box.querySelectorAll(".sb-tree-item")].find((b) => b.title === "logo.png");
+  assert.ok(fileBtn, "bouton image trouvé");
+  fileBtn.click();
+  await new Promise((r) => setTimeout(r, 50));
+  const img = document.querySelector(".mx-reader-img");
+  assert.ok(img, "aperçu <img> affiché");
+  document.querySelector(".mx-modal-overlay").remove();
+  TREE_ROOT.children.pop();
+});
+
+await test("refresh conserve les dossiers dépliés", async () => {
+  const box = document.createElement("div");
+  document.body.appendChild(box);
+  await renderActiveTree(box);
+  const dirBtn = box.querySelector(".sb-tree-dir");
+  dirBtn.click();
+  await new Promise((r) => setTimeout(r, 50));
+  // Second rendu (comme après un tour agent) : l'état déplié est restauré.
+  await renderActiveTree(box);
+  await new Promise((r) => setTimeout(r, 100));
+  const sub = box.querySelector(".sb-tree-sub");
+  assert.ok(!sub.classList.contains("collapsed"), "toujours déplié après refresh");
+  assert.match(sub.innerHTML, /main\.go/, "enfants rechargés");
+  box.querySelector(".sb-tree-dir").click(); // replie
+});
+
+await test("dossier volumineux : affichage par lots", async () => {
+  const box = document.createElement("div");
+  document.body.appendChild(box);
+  await renderActiveTree(box);
+  const bigBtn = [...box.querySelectorAll(".sb-tree-dir")].find((b) => b.dataset.dirPath === "big");
+  assert.ok(bigBtn, "dossier big trouvé");
+  bigBtn.click();
+  await new Promise((r) => setTimeout(r, 50));
+  const sub = bigBtn.nextElementSibling;
+  assert.equal(
+    sub.querySelectorAll(".sb-tree-item:not(.sb-tree-more)").length,
+    100,
+    "premier lot de 100"
+  );
+  const more = sub.querySelector(".sb-tree-more");
+  assert.ok(more, "bouton + N autres présent");
+  assert.match(more.textContent, /150 autres/);
+  more.click();
+  assert.equal(sub.querySelectorAll(".sb-tree-item:not(.sb-tree-more)").length, 200);
+  assert.match(sub.querySelector(".sb-tree-more").textContent, /50 autres/);
+  bigBtn.click(); // replie
 });
 
 await test("renderProjectBar montre le projet et le workspace", async () => {

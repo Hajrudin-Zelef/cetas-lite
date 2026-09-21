@@ -156,6 +156,44 @@ func TestProjectUploadAndFile(t *testing.T) {
 	}
 }
 
+func TestProjectFileImagePreview(t *testing.T) {
+	s, token := testServerWithProjects(t)
+	h := s.Handler()
+
+	rec := doJSON(t, h, http.MethodPost, "/api/projects", token, map[string]any{"name": "Img", "mode": "local"})
+	id := decode(t, rec)["id"].(string)
+
+	// Upload d'un PNG minimal (en-tête PNG + IHDR factice).
+	png := "\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde"
+	var b strings.Builder
+	w := newMultipartWriter(&b)
+	addMultipartFile(t, w, "files", "logo.png", png)
+	pf, err := w.w.CreateFormField("paths")
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, _ = pf.Write([]byte(`["logo.png"]`))
+	w.close()
+	req := multipartRequest(t, "/api/projects/"+id+"/upload", &b, w.boundaryStr())
+	req.Header.Set("Authorization", "Bearer "+token)
+	rec2 := serveRequest(t, h, req)
+	if rec2.Code != http.StatusOK {
+		t.Fatalf("upload = %d: %s", rec2.Code, rec2.Body.String())
+	}
+
+	// L'aperçu image est servi en binaire avec le bon Content-Type (phase 2).
+	rec = doJSON(t, h, http.MethodGet, "/api/projects/"+id+"/file?path=logo.png", token, nil)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("file = %d", rec.Code)
+	}
+	if ct := rec.Header().Get("Content-Type"); ct != "image/png" {
+		t.Fatalf("Content-Type = %q, attendu image/png", ct)
+	}
+	if !strings.HasPrefix(rec.Body.String(), "\x89PNG") {
+		t.Fatal("corps binaire PNG attendu")
+	}
+}
+
 func TestConnectorsGitHub(t *testing.T) {
 	s, token := testServerWithProjects(t)
 	h := s.Handler()

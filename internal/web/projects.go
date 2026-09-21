@@ -207,8 +207,11 @@ func (s *Server) handleProjectFileGet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	lower := strings.ToLower(clean)
-	if strings.HasSuffix(lower, ".pdf") {
-		w.Header().Set("Content-Type", "application/pdf")
+	// Binaires prévisualisables (PDF, images) : servis en binaire pour le
+	// modal d'aperçu (phase 2). L'iframe / l'<img> ne peuvent pas envoyer
+	// le header d'authentification : le front passe par fetch + blob.
+	if ct := previewContentType(lower); ct != "" {
+		w.Header().Set("Content-Type", ct)
 		w.Header().Set("Content-Disposition", "inline; filename="+strconv.Quote(path.Base(clean)))
 		_, _ = w.Write(b)
 		return
@@ -218,6 +221,34 @@ func (s *Server) handleProjectFileGet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"content": string(b), "size": len(b)})
+}
+
+// previewContentType retourne le Content-Type des binaires prévisualisables
+// dans le modal (PDF, images). Chaîne vide = pas de prévisualisation binaire
+// (le JSON texte/binaire s'applique).
+func previewContentType(lower string) string {
+	if strings.HasSuffix(lower, ".pdf") {
+		return "application/pdf"
+	}
+	switch {
+	case strings.HasSuffix(lower, ".png"):
+		return "image/png"
+	case strings.HasSuffix(lower, ".jpg"), strings.HasSuffix(lower, ".jpeg"):
+		return "image/jpeg"
+	case strings.HasSuffix(lower, ".gif"):
+		return "image/gif"
+	case strings.HasSuffix(lower, ".webp"):
+		return "image/webp"
+	case strings.HasSuffix(lower, ".bmp"):
+		return "image/bmp"
+	case strings.HasSuffix(lower, ".avif"):
+		return "image/avif"
+	case strings.HasSuffix(lower, ".ico"):
+		return "image/x-icon"
+	case strings.HasSuffix(lower, ".svg"):
+		return "image/svg+xml"
+	}
+	return ""
 }
 
 // DELETE /api/projects/{id}/file — supprime un fichier du projet.

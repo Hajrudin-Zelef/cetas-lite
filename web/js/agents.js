@@ -1396,6 +1396,13 @@ function buildThread(id) {
     onDone: () => {
       if (statsBadge.textContent) tokenCounter.textContent = statsBadge.textContent;
       refreshAgents();
+      // Phase 2 : l'agent a pu modifier les fichiers du projet actif —
+      // rafraîchit l'arborescence (dossiers dépliés conservés). Vue Agents
+      // uniquement : chat.js ne passe pas ce callback.
+      if (Projects.activeId) {
+        const t = $("#mx-active-tree");
+        if (t) renderActiveTree(t);
+      }
     },
   });
 }
