@@ -125,6 +125,8 @@ type SFTPFS struct {
 	mu     sync.Mutex
 	sshCl  *ssh.Client
 	sftpCl *sftp.Client
+	// lastProbe : dernier contrôle de santé réussi (F6.2).
+	lastProbe time.Time
 }
 
 func NewSFTP(cfg SFTPConfig, name string) *SFTPFS {
@@ -142,8 +144,15 @@ func (s *SFTPFS) client(ctx context.Context) (*sftp.Client, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if s.sftpCl != nil {
-		// Sonde légère : si la session est morte, on reconnecte.
+		// F6.2 : sonde temporisée — on ne sonde la connexion que si elle
+		// est inactive depuis sftpProbeInterval, pas à chaque opération.
+		// Sous le seuil, une connexion morte sera récupérée par le
+		// réessai F6.3 de l'opération.
+		if !needProbe(s.lastProbe, time.Now()) {
+			return s.sftpCl, nil
+		}
 		if _, err := s.sftpCl.Stat(s.cfg.RemotePath); err == nil {
+			s.lastProbe = time.Now()
 			return s.sftpCl, nil
 		}
 		s.closeLocked()
@@ -165,6 +174,7 @@ func (s *SFTPFS) client(ctx context.Context) (*sftp.Client, error) {
 	}
 	s.sshCl = sshCl
 	s.sftpCl = cl
+	s.lastProbe = time.Now()
 	return cl, nil
 }
 
@@ -215,86 +225,79 @@ func (s *SFTPFS) Resolve(rel string) (string, error) {
 }
 
 func (s *SFTPFS) ReadFile(ctx context.Context, rel string) ([]byte, error) {
-	cl, err := s.client(ctx)
-	if err != nil {
-		return nil, err
-	}
-	rp, err := s.rpath(rel)
-	if err != nil {
-		return nil, err
-	}
-	f, err := cl.Open(rp)
-	if err != nil {
-		return nil, toFSerr(err)
-	}
-	defer f.Close()
-	return io.ReadAll(io.LimitReader(f, 64<<20))
+	var out []byte
+	err := s.doRetry(ctx, func(cl *sftp.Client) error {
+		rp, err := s.rpath(rel)
+		if err != nil {
+			return err
+		}
+		f, err := cl.Open(rp)
+		if err != nil {
+			return toFSerr(err)
+		}
+		defer f.Close()
+		out, err = io.ReadAll(io.LimitReader(f, 64<<20))
+		return err
+	})
+	return out, err
 }
 
 func (s *SFTPFS) WriteFile(ctx context.Context, rel string, data []byte, perm os.FileMode) error {
-	cl, err := s.client(ctx)
-	if err != nil {
-		return err
-	}
-	rp, err := s.rpath(rel)
-	if err != nil {
-		return err
-	}
-	// Crée les dossiers parents.
-	if dir := path.Dir(rp); dir != s.cfg.RemotePath {
-		if err := cl.MkdirAll(dir); err != nil {
+	return s.doRetry(ctx, func(cl *sftp.Client) error {
+		rp, err := s.rpath(rel)
+		if err != nil {
 			return err
 		}
-	}
-	f, err := cl.OpenFile(rp, os.O_WRONLY|os.O_CREATE|os.O_TRUNC)
-	if err != nil {
-		return toFSerr(err)
-	}
-	defer f.Close()
-	if _, err := f.Write(data); err != nil {
-		return err
-	}
-	return nil
+		// Crée les dossiers parents.
+		if dir := path.Dir(rp); dir != s.cfg.RemotePath {
+			if err := cl.MkdirAll(dir); err != nil {
+				return err
+			}
+		}
+		f, err := cl.OpenFile(rp, os.O_WRONLY|os.O_CREATE|os.O_TRUNC)
+		if err != nil {
+			return toFSerr(err)
+		}
+		defer f.Close()
+		if _, err := f.Write(data); err != nil {
+			return err
+		}
+		return nil
+	})
 }
 
 func (s *SFTPFS) MkdirAll(ctx context.Context, rel string) error {
-	cl, err := s.client(ctx)
-	if err != nil {
-		return err
-	}
-	rp, err := s.rpath(rel)
-	if err != nil {
-		return err
-	}
-	return cl.MkdirAll(rp)
+	return s.doRetry(ctx, func(cl *sftp.Client) error {
+		rp, err := s.rpath(rel)
+		if err != nil {
+			return err
+		}
+		return cl.MkdirAll(rp)
+	})
 }
 
 func (s *SFTPFS) Remove(ctx context.Context, rel string) error {
-	cl, err := s.client(ctx)
-	if err != nil {
-		return err
-	}
-	rp, err := s.rpath(rel)
-	if err != nil {
-		return err
-	}
-	return cl.Remove(rp)
+	return s.doRetry(ctx, func(cl *sftp.Client) error {
+		rp, err := s.rpath(rel)
+		if err != nil {
+			return err
+		}
+		return cl.Remove(rp)
+	})
 }
 
 func (s *SFTPFS) Rename(ctx context.Context, oldrel, newrel string) error {
-	cl, err := s.client(ctx)
-	if err != nil {
-		return err
-	}
-	oldp, err := s.rpath(oldrel)
-	if err != nil {
-		return err
-	}
-	newp, err := s.rpath(newrel)
-	if err != nil {
-		return err
-	}
-	return cl.Rename(oldp, newp)
+	return s.doRetry(ctx, func(cl *sftp.Client) error {
+		oldp, err := s.rpath(oldrel)
+		if err != nil {
+			return err
+		}
+		newp, err := s.rpath(newrel)
+		if err != nil {
+			return err
+		}
+		return cl.Rename(oldp, newp)
+	})
 }
 
 func toEntrySFTP(rel string, fi os.FileInfo) Entry {
@@ -306,57 +309,59 @@ func toEntrySFTP(rel string, fi os.FileInfo) Entry {
 }
 
 func (s *SFTPFS) Stat(ctx context.Context, rel string) (Entry, error) {
-	cl, err := s.client(ctx)
-	if err != nil {
-		return Entry{}, err
-	}
-	rp, err := s.rpath(rel)
-	if err != nil {
-		return Entry{}, err
-	}
-	fi, err := cl.Stat(rp)
-	if err != nil {
-		return Entry{}, toFSerr(err)
-	}
-	clean, _ := cleanRel(rel)
-	if clean == "" {
-		return Entry{Path: "", IsDir: true}, nil
-	}
-	return toEntrySFTP(clean, fi), nil
+	var out Entry
+	err := s.doRetry(ctx, func(cl *sftp.Client) error {
+		rp, err := s.rpath(rel)
+		if err != nil {
+			return err
+		}
+		fi, err := cl.Stat(rp)
+		if err != nil {
+			return toFSerr(err)
+		}
+		clean, _ := cleanRel(rel)
+		if clean == "" {
+			out = Entry{Path: "", IsDir: true}
+			return nil
+		}
+		out = toEntrySFTP(clean, fi)
+		return nil
+	})
+	return out, err
 }
 
 func (s *SFTPFS) ReadDir(ctx context.Context, rel string) ([]Entry, error) {
-	cl, err := s.client(ctx)
-	if err != nil {
-		return nil, err
-	}
-	rp, err := s.rpath(rel)
-	if err != nil {
-		return nil, err
-	}
-	fis, err := cl.ReadDir(rp)
-	if err != nil {
-		return nil, toFSerr(err)
-	}
-	clean, _ := cleanRel(rel)
-	out := make([]Entry, 0, len(fis))
-	for _, fi := range fis {
-		if SkipEntry(fi.Name()) {
-			continue
+	var out []Entry
+	err := s.doRetry(ctx, func(cl *sftp.Client) error {
+		rp, err := s.rpath(rel)
+		if err != nil {
+			return err
 		}
-		rp2 := fi.Name()
-		if clean != "" {
-			rp2 = clean + "/" + fi.Name()
+		fis, err := cl.ReadDir(rp)
+		if err != nil {
+			return toFSerr(err)
 		}
-		out = append(out, toEntrySFTP(rp2, fi))
-	}
-	sort.Slice(out, func(i, j int) bool {
-		if out[i].IsDir != out[j].IsDir {
-			return out[i].IsDir
+		clean, _ := cleanRel(rel)
+		out = make([]Entry, 0, len(fis))
+		for _, fi := range fis {
+			if SkipEntry(fi.Name()) {
+				continue
+			}
+			rp2 := fi.Name()
+			if clean != "" {
+				rp2 = clean + "/" + fi.Name()
+			}
+			out = append(out, toEntrySFTP(rp2, fi))
 		}
-		return out[i].Path < out[j].Path
+		sort.Slice(out, func(i, j int) bool {
+			if out[i].IsDir != out[j].IsDir {
+				return out[i].IsDir
+			}
+			return out[i].Path < out[j].Path
+		})
+		return nil
 	})
-	return out, nil
+	return out, err
 }
 
 func (s *SFTPFS) Walk(ctx context.Context, fn func(Entry) error) error {
@@ -404,6 +409,19 @@ func (s *SFTPFS) Exec(ctx context.Context, name string, args []string, env map[s
 	cctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
 	sess, err := sshCl.NewSession()
+	if err != nil && isTransientNetErr(err) {
+		// La connexion SSH semblait établie mais est morte : on la
+		// rétablit une fois puis on recrée la session. La commande n'a
+		// pas démarré : aucun risque de double exécution (F6.3).
+		s.resetConn()
+		if _, cerr := s.client(ctx); cerr != nil {
+			return "", err
+		}
+		s.mu.Lock()
+		sshCl = s.sshCl
+		s.mu.Unlock()
+		sess, err = sshCl.NewSession()
+	}
 	if err != nil {
 		return "", err
 	}
