@@ -331,7 +331,33 @@ export function initAgents() {
 
   const view = document.createElement("div");
   view.id = "marex-view";
-  view.setAttribute("data-accent", "sky");
+  // La vue Agents suit le thème et la palette de l'app (100 %) :
+  //  - data-theme="clair" -> classe .light (bloc clair du CSS),
+  //  - data-palette -> data-accent de la vue (mêmes familles de teintes).
+  // MutationObserver : le changement depuis Configuration est répercuté
+  // en direct, sans rechargement.
+  var MX_PALETTE_TO_ACCENT = {
+    bleu: "blue",
+    violet: "violet",
+    vert: "green",
+    vert_pur: "green",
+    bleu_ocean: "sky",
+    jaune_or: "gold",
+    rouge: "red",
+  };
+  function syncMxTheme() {
+    var t = document.documentElement.dataset.theme || "clair";
+    view.classList.toggle("light", t === "clair");
+    var p = document.documentElement.dataset.palette || "bleu";
+    view.setAttribute("data-accent", MX_PALETTE_TO_ACCENT[p] || "sky");
+  }
+  syncMxTheme();
+  if (typeof MutationObserver !== "undefined") {
+    new MutationObserver(syncMxTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme", "data-palette"],
+    });
+  }
   view.innerHTML = VIEW_HTML;
   document.body.appendChild(view);
   const $ = (s) => view.querySelector(s);

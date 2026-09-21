@@ -185,3 +185,56 @@ html[data-theme="clair"] .mx-modal-overlay{
   font-weight:700;
   padding:10px 10px 2px;
 }
+
+/* ============================================================
+   Vue Agents : compléments au thème clair
+   (Fait suite au bloc #marex-view.light du CSS généré, laissé
+   intact : les surcharges vivent dans cette couche.)
+   But : en thème « clair », aucune couleur sombre en dur ne doit
+   subsister — tout reste lisible sur fond clair, et l'accent suit
+   la palette de l'app (synchro JS : .light + data-accent).
+   ============================================================ */
+
+/* Contrôles natifs (scrollbars, cases à cocher…) en mode clair. */
+#marex-view.light{ color-scheme:light; }
+
+/* Titres de groupes (PROJETS, DISCUSSIONS…) : le bleu clair du thème
+   sombre (#6EA8FE) serait illisible sur fond blanc → bleu soutenu. */
+#marex-view.light .sb-group-label{ color:#1a56db; }
+
+/* Blocs de code : fond clair en thème clair (la feuille hljs claire
+   est activée par theme-init quand le thème est « clair »). */
+#marex-view.light{ --bg-code:#eef1f5; }
+#marex-view.light .msg.assistant .md pre{ background:var(--bg-code); }
+#marex-view.light .md pre code{ color:#1a1c21; }
+
+/* Bouton stop : pastille rouge lisible sur fond clair. */
+#marex-view.light .stop-btn{ background:#f7dede; border-color:#eeb9b9; color:#c0392b; }
+#marex-view.light .stop-btn:hover{ background:#f3d2d2; }
+
+/* Erreurs du journal : même traitement que .msg.error en clair. */
+#marex-view.light .mx-chat-log .message-error{ background:#fdecec; color:#a12626; border-color:#f3c2c2; }
+
+/* Checklist TodoWrite : le jaune pur est illisible sur blanc. */
+#marex-view.light .chat-todo-header,
+#marex-view.light .chat-todo-item,
+#marex-view.light .chat-todo-item .todo-icon,
+#marex-view.light .chat-todo-item .todo-content,
+#marex-view.light .chat-todo-item.todo-completed .todo-content,
+#marex-view.light .chat-todo-item.todo-completed .todo-icon{ color:#8a6d00 !important; }
+
+/* Diff +/- : verts/rouges lisibles sur fond clair. */
+#marex-view.light .diff-add{ background:rgba(46,160,67,.12); color:#1a7f37; border-left-color:#1a7f37; }
+#marex-view.light .diff-del{ background:rgba(248,81,73,.10); color:#d1242f; border-left-color:#d1242f; }
+
+/* Élément sélectionné des menus déroulants. */
+#marex-view.light .cdrop-item.selected{ background:#e8ebf0; }
+
+/* Zone de saisie des instructions (modale interne à la vue). */
+#marex-view.light .modal-instructions-textarea{ background:#f4f5f7; }
+
+/* Icônes ambre (favoris, toggle agent, historique) : assombries sur fond clair. */
+#marex-view.light .agent-toggle-btn.active{ color:#b8860b; filter:none; }
+#marex-view.light .mx-fav-btn.active{ color:#c9930a; }
+#marex-view.light .mx-fav-btn.active svg{ fill:#c9930a; }
+#marex-view.light .sb-hist-favorite.active{ color:#c9930a; }
