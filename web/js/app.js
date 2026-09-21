@@ -6,6 +6,10 @@ import { initModels } from "./model-select.js";
 import { initRightPanel } from "./right-panel.js";
 import { initModals } from "./modals.js";
 import { initAgents } from "./agents.js";
+// Phase 3 : cache IndexedDB ciblé (arborescence + petits aperçus). Importé
+// pour son seul effet de bord (décoration de ProjectsAPI) ; dégrade
+// proprement sans IndexedDB.
+import "./idb-cache.js";
 import { initTerminal } from "./terminal.js";
 import { initMetrics } from "./metrics.js";
 

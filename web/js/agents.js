@@ -8,6 +8,7 @@ import {
   AGENTIC_STYLE_CODEX,
   AGENTIC_STYLE_EVENT,
 } from "./agentic-style.js";
+import { invalidateProjectCache } from "./idb-cache.js";
 import { logout } from "./auth.js";
 import { openDocs } from "./docs.js";
 import { confirmDialog } from "./dialogs.js";
@@ -1425,9 +1426,11 @@ function buildThread(id) {
       // Phase 2 : l'agent a pu modifier les fichiers du projet actif —
       // rafraîchit l'arborescence (dossiers dépliés conservés). Vue Agents
       // uniquement : chat.js ne passe pas ce callback.
+      // Phase 3 : purge d'abord le cache arbre/aperçus pour re-rendre une
+      // structure à jour (sinon le SWR 60 s servirait l'ancien arbre).
       if (Projects.activeId) {
         const t = $("#mx-active-tree");
-        if (t) renderActiveTree(t);
+        if (t) invalidateProjectCache(Projects.activeId).then(() => renderActiveTree(t));
       }
     },
   });

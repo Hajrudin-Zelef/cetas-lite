@@ -319,8 +319,20 @@ func (m *Manager) OpenFS(id string) (vfs.FS, error) {
 	if err != nil {
 		return nil, err
 	}
-	m.open[id] = fsys
-	return fsys, nil
+	// Phase 3 : cache de working-set à deux niveaux (RAM 150 Mo LRU + disque,
+	// 512 Mo au total). Projets SFTP : miroir disque local sous projectDir
+	// (supprimé avec le projet) ; projets locaux : le FS source fait office
+	// de niveau disque, aucun miroir redondant. Décorateur transparent : les
+	// outils de l'agent comme l'UI passent par OpenFS, aucune interface ne
+	// change. Le préchargement (≤ 100 Mo → RAM) est asynchrone et borné.
+	var l2dir string
+	if p.Mode == ModeSFTP {
+		l2dir = filepath.Join(m.projectDir(p.ID), "cache", "l2")
+	}
+	cached := vfs.NewCachedFS(fsys, vfs.CacheConfig{L2Dir: l2dir})
+	cached.StartWarmup()
+	m.open[id] = cached
+	return cached, nil
 }
 
 // SetHostKey enregistre la clé hôte validée (TOFU) et invalide le FS caché.
