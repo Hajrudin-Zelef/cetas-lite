@@ -118,6 +118,38 @@ func TestTree(t *testing.T) {
 	}
 }
 
+func TestTreeTruncationSemantics(t *testing.T) {
+	ctx := context.Background()
+	lfs := testLocal(t)
+	_ = lfs.WriteFile(ctx, "a.txt", []byte("a"), 0o644)
+	_ = lfs.WriteFile(ctx, "sub/b.txt", []byte("b"), 0o644)
+
+	// Palier de profondeur (cas du lazy loading UI, depth=1) : des enfants
+	// sont présents, rien n'est coupé -> Truncated doit rester faux.
+	node, err := Tree(ctx, lfs, "", TreeOptions{MaxDepth: 1, MaxEntries: 100})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if node.Truncated {
+		t.Fatal("Truncated ne doit pas être positionné au simple palier de profondeur")
+	}
+	if !node.DepthLimited {
+		t.Fatal("DepthLimited attendu quand la profondeur demandée est atteinte")
+	}
+	if len(node.Children) != 2 { // a.txt + sub/
+		t.Fatalf("enfants: %d", len(node.Children))
+	}
+
+	// Vrai tronquage : plafond d'entrées atteint -> Truncated vrai.
+	node2, err := Tree(ctx, lfs, "", TreeOptions{MaxDepth: 4, MaxEntries: 2})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !node2.Truncated {
+		t.Fatal("Truncated attendu quand le plafond d'entrées est atteint")
+	}
+}
+
 func TestFlatList(t *testing.T) {
 	ctx := context.Background()
 	lfs := testLocal(t)

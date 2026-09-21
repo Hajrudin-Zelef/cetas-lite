@@ -119,7 +119,9 @@ func (s *Sandbox) toolTree(ctx context.Context, args map[string]any) ToolResult 
 	renderTreeChildren(&sb, root.Children, "")
 	out := sb.String()
 	if root.Truncated {
-		out += "… (tronque : profondeur ou nombre d'entrees max atteint)\n"
+		out += "… (tronque : nombre d'entrees max atteint)\n"
+	} else if root.DepthLimited {
+		out += "… (profondeur max atteinte : relancer avec max_depth superieur si besoin)\n"
 	}
 	return ToolResult{Text: out}
 }

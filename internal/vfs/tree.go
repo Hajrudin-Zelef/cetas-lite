@@ -13,8 +13,15 @@ type Node struct {
 	IsDir    bool    `json:"is_dir"`
 	Size     int64   `json:"size,omitempty"`
 	Children []*Node `json:"children,omitempty"`
-	// Truncated indique que des enfants ont été coupés (limite atteinte).
+	// Truncated indique que des enfants ont été réellement coupés
+	// (plafond MaxEntries atteint). Atteindre la profondeur demandée
+	// (MaxDepth) n'est PAS une troncature : c'est le fonctionnement
+	// normal, notamment pour le chargement paresseux de l'arborescence
+	// côté UI (un niveau par requête, suite au dépliage).
 	Truncated bool `json:"truncated,omitempty"`
+	// DepthLimited indique que la profondeur demandée a été atteinte :
+	// des sous-dossiers peuvent exister plus bas sans avoir été explorés.
+	DepthLimited bool `json:"depth_limited,omitempty"`
 }
 
 // TreeOptions borne l'arborescence pour rester économe.
@@ -40,15 +47,20 @@ func Tree(ctx context.Context, fsys FS, rel string, opt TreeOptions) (*Node, err
 	root := &Node{Name: baseName(clean), Path: clean, IsDir: true}
 	count := 1
 	truncated := false
+	depthLimited := false
 	var rec func(n *Node, rp string, depth int) error
 	rec = func(n *Node, rp string, depth int) error {
 		if ctx.Err() != nil {
 			return ctx.Err()
 		}
-		if depth >= opt.MaxDepth || count >= opt.MaxEntries {
-			if depth >= opt.MaxDepth || count >= opt.MaxEntries {
-				truncated = true
-			}
+		if depth >= opt.MaxDepth {
+			// Palier de profondeur demandé : fonctionnement normal
+			// (chargement paresseux), pas une troncature.
+			depthLimited = true
+			return nil
+		}
+		if count >= opt.MaxEntries {
+			truncated = true
 			return nil
 		}
 		ents, err := fsys.ReadDir(ctx, rp)
@@ -80,6 +92,7 @@ func Tree(ctx context.Context, fsys FS, rel string, opt TreeOptions) (*Node, err
 		return nil, err
 	}
 	root.Truncated = truncated
+	root.DepthLimited = depthLimited
 	return root, nil
 }
 
