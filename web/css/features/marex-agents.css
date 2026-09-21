@@ -185,7 +185,7 @@ body.mx-open #sidebar-toggle{ display:none !important; }
   font-size:10.5px;
   letter-spacing:.07em;
   text-transform:uppercase;
-  color:#0000FF; /* bleu pur (demande utilisateur) */
+  color:#6EA8FE; /* bleu plus clair, lisible sur fond noir */
   font-weight:700;
   padding:12px 10px 2px;
 }
