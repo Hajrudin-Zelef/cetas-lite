@@ -543,3 +543,60 @@ func TestAgentNoReasoningContentWhenNoReasoning(t *testing.T) {
 		}
 	}
 }
+
+func TestReadLoopGuard(t *testing.T) {
+	st := &toolExecState{}
+	// 4 lectures : rien.
+	for i := 0; i < 4; i++ {
+		if w, s := st.noteReadLoopCall("Read"); w || s {
+			t.Fatalf("iteration %d: aucun signal attendu", i+1)
+		}
+	}
+	// 5e lecture : avertissement.
+	if w, s := st.noteReadLoopCall("Grep"); !w || s {
+		t.Fatal("5e lecture: avertissement attendu")
+	}
+	// 6e, 7e : silence (avertissement déjà donné).
+	for _, name := range []string{"Cat", "Tree"} {
+		if w, s := st.noteReadLoopCall(name); w || s {
+			t.Fatalf("%s: aucun signal attendu", name)
+		}
+	}
+	// 8e : interruption.
+	if w, s := st.noteReadLoopCall("Read"); w || !s {
+		t.Fatal("8e lecture: interruption attendue")
+	}
+}
+
+func TestReadLoopGuardResetOnProgress(t *testing.T) {
+	st := &toolExecState{}
+	for i := 0; i < 4; i++ {
+		st.noteReadLoopCall("Read")
+	}
+	// Un outil hors famille lecture remet à zéro.
+	if w, s := st.noteReadLoopCall("Edit"); w || s {
+		t.Fatal("Edit ne doit declencher aucun signal")
+	}
+	for i := 0; i < 4; i++ {
+		if w, s := st.noteReadLoopCall("Read"); w || s {
+			t.Fatalf("apres reset, iteration %d: aucun signal attendu", i+1)
+		}
+	}
+	if w, s := st.noteReadLoopCall("Ls"); !w || s {
+		t.Fatal("5 lectures apres reset: avertissement attendu")
+	}
+}
+
+func TestReadLoopGuardFamily(t *testing.T) {
+	// Tous les membres de la famille comptent dans la même série.
+	st := &toolExecState{}
+	for i, name := range []string{"Read", "Cat", "Ls", "Tree", "Grep"} {
+		w, s := st.noteReadLoopCall(name)
+		if i < 4 && (w || s) {
+			t.Fatalf("%s: aucun signal attendu", name)
+		}
+		if i == 4 && (!w || s) {
+			t.Fatalf("%s: avertissement attendu", name)
+		}
+	}
+}

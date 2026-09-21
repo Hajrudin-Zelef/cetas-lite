@@ -5,12 +5,16 @@ package vfs
 
 import (
 	"context"
+	"crypto/ed25519"
+	"crypto/rand"
 	"errors"
 	"fmt"
 	"io"
 	"net"
 	"testing"
 	"time"
+
+	"golang.org/x/crypto/ssh"
 )
 
 func TestIsTransientNetErr(t *testing.T) {
@@ -137,5 +141,116 @@ func TestNeedProbe(t *testing.T) {
 	}
 	if !needProbe(time.Time{}, now) {
 		t.Error("sonde sans historique : attendu true")
+	}
+}
+
+// Tests phase 5 : TOFU avant authentification (F3) et watchdog (F4).
+
+func testHostKey(t *testing.T) ssh.PublicKey {
+	t.Helper()
+	pub, _, err := ed25519.GenerateKey(rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	k, err := ssh.NewPublicKey(pub)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return k
+}
+
+func TestCheckHostKey(t *testing.T) {
+	key := testHostKey(t)
+	other := testHostKey(t)
+
+	// Clé inconnue : ErrUnknownHostKey avec clé et empreinte.
+	err := checkHostKey(nil, key)
+	var unknown *ErrUnknownHostKey
+	if !errors.As(err, &unknown) {
+		t.Fatalf("attendu ErrUnknownHostKey, obtenu %v", err)
+	}
+	if len(unknown.Key) == 0 || unknown.Fingerprint == "" {
+		t.Fatal("ErrUnknownHostKey doit transporter la cle et son empreinte")
+	}
+	if !keysEqual(unknown.Key, key.Marshal()) {
+		t.Fatal("la cle transportee doit etre la cle presentee")
+	}
+
+	// Clé connue et identique : OK.
+	if err := checkHostKey(key.Marshal(), key); err != nil {
+		t.Fatalf("cle connue : attendu nil, obtenu %v", err)
+	}
+
+	// Clé changée : erreur dure, pas ErrUnknownHostKey.
+	err = checkHostKey(other.Marshal(), key)
+	if err == nil {
+		t.Fatal("cle changee : erreur attendue")
+	}
+	if errors.As(err, &unknown) {
+		t.Fatalf("cle changee : ne doit pas etre ErrUnknownHostKey (%v)", err)
+	}
+}
+
+func TestRunWatchedTimeout(t *testing.T) {
+	old := sftpOpTimeout
+	sftpOpTimeout = 30 * time.Millisecond
+	defer func() { sftpOpTimeout = old }()
+
+	s := &SFTPFS{}
+	release := make(chan struct{})
+	done := make(chan error, 1)
+	go func() {
+		done <- s.runWatched(context.Background(), func() error {
+			<-release // simule un appel SFTP figé, débloqué par resetConn
+			return errors.New("debloque")
+		})
+	}()
+	// Le watchdog (30 ms) doit frapper bien avant qu'on libère l'op (200 ms).
+	time.Sleep(200 * time.Millisecond)
+	close(release)
+	select {
+	case err := <-done:
+		if !errors.Is(err, errSFTPOpTimeout) {
+			t.Fatalf("attendu errSFTPOpTimeout, obtenu %v", err)
+		}
+	case <-time.After(5 * time.Second):
+		t.Fatal("runWatched n'est jamais revenu")
+	}
+}
+
+func TestRunWatchedCtxCancel(t *testing.T) {
+	old := sftpOpTimeout
+	sftpOpTimeout = time.Hour // seul le ctx doit frapper
+	defer func() { sftpOpTimeout = old }()
+
+	s := &SFTPFS{}
+	ctx, cancel := context.WithCancel(context.Background())
+	release := make(chan struct{})
+	done := make(chan error, 1)
+	go func() {
+		done <- s.runWatched(ctx, func() error {
+			<-release
+			return nil
+		})
+	}()
+	time.Sleep(50 * time.Millisecond)
+	cancel()
+	close(release)
+	select {
+	case err := <-done:
+		if !errors.Is(err, context.Canceled) {
+			t.Fatalf("attendu context.Canceled, obtenu %v", err)
+		}
+	case <-time.After(5 * time.Second):
+		t.Fatal("runWatched n'est jamais revenu")
+	}
+}
+
+func TestOpTimeoutNotTransient(t *testing.T) {
+	if isTransientNetErr(errSFTPOpTimeout) {
+		t.Fatal("errSFTPOpTimeout ne doit jamais etre reessaye")
+	}
+	if isTransientNetErr(context.DeadlineExceeded) {
+		t.Fatal("context.DeadlineExceeded ne doit jamais etre reessaye")
 	}
 }

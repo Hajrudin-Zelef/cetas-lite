@@ -58,10 +58,18 @@ var transientSubstrings = []string{
 	"connection refused",
 }
 
+// sftpOpTimeout : délai max d'une opération SFTP engagée (F4). Au-delà,
+// la connexion est invalidée — ce qui débloque l'appel réseau figé — et
+// l'opération échoue franchement, sans réessai. Variable pour les tests.
+var sftpOpTimeout = 60 * time.Second
+
+// errSFTPOpTimeout : échec franc du watchdog F4, jamais réessayé.
+var errSFTPOpTimeout = errors.New("operation SFTP : delai depasse")
+
 // isTransientNetErr : l'erreur ressemble-t-elle à un incident réseau
 // transitoire justifiant un réessai (F6.3) ? Les erreurs métier
-// (introuvable, hors racine) et le contexte annulé ne sont jamais
-// transitoires : elles sont retournées immédiatement, sans réessai.
+// (introuvable, hors racine), le contexte annulé et le watchdog F4 ne
+// sont jamais transitoires : ils sont retournés immédiatement, sans réessai.
 func isTransientNetErr(err error) bool {
 	if err == nil {
 		return false
@@ -69,7 +77,8 @@ func isTransientNetErr(err error) bool {
 	if errors.Is(err, ErrNotFound) ||
 		errors.Is(err, ErrOutsideRoot) ||
 		errors.Is(err, context.Canceled) ||
-		errors.Is(err, context.DeadlineExceeded) {
+		errors.Is(err, context.DeadlineExceeded) ||
+		errors.Is(err, errSFTPOpTimeout) {
 		return false
 	}
 	var nerr net.Error
@@ -113,16 +122,47 @@ func retryTransient(ctx context.Context, reset func(), attempt func() error) err
 	}
 }
 
+// runWatched exécute fn avec un garde-fou (F4) : si fn ne termine pas
+// avant ctx ou sftpOpTimeout, la connexion est invalidée — ce qui débloque
+// l'appel réseau figé, dont la goroutine se termine alors au lieu de fuir —
+// et une erreur franche est retournée (jamais réessayée).
+func (s *SFTPFS) runWatched(ctx context.Context, fn func() error) error {
+	done := make(chan error, 1)
+	go func() { done <- fn() }()
+	var timer <-chan time.Time
+	if sftpOpTimeout > 0 {
+		timer = time.After(sftpOpTimeout)
+	}
+	select {
+	case err := <-done:
+		return err
+	case <-ctx.Done():
+		s.resetConn()
+		<-done
+		return ctx.Err()
+	case <-timer:
+		s.resetConn()
+		<-done
+		return errSFTPOpTimeout
+	}
+}
+
 // doRetry exécute op avec un client SFTP : en cas d'erreur réseau
 // transitoire, la connexion est invalidée puis rétablie paresseusement,
-// et l'opération est réessayée (F6.3).
+// et l'opération est réessayée (F6.3). L'obtention du client comme
+// l'opération elle-même sont sous watchdog F4 : aucune ne peut figer
+// le tour agent indéfiniment.
 func (s *SFTPFS) doRetry(ctx context.Context, op func(cl *sftp.Client) error) error {
 	return retryTransient(ctx, s.resetConn, func() error {
-		cl, err := s.client(ctx)
-		if err != nil {
+		var cl *sftp.Client
+		if err := s.runWatched(ctx, func() error {
+			var err error
+			cl, err = s.client(ctx)
+			return err
+		}); err != nil {
 			return err
 		}
-		return op(cl)
+		return s.runWatched(ctx, func() error { return op(cl) })
 	})
 }
 

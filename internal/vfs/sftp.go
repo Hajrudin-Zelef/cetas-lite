@@ -45,10 +45,33 @@ func (e *ErrUnknownHostKey) Error() string {
 	return "cle hote inconnue: " + e.Fingerprint
 }
 
-// dialSSH établit la connexion SSH (timeout 10s) avec vérification TOFU.
-func dialSSH(cfg SFTPConfig) (*ssh.Client, []byte, error) {
+// sshDialTimeout : délai max d'établissement de la connexion SSH
+// (TCP + handshake). Appliqué même quand le ctx appelant n'a pas de
+// deadline propre (F4).
+const sshDialTimeout = 10 * time.Second
+
+// checkHostKey vérifie la clé hôte présentée AVANT toute authentification
+// (F3) : appelée par HostKeyCallback pendant le handshake SSH, donc avant
+// l'envoi de tout secret (mot de passe notamment). Comportement inchangé
+// côté appelant : clé inconnue -> ErrUnknownHostKey (clé à faire valider
+// puis stocker), clé changée -> erreur dure.
+func checkHostKey(known []byte, key ssh.PublicKey) error {
+	presented := key.Marshal()
+	if len(known) > 0 && !keysEqual(known, presented) {
+		return errors.New("la cle hote du serveur a change (attaque possible) — reverifiez la connexion")
+	}
+	if len(known) == 0 {
+		return &ErrUnknownHostKey{Fingerprint: ssh.FingerprintSHA256(key), Key: presented}
+	}
+	return nil
+}
+
+// dialSSH établit la connexion SSH : vérification TOFU de la clé hôte
+// avant authentification (F3), établissement annulable et borné dans le
+// temps même sans deadline sur ctx (F4).
+func dialSSH(ctx context.Context, cfg SFTPConfig) (*ssh.Client, error) {
 	if cfg.Host == "" || cfg.User == "" {
-		return nil, nil, errors.New("hote ou utilisateur manquant")
+		return nil, errors.New("hote ou utilisateur manquant")
 	}
 	port := cfg.Port
 	if port <= 0 {
@@ -64,7 +87,7 @@ func dialSSH(cfg SFTPConfig) (*ssh.Client, []byte, error) {
 			signer, err = ssh.ParsePrivateKey(cfg.PrivateKey)
 		}
 		if err != nil {
-			return nil, nil, fmt.Errorf("cle privee invalide: %w", err)
+			return nil, fmt.Errorf("cle privee invalide: %w", err)
 		}
 		auths = append(auths, ssh.PublicKeys(signer))
 	}
@@ -72,32 +95,61 @@ func dialSSH(cfg SFTPConfig) (*ssh.Client, []byte, error) {
 		auths = append(auths, ssh.Password(cfg.Password))
 	}
 	if len(auths) == 0 {
-		return nil, nil, errors.New("aucune methode d'authentification")
+		return nil, errors.New("aucune methode d'authentification")
 	}
 
-	var presented []byte
 	sshCfg := &ssh.ClientConfig{
-		User:            cfg.User,
-		Auth:            auths,
-		Timeout:         10 * time.Second,
-		HostKeyCallback: func(_ string, _ net.Addr, key ssh.PublicKey) error { presented = key.Marshal(); return nil },
+		User: cfg.User,
+		Auth: auths,
+		// F3 : la vérification TOFU a lieu ici, pendant le handshake,
+		// avant que l'authentification n'envoie le moindre secret.
+		HostKeyCallback: func(_ string, _ net.Addr, key ssh.PublicKey) error {
+			return checkHostKey(cfg.HostKey, key)
+		},
 	}
 	addr := fmt.Sprintf("%s:%d", cfg.Host, port)
-	cl, err := ssh.Dial("tcp", addr, sshCfg)
+	// F4 : l'établissement est borné (sshDialTimeout) même si le ctx
+	// appelant n'a pas de deadline ; une annulation reste prioritaire.
+	dialCtx := ctx
+	cancel := func() {}
+	if _, ok := ctx.Deadline(); !ok {
+		dialCtx, cancel = context.WithTimeout(ctx, sshDialTimeout)
+	}
+	defer cancel()
+	dialer := &net.Dialer{Timeout: sshDialTimeout}
+	conn, err := dialer.DialContext(dialCtx, "tcp", addr)
 	if err != nil {
-		return nil, nil, fmt.Errorf("connexion SSH: %w", err)
+		return nil, fmt.Errorf("connexion SSH: %w", err)
 	}
-	// Vérification TOFU : la clé doit correspondre à celle stockée.
-	if len(cfg.HostKey) > 0 && !keysEqual(cfg.HostKey, presented) {
-		cl.Close()
-		return nil, nil, errors.New("la cle hote du serveur a change (attaque possible) — reverifiez la connexion")
+	// NewClientConn ne prend pas de ctx : le handshake tourne en goroutine
+	// et la fermeture de conn débloque un handshake figé (F4).
+	type dialRes struct {
+		sc  ssh.Conn
+		ch  <-chan ssh.NewChannel
+		req <-chan *ssh.Request
+		err error
 	}
-	if len(cfg.HostKey) == 0 {
-		cl.Close()
-		fp := ssh.FingerprintSHA256(sshPublicKey(presented))
-		return nil, presented, &ErrUnknownHostKey{Fingerprint: fp, Key: presented}
+	done := make(chan dialRes, 1)
+	go func() {
+		sc, ch, req, err := ssh.NewClientConn(conn, addr, sshCfg)
+		done <- dialRes{sc, ch, req, err}
+	}()
+	select {
+	case <-dialCtx.Done():
+		conn.Close()
+		<-done
+		return nil, dialCtx.Err()
+	case r := <-done:
+		if r.err != nil {
+			conn.Close()
+			var unknown *ErrUnknownHostKey
+			if errors.As(r.err, &unknown) {
+				return nil, unknown
+			}
+			return nil, fmt.Errorf("connexion SSH: %w", r.err)
+		}
+		return ssh.NewClient(r.sc, r.ch, r.req), nil
 	}
-	return cl, presented, nil
 }
 
 func keysEqual(a, b []byte) bool {
@@ -110,11 +162,6 @@ func keysEqual(a, b []byte) bool {
 		}
 	}
 	return true
-}
-
-func sshPublicKey(marshaled []byte) ssh.PublicKey {
-	k, _ := ssh.ParsePublicKey(marshaled)
-	return k
 }
 
 // SFTPFS est l'implémentation distante de FS (dossier via SFTP).
@@ -157,7 +204,7 @@ func (s *SFTPFS) client(ctx context.Context) (*sftp.Client, error) {
 		}
 		s.closeLocked()
 	}
-	sshCl, _, err := dialSSH(s.cfg)
+	sshCl, err := dialSSH(ctx, s.cfg)
 	if err != nil {
 		return nil, err
 	}

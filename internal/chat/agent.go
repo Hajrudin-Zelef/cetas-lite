@@ -202,6 +202,9 @@ type toolExecState struct {
 	verified       bool
 	alwaysApproved bool
 	planApproved   bool
+	// readStreak : lectures d'affilée sans progression (F2). Tout appel
+	// hors famille lecture le remet à zéro.
+	readStreak int
 }
 
 // parallelToolOut est le résultat d'un appel exécuté en parallèle.
@@ -378,10 +381,28 @@ func (e *Engine) executeToolBlock(ctx context.Context, c *Conversation, epoch in
 		if ctx.Err() != nil {
 			return false
 		}
+		// F2 : après chaque appel restitué (dans l'ordre d'émission), le
+		// détecteur de boucle de lecture peut avertir ou interrompre.
+		checkReadLoop := func(name string) bool {
+			warn, stop := st.noteReadLoopCall(name)
+			if warn {
+				log.Printf("chat: tour %d: %d lectures d'affilee sans progression, avertissement", epoch, st.readStreak)
+				*msgs = append(*msgs, provider.Message{Role: "user", Content: readLoopWarnText})
+			}
+			if stop {
+				log.Printf("chat: tour %d: boucle de lecture sans progression (%d lectures), tour interrompu", epoch, st.readStreak)
+				c.appendDelta(epoch, map[string]any{"content": "\n\n_(trop de lectures sans progression — tour interrompu)_"})
+				return true
+			}
+			return false
+		}
 		if seg.parallel && len(seg.calls) >= 2 {
 			if pouts, ok := e.execParallelRun(ctx, c, epoch, reg, seg.calls, env, opts, st); ok {
 				for i, po := range pouts {
 					appendOut(seg.calls[i].Function.Name, po.id, po.out, po.followup)
+					if checkReadLoop(seg.calls[i].Function.Name) {
+						return true
+					}
 				}
 				continue
 			}
@@ -397,6 +418,9 @@ func (e *Engine) executeToolBlock(ctx context.Context, c *Conversation, epoch in
 				return true
 			}
 			appendOut(tc.Function.Name, tc.ID, out, followup)
+			if checkReadLoop(tc.Function.Name) {
+				return true
+			}
 		}
 	}
 	return false
@@ -1068,6 +1092,42 @@ func dedupableTool(name string) bool {
 		return false
 	}
 	return name != "Bash" && name != "RunScript"
+}
+
+// Famille lecture (F2) : outils d'exploration du workspace, sans effet de
+// bord. Tout autre appel (modification, exécution, recherche...) compte
+// comme une progression et remet le compteur à zéro.
+var readLoopFamily = map[string]bool{
+	"Read": true, "Cat": true, "Ls": true, "Tree": true,
+	"Grep": true, "Glob": true,
+}
+
+// Seuils F2 : avertissement injecté au modèle, puis interruption du tour.
+// La dédup existante ne bloque que les appels exactement identiques ; ce
+// garde-fou détecte « N lectures d'affilée sans progression » (offsets qui
+// avancent, fichiers différents relus en boucle, etc.).
+const maxReadStreakWarn = 5
+const maxReadStreakStop = 8
+
+const readLoopWarnText = "[boucle] Tu as enchaîné 5 lectures d'affilée sans rien modifier ni exécuter. " +
+	"Arrête de relire : agis maintenant avec ce que tu sais déjà (modifie, exécute), ou réponds à l'utilisateur."
+
+// noteReadLoopCall fait progresser le détecteur de boucle de lecture
+// (F2). Retourne warn=true quand le seuil d'avertissement est atteint,
+// stop=true quand le tour doit être interrompu.
+func (st *toolExecState) noteReadLoopCall(name string) (warn, stop bool) {
+	if !readLoopFamily[name] {
+		st.readStreak = 0
+		return false, false
+	}
+	st.readStreak++
+	switch {
+	case st.readStreak >= maxReadStreakStop:
+		return false, true
+	case st.readStreak == maxReadStreakWarn:
+		return true, false
+	}
+	return false, false
 }
 
 func repeatedCallResult(prev string, repeats int) string {
