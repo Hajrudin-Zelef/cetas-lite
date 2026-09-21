@@ -42,6 +42,7 @@ func TestIsTransientNetErr(t *testing.T) {
 		errors.New("permission denied"),
 		errors.New("delai depasse"),
 		errors.New("clef hote inconnue: SHA256:abc"),
+		errors.New("open notes_eof.txt: permission denied"),
 	}
 	for _, err := range notTransient {
 		if isTransientNetErr(err) {

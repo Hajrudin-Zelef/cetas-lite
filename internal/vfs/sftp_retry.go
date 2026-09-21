@@ -51,7 +51,6 @@ var transientSubstrings = []string{
 	"use of closed network connection",
 	"connection closed",
 	"unexpected eof",
-	"eof",
 	"connection timed out",
 	"i/o timeout",
 	"no route to host",
