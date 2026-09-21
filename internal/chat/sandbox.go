@@ -43,6 +43,18 @@ func (s *Sandbox) FS() vfs.FS { return s.fs }
 // Remote indique si le sandbox pointe vers un dossier distant.
 func (s *Sandbox) Remote() bool { return s.fs.Remote() }
 
+// backendKind retourne "sftp" ou "local" selon le FS du sandbox.
+// Sert au log de mesure F6.1 ; protege contre un sandbox nil (tests).
+func (s *Sandbox) backendKind() string {
+	if s == nil {
+		return "?"
+	}
+	if s.Remote() {
+		return "sftp"
+	}
+	return "local"
+}
+
 // Root retourne un libellé d'affichage de la racine.
 func (s *Sandbox) Root() string { return s.fs.Name() }
 

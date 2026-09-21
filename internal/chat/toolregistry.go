@@ -2,7 +2,9 @@ package chat
 
 import (
 	"context"
+	"log"
 	"strings"
+	"time"
 
 	"cetas-lite/internal/alias"
 	"cetas-lite/internal/customtools"
@@ -23,6 +25,9 @@ type toolFamily interface {
 type toolRegistry struct {
 	families []toolFamily
 	fallback toolFamily
+	// sb sert uniquement a la mesure F6.1 (label du backend local/sftp).
+	// Peut etre nil (tests) : backendKind est protege.
+	sb *Sandbox
 }
 
 func (r toolRegistry) schemas(ctx context.Context) []provider.Tool {
@@ -39,15 +44,35 @@ func (r toolRegistry) execute(ctx context.Context, env toolEnv, name, argsJSON s
 			// Phase 2 : les erreurs sont uniformisées au point de passage
 			// unique ([erreur] <outil> : <cause> — <consigne>), quelle que
 			// soit la famille d'outils.
-			out, followup := f.execute(ctx, env, name, argsJSON)
+			out, followup := timedExecute(r.sb, name, func() (ToolResult, *provider.Message) {
+				return f.execute(ctx, env, name, argsJSON)
+			})
 			return uniformToolError(name, out), followup
 		}
 	}
 	if r.fallback != nil {
-		out, followup := r.fallback.execute(ctx, env, name, argsJSON)
+		out, followup := timedExecute(r.sb, name, func() (ToolResult, *provider.Message) {
+			return r.fallback.execute(ctx, env, name, argsJSON)
+		})
 		return uniformToolError(name, out), followup
 	}
 	return ToolResult{Text: "[erreur] outil inconnu: " + name}, nil
+}
+
+// timedExecute mesure la duree d'une execution d'outil reelle (F6.1, phase 1).
+// Point de passage unique : voies sequentielle ET parallele. L'attente
+// d'approbation est exclue (reg.execute n'est appele qu'apres decision).
+// Format journalctl : chat: outil Read [sftp]: 342 ms (marqueur LENT >= 2 s).
+func timedExecute(sb *Sandbox, name string, fn func() (ToolResult, *provider.Message)) (ToolResult, *provider.Message) {
+	start := time.Now()
+	out, followup := fn()
+	elapsed := time.Since(start)
+	slow := ""
+	if elapsed >= 2*time.Second {
+		slow = " LENT"
+	}
+	log.Printf("chat: outil %s [%s]: %d ms%s", name, sb.backendKind(), elapsed.Milliseconds(), slow)
+	return out, followup
 }
 
 func (e *Engine) toolRegistry(in TurnInput, sb *Sandbox) toolRegistry {
@@ -67,7 +92,7 @@ func (e *Engine) toolRegistry(in TurnInput, sb *Sandbox) toolRegistry {
 	if e.webToolsFor(in) {
 		families = append(families, webFamily{e: e})
 	}
-	return toolRegistry{families: families, fallback: builtinFamily{sb: sb, allowScript: e.scriptAllowed()}}
+	return toolRegistry{families: families, fallback: builtinFamily{sb: sb, allowScript: e.scriptAllowed()}, sb: sb}
 }
 
 type builtinFamily struct {

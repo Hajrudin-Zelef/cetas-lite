@@ -83,3 +83,19 @@ func TestToolRegistryNilFallback(t *testing.T) {
 		t.Fatalf("outil inconnu sans repli = %q", out.Text)
 	}
 }
+
+// F6.1 : la mesure ne doit ni alterer le resultat ni paniquer quand le
+// sandbox est absent (registres construits a la main dans les tests).
+func TestTimedExecutePassthroughNilSandbox(t *testing.T) {
+	var sb *Sandbox
+	if got := sb.backendKind(); got != "?" {
+		t.Fatalf("backendKind nil = %q, veut ?", got)
+	}
+	want := ToolResult{Text: "ok"}
+	out, _ := timedExecute(sb, "Read", func() (ToolResult, *provider.Message) {
+		return want, nil
+	})
+	if out.Text != want.Text {
+		t.Fatalf("timedExecute a altere le resultat: %q", out.Text)
+	}
+}
