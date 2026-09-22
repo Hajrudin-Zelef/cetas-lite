@@ -99,7 +99,6 @@ type chunk struct {
 type Index struct {
 	chunks   []chunk
 	postings map[string][]int32
-	df       map[string]int
 	avgLen   float64
 	stats    Stats
 }
@@ -163,10 +162,13 @@ func (ix *Index) Search(ctx context.Context, query string, limit int) Result {
 	res.Hits = make([]Hit, 0, len(order))
 	for rank, i := range order {
 		c := &ix.chunks[i]
-		ex := excerptOf(c.body, terms, maxSnippet)
+		// La plage de correspondance est calculee une seule fois (les
+		// extraits 240 et 900 car. partagent le meme ancrage).
+		mstart, mend, mok := firstMatchRange(c.body, terms)
+		ex := excerptAround(c.body, mstart, mend, mok, maxSnippet)
 		snip := ex
 		if rank < excerptTop {
-			ex = excerptOf(c.body, terms, excerptChars)
+			ex = excerptAround(c.body, mstart, mend, mok, excerptChars)
 			snip = snippetFrom(ex)
 		}
 		res.Hits = append(res.Hits, Hit{
@@ -229,7 +231,7 @@ func clampLimit(limit int) int {
 }
 
 func emptyIndex() *Index {
-	return &Index{postings: map[string][]int32{}, df: map[string]int{}, avgLen: 1}
+	return &Index{postings: map[string][]int32{}, avgLen: 1}
 }
 
 func buildIndex(chunks []chunk, corpora int, errs []string, start time.Time) *Index {
@@ -255,7 +257,6 @@ func buildIndex(chunks []chunk, corpora int, errs []string, start time.Time) *In
 	for i := range chunks {
 		for t := range chunks[i].tf {
 			ix.postings[t] = append(ix.postings[t], int32(i))
-			ix.df[t]++
 		}
 	}
 	if len(chunks) > 0 {
@@ -345,51 +346,97 @@ func snippetFrom(ex string) string {
 }
 
 // excerptOf : fenetre de texte centree sur le premier terme trouve (jusqu'a
-// width runes), espaces normalises. Sans correspondance : debut du document.
+// width runes), espaces normalises. Le texte retourne est toujours extrait
+// du corps d'origine (accents et casse preserves). Sans correspondance :
+// debut du document.
 func excerptOf(body string, terms []string, width int) string {
+	start, end, ok := firstMatchRange(body, terms)
+	return excerptAround(body, start, end, ok, width)
+}
+
+// excerptAround : decoupe la fenetre autour d'une plage deja localisee
+// (start/end : offsets octets dans body, sur des frontieres de runes).
+func excerptAround(body string, start, end int, ok bool, width int) string {
 	if body == "" || width <= 0 {
 		return ""
 	}
-	idx, text := firstMatch(body, terms)
-	if idx < 0 {
+	if !ok {
 		head := body
 		if len(head) > width*2 {
 			head = head[:runeBoundaryBack(body, width*2)]
 		}
 		return truncateRunes(flatten(head), width)
 	}
-	start := idx - width/3
-	if start < 0 {
-		start = 0
+	ws := start - width/3
+	if ws < 0 {
+		ws = 0
 	}
-	end := start + width
-	if end > len(text) {
-		end = len(text)
+	we := ws + width
+	if we > len(body) {
+		we = len(body)
 	}
-	start = runeBoundaryFwd(text, start)
-	end = runeBoundaryBack(text, end)
-	return ellipsis(start > 0) + flatten(text[start:end]) + ellipsis(end < len(text))
+	ws = runeBoundaryFwd(body, ws)
+	we = runeBoundaryBack(body, we)
+	_ = end // la fin de la correspondance est incluse dans la fenetre ci-dessus
+	return ellipsis(ws > 0) + flatten(body[ws:we]) + ellipsis(we < len(body))
 }
 
-// firstMatch : position du premier terme (recherche insensible a la casse,
-// sans allocation). Repli sur le texte replie (accents) si introuvable.
-func firstMatch(body string, terms []string) (int, string) {
+// firstMatchRange : offsets (octets) dans body de la premiere occurrence
+// d'un des termes. D'abord une recherche insensible a la casse (ASCII) sur
+// le texte d'origine ; en repli, une recherche sur le texte replie
+// (minuscules, sans accents) avec re-projection des offsets sur l'original,
+// pour que l'extrait garde accents et casse. ok=false si rien n'est trouve.
+func firstMatchRange(body string, terms []string) (start, end int, ok bool) {
 	best := -1
+	bestLen := 0
 	for _, t := range terms {
 		if i := indexFold(body, t); i >= 0 && (best < 0 || i < best) {
-			best = i
+			best, bestLen = i, len(t)
 		}
 	}
 	if best >= 0 {
-		return best, body
+		return best, best + bestLen, true
 	}
-	folded := normalize(body)
+	folded, fmap := foldWithMap(body)
 	for _, t := range terms {
 		if i := strings.Index(folded, t); i >= 0 && (best < 0 || i < best) {
-			best = i
+			best, bestLen = i, len(t)
 		}
 	}
-	return best, folded
+	if best < 0 {
+		return 0, 0, false
+	}
+	return fmap[best], fmap[best+bestLen], true
+}
+
+// foldWithMap : normalisation (minuscules + suppression des accents, meme
+// pipeline que normalize) avec table de correspondance : fmap[i] est
+// l'offset octet dans s du debut de la rune d'origine dont est issu le
+// i-eme octet replie ; fmap[len(folded)] vaut len(s) (sentinelle de fin).
+// La normalisation est faite rune par rune (equivalente a normalize pour
+// les textes latins ; peut differer sur des cas Unicode exotiques comme le
+// sigma final grec, auquel cas la correspondance echoue proprement).
+func foldWithMap(s string) (string, []int) {
+	var b strings.Builder
+	b.Grow(len(s))
+	fmap := make([]int, 0, len(s)+1)
+	for off := 0; off < len(s); {
+		r, w := utf8.DecodeRuneInString(s[off:])
+		for _, nr := range norm.NFD.String(string(unicode.ToLower(r))) {
+			if unicode.Is(unicode.Mn, nr) {
+				continue
+			}
+			var buf [utf8.UTFMax]byte
+			n := utf8.EncodeRune(buf[:], nr)
+			for k := 0; k < n; k++ {
+				fmap = append(fmap, off)
+			}
+			b.Write(buf[:n])
+		}
+		off += w
+	}
+	fmap = append(fmap, len(s))
+	return b.String(), fmap
 }
 
 func indexFold(hay, needle string) int {

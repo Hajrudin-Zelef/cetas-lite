@@ -8,6 +8,7 @@ import (
 	"sync"
 	"testing"
 	"time"
+	"unicode/utf8"
 )
 
 func writeFile(t *testing.T, path, content string) {
@@ -222,5 +223,79 @@ func BenchmarkSearch(b *testing.B) {
 		if len(ix.Search(ctx, "inference quantization gpu memory", 8).Hits) == 0 {
 			b.Fatal("aucun hit")
 		}
+	}
+}
+
+func TestExcerptKeepsAccents(t *testing.T) {
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "notes", "ia.md"),
+		"# État de l'art\n\nLes données d'entraînement sont coûteuses à collecter.\n")
+	ix, err := Load(root)
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	// "données" est normalisé en "donnees" pour le scoring, mais l'extrait
+	// injecté doit garder le texte d'origine (accents, casse).
+	res := ix.Search(context.Background(), "données entraînement", 5)
+	if len(res.Hits) != 1 {
+		t.Fatalf("attendu 1 hit, obtenu %d", len(res.Hits))
+	}
+	h := res.Hits[0]
+	if !strings.Contains(h.Excerpt, "données") {
+		t.Fatalf("extrait dégrade (accents perdus): %q", h.Excerpt)
+	}
+	if !strings.Contains(h.Excerpt, "État") {
+		t.Fatalf("extrait dégrade (casse perdue): %q", h.Excerpt)
+	}
+	if strings.Contains(h.Excerpt, "donnees") && !strings.Contains(h.Excerpt, "données") {
+		t.Fatalf("extrait issu du texte replie au lieu de l'original: %q", h.Excerpt)
+	}
+}
+
+func TestFoldWithMapRoundtrip(t *testing.T) {
+	for _, s := range []string{
+		"L'état des données",
+		"État",
+		"plain ascii",
+		"",
+		"Ünïcödé — test",
+	} {
+		folded, fmap := foldWithMap(s)
+		if len(fmap) != len(folded)+1 {
+			t.Fatalf("fmap de taille %d pour %d octets repliés (%q)", len(fmap), len(folded), s)
+		}
+		if fmap[len(folded)] != len(s) {
+			t.Fatalf("sentinelle finale %d != %d (%q)", fmap[len(folded)], len(s), s)
+		}
+		for i, off := range fmap[:len(folded)] {
+			if off < 0 || off >= len(s) {
+				t.Fatalf("offset %d hors bornes pour %q", off, s)
+			}
+			if !utf8.RuneStart(s[off]) {
+				t.Fatalf("offset %d au milieu d'une rune pour %q", off, s)
+			}
+			_ = i
+		}
+	}
+}
+
+func TestFirstMatchRangeFallback(t *testing.T) {
+	body := "Introduction.\n\nL'état des lieux est préoccupant.\n\nConclusion."
+	// "état" ne matche pas en ASCII (é), le repli doit re-projeter sur l'original.
+	start, end, ok := firstMatchRange(body, []string{"etat"})
+	if !ok {
+		t.Fatal("correspondance attendue via le repli accent-insensible")
+	}
+	if !strings.Contains(body[start:end], "état") {
+		t.Fatalf("plage [%d:%d] = %q, attendu le mot d'origine accentue", start, end, body[start:end])
+	}
+	// Chemin direct (ASCII) inchange.
+	start, end, ok = firstMatchRange(body, []string{"conclusion"})
+	if !ok || body[start:end] != "Conclusion" && body[start:end] != "conclusion" {
+		t.Fatalf("chemin direct inattendu: [%d:%d] = %q", start, end, body[start:end])
+	}
+	// Aucun terme : ok=false.
+	if _, _, ok = firstMatchRange(body, []string{"xyzabc"}); ok {
+		t.Fatal("ok attendu faux pour un terme absent")
 	}
 }
