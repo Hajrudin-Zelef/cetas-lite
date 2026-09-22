@@ -1,5 +1,6 @@
 // Package metrics expose les metriques systeme (CPU, RAM, disque, reseau)
-// sans dependance externe, sur Linux et Windows.
+// sans dependance externe. Disponibles sur Linux et Windows ; indisponibles
+// sur macOS (champs nil).
 package metrics
 
 // MemStat decrit une ressource memoire/disque en octets.
