@@ -21,12 +21,17 @@ RAG/
 │   └── <dossiers>/*.md    # chunks avec en-tête YAML
 ├── briefing-general-tech-2026/   # corpus n°2 — General Tech News 2026 (112 chunks)
 ├── ai-industry-kb-2026/          # corpus n°3 — AI Industry KB 2026 (123 chunks)
-└── ai-industry-kb-2026-wave6/    # corpus n°4 — AI Industry KB Wave 6 delta (136 chunks)
+├── ai-industry-kb-2026-wave6/    # corpus n°4 — AI Industry KB Wave 6 delta (136 chunks)
+├── frontier-models-2026/         # corpus n°5 — Frontier AI Models, Vague 1 (12 chunks)
+├── labs-grok-platforms-2026/     # corpus n°6 — Labs, Grok & platforms, Vague 2 (17 chunks)
+├── open-local-models-2026/       # corpus n°7 — Open / Local AI Models (26 chunks)
+└── tools-platforms-2026/         # corpus n°8 — AI Tools & Platforms, Step 2 (8 chunks)
 ```
 
 Corpus n°1–2 : découpe « explicite » par H3 (listes de mapping figées).
-Corpus n°3–4 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
-sources ne portant aucune ancre.
+Corpus n°3–8 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
+sources ne portant aucune ancre. Cibles 70–170 lignes pour n°3–4 (fichiers de 10 000–
+14 000 lignes) et 50–110 lignes pour n°5–8 (fichiers de 500–1 100 lignes).
 
 ## Garanties
 
@@ -102,10 +107,13 @@ python3 RAG/_tools/verify_rag.py    # vérification indépendante (doit finir «
 
 Le générateur est **idempotent** : relancer écrase les fichiers générés mais préserve
 `README.md` et `NOTES.md`. Ajouter un corpus = ajouter sa source dans `docs/RAG/` puis
-étendre la table `CHUNKS` de `build_rag.py`.
+une entrée dans la table `CORPORA` de `build_rag.py`.
 
 ## Ajouter un corpus
 
 1. Placer la source dans `docs/RAG/<fichier>.md` (intacte).
-2. Définir dans `build_rag.py` la table `(dossier, slug, ligne_du_titre, titre)`.
+2. Ajouter une entrée dans `CORPORA` (`build_rag.py`) :
+   - source **sans ancre** → `"mode": "auto"` + `max_lines`/`min_lines`
+     (et `first_is_content: True` si le fichier n'a qu'un seul H1 qui est du contenu) ;
+   - source **avec ancres** → table de chunks explicite `(dossier, slug, ligne, titre)`.
 3. Lancer `build_rag.py` puis `verify_rag.py`.

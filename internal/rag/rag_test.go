@@ -192,8 +192,11 @@ func TestLoadRepoCorpus(t *testing.T) {
 		t.Fatalf("Load: %v", err)
 	}
 	st := ix.Stats()
-	if st.Corpora != 4 {
-		t.Fatalf("attendu 4 corpus, obtenu %d (%v)", st.Corpora, st.Errors)
+	if st.Corpora < 4 {
+		t.Fatalf("attendu au moins 4 corpus, obtenu %d (%v)", st.Corpora, st.Errors)
+	}
+	if len(st.Errors) != 0 {
+		t.Fatalf("erreurs de chargement: %v", st.Errors)
 	}
 	if st.Chunks < 400 {
 		t.Fatalf("trop peu de chunks: %d", st.Chunks)

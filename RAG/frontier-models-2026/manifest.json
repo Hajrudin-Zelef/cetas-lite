@@ -1,0 +1,547 @@
+{
+  "corpus": "frontier-models-2026",
+  "title": "Frontier AI Models 2026 — Vague 1 (EN)",
+  "source": "docs/RAG/Grands titres IA modèlesEN.md",
+  "source_lines": 510,
+  "source_sha256": "77fa9d1eadc56fb302ea22fc7a42cc6e2477d5cb5d6f4938e0c1238ad60ffc04",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "frontier-models-2026/00-front-matter/overview",
+      "path": "frontier-models-2026/00-front-matter/overview.md",
+      "title": "VOLET 1 — Vague 1 (EN)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "research"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        6
+      ],
+      "canonical_for": [],
+      "words": 35,
+      "bytes": 241,
+      "sha256": "7862b827125db36e255fda9edd45155e79c5702364e9ea7404f0f3f0505964bb",
+      "section": "VOLET 1 — Vague 1 (EN)"
+    },
+    {
+      "id": "frontier-models-2026/01-volet-1-wave-1-research-fiche-en/overview",
+      "path": "frontier-models-2026/01-volet-1-wave-1-research-fiche-en/overview.md",
+      "title": "VOLET 1 — Wave 1 Research Fiche (EN)",
+      "domain": "volet-1-wave-1-research-fiche-en",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-05",
+        "2026-02",
+        "2026-02-03",
+        "2026-02-05",
+        "2026-03",
+        "2026-06-30",
+        "2026-07",
+        "2027-02-04"
+      ],
+      "keywords": [
+        "research",
+        "agent",
+        "agentic",
+        "agents",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "cloud agent",
+        "context window",
+        "copilot"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        7,
+        95
+      ],
+      "canonical_for": [],
+      "words": 1142,
+      "bytes": 8041,
+      "sha256": "9d3e32af642105aa4f2063cf46b513ba429ff363711d1c3511cf57ab0b853a9a",
+      "section": "VOLET 1 — Wave 1 Research Fiche (EN)"
+    },
+    {
+      "id": "frontier-models-2026/01-volet-1-wave-1-research-fiche-en/3-gemini-3-1-pro-google-deepmind",
+      "path": "frontier-models-2026/01-volet-1-wave-1-research-fiche-en/3-gemini-3-1-pro-google-deepmind.md",
+      "title": "3. Gemini 3.1 Pro (Google DeepMind)",
+      "domain": "volet-1-wave-1-research-fiche-en",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-01",
+        "2026-02",
+        "2026-02-19",
+        "2026-03-26",
+        "2026-05-04"
+      ],
+      "keywords": [
+        "gemini",
+        "agentic",
+        "agents",
+        "agi",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "consumer",
+        "copilot",
+        "cost",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        96,
+        146
+      ],
+      "canonical_for": [],
+      "words": 597,
+      "bytes": 3961,
+      "sha256": "6c84a439106d0a0ee437abb8912fc2c98c1a445f8d74a1c6c7159182f98278ad",
+      "section": "VOLET 1 — Wave 1 Research Fiche (EN)"
+    },
+    {
+      "id": "frontier-models-2026/02-volet-1-vague-1-frontier-ai-models-february-september-2026/overview",
+      "path": "frontier-models-2026/02-volet-1-vague-1-frontier-ai-models-february-september-2026/overview.md",
+      "title": "VOLET 1 — Vague 1: Frontier AI Models (February → September 2026)",
+      "domain": "volet-1-vague-1-frontier-ai-models-february-september-2026",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "DeepSeek",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "deepseek",
+        "glm",
+        "grok",
+        "grok 4",
+        "research"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        147,
+        153
+      ],
+      "canonical_for": [],
+      "words": 55,
+      "bytes": 369,
+      "sha256": "c65e60c0448807cb8b54fda686b439a41180d5a8ba97bc34e43436c0ddffd57c",
+      "section": "VOLET 1 — Vague 1: Frontier AI Models (February → September 2026)"
+    },
+    {
+      "id": "frontier-models-2026/03-grok-4-20-xai/overview",
+      "path": "frontier-models-2026/03-grok-4-20-xai/overview.md",
+      "title": "1. Grok 4.20 (xAI)",
+      "domain": "grok-4-20-xai",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-06",
+        "2026-09"
+      ],
+      "keywords": [
+        "grok",
+        "grok 4",
+        "agent",
+        "agents",
+        "agi",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "consumer",
+        "gemini",
+        "gpu"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        154,
+        196
+      ],
+      "canonical_for": [],
+      "words": 661,
+      "bytes": 4643,
+      "sha256": "37553465a5784e565fd48d48ab31cfb353c577e86980c59cb798ab205c8e08ff",
+      "section": "1. Grok 4.20 (xAI)"
+    },
+    {
+      "id": "frontier-models-2026/04-deepseek-v4-deepseek-v4-1-flash/overview",
+      "path": "frontier-models-2026/04-deepseek-v4-deepseek-v4-1-flash/overview.md",
+      "title": "2. DeepSeek V4 & DeepSeek V4.1 Flash",
+      "domain": "deepseek-v4-deepseek-v4-1-flash",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-09"
+      ],
+      "keywords": [
+        "deepseek",
+        "agent",
+        "agentic",
+        "agents",
+        "astra",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "decode",
+        "distillation"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        197,
+        275
+      ],
+      "canonical_for": [],
+      "words": 1122,
+      "bytes": 7443,
+      "sha256": "af82923cb36274a8d340894ad324c9b4add74bca8807554284f16c896bb8faea",
+      "section": "2. DeepSeek V4 & DeepSeek V4.1 Flash"
+    },
+    {
+      "id": "frontier-models-2026/05-glm-5-2-glm-5-3-glm-5-3-flash-zhipu-ai-z-ai/overview",
+      "path": "frontier-models-2026/05-glm-5-2-glm-5-3-glm-5-3-flash-zhipu-ai-z-ai/overview.md",
+      "title": "3. GLM-5.2 / GLM-5.3 / GLM-5.3-Flash (Zhipu AI / Z.ai)",
+      "domain": "glm-5-2-glm-5-3-glm-5-3-flash-zhipu-ai-z-ai",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "MiniMax",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "SGLang",
+        "United States",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-08"
+      ],
+      "keywords": [
+        "glm",
+        "agent",
+        "agents",
+        "attention",
+        "attribution",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "cyber",
+        "cybersecurity",
+        "deepseek"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        276,
+        369
+      ],
+      "canonical_for": [],
+      "words": 1153,
+      "bytes": 7668,
+      "sha256": "afa0dcac588e1c86f7492138ca163a662c09ad253f7b87ffb0bdae56527412a3",
+      "section": "3. GLM-5.2 / GLM-5.3 / GLM-5.3-Flash (Zhipu AI / Z.ai)"
+    },
+    {
+      "id": "frontier-models-2026/06-cross-cutting-comparison-vague-1-models/overview",
+      "path": "frontier-models-2026/06-cross-cutting-comparison-vague-1-models/overview.md",
+      "title": "4. Cross-cutting comparison (vague 1 models)",
+      "domain": "cross-cutting-comparison-vague-1-models",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "DeepSeek",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "attention",
+        "cyber",
+        "deepseek",
+        "fp4",
+        "glm",
+        "grok",
+        "grok 4",
+        "memory",
+        "multimodal",
+        "training"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        370,
+        383
+      ],
+      "canonical_for": [],
+      "words": 243,
+      "bytes": 1205,
+      "sha256": "e764f7be05e82beb003145713b9f770dec313a2fe0e3af7314cecc6cf969c02c",
+      "section": "4. Cross-cutting comparison (vague 1 models)"
+    },
+    {
+      "id": "frontier-models-2026/07-global-trend-febsep-2026/overview",
+      "path": "frontier-models-2026/07-global-trend-febsep-2026/overview.md",
+      "title": "5. Global trend (Feb–Sep 2026)",
+      "domain": "global-trend-febsep-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "MiniMax",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "deepseek",
+        "fable 5",
+        "fp4",
+        "gemini",
+        "glm",
+        "grok",
+        "grok 4"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        384,
+        390
+      ],
+      "canonical_for": [],
+      "words": 168,
+      "bytes": 1293,
+      "sha256": "7d78dfc6f8242607a3dcffd7869cea833fe1f30f2593ee54bf31a5524c69c040",
+      "section": "5. Global trend (Feb–Sep 2026)"
+    },
+    {
+      "id": "frontier-models-2026/08-caveats-methodology-notes/overview",
+      "path": "frontier-models-2026/08-caveats-methodology-notes/overview.md",
+      "title": "6. Caveats & methodology notes",
+      "domain": "caveats-methodology-notes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "agentic",
+        "benchmark",
+        "glm"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        391,
+        394
+      ],
+      "canonical_for": [],
+      "words": 74,
+      "bytes": 508,
+      "sha256": "5ea9204727811adbe3112f411c4f23a83e11496ffd20d5b40c95a9391b6ced77",
+      "section": "6. Caveats & methodology notes"
+    },
+    {
+      "id": "frontier-models-2026/09-rag-research-brief-volet1-wave-1-part-3-3/overview",
+      "path": "frontier-models-2026/09-rag-research-brief-volet1-wave-1-part-3-3/overview.md",
+      "title": "RAG Research Brief — VOLET1 / Wave 1 (Part 3/3)",
+      "domain": "rag-research-brief-volet1-wave-1-part-3-3",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "OpenRouter",
+        "Xiaomi",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2025-07-11",
+        "2026-04",
+        "2026-06-12",
+        "2026-07",
+        "2026-07-16",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "agent",
+        "agentic",
+        "agents",
+        "astra",
+        "attention",
+        "aws",
+        "bedrock",
+        "benchmarks",
+        "claude",
+        "context window",
+        "cost"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        395,
+        454
+      ],
+      "canonical_for": [],
+      "words": 894,
+      "bytes": 6057,
+      "sha256": "f3d6d7c74f8338d096f4484c3d09e9272ee11049a60d2972006a720ea9e520dd",
+      "section": "RAG Research Brief — VOLET1 / Wave 1 (Part 3/3)"
+    },
+    {
+      "id": "frontier-models-2026/09-rag-research-brief-volet1-wave-1-part-3-3/3-qwen3-8-max-alibaba-qwen3-x-family",
+      "path": "frontier-models-2026/09-rag-research-brief-volet1-wave-1-part-3-3/3-qwen3-8-max-alibaba-qwen3-x-family.md",
+      "title": "3. QWEN3.8 MAX (Alibaba) + Qwen3.x family",
+      "domain": "rag-research-brief-volet1-wave-1-part-3-3",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "MiniMax",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "United States",
+        "Xiaomi",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-06",
+        "2026-06-01",
+        "2026-07-16",
+        "2026-07-19",
+        "2026-08-03",
+        "2026-09-02",
+        "2026-09-10",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "apache",
+        "astra",
+        "attention",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "cost"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        455,
+        510
+      ],
+      "canonical_for": [],
+      "words": 1076,
+      "bytes": 7089,
+      "sha256": "5e088108993e5f3699a18d5411f622bf57b4d8684b69edc3ae2d05b849bcc70e",
+      "section": "RAG Research Brief — VOLET1 / Wave 1 (Part 3/3)"
+    }
+  ]
+}

@@ -16,6 +16,7 @@ import hashlib
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -647,6 +648,7 @@ KB_TERMS = sorted(set(IA_TERMS + GT_TERMS + [
 
 def slugify(s):
     s = re.sub(r"[§#]", " ", s)
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
     s = re.sub(r"[^A-Za-z0-9]+", "-", s)
     return s.strip("-").lower()[:60] or "part"
 
@@ -757,7 +759,8 @@ def auto_items(cfg, lines, n):
             else:
                 cleaned.append((a, b))
         merged = cleaned
-        fbase = f"{idx:02d}-{slugify(_strip_num(stitle))}" if idx else "00-front-matter"
+        front = idx == 0 and not cfg.get("first_is_content")
+        fbase = "00-front-matter" if front else f"{idx:02d}-{slugify(_strip_num(stitle))}"
         is_annex = "annex" in stitle.lower()
         seen = {}
         for k, (a, b) in enumerate(merged):
@@ -775,8 +778,8 @@ def auto_items(cfg, lines, n):
             seen[fname] = seen.get(fname, 0) + 1
             if seen[fname] > 1:
                 fname = f"{fname}-{seen[fname]}"
-            role = "reference" if idx == 0 else ("appendix" if is_annex else "deep-dive")
-            dom = "front-matter" if idx == 0 else ("appendix" if is_annex else slugify(_strip_num(stitle)))
+            role = "reference" if front else ("appendix" if is_annex else "deep-dive")
+            dom = "front-matter" if front else ("appendix" if is_annex else slugify(_strip_num(stitle)))
             items.append({
                 "folder": fbase, "slug": fname, "title": title, "section": stitle,
                 "start": a, "end": b, "anchor": "", "domain": dom, "role": role,
@@ -1193,6 +1196,34 @@ CORPORA = [
         "mode": "auto", "max_lines": 170, "min_lines": 70,
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
         "relationship": "delta", "delta_of": "ai-industry-kb-2026",
+    },
+    {
+        "slug": "frontier-models-2026",
+        "title": "Frontier AI Models 2026 — Vague 1 (EN)",
+        "source": "docs/RAG/Grands titres IA modèlesEN.md",
+        "mode": "auto", "max_lines": 110, "min_lines": 50,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "labs-grok-platforms-2026",
+        "title": "Labs, Grok, Tools & Platforms 2026 — Vague 2 (EN)",
+        "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+        "mode": "auto", "max_lines": 110, "min_lines": 50,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "open-local-models-2026",
+        "title": "Open / Local AI Models 2026 (EN)",
+        "source": "docs/RAG/Modèles IA open  locauxEN.md",
+        "mode": "auto", "max_lines": 110, "min_lines": 50,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "tools-platforms-2026",
+        "title": "AI Tools & Platforms 2026 (Step 2)",
+        "source": "docs/RAG/Outils & plateformes IAEN.md",
+        "mode": "auto", "max_lines": 110, "min_lines": 50, "first_is_content": True,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
 ]
 

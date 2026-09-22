@@ -1,0 +1,720 @@
+{
+  "corpus": "labs-grok-platforms-2026",
+  "title": "Labs, Grok, Tools & Platforms 2026 — Vague 2 (EN)",
+  "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+  "source_lines": 527,
+  "source_sha256": "ade8833d120931cf8141717dbadd34c5abd1b3f85ba69f5f1574e356c435907a",
+  "chunk_count": 17,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "labs-grok-platforms-2026/00-front-matter/overview",
+      "path": "labs-grok-platforms-2026/00-front-matter/overview.md",
+      "title": "VOLET 1 — Vague 2 (EN)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "xAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "grok",
+        "research"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        6
+      ],
+      "canonical_for": [],
+      "words": 37,
+      "bytes": 252,
+      "sha256": "4df5f1905389901d09e72566f37d6dc2c20c75f3c161da0b74b62690e44563bf",
+      "section": "VOLET 1 — Vague 2 (EN)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/01-volet-1-vague-2-en-anthropic/overview",
+      "path": "labs-grok-platforms-2026/01-volet-1-vague-2-en-anthropic/overview.md",
+      "title": "VOLET 1 — Vague 2 (EN): Anthropic",
+      "domain": "volet-1-vague-2-en-anthropic",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "grok",
+        "research"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        7,
+        12
+      ],
+      "canonical_for": [],
+      "words": 32,
+      "bytes": 228,
+      "sha256": "bb9adbcd0f05afa2e3b91e4546520025aa46910c44f909d472ab910c33c7bc07",
+      "section": "VOLET 1 — Vague 2 (EN): Anthropic"
+    },
+    {
+      "id": "labs-grok-platforms-2026/02-claude-opus-5-5-released-22-september-2026/overview",
+      "path": "labs-grok-platforms-2026/02-claude-opus-5-5-released-22-september-2026/overview.md",
+      "title": "1. Claude Opus 5.5 — released 22 September 2026",
+      "domain": "claude-opus-5-5-released-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "EU",
+        "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "claude",
+        "opus 5",
+        "agentic",
+        "alignment",
+        "astra",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "containment",
+        "context window",
+        "copilot"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        13,
+        74
+      ],
+      "canonical_for": [],
+      "words": 1057,
+      "bytes": 6702,
+      "sha256": "fbc00de62e28f6bfc2c4c282e1f49f4a792b88e925907a663332fc24a4dfacec",
+      "section": "1. Claude Opus 5.5 — released 22 September 2026"
+    },
+    {
+      "id": "labs-grok-platforms-2026/03-claude-opus-5-baseline-24-july-2026/overview",
+      "path": "labs-grok-platforms-2026/03-claude-opus-5-baseline-24-july-2026/overview.md",
+      "title": "2. Claude Opus 5 — baseline (24 July 2026)",
+      "domain": "claude-opus-5-baseline-24-july-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-07",
+        "2026-07-24"
+      ],
+      "keywords": [
+        "claude",
+        "opus 5",
+        "agi",
+        "fable 5",
+        "gpt-5.6",
+        "mythos 5",
+        "opus 4",
+        "sol"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        75,
+        86
+      ],
+      "canonical_for": [],
+      "words": 178,
+      "bytes": 1150,
+      "sha256": "08dad640374036aabfbc4a7449876c6f887e8f3b4449475cdf3f6e7010fade5d",
+      "section": "2. Claude Opus 5 — baseline (24 July 2026)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/04-rumors-claude-opus-5-2-never-publicly-released/overview",
+      "path": "labs-grok-platforms-2026/04-rumors-claude-opus-5-2-never-publicly-released/overview.md",
+      "title": "3. Rumors: Claude Opus 5.2 (never publicly released)",
+      "domain": "rumors-claude-opus-5-2-never-publicly-released",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09-30"
+      ],
+      "keywords": [
+        "claude",
+        "opus 5",
+        "benchmarks",
+        "fable 5",
+        "foundry",
+        "pricing",
+        "reasoning",
+        "wafer"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        87,
+        102
+      ],
+      "canonical_for": [],
+      "words": 277,
+      "bytes": 1785,
+      "sha256": "78856d0016ca1baba596189cbd1e3f4be1830ca95f41db8d3697b9ebd570c02c",
+      "section": "3. Rumors: Claude Opus 5.2 (never publicly released)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/05-claude-fable-5-9-june-2026-fable-5-1-1-sept-2026/overview",
+      "path": "labs-grok-platforms-2026/05-claude-fable-5-9-june-2026-fable-5-1-1-sept-2026/overview.md",
+      "title": "4. Claude Fable 5 (9 June 2026) & Fable 5.1 (1 Sept 2026)",
+      "domain": "claude-fable-5-9-june-2026-fable-5-1-1-sept-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "EU",
+        "Glasswing",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-03",
+        "2026-06",
+        "2026-06-09",
+        "2026-07-01",
+        "2026-09"
+      ],
+      "keywords": [
+        "claude",
+        "fable 5",
+        "agent",
+        "agentic",
+        "agi",
+        "alignment",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "cyber",
+        "cybersecurity"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        103,
+        139
+      ],
+      "canonical_for": [],
+      "words": 582,
+      "bytes": 3769,
+      "sha256": "2ce4d291a9c99f788323ecc4b938ca4474ec1482c64855e9afd880b2936997b9",
+      "section": "4. Claude Fable 5 (9 June 2026) & Fable 5.1 (1 Sept 2026)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/06-claude-code-evolution-through-2026/overview",
+      "path": "labs-grok-platforms-2026/06-claude-code-evolution-through-2026/overview.md",
+      "title": "5. Claude Code — evolution through 2026",
+      "domain": "claude-code-evolution-through-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "bedrock",
+        "copilot",
+        "export controls",
+        "fable 5",
+        "foundry",
+        "mcp",
+        "memory"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        140,
+        181
+      ],
+      "canonical_for": [],
+      "words": 673,
+      "bytes": 4517,
+      "sha256": "490aa4e7915a5d8d71eb3ea1d9552f01222875ff1411aae24d3fe61c06b63e44",
+      "section": "5. Claude Code — evolution through 2026"
+    },
+    {
+      "id": "labs-grok-platforms-2026/07-cross-cutting-anthropic-s-2026-model-ladder-sept-22-snapshot/overview",
+      "path": "labs-grok-platforms-2026/07-cross-cutting-anthropic-s-2026-model-ladder-sept-22-snapshot/overview.md",
+      "title": "6. Cross-cutting: Anthropic's 2026 model ladder (Sept 22 snapshot)",
+      "domain": "cross-cutting-anthropic-s-2026-model-ladder-sept-22-snapshot",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Glasswing"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "alignment",
+        "fable 5",
+        "mythos 5",
+        "opus 5",
+        "sonnet 5",
+        "watermarking"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        182,
+        194
+      ],
+      "canonical_for": [],
+      "words": 166,
+      "bytes": 801,
+      "sha256": "2dc6abc77de935561fa30bd4a00939f046aec0a4c77536877ee9daf52be5084c",
+      "section": "6. Cross-cutting: Anthropic's 2026 model ladder (Sept 22 snapshot)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/08-caveats-methodology-notes/overview",
+      "path": "labs-grok-platforms-2026/08-caveats-methodology-notes/overview.md",
+      "title": "7. Caveats & methodology notes",
+      "domain": "caveats-methodology-notes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "benchmark",
+        "cost",
+        "cyber",
+        "fable 5",
+        "opus 5",
+        "research",
+        "safeguards"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        195,
+        203
+      ],
+      "canonical_for": [],
+      "words": 103,
+      "bytes": 674,
+      "sha256": "1d86cd1f47a7becbc9b88bb359d90e4bbfb24cb3a826cd9fa5bcf9065f89174c",
+      "section": "7. Caveats & methodology notes"
+    },
+    {
+      "id": "labs-grok-platforms-2026/09-sources/overview",
+      "path": "labs-grok-platforms-2026/09-sources/overview.md",
+      "title": "8. Sources",
+      "domain": "sources",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Falcon",
+        "Microsoft",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06-09",
+        "2026-06-22",
+        "2026-08-10",
+        "2026-09-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "agi",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "copilot",
+        "cost",
+        "fable 5",
+        "gpt-6",
+        "grok"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        204,
+        209
+      ],
+      "canonical_for": [],
+      "words": 291,
+      "bytes": 5261,
+      "sha256": "e6ce039bd48af5701d8b10f68a1835c69691bd88a00a806bf96e41942379e3b7",
+      "section": "8. Sources"
+    },
+    {
+      "id": "labs-grok-platforms-2026/10-volet-1-vague-2-labos-grok-outils-plateformes-en/overview",
+      "path": "labs-grok-platforms-2026/10-volet-1-vague-2-labos-grok-outils-plateformes-en/overview.md",
+      "title": "VOLET 1 — Vague 2: Labos, Grok, outils & plateformes (EN)",
+      "domain": "volet-1-vague-2-labos-grok-outils-plateformes-en",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "grok",
+        "benchmark",
+        "research"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        210,
+        215
+      ],
+      "canonical_for": [],
+      "words": 33,
+      "bytes": 239,
+      "sha256": "c4ac3439670fd85a32c7d58ea92494d7c35cfefdae138b93d8ddfd5a047b47ab",
+      "section": "VOLET 1 — Vague 2: Labos, Grok, outils & plateformes (EN)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/11-part-a-xai-grok/overview",
+      "path": "labs-grok-platforms-2026/11-part-a-xai-grok/overview.md",
+      "title": "PART A — xAI / GROK",
+      "domain": "part-a-xai-grok",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "Xiaomi",
+        "xAI"
+      ],
+      "dates": [
+        "2024-05",
+        "2025-03",
+        "2025-07",
+        "2026-01-30",
+        "2026-02-02",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-06-08",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "grok",
+        "2nm",
+        "acquisition",
+        "agent",
+        "arr",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "context window",
+        "cost",
+        "disclosure"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        216,
+        325
+      ],
+      "canonical_for": [],
+      "words": 1585,
+      "bytes": 10191,
+      "sha256": "1229c5308d6ccebed07a6479a2cb8437cdb085b295ae31a0be4e4dde4c837402",
+      "section": "PART A — xAI / GROK"
+    },
+    {
+      "id": "labs-grok-platforms-2026/12-part-b-openai/overview",
+      "path": "labs-grok-platforms-2026/12-part-b-openai/overview.md",
+      "title": "PART B — OPENAI",
+      "domain": "part-b-openai",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "California",
+        "DeepSeek",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-12",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "agentic",
+        "agi",
+        "antitrust",
+        "astra",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "cost",
+        "cyber"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        326,
+        391
+      ],
+      "canonical_for": [],
+      "words": 915,
+      "bytes": 5968,
+      "sha256": "af59917cc55130b9e6634450219babf121e9b7fabd6145ee090ed618b2de7778",
+      "section": "PART B — OPENAI"
+    },
+    {
+      "id": "labs-grok-platforms-2026/13-volet-1-vague-2-labs-grok-tools-platforms-en/overview",
+      "path": "labs-grok-platforms-2026/13-volet-1-vague-2-labs-grok-tools-platforms-en/overview.md",
+      "title": "VOLET 1 — Vague 2: Labs, Grok, Tools & Platforms (EN)",
+      "domain": "volet-1-vague-2-labs-grok-tools-platforms-en",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "OpenRouter",
+        "SGLang",
+        "vLLM",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "grok",
+        "benchmark",
+        "gemini",
+        "research",
+        "sglang",
+        "vllm"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        392,
+        398
+      ],
+      "canonical_for": [],
+      "words": 40,
+      "bytes": 255,
+      "sha256": "84a39569831ade5aed0510e3ae920b4d9fded610ddc44acd8c618c9fc5b73c1c",
+      "section": "VOLET 1 — Vague 2: Labs, Grok, Tools & Platforms (EN)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/14-part-a-google-gemini-3-x-series-2026/overview",
+      "path": "labs-grok-platforms-2026/14-part-a-google-gemini-3-x-series-2026/overview.md",
+      "title": "PART A — GOOGLE / GEMINI 3.x SERIES (2026)",
+      "domain": "part-a-google-gemini-3-x-series-2026",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "California",
+        "Google",
+        "Irregular",
+        "Meta",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-05",
+        "2026-05-19",
+        "2026-07",
+        "2026-09"
+      ],
+      "keywords": [
+        "gemini",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "claude",
+        "cost",
+        "cyber",
+        "cybersecurity",
+        "disclosure",
+        "gemini 3.8",
+        "gemini 4"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        399,
+        475
+      ],
+      "canonical_for": [],
+      "words": 1083,
+      "bytes": 7222,
+      "sha256": "f352f572bb3d825d912f4d233ed2e92e27d86777f7fbe6f8aa8bafde4fd95491",
+      "section": "PART A — GOOGLE / GEMINI 3.x SERIES (2026)"
+    },
+    {
+      "id": "labs-grok-platforms-2026/15-part-b-platforms-infrastructure/overview",
+      "path": "labs-grok-platforms-2026/15-part-b-platforms-infrastructure/overview.md",
+      "title": "PART B — PLATFORMS & INFRASTRUCTURE",
+      "domain": "part-b-platforms-infrastructure",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Intel",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "SGLang",
+        "United States",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2024-01",
+        "2026-04-25",
+        "2026-05",
+        "2026-05-15",
+        "2026-06-04",
+        "2026-06-26",
+        "2026-07"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "deepseek",
+        "glm",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "kimi"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        476,
+        520
+      ],
+      "canonical_for": [],
+      "words": 514,
+      "bytes": 3600,
+      "sha256": "6048cea639289c3c1cf82e3fbdbed1547423e9e51d13ca1280a7ce633ba0534c",
+      "section": "PART B — PLATFORMS & INFRASTRUCTURE"
+    },
+    {
+      "id": "labs-grok-platforms-2026/16-part-c-why-it-matters-ecosystem-read-sept-2026/overview",
+      "path": "labs-grok-platforms-2026/16-part-c-why-it-matters-ecosystem-read-sept-2026/overview.md",
+      "title": "PART C — WHY IT MATTERS (ecosystem read, Sept 2026)",
+      "domain": "part-c-why-it-matters-ecosystem-read-sept-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "Nvidia",
+        "OpenRouter",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "agentic",
+        "agents",
+        "benchmark",
+        "compute",
+        "cyber",
+        "disclosure",
+        "distribution",
+        "gemini",
+        "gemini 4",
+        "inference",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        521,
+        527
+      ],
+      "canonical_for": [],
+      "words": 140,
+      "bytes": 954,
+      "sha256": "1368cf0a186a767e6c7e8fce9abb9b1943e61e2c4de15216ac3615faacf819cc",
+      "section": "PART C — WHY IT MATTERS (ecosystem read, Sept 2026)"
+    }
+  ]
+}

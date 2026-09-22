@@ -34,6 +34,38 @@
       "index": "ai-industry-kb-2026-wave6/INDEX.md",
       "manifest": "ai-industry-kb-2026-wave6/manifest.json",
       "chunk_count": 136
+    },
+    {
+      "corpus": "frontier-models-2026",
+      "title": "Frontier AI Models 2026 — Vague 1 (EN)",
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "index": "frontier-models-2026/INDEX.md",
+      "manifest": "frontier-models-2026/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "labs-grok-platforms-2026",
+      "title": "Labs, Grok, Tools & Platforms 2026 — Vague 2 (EN)",
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "index": "labs-grok-platforms-2026/INDEX.md",
+      "manifest": "labs-grok-platforms-2026/manifest.json",
+      "chunk_count": 17
+    },
+    {
+      "corpus": "open-local-models-2026",
+      "title": "Open / Local AI Models 2026 (EN)",
+      "source": "docs/RAG/Modèles IA open  locauxEN.md",
+      "index": "open-local-models-2026/INDEX.md",
+      "manifest": "open-local-models-2026/manifest.json",
+      "chunk_count": 26
+    },
+    {
+      "corpus": "tools-platforms-2026",
+      "title": "AI Tools & Platforms 2026 (Step 2)",
+      "source": "docs/RAG/Outils & plateformes IAEN.md",
+      "index": "tools-platforms-2026/INDEX.md",
+      "manifest": "tools-platforms-2026/manifest.json",
+      "chunk_count": 8
     }
   ]
 }

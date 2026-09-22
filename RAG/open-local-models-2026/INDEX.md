@@ -1,0 +1,301 @@
+# INDEX — Open / Local AI Models 2026 (EN)
+
+Corpus `open-local-models-2026` · **26 fichiers** · 1064 lignes source · ~16582 mots · partition exacte de `docs/RAG/Modèles IA open  locauxEN.md`.
+
+## Mode d'emploi
+
+1. Filtrer dans `manifest.json` (ou les tableaux ci-dessous) sur `domain`, `task`, `actors`, `dates` ou `keywords`.
+2. Ouvrir 1 à 3 fichiers ciblés ; chaque fichier est une unité thématique auto-suffisante avec un en-tête YAML.
+3. Pour un événement répété dans plusieurs sections, préférer le fichier marqué `canonical_for` (voir la table Événements canoniques).
+
+## Domaines (dossiers → fichiers)
+
+### `00-front-matter/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [ÉTAPE 1 — Open / Local AI Models (EN)](00-front-matter/overview.md) | 1–6 | reference | reference |
+
+### `01-step-1-open-local-ai-models-chinese-track-research-fiche/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [STEP 1 — Open / Local AI Models (Chinese track) — Research Fiche](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md) | 7–63 | deep-dive | reference |
+| 02 | [PART B — DEEPSEEK](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md) | 64–136 | deep-dive | actor-profile |
+| 03 | [PART E — MIMO (Xiaomi; MiMo AI team led by Luo Fuli, ex-DeepSeek)](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md) | 137–197 | deep-dive | actor-profile |
+| 04 | [CROSS-FAMILY COMPARISON (Sept 2026)](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md) | 198–279 | deep-dive | reference |
+
+### `02-step-1-open-local-ai-models-western-track-en/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [STEP 1 — Open / Local AI Models — WESTERN TRACK (EN)](02-step-1-open-local-ai-models-western-track-en/overview.md) | 280–286 | deep-dive | reference |
+
+### `03-part-1-meta-llama-family/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 1 — META LLAMA FAMILY](03-part-1-meta-llama-family/overview.md) | 287–367 | deep-dive | actor-profile |
+
+### `04-part-2-meta-muse-spark-family/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 2 — META MUSE SPARK FAMILY](04-part-2-meta-muse-spark-family/overview.md) | 368–460 | deep-dive | actor-profile |
+
+### `05-part-3-poolside-code-model-company/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 3 — POOLSIDE — CODE-MODEL COMPANY](05-part-3-poolside-code-model-company/overview.md) | 461–522 | deep-dive | reference |
+
+### `06-part-4-mistral-ai-open-models/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 4 — MISTRAL AI (OPEN MODELS)](06-part-4-mistral-ai-open-models/overview.md) | 523–576 | deep-dive | actor-profile |
+
+### `07-part-5-nvidia-nemotron-open-releases/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 5 — NVIDIA NEMOTRON (OPEN RELEASES)](07-part-5-nvidia-nemotron-open-releases/overview.md) | 577–607 | deep-dive | actor-profile |
+
+### `08-part-6-microsoft-phi/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 6 — MICROSOFT PHI](08-part-6-microsoft-phi/overview.md) | 608–618 | deep-dive | reference |
+
+### `09-part-7-google-gemma/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 7 — GOOGLE GEMMA](09-part-7-google-gemma/overview.md) | 619–638 | deep-dive | actor-profile |
+
+### `10-part-8-other-notable-western-open-weight-releases/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 8 — OTHER NOTABLE WESTERN OPEN-WEIGHT RELEASES](10-part-8-other-notable-western-open-weight-releases/overview.md) | 639–677 | deep-dive | model-release |
+
+### `11-part-9-master-comparison-table-sept-2026-snapshot/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 9 — MASTER COMPARISON TABLE (Sept 2026 snapshot)](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md) | 678–703 | deep-dive | reference |
+
+### `12-part-10-cross-cutting-observations-for-the-rag/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 10 — CROSS-CUTTING OBSERVATIONS (for the RAG)](12-part-10-cross-cutting-observations-for-the-rag/overview.md) | 704–740 | deep-dive | reference |
+
+### `13-part-11-caveats-methodology/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 11 — CAVEATS & METHODOLOGY](13-part-11-caveats-methodology/overview.md) | 741–753 | deep-dive | reference |
+
+### `14-part-12-key-sources/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [PART 12 — KEY SOURCES](14-part-12-key-sources/overview.md) | 754–772 | deep-dive | reference |
+
+### `15-step-1-open-local-ai-models-local-inference-practical-track-/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [STEP 1 — Open / Local AI Models: Local Inference Practical Track (EN)](15-step-1-open-local-ai-models-local-inference-practical-track-/overview.md) | 773–778 | deep-dive | reference |
+
+### `16-local-inference-engines-2026-state/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [1. LOCAL INFERENCE ENGINES — 2026 STATE](16-local-inference-engines-2026-state/overview.md) | 779–833 | deep-dive | architecture |
+
+### `17-hardware-requirements-for-popular-open-models/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [2. HARDWARE REQUIREMENTS FOR POPULAR OPEN MODELS](17-hardware-requirements-for-popular-open-models/overview.md) | 834–909 | deep-dive | hardware |
+
+### `18-quantization-landscape-2026/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [3. QUANTIZATION LANDSCAPE 2026](18-quantization-landscape-2026/overview.md) | 910–944 | deep-dive | quantization |
+
+### `19-vllm-vs-sglang-for-self-hosting-2026-recap/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [4. vLLM vs SGLang FOR SELF-HOSTING — 2026 RECAP](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md) | 945–974 | deep-dive | reference |
+
+### `20-cost-comparison-self-hosting-vs-api/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [5. COST COMPARISON: SELF-HOSTING vs API](20-cost-comparison-self-hosting-vs-api/overview.md) | 975–1020 | deep-dive | reference |
+
+### `21-openrouter-data-open-models-dominate-2026/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [6. OPENROUTER DATA — OPEN MODELS DOMINATE 2026](21-openrouter-data-open-models-dominate-2026/overview.md) | 1021–1052 | deep-dive | reference |
+
+### `22-methodology-notes-gaps/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [7. METHODOLOGY NOTES & GAPS](22-methodology-notes-gaps/overview.md) | 1053–1064 | deep-dive | reference |
+
+## Par tâche
+
+- **actor-profile** — [PART B — DEEPSEEK](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [PART E — MIMO (Xiaomi; MiMo AI team led by Luo Fuli, ex-DeepSeek)](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [PART 1 — META LLAMA FAMILY](03-part-1-meta-llama-family/overview.md), [PART 2 — META MUSE SPARK FAMILY](04-part-2-meta-muse-spark-family/overview.md), [PART 4 — MISTRAL AI (OPEN MODELS)](06-part-4-mistral-ai-open-models/overview.md), [PART 5 — NVIDIA NEMOTRON (OPEN RELEASES)](07-part-5-nvidia-nemotron-open-releases/overview.md), [PART 7 — GOOGLE GEMMA](09-part-7-google-gemma/overview.md)
+- **architecture** — [1. LOCAL INFERENCE ENGINES — 2026 STATE](16-local-inference-engines-2026-state/overview.md)
+- **hardware** — [2. HARDWARE REQUIREMENTS FOR POPULAR OPEN MODELS](17-hardware-requirements-for-popular-open-models/overview.md)
+- **model-release** — [PART 8 — OTHER NOTABLE WESTERN OPEN-WEIGHT RELEASES](10-part-8-other-notable-western-open-weight-releases/overview.md)
+- **quantization** — [3. QUANTIZATION LANDSCAPE 2026](18-quantization-landscape-2026/overview.md)
+- **reference** — [ÉTAPE 1 — Open / Local AI Models (EN)](00-front-matter/overview.md), [STEP 1 — Open / Local AI Models (Chinese track) — Research Fiche](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [CROSS-FAMILY COMPARISON (Sept 2026)](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [STEP 1 — Open / Local AI Models — WESTERN TRACK (EN)](02-step-1-open-local-ai-models-western-track-en/overview.md), [PART 3 — POOLSIDE — CODE-MODEL COMPANY](05-part-3-poolside-code-model-company/overview.md), [PART 6 — MICROSOFT PHI](08-part-6-microsoft-phi/overview.md), [PART 9 — MASTER COMPARISON TABLE (Sept 2026 snapshot)](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [PART 10 — CROSS-CUTTING OBSERVATIONS (for the RAG)](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [PART 11 — CAVEATS & METHODOLOGY](13-part-11-caveats-methodology/overview.md), [PART 12 — KEY SOURCES](14-part-12-key-sources/overview.md), [STEP 1 — Open / Local AI Models: Local Inference Practical Track (EN)](15-step-1-open-local-ai-models-local-inference-practical-track-/overview.md), [4. vLLM vs SGLang FOR SELF-HOSTING — 2026 RECAP](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md), [5. COST COMPARISON: SELF-HOSTING vs API](20-cost-comparison-self-hosting-vs-api/overview.md), [6. OPENROUTER DATA — OPEN MODELS DOMINATE 2026](21-openrouter-data-open-models-dominate-2026/overview.md), [7. METHODOLOGY NOTES & GAPS](22-methodology-notes-gaps/overview.md)
+
+## Par acteur
+
+- **AMD** (4) — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md)
+- **AWS** (4) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md)
+- **Alibaba** (15) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [08-part-6-microsoft-phi/overview.md](08-part-6-microsoft-phi/overview.md), [09-part-7-google-gemma/overview.md](09-part-7-google-gemma/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Anthropic** (11) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Apple** (7) — [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [08-part-6-microsoft-phi/overview.md](08-part-6-microsoft-phi/overview.md), [09-part-7-google-gemma/overview.md](09-part-7-google-gemma/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [18-quantization-landscape-2026/overview.md](18-quantization-landscape-2026/overview.md)
+- **Baseten** (1) — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md)
+- **ByteDance** (1) — [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **China** (10) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md), [22-methodology-notes-gaps/overview.md](22-methodology-notes-gaps/overview.md)
+- **CoreWeave** (1) — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md)
+- **DeepSeek** (14) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [08-part-6-microsoft-phi/overview.md](08-part-6-microsoft-phi/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [18-quantization-landscape-2026/overview.md](18-quantization-landscape-2026/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md), [22-methodology-notes-gaps/overview.md](22-methodology-notes-gaps/overview.md)
+- **EU** (3) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md)
+- **Fireworks AI** (1) — [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md)
+- **Google** (11) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [09-part-7-google-gemma/overview.md](09-part-7-google-gemma/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md)
+- **Groq** (1) — [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md)
+- **Huawei** (2) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md)
+- **Hugging Face** (9) — [00-front-matter/overview.md](00-front-matter/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md)
+- **Intel** (1) — [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md)
+- **Meta** (12) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [13-part-11-caveats-methodology/overview.md](13-part-11-caveats-methodology/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Microsoft** (6) — [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [08-part-6-microsoft-phi/overview.md](08-part-6-microsoft-phi/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **MiniMax** (5) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Mistral** (12) — [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [08-part-6-microsoft-phi/overview.md](08-part-6-microsoft-phi/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [13-part-11-caveats-methodology/overview.md](13-part-11-caveats-methodology/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Moonshot** (12) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Nvidia** (17) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [13-part-11-caveats-methodology/overview.md](13-part-11-caveats-methodology/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [18-quantization-landscape-2026/overview.md](18-quantization-landscape-2026/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md)
+- **OpenAI** (15) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [08-part-6-microsoft-phi/overview.md](08-part-6-microsoft-phi/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **OpenRouter** (12) — [00-front-matter/overview.md](00-front-matter/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md), [22-methodology-notes-gaps/overview.md](22-methodology-notes-gaps/overview.md)
+- **Perplexity** (1) — [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md)
+- **Poolside** (6) — [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [13-part-11-caveats-methodology/overview.md](13-part-11-caveats-methodology/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md)
+- **SGLang** (6) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [18-quantization-landscape-2026/overview.md](18-quantization-landscape-2026/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md)
+- **StepFun** (1) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md)
+- **Stripe** (1) — [22-methodology-notes-gaps/overview.md](22-methodology-notes-gaps/overview.md)
+- **TensorRT-LLM** (1) — [18-quantization-landscape-2026/overview.md](18-quantization-landscape-2026/overview.md)
+- **United States** (12) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Unsloth** (1) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md)
+- **Xiaomi** (5) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **Z.ai** (11) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md), [12-part-10-cross-cutting-observations-for-the-rag/overview.md](12-part-10-cross-cutting-observations-for-the-rag/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [18-quantization-landscape-2026/overview.md](18-quantization-landscape-2026/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **vLLM** (11) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [09-part-7-google-gemma/overview.md](09-part-7-google-gemma/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [17-hardware-requirements-for-popular-open-models/overview.md](17-hardware-requirements-for-popular-open-models/overview.md), [18-quantization-landscape-2026/overview.md](18-quantization-landscape-2026/overview.md), [19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md](19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md), [20-cost-comparison-self-hosting-vs-api/overview.md](20-cost-comparison-self-hosting-vs-api/overview.md)
+- **xAI** (5) — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md)
+
+## Par date
+
+- **2024-06** — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md)
+- **2024-12-12** — [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2025-04** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md)
+- **2025-04-05** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2025-05** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md)
+- **2025-06** — [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **2025-06-10** — [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md)
+- **2025-07-11** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2025-09-30** — [13-part-11-caveats-methodology/overview.md](13-part-11-caveats-methodology/overview.md)
+- **2025-11-20** — [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2025-12-02** — [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2025-12-15** — [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-01** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md)
+- **2026-02-12** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md)
+- **2026-02-16** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md)
+- **2026-03** — [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **2026-03-11** — [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-03-16** — [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-03-18** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md)
+- **2026-03-30** — [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **2026-04** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **2026-04-02** — [09-part-7-google-gemma/overview.md](09-part-7-google-gemma/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-04-08** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **2026-04-20** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-04-22** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md)
+- **2026-04-24** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-04-28** — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md)
+- **2026-04-29** — [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-05** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md)
+- **2026-05-20** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-05-22** — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **2026-05-26** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md)
+- **2026-06** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [06-part-4-mistral-ai-open-models/overview.md](06-part-4-mistral-ai-open-models/overview.md), [10-part-8-other-notable-western-open-weight-releases/overview.md](10-part-8-other-notable-western-open-weight-releases/overview.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md), [21-openrouter-data-open-models-dominate-2026/overview.md](21-openrouter-data-open-models-dominate-2026/overview.md), [22-methodology-notes-gaps/overview.md](22-methodology-notes-gaps/overview.md)
+- **2026-06-01** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md)
+- **2026-06-04** — [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-06-12** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-06-13** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-06-16** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-07** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [07-part-5-nvidia-nemotron-open-releases/overview.md](07-part-5-nvidia-nemotron-open-releases/overview.md)
+- **2026-07-02** — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md)
+- **2026-07-09** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md)
+- **2026-07-12** — [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md)
+- **2026-07-16** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md), [16-local-inference-engines-2026-state/overview.md](16-local-inference-engines-2026-state/overview.md)
+- **2026-07-21** — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-07-24** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-07-31** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md)
+- **2026-08** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md)
+- **2026-08-03** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md)
+- **2026-08-05** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md)
+- **2026-08-10** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md)
+- **2026-08-12** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md)
+- **2026-08-14** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-08-21** — [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [14-part-12-key-sources/overview.md](14-part-12-key-sources/overview.md)
+- **2026-08-26** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-08-28** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-08-31** — [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md)
+- **2026-09** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [13-part-11-caveats-methodology/overview.md](13-part-11-caveats-methodology/overview.md)
+- **2026-09-02** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md), [05-part-3-poolside-code-model-company/overview.md](05-part-3-poolside-code-model-company/overview.md), [11-part-9-master-comparison-table-sept-2026-snapshot/overview.md](11-part-9-master-comparison-table-sept-2026-snapshot/overview.md)
+- **2026-09-04** — [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md)
+- **2026-09-08** — [03-part-1-meta-llama-family/overview.md](03-part-1-meta-llama-family/overview.md), [04-part-2-meta-muse-spark-family/overview.md](04-part-2-meta-muse-spark-family/overview.md)
+- **2026-09-10** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-09-15** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md)
+- **2026-09-18** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md)
+- **2026-09-21** — [01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md)
+- **2026-09-22** — [00-front-matter/overview.md](00-front-matter/overview.md), [01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md](01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md), [02-step-1-open-local-ai-models-western-track-en/overview.md](02-step-1-open-local-ai-models-western-track-en/overview.md), [15-step-1-open-local-ai-models-local-inference-practical-track-/overview.md](15-step-1-open-local-ai-models-local-inference-practical-track-/overview.md)
+
+## Carte de couverture (lignes source)
+
+| plage | fichier |
+|---|---|
+| 1–6 | open-local-models-2026/00-front-matter/overview.md |
+| 7–63 | open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/overview.md |
+| 64–136 | open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/part-b-deepseek.md |
+| 137–197 | open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md |
+| 198–279 | open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/cross-family-comparison-sept-2026.md |
+| 280–286 | open-local-models-2026/02-step-1-open-local-ai-models-western-track-en/overview.md |
+| 287–367 | open-local-models-2026/03-part-1-meta-llama-family/overview.md |
+| 368–460 | open-local-models-2026/04-part-2-meta-muse-spark-family/overview.md |
+| 461–522 | open-local-models-2026/05-part-3-poolside-code-model-company/overview.md |
+| 523–576 | open-local-models-2026/06-part-4-mistral-ai-open-models/overview.md |
+| 577–607 | open-local-models-2026/07-part-5-nvidia-nemotron-open-releases/overview.md |
+| 608–618 | open-local-models-2026/08-part-6-microsoft-phi/overview.md |
+| 619–638 | open-local-models-2026/09-part-7-google-gemma/overview.md |
+| 639–677 | open-local-models-2026/10-part-8-other-notable-western-open-weight-releases/overview.md |
+| 678–703 | open-local-models-2026/11-part-9-master-comparison-table-sept-2026-snapshot/overview.md |
+| 704–740 | open-local-models-2026/12-part-10-cross-cutting-observations-for-the-rag/overview.md |
+| 741–753 | open-local-models-2026/13-part-11-caveats-methodology/overview.md |
+| 754–772 | open-local-models-2026/14-part-12-key-sources/overview.md |
+| 773–778 | open-local-models-2026/15-step-1-open-local-ai-models-local-inference-practical-track-/overview.md |
+| 779–833 | open-local-models-2026/16-local-inference-engines-2026-state/overview.md |
+| 834–909 | open-local-models-2026/17-hardware-requirements-for-popular-open-models/overview.md |
+| 910–944 | open-local-models-2026/18-quantization-landscape-2026/overview.md |
+| 945–974 | open-local-models-2026/19-vllm-vs-sglang-for-self-hosting-2026-recap/overview.md |
+| 975–1020 | open-local-models-2026/20-cost-comparison-self-hosting-vs-api/overview.md |
+| 1021–1052 | open-local-models-2026/21-openrouter-data-open-models-dominate-2026/overview.md |
+| 1053–1064 | open-local-models-2026/22-methodology-notes-gaps/overview.md |
+
