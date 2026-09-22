@@ -25,13 +25,26 @@ RAG/
 ├── frontier-models-2026/         # corpus n°5 — Frontier AI Models, Vague 1 (12 chunks)
 ├── labs-grok-platforms-2026/     # corpus n°6 — Labs, Grok & platforms, Vague 2 (17 chunks)
 ├── open-local-models-2026/       # corpus n°7 — Open / Local AI Models (26 chunks)
-└── tools-platforms-2026/         # corpus n°8 — AI Tools & Platforms, Step 2 (8 chunks)
+├── tools-platforms-2026/         # corpus n°8 — AI Tools & Platforms, Step 2 (8 chunks)
+├── etape4-trackd-unsloth-training/   # corpus n°9  — Unsloth & outillage training (3 chunks)
+├── etape5-tracka-nvidia/             # corpus n°10 — Nvidia (4 chunks)
+├── etape5-trackc-huawei-intel/       # corpus n°11 — Huawei & Intel (3 chunks)
+├── etape4-trackc-cuda-rocm-pytorch/  # corpus n°12 — CUDA / ROCm / PyTorch (3 chunks)
+├── etape5-trackb-amd/                # corpus n°13 — AMD (4 chunks)
+├── etape4-tracka-vllm-sglang/        # corpus n°14 — vLLM + SGLang (20 chunks)
+├── etape4-trackb-local-inference/    # corpus n°15 — inférence locale (17 chunks)
+├── etape5-trackd-servers/            # corpus n°16 — serveurs IA & réseau (24 chunks)
+└── labs-hyperscalers-2026/           # corpus n°17 — Labs & Hyperscalers (47 chunks)
 ```
 
 Corpus n°1–2 : découpe « explicite » par H3 (listes de mapping figées).
-Corpus n°3–8 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
+Corpus n°3–17 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
 sources ne portant aucune ancre. Cibles 70–170 lignes pour n°3–4 (fichiers de 10 000–
-14 000 lignes) et 50–110 lignes pour n°5–8 (fichiers de 500–1 100 lignes).
+14 000 lignes), 50–110 pour n°5–8 (500–1 100 lignes) et 45–90 pour n°9–17 (200–3 000 lignes).
+
+Options du mode auto : `first_is_content` (le H1 unique est du contenu, pas un entête),
+`folder_name` (nom court du dossier pour ce cas), et rattachement automatique des titres H1
+« séparateurs » (ex. `# PART 1 — vLLM`) au bloc suivant.
 
 ## Garanties
 

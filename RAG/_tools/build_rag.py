@@ -741,11 +741,31 @@ def auto_items(cfg, lines, n):
     h1 = [h for h in heads if h[1] == 1]
     if not h1:
         sys.exit(f"[{cfg['slug']}] auto: no H1 heading")
-    items = []
-    for idx, h in enumerate(h1):
+    # Un titre H1 sans aucun texte avant le titre H1 suivant est un separateur
+    # (ex. « # PART 1 — vLLM » suivi d'un autre H1) : on le rattache au bloc
+    # suivant pour ne pas produire un chunk d'une ou deux lignes.
+    blocks = []
+    for k, h in enumerate(h1):
         bs = h[0]
-        be = h1[idx + 1][0] - 1 if idx + 1 < len(h1) else n
-        stitle = h[2]
+        be = h1[k + 1][0] - 1 if k + 1 < len(h1) else n
+        body = [l for l in lines[bs - 1:be]
+                if l.strip() and not re.match(r"^#{1,3} ", l)]
+        blocks.append([bs, be, h[2], not body])
+    sections = []
+    k = 0
+    while k < len(blocks):
+        bs, be, stitle, empty = blocks[k]
+        j = k + 1
+        while j < len(blocks) and blocks[j][3]:
+            j += 1
+        if empty and j < len(blocks):
+            sections.append((bs, blocks[j][1], stitle))
+            k = j + 1
+        else:
+            sections.append((bs, be, stitle))
+            k += 1
+    items = []
+    for idx, (bs, be, stitle) in enumerate(sections):
         h2 = [x[0] for x in heads if x[1] == 2 and bs <= x[0] <= be]
         bounds = [bs] + h2 + [be + 1]
         pieces = []
@@ -760,7 +780,12 @@ def auto_items(cfg, lines, n):
                 cleaned.append((a, b))
         merged = cleaned
         front = idx == 0 and not cfg.get("first_is_content")
-        fbase = "00-front-matter" if front else f"{idx:02d}-{slugify(_strip_num(stitle))}"
+        if front:
+            fbase = "00-front-matter"
+        elif idx == 0 and cfg.get("folder_name"):
+            fbase = f"00-{slugify(cfg['folder_name'])}"
+        else:
+            fbase = f"{idx:02d}-{slugify(_strip_num(stitle))}"
         is_annex = "annex" in stitle.lower()
         seen = {}
         for k, (a, b) in enumerate(merged):
@@ -1223,6 +1248,69 @@ CORPORA = [
         "title": "AI Tools & Platforms 2026 (Step 2)",
         "source": "docs/RAG/Outils & plateformes IAEN.md",
         "mode": "auto", "max_lines": 110, "min_lines": 50, "first_is_content": True,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape4-trackd-unsloth-training",
+        "title": "Step 4 — Track D : Unsloth & outillage d'entraînement/fine-tuning 2026",
+        "source": "docs/RAG/etape4_trackD_unsloth_training.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "unsloth-training",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape5-tracka-nvidia",
+        "title": "Step 5 — Track A : Nvidia (2026)",
+        "source": "docs/RAG/etape5_trackA_nvidia.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "nvidia",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape5-trackc-huawei-intel",
+        "title": "Step 5 — Track C : Huawei & Intel (2026)",
+        "source": "docs/RAG/etape5_trackC_huawei_intel.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "huawei-intel",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape4-trackc-cuda-rocm-pytorch",
+        "title": "Step 4 — Track C : CUDA / ROCm / PyTorch (2026)",
+        "source": "docs/RAG/etape4_trackC_cuda_rocm_pytorch.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "cuda-rocm-pytorch",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape5-trackb-amd",
+        "title": "Step 5 — Track B : AMD (2026)",
+        "source": "docs/RAG/etape5_trackB_amd.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "amd",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape4-tracka-vllm-sglang",
+        "title": "Step 4 — Track A : vLLM + SGLang (2026)",
+        "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape4-trackb-local-inference",
+        "title": "Step 4 — Track B : pile d'inférence locale (llama.cpp, Ollama, LM Studio)",
+        "source": "docs/RAG/etape4_trackB_local_inference.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "local-inference",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape5-trackd-servers",
+        "title": "Step 5 — Track D : serveurs IA, marché et réseau datacenter (2026)",
+        "source": "docs/RAG/etape5_trackD_servers.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "labs-hyperscalers-2026",
+        "title": "Step 3 — Labs & Hyperscalers (2026)",
+        "source": "docs/RAG/Labos  hyperscalersEN.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "labs-hyperscalers",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
 ]

@@ -1,0 +1,198 @@
+{
+  "corpus": "etape5-trackb-amd",
+  "title": "Step 5 — Track B : AMD (2026)",
+  "source": "docs/RAG/etape5_trackB_amd.md",
+  "source_lines": 260,
+  "source_sha256": "fffe424bcad405c316cff29eafce12b08ea1cc46e36ad493b713b37ce5f15a3f",
+  "chunk_count": 4,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape5-trackb-amd/00-amd/overview",
+      "path": "etape5-trackb-amd/00-amd/overview.md",
+      "title": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)",
+      "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [
+        "2023-12",
+        "2026-02-01",
+        "2026-04-28",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "gpu",
+        "gpus",
+        "aws",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "datacenter",
+        "hbm3",
+        "helios",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 792,
+      "bytes": 6721,
+      "sha256": "64c626626016159fe2855c57c40aaa6debffa5495cc906f2aa3eeb159daca37e",
+      "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
+    },
+    {
+      "id": "etape5-trackb-amd/00-amd/2-instinct-mi350x-mi355x-cdna-4-specs-release-status-benchma",
+      "path": "etape5-trackb-amd/00-amd/2-instinct-mi350x-mi355x-cdna-4-specs-release-status-benchma.md",
+      "title": "2. INSTINCT MI350X / MI355X (CDNA 4) — specs, release status, benchmarks vs B200, pricing, customers",
+      "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "DeepSeek",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "TSMC"
+      ],
+      "dates": [
+        "2025-06-12",
+        "2026-04-28"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "pricing",
+        "accelerator",
+        "agent",
+        "agi",
+        "amd",
+        "blackwell",
+        "compute",
+        "deepseek",
+        "fp4",
+        "fp8"
+      ],
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        52,
+        98
+      ],
+      "canonical_for": [],
+      "words": 706,
+      "bytes": 7596,
+      "sha256": "719900cbc9b2c1c43306d9360d9bc5b7101a11b7d4d78e43ace0337f65b6314e",
+      "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
+    },
+    {
+      "id": "etape5-trackb-amd/00-amd/3-instinct-mi400-series-roadmap-status-announced-specs-timel",
+      "path": "etape5-trackb-amd/00-amd/3-instinct-mi400-series-roadmap-status-announced-specs-timel.md",
+      "title": "3. INSTINCT MI400 SERIES — roadmap status, announced specs, timeline",
+      "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Google",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "mi400",
+        "2nm",
+        "accelerator",
+        "amd",
+        "compute",
+        "ethernet",
+        "fp4",
+        "gpu",
+        "gpus",
+        "hbm4",
+        "helios",
+        "inference"
+      ],
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        99,
+        151
+      ],
+      "canonical_for": [],
+      "words": 911,
+      "bytes": 10071,
+      "sha256": "31af16e2b78f3e98e9e366b855a63f9dbcc8d7777d76881cd5b9085b9c43bcb7",
+      "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
+    },
+    {
+      "id": "etape5-trackb-amd/00-amd/6-epyc-venice-9006-6th-gen-zen-6-2026-announcement",
+      "path": "etape5-trackb-amd/00-amd/6-epyc-venice-9006-6th-gen-zen-6-2026-announcement.md",
+      "title": "6. EPYC VENICE 9006 (6th Gen, Zen 6) — 2026 announcement",
+      "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "China",
+        "Google",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "TSMC",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "2nm",
+        "agentic",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "chiplet",
+        "compute",
+        "copilot",
+        "datacenter",
+        "fp4",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        152,
+        260
+      ],
+      "canonical_for": [],
+      "words": 2122,
+      "bytes": 18322,
+      "sha256": "1a863a776814b9b51680e6ce445d938d0c81459290123331ce06ba887629374c",
+      "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
+    }
+  ]
+}

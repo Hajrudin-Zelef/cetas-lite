@@ -1,0 +1,1071 @@
+{
+  "corpus": "etape5-trackd-servers",
+  "title": "Step 5 — Track D : serveurs IA, marché et réseau datacenter (2026)",
+  "source": "docs/RAG/etape5_trackD_servers.md",
+  "source_lines": 1403,
+  "source_sha256": "4e2077c95bb2fedf2379cc7bf28d02977d2ebe2d0d70bf544baaed83be1b1dea",
+  "chunk_count": 24,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape5-trackd-servers/00-front-matter/overview",
+      "path": "etape5-trackd-servers/00-front-matter/overview.md",
+      "title": "Step 5 — Server Vendors + AI Server Market + Data-Center Networking",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ethernet",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        27
+      ],
+      "canonical_for": [],
+      "words": 217,
+      "bytes": 1655,
+      "sha256": "938f9082386bbad0641f1dc4d9603f2a2d1a4d02c73849d4a0b38d3bfc835b8a",
+      "section": "Step 5 — Server Vendors + AI Server Market + Data-Center Networking"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/overview",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/overview.md",
+      "title": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-03",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "accelerator",
+        "blackwell",
+        "compute",
+        "ethernet",
+        "governance",
+        "gpu",
+        "gpus",
+        "intel",
+        "liquid cooling",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        28,
+        84
+      ],
+      "canonical_for": [],
+      "words": 511,
+      "bytes": 3751,
+      "sha256": "2387a87642cea67dde03eb3cc457a583dea0d788bf682d6a9fa0f1e05cd2cf14",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/1-2-new-launches-with-dates-2026",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/1-2-new-launches-with-dates-2026.md",
+      "title": "1.2 New launches with dates (2026)",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "CoreWeave",
+        "Intel",
+        "Lambda",
+        "Nscale",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
+        "2025-03",
+        "2025-03-19",
+        "2025-05",
+        "2026-10"
+      ],
+      "keywords": [
+        "blackwell",
+        "compute",
+        "gpu",
+        "gpus",
+        "intel",
+        "liquid cooling",
+        "memory",
+        "nvidia",
+        "pricing",
+        "rubin",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        85,
+        134
+      ],
+      "canonical_for": [],
+      "words": 705,
+      "bytes": 5178,
+      "sha256": "bac0f682c2fb5bfed32e70bb797fe31d90967ac0ec06c3c8287e9b37ceb5d48b",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/1-5-ai-revenue-figures-fy2026-quarterly",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/1-5-ai-revenue-figures-fy2026-quarterly.md",
+      "title": "1.5 AI revenue figures (FY2026 / quarterly)",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2024-06-30",
+        "2024-08",
+        "2024-10",
+        "2026-04-15",
+        "2026-04-20",
+        "2026-05-05",
+        "2026-06",
+        "2026-06-30",
+        "2026-07-21"
+      ],
+      "keywords": [
+        "revenue",
+        "advisory",
+        "backlog",
+        "blackwell",
+        "disclosure",
+        "governance",
+        "research"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        135,
+        202
+      ],
+      "canonical_for": [],
+      "words": 642,
+      "bytes": 4891,
+      "sha256": "17b3c9bd5aaa94652989470d94b0d7ea66d941cdf31d69eaa71b1d027ed774c2",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/1-7-2026-controversies-investigations-updates",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/1-7-2026-controversies-investigations-updates.md",
+      "title": "1.7 2026 controversies / investigations updates",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "China",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-03-19",
+        "2026-03-20",
+        "2026-03-25",
+        "2026-04-07",
+        "2026-05",
+        "2026-05-26",
+        "2026-06",
+        "2026-08-20"
+      ],
+      "keywords": [
+        "governance",
+        "gpus",
+        "licenses",
+        "market cap",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        203,
+        253
+      ],
+      "canonical_for": [],
+      "words": 469,
+      "bytes": 3561,
+      "sha256": "147ab2c1453e12c10235b4503fe44f5567fce9b13eae8c45e9b68a7153ea6ab9",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/part-2-dell-technologies-nyse-dell",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/part-2-dell-technologies-nyse-dell.md",
+      "title": "PART 2 — DELL TECHNOLOGIES (NYSE: DELL)",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2024-05",
+        "2025-07",
+        "2025-11",
+        "2026-06"
+      ],
+      "keywords": [
+        "agentic",
+        "amd",
+        "blackwell",
+        "ethernet",
+        "fp4",
+        "fp8",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "liquid cooling",
+        "memory"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        254,
+        304
+      ],
+      "canonical_for": [],
+      "words": 493,
+      "bytes": 3640,
+      "sha256": "865d2bb6d0e2de26414cef9c9b6e2f378d69f01db995bd55b2fb019ad3ca0d45",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/2-2-xai-colossus-related-deals",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/2-2-xai-colossus-related-deals.md",
+      "title": "2.2 xAI / Colossus-related deals",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
+        "2026-05-28",
+        "2026-05-29"
+      ],
+      "keywords": [
+        "backlog",
+        "dram",
+        "gpu",
+        "gpus",
+        "nand",
+        "nvidia",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        305,
+        364
+      ],
+      "canonical_for": [],
+      "words": 574,
+      "bytes": 4322,
+      "sha256": "107a58551fb3168d7bb56b57973adb29632c3905b6be209b8ccdd117be6930ca",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/2-4-partnerships-nvidia-coreweave-etc",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/2-4-partnerships-nvidia-coreweave-etc.md",
+      "title": "2.4 Partnerships (NVIDIA, CoreWeave, etc.)",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AMD",
+        "CoreWeave",
+        "Google",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2024-05",
+        "2025-03-19",
+        "2026-05",
+        "2026-05-29",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "blackwell",
+        "liability",
+        "pricing",
+        "revenue",
+        "rubin",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        365,
+        423
+      ],
+      "canonical_for": [],
+      "words": 441,
+      "bytes": 3373,
+      "sha256": "e1b85f3a395d83caeffc0e33c8c7bb25380a175492d983c969f4851ecc26c197",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/sources-verbatim-urls",
+      "path": "etape5-trackd-servers/01-server-vendors-wave-1-supermicro-dell-research-report-as-of-/sources-verbatim-urls.md",
+      "title": "SOURCES (verbatim URLs)",
+      "domain": "server-vendors-wave-1-supermicro-dell-research-report-as-of-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "backlog",
+        "blackwell",
+        "lawsuit",
+        "nvidia",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        424,
+        485
+      ],
+      "canonical_for": [],
+      "words": 136,
+      "bytes": 6136,
+      "sha256": "5e2bad0a2abd86ba5158486ae5ea2ac991d7b2f94346de5651594631ed622e5d",
+      "section": "Server Vendors — Wave 1: Supermicro + Dell (Research Report, as of 2026-09-22)"
+    },
+    {
+      "id": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/overview",
+      "path": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/overview.md",
+      "title": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion",
+      "domain": "server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "Oracle",
+        "United States"
+      ],
+      "dates": [
+        "2025-07-02",
+        "2025-07-28",
+        "2026-07-31",
+        "2026-08",
+        "2026-09-02",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "amd",
+        "backlog",
+        "blackwell",
+        "compute",
+        "cost",
+        "disclosure",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hyperscaler",
+        "inference"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        486,
+        542
+      ],
+      "canonical_for": [],
+      "words": 1101,
+      "bytes": 9106,
+      "sha256": "b2fa824f813e5420c37b9f48013c77516b5b128ad91f6d6c9e9798b89fac0667",
+      "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
+    },
+    {
+      "id": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/2-giga-computing-gigabyte-subsidiary",
+      "path": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/2-giga-computing-gigabyte-subsidiary.md",
+      "title": "2. Giga Computing (GIGABYTE subsidiary)",
+      "domain": "server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "DeepSeek",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-06-16",
+        "2026-07",
+        "2026-11",
+        "2027-03"
+      ],
+      "keywords": [
+        "agentic",
+        "amd",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "deepseek",
+        "disclosure",
+        "energy",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        543,
+        614
+      ],
+      "canonical_for": [],
+      "words": 1154,
+      "bytes": 9801,
+      "sha256": "9316501d3054c441194f45bda1be84658179e09ac8e5b8dddde55bfc8b5cc675",
+      "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
+    },
+    {
+      "id": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/4-msi",
+      "path": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/4-msi.md",
+      "title": "4. MSI",
+      "domain": "server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Baidu",
+        "China",
+        "Huawei",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2019-05-16",
+        "2026-03",
+        "2026-06"
+      ],
+      "keywords": [
+        "agentic",
+        "alignment",
+        "amd",
+        "ascend",
+        "blackwell",
+        "compute",
+        "diffusion",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        615,
+        676
+      ],
+      "canonical_for": [],
+      "words": 997,
+      "bytes": 8260,
+      "sha256": "e6556f77870d1651c8c806a561e875dece09126556e92862ab6da3d9727a4aa5",
+      "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/overview",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/overview.md",
+      "title": "Data-Center Networking for AI (2026)",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Meta",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [
+        "2025-06-11",
+        "2025-09",
+        "2025-10-14",
+        "2026-03-12",
+        "2026-06-02",
+        "2026-07",
+        "2026-07-16",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "3nm",
+        "asic",
+        "blackwell",
+        "cpo",
+        "dci",
+        "ethernet",
+        "gpu",
+        "hyperscaler",
+        "inference",
+        "latency",
+        "llama",
+        "lpo"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        677,
+        744
+      ],
+      "canonical_for": [],
+      "words": 1397,
+      "bytes": 9944,
+      "sha256": "63288f9d206e79a6df79357d60ed9065c19b5b31fe460773047732c64634c3fb",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/2-nvidia-spectrum-x-spectrum-xgs-ethernet-networking-platfor",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/2-nvidia-spectrum-x-spectrum-xgs-ethernet-networking-platfor.md",
+      "title": "2. NVIDIA Spectrum-X / Spectrum-XGS Ethernet Networking Platform",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Broadcom",
+        "CoreWeave",
+        "Meta",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
+        "2025-09",
+        "2026-07",
+        "2026-07-23"
+      ],
+      "keywords": [
+        "ethernet",
+        "nvidia",
+        "asic",
+        "blackwell",
+        "cpo",
+        "energy",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency",
+        "llama",
+        "nvlink"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        745,
+        806
+      ],
+      "canonical_for": [],
+      "words": 1092,
+      "bytes": 8100,
+      "sha256": "433fc9c1ad4c5f17f6beafa3a2d17c4659a18d0b2a14f97759208e8a1ad0f2a7",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/4-uec-ultra-ethernet-consortium-super-ethernet",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/4-uec-ultra-ethernet-consortium-super-ethernet.md",
+      "title": "4. UEC (Ultra Ethernet Consortium) / Super Ethernet",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "China",
+        "Cohere",
+        "Google",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Oracle",
+        "TSMC"
+      ],
+      "dates": [
+        "2023-07-19",
+        "2025-06-11",
+        "2025-09",
+        "2026-03",
+        "2026-06",
+        "2026-06-09",
+        "2026-07",
+        "2026-07-16",
+        "2026-08-25"
+      ],
+      "keywords": [
+        "ethernet",
+        "amd",
+        "asic",
+        "benchmark",
+        "chiplet",
+        "coherent optics",
+        "cost",
+        "cpo",
+        "datacenter",
+        "dci",
+        "dsp",
+        "energy"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        807,
+        875
+      ],
+      "canonical_for": [],
+      "words": 1395,
+      "bytes": 10230,
+      "sha256": "259dffd6a48daac90a6594a4187df89aa3cebd06df53791cc3c244d041f9aebd",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/6-arista-2026-ai-networking-revenue-wins-earnings",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/6-arista-2026-ai-networking-revenue-wins-earnings.md",
+      "title": "6. Arista: 2026 AI networking revenue, wins, earnings",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-07",
+        "2026-08-04"
+      ],
+      "keywords": [
+        "revenue",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "hyperscaler",
+        "memory",
+        "neocloud",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        876,
+        932
+      ],
+      "canonical_for": [],
+      "words": 833,
+      "bytes": 5834,
+      "sha256": "84fd4da3de8d0f4fbea0b29524ccf49b9f3e8e8c5d43864827cca5f0362984ec",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/8-data-center-interconnect-800g-adoption-1-6t-timeline",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/8-data-center-interconnect-800g-adoption-1-6t-timeline.md",
+      "title": "8. Data center interconnect: 800G adoption, 1.6T timeline",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Google",
+        "Meta",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-07-02",
+        "2026-07-14",
+        "2026-07-16",
+        "2026-08-26",
+        "2026-09-06",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "compute",
+        "cpo",
+        "dci",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "hyperscaler",
+        "latency",
+        "lpo",
+        "nvidia",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        933,
+        1007
+      ],
+      "canonical_for": [],
+      "words": 578,
+      "bytes": 8452,
+      "sha256": "68d4684a84653c46ea815e18282df29c9e622c71c93942989765782115a1e8d2",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/overview",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/overview.md",
+      "title": "AI Server Market Figures (2026) — Research Draft",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Baidu",
+        "ByteDance",
+        "China",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Oracle",
+        "United States"
+      ],
+      "dates": [
+        "2025-10-30",
+        "2026-01-20",
+        "2026-04-15",
+        "2026-08-03",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "amd",
+        "asic",
+        "aws",
+        "blackwell",
+        "capex",
+        "gpu",
+        "gpus",
+        "hbm",
+        "helios",
+        "inference",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1008,
+        1053
+      ],
+      "canonical_for": [],
+      "words": 668,
+      "bytes": 4962,
+      "sha256": "52701d08d4290b1735944aadf100e74346e6f0d6f26d6c31b694f77711445a22",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/1-2-idc-server-tracker-ai-infrastructure-tracker",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/1-2-idc-server-tracker-ai-infrastructure-tracker.md",
+      "title": "1.2 IDC — server tracker + AI infrastructure tracker",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "United States"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-05",
+        "2026-06-15",
+        "2026-07",
+        "2026-07-21",
+        "2026-28-07"
+      ],
+      "keywords": [
+        "compute",
+        "dram",
+        "gpu",
+        "hyperscaler",
+        "memory",
+        "nand",
+        "pricing",
+        "rack-scale",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1054,
+        1098
+      ],
+      "canonical_for": [],
+      "words": 614,
+      "bytes": 5100,
+      "sha256": "c7c3c681ccd79385a470142cafd45e4489364fd6634412d87eb4d1e36992a8c5",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/1-4-omdia",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/1-4-omdia.md",
+      "title": "1.4 Omdia",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-03-09",
+        "2026-04-28",
+        "2026-05",
+        "2026-06",
+        "2026-06-30",
+        "2026-07",
+        "2026-07-30"
+      ],
+      "keywords": [
+        "backlog",
+        "compute",
+        "dram",
+        "gpu",
+        "hbm",
+        "memory",
+        "nand",
+        "nvidia",
+        "packaging",
+        "research",
+        "revenue",
+        "run-rate"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1099,
+        1187
+      ],
+      "canonical_for": [],
+      "words": 1153,
+      "bytes": 9959,
+      "sha256": "5e872bbf957a075d0cbe90e3ae1aa68baa4808c5d534ea8f8fabf7f7d6483135",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/3-odm-white-box-share-in-ai-servers",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/3-odm-white-box-share-in-ai-servers.md",
+      "title": "3. ODM / white-box share in AI servers",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-05",
+        "2026-06"
+      ],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "asic",
+        "aws",
+        "blackwell",
+        "compute",
+        "datacenter",
+        "gpu",
+        "gpus",
+        "hyperscaler",
+        "inference",
+        "liquid cooling"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1188,
+        1242
+      ],
+      "canonical_for": [],
+      "words": 933,
+      "bytes": 7909,
+      "sha256": "40ea32aa3789f6b37c88435bef8a0facb2c43f8c77b8726a64e9428e8e88a66f",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/5-regional-breakdowns",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/5-regional-breakdowns.md",
+      "title": "5. Regional breakdowns",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "ByteDance",
+        "China",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-28-07"
+      ],
+      "keywords": [
+        "asic",
+        "capex",
+        "compute",
+        "dram",
+        "hyperscaler",
+        "licenses",
+        "memory",
+        "nvidia",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1243,
+        1297
+      ],
+      "canonical_for": [],
+      "words": 728,
+      "bytes": 6409,
+      "sha256": "236c7e84be0ecc8d337f5e8bb5636d15f0522f33c8249c4387ae2974a1e425a0",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/7-supply-chain-notes-2026",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/7-supply-chain-notes-2026.md",
+      "title": "7. Supply chain notes 2026",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Google",
+        "Nvidia",
+        "OpenAI",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "advisory",
+        "amd",
+        "asic",
+        "backlog",
+        "compute",
+        "cowos",
+        "datacenter",
+        "dram",
+        "energy",
+        "gpu",
+        "gpus",
+        "hbm"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1298,
+        1352
+      ],
+      "canonical_for": [],
+      "words": 1073,
+      "bytes": 7376,
+      "sha256": "5e4974f1b0531fac941c073adb41fd80550cac977f7b151e5730d7c3daa68626",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/9-gaps-and-follow-ups",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/9-gaps-and-follow-ups.md",
+      "title": "9. Gaps and follow-ups",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "CoreWeave",
+        "Huawei",
+        "Nvidia",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "amd",
+        "asic",
+        "blackwell",
+        "capex",
+        "gpu",
+        "nvidia",
+        "pricing",
+        "research",
+        "revenue",
+        "rubin",
+        "tpu",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1353,
+        1403
+      ],
+      "canonical_for": [],
+      "words": 579,
+      "bytes": 4195,
+      "sha256": "707c6c406a26703286699e3220546a5efa45fd370af3c523843b4bce970718fd",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    }
+  ]
+}

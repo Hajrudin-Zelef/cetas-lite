@@ -1,0 +1,162 @@
+{
+  "corpus": "etape4-trackc-cuda-rocm-pytorch",
+  "title": "Step 4 — Track C : CUDA / ROCm / PyTorch (2026)",
+  "source": "docs/RAG/etape4_trackC_cuda_rocm_pytorch.md",
+  "source_lines": 226,
+  "source_sha256": "007cf3c93ac29ccbde29e7c4690906415148381f5d2fbc00675e9852984fac7d",
+  "chunk_count": 3,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape4-trackc-cuda-rocm-pytorch/00-cuda-rocm-pytorch/overview",
+      "path": "etape4-trackc-cuda-rocm-pytorch/00-cuda-rocm-pytorch/overview.md",
+      "title": "Step 4 — Track C: CUDA + ROCm + PyTorch (GPU compute stack)",
+      "domain": "step-4-track-c-cuda-rocm-pytorch-gpu-compute-stack",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "DeepSeek",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-02-01",
+        "2026-03-09",
+        "2026-05-26",
+        "2026-06",
+        "2026-07",
+        "2026-07-19",
+        "2026-07-20",
+        "2026-09-10",
+        "2026-09-13",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "compute",
+        "gpu",
+        "amd",
+        "attention",
+        "aws",
+        "benchmarks",
+        "blackwell",
+        "deepseek",
+        "fp8",
+        "gpus",
+        "inference",
+        "llama"
+      ],
+      "source": "docs/RAG/etape4_trackC_cuda_rocm_pytorch.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        90
+      ],
+      "canonical_for": [],
+      "words": 1066,
+      "bytes": 9298,
+      "sha256": "9e38cfc1ef390232bc2324707fa081ef945cb1355c4c01bcfc7c9b2811fe6a79",
+      "section": "Step 4 — Track C: CUDA + ROCm + PyTorch (GPU compute stack)"
+    },
+    {
+      "id": "etape4-trackc-cuda-rocm-pytorch/00-cuda-rocm-pytorch/2-amd-rocm",
+      "path": "etape4-trackc-cuda-rocm-pytorch/00-cuda-rocm-pytorch/2-amd-rocm.md",
+      "title": "2. AMD ROCm",
+      "domain": "step-4-track-c-cuda-rocm-pytorch-gpu-compute-stack",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "DeepSeek",
+        "Moonshot",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2016-04",
+        "2026-03",
+        "2026-05",
+        "2026-07-07"
+      ],
+      "keywords": [
+        "amd",
+        "agent",
+        "agents",
+        "attention",
+        "claude",
+        "deepseek",
+        "embedding",
+        "fp4",
+        "fp8",
+        "glm",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/etape4_trackC_cuda_rocm_pytorch.md",
+      "source_anchor": "",
+      "source_lines": [
+        91,
+        133
+      ],
+      "canonical_for": [],
+      "words": 628,
+      "bytes": 6131,
+      "sha256": "08ed287c3039049c7707b58c5e1c24da3ad7a3780b05d28e052751305f89ad41",
+      "section": "Step 4 — Track C: CUDA + ROCm + PyTorch (GPU compute stack)"
+    },
+    {
+      "id": "etape4-trackc-cuda-rocm-pytorch/00-cuda-rocm-pytorch/3-pytorch-2-x-2026",
+      "path": "etape4-trackc-cuda-rocm-pytorch/00-cuda-rocm-pytorch/3-pytorch-2-x-2026.md",
+      "title": "3. PyTorch 2.x (2026)",
+      "domain": "step-4-track-c-cuda-rocm-pytorch-gpu-compute-stack",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Apple",
+        "Intel",
+        "Nvidia",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-04-30",
+        "2026-05",
+        "2026-06",
+        "2026-07-20",
+        "2026-09",
+        "2026-09-02",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "accelerator",
+        "agent",
+        "agents",
+        "agi",
+        "amd",
+        "attention",
+        "aws",
+        "blackwell",
+        "compute",
+        "fp4",
+        "fp8",
+        "gemini"
+      ],
+      "source": "docs/RAG/etape4_trackC_cuda_rocm_pytorch.md",
+      "source_anchor": "",
+      "source_lines": [
+        134,
+        226
+      ],
+      "canonical_for": [],
+      "words": 1349,
+      "bytes": 12082,
+      "sha256": "c45133b7154119a2b04d654a68a57d85e35c9240e947d91e3e68a74addcc3fc7",
+      "section": "Step 4 — Track C: CUDA + ROCm + PyTorch (GPU compute stack)"
+    }
+  ]
+}

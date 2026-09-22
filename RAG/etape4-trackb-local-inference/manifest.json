@@ -1,0 +1,835 @@
+{
+  "corpus": "etape4-trackb-local-inference",
+  "title": "Step 4 — Track B : pile d'inférence locale (llama.cpp, Ollama, LM Studio)",
+  "source": "docs/RAG/etape4_trackB_local_inference.md",
+  "source_lines": 1010,
+  "source_sha256": "a07d2a3f8ac35d4528aa9e433b25439a923bfd896508aafd47e434228ec87e0c",
+  "chunk_count": 17,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/overview",
+      "path": "etape4-trackb-local-inference/00-local-inference/overview.md",
+      "title": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "DeepSeek",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-01-01",
+        "2026-02-13",
+        "2026-08",
+        "2026-08-18",
+        "2026-08-21",
+        "2026-08-25",
+        "2026-08-31",
+        "2026-09",
+        "2026-09-04",
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "inference",
+        "llama",
+        "llama.cpp",
+        "attention",
+        "benchmarks",
+        "deepseek",
+        "distribution",
+        "flash attention",
+        "gguf",
+        "glm",
+        "gpu",
+        "kv cache"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        81
+      ],
+      "canonical_for": [],
+      "words": 949,
+      "bytes": 8083,
+      "sha256": "548497f3c67e69c59e3a70a2f38dc7b8570d203555ed93705a7eeca4cdebc50b",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/2-gguf-format-updates-2026",
+      "path": "etape4-trackb-local-inference/00-local-inference/2-gguf-format-updates-2026.md",
+      "title": "2. GGUF format updates (2026)",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "DeepSeek",
+        "Huawei",
+        "Intel",
+        "MiniMax",
+        "Unsloth",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-03-18",
+        "2026-09",
+        "2026-09-07",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "gguf",
+        "ascend",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "bitnet",
+        "decode",
+        "deepseek",
+        "glm",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        82,
+        132
+      ],
+      "canonical_for": [],
+      "words": 1221,
+      "bytes": 10172,
+      "sha256": "74bf948ff59b50956b7e2d9f42ead23a7676f3ed2c571911ec6f1748cf476398",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/4-performance-flash-attention-speculative-decoding-measured-",
+      "path": "etape4-trackb-local-inference/00-local-inference/4-performance-flash-attention-speculative-decoding-measured-.md",
+      "title": "4. Performance: flash attention, speculative decoding, measured pp/tg",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "DeepSeek",
+        "Nvidia",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-27",
+        "2026-09"
+      ],
+      "keywords": [
+        "attention",
+        "flash attention",
+        "speculative decoding",
+        "amd",
+        "apache",
+        "bitnet",
+        "consumer",
+        "decode",
+        "deepseek",
+        "diffusion",
+        "distribution",
+        "gguf"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        133,
+        180
+      ],
+      "canonical_for": [],
+      "words": 969,
+      "bytes": 8209,
+      "sha256": "c933bd2f9dbe33760cb209a9ec2f26583799b835e156f3f26849790556250123",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/6-other-notable-forks-2026-names-verified-not-guessed",
+      "path": "etape4-trackb-local-inference/00-local-inference/6-other-notable-forks-2026-names-verified-not-guessed.md",
+      "title": "6. Other notable forks (2026) — names verified, not guessed",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Hugging Face",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-01-27",
+        "2026-05",
+        "2026-06-04",
+        "2026-08-01",
+        "2026-08-31",
+        "2026-09",
+        "2026-09-07",
+        "2026-09-14",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "agentic",
+        "amd",
+        "benchmark",
+        "claude",
+        "compute",
+        "deepseek",
+        "embeddings",
+        "gguf",
+        "gpus",
+        "inference",
+        "kimi",
+        "lean"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        181,
+        228
+      ],
+      "canonical_for": [],
+      "words": 842,
+      "bytes": 8228,
+      "sha256": "41453bd4a6299a9a248e29694eb74eb766a249e99d3fc56e582ced916a13e44e",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/9b-quantization-tooling-operational-notes-2026",
+      "path": "etape4-trackb-local-inference/00-local-inference/9b-quantization-tooling-operational-notes-2026.md",
+      "title": "9b. Quantization tooling & operational notes (2026)",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "Alibaba",
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "quantization",
+        "attention",
+        "benchmark",
+        "deepseek",
+        "embedding",
+        "gguf",
+        "gpus",
+        "inference",
+        "kv cache",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        229,
+        276
+      ],
+      "canonical_for": [],
+      "words": 456,
+      "bytes": 4322,
+      "sha256": "9ea57795a6ea313996b580126446ef6a5cff87eb5c12d0f455e9ebd9744d7117",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/1-executive-summary",
+      "path": "etape4-trackb-local-inference/00-local-inference/1-executive-summary.md",
+      "title": "1. Executive summary",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Meta",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-07",
+        "2026-09"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "attention",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "compute",
+        "funding",
+        "gguf",
+        "gpu",
+        "inference",
+        "llama"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        277,
+        321
+      ],
+      "canonical_for": [],
+      "words": 778,
+      "bytes": 5776,
+      "sha256": "3d61cddfe09a74e9a4ed49d544ebfe5427f249f0c3e9c2d140f82ea2737e6282",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/v0-34-0-8-september-2026-official-github-release",
+      "path": "etape4-trackb-local-inference/00-local-inference/v0-34-0-8-september-2026-official-github-release.md",
+      "title": "v0.34.0 — 8 September 2026 [official: GitHub release]",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Meta",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-08",
+        "2026-08-10",
+        "2026-08-12",
+        "2026-08-13",
+        "2026-08-18",
+        "2026-09"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "amd",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "decode",
+        "deepseek",
+        "gguf",
+        "llama",
+        "llama.cpp",
+        "multimodal"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        322,
+        368
+      ],
+      "canonical_for": [],
+      "words": 429,
+      "bytes": 3988,
+      "sha256": "a5162b26f0b36b0b6e5d9fc1563de389b661873b9ca89de00aed6bedabe6773d",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/v0-32-4-26-july-2026-secondary-bokiko-localist-news",
+      "path": "etape4-trackb-local-inference/00-local-inference/v0-32-4-26-july-2026-secondary-bokiko-localist-news.md",
+      "title": "v0.32.4 — 26 July 2026 [secondary: bokiko/localist news]",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Cohere"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-05",
+        "2026-05-29",
+        "2026-06",
+        "2026-06-01",
+        "2026-06-17",
+        "2026-07",
+        "2026-07-13"
+      ],
+      "keywords": [
+        "accelerator",
+        "agent",
+        "claude",
+        "context window",
+        "gguf",
+        "gpus",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "packaging",
+        "research",
+        "speculative decoding"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        369,
+        417
+      ],
+      "canonical_for": [],
+      "words": 495,
+      "bytes": 4393,
+      "sha256": "7b418e6344147331982deb8eabc5a777fc7df6d1747b6d71c45cbb11cc3a57ec",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/4-model-library-notable-2026-additions",
+      "path": "etape4-trackb-local-inference/00-local-inference/4-model-library-notable-2026-additions.md",
+      "title": "4. Model library — notable 2026 additions",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Cohere",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "MiniMax",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-07-31",
+        "2026-09-06"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "compute",
+        "copilot",
+        "decode",
+        "deepseek",
+        "embedding",
+        "embeddings",
+        "fp4",
+        "glm"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        418,
+        491
+      ],
+      "canonical_for": [],
+      "words": 901,
+      "bytes": 7193,
+      "sha256": "7b802e1ee9fdf34108cdc6a909acb22e07b56c0dc23d10c55ee7dd5c44df54aa",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/6-cloud-turbo-offerings-and-pricing-history",
+      "path": "etape4-trackb-local-inference/00-local-inference/6-cloud-turbo-offerings-and-pricing-history.md",
+      "title": "6. Cloud / Turbo offerings and pricing history",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "DeepSeek",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "pricing",
+        "agent",
+        "cost",
+        "deepseek",
+        "gpu",
+        "inference",
+        "research"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        492,
+        546
+      ],
+      "canonical_for": [],
+      "words": 706,
+      "bytes": 4902,
+      "sha256": "17110d5613718b9a121b4c099a35aec189759f8ddebfb97429590254a5a21b56",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/8-adoption-figures",
+      "path": "etape4-trackb-local-inference/00-local-inference/8-adoption-figures.md",
+      "title": "8. Adoption figures",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "Hugging Face",
+        "Intel",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "agents",
+        "amd",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "gguf",
+        "gpu",
+        "intel",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        547,
+        602
+      ],
+      "canonical_for": [],
+      "words": 667,
+      "bytes": 4997,
+      "sha256": "2b2b6115dee94af79dc7f42deacc3309e67a164d689a2b674ec594d992bf3094",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/10-pricing-consolidated",
+      "path": "etape4-trackb-local-inference/00-local-inference/10-pricing-consolidated.md",
+      "title": "10. Pricing — consolidated",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "DeepSeek",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2025-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "agent",
+        "amd",
+        "benchmark",
+        "claude",
+        "copilot",
+        "cost",
+        "deepseek",
+        "funding",
+        "gguf",
+        "gpu",
+        "inference"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        603,
+        687
+      ],
+      "canonical_for": [],
+      "words": 956,
+      "bytes": 8463,
+      "sha256": "5e7c90cd70fa7a64bf429dcd82583b00c7278bbdc4693ce00f92c0ff5730e6c0",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/part-1-lm-studio-element-labs",
+      "path": "etape4-trackb-local-inference/00-local-inference/part-1-lm-studio-element-labs.md",
+      "title": "PART 1 — LM STUDIO (Element Labs)",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Hugging Face",
+        "Intel",
+        "Meta",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2023-05",
+        "2025-07",
+        "2026-06-04",
+        "2026-07",
+        "2026-07-16",
+        "2026-08-28",
+        "2026-09-09",
+        "2026-09-19"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agentic",
+        "amd",
+        "embeddings",
+        "gguf",
+        "glm",
+        "gpu",
+        "inference",
+        "inference engine",
+        "intel",
+        "kimi"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        688,
+        745
+      ],
+      "canonical_for": [],
+      "words": 1121,
+      "bytes": 9564,
+      "sha256": "bf170034425c605338bc786d6d74f8a1c1ee7edcc258acec0f5d677eca090ce2",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/part-2-local-inference-hardware-landscape-2026",
+      "path": "etape4-trackb-local-inference/00-local-inference/part-2-local-inference-hardware-landscape-2026.md",
+      "title": "PART 2 — LOCAL INFERENCE HARDWARE LANDSCAPE (2026)",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Microsoft",
+        "Nvidia",
+        "TensorRT-LLM"
+      ],
+      "dates": [
+        "2025-03",
+        "2026-06",
+        "2026-07"
+      ],
+      "keywords": [
+        "inference",
+        "amd",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "consumer",
+        "datacenter",
+        "decode",
+        "flash attention",
+        "fp4"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        746,
+        796
+      ],
+      "canonical_for": [],
+      "words": 948,
+      "bytes": 8057,
+      "sha256": "1036961161c5b0d17220d3c49d1b4087a443153a08def7760b490ed3809cd5fb",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/2-3-amd",
+      "path": "etape4-trackb-local-inference/00-local-inference/2-3-amd.md",
+      "title": "2.3 AMD",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Qualcomm",
+        "SGLang",
+        "TensorRT-LLM",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-07"
+      ],
+      "keywords": [
+        "amd",
+        "accelerator",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "consumer",
+        "copilot",
+        "decode",
+        "fine-tuning",
+        "fp4",
+        "gpu"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        797,
+        849
+      ],
+      "canonical_for": [],
+      "words": 1242,
+      "bytes": 10149,
+      "sha256": "160983d4584b4784e9f18dfa99b0af9265e0949ddf621e97ab6c7ac2a76d7090",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/2-7-jetson-edge-2026",
+      "path": "etape4-trackb-local-inference/00-local-inference/2-7-jetson-edge-2026.md",
+      "title": "2.7 Jetson / edge (2026)",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Meta",
+        "Mistral",
+        "Nvidia",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "energy",
+        "fp4",
+        "gguf",
+        "gpu",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "lpddr5x"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        850,
+        922
+      ],
+      "canonical_for": [],
+      "words": 921,
+      "bytes": 6984,
+      "sha256": "be73b6916da8b69d77fc6272f504b245decbc69abbcfd91a29148bebcb96259a",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    },
+    {
+      "id": "etape4-trackb-local-inference/00-local-inference/open-questions-uncertainties-flagged-for-follow-up",
+      "path": "etape4-trackb-local-inference/00-local-inference/open-questions-uncertainties-flagged-for-follow-up.md",
+      "title": "OPEN QUESTIONS / UNCERTAINTIES (flagged for follow-up)",
+      "domain": "step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Intel",
+        "Meta",
+        "Moonshot",
+        "Nvidia",
+        "TensorRT-LLM",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-08-16",
+        "2026-09",
+        "2026-09-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "cost",
+        "deepseek",
+        "fine-tuning",
+        "fp4",
+        "gguf"
+      ],
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        923,
+        1010
+      ],
+      "canonical_for": [],
+      "words": 1353,
+      "bytes": 11394,
+      "sha256": "5241ecb87b42f9fca330df6fef111f75fb46d1cc48a3ee8cc46e7f26c03c5c39",
+      "section": "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
+    }
+  ]
+}

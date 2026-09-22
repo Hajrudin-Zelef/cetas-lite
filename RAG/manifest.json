@@ -66,6 +66,78 @@
       "index": "tools-platforms-2026/INDEX.md",
       "manifest": "tools-platforms-2026/manifest.json",
       "chunk_count": 8
+    },
+    {
+      "corpus": "etape4-trackd-unsloth-training",
+      "title": "Step 4 — Track D : Unsloth & outillage d'entraînement/fine-tuning 2026",
+      "source": "docs/RAG/etape4_trackD_unsloth_training.md",
+      "index": "etape4-trackd-unsloth-training/INDEX.md",
+      "manifest": "etape4-trackd-unsloth-training/manifest.json",
+      "chunk_count": 3
+    },
+    {
+      "corpus": "etape5-tracka-nvidia",
+      "title": "Step 5 — Track A : Nvidia (2026)",
+      "source": "docs/RAG/etape5_trackA_nvidia.md",
+      "index": "etape5-tracka-nvidia/INDEX.md",
+      "manifest": "etape5-tracka-nvidia/manifest.json",
+      "chunk_count": 4
+    },
+    {
+      "corpus": "etape5-trackc-huawei-intel",
+      "title": "Step 5 — Track C : Huawei & Intel (2026)",
+      "source": "docs/RAG/etape5_trackC_huawei_intel.md",
+      "index": "etape5-trackc-huawei-intel/INDEX.md",
+      "manifest": "etape5-trackc-huawei-intel/manifest.json",
+      "chunk_count": 3
+    },
+    {
+      "corpus": "etape4-trackc-cuda-rocm-pytorch",
+      "title": "Step 4 — Track C : CUDA / ROCm / PyTorch (2026)",
+      "source": "docs/RAG/etape4_trackC_cuda_rocm_pytorch.md",
+      "index": "etape4-trackc-cuda-rocm-pytorch/INDEX.md",
+      "manifest": "etape4-trackc-cuda-rocm-pytorch/manifest.json",
+      "chunk_count": 3
+    },
+    {
+      "corpus": "etape5-trackb-amd",
+      "title": "Step 5 — Track B : AMD (2026)",
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "index": "etape5-trackb-amd/INDEX.md",
+      "manifest": "etape5-trackb-amd/manifest.json",
+      "chunk_count": 4
+    },
+    {
+      "corpus": "etape4-tracka-vllm-sglang",
+      "title": "Step 4 — Track A : vLLM + SGLang (2026)",
+      "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
+      "index": "etape4-tracka-vllm-sglang/INDEX.md",
+      "manifest": "etape4-tracka-vllm-sglang/manifest.json",
+      "chunk_count": 20
+    },
+    {
+      "corpus": "etape4-trackb-local-inference",
+      "title": "Step 4 — Track B : pile d'inférence locale (llama.cpp, Ollama, LM Studio)",
+      "source": "docs/RAG/etape4_trackB_local_inference.md",
+      "index": "etape4-trackb-local-inference/INDEX.md",
+      "manifest": "etape4-trackb-local-inference/manifest.json",
+      "chunk_count": 17
+    },
+    {
+      "corpus": "etape5-trackd-servers",
+      "title": "Step 5 — Track D : serveurs IA, marché et réseau datacenter (2026)",
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "index": "etape5-trackd-servers/INDEX.md",
+      "manifest": "etape5-trackd-servers/manifest.json",
+      "chunk_count": 24
+    },
+    {
+      "corpus": "labs-hyperscalers-2026",
+      "title": "Step 3 — Labs & Hyperscalers (2026)",
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "index": "labs-hyperscalers-2026/INDEX.md",
+      "manifest": "labs-hyperscalers-2026/manifest.json",
+      "chunk_count": 47
     }
   ]
 }

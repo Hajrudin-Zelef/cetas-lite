@@ -1,0 +1,172 @@
+{
+  "corpus": "etape5-trackc-huawei-intel",
+  "title": "Step 5 — Track C : Huawei & Intel (2026)",
+  "source": "docs/RAG/etape5_trackC_huawei_intel.md",
+  "source_lines": 214,
+  "source_sha256": "06e5f971e1354ad233973e814cf06e4a586f73d6c065804f6bd257cb335f72d0",
+  "chunk_count": 3,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape5-trackc-huawei-intel/00-huawei-intel/overview",
+      "path": "etape5-trackc-huawei-intel/00-huawei-intel/overview.md",
+      "title": "Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)",
+      "domain": "step-5-track-c-huawei-chinese-hardware-intel-cpus-feb-1-sep-",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "ByteDance",
+        "China",
+        "DeepSeek",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "TSMC",
+        "United States"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-11",
+        "2026-02-01",
+        "2026-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "intel",
+        "accelerator",
+        "ascend",
+        "blackwell",
+        "chiplet",
+        "clearwater forest",
+        "compute",
+        "consumer",
+        "cost",
+        "datacenter",
+        "deepseek",
+        "export controls"
+      ],
+      "source": "docs/RAG/etape5_trackC_huawei_intel.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 951,
+      "bytes": 6948,
+      "sha256": "f207105b7074ea50c22921c38e7ff4423a91c89099ddc162677cd661fd1afbda",
+      "section": "Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)"
+    },
+    {
+      "id": "etape5-trackc-huawei-intel/00-huawei-intel/2-chinese-ai-chips-cambricon-moore-threads-biren-metax",
+      "path": "etape5-trackc-huawei-intel/00-huawei-intel/2-chinese-ai-chips-cambricon-moore-threads-biren-metax.md",
+      "title": "2. CHINESE AI CHIPS — CAMBRICON, MOORE THREADS, BIREN, METAX",
+      "domain": "step-5-track-c-huawei-chinese-hardware-intel-cpus-feb-1-sep-",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Baidu",
+        "ByteDance",
+        "China",
+        "DeepSeek",
+        "Huawei",
+        "IREN",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-06",
+        "2025-09",
+        "2025-12-05",
+        "2025-12-17",
+        "2026-01-02",
+        "2026-03",
+        "2026-06"
+      ],
+      "keywords": [
+        "amd",
+        "compute",
+        "decode",
+        "deepseek",
+        "energy",
+        "fp4",
+        "fp8",
+        "gpu",
+        "hbm",
+        "inference",
+        "ipo",
+        "lpddr"
+      ],
+      "source": "docs/RAG/etape5_trackC_huawei_intel.md",
+      "source_anchor": "",
+      "source_lines": [
+        57,
+        103
+      ],
+      "canonical_for": [],
+      "words": 927,
+      "bytes": 6764,
+      "sha256": "66b85ecf225a09eb8f8fe2f11faf694b66fdc4e6a2b79e1634d5f9ec3516fd5d",
+      "section": "Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)"
+    },
+    {
+      "id": "etape5-trackc-huawei-intel/00-huawei-intel/3-intel",
+      "path": "etape5-trackc-huawei-intel/00-huawei-intel/3-intel.md",
+      "title": "3. INTEL",
+      "domain": "step-5-track-c-huawei-chinese-hardware-intel-cpus-feb-1-sep-",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Apple",
+        "DeepSeek",
+        "Falcon",
+        "Google",
+        "Huawei",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Qualcomm",
+        "Samsung",
+        "TSMC",
+        "United States"
+      ],
+      "dates": [
+        "2025-03",
+        "2025-08",
+        "2026-01-05",
+        "2026-05",
+        "2026-06-01",
+        "2026-06-26",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "intel",
+        "18a",
+        "3nm",
+        "accelerator",
+        "agentic",
+        "agents",
+        "agi",
+        "ai pc",
+        "amd",
+        "ascend",
+        "clearwater forest",
+        "consumer"
+      ],
+      "source": "docs/RAG/etape5_trackC_huawei_intel.md",
+      "source_anchor": "",
+      "source_lines": [
+        104,
+        214
+      ],
+      "canonical_for": [],
+      "words": 1689,
+      "bytes": 11822,
+      "sha256": "44def0f1286ee2754fd114dcc19943a4dccc6827642e9893e572d799ea8def4f",
+      "section": "Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)"
+    }
+  ]
+}

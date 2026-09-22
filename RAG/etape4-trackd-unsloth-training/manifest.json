@@ -1,0 +1,183 @@
+{
+  "corpus": "etape4-trackd-unsloth-training",
+  "title": "Step 4 — Track D : Unsloth & outillage d'entraînement/fine-tuning 2026",
+  "source": "docs/RAG/etape4_trackD_unsloth_training.md",
+  "source_lines": 201,
+  "source_sha256": "495af752133000e9a9b8e97cd7cf5688e92fa2ccfde8fd23d2ac4140a0ad6167",
+  "chunk_count": 3,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape4-trackd-unsloth-training/00-unsloth-training/overview",
+      "path": "etape4-trackd-unsloth-training/00-unsloth-training/overview.md",
+      "title": "Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)",
+      "domain": "step-4-track-d-unsloth-training-fine-tuning-tooling-2026",
+      "role": "deep-dive",
+      "task": "training",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Samsung",
+        "Unsloth",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-03-23",
+        "2026-07-20",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "fine-tuning",
+        "training",
+        "agent",
+        "agents",
+        "amd",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "consumer",
+        "deepseek"
+      ],
+      "source": "docs/RAG/etape4_trackD_unsloth_training.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        65
+      ],
+      "canonical_for": [],
+      "words": 972,
+      "bytes": 7545,
+      "sha256": "37e0b7f96d9ce497197a192b0dd5b8fd6742d490cb6312deb189f6ee6402e80b",
+      "section": "Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)"
+    },
+    {
+      "id": "etape4-trackd-unsloth-training/00-unsloth-training/2-axolotl",
+      "path": "etape4-trackd-unsloth-training/00-unsloth-training/2-axolotl.md",
+      "title": "2. AXOLOTL",
+      "domain": "step-4-track-d-unsloth-training-fine-tuning-tooling-2026",
+      "role": "deep-dive",
+      "task": "training",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Falcon",
+        "Huawei",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "MiniMax",
+        "Mistral",
+        "Moonshot",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-06-17",
+        "2026-07-17",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "agentic",
+        "ascend",
+        "attention",
+        "bitnet",
+        "cohere",
+        "deepseek",
+        "distillation",
+        "dpo",
+        "fine-tuning",
+        "flash attention",
+        "funding",
+        "glm"
+      ],
+      "source": "docs/RAG/etape4_trackD_unsloth_training.md",
+      "source_anchor": "",
+      "source_lines": [
+        66,
+        119
+      ],
+      "canonical_for": [],
+      "words": 815,
+      "bytes": 6432,
+      "sha256": "8940fa5533a27e5d544bae4883aba01b0859061c2670406a982f4f36ec33385a",
+      "section": "Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)"
+    },
+    {
+      "id": "etape4-trackd-unsloth-training/00-unsloth-training/6-peft-lora-ecosystem-2026",
+      "path": "etape4-trackd-unsloth-training/00-unsloth-training/6-peft-lora-ecosystem-2026.md",
+      "title": "6. PEFT / LoRA ECOSYSTEM (2026)",
+      "domain": "step-4-track-d-unsloth-training-fine-tuning-tooling-2026",
+      "role": "deep-dive",
+      "task": "training",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Samsung",
+        "TensorRT-LLM",
+        "Unsloth",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-04-20",
+        "2026-07-14",
+        "2026-08-31",
+        "2026-09-07"
+      ],
+      "keywords": [
+        "lora",
+        "agentic",
+        "attention",
+        "awq",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "consumer",
+        "decode",
+        "deepseek",
+        "disaggregated",
+        "disaggregated serving"
+      ],
+      "source": "docs/RAG/etape4_trackD_unsloth_training.md",
+      "source_anchor": "",
+      "source_lines": [
+        120,
+        201
+      ],
+      "canonical_for": [],
+      "words": 1058,
+      "bytes": 8112,
+      "sha256": "02390b56a9e5f2b6cdf30dde8bc91fc2f6ebd98d525838ee53432e74dcd7506f",
+      "section": "Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)"
+    }
+  ]
+}

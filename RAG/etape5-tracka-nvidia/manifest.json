@@ -1,0 +1,196 @@
+{
+  "corpus": "etape5-tracka-nvidia",
+  "title": "Step 5 — Track A : Nvidia (2026)",
+  "source": "docs/RAG/etape5_trackA_nvidia.md",
+  "source_lines": 269,
+  "source_sha256": "99f1a4c3f18617e39c5df7ee51e0656f93d0e9d0a84a358c5e9e8472210ed8de",
+  "chunk_count": 4,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape5-tracka-nvidia/00-nvidia/overview",
+      "path": "etape5-tracka-nvidia/00-nvidia/overview.md",
+      "title": "Step 5 — Track A: NVIDIA GPUs (B200/B300/Rubin), DGX Systems & Networking",
+      "domain": "step-5-track-a-nvidia-gpus-b200-b300-rubin-dgx-systems-netwo",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [
+        "2024-03",
+        "2026-01",
+        "2026-02-01",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "gpu",
+        "gpus",
+        "nvidia",
+        "rubin",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "fp4",
+        "fp8",
+        "inference",
+        "liquid cooling",
+        "memory"
+      ],
+      "source": "docs/RAG/etape5_trackA_nvidia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        78
+      ],
+      "canonical_for": [],
+      "words": 725,
+      "bytes": 5115,
+      "sha256": "c8ebd882c4e11c3d661996015eb1383c470e37446158443d04a87b3aea5b8be1",
+      "section": "Step 5 — Track A: NVIDIA GPUs (B200/B300/Rubin), DGX Systems & Networking"
+    },
+    {
+      "id": "etape5-tracka-nvidia/00-nvidia/2-vera-rubin-platform-2026",
+      "path": "etape5-tracka-nvidia/00-nvidia/2-vera-rubin-platform-2026.md",
+      "title": "2. Vera Rubin platform (2026)",
+      "domain": "step-5-track-a-nvidia-gpus-b200-b300-rubin-dgx-systems-netwo",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AWS",
+        "CoreWeave",
+        "Google",
+        "Groq",
+        "Lambda",
+        "Meta",
+        "Microsoft",
+        "Nebius",
+        "Nscale",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-06-01"
+      ],
+      "keywords": [
+        "rubin",
+        "vera rubin",
+        "3nm",
+        "800v dc",
+        "agentic",
+        "attention",
+        "aws",
+        "blackwell",
+        "capex",
+        "compute",
+        "cost",
+        "disaggregated"
+      ],
+      "source": "docs/RAG/etape5_trackA_nvidia.md",
+      "source_anchor": "",
+      "source_lines": [
+        79,
+        137
+      ],
+      "canonical_for": [],
+      "words": 829,
+      "bytes": 6850,
+      "sha256": "bf9d0ddfbaff3b74c6f38794fbb18f3e325072525051705146c99f185d0a7f02",
+      "section": "Step 5 — Track A: NVIDIA GPUs (B200/B300/Rubin), DGX Systems & Networking"
+    },
+    {
+      "id": "etape5-tracka-nvidia/00-nvidia/3-h100-h200-availability-and-2026-price-trends",
+      "path": "etape5-tracka-nvidia/00-nvidia/3-h100-h200-availability-and-2026-price-trends.md",
+      "title": "3. H100 / H200: availability and 2026 price trends",
+      "domain": "step-5-track-a-nvidia-gpus-b200-b300-rubin-dgx-systems-netwo",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AWS",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "blackwell",
+        "cost",
+        "decode",
+        "fp4",
+        "gpu",
+        "gpus",
+        "hbm",
+        "inference",
+        "llama",
+        "lpddr5x",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape5_trackA_nvidia.md",
+      "source_anchor": "",
+      "source_lines": [
+        138,
+        183
+      ],
+      "canonical_for": [],
+      "words": 716,
+      "bytes": 5422,
+      "sha256": "1ae2b6ac5ce9c74776d8d8395d955874a02c769c30bdb6e91d30b21c5d9b58ad",
+      "section": "Step 5 — Track A: NVIDIA GPUs (B200/B300/Rubin), DGX Systems & Networking"
+    },
+    {
+      "id": "etape5-tracka-nvidia/00-nvidia/5-networking-nics-dpus-switches-nvlink",
+      "path": "etape5-tracka-nvidia/00-nvidia/5-networking-nics-dpus-switches-nvlink.md",
+      "title": "5. Networking: NICs, DPUs, switches, NVLink",
+      "domain": "step-5-track-a-nvidia-gpus-b200-b300-rubin-dgx-systems-netwo",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AWS",
+        "Cohere",
+        "CoreWeave",
+        "Google",
+        "Groq",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "Perplexity"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-07-13",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "nvlink",
+        "acquisition",
+        "agent",
+        "agentic",
+        "aws",
+        "blackwell",
+        "cohere",
+        "compute",
+        "cpo",
+        "datacenter",
+        "disaggregated",
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape5_trackA_nvidia.md",
+      "source_anchor": "",
+      "source_lines": [
+        184,
+        269
+      ],
+      "canonical_for": [],
+      "words": 1019,
+      "bytes": 7844,
+      "sha256": "2a1686188f379ec12c62d40d2ed234926935ed0afd70bc7a1662536d9576ac3d",
+      "section": "Step 5 — Track A: NVIDIA GPUs (B200/B300/Rubin), DGX Systems & Networking"
+    }
+  ]
+}
