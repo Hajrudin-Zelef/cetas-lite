@@ -7,6 +7,14 @@
       "index": "briefing-ia-2026/INDEX.md",
       "manifest": "briefing-ia-2026/manifest.json",
       "chunk_count": 126
+    },
+    {
+      "corpus": "briefing-general-tech-2026",
+      "title": "General Tech News 2026 — Hardware, Infrastructure & Consumer Tech",
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "index": "briefing-general-tech-2026/INDEX.md",
+      "manifest": "briefing-general-tech-2026/manifest.json",
+      "chunk_count": 112
     }
   ]
 }

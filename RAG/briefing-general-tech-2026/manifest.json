@@ -1,0 +1,4706 @@
+{
+  "corpus": "briefing-general-tech-2026",
+  "title": "General Tech News 2026 — Hardware, Infrastructure & Consumer Tech",
+  "source": "docs/RAG/briefing-general-tech-2026-en.md",
+  "source_lines": 10049,
+  "source_sha256": "dfb878e85d3a3086f72efd119cece3688c4a6745d26175eaf427e91a0475ccd9",
+  "chunk_count": 112,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "briefing-general-tech-2026/00-front-matter/00-title",
+      "path": "briefing-general-tech-2026/00-front-matter/00-title.md",
+      "title": "General Tech News 2026 — Hardware, Infrastructure & Consumer Tech",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "BitNet",
+        "Google",
+        "Huawei",
+        "IDC",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "OIF",
+        "OpenAI",
+        "Samsung",
+        "UALink",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24"
+      ],
+      "keywords": [
+        "800v dc",
+        "accelerator",
+        "agi",
+        "ascend",
+        "bitnet",
+        "capex",
+        "clearwater forest",
+        "ethernet",
+        "foldable",
+        "fp8",
+        "googlebook",
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        9
+      ],
+      "canonical_for": [],
+      "words": 304,
+      "bytes": 2088,
+      "sha256": "3def1720efbf8a3b6589dc4698c0d92c834b8ff6572853d1533e30833aa5a3e3"
+    },
+    {
+      "id": "briefing-general-tech-2026/00-front-matter/01-table-of-contents",
+      "path": "briefing-general-tech-2026/00-front-matter/01-table-of-contents.md",
+      "title": "Front matter — table of contents",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "BitNet",
+        "China",
+        "Credo",
+        "FS.com",
+        "Fujitsu",
+        "Google",
+        "Huawei",
+        "IDC",
+        "Intel",
+        "MACOM",
+        "MLCommons",
+        "Meta",
+        "Nokia",
+        "Nvidia",
+        "OIF",
+        "OpenAI",
+        "PrismML",
+        "Qualcomm",
+        "Samsung",
+        "Telxius",
+        "UALink",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "800v dc",
+        "accelerator",
+        "agentic",
+        "agi",
+        "ai200",
+        "ascend",
+        "awq",
+        "benchmark",
+        "bitnet",
+        "blackwell",
+        "capex",
+        "clearwater forest"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g01",
+      "source_lines": [
+        10,
+        171
+      ],
+      "canonical_for": [],
+      "words": 1470,
+      "bytes": 10462,
+      "sha256": "ecc3c001526a1b418d24a7521c5a28f53beafb34d8a806438d296bd86df97a95"
+    },
+    {
+      "id": "briefing-general-tech-2026/00-front-matter/02-alphabetical-index",
+      "path": "briefing-general-tech-2026/00-front-matter/02-alphabetical-index.md",
+      "title": "Alphabetical index (source)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "BitNet",
+        "Broadcom",
+        "China",
+        "Credo",
+        "FS.com",
+        "Fujitsu",
+        "Google",
+        "Huawei",
+        "IDC",
+        "Intel",
+        "MACOM",
+        "MLCommons",
+        "Meta",
+        "Micron",
+        "Nokia",
+        "Nvidia",
+        "OIF",
+        "OpenAI",
+        "PrismML",
+        "Qualcomm",
+        "SK Hynix",
+        "Samsung",
+        "TSMC",
+        "Telxius",
+        "UALink",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "800v dc",
+        "accelerator",
+        "agentic",
+        "agi",
+        "ai200",
+        "ascend",
+        "asic",
+        "awq",
+        "benchmark",
+        "bitnet",
+        "blackwell",
+        "capex"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g01-index",
+      "source_lines": [
+        172,
+        321
+      ],
+      "canonical_for": [],
+      "words": 1821,
+      "bytes": 13605,
+      "sha256": "7362431ced15f26e4cc5d13245b0aa9e272d043414aba3c33b2078336b5a3edd"
+    },
+    {
+      "id": "briefing-general-tech-2026/00-front-matter/03-thematic-keywords",
+      "path": "briefing-general-tech-2026/00-front-matter/03-thematic-keywords.md",
+      "title": "Thematic keywords (source)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "Huawei",
+        "Nokia",
+        "Nvidia",
+        "OIF",
+        "Qualcomm",
+        "Telxius",
+        "UALink"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "agentic",
+        "agi",
+        "ai200",
+        "asic",
+        "capex",
+        "chiplet",
+        "coherent optics",
+        "cost per token",
+        "dci",
+        "decode",
+        "disaggregated"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g01-keywords",
+      "source_lines": [
+        322,
+        383
+      ],
+      "canonical_for": [],
+      "words": 721,
+      "bytes": 5208,
+      "sha256": "af6c48a7cbbbf2d77cac465ee02a71e17a83326166b0f636981c701418487f18"
+    },
+    {
+      "id": "briefing-general-tech-2026/00-front-matter/04-dossier-front-matter",
+      "path": "briefing-general-tech-2026/00-front-matter/04-dossier-front-matter.md",
+      "title": "Reference Dossier — front matter and detailed table of contents",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agi",
+        "clearwater forest",
+        "googlebook",
+        "governance",
+        "gpt-6",
+        "helios",
+        "mi455x"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        384,
+        415
+      ],
+      "canonical_for": [],
+      "words": 282,
+      "bytes": 1878,
+      "sha256": "fe42f1c6b4e2049bb5b91ecd3b281f0e905a7f5be4f22728298f37f3b7c7ac66"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/00-introduction-methodology",
+      "path": "briefing-general-tech-2026/01-chronology-2026/00-introduction-methodology.md",
+      "title": "Introduction, purpose and methodology",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "Gartner",
+        "Google",
+        "IDC",
+        "Intel",
+        "MLCommons",
+        "Meta",
+        "Micron",
+        "Nvidia",
+        "OIF",
+        "OpenAI",
+        "PrismML",
+        "SK Hynix",
+        "TrendForce",
+        "UALink",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "800v dc",
+        "accelerator",
+        "agi",
+        "clearwater forest",
+        "cost per token",
+        "custom silicon",
+        "foldable",
+        "googlebook",
+        "governance",
+        "gpt-6",
+        "helios",
+        "inference"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02",
+      "source_lines": [
+        416,
+        607
+      ],
+      "canonical_for": [],
+      "words": 2052,
+      "bytes": 13195,
+      "sha256": "fd48667c6f6ade28bac43be680c161aca8aa8341b0057722f963d9c922f056b9"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/01-february-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/01-february-2026.md",
+      "title": "February 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "Amazon",
+        "Anthropic",
+        "Apple",
+        "Gartner",
+        "Google",
+        "Meta",
+        "Micron",
+        "Nvidia",
+        "OpenAI",
+        "SK Hynix",
+        "TSMC",
+        "Taalas"
+      ],
+      "dates": [
+        "2026-02"
+      ],
+      "keywords": [
+        "accelerator",
+        "blackwell",
+        "cowos",
+        "custom silicon",
+        "dram",
+        "gpu",
+        "hbm",
+        "helios",
+        "hyperscaler",
+        "inference",
+        "nand",
+        "packaging"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-3",
+      "source_lines": [
+        608,
+        702
+      ],
+      "canonical_for": [],
+      "words": 1041,
+      "bytes": 6545,
+      "sha256": "91e0cd28004137938fc70e2b83753989eba7f2efa9c730adc9d1918e863e49ef"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/02-march-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/02-march-2026.md",
+      "title": "March 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "Apple",
+        "CoreWeave",
+        "Gartner",
+        "Intel",
+        "Micron",
+        "Nokia",
+        "Nvidia",
+        "SK Hynix",
+        "Taalas"
+      ],
+      "dates": [
+        "2026-03"
+      ],
+      "keywords": [
+        "accelerator",
+        "blackwell",
+        "clearwater forest",
+        "dram",
+        "gpu",
+        "hbm",
+        "inference",
+        "nand",
+        "vera rubin",
+        "wafer"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-4",
+      "source_lines": [
+        703,
+        773
+      ],
+      "canonical_for": [],
+      "words": 772,
+      "bytes": 4910,
+      "sha256": "9ef58eef4d42b95f34d2e717e03a8bf151a048901ccbcb585ebac9c7a35851d3"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/03-april-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/03-april-2026.md",
+      "title": "April 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "OpenAI",
+        "UALink"
+      ],
+      "dates": [
+        "2025-04-08",
+        "2026-04"
+      ],
+      "keywords": [
+        "accelerator",
+        "ai pc",
+        "helios",
+        "nvlink",
+        "rack-scale",
+        "ualink"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-5",
+      "source_lines": [
+        774,
+        829
+      ],
+      "canonical_for": [],
+      "words": 575,
+      "bytes": 3593,
+      "sha256": "cd8a459e53fa470bdc62a4b4c074acfff1fa4d286f572b5786705f0db63058b2"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/04-may-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/04-may-2026.md",
+      "title": "May 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "ASUS",
+        "Apple",
+        "Google",
+        "Microsoft",
+        "UALink"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "agentic",
+        "gemini",
+        "googlebook",
+        "ualink"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-6",
+      "source_lines": [
+        830,
+        872
+      ],
+      "canonical_for": [],
+      "words": 450,
+      "bytes": 2888,
+      "sha256": "a6a45eab80beb184883f16cd223c8d76a7866c533480f458ab9a40155d752c6c"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/05-june-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/05-june-2026.md",
+      "title": "June 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "Apple",
+        "CoreWeave",
+        "Dell",
+        "Gartner",
+        "Intel",
+        "Micron",
+        "Nvidia",
+        "SK Hynix"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "accelerator",
+        "clearwater forest",
+        "cost per token",
+        "dram",
+        "gpu",
+        "inference",
+        "liquid cooling",
+        "power delivery",
+        "quantization",
+        "vera rubin",
+        "wafer"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-7",
+      "source_lines": [
+        873,
+        958
+      ],
+      "canonical_for": [],
+      "words": 949,
+      "bytes": 6072,
+      "sha256": "613ae49867350d8ef8f807d326a3f469de762ee20edba465aa3a14ff4dd13a58"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/06-july-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/06-july-2026.md",
+      "title": "July 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "PrismML"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-07-14"
+      ],
+      "keywords": [
+        "accelerator",
+        "clearwater forest",
+        "governance",
+        "helios",
+        "mi455x",
+        "quantization",
+        "rack-scale"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-8",
+      "source_lines": [
+        959,
+        1031
+      ],
+      "canonical_for": [],
+      "words": 853,
+      "bytes": 5396,
+      "sha256": "f4e37e0fe78d8ccc7a217f7b38681c4dbeac33324636e410e62642a6ac0d41b4"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/07-august-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/07-august-2026.md",
+      "title": "August 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "Apple",
+        "FS.com",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "OCP"
+      ],
+      "dates": [
+        "2026-08"
+      ],
+      "keywords": [
+        "800v dc",
+        "capex",
+        "crescent island",
+        "hyperscaler",
+        "inference",
+        "muxponder",
+        "power delivery"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-9",
+      "source_lines": [
+        1032,
+        1104
+      ],
+      "canonical_for": [],
+      "words": 811,
+      "bytes": 5236,
+      "sha256": "41372c283a423469b10f0a5db7f131e2a36e00c8106b1c2d35955d3a8f3089d8"
+    },
+    {
+      "id": "briefing-general-tech-2026/01-chronology-2026/08-september-2026",
+      "path": "briefing-general-tech-2026/01-chronology-2026/08-september-2026.md",
+      "title": "September 2026",
+      "domain": "chronology",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "ASUS",
+        "Anthropic",
+        "Apple",
+        "China",
+        "Credo",
+        "Crusoe",
+        "FS.com",
+        "Gartner",
+        "Google",
+        "Huawei",
+        "IDC",
+        "MACOM",
+        "MLCommons",
+        "Meta",
+        "Micron",
+        "Nokia",
+        "Nvidia",
+        "OIF",
+        "OpenAI",
+        "Samsung",
+        "Telxius",
+        "TrendForce",
+        "UALink",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "agentic",
+        "agi",
+        "benchmark",
+        "coherent optics",
+        "foldable",
+        "googlebook",
+        "governance",
+        "gpt-6",
+        "helios",
+        "inference",
+        "mlperf"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g02-10",
+      "source_lines": [
+        1105,
+        1331
+      ],
+      "canonical_for": [],
+      "words": 2441,
+      "bytes": 15447,
+      "sha256": "cb56a7cea21e098a0c344fa1ac6e59a0f61c60200f0ca536e91f6b7f3126e14f"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/00-chapter-introduction",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/00-chapter-introduction.md",
+      "title": "GPUs and AI accelerators — introduction",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "China",
+        "Fujitsu",
+        "Huawei",
+        "Intel",
+        "MLCommons",
+        "Meta",
+        "Micron",
+        "Nvidia",
+        "OCP",
+        "OpenAI",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-09",
+        "2026-09-22",
+        "2026-11"
+      ],
+      "keywords": [
+        "accelerator",
+        "gpu",
+        "gpus",
+        "18a",
+        "agi",
+        "ai200",
+        "ascend",
+        "asic",
+        "benchmark",
+        "clearwater forest",
+        "crescent island",
+        "decode"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03",
+      "source_lines": [
+        1332,
+        1441
+      ],
+      "canonical_for": [],
+      "words": 2079,
+      "bytes": 13584,
+      "sha256": "f1fb25f8b22dcefbe3ad23bfd895696acf3cf52f6d5229b0afca064e446203a1"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/01-nvidia-vera-rubin",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/01-nvidia-vera-rubin.md",
+      "title": "Nvidia: Vera Rubin in full production",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "CoreWeave",
+        "Dell",
+        "Huawei",
+        "MLCommons",
+        "Nebius",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-01-06",
+        "2026-03-16",
+        "2026-06-01"
+      ],
+      "keywords": [
+        "vera rubin",
+        "accelerator",
+        "ascend",
+        "blackwell",
+        "cost per token",
+        "gpu",
+        "gpus",
+        "mlperf",
+        "mlperf v6.1",
+        "rack-scale",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-1",
+      "source_lines": [
+        1442,
+        1508
+      ],
+      "canonical_for": [
+        "nvidia-vera-rubin"
+      ],
+      "words": 1387,
+      "bytes": 8780,
+      "sha256": "b4ae0ee9a4dd5a93f09ca750d58b4b94d487eaf0af2d930f7fb9337807a33a22"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/02-rubin-nvl72-specs",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/02-rubin-nvl72-specs.md",
+      "title": "Rubin NVL72: architecture and specifications",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "CoreWeave",
+        "Huawei",
+        "Intel",
+        "MLCommons",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [],
+      "keywords": [
+        "agentic",
+        "benchmark",
+        "blackwell",
+        "cost per token",
+        "disaggregated",
+        "disaggregated serving",
+        "fp4",
+        "gpu",
+        "gpus",
+        "hbm4",
+        "helios",
+        "inference"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-2",
+      "source_lines": [
+        1509,
+        1581
+      ],
+      "canonical_for": [
+        "nvidia-vera-rubin"
+      ],
+      "words": 1617,
+      "bytes": 10131,
+      "sha256": "777a33af9abeec2507160ac0ba4c0d1c1644e803202dcca99a833d03b2799ce4"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/03-mlperf-inference-v61",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/03-mlperf-inference-v61.md",
+      "title": "MLPerf Inference v6.1: Rubin's first benchmark outing",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "benchmark",
+      "actors": [
+        "AMD",
+        "CoreWeave",
+        "MLCommons",
+        "Nebius",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "inference",
+        "mlperf",
+        "blackwell",
+        "cost per token",
+        "decode",
+        "disaggregated",
+        "disaggregated serving",
+        "gpu",
+        "gpus",
+        "helios",
+        "kv cache"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-3",
+      "source_lines": [
+        1582,
+        1667
+      ],
+      "canonical_for": [
+        "mlperf-v61"
+      ],
+      "words": 1616,
+      "bytes": 10739,
+      "sha256": "f4a5fc936241b8f94642d58ee184e2cc86c1241eeedeac13f73accc6cfb35eec"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/04-huang-agi-moment",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/04-huang-agi-moment.md",
+      "title": "Jensen Huang and the 'AGI has arrived' moment",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "AMD",
+        "Crusoe",
+        "Huawei",
+        "MLCommons",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-06"
+      ],
+      "keywords": [
+        "agi",
+        "accelerator",
+        "benchmark",
+        "blackwell",
+        "gpt-6",
+        "gpu",
+        "gpus",
+        "inference",
+        "mlperf",
+        "mlperf v6.1",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-4",
+      "source_lines": [
+        1668,
+        1724
+      ],
+      "canonical_for": [
+        "agi-arrival"
+      ],
+      "words": 995,
+      "bytes": 6192,
+      "sha256": "f70a1c8a7635476d48a67727de9f01d79e72f3d36caab8c9da3e16ba3abcf2d1"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/05-amd-advancing-ai-helios",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/05-amd-advancing-ai-helios.md",
+      "title": "AMD: Advancing AI and the Helios ramp",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Huawei",
+        "Intel",
+        "MLCommons",
+        "Meta",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-07-23",
+        "2026-09-06",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "helios",
+        "accelerator",
+        "gpu",
+        "gpus",
+        "hbm4",
+        "mi455x",
+        "mlperf",
+        "rack-scale",
+        "warrants"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-5",
+      "source_lines": [
+        1725,
+        1796
+      ],
+      "canonical_for": [
+        "amd-helios"
+      ],
+      "words": 1374,
+      "bytes": 8257,
+      "sha256": "fa77b0d048f194e263dac8b56fd352d354ee4d019b567ead71dd2e0658f1dc91"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/06-mi455x-memory",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/06-mi455x-memory.md",
+      "title": "MI455X and the memory play",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "memory-crisis",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Intel",
+        "Micron",
+        "Nvidia",
+        "OpenAI",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "mi455x",
+        "accelerator",
+        "agentic",
+        "ai200",
+        "benchmark",
+        "cost per token",
+        "crescent island",
+        "dram",
+        "fp4",
+        "fp8",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-6",
+      "source_lines": [
+        1797,
+        1869
+      ],
+      "canonical_for": [
+        "amd-mi455x"
+      ],
+      "words": 1660,
+      "bytes": 10196,
+      "sha256": "eb2110af6cb81cabe2f154d73f225ce3ff9fb062c330079681177098ab6fe692"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/07-amd-deals",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/07-amd-deals.md",
+      "title": "AMD's deals: Anthropic, OpenAI, Meta",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Meta",
+        "Nvidia",
+        "OCP",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-10-06",
+        "2026-02-24",
+        "2026-04",
+        "2026-07-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "custom silicon",
+        "gpu",
+        "helios",
+        "mi455x",
+        "nvlink",
+        "valuation",
+        "warrants"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-7",
+      "source_lines": [
+        1870,
+        1942
+      ],
+      "canonical_for": [
+        "amd-deals"
+      ],
+      "words": 1597,
+      "bytes": 9936,
+      "sha256": "22adf24f6058a125b5eeb342c6bded83e6f3234faff84ebb8dc2ae484f380ef7"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/08-amd-trillion",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/08-amd-trillion.md",
+      "title": "AMD crosses $1 trillion",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Broadcom",
+        "MLCommons",
+        "Meta",
+        "Micron",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "accelerator",
+        "agi",
+        "gpu",
+        "hbm",
+        "helios",
+        "inference",
+        "mlperf",
+        "mlperf v6.1",
+        "rack-scale",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-8",
+      "source_lines": [
+        1943,
+        2004
+      ],
+      "canonical_for": [
+        "amd-trillion"
+      ],
+      "words": 954,
+      "bytes": 5857,
+      "sha256": "d0b40cab91bf0a9c6885e05c77bf3d503c44a23f0b00af501c061210a5ba07c8"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/09-intel-panther-lake",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/09-intel-panther-lake.md",
+      "title": "Intel: Core Ultra X9 and the Panther Lake generation",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-01-27",
+        "2026-04"
+      ],
+      "keywords": [
+        "panther lake",
+        "18a",
+        "clearwater forest",
+        "foundry",
+        "gpu",
+        "inference",
+        "mi455x"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-9",
+      "source_lines": [
+        2005,
+        2060
+      ],
+      "canonical_for": [
+        "intel-panther-lake"
+      ],
+      "words": 1018,
+      "bytes": 6201,
+      "sha256": "ba0b71e714044b61c9e454d594d63bf8f4676ca99d2cf0ebc55f5e2cf28e0e42"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/10-intel-clearwater-forest",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/10-intel-clearwater-forest.md",
+      "title": "Intel: Xeon 6+ Clearwater Forest and the datacenter fightback",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-06-01",
+        "2026-09"
+      ],
+      "keywords": [
+        "clearwater forest",
+        "18a",
+        "accelerator",
+        "agentic",
+        "crescent island",
+        "decode",
+        "disaggregated",
+        "gpu",
+        "gpus",
+        "inference",
+        "panther lake",
+        "prefill"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-10",
+      "source_lines": [
+        2061,
+        2126
+      ],
+      "canonical_for": [
+        "intel-xeon6"
+      ],
+      "words": 1178,
+      "bytes": 7375,
+      "sha256": "72b771f107d7aea1646a862f52a312607edaaea96188687bd3f6a9ba82845e66"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/11-intel-crescent-island",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/11-intel-crescent-island.md",
+      "title": "Intel Crescent Island: the LPDDR5X inference bet",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Micron",
+        "Nvidia",
+        "OCP"
+      ],
+      "dates": [
+        "2026-08-24",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "crescent island",
+        "inference",
+        "lpddr5x",
+        "agentic",
+        "cost per token",
+        "fp4",
+        "fp8",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm4",
+        "kv cache"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-11",
+      "source_lines": [
+        2127,
+        2202
+      ],
+      "canonical_for": [
+        "intel-crescent-island"
+      ],
+      "words": 1410,
+      "bytes": 8913,
+      "sha256": "a4a14bb01c5bf20c24214e28f2c7e5f366aa09a619849919b90be342fea81ab8"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/12-huawei-ascend-roadmap",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/12-huawei-ascend-roadmap.md",
+      "title": "Huawei: Ascend roadmap at Huawei Connect 2026",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "China",
+        "Huawei",
+        "Intel",
+        "MLCommons",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "ascend",
+        "accelerator",
+        "agentic",
+        "agi",
+        "export controls",
+        "fp4",
+        "fp8",
+        "hbm",
+        "inference",
+        "mlperf",
+        "mlperf v6.1",
+        "sovereignty"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-12",
+      "source_lines": [
+        2203,
+        2262
+      ],
+      "canonical_for": [
+        "huawei-ascend"
+      ],
+      "words": 852,
+      "bytes": 5708,
+      "sha256": "c4a9fcaccc797ff8a0189194fca897e197f6ca386f815e2b631548de60d245d7"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/13-ascend-960dt-960pr",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/13-ascend-960dt-960pr.md",
+      "title": "Ascend 960DT vs 960PR: training and inference SKUs",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "China",
+        "Huawei",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ascend",
+        "inference",
+        "training",
+        "accelerator",
+        "crescent island",
+        "fp4",
+        "fp8",
+        "hbm",
+        "helios",
+        "kv cache",
+        "superpod",
+        "tokens per dollar"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-13",
+      "source_lines": [
+        2263,
+        2320
+      ],
+      "canonical_for": [
+        "huawei-ascend"
+      ],
+      "words": 946,
+      "bytes": 5782,
+      "sha256": "3f14da6ec183f92784e9eed2bcd3c7976df6226b17b4547bd32e5902855a0acd"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/14-atlas-960-superpod",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/14-atlas-960-superpod.md",
+      "title": "Atlas 960 SuperPoD: scale, NPO optics and the 2.3x/2.5x claims",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "CoreWeave",
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "npo",
+        "optics",
+        "superpod",
+        "ascend",
+        "asic",
+        "fp4",
+        "fp8",
+        "gpus",
+        "hbm",
+        "helios",
+        "inference",
+        "rack-scale"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-14",
+      "source_lines": [
+        2321,
+        2394
+      ],
+      "canonical_for": [
+        "huawei-ascend"
+      ],
+      "words": 1720,
+      "bytes": 10997,
+      "sha256": "3f5c9963ea22d11ef5624baf589a2c04d2225674bc3703cedfe09e5373940c62"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/15-per-chip-gap",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/15-per-chip-gap.md",
+      "title": "The per-chip gap: ~2 years behind Blackwell, ~10x under Rubin",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "China",
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-17"
+      ],
+      "keywords": [
+        "blackwell",
+        "ascend",
+        "fp4",
+        "fp8",
+        "gpu",
+        "helios",
+        "inference",
+        "npo",
+        "optics",
+        "packaging",
+        "rack-scale",
+        "superpod"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-15",
+      "source_lines": [
+        2395,
+        2457
+      ],
+      "canonical_for": [
+        "huawei-ascend"
+      ],
+      "words": 1123,
+      "bytes": 7010,
+      "sha256": "ba7cd2e76a264b3e5b5dfbd612dca180640156ca68ef19e4b76c870e860ba8fc"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/16-huawei-china-first-pytorch",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/16-huawei-china-first-pytorch.md",
+      "title": "Huawei's China-first strategy and PyTorch support",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "China",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-07",
+        "2026-09-17",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "ascend",
+        "export controls",
+        "governance",
+        "hbm",
+        "npo",
+        "nvlink",
+        "optics",
+        "packaging",
+        "superpod"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-16",
+      "source_lines": [
+        2458,
+        2519
+      ],
+      "canonical_for": [
+        "huawei-ascend"
+      ],
+      "words": 1478,
+      "bytes": 10173,
+      "sha256": "9c5a975e25616e0857df9195911662a50be580d8dbbb96aef98aea6f10c8df37"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/17-qualcomm-ai200",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/17-qualcomm-ai200.md",
+      "title": "Qualcomm AI200: rack-scale inference",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Fujitsu",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-10-27",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ai200",
+        "inference",
+        "rack-scale",
+        "benchmark",
+        "crescent island",
+        "ethernet",
+        "hbm",
+        "helios",
+        "hyperscaler",
+        "liquid cooling",
+        "lpddr",
+        "lpddr5x"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-17",
+      "source_lines": [
+        2520,
+        2586
+      ],
+      "canonical_for": [
+        "qualcomm-ai200"
+      ],
+      "words": 1331,
+      "bytes": 8651,
+      "sha256": "77a5d72321ceb596765781e294c6c94c9f295f91046dc8c9b343c1e1b61c4ec8"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/18-fujitsu-monaka",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/18-fujitsu-monaka.md",
+      "title": "Fujitsu MONAKA: sovereign inference from Japan",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "China",
+        "Fujitsu",
+        "Intel",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-09-14",
+        "2026-11",
+        "2027-03",
+        "2027-04"
+      ],
+      "keywords": [
+        "inference",
+        "monaka",
+        "accelerator",
+        "benchmark",
+        "funding",
+        "packaging",
+        "sovereignty"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-18",
+      "source_lines": [
+        2587,
+        2642
+      ],
+      "canonical_for": [
+        "fujitsu-monaka"
+      ],
+      "words": 1058,
+      "bytes": 7064,
+      "sha256": "599eb5f76c22a93896f475d7dc7f2c9dc6174569ca26bb6f877e634818304c59"
+    },
+    {
+      "id": "briefing-general-tech-2026/02-gpus-accelerators/19-competitive-landscape",
+      "path": "briefing-general-tech-2026/02-gpus-accelerators/19-competitive-landscape.md",
+      "title": "Competitive landscape: who stands where",
+      "domain": "gpus-accelerators",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "China",
+        "CoreWeave",
+        "Dell",
+        "Fujitsu",
+        "Huawei",
+        "Intel",
+        "MLCommons",
+        "Meta",
+        "Nvidia",
+        "OCP",
+        "OpenAI",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04",
+        "2026-06",
+        "2026-06-01",
+        "2026-07",
+        "2026-09",
+        "2026-09-22",
+        "2026-11"
+      ],
+      "keywords": [
+        "18a",
+        "accelerator",
+        "agentic",
+        "agi",
+        "ai200",
+        "ascend",
+        "benchmark",
+        "blackwell",
+        "clearwater forest",
+        "cost per token",
+        "crescent island",
+        "ethernet"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g03-19",
+      "source_lines": [
+        2643,
+        2881
+      ],
+      "canonical_for": [
+        "gpu-landscape"
+      ],
+      "words": 4219,
+      "bytes": 25191,
+      "sha256": "82531f9acc782b439c73bcd290ce668a99be745782b52ba72a466eb9ca1f89b1"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/00-chapter-introduction",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/00-chapter-introduction.md",
+      "title": "Servers and datacenters — introduction",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "Amazon",
+        "Apple",
+        "Broadcom",
+        "Google",
+        "IDC",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OCP",
+        "UALink"
+      ],
+      "dates": [
+        "2026-08-12",
+        "2026-09",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "800v dc",
+        "accelerator",
+        "capex",
+        "custom silicon",
+        "dram",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm4",
+        "hyperscaler",
+        "maia",
+        "mtia"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04",
+      "source_lines": [
+        2882,
+        2964
+      ],
+      "canonical_for": [],
+      "words": 907,
+      "bytes": 5550,
+      "sha256": "5a55c6d6ea92c8c60395e4fef83234152e2cb0e5273683a15f614009adfdc62c"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/01-idc-server-market",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/01-idc-server-market.md",
+      "title": "The server market at +52%: IDC Q2 2026",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "IDC"
+      ],
+      "dates": [
+        "2026-09-10",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "gpu"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-1",
+      "source_lines": [
+        2965,
+        3075
+      ],
+      "canonical_for": [],
+      "words": 1125,
+      "bytes": 7023,
+      "sha256": "baac866671ff24c7f423a9d82c12650d00962ec1b2fce112d9590b44bdbeaabd"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/02-gpu-accelerated-value",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/02-gpu-accelerated-value.md",
+      "title": "GPU-accelerated systems dominate value",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "IDC"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "accelerator",
+        "capex",
+        "dram",
+        "gpus",
+        "hbm",
+        "nand"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-2",
+      "source_lines": [
+        3076,
+        3190
+      ],
+      "canonical_for": [],
+      "words": 1204,
+      "bytes": 7600,
+      "sha256": "3a8779efdf53b0ba5e4496c26fc12d7295e35aa67674db8e089b68cd3fcf85a4"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/03-memory-crisis-ramageddon",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/03-memory-crisis-ramageddon.md",
+      "title": "The memory crisis: 'RAMageddon'",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "memory-crisis",
+      "actors": [
+        "Gartner",
+        "IDC",
+        "Micron",
+        "SK Hynix",
+        "TrendForce"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-08"
+      ],
+      "keywords": [
+        "ramageddon",
+        "dram",
+        "gpus",
+        "hbm",
+        "nand",
+        "training",
+        "wafer"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-3",
+      "source_lines": [
+        3191,
+        3336
+      ],
+      "canonical_for": [
+        "memory-crisis"
+      ],
+      "words": 1564,
+      "bytes": 9917,
+      "sha256": "31d3e8a3c79075f43dbc0c49b96bc661ddcf744d1e348719419b41fb12f897dc"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/04-dram-nand-prices",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/04-dram-nand-prices.md",
+      "title": "DRAM and NAND: prices, quotes, horizons",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "memory-crisis",
+      "actors": [
+        "Gartner",
+        "IDC",
+        "Micron",
+        "SK Hynix",
+        "Samsung",
+        "TrendForce"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-06",
+        "2026-06-24",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "dram",
+        "nand",
+        "accelerator",
+        "hbm",
+        "hbm4",
+        "packaging",
+        "quantization",
+        "wafer"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-4",
+      "source_lines": [
+        3337,
+        3498
+      ],
+      "canonical_for": [
+        "memory-crisis"
+      ],
+      "words": 1656,
+      "bytes": 10099,
+      "sha256": "f206ab3fd791eaa012dad8a0d8802e28b5a79b6e663760301f341559be60baf0"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/05-hyperscaler-capex",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/05-hyperscaler-capex.md",
+      "title": "Hyperscaler capex: ~$725–730 billion in 2026",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "Amazon",
+        "Google",
+        "Meta",
+        "Micron",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "capex",
+        "hyperscaler",
+        "800v dc",
+        "accelerator",
+        "dram",
+        "ethernet",
+        "gpu",
+        "memory shortage",
+        "nvlink",
+        "run-rate"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-5",
+      "source_lines": [
+        3499,
+        3630
+      ],
+      "canonical_for": [
+        "hyperscaler-capex"
+      ],
+      "words": 1306,
+      "bytes": 8533,
+      "sha256": "47ece66cbe475f3c2fcd5e9f7a9dfb07465dafb03881fb87b8dd2bb300c6729e"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/06-custom-asics",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/06-custom-asics.md",
+      "title": "Custom ASICs gain ground",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "Amazon",
+        "Anthropic",
+        "Broadcom",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "TSMC",
+        "UALink"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "asic",
+        "accelerator",
+        "capex",
+        "custom silicon",
+        "foundry",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hyperscaler",
+        "inference",
+        "maia",
+        "mtia"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-6",
+      "source_lines": [
+        3631,
+        3762
+      ],
+      "canonical_for": [
+        "custom-asics"
+      ],
+      "words": 1345,
+      "bytes": 9018,
+      "sha256": "f04ceaf4d3c510fb0919266883f53161e55b9da95461cf134496d3c2bd953496"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/07-apple-pcc-m5",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/07-apple-pcc-m5.md",
+      "title": "Apple: Private Cloud Compute moves to M5",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [
+        "2026-02-17",
+        "2026-08-24"
+      ],
+      "keywords": [
+        "gpus",
+        "hbm",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-7",
+      "source_lines": [
+        3763,
+        3853
+      ],
+      "canonical_for": [
+        "apple-pcc"
+      ],
+      "words": 928,
+      "bytes": 6062,
+      "sha256": "3ed88aeded7b970e686bc2d1a685baa45b5c923d407969e0fe91d231a4c9f503"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/08-m8-ultra-rumor",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/08-m8-ultra-rumor.md",
+      "title": "The M8 Ultra enterprise server rumor",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "Apple",
+        "Nvidia",
+        "UALink"
+      ],
+      "dates": [
+        "2026-09-16"
+      ],
+      "keywords": [
+        "gpus",
+        "nvlink",
+        "ualink"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-8",
+      "source_lines": [
+        3854,
+        3957
+      ],
+      "canonical_for": [],
+      "words": 1046,
+      "bytes": 6912,
+      "sha256": "42693cfe07632ec9d732170f105f9c57ba59e492e0e14d8ceeb02b3e75a4a5cd"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/09-power-800v-dc",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/09-power-800v-dc.md",
+      "title": "Power delivery: the 800V DC transition",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "Google",
+        "Microsoft",
+        "Nvidia",
+        "OCP"
+      ],
+      "dates": [
+        "2026-08-12"
+      ],
+      "keywords": [
+        "800v dc",
+        "power delivery",
+        "blackwell"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-9",
+      "source_lines": [
+        3958,
+        4081
+      ],
+      "canonical_for": [
+        "800v-dc"
+      ],
+      "words": 1293,
+      "bytes": 8310,
+      "sha256": "4dcfa6a8bef55367d7f821130d19d7bb333a41204b926275cbf9b759528f8d8f"
+    },
+    {
+      "id": "briefing-general-tech-2026/03-servers-datacenters/10-ualink",
+      "path": "briefing-general-tech-2026/03-servers-datacenters/10-ualink.md",
+      "title": "UALink: the open coalition against NVLink",
+      "domain": "servers-datacenters",
+      "role": "deep-dive",
+      "task": "interconnect",
+      "actors": [
+        "AMD",
+        "Amazon",
+        "Apple",
+        "Google",
+        "Intel",
+        "Meta",
+        "Micron",
+        "Microsoft",
+        "Nvidia",
+        "UALink"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-04-08",
+        "2025-08",
+        "2026-04-07",
+        "2026-05-14",
+        "2026-09"
+      ],
+      "keywords": [
+        "nvlink",
+        "ualink",
+        "accelerator",
+        "asic",
+        "benchmark",
+        "blackwell",
+        "capex",
+        "chiplet",
+        "custom silicon",
+        "ethernet",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g04-10",
+      "source_lines": [
+        4082,
+        4228
+      ],
+      "canonical_for": [
+        "ualink"
+      ],
+      "words": 1663,
+      "bytes": 10834,
+      "sha256": "387e9c9c4a6217ae8165f3cf2e8a03e81efc6a95d1f56001f99bb8f5f012b7d5"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/00-chapter-introduction",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/00-chapter-introduction.md",
+      "title": "Training vs inference architectures and quantization — introduction",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "AMD",
+        "BitNet",
+        "Google",
+        "MLCommons",
+        "Nvidia",
+        "PrismML",
+        "UALink"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "inference",
+        "quantization",
+        "training",
+        "awq",
+        "benchmark",
+        "bitnet",
+        "blackwell",
+        "cost per token",
+        "decode",
+        "disaggregated",
+        "disaggregated serving",
+        "fp8"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05",
+      "source_lines": [
+        4229,
+        4301
+      ],
+      "canonical_for": [],
+      "words": 732,
+      "bytes": 4625,
+      "sha256": "6233929b4831187f7946e3d41b34c909ce25a012b409697a91b5dfa85ed6eca9"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/01-specialization",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/01-specialization.md",
+      "title": "The great specialization: training vs inference",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "Amazon",
+        "Cerebras",
+        "Groq",
+        "MLCommons",
+        "Nokia",
+        "Nvidia",
+        "Positron",
+        "Taalas",
+        "UALink"
+      ],
+      "dates": [
+        "2026-02-20",
+        "2026-03",
+        "2026-09"
+      ],
+      "keywords": [
+        "inference",
+        "training",
+        "blackwell",
+        "cost per token",
+        "cowos",
+        "decode",
+        "disaggregated",
+        "disaggregated serving",
+        "funding",
+        "gpu",
+        "gpus",
+        "hbm"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-1",
+      "source_lines": [
+        4302,
+        4409
+      ],
+      "canonical_for": [
+        "training-inference-split"
+      ],
+      "words": 1095,
+      "bytes": 7072,
+      "sha256": "28e31caf5adbbf0536c0ff3aad07f18319c3cec9e886a988c4db336584cda185"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/02-mlperf-v61-illustration",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/02-mlperf-v61-illustration.md",
+      "title": "MLPerf v6.1 as an illustration of the shift",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "benchmark",
+      "actors": [
+        "AMD",
+        "Crusoe",
+        "MLCommons",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "mlperf",
+        "mlperf v6.1",
+        "agentic",
+        "benchmark",
+        "cost per token",
+        "decode",
+        "disaggregated",
+        "disaggregated serving",
+        "gpu",
+        "gpus",
+        "inference",
+        "lpddr"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-2",
+      "source_lines": [
+        4410,
+        4501
+      ],
+      "canonical_for": [],
+      "words": 921,
+      "bytes": 6039,
+      "sha256": "157c1d61284b195ce69f708b0722612ba57d13453352f789e915adc8ea88c008"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/03-nvidia-dynamo",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/03-nvidia-dynamo.md",
+      "title": "Nvidia Dynamo and disaggregated serving",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "Amazon",
+        "Cerebras",
+        "Groq",
+        "Nokia",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "disaggregated",
+        "disaggregated serving",
+        "agentic",
+        "decode",
+        "gpus",
+        "hyperscaler",
+        "inference",
+        "kv cache",
+        "lpddr",
+        "prefill",
+        "quantization",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-3",
+      "source_lines": [
+        4502,
+        4590
+      ],
+      "canonical_for": [
+        "disaggregated-serving"
+      ],
+      "words": 1040,
+      "bytes": 7122,
+      "sha256": "bae3436605e8c4cbd4d0148e261b25117da5d45fd0a1f40c404792d9adb76f71"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/04-training-racks",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/04-training-racks.md",
+      "title": "Training racks: dense, HBM, high power",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "AMD",
+        "Amazon",
+        "Cerebras",
+        "MLCommons",
+        "Nvidia",
+        "TrendForce",
+        "UALink"
+      ],
+      "dates": [],
+      "keywords": [
+        "hbm",
+        "training",
+        "accelerator",
+        "blackwell",
+        "decode",
+        "disaggregated",
+        "gpu",
+        "gpus",
+        "hbm4",
+        "inference",
+        "lpddr",
+        "mlperf"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-4",
+      "source_lines": [
+        4591,
+        4667
+      ],
+      "canonical_for": [],
+      "words": 1046,
+      "bytes": 6643,
+      "sha256": "6b5dc1f045f95a1e8ffb2a1effd2492cedcad397eaa59cf3763d6772bdbf13e7"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/05-inference-racks",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/05-inference-racks.md",
+      "title": "Inference racks: disaggregated, LPDDR, edge",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "Amazon",
+        "Cerebras",
+        "Groq",
+        "Nokia",
+        "Nvidia",
+        "Positron",
+        "Taalas"
+      ],
+      "dates": [
+        "2026-02-20",
+        "2026-03",
+        "2026-09",
+        "2026-09-11"
+      ],
+      "keywords": [
+        "disaggregated",
+        "inference",
+        "lpddr",
+        "accelerator",
+        "cost per token",
+        "cowos",
+        "decode",
+        "dram",
+        "gpus",
+        "hbm",
+        "hyperscaler",
+        "kv cache"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-5",
+      "source_lines": [
+        4668,
+        4716
+      ],
+      "canonical_for": [],
+      "words": 1112,
+      "bytes": 7060,
+      "sha256": "4fdca90030c2a7fd266be17a0a1f27635b2f494eb08951e7c03ddde65c30c6d4"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/06-cost-per-token",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/06-cost-per-token.md",
+      "title": "Cost per token as the decisive metric",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "economics",
+      "actors": [
+        "Amazon",
+        "MLCommons"
+      ],
+      "dates": [
+        "2025-11"
+      ],
+      "keywords": [
+        "cost per token",
+        "agentic",
+        "decode",
+        "disaggregated",
+        "gptq",
+        "gpu",
+        "gpus",
+        "inference",
+        "int4",
+        "llama",
+        "lpddr",
+        "mlperf"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-6",
+      "source_lines": [
+        4717,
+        4793
+      ],
+      "canonical_for": [
+        "cost-per-token"
+      ],
+      "words": 813,
+      "bytes": 5029,
+      "sha256": "4563c3fe3eebcc5023395a64e76185501e50af6ca62a298c8eafc8515e5ec0fd"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/07-quantization-economics",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/07-quantization-economics.md",
+      "title": "Quantization: the economics (McKinsey, June 2026)",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "quantization",
+        "cost per token",
+        "decode",
+        "disaggregated",
+        "distillation",
+        "fp4",
+        "fp8",
+        "inference",
+        "int4",
+        "pruning"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-7",
+      "source_lines": [
+        4794,
+        4873
+      ],
+      "canonical_for": [
+        "quantization"
+      ],
+      "words": 811,
+      "bytes": 5227,
+      "sha256": "922353ca257ab97f9e3bf797edb2050925d806b4778749653d339ac07ca2a050"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/08-fp8",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/08-fp8.md",
+      "title": "FP8: the safe production standard",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03-06"
+      ],
+      "keywords": [
+        "fp8",
+        "awq",
+        "benchmark",
+        "blackwell",
+        "cost per token",
+        "fp4",
+        "int4",
+        "nvfp4",
+        "quantization",
+        "sglang",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-8",
+      "source_lines": [
+        4874,
+        4941
+      ],
+      "canonical_for": [],
+      "words": 686,
+      "bytes": 4303,
+      "sha256": "94dc6d8d9e421cacda7b039f08af10b7815ce2c43ea4f292883b558ab1f4e4f4"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/09-int4-nvfp4-mxfp4",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/09-int4-nvfp4-mxfp4.md",
+      "title": "INT4, NVFP4, MXFP4: the aggressive standard",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "fp4",
+        "int4",
+        "mxfp4",
+        "nvfp4",
+        "awq",
+        "benchmark",
+        "blackwell",
+        "decode",
+        "fp8",
+        "gptq",
+        "quantization",
+        "tensorrt"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-9",
+      "source_lines": [
+        4942,
+        5032
+      ],
+      "canonical_for": [],
+      "words": 1109,
+      "bytes": 7294,
+      "sha256": "a62ac178a68d39d58f361a1a84baa9951d949b0bb5d7a659f8817d418862a6e4"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/10-awq-vs-gptq",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/10-awq-vs-gptq.md",
+      "title": "AWQ vs GPTQ, Marlin kernels",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [],
+      "dates": [
+        "2026-06-28"
+      ],
+      "keywords": [
+        "awq",
+        "gptq",
+        "decode",
+        "gpu",
+        "inference",
+        "int4",
+        "perplexity",
+        "quantization",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-10",
+      "source_lines": [
+        5033,
+        5127
+      ],
+      "canonical_for": [],
+      "words": 998,
+      "bytes": 6635,
+      "sha256": "618b563a64c45825f61395d8b9d694e27ab4260bc85c727ef05296e7b8fc50b2"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/11-bitnet-158",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/11-bitnet-158.md",
+      "title": "BitNet and the 1.58-bit frontier",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "BitNet",
+        "Google",
+        "Microsoft",
+        "PrismML"
+      ],
+      "dates": [
+        "2024-02-27",
+        "2024-10-17",
+        "2025-04"
+      ],
+      "keywords": [
+        "bitnet",
+        "accelerator",
+        "awq",
+        "decode",
+        "fp4",
+        "fp8",
+        "gptq",
+        "gpu",
+        "inference",
+        "int4",
+        "kv cache",
+        "quantization"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-11",
+      "source_lines": [
+        5128,
+        5209
+      ],
+      "canonical_for": [],
+      "words": 857,
+      "bytes": 5459,
+      "sha256": "af6e1cd1b11520873434e8fd623c41b3087372dc45a11fa9facebc255003a068"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/12-prismml-bonsai",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/12-prismml-bonsai.md",
+      "title": "PrismML Bonsai: 27B models in a few gigabytes",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "Apple",
+        "BitNet",
+        "Intel",
+        "PrismML"
+      ],
+      "dates": [
+        "2026-07-14",
+        "2026-07-16",
+        "2026-08-03"
+      ],
+      "keywords": [
+        "awq",
+        "benchmark",
+        "bitnet",
+        "decode",
+        "gpu",
+        "inference",
+        "nvfp4",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-12",
+      "source_lines": [
+        5210,
+        5294
+      ],
+      "canonical_for": [],
+      "words": 937,
+      "bytes": 5892,
+      "sha256": "d8822ba298eca69c2be518e42adf5909c1fd9f56139259d6d4b0bdeed7ad97d6"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/13-turboquant",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/13-turboquant.md",
+      "title": "TurboQuant: 3-bit KV cache",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "BitNet",
+        "Google",
+        "PrismML"
+      ],
+      "dates": [
+        "2025-04"
+      ],
+      "keywords": [
+        "kv cache",
+        "turboquant",
+        "accelerator",
+        "agentic",
+        "bitnet",
+        "decode",
+        "inference",
+        "lpddr",
+        "perplexity",
+        "quantization",
+        "sglang",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-13",
+      "source_lines": [
+        5295,
+        5400
+      ],
+      "canonical_for": [
+        "quantization"
+      ],
+      "words": 1148,
+      "bytes": 7388,
+      "sha256": "681b4a81cdc28fcf7030cb428e8a9679048caf540c8b78370cd7fe5a66de39ee"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/14-runtimes",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/14-runtimes.md",
+      "title": "Runtimes: vLLM, TensorRT-LLM, SGLang, llama.cpp",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "PrismML"
+      ],
+      "dates": [],
+      "keywords": [
+        "llama",
+        "llama.cpp",
+        "sglang",
+        "tensorrt",
+        "vllm",
+        "awq",
+        "benchmark",
+        "blackwell",
+        "fp4",
+        "fp8",
+        "gptq",
+        "gpu"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-14",
+      "source_lines": [
+        5401,
+        5453
+      ],
+      "canonical_for": [],
+      "words": 896,
+      "bytes": 5975,
+      "sha256": "52e8945799a9665a0841f83b41a1e10309907c91d87f69653e1ed7e67f1c3c50"
+    },
+    {
+      "id": "briefing-general-tech-2026/04-training-inference-quantization/15-what-quantization-changes",
+      "path": "briefing-general-tech-2026/04-training-inference-quantization/15-what-quantization-changes.md",
+      "title": "What quantization changes for the industry",
+      "domain": "training-inference-quantization",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "AMD",
+        "Amazon",
+        "Apple",
+        "BitNet",
+        "Cerebras",
+        "Crusoe",
+        "Groq",
+        "Intel",
+        "MLCommons",
+        "Nvidia",
+        "Positron",
+        "PrismML",
+        "Taalas"
+      ],
+      "dates": [
+        "2024-02-27",
+        "2024-10-17",
+        "2025-04",
+        "2026-02-20",
+        "2026-03",
+        "2026-06",
+        "2026-07",
+        "2026-07-14",
+        "2026-08",
+        "2026-09",
+        "2026-09-11",
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "quantization",
+        "agentic",
+        "awq",
+        "benchmark",
+        "bitnet",
+        "blackwell",
+        "cost per token",
+        "cowos",
+        "decode",
+        "disaggregated",
+        "disaggregated serving",
+        "fp4"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g05-15",
+      "source_lines": [
+        5454,
+        5587
+      ],
+      "canonical_for": [],
+      "words": 1601,
+      "bytes": 10514,
+      "sha256": "b20fb3dd55a69614913e196b98fe73fcc46a63f265833c378257e96b692c1cd6"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/00-chapter-introduction",
+      "path": "briefing-general-tech-2026/05-networking-optics/00-chapter-introduction.md",
+      "title": "Networking and optics — introduction",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Credo",
+        "FS.com",
+        "Google",
+        "MACOM",
+        "Meta",
+        "Nokia",
+        "Nvidia",
+        "OIF",
+        "Telxius"
+      ],
+      "dates": [],
+      "keywords": [
+        "optics",
+        "ethernet"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        5588,
+        5604
+      ],
+      "canonical_for": [],
+      "words": 163,
+      "bytes": 1095,
+      "sha256": "3a8d1fcb90353004c4803462d04c10ae57608937bdb35eed08aac3e8cd09d3f9"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/01-fscom-portfolio",
+      "path": "briefing-general-tech-2026/05-networking-optics/01-fscom-portfolio.md",
+      "title": "FS.com: the AI networking portfolio",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Broadcom",
+        "FS.com",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-12-22",
+        "2026-09",
+        "2026-09-07"
+      ],
+      "keywords": [
+        "dci",
+        "gpu",
+        "optics"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-1",
+      "source_lines": [
+        5605,
+        5686
+      ],
+      "canonical_for": [],
+      "words": 770,
+      "bytes": 4886,
+      "sha256": "ff43c74d11a1ffc490661f9257b9cc171eb9b5c7158b8e2041ae1ad1389ecf01"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/02-16t-osfp-verified-nvidia",
+      "path": "briefing-general-tech-2026/05-networking-optics/02-16t-osfp-verified-nvidia.md",
+      "title": "1.6T OSFP and the 'verified on NVIDIA' claim",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom",
+        "FS.com",
+        "Nvidia",
+        "OIF"
+      ],
+      "dates": [
+        "2025-12-22",
+        "2026-09",
+        "2026-09-07"
+      ],
+      "keywords": [
+        "asic",
+        "dsp",
+        "ethernet",
+        "gpus",
+        "optics"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-2",
+      "source_lines": [
+        5687,
+        5772
+      ],
+      "canonical_for": [],
+      "words": 779,
+      "bytes": 4994,
+      "sha256": "1206d971a9ca0e14c0b439580c7f61665c57e4b5c4249114dc6c6f07148d4c03"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/03-d7070-muxponder",
+      "path": "briefing-general-tech-2026/05-networking-optics/03-d7070-muxponder.md",
+      "title": "D7070 800G muxponder",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "FS.com",
+        "Telxius"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-08-24"
+      ],
+      "keywords": [
+        "muxponder",
+        "dci",
+        "ethernet",
+        "gpu",
+        "wavelength"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-3",
+      "source_lines": [
+        5773,
+        5836
+      ],
+      "canonical_for": [],
+      "words": 591,
+      "bytes": 3749,
+      "sha256": "0a3ddbc2efdd634e1e59f347683ac7a0862fa5e22b1e5fc9d1e6d9d7f2ac5e28"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/04-wifi7-ampcon",
+      "path": "briefing-general-tech-2026/05-networking-optics/04-wifi7-ampcon.md",
+      "title": "Wi-Fi 7 campus and AmpCon",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "FS.com"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "dci"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-4",
+      "source_lines": [
+        5837,
+        5890
+      ],
+      "canonical_for": [],
+      "words": 482,
+      "bytes": 3109,
+      "sha256": "634697bd6614e2d80af8ec351905bcb6412fcf5bb61759b3b2143f6a146bf9db"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/05-fscom-financials",
+      "path": "briefing-general-tech-2026/05-networking-optics/05-fscom-financials.md",
+      "title": "FS.com H1 2026 financials",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "FS.com"
+      ],
+      "dates": [
+        "2026-08-25",
+        "2026-09"
+      ],
+      "keywords": [
+        "dci",
+        "optics"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-5",
+      "source_lines": [
+        5891,
+        5944
+      ],
+      "canonical_for": [],
+      "words": 464,
+      "bytes": 2829,
+      "sha256": "c9cf4d3b0c6403117c5821e423910558036150b35b397753f35367b318400eaa"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/06-16t-ethernet-shipping",
+      "path": "briefing-general-tech-2026/05-networking-optics/06-16t-ethernet-shipping.md",
+      "title": "1.6T Ethernet is shipping now",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "China",
+        "Credo",
+        "Google",
+        "MACOM",
+        "Meta",
+        "Nvidia",
+        "OIF"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-07",
+        "2026-09-12",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "ethernet",
+        "cpo",
+        "gpu",
+        "hyperscaler",
+        "lpo",
+        "npo",
+        "optics",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-6",
+      "source_lines": [
+        5945,
+        6022
+      ],
+      "canonical_for": [
+        "16t-ethernet"
+      ],
+      "words": 727,
+      "bytes": 4697,
+      "sha256": "75c8f8408d02be3fcf75eed8bf8306b7f90cf60f52de57d66db275861826c18a"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/07-oif-1600zr",
+      "path": "briefing-general-tech-2026/05-networking-optics/07-oif-1600zr.md",
+      "title": "OIF 1600ZR: coherent 1.6T over a single wavelength",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Credo",
+        "FS.com",
+        "MACOM",
+        "Nvidia",
+        "OIF"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-09"
+      ],
+      "keywords": [
+        "wavelength",
+        "dci",
+        "dsp",
+        "hyperscaler",
+        "muxponder",
+        "optics"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-7",
+      "source_lines": [
+        6023,
+        6089
+      ],
+      "canonical_for": [
+        "oif-1600zr"
+      ],
+      "words": 591,
+      "bytes": 3856,
+      "sha256": "2076b9d67e237a7db158e98b0fd21e2106c0d88781f3cc20d9948aac2aac394d"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/08-ecoc-2026-malaga",
+      "path": "briefing-general-tech-2026/05-networking-optics/08-ecoc-2026-malaga.md",
+      "title": "ECOC 2026 in Malaga",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Credo",
+        "FS.com",
+        "Huawei",
+        "MACOM",
+        "Nokia",
+        "OIF",
+        "Telxius"
+      ],
+      "dates": [
+        "2026-09-09"
+      ],
+      "keywords": [
+        "asic",
+        "dsp",
+        "ethernet",
+        "optics",
+        "serdes",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-8",
+      "source_lines": [
+        6090,
+        6166
+      ],
+      "canonical_for": [],
+      "words": 694,
+      "bytes": 4616,
+      "sha256": "008694a64bc1f55643e29ebc2fb93762831e0995606bb93af420038998a31502"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/09-linear-pluggable-optics",
+      "path": "briefing-general-tech-2026/05-networking-optics/09-linear-pluggable-optics.md",
+      "title": "Linear Pluggable Optics (LPO)",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "lpo",
+        "optics",
+        "asic",
+        "cpo",
+        "dsp",
+        "ethernet",
+        "hyperscaler",
+        "npo"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-9",
+      "source_lines": [
+        6167,
+        6249
+      ],
+      "canonical_for": [
+        "lpo-cpo-npo"
+      ],
+      "words": 779,
+      "bytes": 4990,
+      "sha256": "86040dabf8fd2a9f585d78b8c42c2e8593da3e035332c32a66c66db05f4c8a95"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/10-macom-448g",
+      "path": "briefing-general-tech-2026/05-networking-optics/10-macom-448g.md",
+      "title": "MACOM: 448G/lane toward 3.2T",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Credo",
+        "MACOM"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "cpo",
+        "lpo",
+        "npo",
+        "optics"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-10",
+      "source_lines": [
+        6250,
+        6322
+      ],
+      "canonical_for": [
+        "448g-lane"
+      ],
+      "words": 685,
+      "bytes": 4311,
+      "sha256": "ec9aab20aa98f7f6b2b9cc2199d58435dd00a0a6e33e9c7fcfb6589d6034f3cd"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/11-credo-zeroflap",
+      "path": "briefing-general-tech-2026/05-networking-optics/11-credo-zeroflap.md",
+      "title": "Credo ZeroFlap 1.6T",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Credo"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-06",
+        "2026-09",
+        "2026-09-02",
+        "2026-09-15",
+        "2027-05"
+      ],
+      "keywords": [
+        "dsp",
+        "optics",
+        "packaging",
+        "serdes"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-11",
+      "source_lines": [
+        6323,
+        6413
+      ],
+      "canonical_for": [
+        "credo-zeroflap"
+      ],
+      "words": 816,
+      "bytes": 5318,
+      "sha256": "3ef2d2b4fc38ede10a509365790720c9763a8b1e0ff51bd451cf0897ea4a904d"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/12-telxius-nokia-800g",
+      "path": "briefing-general-tech-2026/05-networking-optics/12-telxius-nokia-800g.md",
+      "title": "Telxius deploys Nokia 800G coherent pluggables",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "networking",
+      "actors": [
+        "Nokia",
+        "OIF",
+        "Telxius"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "dci",
+        "dsp",
+        "optics",
+        "wavelength"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g06-12",
+      "source_lines": [
+        6414,
+        6486
+      ],
+      "canonical_for": [],
+      "words": 628,
+      "bytes": 4284,
+      "sha256": "4e6a4b7571330fd97a29018f9b3a1d19f46cdf9f267e925c8452fa708da9a70e"
+    },
+    {
+      "id": "briefing-general-tech-2026/05-networking-optics/13-chapter-synthesis",
+      "path": "briefing-general-tech-2026/05-networking-optics/13-chapter-synthesis.md",
+      "title": "Chapter synthesis: 2026, the year the fabric became the product",
+      "domain": "networking-optics",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "Broadcom",
+        "China",
+        "Credo",
+        "FS.com",
+        "Google",
+        "MACOM",
+        "Meta",
+        "Nokia",
+        "Nvidia",
+        "OIF",
+        "Telxius"
+      ],
+      "dates": [
+        "2025-12",
+        "2025-12-22",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-09",
+        "2026-09-02",
+        "2026-09-07",
+        "2026-09-09",
+        "2026-09-11",
+        "2026-09-12",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2027-05"
+      ],
+      "keywords": [
+        "asic",
+        "cpo",
+        "dci",
+        "dsp",
+        "ethernet",
+        "hyperscaler",
+        "lpo",
+        "muxponder",
+        "npo",
+        "optics",
+        "serdes",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        6487,
+        6641
+      ],
+      "canonical_for": [],
+      "words": 1755,
+      "bytes": 11709,
+      "sha256": "833bb47f508b0634dd7558c7fe330b13a9d7adf426685026a9247d56914ac631"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/00-chapter-front-matter",
+      "path": "briefing-general-tech-2026/06-consumer-devices/00-chapter-front-matter.md",
+      "title": "Chapter 7 — Consumer Devices: front matter and table of contents",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Google",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ai pc",
+        "crease",
+        "foldable",
+        "googlebook",
+        "nano-texture",
+        "ramageddon"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        6642,
+        6695
+      ],
+      "canonical_for": [],
+      "words": 511,
+      "bytes": 3475,
+      "sha256": "b8b04c9fa933743ded4ed81830393e66b1fa2f353968a1cf2477a58a2f27051e"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/01-iphone-duo",
+      "path": "briefing-general-tech-2026/06-consumer-devices/01-iphone-duo.md",
+      "title": "iPhone Duo: Apple's first foldable",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09-09"
+      ],
+      "keywords": [
+        "foldable",
+        "nano-texture"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-1",
+      "source_lines": [
+        6696,
+        6752
+      ],
+      "canonical_for": [
+        "iphone-duo"
+      ],
+      "words": 649,
+      "bytes": 3859,
+      "sha256": "c78569a4d56695a4ac9816a804a1f32136da9ef8c51880f76008ad1f50013340"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/02-surprise-and-shine",
+      "path": "briefing-general-tech-2026/06-consumer-devices/02-surprise-and-shine.md",
+      "title": "The 'Surprise and shine' event",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [
+        "2026-09-09"
+      ],
+      "keywords": [
+        "foldable",
+        "nano-texture"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-2",
+      "source_lines": [
+        6753,
+        6817
+      ],
+      "canonical_for": [],
+      "words": 652,
+      "bytes": 3776,
+      "sha256": "d81207cd19cafddd9ce44dc5a338af1ff0ef1f376e483c1cc6f5fd003118be0c"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/03-duo-specs",
+      "path": "briefing-general-tech-2026/06-consumer-devices/03-duo-specs.md",
+      "title": "Duo specifications in detail",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09-10",
+        "2026-10-16",
+        "2026-10-23"
+      ],
+      "keywords": [
+        "crease",
+        "foldable"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-3",
+      "source_lines": [
+        6818,
+        6939
+      ],
+      "canonical_for": [],
+      "words": 1261,
+      "bytes": 7519,
+      "sha256": "7851ac54f883363f731a89c91641d4e267220d8f1dd63497322b6f20ec47f795"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/04-nano-texture-crease",
+      "path": "briefing-general-tech-2026/06-consumer-devices/04-nano-texture-crease.md",
+      "title": "Nano-texture and the crease question",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09-09"
+      ],
+      "keywords": [
+        "crease",
+        "nano-texture",
+        "foldable"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-4",
+      "source_lines": [
+        6940,
+        7056
+      ],
+      "canonical_for": [],
+      "words": 1304,
+      "bytes": 8022,
+      "sha256": "948d7aa7764f80e8652066fa08a456019696b755566301494fac05f2fdf520e1"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/05-pricing-forecasts",
+      "path": "briefing-general-tech-2026/06-consumer-devices/05-pricing-forecasts.md",
+      "title": "Pricing, availability and market forecasts",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Huawei",
+        "Samsung",
+        "TrendForce"
+      ],
+      "dates": [
+        "2026-09-10",
+        "2026-10-16",
+        "2026-10-23"
+      ],
+      "keywords": [
+        "foldable"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-5",
+      "source_lines": [
+        7057,
+        7135
+      ],
+      "canonical_for": [],
+      "words": 828,
+      "bytes": 5152,
+      "sha256": "33245f6fda3e0eaa5c6b4b1c4924868c6bcbbcd7264e2188050959158efbab57"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/06-samsung-switchers",
+      "path": "briefing-general-tech-2026/06-consumer-devices/06-samsung-switchers.md",
+      "title": "Samsung's offensive: the 'Switchers' campaign",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-08-26",
+        "2026-09-09",
+        "2026-09-11",
+        "2026-09-15",
+        "2026-09-20"
+      ],
+      "keywords": [
+        "foldable",
+        "nano-texture"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-6",
+      "source_lines": [
+        7136,
+        7229
+      ],
+      "canonical_for": [],
+      "words": 1013,
+      "bytes": 6406,
+      "sha256": "4a8a40a7e9357a876b97269d117fc9a9033e5b14e6718a2a124bc9c2063aaad2"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/07-galaxy-z-fold-8",
+      "path": "briefing-general-tech-2026/06-consumer-devices/07-galaxy-z-fold-8.md",
+      "title": "Galaxy Z Fold 8: lighter, thinner, IP48",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09-09"
+      ],
+      "keywords": [
+        "foldable"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-7",
+      "source_lines": [
+        7230,
+        7329
+      ],
+      "canonical_for": [
+        "galaxy-z-fold-8"
+      ],
+      "words": 1065,
+      "bytes": 6156,
+      "sha256": "5a65c495ec164327b91bca0212143ce6140bc220e8f023e5c1b28a3163642f07"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/08-foldable-market-shares",
+      "path": "briefing-general-tech-2026/06-consumer-devices/08-foldable-market-shares.md",
+      "title": "Foldable market shares: projections",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Apple",
+        "Huawei",
+        "IDC",
+        "Samsung",
+        "TrendForce"
+      ],
+      "dates": [
+        "2026-09-10"
+      ],
+      "keywords": [
+        "foldable"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-8",
+      "source_lines": [
+        7330,
+        7441
+      ],
+      "canonical_for": [],
+      "words": 1246,
+      "bytes": 7397,
+      "sha256": "53b338d58e65994a2c4efa1fdeaa4ff8872e9e37d145e8f35007ce0d06a03bc9"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/09-googlebook",
+      "path": "briefing-general-tech-2026/06-consumer-devices/09-googlebook.md",
+      "title": "Googlebook: Google returns to AI laptops",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "ASUS",
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-05-12",
+        "2026-09-21",
+        "2026-10-05",
+        "2026-11"
+      ],
+      "keywords": [
+        "googlebook",
+        "ai pc",
+        "gemini"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-9",
+      "source_lines": [
+        7442,
+        7524
+      ],
+      "canonical_for": [
+        "googlebook"
+      ],
+      "words": 834,
+      "bytes": 5226,
+      "sha256": "f91073149536b3ceabe6095c0b789191517effa4d01d85a14a6c215263ee5279"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/10-aluminium-codename",
+      "path": "briefing-general-tech-2026/06-consumer-devices/10-aluminium-codename.md",
+      "title": "'Aluminium': codename, not a commercial name",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Google",
+        "Lenovo"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09-11",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "googlebook"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-10",
+      "source_lines": [
+        7525,
+        7585
+      ],
+      "canonical_for": [],
+      "words": 589,
+      "bytes": 3810,
+      "sha256": "ab7a5f447eb382ec1d1a29cdd615b5a9ac4ea6553b3ae5a4237328d5d0b5b818"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/11-googlebook-lineup",
+      "path": "briefing-general-tech-2026/06-consumer-devices/11-googlebook-lineup.md",
+      "title": "Googlebook lineup, pricing and availability",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "ASUS",
+        "Acer",
+        "Apple",
+        "Dell",
+        "Google",
+        "HP",
+        "Intel",
+        "Lenovo",
+        "Microsoft",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-21",
+        "2026-10-05",
+        "2026-11"
+      ],
+      "keywords": [
+        "googlebook",
+        "gemini",
+        "panther lake"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-11",
+      "source_lines": [
+        7586,
+        7693
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 6787,
+      "sha256": "551476d4f6a44c2c2d9140790d63a411809e8d1d5a580a43a2ea52acb871b6be"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/12-ai-pcs",
+      "path": "briefing-general-tech-2026/06-consumer-devices/12-ai-pcs.md",
+      "title": "AI PCs: 55% of shipments, but units fall",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "consumer",
+      "actors": [
+        "Gartner",
+        "Google",
+        "IDC",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "ai pc",
+        "dram",
+        "googlebook"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-12",
+      "source_lines": [
+        7694,
+        7777
+      ],
+      "canonical_for": [],
+      "words": 953,
+      "bytes": 5519,
+      "sha256": "2b997dd80c2199a0f787bbd6e148e307ec06aef87619b931e4c184ca8c83471e"
+    },
+    {
+      "id": "briefing-general-tech-2026/06-consumer-devices/13-consumer-price-ramageddon",
+      "path": "briefing-general-tech-2026/06-consumer-devices/13-consumer-price-ramageddon.md",
+      "title": "Consumer price pressure and 'RAMageddon'",
+      "domain": "consumer-devices",
+      "role": "deep-dive",
+      "task": "memory-crisis",
+      "actors": [
+        "Apple",
+        "Gartner",
+        "Google",
+        "IDC",
+        "Samsung",
+        "TrendForce"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-05",
+        "2026-06-25",
+        "2026-09",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-15",
+        "2026-09-20",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ramageddon",
+        "dram",
+        "foldable",
+        "googlebook",
+        "nand",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g07-13",
+      "source_lines": [
+        7778,
+        7887
+      ],
+      "canonical_for": [
+        "memory-crisis"
+      ],
+      "words": 1174,
+      "bytes": 7225,
+      "sha256": "bd5105927eeca8e03978c07013d1d859fc6e079eb72cd1d9346c668aeda2dcd3"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/00-chapter-introduction",
+      "path": "briefing-general-tech-2026/07-agi-governance/00-chapter-introduction.md",
+      "title": "AGI debate and governance — introduction",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Google",
+        "OpenAI",
+        "UN",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agi",
+        "governance",
+        "gpt-6",
+        "recursive self-improvement"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08",
+      "source_lines": [
+        7888,
+        7953
+      ],
+      "canonical_for": [],
+      "words": 611,
+      "bytes": 3816,
+      "sha256": "762eb51a33a96c57b48b631d5e63f9f919eececf954b1098ea5d49883a24e390"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/01-huang-agi-arrived",
+      "path": "briefing-general-tech-2026/07-agi-governance/01-huang-agi-arrived.md",
+      "title": "Huang: 'AGI has arrived'",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "Anthropic",
+        "Crusoe",
+        "Google",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-03",
+        "2026-09-06"
+      ],
+      "keywords": [
+        "agi",
+        "benchmark",
+        "blackwell",
+        "gpt-6",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-1",
+      "source_lines": [
+        7954,
+        8040
+      ],
+      "canonical_for": [
+        "agi-arrival"
+      ],
+      "words": 824,
+      "bytes": 5117,
+      "sha256": "cca9cda3a7bd3c24c25503a8e219875d2d35af140ed8a3bfb3b5f663788fe33e"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/02-brockman-agi-era",
+      "path": "briefing-general-tech-2026/07-agi-governance/02-brockman-agi-era.md",
+      "title": "Brockman: 'the AGI era'",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-03"
+      ],
+      "keywords": [
+        "agi",
+        "governance",
+        "gpt-6"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-2",
+      "source_lines": [
+        8041,
+        8131
+      ],
+      "canonical_for": [],
+      "words": 884,
+      "bytes": 5482,
+      "sha256": "50de0a06d72416e59cb10672455f4ef2a6d8a90d29921a0e1dba2c174227a9c5"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/03-deepmind-institute",
+      "path": "briefing-general-tech-2026/07-agi-governance/03-deepmind-institute.md",
+      "title": "The DeepMind Institute",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agi",
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-3",
+      "source_lines": [
+        8132,
+        8237
+      ],
+      "canonical_for": [
+        "deepmind-institute"
+      ],
+      "words": 994,
+      "bytes": 6342,
+      "sha256": "176294cd01b38e09bb0a05d3102ab22dc8e7704fb23fdd914da55bde657c99ee"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/04-amodei-pace-frontier",
+      "path": "briefing-general-tech-2026/07-agi-governance/04-amodei-pace-frontier.md",
+      "title": "Amodei: 'We Must Pace the Frontier'",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-12"
+      ],
+      "keywords": [
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-4",
+      "source_lines": [
+        8238,
+        8328
+      ],
+      "canonical_for": [
+        "amodei-pace-frontier"
+      ],
+      "words": 900,
+      "bytes": 5545,
+      "sha256": "5e26be93b79da307a4aa8a83b96d3b18d6f35bf15d7875fd2db84619f0d40e6f"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/05-openai-standards",
+      "path": "briefing-general-tech-2026/07-agi-governance/05-openai-standards.md",
+      "title": "OpenAI: 'Building standards for the next phase of AI'",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "Anthropic",
+        "China",
+        "OpenAI",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-21"
+      ],
+      "keywords": [
+        "agi",
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-5",
+      "source_lines": [
+        8329,
+        8444
+      ],
+      "canonical_for": [
+        "openai-standards"
+      ],
+      "words": 1022,
+      "bytes": 6862,
+      "sha256": "77dbace4f393d491f11aec7c729aba899fc9a173b2aa850fe2f7265c03de0323"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/06-recursive-self-improvement",
+      "path": "briefing-general-tech-2026/07-agi-governance/06-recursive-self-improvement.md",
+      "title": "Recursive self-improvement and the Hugging Face precedent",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "China",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "recursive self-improvement",
+        "agentic",
+        "governance",
+        "inference"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-6",
+      "source_lines": [
+        8445,
+        8546
+      ],
+      "canonical_for": [],
+      "words": 955,
+      "bytes": 6229,
+      "sha256": "8deedbfdf363e77db7a8bf329d2534584e942054e2876992530eed23bef6ee76"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/07-22-country-declaration",
+      "path": "briefing-general-tech-2026/07-agi-governance/07-22-country-declaration.md",
+      "title": "The 22-country declaration",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "China",
+        "Google",
+        "OpenAI",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-21"
+      ],
+      "keywords": [
+        "agentic",
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-7",
+      "source_lines": [
+        8547,
+        8661
+      ],
+      "canonical_for": [
+        "22-country-declaration"
+      ],
+      "words": 1067,
+      "bytes": 7204,
+      "sha256": "21b1a706412a92adec56c47026718e92f1b340a04836ef1d3bc90d961f355b68"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/08-us-china-bessent-he",
+      "path": "briefing-general-tech-2026/07-agi-governance/08-us-china-bessent-he.md",
+      "title": "US-China: Bessent–He Lifeng and the incident line",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "geopolitics",
+      "actors": [
+        "China",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-20",
+        "2026-11"
+      ],
+      "keywords": [
+        "export controls",
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-8",
+      "source_lines": [
+        8662,
+        8792
+      ],
+      "canonical_for": [
+        "us-china-ai-dialogue"
+      ],
+      "words": 1187,
+      "bytes": 7706,
+      "sha256": "ade872d6a13437251701ef6689d1ab58e34c3e331fd53a6511db888a9d783bca"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/09-altman-unsc",
+      "path": "briefing-general-tech-2026/07-agi-governance/09-altman-unsc.md",
+      "title": "Altman at the UN Security Council (planned 23/09)",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "Anthropic",
+        "China",
+        "OpenAI",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-18",
+        "2026-09-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "governance",
+        "optics"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-9",
+      "source_lines": [
+        8793,
+        8879
+      ],
+      "canonical_for": [],
+      "words": 795,
+      "bytes": 5137,
+      "sha256": "5a0b5a4483016cc495f7c22c753820dd2bbbfbdff482c9d551baaf6c29ed24e5"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/10-trump-xi-summit",
+      "path": "briefing-general-tech-2026/07-agi-governance/10-trump-xi-summit.md",
+      "title": "Trump–Xi summit (planned 24/09)",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "China",
+        "OpenAI",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-24"
+      ],
+      "keywords": [
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-10",
+      "source_lines": [
+        8880,
+        8951
+      ],
+      "canonical_for": [],
+      "words": 667,
+      "bytes": 4236,
+      "sha256": "2ac1ea6b23e337ac85a99411221a673bff7a24ad579c8cde6c948144dd2b395c"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/11-un-scientific-panel",
+      "path": "briefing-general-tech-2026/07-agi-governance/11-un-scientific-panel.md",
+      "title": "The UN Independent International Scientific Panel on AI",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "OpenAI",
+        "UN"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "agentic",
+        "agi",
+        "governance"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-11",
+      "source_lines": [
+        8952,
+        9047
+      ],
+      "canonical_for": [],
+      "words": 878,
+      "bytes": 5670,
+      "sha256": "a8038925489c9b31e2c88c837baafe0b40012e74f17897aef45196180deb0708"
+    },
+    {
+      "id": "briefing-general-tech-2026/07-agi-governance/12-definitions-caution-camp",
+      "path": "briefing-general-tech-2026/07-agi-governance/12-definitions-caution-camp.md",
+      "title": "Definitions, timelines and the caution camp",
+      "domain": "agi-governance",
+      "role": "deep-dive",
+      "task": "governance",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Google",
+        "Nvidia",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-03",
+        "2026-09-06",
+        "2026-09-12",
+        "2026-09-16",
+        "2026-09-21",
+        "2026-11",
+        "2033-11"
+      ],
+      "keywords": [
+        "agi",
+        "gpu"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g08-12",
+      "source_lines": [
+        9048,
+        9134
+      ],
+      "canonical_for": [],
+      "words": 862,
+      "bytes": 5407,
+      "sha256": "9008486c325a3892e13ed763a4faa1973b7cd4d8a9d85a745328a1bde65c6691"
+    },
+    {
+      "id": "briefing-general-tech-2026/08-market-analysis/00-chapter-introduction",
+      "path": "briefing-general-tech-2026/08-market-analysis/00-chapter-introduction.md",
+      "title": "Market, deals and cross-cutting analysis — introduction",
+      "domain": "market-analysis",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AMD",
+        "China",
+        "Nvidia",
+        "OpenAI",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-11",
+        "2026-02",
+        "2026-09",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agentic",
+        "ai200",
+        "inference",
+        "lpddr",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g09",
+      "source_lines": [
+        9135,
+        9157
+      ],
+      "canonical_for": [],
+      "words": 234,
+      "bytes": 1504,
+      "sha256": "db807e0fe9908277cfe3a1fb3a8c369f1d8726aa15b211071a19571bd94378b7"
+    },
+    {
+      "id": "briefing-general-tech-2026/08-market-analysis/01-deals-recap",
+      "path": "briefing-general-tech-2026/08-market-analysis/01-deals-recap.md",
+      "title": "Deals and funding recap table",
+      "domain": "market-analysis",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Broadcom",
+        "Meta",
+        "Nvidia",
+        "OCP",
+        "OpenAI",
+        "Positron",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-10",
+        "2025-10-06",
+        "2025-10-27",
+        "2026-02",
+        "2026-02-24",
+        "2026-07",
+        "2026-07-22",
+        "2026-09",
+        "2026-09-11",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "funding",
+        "accelerator",
+        "agentic",
+        "ai200",
+        "capex",
+        "gpu",
+        "helios",
+        "hyperscaler",
+        "inference",
+        "lpddr",
+        "lpddr5x",
+        "mtia"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g09-1",
+      "source_lines": [
+        9158,
+        9240
+      ],
+      "canonical_for": [],
+      "words": 988,
+      "bytes": 6047,
+      "sha256": "bcaf103bbed2cd6fbe6ac0de151000829807c53cffdb00927ff4e2c9897804f8"
+    },
+    {
+      "id": "briefing-general-tech-2026/08-market-analysis/02-memory-binding-constraint",
+      "path": "briefing-general-tech-2026/08-market-analysis/02-memory-binding-constraint.md",
+      "title": "Memory as the binding constraint",
+      "domain": "market-analysis",
+      "role": "deep-dive",
+      "task": "memory-crisis",
+      "actors": [
+        "AMD",
+        "Amazon",
+        "Apple",
+        "China",
+        "Fujitsu",
+        "Google",
+        "IDC",
+        "Intel",
+        "Micron",
+        "Nvidia",
+        "Positron",
+        "Qualcomm",
+        "SK Hynix",
+        "Samsung",
+        "TrendForce"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09",
+        "2026-10-04",
+        "2026-10-23"
+      ],
+      "keywords": [
+        "ai200",
+        "crescent island",
+        "custom silicon",
+        "decode",
+        "disaggregated",
+        "dram",
+        "googlebook",
+        "governance",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g09-2",
+      "source_lines": [
+        9241,
+        9402
+      ],
+      "canonical_for": [
+        "memory-crisis"
+      ],
+      "words": 1711,
+      "bytes": 11031,
+      "sha256": "0b228d27a1f60b68992fc64b6365b10fe19b8ff42c80b3514cbd0fce38708e6c"
+    },
+    {
+      "id": "briefing-general-tech-2026/08-market-analysis/03-us-china-stack",
+      "path": "briefing-general-tech-2026/08-market-analysis/03-us-china-stack.md",
+      "title": "US-China stack competition",
+      "domain": "market-analysis",
+      "role": "deep-dive",
+      "task": "geopolitics",
+      "actors": [
+        "China",
+        "Huawei",
+        "Nvidia",
+        "UALink",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-17",
+        "2026-09-20"
+      ],
+      "keywords": [
+        "accelerator",
+        "ascend",
+        "benchmark",
+        "ethernet",
+        "export controls",
+        "governance",
+        "hbm",
+        "lpddr",
+        "npo",
+        "nvlink",
+        "rack-scale",
+        "superpod"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g09-3",
+      "source_lines": [
+        9403,
+        9503
+      ],
+      "canonical_for": [
+        "us-china-ai-dialogue"
+      ],
+      "words": 1019,
+      "bytes": 6787,
+      "sha256": "e31f61d2a4c35c4ba4c2a40a60dd305e2837125718294b06237e47211513044e"
+    },
+    {
+      "id": "briefing-general-tech-2026/08-market-analysis/04-agentic-infrastructure",
+      "path": "briefing-general-tech-2026/08-market-analysis/04-agentic-infrastructure.md",
+      "title": "The agentic infrastructure shift",
+      "domain": "market-analysis",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "Fujitsu",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "Positron",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-09-11"
+      ],
+      "keywords": [
+        "agentic",
+        "ai200",
+        "crescent island",
+        "decode",
+        "disaggregated",
+        "gpu",
+        "hbm",
+        "inference",
+        "lpddr",
+        "lpddr5x",
+        "memory shortage",
+        "monaka"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g09-4",
+      "source_lines": [
+        9504,
+        9599
+      ],
+      "canonical_for": [
+        "agentic-infrastructure"
+      ],
+      "words": 993,
+      "bytes": 6479,
+      "sha256": "de9f06cb271c3d625d9afe05a6b31c675594432bdaf51703ded2ba6428a848aa"
+    },
+    {
+      "id": "briefing-general-tech-2026/08-market-analysis/05-what-to-watch",
+      "path": "briefing-general-tech-2026/08-market-analysis/05-what-to-watch.md",
+      "title": "What to watch next",
+      "domain": "market-analysis",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AMD",
+        "Apple",
+        "China",
+        "Google",
+        "Huawei",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "UALink",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-10-04",
+        "2026-10-23"
+      ],
+      "keywords": [
+        "800v dc",
+        "agentic",
+        "ascend",
+        "disaggregated",
+        "disaggregated serving",
+        "dram",
+        "ethernet",
+        "export controls",
+        "googlebook",
+        "governance",
+        "helios",
+        "inference"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g09-5",
+      "source_lines": [
+        9600,
+        9669
+      ],
+      "canonical_for": [],
+      "words": 727,
+      "bytes": 4780,
+      "sha256": "2cb8aab7da3a47189082c4c9cbbc5fde08cbecbe2af0dce41eab65047be07c6f"
+    },
+    {
+      "id": "briefing-general-tech-2026/09-appendices/00-chapter-introduction",
+      "path": "briefing-general-tech-2026/09-appendices/00-chapter-introduction.md",
+      "title": "Appendices — introduction",
+      "domain": "appendices",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g10",
+      "source_lines": [
+        9670,
+        9674
+      ],
+      "canonical_for": [],
+      "words": 69,
+      "bytes": 483,
+      "sha256": "2d191b9c8b643c6ab94a17ae6e5c5ce3116ee2ea3e91cdd0fbd133f4c00e677b"
+    },
+    {
+      "id": "briefing-general-tech-2026/09-appendices/01-glossary",
+      "path": "briefing-general-tech-2026/09-appendices/01-glossary.md",
+      "title": "Glossary",
+      "domain": "appendices",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Amazon",
+        "Broadcom",
+        "China",
+        "Credo",
+        "Google",
+        "Huawei",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OCP",
+        "OIF",
+        "Qualcomm",
+        "TSMC",
+        "UALink"
+      ],
+      "dates": [
+        "2026-09-21"
+      ],
+      "keywords": [
+        "18a",
+        "accelerator",
+        "agi",
+        "ai200",
+        "ascend",
+        "asic",
+        "awq",
+        "blackwell",
+        "chiplet",
+        "coherent optics",
+        "cost per token",
+        "cpo"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g10-1",
+      "source_lines": [
+        9675,
+        9819
+      ],
+      "canonical_for": [],
+      "words": 2296,
+      "bytes": 16041,
+      "sha256": "ad846b89dcdb743a9c925b1b97b301ac90e0bb701fbb29e5cba66761ca5479d6"
+    },
+    {
+      "id": "briefing-general-tech-2026/09-appendices/02-actors-index",
+      "path": "briefing-general-tech-2026/09-appendices/02-actors-index.md",
+      "title": "Actors index",
+      "domain": "appendices",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Amazon",
+        "Anthropic",
+        "Apple",
+        "Broadcom",
+        "Cerebras",
+        "China",
+        "CoreWeave",
+        "Credo",
+        "Crusoe",
+        "FS.com",
+        "Fujitsu",
+        "Gartner",
+        "Google",
+        "Groq",
+        "Huawei",
+        "IDC",
+        "Intel",
+        "MACOM",
+        "MLCommons",
+        "Meta",
+        "Micron",
+        "Nebius",
+        "Nokia",
+        "Nvidia",
+        "OCP",
+        "OIF",
+        "OpenAI",
+        "Positron",
+        "PrismML",
+        "Qualcomm",
+        "SK Hynix",
+        "Samsung",
+        "TSMC",
+        "Taalas",
+        "Telxius",
+        "TrendForce",
+        "UALink",
+        "UN"
+      ],
+      "dates": [
+        "2025-12-22",
+        "2026-05-12",
+        "2026-06",
+        "2026-07",
+        "2026-07-14",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-16",
+        "2026-09-21",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "18a",
+        "accelerator",
+        "ai200",
+        "ascend",
+        "asic",
+        "benchmark",
+        "blackwell",
+        "capex",
+        "claude",
+        "cost per token",
+        "custom silicon",
+        "dci"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g10-2",
+      "source_lines": [
+        9820,
+        9948
+      ],
+      "canonical_for": [],
+      "words": 1735,
+      "bytes": 12248,
+      "sha256": "525468639d0b1d769d9fc543fb7836a6113676115ada8909ad94ad780e55db61"
+    },
+    {
+      "id": "briefing-general-tech-2026/09-appendices/03-methodological-notes",
+      "path": "briefing-general-tech-2026/09-appendices/03-methodological-notes.md",
+      "title": "Methodological notes and sensitive points",
+      "domain": "appendices",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "BitNet",
+        "China",
+        "FS.com",
+        "Google",
+        "Huawei",
+        "Intel",
+        "MLCommons",
+        "Nvidia",
+        "OpenAI",
+        "PrismML",
+        "Qualcomm",
+        "Samsung",
+        "TrendForce",
+        "UALink",
+        "UN",
+        "United States"
+      ],
+      "dates": [
+        "2024-10-17",
+        "2025-04",
+        "2025-12-22",
+        "2026-05-12",
+        "2026-06",
+        "2026-07",
+        "2026-07-14",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-16",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "800v dc",
+        "ai200",
+        "ascend",
+        "benchmark",
+        "bitnet",
+        "blackwell",
+        "dram",
+        "googlebook",
+        "gpt-6",
+        "gpus",
+        "inference",
+        "lpddr"
+      ],
+      "source": "docs/RAG/briefing-general-tech-2026-en.md",
+      "source_anchor": "g10-3",
+      "source_lines": [
+        9949,
+        10049
+      ],
+      "canonical_for": [],
+      "words": 1728,
+      "bytes": 11492,
+      "sha256": "2a3aee044a292363e30f883302068cfb731ebc16fa6548f366b3c42d45b486c7"
+    }
+  ]
+}

@@ -12,13 +12,15 @@ RAG/
 ├── INDEX.md               # index global (tous les corpus)
 ├── manifest.json          # inventaire global
 ├── _tools/
-│   ├── build_rag.py       # générateur (déterministe, rejouable)
-│   └── verify_rag.py      # vérificateur indépendant
-└── briefing-ia-2026/      # corpus n°1
-    ├── INDEX.md           # navigation rapide (domaines, tâches, acteurs, dates, ancres)
-    ├── manifest.json      # inventaire machine-readable
-    ├── NOTES.md           # défauts de source (à ne pas corriger) + régénération
-    └── <dossiers>/*.md    # chunks avec en-tête YAML
+│   ├── build_rag.py       # générateur (déterministe, rejouable, multi-corpus)
+│   └── verify_rag.py      # vérificateur indépendant (tous les corpus)
+├── briefing-ia-2026/      # corpus n°1 — AI News 2026 (126 chunks)
+│   ├── INDEX.md           # navigation rapide (domaines, tâches, acteurs, dates, ancres)
+│   ├── manifest.json      # inventaire machine-readable
+│   ├── NOTES.md           # défauts de source (à ne pas corriger) + régénération
+│   └── <dossiers>/*.md    # chunks avec en-tête YAML
+└── briefing-general-tech-2026/   # corpus n°2 — General Tech News 2026 (112 chunks)
+    └── …                  # même structure
 ```
 
 ## Garanties
