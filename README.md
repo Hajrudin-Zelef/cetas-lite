@@ -26,16 +26,66 @@ coffre chiffré pour vos clés. Aucun service externe n'est requis.
 - **Coffre chiffré** : les clés d'API sont stockées chiffrées au repos, jamais en clair.
 - **Extensible** : serveurs MCP, outils HTTP personnalisés, plugins externes.
 
-## Démarrage rapide
+## Prérequis
+
+- **Go 1.27.1 ou plus récent** — voir `go.mod` (`go 1.27.1`). Un Go ≥ 1.21 peut télécharger la
+  toolchain requise automatiquement (nécessite un accès réseau).
+- **make** (GNU Make). Sur Windows : WSL, ou `make` via Chocolatey/Scoop.
+- **git** — optionnel : sert uniquement à dériver le numéro de version (`make build` retombe sur
+  `dev` sans lui).
+
+## Installation
+
+### A. Binaire précompilé (recommandé)
+
+Les binaires Linux / Windows / macOS (amd64 et arm64) sont publiés à chaque tag `v*` sur la page
+**Releases** du dépôt.
 
 ```bash
-make build
-CETAS_LITE_HOME=~/.cetas-lite ./bin/cetas-lite serve
-# http://127.0.0.1:8787
+# Linux/macOS — remplacer <os>-<arch> par la plateforme voulue (ex. linux-amd64)
+chmod +x cetas-lite-<os>-<arch>
+./cetas-lite-<os>-<arch> serve
 ```
 
-Au premier lancement, un compte est créé (mode *bootstrap*), puis l'inscription se ferme.
-Configurez ensuite vos fournisseurs depuis l'interface.
+Sur Windows, `cetas-lite-windows-amd64.exe` se lance par double-clic (ou `.\cetas-lite-windows-amd64.exe serve`).
+
+> Si aucune release n'est encore publiée, utiliser la voie B (depuis les sources).
+
+### B. Depuis les sources
+
+```bash
+git clone https://github.com/Hajrudin-Zelef/cetas-lite.git
+cd cetas-lite
+make build
+```
+
+## Vérifier
+
+Lancer le serveur puis ouvrir l'interface :
+
+```bash
+# Linux/macOS
+CETAS_LITE_HOME="$HOME/.cetas-lite" ./bin/cetas-lite serve
+```
+
+```powershell
+# Windows (PowerShell)
+$env:CETAS_LITE_HOME="$env:USERPROFILE\.cetas-lite"; .\bin\cetas-lite.exe serve
+```
+
+- Interface : <http://127.0.0.1:8787>
+- Santé du service : <http://127.0.0.1:8787/api/health>
+
+`make run` équivaut à `make build` + lancement.
+
+## Premier démarrage
+
+1. **Compte** : au premier lancement, le premier compte créé est le vôtre (mode *bootstrap*) ; ensuite
+   l'inscription se ferme. Pour la rouvrir : `CETAS_LITE_REGISTRATION_OPEN=true`.
+2. **Fournisseurs** : renseigner les clés d'API depuis l'interface (ou via la CLI `cetas-lite keys set`).
+3. **Clés chiffrées** : les clés sont stockées chiffrées. Pour qu'elles soient déchiffrées au
+   démarrage du serveur, définir `CETAS_LITE_VAULT_PASSWORD` (sinon seuls les moteurs locaux sont
+   enregistrés).
 
 ## Application bureau (Windows)
 
@@ -91,6 +141,17 @@ make ci        # gofmt + vet + tests
 ```
 
 Binaire statique (`CGO_ENABLED=0`), sans dépendance d'exécution.
+
+## Dépannage
+
+- **`make: command not found`** → installer GNU Make (ou utiliser WSL sous Windows).
+- **`go: go.mod requires go >= 1.27.1`** → mettre Go à jour (ou autoriser le téléchargement de la
+  toolchain : `GOTOOLCHAIN=auto`).
+- **Le port 8787 est déjà utilisé** → changer d'adresse : `CETAS_LITE_ADDR=127.0.0.1:8899 ./bin/cetas-lite serve`.
+- **Mes clés d'API ne sont pas prises en compte** → définir `CETAS_LITE_VAULT_PASSWORD` avant de
+  lancer le serveur.
+- **Rien ne s'affiche dans le navigateur** → vérifier `http://127.0.0.1:8787/api/health` et les logs
+  du serveur.
 
 ## Licence
 
