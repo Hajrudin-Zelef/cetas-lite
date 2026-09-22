@@ -17,6 +17,7 @@ func TestLoadDefaults(t *testing.T) {
 	t.Setenv("CETAS_LITE_ADDR", "")
 	t.Setenv("CETAS_LITE_REGISTRATION_OPEN", "")
 	t.Setenv("CETAS_LITE_SANDBOX", "")
+	t.Setenv("CETAS_LITE_RAG_DIR", "")
 
 	cfg, err := Load()
 	if err != nil {
@@ -24,6 +25,12 @@ func TestLoadDefaults(t *testing.T) {
 	}
 	if cfg.Home != home {
 		t.Errorf("Home = %q, want %q", cfg.Home, home)
+	}
+	if cfg.RagDir != filepath.Join(home, "rag") {
+		t.Errorf("RagDir = %q", cfg.RagDir)
+	}
+	if !isDir(cfg.RagDir) {
+		t.Errorf("repertoire RAG absent: %s", cfg.RagDir)
 	}
 	if cfg.Addr != "127.0.0.1:8787" {
 		t.Errorf("Addr = %q", cfg.Addr)
@@ -110,5 +117,23 @@ func TestAllowScriptFlag(t *testing.T) {
 	t.Setenv("CETAS_LITE_ALLOW_SCRIPT", "oups")
 	if _, err := Load(); err == nil {
 		t.Fatal("Load devrait echouer sur CETAS_LITE_ALLOW_SCRIPT invalide")
+	}
+}
+
+func TestRagDirOverride(t *testing.T) {
+	home := t.TempDir()
+	custom := filepath.Join(t.TempDir(), "corpus")
+	t.Setenv("CETAS_LITE_HOME", home)
+	t.Setenv("CETAS_LITE_RAG_DIR", custom)
+
+	cfg, err := Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.RagDir != custom {
+		t.Fatalf("RagDir = %q, want %q", cfg.RagDir, custom)
+	}
+	if !isDir(custom) {
+		t.Fatalf("repertoire RAG non cree: %s", custom)
 	}
 }

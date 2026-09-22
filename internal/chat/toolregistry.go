@@ -80,6 +80,9 @@ func (e *Engine) toolRegistry(in TurnInput, sb *Sandbox) toolRegistry {
 	if e.memoryTools() != nil {
 		families = append(families, memoryFamily{e: e})
 	}
+	if rt := e.ragTools(); rt != nil && rt.Ready() {
+		families = append(families, ragFamily{e: e})
+	}
 	if ct := e.customTools(); ct != nil {
 		families = append(families, customFamily{e: e, defs: ct.Defs()})
 	}
@@ -137,6 +140,16 @@ func (memoryFamily) handles(name string) bool { return strings.HasPrefix(name, "
 
 func (f memoryFamily) execute(_ context.Context, env toolEnv, name, argsJSON string) (ToolResult, *provider.Message) {
 	return f.e.memExecute(env.user, name, argsJSON), nil
+}
+
+type ragFamily struct{ e *Engine }
+
+func (ragFamily) schemas(context.Context) []provider.Tool { return RagToolSchemas() }
+
+func (ragFamily) handles(name string) bool { return strings.HasPrefix(name, "rag_") }
+
+func (f ragFamily) execute(ctx context.Context, _ toolEnv, name, argsJSON string) (ToolResult, *provider.Message) {
+	return f.e.ragExecute(ctx, name, argsJSON), nil
 }
 
 type mcpFamily struct{ e *Engine }

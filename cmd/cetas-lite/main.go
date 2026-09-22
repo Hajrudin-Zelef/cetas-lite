@@ -30,6 +30,7 @@ import (
 	"cetas-lite/internal/modelcaps"
 	"cetas-lite/internal/plugins"
 	"cetas-lite/internal/provider"
+	"cetas-lite/internal/rag"
 	"cetas-lite/internal/search"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/terminal"
@@ -160,6 +161,9 @@ func buildApp() (*app, error) {
 	}
 	engine.SetSearcher(search.NewWithConfig(web.LoadSearchConfig(st, keys), client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
+	ragMgr := rag.New(cfg.RagDir)
+	ragMgr.Start()
+	engine.SetRAG(ragMgr)
 	attachStore := attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20)
 	engine.SetAttachments(attachStore)
 	// Les pièces jointes ne sont plus supprimées à l'envoi (le tour agent

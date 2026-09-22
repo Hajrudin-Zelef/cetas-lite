@@ -14,6 +14,7 @@ type Config struct {
 	DataDir          string
 	WorkspaceDir     string
 	MemoryDir        string
+	RagDir           string
 	MCPPath          string
 	ToolsPath        string
 	PluginsDir       string
@@ -41,6 +42,13 @@ func Load() (*Config, error) {
 	addr := strings.TrimSpace(os.Getenv("CETAS_LITE_ADDR"))
 	if addr == "" {
 		addr = "127.0.0.1:8787"
+	}
+
+	ragDir := strings.TrimSpace(os.Getenv("CETAS_LITE_RAG_DIR"))
+	if ragDir == "" {
+		ragDir = filepath.Join(home, "rag")
+	} else if abs, err := filepath.Abs(ragDir); err == nil {
+		ragDir = abs
 	}
 
 	registrationMode := "bootstrap"
@@ -91,6 +99,7 @@ func Load() (*Config, error) {
 		DataDir:          filepath.Join(home, "data"),
 		WorkspaceDir:     filepath.Join(home, "workspace"),
 		MemoryDir:        filepath.Join(home, "memory"),
+		RagDir:           ragDir,
 		MCPPath:          filepath.Join(home, "mcp.json"),
 		ToolsPath:        filepath.Join(home, "tools.json"),
 		PluginsDir:       filepath.Join(home, "plugins"),
@@ -106,6 +115,9 @@ func Load() (*Config, error) {
 			return nil, fmt.Errorf("creation de %s: %w", dir, err)
 		}
 	}
+	// Dossier du corpus RAG : cree au mieux. Un chemin absent ou non
+	// inscriptible laisse simplement le RAG inactif — jamais bloquant.
+	_ = os.MkdirAll(cfg.RagDir, 0o700)
 
 	return cfg, nil
 }

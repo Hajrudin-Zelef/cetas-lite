@@ -72,6 +72,27 @@ Le vérificateur contrôle que tout corpus `delta` référence une base existant
 ses chunks portent `delta_of`, et qu'aucun de ses chunks n'est un doublon **texte**
 (sha256) d'un chunk de la base.
 
+## Intégration runtime (cetas)
+
+cetas charge ce corpus dans un **index local en mémoire** (`internal/rag`) et l'utilise
+pour répondre avant d'aller sur le web. Aucun service externe, aucun réseau.
+
+- **Emplacement** : `$CETAS_LITE_HOME/rag/` (défaut) ou `CETAS_LITE_RAG_DIR`.
+  Le dossier est créé au démarrage ; **vide ⇒ RAG inactif, coût nul**.
+- **Format riche** : y déposer les dossiers de corpus générés (`<corpus>/manifest.json`
+  + chunks), exactement la sortie de `build_rag.py`.
+- **Format brut** : un dossier sans `manifest.json` est lu au plus simple — **un fichier
+  `.md`/`.txt` = un chunk** (titre = premier `#`, sinon nom du fichier). Pratique pour des
+  notes perso : déposer les fichiers, rien d'autre à faire.
+- **Au runtime** : les extraits pertinents sont injectés automatiquement dans le tour ;
+  si la base couvre la requête, la pré-recherche web est **sautée** (économie de coût et
+  de latence). Outils agent `rag_search` / `rag_read` pour creuser.
+- **Sûreté** : index immuable, chargement en tâche de fond, recherche bornée à 120 ms,
+  fail-open (une erreur RAG ne bloque jamais la réponse).
+
+Vérifier au démarrage : le log affiche `rag: N chunks, M corpus, …` ou
+`rag: aucun corpus … (inactif)`.
+
 ## Régénérer
 
 ```bash

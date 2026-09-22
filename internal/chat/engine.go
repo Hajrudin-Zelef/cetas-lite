@@ -28,6 +28,7 @@ type Engine struct {
 	allowScript bool
 	searcher    WebTools
 	mem         MemoryTools
+	rag         RagTools
 	ext         MCPTools
 	custom      CustomTools
 	pluginMgr   PluginManager
@@ -126,6 +127,18 @@ func (e *Engine) memoryTools() MemoryTools {
 	e.mu.Lock()
 	defer e.mu.Unlock()
 	return e.mem
+}
+
+func (e *Engine) SetRAG(r RagTools) {
+	e.mu.Lock()
+	e.rag = r
+	e.mu.Unlock()
+}
+
+func (e *Engine) ragTools() RagTools {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	return e.rag
 }
 
 func (e *Engine) SetMCP(m MCPTools) {
@@ -480,6 +493,15 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		msgs = append([]provider.Message{{Role: "system", Content: actx}}, msgs...)
 	}
 
+	// Base documentaire locale : extraits pertinents injectes avant l'appel
+	// modele (fail-open : absente ou vide, rien n'est ajoute). Le resultat
+	// est calcule une seule fois et sert aussi a economiser la pre-recherche
+	// web quand la base couvre la requete.
+	ragRes := e.ragHits(ctx, in.Text)
+	if rc, ok := ragContextFrom(ragRes); ok {
+		msgs = append([]provider.Message{{Role: "system", Content: rc}}, msgs...)
+	}
+
 	if res.agent && e.workspace != "" && in.User != "" {
 		e.runAgent(ctx, c, epoch, res, msgs, in)
 		return
@@ -498,7 +520,13 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 
 	// Directive de recherche web (imperative, en anglais) : le globe est
 	// l'interrupteur principal, le mode "off" coupe aussi la recherche.
-	msgs = append([]provider.Message{{Role: "system", Content: searchDirective(e.webEnabled(in), nativePrimary)}}, msgs...)
+	webOn := e.webEnabled(in)
+	msgs = append([]provider.Message{{Role: "system", Content: searchDirective(webOn, nativePrimary)}}, msgs...)
+	// La base locale couvre la requete : on remplace la consigne "cherche
+	// sur le web" par "reponds d'abord depuis la base locale".
+	if webOn && ragCovered(ragRes) {
+		msgs = replaceWebDirective(msgs, searchDirective(true, nativePrimary), localFirstDirective())
+	}
 
 	// MAREX.md : lu une seule fois au demarrage de la session ; s'il est
 	// rempli, un message discret "MAREX.md chargé" s'affiche dans le chat.
@@ -512,8 +540,12 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	webDone := false
 	nativeOff := false
 	if e.webToolsFor(in) && !nativePrimary {
-		if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
-			msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
+		// Base locale pertinente : on economise la pre-recherche web
+		// (jusqu'a 8 s + des tokens) et on repond depuis les extraits.
+		if !ragCovered(ragRes) {
+			if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
+				msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
+			}
 		}
 		webDone = true
 	}
