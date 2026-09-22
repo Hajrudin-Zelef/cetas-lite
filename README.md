@@ -25,6 +25,10 @@ d'exécution, reprise de navigation, coloration hljs de la vue Agents **garantie
 **ETag**.
 **UI** : le front reprend le design de Cetas (thèmes clair/ocean/sombre, glassmorphism, sidebar +
 `input-area` + `plus-menu`, messages `.message-wrapper`) adapté au backend cetas-lite.
+**RAG** : base documentaire locale — corpus découpés sans perte sous `RAG/` (4 corpus, 497 chunks),
+index **in-process** (`internal/rag`, mots-clés + facettes, sans dépendance externe), injection
+automatique des extraits + outils `rag_search`/`rag_read`, et **saut de la pré-recherche web** quand
+la base couvre la requête (économie de coût/latence).
 
 Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.cpp/GPU — différé).
 
@@ -38,6 +42,7 @@ Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.
 - **Panneaux UI** : API Modèles, Configuration (onglets Fonctionnalités / Recherche Web / Apparence / Remote SFTP / Compétences, sauvegarde par onglet), **DeepThink** (traduction du raisonnement), **Requêtes** (tokens/contexte/coût par tour), centre d'aide intégré, sidebar Agents à 2 sections plates.
 - Outils agent : fichiers (Ls/Read/Write/Edit/Grep/Glob), Bash, RunScript (désactivé par défaut), TodoWrite, web (`web_search`/`web_fetch`), mémoire (`mem_*`), MCP (`mcp_*`), GitHub (repos/issues/PRs).
 - Mémoire : pages Markdown par user sous `$CETAS_LITE_HOME/memory/<user>/`, index `MEMORY.md` auto, recherche TF-IDF.
+- **RAG (base documentaire locale)** : corpus découpés sous `RAG/` (ou `$CETAS_LITE_HOME/rag/`, `CETAS_LITE_RAG_DIR`), index in-process, injection auto des extraits + outils `rag_search`/`rag_read`. Format riche (`manifest.json` + chunks) ou brut (1 fichier `.md`/`.txt` = 1 chunk) ; dossier vide ⇒ inactif (coût nul).
 - MCP : serveurs déclarés dans `$CETAS_LITE_HOME/mcp.json` (`stdio` ou `http`), outils exposés à l'agent sous `mcp_<serveur>_<outil>` (diagnostic : `./bin/cetas-lite mcp`).
 - Custom tools : outils HTTP définis dans `$CETAS_LITE_HOME/tools.json`, exposés sous `custom_<outil>` (diagnostic : `./bin/cetas-lite tools`).
 - Plugins externes : dossiers `$CETAS_LITE_HOME/plugins/<nom>/plugin.json`, outils `exec` (tout langage, JSON sur stdin/stdout) ou `http`, exposés sous `plugin_<plugin>_<outil>` (exemple : `examples/plugins/horloge/`, doc : `docs/plugins.md`).
@@ -157,6 +162,7 @@ matrice (ubuntu/windows/macos) + artifact cross-build.
 - `internal/provider` / `internal/local` — providers cloud + découverte locale
 - `internal/search` — web search + fetch (garde SSRF)
 - `internal/memory` — pages Markdown + index + TF-IDF
+- `internal/rag` — index documentaire local (mots-clés + facettes, in-process, sans dépendance)
 - `internal/mcp` — client MCP (stdio + HTTP, outils `mcp_*`)
 - `internal/customtools` — outils HTTP d'opérateur (`custom_*`)
 - `internal/plugins` — plugins externes (`plugin_*` : manifeste + exec/HTTP)
