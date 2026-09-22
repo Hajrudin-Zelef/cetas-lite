@@ -345,15 +345,6 @@ func snippetFrom(ex string) string {
 	return truncateRunes(ex, maxSnippet) + "…"
 }
 
-// excerptOf : fenetre de texte centree sur le premier terme trouve (jusqu'a
-// width runes), espaces normalises. Le texte retourne est toujours extrait
-// du corps d'origine (accents et casse preserves). Sans correspondance :
-// debut du document.
-func excerptOf(body string, terms []string, width int) string {
-	start, end, ok := firstMatchRange(body, terms)
-	return excerptAround(body, start, end, ok, width)
-}
-
 // excerptAround : decoupe la fenetre autour d'une plage deja localisee
 // (start/end : offsets octets dans body, sur des frontieres de runes).
 func excerptAround(body string, start, end int, ok bool, width int) string {
