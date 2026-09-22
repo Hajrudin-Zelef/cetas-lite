@@ -1,176 +1,96 @@
 # cetas-lite
 
-*Variante légère, stable et rapide de Cetas + Marexcode — un seul binaire Go.*
+Assistant IA auto-hébergé — **un seul binaire Go**, interface web intégrée, vos données chez vous.
+
+cetas-lite réunit dans un binaire unique et multi-plateforme l'essentiel d'un poste de travail IA :
+chat multi-modèles, mode agent avec outils, recherche web, mémoire, base documentaire locale et
+coffre chiffré pour vos clés. Aucun service externe n'est requis.
 
 © Marexsoft Corporation — Fondateur : Kouassi Marius. Tous droits réservés.
 
-## État
+## Fonctionnalités
 
-**Phases P0–P12 faites** : socle (bbolt, coffre AES-256-GCM, auth JWT), alias, moteur de chat stable
-(journal rejouable, reconnexion `?from=`, stop/reset, heartbeat SSE, failover), outils agent + sandbox,
-UI web (révélation, markdown, blocs outils), web search + fetch, mémoire Markdown (`mem_*`).
-**P6** : durcissement (rate-limit auth, fuzz, tests de reconnexion) + packaging 6 binaires + CI.
-**P7** : compaction du contexte + archives multi-sessions. **P8.1** : client MCP (`mcp_*`).
-**Tier 1–4** : archives UI, export/régénérer, inscription bootstrap + proxy + bwrap + favicon,
-custom tools HTTP (`custom_*`). **Lots 0/A/C/B/D** : prompts pédagogiques + `MAREX.md`, lecture de
-documents (PDF/texte/HTML), thinking+effort, vision, voix navigateur. **P9** : registre d'outils + docs.
-**P10** : skills, WebDepth, GitHub tools, pièces jointes TTL, menus composer portalés.
-**P11** : coffre **V4** (`internal/securevault`) + UI Coffre, CLI **`cetas-keys`**, panneaux
-API Modèles / Configuration / centre d'aide, sidebar Agents plate, thème modale.
-**P12** : **sessions multi-conversations**, sélecteur de modèles (menu + en cascade, mode **Défaut**
-routé par effort), **DeepThink** (traduction du raisonnement), panneau **Raisonnement** réécrit +
-historique, panneaux **Requêtes**, loader **Marex**, **module Agentic** (rendu **Harness** ou
-**OpenCode** de la vue Agents), appels d'outils **parallèles** (`parallel_tool_calls`), statut
-d'exécution, reprise de navigation, coloration hljs de la vue Agents **garantie en CSS**, cache assets
-**ETag**.
-**UI** : le front reprend le design de Cetas (thèmes clair/ocean/sombre, glassmorphism, sidebar +
-`input-area` + `plus-menu`, messages `.message-wrapper`) adapté au backend cetas-lite.
-**RAG** : base documentaire locale — corpus découpés sans perte sous `RAG/` (4 corpus, 497 chunks),
-index **in-process** (`internal/rag`, mots-clés + facettes, sans dépendance externe), injection
-automatique des extraits + outils `rag_search`/`rag_read`, et **saut de la pré-recherche web** quand
-la base couvre la requête (économie de coût/latence).
+- **Chat** : streaming en temps réel, reconnexion sans perte, arrêt/reprise, sessions multiples,
+  régénération, export Markdown/JSON.
+- **Modèles** : fournisseurs cloud (API OpenAI-compatibles) et moteurs **locaux** (découverte
+  automatique). Les *alias* masquent les modèles bruts et gèrent un **pool avec repli automatique**.
+- **Mode agent** : lecture/écriture de fichiers, recherche dans le projet, exécution de commandes en
+  **sandbox**, plan de tâches, approbations pour les actions sensibles.
+- **Recherche web** : intégrée (native au fournisseur ou via outils), avec panneau de sources.
+- **Mémoire** : pages Markdown persistantes, indexées et recherchables.
+- **Base documentaire locale (RAG)** : vos documents sont indexés localement et injectés dans les
+  réponses ; la recherche web est évitée quand la base suffit. Aucun appel réseau.
+- **Multi-agents** : plusieurs agents en parallèle, chacun avec son fil, ses approbations et son
+  espace de travail isolé.
+- **Terminal intégré**, pièces jointes (images, PDF, texte/HTML), lecture et dictée via le navigateur.
+- **Coffre chiffré** : les clés d'API sont stockées chiffrées au repos, jamais en clair.
+- **Extensible** : serveurs MCP, outils HTTP personnalisés, plugins externes.
 
-Reste : LSP (faible valeur) et gestionnaire de moteur local **niveau B** (llama.cpp/GPU — différé).
-
-- Alias à 2 niveaux : `SamAgent Nano` (free), `SamAgent N4` (flash/standard/elite), `SamAgent N8` (flash/standard/elite), `Code` (flash/standard/elite, agent), `SamGen` (local : nano=llama.cpp, n4=Ollama, n8=LM Studio). Mode **Défaut** = routage par effort (faible→Flash, moyen→Standard, max→Elite).
-- Chat serveur : journal rejouable, reconnexion (`?from=`), stop/reset non bloquants, heartbeat SSE, failover de pool.
-- **Sessions** : multi-conversations par utilisateur (créer/ouvrir/supprimer), sidebar **groupée par date**, cache local, pierre tombale anti-résurrection.
-- **Multi-agents** : panneau Agents dédié, worktree optionnel, approbations, lectures d'outils **en parallèle** (allowlist lecture seule), espace de travail annoncé en tête de fil.
-- Providers cloud : DeepSeek, OpenCode Zen, OpenCode Go, OpenRouter (en-tête `x-opencode-session` requis par la gateway). Local : Ollama/LM Studio/llama.cpp (découverte auto). Panneau **API Modèles** (catalogue, tarifs, logos, toggle textes/images).
-- **Coffre chiffré** : `internal/securevault`, format **V4** compatible CETAS/Python (`$CETAS_LITE_HOME/vault.enc`, AES-256-GCM + Scrypt N=2^16 + nonce HKDF + pepper `CETAS_PEPPER`), migration V2/V3, verrouillage auto 15 min, UI onglet « Coffre ».
-- **`cetas-keys`** : CLI séparée (`cmd/cetas-keys`) pour gérer le coffre et un `.env` **scellé** (`init/add/list/test/delete/export/passwd/status/sync`), validation **live** des clés, bannière TUI, 16 providers.
-- **Panneaux UI** : API Modèles, Configuration (onglets Fonctionnalités / Recherche Web / Apparence / Remote SFTP / Compétences, sauvegarde par onglet), **DeepThink** (traduction du raisonnement), **Requêtes** (tokens/contexte/coût par tour), centre d'aide intégré, sidebar Agents à 2 sections plates.
-- Outils agent : fichiers (Ls/Read/Write/Edit/Grep/Glob), Bash, RunScript (désactivé par défaut), TodoWrite, web (`web_search`/`web_fetch`), mémoire (`mem_*`), MCP (`mcp_*`), GitHub (repos/issues/PRs).
-- Mémoire : pages Markdown par user sous `$CETAS_LITE_HOME/memory/<user>/`, index `MEMORY.md` auto, recherche TF-IDF.
-- **RAG (base documentaire locale)** : corpus découpés sous `RAG/` (ou `$CETAS_LITE_HOME/rag/`, `CETAS_LITE_RAG_DIR`), index in-process, injection auto des extraits + outils `rag_search`/`rag_read`. Format riche (`manifest.json` + chunks) ou brut (1 fichier `.md`/`.txt` = 1 chunk) ; dossier vide ⇒ inactif (coût nul).
-- MCP : serveurs déclarés dans `$CETAS_LITE_HOME/mcp.json` (`stdio` ou `http`), outils exposés à l'agent sous `mcp_<serveur>_<outil>` (diagnostic : `./bin/cetas-lite mcp`).
-- Custom tools : outils HTTP définis dans `$CETAS_LITE_HOME/tools.json`, exposés sous `custom_<outil>` (diagnostic : `./bin/cetas-lite tools`).
-- Plugins externes : dossiers `$CETAS_LITE_HOME/plugins/<nom>/plugin.json`, outils `exec` (tout langage, JSON sur stdin/stdout) ou `http`, exposés sous `plugin_<plugin>_<outil>` (exemple : `examples/plugins/horloge/`, doc : `docs/plugins.md`).
-- Rôle : **cetas-lite = tuteur/professeur senior** (chat général, pédagogique) ; l'**agent = code pur** (outils).
-- Thinking : **off par défaut** en chat (toggle `Think`), **forcé** en agent ; effort `défaut/faible/moyen/max`.
-- Lecture : **images** (vision, modèles déclarés dans Settings → Capacités) et **documents** (PDF/texte/HTML) en pièces jointes (bouton + drag & drop). Pas d'Office (convertir en PDF).
-- Voix : TTS (« Lire ») et STT (micro) via le **navigateur** ; backend non implémenté.
-- Archives : liste/restauration/suppression/export dans la sidebar ; export Markdown ou JSON de l'active.
-- Confort : copier/régénérer un message, jetons affichés, compaction visible, citations cliquables, notice de session expirée.
-- Sauvegarde : `cetas-lite backup <fichier.tar.gz>` / `restore <fichier>` (serveur arrêté).
-- **Terminal intégré** : tiroir bas avec onglets, xterm.js embarqué (fonctionne hors-ligne),
-  vrai PTY natif (Unix) / **ConPTY** (Windows, via l'API pseudo-console : redimensionnement
-  et programmes interactifs supportés), jusqu'à 6 sessions par utilisateur, `cwd` confiné au
-  workspace, sortie diffusée en SSE (base64), redimensionnement dynamique.
-- **Worktrees d'isolation** : chaque run agent peut s'exécuter dans un `git worktree --detach`
-  dédié sous `$CETAS_LITE_HOME/worktrees` (toggle dans le modal), nettoyé à la suppression.
-- **Multi-agents en parallèle** : panneau « Agents » (création via modal : mission, famille/mode
-  agent, approbations, plan, worktree), chaque agent a son fil SSE, ses approbations et son
-  worktree ; suivi/stop/suppression, état `running/done/stopped/error`, persistance après
-  redémarrage (reprise à l'arrêt).
-
-## Démarrage
+## Démarrage rapide
 
 ```bash
 make build
 CETAS_LITE_HOME=~/.cetas-lite ./bin/cetas-lite serve
-# http://127.0.0.1:8787/api/health
+# http://127.0.0.1:8787
 ```
+
+Au premier lancement, un compte est créé (mode *bootstrap*), puis l'inscription se ferme.
+Configurez ensuite vos fournisseurs depuis l'interface.
 
 ## Application bureau (Windows)
 
 ```bash
 make desktop
-# -> bin/cetas-lite-desktop-windows-amd64.exe : double-clic, aucune console.
+# -> bin/cetas-lite-desktop-windows-amd64.exe : double-clic, sans console.
 ```
 
-Le mode bureau demarre le serveur en local sur `127.0.0.1` (port ephemere, `CETAS_LITE_ADDR`
-ignore) puis ouvre une fenetre native **WebView2** (moteur Edge, inclus dans Windows 10/11) ;
-la fermeture de la fenetre arrete proprement le serveur. Les logs vont aussi dans
-`$CETAS_LITE_HOME/desktop.log` (pas de console en mode GUI). `CETAS_LITE_DEBUG=true`
-active les outils de dev du WebView.
+Le mode bureau démarre le serveur en local et ouvre une fenêtre native **WebView2** ; la fermeture
+de la fenêtre arrête proprement le serveur.
 
-```bash
-cetas-lite desktop   # depuis un terminal, ou sans argument sous Windows
-```
+## Configuration (variables d'environnement)
 
-Alias et chat (après login) :
+| Variable | Rôle | Défaut |
+|---|---|---|
+| `CETAS_LITE_HOME` | Répertoire de données | `os.UserConfigDir()/cetas-lite` |
+| `CETAS_LITE_ADDR` | Adresse d'écoute HTTP | `127.0.0.1:8787` |
+| `CETAS_LITE_REGISTRATION_OPEN` | Inscription : non défini = *bootstrap* (1er compte puis fermé) · `true` = ouvert · `false` = fermé | *(bootstrap)* |
+| `CETAS_LITE_TRUST_PROXY` | Faire confiance à `X-Forwarded-For`/`X-Real-IP` (derrière un reverse proxy) | `false` |
+| `CETAS_LITE_SANDBOX` | Isolation des commandes : `none` · `auto` · `bwrap` | `auto` |
+| `CETAS_LITE_ALLOW_SCRIPT` | Autoriser l'exécution de scripts par l'agent | `false` |
+| `CETAS_LITE_RAG_DIR` | Dossier de la base documentaire locale (vide = désactivée) | `$CETAS_LITE_HOME/rag` |
+| `CETAS_LITE_VAULT_PASSWORD` | Mot de passe déchiffrant les clés stockées | *(vide)* |
+| `CETAS_PEPPER` | Secret serveur complémentaire du coffre | *(vide)* |
+| `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`, `CETAS_LITE_LLAMACPP_URL` | Points d'accès des moteurs locaux | *(vide)* |
 
-```bash
-curl -s localhost:8787/api/aliases -H "Authorization: Bearer $TOKEN"
-curl -s -X POST localhost:8787/api/chat/send -H "Authorization: Bearer $TOKEN" \
-  -H 'Content-Type: application/json' -d '{"family":"code","mode":"standard","message":"salut"}'
-curl -sN "localhost:8787/api/chat/stream?from=0" -H "Authorization: Bearer $TOKEN"
-```
+## Base documentaire locale (RAG)
 
-Moteurs locaux (optionnel) : `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`, `CETAS_LITE_LLAMACPP_URL`.
+Déposez vos documents dans `$CETAS_LITE_HOME/rag/` (ou `CETAS_LITE_RAG_DIR`) :
 
-## Sécurité (variables d'environnement)
+- **corpus structurés** : un sous-dossier avec un `manifest.json` (métadonnées et facettes) ;
+- **fichiers bruts** : tout `.md`/`.txt` est indexé tel quel (un fichier = un passage).
 
-- `CETAS_LITE_REGISTRATION_OPEN` : non défini = **bootstrap** (le 1er compte est créé, puis l'inscription
-  se ferme) ; `true` = ouvert ; `false` = fermé.
-- `CETAS_LITE_TRUST_PROXY=true` : derrière un reverse proxy (nginx), utiliser le dernier hop
-  `X-Forwarded-For`/`X-Real-IP` pour le rate-limit par IP.
-- `CETAS_LITE_SANDBOX=none|auto|bwrap` (défaut `none`) : isole `Bash`/`RunScript` dans **bubblewrap**
-  (système en lecture seule, bind du seul workspace) ; sonde au démarrage, repli sûr.
-- `CETAS_LITE_ALLOW_SCRIPT` (défaut `false`) : active l'outil `RunScript`.
-- `CETAS_PEPPER` : pepper du coffre V4 (`internal/securevault`), préfixé au mot de passe maître avant Scrypt.
-  **Le perdre rend le coffre `vault.enc` indéchiffrable.**
+L'index est construit **localement, en mémoire** — aucun appel réseau, aucune dépendance externe.
+Dossier vide ⇒ fonctionnalité inactive (coût nul).
 
-## Clés providers (chiffrées)
+## Sécurité
 
-Deux coffres coexistent :
-
-```bash
-# clés providers côté serveur (bbolt `secrets`, cryptovault, serveur arrêté)
-export CETAS_LITE_VAULT_PASSWORD='...'
-./bin/cetas-lite keys set deepseek 'sk-...'
-./bin/cetas-lite keys list
-
-# coffre V4 + .env scellé (CLI séparée, serveur peut tourner)
-go build -o bin/cetas-keys ./cmd/cetas-keys/
-export CETAS_PEPPER='...'
-./bin/cetas-keys            # assistant interactif
-./bin/cetas-keys list
-```
-
-## Tests
-
-```bash
-make test          # go test ./... -race
-make ci            # gofmt check + vet + test -race
-make smoke         # smoke UI Playwright (python3 + playwright + chromium)
-```
+- Authentification multi-utilisateurs (JWT) ; inscription contrôlée (*bootstrap* par défaut).
+- Clés d'API **chiffrées au repos** ; jamais journalisées ni renvoyées en clair.
+- Commandes de l'agent exécutées en **sandbox** (isolation système optionnelle) et confinées à
+  l'espace de travail.
+- Interface web servie localement ; aucun asset tiers n'est chargé par défaut.
 
 ## Build & distribution
 
 ```bash
-make build         # binaire local -> bin/cetas-lite
-make cross         # linux/windows/darwin x amd64/arm64 -> bin/
-make desktop       # app bureau Windows (amd64 + arm64, subsystem GUI -> bin/*.exe)
+make build     # binaire local -> bin/cetas-lite
+make cross     # linux/windows/darwin x amd64/arm64 -> bin/
+make desktop   # application bureau Windows
+make test      # go test ./... -race
+make ci        # gofmt + vet + tests
 ```
 
-`CGO_ENABLED=0`, `-trimpath`, `-ldflags "-s -w -X main.version=..."`. CI GitHub Actions : tests
-matrice (ubuntu/windows/macos) + artifact cross-build.
-
-## Architecture
-
-- `cmd/cetas-lite` — CLI (`serve`, `keys`, `mcp`, `tools`, `backup`, `restore`, `version`)
-- `cmd/cetas-keys` — CLI du coffre V4 (assistant + `init/add/list/test/delete/export/passwd/status/sync`)
-- `internal/config` — configuration et répertoires
-- `internal/store` — bbolt (users, settings, conversations, secrets)
-- `internal/cryptovault` — AES-256-GCM + scrypt (clés `keys`, N=32768)
-- `internal/securevault` — coffre V4 `vault.enc` (Scrypt N=2^16, nonce HKDF, pepper `CETAS_PEPPER`)
-- `internal/keysetup` — logique du CLI `cetas-keys` (seal, validation live, `.env` scellé)
-- `internal/auth` — scrypt + JWT HS256
-- `internal/chat` — conversation/journaux, agent (+ `agents.go` multi-agents, `sessions.go` sessions, `autoroute.go` routage par effort, `execParallelReads`), registre d'outils, sandbox/isolation
-- `internal/provider` / `internal/local` — providers cloud + découverte locale
-- `internal/search` — web search + fetch (garde SSRF)
-- `internal/memory` — pages Markdown + index + TF-IDF
-- `internal/rag` — index documentaire local (mots-clés + facettes, in-process, sans dépendance)
-- `internal/mcp` — client MCP (stdio + HTTP, outils `mcp_*`)
-- `internal/customtools` — outils HTTP d'opérateur (`custom_*`)
-- `internal/plugins` — plugins externes (`plugin_*` : manifeste + exec/HTTP)
-- `internal/docs` / `internal/attach` — extraction documents + pièces jointes
-- `internal/modelcaps` — capacités provider/model (vision/tts/stt)
-- `internal/backup` — bundle tar.gz (base + mcp.json), restauration anti-traversée
-- `internal/web` — routeur HTTP + middleware
-- `web/` — assets embarqués (`go:embed`)
+Binaire statique (`CGO_ENABLED=0`), sans dépendance d'exécution.
 
 ## Licence
 
