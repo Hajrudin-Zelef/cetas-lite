@@ -1,0 +1,12 @@
+{
+  "corpora": [
+    {
+      "corpus": "briefing-ia-2026",
+      "title": "AI News 2026 — Reference Dossier",
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "index": "briefing-ia-2026/INDEX.md",
+      "manifest": "briefing-ia-2026/manifest.json",
+      "chunk_count": 126
+    }
+  ]
+}

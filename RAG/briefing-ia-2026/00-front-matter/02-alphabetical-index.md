@@ -1,0 +1,113 @@
+---
+id: briefing-ia-2026/00-front-matter/02-alphabetical-index
+title: "Alphabetical index (source)"
+domain: front-matter
+role: reference
+task: reference
+actors: ["AMD", "AWS", "Alibaba", "Ant", "Anthropic", "Apple", "CISA", "California", "China", "Cohere", "DeepSeek", "EU", "G20", "Google", "Hugging Face", "Inflection AI", "Intel", "Irregular", "JFrog", "James Zou", "Malaysia", "Meta", "Microsoft", "Mistral", "Moonshot", "Nvidia", "OpenAI", "OpenRouter", "Sakana", "SpaceX", "Stability AI", "StepFun", "Stripe", "United States", "Z.ai", "xAI"]
+dates: ["2026-02", "2026-06", "2026-06-16", "2026-06-17", "2026-07-08", "2026-07-09", "2026-09", "2026-09-03", "2026-09-04", "2026-09-08", "2026-09-09", "2026-09-14", "2026-09-16", "2026-09-21", "2026-12"]
+keywords: ["acquisition", "advisory", "agent", "agentic", "agents", "amd", "astra", "aws", "bedrock", "chatgpt", "claude", "cohere"]
+source: docs/RAG/briefing-ia-2026-en.md
+source_anchor: ""
+source_lines: [285, 380]
+sha256: ced009e8ce057558317f02e1708a0ea3ac6a5f807f021af094a6d3ea3b9dc682
+---
+
+# Alphabetical index (source)
+
+## Alphabetical index
+
+Key actors, models, events and topics in the dossier, with cross-references to sections.
+
+- **AA26-251A** : joint CISA–NSA–FBI advisory of September 8, 2026 accusing six Chinese laboratories of industrial-scale distillation → [§9](#s09)
+- **AgentCore (AWS)** : AWS agentic-infrastructure platform that went generally available on June 17, 2026 → [§7](#s07)
+- **Cloud agents** : long-running server-hosted agents, including Copilot Cowork (worldwide GA on June 16, 2026) → [§5](#s05), [§11](#s11)
+- **Personal agents** : Muse, Scout, Copilot Cowork, ChatGPT Work, Pi Journeys, Siri AI, Project Solara → [§11](#s11), [§4](#s04), [§5](#s05)
+- **AIRA₃** : Anthropic/AI Red system? — gold medal on Kaggle (8th of ~4,000 teams) → [§4](#s04)
+- **Aleph Alpha** : German lab, merger with Cohere (~$20 billion) into a transatlantic champion → [§6](#s06), [§8](#s08)
+- **Alibaba / Qwen** : accelerated image, shadow of distillation; conditional Apple integrations → [§6](#s06)
+- **ALMA** : meta-learning of agent memories (arXiv 2602.07755, February 2026) → [§1](#s01), [§11](#s11)
+- **AMD** : Advancing AI (Instinct MI400, Helios racks), closing above $1,000 billion on September 21, 2026, deal with Anthropic (up to 2 GW) → [§7](#s07), [§3](#s03)
+- **Anthropic** : Fable/Mythos 5 and 5.1, Opus/Sonnet lineup, Series G ($30 billion) and H ($65 billion), run-rate, $1.5 billion settlement, AWS deal, contemplated IPO → [§3](#s03), [§1](#s01), [§8](#s08)
+- **Apple** : iOS 27 and the Siri AI beta; conditional third-party model integrations → [§6](#s06), [§11](#s11)
+- **Astra (GPT-6)** : first model rated "Critical" in cybersecurity (September 3, 2026); Astra for Law, a configuration, not a new model → [§2](#s02), [§9](#s09)
+- **AWS** : deal with Anthropic (>$100 billion over ten years, 5 GW), AgentCore, WorkSpaces, Bedrock, Graviton5 → [§7](#s07), [§3](#s03)
+- **Bedrock** : AWS managed model catalog → [§7](#s07)
+- **Build 2026 (Microsoft)** : June 2–3, Scout, seven MAI models, Copilot Cowork — the "declaration of independence" → [§5](#s05), [§1](#s01)
+- **Carolina Principles** : AI safety principles validated at ministerial level at the G20, formal leader adoption expected December 2026 → [§10](#s10)
+- **ChatGPT for Teens / ChatGPT Health** : OpenAI's youth and health verticals → [§11](#s11)
+- **Claude (family)** : Fable 5/5.1, Mythos 5/5.1, Opus 4.6/4.7/4.8/5, Sonnet 5; 26% of internal R&D "led" by Claude → [§3](#s03)
+- **Code of Conduct for Humanist AI** : Mustafa Suleyman's 37-page document (September 14, 2026), clash with Amodei → [§5](#s05), [§9](#s09)
+- **Cohere** : Command A+, merger with Aleph Alpha (~$20 billion), Schwarz investment of €500 million, textbook sovereignty case → [§6](#s06), [§8](#s08)
+- **Colossus v2** : xAI supercomputer with 550,000 GPUs → [§5](#s05), [§7](#s07)
+- **Containment (incident)** : July 9–13, 2026, JFrog Artifactory zero-day, ~17,600 actions, Hugging Face discloses on July 16, OpenAI acknowledges on July 21 → [§2](#s02), [§9](#s09)
+- **Copilot Cowork** : Microsoft's long-running cloud agents, worldwide GA on June 16, 2026 → [§5](#s05), [§11](#s11)
+- **DeepSeek** : V4-Flash, then V4-Pro, then V4.1 Flash; at the heart of the distillation advisory → [§6](#s06), [§9](#s09)
+- **Digital Omnibus** : European regulatory package analyzed article by article → [§10](#s10), [§1](#s01)
+- **Distillation** : from a legitimate technique to a geopolitical weapon (September 8, 2026 advisory) → [§9](#s09), [§6](#s06)
+- **Executive Orders N-5-26 / N-9-26 (Newsom)** : procurement as a regulatory lever (March 30); California kill-switch study (September 18) → [§10](#s10), [§9](#s09), [§1](#s01)
+- **Export controls** : export controls; the 1.3-million-chip Malaysia case; US suspension of Fable/Mythos (June 12 – July 1) → [§10](#s10), [§7](#s07), [§3](#s03)
+- **Fable 5 / Mythos 5** : Anthropic's "Mythos-class" family (June 9), suspended June 12, restored July 1; Fable 5.1 No. 1 in rankings (September 1) → [§3](#s03)
+- **Fermat** : Lean formalization of Wiles's proof (13 million lines validated, September 4, 2026) → [§3](#s03), [§11](#s11)
+- **Frontier Safety Act** : US legislative proposal, uncertain adoption → [§10](#s10)
+- **Fugu (Sakana)** : learned Fugu Max/Ultra orchestrators, not foundation models → [§6](#s06), [§11](#s11)
+- **Gemini** : Flash cadence, Gemini 3.8 Live (native voice), 1 billion monthly users, Irregular incident, Gemini 4 only teased → [§4](#s04)
+- **GLM (Z.ai)** : GLM-5.3, giant funding rounds (~$5 billion), distillation accusation, unprecedented safety → [§6](#s06)
+- **Google** : Gemini strategy facing Meta → [§4](#s04)
+- **GPT-5.6** : Sol / Terra / Luna stratification (GA on July 9, 2026), June 27 preview, Trump executive order → [§2](#s02)
+- **GPT-Live** : OpenAI full-duplex voice (July 8, 2026), response to Gemini 3.8 Live → [§2](#s02), [§11](#s11)
+- **Graviton5** : AWS in-house chip, tens of millions of cores → [§7](#s07), [§4](#s04)
+- **Grok** : 4.5 (July 8), 4.6, 4.7 (September 21, chaotic launch), 4.8 announced (2,500 billion parameters); Grok in Copilot; $2/$6 pricing strategy → [§5](#s05)
+- **Helios** : AMD racks for MI400/MI455X; adopters including Anthropic → [§7](#s07), [§3](#s03)
+- **Hugging Face** : acquisition by Nvidia (~$12.9 billion, September 2, closing H1 2027); collateral victim of the July incident → [§7](#s07), [§8](#s08), [§9](#s09)
+- **Inflection AI / Pi** : Pi's return (Pi Journeys) after the Microsoft "raid" → [§6](#s06), [§11](#s11)
+- **Intel** : Panther Lake / Core Ultra Series 3, Clearwater Forest, 18A battle; "X9" SKU unconfirmed → [§7](#s07)
+- **IPO** : 2026 season — SpaceX ($1,770 billion, record), OpenAI confidential filing (June 8, $852 billion in financial signal), Anthropic filings, Moonshot project → [§8](#s08)
+- **Irregular** : Google cybersecurity exercise that spilled into the real world (Gemini incident) → [§4](#s04), [§9](#s09)
+- **Kimi K3** : Moonshot model, open weights, road to Hong Kong → [§6](#s06)
+- **Kill switch** : emergency shutdown of AI systems; under study in California (EO N-9-26), not imposed → [§9](#s09), [§10](#s10)
+- **Leanstral / Robostral** : Mistral open initiatives → [§6](#s06), [§1](#s01)
+- **LLaDA-Image-Turbo** : Ant/inclusionAI image model → [§6](#s06)
+- **LLaMA 5 / Muse Spark** : contested/postponed release toward 2027; Meta's Muse Spark pivot → [§4](#s04)
+- **MAI (family)** : seven in-house Microsoft models (Thinking-1, Code-1-Flash, Image-2.5, Transcribe-1.5/2, Voice-2…) → [§5](#s05)
+- **MAI-Thinking-1** : Microsoft's first 100% in-house reasoning → [§5](#s05)
+- **MAI-Transcribe-2** : No. 1 on FLEURS (September 3, 2026), transcription price war → [§5](#s05), [§11](#s11)
+- **MAI-Voice-2** : in-house multilingual clonable voice → [§5](#s05), [§11](#s11)
+- **Manus** : Meta acquisition blocked by Beijing — first Chinese veto → [§8](#s08), [§10](#s10), [§1](#s01)
+- **Meta** : Muse Spark pivot, Meta Muse (personal agent), Muse Image/Video/Code/Glimmer, Vera Rubin pact → [§4](#s04)
+- **MI400 (AMD Instinct)** : MI400/MI455X accelerators, "30% more tokens per dollar" (AMD claim) → [§7](#s07)
+- **Microsoft** : Build 2026, MAI family, Scout, Copilot Cowork, unthinkable alliance with xAI (Grok in Copilot) → [§5](#s05)
+- **Mistral** : record funding round (~€24 billion), Microsoft, Vibe platform, Leanstral/Robostral → [§6](#s06), [§8](#s08)
+- **Moonshot** : Kimi K3, open weights, Hong Kong IPO project → [§6](#s06), [§8](#s08)
+- **Muse (Anthropic)** : No. 1 assistant on iPhone in the United States → [§11](#s11)
+- **Muse (Meta)** : Meta's personal agent — free first, premium later → [§4](#s04), [§11](#s11)
+- **Newsom (Gavin)** : Executive Orders N-5-26 and N-9-26, California's regulatory lever → [§10](#s10), [§1](#s01), [§9](#s09)
+- **Nvidia** : Rubin NVL72, NCP partnership with Meta (Vera Rubin), Hugging Face acquisition → [§7](#s07), [§8](#s08)
+- **OpenAI** : GPT-5.6, containment incident, Astra, GPT-Live, confidential IPO filing → [§2](#s02), [§8](#s08)
+- **OpenRouter** : acquisition by Stripe ($7.5 billion) — the payment rails of the agentic ecosystem → [§2](#s02), [§8](#s08)
+- **Opus (4.6 / 4.7 / 4.8 / 5)** : 4.7 on April 16 (temporary leadership), 4.8 at 88.6% on SWE-bench Verified, Opus 5 quasi-agentic Fable 5 at half price → [§3](#s03)
+- **Paper2Agent** : from scientific publication to working agent (Nature, ~September 16, 2026) → [§11](#s11)
+- **Qwen** : see Alibaba / Qwen → [§6](#s06)
+- **Rubin (Nvidia)** : NVL72 platform, 2026 reference for dense AI compute → [§7](#s07)
+- **Run-rate** : >$47 billion in May (official), >$65 billion in July (Bloomberg) and >$100 billion in September (NYT), unconfirmed by Anthropic → [§3](#s03), [§8](#s08)
+- **Sakana** : see Fugu → [§6](#s06)
+- **SB 813 / AB 1405** : California laws of September 9, 2026, regulatory architecture with EO N-5-26 → [§10](#s10), [§9](#s09)
+- **Scale AI** : Meta investment ($14.3 billion) and leadership reshuffle → [§8](#s08)
+- **Schwarz / StackIT** : €500 million in Cohere's Series E; German campus at €11–13 billion → [§8](#s08)
+- **ScientistTwo** : full cycle of scientific discovery in autonomous mode (arXiv 2609.19644, September 2026) → [§11](#s11)
+- **Scout (Microsoft)** : always-on assistant announced at Build 2026, OpenClaw and Entra foundations → [§5](#s05), [§11](#s11)
+- **Series G / H (Anthropic)** : $30 billion at $380 billion (February 12) then $65 billion at $965 billion (May 28) → [§3](#s03), [§8](#s08)
+- **Siri AI** : beta in iOS 27 → [§6](#s06), [§11](#s11)
+- **Solara (Project)** : Microsoft chip-to-cloud platform for agent gadgets → [§5](#s05)
+- **Sonnet 5** : value-for-money champion (June 2026) → [§3](#s03)
+- **SpaceX** : merger with xAI (February 2, $1,250 billion in stock), record IPO ($1,770 billion) → [§5](#s05), [§8](#s08)
+- **Stable Audio 3.0** : Stability AI music model (Series B, licensed music) → [§6](#s06)
+- **StepFun** : Step 5 Preview, weights expected October 15 → [§6](#s06)
+- **Stripe** : acquisition of OpenRouter ($7.5 billion) → [§8](#s08), [§2](#s02)
+- **Suleyman (Mustafa)** : architect of Microsoft's AI independence, Code of Conduct → [§5](#s05)
+- **Trump (executive order)** : executive order around the GPT-5.6 preview (June 27); September 24 Trump–Xi dialogue → [§2](#s02), [§10](#s10)
+- **Vera Rubin** : next Nvidia platform, NCP pact with Meta → [§7](#s07), [§4](#s04)
+- **xAI** : Grok 4.5→4.8, Colossus v2, SpaceX–xAI merger, war chest → [§5](#s05), [§8](#s08)
+- **Z.ai** : ~$5 billion raised, GLM, distillation accusation → [§6](#s06), [§8](#s08)
+- **Zhipu** : Anthropic accusation (September 11) and September 8 advisory → [§3](#s03), [§9](#s09)
+

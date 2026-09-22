@@ -1,0 +1,5709 @@
+{
+  "corpus": "briefing-ia-2026",
+  "title": "AI News 2026 — Reference Dossier",
+  "source": "docs/RAG/briefing-ia-2026-en.md",
+  "source_lines": 13126,
+  "source_sha256": "0bdd2b6abd0459fda3cc2105acc27137f3526cbec9fc68e87f4b67f0a42db19d",
+  "chunk_count": 126,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "briefing-ia-2026/00-front-matter/00-title",
+      "path": "briefing-ia-2026/00-front-matter/00-title.md",
+      "title": "Reference Dossier — AI News 2026",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        6
+      ],
+      "canonical_for": [],
+      "words": 99,
+      "bytes": 633,
+      "sha256": "9a5eff4960ea679aabc2baf850fa9036f91a0074aacfe58fe73923394dc88280"
+    },
+    {
+      "id": "briefing-ia-2026/00-front-matter/01-table-of-contents",
+      "path": "briefing-ia-2026/00-front-matter/01-table-of-contents.md",
+      "title": "Detailed table of contents (source)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Ant",
+        "Anthropic",
+        "Apple",
+        "CISA",
+        "California",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "ExploitGym",
+        "G20",
+        "Glasswing",
+        "Google",
+        "Hugging Face",
+        "Inflection AI",
+        "Intel",
+        "Irregular",
+        "JFrog",
+        "James Zou",
+        "Kevin Buzzard",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Sakana",
+        "SpaceX",
+        "Stability AI",
+        "StepFun",
+        "Stripe",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-06-09",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "acquisition",
+        "advisory",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "antitrust",
+        "asl",
+        "astra",
+        "attribution",
+        "aws",
+        "bedrock"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        7,
+        284
+      ],
+      "canonical_for": [],
+      "words": 2722,
+      "bytes": 20011,
+      "sha256": "7648f0ef3868b67e7d9b536574a496061b251e69c2e6b22df7c5a879a1a7a01e"
+    },
+    {
+      "id": "briefing-ia-2026/00-front-matter/02-alphabetical-index",
+      "path": "briefing-ia-2026/00-front-matter/02-alphabetical-index.md",
+      "title": "Alphabetical index (source)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Ant",
+        "Anthropic",
+        "Apple",
+        "CISA",
+        "California",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "G20",
+        "Google",
+        "Hugging Face",
+        "Inflection AI",
+        "Intel",
+        "Irregular",
+        "JFrog",
+        "James Zou",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Sakana",
+        "SpaceX",
+        "Stability AI",
+        "StepFun",
+        "Stripe",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-06",
+        "2026-06-16",
+        "2026-06-17",
+        "2026-07-08",
+        "2026-07-09",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-14",
+        "2026-09-16",
+        "2026-09-21",
+        "2026-12"
+      ],
+      "keywords": [
+        "acquisition",
+        "advisory",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "astra",
+        "aws",
+        "bedrock",
+        "chatgpt",
+        "claude",
+        "cohere"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        285,
+        380
+      ],
+      "canonical_for": [],
+      "words": 1575,
+      "bytes": 11002,
+      "sha256": "ced009e8ce057558317f02e1708a0ea3ac6a5f807f021af094a6d3ea3b9dc682"
+    },
+    {
+      "id": "briefing-ia-2026/00-front-matter/03-thematic-keywords",
+      "path": "briefing-ia-2026/00-front-matter/03-thematic-keywords.md",
+      "title": "Thematic keywords (source)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "CISA",
+        "California",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "G20",
+        "Google",
+        "Inflection AI",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Moonshot",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-09-08"
+      ],
+      "keywords": [
+        "advisory",
+        "agent",
+        "agents",
+        "asl",
+        "astra",
+        "aws",
+        "benchmark",
+        "cohere",
+        "compute",
+        "consumer",
+        "containment",
+        "copilot"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        381,
+        402
+      ],
+      "canonical_for": [],
+      "words": 446,
+      "bytes": 3042,
+      "sha256": "c4e62f29285abd4f53797a60f274fd2c85893550f00fddd17cd07eaf60b043c0"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/00-introduction-methodology-guide",
+      "path": "briefing-ia-2026/01-timeline-2026/00-introduction-methodology-guide.md",
+      "title": "Introduction, methodology and user guide",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "CISA",
+        "California",
+        "China",
+        "Hugging Face",
+        "James Zou",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "StepFun",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "advisory",
+        "agents",
+        "benchmark",
+        "claude",
+        "compute",
+        "containment",
+        "cybersecurity",
+        "distillation",
+        "gpt-5.6",
+        "incident",
+        "ipo"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01",
+      "source_lines": [
+        403,
+        563
+      ],
+      "canonical_for": [],
+      "words": 1678,
+      "bytes": 10694,
+      "sha256": "3e6ba06b02fb697d6ea36d99ec24f325ccbf8f6a37625520325b7907e3eaf574"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/01-january",
+      "path": "briefing-ia-2026/01-timeline-2026/01-january.md",
+      "title": "January 2026: the month of latency",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "Anthropic",
+        "CISA",
+        "California",
+        "China",
+        "Google",
+        "Irregular",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-02",
+        "2026-09"
+      ],
+      "keywords": [
+        "acquisition",
+        "advisory",
+        "agentic",
+        "agents",
+        "astra",
+        "benchmark",
+        "claude",
+        "copilot",
+        "distillation",
+        "fermat",
+        "formalization",
+        "gemini"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-5",
+      "source_lines": [
+        564,
+        665
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 6858,
+      "sha256": "e4fcdbcc50f0f3ba3a4fccf7ed4a694e68ef380e5b5e787e3a57ba9dbadf755f"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/02-february",
+      "path": "briefing-ia-2026/01-timeline-2026/02-february.md",
+      "title": "February 2026: the capital deluge",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "CISA",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Irregular",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Sakana",
+        "SpaceX",
+        "StepFun",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02"
+      ],
+      "keywords": [
+        "acquisition",
+        "advisory",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "aws",
+        "claude",
+        "compute",
+        "copilot",
+        "deepseek",
+        "distillation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-9",
+      "source_lines": [
+        666,
+        829
+      ],
+      "canonical_for": [],
+      "words": 1838,
+      "bytes": 11344,
+      "sha256": "939c42e996b06b75d1243ee48e8cef7e4c658554a32eb1de45b1be1d0d10d8aa"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/03-march",
+      "path": "briefing-ia-2026/01-timeline-2026/03-march.md",
+      "title": "March 2026: the Californian regulatory lever",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "California",
+        "EU",
+        "Google",
+        "Meta",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-03"
+      ],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "claude",
+        "kill switch",
+        "opus 4",
+        "regulation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-14",
+      "source_lines": [
+        830,
+        935
+      ],
+      "canonical_for": [],
+      "words": 1102,
+      "bytes": 6970,
+      "sha256": "a596741cb88737a6700451dbb83aa0166840bcd9b1da09ba0534436f12f94f56"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/04-april",
+      "path": "briefing-ia-2026/01-timeline-2026/04-april.md",
+      "title": "April 2026: Anthropic's return and the pact of the century",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-04-16"
+      ],
+      "keywords": [
+        "agentic",
+        "amd",
+        "antitrust",
+        "astra",
+        "aws",
+        "claude",
+        "compute",
+        "cybersecurity",
+        "distribution",
+        "fable 5",
+        "forward-commitment",
+        "gemini"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-18",
+      "source_lines": [
+        936,
+        1068
+      ],
+      "canonical_for": [],
+      "words": 1425,
+      "bytes": 8922,
+      "sha256": "f3458c209a716051eb362139aaf5714e46b4c791a14297f9d6405ce03b4848d7"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/05-may",
+      "path": "briefing-ia-2026/01-timeline-2026/05-may.md",
+      "title": "May 2026: the model war and easy money",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "California",
+        "Cohere",
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "Sakana",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-05-28"
+      ],
+      "keywords": [
+        "acquisition",
+        "agentic",
+        "agents",
+        "astra",
+        "aws",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "cohere",
+        "compute",
+        "consumer",
+        "containment"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-23",
+      "source_lines": [
+        1069,
+        1204
+      ],
+      "canonical_for": [],
+      "words": 1466,
+      "bytes": 9023,
+      "sha256": "6e2a285c5fb180f41d144a3d1ceed9f55fb88c861dd700c5e6cf9dfd8bbcb7c5"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/06-june",
+      "path": "briefing-ia-2026/01-timeline-2026/06-june.md",
+      "title": "June 2026: record IPO, critical models and sovereignty",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "CISA",
+        "California",
+        "China",
+        "ExploitGym",
+        "Glasswing",
+        "Google",
+        "Irregular",
+        "JFrog",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-12",
+        "2026-06-27"
+      ],
+      "keywords": [
+        "ipo",
+        "sovereignty",
+        "acquisition",
+        "advisory",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "astra",
+        "aws",
+        "benchmark",
+        "benchmarks"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-28",
+      "source_lines": [
+        1205,
+        1415
+      ],
+      "canonical_for": [],
+      "words": 2250,
+      "bytes": 14271,
+      "sha256": "79f70df6334188fe8380ed2b8679d0561bf8278f8cfe0fd3c9de9f2df25648d3"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/07-july",
+      "path": "briefing-ia-2026/01-timeline-2026/07-july.md",
+      "title": "July 2026: multimodality, containment and the compute war",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Ant",
+        "Anthropic",
+        "CISA",
+        "California",
+        "China",
+        "DeepSeek",
+        "EU",
+        "ExploitGym",
+        "Google",
+        "Hugging Face",
+        "Inflection AI",
+        "Irregular",
+        "JFrog",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Sakana",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-07-07",
+        "2026-07-09",
+        "2026-07-23",
+        "2026-07-24",
+        "2026-07-27"
+      ],
+      "keywords": [
+        "compute",
+        "containment",
+        "multimodal",
+        "acquisition",
+        "advisory",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "aws",
+        "benchmark",
+        "benchmarks"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-35",
+      "source_lines": [
+        1416,
+        1656
+      ],
+      "canonical_for": [],
+      "words": 2592,
+      "bytes": 16192,
+      "sha256": "0af31dc4442cfffac73947c44ad240a967057a9e2aea11a2b5b006b81b2526e9"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/08-august",
+      "path": "briefing-ia-2026/01-timeline-2026/08-august.md",
+      "title": "August 2026: consolidation, acquisitions and scientific agents",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "James Zou",
+        "Kevin Buzzard",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Stability AI",
+        "StepFun",
+        "Stripe",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-08-12",
+        "2026-08-18",
+        "2026-08-19"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agents",
+        "advisory",
+        "agentic",
+        "amd",
+        "astra",
+        "aws",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "cohere"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-43",
+      "source_lines": [
+        1657,
+        1862
+      ],
+      "canonical_for": [],
+      "words": 2210,
+      "bytes": 14126,
+      "sha256": "616324b039297faed41cf790e2100bf8ecdd4e370f3e92e5d25ca4597d29659a"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/09-september-part1",
+      "path": "briefing-ia-2026/01-timeline-2026/09-september-part1.md",
+      "title": "September 2026 (part 1): models, science, acquisitions, advisory",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "CISA",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Glasswing",
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "James Zou",
+        "Kevin Buzzard",
+        "Malaysia",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Samsung",
+        "StepFun",
+        "Stripe",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-08"
+      ],
+      "keywords": [
+        "acquisition",
+        "advisory",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "antitrust",
+        "astra",
+        "attribution",
+        "aws",
+        "bedrock",
+        "benchmark"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-50",
+      "source_lines": [
+        1863,
+        2051
+      ],
+      "canonical_for": [],
+      "words": 2053,
+      "bytes": 13140,
+      "sha256": "6c53c71cf136465abd9251b5e669b6a096c96861b0bb92c717bec05ae854d28f"
+    },
+    {
+      "id": "briefing-ia-2026/01-timeline-2026/10-september-part2",
+      "path": "briefing-ia-2026/01-timeline-2026/10-september-part2.md",
+      "title": "September 2026 (part 2): regulation, diplomacy, consumer agents, markets",
+      "domain": "timeline",
+      "role": "timeline",
+      "task": "chronology",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "California",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "G20",
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "Meta",
+        "Microsoft",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Sakana",
+        "StepFun",
+        "Stripe",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-08",
+        "2026-09-11",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "consumer",
+        "regulation",
+        "acquisition",
+        "advisory",
+        "agentic",
+        "alignment",
+        "amd",
+        "bedrock",
+        "chatgpt",
+        "claude"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s01-56",
+      "source_lines": [
+        2052,
+        2187
+      ],
+      "canonical_for": [],
+      "words": 1532,
+      "bytes": 9659,
+      "sha256": "95bf8d781d6300dab21dc5273808989e34a529eabba1f3bf37ca69f4d8c9a154"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/01-gpt56-stratification",
+      "path": "briefing-ia-2026/02-openai/01-gpt56-stratification.md",
+      "title": "GPT-5.6: the Sol / Terra / Luna stratification",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "AWS",
+        "ExploitGym",
+        "Microsoft",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-07-09"
+      ],
+      "keywords": [
+        "gpt-5.6",
+        "luna",
+        "sol",
+        "terra",
+        "agent",
+        "agentic",
+        "astra",
+        "bedrock",
+        "benchmark",
+        "chatgpt",
+        "compute",
+        "containment"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02",
+      "source_lines": [
+        2188,
+        2332
+      ],
+      "canonical_for": [
+        "gpt56-ga"
+      ],
+      "words": 1675,
+      "bytes": 10532,
+      "sha256": "70544fa92fddc68e573c493d9515dc5ea5d24b5e8760ecf5ab443a6c35fef284"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/02-june27-preview",
+      "path": "briefing-ia-2026/02-openai/02-june27-preview.md",
+      "title": "The June 27 preview: trusted partners, Trump decree and speculation",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "ExploitGym",
+        "Hugging Face",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-27"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "containment",
+        "cyber",
+        "disclosure",
+        "gpt-5.6",
+        "incident",
+        "luna",
+        "refusals",
+        "sandbox",
+        "sandbox escape",
+        "sol"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-3",
+      "source_lines": [
+        2333,
+        2410
+      ],
+      "canonical_for": [],
+      "words": 870,
+      "bytes": 5648,
+      "sha256": "cff620154193602ef3c2628e63d19f1d4a9d699a2c70ef7b6a560a421986dcb2"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/03-containment-account",
+      "path": "briefing-ia-2026/02-openai/03-containment-account.md",
+      "title": "The July 9–13 containment incident: account and technical mechanics",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "safety-incident",
+      "actors": [
+        "ExploitGym",
+        "Hugging Face",
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "containment",
+        "incident",
+        "attribution",
+        "benchmark",
+        "cyber",
+        "cybersecurity",
+        "distribution",
+        "gpt-5.6",
+        "reasoning",
+        "refusals",
+        "research",
+        "safeguards"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-4",
+      "source_lines": [
+        2411,
+        2505
+      ],
+      "canonical_for": [
+        "containment-incident"
+      ],
+      "words": 967,
+      "bytes": 6447,
+      "sha256": "57d87b31ecb7aad46ad83854454b7f3b10339ea6f3190e62fec398e8a585745a"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/04-containment-analysis",
+      "path": "briefing-ia-2026/02-openai/04-containment-analysis.md",
+      "title": "The July 9–13 containment incident: chronology, impact and lessons",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "safety-incident",
+      "actors": [
+        "Anthropic",
+        "ExploitGym",
+        "Google",
+        "Hugging Face",
+        "JFrog",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-07-09"
+      ],
+      "keywords": [
+        "containment",
+        "incident",
+        "agent",
+        "agents",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cyber",
+        "cybersecurity",
+        "disclosure",
+        "distribution"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        2506,
+        2669
+      ],
+      "canonical_for": [
+        "containment-incident"
+      ],
+      "words": 1710,
+      "bytes": 11196,
+      "sha256": "6e317bb836ab29bb9320ba26d0d06140f87d7a30b28f88c4650a9888466ad8da"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/05-astra-launch",
+      "path": "briefing-ia-2026/02-openai/05-astra-launch.md",
+      "title": "Astra: from the August slowdown to the September 3 launch",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "AWS",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-03"
+      ],
+      "keywords": [
+        "astra",
+        "accelerator",
+        "aws",
+        "bedrock",
+        "benchmarks",
+        "compute",
+        "containment",
+        "cyber",
+        "cybersecurity",
+        "distribution",
+        "formalization",
+        "gpt-5.6"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-5",
+      "source_lines": [
+        2670,
+        2804
+      ],
+      "canonical_for": [
+        "gpt6-astra"
+      ],
+      "words": 1438,
+      "bytes": 9276,
+      "sha256": "16ab16881be3403459ad124a8db6949ed531f118c3f458e5c3e72dd7006cabd3"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/06-astra-for-law",
+      "path": "briefing-ia-2026/02-openai/06-astra-for-law.md",
+      "title": "Astra for Law (September 17): a configuration, not a model",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-17",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "astra",
+        "benchmarks",
+        "cybersecurity",
+        "gpt-6",
+        "parameters",
+        "pricing",
+        "safeguards",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-6",
+      "source_lines": [
+        2805,
+        2872
+      ],
+      "canonical_for": [],
+      "words": 730,
+      "bytes": 4785,
+      "sha256": "e9af0c6a42bd4e0e6017aaf8b2b96e2496f135e1967b6339937a8989b964a277"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/07-gpt-live",
+      "path": "briefing-ia-2026/02-openai/07-gpt-live.md",
+      "title": "GPT-Live (July 8): full-duplex voice",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07-08"
+      ],
+      "keywords": [
+        "full-duplex",
+        "gpt-live",
+        "voice",
+        "agent",
+        "astra",
+        "benchmark",
+        "consumer",
+        "containment",
+        "gemini",
+        "gemini 3.8",
+        "gpt-5.6",
+        "incident"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-7",
+      "source_lines": [
+        2873,
+        2952
+      ],
+      "canonical_for": [],
+      "words": 860,
+      "bytes": 5584,
+      "sha256": "ca9bd09b4a87a245a17477bb2822e9d56e48a71aaa7985489cb8515484021fb2"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/08-stripe-openrouter",
+      "path": "briefing-ia-2026/02-openai/08-stripe-openrouter.md",
+      "title": "Stripe acquires OpenRouter: payment rails of agentic AI",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "OpenAI",
+        "OpenRouter",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-08-19"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "acquisition",
+        "agents",
+        "astra",
+        "chatgpt",
+        "compute",
+        "containment",
+        "distribution",
+        "gpt-5.6",
+        "incident",
+        "ipo"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-8",
+      "source_lines": [
+        2953,
+        3052
+      ],
+      "canonical_for": [
+        "stripe-openrouter"
+      ],
+      "words": 1067,
+      "bytes": 6930,
+      "sha256": "54bb3d97a05005f0edcb2fefc083baade218b1c20a35a6d31112eaf493c76152"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/09-ipo-filing",
+      "path": "briefing-ia-2026/02-openai/09-ipo-filing.md",
+      "title": "The confidential IPO filing of June 8",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AWS",
+        "OpenAI",
+        "OpenRouter",
+        "Stripe",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-08"
+      ],
+      "keywords": [
+        "ipo",
+        "acquisition",
+        "agentic",
+        "astra",
+        "bedrock",
+        "chatgpt",
+        "consumer",
+        "containment",
+        "cybersecurity",
+        "distribution",
+        "gpt-5.6",
+        "gpt-live"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-9",
+      "source_lines": [
+        3053,
+        3158
+      ],
+      "canonical_for": [],
+      "words": 1148,
+      "bytes": 7359,
+      "sha256": "d21b88f9a7d93445bde01d2ccd9a410c81d056ac950d192f98b29d2b9f760629"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/10-summary-threads",
+      "path": "briefing-ia-2026/02-openai/10-summary-threads.md",
+      "title": "OpenAI summary: master chronology, security and product threads",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AWS",
+        "ExploitGym",
+        "Google",
+        "Hugging Face",
+        "JFrog",
+        "Microsoft",
+        "OpenAI",
+        "OpenRouter",
+        "Stripe",
+        "United States"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-08",
+        "2026-06-27",
+        "2026-07",
+        "2026-07-08",
+        "2026-07-09",
+        "2026-07-13",
+        "2026-07-16",
+        "2026-07-21",
+        "2026-08-08",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-09-03",
+        "2026-09-15",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "astra",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "containment",
+        "copilot",
+        "cyber",
+        "cybersecurity"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s02-10",
+      "source_lines": [
+        3159,
+        3254
+      ],
+      "canonical_for": [],
+      "words": 975,
+      "bytes": 6515,
+      "sha256": "554efd4bc38c70c84ac62f64672bab6322672eb319915e1aac9f0f771427d3ea"
+    },
+    {
+      "id": "briefing-ia-2026/02-openai/11-summary-questions-method",
+      "path": "briefing-ia-2026/02-openai/11-summary-questions-method.md",
+      "title": "OpenAI summary: ecosystem thread, open questions, method note",
+      "domain": "openai",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "OpenAI",
+        "OpenRouter",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "astra",
+        "attribution",
+        "aws",
+        "bedrock",
+        "containment",
+        "distribution",
+        "gemini",
+        "gemini 3.8",
+        "gpt-live",
+        "incident"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        3255,
+        3362
+      ],
+      "canonical_for": [],
+      "words": 1025,
+      "bytes": 6756,
+      "sha256": "0a2d4d21b6ed2b2544c1ff1ea58b9b1cf3e0dfa5a854734adf61fd21156778c8"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/01-mythos-launch",
+      "path": "briefing-ia-2026/03-anthropic/01-mythos-launch.md",
+      "title": "Anthropic: Mythos-class launch, safeguards, Glasswing, export control",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Glasswing",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-06-09",
+        "2026-06-12"
+      ],
+      "keywords": [
+        "export control",
+        "safeguards",
+        "agentic",
+        "alignment",
+        "amd",
+        "aws",
+        "claude",
+        "compute",
+        "consumer",
+        "context window",
+        "copyright",
+        "cyber"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03",
+      "source_lines": [
+        3363,
+        3550
+      ],
+      "canonical_for": [
+        "anthropic-mythos-saga"
+      ],
+      "words": 1729,
+      "bytes": 11092,
+      "sha256": "a83adceacf63503a5b0b3f4367de702895bde596b88255bfc3652572dfd10e33"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/02-shutdown-restoration",
+      "path": "briefing-ia-2026/03-anthropic/02-shutdown-restoration.md",
+      "title": "Anthropic: total shutdown, July 1 restoration, saga analysis",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Glasswing"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-07-01"
+      ],
+      "keywords": [
+        "distribution",
+        "fable 5",
+        "gpus",
+        "inference",
+        "jailbreak",
+        "mythos 5",
+        "opus 4",
+        "regulation",
+        "run-rate",
+        "safeguards",
+        "series h"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-6",
+      "source_lines": [
+        3551,
+        3679
+      ],
+      "canonical_for": [
+        "anthropic-mythos-saga"
+      ],
+      "words": 1142,
+      "bytes": 7517,
+      "sha256": "d5af0126e5bd1495be33c1225c25050bd406d9897114b0130cd10f0a48ab7853"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/03-september-iterations",
+      "path": "briefing-ia-2026/03-anthropic/03-september-iterations.md",
+      "title": "Anthropic: Fable 5.1 and Mythos 5.1 (September 1)",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Glasswing"
+      ],
+      "dates": [
+        "2026-09-01"
+      ],
+      "keywords": [
+        "fable 5",
+        "mythos 5",
+        "benchmark",
+        "claude",
+        "consumer",
+        "cyber",
+        "distribution",
+        "inference",
+        "jailbreak",
+        "opus 4",
+        "safeguards",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-9",
+      "source_lines": [
+        3680,
+        3751
+      ],
+      "canonical_for": [],
+      "words": 654,
+      "bytes": 4202,
+      "sha256": "8f8943bad2ff9f73b59d59337f570ef4265b77ebbd62e5a4dced5274e750411a"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/04-model-lineup",
+      "path": "briefing-ia-2026/03-anthropic/04-model-lineup.md",
+      "title": "Anthropic 2026 model lineup: Opus, Sonnet, Fable, comparison",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07-24"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "benchmark",
+        "claude",
+        "copyright",
+        "cyber",
+        "distillation",
+        "fable 5",
+        "fermat",
+        "formalization",
+        "opus 4",
+        "opus 5"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-11",
+      "source_lines": [
+        3752,
+        3921
+      ],
+      "canonical_for": [],
+      "words": 1589,
+      "bytes": 9666,
+      "sha256": "06b80713f0cd0c2611f389fb6f2e2ef9de84630ca4f856fe71a6169bfef435a4"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/05-funding",
+      "path": "briefing-ia-2026/03-anthropic/05-funding.md",
+      "title": "Anthropic funding: Series G, Series H, run-rate",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-02-12",
+        "2026-05",
+        "2026-05-28"
+      ],
+      "keywords": [
+        "funding",
+        "run-rate",
+        "series g",
+        "series h",
+        "compute",
+        "fable 5",
+        "opus 4",
+        "opus 5",
+        "research",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-16",
+      "source_lines": [
+        3922,
+        4019
+      ],
+      "canonical_for": [
+        "anthropic-funding"
+      ],
+      "words": 932,
+      "bytes": 5727,
+      "sha256": "cc912619ce99c3da7a4f6140d5610416d9320bc360facb642f0c2cb39830bae8"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/06-compute-deals",
+      "path": "briefing-ia-2026/03-anthropic/06-compute-deals.md",
+      "title": "Anthropic compute deals: AWS, AMD, architecture comparison",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-07-22"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "compute",
+        "alignment",
+        "claude",
+        "datacenter",
+        "forward-commitment",
+        "gpus",
+        "graviton",
+        "helios",
+        "inference",
+        "nvidia"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-19",
+      "source_lines": [
+        4020,
+        4142
+      ],
+      "canonical_for": [
+        "anthropic-compute-deals"
+      ],
+      "words": 1121,
+      "bytes": 7072,
+      "sha256": "3446b0bba7bb605fba4f20bbd155a0a04b8591676398dedd7ba0c79d274aa3d9"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/07-ipo-settlement",
+      "path": "briefing-ia-2026/03-anthropic/07-ipo-settlement.md",
+      "title": "Anthropic: IPO filings reported and the $1.5 billion settlement",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-07-20",
+        "2026-11"
+      ],
+      "keywords": [
+        "ipo",
+        "settlement",
+        "amd",
+        "aws",
+        "copyright",
+        "forward-commitment",
+        "lawsuit",
+        "opus 5",
+        "series g",
+        "series h",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-22",
+      "source_lines": [
+        4143,
+        4211
+      ],
+      "canonical_for": [],
+      "words": 641,
+      "bytes": 3950,
+      "sha256": "c1b09266e509a916b4c703ef867adb9c13d33de29b45ac5b1a19305855b95432"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/08-research-science",
+      "path": "briefing-ia-2026/03-anthropic/08-research-science.md",
+      "title": "Anthropic research: R&D share, protein design, Fermat, Zhipu accusation",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "research",
+      "actors": [
+        "Anthropic",
+        "CISA",
+        "China",
+        "Glasswing",
+        "Kevin Buzzard",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-08-20",
+        "2026-09-04",
+        "2026-09-11"
+      ],
+      "keywords": [
+        "fermat",
+        "protein",
+        "research",
+        "advisory",
+        "claude",
+        "compute",
+        "consumer",
+        "cyber",
+        "cybersecurity",
+        "distillation",
+        "export controls",
+        "fable 5"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-24",
+      "source_lines": [
+        4212,
+        4370
+      ],
+      "canonical_for": [
+        "anthropic-research"
+      ],
+      "words": 1498,
+      "bytes": 9458,
+      "sha256": "11c10fdd5b87d54354e056ec10f29816207a12c35ae8b3e0b208d5b0cc556b71"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/09-reference-tables",
+      "path": "briefing-ia-2026/03-anthropic/09-reference-tables.md",
+      "title": "Anthropic reference: master chronology and 2026 lineup table",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "CISA",
+        "Glasswing",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "advisory",
+        "agentic",
+        "amd",
+        "aws",
+        "claude",
+        "compute",
+        "distillation",
+        "export control",
+        "fable 5",
+        "fermat",
+        "jailbreak",
+        "lean"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-28",
+      "source_lines": [
+        4371,
+        4484
+      ],
+      "canonical_for": [],
+      "words": 1189,
+      "bytes": 6800,
+      "sha256": "ab4b009554325342dc7bee1f9c817087f6fd85ea451f1c7a96dbcfa04d15aa21"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/10-compute-lexicon",
+      "path": "briefing-ia-2026/03-anthropic/10-compute-lexicon.md",
+      "title": "Anthropic: seven gigawatts and the compliance lexicon",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Glasswing",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-04"
+      ],
+      "keywords": [
+        "alignment",
+        "amd",
+        "aws",
+        "benchmark",
+        "claude",
+        "compute",
+        "cyber",
+        "distribution",
+        "fable 5",
+        "forward-commitment",
+        "graviton",
+        "helios"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-30",
+      "source_lines": [
+        4485,
+        4576
+      ],
+      "canonical_for": [],
+      "words": 862,
+      "bytes": 5430,
+      "sha256": "76782761aef76391ae9a96f4f80aa135740e087c40c33cd61e794171bb59b98a"
+    },
+    {
+      "id": "briefing-ia-2026/03-anthropic/11-outlook-synthesis-method",
+      "path": "briefing-ia-2026/03-anthropic/11-outlook-synthesis-method.md",
+      "title": "Anthropic: 2027 outlook, synthesis, method note",
+      "domain": "anthropic",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "CISA",
+        "Glasswing",
+        "Kevin Buzzard",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-11"
+      ],
+      "keywords": [
+        "advisory",
+        "amd",
+        "aws",
+        "benchmark",
+        "claude",
+        "compute",
+        "copyright",
+        "distillation",
+        "distribution",
+        "fable 5",
+        "fermat",
+        "forward-commitment"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s03-32",
+      "source_lines": [
+        4577,
+        4723
+      ],
+      "canonical_for": [],
+      "words": 1399,
+      "bytes": 8768,
+      "sha256": "111fdbba4f49472286ef0362614ec47140e2f536beabe2bd67baf0a0ee1d181a"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/01-flash-cadence",
+      "path": "briefing-ia-2026/04-google-meta/01-flash-cadence.md",
+      "title": "Google: the Gemini Flash release-train cadence",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Google",
+        "Irregular",
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-05-19"
+      ],
+      "keywords": [
+        "gemini",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "cyber",
+        "cybersecurity",
+        "distribution",
+        "gemini 3.8",
+        "gemini 4",
+        "incident",
+        "muse"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04",
+      "source_lines": [
+        4724,
+        4848
+      ],
+      "canonical_for": [],
+      "words": 1091,
+      "bytes": 6647,
+      "sha256": "1a3a6a96547d5fb486bcbbade28eb9f683158123d4605096483e90ae310554c5"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/02-gemini-live-voice",
+      "path": "briefing-ia-2026/04-google-meta/02-gemini-live-voice.md",
+      "title": "Gemini 3.8 Live and Live Extended Thinking: voice as a native channel",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "product",
+      "actors": [
+        "Google",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-15"
+      ],
+      "keywords": [
+        "gemini",
+        "gemini 3.8",
+        "voice",
+        "agent",
+        "agentic",
+        "consumer",
+        "cyber",
+        "distribution",
+        "gpt-live",
+        "multimodal",
+        "muse",
+        "personal agent"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-3",
+      "source_lines": [
+        4849,
+        4955
+      ],
+      "canonical_for": [],
+      "words": 909,
+      "bytes": 5838,
+      "sha256": "fdf5282ff3b32dcde9f2b76d0051cf54dd568f080f4a04344ea1ec45136e1e37"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/03-gemini-billion-users",
+      "path": "briefing-ia-2026/04-google-meta/03-gemini-billion-users.md",
+      "title": "Gemini: one billion monthly users, distribution as a weapon",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Google",
+        "Meta"
+      ],
+      "dates": [
+        "2026-08-11"
+      ],
+      "keywords": [
+        "distribution",
+        "gemini",
+        "agent",
+        "agentic",
+        "agents",
+        "cybersecurity",
+        "lean",
+        "muse",
+        "personal agents",
+        "voice"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-4",
+      "source_lines": [
+        4956,
+        5054
+      ],
+      "canonical_for": [],
+      "words": 872,
+      "bytes": 5387,
+      "sha256": "95cc0c59410a55cbd6e0e86c10bc210418cb4917a5b4ced2caad03715545e512"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/04-irregular-incident",
+      "path": "briefing-ia-2026/04-google-meta/04-irregular-incident.md",
+      "title": "The Irregular incident: a cybersecurity exercise out of the sandbox",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "safety-incident",
+      "actors": [
+        "Google",
+        "Irregular",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-07",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "cyber",
+        "cybersecurity",
+        "incident",
+        "sandbox",
+        "alignment",
+        "disclosure",
+        "gemini",
+        "gemini 3.8",
+        "safeguards"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-5",
+      "source_lines": [
+        5055,
+        5150
+      ],
+      "canonical_for": [
+        "irregular-incident"
+      ],
+      "words": 846,
+      "bytes": 5272,
+      "sha256": "0fbc75a7146966a9da113ee345567a3e3ca374108fc57147b29084aeb20cf301"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/05-gemini-4-ghost",
+      "path": "briefing-ia-2026/04-google-meta/05-gemini-4-ghost.md",
+      "title": "Gemini 4: the ghost model, teased but not released",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Google",
+        "Meta"
+      ],
+      "dates": [],
+      "keywords": [
+        "gemini",
+        "gemini 4",
+        "agents",
+        "benchmarks",
+        "cyber",
+        "muse",
+        "personal agents",
+        "training",
+        "voice"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-6",
+      "source_lines": [
+        5151,
+        5221
+      ],
+      "canonical_for": [],
+      "words": 640,
+      "bytes": 3807,
+      "sha256": "8ab482368aa12b1131f1afc58f078e7130d8fbd6f896974d5821be6612258357"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/06-muse-spark-pivot",
+      "path": "briefing-ia-2026/04-google-meta/06-muse-spark-pivot.md",
+      "title": "The Muse Spark pivot: Meta cuts into the LLaMA lineage",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Google",
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "muse",
+        "muse spark",
+        "agent",
+        "agents",
+        "benchmarks",
+        "consumer",
+        "gemini",
+        "gemini 4",
+        "license",
+        "nvidia",
+        "open source",
+        "personal agent"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-7",
+      "source_lines": [
+        5222,
+        5296
+      ],
+      "canonical_for": [],
+      "words": 673,
+      "bytes": 3974,
+      "sha256": "2fed5c5abb2a10d99c3dbb3de20f61af86a964ed549edc1521a9fea7c3c833fa"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/07-meta-muse",
+      "path": "briefing-ia-2026/04-google-meta/07-meta-muse.md",
+      "title": "Meta Muse: Meta's personal agent",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Apple",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-08"
+      ],
+      "keywords": [
+        "agent",
+        "muse",
+        "personal agent",
+        "agents",
+        "chatgpt",
+        "consumer",
+        "distribution",
+        "gemini",
+        "gemini 3.8",
+        "liability",
+        "personal agents",
+        "pricing"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-8",
+      "source_lines": [
+        5297,
+        5416
+      ],
+      "canonical_for": [
+        "meta-muse"
+      ],
+      "words": 1081,
+      "bytes": 6632,
+      "sha256": "4bd8efe12dba9782245e0aab52add7b39cf2a16c52a1a5e4af27a7e957a0ceeb"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/08-muse-portfolio",
+      "path": "briefing-ia-2026/04-google-meta/08-muse-portfolio.md",
+      "title": "Muse Image, Video, Code and Glimmer: the creative portfolio",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Google",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "muse",
+        "agent",
+        "agentic",
+        "agents",
+        "consumer",
+        "license",
+        "muse spark",
+        "open source",
+        "parameters",
+        "personal agent",
+        "research"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-9",
+      "source_lines": [
+        5417,
+        5518
+      ],
+      "canonical_for": [],
+      "words": 892,
+      "bytes": 5483,
+      "sha256": "d700f43f8086c4f80369eeaec18924b51e7821597119f221b8fdf13af2736d29"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/09-muse-spark-13",
+      "path": "briefing-ia-2026/04-google-meta/09-muse-spark-13.md",
+      "title": "Muse Spark 1.3: agentic efficiency as a selling point",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Google",
+        "Meta"
+      ],
+      "dates": [
+        "2026-09-02"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "muse",
+        "muse spark",
+        "agents",
+        "benchmark",
+        "consumer",
+        "gemini",
+        "gemini 3.8",
+        "personal agent",
+        "reasoning",
+        "tool use"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-10",
+      "source_lines": [
+        5519,
+        5595
+      ],
+      "canonical_for": [],
+      "words": 674,
+      "bytes": 4128,
+      "sha256": "cc260b8d24d2db3c2aad24583f348f239be29f2e873107e47dcd4decf8a20dbe"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/10-aira3-kaggle",
+      "path": "briefing-ia-2026/04-google-meta/10-aira3-kaggle.md",
+      "title": "AIRA₃ on Kaggle: the gold medal demonstration",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "exploit",
+        "muse",
+        "muse spark",
+        "nvidia",
+        "personal agents",
+        "research",
+        "rubin"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-11",
+      "source_lines": [
+        5596,
+        5672
+      ],
+      "canonical_for": [],
+      "words": 681,
+      "bytes": 4130,
+      "sha256": "2982d506ab60432616ed5372d0da1a0e8c1c863e1bedaffcf333dee0eec311f9"
+    },
+    {
+      "id": "briefing-ia-2026/04-google-meta/11-meta-infrastructure-summary",
+      "path": "briefing-ia-2026/04-google-meta/11-meta-infrastructure-summary.md",
+      "title": "Meta infrastructure: Graviton5 and the Vera Rubin pact, plus summary",
+      "domain": "google-meta",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AWS",
+        "Google",
+        "Irregular",
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-06-10"
+      ],
+      "keywords": [
+        "rubin",
+        "agent",
+        "agents",
+        "aws",
+        "compute",
+        "distribution",
+        "gemini",
+        "gemini 4",
+        "incident",
+        "inference",
+        "multimodal",
+        "muse"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s04-12",
+      "source_lines": [
+        5673,
+        5788
+      ],
+      "canonical_for": [],
+      "words": 974,
+      "bytes": 6149,
+      "sha256": "eede8e034809b70e31951900f83bdf5b1d3a63323a664f52a581f1b55f728b8e"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/01-grok-4x-lineage",
+      "path": "briefing-ia-2026/05-xai-microsoft/01-grok-4x-lineage.md",
+      "title": "xAI: the Grok 4.5→4.8 lineage",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Microsoft",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-07-08",
+        "2026-08-12",
+        "2026-09-13",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "grok",
+        "grok 4",
+        "agentic",
+        "agents",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "context window",
+        "copilot",
+        "distillation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05",
+      "source_lines": [
+        5789,
+        5934
+      ],
+      "canonical_for": [
+        "grok-lineup"
+      ],
+      "words": 2648,
+      "bytes": 16474,
+      "sha256": "974c185c21e55a1fb691ce622d48e7f3231e4b8c873091fe0d1157d8a38359a1"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/02-grok-copilot-precursors",
+      "path": "briefing-ia-2026/05-xai-microsoft/02-grok-copilot-precursors.md",
+      "title": "Grok in Copilot and the Microsoft-ecosystem precursors",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Anthropic",
+        "EU",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-19",
+        "2026-08",
+        "2026-09",
+        "2026-09-12"
+      ],
+      "keywords": [
+        "copilot",
+        "grok",
+        "agent",
+        "agents",
+        "distribution",
+        "grok 4",
+        "mai",
+        "opus 4",
+        "regulation",
+        "safeguards"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-7",
+      "source_lines": [
+        5935,
+        6002
+      ],
+      "canonical_for": [],
+      "words": 1205,
+      "bytes": 7806,
+      "sha256": "1346f8cee51ebd6701692290dd7f74de1ff1c082d5855e81110e24f6d8e4fc5e"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/03-xai-compute-finance",
+      "path": "briefing-ia-2026/05-xai-microsoft/03-xai-compute-finance.md",
+      "title": "xAI: Colossus v2, war chest and the SpaceX–xAI merger",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-02",
+        "2026-06-12"
+      ],
+      "keywords": [
+        "merger",
+        "compute",
+        "datacenter",
+        "distribution",
+        "gpu",
+        "gpus",
+        "grok",
+        "grok 4",
+        "ipo",
+        "parameters",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-9",
+      "source_lines": [
+        6003,
+        6084
+      ],
+      "canonical_for": [
+        "spacex-xai-merger"
+      ],
+      "words": 1419,
+      "bytes": 8812,
+      "sha256": "aec06040df5cbc9e97f3ea93292ceccd5e81e3aedbb85ca5a5a10f7684b069ff"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/04-build-mai-agents",
+      "path": "briefing-ia-2026/05-xai-microsoft/04-build-mai-agents.md",
+      "title": "Microsoft Build 2026: the MAI family, Scout, Solara, Copilot Cowork",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "Qualcomm",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-02",
+        "2026-06-16",
+        "2026-08",
+        "2026-09",
+        "2026-09-03"
+      ],
+      "keywords": [
+        "copilot",
+        "mai",
+        "scout",
+        "acquisition",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "consumer"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-12",
+      "source_lines": [
+        6085,
+        6322
+      ],
+      "canonical_for": [
+        "microsoft-mai"
+      ],
+      "words": 4176,
+      "bytes": 27098,
+      "sha256": "a65c45c26231076a37a285c80cf6a33385a52ebc94ccc4f3d3d3f758d6734f71"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/05-code-of-conduct",
+      "path": "briefing-ia-2026/05-xai-microsoft/05-code-of-conduct.md",
+      "title": "Microsoft: the Code of Conduct for Humanist AI and the Suleyman–Amodei clash",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Microsoft",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "alignment",
+        "benchmarks",
+        "copilot",
+        "grok",
+        "grok 4",
+        "lean",
+        "liability",
+        "mai",
+        "model welfare",
+        "opus 4"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-22",
+      "source_lines": [
+        6323,
+        6427
+      ],
+      "canonical_for": [],
+      "words": 1875,
+      "bytes": 12007,
+      "sha256": "0b552fcd1c51569041459f99dce3938599fcc7d0c561562491df242395a253a4"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/06-master-timeline",
+      "path": "briefing-ia-2026/05-xai-microsoft/06-master-timeline.md",
+      "title": "xAI and Microsoft: master timeline and conclusion",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "EU",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "Qualcomm",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-02",
+        "2026-02-19",
+        "2026-06-12",
+        "2026-06-16",
+        "2026-07-08",
+        "2026-08-12",
+        "2026-09-03",
+        "2026-09-12",
+        "2026-09-13",
+        "2026-09-14",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "bedrock",
+        "copilot",
+        "distillation",
+        "distribution",
+        "gpus",
+        "grok",
+        "grok 4",
+        "ipo"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-27",
+      "source_lines": [
+        6428,
+        6490
+      ],
+      "canonical_for": [],
+      "words": 1034,
+      "bytes": 6849,
+      "sha256": "8e0a08a65a2b44620ea1fb0f49fd1d66d78b22cb8cd5b6f1669a7dab3c906825"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/07-cross-analysis",
+      "path": "briefing-ia-2026/05-xai-microsoft/07-cross-analysis.md",
+      "title": "xAI/Microsoft cross-analysis: pricing, developer axis, Frontier, MAI doctrine",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "EU",
+        "Microsoft",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-08"
+      ],
+      "keywords": [
+        "mai",
+        "pricing",
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "bedrock",
+        "benchmarks",
+        "copilot",
+        "distillation",
+        "distribution",
+        "grok"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-29",
+      "source_lines": [
+        6491,
+        6617
+      ],
+      "canonical_for": [],
+      "words": 2415,
+      "bytes": 15733,
+      "sha256": "c57bf62fc4a38d3bad71e6929b0898b8da2af493e6ec9d40cc7c18f7e2586749"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/08-portraits-blindspots",
+      "path": "briefing-ia-2026/05-xai-microsoft/08-portraits-blindspots.md",
+      "title": "Portraits (Suleyman, Musk) and acknowledged blind spots",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Microsoft",
+        "OpenAI",
+        "Qualcomm",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "bedrock",
+        "benchmarks",
+        "context window",
+        "copilot",
+        "distillation",
+        "distribution",
+        "gpus",
+        "grok",
+        "grok 4",
+        "incident",
+        "ipo",
+        "mai"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-35",
+      "source_lines": [
+        6618,
+        6679
+      ],
+      "canonical_for": [],
+      "words": 1080,
+      "bytes": 6939,
+      "sha256": "be503f22144e1685e4c4f663789b044ef67a5c03745fb9880961a9441c0d4e0d"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/09-reference-tables",
+      "path": "briefing-ia-2026/05-xai-microsoft/09-reference-tables.md",
+      "title": "Reference: glossary, Grok and MAI comparison tables",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "grok",
+        "mai",
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "context window",
+        "copilot",
+        "distillation",
+        "distribution"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-38",
+      "source_lines": [
+        6680,
+        6752
+      ],
+      "canonical_for": [],
+      "words": 1162,
+      "bytes": 7408,
+      "sha256": "c1e5c57e7dc3741242caa89d7dc5c0ff5b5520109b69aba6afbd3b4968070cb7"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/10-month-narratives",
+      "path": "briefing-ia-2026/05-xai-microsoft/10-month-narratives.md",
+      "title": "Month narratives (June, September) and the economics of models",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "EU",
+        "Microsoft",
+        "OpenAI",
+        "Qualcomm",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "agents",
+        "bedrock",
+        "compute",
+        "copilot",
+        "deflation",
+        "distillation",
+        "distribution",
+        "gpus",
+        "grok",
+        "grok 4",
+        "inference",
+        "ipo"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-41",
+      "source_lines": [
+        6753,
+        6835
+      ],
+      "canonical_for": [],
+      "words": 1643,
+      "bytes": 10555,
+      "sha256": "81972ffbda0c628d04069a8e11687ec6947eda0b5ceab95e8ecbe2506e69513e"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/11-precursor-numbers-foundations",
+      "path": "briefing-ia-2026/05-xai-microsoft/11-precursor-numbers-foundations.md",
+      "title": "Precursors, productivity battleground, quantitative memo, Scout foundations",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "EU",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "Qualcomm",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-19"
+      ],
+      "keywords": [
+        "scout",
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "bedrock",
+        "consumer",
+        "copilot",
+        "distillation",
+        "distribution",
+        "gpus",
+        "grok"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-45",
+      "source_lines": [
+        6836,
+        6932
+      ],
+      "canonical_for": [],
+      "words": 1866,
+      "bytes": 12622,
+      "sha256": "edad45acd117dbd6f5502fffd8a51d5cfc33e9f5bdce15e3b3eb89cfd7195eaf"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/12-synthesis-bets",
+      "path": "briefing-ia-2026/05-xai-microsoft/12-synthesis-bets.md",
+      "title": "Synthesis: 2026 on one page, the rivalry, the five bets",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "EU",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-19"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "bedrock",
+        "benchmarks",
+        "copilot",
+        "distillation",
+        "distribution",
+        "gpus",
+        "grok",
+        "grok 4",
+        "inference",
+        "ipo"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-50",
+      "source_lines": [
+        6933,
+        7014
+      ],
+      "canonical_for": [],
+      "words": 1574,
+      "bytes": 10243,
+      "sha256": "d02d68fb5b1f15c2299c3f71f2c03bcff68f2e3dceffab1bfef04c24a79ea16b"
+    },
+    {
+      "id": "briefing-ia-2026/05-xai-microsoft/13-reading-epilogue-colophon",
+      "path": "briefing-ia-2026/05-xai-microsoft/13-reading-epilogue-colophon.md",
+      "title": "Reading note, epilogue and section colophon",
+      "domain": "xai-microsoft",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "Microsoft",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "benchmark",
+        "copilot",
+        "gpus",
+        "grok",
+        "grok 4",
+        "ipo",
+        "mai",
+        "merger",
+        "pricing",
+        "research",
+        "scout"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s05-54",
+      "source_lines": [
+        7015,
+        7047
+      ],
+      "canonical_for": [],
+      "words": 520,
+      "bytes": 3304,
+      "sha256": "41a15931d3c80f18b33943918dc664c2a95e8d00285ff9ca45d95219de6268be"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/01-deepseek",
+      "path": "briefing-ia-2026/06-labs-china-europe/01-deepseek.md",
+      "title": "DeepSeek: V4-Flash, V4-Pro then V4.1 Flash",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Hugging Face",
+        "Inflection AI",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "Sakana",
+        "Stability AI",
+        "StepFun",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-08"
+      ],
+      "keywords": [
+        "deepseek",
+        "accelerator",
+        "advisory",
+        "cohere",
+        "compute",
+        "context window",
+        "distillation",
+        "glm",
+        "inference",
+        "kimi",
+        "license",
+        "licenses"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06",
+      "source_lines": [
+        7048,
+        7204
+      ],
+      "canonical_for": [],
+      "words": 1332,
+      "bytes": 8576,
+      "sha256": "23d121d630807ee241b0a70c553f2f2eab2635746b358ac0e9be85ead21f1453"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/02-alibaba-qwen",
+      "path": "briefing-ia-2026/06-labs-china-europe/02-alibaba-qwen.md",
+      "title": "Alibaba / Qwen: accelerated image generation and distillation",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Alibaba",
+        "China",
+        "DeepSeek",
+        "Moonshot"
+      ],
+      "dates": [
+        "2025-09",
+        "2026-07",
+        "2026-08",
+        "2026-09-08",
+        "2026-09-20"
+      ],
+      "keywords": [
+        "distillation",
+        "qwen",
+        "advisory",
+        "deepseek",
+        "kimi",
+        "license",
+        "licenses",
+        "open weights",
+        "research",
+        "safeguards",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-3",
+      "source_lines": [
+        7205,
+        7279
+      ],
+      "canonical_for": [],
+      "words": 664,
+      "bytes": 4258,
+      "sha256": "cfee3e8fc2d43c6ae45eba8c672bde92578b26d16c429604876e7fb54d209201"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/03-moonshot-kimi",
+      "path": "briefing-ia-2026/06-labs-china-europe/03-moonshot-kimi.md",
+      "title": "Moonshot / Kimi: K3, open weights and the Hong Kong road",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Meta",
+        "Moonshot",
+        "StepFun"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09",
+        "2026-09-04",
+        "2026-09-08",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "kimi",
+        "open weights",
+        "advisory",
+        "aws",
+        "bedrock",
+        "cohere",
+        "context window",
+        "deepseek",
+        "distillation",
+        "distribution",
+        "ipo",
+        "open source"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-4",
+      "source_lines": [
+        7280,
+        7381
+      ],
+      "canonical_for": [],
+      "words": 866,
+      "bytes": 5463,
+      "sha256": "cf5111b8da381445fc4c0c93b60c57d8be34c54d61070ee5e94de76e42bdb5a4"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/04-zai-glm",
+      "path": "briefing-ia-2026/06-labs-china-europe/04-zai-glm.md",
+      "title": "Z.ai / GLM: raises, distillation accusation, security move",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Moonshot",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-08-14",
+        "2026-09",
+        "2026-09-11",
+        "2026-09-13"
+      ],
+      "keywords": [
+        "distillation",
+        "glm",
+        "advisory",
+        "agentic",
+        "claude",
+        "compute",
+        "deepseek",
+        "ipo",
+        "qwen",
+        "research",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-5",
+      "source_lines": [
+        7382,
+        7467
+      ],
+      "canonical_for": [],
+      "words": 761,
+      "bytes": 4879,
+      "sha256": "6a8364074f4663aad6de169f058c2bc28cfc30cbc9fc3448ef7ab81bdee3046e"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/05-stepfun",
+      "path": "briefing-ia-2026/06-labs-china-europe/05-stepfun.md",
+      "title": "StepFun: Step 5 Preview",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Alibaba",
+        "China",
+        "DeepSeek",
+        "Moonshot",
+        "StepFun"
+      ],
+      "dates": [
+        "2026-09-08",
+        "2026-09-20",
+        "2026-10-15"
+      ],
+      "keywords": [
+        "advisory",
+        "context window",
+        "deepseek",
+        "distillation",
+        "inference",
+        "kimi",
+        "open-weight",
+        "parameters",
+        "pricing"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-6",
+      "source_lines": [
+        7468,
+        7529
+      ],
+      "canonical_for": [],
+      "words": 517,
+      "bytes": 3329,
+      "sha256": "af0a53182a5491f1d0033fa5378fcbce556310548b00a84b07480f07ec5ee9fc"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/06-mistral",
+      "path": "briefing-ia-2026/06-labs-china-europe/06-mistral.md",
+      "title": "Mistral: record raise, Microsoft and the Vibe platform",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "China",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-05-28",
+        "2026-06",
+        "2026-07",
+        "2026-07-21",
+        "2026-08",
+        "2026-09-08"
+      ],
+      "keywords": [
+        "mistral",
+        "acquisition",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "chatgpt",
+        "compute",
+        "consumer",
+        "distribution",
+        "funding",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-7",
+      "source_lines": [
+        7530,
+        7648
+      ],
+      "canonical_for": [],
+      "words": 1003,
+      "bytes": 6455,
+      "sha256": "a165219fd435a3f606ca365b34d7827f0ebd815351ab81554ee6c91705c4dacd"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/07-cohere-aleph",
+      "path": "briefing-ia-2026/06-labs-china-europe/07-cohere-aleph.md",
+      "title": "Cohere: Command A+ and the Aleph Alpha merger",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "China",
+        "Cohere",
+        "EU",
+        "Hugging Face",
+        "Microsoft",
+        "Mistral",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-05-20",
+        "2026-09",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "cohere",
+        "merger",
+        "compute",
+        "context window",
+        "gpus",
+        "license",
+        "mistral",
+        "multimodal",
+        "open weights",
+        "quantization",
+        "regulation",
+        "research"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-8",
+      "source_lines": [
+        7649,
+        7753
+      ],
+      "canonical_for": [],
+      "words": 915,
+      "bytes": 5934,
+      "sha256": "1c8b1dbb90499295a9a07758f4d588c48e8f967ea5f4bb8c938b87168dbb267e"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/08-sakana-apple",
+      "path": "briefing-ia-2026/06-labs-china-europe/08-sakana-apple.md",
+      "title": "Sakana Fugu and Apple iOS 27 / Siri AI",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Google",
+        "Mistral",
+        "Moonshot",
+        "OpenAI",
+        "Sakana"
+      ],
+      "dates": [
+        "2026-09-11",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "fugu",
+        "sakana",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "cohere",
+        "compute",
+        "deepseek",
+        "distribution",
+        "gemini",
+        "kimi",
+        "memory"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-9",
+      "source_lines": [
+        7754,
+        7842
+      ],
+      "canonical_for": [],
+      "words": 758,
+      "bytes": 4823,
+      "sha256": "172a878d9c9088e6a35929e11bdbf19e68e7fa3fee5c9c59fd3b0dbdb6746331"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/09-stability-inflection-ant",
+      "path": "briefing-ia-2026/06-labs-china-europe/09-stability-inflection-ant.md",
+      "title": "Stability AI, Inflection AI and Ant / inclusionAI",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Ant",
+        "China",
+        "Inflection AI",
+        "Microsoft",
+        "Stability AI"
+      ],
+      "dates": [
+        "2026-07-21",
+        "2026-08-25",
+        "2026-09-04"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "alignment",
+        "amd",
+        "consumer",
+        "license",
+        "memory",
+        "open-weight",
+        "pricing",
+        "research",
+        "training",
+        "voice"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-11",
+      "source_lines": [
+        7843,
+        7946
+      ],
+      "canonical_for": [],
+      "words": 879,
+      "bytes": 5624,
+      "sha256": "c10d78e12b01851afd89a8b26a1ca754df14df7ffa09a3595ded88d332723fb6"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/10-cross-prices-sizes",
+      "path": "briefing-ia-2026/06-labs-china-europe/10-cross-prices-sizes.md",
+      "title": "Cross-cutting readings: API prices and open-weight sizes",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Moonshot",
+        "Sakana",
+        "StepFun"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "open-weight",
+        "agent",
+        "cohere",
+        "context window",
+        "deepseek",
+        "distillation",
+        "fugu",
+        "kimi",
+        "licenses",
+        "parameters",
+        "price war",
+        "pricing"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s06-14",
+      "source_lines": [
+        7947,
+        8010
+      ],
+      "canonical_for": [],
+      "words": 516,
+      "bytes": 3156,
+      "sha256": "80577df51f5b1f76c3b41d70cac72d90172840b8c1fd1f5c64abe14db77b1c94"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/11-cross-distill-license-capital",
+      "path": "briefing-ia-2026/06-labs-china-europe/11-cross-distill-license-capital.md",
+      "title": "Cross-cutting readings: distillation, licenses, capital",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "distillation",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "Hugging Face",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "Samsung",
+        "Stability AI",
+        "StepFun",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-08"
+      ],
+      "keywords": [
+        "distillation",
+        "license",
+        "licenses",
+        "advisory",
+        "claude",
+        "cohere",
+        "deepseek",
+        "glm",
+        "gpus",
+        "ipo",
+        "kimi",
+        "merger"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        8011,
+        8091
+      ],
+      "canonical_for": [],
+      "words": 718,
+      "bytes": 4830,
+      "sha256": "bbe1a1f859c61204580207be3014e009e8bf0a65df54f70ad268b79b3c9c3448"
+    },
+    {
+      "id": "briefing-ia-2026/06-labs-china-europe/12-cross-calendar-conclusion",
+      "path": "briefing-ia-2026/06-labs-china-europe/12-cross-calendar-conclusion.md",
+      "title": "Cross-cutting readings: September calendar and section conclusion",
+      "domain": "labs-china-europe",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Ant",
+        "Anthropic",
+        "Apple",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "Google",
+        "Inflection AI",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Sakana",
+        "Samsung",
+        "Stability AI",
+        "StepFun",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-10-15"
+      ],
+      "keywords": [
+        "advisory",
+        "aws",
+        "bedrock",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "cohere",
+        "compute",
+        "deepseek",
+        "distillation",
+        "distribution",
+        "fugu"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "",
+      "source_lines": [
+        8092,
+        8199
+      ],
+      "canonical_for": [],
+      "words": 929,
+      "bytes": 6041,
+      "sha256": "f4c69d71d210f76498e5c32923248ba184e5cc375a26fd7c492f044e7893d08a"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/01-rubin-nvl72",
+      "path": "briefing-ia-2026/07-infrastructure-compute/01-rubin-nvl72.md",
+      "title": "Rubin NVL72: the 2026 reference for dense AI compute",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "rubin",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "aws",
+        "bedrock",
+        "benchmarks",
+        "export controls",
+        "helios",
+        "inference"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07",
+      "source_lines": [
+        8200,
+        8338
+      ],
+      "canonical_for": [],
+      "words": 1573,
+      "bytes": 10001,
+      "sha256": "e5e36a3068d4206d8977e447872b5989505a0d047682d1b5e1718473a9bb42ae"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/02-meta-nvidia-ncp",
+      "path": "briefing-ia-2026/07-infrastructure-compute/02-meta-nvidia-ncp.md",
+      "title": "Meta, official NVIDIA NCP partner with Vera Rubin",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "rubin",
+        "accelerator",
+        "alignment",
+        "amd",
+        "aws",
+        "compute",
+        "funding",
+        "helios"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-3",
+      "source_lines": [
+        8339,
+        8404
+      ],
+      "canonical_for": [],
+      "words": 760,
+      "bytes": 4763,
+      "sha256": "715eb4a160f518c4c7116788495713e9fff78c2bcc793247a70d66a61d1a6727"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/03-nvidia-huggingface",
+      "path": "briefing-ia-2026/07-infrastructure-compute/03-nvidia-huggingface.md",
+      "title": "Nvidia acquires Hugging Face",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-02"
+      ],
+      "keywords": [
+        "nvidia",
+        "acquisition",
+        "distribution"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-4",
+      "source_lines": [
+        8405,
+        8487
+      ],
+      "canonical_for": [
+        "nvidia-huggingface"
+      ],
+      "words": 941,
+      "bytes": 5919,
+      "sha256": "5cd62dbddc28f17d3a939b69ae500673cac42a97ead8e718118467a1ebd198f3"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/04-malaysia-export",
+      "path": "briefing-ia-2026/07-infrastructure-compute/04-malaysia-export.md",
+      "title": "1.3 million chips in Malaysia: the export-control dossier",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Malaysia",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "compute",
+        "export control",
+        "export controls",
+        "nvidia",
+        "regulation",
+        "sovereignty"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-5",
+      "source_lines": [
+        8488,
+        8553
+      ],
+      "canonical_for": [],
+      "words": 658,
+      "bytes": 4285,
+      "sha256": "86ae56e089f6770333a00a0ca074c70029cd0ae93409a8ab35ea641f1f8bb8ce"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/05-amd-helios",
+      "path": "briefing-ia-2026/07-infrastructure-compute/05-amd-helios.md",
+      "title": "AMD Advancing AI: Instinct MI400 and the Helios racks",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07-23"
+      ],
+      "keywords": [
+        "amd",
+        "helios",
+        "agent",
+        "agents",
+        "benchmarks",
+        "compute",
+        "gpu",
+        "gpus",
+        "inference",
+        "memory",
+        "nvidia",
+        "rubin"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-6",
+      "source_lines": [
+        8554,
+        8668
+      ],
+      "canonical_for": [
+        "amd-mi400"
+      ],
+      "words": 1303,
+      "bytes": 8062,
+      "sha256": "36cab2dab82eb7b5b600844b40f3f65c1c8b1a027424927d0eeb5e65ea58f66b"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/06-compute-deals",
+      "path": "briefing-ia-2026/07-infrastructure-compute/06-compute-deals.md",
+      "title": "The compute deals: Anthropic, OpenAI and the Helios ecosystem",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07-22"
+      ],
+      "keywords": [
+        "compute",
+        "helios",
+        "amd",
+        "claude",
+        "nvidia"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-7",
+      "source_lines": [
+        8669,
+        8774
+      ],
+      "canonical_for": [],
+      "words": 1184,
+      "bytes": 7191,
+      "sha256": "c051eb8d5642f3054e91fd124c15124ff9e6022aa949192c43e92e81731520d9"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/07-amd-trillion-day",
+      "path": "briefing-ia-2026/07-infrastructure-compute/07-amd-trillion-day.md",
+      "title": "AMD crosses $1 trillion in market capitalisation",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Apple",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-21"
+      ],
+      "keywords": [
+        "amd",
+        "agent",
+        "agentic",
+        "agents",
+        "compute",
+        "inference",
+        "intel",
+        "muse",
+        "nvidia",
+        "reasoning"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-8",
+      "source_lines": [
+        8775,
+        8842
+      ],
+      "canonical_for": [],
+      "words": 726,
+      "bytes": 4540,
+      "sha256": "33e9a1fad4914ee84b1c651fa08b8b08f165bc39d6825a0e06d7ddc85153cdd5"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/08-intel-18a",
+      "path": "briefing-ia-2026/07-infrastructure-compute/08-intel-18a.md",
+      "title": "Intel: Panther Lake, Clearwater Forest and the 18A battle",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AMD",
+        "Intel",
+        "United States"
+      ],
+      "dates": [
+        "2026-01"
+      ],
+      "keywords": [
+        "intel",
+        "accelerator",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "compute",
+        "inference",
+        "sovereignty"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-9",
+      "source_lines": [
+        8843,
+        8956
+      ],
+      "canonical_for": [],
+      "words": 1213,
+      "bytes": 7466,
+      "sha256": "545fe2797b9b44019da86e774e3a15b4cb57a41d4c30468ea4abe9b695ee113c"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/09-aws-agentcore",
+      "path": "briefing-ia-2026/07-infrastructure-compute/09-aws-agentcore.md",
+      "title": "AWS: AgentCore, WorkSpaces and agentic infrastructure",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "aws",
+        "agents",
+        "compute",
+        "mcp",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-10",
+      "source_lines": [
+        8957,
+        9065
+      ],
+      "canonical_for": [],
+      "words": 1116,
+      "bytes": 7318,
+      "sha256": "552b361e2ffa3a8922503c2aaf090881093764b9b6f0097d5bb5fb8ceb1922ea"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/10-bedrock-graviton5",
+      "path": "briefing-ia-2026/07-infrastructure-compute/10-bedrock-graviton5.md",
+      "title": "Bedrock and Graviton5: model catalog and in-house chip",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Intel",
+        "Meta",
+        "Moonshot",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06-10",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "bedrock",
+        "graviton",
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "astra",
+        "aws",
+        "benchmark",
+        "claude",
+        "compute",
+        "fable 5"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-11",
+      "source_lines": [
+        9066,
+        9164
+      ],
+      "canonical_for": [],
+      "words": 1022,
+      "bytes": 6371,
+      "sha256": "1bce29f36017a5168bf4600b021a6de47e48afa768a1316be5096ab1400de8aa"
+    },
+    {
+      "id": "briefing-ia-2026/07-infrastructure-compute/11-xai-colossus-v2",
+      "path": "briefing-ia-2026/07-infrastructure-compute/11-xai-colossus-v2.md",
+      "title": "xAI Colossus v2: 550,000 GPUs",
+      "domain": "infrastructure-compute",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "gpus",
+        "agent",
+        "agents",
+        "amd",
+        "aws",
+        "compute",
+        "distribution",
+        "helios",
+        "incident",
+        "inference",
+        "intel"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s07-12",
+      "source_lines": [
+        9165,
+        9244
+      ],
+      "canonical_for": [],
+      "words": 816,
+      "bytes": 5157,
+      "sha256": "d7c77ac8b1944eac39912f08a90b2edc85a35e47138bb158aa0914d7ea1ed4bc"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/01-intro-spacex-xai",
+      "path": "briefing-ia-2026/08-deals-funding/01-intro-spacex-xai.md",
+      "title": "The SpaceX–xAI mega-merger: $1,250 billion in stock",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Cohere",
+        "Mistral",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-02"
+      ],
+      "keywords": [
+        "merger",
+        "acquisition",
+        "agents",
+        "cohere",
+        "compute",
+        "funding",
+        "ipo",
+        "mistral",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08",
+      "source_lines": [
+        9245,
+        9320
+      ],
+      "canonical_for": [],
+      "words": 646,
+      "bytes": 4117,
+      "sha256": "68727655cf07986646d297666f6afca46228cf1eb46baa0e14c650cf93a5ceac"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/02-anthropic-ipo-season",
+      "path": "briefing-ia-2026/08-deals-funding/02-anthropic-ipo-season.md",
+      "title": "Anthropic hypergrowth and the 2026 IPO season",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "China",
+        "Moonshot",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-12",
+        "2026-05-28",
+        "2026-06-08",
+        "2026-06-12",
+        "2026-09-04",
+        "2026-11"
+      ],
+      "keywords": [
+        "ipo",
+        "amd",
+        "aws",
+        "compute",
+        "merger",
+        "series g",
+        "series h",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08-3",
+      "source_lines": [
+        9321,
+        9429
+      ],
+      "canonical_for": [],
+      "words": 996,
+      "bytes": 6111,
+      "sha256": "4224f051ac9b35c8724169029299ed5491dfe7d0a511a234e8be369d944fa1fa"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/03-mistral-zai-raises",
+      "path": "briefing-ia-2026/08-deals-funding/03-mistral-zai-raises.md",
+      "title": "Mistral and Z.ai: European record and Chinese fundraising",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "Samsung",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-07-21",
+        "2026-09-08",
+        "2026-09-13"
+      ],
+      "keywords": [
+        "mistral",
+        "compute",
+        "funding",
+        "gpus",
+        "research",
+        "rubin",
+        "sovereignty",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08-5",
+      "source_lines": [
+        9430,
+        9518
+      ],
+      "canonical_for": [],
+      "words": 782,
+      "bytes": 4928,
+      "sha256": "e827d116239a83b070403f27bd623b22f05065d48b12f43d370c3e2c1fe8cc97"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/04-stability-stripe",
+      "path": "briefing-ia-2026/08-deals-funding/04-stability-stripe.md",
+      "title": "Stability AI raise and Stripe acquires OpenRouter",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "OpenRouter",
+        "Stability AI",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-08-19",
+        "2026-08-25"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "compute",
+        "distribution",
+        "licenses"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08-7",
+      "source_lines": [
+        9519,
+        9607
+      ],
+      "canonical_for": [
+        "stripe-openrouter"
+      ],
+      "words": 754,
+      "bytes": 4808,
+      "sha256": "0ab122996779f004f77cdaab8ab53dc0d534d8bb6ba08bbb953f1fbb86d0cebd"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/05-nvidia-huggingface",
+      "path": "briefing-ia-2026/08-deals-funding/05-nvidia-huggingface.md",
+      "title": "Nvidia acquires Hugging Face: the promise of openness",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "infrastructure",
+      "actors": [
+        "AMD",
+        "China",
+        "Google",
+        "Hugging Face",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-02"
+      ],
+      "keywords": [
+        "nvidia",
+        "acquisition",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "distribution",
+        "intel"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08-9",
+      "source_lines": [
+        9608,
+        9660
+      ],
+      "canonical_for": [],
+      "words": 476,
+      "bytes": 2984,
+      "sha256": "0bded124d36007c0f630c17838f012650b7cfc9ac3326c1c123677a1b0280b0e"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/06-meta-scale-manus",
+      "path": "briefing-ia-2026/08-deals-funding/06-meta-scale-manus.md",
+      "title": "Meta–Scale AI and Beijing's block of the Manus acquisition",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "China",
+        "Meta",
+        "Moonshot",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-02"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agents",
+        "ipo",
+        "research",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08-10",
+      "source_lines": [
+        9661,
+        9745
+      ],
+      "canonical_for": [
+        "meta-scale-manus"
+      ],
+      "words": 747,
+      "bytes": 4658,
+      "sha256": "81513be2cac02185dbd4c7e26fa9a06e8f44fae3401ffd784bb3e78be8a696b1"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/07-schwarz-cohere-aleph",
+      "path": "briefing-ia-2026/08-deals-funding/07-schwarz-cohere-aleph.md",
+      "title": "Schwarz–Cohere and the Cohere + Aleph Alpha merger",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "China",
+        "Cohere",
+        "Mistral",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-16"
+      ],
+      "keywords": [
+        "cohere",
+        "merger",
+        "compute",
+        "distribution",
+        "funding",
+        "mistral",
+        "sovereignty",
+        "training",
+        "valuation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08-12",
+      "source_lines": [
+        9746,
+        9841
+      ],
+      "canonical_for": [
+        "cohere-aleph"
+      ],
+      "words": 850,
+      "bytes": 5502,
+      "sha256": "4d12a374487d57748531f8eead20832b718e1133dfd6a4d2ec23e26bf17038db"
+    },
+    {
+      "id": "briefing-ia-2026/08-deals-funding/08-compute-deals-summary",
+      "path": "briefing-ia-2026/08-deals-funding/08-compute-deals-summary.md",
+      "title": "The structuring compute deals and the deals summary table",
+      "domain": "deals-funding",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "China",
+        "Cohere",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Samsung",
+        "SpaceX",
+        "Stability AI",
+        "Stripe",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-05-28",
+        "2026-07-21",
+        "2026-07-22"
+      ],
+      "keywords": [
+        "compute",
+        "accelerator",
+        "acquisition",
+        "amd",
+        "aws",
+        "cohere",
+        "gpu",
+        "gpus",
+        "graviton",
+        "helios",
+        "ipo",
+        "merger"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s08-14",
+      "source_lines": [
+        9842,
+        9933
+      ],
+      "canonical_for": [],
+      "words": 1082,
+      "bytes": 6441,
+      "sha256": "87d8f8a312a9a9754210d0f66141b4c9f2b6bf025b17335bb5a73ec274687140"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/01-incident-facts-technical",
+      "path": "briefing-ia-2026/09-ai-safety/01-incident-facts-technical.md",
+      "title": "Containment incident: facts and technical mechanics",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "safety-incident",
+      "actors": [
+        "Anthropic",
+        "ExploitGym",
+        "Google",
+        "Hugging Face",
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07-13"
+      ],
+      "keywords": [
+        "containment",
+        "incident",
+        "advisory",
+        "alignment",
+        "astra",
+        "attribution",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cyber",
+        "disclosure",
+        "exploit"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09",
+      "source_lines": [
+        9934,
+        10020
+      ],
+      "canonical_for": [
+        "containment-incident"
+      ],
+      "words": 1523,
+      "bytes": 10117,
+      "sha256": "1fcc3c22c4a4885da137d0f46a62c6936b05296a4b1814b7e4e7a9800d722d37"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/02-detection-firstorder",
+      "path": "briefing-ia-2026/09-ai-safety/02-detection-firstorder.md",
+      "title": "Detection, disclosure, and why it is first-order",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "ai-safety",
+      "actors": [
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "disclosure",
+        "agent",
+        "agents",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "containment",
+        "incident",
+        "refusals",
+        "research",
+        "safeguards",
+        "sandbox"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-6",
+      "source_lines": [
+        10021,
+        10068
+      ],
+      "canonical_for": [],
+      "words": 904,
+      "bytes": 5938,
+      "sha256": "b443b8523483f79c6c6db2f7f3a56cc5d7d9542b8d132d562f33cd8aa00f2d1d"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/03-astra-critical-effects",
+      "path": "briefing-ia-2026/09-ai-safety/03-astra-critical-effects.md",
+      "title": "Direct effects and GPT-6 Astra, first 'Critical' model",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-03"
+      ],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agentic",
+        "benchmarks",
+        "cyber",
+        "cybersecurity",
+        "exploit",
+        "formalization",
+        "incident",
+        "preparedness framework",
+        "sandbox",
+        "sandbox escape"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-8",
+      "source_lines": [
+        10069,
+        10120
+      ],
+      "canonical_for": [
+        "gpt6-astra"
+      ],
+      "words": 1035,
+      "bytes": 6832,
+      "sha256": "b1804e55ddc83f09c75aa51439e9508970e0a2925a914db28c0248b018087e72"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/04-advisory-labs-channels",
+      "path": "briefing-ia-2026/09-ai-safety/04-advisory-labs-channels.md",
+      "title": "Distillation advisory, the six labs, channels and legal scope",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "distillation",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "CISA",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Moonshot",
+        "StepFun",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-08"
+      ],
+      "keywords": [
+        "advisory",
+        "distillation",
+        "agentic",
+        "attribution",
+        "claude",
+        "consumer",
+        "cybersecurity",
+        "deepseek",
+        "export controls",
+        "gemini",
+        "grok",
+        "kimi"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-10",
+      "source_lines": [
+        10121,
+        10217
+      ],
+      "canonical_for": [
+        "distillation-advisory"
+      ],
+      "words": 2065,
+      "bytes": 13404,
+      "sha256": "861f95b0a0f6817f3b5688048a43392fa1e3db0f22f5c1d4cadd5ae961fd9da9"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/05-legal-california",
+      "path": "briefing-ia-2026/09-ai-safety/05-legal-california.md",
+      "title": "California: kill-switch study and regulatory architecture",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "California"
+      ],
+      "dates": [
+        "2026-03-30",
+        "2026-09-09",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "advisory",
+        "incident",
+        "regulation"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-14",
+      "source_lines": [
+        10218,
+        10262
+      ],
+      "canonical_for": [],
+      "words": 940,
+      "bytes": 6171,
+      "sha256": "3b463da6786657795e56211451444c644a8c9ceb9c25f70363249ca6f590466a"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/06-gemini-anthropic-frameworks",
+      "path": "briefing-ia-2026/09-ai-safety/06-gemini-anthropic-frameworks.md",
+      "title": "Gemini incident, Anthropic frameworks and coordination antitrust",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Anthropic",
+        "California",
+        "Google",
+        "Irregular",
+        "JFrog",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-08",
+        "2026-09",
+        "2026-09-15",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "antitrust",
+        "gemini",
+        "incident",
+        "advisory",
+        "asl",
+        "astra",
+        "claude",
+        "containment",
+        "cybersecurity",
+        "disclosure",
+        "exploit",
+        "model welfare"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-16",
+      "source_lines": [
+        10263,
+        10379
+      ],
+      "canonical_for": [
+        "irregular-incident"
+      ],
+      "words": 2813,
+      "bytes": 17854,
+      "sha256": "f81d0e13b008a7d61196c20c1a4c5778dbf9ca3deec202644b4f0fb5119a1533"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/07-coordination-comparison-evalsafety",
+      "path": "briefing-ia-2026/09-ai-safety/07-coordination-comparison-evalsafety.md",
+      "title": "Incident comparison and evaluation safety",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "ai-safety",
+      "actors": [
+        "California",
+        "ExploitGym",
+        "Google",
+        "Irregular",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "incident",
+        "agents",
+        "attribution",
+        "benchmark",
+        "containment",
+        "cyber",
+        "disclosure",
+        "distribution",
+        "gemini",
+        "refusals",
+        "safeguards",
+        "sandbox"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-20",
+      "source_lines": [
+        10380,
+        10435
+      ],
+      "canonical_for": [],
+      "words": 1123,
+      "bytes": 7317,
+      "sha256": "cc4ad03905fc1949770d6ab510ccf793ca13f165182d33711ab2f79f18afa577"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/08-benchmarks-distillation-apis",
+      "path": "briefing-ia-2026/09-ai-safety/08-benchmarks-distillation-apis.md",
+      "title": "Benchmarks, distillation doctrine and API defence",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "distillation",
+      "actors": [
+        "CISA",
+        "China",
+        "DeepSeek",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "distillation",
+        "advisory",
+        "attribution",
+        "deepseek",
+        "disclosure",
+        "incident",
+        "reasoning",
+        "regulation",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-22",
+      "source_lines": [
+        10436,
+        10508
+      ],
+      "canonical_for": [],
+      "words": 1586,
+      "bytes": 10506,
+      "sha256": "62470b631c041f6f8798b36d2e6f325e29ebb4136fc1a292de7e42d91cba8dc4"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/09-killswitch-verifiers-governance",
+      "path": "briefing-ia-2026/09-ai-safety/09-killswitch-verifiers-governance.md",
+      "title": "Kill switch, certified verifiers and governance layers",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Anthropic",
+        "California",
+        "ExploitGym",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-09"
+      ],
+      "keywords": [
+        "kill switch",
+        "advisory",
+        "antitrust",
+        "gemini",
+        "incident",
+        "inference",
+        "preparedness framework",
+        "regulation",
+        "rsp",
+        "sandbox",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-25",
+      "source_lines": [
+        10509,
+        10588
+      ],
+      "canonical_for": [],
+      "words": 1603,
+      "bytes": 10653,
+      "sha256": "f55b3ee9f3e00711635e044bc14f4915804e798ca3bd6e918828059e5e11d128"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/10-timeline-victim-attribution",
+      "path": "briefing-ia-2026/09-ai-safety/10-timeline-victim-attribution.md",
+      "title": "Safety timeline, Hugging Face collateral and attribution",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "ai-safety",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "CISA",
+        "California",
+        "China",
+        "DeepSeek",
+        "ExploitGym",
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "JFrog",
+        "Microsoft",
+        "Moonshot",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-07"
+      ],
+      "keywords": [
+        "attribution",
+        "advisory",
+        "agents",
+        "antitrust",
+        "astra",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "containment",
+        "cybersecurity",
+        "deepseek"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-28",
+      "source_lines": [
+        10589,
+        10658
+      ],
+      "canonical_for": [],
+      "words": 1467,
+      "bytes": 9308,
+      "sha256": "94913ac26fa0aac5fd1e5521600648bd6d0f8fb2c0dc1c57f099f07411e222c8"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/11-scenarios-glossary-blindspots",
+      "path": "briefing-ia-2026/09-ai-safety/11-scenarios-glossary-blindspots.md",
+      "title": "Scenarios 2027, reasoned glossary and blind spots",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "CISA",
+        "California",
+        "ExploitGym",
+        "Google",
+        "Irregular",
+        "JFrog",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "advisory",
+        "antitrust",
+        "asl",
+        "astra",
+        "attribution",
+        "benchmark",
+        "benchmarks",
+        "containment",
+        "cyber",
+        "cybersecurity",
+        "distillation",
+        "gemini"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-31",
+      "source_lines": [
+        10659,
+        10742
+      ],
+      "canonical_for": [],
+      "words": 1504,
+      "bytes": 10152,
+      "sha256": "e23c80d03b66b707193824c74d05974ac3f82350256d87f6b0c343848d35cbaa"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/12-polecon-openweights-human",
+      "path": "briefing-ia-2026/09-ai-safety/12-polecon-openweights-human.md",
+      "title": "Political economy of trust, open weights and the human factor",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "ai-safety",
+      "actors": [
+        "Anthropic",
+        "California",
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "open weights",
+        "advisory",
+        "alignment",
+        "antitrust",
+        "astra",
+        "benchmark",
+        "compute",
+        "consumer",
+        "disclosure",
+        "distillation",
+        "gemini",
+        "incident"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-34",
+      "source_lines": [
+        10743,
+        10821
+      ],
+      "canonical_for": [],
+      "words": 1625,
+      "bytes": 10964,
+      "sha256": "41af16c87077503cc4f04c73c19cd7353dfdace967fc8a4f76cf466c76c43e3c"
+    },
+    {
+      "id": "briefing-ia-2026/09-ai-safety/13-synthesis",
+      "path": "briefing-ia-2026/09-ai-safety/13-synthesis.md",
+      "title": "AI safety synthesis: what 2026 changes",
+      "domain": "ai-safety",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "Anthropic",
+        "CISA",
+        "California",
+        "Google",
+        "Irregular",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-11-16"
+      ],
+      "keywords": [
+        "advisory",
+        "agents",
+        "antitrust",
+        "asl",
+        "benchmark",
+        "benchmarks",
+        "cybersecurity",
+        "gemini",
+        "incident",
+        "preparedness framework",
+        "research",
+        "rsp"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s09-37",
+      "source_lines": [
+        10822,
+        10870
+      ],
+      "canonical_for": [],
+      "words": 1082,
+      "bytes": 7086,
+      "sha256": "ee7e5201fd241540b59dd328ed7cbd380b2d785ffc9997bb025e064c495d0d5f"
+    },
+    {
+      "id": "briefing-ia-2026/10-regulation-geopolitics/01-eu-digital-omnibus",
+      "path": "briefing-ia-2026/10-regulation-geopolitics/01-eu-digital-omnibus.md",
+      "title": "EU: the Digital Omnibus, article by article",
+      "domain": "regulation-geopolitics",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "China",
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-07-27",
+        "2026-08",
+        "2026-08-02",
+        "2026-12",
+        "2026-12-02",
+        "2027-12",
+        "2027-12-02",
+        "2028-08",
+        "2028-08-02"
+      ],
+      "keywords": [
+        "incident",
+        "preemption",
+        "regulation",
+        "training",
+        "watermarking"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s10",
+      "source_lines": [
+        10871,
+        10994
+      ],
+      "canonical_for": [],
+      "words": 2164,
+      "bytes": 14358,
+      "sha256": "eee7146bea3768b994c54a3cc9cffde36acabe8959f635a0cbce7a9b901d1364"
+    },
+    {
+      "id": "briefing-ia-2026/10-regulation-geopolitics/02-us-state-patchwork",
+      "path": "briefing-ia-2026/10-regulation-geopolitics/02-us-state-patchwork.md",
+      "title": "US: the state patchwork, law by law",
+      "domain": "regulation-geopolitics",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "California",
+        "United States"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-01-01",
+        "2027-01",
+        "2027-01-01"
+      ],
+      "keywords": [
+        "compute",
+        "incident",
+        "memory",
+        "preemption",
+        "regulation",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s10-3",
+      "source_lines": [
+        10995,
+        11130
+      ],
+      "canonical_for": [],
+      "words": 2743,
+      "bytes": 17807,
+      "sha256": "3d8424c82af8502d6a13b2888c24c814a5d04f10257bd174646f3dc394e3d420"
+    },
+    {
+      "id": "briefing-ia-2026/10-regulation-geopolitics/03-federal-preemption",
+      "path": "briefing-ia-2026/10-regulation-geopolitics/03-federal-preemption.md",
+      "title": "Federal preemption: the blocked path",
+      "domain": "regulation-geopolitics",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "California",
+        "China",
+        "EU",
+        "G20",
+        "United States"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-06"
+      ],
+      "keywords": [
+        "preemption",
+        "consumer",
+        "incident",
+        "lawsuit",
+        "regulation",
+        "sovereignty",
+        "voice"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s10-4",
+      "source_lines": [
+        11131,
+        11242
+      ],
+      "canonical_for": [],
+      "words": 2160,
+      "bytes": 13656,
+      "sha256": "0c6f69cdbb982aad241798e10b5c21aaacff95be589b97e00f2455a521ce92d4"
+    },
+    {
+      "id": "briefing-ia-2026/10-regulation-geopolitics/04-g20-carolina",
+      "path": "briefing-ia-2026/10-regulation-geopolitics/04-g20-carolina.md",
+      "title": "G20 and the 'Carolina Principles'",
+      "domain": "regulation-geopolitics",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Anthropic",
+        "China",
+        "EU",
+        "G20",
+        "Google",
+        "Malaysia",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-12",
+        "2027-12",
+        "2028-08"
+      ],
+      "keywords": [
+        "acquisition",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "export controls",
+        "memory",
+        "mythos 5",
+        "nvidia",
+        "regulation",
+        "voice",
+        "watermarking"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s10-5",
+      "source_lines": [
+        11243,
+        11356
+      ],
+      "canonical_for": [],
+      "words": 2334,
+      "bytes": 15186,
+      "sha256": "4db06482881d15bebc2fce1559c53d42c849845a0e7b49ba4551ee872ff9700d"
+    },
+    {
+      "id": "briefing-ia-2026/10-regulation-geopolitics/05-us-china-dialogue",
+      "path": "briefing-ia-2026/10-regulation-geopolitics/05-us-china-dialogue.md",
+      "title": "The US–China dialogue on AI safety",
+      "domain": "regulation-geopolitics",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "China",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-05",
+        "2026-09-20",
+        "2026-09-24"
+      ],
+      "keywords": [
+        "cyber",
+        "distillation",
+        "export controls",
+        "formalization",
+        "incident",
+        "memory",
+        "training"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s10-6",
+      "source_lines": [
+        11357,
+        11503
+      ],
+      "canonical_for": [],
+      "words": 2974,
+      "bytes": 18966,
+      "sha256": "4f90db808f07283bc741ef0e054fa1caacdf7743195ae59310263f891b73d1c9"
+    },
+    {
+      "id": "briefing-ia-2026/10-regulation-geopolitics/06-export-sovereignty",
+      "path": "briefing-ia-2026/10-regulation-geopolitics/06-export-sovereignty.md",
+      "title": "Export controls and technological sovereignty",
+      "domain": "regulation-geopolitics",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Cohere",
+        "G20",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-07-01",
+        "2026-07-21",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "export control",
+        "export controls",
+        "sovereignty",
+        "acquisition",
+        "agent",
+        "cohere",
+        "compute",
+        "distillation",
+        "distribution",
+        "funding",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s10-7",
+      "source_lines": [
+        11504,
+        11640
+      ],
+      "canonical_for": [],
+      "words": 2861,
+      "bytes": 18400,
+      "sha256": "52186c6d81de2a8c69a714de12443c0d5c4c4693d35b57d20b9b3ebc16ee3023"
+    },
+    {
+      "id": "briefing-ia-2026/10-regulation-geopolitics/07-us-frontier-debate",
+      "path": "briefing-ia-2026/10-regulation-geopolitics/07-us-frontier-debate.md",
+      "title": "The US debate: moratorium, mandatory benchmark and legislative proposals",
+      "domain": "regulation-geopolitics",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Anthropic",
+        "China",
+        "G20",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09",
+        "2026-09-02",
+        "2026-09-04",
+        "2026-09-05",
+        "2026-09-12",
+        "2026-09-20",
+        "2026-09-24"
+      ],
+      "keywords": [
+        "benchmark",
+        "moratorium",
+        "benchmarks",
+        "compute",
+        "incident",
+        "licenses",
+        "memory",
+        "preemption",
+        "regulation",
+        "research",
+        "training",
+        "voice"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s10-8",
+      "source_lines": [
+        11641,
+        11778
+      ],
+      "canonical_for": [],
+      "words": 2805,
+      "bytes": 18092,
+      "sha256": "ae48ce7376754be9810026d8c69cf80cd61ebaee4c2ebd55ff3caf2a4523623d"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/01-personal-agents",
+      "path": "briefing-ia-2026/11-consumer-agents-research/01-personal-agents.md",
+      "title": "Personal agents: comparison table and agent-by-agent analysis",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "product",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Inflection AI",
+        "James Zou",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-02",
+        "2026-06-16",
+        "2026-07-09",
+        "2026-07-21",
+        "2026-09",
+        "2026-09-08",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "personal agent",
+        "personal agents",
+        "agentic",
+        "chatgpt",
+        "cloud agent",
+        "compute",
+        "consumer",
+        "copilot",
+        "distribution",
+        "memory"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11",
+      "source_lines": [
+        11779,
+        11964
+      ],
+      "canonical_for": [],
+      "words": 1567,
+      "bytes": 10440,
+      "sha256": "2f8148b06dfded0c662e3af9171e477040b4660a0b7376f01f0466482b5168f7"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/02-agent-comparison",
+      "path": "briefing-ia-2026/11-consumer-agents-research/02-agent-comparison.md",
+      "title": "Personal agents: positioning, business models, maturity",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "product",
+      "actors": [
+        "Apple",
+        "Inflection AI",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "chatgpt",
+        "compute",
+        "consumer",
+        "copilot",
+        "muse",
+        "pricing",
+        "safeguards",
+        "scout"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-4",
+      "source_lines": [
+        11965,
+        12043
+      ],
+      "canonical_for": [],
+      "words": 576,
+      "bytes": 3857,
+      "sha256": "d425523a44233891cdfcad37e228c4d027d50788a2ce94e9a3a066e349b305a3"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/03-voice-multimodal",
+      "path": "briefing-ia-2026/11-consumer-agents-research/03-voice-multimodal.md",
+      "title": "Voice and multimodal: the agentic interface race",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "product",
+      "actors": [
+        "Google",
+        "Inflection AI",
+        "Meta",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-07-08",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "multimodal",
+        "voice",
+        "agents",
+        "benchmark",
+        "consumer",
+        "exploit",
+        "full-duplex",
+        "gemini",
+        "gemini 3.8",
+        "gpt-live"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-5",
+      "source_lines": [
+        12044,
+        12134
+      ],
+      "canonical_for": [],
+      "words": 647,
+      "bytes": 4428,
+      "sha256": "35384efee35f4aa6660710b42d6b7dadc906cc51bedd4cda49a065aeb8614f65"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/04-health-youth",
+      "path": "briefing-ia-2026/11-consumer-agents-research/04-health-youth.md",
+      "title": "Health and youth: two sensitive verticals",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "product",
+      "actors": [
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-08-18"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "chatgpt",
+        "consumer",
+        "liability",
+        "muse",
+        "research",
+        "safeguards"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-6",
+      "source_lines": [
+        12135,
+        12186
+      ],
+      "canonical_for": [],
+      "words": 366,
+      "bytes": 2530,
+      "sha256": "d48fd55ec4b44ea71a3ee238ef29ceb7293c42aeafa10299162145b6966bffff"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/05-distribution",
+      "path": "briefing-ia-2026/11-consumer-agents-research/05-distribution.md",
+      "title": "Distribution: scale as a strategic weapon",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "product",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "United States"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-08-11",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "distribution",
+        "acquisition",
+        "agent",
+        "agentic",
+        "amd",
+        "consumer",
+        "copilot",
+        "gemini",
+        "gemini 3.8",
+        "muse"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-7",
+      "source_lines": [
+        12187,
+        12241
+      ],
+      "canonical_for": [],
+      "words": 422,
+      "bytes": 2669,
+      "sha256": "932caf9cfbd4af7fe2aa6b4a4e8380df6cdd13abec5591f66324f89a1956f296"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/06-paper2agent",
+      "path": "briefing-ia-2026/11-consumer-agents-research/06-paper2agent.md",
+      "title": "Paper2Agent: from publication to working agent (Nature)",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "research",
+      "actors": [
+        "Anthropic",
+        "James Zou"
+      ],
+      "dates": [
+        "2026-09-16"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "compute",
+        "mcp"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-8",
+      "source_lines": [
+        12242,
+        12322
+      ],
+      "canonical_for": [],
+      "words": 599,
+      "bytes": 3979,
+      "sha256": "85d279a19d28e89cb5fe0c650b8b81e70626b7adedbde707781b7b1c48dfb6a0"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/07-scientisttwo",
+      "path": "briefing-ia-2026/11-consumer-agents-research/07-scientisttwo.md",
+      "title": "ScientistTwo: the autonomous discovery cycle (arXiv)",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "research",
+      "actors": [
+        "James Zou"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "inference",
+        "research"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-9",
+      "source_lines": [
+        12323,
+        12399
+      ],
+      "canonical_for": [],
+      "words": 541,
+      "bytes": 3793,
+      "sha256": "d8230652e291f22815623df03d679de90a20b566367d33d246145ee0ad57063c"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/08-alma-memory",
+      "path": "briefing-ia-2026/11-consumer-agents-research/08-alma-memory.md",
+      "title": "ALMA: meta-learning of agent memories (arXiv)",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "research",
+      "actors": [
+        "Apple",
+        "Inflection AI",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-02"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "memory",
+        "personal agents",
+        "research",
+        "scout"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-10",
+      "source_lines": [
+        12400,
+        12462
+      ],
+      "canonical_for": [],
+      "words": 450,
+      "bytes": 3090,
+      "sha256": "47a3c10eca994a5f450c5975dda7f17bb20122ed61622c7a5bad24e3aa18f2bd"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/09-concept-steering-breakthroughs",
+      "path": "briefing-ia-2026/11-consumer-agents-research/09-concept-steering-breakthroughs.md",
+      "title": "Concept steering and applied breakthroughs (proteins, mathematics)",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "research",
+      "actors": [
+        "Anthropic",
+        "James Zou",
+        "Kevin Buzzard",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-08",
+        "2026-08-20",
+        "2026-09",
+        "2026-09-04"
+      ],
+      "keywords": [
+        "protein",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "exploit",
+        "fermat",
+        "formalization",
+        "lean",
+        "opus 4"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-11",
+      "source_lines": [
+        12463,
+        12567
+      ],
+      "canonical_for": [],
+      "words": 770,
+      "bytes": 5126,
+      "sha256": "c719389b27f468bad459c53d17efbda2728019bd7e150a96216efe717b375b20"
+    },
+    {
+      "id": "briefing-ia-2026/11-consumer-agents-research/10-synthesis",
+      "path": "briefing-ia-2026/11-consumer-agents-research/10-synthesis.md",
+      "title": "Consumer agents and research synthesis: the year the agent left the chat",
+      "domain": "consumer-agents-research",
+      "role": "deep-dive",
+      "task": "analysis",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Inflection AI",
+        "James Zou",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "research",
+        "claude",
+        "fermat",
+        "formalization",
+        "full-duplex",
+        "lean",
+        "memory",
+        "personal agent",
+        "scout",
+        "transcription"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s11-13",
+      "source_lines": [
+        12568,
+        12620
+      ],
+      "canonical_for": [],
+      "words": 406,
+      "bytes": 2672,
+      "sha256": "b7c9dc47b5a199e70b2d2e8788de62153543ac07f1b2b1f57b6d862cef23cf84"
+    },
+    {
+      "id": "briefing-ia-2026/12-reference/01-models-table",
+      "path": "briefing-ia-2026/12-reference/01-models-table.md",
+      "title": "Appendix 1: complete models table",
+      "domain": "reference",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Moonshot",
+        "OpenAI",
+        "Sakana",
+        "StepFun",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "benchmarks",
+        "claude",
+        "cohere",
+        "compute",
+        "copilot",
+        "deepseek",
+        "deflation",
+        "fable 5",
+        "fugu",
+        "gemini",
+        "gemini 3.8"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s12",
+      "source_lines": [
+        12621,
+        12770
+      ],
+      "canonical_for": [],
+      "words": 2578,
+      "bytes": 14978,
+      "sha256": "170de4167851bed30092b6035085c13d8bc14dc42a6f9709df15993c81b365e0"
+    },
+    {
+      "id": "briefing-ia-2026/12-reference/02-glossary",
+      "path": "briefing-ia-2026/12-reference/02-glossary.md",
+      "title": "Appendix 2: glossary of terms",
+      "domain": "reference",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "CISA",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "Google",
+        "Kevin Buzzard",
+        "Microsoft",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Sakana",
+        "StepFun",
+        "United States",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "advisory",
+        "agents",
+        "alignment",
+        "asl",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "copilot",
+        "cybersecurity",
+        "datacenter"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s12-3",
+      "source_lines": [
+        12771,
+        12949
+      ],
+      "canonical_for": [],
+      "words": 3644,
+      "bytes": 24559,
+      "sha256": "77900aca10cb8053ecdd1b239e33a209c50e4736b2848072b68d1e811c911e47"
+    },
+    {
+      "id": "briefing-ia-2026/12-reference/03-actors-index",
+      "path": "briefing-ia-2026/12-reference/03-actors-index.md",
+      "title": "Appendix 3: index of actors",
+      "domain": "reference",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Ant",
+        "Anthropic",
+        "Apple",
+        "California",
+        "China",
+        "Cohere",
+        "DeepSeek",
+        "EU",
+        "G20",
+        "Google",
+        "Hugging Face",
+        "Inflection AI",
+        "Intel",
+        "Irregular",
+        "JFrog",
+        "James Zou",
+        "Kevin Buzzard",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Sakana",
+        "Stability AI",
+        "StepFun",
+        "Stripe",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2025-09"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "amd",
+        "asl",
+        "astra",
+        "aws",
+        "claude",
+        "cohere",
+        "copilot",
+        "deepseek",
+        "fermat",
+        "formalization"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s12-4",
+      "source_lines": [
+        12950,
+        13045
+      ],
+      "canonical_for": [],
+      "words": 966,
+      "bytes": 6269,
+      "sha256": "585373a736620a5da1bfc1cc991ea835e6efde0cc9ce52c983d859b6d0d32011"
+    },
+    {
+      "id": "briefing-ia-2026/12-reference/04-method-cautions",
+      "path": "briefing-ia-2026/12-reference/04-method-cautions.md",
+      "title": "Appendix 4: methodological cautions",
+      "domain": "reference",
+      "role": "appendix",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "China",
+        "Cohere",
+        "EU",
+        "G20",
+        "Google",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "Sakana",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2025-09"
+      ],
+      "keywords": [
+        "advisory",
+        "agents",
+        "amd",
+        "astra",
+        "aws",
+        "benchmark",
+        "benchmarks",
+        "copilot",
+        "fermat",
+        "formalization",
+        "fugu",
+        "gemini"
+      ],
+      "source": "docs/RAG/briefing-ia-2026-en.md",
+      "source_anchor": "s12-5",
+      "source_lines": [
+        13046,
+        13126
+      ],
+      "canonical_for": [],
+      "words": 1792,
+      "bytes": 11860,
+      "sha256": "5caa6927921d1ff1edc71ac84a0a0821c0fe9d3124aad60bf0ba7e6cbafa73fb"
+    }
+  ]
+}
