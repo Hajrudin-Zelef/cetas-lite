@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026-wave6/25-annex-b-alphabetical-index/part-6
+title: "Annex B — Alphabetical Index (part 6)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AWS", "Alibaba", "Anthropic", "DeepSeek", "Google", "Moonshot", "Nvidia", "OpenAI", "SpaceX", "United States", "Z.ai", "xAI"]
+dates: ["2026-01", "2026-03-12", "2026-05-27", "2026-07-24", "2026-08-14", "2026-08-20", "2026-09-14", "2032-12"]
+keywords: ["agentic", "aws", "context window", "cost", "deepseek", "embedding", "glm", "gpus", "inference", "ipo", "kimi", "license"]
+source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
+source_anchor: ""
+source_lines: [12546, 12715]
+section: "Annex B — Alphabetical Index"
+sha256: a0abb8fdd4c4d216c6113611bf96835c1e964060b09d88eaebaaa853f2f801d5
+---
+
+# Annex B — Alphabetical Index (part 6)
+
+- $3/$15 per M tokens — §5
+- $30.9B post-money — §1
+- $300M Series E in January 2026 — §1
+- $30B (Apr 2026) — §1
+- $30B valuation figure — §5
+- $35.6B — §1
+- $350M — §1
+- $350M committed capacity + $200M accordion — §1
+- $350M round — §1
+- $350M Series A at $3.5B — §1
+- $35B through December 2032 — §1
+- $3B convertible — §1
+- $4.291B — §1
+- $4.9B net loss — §1
+- $5.40 per M tokens — §5
+- $5.9B post-money — §1
+- $51B in contracted revenue — §1
+- $558M raised — §4
+- $582M (+454–514% YoY) — §1
+- $5B — §1
+- $5B at $190B — §1
+- $5B Blackstone equity investment — §1
+- $5B converts priced August 19 — §1
+- $5B in annual business — §1
+- $5B in equity + $2B in debt capacity — §1
+- $6.5B — §7
+- $6.69/hr (lowest published) — §1
+- $6.9B (Sept 2025, $750M round) — §1
+- $602B — §1
+- $626M net loss — §1
+- $640M quarterly interest expense (+140% YoY) — §1
+- $650M — §1
+- $7 billion — §2
+- $7.4 billion market value — §4
+- $7.4B — §4
+- $7.814B — §1
+- $71–74B pre-money valuation — §2
+- $75 billion — §1
+- $8.3B post-money — §1
+- $800M Series C — §1
+- $86 billion — §1
+- 'humanlike AI interaction services' — §3
+- (1) Long CoT Cold-Start Training — §6
+- (2) RL stage — §6
+- +0.9 on AIME 2025 — §2
+- +1,500% since listing — §4
+- +133% to RMB5.63B — §3
+- +317.3% from the IPO price — §4
+- +34% YoY to $5.6B — §3
+- +75 points on Codeforces — §2
+- +75% to RMB67.68B (~$10B) — §3
+- .gitattributes — §4
+- 0.1433 SpaceX shares for every xAI share — §1
+- 0.6B / 4B / 8B — §3
+- 0100.HK in January 2026 — §7
+- 01:00–04:00 and 06:00–10:00 UTC — §2
+- 04:00 UTC on 2026-09-14 — §2
+- 09:00:00 and 21:00:00 (UTC+8) — §6
+- 1 million H100-equivalents by end-2025 — §1
+- 1 shared + 384 routed experts, 6 routed active per token — §2
+- 1,048,576 both, neither applies a long-context surcharge — §5
+- 1,048,576 tokens — §2
+- 1,048,576-token context — §5
+- 1,200 docs/sec — §3
+- 1.37 GW active + contracted — §1
+- 1.49 billion Hong Kong dollars — §7
+- 1.5 GW active / 4.2 GW+ contracted, 51 data centers — §1
+- 1.5 GW within months, 2 GW long-term — §1
+- 1.5× end-to-end inference speedup — §6
+- 1.6T total / 33–56B dynamic active (avg ~48B) — §6
+- 1.6T total / 49B active — §2
+- 1.6T total, 33–56B dynamic activation (~48B average) — §6
+- 1/6 the cost of GPT-5.5 — §4
+- 1/8 of V4 Flash — §2
+- 10 GW — §1
+- 10 GW total — 5 GW Google TPU + 5 GW AWS Trainium — §1
+- 100 million monthly active users OR US$20 million in monthly revenue — §3
+- 100+ rounds of autonomous scaffold optimization on the open-source OpenClaw harness — §7
+- 100,000 NVIDIA GPUs by late 2026 — §1
+- 100B+ tokens/day — §5
+- 100M MAU or $20M monthly revenue must display "Kimi K3" prominently — §5
+- 101.1 billion yuan (US$14.5 billion) by 2030 — §4
+- 109B research model — §7
+- 109B-parameter / 3T-token — §7
+- 10B-active competitive with frontier — §7
+- 10–20× cheaper than OpenAI/Anthropic — §7
+- 113 languages — §3
+- 113 languages/dialects recognition — §3
+- 12 files max — §7
+- 12/12 vs DeepSeek Flash 0731 — §4
+- 120,000,000 tokens/day — §6
+- 128 routed experts, top-4 per token, one shared expert — §7
+- 128,000 tokens — §4
+- 128K context — §2
+- 128K context window — §6
+- 128K max output — §4
+- 131,072-token output limit — §4
+- 131K max output — §3
+- 135B-parameter N-gram embedding module — §6
+- 15 seconds is a hard ceiling — §7
+- 15.5T tokens trained stably with no loss spike — §5
+- 1547 on AA's private long-horizon agentic eval — a 732-point jump over K2.6 — §5
+- 160K vocabulary — §5
+- 168.8 output tokens/sec — §4
+- 1691, rank #1 — §3
+- 16M+ interactions overall through ~24K fraudulent accounts — §5
+- 16M+ interactions through ~24K fraudulent accounts — §7
+- 17 contracted data center sites (5 active) — §1
+- 17 real bugs — §7
+- 18 improvement ideas outperforming the original paper — §3
+- 18.6B–31.3B, average ~27B — §6
+- 18B active per token — §4
+- 18–27× more — §7
+- 197K context — §7
+- 19× faster — §3
+- 1M context — §3
+- 1M context / 384K output — §2
+- 1M GPUs by late 2026 — §1
+- 1M input, 384K output — §2
+- 1M native context — §6
+- 1M on Allegretto+ — §5
+- 1M tokens — §4
+- 1M-token context — §3
+- 1M-token context — 5× GLM-5.1's 200K — §4
+- 1T total / 32B active — §5
+- 1–3 per request — §3
+- 2 GW of Trainium capacity — §1
+- 2 trillion tokens — §2
+- 2, 3, and 4 tokens — §2
+- 2,100 docs/sec — §3
+- 2.0 efficiency context — §3
+- 2.1B tokens — §2
+- 2.4T flagship is Qwen3.8-Max License — §3
+- 2.4T parameters — §3
+- 2.4T total / ~95B active per token — §3
+- 2.8T total / 104B active — §5
+- 2.8T total / 104B active per token — §5
+- 2.8T, 16 of 896 experts active — §5
+- 20 concurrent requests — §2
+- 20,000-environment system on Alibaba Cloud — §3
+- 200K context window — §4
+- 200K context window, up to 128K max output — §4
+- 201 languages and dialects — §3
+- 2024 revenue of 312.4 million yuan (~US$46 million) — §4
+- 2026 Apsara Conference — §3
+- 2026-03-12 at 20:00:00 (UTC+8) — §6
+- 2026-05-27 shareholder meeting — §1
+- 2026-07-24 15:59 UTC — §2
+- 2026-08-14 (approx) — §3
+- 2026-08-20 earnings — §3
+- 204.8K context window / 131.1K max output — §7
+- 20× YoY revenue growth — §1
+- 214.4 vs 34.7 tok/s (6.2×) — §5
+- 215 output tokens/s — §2
+- 215 SOTA — §3
+- 21B active — §2
+- 230B total / 10B active — §7
+- 25.4M shares @ HK$151–165 — §7
+- 25.4M shares at HK$151–165 — §7
+- 250M vs 160M output tokens — §5
+- 256K context — §3
+- 256K context natively (1M with extrapolation) — §3
+- 256× the context in 41% less memory — §2
+- 259 tok/s single-user — §3
+- 260K context — §3
+- 262,144 natively, extensible to 1,010,000 tokens — §3
+- 262K native context — §3
+- 262K native context extensible to 1M — §3
+- 262K reasoning budget — §3
+- 27B activated on average per token — §6

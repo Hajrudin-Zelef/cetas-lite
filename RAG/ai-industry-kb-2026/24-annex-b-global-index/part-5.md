@@ -1,0 +1,215 @@
+---
+id: ai-industry-kb-2026/24-annex-b-global-index/part-5
+title: "Annex B — Global index (part 5)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AWS", "Alibaba", "Anthropic", "Meta", "Nvidia", "OpenAI", "SGLang", "SpaceX", "TensorRT-LLM", "Together AI", "United States", "Unsloth", "Z.ai", "vLLM", "xAI"]
+dates: ["2025-10-29", "2026-02", "2026-03-21", "2026-03-25", "2026-05", "2026-05-04", "2026-05-05", "2026-06", "2026-07", "2026-07-14", "2026-09-04", "2026-09-24"]
+keywords: ["acquisition", "agentic", "antitrust", "attention", "benchmark", "compute", "decode", "diffusion", "fine-tuning", "funding", "gguf", "gpu"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [12079, 12275]
+section: "Annex B — Global index"
+sha256: b22a0d34f45742dee769d90d9758e06bf1e2c8739855dc1dcc5a3695cb1bb528
+---
+
+# Annex B — Global index (part 5)
+
+- Qwen3.8-27B — §2, §4
+- Qwen3.8-27B fine-tuning guide — §10
+- Qwen3.8-Flash — §4
+- Qwen3.8-Flash-Next — §4
+- Qwen3.8-Max — §2, §4
+- qwen3.8-max license — §4
+- Qwen3.8-Max-0902 — §2, §4
+- Qwen3.8-Omni-Flash — §11
+- RadixArk — §7, §20
+- RadixArk commercial spinoff (formal launch 2026-05-05) — §6
+- RadixAttention — §6, §7
+- RAG-operator takeaways, MoE — §9
+- RDMA-shared KV — §7
+- Reachy Mini — §16
+- Reasoning dial — §11
+- reasoning effort dial — §5
+- Reflection AI fundraising talks — §20
+- Regulatory approval pending — §16
+- Rejected $500M NVIDIA investment 2025 — §16
+- REK San Francisco — §22
+- Reserved GPU tiers (1-yr/3-yr) — §14
+- Robin Williams likeness dispute — §12
+- robot combat — §22
+- robot foundation models — §22
+- router.huggingface.co — §16
+- routing aliases — §5
+- RTX 4090 inference tier — §15
+- RTX 4090/5090 (modest-GPU claims) — §10
+- Rubin CPX — §7
+- Rubin CPX cancelled — §15
+- Rubin Ultra Kyber — §15
+- Rule 135 confidential filing — §21
+- RunPod — §14
+- Runway Gen-4.5 — §12
+- Runway Series E $5.3B — §20
+- SafeTensors — §16
+- Safetensors irony — §16
+- Sam Altman — §1
+- Sarah Friar — §21
+- save_pretrained_gguf — §10
+- SAW-INT4 — §8
+- Scale AI — §21
+- Scale VTB benchmark — §11
+- Scale-up vs scale-out — §15
+- ScatterMoE LoRA — §10
+- SDK downloads 110M (June 2026) — §13
+- SDK downloads 97M (2026-03-25) — §13
+- Sealion-Lite — §5
+- Seed 2.1 Turbo — §4
+- Seedance 2.0 — §12
+- Seedance 2.5 — §4, §11, §12
+- Seeed Studio — §16
+- self-migrating command-and-control — §17
+- SemiAnalysis — §22
+- SemiAnalysis InferenceX — §15
+- Serverless vs dedicated crossover (~$70–144/day) — §14
+- sgl-router cache-aware routing (3.8x) — §6
+- SGLang Diffusion — §6
+- SGLang multimodal — §11
+- SGLang v0.5.19 (2026-09-04) — §6
+- SGLang-JAX — §7
+- SGLang-JAX native TPU engine (2025-10-29) — §6
+- shipment versus sale — §22
+- Singapore-washing — §18
+- Single-GPU 70B fine-tuning — §10
+- SiTU activation — §9
+- SiTU-GLU — §3
+- Skild AI Series C — §20
+- Skild Brain — §22
+- Sliding-window attention hybrids — §9
+- smolagents — §16
+- SoftBank ABB deal — §22
+- Sora 2 — §12
+- Sora 2 Pro — §12
+- Sora API cutoff — §12
+- Sora API cutoff 2026-09-24 — §19
+- Sora shutdown — §12
+- Sora shutdown economics — §19
+- Sora unit economics — §12
+- Sora world-simulation research unit — §12
+- Sparsity ratio — §9
+- SPCX retail allocation — §21
+- specification gaming / reward hacking — §17
+- Spheron — §14
+- Split-LoRA — §10
+- Spot GPU pricing (25–45% discounts) — §14
+- SPV structures in AI funding — §20
+- sqrt(softplus) routing affinity — §5
+- SSI NVIDIA partnership — §20
+- SSO audit trails, MCP — §18
+- Stable LatentMoE — §3, §9
+- Stacklok State of MCP in Software 2026 — §13
+- STAR Market IPO — §22
+- Stateless MCP core (SEP-2567) — §13
+- stealth GA — §5
+- StreamArena — §12
+- Street View Imagery Grounding — §12
+- Studio v0.1.805/806-beta (MTP) — §10
+- Studio v0.1.807/808-beta (Vulkan, diffusion) — §10
+- Super Micro server diversion — §18
+- SWA Bounded Replay — §5
+- swarm of short-lived sandboxes — §17
+- SWE-Bench Pro — §3
+- SWE-bench Pro trust crisis — §13
+- SWE-bench Verified 96.40% — §5
+- SWE-bench Verified saturation — §13
+- Synchronized audio generation — §12
+- tactical nuclear use 95% of games — §17
+- Talks versus closes distinction — §20
+- tcgen05 — §8
+- TeaCache (SGLang Diffusion) — §6
+- Ted Lieu — §18
+- Ted Lieu / Nathaniel Moran — §17
+- teleoperation pattern — §22
+- Tender offers and secondary sales — §20
+- TensorRT-LLM v1.3.0rc series (July 2026) — §6
+- Terminal-Bench — §1
+- Terminal-Bench 3.0 — §3
+- Terminal-Bench 4.0 — §13
+- Ternary weights — §8
+- Territorial license restriction — §11
+- Tesla Optimus — §22
+- Test-time compute economics — §13
+- Text-to-video leaderboards — §12
+- TGI archival — §7
+- TGI archived 2026-03-21 — §16
+- TGI maintenance mode — §16
+- Thinker-Talker — §11
+- Thinker–Talker architecture — §4
+- Thinking Machines Lab 2025/2026 talks — §20
+- Thomas Wolf — §17
+- TileRT decode runtime (2026-07-14 pairing) — §6
+- Ting-Wei Sun — §18
+- Tiny-vLLM community engine — §6
+- Together AI pricing — §14
+- Top 10 verified primary rounds 2026 — §20
+- torchtune paper (May 2026 comparison) — §10
+- TPU v7 Ironwood — §15
+- tracker methodology conflict — §22
+- Trainium 3 — §15
+- Transformers 113M downloads — §16
+- Triton kernels (Unsloth) — §10
+- TRL GRPO open RL stack — §16
+- TurboQuant — §7, §8, §9
+- UBTech Walker S2 — §22
+- Underwriter lineup Anthropic — §21
+- Unitree IPO — §22
+- Unitree Robotics — §21
+- unnamed pre-release model — §17
+- Unsloth — §10
+- Unsloth Dynamic Quantization — §2
+- Unsloth funding (seed) — §10
+- Unsloth GGUF — §4
+- Unsloth MoE training (February 2026 release) — §10
+- Unsloth Studio — §10
+- Unsloth × NVIDIA collaboration (May 2026) — §10
+- unsloth-cli (community) — §10
+- URKL — §22
+- US antitrust scrutiny — §16
+- USB-C of AI — §13
+- V4-Flash-0731 — §5
+- V4-Flash-Vision-Exp — §5
+- Vals Index — §5
+- Vals.ai — §5
+- Vast.ai — §14
+- Veo 3.1 — §12
+- Veo 3.1 Fast — §12
+- Vera CPU — §15
+- Vera Rubin NVL72 — §15
+- Vera Rubin NVL72 rental pricing status — §14
+- vLLM expert parallel flags — §9
+- vLLM-Omni — §11
+- Volcano Engine FORCE — §3, §4, §12
+- VoxCPM2 — §11
+- VRAM reduction (70–80% claim) — §10
+- VulnHunter — §3
+- Vultr — §14
+- W4A16 — §8
+- W4A4 — §8
+- W8A8 — §8
+- Watermark scrubbing attacks — §18
+- Windsurf acquisition 2025 — §20
+- Wolters Kluwer finance teams agentic AI — §19
+- Workload inversion — §13
+- World models — §12
+- xAI — §1
+- xAI $20B Series E — §20
+- xAI absorbed by SpaceX — §20
+- XGrammar-2 (2026-05-04; Structural Tag) — §6
+- Yih-Shyan Liaw — §18
+- Yuanqing Yang 80 percent inference — §19
+- Z.ai — §3
+- ZCode — §3
+- Zero-overhead scheduler (SGLang v0.4) — §6
+- Zero-recall / irrevocability of open weights — §2
+- Zhipu AI — §3
+- Zhiyuan — §22

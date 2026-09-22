@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026-wave6/25-annex-b-alphabetical-index/part-2
+title: "Annex B — Alphabetical Index (part 2)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["Anthropic", "CISA", "EU", "Falcon", "Google", "Groq", "Huawei", "Hugging Face", "Moonshot", "Nvidia", "OpenAI", "OpenRouter", "United States", "Xiaomi", "Z.ai", "xAI"]
+dates: ["2025-12", "2026-02-20", "2026-04-01", "2026-04-07", "2026-06-12", "2026-06-13", "2026-06-16", "2026-07-21"]
+keywords: ["acquisition", "apache", "astra", "attention", "benchmark", "cyber", "distillation", "gemini", "gemini 3.8", "glm", "gpt-5.6", "gpt-6"]
+source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
+source_anchor: ""
+source_lines: [11866, 12035]
+section: "Annex B — Alphabetical Index"
+sha256: f4e8cdef2d87658d3795d1ea76bcc494b1fa14d13ca22624ee580764e15f0f17
+---
+
+# Annex B — Alphabetical Index (part 2)
+
+- Devstral 2 (Dec 2025) — §19
+- Devstral 2 December 2025 — §10
+- Devstral 2 — §10
+- Devstral 2 — §23
+- Devstral 2507 — §10
+- Devstral Medium — §10
+- Devstral Small 1.1 — §10
+- Devstral Small 2 — §10
+- Dia (Nari Labs) — §18
+- Dia2 — §18
+- DiffusionGemma 26B-A4B — §23
+- DiffusionGemma — §14
+- Distillation clause (July 24 letter) — §21
+- distillation vs misappropriation (policy fight) — §15
+- DOJ "shadow acquisition" investigation — §15
+- ECCN 4E091 open-weight carve-out — §21
+- ElevenLabs Dubbing V2 — §18
+- ElevenLabs Flash v2/v2.5 — §18
+- ElevenLabs Music v2 — §18
+- ElevenLabs v3 — §18
+- ElevenLabs v4 (not shipped) — §23
+- ElevenLabs v4 (preview-only) — §18
+- Embed 4 (2025) — §16
+- EmbeddingGemma-300M — §20
+- ERNIE 5.0 / 5.1 pricing — §22
+- ERNIE 5.0 — §17
+- ERNIE 5.1 — §17
+- ERNIE pricing conflict — §17
+- EU AI Act open-source exemption — §21
+- EU multimodal exclusion (Llama 4) — §21
+- EU multimodal exclusion — §9
+- FAccT 2024 open-washing paper — §21
+- FACTS Benchmark Suite — §14
+- FACTS Benchmark Suite — §22
+- Falcon H1 Arabic — §17
+- Falcon H1R — §17
+- Falcon Perception / OCR — §23
+- Falcon Perception — §17
+- Falcon Perception-300M — §17
+- Falcon-H1R / Falcon-H1 Arabic — §23
+- FBI alerted (HF breach) — §12
+- FedRAMP High — §16
+- Fennec (Sonnet 5 codename) — §13
+- FLUX.2 [dev] — §18
+- FLUX.2 [klein] — §18
+- Free tiers (Kimi, OpenRouter :free) — §22
+- FT report 2026-02-20 NVIDIA OpenAI — §1
+- Gated DeltaNet hybrid attention — §3
+- Gated DeltaNet hybrid — §19
+- Gemini 2.0 Ultra (never existed) — §14
+- Gemini 3 Deep Think — §14
+- Gemini 3.1 Flash TTS — §18
+- Gemini 3.1 Pro Preview — §14
+- Gemini 3.5 Flash-Lite — §14
+- Gemini 3.5 Pro (internal/unreleased) — §14
+- Gemini 3.5 Transcribe — §18
+- Gemini 3.7 Flash — §14
+- Gemini 3.8 Extended Thinking — §18
+- Gemini 3.8 Flash — §14
+- Gemini 3.8 Live — §18
+- Gemini Omni — §14
+- Gemma 4 (26B-A4B, 31B, E2B, E4B) — §23
+- Gemma 4 12B "Unified" — §23
+- Gemma 4 12B Unified — §14
+- Gemma 4 26B-A4B — §14
+- Gemma 4 31B — §14
+- Gemma 4 E2B — §14
+- Gemma 4 E4B — §14
+- Gemma 4 edge QAT — §20
+- Gemma 4 — §14
+- Gemma 4-MTP — §14
+- Gemma 4.5 (nonexistent) — §14
+- Gemma Terms of Use — §21
+- Gemma Terms — §14
+- Gemma TTS (nonexistent) — §14
+- Genie 3 — §14
+- Genie 3 — §23
+- Glimmer 30B Apache 2.0 — §9
+- Glimmer 30B — §9
+- GLM 5.2 as HF forensic tool — §15
+- GLM 5.2 forensic work (July 21 breach) — §4
+- GLM-4.5-Air — §23
+- GLM-5.1 2026-04-07 — §4
+- GLM-5.1 April-7 vs May-7 conflict (April 7 wins) — §4
+- GLM-5.1 — §23
+- GLM-5.2 and GLM-5.3 identical base — §4
+- GLM-5.2 API/Coding Plan 2026-06-13 — §4
+- GLM-5.2 as Hugging Face forensic tool — §21
+- GLM-5.2 MIT weights 2026-06-16/17 — §4
+- GLM-5.2 — §21
+- GLM-5.3 AA Index v4.3 ≈44.9 — §4
+- GLM-5.3 License (bespoke) — §4
+- GLM-5.3 Terminal-Bench 4.0 41.8% — §4
+- GLM-5.3 — §23
+- GLM-5.3-Flash AA Index v4.3 42 — §4
+- GLM-5.3-Flash MIT — §4
+- GLM-5.3-Flash — §21
+- GLM-5V-Turbo (closed vision) — §21
+- GLM-5V-Turbo 2026-04-01 — §4
+- Google AI Ultra — §14
+- GPT Image 2 — §18
+- GPT Image 2.5 Sunburst — §18
+- GPT-4o (legacy pricing) — §22
+- GPT-5.2 — §12
+- GPT-5.3-Codex — §12
+- GPT-5.3-Codex — §19
+- GPT-5.3-Codex-Spark — §12
+- GPT-5.4 mini Codex removal — §19
+- GPT-5.4 — §12
+- GPT-5.4-mini — §12
+- GPT-5.5 / 5.5 Pro — §22
+- GPT-5.5 Pro — §12
+- GPT-5.5 — §12
+- GPT-5.6 Luna — §12
+- GPT-5.6 Luna — §22
+- GPT-5.6 Sol — §12
+- GPT-5.6 Sol — §22
+- GPT-5.6 Sol/Terra/Luna — §19
+- GPT-5.6 Terra — §12
+- GPT-5.6 Terra — §22
+- GPT-5.6-Cyber — §12
+- GPT-5.6-Cyber — §19
+- GPT-6 Astra — §12
+- GPT-6 Astra — §22
+- gpt-oss — §12
+- gpt-oss — §21
+- GPTQModel 6.1.0 — §20
+- Grok 4.3 pricing — §11
+- Grok 4.3 — §11
+- Grok 4.4 skipped — §11
+- Grok 4.5 V9 base — §11
+- Grok 4.5 — §11
+- Grok 4.6 — §11
+- Grok 4.6 — §22
+- Grok 4.7 200K cliff — §11
+- Grok 4.7 pricing — §11
+- Grok 4.7 — §11
+- Grok 4.7 — §22
+- Grok 5 (not shipped) — §23
+- Grok 5 unshipped — §11
+- Grok Build open source — §11
+- Grok Build — §11
+- Grok Code Fast 1 — §11
+- Grok Code Fast 1 — §23
+- Groq 3 LPX — §15
+- Groq playai-turbo repoint — §18
+- GTC 2026 (March 16) — §15
+- H3 release date — §7
+- H3 weights on Hugging Face — §7
+- H3 — §7
+- Hailuo 2.3 — §18
+- Hailuo 3 — §7
+- Harbor Terminal-Bench — §19
+- Healer Alpha — §8
+- Huawei openPangu 2.0 announced 2026-06-12 — §6
+- Hugging Face breach (July 21, 2026) — §12
+- Hugging Face State of Open Source Spring 2026 — §21
+- Human x Car x Home — §8
+- Hume octave-2 — §18
+- Hunter Alpha = Xiaomi MiMo-V2-Pro (correction) — §2
+- Hunter Alpha — §8
+- Hunyuan3D 3.0 — §18
+- Hunyuan3D 3.0 — §23
+- HunyuanVideo — §18
+- Hy3 / Hy4 Preview Apache 2.0 — §6
+- Hy3 Preview (Community License split) — §17
+- Hy3 Preview Tencent Hy Community License — §6
+- IBM Granite 4.1 — §20
+- IBM Granite 4.2 — §20
+- Ideogram 3.0 — §18

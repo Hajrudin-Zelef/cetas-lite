@@ -1,0 +1,190 @@
+---
+id: ai-industry-kb-2026/25-annex-c-global-keyword-list/part-6
+title: "Annex C — Global keyword list (part 6)"
+domain: appendix
+role: appendix
+task: reference
+actors: []
+dates: ["2026-07-28", "2026-09-24"]
+keywords: ["acquisition", "agent", "asic", "attention", "compute", "decode", "disclosure", "export controls", "fine-tuning", "fp4", "fp8", "funding"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [13126, 13297]
+section: "Annex C — Global keyword list"
+sha256: 629f6f7b1ed9afb1cb7c5572185a0cfb2425641a927c5138ccfccb9f7230219f
+---
+
+# Annex C — Global keyword list (part 6)
+
+- sglang multimodal
+- sglang radixattention
+- sglang-jax tpu engine
+- shared experts
+- shashank joshi
+- singapore-washing
+- single-gpu 70b qlora fine-tuning
+- single-gpu training
+- single-pass video synthesis
+- situ activation function
+- skild ai
+- skild ai series c
+- skild ai series c robotics
+- sliding window attention hybrids
+- smolagents agent framework
+- softbank abb robotics
+- sora 2
+- sora 2 shutdown
+- sora api cutoff 2026-09-24
+- sora shutdown
+- sora shutdown 2026
+- sora shutdown unit economics
+- sora unit economics
+- sovereign wealth
+- sovereign wealth ai investment
+- spac merger
+- spacex anysphere acquisition
+- spacex spcx ipo
+- spacex spcx ipo june 2026
+- spacex xai 1.25t merger
+- spacex xai merger
+- sparse activation
+- sparse attention
+- sparse mla
+- sparse mla decode kernels
+- sparsity ratio
+- spec 2026-07-28 final
+- speculative decoding
+- speculative decoding multi-token prediction
+- spend flip
+- split-lora
+- split-lora moe memory mechanism
+- spot gpu
+- spot gpu instances
+- spv
+- spv equity structures
+- ssi
+- sso and audit trails
+- sso-integrated auth
+- stable latentmoe
+- stacklok state of mcp 2026
+- star market
+- star market listing
+- startup funding
+- startup funding 2026
+- stateless protocol
+- stateless protocol core
+- stealth release
+- strategic investors
+- street view imagery grounding
+- structured generation
+- structured generation json validity
+- swe-bench
+- swe-bench pro trust crisis
+- swe-bench verified
+- swe-bench verified 96.40%
+- synchronized audio generation
+- tactical nuclear use ninety-five percent
+- talent war
+- talks not closes
+- tcgen05 fp4 tensor cores
+- ted lieu
+- ted lieu nathaniel moran
+- teleoperation
+- teleoperation disclosure
+- tender offer
+- tender offer secondary sale
+- tensorrt-llm autodeploy deprecation
+- tensorrt-llm fp8 quantization
+- terminal-bench 3.0
+- terminal-bench 4.0
+- territorial license restrictions
+- tesla optimus
+- test-time compute
+- test-time compute economics
+- text-to-video leaderboards
+- tgi maintenance mode
+- tgi maintenance mode march 21 2026
+- thinker-talker
+- thinker-talker architecture
+- thinking machines lab
+- thinking machines lab fundraising talks
+- third-party tooling unsloth-cli
+- three million models
+- tiered kv offload
+- tilert decode runtime
+- time-to-serve model releases
+- tiny-vllm lightweight engine
+- token eviction
+- tokens per dollar per watt
+- top-k routing
+- torchao
+- torchtune
+- torchtune dtensor torch.compile
+- tpu inference
+- tpu v7 ironwood
+- training vs inference bifurcation pricing
+- trainium 3
+- transformer asic
+- triton kernels
+- triton kernels exact backpropagation
+- trl grpo open rl stack
+- turboquant
+- turboquant 3-bit kv
+- ubtech walker s2
+- unit 42
+- unit economics
+- unitree ipo
+- unsloth
+- unsloth dynamic 3.0
+- unsloth dynamic quantization
+- unsloth dynamic quantization v3.0
+- unsloth seed funding unverified
+- unsloth studio
+- unsloth studio beta releases
+- unsloth training trajectory feb–sep 2026
+- unverified 400000 gpus claim
+- up round
+- us export controls frontier models
+- usb-c of ai
+- v0 deprecation
+- v4-lite
+- v4-pro-0813
+- v9 foundation model xai
+- vals index
+- valuation
+- valuation velocity
+- vast.ai
+- veo 3.1
+- vera cpu
+- vera rubin
+- vera rubin nvl72
+- vera rubin nvl72 pricing
+- video understanding
+- vision encoders
+- vllm
+- vllm-neuron
+- vllm-omni
+- volcano engine force
+- vram
+- vram and quantization
+- vram reduction
+- vram reduction 70 to 80 percent claim
+- vulnhunter
+- w4a16 vs w4a4 guidance
+- warning shot report august 2026
+- watermark scrubbing
+- windsurf
+- worked kv sizing example
+- workload inversion
+- world models
+- world simulation models
+- wse-3
+- xai
+- xai series e 230b
+- xgrammar
+- xgrammar-2 structural tag
+- yih-shyan liaw
+- z.ai
+- zcode
+- zero-day package registry proxy
+- zhipu ai

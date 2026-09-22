@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026/25-annex-c-global-keyword-list/part-5
+title: "Annex C — Global keyword list (part 5)"
+domain: appendix
+role: appendix
+task: reference
+actors: []
+dates: []
+keywords: ["acquisition", "agent", "apache", "consumer", "cost", "decode", "diffusion", "distillation", "fine-tuning", "gguf", "gpu", "inference"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [12956, 13125]
+section: "Annex C — Global keyword list"
+sha256: 5ee4775089dbd4caab94c308ad9dccb91b5ffc50e026aa837e944800ce5961bf
+---
+
+# Annex C — Global keyword list (part 5)
+
+- openai 122b primary round
+- openai ag subpoena
+- openai anthropic joint adoption
+- openai autonomous breach july 2026
+- openai codex
+- openai confidential s-1 filing
+- openhands
+- openvuln
+- optimus factory year
+- orbital data centers starmind
+- owasp llm top 10 2026
+- pagedattention removal
+- paid deployment
+- palo alto networks
+- panama credentialing pilot
+- parameter-count reconciliation
+- pax silica
+- pax silica summit
+- peak off-peak pricing
+- peft
+- peft landscape esft dora lora-fa
+- pensando vulcano
+- per-engine kv dtype support
+- per-token pricing
+- periodic labs
+- perplexity
+- perplexity 2028 ipo
+- perplexity 2028 ipo target
+- perplexity delta quality measurement
+- persistent kv reuse
+- physical intelligence
+- physical intelligence valuation
+- pickle deserialization grpc policyserver
+- pickle deserialization rce
+- polarquant
+- pollen robotics
+- pollen robotics acquisition april 2025
+- post-money valuation
+- powerful ai amodei
+- powerful ai late 2026 2027
+- practitioner decision framework september 2026
+- pre-money valuation
+- pre-rope key quantization
+- prefill decode disaggregation
+- prefill-cost collapse
+- prefill-decode disaggregation
+- prefix caching economics
+- prefix caching inference engines
+- primary round
+- productive deployment
+- project genie
+- project genie beta
+- project glasswing
+- project glasswing anthropic
+- project kahn nuclear crises
+- prompt injection
+- pytorch 2.14 clamp gradient hazard
+- qlora
+- qtip
+- quantile balancing
+- quantile balancing experts
+- quantization
+- quantization-aware distillation qad
+- quantization-aware training int4
+- qwen image 3.0
+- qwen image 3.0 closed api
+- qwen3-next
+- qwen3-omni
+- qwen3.5
+- qwen3.5-397b-a17b
+- qwen3.5-397b-a17b apache 2.0
+- qwen3.5-omni
+- qwen3.5-omni api-only march 2026
+- qwen3.5-plus
+- qwen3.5-plus proprietary hosted
+- qwen3.6
+- qwen3.6-35b-a3b
+- qwen3.6-35b-a3b open weights
+- qwen3.6-plus
+- qwen3.6-plus april 2026
+- qwen3.7
+- qwen3.7 flash
+- qwen3.7 flash july 2026
+- qwen3.7-max
+- qwen3.7-max may 2026 proprietary
+- qwen3.7-plus
+- qwen3.7-plus agent multimodal
+- qwen3.8
+- qwen3.8 2.4t moe announcement
+- qwen3.8-2.4t-a95b
+- qwen3.8-2.4t-a95b text-only weights
+- qwen3.8-27b
+- qwen3.8-27b apache 2.0 august 14
+- qwen3.8-27b fine-tuning guide
+- qwen3.8-flash
+- qwen3.8-flash 6b active open weights
+- qwen3.8-max
+- qwen3.8-max $2/$6 per million tokens
+- qwen3.8-max custom restrictive license
+- qwen3.8-max general availability
+- qwen3.8-max license
+- qwen3.8-max weights
+- qwen3.8-max-0902
+- qwen3.8-max-0902 checkpoint
+- qwen3.8-omni-flash
+- rack-scale ai
+- rack-scale ai factory
+- radixark commercial spinoff
+- radixattention cache-aware scheduling
+- rag operator moe takeaways
+- rdma-shared kv cache
+- reachy mini
+- reachy mini july 2025 launch
+- reasoning effort toggle models
+- reasoning-aware compression
+- redwood ai
+- reflection ai
+- regulatory approval
+- regulatory approval pending
+- rent vs buy gpu
+- reserved gpu instances
+- retracted 78% figure
+- reward hacking specification gaming
+- rl post-training serving backbone
+- robot combat
+- robot combat spectacle
+- robot foundation models
+- robot safety liability
+- robot shipments
+- robotics
+- routing aliases
+- rtx 4090
+- rtx 4090 consumer gpu fine-tuning
+- rubin full production ces 2026
+- rubin gpu
+- rubin gpu and vera cpu
+- rubin shipments q3 2026
+- rubin ultra kyber
+- rubin ultra kyber 2028
+- runpod
+- runway
+- runway gen-4.5
+- runway series e world models
+- safetensors irony
+- safetensors irony nosec
+- sam altman 2026 ipo ruled out
+- sam altman rules out 2026 ipo
+- save_pretrained_gguf
+- save_pretrained_gguf one-call api
+- sealion-lite
+- secondary sale
+- seed 2.1 turbo
+- seed 2.1 turbo june 24 2026
+- seedance 2.0
+- seedance 2.5
+- seedance 2.5 cross-reference
+- self-funded employee tender
+- semiconductor diversion
+- series c
+- series d
+- series e
+- series g
+- series h
+- serverless inference
+- serverless inference per-token pricing
+- sgl-router prefix affinity routing
+- sglang
+- sglang day-zero model support
+- sglang diffusion cache-dit
+- sglang kv dtype matrix

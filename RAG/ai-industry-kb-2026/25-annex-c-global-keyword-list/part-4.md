@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026/25-annex-c-global-keyword-list/part-4
+title: "Annex C — Global keyword list (part 4)"
+domain: appendix
+role: appendix
+task: reference
+actors: []
+dates: ["2026-07-28"]
+keywords: ["acquisition", "agent", "attention", "benchmark", "benchmarks", "blackwell", "fp8", "glm", "governance", "gpu", "guardrails", "inference"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [12786, 12955]
+section: "Annex C — Global keyword list"
+sha256: 7c896c655e98b3ed9e3f594297a047f851f16b3921fe459fd0352ad2319b2362
+---
+
+# Annex C — Global keyword list (part 4)
+
+- letitia james
+- liger kernel
+- liger kernel triton integration
+- lightbits 10m tokens
+- lila sciences
+- ling 3.0 flash
+- ling 3.0 flash 124b moe
+- ling 3.0 flash fin finance
+- litellm cve-2026-42271
+- llama 3.3 70b
+- llama 3.3 70b benchmark anchor
+- llama 4
+- llama 4 behemoth shelved
+- llama.cpp
+- llama.cpp model router lru
+- llama.cpp mtmd
+- llm-compressor
+- llm-d
+- llm-d peer-to-peer kv sharing
+- lmarea elo gap
+- lmcache
+- lmcache 7.43x reuse
+- load balancing
+- long context
+- loss head
+- low-rank compression
+- m&a
+- machete
+- machine-readable watermarking
+- maia 200
+- mamba-2
+- mamba-2 hybrid
+- mark warner
+- market research ai forecasts
+- marlin
+- marlin fused dequantize gemm kernels
+- may 2026 narrative softening
+- mckinsey bank savings
+- mcp
+- mcp dev summit
+- mcp enterprise governance
+- mcp governance
+- mcp spec 2026-07-28 final
+- mcp-atlas
+- mega-rounds
+- mega-rounds ai
+- mellanox acquisition comparison
+- meta manus acquisition
+- mi300x rental
+- mi300x rental availability
+- mi355x rental availability
+- mi455x
+- microsoft agent framework
+- microsoft maia 200
+- mimo-v2.6
+- minimax 2.7t rumor
+- minimax h3
+- minimax m3
+- minimax sparse attention
+- mistral ai
+- mistral ai 3b round
+- mistral large 3
+- mistral medium 3.5
+- mistral small 4
+- mit license
+- mixture of experts
+- mixture of experts inference economics
+- mixture of universal experts
+- mla
+- mla native framework support
+- modal labs customer victim
+- model context protocol
+- model hub scale
+- model runner v2
+- modelopt
+- modified mit license
+- moe
+- moe active parameter ratios
+- moe api price ladder 2026
+- moe fine-grained experts
+- moe grouped-gemm correctness fix
+- moe kernel fix
+- moe license landscape 2026
+- moe load balancing without auxiliary loss
+- moe quantization combination
+- moe quantization formats fp8 nvfp4 mxfp4
+- moe serving stack comparison vllm sglang
+- moe training
+- moe training 12x faster claim assessment
+- moe training flops versus memory
+- moe versus dense benchmark evidence
+- mofcom review
+- mooncake kvcache-centric serving
+- moonshot ai
+- mordor intelligence neocloud forecast
+- most competitive day july 9 2026
+- motion control ai
+- mtp block
+- mtp enabled by default qwen3.8-flash glm-5.3-flash
+- multi-head latent attention
+- muse glimmer 30b
+- muse spark 1.2
+- muse spark 1.2 release
+- musk 82 percent voting control
+- musk superintelligence timeline
+- mxfp4
+- mxfp4 kv cache
+- mxfp4 ocp microscaling standard
+- nano banana 2 lite
+- narrative beats timeline 2026
+- nathaniel moran
+- native multimodal video
+- native multimodality
+- native sparse attention
+- ndrc manus block
+- ndrc manus prohibition
+- nebius
+- nebius meta 27b deal
+- nebius nbis 178 percent ytd
+- nebius nbis stock
+- needle-in-haystack
+- neocloud
+- neocloud economics
+- neocloud ipo queue
+- neocloud ipo queue crusoe lambda
+- neutree flex engine gateway
+- nf4
+- nim 2.0
+- nixl
+- nixl transfer layer
+- nsa red-team drill
+- nscale 103b tcv
+- nscale ipo
+- nscale nscl s-1 filing
+- nuclear decision-making benchmark
+- nuclear signaling one hundred percent
+- nvfp4
+- nvfp4 block-16 e2m1 blackwell
+- nvfp4 export
+- nvfp4 export since july 2026
+- nvidia agreed to acquire
+- nvidia agreed to acquire hugging face
+- nvidia capital
+- nvidia dynamo
+- nvidia groq 3 lpu
+- nvidia halos
+- nvidia isaac
+- nvidia isaac root
+- nvl144 rename
+- nvl144 to nvl72 rename
+- nvlink 6
+- nvlink 6 260 tb/s
+- official mcp registry
+- official registry
+- ome kubernetes operator
+- on-demand gpu pricing
+- open kv cache api
+- open vs closed benchmarks
+- open vs closed gap
+- open weights
+- open-closed capability gap
+- open-source exemption
+- open-weight
+- open-weight exemption
+- open-weight gap
+- open-weight guardrails
+- open-weight non-recallability
+- open-weight omni models
+- open-weight spectrum taxonomy
+- openai

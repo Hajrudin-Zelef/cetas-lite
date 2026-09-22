@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026/25-annex-c-global-keyword-list/part-3
+title: "Annex C — Global keyword list (part 3)"
+domain: appendix
+role: appendix
+task: reference
+actors: []
+dates: []
+keywords: ["acquisition", "agentic", "agents", "agi", "arr", "attention", "awq", "benchmark", "decode", "deflation", "distribution", "fp8"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [12616, 12785]
+section: "Annex C — Global keyword list"
+sha256: 0390730cee6d207d92221d88924a371f2c786f19f05bb282f9eb8e5904282b3e
+---
+
+# Annex C — Global keyword list (part 3)
+
+- frontier model pricing deflation
+- fsdp2
+- gartner agentic ai
+- gartner agentic ai forecasts
+- gated delta networks
+- gated delta networks hybrid
+- gated deltanet
+- gated deltanet linear attention
+- gateway standardization
+- gb200 nvl72
+- gb200 nvl72 rental band
+- gb300 nvl72 vendor benchmark
+- gemini 3.1 pro
+- gemini 3.1 pro preview
+- gemini omni any-to-any
+- gemini omni flash
+- gemini omni flash google i/o 2026
+- gemini robotics
+- gemini robotics baseline
+- gemma 4
+- gemma 4 12b
+- genie 3
+- genie 3 world model
+- ggml.ai
+- ggml.ai acquisition february 20 2026
+- gguf
+- gguf plugin
+- gguf reference runtime
+- glm coding plan
+- glm-5
+- glm-5.2
+- glm-5.2 forensic analysis
+- glm-5.2 indexshare
+- glm-5.3
+- glm-5.3-flash
+- google tpu v7 ironwood
+- government pre-release review frontier ai
+- gpai code of practice
+- gpai model obligations
+- gpai obligations
+- gpt image 1.5
+- gpt-5.5 spud
+- gpt-5.5 spud pretraining completion
+- gpt-5.6 sol sandbox escape
+- gpt-5.6 sol terra luna
+- gpt-5.6 sol terra luna launch
+- gpt-oss
+- gpt-oss mxfp4 single h100
+- gptq
+- gptqmodel
+- gpu marketplace prices
+- gpu price index
+- gpu price index ocpi
+- gpu unit economics
+- gqa
+- grok 4.5
+- grok 4.5 private beta
+- grok 4.6
+- grok 4.6 release
+- grok 4.7
+- grok 4.7 release
+- grok imagine image 2.0
+- grok stt 1.0
+- grok stt 1.0 voice api
+- groq
+- groq 3 lpu
+- groq 3 lpu decode hardware
+- groq 3 lpx
+- groq 3 lpx full production
+- groq neocloud pivot
+- grouped gemm
+- grpo
+- h1 2027 close
+- h100
+- h100 rental price september 2026
+- h200
+- hadamard rotation outlier suppression
+- hailuo 03
+- hailuo 3.0
+- hardware diversion
+- harvey
+- harvey legal ai funding
+- hassabis agi prediction range
+- hbm demand destruction
+- hbm memory shortage
+- hbm oligopoly pricing 2026
+- hbm shortage
+- hbm4
+- hbm4 75 tb per rack
+- healer alpha
+- helix 02
+- helsing
+- helsing series e defense tech
+- heretic
+- hidream-o1-video-1.0
+- hopejr
+- hopejr humanoid september 1 2026
+- hopper fp8 accumulation bug
+- howard lutnick
+- hqq
+- hqq data-free quantization
+- hugging face
+- hugging face breach
+- hugging face robotics
+- humanoid robots
+- humanoid robots 2026
+- humanoid shipments
+- hybrid architectures
+- hybrid attention
+- hybridkv
+- hyperscaler gpu premium
+- idc 1.3b agents
+- imatrix
+- indexshare
+- indexshare attention
+- indirect prompt injection
+- industrial pilots
+- inferact
+- inference arbitrage
+- inference endpoints gpu pricing
+- inference engines
+- inference providers
+- inference providers router
+- inference spend inversion
+- inference spend share
+- inference spend share 2026
+- inference workload bifurcation
+- instinct mi455x
+- int4 awq gptq weight-only
+- ipo
+- iq-quants
+- jacob helberg
+- jensen huang
+- jensen huang open platform commitments
+- jevons paradox ai
+- jevons paradox ai employment
+- joint statement ai opportunity
+- joint statement on ai opportunity
+- jump-forward decoding
+- k-quants
+- kenneth payne ai arms and influence
+- kimi delta attention
+- kimi k2
+- kimi k2.6
+- kimi k3
+- kimi k3 latent routing
+- kimi-k3
+- kl divergence distribution shift
+- kling 3.0
+- kling arr
+- kling arr 2026
+- kpmg agentic spend
+- kv cache
+- kv cache memory economics
+- kv cache quantization int4
+- kv connectors
+- kv quantization
+- kv-aware gateway routing
+- kv-cache compression
+- lambda labs
+- lambda labs financing
+- langgraph
+- language effect nuclear decisions japanese
+- largest ipo in history
+- largest ipo in history 75b
+- latent routing
+- lecun agi dissent
+- legal ai
+- lerobot
+- lerobot robotics platform

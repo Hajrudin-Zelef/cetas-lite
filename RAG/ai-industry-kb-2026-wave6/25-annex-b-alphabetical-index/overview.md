@@ -1,0 +1,186 @@
+---
+id: ai-industry-kb-2026-wave6/25-annex-b-alphabetical-index/overview
+title: "Annex B — Alphabetical Index"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AMD", "AWS", "Alibaba", "Anthropic", "Apple", "ByteDance", "China", "Cohere", "CoreWeave", "DeepSeek", "Google", "Huawei", "LongCat", "Meta", "Microsoft", "Moonshot", "Nvidia", "OpenAI", "Z.ai", "xAI"]
+dates: ["2025-11-18", "2026-04", "2026-05-09", "2026-06-12", "2026-07", "2026-07-24", "2026-09-09", "2026-09-10", "2026-09-22"]
+keywords: ["agent", "agents", "amd", "apache", "ascend", "astra", "attribution", "aws", "chatgpt", "claude", "cohere", "compute"]
+source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
+source_anchor: ""
+source_lines: [11696, 11865]
+section: "Annex B — Alphabetical Index"
+sha256: 5149bad5eb7cd429dcf7c69dabd8ab0f7ebfffb5eb70c0becfbfc4a757aafd25
+---
+
+# Annex B — Alphabetical Index
+
+1326 entries. Format: `- term — §N` (section of primary coverage).
+
+- "Boss AI" — §5
+- "Built with Llama" attribution — §21
+- "circular investment theme" — §1
+- "Claude 4.62" (dropped, garbled 4.6) — §13
+- "commercial until you succeed" — §5
+- "Compressed Expert Dispatch" rejected — §2
+- "near lossless" quantization — §16
+- "Open Weights and American AI Leadership" (July 24 letter) — §15
+- "Palantir of China" — §5
+- "Preview Vision" (no separate variant) — §14
+- "shelved Astra" Medium claim [UNVERIFIED] — §12
+- $0.01 strike, $600 share-price gates — §1
+- $0.27 per Index task (V4.1 Flash) — §22
+- $100B/10GW non-binding LOI (stalled) — §1
+- $50M MaaS separate commercial license — §3
+- 01.AI (exited foundation models) — §17
+- 01.AI exits foundation models — §5
+- 0902 snapshot ≠ new base model — §3
+- 1.6T total / ~48B active — §6
+- 100M MAU / $20M monthly revenue attribution — §5
+- 100M MAU / $20M revenue name-display clause — §3
+- 100M MAU threshold (Kimi, Qwen) — §21
+- 10²⁶-ops threshold (ECCN 4E091) — §21
+- 111× input price spread — §22
+- 128K input / 64K generation (Command A+) — §16
+- 15.5T training tokens — §5
+- 196B Engram conditional memory — §2
+- 1M context (GLM-5.2) — §4
+- 1M context (LongCat-2.0) — §6
+- 1M context, 384K output — §2
+- 1× B200 or 2× H100 deployment floor — §16
+- 200K context surcharge (Gemini 3.1 Pro) — §14
+- 2025-11-18 Microsoft NVIDIA Anthropic pacts — §1
+- 2026-07-24 15:59 UTC alias retirement — §2
+- 2026-09-09 early access, 2026-09-10 GA — §2
+- 20× input-price spread (Sol/Luna) — §12
+- 20× Sol/Luna price spread — §22
+- 218B/25B MoE (Command A+) — §16
+- 272K-token cliff — §12
+- 384 experts — §5
+- 41% China share of HF downloads — §21
+- 48 languages (Command A+) — §16
+- 50,000+ domestic accelerators, no NVIDIA (vendor-only) — §6
+- 512K context (openPangu) — §6
+- 53-point AA Index tie (Fable 5.1 = Astra) — §22
+- 552B backbone — §2
+- 560B/27B, 128K, MIT — §6
+- 57.9% Terminal-Bench 4.0 (Fable 5.1) — §22
+- 60–90-day deprecation cadence — §13
+- 61.5% SWE-bench Pro (Muse Spark 1.1) — §22
+- 68.8 FACTS Suite (Gemini 3 Pro) — §22
+- 700M MAU cap (Llama) — §21
+- 744B/~40B vendor headline — §4
+- 753,329,940,480 HF tensor sum — §4
+- 770B/49B, >1M context, Apache 2.0 — §6
+- 800K+ verifiable coding tasks — §3
+- 8B active prefill / 16B decode — §2
+- 90% sparsity (Nemotron 3 Ultra) — §15
+- 97.0% SWE-bench Verified (Opus 5) — §22
+- AFM 3 Core Advanced — §20
+- AFM 3 Core — §20
+- Agent Swarm (100 agents / 1,500 tool calls) — §5
+- Agent Swarm up to 300 agents — §5
+- analyst criticism vs reporter language — §1
+- Anthropic "most visible holdout" — §13
+- Anthropic $30B Azure compute commitment — §1
+- Anthropic $30B compute vs $30B equity (distinct) — §1
+- Anthropic AMD July 2026 pact, no warrant — §1
+- Anthropic Series G $30B, $380B post-money — §1
+- Apache 2.0 — §21
+- Apple Foundation Models 3 — §20
+- April 2026 32B MIT / AIME 92.7% fabrication-risk — §2
+- Artificial Analysis Coding Agent Index — §19
+- Artificial Analysis Intelligence Index v4.3 — §12
+- Artificial Analysis Intelligence Index v4.3 — §22
+- Artificial Analysis v4.3 MiMo score — §8
+- Ascend 910B training — §4
+- AutoAWQ deprecated — §20
+- AutomationBench-AA — §12
+- AutomationBench-AA — §22
+- autonomous AI cyberattack (first disclosed) — §12
+- Aya Expanse 8B API retirement — §16
+- Aya Vision 8B API retirement — §16
+- Baichuan M3-235B — §23
+- BIS ECCN 4E091 — §21
+- Boss AI (01.AI positioning) — §17
+- Built with Llama attribution — §9
+- ByteDance Seed 2.1 Turbo — §23
+- cache-read discounts — §12
+- Cache-read pricing — §22
+- Cartesia Sonic-3.6 — §18
+- Causal Encoder-Decoder (CED) — §23
+- CED = Causal Encoder-Decoder — §2
+- ChatGPT Work — §12
+- Chatterbox — §18
+- Claude Fable 5 — §13
+- Claude Fable 5 — §19
+- Claude Fable 5.1 — §13
+- Claude Fable 5.1 — §19
+- Claude Fable 5.1 — §22
+- Claude Haiku 4.5 — §13
+- Claude Haiku 4.5 — §22
+- Claude multi-cloud: AWS, GCP, Azure — §1
+- Claude Mythos 5 — §13
+- Claude Mythos 5 — §19
+- Claude Mythos 5.1 — §13
+- Claude Mythos 5.1 — §22
+- Claude Mythos Preview — §13
+- Claude Opus 4.6 — §13
+- Claude Opus 4.6 — §19
+- Claude Opus 4.7 — §13
+- Claude Opus 4.7 — §19
+- Claude Opus 4.8 — §13
+- Claude Opus 4.8 — §19
+- Claude Opus 5 — §13
+- Claude Opus 5 — §19
+- Claude Opus 5 — §22
+- Claude Sonnet 4.6 — §13
+- Claude Sonnet 5 — §13
+- Claude Sonnet 5 — §19
+- Claude Sonnet 5 — §22
+- closed/API-only vision model — §4
+- CNBC 2026-05-09 NVIDIA $40B AI equity tally — §1
+- CodeGeeX4-ALL-9B — §19
+- CogViT + MTP — §4
+- Cohere Command A+ — §21
+- Cohere Command R+ — §22
+- Cohere Embed 4 — §20
+- Cohere FedRAMP High — §20
+- Cohere Rerank 4 — §20
+- Cohere Rerank 4 — §23
+- Coherent $2B NVIDIA — §1
+- Command A / R / R+ (CC-BY-NC) — §23
+- Command A+ — §16
+- Command R7B (no 2026 successor) — §16
+- Commerce Department suspension order (2026-06-12) — §13
+- Community License (Llama 4) — §21
+- Context cliffs (200K, 272K) — §22
+- context-window pricing tiers — §14
+- CoreWeave $2B NVIDIA — §1
+- Corning up to $3.2B warrant ceiling — §1
+- Cost per Index task — §22
+- cost-per-Index-task — §12
+- CSA2 — §2
+- Cursor Composer 2 — §19
+- Cursor Router — §19
+- CVE-2026-15903 — §19
+- Daybreak Blue — §12
+- Daybreak Blue/Red — §19
+- Daybreak Red — §12
+- DeepSeek HF README (CED source) — §2
+- DeepSeek R1-1776 — §23
+- DeepSeek R2 (not released) — §17
+- DeepSeek R2 (unreleased) — §23
+- DeepSeek R2 not released by 2026-09-22 — §2
+- DeepSeek R2 unreleased — §19
+- DeepSeek V4 family — §23
+- DeepSeek V4-Flash-0731 — §23
+- DeepSeek V4-Pro-0813 — §23
+- DeepSeek V4.1 Flash — §22
+- DeepSeek V4.1-Flash — §19
+- DeepSeek V4.1-Flash — §2
+- deepseek-chat alias retired — §2
+- deepseek-reasoner alias retired — §2
+- DeepSWE v1.1 Grok 4.7 — §11
+- DeepSWE — §19

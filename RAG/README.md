@@ -19,9 +19,14 @@ RAG/
 │   ├── manifest.json      # inventaire machine-readable
 │   ├── NOTES.md           # défauts de source (à ne pas corriger) + régénération
 │   └── <dossiers>/*.md    # chunks avec en-tête YAML
-└── briefing-general-tech-2026/   # corpus n°2 — General Tech News 2026 (112 chunks)
-    └── …                  # même structure
+├── briefing-general-tech-2026/   # corpus n°2 — General Tech News 2026 (112 chunks)
+├── ai-industry-kb-2026/          # corpus n°3 — AI Industry KB 2026 (123 chunks)
+└── ai-industry-kb-2026-wave6/    # corpus n°4 — AI Industry KB Wave 6 delta (136 chunks)
 ```
+
+Corpus n°1–2 : découpe « explicite » par H3 (listes de mapping figées).
+Corpus n°3–4 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
+sources ne portant aucune ancre.
 
 ## Garanties
 

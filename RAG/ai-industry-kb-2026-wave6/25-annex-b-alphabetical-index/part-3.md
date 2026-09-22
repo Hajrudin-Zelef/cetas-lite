@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026-wave6/25-annex-b-alphabetical-index/part-3
+title: "Annex B — Alphabetical Index (part 3)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AMD", "Anthropic", "IREN", "LongCat", "Meituan", "Meta", "Microsoft", "MiniMax", "Mistral", "Moonshot", "Nebius", "Nvidia", "OpenAI"]
+dates: ["2025-07", "2025-09-22", "2025-12", "2026-01-21", "2026-01-27", "2026-02", "2026-04-20", "2026-05-20", "2026-06-12", "2026-06-30", "2026-07-05", "2026-07-16", "2026-07-27"]
+keywords: ["agent", "amd", "attention", "attribution", "context window", "embeddings", "int4", "kimi", "license", "llama", "llama.cpp", "mcp"]
+source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
+source_anchor: ""
+source_lines: [12036, 12205]
+section: "Annex B — Alphabetical Index"
+sha256: 8be187fe3aada981f083d25fe0410918855d1ade12cfea20f54f021b05dddc54
+---
+
+# Annex B — Alphabetical Index (part 3)
+
+- Ideogram 4 (weights non-commercial) — §23
+- Ideogram 4 license split — §18
+- Ideogram 4 — §18
+- Imagen 4 — §18
+- IMO 2025 gold (Nemotron-Cascade 2) — §15
+- InclusionAI Ling 3.0 Flash — §23
+- InclusionAI — §17
+- IndexShare sparse attention — §4
+- IREN up to $2.1B warrant ceiling — §1
+- Jensen Huang first X post — §15
+- jina-embeddings-v5 size correction — §20
+- jina-embeddings-v5 — §20
+- jina-embeddings-v5-omni — §20
+- K2.5 hosted deprecation 2026-05-20 — §5
+- K3 LMArena coding 1,679 Elo — §5
+- Kai-Fu Lee pivot confirmation — §5
+- Kimi Code Bench v2 — §19
+- Kimi K2 / K2.5 / K2.6 / K2.7 Code — §23
+- Kimi K2 baseline (mid-July 2025) — §5
+- Kimi K2.5 2026-01-27 — §5
+- Kimi K2.6 2026-04-20 (not April 13) — §5
+- Kimi K2.6 — §19
+- Kimi K2.7 Code 2026-06-12 — §5
+- Kimi K2.7 Code — §19
+- Kimi K3 API 2026-07-16 / weights 2026-07-27 — §5
+- Kimi K3 — §22
+- Kimi Modified MIT — §21
+- Kling 3.0/O3 — §18
+- Kling pricing contradiction — §18
+- Kokoro-82M — §18
+- Kyutai Moshi — §18
+- Laguna S 2.1 — §22
+- Laguna XS 2.1 — §23
+- LatentMoE — §15
+- LFM Open License v1.0 — §20
+- LFM2.5-2.6B — §20
+- LFM2.5-230M — §20
+- LFM2.5-8B-A1B — §20
+- license-tightening trend — §7
+- Ling 3.0 Flash — §17
+- Liquid LFM2.5 — §20
+- Live RL — §8
+- Llama 3 / 3.1 / 3.2 / 3.3 — §23
+- Llama 4 acceptable use policy — §9
+- Llama 4 Community License — §9
+- Llama 4 MAU cap — §9
+- Llama 4 Maverick — §23
+- Llama 4 Maverick — §9
+- Llama 4 Scout — §23
+- Llama 4 Scout — §9
+- llama-nemotron-embed-1b-v2 — §20
+- llama.cpp — §20
+- llm-compressor v0.13.0 — §20
+- LMArena coding arena (Kimi K3 1,679) — §22
+- LMArena text board (Sept 2026) — §22
+- LMArena text board — §13
+- LongCat-2.0 revealed 2026-06-30 — §6
+- LongCat-2.0 weights+code MIT 2026-07-05 — §6
+- LongCat-2.0 — §21
+- LongCat-Flash series retirement — §23
+- LongCat-Flash-Omni ~Nov 2025 — §6
+- LongCat-Flash-Thinking 2025-09-22/23 — §6
+- Luma Photon Flash — §18
+- Luma Photon — §18
+- Luma Ray 3 — §18
+- Luma Ray 3.2 — §18
+- Luma Ray3.14 — §18
+- Lumentum $2B NVIDIA — §1
+- Lyria 3 Pro — §18
+- M2 release date — §7
+- M2.5 modified-MIT attribution — §7
+- M2.5 release date — §7
+- M2.7 non-commercial license — §7
+- M2.7 release date — §7
+- M2.7 SWE-bench Pro score — §7
+- M3 API pricing — §7
+- M3 context window — §7
+- M3 launch promotion pricing — §7
+- M3 parameters — §7
+- M3 release date — §7
+- Mamba-2 — §15
+- mandatory thinking mode — §5
+- Marvell $2B NVIDIA — §1
+- Matryoshka embeddings — §20
+- Matthew Bryson, Wedbush — §1
+- MCP Atlas — §19
+- MedGemma 1.5 — §14
+- Meituan changelog canonical — §6
+- Meta AMD deal February 2026 (warrant template reuse) — §1
+- Meta PlayAI acqui-hire — §18
+- Microsoft up to $5B Anthropic — §1
+- Midjourney V8.1 alpha date dispute — §18
+- Midjourney V8.1 — §18
+- Midjourney V8.1 — §23
+- Midjourney V8.2 — §18
+- MiMo — §8
+- MiMo-7B family — §23
+- MiMo-7B MIT license — §8
+- MiMo-7B release date — §8
+- MiMo-7B — §8
+- MiMo-V2-Omni — §8
+- MiMo-V2-Pro — §8
+- MiMo-V2-TTS — §8
+- MiMo-V2.5 / V2.5-Pro — §23
+- MiMo-V2.5 release date — §8
+- MiMo-V2.5 — §8
+- MiMo-V2.5-Pro parameters — §8
+- MiMo-V2.5-Pro pricing — §8
+- MiMo-V2.5-Pro — §8
+- mimo-v2.5-tts — §8
+- MiMo-V2.5-TTS-Series — §18
+- MiMo-V2.5-TTS-Series — §8
+- MiMo-V2.6 release window — §8
+- MiMo-V2.6-Flash — §8
+- MiMo-V2.6-Pro / V2.6-Flash — §23
+- MiMo-V2.6-Pro — §8
+- mini-SWE-agent harness — §19
+- MiniMax Community License geo-exclusion — §7
+- MiniMax Community License — §21
+- MiniMax Community License — §7
+- MiniMax H3 (Hailuo 3) — §23
+- MiniMax M2 — §21
+- MiniMax M2 — §7
+- MiniMax M2.5 modified-MIT — §21
+- MiniMax M2.5 — §7
+- MiniMax M2.7 non-commercial — §21
+- MiniMax M2.7 — §7
+- MiniMax M3 — §23
+- MiniMax M3 — §7
+- MiniMax music-2.6 — §18
+- MiniMax Sparse Attention — §7
+- MiniMax — §7
+- Ministral 3 (2026, unverified) — §20
+- Ministral 3 unverified — §10
+- Mistral Large 3 December 2025 — §10
+- Mistral Large 3 — §10
+- Mistral Large 3 — §23
+- Mistral Medium 3.1 — §10
+- Mistral Medium 3.5 — §10
+- Mistral Medium 3.5 — §23
+- Mistral Small 4 — §10
+- Mistral Small 4 — §23
+- Mistral Vibe CLI — §10
+- MIT license — §21
+- Model Runner V2 — §20
+- MODEL1 GitHub leak 2026-01-21 — §2
+- Modified MIT license — §5
+- MoonViT 400M — §19
+- MSA speedup figures — §7
+- MSA — §7
+- MTEB Multilingual 70.58 — §20
+- Muse Code terminal agent — §9
+- Muse Glimmer 30B — §21
+- Muse Glimmer — §9
+- Muse Spark 1.1 (SWE-bench Pro) — §23
+- Muse Spark 1.1 SWE-bench Pro — §9
+- Muse Spark 1.2 — §9
+- Muse Spark 1.3 — §22
+- Muse Spark 1.3 — §9
+- Muse Spark — §9
+- MXFP4 — §20
+- Nano Banana 2 Lite — §14
+- Nano Banana 2 — §14
+- Nano Banana Pro — §14
+- native computer use (GPT-5.4) — §12
+- native INT4 quantization — §5
+- native synchronized audio (Veo 3) — §14
+- Nebius $2B NVIDIA — §1
+- NeMo Switchyard — §15
+- Nemotron 3 Nano / Super / Ultra — §23

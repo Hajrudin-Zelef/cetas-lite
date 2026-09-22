@@ -614,6 +614,177 @@ GT_TERMS = [
     "foundry", "wafer", "dram price", "memory shortage",
 ]
 
+KB_EXTRA_ACTORS = {
+    "Hugging Face": [r"Hugging ?Face"], "Groq": [r"Groq"], "Cerebras": [r"Cerebras"],
+    "vLLM": [r"vLLM"], "SGLang": [r"SGLang"], "TensorRT-LLM": [r"TensorRT"],
+    "Unsloth": [r"Unsloth"], "MiniMax": [r"MiniMax"], "LongCat": [r"LongCat"],
+    "Meituan": [r"Meituan"], "Xiaomi": [r"Xiaomi"], "ByteDance": [r"ByteDance"],
+    "Falcon": [r"Falcon"], "TII": [r"\bTII\b"], "Perplexity": [r"Perplexity"],
+    "Poolside": [r"Poolside"], "CoreWeave": [r"CoreWeave"], "Crusoe": [r"Crusoe"],
+    "Nebius": [r"Nebius"], "Lambda": [r"Lambda"], "Together AI": [r"Together AI"],
+    "Fireworks AI": [r"Fireworks"], "Baseten": [r"Baseten"], "Nscale": [r"Nscale"],
+    "IREN": [r"IREN"], "Oracle": [r"Oracle"], "Broadcom": [r"Broadcom"],
+    "TSMC": [r"TSMC"], "Applied Digital": [r"Applied Digital"],
+    "Fluidstack": [r"Fluidstack"], "StepFun": [r"StepFun"], "Baidu": [r"Baidu"],
+}
+KB_ACTORS = {**IA_ACTORS, **KB_EXTRA_ACTORS}
+
+KB_TERMS = sorted(set(IA_TERMS + GT_TERMS + [
+    "moe", "mixture of experts", "kv cache", "inference engine", "speculative decoding",
+    "attention", "context window", "rotary", "gqa", "flash attention", "paged attention",
+    "vllm", "sglang", "tensorrt-llm", "llama.cpp", "gguf", "awq", "gptq", "safetensors",
+    "quantization", "fine-tuning", "lora", "qlora", "rlhf", "dpo", "pretraining",
+    "embedding", "embeddings", "reranker", "multimodal", "omni", "video generation",
+    "text-to-video", "text-to-image", "diffusion", "robotics", "humanoid",
+    "neocloud", "funding round", "series a", "series b", "series c", "valuation",
+    "revenue", "arr", "backlog", "market cap", "safety incident", "jailbreak",
+    "data breach", "cyberattack", "guardrails", "regulation", "governance",
+    "model context protocol", "mcp", "tool calling", "jailbreak", "alignment",
+    "open weights", "license", "apache", "mit license", "benchmark", "leaderboard",
+    "pricing", "cost", "latency", "throughput", "tokens per second", "energy",
+]))
+
+
+def slugify(s):
+    s = re.sub(r"[§#]", " ", s)
+    s = re.sub(r"[^A-Za-z0-9]+", "-", s)
+    return s.strip("-").lower()[:60] or "part"
+
+
+def _strip_num(s):
+    return re.sub(r"^\s*(?:§\s*)?\d+[\.\)]?\s*", "", s).strip() or s.strip()
+
+
+_TASK_MAP = [
+    ("compute", "funding-deals"), ("capital", "funding-deals"), ("deal", "funding-deals"),
+    ("funding", "funding-deals"), ("startup", "funding-deals"), ("ipo", "finance"),
+    ("public market", "finance"), ("econom", "finance"), ("invest", "funding-deals"),
+    ("safety incident", "ai-safety"), ("safety", "ai-safety"), ("breach", "ai-safety"),
+    ("governance", "regulation"), ("regulat", "regulation"), ("policy", "regulation"),
+    ("gpu", "hardware"), ("hardware", "hardware"), ("chip", "hardware"), ("robotic", "robotics"),
+    ("inference engine", "architecture"), ("kv cache", "architecture"), ("moe", "architecture"),
+    ("training", "training"), ("quantiz", "quantization"), ("format", "quantization"),
+    ("quantization", "quantization"), ("multimodal", "multimodal"), ("video", "multimodal"),
+    ("agent", "agents"), ("mcp", "agents"), ("hugging face", "platform"),
+    ("frontier", "model-release"), ("open-weight", "model-release"), ("model inventory", "reference"),
+    ("pricing", "pricing"), ("benchmark", "benchmark"), ("license", "licenses"),
+    ("index", "reference"), ("keyword", "reference"), ("contradiction", "reference"),
+    ("consolidation", "reference"), ("dedup", "reference"),
+    ("deepseek", "actor-profile"), ("qwen", "actor-profile"), ("glm", "actor-profile"),
+    ("kimi", "actor-profile"), ("minimax", "actor-profile"), ("xiaomi", "actor-profile"),
+    ("openai", "actor-profile"), ("anthropic", "actor-profile"), ("google", "actor-profile"),
+    ("meta", "actor-profile"), ("xai", "actor-profile"), ("mistral", "actor-profile"),
+    ("nvidia", "actor-profile"), ("cohere", "actor-profile"), ("other chinese", "actor-profile"),
+    ("coding", "model-release"), ("reasoning", "model-release"), ("small model", "model-release"),
+]
+
+
+def task_for_section(stitle, title):
+    low = (stitle + " " + title).lower()
+    for k, t in _TASK_MAP:
+        if k in low:
+            return t
+    return "reference"
+
+
+def _blank_split(lines, a, b, maxl):
+    blanks = [i for i in range(a, b + 1) if lines[i - 1].strip() == ""]
+    out = []
+    cur = a
+    while b - cur + 1 > maxl:
+        target = cur + maxl - 1
+        cand = [p for p in blanks if (cur + maxl // 2) < p <= target]
+        cut = cand[-1] if cand else target
+        out.append((cur, cut))
+        cur = cut + 1
+    out.append((cur, b))
+    return out
+
+
+def _split_piece(lines, a, b, heads, maxl):
+    if b - a + 1 <= maxl:
+        return [(a, b)]
+    h3 = [h[0] for h in heads if h[1] == 3 and a < h[0] <= b]
+    if h3:
+        bounds = [a] + h3 + [b + 1]
+        out = []
+        for j in range(len(bounds) - 1):
+            x, y = bounds[j], bounds[j + 1] - 1
+            out.extend(_blank_split(lines, x, y, maxl) if y - x + 1 > maxl else [(x, y)])
+        return out
+    return _blank_split(lines, a, b, maxl)
+
+
+def _merge_small(pieces, minl, maxl):
+    merged = []
+    i = 0
+    while i < len(pieces):
+        a, b = pieces[i]
+        i += 1
+        while i < len(pieces) and (b - a + 1) < minl and (pieces[i][1] - a + 1) <= maxl:
+            b = pieces[i][1]
+            i += 1
+        merged.append((a, b))
+    return merged
+
+
+def auto_items(cfg, lines, n):
+    maxl = cfg.get("max_lines", 250)
+    minl = cfg.get("min_lines", 80)
+    heads = []
+    for i, ln in enumerate(lines, 1):
+        m = re.match(r"^(#{1,3}) +(.*)$", ln)
+        if m:
+            heads.append((i, len(m.group(1)), m.group(2).strip()))
+    h1 = [h for h in heads if h[1] == 1]
+    if not h1:
+        sys.exit(f"[{cfg['slug']}] auto: no H1 heading")
+    items = []
+    for idx, h in enumerate(h1):
+        bs = h[0]
+        be = h1[idx + 1][0] - 1 if idx + 1 < len(h1) else n
+        stitle = h[2]
+        h2 = [x[0] for x in heads if x[1] == 2 and bs <= x[0] <= be]
+        bounds = [bs] + h2 + [be + 1]
+        pieces = []
+        for j in range(len(bounds) - 1):
+            pieces.extend(_split_piece(lines, bounds[j], bounds[j + 1] - 1, heads, maxl))
+        merged = _merge_small(pieces, minl, maxl)
+        cleaned = []
+        for (a, b) in merged:
+            if cleaned and (b - a + 1) < minl and (b - cleaned[-1][0] + 1) <= maxl + 30:
+                cleaned[-1] = (cleaned[-1][0], b)
+            else:
+                cleaned.append((a, b))
+        merged = cleaned
+        fbase = f"{idx:02d}-{slugify(_strip_num(stitle))}" if idx else "00-front-matter"
+        is_annex = "annex" in stitle.lower()
+        seen = {}
+        for k, (a, b) in enumerate(merged):
+            hd = next((t for (l, lv, t) in heads if a <= l <= b), "")
+            is_overview = a <= bs <= b
+            if is_overview and (not hd or slugify(_strip_num(hd)) == slugify(_strip_num(stitle))):
+                fname = "overview"
+                title = stitle
+            elif hd:
+                fname = slugify(hd)
+                title = hd
+            else:
+                fname = f"part-{k + 1}"
+                title = f"{stitle} (part {k + 1})"
+            seen[fname] = seen.get(fname, 0) + 1
+            if seen[fname] > 1:
+                fname = f"{fname}-{seen[fname]}"
+            role = "reference" if idx == 0 else ("appendix" if is_annex else "deep-dive")
+            dom = "front-matter" if idx == 0 else ("appendix" if is_annex else slugify(_strip_num(stitle)))
+            items.append({
+                "folder": fbase, "slug": fname, "title": title, "section": stitle,
+                "start": a, "end": b, "anchor": "", "domain": dom, "role": role,
+                "task": task_for_section(stitle, title),
+            })
+    return items
+
+
 # --------------------------------------------------------------------------
 # generic machinery
 # --------------------------------------------------------------------------
@@ -627,6 +798,45 @@ MONTHS = {
 
 def norm_ws(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()
+
+
+def extract_dates(text):
+    found = set()
+    for m in re.finditer(r"\b([A-Z][a-z]+) (\d{1,2}), (\d{4})\b", text):
+        mon = MONTHS.get(m.group(1).lower())
+        if mon:
+            found.add(f"{m.group(3)}-{mon}-{int(m.group(2)):02d}")
+    for m in re.finditer(r"\b(\d{1,2})/(\d{1,2})/(\d{4})\b", text):
+        found.add(f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}")
+    for m in re.finditer(r"\b(\d{4})-(\d{2})-(\d{2})\b", text):
+        found.add(m.group(0))
+    for m in re.finditer(r"\b([A-Z][a-z]+) (\d{4})\b", text):
+        mon = MONTHS.get(m.group(1).lower())
+        if mon:
+            found.add(f"{m.group(2)}-{mon}")
+    return sorted(found)
+
+
+def extract_actors(text, actors):
+    out = []
+    for label, pats in actors.items():
+        for p in pats:
+            if re.search(p, text):
+                out.append(label)
+                break
+    return sorted(out)
+
+
+def extract_keywords(text, title, terms):
+    low = text.lower()
+    kws = []
+    for term in terms:
+        pat = r"(?<![a-z0-9])" + re.escape(term) + r"(?![a-z0-9])"
+        if re.search(pat, low):
+            kws.append(term)
+    base = norm_ws(title).lower()
+    kws = sorted(set(kws), key=lambda t: (t not in base, t))
+    return kws[:12]
 
 
 def parse_anchors(text: str):
@@ -733,16 +943,37 @@ def ylist(items):
     return "[" + ", ".join(ystr(x) for x in items) + "]"
 
 
-def build_corpus(cfg, lines, n):
+def explicit_items(cfg, lines, n):
     cs = Corpus(cfg, lines, n)
     if cs.starts[0] != 1:
         sys.exit(f"[{cfg['slug']}] first chunk must start at line 1")
-    for i in range(len(cs.starts)):
-        end = cs.end_of(i)
-        if end < cs.starts[i]:
-            sys.exit(f"[{cfg['slug']}] overlap/empty at chunk {cs.chunks[i]}")
-        if i + 1 < len(cs.starts) and cs.starts[i + 1] != end + 1:
-            sys.exit(f"[{cfg['slug']}] gap at chunk {cs.chunks[i]}")
+    items = []
+    for i, (folder, slug, _heading, title) in enumerate(cs.chunks):
+        start, end = cs.starts[i], cs.end_of(i)
+        if end < start or (i + 1 < len(cs.starts) and cs.starts[i + 1] != end + 1):
+            sys.exit(f"[{cfg['slug']}] gap/overlap at {folder}/{slug}")
+        items.append({
+            "folder": folder, "slug": slug, "title": title, "section": "",
+            "start": start, "end": end, "anchor": cs.anchor_of(start),
+            "domain": cfg["folder_domain"][folder],
+            "role": cs.role_for(folder, slug), "task": cs.task_for(folder, slug),
+        })
+    return items
+
+
+def build_corpus(cfg, lines, n):
+    auto = cfg.get("mode") == "auto"
+    items = auto_items(cfg, lines, n) if auto else explicit_items(cfg, lines, n)
+
+    if items[0]["start"] != 1:
+        sys.exit(f"[{cfg['slug']}] first chunk must start at line 1")
+    for i, it in enumerate(items):
+        if it["end"] < it["start"]:
+            sys.exit(f"[{cfg['slug']}] empty chunk {it['slug']}")
+        if i + 1 < len(items) and it["end"] + 1 != items[i + 1]["start"]:
+            sys.exit(f"[{cfg['slug']}] gap/overlap before {items[i + 1]['slug']}")
+    if items[-1]["end"] != n:
+        sys.exit(f"[{cfg['slug']}] last chunk must end at {n}")
 
     out = RAG_ROOT / cfg["slug"]
     out.mkdir(parents=True, exist_ok=True)
@@ -754,17 +985,16 @@ def build_corpus(cfg, lines, n):
             p.rmdir()
 
     manifest, anchor_index, canonical_index, folders = [], {}, {}, {}
-    for i, (folder, slug, _heading, title) in enumerate(cs.chunks):
-        start, end = cs.starts[i], cs.end_of(i)
+    for it in items:
+        folder, slug, title = it["folder"], it["slug"], it["title"]
+        start, end, anchor = it["start"], it["end"], it.get("anchor", "")
+        domain, role, task = it["domain"], it["role"], it["task"]
+        section = it.get("section", "")
         body = "".join(lines[start - 1:end])
-        anchor = cs.anchor_of(start)
-        domain = cfg["folder_domain"][folder]
-        role = cs.role_for(folder, slug)
-        task = cs.task_for(folder, slug)
-        actors = cs.extract_actors(body)
-        dates = cs.extract_dates(body)
-        keywords = cs.extract_keywords(body, title)
-        canon = cfg["canonical"].get(f"{folder}/{slug}", [])
+        actors = extract_actors(body, cfg["actors"])
+        dates = extract_dates(body)
+        keywords = extract_keywords(body, title, cfg["terms"])
+        canon = cfg.get("canonical", {}).get(f"{folder}/{slug}", [])
         cid = f"{cfg['slug']}/{folder}/{slug}"
         digest = hashlib.sha256(body.encode("utf-8")).hexdigest()
 
@@ -773,6 +1003,8 @@ def build_corpus(cfg, lines, n):
                   f"dates: {ylist(dates)}", f"keywords: {ylist(keywords)}",
                   f"source: {cfg['source']}", f"source_anchor: {ystr('#' + anchor if anchor else '')}",
                   f"source_lines: [{start}, {end}]"]
+        if auto and section:
+            header.append(f"section: {ystr(section)}")
         if canon:
             header.append(f"canonical_for: {ylist(canon)}")
         header.append(f"sha256: {digest}")
@@ -797,6 +1029,8 @@ def build_corpus(cfg, lines, n):
             "source_lines": [start, end], "canonical_for": canon,
             "words": len(body.split()), "bytes": len(body.encode("utf-8")), "sha256": digest,
         }
+        if auto and section:
+            entry["section"] = section
         manifest.append(entry)
         for a in parse_anchors(body):
             anchor_index[a] = entry["path"]
@@ -849,18 +1083,20 @@ def build_corpus(cfg, lines, n):
             by_date.setdefault(d, []).append(e["path"].split(f"{cfg['slug']}/", 1)[-1])
     for d in sorted(by_date):
         lines_out.append(f"- **{d}** — " + ", ".join(f"[{p}]({p})" for p in by_date[d]))
-    lines_out += ["", "## Événements canoniques (`canonical_for`)", "",
-                  "Un même événement est narré plusieurs fois (chronologie, profil, fond). "
-                  "La version de fond est marquée canonique ici ; les autres occurrences "
-                  "restent présentes et sont taguées `role: timeline`.", ""]
-    for event in sorted(canonical_index):
-        lines_out.append(f"- **{event}** — " + ", ".join(
-            f"[{p}]({p})" for p in canonical_index[event]))
-    lines_out += ["", "## Ancres source → fichier", "",
-                  f"`{cfg['anchor_label']}` (liens de la table des matières source) → fichier cible.", "",
-                  "| ancre | fichier |", "|---|---|"]
-    for a in sorted(anchor_index, key=lambda x: (len(x), x)):
-        lines_out.append(f"| `#{a}` | [{anchor_index[a]}]({anchor_index[a]}) |")
+    if canonical_index:
+        lines_out += ["", "## Événements canoniques (`canonical_for`)", "",
+                      "Un même événement est narré plusieurs fois (chronologie, profil, fond). "
+                      "La version de fond est marquée canonique ici ; les autres occurrences "
+                      "restent présentes et sont taguées `role: timeline`.", ""]
+        for event in sorted(canonical_index):
+            lines_out.append(f"- **{event}** — " + ", ".join(
+                f"[{p}]({p})" for p in canonical_index[event]))
+    if anchor_index:
+        lines_out += ["", "## Ancres source → fichier", "",
+                      f"`{cfg['anchor_label']}` (liens de la table des matières source) → fichier cible.", "",
+                      "| ancre | fichier |", "|---|---|"]
+        for a in sorted(anchor_index, key=lambda x: (len(x), x)):
+            lines_out.append(f"| `#{a}` | [{anchor_index[a]}]({anchor_index[a]}) |")
     lines_out += ["", "## Carte de couverture (lignes source)", "", "| plage | fichier |", "|---|---|"]
     for e in manifest:
         lines_out.append(f"| {e['source_lines'][0]}–{e['source_lines'][1]} | {e['path']} |")
@@ -880,7 +1116,6 @@ def build_corpus(cfg, lines, n):
 
 
 def verify_corpus(cfg, lines, n, man):
-    cs = Corpus(cfg, lines, n)
     ordered = sorted(man["chunks"], key=lambda c: c["source_lines"][0])
     assert ordered[0]["source_lines"][0] == 1, "cover must start at 1"
     assert ordered[-1]["source_lines"][1] == n, "cover must end at n"
@@ -921,6 +1156,20 @@ CORPORA = [
         "chunks": GT_CHUNKS, "folder_domain": GT_FOLDER_DOMAIN, "folder_task": GT_FOLDER_TASK,
         "task_overrides": GT_TASK_OVERRIDES, "canonical": GT_CANONICAL,
         "actors": GT_ACTORS, "terms": GT_TERMS, "anchor_label": "#gNN-M",
+    },
+    {
+        "slug": "ai-industry-kb-2026",
+        "title": "AI Industry Knowledge Base 2026",
+        "source": "docs/RAG/ai-industry-knowledge-base-2026.md",
+        "mode": "auto", "max_lines": 170, "min_lines": 70,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "ai-industry-kb-2026-wave6",
+        "title": "AI Industry Knowledge Base 2026 — Wave 6 Consolidation",
+        "source": "docs/RAG/ai-industry-knowledge-base-2026-wave6.md",
+        "mode": "auto", "max_lines": 170, "min_lines": 70,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
 ]
 

@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026-wave6/25-annex-b-alphabetical-index/part-4
+title: "Annex B — Alphabetical Index (part 4)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AMD", "Alibaba", "Anthropic", "Cohere", "Glasswing", "LongCat", "Nvidia", "OpenAI", "Perplexity", "Poolside", "SGLang", "Stability AI", "StepFun", "Z.ai"]
+dates: ["2025-06", "2025-09-30", "2025-10-06", "2026-02-03", "2026-02-16", "2026-03-30", "2026-04-02", "2026-04-16", "2026-04-20", "2026-04-22", "2026-04-26", "2026-05-20", "2026-05-29", "2026-06-01", "2026-06-29", "2026-06-30", "2026-07-24", "2026-07-27", "2026-08-26", "2026-09-02", "2026-09-24", "2026-09-27", "2026-10-15"]
+keywords: ["agent", "amd", "cohere", "consumer", "embedding", "fable 5", "funding", "funding round", "glm", "license", "llama", "nvfp4"]
+source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
+source_anchor: ""
+source_lines: [12206, 12375]
+section: "Annex B — Alphabetical Index"
+sha256: 8649ddd2e8d6e7d7bf331819d07571d6ea27843f0404a6a780fa2a3dbfb7fa52
+---
+
+# Annex B — Alphabetical Index (part 4)
+
+- Nemotron 3 Nano — §15
+- Nemotron 3 Super — §15
+- Nemotron 3 Ultra — §15
+- Nemotron 3.5 Lightning — §15
+- Nemotron 3.5 Lightning — §23
+- Nemotron 4 (in development) — §23
+- Nemotron 4 (in development, not announced) — §15
+- Nemotron Coalition — §15
+- Nemotron-3-Nano-CC IOI claim — §19
+- Nemotron-Cascade 2 — §15
+- Nemotron-Cascade 2 — §19
+- Nemotron-Cascade 2 — §23
+- no 2026 ColBERT successor — §20
+- no BGE-M3 successor — §20
+- no cross-version AA comparison — §2
+- NV-Embed-v2 — §20
+- NVFP4 — §15
+- NVFP4 — §20
+- Nvidia Labs Object-Oriented Agent — §15
+- NVIDIA Open Model License — §15
+- NVIDIA Open Model License — §21
+- NVIDIA OpenAI $30B investment — §1
+- NVIDIA PersonaPlex 7B — §18
+- NVIDIA up to $10B Anthropic — §1
+- NVIDIA–Poolside Model Factory license ($6B) — §21
+- Ollama 0.19.0 — §20
+- Ollama MLX backend — §20
+- Omni 1.1 Flash — §14
+- Omni Flash preview — §14
+- Omni Pro (teased-only) [UNVERIFIED] — §14
+- Open Secure AI Alliance (2026-07-27) — §21
+- Open Secure AI Alliance — §15
+- open source to open weights walkback — §7
+- Open Weights and American AI Leadership (2026-07-24) — §21
+- Open-washing debate — §21
+- open-washing Llama — §9
+- OpenAI $110B funding round, $730B pre-money — §1
+- OpenAI $122B close, $852B post-money — §1
+- OpenAI-AMD 2025-10-06, 6GW — §1
+- OpenMDW-1.1 — §17
+- OpenMDW-1.1 — §21
+- openPangu 2.0 Flash 92B/6B — §6
+- openPangu 2.0 Flash — §17
+- openPangu 2.0 Pro 505B/18B — §6
+- openPangu 2.0 Pro — §17
+- openPangu 2.0 staged release from 2026-06-30 — §6
+- openPangu 2.0 — §17
+- openPangu license not verified — §6
+- Opus 4 retirement — §13
+- Opus 4.1 retirement — §13
+- Opus-4.8 fallback (Fable 5 refusals) — §13
+- OSI Llama reference case — §9
+- Owl Alpha stealth episode — §6
+- Ox Alpha stealth = GLM-5.3-Flash — §4
+- Peak/off-peak pricing (V4.1 Flash) — §22
+- Perplexity 2026 model posture — §23
+- Perplexity Agent API — §17
+- Perplexity Sonar — §17
+- Phi-5 (no release found) — §23
+- Phi-5 (not found) — §20
+- Pika 2.5 — §18
+- Pikaframes — §18
+- PixVerse V5 — §18
+- PlayAI / PlayHT shutdown — §23
+- PlayAI/PlayHT shutdown — §18
+- Poolside Laguna S 2.1 — §17
+- Poolside Model Factory $6B license — §15
+- Price decay (dated prices) — §22
+- Project Genie — §14
+- Project Glasswing — §13
+- Q1_0 / Q2_0 — §20
+- QAT (Gemma quantization-aware training) — §14
+- Qwen 2.045B downloads (7 months 2026) — §21
+- Qwen 2.045B HF downloads in 7 months — §3
+- Qwen 4 in training (Alibaba) — §3
+- Qwen >3B cumulative downloads — §3
+- Qwen Image 3.0 (closed) — §21
+- Qwen License (100M MAU) — §21
+- Qwen3-Coder-Next 2026-02-03/04 — §3
+- Qwen3-Coder-Next — §19
+- Qwen3-Embedding-8B — §20
+- Qwen3-Next-80B-A3B — §23
+- Qwen3-TTS — §18
+- Qwen3.5 medium open models + hosted Flash — §3
+- Qwen3.5 small line — §20
+- Qwen3.5-0.8B — §20
+- Qwen3.5-397B-A17B 2026-02-16 — §3
+- Qwen3.5-397B-A17B — §23
+- Qwen3.5-Omni 2026-03-30 — §3
+- Qwen3.5-Omni — §23
+- Qwen3.6-27B / 3.6-35B-A3B — §23
+- Qwen3.6-27B open 2026-04-22 — §3
+- Qwen3.6-35B-A3B open 2026-04-16 — §3
+- Qwen3.6-Max-Preview closed 2026-04-20 — §3
+- Qwen3.6-Plus closed 2026-04-02 — §3
+- Qwen3.7-Flash July snapshot — §3
+- Qwen3.7-Max closed 2026-05-20 — §3
+- Qwen3.7-Plus "will be open source" (unfulfilled) — §3
+- Qwen3.7-Plus closed 2026-06-01 — §3
+- Qwen3.7-Plus pricing — §22
+- Qwen3.8-27B — §23
+- Qwen3.8-Flash-Next 125B/6B 2026-08-26 — §3
+- Qwen3.8-Max AA Index v4.3 = 45 — §3
+- Qwen3.8-Max custom license — §21
+- Qwen3.8-Max custom license — §3
+- Qwen3.8-Max — §21
+- Qwen3.8-Max-0902 snapshot 2026-09-02 — §3
+- Qwen3.8-Max-0902 — §22
+- qwen4_exp (experimental) — §23
+- qwen4_exp experimental checkpoint — §3
+- R1-1776 — §17
+- Recraft V4 — §18
+- Rerank 4 (2025) — §16
+- reseller arbitrage (~91% off) — §12
+- Reseller arbitrage (~91% off) — §22
+- revealed 2026-06-29 — §6
+- Runway Aleph — §18
+- Runway Gen-4.5 / Gen-5 — §23
+- Runway Gen-4.5 — §18
+- Runway no Gen-5 — §18
+- Runway world models pivot — §18
+- same weights, different safeguards — §13
+- Seed 2.1 Turbo — §17
+- Seed-Coder (Jun 2025) — §19
+- Seed-Coder (June 2025) — §17
+- Seedance 2.5 — §17
+- Sesame CSM-1B — §18
+- seven public-company NVIDIA transactions — §1
+- SGLang day-zero Qwen3.8 — §20
+- SGLang v0.5.16 — §20
+- six-model LongCat Flash sunset 2026-05-29 — §6
+- Skyler Miao — §7
+- SmolLM3-3B — §20
+- Sonar chat-completions retirement (2026-09-27) — §17
+- Sonic codename — §11
+- Sonnet 5 price-rise cancellation — §13
+- Sora 2 Cameos — §18
+- Sora 2 launch date (2025-09-30) — §18
+- Sora 2 — §12
+- Sora 2 — §18
+- Sora 2 — §23
+- Sora API decommissioning — §12
+- Sora API end (2026-09-24) — §18
+- Sora consumer app end (2026-04-26) — §18
+- Sora consumer shutdown — §12
+- sovereign AI (Cohere positioning) — §16
+- Spark 1.2 open weights promise — §9
+- Spark 1.2 pricing — §9
+- Speech-to-Text GA — §11
+- Spud (GPT-5.5 codename) — §12
+- Stability AI Community License — §21
+- Stable Audio 3.0 — §18
+- Step 5 BF16 weights (promised 2026-10-15) — §17
+- Step 5 Preview — §22
+- StepFun Step 5 Preview — §17
+- Suno v5.5 — §18
+- SWE-1.5 — §19
+- SWE-1.6 — §19
+- SWE-bench Pro (Scale public board) — §22
+- SWE-bench Pro commercial/private (276 tasks) — §19
+- SWE-bench Pro held-out (858 tasks) — §19
+- SWE-bench Pro public (731 tasks) — §19
+- SWE-bench Pro trust crisis — §19
+- SWE-bench Pro vendor aggregate — §19
+- SWE-bench Pro — §12
+- SWE-bench Pro — §19
+- SWE-bench Verified (saturated) — §22
+- SWE-bench Verified saturation — §13
+- SWE-bench Verified saturation — §19
+- SynthID watermarking — §18

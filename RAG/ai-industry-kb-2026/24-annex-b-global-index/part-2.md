@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026/24-annex-b-global-index/part-2
+title: "Annex B — Global index (part 2)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AMD", "Alibaba", "Anthropic", "CISA", "China", "Cohere", "CoreWeave", "Crusoe", "DeepSeek", "EU", "ExploitGym", "Fireworks AI", "Google", "Meta", "Nvidia", "SGLang", "SpaceX", "United States", "Z.ai", "xAI"]
+dates: ["2026-04", "2026-04-09", "2026-08", "2026-08-02", "2026-08-16", "2026-09-02"]
+keywords: ["acquisition", "agent", "agentic", "arr", "asic", "attention", "benchmark", "claude", "cohere", "cost", "deepseek", "disaggregated"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [11569, 11738]
+section: "Annex B — Global index"
+sha256: bc0800b1be81f524ebb26da33786c9c8e9b16ed3608f34d9311c4df17fe260db
+---
+
+# Annex B — Global index (part 2)
+
+- Cognition Series D $26B — §20
+- Cognition SWE-2 — §13
+- Cognition/Devin — §13
+- Cohere — §21
+- Compressed Sparse Attention (CSA) — §5
+- Compressed Sparse Attention 2 — §2, §5
+- Confidential S-1 — §21
+- CoreWeave — §14
+- CoreWeave CRWV convertible debt — §21
+- CoreWeave Rubin bring-up — §15
+- CoreWeave–Meta $21B agreement (2026-04-09) — §14
+- Counterpoint Research — §22
+- Cross-entropy loss head, memory cost — §9
+- CrowdStrike forensics — §17
+- Crusoe — §14, §21
+- CSA2 (Compressed Sparse Attention 2) — §11
+- CSIS + Scale AI benchmark — §17
+- Cursor — §1
+- Cursor ARR 4B annualized — §19
+- Cut / fused cross-entropy — §10
+- cvd.z.ai — §3
+- CVE-2026-0599 — §16
+- CVE-2026-25874 — §16
+- CVSS 9.8 — §16
+- CyberGym — §3
+- DALL-E sunset — §12
+- Daniel Han — §10
+- Dario Amodei — §1
+- Databricks IPO deferral — §21
+- David Soria Parra — §13
+- Davos 2026 agentic enterprise — §19
+- DeepEP — §9, §10
+- DeepInfra flat-rate pricing — §14
+- DeepSeek API changelog — §5
+- DeepSeek Sparse Attention — §3, §5, §6, §7
+- DeepSeek V4 family — §2
+- DeepSeek V4 Flash — §11
+- DeepSeek V4 peak/off-peak pricing (2026-08-16) — §14
+- DeepSeek V4-Flash-Vision-Exp — §2
+- DeepSeek V4-Lite — §5
+- DeepSeek V4-Pro retirement — §2
+- DeepSeek V4-Pro-0813 — §5
+- DeepSeek V4.1-Flash — §2, §5, §11, §13
+- deepseek-chat — §5
+- deepseek-flash — §5
+- DeepSeek-R1-FP4 — §8
+- deepseek-reasoner — §5
+- DeepSeek-V3 training recipe — §9
+- DeepSeek-V3.2 escalation rate 30.9% — §17
+- DeepSeek-V4 day-zero support (SGLang, April 2026) — §6
+- DeepSeek-V4 Preview — §5
+- deepseek-v4-flash-expires-on-0910 — §5
+- DeepSpeed AutoEP — §10
+- DeepSWE — §1, §13
+- DeepSWE v1.1 — §3
+- Defense-tech VC 2026 — §20
+- defensive asymmetry — §17
+- Definitive agreement 2026-09-02 — §16
+- Dell PowerEdge XE9812 — §15
+- DeltaKV — §8
+- demo versus deployment taxonomy — §22
+- Digit RaaS pricing — §22
+- Digit v5 — §22
+- Digital Omnibus — §18
+- Disaggregated KV storage — §7
+- Disaggregated serving (P/D) — §7
+- Discord stalled IPO — §21
+- Discrete speech codecs / MiMo audio tokenizer — §11
+- Dispatch/combine, all-to-all — §9
+- DOJ Super Micro indictment — §18
+- DoRA — §10
+- Double-buffered checkpoint reload — §10
+- DP attention for MLA models (SGLang) — §6
+- Dreamina — §12
+- Dynamic Quantization 2.0 (superseded) — §10
+- Dynamic v3.0 — §10
+- E2M1 — §8
+- E8M0 — §8
+- Ecosystem neutrality concerns — §16
+- Elon Musk — §1
+- Elon Musk SpaceX xAI — §21
+- Encoder-free multimodal — §11
+- EngineAI T800 — §22
+- Engram — §5
+- Epirus 2025 round dating — §20
+- EPLB (Expert Parallelism Load Balancer) — §9
+- Epoch AI Capabilities Index — §2
+- EPYC Venice — §15
+- ESFT — §10
+- Etched Sohu — §15
+- Etched Sohu ASIC raises — §20
+- EU AI Act Article 50 — §18
+- EU AI Act enforcement August 2026 — §18
+- EU AI Act high-risk obligations (2026-08-02) — §13
+- EU competition review — §16
+- European AI Office — §18
+- European mega-rounds — §20
+- EVA Salesforce agentic concierge — §19
+- Event-narrative loop — §19
+- Exit bans, Manus co-founders — §18
+- Expert Mode teleoperation — §22
+- Expert offloading — §9
+- Expert parallelism math — §9
+- Expert parallelism, training-side — §9
+- expiring model id — §5
+- ExploitBench — §3
+- ExploitGym sandbox escape — §17
+- Export Control Law (China) — §18
+- Fable 5 / Claude Opus declined forensic work — §17
+- FBI notification — §17
+- Fidji Simo side quests memo — §19
+- Figure 03 — §22
+- Figure AI — §21
+- Figure AI 2025 round dating — §20
+- Fine-grained experts, bandwidth cost — §9
+- Firecracker microVM sandboxing — §13
+- Fireworks AI pricing — §14
+- FL2VA / Ref2VA — §11
+- flagship-retirement inversion — §5
+- Forecast versus realized value gap — §19
+- Foreign-investment security review (China) — §18
+- Form 8-K NVIDIA — §16
+- Foxconn BCG agent ecosystem 800M — §19
+- Foxconn PIPE — §22
+- FP4 KV — §7
+- FP4 KV caching — §5
+- FP4 MLA KV caches (SGLang v0.5.6) — §6
+- FP8 — §8
+- FP8 default serving format — §9
+- FP8 E4M3 — §8
+- FP8 E4M3 KV — §7
+- FP8 E5M2 — §8
+- FP8 KV cache — §8
+- FP8-build shorthand — §3
+- Friar 2027 all-hands — §21
+- FSDP2 — §10
+- Gartner agentic AI 40 percent forecast — §19
+- Gartner project cancellation warning 2027 — §19
+- Gated Delta Networks — §4
+- Gated DeltaNet — §9
+- Gated DeltaNet hybrid (Qwen) — §2
+- Gated Residual — §4
+- Gateway-mediated MCP deployment — §13
+- GB200 NVL72 rental pricing — §15
+- GB300 NVL72 — §15
+- GB300 NVL72 "25x" SGLang benchmark (Feb 2026) [VENDOR] — §6
+- GBNF grammar syntax convergence (XGrammar) — §6
+- Gemini 3 Flash "Nixon madman" — §17
+- Gemini 3.1 Pro — §1, §7
+- Gemini Omni — §12
+- Gemini Omni Flash — §1, §12
+- Gemini Robotics 1.5 — §22
+- Gemma 4 — §11
+- Gemma 4 12B — §2
+- Gemma 4 12B Unified — §11
+- Genie 3 — §12
+- ggml.ai acquisition — §16
+- Glean — §21
+- GLM Coding Plan — §3
+- GLM-5.2 — §2, §3
+- GLM-5.2 forensic analysis (Z.ai) — §17
+- GLM-5.2 IndexShare — §7
+- GLM-5.3 — §2, §3
+- GLM-5.3 License — §3
+- GLM-5.3-Flash — §2, §3, §11
+- GLM-5.3-Flash pricing — §9
+- Google — §1
+- Google AI Ultra — §12
+- GPAI Code of Practice — §18
+- GPAI obligations Articles 53–55 — §18

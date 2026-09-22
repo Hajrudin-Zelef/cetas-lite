@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026/24-annex-b-global-index/part-3
+title: "Annex B — Global index (part 3)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AMD", "Groq", "Hugging Face", "Lambda", "LongCat", "Meta", "Microsoft", "MiniMax", "Moonshot", "OpenAI", "SGLang", "SpaceX", "TensorRT-LLM", "Unsloth", "xAI"]
+dates: ["2025-11-18", "2025-12-15", "2026-01", "2026-05", "2026-05-24", "2026-07", "2026-07-28", "2026-08-05", "2026-08-28", "2026-09-05"]
+keywords: ["acquisition", "agent", "agentic", "agents", "agi", "arr", "attention", "cost", "custom silicon", "diffusion", "fp8", "funding"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [11739, 11908]
+section: "Annex B — Global index"
+sha256: e1fcb25724d76fb89093fba6eab44a5e5f08606d0b24fbf640b1ffada4b2acb8
+---
+
+# Annex B — Global index (part 3)
+
+- GPT Image 1.5 — §12
+- GPT-5.2 "Jekyll and Hyde" — §17
+- GPT-5.5 "Spud" — §1
+- GPT-5.6 Luna — §1
+- GPT-5.6 Sol — §1, §17
+- GPT-5.6 Terra — §1
+- GPT-OSS — §2, §8
+- GPT-OSS-120B/20B day-0 (TensorRT-LLM, 2026-08-05) — §6
+- GPTQ — §8
+- GPU rent-vs-buy breakeven (40–77%) — §14
+- Grand View AI agents market 2026 — §19
+- Greenshoe over-allotment — §21
+- Greg Brockman — §1
+- Grok 4.2 / Grok 4.20 Beta — §1
+- Grok 4.5 — §1
+- Grok 4.6 — §1
+- Grok 4.7 — §1
+- Grok Imagine Image 2.0 — §1
+- Grok STT 1.0 — §1
+- Groq — §21
+- Groq $350M neocloud pivot raise — §20
+- Groq 3 LPU — §7, §15
+- Groq 3 LPX — §15
+- Groq per-token pricing — §14
+- GroqCloud — §15
+- GRPO (Unsloth/RL) — §10
+- H1 2027 expected close — §16
+- H100 on-demand price, Sep 2026 — §14
+- H200 on-demand price, Sep 2026 — §14
+- H3 Max (fal) — §12
+- H3-Omni-Transformer — §3, §11, §12
+- Hailuo 03 — §3, §11
+- Hailuo 3.0 — §3, §11
+- Harvey $550M at $15.5B — §20
+- hash routing (first blocks) — §5
+- Hassabis AGI 2029 forecast — §19
+- HBM constraint — §15
+- HBM cost wall — §7
+- HBM memory as binding constraint — §14
+- HBM oligopoly — §7
+- HBM4 — §15
+- Healer Alpha — §5
+- Heavily Compressed Attention — §5
+- Helix 02 — §22
+- Helsing $1.8B Series E — §20
+- Heretic guardrail-stripping tool — §18
+- HiDream-O1-Video-1.0 — §11, §12
+- HopeJR humanoid — §16
+- Hopper FP8 accumulation bug — §7
+- Howard Lutnick — §18
+- HQQ — §8
+- Hugging Face autonomous-agent intrusion, Jul 11–13 2026 — §17
+- Hugging Face founding 2016 — §16
+- Hugging Face TGI maintenance mode (Dec 2025) — §6
+- Humanoid Analytics — §22
+- Hybrid-Attention MoE — §4
+- HybridKV compression — §9
+- Hyperbolic — §14
+- Hyperscaler custom silicon — §15
+- Hyperstack — §14
+- IDC 1.3B agents 2028 — §19
+- InclusionAI — §4
+- IndexShare — §3
+- IndexShare sparse attention — §2
+- Inferact — §6, §7, §20
+- Inference arbitrage — §14
+- Inference bifurcation — §15
+- Inference economics, active-vs-total — §9
+- Inference Endpoints pricing — §16
+- Inference per-token price floor — §15
+- Inference Providers router — §16
+- Inference share of AI cloud spend (Gartner 55% vs ~70% claim) — §14
+- Inference spend inversion CES 2026 — §19
+- Instinct MI455X — §15
+- INT4 — §8
+- INT4 KV cache — §8
+- Isaac Root — §22
+- Jacob Helberg — §18
+- January 2026 record funding roundup — §20
+- Jensen Huang open-platform commitments — §16
+- Jevons Paradox AI jobs — §19
+- Joint Statement on AI Opportunity — §18
+- Jonathan Ross — §15
+- Jump-forward decoding (SGLang) — §6
+- Kenneth Payne, King's College London — §17
+- Kimi Delta Attention — §2, §9
+- Kimi K2.5 — §11
+- Kimi K2.6 — §2, §3
+- Kimi K3 — §2, §3, §5, §11
+- Kimi K3 active-params dispute — §9
+- Kimi K3 day-zero support (SGLang, July 2026) — §6
+- Kimi-K2.6-NVFP4 — §8
+- KL divergence — §8
+- Kling 3.0 — §12
+- Kling 3.0 Omni (O3) — §12
+- Kling AI Director PR wave — §19
+- Kling ARR 240M — §19
+- KPMG agentic AI spend 2025 — §19
+- KTransformers — §7
+- KV cache, attention's cost — §9
+- KV page fault — §7
+- KV-aware gateway routing — §7
+- KV-cache quantization — §8
+- kvExactMode — §7
+- KVQuant — §8
+- Lambda — §21
+- Lambda $1.5B Series E (2025-11-18) — §14
+- Lambda $1B private debt (2026-08-28) — §14
+- Lambda Labs — §14
+- LangGraph — §13
+- language effect on nuclear decisions (arXiv:2608.12373) — §17
+- Largest merger SpaceX xAI — §21
+- LeCun AGI dissent — §19
+- LeRobot — §16
+- License landscape 2026 — §9
+- Lieu-Moran bill — §18
+- Liger Kernel — §10
+- Lila Sciences 2025 rounds — §20
+- Ling 3.0 Flash — §4
+- Ling 3.0 Flash Fin — §4
+- Ling 3.0 Flash Sante — §4
+- Ling 3.0 Flash VL — §4
+- Lium (Bittensor Subnet 51) — §14
+- Llama 4 Behemoth (shelved) — §2
+- Llama 4 Scout and Maverick — §2
+- llama.cpp model router (2025-12-15; LRU eviction) — §6
+- llama.cpp server v0.4.0 (2026-09-05) — §6
+- llm-compressor — §8
+- llm-d p2p KV sharing — §7
+- LMCache — §7
+- LongCat-Image-Edit (SGLang v0.5.19 diffusion) — §6
+- LoRA-FA — §10
+- LPX rack — §7
+- LVBench — §12
+- Machete — §8
+- Machine-readable marking — §18
+- Maia 200 — §15
+- Manifold-Constrained Hyper-Connections (mHC) — §9
+- Manus acquisition unwinding — §18
+- Mark Warner — §18
+- Marlin kernels — §8
+- May 2026 narrative softening — §19
+- McKinsey bank cost cuts agentic AI — §19
+- MCP (Model Context Protocol) — §13
+- MCP audit trails — §13
+- MCP config portability — §13
+- MCP deprecation lifecycle policy — §13
+- MCP Dev Summit North America — §13
+- MCP enterprise governance — §18
+- MCP enterprise roadmap (SSO, workload identity federation, gateway) — §13
+- MCP registry 9,652 servers (2026-05-24) — §13
+- MCP spec 2026-07-28 final — §13
+- MCP-Atlas — §13
+- Mellanox acquisition comparison — §16
+- Mercatus GPU Index — §14
+- Meta Superintelligence Labs — §1
+- Meta–Manus acquisition — §18
+- METR / Redwood Research assessment — §17
+- MI300X rental — §15
+- MI300X rental pricing — §14
+- MI355X rental availability, Aug–Sep 2026 — §14
+- Miles RL framework (RadixArk) — §6
+- MiMo Intelligence Index 46.32 — §11
+- MiMo RL training livestream — §11
+- MiMo ViT — §11
+- MiMo-V2.6 — §2
+- MiMo-V2.6-Flash — §11
+- MiMo-V2.6-Pro — §11
+- min_retrieve_tokens — §7
+- MiniMax 2.7T rumor — §3

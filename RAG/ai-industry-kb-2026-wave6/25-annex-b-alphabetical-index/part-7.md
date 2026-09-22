@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026-wave6/25-annex-b-alphabetical-index/part-7
+title: "Annex B — Alphabetical Index (part 7)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AWS", "Alibaba", "Anthropic", "China", "DeepSeek", "Google", "MiniMax", "Moonshot", "Nvidia", "Z.ai"]
+dates: ["2025-11-18"]
+keywords: ["agents", "arr", "asic", "attention", "aws", "blackwell", "claude", "compute", "cost", "decode", "deepseek", "fp8"]
+source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
+source_anchor: ""
+source_lines: [12716, 12885]
+section: "Annex B — Alphabetical Index"
+sha256: b952ba1c4c4e3880884325dae6e73a4f067c0e3340f3fb1ba560ee5271929c3c
+---
+
+# Annex B — Alphabetical Index (part 7)
+
+- 27–59 unpermitted methane turbines — §1
+- 284B total / ~13B active — §2
+- 2nd globally — §3
+- 2nd only to Anthropic in July token volume — §2
+- 2×–7× acceleration — §2
+- 2–3× faster — §2
+- 3-block drafter — §2
+- 3.0× less attention compute, 4.4× smaller KV cache — §4
+- 30 calendar days — §6
+- 30% performance improvement — §7
+- 30+ Task Joint Reinforcement Learning — §4
+- 300 sub-agents / 4,000 coordinated steps — §5
+- 300,000 GPUs installed per month — §1
+- 304B params — §2
+- 30T-token multimodal pre-train — §4
+- 30–50% of MiniMax's own RL research-team workflows autonomously — §7
+- 30–50% of model spend to custom/post-trained models — §1
+- 32T+ pre-training tokens — §2
+- 33B parameters — §7
+- 33B–56B dynamic activation window — §6
+- 33B–56B per token, average ~48B — §6
+- 34T-token mark — §2
+- 35 consecutive hours — §3
+- 35+T tokens on 50K+ Chinese ASICs, no Nvidia — §6
+- 35B active — §3
+- 35T+ tokens — §6
+- 36 languages generation — §3
+- 37B active per token — §2
+- 384K output cap (vs 64K) — §4
+- 397B total / 17B active — §3
+- 3:1 Gated DeltaNet to Gated Attention hybrid stack — §3
+- 3B active — §3
+- 3× the size — §2
+- 3× the throughput of Claude Opus 4.6 — §7
+- 4 yuan/M input / 16 yuan/M output — §5
+- 4,500-token prompt input — §3
+- 4.9TB — §3
+- 40 languages, 250ms latency — §7
+- 40 transformer layers = 20-layer causal encoder + 20-layer decoder — §2
+- 40% of developer tokens — §4
+- 400+ seconds 720p video — §3
+- 437× vs DeepSeek V1 — §2
+- 44 at $2.00/task — §5
+- 44 vs 45 on AA Intelligence Index v4.3.2 — §4
+- 45 layers vs GLM-4.5's 92 — §4
+- 450GB combined RAM+VRAM — §3
+- 46% for Claude Sonnet 4.6 — §7
+- 47% American — §4
+- 480 MW by end-2026 — §1
+- 49B active per token — §2
+- 4× oversubscribed — §1
+- 4× RTX PRO 6000 (96GB) — §3
+- 4× vs V4 Flash — §2
+- 4–15 second clips at up to 2K (1440p), 24 fps, with native stereo audio in a single pass — §7
+- 5 draft tokens per forward pass — §2
+- 5 GW of TPU compute through 2027 — §1
+- 5,000,000 tokens/day — §6
+- 5.3 at 64.6 vs 5.2 at 62.1 — §4
+- 5.3-proper cannot (hangs) — §4
+- 5/5 with 0 fabrications — §4
+- 50 million H100-equivalents deployed by 2030 — §1
+- 50 tps / 1.03s TTFT / 99.84% completion — §4
+- 50% debut discount — §7
+- 50% for Gemini 3.1 Pro Preview — §7
+- 50,000-card domestic AI ASIC cluster with no NVIDIA hardware — §6
+- 50,000-card domestic ASIC cluster, zero NVIDIA — §6
+- 50,000-chip domestic cluster — §6
+- 50× over five years — §1
+- 51 points, 4th — §4
+- 510 GB across 48 shards — §2
+- 510.3 GB across 48 files — §2
+- 512 routed experts with 10 routed + 1 shared active per token — §3
+- 512,000 tokens — §7
+- 512×512 to 2048×2048 — §3
+- 53 on AA Intelligence Index (3rd among open weights) — §2
+- 54 MW to >200 MW in 2027 — §1
+- 550,000 Nvidia GB200/GB300 — §1
+- 552B backbone + 196B Engram — §2
+- 552B compute backbone — §2
+- 552B total, 8B active on prefill / 16B on decode — §5
+- 560B total MoE — §6
+- 560B total parameters — §6
+- 57 — top open-weight result — §5
+- 57× lower output-token cost — §2
+- 59.0% SWE-Bench Pro — §7
+- 59.5 SWE-bench Pro / 70.8 Terminal-Bench 2.1 / 77.3 SWE-bench Multilingual — §6
+- 5th in Text Arena, 2nd in Vision Arena — §3
+- 5th, Elo 1496 — §3
+- 5V-Turbo extends the domestic-chip narrative — §4
+- 5–10 trillion parameter models — §3
+- 6+ GW contracted capacity — §1
+- 6,400+ GitHub stars — §5
+- 60 points — §4
+- 60 points and effectively ties Kimi K3 as open-weights leader — §4
+- 60% gross margins — §1
+- 64–66K tokens — §3
+- 65,536 max output — §3
+- 650 docs/sec — §3
+- 671B = DeepSeek's official V3.2 model card — §2
+- 671B vs 685B — §2
+- 68.5B total parameters, ~3B activated per inference — §6
+- 685B = DeepLearning.ai's The Batch — §2
+- 6D parallelism — §6
+- 6–9 months to ~3–5 months — §5
+- 7 MTP modules — §7
+- 7.5T tokens, 70% code, 358 programming languages — §3
+- 7.6% to 71.3% (9.4× gain) after 147 submissions and ~2,000 tool calls over 24 hours — §7
+- 70–90% time savings — §4
+- 72 Blackwell Ultra GPUs — §3
+- 744B total / ~40B active — §4
+- 744B-A40B MoE backbone — §4
+- 744–890 GB VRAM — §4
+- 748B physical-checkpoint — §2
+- 748B total, ~510 GB in FP8 — §2
+- 753B — §4
+- 753B total parameters / 40B active per token — §4
+- 768p tier $0.09/s — §7
+- 8 hash heads — §2
+- 8-GPU node (or a GB200 tray at TP4) — §4
+- 8.6× faster — §3
+- 8.6–19× faster decoding than Qwen3-Max — §3
+- 8/13 of the 2K rate — §7
+- 80% YoY growth — §1
+- 86.8‡ — §6
+- 87 clusters in 18 clouds — §1
+- 88.32 GenEval, 83.84 GSO image-editing, 58.30 LongText-Bench English — §3
+- 890 bytes/token — §2
+- 896 routed experts, 16 selected per token, 2 shared experts — §5
+- 8B active in prefill, 16B in decode — §2
+- 8× NVIDIA H200 SXM (141 GB each) — §2
+- 90 tokens/second — §4
+- 90% off — §3
+- 907.5 Hong Kong dollars — §7
+- 93 layers: 69 KDA (Kimi Delta Attention) + 24 Gated MLA; one dense layer — §5
+- 93% of revenue growth from existing customers expanding contracts — §1
+- 96 safetensors shards totaling ~1.56 TB — §5
+- 98% vs 90% — §5
+- 99.6 / 100.0‡ — §6
+- 9th consecutive quarter — §3
+- >$1.5B — §1
+- >$1.5B Series E announced November 18, 2025 — §1
+- >$100B on AWS technologies over the next 10 years — §1
+- >$1B annualized revenue — §1
+- >$1T in 2027 — §1
+- >$2.1T — §1
+- >$200B in combined AWS infrastructure commitments — §1
+- >$7B annualized revenue run rate — §1
+- >1 GW — §1
+- >1,000 enterprise customers at $1M+ ARR — §1
+- >1,000 tool calls — §3
+- >10 days autonomously coding a self-evolving software harness — §3
+- >10 hours continuous audio — §3
+- >100 tok/s — §6
+- >100 tokens/second — §6
+- >100M hours audio/video data — §3
+- >1B inference calls/day — §1
+- >20× YoY — §1
+- >500 MW of compute capacity — §1
+- >650 external customers across 20+ industries — §3
+- >94% retrieval — §6
+- [VENDOR, unconfirmed in reviewed sources] — §6
+- `/anthropic` endpoint — §2
+- `/v1/messages` and `/v1/models` working on `api.kimi.com/coding` — §5
+- `<mm:think>...</mm:think>` — §7
+- `df42c109f1defefcbfcedbe7d905718a12266e40` — §2
+- `https://api.kimi.com/coding/` — §5
+- `https://api.kimi.com/coding/v1` — §5
+- `https://api.minimaxi.com/anthropic` — §5
+- `https://api.moonshot.ai/v1` — §5
+- `https://api.moonshot.cn/anthropic` — §5

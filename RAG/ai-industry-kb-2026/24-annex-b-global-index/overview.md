@@ -1,0 +1,186 @@
+---
+id: ai-industry-kb-2026/24-annex-b-global-index/overview
+title: "Annex B — Global index"
+domain: appendix
+role: appendix
+task: reference
+actors: ["AMD", "Alibaba", "Anthropic", "Apple", "Broadcom", "ByteDance", "Cerebras", "China", "Cohere", "Mistral", "Nvidia", "OpenAI", "SGLang", "SpaceX", "TensorRT-LLM", "Unsloth"]
+dates: ["2026-05", "2026-07", "2028-03"]
+keywords: ["acquisition", "agent", "agentic", "agents", "agi", "amd", "apache", "attention", "awq", "benchmark", "bitnet", "blackwell"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [11399, 11568]
+section: "Annex B — Global index"
+sha256: aa372bf22f5907fe5879efab3ff56a309333904c60a529447ddbf948992af871
+---
+
+# Annex B — Global index
+
+**873 entries.** Alphabetical index of subjects, actors, and entities across all 22 sections.
+
+- "12x faster" MoE training claim — §10
+- "a containment failure with the safeties turned off" (Dan Guido) — §17
+- "driven, end to end, by an autonomous AI agent system" — §17
+- "I'll let you decide if it passed the cyberattack test" — §17
+- "Side quests" (Fidji Simo memo) — §12
+- "the first true AI safety incident" (Logan Graham) — §17
+- "unprecedented cyber incident" — §17
+- "warning shot" (OpenAI late-Aug 2026 report) — §17
+- "you failed to build the sandbox correctly" (Jake Williams) — §17
+- $12.9303 billion transaction value — §16
+- 1,048,576 context — §5
+- 12,000+ MCP servers across 33 registries — §13
+- 15-day public registration rule — §21
+- 15-state AG coalition — §17
+- 17,000 recorded actions — §17
+- 18M developers 200K companies — §16
+- 1M-token context — §3, §7
+- 1X Neo — §22
+- 1X Technologies fundraising talks — §20
+- 2026 largest IPO in history — §21
+- 3 million models — §16
+- 36kr — §5
+- 384K max output — §5
+- 400,000+ GPUs SGLang claim [UNVERIFIED] — §6
+- 41% MCP in production — §13
+- 42-state AG coalition subpoena — §18
+- 45T training tokens — §5
+- 4x batch size per GPU (MLA) [PARTIALLY VERIFIED] — §6
+- 500K datasets (methodology note) — §16
+- 66 actuated degrees of freedom — §16
+- 743.4B backbone — §3
+- 75% permanent price cut — §5
+- 753B / 40B — §3
+- 78% MCP figure (retracted) — §13
+- 86× revenue multiple — §16
+- 890 bytes per token — §5
+- `defer_loading` (MCP tool search) — §13
+- `server/discover` RPC — §13
+- A100 rental price, Sep 2026 — §14
+- A2A (Agent-to-Agent) v1.0 — §13
+- ABB Robotics — §22
+- ACP (Agent Client Protocol) — §13
+- Active parameters — §9
+- Adobe Firefly — §12
+- Agent economy forecasts — §19
+- Agent Skills (AGENTS.md) — §13
+- Agent swarm — §3
+- Agentic AI Foundation (AAIF) — §13
+- Agentic perception — §11
+- Agentic Video Understanding — §12
+- AGI timelines 2026 — §19
+- AgiBot — §22
+- Agility Robotics — §22
+- Agreed to acquire (wording rule) — §16
+- AI Director paradigm — §12
+- AI Engineer World's Fair 2026 — §2, §10
+- AI Kill Switch Act — §18
+- AI Kill Switch Act, H.R. 11 — §17
+- AI tigers — §3
+- Aikido Security — §5
+- AISI open-weight gap report — §18
+- Alabama AG OpenAI investigation — §18
+- Alabama AG subpoena No. 26-0007 — §17
+- Aleph Alpha — §21
+- Alexandr Wang — §1
+- Ali Ghodsi — §21
+- Alibaba Cloud — §4
+- Alibaba Qwen3.5-397B-A17B — §2
+- Alibaba Qwen3.6-35B-A3B — §2
+- Alibaba Qwen3.6-Plus — §2
+- Alibaba Qwen3.7-Max — §2
+- Altman automated AI researcher March 2028 — §19
+- Altman rules out 2026 IPO — §21
+- Always-on reasoning — §3
+- AMD Helios — §15
+- Amodei powerful AI 2026–2027 — §19
+- Anduril $5B at $61B — §20
+- Ant Group — §4
+- Anthropic — §1
+- Anthropic $30B Series G — §20
+- Anthropic 15B revolving credit facility — §21
+- Anthropic confidential S-1 — §21
+- Anthropic May 2026 contradicted raise — §20
+- Anthropic pre-midterms listing target — §21
+- Anthropic Series H 965B — §21
+- Any-to-any scoreboard — §11
+- Any-to-any video generation — §12
+- Anysphere SpaceX $60B acquisition — §20
+- Apache 2.0 license (open weights) — §2
+- Apple Intelligence Qwen — §4
+- Apptronik Apollo — §22
+- Aravind Srinivas — §21
+- Arkon Energy — §21
+- ARKV — §8
+- Article 50 transparency obligations — §18
+- Artificial Analysis — §1, §15
+- Artificial Analysis Index — §4
+- Artificial Analysis Intelligence Index — §1, §2, §5
+- arXiv:2602.14740 — §17
+- Attention innovations glossary — §9
+- Attention-FFN Disaggregation — §7
+- Audio-Visual Vibe Coding — §4
+- AutoDeploy deprecation (TensorRT-LLM v1.3.0rc21, July 2026) — §6
+- AutoRound — §8
+- aux-loss-free load balancing — §5
+- Auxiliary-loss-free load balancing — §9
+- AWQ — §8
+- Axolotl — §10
+- B200 on-demand price, Sep 2026 — §14
+- B200 resale value 158% — §14
+- B300 rental, Sep 2026 — §14
+- Batch-size behavior, MoE — §9
+- Benchmark methodology (Unsloth numbers) — §10
+- Benchmark provenance tagging — §13
+- Benchmark scoreboard, MoE vs dense — §9
+- Bincount MoE routing — §10
+- BIS deemed export mechanism — §18
+- BitNet — §8
+- bits per weight (bpw) — §8
+- Black Forest Labs 2025 round dating — §20
+- Blackwell lead times — §15
+- BMW Spartanburg — §22
+- BMW whistleblower lawsuit — §22
+- Bonsai-27B — §8
+- BotQ — §22
+- Broadcom custom XPU — §15
+- Butterfly Effect — §18
+- ByteDance — §4
+- ByteDance Seed 2.1 Turbo — §3
+- C2PA synthetic-media marking — §18
+- Cable-free compute tray — §15
+- Cache-aware load balancer (SGLang v0.4) — §6
+- Cache-DiT integration (SGLang Diffusion, up to 7.4x) — §6
+- CacheBlend — §7
+- CacheGen — §7
+- Cameos (likeness feature) — §12
+- Candle Rust framework — §16
+- Capacity factor — §9
+- Castelion $1B raise — §20
+- Causal Encoder-Decoder — §2, §5
+- Cerebras CBRS debut — §21
+- Cerebras CBRS IPO — §15
+- Cerebras IPO CBRS — §20
+- Cerebras per-token pricing and IPO — §14
+- Cerebras Q1 2026 earnings — §21
+- Cerebras Series H — §20
+- Cerebras WSE-3 — §15
+- CFD (Caption-once, Frames-on-Demand) — §12
+- CFIUS G42 Cerebras — §21
+- Chinese vendor share — §22
+- Chunked prefill — §6, §7
+- Claude Code — §13
+- Claude Fable 5 — §1
+- Claude Fable 5.1 — §1
+- Claude Mythos 5 — §1
+- Claude Opus 4.6 — §1
+- Claude Opus 4.8 — §1
+- Claude Opus 5 — §1
+- Claude Sonnet 4 "calculating hawk" — §17
+- Claude Sonnet 4.6 — §1
+- Claude Sonnet 5 — §1
+- Claude-generated text watermarks — §18
+- Clément Delangue — §16
+- CNY 1 / CNY 4 off-peak — §5
+- Code2Wav — §11
+- Cognition Devin valuation 48B — §19

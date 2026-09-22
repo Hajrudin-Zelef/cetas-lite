@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026/25-annex-c-global-keyword-list/part-2
+title: "Annex C — Global keyword list (part 2)"
+domain: appendix
+role: appendix
+task: reference
+actors: []
+dates: ["2026-05-12"]
+keywords: ["acquisition", "agent", "agentic", "agents", "asic", "attention", "claude", "cohere", "compute", "consumer", "context window", "cost"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [12446, 12615]
+section: "Annex C — Global keyword list"
+sha256: c1bcb2b36521000c1c7eb44404eab0f84d00a000c78ced4f905a2538e4f74dc4
+---
+
+# Annex C — Global keyword list (part 2)
+
+- claude sonnet 4.6
+- claude sonnet 5
+- claude sonnet 5 default
+- clement delangue
+- cline ci compromise
+- closed flagship release cadence 2026
+- cloud gpu rental
+- cloud gpu rental prices
+- clément delangue
+- codex
+- coding agent revenue
+- coding agent revenue run rates
+- coding agents
+- coding agents 2026
+- cognition
+- cognition devin
+- cognition devin valuation
+- cognition series d devin
+- cognition swe-2
+- cohere aleph alpha merger rumor
+- comment and control
+- compressed sparse attention 2
+- computer use
+- confidential s-1 versus pricing distinction
+- confidential s-1 vs pricing
+- config portability
+- confirmed september 3 2026
+- context window convergence 1m
+- contradicted funding reports
+- coreweave
+- coreweave atm program
+- coreweave crwv convertible debt
+- coreweave meta 21b deal
+- coreweave rubin bring-up
+- coreweave rubin bring-up june 2026
+- cost arithmetic quantization savings
+- critical minerals
+- critical minerals provenance
+- crowdstrike metr redwood research
+- csa
+- csa2
+- csis scale ai nuclear tendencies
+- cursor
+- cursor acquisition
+- cursor acquisition valuation
+- cursor training data xai
+- custom restrictive license
+- cut cross-entropy
+- cut cross-entropy loss head memory
+- cve-2026-25874
+- cve-2026-25874 critical rce
+- cvss 9.8
+- cvss 9.8 unpatched september 2026
+- cybergym
+- dall-e sunset
+- dall-e sunset 2026-05-12
+- databricks ipo deferral
+- databricks terrible year to go public
+- davos 2026 agentic enterprise
+- debt financing
+- deemed export
+- deemed export mechanism
+- deepinfra
+- deepseek escalation rate
+- deepseek sparse attention
+- deepseek sparse attention compute
+- deepseek v4
+- deepseek v4 peak pricing
+- deepseek v4 pricing
+- deepseek v4 pro
+- deepseek v4-pro-0813
+- deepseek v4.1-flash
+- deepseek-chat
+- deepseek-flash
+- deepseek-reasoner
+- deepseek-v2
+- deepseek-v3 training recipe
+- deepseek-v4
+- deepseek-v4-lite
+- deepseekmoe
+- deepspeed
+- deepspeed autoep max scale
+- deepswe
+- deepswe v1.1
+- defense tech
+- defense tech vc records
+- defensive asymmetry guardrails
+- definitive agreement
+- definitive agreement signed september 2 2026
+- dell poweredge xe9812
+- demo versus deployment
+- devin
+- dhs shutdown authority
+- digit v5
+- digital omnibus
+- disaggregated kv-cache storage
+- disaggregated serving
+- discord ipo stalled
+- discord ipo stalled january filing
+- discrete speech codecs
+- distributed training fsdp2 default
+- doj super micro indictment
+- dora
+- down round
+- down round revaluation
+- dp attention deepseek models
+- dreamina global launch
+- dsa
+- dynamic quantization 2.0 superseded v3.0
+- dynamic v3.0
+- edgar 15-day roadshow rule
+- eighty-six times revenue multiple
+- employee liquidity
+- employee retention one billion
+- encoder-free unified models
+- engineai t800
+- engram
+- enterprise adoption
+- enterprise agentic ai adoption
+- enterprise mcp roadmap
+- epirus
+- epoch ai capabilities index
+- epyc venice
+- epyc venice zen 6
+- esft
+- etched
+- etched sohu
+- etched sohu asic raises
+- etched sohu transformer asic
+- eu ai act
+- eu ai act enforcement
+- european tech mega-rounds
+- exit bans
+- exl2
+- exl3
+- exllamav3
+- expected close first half 2027
+- expert offloading consumer gpus
+- expert parallelism
+- expert parallelism all-to-all communication
+- expert routing
+- exploitbench
+- exploitgym cyber-eval
+- export controls
+- figure 03
+- figure ai
+- figure ai 2027 candidate
+- fine-grained expert bandwidth cost
+- fine-grained experts
+- fine-tuning
+- five hundred thousand datasets
+- flagship retirement
+- flame
+- flash linear attention gated deltanet
+- flashattention 4
+- flashmla
+- forecast versus realized value
+- foreign investment security review
+- form 8-k
+- foxconn bcg agent ecosystem
+- fp4 kv cache
+- fp4 kv experimental
+- fp4 training paradox inference format
+- fp4 vs int4 signal-to-noise
+- fp8 e4m3 kv production
+- fp8 e4m3 weight quantization
+- fp8 kv cache
+- fp8 kv cache mainstream
+- fp8 near-lossless production default
+- fp8 shorthand

@@ -1,0 +1,188 @@
+---
+id: ai-industry-kb-2026/24-annex-b-global-index/part-4
+title: "Annex B — Global index (part 4)"
+domain: appendix
+role: appendix
+task: reference
+actors: ["Alibaba", "Anthropic", "CISA", "EU", "Glasswing", "Hugging Face", "Meta", "Microsoft", "MiniMax", "Mistral", "Moonshot", "Nebius", "Nscale", "Nvidia", "OpenAI", "OpenRouter", "Perplexity", "SGLang", "Unsloth", "xAI"]
+dates: ["2025-11-11", "2026-03-16", "2026-07", "2026-09", "2026-09-20"]
+keywords: ["acquisition", "agent", "attention", "benchmark", "compute", "cost", "decode", "embeddings", "ipo", "kv cache", "license", "mcp"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [11909, 12078]
+section: "Annex B — Global index"
+sha256: 629839e97ef8eb5d3f619cc2b2d40d51fa48ff3ceb1cabe4611e1721c4ed6bda
+---
+
+# Annex B — Global index (part 4)
+
+- MiniMax H3 — §3, §11, §12
+- MiniMax H3 Community License — §3
+- MiniMax M3 — §11
+- MiniMax Sparse Attention (MSA) — §9, §11
+- Mistral AI €3B round — §20
+- Mistral Large 3 — §2
+- Mistral Medium 3.5 — §2
+- Mistral Small 4 — §2
+- MIT license — §2, §5
+- MLA engine matrix — §7
+- MLA native framework support — §6
+- MLK Jr. likeness dispute — §12
+- Modal — §14
+- Modal Labs customer victim — §17
+- Modal preemptible multipliers — §14
+- Model Studio — §4
+- ModelOpt — §8
+- ModelScope — §4
+- Modern vs legacy MCP implementations — §13
+- Modified MIT license — §2, §3
+- MoE evidence table, matched active — §9
+- MoE expert offload to system memory — §10
+- MoE grouped-GEMM correctness fix (September 2026) — §10
+- MoE on modest hardware — §9
+- MoE price ladder, API 2026-09 — §9
+- MoE vs dense, controlled studies — §9
+- MoE × quantization — §8
+- MOFCOM acquisition review — §18
+- Mooncake — §7
+- Mooncake Store — §7
+- MoonEP — §9
+- Moonshot AI — §3
+- Moonshot AI 36% stake — §4
+- MoonViT — §3
+- MoonViT-V2 — §11
+- Mordor Intelligence neocloud projection — §14
+- Morgan Stanley Anthropic underwriter — §21
+- Most active AI investors 2026 — §20
+- Motion Control AI — §12
+- MTIA 500 — §15
+- mtmd — §11
+- MTP speculative-decoding block — §3
+- Multi-codebook Talker — §11
+- Multi-head Latent Attention (MLA) — §9
+- Multi-token prediction, speculative decoding — §9
+- Muon optimizer — §4
+- Muse Code — §1
+- Muse Glimmer — §1
+- Muse Glimmer 30B — §2
+- Muse Spark 1.2 — §1
+- Musk smarter-than-human end-2026 forecast — §19
+- MVL architecture — §12
+- MXFP4 — §3, §8
+- MXFP4 KV cache — §11
+- MXFP4/MXFP8 native formats — §9
+- Nano Banana 2 Lite — §1, §12
+- Nano Banana family — §12
+- Nathaniel Moran — §18
+- Native Sparse Attention (NSA) — §9
+- NDRC prohibition decision 000013039-2026-00026 — §18
+- Nebius — §14
+- Nebius capacity auction (>$20M/MW) — §14
+- Nebius NBIS — §21
+- Nebius Token Factory — §15
+- Nebius–Meta $3B deal (2025-11-11) — §14
+- Nebius–Meta up-to-$27B deal (2026-03-16) — §14
+- Nebius–Microsoft $17.4B deal (2025-09) — §14
+- Nemotron-3-Nano-30B-NVFP4 — §8
+- Neocloud competitive set — §15
+- Neocloud IPO queue — §21
+- Neocloud undercut vs hyperscalers (60–70%) — §14
+- Neutree 1.2 / Flex Engine (Arcfra, Sept 2026) — §6
+- Newslaundry attention market op-ed — §19
+- Nick Cooper — §13
+- NIST AI Agent Standards Initiative — §13
+- NIXL — §7, §15
+- Nscale $30B IPO filing (2026-09-20) — §14
+- Nscale NSCL S-1 — §21
+- Nuclear Decision-Making Benchmark (arXiv:2608.05180) — §17
+- nuclear signaling 100% of games — §17
+- NVFP4 — §8, §9
+- NVFP4 export (Unsloth) — §10
+- NVIDIA Dynamo — §7
+- NVIDIA GB300 NVL72 — §4
+- NVIDIA Halos — §22
+- NVIDIA strategic capital — §20
+- NVIDIA–Hugging Face agreement — §16
+- NVL144 rename — §15
+- NVLink 6 — §15
+- OCP microscaling — §8
+- OME Kubernetes operator (SGLang) — §6
+- OmniVideoBench — §11
+- Open KV Cache API — §7
+- Open-source exemption, EU AI Act — §18
+- Open-weight non-recallability — §18
+- OpenAI — §1
+- OpenAI $122B primary round — §20
+- OpenAI $7B self-funded employee tender — §20
+- OpenAI autonomous breach, July 2026 — §17
+- OpenAI Codex — §13
+- OpenAI confidential S-1 June 8 — §21
+- OpenAI Group PBC — §21
+- OpenHands — §13
+- OpenRouter — §14
+- OpenRouter free tier — §4
+- OpenVuln — §3
+- Orbital data centers Starmind — §21
+- Ornn OCPI (Compute Price Index) — §14
+- OSWorld-Verified — §13
+- Ox Alpha — §11
+- package-registry proxy zero-day — §17
+- Packed-sequence metadata caching — §10
+- Padding-free packing — §10
+- Panama credentialing pilot — §18
+- Parameter-count reconciliation — §3
+- PatchMerger — §11
+- Pax Silica summit — §18
+- PD disaggregation (SGLang, Mooncake/NIXL) — §6
+- peak off-peak pricing — §5
+- PEFT-Arena — §10
+- Peking University — §5
+- Pensando Vulcano — §15
+- Per-Layer Embeddings (PLE) — §11
+- Periodic Labs fundraising talks — §20
+- Perplexity 2028 IPO — §21
+- Perplexity delta — §8
+- Perplexity fundraising talks — §20
+- Persistent KV reuse — §7
+- physical AI thesis — §22
+- Physical Intelligence fundraising talks — §20
+- Physical Intelligence pi0.5 — §22
+- Pickle deserialization RCE — §16
+- PolicyServer gRPC — §16
+- Pollen Robotics acquisition — §16
+- Post-training quantization (PTQ) — §8
+- Post-training scaling — §3
+- Pre-RoPE quantization — §8
+- Prefill-cost collapse — §7
+- Prefill/decode disaggregation — §15
+- PrefillAdder (SGLang scheduler) — §6
+- Prefix caching — §7
+- product deployment gap — §22
+- Project Genie — §12
+- Project Glasswing — §1, §17
+- Project Kahn (Kenneth Payne) — §17
+- PyTorch 2.14 (clamp gradient change) — §10
+- QLoRA — §10
+- Qoder — §4
+- Quantile Balancing — §3, §9
+- Quantization invariance principle — §9
+- Quantization-aware training (QAT) — §8
+- quantize_moe_experts — §10
+- Quantum Systems $1.2B — §20
+- Qwen Image 3.0 — §4
+- Qwen3-235B escalation rate 24.1% — §17
+- Qwen3-30B-A3B (2025 SKU) — §2
+- Qwen3-Omni-30B-A3B — §11
+- Qwen3.5-397B-A17B — §4
+- Qwen3.5-Omni — §4, §11
+- Qwen3.5-Plus — §4
+- Qwen3.6-27B — §4
+- Qwen3.6-35B-A3B — §4
+- Qwen3.6-Max-Preview — §4
+- Qwen3.6-Plus — §4
+- Qwen3.7 Flash — §4
+- Qwen3.7-Max — §4
+- Qwen3.7-Plus — §4
+- Qwen3.8 announcement — §4
+- Qwen3.8 support (SGLang v0.5.19) — §6
+- Qwen3.8-2.4T-A95B — §4

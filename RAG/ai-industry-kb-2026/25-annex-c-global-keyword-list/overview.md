@@ -1,0 +1,186 @@
+---
+id: ai-industry-kb-2026/25-annex-c-global-keyword-list/overview
+title: "Annex C — Global keyword list"
+domain: appendix
+role: appendix
+task: reference
+actors: []
+dates: []
+keywords: ["acquisition", "agent", "agentic", "agi", "amd", "apache", "attention", "awq", "aws", "benchmark", "benchmarks", "bitnet"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [12276, 12445]
+section: "Annex C — Global keyword list"
+sha256: db8f7304456caa5276f649dc7e3a247be99428989ff29f7ad763363d9cdba0c7
+---
+
+# Annex C — Global keyword list
+
+**1018 keywords.** Consolidated, alphabetical, deduplicated list of all keyword phrases.
+
+- "unprecedented cyber incident"
+- $12.9303 billion
+- $2/$6 per m tokens
+- 1.6t moe
+- 100m seed 400m post-money valuation
+- 110m monthly downloads june 2026
+- 12.9303 billion dollar transaction value
+- 15b revolving credit facility anthropic
+- 1m context
+- 1m context hosted models
+- 1m token context
+- 1m-token context flagship norm
+- 1x neo
+- 1x neo home robot
+- 1x technologies
+- 2025 rounds misdated
+- 2026 ai funding
+- 2026 release chronology
+- 3 million models
+- 3t-class open models
+- 41% production adoption
+- 500k datasets
+- 552b moe
+- 890 bytes per token
+- 97m monthly sdk downloads
+- a100 h100 diversion
+- a2a
+- abliteration
+- accommodation withdrawal never chosen
+- acp
+- acquisition
+- active versus total parameters
+- adobe firefly
+- adobe firefly aggregation
+- agent economy forecasts
+- agent economy realized value gap
+- agent sandboxing
+- agent swarm
+- agentic ai foundation
+- agentic perception
+- agentic tool use benchmark
+- agentic video understanding
+- agi timeline forecasts 2026
+- agi timelines 2026
+- agibot zhiyuan
+- agility robotics
+- agility robotics spac
+- ai act article 50
+- ai capex cycle 2026
+- ai capex inference shift
+- ai chips
+- ai engineer worlds fair unverified
+- ai infrastructure public market appetite
+- ai investor league table
+- ai jobs displacement
+- ai jobs displacement predictions
+- ai kill switch act
+- ai kill switch act hr 11
+- ai public market 2026
+- ai revenue run rate benchmarks
+- ai sanctions enforcement
+- ai supply chain security
+- ai tigers
+- ai transparency fines
+- ai transparency obligations
+- ai video economics
+- ai video product economics
+- ai video unit economics
+- aikido security
+- alabama ag subpoena openai
+- amazon trainium 3
+- amd helios
+- amd helios rack
+- anduril
+- anduril 5b raise
+- andy jassy
+- anthropic
+- anthropic 2t investor expectation
+- anthropic confidential s-1 june 1 2026
+- anthropic ipo confidential filing
+- anthropic pre-midterms listing target
+- anthropic series g 380b
+- anthropic series h 965b valuation
+- anthropic system card
+- any-to-any models
+- any-to-any scoreboard
+- any-to-any video
+- anysphere
+- apache 2.0
+- apache 2.0 license
+- april 11 2026 debunk
+- april 11 2026 grouped release debunk
+- arm edge
+- article 50 transparency
+- artifact vs service distinction
+- artificial analysis index
+- artificial analysis index v4.3
+- artificial analysis intelligence index
+- attention innovations glossary 1m context
+- attention market ai fear
+- attention variants
+- audio tokenization
+- audio tokenizers
+- audit trails
+- automated ai researcher
+- automated ai researcher march 2028
+- autonomous ai agent intrusion
+- autoround
+- autoround 4-bit ptq
+- auxiliary-loss-free balancing
+- awq
+- aws inferentia
+- axolotl
+- axolotl expert parallelism deepep
+- b200
+- b200 rental price september 2026
+- batch size per gpu planning figure
+- benchmark methodology
+- benchmark methodology baselines
+- benchmark trust crisis
+- benchmarks
+- beta to ga
+- bis deemed export
+- bis export controls
+- bitnet 1.58-bit ternary
+- bits per weight density
+- bitsandbytes
+- bittensor subnet 51 lium
+- black forest labs
+- blackwell datacenter nvfp4 only
+- bmw spartanburg
+- bonsai-27b 1-bit phone
+- botq
+- botq manufacturing ramp
+- broadcom custom xpu
+- broadcom xpu
+- bureau of industry and security
+- bytedance seed 2.1 turbo
+- cache-aware scheduling lpm
+- cacheblend non-prefix reuse
+- cachegen bitstream encoding
+- cameos likeness feature
+- candle
+- candle rust ml framework
+- causal encoder-decoder
+- ced
+- cerebras
+- cerebras 750mw openai deal
+- cerebras cb rs ipo may 2026
+- cerebras cbrs ipo
+- cerebras cbrs ipo may 2026
+- cerebras ipo
+- cerebras q1 2026 earnings
+- cerebras q1 2026 earnings beat
+- cerebras series h ipo
+- cerebras wse-3
+- claude code
+- claude fable 5
+- claude fable 5 mythos 5 launch
+- claude mythos 5
+- claude opus 4.6
+- claude opus 4.6 release
+- claude opus 4.8
+- claude opus 4.8 artificial analysis 61.4
+- claude opus 5
+- claude opus 5 launch

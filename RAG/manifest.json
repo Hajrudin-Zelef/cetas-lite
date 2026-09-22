@@ -15,6 +15,22 @@
       "index": "briefing-general-tech-2026/INDEX.md",
       "manifest": "briefing-general-tech-2026/manifest.json",
       "chunk_count": 112
+    },
+    {
+      "corpus": "ai-industry-kb-2026",
+      "title": "AI Industry Knowledge Base 2026",
+      "source": "docs/RAG/ai-industry-knowledge-base-2026.md",
+      "index": "ai-industry-kb-2026/INDEX.md",
+      "manifest": "ai-industry-kb-2026/manifest.json",
+      "chunk_count": 123
+    },
+    {
+      "corpus": "ai-industry-kb-2026-wave6",
+      "title": "AI Industry Knowledge Base 2026 — Wave 6 Consolidation",
+      "source": "docs/RAG/ai-industry-knowledge-base-2026-wave6.md",
+      "index": "ai-industry-kb-2026-wave6/INDEX.md",
+      "manifest": "ai-industry-kb-2026-wave6/manifest.json",
+      "chunk_count": 136
     }
   ]
 }
