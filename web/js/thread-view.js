@@ -418,6 +418,109 @@ function renderOutputMore(text) {
   return wrap;
 }
 
+// --- RAG : rendu dédié rag_search / rag_read ---
+// Sorties compactes et structurées (pas de gros bloc monospacé brut) :
+// - rag_search : <details> "Base locale · N passages", un item par passage
+//   (titre, chemin, extrait tronqué) ;
+// - rag_read : <details> "Lecture · chemin · Lx–Ly", aperçu borné +
+//   déplié complet (mêmes classes que renderReadMore pour les harnais).
+function parseRagSearch(text) {
+  const lines = String(text).split("\n");
+  const head = lines[0] || "";
+  const m = head.match(/Base locale \((\d+) passage/);
+  const count = m ? parseInt(m[1], 10) : 0;
+  const hits = [];
+  let cur = null;
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    const hm = line.match(/^\[(\d+)\]\s*(.+?)\s*[—–-]\s*(.+)$/);
+    if (hm) {
+      if (cur) hits.push(cur);
+      cur = { ref: hm[1], title: hm[2].trim(), path: hm[3].trim(), snippet: [] };
+    } else if (cur && line.trim() !== "") {
+      cur.snippet.push(line);
+    } else if (cur && line.trim() === "" && cur.snippet.length) {
+      hits.push(cur);
+      cur = null;
+    }
+  }
+  if (cur) hits.push(cur);
+  return { count: count || hits.length, hits };
+}
+
+function renderRagResult(toolName, text, args) {
+  const wrap = el("div", "tool-result-wrap rag-result-wrap");
+  if (toolName === "rag_search") {
+    const { count, hits } = parseRagSearch(text);
+    if (!hits.length) {
+      const pre = el("pre", "tool-result");
+      appendLinkified(pre, text);
+      wrap.appendChild(pre);
+      return wrap;
+    }
+    const det = el("details", "rag-result");
+    det.open = true;
+    const sum = el("summary", "rag-summary");
+    sum.appendChild(el("span", "rag-summary-title", "Base locale"));
+    sum.appendChild(el("span", "rag-summary-count", " · " + count + " passage" + (count > 1 ? "s" : "")));
+    det.appendChild(sum);
+    const list = el("div", "rag-hit-list");
+    for (const h of hits) {
+      const item = el("div", "rag-hit");
+      const head = el("div", "rag-hit-head");
+      head.appendChild(el("span", "rag-hit-ref", "[" + h.ref + "] "));
+      head.appendChild(el("span", "rag-hit-title", h.title));
+      item.appendChild(head);
+      item.appendChild(el("div", "rag-hit-path", h.path));
+      const snip = h.snippet.join(" ").trim();
+      if (snip) item.appendChild(el("div", "rag-hit-snippet", snip.length > 400 ? snip.slice(0, 400) + "…" : snip));
+      list.appendChild(item);
+    }
+    det.appendChild(list);
+    wrap.appendChild(det);
+    return wrap;
+  }
+  // rag_read : lignes numérotées "123\t…".
+  const lines = String(text).split("\n").filter((l) => l.trim() !== "");
+  const nums = [];
+  for (const l of lines) {
+    const lm = l.match(/^(\d+)\t/);
+    if (lm) nums.push(parseInt(lm[1], 10));
+  }
+  const range = nums.length ? "L" + nums[0] + "–L" + nums[nums.length - 1] : "";
+  const path = (args && args.path) || "";
+  const det = el("details", "rag-result");
+  const sum = el("summary", "rag-summary");
+  sum.appendChild(el("span", "rag-summary-title", "Lecture"));
+  if (path) sum.appendChild(el("span", "rag-summary-path", " · " + path));
+  if (range) sum.appendChild(el("span", "rag-summary-count", " · " + range));
+  det.appendChild(sum);
+  const PREVIEW = 20;
+  const preShort = el("pre", "tool-result");
+  appendLinkified(preShort, lines.slice(0, PREVIEW).join("\n"));
+  const preFull = el("pre", "tool-result");
+  appendLinkified(preFull, String(text));
+  preFull.hidden = true;
+  const btn = el("button", "tool-expand-btn");
+  const setLabel = (expanded) => {
+    btn.textContent = expanded ? "▲ Réduire" : "▼ Afficher tout · " + lines.length + " lignes";
+  };
+  setLabel(false);
+  btn.addEventListener("click", () => {
+    const expanded = preFull.hidden;
+    preFull.hidden = !expanded;
+    preShort.hidden = expanded;
+    setLabel(expanded);
+  });
+  const body = el("div", "rag-read-body");
+  body.appendChild(preShort);
+  body.appendChild(preFull);
+  if (lines.length > PREVIEW) body.appendChild(btn);
+  det.appendChild(body);
+  wrap.appendChild(det);
+  return wrap;
+}
+
 // Phase 3 refonte : verbe d'action affiché dans l'en-tête du diff
 // (vue Agents uniquement).
 export function diffVerb(toolName) {
@@ -1351,6 +1454,12 @@ export class ThreadView {
       // Les modifications ne sont pas masquées : le diff s'affiche déplié.
       if (det) det.open = true;
     }
+    // RAG : rendu dédié compact (rag_search / rag_read), pas de gros <pre>.
+    if ((ev.name === "rag_search" || ev.name === "rag_read") && typeof ev.result === "string" && ev.result) {
+      body.appendChild(renderRagResult(ev.name, ev.result, ev.args));
+      this.requestFollow();
+      return;
+    }
     if (typeof ev.result === "string" && ev.result) {
       if (this.agentic) {
         // Vue Agents, phase 1 refonte : sorties longues en 5 premières +
@@ -1447,6 +1556,12 @@ export class ThreadView {
     if (Array.isArray(ev.diff) && ev.diff.length) {
       body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path, this.agentic ? diffVerb(ev.name) : null));
     }
+    // RAG : rendu dédié compact (rag_search / rag_read), pas de gros <pre>.
+    if ((ev.name === "rag_search" || ev.name === "rag_read") && typeof ev.result === "string" && ev.result) {
+      body.appendChild(renderRagResult(ev.name, ev.result, ev.args));
+      this.requestFollow();
+      return;
+    }
     if (typeof ev.result === "string" && ev.result) {
       if (isErr) {
         const pre = el("pre", "tool-result cx-tool-error");
@@ -1525,6 +1640,12 @@ export class ThreadView {
     }
     if (Array.isArray(ev.diff) && ev.diff.length) {
       body.appendChild(renderDiff(ev.diff, ev.args && ev.args.file_path, this.agentic ? diffVerb(ev.name) : null));
+    }
+    // RAG : rendu dédié compact (rag_search / rag_read), pas de gros <pre>.
+    if ((ev.name === "rag_search" || ev.name === "rag_read") && typeof ev.result === "string" && ev.result) {
+      body.appendChild(renderRagResult(ev.name, ev.result, ev.args));
+      this.requestFollow();
+      return;
     }
     if (typeof ev.result === "string" && ev.result) {
       if (ocIsError(ev.result)) {

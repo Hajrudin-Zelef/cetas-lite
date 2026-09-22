@@ -497,9 +497,15 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	// modele (fail-open : absente ou vide, rien n'est ajoute). Le resultat
 	// est calcule une seule fois et sert aussi a economiser la pre-recherche
 	// web quand la base couvre la requete.
+	// Placement cache-friendly : le contexte RAG (dynamique, propre a la
+	// requete) est insere juste avant le message utilisateur courant, apres
+	// l'historique. Le prefixe [prompts stables + historique] reste ainsi
+	// identique d'un tour a l'autre, ce qui maximise les chances de prompt
+	// caching (prefixe automatique cote provider ; aucun marquage de cache
+	// explicite n'est emis par ce code).
 	ragRes := e.ragHits(ctx, in.Text)
 	if rc, ok := ragContextFrom(ragRes); ok {
-		msgs = append([]provider.Message{{Role: "system", Content: rc}}, msgs...)
+		msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
 	}
 
 	if res.agent && e.workspace != "" && in.User != "" {

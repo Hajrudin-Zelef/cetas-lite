@@ -292,3 +292,83 @@ func TestRagKeepsWebPreSearchWhenWeak(t *testing.T) {
 		t.Fatal("pre-recherche web attendue (base locale non concluante)")
 	}
 }
+
+// TestInsertBeforeLastUser : le contexte dynamique RAG doit etre insere
+// juste avant le dernier message utilisateur (le tour courant), donc apres
+// l'historique. Le prefixe [prompts stables + historique] reste ainsi
+// identique d'un tour a l'autre, ce qui favorise le prompt caching.
+func TestInsertBeforeLastUser(t *testing.T) {
+	dyn := provider.Message{Role: "system", Content: "RAG"}
+	msgs := []provider.Message{
+		{Role: "system", Content: "sys"},
+		{Role: "user", Content: "u1"},
+		{Role: "assistant", Content: "a1"},
+		{Role: "user", Content: "u2"},
+	}
+	got := insertBeforeLastUser(msgs, dyn)
+	want := []string{"sys", "u1", "a1", "RAG", "u2"}
+	if len(got) != len(want) {
+		t.Fatalf("longueur = %d, attendu %d", len(got), len(want))
+	}
+	for i, w := range want {
+		if msgText(got[i]) != w {
+			t.Fatalf("position %d = %q, attendu %q", i, msgText(got[i]), w)
+		}
+	}
+
+	// Sans dernier message utilisateur : ajout a la fin.
+	msgs2 := []provider.Message{
+		{Role: "system", Content: "sys"},
+		{Role: "assistant", Content: "a"},
+	}
+	got2 := insertBeforeLastUser(msgs2, dyn)
+	if msgText(got2[len(got2)-1]) != "RAG" {
+		t.Fatalf("dernier message = %q, attendu RAG", msgText(got2[len(got2)-1]))
+	}
+
+	// Sans message dynamique : tranche inchangee.
+	got3 := insertBeforeLastUser(msgs)
+	if len(got3) != len(msgs) {
+		t.Fatalf("longueur = %d, attendu %d", len(got3), len(msgs))
+	}
+}
+
+// captureReadRag enregistre les bornes reellement transmises a Read.
+type captureReadRag struct {
+	fakeRag
+	offset, limit int
+}
+
+func (c *captureReadRag) Read(_ string, offset, limit int) (string, error) {
+	c.offset, c.limit = offset, limit
+	return "ok", nil
+}
+
+// TestRagReadServerBounds : rag_read applique une limite par defaut et un
+// plafond serveur strict avant d'appeler le lecteur.
+func TestRagReadServerBounds(t *testing.T) {
+	cases := []struct {
+		name       string
+		args       string
+		wantOffset int
+		wantLimit  int
+	}{
+		{"defaut", `{"path":"doc.md"}`, 0, ragReadDefaultLines},
+		{"offset negatif normalise", `{"path":"doc.md","offset":-5}`, 0, ragReadDefaultLines},
+		{"plafond serveur", `{"path":"doc.md","limit":10000}`, 0, ragReadMaxLines},
+		{"valeurs explicites conservees", `{"path":"doc.md","offset":10,"limit":25}`, 10, 25},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			c := &captureReadRag{fakeRag: fakeRag{ready: true}}
+			e := ragEngine(t, c)
+			res := e.ragExecute(context.Background(), "rag_read", tc.args)
+			if res.Text != "ok" {
+				t.Fatalf("resultat = %q, attendu ok", res.Text)
+			}
+			if c.offset != tc.wantOffset || c.limit != tc.wantLimit {
+				t.Fatalf("offset/limit = %d/%d, attendu %d/%d", c.offset, c.limit, tc.wantOffset, tc.wantLimit)
+			}
+		})
+	}
+}

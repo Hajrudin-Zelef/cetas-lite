@@ -474,6 +474,66 @@
   text-decoration: underline;
 }
 
+/* --- Rendu dédié rag_search / rag_read : compact et structuré ---
+   Pas de gros bloc monospacé brut : un <details> avec un item par
+   passage (titre, chemin, extrait) ou un aperçu borné pour la lecture. */
+.rag-result {
+  margin: 6px 0;
+}
+.rag-summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  list-style: none;
+}
+.rag-summary::-webkit-details-marker {
+  display: none;
+}
+.rag-summary::before {
+  content: "▸ ";
+  color: var(--muted, #888);
+}
+.rag-result[open] > .rag-summary::before {
+  content: "▾ ";
+}
+.rag-hit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+.rag-hit {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: var(--surface, transparent);
+}
+.rag-hit-head {
+  font-size: 0.82rem;
+}
+.rag-hit-ref {
+  font-weight: 700;
+  color: var(--link);
+}
+.rag-hit-title {
+  font-weight: 600;
+}
+.rag-hit-path {
+  font-size: 0.72rem;
+  color: var(--muted, #888);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  overflow-wrap: anywhere;
+}
+.rag-hit-snippet {
+  font-size: 0.78rem;
+  margin-top: 4px;
+  color: var(--text);
+}
+.rag-read-body {
+  margin-top: 6px;
+}
+
 /* --- Pastilles d'outils en thème sombre : fond et texte explicites ---
    Les variables suffisent en théorie, mais en pratique des pastilles
    blanches ont été observées en mode sombre : ces règles plus spécifiques

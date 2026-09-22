@@ -39,11 +39,11 @@ func RagToolSchemas() []provider.Tool {
 			}, "query")}},
 		{Type: "function", Function: provider.ToolFunction{
 			Name:        "rag_read",
-			Description: "Relit un passage de la base locale par son chemin (issu de rag_search), lignes numerotees.",
+			Description: "Relit un passage de la base locale par son chemin (issu de rag_search), lignes numerotees. Limite serveur : defaut 80 lignes, maximum 200 lignes.",
 			Parameters: str(map[string]any{
 				"path":   map[string]any{"type": "string"},
-				"offset": map[string]any{"type": "integer", "description": "First line (1-based)"},
-				"limit":  map[string]any{"type": "integer"},
+				"offset": map[string]any{"type": "integer", "description": "First line (1-based), default 1"},
+				"limit":  map[string]any{"type": "integer", "description": "Default 80 lines, max 200"},
 			}, "path")}},
 	}
 }
@@ -70,7 +70,20 @@ func (e *Engine) ragExecute(ctx context.Context, name, argsJSON string) ToolResu
 		if rel == "" {
 			return ToolResult{Text: "[erreur] chemin vide"}
 		}
-		out, err := rt.Read(rel, intArg(args, "offset"), intArg(args, "limit"))
+		// Bornage serveur : limite par defaut raisonnable et plafond strict
+		// pour eviter qu'une lecture mal bornee n'injecte un document entier
+		// (jusqu'a ~12k tokens) dans le contexte.
+		offset := intArg(args, "offset")
+		if offset < 0 {
+			offset = 0
+		}
+		limit := intArg(args, "limit")
+		if limit <= 0 {
+			limit = ragReadDefaultLines
+		} else if limit > ragReadMaxLines {
+			limit = ragReadMaxLines
+		}
+		out, err := rt.Read(rel, offset, limit)
 		if err != nil {
 			return ToolResult{Text: "[erreur] lecture: " + err.Error()}
 		}
@@ -104,9 +117,13 @@ func ragContextFrom(res rag.Result) (string, bool) {
 		return "", false
 	}
 	var b strings.Builder
-	b.WriteString("Extraits de la base documentaire locale — source prioritaire pour les sujets couverts. " +
-		"Reponds depuis ces extraits et cite [1], [2]… Ne fais une recherche web que si l'information manque. " +
-		"Utilise rag_read pour lire un passage entier.\n\n")
+	b.WriteString("Extraits de la base documentaire locale — source prioritaire pour les sujets couverts.\n" +
+		"Consignes de réponse (à respecter) :\n" +
+		"- Structure ta réponse : idée principale d'abord, puis points clés étayés, puis limites ou incertitudes.\n" +
+		"- Synthétise les extraits avec tes propres mots ; ne recopie pas de longs passages et ne juxtapose pas des faits bruts sans articulation.\n" +
+		"- Cite discrètement les sources avec [1], [2]… ; n'affiche pas les chemins internes sauf si l'utilisateur les demande.\n" +
+		"- Ne fais une recherche web que si l'information manque vraiment dans ces extraits.\n" +
+		"- N'utilise rag_read que si les extraits ci-dessus sont insuffisants, et par petits passages (offset/limit) plutôt que le document entier.\n\n")
 	budget := ragContextBudget
 	for i, h := range res.Hits {
 		ex := strings.TrimSpace(h.Excerpt)
@@ -123,9 +140,37 @@ func ragContextFrom(res rag.Result) (string, bool) {
 	return b.String(), true
 }
 
+// Bornes serveur de rag_read : un appel sans limit (ou mal bornee) ne doit
+// pas injecter un document entier dans le contexte. Le plafond reste bien en
+// dessous de maxReadLines (400) pour eviter les lectures a ~12k tokens.
+const (
+	ragReadDefaultLines = 80
+	ragReadMaxLines     = 200
+)
+
 // ragStrongScore : au-dela de ce score BM25, la base locale est consideree
 // comme couvrant la requete. Sert a economiser la pre-recherche web du tour.
 const ragStrongScore = 2.5
+
+// insertBeforeLastUser insere des messages dynamiques juste avant le dernier
+// message utilisateur (le tour courant), donc apres l'historique. Le
+// prefixe [prompts systeme stables + historique] reste ainsi identique d'un
+// tour a l'autre, ce qui favorise le prompt caching (prefixe automatique
+// cote provider). Si le dernier message n'est pas un message utilisateur,
+// les messages dynamiques sont ajoutes a la fin.
+func insertBeforeLastUser(msgs []provider.Message, dyn ...provider.Message) []provider.Message {
+	if len(dyn) == 0 {
+		return msgs
+	}
+	if n := len(msgs); n > 0 && msgs[n-1].Role == "user" {
+		out := make([]provider.Message, 0, n+len(dyn))
+		out = append(out, msgs[:n-1]...)
+		out = append(out, dyn...)
+		out = append(out, msgs[n-1])
+		return out
+	}
+	return append(msgs, dyn...)
+}
 
 // ragCovered : la base locale repond a la requete.
 func ragCovered(res rag.Result) bool {
