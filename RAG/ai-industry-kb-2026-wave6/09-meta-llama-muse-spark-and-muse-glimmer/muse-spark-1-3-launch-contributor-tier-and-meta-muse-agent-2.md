@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [4330, 4441]
 section: "§9. Meta: Llama, Muse Spark, and Muse Glimmer"
+delta_of: ai-industry-kb-2026
 sha256: 1123e1a0cf2a3184ec3c763e4a853b32d4691f61680c7024d6ab5cd037eac240
 ---
 

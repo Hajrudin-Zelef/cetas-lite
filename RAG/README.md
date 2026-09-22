@@ -52,8 +52,25 @@ source: docs/RAG/<fichier>
 source_anchor: "#sNN-M"
 source_lines: [start, end]
 canonical_for: [ … ]      # optionnel : version de fond d'un événement répété
+delta_of: <corpus>        # optionnel : ce chunk est un delta d'un corpus de base
 sha256: <hex>
 ```
+
+## Relations entre corpus
+
+Deux corpus peuvent se recouvrir **thématiquement** sans se recouvrir **textuellement**
+(cas `ai-industry-kb-2026` → `ai-industry-kb-2026-wave6`). Pour que la recherche
+arbitre, la relation est explicite :
+
+- `relationship: base` (manifest de corpus) — corpus de fond, source canonique.
+- `relationship: delta` + `delta_of: <base>` (manifest de corpus) — n'apporte que les
+  faits nouveaux/corrigés ; ne remplace pas la base.
+- `delta_of: <base>` (en-tête de **chaque** chunk du corpus delta) — permet de filtrer
+  ou de pondérer au niveau chunk.
+
+Le vérificateur contrôle que tout corpus `delta` référence une base existante, que tous
+ses chunks portent `delta_of`, et qu'aucun de ses chunks n'est un doublon **texte**
+(sha256) d'un chunk de la base.
 
 ## Régénérer
 

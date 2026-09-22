@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [9639, 9689]
 section: "§20. Small Models, Edge, Quantization, Serving, Embeddings, and Rerankers"
+delta_of: ai-industry-kb-2026
 sha256: 04f3027dadbcaffab68c4f40879db42edfe9b13704e89a2b30c4605186394263
 ---
 

@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [9480, 9638]
 section: "§19. Coding and Reasoning Models"
+delta_of: ai-industry-kb-2026
 sha256: f7972a09c096b8393cb01afb302c3d4988a5b8daa645cd2d3d3206c56f226d86
 ---
 

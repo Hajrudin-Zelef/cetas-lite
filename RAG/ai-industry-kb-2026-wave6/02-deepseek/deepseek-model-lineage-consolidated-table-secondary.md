@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [708, 778]
 section: "§2. DeepSeek"
+delta_of: ai-industry-kb-2026
 sha256: 4163d1d07905c6c15d7e9a3b3f077d16631c9f1ba2faa84780ba81a6ae3d879c
 ---
 

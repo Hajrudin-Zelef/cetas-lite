@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [8651, 8748]
 section: "§17. Other Chinese Labs"
+delta_of: ai-industry-kb-2026
 sha256: 355e17810d257cd7ae5d49de54202e62fe0f7a101672eaefd6f8f81171773597
 ---
 

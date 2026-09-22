@@ -2,6 +2,8 @@
 
 Corpus `ai-industry-kb-2026-wave6` · **136 fichiers** · 14334 lignes source · ~195398 mots · partition exacte de `docs/RAG/ai-industry-knowledge-base-2026-wave6.md`.
 
+> **Corpus delta** — volume de faits nouveaux ou corrigés, à lire *relativement* à [`ai-industry-kb-2026`](../ai-industry-kb-2026/INDEX.md). Le fond (contexte, historique, définition d'un événement) reste dans la KB principale ; ce corpus ne porte que le delta. Chaque fichier est tagué `delta_of: ai-industry-kb-2026` afin que la recherche sache que ces chunks complètent (et ne remplacent pas) la source canonique.
+
 ## Mode d'emploi
 
 1. Filtrer dans `manifest.json` (ou les tableaux ci-dessous) sur `domain`, `task`, `actors`, `dates` ou `keywords`.

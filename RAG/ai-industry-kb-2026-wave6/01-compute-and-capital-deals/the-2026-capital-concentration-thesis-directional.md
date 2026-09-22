@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [194, 325]
 section: "§1. Compute and Capital Deals"
+delta_of: ai-industry-kb-2026
 sha256: fd15dcb989bfaeabd30e077e26edef677cc02208b7b69bb098f4caf16dc55bf3
 ---
 

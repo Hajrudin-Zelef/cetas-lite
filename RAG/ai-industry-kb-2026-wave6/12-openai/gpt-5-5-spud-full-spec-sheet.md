@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [5865, 5940]
 section: "§12. OpenAI"
+delta_of: ai-industry-kb-2026
 sha256: 7193229711a1606b04457e825c29de463fa55dd11396da7af3bc4faf08a8b6ce
 ---
 

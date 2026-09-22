@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [11547, 11695]
 section: "Annex A — Contradictions, Corrections, and Dedup Log"
+delta_of: ai-industry-kb-2026
 sha256: 19e4be10ccedb729dd1b5446bea29e56eb8908c089fa45d2b84672c53710ff8d
 ---
 

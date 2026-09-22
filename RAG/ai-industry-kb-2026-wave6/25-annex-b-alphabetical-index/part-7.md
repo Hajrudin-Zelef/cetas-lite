@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [12716, 12885]
 section: "Annex B — Alphabetical Index"
+delta_of: ai-industry-kb-2026
 sha256: b952ba1c4c4e3880884325dae6e73a4f067c0e3340f3fb1ba560ee5271929c3c
 ---
 

@@ -78,6 +78,20 @@ def verify(corpus: dict):
           "global source sha256 matches")
     check(all((RAG_ROOT / c["path"]).exists() for c in chunks), "every path exists")
 
+    print("5) corpus relationship")
+    base = man.get("delta_of")
+    if base:
+        check(man.get("relationship") == "delta", f"declared delta of `{base}`")
+        check((RAG_ROOT / base / "manifest.json").exists(), f"base corpus `{base}` exists")
+        check(all(c.get("delta_of") == base for c in chunks),
+              "every chunk carries delta_of")
+        bman = json.loads((RAG_ROOT / base / "manifest.json").read_text(encoding="utf-8"))
+        bh = {c["sha256"] for c in bman["chunks"]}
+        dup = [c["path"] for c in chunks if c["sha256"] in bh]
+        check(not dup, f"no chunk duplicates a `{base}` chunk ({len(dup)} found)")
+    else:
+        check("delta_of" not in man, "no delta_of without a delta relationship")
+
 
 def main():
     gman = json.loads((RAG_ROOT / "manifest.json").read_text(encoding="utf-8"))

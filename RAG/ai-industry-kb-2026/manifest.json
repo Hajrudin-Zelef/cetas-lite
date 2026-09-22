@@ -6,6 +6,7 @@
   "source_sha256": "4c14e8092ea6030242683e265209a802f14f831070235e96e685a29fce33c696",
   "chunk_count": 123,
   "generated_by": "RAG/_tools/build_rag.py",
+  "relationship": "base",
   "chunks": [
     {
       "id": "ai-industry-kb-2026/00-front-matter/overview",

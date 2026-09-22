@@ -1005,6 +1005,8 @@ def build_corpus(cfg, lines, n):
                   f"source_lines: [{start}, {end}]"]
         if auto and section:
             header.append(f"section: {ystr(section)}")
+        if cfg.get("delta_of"):
+            header.append(f"delta_of: {cfg['delta_of']}")
         if canon:
             header.append(f"canonical_for: {ylist(canon)}")
         header.append(f"sha256: {digest}")
@@ -1031,6 +1033,8 @@ def build_corpus(cfg, lines, n):
         }
         if auto and section:
             entry["section"] = section
+        if cfg.get("delta_of"):
+            entry["delta_of"] = cfg["delta_of"]
         manifest.append(entry)
         for a in parse_anchors(body):
             anchor_index[a] = entry["path"]
@@ -1042,8 +1046,21 @@ def build_corpus(cfg, lines, n):
     lines_out = ["# INDEX — " + cfg["title"], "",
                  f"Corpus `{cfg['slug']}` · **{len(manifest)} fichiers** · "
                  f"{sum(e['source_lines'][1] - e['source_lines'][0] + 1 for e in manifest)} lignes source · "
-                 f"~{total_words} mots · partition exacte de `{cfg['source']}`.", "",
-                 "## Mode d'emploi", "",
+                 f"~{total_words} mots · partition exacte de `{cfg['source']}`.", ""]
+    if cfg.get("delta_of"):
+        lines_out += [
+            f"> **Corpus delta** — volume de faits nouveaux ou corrigés, à lire "
+            f"*relativement* à [`{cfg['delta_of']}`](../{cfg['delta_of']}/INDEX.md). "
+            f"Le fond (contexte, historique, définition d'un événement) reste dans la KB "
+            f"principale ; ce corpus ne porte que le delta. Chaque fichier est tagué "
+            f"`delta_of: {cfg['delta_of']}` afin que la recherche sache que ces chunks "
+            f"complètent (et ne remplacent pas) la source canonique.", ""]
+    if cfg.get("relationship") == "base":
+        deltas = [k["slug"] for k in CORPORA if k.get("delta_of") == cfg["slug"]]
+        if deltas:
+            lines_out += ["**Corpus liés (deltas) :** " +
+                          ", ".join(f"[`{d}`](../{d}/INDEX.md)" for d in deltas) + ".", ""]
+    lines_out += ["## Mode d'emploi", "",
                  "1. Filtrer dans `manifest.json` (ou les tableaux ci-dessous) sur "
                  "`domain`, `task`, `actors`, `dates` ou `keywords`.",
                  "2. Ouvrir 1 à 3 fichiers ciblés ; chaque fichier est une unité "
@@ -1107,8 +1124,12 @@ def build_corpus(cfg, lines, n):
         "corpus": cfg["slug"], "title": cfg["title"], "source": cfg["source"],
         "source_lines": n, "source_sha256": hashlib.sha256("".join(lines).encode("utf-8")).hexdigest(),
         "chunk_count": len(manifest), "generated_by": "RAG/_tools/build_rag.py",
-        "chunks": manifest,
     }
+    if cfg.get("relationship"):
+        corpus_manifest["relationship"] = cfg["relationship"]
+    if cfg.get("delta_of"):
+        corpus_manifest["delta_of"] = cfg["delta_of"]
+    corpus_manifest["chunks"] = manifest
     (out / "manifest.json").write_text(
         json.dumps(corpus_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -1163,6 +1184,7 @@ CORPORA = [
         "source": "docs/RAG/ai-industry-knowledge-base-2026.md",
         "mode": "auto", "max_lines": 170, "min_lines": 70,
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+        "relationship": "base",
     },
     {
         "slug": "ai-industry-kb-2026-wave6",
@@ -1170,6 +1192,7 @@ CORPORA = [
         "source": "docs/RAG/ai-industry-knowledge-base-2026-wave6.md",
         "mode": "auto", "max_lines": 170, "min_lines": 70,
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+        "relationship": "delta", "delta_of": "ai-industry-kb-2026",
     },
 ]
 
@@ -1193,16 +1216,26 @@ def main():
     gl = ["# INDEX — RAG", "",
           "Corpus RAG de référence pour Cetas. Chaque corpus est une "
           "partition exacte de sa source, avec index et manifest.", "",
-          "| corpus | titre | fichiers | source | index |", "|---|---|---|---|---|"]
+          "Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source "
+          "déjà couverte par un corpus `base` ; il ne la remplace pas. `delta_of` "
+          "indique la base visée.", "",
+          "| corpus | titre | relation | fichiers | source | index |",
+          "|---|---|---|---|---|---|"]
     for m in summaries:
-        gl.append(f"| `{m['corpus']}` | {m['title']} | {m['chunk_count']} | "
+        rel = m.get("relationship", "")
+        if rel == "delta" and m.get("delta_of"):
+            rel = f"delta de `{m['delta_of']}`"
+        gl.append(f"| `{m['corpus']}` | {m['title']} | {rel} | {m['chunk_count']} | "
                   f"`{m['source']}` | [INDEX]({m['corpus']}/INDEX.md) |")
     gl += ["", "Voir aussi [README](README.md) et `manifest.json`."]
     (RAG_ROOT / "INDEX.md").write_text("\n".join(gl) + "\n", encoding="utf-8")
     (RAG_ROOT / "manifest.json").write_text(json.dumps({
-        "corpora": [{"corpus": m["corpus"], "title": m["title"], "source": m["source"],
-                     "index": f"{m['corpus']}/INDEX.md", "manifest": f"{m['corpus']}/manifest.json",
-                     "chunk_count": m["chunk_count"]} for m in summaries],
+        "corpora": [{
+            "corpus": m["corpus"], "title": m["title"], "source": m["source"],
+            **({"relationship": m["relationship"]} if m.get("relationship") else {}),
+            **({"delta_of": m["delta_of"]} if m.get("delta_of") else {}),
+            "index": f"{m['corpus']}/INDEX.md", "manifest": f"{m['corpus']}/manifest.json",
+            "chunk_count": m["chunk_count"]} for m in summaries],
     }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 

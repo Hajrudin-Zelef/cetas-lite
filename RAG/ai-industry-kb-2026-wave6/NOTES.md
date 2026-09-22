@@ -17,6 +17,11 @@ conserve les renvois « covered in main KB §X » et les **labels de provenance*
 (`[VENDOR]`, `[SECONDARY]`, `[COMMUNITY]`, `[UNVERIFIED]`, `[DIRECTIONAL]`,
 `[CONTRADICTED]`).
 
+Relation encodée dans les métadonnées : `relationship: delta` + `delta_of:
+ai-industry-kb-2026` au niveau corpus, et `delta_of: ai-industry-kb-2026` dans l'en-tête de
+**chaque** chunk. Vérifié : **aucun** chunk n'est un doublon texte (sha256) d'un chunk de la
+base — les deux corpus se recouvrent thématiquement, pas textuellement.
+
 Les sections suivent le même template que le KB principal (`Summary`, `Key dated facts`,
 `Figures and metrics`, `Main actors`, `Timeline and context`, `Implications`, `Sources and
 URLs`), avec des blocs « expansion » (`new verified …`). Les annexes B (index alphabétique)

@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [10260, 10337]
 section: "§21. Licenses and Open-Weight Politics"
+delta_of: ai-industry-kb-2026
 sha256: 3349e01870d30b88d02c8a3eec260e49298fa8da1be89818ce5629e04ef048fd
 ---
 

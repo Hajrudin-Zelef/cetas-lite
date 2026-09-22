@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [1, 43]
 section: "AI Industry Knowledge Base — 2026 — Wave 6 Consolidation"
+delta_of: ai-industry-kb-2026
 sha256: 32e4da53d8c77188c0f6fdd5294e80450ad5139344fc4d165961b49b3f6f29ea
 ---
 

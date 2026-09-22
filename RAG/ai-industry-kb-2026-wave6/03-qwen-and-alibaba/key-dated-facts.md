@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [1096, 1257]
 section: "§3. Qwen and Alibaba"
+delta_of: ai-industry-kb-2026
 sha256: 17ebfb57829984889f5b56602b1b9553a56aa2bcf6159d8b7ee90284633e31cb
 ---
 

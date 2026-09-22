@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [8091, 8247]
 section: "§16. Cohere"
+delta_of: ai-industry-kb-2026
 sha256: 55540acae8d0f1f53dae5d68caed9d917381110ddc63cac7629ded02ef546021
 ---
 

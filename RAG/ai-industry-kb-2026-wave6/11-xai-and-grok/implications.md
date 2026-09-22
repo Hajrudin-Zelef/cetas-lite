@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [5571, 5704]
 section: "§11. xAI and Grok"
+delta_of: ai-industry-kb-2026
 sha256: 900b7e61a80fc6be7782dc0f8f2223d7fab26f3cd05e78cf9180988add492662
 ---
 

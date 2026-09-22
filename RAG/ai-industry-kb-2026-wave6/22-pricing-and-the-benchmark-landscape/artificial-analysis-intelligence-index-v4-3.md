@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [10559, 10692]
 section: "§22. Pricing and the Benchmark Landscape"
+delta_of: ai-industry-kb-2026
 sha256: 56eda52efe53c545c1a37964379db620bd15a2987518328694de0c0eb199548f
 ---
 

@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [7120, 7194]
 section: "§14. Google: Gemini and Gemma"
+delta_of: ai-industry-kb-2026
 sha256: 0738f43f6e92cca9bdce9b0b6b0c43f78140f702e2199c86b1de04cd591c4096
 ---
 

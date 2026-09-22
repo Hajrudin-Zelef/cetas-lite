@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [3296, 3400]
 section: "§7. MiniMax"
+delta_of: ai-industry-kb-2026
 sha256: 8995bf12ab304b137b97bbcb3aedada5161942b75bb60971143abc03cae474f8
 ---
 

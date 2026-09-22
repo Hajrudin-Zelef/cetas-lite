@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [11317, 11428]
 section: "§23. Master Model Inventory"
+delta_of: ai-industry-kb-2026
 sha256: 3c72efe747f51617bddb53aa4c80d5e0e4b246161904edb68a8bd326eab19fe2
 ---
 

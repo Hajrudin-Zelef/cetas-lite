@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [1685, 1754]
 section: "§4. GLM and Z.ai"
+delta_of: ai-industry-kb-2026
 sha256: 1af19247d665f41cf3cc1c0786ac458f89352f2b590df46051633eabbef5b2ca
 ---
 

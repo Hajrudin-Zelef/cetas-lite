@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [9124, 9218]
 section: "§18. Multimodal Generation: Video, Image, and Audio"
+delta_of: ai-industry-kb-2026
 sha256: f91187848b5fbefb17f323cf9dbbf52175a4bdd307e9010e0d9a22e13904b392
 ---
 

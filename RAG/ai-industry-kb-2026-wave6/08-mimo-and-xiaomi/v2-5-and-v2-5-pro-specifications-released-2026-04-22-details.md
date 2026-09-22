@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [3648, 3791]
 section: "§8. MiMo and Xiaomi"
+delta_of: ai-industry-kb-2026
 sha256: 7b0aca8285490f7fca37b16d400a9a4e7637c9e7c97abada03e7c2a69ae2e32d
 ---
 

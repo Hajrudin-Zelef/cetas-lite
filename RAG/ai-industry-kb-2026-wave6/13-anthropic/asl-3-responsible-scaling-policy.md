@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [6510, 6593]
 section: "§13. Anthropic"
+delta_of: ai-industry-kb-2026
 sha256: 904f884bb1e97f172173e10680dda49b0a8f71f9a0f4da59f1bbe1c53d710a7a
 ---
 

@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [4796, 4869]
 section: "§10. Mistral AI"
+delta_of: ai-industry-kb-2026
 sha256: e9421bec672ee0f10511514ce1fb1e49018a46f9b076990e971ef846cfb3f96f
 ---
 

@@ -2,6 +2,8 @@
 
 Corpus `ai-industry-kb-2026` · **123 fichiers** · 13297 lignes source · ~245271 mots · partition exacte de `docs/RAG/ai-industry-knowledge-base-2026.md`.
 
+**Corpus liés (deltas) :** [`ai-industry-kb-2026-wave6`](../ai-industry-kb-2026-wave6/INDEX.md).
+
 ## Mode d'emploi
 
 1. Filtrer dans `manifest.json` (ou les tableaux ci-dessous) sur `domain`, `task`, `actors`, `dates` ou `keywords`.

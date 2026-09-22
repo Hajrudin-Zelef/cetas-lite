@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [13710, 13825]
 section: "Annex C — Keyword List"
+delta_of: ai-industry-kb-2026
 sha256: 79a81f9cbdb3f75f9d55e9ac9321b1508d5f1adfe692a8ab23d8a26e803b4492
 ---
 

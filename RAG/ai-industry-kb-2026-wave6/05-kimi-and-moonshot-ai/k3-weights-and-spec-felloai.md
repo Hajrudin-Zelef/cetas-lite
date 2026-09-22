@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [2169, 2241]
 section: "§5. Kimi and Moonshot AI"
+delta_of: ai-industry-kb-2026
 sha256: 831b23b83b4cce57aa61e3d42fe7ed94d01790992c9239557e1167de5950bf5a
 ---
 

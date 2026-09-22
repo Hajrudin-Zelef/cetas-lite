@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [7347, 7416]
 section: "§15. NVIDIA and Nemotron"
+delta_of: ai-industry-kb-2026
 sha256: 696a0aca6b375d67e5e58ca97205c440d3a3031476fd9fdf5c66919c633d4a88
 ---
 

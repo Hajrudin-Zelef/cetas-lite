@@ -11,6 +11,7 @@ source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
 source_lines: [2747, 2823]
 section: "§6. LongCat and Meituan"
+delta_of: ai-industry-kb-2026
 sha256: 5fda600dbc5ecf228d51138f16185193da3a296cf1a6d4248ff875bbac04f5f8
 ---
 
