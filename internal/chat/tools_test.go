@@ -705,6 +705,7 @@ func TestAgentLoopMessagesAllEnglish(t *testing.T) {
 		readLoopWarnText,
 		repeatedCallResult("prev", 1),
 		repeatedCallResult("prev", 3),
+		externalOutputMarker,
 	} {
 		for _, r := range s {
 			if strings.ContainsRune(fr, r) {
