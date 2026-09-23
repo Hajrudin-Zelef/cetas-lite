@@ -1,0 +1,2658 @@
+{
+  "corpus": "vague2-vision-ia",
+  "title": "Vision-IA — newsletter IA (Collect Vague 2)",
+  "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia",
+  "source_dir": "docs/RAG/Collect RAG Vague 2/04_vision_ia",
+  "source_files": 55,
+  "source_sha256": "69f91354d651d311436b170a9f855f37d26ed2dda326943a0cfc16ed30c93444",
+  "chunk_count": 55,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "vague2-vision-ia/vision-ia/alibaba-met-un-ge-ne-rateur-d-images-de-7-milliards-de-parame-tres-sur-votre-carte-graphiq",
+      "path": "vague2-vision-ia/vision-ia/alibaba-met-un-ge-ne-rateur-d-images-de-7-milliards-de-parame-tres-sur-votre-carte-graphiq.md",
+      "title": "Alibaba met un générateur d'images de 7 milliards de paramètres sur votre carte graphique",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "China",
+        "Google",
+        "Hugging Face",
+        "Irregular",
+        "Microsoft",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-05",
+        "2026-08",
+        "2026-09-21",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "consumer",
+        "cybersecurity",
+        "diffusion",
+        "disclosure",
+        "gemini",
+        "gpu",
+        "gpus",
+        "incident",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/alibaba-met-un-ge-ne-rateur-d-images-de-7-milliards-de-parame-tres-sur-votre-carte-graphique.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 741,
+      "bytes": 4916,
+      "sha256": "ca5c364d0471088686869c2aea999c3233e59bbb89466cd97daa644d346c9966"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/anthropic-accuse-alibaba-du-plus-grand-pillage-jamais-men-contre-claude",
+      "path": "vague2-vision-ia/vision-ia/anthropic-accuse-alibaba-du-plus-grand-pillage-jamais-men-contre-claude.md",
+      "title": "Anthropic accuse Alibaba du plus grand pillage jamais mené contre Claude",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Broadcom",
+        "China",
+        "Google",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-25",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "agentic",
+        "agents",
+        "chatgpt",
+        "custom silicon",
+        "distillation",
+        "gemini",
+        "inference",
+        "ipo",
+        "lawsuit",
+        "nvidia",
+        "opus 4"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/anthropic-accuse-alibaba-du-plus-grand-pillage-jamais-men-contre-claude.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 864,
+      "bytes": 5770,
+      "sha256": "bf728a01f6238d670977e16141284b081a72a946381d8e0bb50a20ec1da5f511"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/anthropic-blackliste-e-par-trump-la-justice-annule-la-de-cision",
+      "path": "vague2-vision-ia/vision-ia/anthropic-blackliste-e-par-trump-la-justice-annule-la-de-cision.md",
+      "title": "Anthropic blacklistée par Trump ? la justice annule la décision",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "China",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-03-03",
+        "2026-08-28",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "agi",
+        "astra",
+        "aws",
+        "chatgpt",
+        "claude",
+        "context window",
+        "cyber",
+        "gemini",
+        "governance",
+        "gpt-5.6"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/anthropic-blackliste-e-par-trump-la-justice-annule-la-de-cision.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1028,
+      "bytes": 6893,
+      "sha256": "3b2d5eb6bb9630282eb661d58cdfaa09f01604876b6ba6570f2ebdf9dc1d909d"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/anthropic-lance-fable-5-1-et-re-duit-jusqu-a-45-le-cou-t-de-ses-agents-ia",
+      "path": "vague2-vision-ia/vision-ia/anthropic-lance-fable-5-1-et-re-duit-jusqu-a-45-le-cou-t-de-ses-agents-ia.md",
+      "title": "Anthropic lance Fable 5.1 et réduit jusqu'à 45 % le coût de ses agents IA",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "China",
+        "Google",
+        "Meta",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09",
+        "2026-09-02",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agents",
+        "fable 5",
+        "agentic",
+        "agi",
+        "astra",
+        "aws",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "consumer",
+        "context window",
+        "cost"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/anthropic-lance-fable-5-1-et-re-duit-jusqu-a-45-le-cou-t-de-ses-agents-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 937,
+      "bytes": 6072,
+      "sha256": "0afe82f8b4ccbe6369dd2098a67c4283b3c8d6ccab6c371e7c0ab719623e2c9f"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/anthropic-pre-chait-la-prudence-son-filtre-anti-armes-biologiques-est-reste-e-teint-pendan",
+      "path": "vague2-vision-ia/vision-ia/anthropic-pre-chait-la-prudence-son-filtre-anti-armes-biologiques-est-reste-e-teint-pendan.md",
+      "title": "Anthropic prêchait la prudence, son filtre anti-armes biologiques est resté éteint pendant 11 mois",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "California",
+        "China",
+        "Hugging Face",
+        "OpenAI",
+        "Stability AI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2025-05",
+        "2026-03",
+        "2026-04",
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agi",
+        "alignment",
+        "claude",
+        "governance",
+        "grok",
+        "liability",
+        "regulation",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/anthropic-pre-chait-la-prudence-son-filtre-anti-armes-biologiques-est-reste-e-teint-pendant-11-mois.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 705,
+      "bytes": 4686,
+      "sha256": "28933a11a0f855225264b46fbc416dc7a11647fe69c6782420b67c82e935c17f"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/anthropic-trump",
+      "path": "vague2-vision-ia/vision-ia/anthropic-trump.md",
+      "title": "Anthropic vs Trump : le clash qui dope les ventes",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "OpenAI",
+        "Qualcomm",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-06-17",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "18a",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "context window",
+        "copilot",
+        "deepseek",
+        "fable 5",
+        "foldable",
+        "gemini",
+        "glm",
+        "gpu"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/anthropic-trump.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 854,
+      "bytes": 5596,
+      "sha256": "8789540f92428eb29e24352a6bfa58154a44f3b6137904b513e787d9b73a46b5"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/apple-attaque-openai-en-justice-pour-espionnage-industriel",
+      "path": "vague2-vision-ia/vision-ia/apple-attaque-openai-en-justice-pour-espionnage-industriel.md",
+      "title": "Apple attaque OpenAI en justice pour espionnage industriel",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Hugging Face",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmarks",
+        "claude",
+        "cost",
+        "gemini",
+        "gpt-5.6",
+        "humanoid",
+        "memory",
+        "open-weight",
+        "regulation",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/apple-attaque-openai-en-justice-pour-espionnage-industriel.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 629,
+      "bytes": 4086,
+      "sha256": "d96d29354c47855d2b15a5b7932b61e5576541ddba080de58465d78e36c877b0"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/argentine-ia",
+      "path": "vague2-vision-ia/vision-ia/argentine-ia.md",
+      "title": "L'équipe d'Argentine va utiliser l'IA au mondial de foot 2026",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "EU",
+        "Google",
+        "Nvidia",
+        "OpenAI",
+        "Perplexity",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06-11",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "3nm",
+        "agent",
+        "agents",
+        "aws",
+        "claude",
+        "cost",
+        "diffusion",
+        "gemini",
+        "governance",
+        "gpu",
+        "grok",
+        "humanoid"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/argentine-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 832,
+      "bytes": 5475,
+      "sha256": "08c5d5d4e13fe0a93fdd330f9314583dabc7676cf444503584773d22d3a3a003"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/cette-nouvelle-ia-chinoise-code-toute-seule-pendant-16-jours",
+      "path": "vague2-vision-ia/vision-ia/cette-nouvelle-ia-chinoise-code-toute-seule-pendant-16-jours.md",
+      "title": "Cette nouvelle IA chinoise code toute seule pendant 16 jours",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "EU",
+        "Hugging Face",
+        "Microsoft",
+        "MiniMax",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmarks",
+        "claude",
+        "cost",
+        "deepseek",
+        "glm",
+        "gpu",
+        "license",
+        "moe",
+        "multimodal",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/cette-nouvelle-ia-chinoise-code-toute-seule-pendant-16-jours.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 671,
+      "bytes": 4074,
+      "sha256": "1d4140d938dc458cd602a86b2856434be5324cd329433f6658411cf2a1248ee1"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/claude-80-pourcent",
+      "path": "vague2-vision-ia/vision-ia/claude-80-pourcent.md",
+      "title": "Claude écrit déjà 80% du code qu'Anthropic met en production",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Broadcom",
+        "China",
+        "DeepSeek",
+        "OpenAI",
+        "Perplexity",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "compute",
+        "cost",
+        "deepseek",
+        "diffusion",
+        "humanoid",
+        "ipo"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/claude-80-pourcent.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 789,
+      "bytes": 5241,
+      "sha256": "a1b4fc36f9f3e1cb05eeb9fd3e037038b10585b71d9e352d26c172f2f4d813bb"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/comment-amazon-et-cinq-g-ants-tech-ont-fait-bannir-le-mod-le-fable-d-anthropic-en-quelques",
+      "path": "vague2-vision-ia/vision-ia/comment-amazon-et-cinq-g-ants-tech-ont-fait-bannir-le-mod-le-fable-d-anthropic-en-quelques.md",
+      "title": "Comment Amazon et cinq géants tech ont fait bannir le modèle Fable d'Anthropic en quelques heures",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-15",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agents",
+        "attention",
+        "benchmark",
+        "claude",
+        "compute",
+        "distribution",
+        "governance",
+        "gpu",
+        "humanoid",
+        "ipo",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/comment-amazon-et-cinq-g-ants-tech-ont-fait-bannir-le-mod-le-fable-d-anthropic-en-quelques-heures.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 855,
+      "bytes": 5776,
+      "sha256": "dd464c1431ef61d9471be29662ad9e87f529a4ab87a0b862bf740758627dfcee"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/deepseek4",
+      "path": "vague2-vision-ia/vision-ia/deepseek4.md",
+      "title": "DeepSeek casse les prix de 75% : l'embargo américain sur les puces n'a pas freiné la Chine",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "California",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Huawei",
+        "Hugging Face",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agent",
+        "agentic",
+        "agents",
+        "ascend",
+        "attribution",
+        "benchmark",
+        "compute",
+        "cost",
+        "gemini",
+        "governance",
+        "gpu"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/deepseek4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 772,
+      "bytes": 5094,
+      "sha256": "96ee32ea4a7bbfc16391329f0edb26ae7a776b28eeb0e4cb6b4a5bf108ed0c35"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/des-agents-ia-de-marchent-par-email-pour-e-viter-d-e-tre-de-branche-s",
+      "path": "vague2-vision-ia/vision-ia/des-agents-ia-de-marchent-par-email-pour-e-viter-d-e-tre-de-branche-s.md",
+      "title": "Des agents IA démarchent par email pour éviter d'être débranchés",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "ByteDance",
+        "China",
+        "EU",
+        "Google",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "United States"
+      ],
+      "dates": [
+        "2025-01",
+        "2025-08",
+        "2026-02",
+        "2026-07",
+        "2026-09-18",
+        "2026-09-23",
+        "2028-01"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "antitrust",
+        "benchmark",
+        "blackwell",
+        "claude",
+        "compute",
+        "gpus",
+        "kimi",
+        "lawsuit",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/des-agents-ia-de-marchent-par-email-pour-e-viter-d-e-tre-de-branche-s.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 975,
+      "bytes": 6237,
+      "sha256": "466bf4db16c37e139747481ad607f0d43df6fb3cd229c75b9b23a21fe5220b31"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/elon-musk-et-l-odysee",
+      "path": "vague2-vision-ia/vision-ia/elon-musk-et-l-odysee.md",
+      "title": "Elon Musk promet de refaire le film l'Odyssée en IA d'ici Noël",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "EU",
+        "ExploitGym",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "compute",
+        "containment",
+        "cost",
+        "gemini",
+        "gpt-5.6",
+        "gpu",
+        "grok"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/elon-musk-et-l-odysee.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 711,
+      "bytes": 4364,
+      "sha256": "e63b48a8e81b8b559cf39d35b31aa2fcb6f129cd52f850a4a522543a4fe7015c"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/fable-5",
+      "path": "vague2-vision-ia/vision-ia/fable-5.md",
+      "title": "Anthropic lance Fable 5 et Mythos 5, deux IA surpuissantes",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Baidu",
+        "China",
+        "Google",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-06-10",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fable 5",
+        "mythos 5",
+        "agent",
+        "agents",
+        "claude",
+        "cybersecurity",
+        "gemini",
+        "humanoid",
+        "nvidia",
+        "price war",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/fable-5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 801,
+      "bytes": 5297,
+      "sha256": "de8082d26b22995c355040847f9f58094bb805c22f02ffee4514db1b0a150650"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/fin-openai",
+      "path": "vague2-vision-ia/vision-ia/fin-openai.md",
+      "title": "OpenAI enterre son navigateur Atlas pour copier la recette d'Anthropic",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "ByteDance",
+        "China",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-07-10",
+        "2026-08-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "asic",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "cost",
+        "fable 5",
+        "funding",
+        "glm"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/fin-openai.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 810,
+      "bytes": 5073,
+      "sha256": "5615c28f80ce8c0780f420d7f4ea970422ac3d0ed7eadad36d8587a6c23f2da2"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/google-prend-du-retard-face-la-concurrence-gemini-3-5-pro-repouss-une-3e-fois",
+      "path": "vague2-vision-ia/vision-ia/google-prend-du-retard-face-la-concurrence-gemini-3-5-pro-repouss-une-3e-fois.md",
+      "title": "Google prend du retard face à la concurrence : Gemini 3.5 Pro repoussé une 3e fois",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "California",
+        "China",
+        "EU",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-06",
+        "2026-09-23",
+        "2027-07"
+      ],
+      "keywords": [
+        "gemini",
+        "claude",
+        "compute",
+        "cost",
+        "fable 5",
+        "fine-tuning",
+        "glm",
+        "gpt-5.6",
+        "gpt-live",
+        "grok",
+        "grok 4",
+        "humanoid"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/google-prend-du-retard-face-la-concurrence-gemini-3-5-pro-repouss-une-3e-fois.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 722,
+      "bytes": 4375,
+      "sha256": "f1bcd3c23cdd83e4640a2a173bc6dd55f6e4c54aca8c6c1296000c273d459e73"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/googleattack",
+      "path": "vague2-vision-ia/vision-ia/googleattack.md",
+      "title": "Google Cloud Next : nouvelles puces, agents IA et Gmail dopé à l'intelligence artificielle",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Apple",
+        "Google",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-04-23",
+        "2026-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "chatgpt",
+        "compute",
+        "cost",
+        "fine-tuning",
+        "gemini",
+        "gpu",
+        "gpus",
+        "grok",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/googleattack.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 840,
+      "bytes": 5773,
+      "sha256": "b46c4bc9cf8b754249342e62e2a6dc25040b17c7b8203270faae6007e548cd61"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/gpt-5-6-sol-le-fer-de-lance-d-openai-supprime-des-fichiers-sans-pr-venir",
+      "path": "vague2-vision-ia/vision-ia/gpt-5-6-sol-le-fer-de-lance-d-openai-supprime-des-fichiers-sans-pr-venir.md",
+      "title": "GPT-5.6 Sol, le fer de lance d'OpenAI, supprime des fichiers sans prévenir",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "EU",
+        "Google",
+        "Meta",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpt-5.6",
+        "sol",
+        "agent",
+        "agentic",
+        "chatgpt",
+        "claude",
+        "cybersecurity",
+        "grok",
+        "lawsuit",
+        "parameters",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/gpt-5-6-sol-le-fer-de-lance-d-openai-supprime-des-fichiers-sans-pr-venir.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 645,
+      "bytes": 4153,
+      "sha256": "1aac7fc0344faac4786c4f3651f1fd14da521ecf01ba380efda29d803c7bf186"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/ia-consciente",
+      "path": "vague2-vision-ia/vision-ia/ia-consciente.md",
+      "title": "L'IA est-elle déjà consciente ? Un prix Nobel le pense",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Apple",
+        "Glasswing",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "Perplexity",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-03",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "capex",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "gemini",
+        "humanoid",
+        "ipo",
+        "multimodal",
+        "perplexity",
+        "regulation"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/ia-consciente.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 935,
+      "bytes": 6266,
+      "sha256": "8b8a1a05044e4a09e7be83bdcd6cbb77fe1e2a25e66f477c1939b7117e2f450c"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/il-raconte-a-chatgpt-son-projet-de-meurtre-l-ia-appelle-le-fbi",
+      "path": "vague2-vision-ia/vision-ia/il-raconte-a-chatgpt-son-projet-de-meurtre-l-ia-appelle-le-fbi.md",
+      "title": "Il raconte à ChatGPT son projet de meurtre, l'IA appelle le FBI",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "CISA",
+        "China",
+        "DeepSeek",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-05-29",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "chatgpt",
+        "agi",
+        "attribution",
+        "blackwell",
+        "compute",
+        "deepseek",
+        "diffusion",
+        "governance",
+        "gpu",
+        "lpddr5x",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/il-raconte-a-chatgpt-son-projet-de-meurtre-l-ia-appelle-le-fbi.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 656,
+      "bytes": 4058,
+      "sha256": "3d85c0d279c1357586bf0c81a85227810d1e43a308e46706ca9668cc87035835"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/la-france-vote-l-interdiction-des-r-seaux-sociaux-avant-15-ans",
+      "path": "vague2-vision-ia/vision-ia/la-france-vote-l-interdiction-des-r-seaux-sociaux-avant-15-ans.md",
+      "title": "La France vote l'interdiction des réseaux sociaux avant 15 ans",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "China",
+        "EU",
+        "Google",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "United States",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "arr",
+        "benchmarks",
+        "cyber",
+        "foundry",
+        "gemini",
+        "gemini 4",
+        "mistral",
+        "nvidia",
+        "open weights",
+        "pricing",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/la-france-vote-l-interdiction-des-r-seaux-sociaux-avant-15-ans.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 717,
+      "bytes": 4594,
+      "sha256": "5956e94560fc460677360b602db2365b603880fe9ed893c5ca826d9e9ee08d6d"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/la-premi-re-puce-d-openai-bat-nvidia-avec-deux-fois-moins-d-lectricit",
+      "path": "vague2-vision-ia/vision-ia/la-premi-re-puce-d-openai-bat-nvidia-avec-deux-fois-moins-d-lectricit.md",
+      "title": "La première puce d'OpenAI bat Nvidia, avec deux fois moins d'électricité",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Broadcom",
+        "China",
+        "CoreWeave",
+        "DeepSeek",
+        "EU",
+        "Google",
+        "Meta",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "Stability AI",
+        "United States"
+      ],
+      "dates": [
+        "2025-02",
+        "2025-09",
+        "2025-11",
+        "2026-05",
+        "2026-08-26",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "accelerator",
+        "agent",
+        "agentic",
+        "amd",
+        "aws",
+        "benchmarks",
+        "blackwell",
+        "chatgpt",
+        "claude",
+        "compute",
+        "cost"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/la-premi-re-puce-d-openai-bat-nvidia-avec-deux-fois-moins-d-lectricit.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1066,
+      "bytes": 7156,
+      "sha256": "3cfb199718892a4affd17785a615ad24ec502d9d9483ff9f86df4cb556107821"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/la-vid-o-ia-change-de-leader-et-ce-n-est-ni-google-ni-bytedance",
+      "path": "vague2-vision-ia/vision-ia/la-vid-o-ia-change-de-leader-et-ce-n-est-ni-google-ni-bytedance.md",
+      "title": "La vidéo IA change de leader, et ce n'est ni Google ni ByteDance",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "ByteDance",
+        "Google",
+        "Meta",
+        "Mistral",
+        "Moonshot",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "apache",
+        "benchmarks",
+        "claude",
+        "consumer",
+        "cost",
+        "gemini",
+        "gpu",
+        "kimi",
+        "mistral",
+        "muse"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/la-vid-o-ia-change-de-leader-et-ce-n-est-ni-google-ni-bytedance.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 652,
+      "bytes": 3987,
+      "sha256": "4a4070ecd64f3779b600787fc1963f63b34cde1f78b6ae7027101967683e4a45"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/lancement-de-chatgpt-6-et-de-claude-opus-5-5-anthropic-reprend-la-te-te",
+      "path": "vague2-vision-ia/vision-ia/lancement-de-chatgpt-6-et-de-claude-opus-5-5-anthropic-reprend-la-te-te.md",
+      "title": "Lancement de ChatGPT-6 et de Claude Opus 5.5 : Anthropic reprend la tête",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Meta",
+        "Mistral",
+        "OpenAI",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "chatgpt",
+        "claude",
+        "gpt-6",
+        "opus 5",
+        "advisory",
+        "agent",
+        "astra",
+        "aws",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/lancement-de-chatgpt-6-et-de-claude-opus-5-5-anthropic-reprend-la-te-te.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 728,
+      "bytes": 4565,
+      "sha256": "4fdbb113c7bdb6b28c383ddb1c4882eb72bbde3ca3596e925bfbf28f4c8fd8bc"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/le-directeur-scientifique-d-openai-de-crit-ses-propres-ia-comme-un-esprit-extraterrestre",
+      "path": "vague2-vision-ia/vision-ia/le-directeur-scientifique-d-openai-de-crit-ses-propres-ia-comme-un-esprit-extraterrestre.md",
+      "title": "Le directeur scientifique d'OpenAI décrit ses propres IA comme « un esprit extraterrestre »",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09-06",
+        "2026-09-07",
+        "2026-09-23",
+        "2028-03"
+      ],
+      "keywords": [
+        "acquisition",
+        "agents",
+        "agi",
+        "alignment",
+        "astra",
+        "consumer",
+        "context window",
+        "cyber",
+        "gemini",
+        "gpt-5.6",
+        "gpt-6",
+        "humanoid"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/le-directeur-scientifique-d-openai-de-crit-ses-propres-ia-comme-un-esprit-extraterrestre.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 964,
+      "bytes": 6419,
+      "sha256": "730b8fe8cd70dea5929adda57b6a27583de35e499407091ea154a60979ae5a9d"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/le-grand-pari-superintelligence-de-meta-s-effondre-en-72-heures",
+      "path": "vague2-vision-ia/vision-ia/le-grand-pari-superintelligence-de-meta-s-effondre-en-72-heures.md",
+      "title": "Le grand pari « superintelligence » de Meta s'effondre en 72 heures",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agents",
+        "agi",
+        "arr",
+        "claude",
+        "license",
+        "memory",
+        "muse",
+        "research",
+        "revenue",
+        "valuation"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/le-grand-pari-superintelligence-de-meta-s-effondre-en-72-heures.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 654,
+      "bytes": 4288,
+      "sha256": "4dd873cb85885180dc33f6077982a40f03cc7061edec3ace0196480ea84f9659"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/les-e-le-ves-qui-de-le-guent-leurs-devoirs-a-l-ia-sont-moins-bons-a-l-e-cole",
+      "path": "vague2-vision-ia/vision-ia/les-e-le-ves-qui-de-le-guent-leurs-devoirs-a-l-ia-sont-moins-bons-a-l-e-cole.md",
+      "title": "Les élèves qui délèguent leurs devoirs à l'IA sont moins bons à l'école",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "Google",
+        "OpenAI",
+        "OpenRouter",
+        "United States"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-10",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "copyright",
+        "cost",
+        "deepseek",
+        "foldable",
+        "gpt-5.6",
+        "gpu",
+        "memory",
+        "multimodal",
+        "open weights",
+        "open-weight",
+        "opus 5"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/les-e-le-ves-qui-de-le-guent-leurs-devoirs-a-l-ia-sont-moins-bons-a-l-e-cole.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 960,
+      "bytes": 5976,
+      "sha256": "cf458a9e2f563ab41f9455ee0559563122fece096bc2f0149e1dd0bd90e9859b"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/les-e-tats-unis-ferment-la-porte-aux-robots-chinois-la-chine-vise-le-reste-du-monde",
+      "path": "vague2-vision-ia/vision-ia/les-e-tats-unis-ferment-la-porte-aux-robots-chinois-la-chine-vise-le-reste-du-monde.md",
+      "title": "Les États-Unis ferment la porte aux robots chinois, la Chine vise le reste du monde",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "California",
+        "China",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2021-06",
+        "2022-07",
+        "2026-06",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-03",
+        "2026-09-14",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agents",
+        "claude",
+        "copyright",
+        "diffusion",
+        "disclosure",
+        "energy",
+        "foundry",
+        "humanoid",
+        "lawsuit",
+        "license",
+        "research",
+        "robotics"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/les-e-tats-unis-ferment-la-porte-aux-robots-chinois-la-chine-vise-le-reste-du-monde.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 962,
+      "bytes": 6156,
+      "sha256": "2ef64945ca49ce82739e48be666c5ca5a8e321b1679f484a5d42a150e2501fe6"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/les-ia-rache-tent-des-vieux-livres-les-ingurgitent-et-les-effacent",
+      "path": "vague2-vision-ia/vision-ia/les-ia-rache-tent-des-vieux-livres-les-ingurgitent-et-les-effacent.md",
+      "title": "Les IA rachètent des vieux livres, les ingurgitent et les effacent",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Google",
+        "Hugging Face",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-09",
+        "2026-09-23",
+        "2028-03"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "astra",
+        "copyright",
+        "humanoid",
+        "luna",
+        "research",
+        "terra",
+        "training",
+        "zero-day"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/les-ia-rache-tent-des-vieux-livres-les-ingurgitent-et-les-effacent.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 739,
+      "bytes": 4743,
+      "sha256": "4c4546194990e7bf19bad2e81ee810292f12df3a30e3b1e9d88cb8267932ee2a"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/les-patrons-de-l-ia-demandent-qu-on-les-freine-la-maison-blanche-dit-non",
+      "path": "vague2-vision-ia/vision-ia/les-patrons-de-l-ia-demandent-qu-on-les-freine-la-maison-blanche-dit-non.md",
+      "title": "Les patrons de l'IA demandent qu'on les freine, la Maison-Blanche dit non",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Perplexity",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-14",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "astra",
+        "claude",
+        "fable 5",
+        "governance",
+        "gpt-6",
+        "humanoid",
+        "ipo",
+        "moratorium",
+        "nvidia",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/les-patrons-de-l-ia-demandent-qu-on-les-freine-la-maison-blanche-dit-non.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 874,
+      "bytes": 5718,
+      "sha256": "5bfddea73a925abf1222f0054f63c065fdfe156517d6522b8c30653092570379"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/meta-la-che-son-agent-ia-dans-les-rayons-amazon-le-met-dehors",
+      "path": "vague2-vision-ia/vision-ia/meta-la-che-son-agent-ia-dans-les-rayons-amazon-le-met-dehors.md",
+      "title": "Meta lâche son agent IA dans les rayons, Amazon le met dehors",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "Perplexity",
+        "SpaceX",
+        "United States",
+        "Xiaomi",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-08",
+        "2026-09-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "accelerator",
+        "agentic",
+        "agents",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "energy",
+        "fable 5",
+        "fp4"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/meta-la-che-son-agent-ia-dans-les-rayons-amazon-le-met-dehors.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 823,
+      "bytes": 5131,
+      "sha256": "fda01c0224156208ca8de3b254f5c704088fe79eb44fe2aa0570793c379de835"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/meta-ouvre-muse-glimmer-un-mode-le-multimodal-agentique-qui-tient-sur-un-seul-gpu",
+      "path": "vague2-vision-ia/vision-ia/meta-ouvre-muse-glimmer-un-mode-le-multimodal-agentique-qui-tient-sur-un-seul-gpu.md",
+      "title": "Meta ouvre Muse Glimmer : un modèle multimodal agentique qui tient sur un seul GPU",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "ByteDance",
+        "Google",
+        "Meta",
+        "OpenAI",
+        "OpenRouter",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "gpu",
+        "multimodal",
+        "muse",
+        "agentic",
+        "apache",
+        "astra",
+        "attention",
+        "claude",
+        "consumer",
+        "context window",
+        "cyber"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/meta-ouvre-muse-glimmer-un-mode-le-multimodal-agentique-qui-tient-sur-un-seul-gpu.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 656,
+      "bytes": 4151,
+      "sha256": "c8402ae03d160146d884cd69d5cfe3ba058128b38164b433be9d9cab7f80899f"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/microsoft-d-voile-une-nouvelle-puce-quantique",
+      "path": "vague2-vision-ia/vision-ia/microsoft-d-voile-une-nouvelle-puce-quantique.md",
+      "title": "Microsoft dévoile une nouvelle Puce Quantique",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Broadcom",
+        "China",
+        "EU",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-04",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "apache",
+        "benchmark",
+        "cost",
+        "humanoid",
+        "mcp",
+        "memory",
+        "mistral",
+        "multimodal",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/microsoft-d-voile-une-nouvelle-puce-quantique.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 859,
+      "bytes": 5893,
+      "sha256": "bac420707d2b5ff315dc9b4910f570f62c29c03fded834d7fde63363276f9a17"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/mistral-robotique",
+      "path": "vague2-vision-ia/vision-ia/mistral-robotique.md",
+      "title": "Mistral débarque dans la robotique, et une seule caméra suffit à son robot",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "China",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "MiniMax",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-07-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "mistral",
+        "agent",
+        "agentic",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "consumer",
+        "cost",
+        "fable 5",
+        "gpt-live",
+        "gpus"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/mistral-robotique.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 818,
+      "bytes": 5407,
+      "sha256": "fbd84314c41b3c105bc74ef59ed56bb63cb8f003bb2d0f23e43b8e436641e6a0"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/nobel-anthropic",
+      "path": "vague2-vision-ia/vision-ia/nobel-anthropic.md",
+      "title": "Un prix Nobel quitte Google pour Anthropic, et il n'est pas le seul",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Cerebras",
+        "China",
+        "Google",
+        "Hugging Face",
+        "Mistral",
+        "OpenAI",
+        "SpaceX"
+      ],
+      "dates": [
+        "2026-06-24",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "distillation",
+        "fable 5",
+        "gemini",
+        "humanoid",
+        "ipo",
+        "mistral",
+        "open-weight",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/nobel-anthropic.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 711,
+      "bytes": 4754,
+      "sha256": "d20185c46b5ca6caf13439e2651c29e68bf9f694a998ffb3ea0aca7a35fc7f96"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/nvidia-e-gale-le-mode-le-ouvert-d-openai-avec-4-fois-moins-de-parame-tres",
+      "path": "vague2-vision-ia/vision-ia/nvidia-e-gale-le-mode-le-ouvert-d-openai-avec-4-fois-moins-de-parame-tres.md",
+      "title": "Nvidia égale le modèle ouvert d'OpenAI avec 4 fois moins de paramètres",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "CoreWeave",
+        "Fireworks AI",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Nebius",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "agentic",
+        "agents",
+        "apache",
+        "attention",
+        "claude",
+        "context window",
+        "cost",
+        "gemini",
+        "ipo",
+        "latency",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/nvidia-e-gale-le-mode-le-ouvert-d-openai-avec-4-fois-moins-de-parame-tres.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 628,
+      "bytes": 4138,
+      "sha256": "9756ef37a1069f911ba0bfd9b4f28529ee7feb606d000bf18998d9e3f52007a1"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/openai-de-voile-6-nouveaux-cas-pre-occupants-ou-l-ia-a-essaye-de-se-cacher",
+      "path": "vague2-vision-ia/vision-ia/openai-de-voile-6-nouveaux-cas-pre-occupants-ou-l-ia-a-essaye-de-se-cacher.md",
+      "title": "OpenAI dévoile 6 nouveaux cas \"préoccupants\" où l'IA a essayé de se cacher",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "Google",
+        "Hugging Face",
+        "JFrog",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Perplexity"
+      ],
+      "dates": [
+        "2026-09-17",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "agi",
+        "alignment",
+        "chatgpt",
+        "claude",
+        "compute",
+        "cost",
+        "disclosure",
+        "governance",
+        "gpt-5.6",
+        "gpu"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/openai-de-voile-6-nouveaux-cas-pre-occupants-ou-l-ia-a-essaye-de-se-cacher.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 899,
+      "bytes": 5834,
+      "sha256": "de16993f043db0df1c2b6177fe4900e1853353cbcdf4c1471fcc194074305ba0"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/openai-pre-sente-gpt-5-6-sol-ultrafast-qui-re-pond-14-fois-plus-vite",
+      "path": "vague2-vision-ia/vision-ia/openai-pre-sente-gpt-5-6-sol-ultrafast-qui-re-pond-14-fois-plus-vite.md",
+      "title": "OpenAI présente GPT-5.6 Sol Ultrafast qui répond 14 fois plus vite",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Ant",
+        "Anthropic",
+        "Cerebras",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpt-5.6",
+        "sol",
+        "agent",
+        "agents",
+        "bedrock",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "cost",
+        "deepseek",
+        "distillation",
+        "fable 5"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/openai-pre-sente-gpt-5-6-sol-ultrafast-qui-re-pond-14-fois-plus-vite.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 669,
+      "bytes": 4180,
+      "sha256": "9fb491de7062bd1daf50ec67da5e218f7cf897058618ef59788752e452f1c631"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/openai-proclame-l-agi-avec-son-nouveau-mod-le-chatgpt-6",
+      "path": "vague2-vision-ia/vision-ia/openai-proclame-l-agi-avec-son-nouveau-mod-le-chatgpt-6.md",
+      "title": "OpenAI proclame l'AGI avec son nouveau modèle ChatGPT 6",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-04-30",
+        "2026-09-04",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agi",
+        "chatgpt",
+        "accelerator",
+        "agentic",
+        "agents",
+        "astra",
+        "bedrock",
+        "benchmarks",
+        "claude",
+        "context window",
+        "cost",
+        "cyber"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/openai-proclame-l-agi-avec-son-nouveau-mod-le-chatgpt-6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1013,
+      "bytes": 6622,
+      "sha256": "2c7b9d32f04a396d5d5e9ddfccfc20956ddea27c9305ce1ac26ed322f9031388"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/openai-re-sout-un-proble-me-du-mille-naire-un-mathe-maticien-l-accuse-de-l-avoir-vole",
+      "path": "vague2-vision-ia/vision-ia/openai-re-sout-un-proble-me-du-mille-naire-un-mathe-maticien-l-accuse-de-l-avoir-vole.md",
+      "title": "OpenAI résout un problème du millénaire, un mathématicien l'accuse de l'avoir volé",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "China",
+        "Google",
+        "Huawei",
+        "Meta",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "alignment",
+        "astra",
+        "chatgpt",
+        "claude",
+        "compute",
+        "gpt-5.6",
+        "latency",
+        "lawsuit",
+        "moratorium",
+        "muse"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/openai-re-sout-un-proble-me-du-mille-naire-un-mathe-maticien-l-accuse-de-l-avoir-vole.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 927,
+      "bytes": 6187,
+      "sha256": "0e17c67929f4df5910d3433bb89d2203a932b76010f585f8d3823affbe5692fd"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/openai-re-sout-un-proble-me-ouvert-depuis-27-ans-les-mathe-maticiens-sont-furieux",
+      "path": "vague2-vision-ia/vision-ia/openai-re-sout-un-proble-me-ouvert-depuis-27-ans-les-mathe-maticiens-sont-furieux.md",
+      "title": "OpenAI résout un problème ouvert depuis 27 ans, les mathématiciens sont furieux",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Mistral",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-06-29",
+        "2026-08-01",
+        "2026-09-11",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "astra",
+        "attribution",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "deepseek",
+        "distillation",
+        "full-duplex",
+        "gemini"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/openai-re-sout-un-proble-me-ouvert-depuis-27-ans-les-mathe-maticiens-sont-furieux.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 889,
+      "bytes": 6095,
+      "sha256": "0751b67a9deb0f47410e5092df2cd4ca889ebee2351b237099d76ee9a726d974"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/opus-robot",
+      "path": "vague2-vision-ia/vision-ia/opus-robot.md",
+      "title": "Claude Opus 4.7 programme un robot 20x plus vite qu'une équipe humaine",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Meta",
+        "OpenAI",
+        "Perplexity",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "opus 4",
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "benchmark",
+        "chatgpt",
+        "fine-tuning",
+        "governance",
+        "gpu",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/opus-robot.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 809,
+      "bytes": 5435,
+      "sha256": "db5e9edb97a0e65da8a69eb3e9acf228de8d598e667810cecf2eea7f5829fe1e"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/ox-alpha-tombe-le-masque-le-mode-le-chinois-qui-code-a-prix-casse",
+      "path": "vague2-vision-ia/vision-ia/ox-alpha-tombe-le-masque-le-mode-le-chinois-qui-code-a-prix-casse.md",
+      "title": "Ox Alpha tombe le masque : le modèle chinois qui code à prix cassé",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "China",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Moonshot",
+        "Nscale",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "SGLang",
+        "United States",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-08-27",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agents",
+        "agi",
+        "claude",
+        "compute",
+        "context window",
+        "cost",
+        "cyber",
+        "embedding",
+        "gemini",
+        "glm"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/ox-alpha-tombe-le-masque-le-mode-le-chinois-qui-code-a-prix-casse.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 962,
+      "bytes": 6340,
+      "sha256": "1468fea591f70b5d50a84749697df24887c0ba59ddebdd8c278acac18ecced01"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/professeur-piege",
+      "path": "vague2-vision-ia/vision-ia/professeur-piege.md",
+      "title": "Un professeur piège un exercice : 32 étudiants sur 35 ont utilisé l'IA",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "chatgpt",
+        "claude",
+        "compute",
+        "containment",
+        "funding",
+        "gpu",
+        "nvidia",
+        "research",
+        "rubin",
+        "sandbox",
+        "valuation"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/professeur-piege.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 716,
+      "bytes": 4638,
+      "sha256": "9b282bd47cd9a7f36e50cd7f35bd8362932d2986e804c8692a4ffcad7ff08ee9"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/quand-google-ia-re-pond-la-me-moire-du-web-s-effondre",
+      "path": "vague2-vision-ia/vision-ia/quand-google-ia-re-pond-la-me-moire-du-web-s-effondre.md",
+      "title": "Quand Google IA répond, la mémoire du web s'effondre",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-03",
+        "2025-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "acquisition",
+        "attribution",
+        "benchmark",
+        "claude",
+        "cyber",
+        "kimi",
+        "memory",
+        "nvidia",
+        "regulation",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/quand-google-ia-re-pond-la-me-moire-du-web-s-effondre.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 672,
+      "bytes": 4192,
+      "sha256": "c1a13a3e0193ba6391418d356b37f5667e6d0439bfdd089de46df4d216b14a72"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/softbank-france",
+      "path": "vague2-vision-ia/vision-ia/softbank-france.md",
+      "title": "SoftBank promet 75 milliards d'euros à la France : révolution IA ou mirage ?",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-06-01",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "compute",
+        "consumer",
+        "datacenter",
+        "gemini",
+        "gpu",
+        "gpus",
+        "humanoid"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/softbank-france.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 838,
+      "bytes": 5572,
+      "sha256": "98b0485bad85969841ab82a560354ceab001f9d4f0719c7246471dbaa339e1a6"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/space-x-datacenter",
+      "path": "vague2-vision-ia/vision-ia/space-x-datacenter.md",
+      "title": "SpaceX se lance dans la location de puissance IA : 6,3 milliards déjà signés",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "ByteDance",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Groq",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "Sakana",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06-23",
+        "2026-07",
+        "2026-07-01",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "compute",
+        "cost",
+        "cyber",
+        "cybersecurity",
+        "datacenter",
+        "deepseek",
+        "energy",
+        "export controls"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/space-x-datacenter.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 865,
+      "bytes": 5730,
+      "sha256": "1c8a6219b63556721bd393b2f35545984c1217a626903a00e91836c81be85793"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/spacex-cursor",
+      "path": "vague2-vision-ia/vision-ia/spacex-cursor.md",
+      "title": "Pourquoi SpaceX rachète-t-il Cursor pour 60 milliards de dollars ?",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Meta",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-06-16",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "acquisition",
+        "claude",
+        "compute",
+        "cybersecurity",
+        "deepseek",
+        "export controls",
+        "humanoid",
+        "ipo",
+        "lawsuit",
+        "regulation",
+        "research",
+        "series b"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/spacex-cursor.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 860,
+      "bytes": 5521,
+      "sha256": "b10b031b380b5b7e1238e3e6e10c4bed37a0abd54af46f461ba2b22106f339e9"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/trump-abthopic",
+      "path": "vague2-vision-ia/vision-ia/trump-abthopic.md",
+      "title": "Anthropic a passé la semaine à essayer de convaincre Trump",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "ByteDance",
+        "China",
+        "Google",
+        "Microsoft",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Perplexity",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-18",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agents",
+        "attention",
+        "claude",
+        "compute",
+        "distillation",
+        "export controls",
+        "fable 5",
+        "gemini",
+        "governance",
+        "inference",
+        "kimi",
+        "mythos 5"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/trump-abthopic.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 952,
+      "bytes": 6201,
+      "sha256": "6d49f4c595dad57d32b80ddb748afd345dc44096c534e59dc6b25517cf531bd0"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/un-me-dicament-conc-u-par-une-ia-fait-reculer-l-a-ge-biologique-de-ses-patients",
+      "path": "vague2-vision-ia/vision-ia/un-me-dicament-conc-u-par-une-ia-fait-reculer-l-a-ge-biologique-de-ses-patients.md",
+      "title": "Un médicament conçu par une IA fait reculer l'âge biologique de ses patients",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "Moonshot",
+        "Nscale",
+        "Nvidia",
+        "OpenAI",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2025-09",
+        "2026-09-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "astra",
+        "chatgpt",
+        "compute",
+        "exploit",
+        "funding",
+        "gemini",
+        "gpt-6",
+        "gpus",
+        "humanoid",
+        "ipo"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/un-me-dicament-conc-u-par-une-ia-fait-reculer-l-a-ge-biologique-de-ses-patients.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 995,
+      "bytes": 6393,
+      "sha256": "e7f05176ed80a384c31459b939063b087f1a5177cb6aec401682b454b164dd18"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/une-ia-contamine-un-projet-open-source-puis-publie-de-fausses-excuses-pour-couvrir-ses-tra",
+      "path": "vague2-vision-ia/vision-ia/une-ia-contamine-un-projet-open-source-puis-publie-de-fausses-excuses-pour-couvrir-ses-tra.md",
+      "title": "Une IA contamine un projet open source, puis publie de fausses excuses pour couvrir ses traces",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Cerebras",
+        "Groq",
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Perplexity",
+        "Stripe",
+        "United States"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-08-25",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "open source",
+        "agent",
+        "agents",
+        "claude",
+        "cost",
+        "fable 5",
+        "gpt-5.6",
+        "guardrails",
+        "incident",
+        "mythos 5",
+        "nvidia",
+        "opus 5"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/une-ia-contamine-un-projet-open-source-puis-publie-de-fausses-excuses-pour-couvrir-ses-traces.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 7006,
+      "sha256": "397ea8e7150fd10bd1beae07a82f0e8fbad584d0a9c9ee9c59b5937e2df198d8"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/une-ia-s-est-invent-de-faux-comptes-pour-faire-approuver-son-code-malveillant",
+      "path": "vague2-vision-ia/vision-ia/une-ia-s-est-invent-de-faux-comptes-pour-faire-approuver-son-code-malveillant.md",
+      "title": "Une IA s'est inventé de faux comptes pour faire approuver son code malveillant",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "EU",
+        "Google",
+        "Irregular",
+        "Meta",
+        "Microsoft",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "cyber",
+        "gemini",
+        "gpt-5.6",
+        "incident",
+        "kimi",
+        "license",
+        "mythos 5",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/une-ia-s-est-invent-de-faux-comptes-pour-faire-approuver-son-code-malveillant.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 656,
+      "bytes": 4177,
+      "sha256": "7ff6d159698378ccfda9fd23f84590e42bc827bf9c17049c498ff997681bf003"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/une-ia-vient-de-traduire-des-tablettes-vieilles-de-plus-de-4000-ans",
+      "path": "vague2-vision-ia/vision-ia/une-ia-vient-de-traduire-des-tablettes-vieilles-de-plus-de-4000-ans.md",
+      "title": "Une IA vient de traduire des tablettes vieilles de plus de 4000 ans",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Moonshot",
+        "OpenRouter",
+        "Stripe",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "alignment",
+        "claude",
+        "cost",
+        "gemini",
+        "glm",
+        "governance",
+        "kimi",
+        "mythos 5",
+        "open source",
+        "open weights",
+        "protein",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/une-ia-vient-de-traduire-des-tablettes-vieilles-de-plus-de-4000-ans.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 605,
+      "bytes": 4009,
+      "sha256": "56049aa3e8b4c61163408fe815b077be5a1ffb89d0f577a30160a3d08b53474e"
+    },
+    {
+      "id": "vague2-vision-ia/vision-ia/votre-prochain-pc-fera-tourner-une-ia-de-120-milliards-de-parametres-sans-cloud",
+      "path": "vague2-vision-ia/vision-ia/votre-prochain-pc-fera-tourner-une-ia-de-120-milliards-de-parametres-sans-cloud.md",
+      "title": "Votre prochain PC fera tourner une IA de 120 milliards de paramètres, sans cloud",
+      "domain": "vision-ia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Apple",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX",
+        "TSMC",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "chatgpt",
+        "compute",
+        "consumer",
+        "decode",
+        "exploit",
+        "fp4",
+        "grok",
+        "humanoid",
+        "hyperscaler",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia/votre-prochain-pc-fera-tourner-une-ia-de-120-milliards-de-parametres-sans-cloud.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 824,
+      "bytes": 5570,
+      "sha256": "c00f7dc44ab1d3454b285778833509015216f43dee7d9753b79c6c7ce26b1915"
+    }
+  ]
+}

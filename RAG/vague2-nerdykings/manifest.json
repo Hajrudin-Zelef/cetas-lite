@@ -1,0 +1,1290 @@
+{
+  "corpus": "vague2-nerdykings",
+  "title": "NerdyKings — guides IA & dev (Collect Vague 2)",
+  "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings",
+  "source_dir": "docs/RAG/Collect RAG Vague 2/03_nerdykings",
+  "source_files": 34,
+  "source_sha256": "60518a3de07952c1d86edf2afb800852ba0f440d07e34f13b0cae264742e6bfc",
+  "chunk_count": 34,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "vague2-nerdykings/nerdykings/arc-agi-3-mythe-agi",
+      "path": "vague2-nerdykings/nerdykings/arc-agi-3-mythe-agi.md",
+      "title": "ARC-AGI-3 : Le Benchmark Qui Casse Le Mythe De L'AGI",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agi",
+        "benchmark",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "gemini",
+        "memory",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/arc-agi-3-mythe-agi.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 666,
+      "bytes": 4294,
+      "sha256": "6651d68560ac005c33ce4d0a8ac7eb8a9e748a9d8c8717ce1e5178b01d139b88"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/bloome-equipe-agents-ia-test",
+      "path": "vague2-nerdykings/nerdykings/bloome-equipe-agents-ia-test.md",
+      "title": "Bloome : J'ai Testé Une Vraie Équipe D'Agents IA (Le Verdict)",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Google",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "gemini",
+        "grok",
+        "opus 4",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/bloome-equipe-agents-ia-test.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1224,
+      "bytes": 7643,
+      "sha256": "ac9020702159f6bcb6204a250df06ceb859872604ba9354452e5c9a7d6519bba"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/claude-geometrie-cachee-comptage-caracteres",
+      "path": "vague2-nerdykings/nerdykings/claude-geometrie-cachee-comptage-caracteres.md",
+      "title": "L'inexplicable découverte cachée dans Claude",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "attention",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/claude-geometrie-cachee-comptage-caracteres.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        65
+      ],
+      "canonical_for": [],
+      "words": 1198,
+      "bytes": 7873,
+      "sha256": "f3f750642d019c11645b92a905aa0d234e90aa1a9424bba855c0a5166194d0e0"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/claude-mythos-trop-dangereux",
+      "path": "vague2-nerdykings/nerdykings/claude-mythos-trop-dangereux.md",
+      "title": "Claude Mythos : Trop Dangereux Pour Être Publié ? (2026)",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "agentic",
+        "agents",
+        "alignment",
+        "benchmark",
+        "context window",
+        "cybersecurity",
+        "exploit",
+        "governance",
+        "memory",
+        "multimodal",
+        "opus 4"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/claude-mythos-trop-dangereux.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 626,
+      "bytes": 4075,
+      "sha256": "e0494a92eef7c7b56bc75ff57514866b5e7972c235b9d64bcbe7f92119656c8b"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs",
+      "path": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs.md",
+      "title": "650 Échecs Plus Tard, Claude Fait Une Découverte Sur Riemann",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "agent",
+        "agents",
+        "agi",
+        "distribution",
+        "formalization",
+        "lean",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/claude-riemann-hypothese-650-echecs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1274,
+      "bytes": 8399,
+      "sha256": "624b363f399d22a86a6385384e637e75a56cd20dfaa5adf92e6465f4f6e7fbec"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3",
+      "path": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3.md",
+      "title": "Code World Model : Le Vrai Rival De Genie 3 ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "China",
+        "Google",
+        "MiniMax"
+      ],
+      "dates": [
+        "2026-08-26",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "memory",
+        "reasoning",
+        "video generation"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/code-world-model-rival-genie-3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 1309,
+      "bytes": 8551,
+      "sha256": "fbf51ed9d05e254c34162e187ecd519f90cdca3a93248c5056f89bd0a387c06a"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/codex-5-3-spark",
+      "path": "vague2-nerdykings/nerdykings/codex-5-3-spark.md",
+      "title": "Codex 5.3 Spark : révolution, ou énorme piège pour les devs ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Cerebras",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "accelerator",
+        "agents",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "exploit",
+        "gpu",
+        "inference",
+        "liquid cooling",
+        "memory",
+        "tokens per second",
+        "wafer"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/codex-5-3-spark.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 674,
+      "bytes": 4215,
+      "sha256": "a4228dc60cbc42ef24425ef46f7c097064acace6020dd6d70a3d2d258e8b3a19"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-dual-path-gpu",
+      "path": "vague2-nerdykings/nerdykings/deepseek-dual-path-gpu.md",
+      "title": "DeepSeek Dual Path : Doubler Les Perfs IA Sans GPU",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "gpu",
+        "agent",
+        "agentic",
+        "compute",
+        "decode",
+        "gpus",
+        "inference",
+        "kv cache",
+        "memory",
+        "prefill",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-dual-path-gpu.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 759,
+      "bytes": 4660,
+      "sha256": "bb04f7e72d4e8636a23f244d51f4bd4da9960ae09c21c3ad5b1d8f7eb67c300f"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code",
+      "path": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code.md",
+      "title": "DeepSeek Harness : La Fin De Claude Code ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "deepseek",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "license",
+        "memory",
+        "mit license",
+        "open source",
+        "reasoning",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-harness-fin-claude-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 1350,
+      "bytes": 8803,
+      "sha256": "29969224b75ef80991a2a64762bec85bfa05b986aabdc829c7472c801436350f"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-thinking-visual-primitive",
+      "path": "vague2-nerdykings/nerdykings/deepseek-thinking-visual-primitive.md",
+      "title": "DeepSeek 2026 : La Révolution Des Agents IA Multimodaux",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "deepseek",
+        "agentic",
+        "attention",
+        "memory",
+        "multimodal",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-thinking-visual-primitive.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 610,
+      "bytes": 4097,
+      "sha256": "8d62107c74ba85e3ba7d312951edd1f3d2ab446000944359f7f6e201d12001da"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-v4-1-flash-kv-cache-437x",
+      "path": "vague2-nerdykings/nerdykings/deepseek-v4-1-flash-kv-cache-437x.md",
+      "title": "DeepSeek V4.1 Flash : Un KV Cache 437 Fois Plus Petit Que La Première Génération",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "kv cache",
+        "agents",
+        "attention",
+        "benchmark",
+        "claude",
+        "context window",
+        "cost",
+        "gpu",
+        "inference",
+        "memory",
+        "mixture of experts"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-v4-1-flash-kv-cache-437x.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1055,
+      "bytes": 6348,
+      "sha256": "c6e18f49aa07d340fd0dca1fcbb644d85a4b058b19c44ac1d1fe5de15474e85f"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-v4-detruit-claude-gemini",
+      "path": "vague2-nerdykings/nerdykings/deepseek-v4-detruit-claude-gemini.md",
+      "title": "DeepSeek V4 Détruit Claude & Gemini Gratuitement ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "deepseek",
+        "gemini",
+        "agent",
+        "agents",
+        "context window",
+        "cost",
+        "gpu",
+        "inference",
+        "kv cache",
+        "memory",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-v4-detruit-claude-gemini.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 630,
+      "bytes": 4000,
+      "sha256": "a967cfb884531a2ad36bbcd8aaf905ba5ffff51964f38c5eee18df04241a4ed4"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7",
+      "path": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7.md",
+      "title": "DeepSeek V4 Flash : x7 De Performance Grâce Au Post-Entraînement",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "distillation",
+        "gpus",
+        "inference",
+        "license",
+        "mit license",
+        "mixture of experts"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-v4-flash-post-entrainement-x7.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1324,
+      "bytes": 8690,
+      "sha256": "e16ec23540067919b7bd0cf8c6616c911b6fd868da39508254857115ac83e092"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepswe-benchmark-ia-trichent",
+      "path": "vague2-nerdykings/nerdykings/deepswe-benchmark-ia-trichent.md",
+      "title": "DeepSWE 2026 : Le Benchmark Qui Prouve Que Claude Triche",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "claude",
+        "benchmarks",
+        "deepseek",
+        "memory",
+        "opus 4",
+        "reasoning",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepswe-benchmark-ia-trichent.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 710,
+      "bytes": 4430,
+      "sha256": "dab6b347ad9c111cc10bb5d3f78594586f9ce478c8ef5b24810bdb154639973e"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/dspark-deepseek-decodage-speculatif",
+      "path": "vague2-nerdykings/nerdykings/dspark-deepseek-decodage-speculatif.md",
+      "title": "DSpark : DeepSeek Accélère Son Modèle De 78% Sans Le Toucher",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "China",
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agentic",
+        "cost",
+        "gpu",
+        "gpus",
+        "inference",
+        "kv cache",
+        "license",
+        "memory",
+        "qwen",
+        "speculative decoding"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/dspark-deepseek-decodage-speculatif.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 701,
+      "bytes": 4282,
+      "sha256": "5630abadc3c08503ff13f0b71dfb68b28e6455f8225faf77ba35dac44987d011"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio",
+      "path": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio.md",
+      "title": "Gemma 4 12B : Un Seul Transformer Pour Voir, Entendre Et Raisonner",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "China",
+        "DeepSeek",
+        "Google"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmarks",
+        "consumer",
+        "datacenter",
+        "deepseek",
+        "multimodal",
+        "parameters",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/gemma-4-transformer-unique-vision-audio.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1345,
+      "bytes": 8537,
+      "sha256": "24be5a317b83219ff17cae018d00c5f9b934bfb153b7b1dc829fe7fba511e136"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/gpt-5-5-instant-faille-securite",
+      "path": "vague2-nerdykings/nerdykings/gpt-5-5-instant-faille-securite.md",
+      "title": "GPT 5.5 Instant : La Faille Que OpenAI Admet",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "chatgpt",
+        "cybersecurity",
+        "disclosure",
+        "guardrails",
+        "jailbreak",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/gpt-5-5-instant-faille-securite.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 584,
+      "bytes": 3748,
+      "sha256": "c710f3d02d276519296381aa466b0facf63d04cc2ada5db9cb4e72519426e88e"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/gpt-5-6-sol-detrone-claude-fable-5",
+      "path": "vague2-nerdykings/nerdykings/gpt-5-6-sol-detrone-claude-fable-5.md",
+      "title": "GPT-5.6 Sol Vient-Il Vraiment De Détrôner Claude Fable 5 ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "fable 5",
+        "gpt-5.6",
+        "sol",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost",
+        "exploit"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/gpt-5-6-sol-detrone-claude-fable-5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 674,
+      "bytes": 4173,
+      "sha256": "c076fde782e90bfd811bd426626e00e18ed1aa43120c99c43d88253590c2e9d0"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/gpt-6-astra-openai-critical",
+      "path": "vague2-nerdykings/nerdykings/gpt-6-astra-openai-critical.md",
+      "title": "GPT-6 Astra : Le Modèle Qu'OpenAI Classe Comme « Critical »",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agentic",
+        "agents",
+        "agi",
+        "benchmark",
+        "benchmarks",
+        "cyber",
+        "cybersecurity",
+        "gpt-5.6",
+        "reasoning",
+        "safeguards"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/gpt-6-astra-openai-critical.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 823,
+      "bytes": 5520,
+      "sha256": "b376396454b076a52c369af150c82cf01332182624cf038a9ed6d8c0c1729bd7"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/hermes-agent-desktop",
+      "path": "vague2-nerdykings/nerdykings/hermes-agent-desktop.md",
+      "title": "Hermes Agent Desktop : agent IA en local",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "license",
+        "memory",
+        "open source",
+        "research",
+        "tool use"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/hermes-agent-desktop.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        41
+      ],
+      "canonical_for": [],
+      "words": 418,
+      "bytes": 2708,
+      "sha256": "db566fd0dbe7dd8af068833ac2debe0fd42d80a1c9ec8ba242a1fc2b6d53ed71"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/hermes-webui",
+      "path": "vague2-nerdykings/nerdykings/hermes-webui.md",
+      "title": "Hermes WebUI : agent IA autonome sur VPS",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "cost",
+        "deepseek",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/hermes-webui.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 710,
+      "bytes": 4468,
+      "sha256": "d6a6fd7d37e96e6951fff6ae1225d2e3e6bbcda67cf5ae5d3d265bf24f5047ac"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/jev-typesafe-system-one-models",
+      "path": "vague2-nerdykings/nerdykings/jev-typesafe-system-one-models.md",
+      "title": "Jev : Comment Fonctionne Ce Nouveau Modèle IA ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "chatgpt",
+        "claude",
+        "cost",
+        "fable 5",
+        "funding",
+        "gemini",
+        "inference",
+        "latency",
+        "pricing",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/jev-typesafe-system-one-models.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 965,
+      "bytes": 6147,
+      "sha256": "7216532b2c1630071dc9bbe8d3cac6d7ecc20d341c666dc6558714d6e5a21ee5"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia",
+      "path": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia.md",
+      "title": "La Faille Qui Vole Le Raisonnement Des IA",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "distillation",
+        "glm",
+        "kimi",
+        "reasoning",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/la-faille-qui-vole-raisonnement-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1326,
+      "bytes": 8553,
+      "sha256": "4ef3feee336b05a6c826d50e179ac8ecb1828a4bb2623333f5860c88d0260236"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/longcat-2-0-chine-sans-nvidia",
+      "path": "vague2-nerdykings/nerdykings/longcat-2-0-chine-sans-nvidia.md",
+      "title": "LongCat 2.0 : Le Modèle IA Chinois Entraîné Sans Un Seul GPU Nvidia",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "China",
+        "DeepSeek",
+        "Huawei",
+        "LongCat",
+        "Meituan",
+        "Moonshot",
+        "Nvidia",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "agent",
+        "agents",
+        "ascend",
+        "attention",
+        "benchmarks",
+        "context window",
+        "cost",
+        "deepseek",
+        "glm",
+        "gpus"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/longcat-2-0-chine-sans-nvidia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 1191,
+      "bytes": 7817,
+      "sha256": "4d24645c4891a8cb777e5d770acb9319b808be08454b5cbc89f866aaf1c6b807"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/loop-transformers-claude-raisonnement-tokens",
+      "path": "vague2-nerdykings/nerdykings/loop-transformers-claude-raisonnement-tokens.md",
+      "title": "Loop Transformers : La Fin Du Raisonnement En Tokens ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "United States"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "attention",
+        "benchmarks",
+        "claude",
+        "compute",
+        "deepseek",
+        "gemini",
+        "inference",
+        "reasoning",
+        "research",
+        "safeguards",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/loop-transformers-claude-raisonnement-tokens.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 616,
+      "bytes": 4414,
+      "sha256": "b60319af2e2c26759b5aee53f71329fda32dece7ea594258b65507e9df6759fb"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/mort-des-llm-world-models",
+      "path": "vague2-nerdykings/nerdykings/mort-des-llm-world-models.md",
+      "title": "La Mort Des LLM : World Models Vont Tout Changer En 2026",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Meta",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "blackwell",
+        "embedding",
+        "gpus",
+        "nvidia",
+        "robotics"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/mort-des-llm-world-models.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 846,
+      "bytes": 5367,
+      "sha256": "68d40b6a7ece42ff3bd6ed4f8a11ff6c3558984308efb12d367fa7f08cc975f8"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide",
+      "path": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide.md",
+      "title": "Nvidia Nemotron Two Tower : 2,4x Plus Rapide, Mais À Quel Prix ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "agent",
+        "agents",
+        "attention",
+        "compute",
+        "cost",
+        "deepseek",
+        "gpus",
+        "inference",
+        "latency",
+        "memory",
+        "mixture of experts"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        74
+      ],
+      "canonical_for": [],
+      "words": 1307,
+      "bytes": 8344,
+      "sha256": "8793326dfa8abcd477c3b206f9a24a72afefa237928df9746779623c4b7ba524"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/openai-agent-pirate-hugging-face",
+      "path": "vague2-nerdykings/nerdykings/openai-agent-pirate-hugging-face.md",
+      "title": "Sandbox Escape : Comment Une IA D'OpenAI A Piraté Hugging Face (2026)",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "ExploitGym",
+        "Google",
+        "Hugging Face",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-07-16",
+        "2026-07-21",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "sandbox",
+        "sandbox escape",
+        "advisory",
+        "agent",
+        "benchmark",
+        "claude",
+        "cyber",
+        "cybersecurity",
+        "exploit",
+        "export controls",
+        "glm",
+        "governance"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/openai-agent-pirate-hugging-face.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1168,
+      "bytes": 7623,
+      "sha256": "9c86113d2e8057c334ad75f79955cd9f0816f6596e2856f32e5c13d7927a1e62"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures",
+      "path": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures.md",
+      "title": "OpenAI Aurait Résolu Navier-Stokes En 88 Heures Avec 10 000 Agents",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-01",
+        "2026-09-10",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "astra",
+        "claude",
+        "compute",
+        "energy",
+        "governance",
+        "gpt-6",
+        "lean",
+        "reasoning",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/openai-navier-stokes-88-heures.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1292,
+      "bytes": 8509,
+      "sha256": "38b4845f588a9bc00900305b5c45d80ea28968d9b216a51b702323ac924cbd50"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/persona-drift-anthropic",
+      "path": "vague2-nerdykings/nerdykings/persona-drift-anthropic.md",
+      "title": "Persona Drift : Pourquoi Les IA Deviennent Folles",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "alignment",
+        "jailbreak",
+        "llama",
+        "qwen",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/persona-drift-anthropic.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 756,
+      "bytes": 5112,
+      "sha256": "e16a7eb4bdfcab62ef4e49e6b915b96f8feeef3e3db622a644dc23db6e52bbae"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude",
+      "path": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude.md",
+      "title": "Qwen 3.8 Max : Alibaba Vient-Il Vraiment De Rattraper Claude ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Moonshot",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "qwen",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "context window",
+        "cost",
+        "deepseek",
+        "fable 5",
+        "gpus"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/qwen-3-8-max-alibaba-claude.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 1458,
+      "bytes": 9494,
+      "sha256": "8b800ab9ce515823f3831392f63ff0822d6b718c90673331258e3c7dc73d49b5"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/recursive-mass-agents-ia-pensees-latentes",
+      "path": "vague2-nerdykings/nerdykings/recursive-mass-agents-ia-pensees-latentes.md",
+      "title": "Recursive Mass : Les Agents IA Qui Pensent Sans Mots (-75% Tokens)",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmarks",
+        "cost",
+        "llama",
+        "nvidia",
+        "qwen",
+        "reasoning",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/recursive-mass-agents-ia-pensees-latentes.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 635,
+      "bytes": 4167,
+      "sha256": "9c11046466b937240c8ed29212b2a3f3610ec761eb34d62a10e1b35008bdcd16"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia",
+      "path": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia.md",
+      "title": "DiffusionBlocks : Sakana AI Divise La Mémoire D'Entraînement Par 4",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Nvidia",
+        "OpenAI",
+        "Sakana"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "diffusion",
+        "sakana",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "deepseek",
+        "gpu",
+        "gpus",
+        "llama",
+        "memory",
+        "nvlink",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/sakana-diffusionblocks-vram-entrainement-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1315,
+      "bytes": 8560,
+      "sha256": "36ea5c014a8ca1dc692851a7e2f992cd4c238965c9013e8f0e5152f6853ae81d"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/tribe-v2-meta-simule-cerveau",
+      "path": "vague2-nerdykings/nerdykings/tribe-v2-meta-simule-cerveau.md",
+      "title": "TRIBE v2 : Meta Vient De Simuler Ton Cerveau (Analyse)",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Meta"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "attention",
+        "consumer",
+        "decode",
+        "exploit",
+        "memory",
+        "multimodal",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/tribe-v2-meta-simule-cerveau.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 663,
+      "bytes": 4443,
+      "sha256": "232e562c8ca3c03581a086ba02dd4963a9d31b642c565cfabf19b6cae6dc8503"
+    }
+  ]
+}

@@ -562,6 +562,38 @@
       "index": "collect-tutoriels/INDEX.md",
       "manifest": "collect-tutoriels/manifest.json",
       "chunk_count": 6
+    },
+    {
+      "corpus": "vague2-briefia",
+      "title": "Briefia — veille IA (Collect Vague 2)",
+      "source": "docs/RAG/Collect RAG Vague 2/01_briefia",
+      "index": "vague2-briefia/INDEX.md",
+      "manifest": "vague2-briefia/manifest.json",
+      "chunk_count": 1
+    },
+    {
+      "corpus": "vague2-datacamp",
+      "title": "DataCamp — articles IA, data & dev (Collect Vague 2)",
+      "source": "docs/RAG/Collect RAG Vague 2/02_datacamp",
+      "index": "vague2-datacamp/INDEX.md",
+      "manifest": "vague2-datacamp/manifest.json",
+      "chunk_count": 68
+    },
+    {
+      "corpus": "vague2-nerdykings",
+      "title": "NerdyKings — guides IA & dev (Collect Vague 2)",
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings",
+      "index": "vague2-nerdykings/INDEX.md",
+      "manifest": "vague2-nerdykings/manifest.json",
+      "chunk_count": 34
+    },
+    {
+      "corpus": "vague2-vision-ia",
+      "title": "Vision-IA — newsletter IA (Collect Vague 2)",
+      "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia",
+      "index": "vague2-vision-ia/INDEX.md",
+      "manifest": "vague2-vision-ia/manifest.json",
+      "chunk_count": 55
     }
   ]
 }

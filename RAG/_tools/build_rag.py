@@ -1764,6 +1764,34 @@ CORPORA = [
         "mode": "files", "folder": "tutoriels",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
+    {
+        "slug": "vague2-briefia",
+        "title": "Briefia — veille IA (Collect Vague 2)",
+        "source_dir": "docs/RAG/Collect RAG Vague 2/01_briefia",
+        "mode": "files", "folder": "briefia",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "vague2-datacamp",
+        "title": "DataCamp — articles IA, data & dev (Collect Vague 2)",
+        "source_dir": "docs/RAG/Collect RAG Vague 2/02_datacamp",
+        "mode": "files", "folder": "datacamp",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "vague2-nerdykings",
+        "title": "NerdyKings — guides IA & dev (Collect Vague 2)",
+        "source_dir": "docs/RAG/Collect RAG Vague 2/03_nerdykings",
+        "mode": "files", "folder": "nerdykings",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "vague2-vision-ia",
+        "title": "Vision-IA — newsletter IA (Collect Vague 2)",
+        "source_dir": "docs/RAG/Collect RAG Vague 2/04_vision_ia",
+        "mode": "files", "folder": "vision-ia",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
 ]
 
 

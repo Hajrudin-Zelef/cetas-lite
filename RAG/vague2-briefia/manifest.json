@@ -1,0 +1,50 @@
+{
+  "corpus": "vague2-briefia",
+  "title": "Briefia — veille IA (Collect Vague 2)",
+  "source": "docs/RAG/Collect RAG Vague 2/01_briefia",
+  "source_dir": "docs/RAG/Collect RAG Vague 2/01_briefia",
+  "source_files": 1,
+  "source_sha256": "de2dfca61fafacc79b888654cc7716dce9e001a21d5110c81ca966f53afc6ce2",
+  "chunk_count": 1,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "vague2-briefia/briefia/openai-classe-gpt-6-astra-critique-en-cybersecurite",
+      "path": "vague2-briefia/briefia/openai-classe-gpt-6-astra-critique-en-cybersecurite.md",
+      "title": "OpenAI classe GPT-6 Astra « Critique » en cybersécurité",
+      "domain": "briefia",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agi",
+        "alignment",
+        "attention",
+        "chatgpt",
+        "cybersecurity",
+        "exploit",
+        "governance",
+        "gpt-5.6",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/01_briefia/openai-classe-gpt-6-astra-critique-en-cybersecurite.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 733,
+      "bytes": 4935,
+      "sha256": "64d4b451a0db95466b817b7f5781ef40741ec52d4bfd30334b232dc6a8e6ef27"
+    }
+  ]
+}

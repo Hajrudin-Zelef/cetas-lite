@@ -76,5 +76,9 @@ Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source déj
 | `collect-presse-fr` | Presse FR — IA & tech (2026) |  | 8 | `docs/RAG/Collect RAG/05_presse_fr` | [INDEX](collect-presse-fr/INDEX.md) |
 | `collect-benchmarks` | Benchmarks — modèles 2026 |  | 5 | `docs/RAG/Collect RAG/06_benchmarks` | [INDEX](collect-benchmarks/INDEX.md) |
 | `collect-tutoriels` | Tutoriels & reviews — IA (2026) |  | 6 | `docs/RAG/Collect RAG/07_tutoriels` | [INDEX](collect-tutoriels/INDEX.md) |
+| `vague2-briefia` | Briefia — veille IA (Collect Vague 2) |  | 1 | `docs/RAG/Collect RAG Vague 2/01_briefia` | [INDEX](vague2-briefia/INDEX.md) |
+| `vague2-datacamp` | DataCamp — articles IA, data & dev (Collect Vague 2) |  | 68 | `docs/RAG/Collect RAG Vague 2/02_datacamp` | [INDEX](vague2-datacamp/INDEX.md) |
+| `vague2-nerdykings` | NerdyKings — guides IA & dev (Collect Vague 2) |  | 34 | `docs/RAG/Collect RAG Vague 2/03_nerdykings` | [INDEX](vague2-nerdykings/INDEX.md) |
+| `vague2-vision-ia` | Vision-IA — newsletter IA (Collect Vague 2) |  | 55 | `docs/RAG/Collect RAG Vague 2/04_vision_ia` | [INDEX](vague2-vision-ia/INDEX.md) |
 
 Voir aussi [README](README.md) et `manifest.json`.

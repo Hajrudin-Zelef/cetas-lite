@@ -41,13 +41,17 @@ RAG/
 ├── collect-opencode-docs/         # corpus n°67 — opencode docs (4 fiches, mode files)
 ├── collect-presse-fr/             # corpus n°68 — Presse FR (8 fiches, mode files)
 ├── collect-benchmarks/            # corpus n°69 — Benchmarks (5 fiches, mode files)
-└── collect-tutoriels/             # corpus n°70 — Tutoriels & reviews (6 fiches, mode files)
+├── collect-tutoriels/             # corpus n°70 — Tutoriels & reviews (6 fiches, mode files)
+├── vague2-briefia/                # corpus n°71 — Briefia (1 fiche, mode files)
+├── vague2-datacamp/               # corpus n°72 — DataCamp (68 fiches, mode files)
+├── vague2-nerdykings/             # corpus n°73 — NerdyKings (34 fiches, mode files)
+└── vague2-vision-ia/              # corpus n°74 — Vision-IA (55 fiches, mode files)
 ```
 
 Détail par étape (séries `etape*`) : chaque source de `docs/RAG/` donne **un corpus**
 autonome. Liste complète et à jour : `INDEX.md` (racine) et `manifest.json`.
-Série `collect-*` : dossier de fiches individuelles, **une fiche = un chunk**
-(voir le mode `files` ci-dessous).
+Séries `collect-*` / `vague2-*` : dossiers de fiches individuelles, **une fiche = un chunk**
+(voir le mode `files` ci-dessous). Total **74 corpus / 1 819 chunks**.
 
 ### Trois modes de découpe
 
@@ -150,13 +154,13 @@ ou `rag: aucun corpus … (inactif)`.
 L'index est en mémoire et **proportionnel au texte des corpus** ; il ne dépend pas du
 nombre de requêtes (index immuable, aucune écriture, aucun cache qui grandit).
 
-| mesure | 21 corpus | 63 corpus | **70 corpus** |
-|---|---|---|---|
-| texte des corpus | 6,4 Mo | 10,4 Mo | **12,1 Mo** |
-| chunks / termes | 707 / 25 789 | 1 325 / 41 707 | **1 661 / 43 577** |
-| **mémoire heap** | 32 Mo | 71 Mo (6,8×) | **69 Mo** (5,7×) |
-| construction (arrière-plan) | 0,3 s | 0,7 s | **0,7 s** |
-| recherche (BM25, plafond 120 ms) | 207 µs | 302 µs | **296 µs** |
+| mesure | 21 corpus | 63 corpus | 70 corpus | **74 corpus** |
+|---|---|---|---|---|
+| texte des corpus | 6,4 Mo | 10,4 Mo | 12,1 Mo | **13,0 Mo** |
+| chunks / termes | 707 / 25 789 | 1 325 / 41 707 | 1 661 / 43 577 | **1 819 / 45 319** |
+| **mémoire heap** | 32 Mo | 71 Mo (6,8×) | 69 Mo (5,7×) | **84 Mo** (6,5×) |
+| construction (arrière-plan) | 0,3 s | 0,7 s | 0,7 s | **0,75 s** |
+| recherche (BM25, plafond 120 ms) | 207 µs | 302 µs | 296 µs | **428 µs** |
 
 Ordres de grandeur : ~1 Mo de corpus ⇒ ~7 Mo de heap. Le service complet (RAG inclus)
 tient dans **~80 Mo de RSS**. Sur un VPS sans swap, prévoir la marge : un corpus de
