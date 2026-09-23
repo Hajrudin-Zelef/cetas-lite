@@ -336,7 +336,7 @@ func (e *Engine) execParallelRun(ctx context.Context, c *Conversation, epoch int
 	// tête de boucle appelante.)
 	for i, it := range items {
 		o := &outs[i]
-		if !strings.HasPrefix(o.out.Text, "[erreur]") {
+		if !strings.HasPrefix(o.out.Text, "[error]") {
 			st.done[it.key] = o.out.Text
 		}
 		toolDelta := map[string]any{
@@ -456,14 +456,14 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 	var followup *provider.Message
 	switch {
 	case tc.InvalidCall():
-		out = ToolResult{Text: "[erreur] appel d'outil irrecevable (nom vide ou arguments JSON incomplets). " +
-			"Renvoie exactement le meme appel avec un nom d'outil valide et des arguments JSON complets."}
+		out = ToolResult{Text: "[error] unacceptable tool call (empty name or incomplete JSON arguments). " +
+			"Retry exactly the same call with a valid tool name and complete JSON arguments."}
 	case opts.plan && !st.planApproved && !planToolAllowed(tc.Function.Name):
-		out = ToolResult{Text: "[erreur] mode plan : tu es en phase d'exploration LECTURE SEULE. " +
-			"Seuls Ls, Tree, Read, Cat, Grep, Glob et TodoWrite sont autorises tant que le plan n'est pas valide. " +
-			"Construis ton plan avec TodoWrite puis presente-le."}
+		out = ToolResult{Text: "[error] plan mode: you are in a READ-ONLY exploration phase. " +
+			"Only Ls, Tree, Read, Cat, Grep, Glob and TodoWrite are allowed until the plan is approved. " +
+			"Build your plan with TodoWrite then present it."}
 	case st.denied[key]:
-		out = ToolResult{Text: "[refuse] l'utilisateur a deja refuse cet appel pendant ce tour."}
+		out = ToolResult{Text: "[denied] the user already refused this call during this turn."}
 	// C1 : Bash/RunScript/Curl exigent une approbation quel que soit le
 	// mode ; le choix explicite « toujours approuver » reste respecté.
 	case !st.alwaysApproved && (mustApproveFor(tc.Function.Name, args) || (opts.approve && needsApprovalFor(tc.Function.Name, args))):
@@ -491,16 +491,16 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 		}
 		if !d.approved {
 			st.denied[key] = true
-			msg := "[refuse] l'utilisateur a refuse l'execution de " + tc.Function.Name + "."
+			msg := "[denied] the user refused the execution of " + tc.Function.Name + "."
 			if strings.TrimSpace(d.comment) != "" {
-				msg += " Indication de l'utilisateur : " + strings.TrimSpace(d.comment) + "."
+				msg += " User note: " + strings.TrimSpace(d.comment) + "."
 			}
-			msg += " Propose une alternative ou demande des precisions au lieu de reessayer a l'identique."
+			msg += " Propose an alternative or ask for clarification instead of retrying identically."
 			out = ToolResult{Text: msg}
 			break
 		}
 		out, followup = reg.execute(ctx, env, tc.Function.Name, tc.Function.Arguments)
-		if !strings.HasPrefix(out.Text, "[erreur]") {
+		if !strings.HasPrefix(out.Text, "[error]") {
 			st.done[key] = out.Text
 			trackModification(tc.Function.Name, args, st.modified)
 			if tc.Function.Name == "Bash" {
@@ -514,7 +514,7 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 		out = ToolResult{Text: repeatedCallResult(st.done[key], st.repeats[key])}
 	default:
 		out, followup = reg.execute(ctx, env, tc.Function.Name, tc.Function.Arguments)
-		if !strings.HasPrefix(out.Text, "[erreur]") {
+		if !strings.HasPrefix(out.Text, "[error]") {
 			st.done[key] = out.Text
 			trackModification(tc.Function.Name, args, st.modified)
 			if tc.Function.Name == "Bash" {

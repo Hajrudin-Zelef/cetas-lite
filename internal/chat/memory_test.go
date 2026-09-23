@@ -44,7 +44,7 @@ func TestMemExecuteCRUD(t *testing.T) {
 	if res := e.memExecute(user, "mem_edit", `{"name":"notes.md","old":"stable","new":"solide"}`); !strings.HasPrefix(res.Text, "[ok]") {
 		t.Fatalf("edit = %q", res.Text)
 	}
-	if res := e.memExecute(user, "mem_edit", `{"name":"notes.md","old":"stable","new":"solide"}`); !strings.Contains(res.Text, "deja a jour") {
+	if res := e.memExecute(user, "mem_edit", `{"name":"notes.md","old":"stable","new":"solide"}`); !strings.Contains(res.Text, "already up to date") {
 		t.Fatalf("edit idempotent = %q", res.Text)
 	}
 	if res := e.memExecute(user, "mem_delete", `{"name":"notes.md"}`); !strings.HasPrefix(res.Text, "[ok]") {
@@ -78,7 +78,7 @@ func TestMemoryDisabled(t *testing.T) {
 	if _, ok := e.memoryIndexMessage("alice"); ok {
 		t.Fatal("pas d'index sans memoire")
 	}
-	if res := e.memExecute("alice", "mem_search", `{"query":"x"}`); !strings.Contains(res.Text, "indisponible") {
+	if res := e.memExecute("alice", "mem_search", `{"query":"x"}`); !strings.Contains(res.Text, "unavailable") {
 		t.Fatalf("memExecute = %q", res.Text)
 	}
 }

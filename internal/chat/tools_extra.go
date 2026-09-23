@@ -108,7 +108,7 @@ func (s *Sandbox) toolTree(ctx context.Context, args map[string]any) ToolResult 
 	}
 	root, err := vfs.Tree(ctx, s.fs, rel, vfs.TreeOptions{MaxDepth: depth, MaxEntries: treeMaxEntries})
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	name := root.Name
 	if name == "" {
@@ -154,22 +154,22 @@ func (s *Sandbox) toolCatAsRead(ctx context.Context, args map[string]any) ToolRe
 	rel := strArg(args, "file_path")
 	head, tail := intArg(args, "head"), intArg(args, "tail")
 	if head > 0 && tail > 0 {
-		return ToolResult{Text: "[erreur] Cat : head et tail sont exclusifs — corrige les arguments et renvoie l'appel."}
+		return ToolResult{Text: "[error] Cat: head and tail are mutually exclusive — fix the arguments and retry the call."}
 	}
 	if tail > 0 {
 		clean, err := s.fs.Resolve(rel)
 		if err != nil {
-			return ToolResult{Text: "[erreur] Cat : " + err.Error()}
+			return ToolResult{Text: "[error] Cat: " + err.Error()}
 		}
 		if clean == "" {
-			return ToolResult{Text: "[erreur] Cat : chemin vide"}
+			return ToolResult{Text: "[error] Cat: empty path"}
 		}
 		b, err := s.fs.ReadFile(ctx, clean)
 		if err != nil {
 			if errors.Is(err, vfs.ErrNotFound) {
-				return ToolResult{Text: "[erreur] Cat : fichier introuvable: " + rel}
+				return ToolResult{Text: "[error] Cat: file not found: " + rel}
 			}
-			return ToolResult{Text: "[erreur] Cat : " + err.Error()}
+			return ToolResult{Text: "[error] Cat: " + err.Error()}
 		}
 		lines := strings.Split(string(b), "\n")
 		if tail < len(lines) {
@@ -213,47 +213,47 @@ func (s *Sandbox) toolEcho(_ context.Context, args map[string]any) ToolResult {
 func (s *Sandbox) toolMkdir(ctx context.Context, args map[string]any) ToolResult {
 	rel := strings.TrimSpace(strArg(args, "path"))
 	if rel == "" {
-		return ToolResult{Text: "[erreur] chemin vide"}
+		return ToolResult{Text: "[error] empty path"}
 	}
 	clean, err := s.fs.Resolve(rel)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	if clean == "" {
-		return ToolResult{Text: "[erreur] la racine existe deja"}
+		return ToolResult{Text: "[error] root already exists"}
 	}
 	if err := s.fs.MkdirAll(ctx, clean); err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
-	return ToolResult{Text: "[ok] dossier cree: " + clean}
+	return ToolResult{Text: "[ok] folder created: " + clean}
 }
 
 func (s *Sandbox) toolMv(ctx context.Context, args map[string]any) ToolResult {
 	src, dst := strings.TrimSpace(strArg(args, "src")), strings.TrimSpace(strArg(args, "dst"))
 	cleanSrc, err := s.fs.Resolve(src)
 	if err != nil {
-		return ToolResult{Text: "[erreur] source : " + err.Error()}
+		return ToolResult{Text: "[error] source: " + err.Error()}
 	}
 	cleanDst, err := s.fs.Resolve(dst)
 	if err != nil {
-		return ToolResult{Text: "[erreur] destination : " + err.Error()}
+		return ToolResult{Text: "[error] destination: " + err.Error()}
 	}
 	if cleanSrc == "" || cleanDst == "" {
-		return ToolResult{Text: "[erreur] la racine ne peut pas etre deplacee"}
+		return ToolResult{Text: "[error] root cannot be moved"}
 	}
 	if cleanSrc == cleanDst {
-		return ToolResult{Text: "[erreur] source et destination identiques"}
+		return ToolResult{Text: "[error] source and destination are identical"}
 	}
 	if _, err := s.fs.Stat(ctx, cleanSrc); err != nil {
-		return ToolResult{Text: "[erreur] source introuvable: " + src}
+		return ToolResult{Text: "[error] source not found: " + src}
 	}
 	if _, err := s.fs.Stat(ctx, cleanDst); err == nil && !boolArg(args, "overwrite") {
-		return ToolResult{Text: "[erreur] la destination existe deja : " + dst + " (overwrite=false)"}
+		return ToolResult{Text: "[error] destination already exists: " + dst + " (overwrite=false)"}
 	}
 	if err := s.fs.Rename(ctx, cleanSrc, cleanDst); err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
-	return ToolResult{Text: "[ok] deplace : " + cleanSrc + " -> " + cleanDst}
+	return ToolResult{Text: "[ok] moved: " + cleanSrc + " -> " + cleanDst}
 }
 
 // ---------------- Sed / Awk ----------------
@@ -263,30 +263,30 @@ func (s *Sandbox) toolMv(ctx context.Context, args map[string]any) ToolResult {
 func (s *Sandbox) sedInputFile(ctx context.Context, file, input, tool string) (string, func(), ToolResult, bool) {
 	cleanup := func() {}
 	if file != "" && input != "" {
-		return "", cleanup, ToolResult{Text: "[erreur] un seul de file / input"}, false
+		return "", cleanup, ToolResult{Text: "[error] only one of file / input"}, false
 	}
 	if file != "" {
 		if msg := s.checkArg(file); msg != "" {
-			return "", cleanup, ToolResult{Text: "[erreur] " + msg}, false
+			return "", cleanup, ToolResult{Text: "[error] " + msg}, false
 		}
 		clean, err := s.fs.Resolve(file)
 		if err != nil {
-			return "", cleanup, ToolResult{Text: "[erreur] " + err.Error()}, false
+			return "", cleanup, ToolResult{Text: "[error] " + err.Error()}, false
 		}
 		if clean == "" {
-			return "", cleanup, ToolResult{Text: "[erreur] chemin vide"}, false
+			return "", cleanup, ToolResult{Text: "[error] empty path"}, false
 		}
 		if st, err := s.fs.Stat(ctx, clean); err != nil || st.IsDir {
-			return "", cleanup, ToolResult{Text: "[erreur] fichier introuvable: " + file}, false
+			return "", cleanup, ToolResult{Text: "[error] file not found: " + file}, false
 		}
 		return clean, cleanup, ToolResult{}, true
 	}
 	if input == "" {
-		return "", cleanup, ToolResult{Text: "[erreur] file ou input requis"}, false
+		return "", cleanup, ToolResult{Text: "[error] file or input required"}, false
 	}
 	rel := fmt.Sprintf(".runscript_tmp/%s-input-%d.txt", tool, time.Now().UnixNano())
 	if err := s.fs.WriteFile(ctx, rel, []byte(input), 0o600); err != nil {
-		return "", cleanup, ToolResult{Text: "[erreur] entree temporaire impossible: " + err.Error()}, false
+		return "", cleanup, ToolResult{Text: "[error] cannot create temp input: " + err.Error()}, false
 	}
 	cleanup = func() { s.fs.Remove(context.Background(), rel) }
 	return rel, cleanup, ToolResult{}, true
@@ -317,7 +317,7 @@ func toolTimeout(args map[string]any, def int) time.Duration {
 func (s *Sandbox) toolSed(ctx context.Context, args map[string]any) ToolResult {
 	expr := strArg(args, "expression")
 	if strings.TrimSpace(expr) == "" {
-		return ToolResult{Text: "[erreur] expression vide"}
+		return ToolResult{Text: "[error] empty expression"}
 	}
 	file := strings.TrimSpace(strArg(args, "file"))
 	inPlace := boolArg(args, "in_place")
@@ -329,12 +329,12 @@ func (s *Sandbox) toolSed(ctx context.Context, args map[string]any) ToolResult {
 	var before []byte
 	if inPlace {
 		if file == "" {
-			return ToolResult{Text: "[erreur] in_place exige file (pas input)"}
+			return ToolResult{Text: "[error] in_place requires file (not input)"}
 		}
 		var err error
 		before, err = s.fs.ReadFile(ctx, target)
 		if err != nil {
-			return ToolResult{Text: "[erreur] lecture avant modification : " + err.Error()}
+			return ToolResult{Text: "[error] read before modification: " + err.Error()}
 		}
 	}
 	argv := []string{"sed", "-i", "-e", expr, target}
@@ -349,26 +349,26 @@ func (s *Sandbox) toolSed(ctx context.Context, args map[string]any) ToolResult {
 		return ToolResult{Text: "[commande interrompue]"}
 	}
 	if err != nil {
-		return ToolResult{Text: "[erreur] sed (exit " + itoa(exitCodeOf(err)) + ") :\n" + truncate(out, toolMaxOutput)}
+		return ToolResult{Text: "[error] sed (exit " + itoa(exitCodeOf(err)) + "):\n" + truncate(out, toolMaxOutput)}
 	}
 	if !inPlace {
 		return ToolResult{Text: truncate(strings.TrimSuffix(out, "\n"), toolMaxOutput)}
 	}
 	after, err := s.fs.ReadFile(ctx, target)
 	if err != nil {
-		return ToolResult{Text: "[erreur] relecture apres sed -i : " + err.Error()}
+		return ToolResult{Text: "[error] re-read after sed -i: " + err.Error()}
 	}
 	diff := lineDiff(string(before), string(after))
 	if len(diff) == 0 {
-		return ToolResult{Text: "[ok] sed -i : aucun changement dans " + file}
+		return ToolResult{Text: "[ok] sed -i: no change in " + file}
 	}
-	return ToolResult{Text: "[ok] sed -i applique : " + file, Diff: truncateDiff(diff, 300)}
+	return ToolResult{Text: "[ok] sed -i applied: " + file, Diff: truncateDiff(diff, 300)}
 }
 
 func (s *Sandbox) toolAwk(ctx context.Context, args map[string]any) ToolResult {
 	prog := strArg(args, "program")
 	if strings.TrimSpace(prog) == "" {
-		return ToolResult{Text: "[erreur] programme vide"}
+		return ToolResult{Text: "[error] empty program"}
 	}
 	target, cleanup, er, ok := s.sedInputFile(ctx, strings.TrimSpace(strArg(args, "file")), strArg(args, "input"), "awk")
 	defer cleanup()
@@ -388,7 +388,7 @@ func (s *Sandbox) toolAwk(ctx context.Context, args map[string]any) ToolResult {
 		return ToolResult{Text: "[commande interrompue]"}
 	}
 	if err != nil {
-		return ToolResult{Text: "[erreur] awk (exit " + itoa(exitCodeOf(err)) + ") :\n" + truncate(out, toolMaxOutput)}
+		return ToolResult{Text: "[error] awk (exit " + itoa(exitCodeOf(err)) + "):\n" + truncate(out, toolMaxOutput)}
 	}
 	return ToolResult{Text: truncate(strings.TrimSuffix(out, "\n"), toolMaxOutput)}
 }
@@ -648,11 +648,11 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 	rawURL := strings.TrimSpace(strArg(args, "url"))
 	u, err := url.Parse(rawURL)
 	if err != nil || u.Host == "" || (u.Scheme != "http" && u.Scheme != "https") {
-		return ToolResult{Text: "[erreur] URL http(s) valide requise"}
+		return ToolResult{Text: "[error] valid http(s) URL required"}
 	}
 	// B4 : userinfo (http://u:p@h/) refusé — identifiants dans l'URL.
 	if u.User != nil {
-		return ToolResult{Text: "[erreur] userinfo (identifiants) dans l'URL refuse"}
+		return ToolResult{Text: "[error] userinfo (credentials) in URL refused"}
 	}
 	method := strings.ToUpper(strings.TrimSpace(strArg(args, "method")))
 	if method == "" {
@@ -661,7 +661,7 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 	switch method {
 	case http.MethodGet, http.MethodPost, http.MethodPut, http.MethodPatch, http.MethodDelete, http.MethodHead:
 	default:
-		return ToolResult{Text: "[erreur] methode non supportee: " + method}
+		return ToolResult{Text: "[error] unsupported method: " + method}
 	}
 	timeout := intArg(args, "timeout")
 	if timeout <= 0 {
@@ -673,7 +673,7 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 	var body io.Reader
 	if b := strArg(args, "body"); b != "" {
 		if len(b) > 1024*1024 {
-			return ToolResult{Text: "[erreur] corps de requete > 1 Mo refuse"}
+			return ToolResult{Text: "[error] request body > 1 MB refused"}
 		}
 		body = strings.NewReader(b)
 	}
@@ -697,7 +697,7 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 	}
 	req, err := http.NewRequestWithContext(ctx, method, u.String(), body)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	req.Header.Set("User-Agent", "cetas-lite-agent/1.0")
 	// B4 : en-têtes du modèle filtrés (Authorization refusé).
@@ -706,12 +706,12 @@ func (s *Sandbox) toolCurl(ctx context.Context, args map[string]any) ToolResult 
 	}
 	resp, err := client.Do(req)
 	if err != nil {
-		return ToolResult{Text: "[erreur] requete : " + err.Error()}
+		return ToolResult{Text: "[error] request: " + err.Error()}
 	}
 	defer resp.Body.Close()
 	data, err := io.ReadAll(io.LimitReader(resp.Body, curlMaxBody+1))
 	if err != nil {
-		return ToolResult{Text: "[erreur] lecture reponse : " + err.Error()}
+		return ToolResult{Text: "[error] response read: " + err.Error()}
 	}
 	var sb strings.Builder
 	fmt.Fprintf(&sb, "HTTP %s\n", resp.Status)

@@ -66,7 +66,7 @@ func TestGitHubRepos(t *testing.T) {
 	})
 	defer done()
 	res := sb.Execute(context.Background(), "GitHubRepos", `{"limit":5}`)
-	if strings.HasPrefix(res.Text, "[erreur]") {
+	if strings.HasPrefix(res.Text, "[error]") {
 		t.Fatalf("repos: %s", res.Text)
 	}
 	if m.lastAuth != "Bearer test-token" {
@@ -91,7 +91,7 @@ func TestGitHubIssueCreate(t *testing.T) {
 	defer done()
 	res := sb.Execute(context.Background(), "GitHubIssueCreate",
 		`{"owner":"octo","repo":"demo","title":"Bug","body":"desc","labels":["bug","urgent"]}`)
-	if strings.HasPrefix(res.Text, "[erreur]") {
+	if strings.HasPrefix(res.Text, "[error]") {
 		t.Fatalf("create: %s", res.Text)
 	}
 	if !strings.Contains(res.Text, "#7") || !strings.Contains(res.Text, "issues/7") {
@@ -121,7 +121,7 @@ func TestGitHubPRMerge(t *testing.T) {
 	defer done()
 	res := sb.Execute(context.Background(), "GitHubPRMerge",
 		`{"owner":"octo","repo":"demo","number":12,"merge_method":"squash"}`)
-	if strings.HasPrefix(res.Text, "[erreur]") {
+	if strings.HasPrefix(res.Text, "[error]") {
 		t.Fatalf("merge: %s", res.Text)
 	}
 	if !strings.Contains(res.Text, "#12") || !strings.Contains(res.Text, "squash") {
@@ -135,11 +135,11 @@ func TestGitHubPRMerge(t *testing.T) {
 func TestGitHubNoToken(t *testing.T) {
 	sb := newTestSandbox(t) // pas de GitHubToken
 	res := sb.Execute(context.Background(), "GitHubRepos", `{}`)
-	if !strings.Contains(res.Text, "non connecté") || !strings.Contains(res.Text, "Connecteurs") {
+	if !strings.Contains(res.Text, "not connected") || !strings.Contains(res.Text, "Connectors") {
 		t.Fatalf("message de guidage attendu: %s", res.Text)
 	}
 	res = sb.Execute(context.Background(), "GitHubIssueCreate", `{"owner":"o","repo":"r","title":"t"}`)
-	if !strings.Contains(res.Text, "non connecté") {
+	if !strings.Contains(res.Text, "not connected") {
 		t.Fatalf("l'écriture doit aussi guider: %s", res.Text)
 	}
 }
@@ -151,12 +151,12 @@ func TestGitHubValidation(t *testing.T) {
 	defer done()
 	// owner avec slash : rejeté avant tout appel HTTP.
 	res := sb.Execute(context.Background(), "GitHubIssues", `{"owner":"octo/evil","repo":"demo"}`)
-	if !strings.Contains(res.Text, "invalide") {
+	if !strings.Contains(res.Text, "invalid") {
 		t.Fatalf("validation owner attendue: %s", res.Text)
 	}
 	// number négatif.
 	res = sb.Execute(context.Background(), "GitHubIssueGet", `{"owner":"octo","repo":"demo","number":-1}`)
-	if !strings.Contains(res.Text, "positif") {
+	if !strings.Contains(res.Text, "positive") {
 		t.Fatalf("validation number attendue: %s", res.Text)
 	}
 	// merge_method inconnu.
@@ -180,7 +180,7 @@ func TestGitHubAPIErrors(t *testing.T) {
 	})
 	defer done()
 	res := sb.Execute(context.Background(), "GitHubIssues", `{"owner":"octo","repo":"nope"}`)
-	if !strings.Contains(res.Text, "introuvable") || !strings.Contains(res.Text, "404") {
+	if !strings.Contains(res.Text, "not found") || !strings.Contains(res.Text, "404") {
 		t.Fatalf("erreur 404 actionnable attendue: %s", res.Text)
 	}
 }
@@ -191,7 +191,7 @@ func TestGitHub401(t *testing.T) {
 	})
 	defer done()
 	res := sb.Execute(context.Background(), "GitHubRepos", `{}`)
-	if !strings.Contains(res.Text, "401") || !strings.Contains(res.Text, "Reconnectez") {
+	if !strings.Contains(res.Text, "401") || !strings.Contains(res.Text, "Reconnect") {
 		t.Fatalf("erreur 401 actionnable attendue: %s", res.Text)
 	}
 }
@@ -216,7 +216,7 @@ func TestGitHubIssueGetWithComments(t *testing.T) {
 	})
 	defer done()
 	res := sb.Execute(context.Background(), "GitHubIssueGet", `{"owner":"octo","repo":"demo","number":3}`)
-	if strings.HasPrefix(res.Text, "[erreur]") {
+	if strings.HasPrefix(res.Text, "[error]") {
 		t.Fatalf("get: %s", res.Text)
 	}
 	if !strings.Contains(res.Text, "fetched_comments") || !strings.Contains(res.Text, "d'accord") {

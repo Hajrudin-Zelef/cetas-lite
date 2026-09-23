@@ -64,24 +64,24 @@ func RagToolSchemas() []provider.Tool {
 func (e *Engine) ragExecute(ctx context.Context, name, argsJSON string) ToolResult {
 	rt := e.ragTools()
 	if rt == nil || !rt.Ready() {
-		return ToolResult{Text: "[info] base documentaire locale indisponible"}
+		return ToolResult{Text: "[info] local document base unavailable"}
 	}
 	args := parseArgs(argsJSON)
 	switch name {
 	case "rag_search":
 		query := strings.TrimSpace(strArg(args, "query"))
 		if query == "" {
-			return ToolResult{Text: "[erreur] requete vide"}
+			return ToolResult{Text: "[error] empty query"}
 		}
 		res := rt.Search(ctx, query, intArg(args, "limit"))
 		if len(res.Hits) == 0 {
-			return ToolResult{Text: "[info] aucun passage pertinent dans la base locale"}
+			return ToolResult{Text: "[info] no relevant passage in the local base"}
 		}
 		return ToolResult{Text: formatRagHits(res)}
 	case "rag_read":
 		rel := strings.TrimSpace(strArg(args, "path"))
 		if rel == "" {
-			return ToolResult{Text: "[erreur] chemin vide"}
+			return ToolResult{Text: "[error] empty path"}
 		}
 		// Bornage serveur : limite par defaut raisonnable et plafond strict
 		// pour eviter qu'une lecture mal bornee n'injecte un document entier
@@ -98,16 +98,16 @@ func (e *Engine) ragExecute(ctx context.Context, name, argsJSON string) ToolResu
 		}
 		out, err := rt.Read(rel, offset, limit)
 		if err != nil {
-			return ToolResult{Text: "[erreur] lecture: " + err.Error()}
+			return ToolResult{Text: "[error] read: " + err.Error()}
 		}
 		return ToolResult{Text: truncate(out, toolMaxOutput)}
 	}
-	return ToolResult{Text: "[erreur] outil inconnu: " + name}
+	return ToolResult{Text: "[error] unknown tool: " + name}
 }
 
 func formatRagHits(res rag.Result) string {
 	var b strings.Builder
-	fmt.Fprintf(&b, "Base locale (%d passage(s) pertinent(s)):\n", len(res.Hits))
+	fmt.Fprintf(&b, "Local base (%d relevant passage(s)):\n", len(res.Hits))
 	for i, h := range res.Hits {
 		fmt.Fprintf(&b, "[%d] %s — %s\n%s\n\n", i+1, h.Title, h.Path, h.Snippet)
 	}

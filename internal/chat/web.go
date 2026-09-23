@@ -45,17 +45,17 @@ func WebToolSchemas() []provider.Tool {
 func (e *Engine) webExecute(ctx context.Context, user, name, argsJSON string) ToolResult {
 	wt := e.webTools()
 	if wt == nil {
-		return ToolResult{Text: "[erreur] recherche web indisponible"}
+		return ToolResult{Text: "[error] web search unavailable"}
 	}
 	if !e.allowWeb(user) {
-		return ToolResult{Text: "[erreur] limite de recherche web atteinte, reessaie dans quelques secondes"}
+		return ToolResult{Text: "[error] web search rate limit reached, retry in a few seconds"}
 	}
 	args := parseArgs(argsJSON)
 	switch name {
 	case "web_search":
 		query := strings.TrimSpace(strArg(args, "query"))
 		if query == "" {
-			return ToolResult{Text: "[erreur] requete vide"}
+			return ToolResult{Text: "[error] empty query"}
 		}
 		res := wt.Search(ctx, query, intArg(args, "max_results"))
 		if len(res.Hits) == 0 {
@@ -69,15 +69,15 @@ func (e *Engine) webExecute(ctx context.Context, user, name, argsJSON string) To
 	case "web_fetch":
 		raw := strings.TrimSpace(strArg(args, "url"))
 		if raw == "" {
-			return ToolResult{Text: "[erreur] url vide"}
+			return ToolResult{Text: "[error] empty URL"}
 		}
 		title, md, err := wt.Fetch(ctx, raw)
 		if err != nil {
-			return ToolResult{Text: "[erreur] fetch: " + err.Error()}
+			return ToolResult{Text: "[error] fetch: " + err.Error()}
 		}
 		return ToolResult{Text: formatFetch(title, md)}
 	}
-	return ToolResult{Text: "[erreur] outil inconnu: " + name}
+	return ToolResult{Text: "[error] unknown tool: " + name}
 }
 
 func formatHits(res search.Result) string {

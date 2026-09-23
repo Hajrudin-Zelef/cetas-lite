@@ -100,7 +100,7 @@ func githubToolSchemas() []provider.Tool {
 func (s *Sandbox) toolGitHub(ctx context.Context, name string, args map[string]any) ToolResult {
 	token := s.githubToken()
 	if token == "" {
-		return ToolResult{Text: "[erreur] GitHub non connecté : connectez votre compte dans Configuration → Connecteurs → GitHub, puis réessayez."}
+		return ToolResult{Text: "[error] GitHub not connected: connect your account in Settings → Connectors → GitHub, then retry."}
 	}
 	switch name {
 	case "GitHubRepos":
@@ -122,7 +122,7 @@ func (s *Sandbox) toolGitHub(ctx context.Context, name string, args map[string]a
 	case "GitHubPRMerge":
 		return s.ghPRMerge(ctx, token, args)
 	default:
-		return ToolResult{Text: "[erreur] outil inconnu: " + name}
+		return ToolResult{Text: "[error] unknown tool: " + name}
 	}
 }
 
@@ -130,10 +130,10 @@ func (s *Sandbox) toolGitHub(ctx context.Context, name string, args map[string]a
 func ghOwnerRepo(args map[string]any) (string, string, string) {
 	owner, repo := strArg(args, "owner"), strArg(args, "repo")
 	if owner == "" || repo == "" {
-		return "", "", "[erreur] GitHub : owner et repo sont requis."
+		return "", "", "[error] GitHub: owner and repo are required."
 	}
 	if !githubNameRe.MatchString(owner) || !githubNameRe.MatchString(repo) {
-		return "", "", "[erreur] GitHub : owner/repo invalide (caractères autorisés : lettres, chiffres, -, _, .)."
+		return "", "", "[error] GitHub: owner/repo invalid (allowed characters: letters, digits, -, _, .)."
 	}
 	return owner, repo, ""
 }
@@ -157,7 +157,7 @@ func ghState(args map[string]any) (string, string) {
 		return "open", ""
 	}
 	if st != "open" && st != "closed" && st != "all" {
-		return "", "[erreur] GitHub : state doit être open, closed ou all."
+		return "", "[error] GitHub: state must be open, closed or all."
 	}
 	return st, ""
 }
@@ -166,7 +166,7 @@ func ghState(args map[string]any) (string, string) {
 func ghNumber(args map[string]any) (int, string) {
 	n := intArg(args, "number")
 	if n <= 0 {
-		return 0, "[erreur] GitHub : number doit être un entier positif."
+		return 0, "[error] GitHub: number must be a positive integer."
 	}
 	return n, ""
 }
@@ -237,15 +237,15 @@ func ghAPIError(status int, body []byte) string {
 	}
 	switch status {
 	case 401:
-		return "[erreur] GitHub : token invalide ou révoqué (401). Reconnectez le compte dans Configuration → Connecteurs → GitHub" + msg + "."
+		return "[error] GitHub: invalid or revoked token (401). Reconnect the account in Settings → Connectors → GitHub" + msg + "."
 	case 403:
-		return "[erreur] GitHub : accès refusé (403)" + msg + ". Vérifiez les scopes du token et le quota d'API."
+		return "[error] GitHub: access denied (403)" + msg + ". Check the token scopes and API quota."
 	case 404:
-		return "[erreur] GitHub : introuvable (404)" + msg + "."
+		return "[error] GitHub: not found (404)" + msg + "."
 	case 422:
-		return "[erreur] GitHub : requête invalide (422)" + msg + "."
+		return "[error] GitHub: invalid request (422)" + msg + "."
 	default:
-		return fmt.Sprintf("[erreur] GitHub : HTTP %d%s.", status, msg)
+		return fmt.Sprintf("[error] GitHub: HTTP %d%s.", status, msg)
 	}
 }
 
@@ -253,7 +253,7 @@ func ghAPIError(status int, body []byte) string {
 func ghJSON(v any) string {
 	b, err := json.Marshal(v)
 	if err != nil {
-		return "[erreur] GitHub : sérialisation impossible."
+		return "[error] GitHub: serialization impossible."
 	}
 	return truncate(string(b), toolMaxOutput)
 }
@@ -261,7 +261,7 @@ func ghJSON(v any) string {
 // ghDecode décode un corps JSON d'API ; en cas d'échec, erreur explicite.
 func ghDecode(body []byte, v any) string {
 	if err := json.Unmarshal(body, v); err != nil {
-		return "[erreur] GitHub : réponse inattendue de l'API."
+		return "[error] GitHub: unexpected API response."
 	}
 	return ""
 }
@@ -358,7 +358,7 @@ func (s *Sandbox) ghRepos(ctx context.Context, token string, args map[string]any
 	q := url.Values{"per_page": {strconv.Itoa(ghLimit(args))}, "sort": {"updated"}}
 	st, body, err := ghDo(ctx, token, "GET", "/user/repos", q, nil)
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st < 200 || st >= 300 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -386,7 +386,7 @@ func (s *Sandbox) ghIssues(ctx context.Context, token string, args map[string]an
 	q := url.Values{"per_page": {strconv.Itoa(ghLimit(args))}, "state": {state}, "sort": {"updated"}}
 	st, body, err := ghDo(ctx, token, "GET", "/repos/"+owner+"/"+repo+"/issues", q, nil)
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st < 200 || st >= 300 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -419,7 +419,7 @@ func (s *Sandbox) ghIssueGet(ctx context.Context, token string, args map[string]
 	base := "/repos/" + owner + "/" + repo + "/issues/" + strconv.Itoa(n)
 	st, body, err := ghDo(ctx, token, "GET", base, nil, nil)
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st < 200 || st >= 300 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -455,7 +455,7 @@ func (s *Sandbox) ghPRs(ctx context.Context, token string, args map[string]any) 
 	q := url.Values{"per_page": {strconv.Itoa(ghLimit(args))}, "state": {state}, "sort": {"updated"}}
 	st, body, err := ghDo(ctx, token, "GET", "/repos/"+owner+"/"+repo+"/pulls", q, nil)
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st < 200 || st >= 300 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -476,10 +476,10 @@ func (s *Sandbox) ghPRs(ctx context.Context, token string, args map[string]any) 
 func (s *Sandbox) ghRepoCreate(ctx context.Context, token string, args map[string]any) ToolResult {
 	name := strings.TrimSpace(strArg(args, "name"))
 	if name == "" {
-		return ToolResult{Text: "[erreur] GitHub : name est requis."}
+		return ToolResult{Text: "[error] GitHub: name is required."}
 	}
 	if !githubNameRe.MatchString(name) {
-		return ToolResult{Text: "[erreur] GitHub : nom de dépôt invalide (caractères autorisés : lettres, chiffres, -, _, .)."}
+		return ToolResult{Text: "[error] GitHub: invalid repository name (allowed characters: letters, digits, -, _, .)."}
 	}
 	private := true
 	if v, ok := args["private"].(bool); ok {
@@ -492,7 +492,7 @@ func (s *Sandbox) ghRepoCreate(ctx context.Context, token string, args map[strin
 	}
 	st, body, err := ghDo(ctx, token, "POST", "/user/repos", nil, payload)
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st != 201 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -501,7 +501,7 @@ func (s *Sandbox) ghRepoCreate(ctx context.Context, token string, args map[strin
 	if msg := ghDecode(body, &r); msg != "" {
 		return ToolResult{Text: msg}
 	}
-	return ToolResult{Text: "[ok] dépôt créé : " + ghStr(r["full_name"]) + " — " + ghStr(r["html_url"])}
+	return ToolResult{Text: "[ok] repository created: " + ghStr(r["full_name"]) + " — " + ghStr(r["html_url"])}
 }
 
 func (s *Sandbox) ghIssueCreate(ctx context.Context, token string, args map[string]any) ToolResult {
@@ -511,7 +511,7 @@ func (s *Sandbox) ghIssueCreate(ctx context.Context, token string, args map[stri
 	}
 	title := strings.TrimSpace(strArg(args, "title"))
 	if title == "" {
-		return ToolResult{Text: "[erreur] GitHub : title est requis."}
+		return ToolResult{Text: "[error] GitHub: title is required."}
 	}
 	payload := map[string]any{"title": title, "body": strArg(args, "body")}
 	if l, ok := args["labels"].([]any); ok && len(l) > 0 {
@@ -525,7 +525,7 @@ func (s *Sandbox) ghIssueCreate(ctx context.Context, token string, args map[stri
 	}
 	st, body, err := ghDo(ctx, token, "POST", "/repos/"+owner+"/"+repo+"/issues", nil, payload)
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st != 201 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -534,7 +534,7 @@ func (s *Sandbox) ghIssueCreate(ctx context.Context, token string, args map[stri
 	if msg := ghDecode(body, &is); msg != "" {
 		return ToolResult{Text: msg}
 	}
-	return ToolResult{Text: fmt.Sprintf("[ok] issue #%v créée : %s", is["number"], ghStr(is["html_url"]))}
+	return ToolResult{Text: fmt.Sprintf("[ok] issue #%v created: %s", is["number"], ghStr(is["html_url"]))}
 }
 
 func (s *Sandbox) ghIssueComment(ctx context.Context, token string, args map[string]any) ToolResult {
@@ -548,13 +548,13 @@ func (s *Sandbox) ghIssueComment(ctx context.Context, token string, args map[str
 	}
 	cbody := strings.TrimSpace(strArg(args, "body"))
 	if cbody == "" {
-		return ToolResult{Text: "[erreur] GitHub : body est requis."}
+		return ToolResult{Text: "[error] GitHub: body is required."}
 	}
 	st, body, err := ghDo(ctx, token, "POST",
 		"/repos/"+owner+"/"+repo+"/issues/"+strconv.Itoa(n)+"/comments",
 		nil, map[string]any{"body": cbody})
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st != 201 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -563,7 +563,7 @@ func (s *Sandbox) ghIssueComment(ctx context.Context, token string, args map[str
 	if msg := ghDecode(body, &c); msg != "" {
 		return ToolResult{Text: msg}
 	}
-	return ToolResult{Text: "[ok] commentaire publié : " + ghStr(c["html_url"])}
+	return ToolResult{Text: "[ok] comment published: " + ghStr(c["html_url"])}
 }
 
 func (s *Sandbox) ghPRCreate(ctx context.Context, token string, args map[string]any) ToolResult {
@@ -574,19 +574,19 @@ func (s *Sandbox) ghPRCreate(ctx context.Context, token string, args map[string]
 	title := strings.TrimSpace(strArg(args, "title"))
 	head := strings.TrimSpace(strArg(args, "head"))
 	if title == "" || head == "" {
-		return ToolResult{Text: "[erreur] GitHub : title et head sont requis."}
+		return ToolResult{Text: "[error] GitHub: title and head are required."}
 	}
 	base := strings.TrimSpace(strArg(args, "base"))
 	if base == "" {
 		base = "main"
 	}
 	if !githubNameRe.MatchString(head) || !githubNameRe.MatchString(base) {
-		return ToolResult{Text: "[erreur] GitHub : nom de branche invalide (caractères autorisés : lettres, chiffres, -, _, .)."}
+		return ToolResult{Text: "[error] GitHub: invalid branch name (allowed characters: letters, digits, -, _, .)."}
 	}
 	payload := map[string]any{"title": title, "head": head, "base": base, "body": strArg(args, "body")}
 	st, body, err := ghDo(ctx, token, "POST", "/repos/"+owner+"/"+repo+"/pulls", nil, payload)
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st != 201 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -595,7 +595,7 @@ func (s *Sandbox) ghPRCreate(ctx context.Context, token string, args map[string]
 	if msg := ghDecode(body, &p); msg != "" {
 		return ToolResult{Text: msg}
 	}
-	return ToolResult{Text: fmt.Sprintf("[ok] pull request #%v créée : %s", p["number"], ghStr(p["html_url"]))}
+	return ToolResult{Text: fmt.Sprintf("[ok] pull request #%v created: %s", p["number"], ghStr(p["html_url"]))}
 }
 
 func (s *Sandbox) ghPRMerge(ctx context.Context, token string, args map[string]any) ToolResult {
@@ -612,13 +612,13 @@ func (s *Sandbox) ghPRMerge(ctx context.Context, token string, args map[string]a
 		method = "merge"
 	}
 	if method != "merge" && method != "squash" && method != "rebase" {
-		return ToolResult{Text: "[erreur] GitHub : merge_method doit être merge, squash ou rebase."}
+		return ToolResult{Text: "[error] GitHub: merge_method must be merge, squash or rebase."}
 	}
 	st, body, err := ghDo(ctx, token, "PUT",
 		"/repos/"+owner+"/"+repo+"/pulls/"+strconv.Itoa(n)+"/merge",
 		nil, map[string]any{"merge_method": method})
 	if err != nil {
-		return ToolResult{Text: "[erreur] GitHub : " + err.Error()}
+		return ToolResult{Text: "[error] GitHub: " + err.Error()}
 	}
 	if st < 200 || st >= 300 {
 		return ToolResult{Text: ghAPIError(st, body)}
@@ -629,7 +629,7 @@ func (s *Sandbox) ghPRMerge(ctx context.Context, token string, args map[string]a
 	}
 	merged, _ := r["merged"].(bool)
 	if !merged {
-		return ToolResult{Text: "[erreur] GitHub : PR non fusionnée — " + ghMessage(body) + "."}
+		return ToolResult{Text: "[error] GitHub: PR not merged — " + ghMessage(body) + "."}
 	}
-	return ToolResult{Text: fmt.Sprintf("[ok] pull request #%d fusionnée (%s).", n, method)}
+	return ToolResult{Text: fmt.Sprintf("[ok] pull request #%d merged (%s).", n, method)}
 }

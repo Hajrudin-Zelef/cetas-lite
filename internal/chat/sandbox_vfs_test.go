@@ -39,10 +39,10 @@ func TestSandboxVFSTools(t *testing.T) {
 		t.Fatalf("grep: %s", r.Text)
 	}
 	// Confinement : sortie de racine refusée.
-	if r := sb.Execute(ctx, "Read", `{"file_path":"../evil"}`); !strings.Contains(r.Text, "[erreur]") {
+	if r := sb.Execute(ctx, "Read", `{"file_path":"../evil"}`); !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("confinement: %s", r.Text)
 	}
-	if r := sb.Execute(ctx, "Read", `{"file_path":"/abs"}`); !strings.Contains(r.Text, "[erreur]") {
+	if r := sb.Execute(ctx, "Read", `{"file_path":"/abs"}`); !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("absolu: %s", r.Text)
 	}
 }

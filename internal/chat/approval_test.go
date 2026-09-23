@@ -221,7 +221,7 @@ func TestPlanModeExplorationThenApproval(t *testing.T) {
 	results := toolResults(c)
 	var sawRefusal bool
 	for _, r := range results {
-		if strings.Contains(r, "phase d'exploration") {
+		if strings.Contains(r, "exploration phase") {
 			sawRefusal = true
 		}
 		if strings.Contains(r, "[ok]") && strings.Contains(strings.Join(results, ""), "x.go") {
@@ -289,7 +289,7 @@ func TestToolApprovalDenied(t *testing.T) {
 
 	var sawRefusal bool
 	for _, r := range toolResults(c) {
-		if strings.Contains(r, "[refuse]") {
+		if strings.Contains(r, "[denied]") {
 			sawRefusal = true
 		}
 	}
@@ -331,7 +331,7 @@ func TestWriteModeExecutesWithoutApproval(t *testing.T) {
 	}
 	var sawErr bool
 	for _, r := range toolResults(c) {
-		if strings.HasPrefix(r, "[erreur]") || strings.HasPrefix(r, "[refuse]") {
+		if strings.HasPrefix(r, "[error]") || strings.HasPrefix(r, "[denied]") {
 			sawErr = true
 		}
 	}
@@ -361,7 +361,7 @@ func TestTextPseudoCallDangerousRequiresApproval(t *testing.T) {
 
 	var sawRefusal bool
 	for _, r := range toolResults(c) {
-		if strings.Contains(r, "[refuse]") {
+		if strings.Contains(r, "[denied]") {
 			sawRefusal = true
 		}
 		if strings.Contains(r, "hello") {
@@ -449,7 +449,7 @@ func TestBashSedInplaceRequiresApproval(t *testing.T) {
 	}
 	var sawRefusal bool
 	for _, r := range toolResults(c) {
-		if strings.Contains(r, "[refuse]") {
+		if strings.Contains(r, "[denied]") {
 			sawRefusal = true
 		}
 	}
@@ -460,7 +460,7 @@ func TestBashSedInplaceRequiresApproval(t *testing.T) {
 
 // TestToolApprovalDeniedComment : le commentaire saisi lors d'un refus
 // ("que faire différemment ?") doit parvenir à l'agent dans le message
-// [refuse] (phase 2 refonte).
+// [denied] (phase 2 refonte).
 func TestToolApprovalDeniedComment(t *testing.T) {
 	sp := &scriptedProvider{id: "fake", steps: []scriptStep{
 		{toolCalls: []provider.ToolCall{toolCall("1", "Write", `{"file_path": "x.go", "content": "y"}`)}},
@@ -498,11 +498,11 @@ func TestToolApprovalDeniedComment(t *testing.T) {
 
 	var sawComment bool
 	for _, r := range toolResults(c) {
-		if strings.Contains(r, "[refuse]") && strings.Contains(r, "utilise Edit plutôt que Write") {
+		if strings.Contains(r, "[denied]") && strings.Contains(r, "utilise Edit plutôt que Write") {
 			sawComment = true
 		}
 	}
 	if !sawComment {
-		t.Fatal("le commentaire de refus aurait du etre transmis au modele dans [refuse]")
+		t.Fatal("le commentaire de refus aurait du etre transmis au modele dans [denied]")
 	}
 }

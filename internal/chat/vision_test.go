@@ -134,7 +134,7 @@ func TestAgentViewImageWithoutVision(t *testing.T) {
 			toolResult, _ = m.Content.(string)
 		}
 	}
-	if !strings.Contains(toolResult, "ne lit pas les images") {
+	if !strings.Contains(toolResult, "cannot read images") {
 		t.Fatalf("message clair attendu, got %q", toolResult)
 	}
 }

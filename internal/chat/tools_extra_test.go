@@ -94,12 +94,12 @@ func TestToolTreeCatEcho(t *testing.T) {
 		t.Fatalf("cat tail: %q", r.Text)
 	}
 	r = sb.Execute(ctx, "Cat", `{"file_path":"n.txt","head":1,"tail":1}`)
-	if !strings.Contains(r.Text, "[erreur]") {
+	if !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("cat head+tail: aurait du echouer: %s", r.Text)
 	}
 	// Confinement.
 	r = sb.Execute(ctx, "Cat", `{"file_path":"../evil"}`)
-	if !strings.Contains(r.Text, "[erreur]") {
+	if !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("cat confinement: %s", r.Text)
 	}
 	// Echo.
@@ -116,7 +116,7 @@ func TestToolMkdirMv(t *testing.T) {
 	if r := sb.Execute(ctx, "Mkdir", `{"path":"a/b/c"}`); !strings.Contains(r.Text, "[ok]") {
 		t.Fatalf("mkdir: %s", r.Text)
 	}
-	if r := sb.Execute(ctx, "Mkdir", `{"path":"../evil"}`); !strings.Contains(r.Text, "[erreur]") {
+	if r := sb.Execute(ctx, "Mkdir", `{"path":"../evil"}`); !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("mkdir confinement: %s", r.Text)
 	}
 	sb.Execute(ctx, "Write", `{"file_path":"a/f.txt","content":"data"}`)
@@ -128,17 +128,17 @@ func TestToolMkdirMv(t *testing.T) {
 	}
 	// Pas d'écrasement sans overwrite.
 	sb.Execute(ctx, "Write", `{"file_path":"h.txt","content":"keep"}`)
-	if r := sb.Execute(ctx, "Mv", `{"src":"a/b/g.txt","dst":"h.txt"}`); !strings.Contains(r.Text, "[erreur]") {
+	if r := sb.Execute(ctx, "Mv", `{"src":"a/b/g.txt","dst":"h.txt"}`); !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("mv overwrite implicite: %s", r.Text)
 	}
 	if r := sb.Execute(ctx, "Mv", `{"src":"a/b/g.txt","dst":"h.txt","overwrite":true}`); !strings.Contains(r.Text, "[ok]") {
 		t.Fatalf("mv overwrite=true: %s", r.Text)
 	}
 	// Hors racine refusé des deux côtés.
-	if r := sb.Execute(ctx, "Mv", `{"src":"h.txt","dst":"../evil"}`); !strings.Contains(r.Text, "[erreur]") {
+	if r := sb.Execute(ctx, "Mv", `{"src":"h.txt","dst":"../evil"}`); !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("mv dst confinement: %s", r.Text)
 	}
-	if r := sb.Execute(ctx, "Mv", `{"src":"../x","dst":"h2.txt"}`); !strings.Contains(r.Text, "[erreur]") {
+	if r := sb.Execute(ctx, "Mv", `{"src":"../x","dst":"h2.txt"}`); !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("mv src confinement: %s", r.Text)
 	}
 	// Approbations requises.
@@ -307,12 +307,12 @@ func TestToolCurl(t *testing.T) {
 	// Cadre : schémas non-http refusés.
 	for _, bad := range []string{"file:///etc/passwd", "ftp://x", "not a url", ""} {
 		r = sb.Execute(ctx, "Curl", `{"url":"`+bad+`"}`)
-		if !strings.Contains(r.Text, "[erreur]") {
+		if !strings.Contains(r.Text, "[error]") {
 			t.Fatalf("curl %q aurait du etre refuse: %s", bad, r.Text)
 		}
 	}
 	r = sb.Execute(ctx, "Curl", `{"url":"`+srv.URL+`","method":"TRACE"}`)
-	if !strings.Contains(r.Text, "[erreur]") {
+	if !strings.Contains(r.Text, "[error]") {
 		t.Fatalf("curl TRACE aurait du etre refuse: %s", r.Text)
 	}
 }

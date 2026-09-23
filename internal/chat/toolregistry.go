@@ -42,7 +42,7 @@ func (r toolRegistry) execute(ctx context.Context, env toolEnv, name, argsJSON s
 	for _, f := range r.families {
 		if f.handles(name) {
 			// Phase 2 : les erreurs sont uniformisées au point de passage
-			// unique ([erreur] <outil> : <cause> — <consigne>), quelle que
+			// unique ([error] <outil> : <cause> — <consigne>), quelle que
 			// soit la famille d'outils.
 			out, followup := timedExecute(r.sb, name, func() (ToolResult, *provider.Message) {
 				return f.execute(ctx, env, name, argsJSON)
@@ -56,7 +56,7 @@ func (r toolRegistry) execute(ctx context.Context, env toolEnv, name, argsJSON s
 		})
 		return uniformToolError(name, out), followup
 	}
-	return ToolResult{Text: "[erreur] outil inconnu: " + name}, nil
+	return ToolResult{Text: "[error] unknown tool: " + name}, nil
 }
 
 // timedExecute mesure la duree d'une execution d'outil reelle (F6.1, phase 1).

@@ -486,7 +486,7 @@ func TestAgentParallelReadsErrorIsolated(t *testing.T) {
 	if len(ends) != 2 {
 		t.Fatalf("événements end = %d, want 2", len(ends))
 	}
-	if !strings.Contains(ends[0], "[erreur]") {
+	if !strings.Contains(ends[0], "[error]") {
 		t.Fatalf("end[0] devrait être l'erreur, got %q", ends[0])
 	}
 	if !strings.Contains(ends[1], "contenu OK") {

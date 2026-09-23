@@ -26,18 +26,18 @@ func viewImageSchema() provider.Tool {
 
 func (e *Engine) viewImage(ctx context.Context, m alias.ResolvedMember, sb *Sandbox, argsJSON string) (ToolResult, *provider.Message) {
 	if !e.capabilities().Vision(m.Provider, m.Model) {
-		return ToolResult{Text: "[erreur] ce modele ne lit pas les images ; choisis un modele vision (Settings -> Capacites des modeles)."}, nil
+		return ToolResult{Text: "[error] this model cannot read images; choose a vision model (Settings -> Model capabilities)."}, nil
 	}
 	rel := strings.TrimSpace(strArg(parseArgs(argsJSON), "file_path"))
 	data, err := sb.ReadFile(ctx, rel)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}, nil
+		return ToolResult{Text: "[error] " + err.Error()}, nil
 	}
 	ext := strings.TrimPrefix(strings.ToLower(filepath.Ext(rel)), ".")
 	switch ext {
 	case "png", "jpg", "jpeg", "gif", "webp":
 	default:
-		return ToolResult{Text: "[erreur] fichier image attendu: " + rel}, nil
+		return ToolResult{Text: "[error] image file expected: " + rel}, nil
 	}
 	img := map[string]any{
 		"type":      "image_url",

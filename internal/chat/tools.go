@@ -139,11 +139,11 @@ func bashProgramRisk(binary, prog string) string {
 	switch {
 	case binary == "sed":
 		if exec, write := sedRisk(prog); exec || write {
-			return "programme sed a effets de bord detecte : utilise l'outil Sed dedie (approbation requise)"
+			return "side-effecting sed program detected: use the dedicated Sed tool (approval required)"
 		}
 	case awkBashBinaries[binary]:
 		if awkRiskRe.MatchString(prog) {
-			return "programme awk a effets de bord detecte : utilise l'outil Awk dedie (approbation requise)"
+			return "side-effecting awk program detected: use the dedicated Awk tool (approval required)"
 		}
 	}
 	return ""
@@ -328,7 +328,7 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 		}
 		return ToolResult{Text: s.toolRunScript(ctx, args)}
 	case "TodoWrite":
-		return ToolResult{Text: "[ok] liste mise a jour"}
+		return ToolResult{Text: "[ok] list updated"}
 	case "Tree":
 		return s.toolTree(ctx, args)
 	case "Cat":
@@ -374,7 +374,7 @@ func (s *Sandbox) Execute(ctx context.Context, name, argsJSON string) ToolResult
 		"GitHubPRCreate", "GitHubPRMerge":
 		return s.toolGitHub(ctx, name, args)
 	default:
-		return ToolResult{Text: "[erreur] outil inconnu: " + name}
+		return ToolResult{Text: "[error] unknown tool: " + name}
 	}
 }
 
@@ -393,8 +393,8 @@ func missingArg(args map[string]any, fields ...string) string {
 }
 
 func missingArgErr(tool, field string) string {
-	return "[erreur] " + tool + " : champ requis manquant ou vide : \"" + field +
-		"\" — renvoie l'appel avec ce champ renseigne."
+	return "[error] " + tool + " : missing or empty required field: \"" + field +
+		"\" — retry the call with this field set."
 }
 
 func (s *Sandbox) toolLs(ctx context.Context) ToolResult {
@@ -413,7 +413,7 @@ func (s *Sandbox) toolLs(ctx context.Context) ToolResult {
 	}
 	// B3 : erreur de parcours remontée au modèle, pas ignorée.
 	if walkErr != nil && !errors.Is(walkErr, errWalkStopSandbox) {
-		out += "\n[avertissement] parcours incomplet"
+		out += "\n[warning] incomplete walk"
 	}
 	return ToolResult{Text: out}
 }
@@ -424,17 +424,17 @@ func (s *Sandbox) toolRead(ctx context.Context, args map[string]any) ToolResult 
 	rel := strArg(args, "file_path")
 	clean, err := s.fs.Resolve(rel)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	if clean == "" {
-		return ToolResult{Text: "[erreur] chemin vide"}
+		return ToolResult{Text: "[error] empty path"}
 	}
 	b, err := s.fs.ReadFile(ctx, clean)
 	if err != nil {
 		if errors.Is(err, vfs.ErrNotFound) {
-			return ToolResult{Text: "[erreur] fichier introuvable: " + rel + ". Utilise Glob pour trouver le bon chemin."}
+			return ToolResult{Text: "[error] file not found: " + rel + ". Use Glob to find the right path."}
 		}
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	lines := strings.Split(string(b), "\n")
 	total := len(lines)
@@ -467,14 +467,14 @@ func (s *Sandbox) toolWrite(ctx context.Context, args map[string]any) ToolResult
 	rel := strArg(args, "file_path")
 	content := strArg(args, "content")
 	if strings.TrimSpace(rel) == "" {
-		return ToolResult{Text: "[erreur] chemin vide"}
+		return ToolResult{Text: "[error] empty path"}
 	}
 	clean, err := s.fs.Resolve(rel)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	if clean == "" {
-		return ToolResult{Text: "[erreur] chemin vide"}
+		return ToolResult{Text: "[error] empty path"}
 	}
 	mode := os.FileMode(0o644)
 	existed := false
@@ -482,14 +482,14 @@ func (s *Sandbox) toolWrite(ctx context.Context, args map[string]any) ToolResult
 		existed = true
 	}
 	if err := s.fs.WriteFile(ctx, clean, []byte(content), mode); err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	verb := "cree"
 	if existed {
 		verb = "reecrit"
 	}
 	return ToolResult{
-		Text: fmt.Sprintf("[ok] %s %s (%d octets)", rel, verb, len(content)),
+		Text: fmt.Sprintf("[ok] %s %s (%d bytes)", rel, verb, len(content)),
 		Diff: addedDiff(content),
 	}
 }
@@ -499,48 +499,48 @@ func (s *Sandbox) toolEdit(ctx context.Context, args map[string]any) ToolResult 
 	oldText := strArg(args, "old")
 	newText := strArg(args, "new")
 	if strings.TrimSpace(rel) == "" {
-		return ToolResult{Text: "[erreur] chemin vide"}
+		return ToolResult{Text: "[error] empty path"}
 	}
 	if oldText == "" {
-		return ToolResult{Text: "[erreur] old vide"}
+		return ToolResult{Text: "[error] empty old text"}
 	}
 	clean, err := s.fs.Resolve(rel)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	if clean == "" {
-		return ToolResult{Text: "[erreur] chemin vide"}
+		return ToolResult{Text: "[error] empty path"}
 	}
 	b, err := s.fs.ReadFile(ctx, clean)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	content := string(b)
 	n := strings.Count(content, oldText)
 	if n == 0 {
 		if newText != "" && strings.Contains(content, newText) {
-			return ToolResult{Text: "[ok] deja a jour — le fichier contient deja cette modification"}
+			return ToolResult{Text: "[ok] already up to date — the file already contains this change"}
 		}
-		return ToolResult{Text: "[erreur] old introuvable dans le fichier"}
+		return ToolResult{Text: "[error] old text not found in the file"}
 	}
 	if n > 1 {
-		return ToolResult{Text: fmt.Sprintf("[erreur] old apparait %d fois — ajoute du contexte pour le rendre unique", n)}
+		return ToolResult{Text: fmt.Sprintf("[error] old text appears %d times — add context to make it unique", n)}
 	}
 	updated := strings.Replace(content, oldText, newText, 1)
 	if err := s.fs.WriteFile(ctx, clean, []byte(updated), 0o644); err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
-	return ToolResult{Text: fmt.Sprintf("[ok] %s modifie (1 remplacement)", rel), Diff: lineDiff(oldText, newText)}
+	return ToolResult{Text: fmt.Sprintf("[ok] %s modified (1 replacement)", rel), Diff: lineDiff(oldText, newText)}
 }
 
 func (s *Sandbox) toolGrep(ctx context.Context, args map[string]any) ToolResult {
 	pattern := strArg(args, "pattern")
 	if pattern == "" {
-		return ToolResult{Text: "[erreur] pattern vide"}
+		return ToolResult{Text: "[error] empty pattern"}
 	}
 	re, err := regexp.Compile(pattern)
 	if err != nil {
-		return ToolResult{Text: "[erreur] regex invalide: " + err.Error()}
+		return ToolResult{Text: "[error] invalid regex: " + err.Error()}
 	}
 	limit := intArg(args, "limit")
 	if limit <= 0 {
@@ -550,7 +550,7 @@ func (s *Sandbox) toolGrep(ctx context.Context, args map[string]any) ToolResult 
 	if rel := strArg(args, "path"); rel != "" && rel != "." {
 		clean, err := s.fs.Resolve(rel)
 		if err != nil {
-			return ToolResult{Text: "[erreur] " + err.Error()}
+			return ToolResult{Text: "[error] " + err.Error()}
 		}
 		base = clean
 	}
@@ -607,7 +607,7 @@ func (s *Sandbox) toolGrep(ctx context.Context, args map[string]any) ToolResult 
 		})
 		// B3 : erreur de parcours remontée au modèle, pas ignorée.
 		if walkErr != nil && !errors.Is(walkErr, errWalkStopSandbox) {
-			matches = append(matches, "[avertissement] parcours incomplet")
+			matches = append(matches, "[warning] incomplete walk")
 		}
 	}
 	out := fmt.Sprintf("%d resultats", len(matches))
@@ -620,12 +620,12 @@ func (s *Sandbox) toolGrep(ctx context.Context, args map[string]any) ToolResult 
 func (s *Sandbox) toolGlob(ctx context.Context, args map[string]any) ToolResult {
 	pattern := strings.TrimSpace(strArg(args, "pattern"))
 	if pattern == "" {
-		return ToolResult{Text: "[erreur] pattern vide"}
+		return ToolResult{Text: "[error] empty pattern"}
 	}
 	// B2 : un motif comme **/**/** provoque une explosion combinatoire
 	// dans matchSegments — on borne le nombre de segments **.
 	if n := countGlobStars(pattern); n > maxGlobStars {
-		return ToolResult{Text: fmt.Sprintf("[erreur] motif trop complexe : %d segments ** (max %d)", n, maxGlobStars)}
+		return ToolResult{Text: fmt.Sprintf("[error] pattern too complex: %d segments ** (max %d)", n, maxGlobStars)}
 	}
 	pattern = strings.TrimPrefix(filepath.ToSlash(pattern), "./")
 	var files []string
@@ -652,51 +652,51 @@ func (s *Sandbox) toolGlob(ctx context.Context, args map[string]any) ToolResult 
 	// B3 : une erreur de parcours n'est plus silencieuse — avertissement
 	// au modèle (l'arrêt volontaire sur quota n'en est pas une).
 	if walkErr != nil && !errors.Is(walkErr, errWalkStopSandbox) {
-		out += "\n[avertissement] parcours incomplet"
+		out += "\n[warning] incomplete walk"
 	}
 	return ToolResult{Text: out}
 }
 
 func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 	if runtime.GOOS == "windows" && !s.fs.Remote() {
-		return "[erreur] Bash non supporte sur Windows en v1"
+		return "[error] Bash not supported on Windows in v1"
 	}
 	command := strings.TrimSpace(strArg(args, "command"))
 	if command == "" {
-		return "[erreur] commande vide"
+		return "[error] empty command"
 	}
 	tokens, err := splitCommand(command)
 	if err != nil {
-		return "[erreur] " + err.Error()
+		return "[error] " + err.Error()
 	}
 	if len(tokens) == 0 {
-		return "[erreur] commande vide"
+		return "[error] empty command"
 	}
 	// H6 : seul le nom de base était contrôlé mais le chemin complet était
 	// exécuté — outils/ls pouvait être un script malveillant du workspace.
 	// On impose le nom simple (résolution PATH), jamais un chemin.
 	if strings.Contains(tokens[0], "/") {
-		return "[erreur] chemin de binaire interdit (utilise le nom simple, ex. \"ls\"): " + tokens[0]
+		return "[error] binary path forbidden (use the simple name, e.g. \"ls\"): " + tokens[0]
 	}
 	binary := filepath.Base(tokens[0])
 	if !execAllowlist[binary] {
-		return "[erreur] commande non autorisee: " + tokens[0]
+		return "[error] command not allowed: " + tokens[0]
 	}
 	for _, tok := range tokens {
 		if execBannedTokens[tok] {
-			return "[erreur] commande interdite: " + tok
+			return "[error] forbidden command: " + tok
 		}
 	}
 	for _, tok := range tokens[1:] {
 		if execBannedFlags[tok] {
-			return "[erreur] flag interdit: " + tok
+			return "[error] forbidden flag: " + tok
 		}
 		// H1 : formes collées (python3 -c<charge>, node --eval=<charge>).
 		if bannedEvalFlag(binary, tok) {
-			return "[erreur] flag interdit: " + tok
+			return "[error] forbidden flag: " + tok
 		}
 		if msg := s.checkArg(tok); msg != "" {
-			return "[erreur] " + msg
+			return "[error] " + msg
 		}
 	}
 	// H2/H5/H7 : un programme sed/awk à effets de bord passé via Bash
@@ -704,7 +704,7 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 	// heuristiques : refusé dans Bash, le modèle passe par l'outil dédié
 	// (qui déclenche l'approbation).
 	if msg := bashProgramRisk(binary, bashEmbeddedProgram(binary, tokens[1:])); msg != "" {
-		return "[erreur] " + msg
+		return "[error] " + msg
 	}
 	timeout := intArg(args, "timeout")
 	if timeout <= 0 {
@@ -736,7 +736,7 @@ func (s *Sandbox) toolBash(ctx context.Context, args map[string]any) string {
 		parts = append(parts, "sortie:\n"+out)
 	}
 	if err != nil && exit == 0 {
-		parts = append(parts, fmt.Sprintf("[erreur] %v", err))
+		parts = append(parts, fmt.Sprintf("[error] %v", err))
 	}
 	result := strings.Join(parts, "\n\n")
 	// H4 : le token GitHub ne remonte jamais au modèle, même via
@@ -816,13 +816,13 @@ func (s *Sandbox) checkArg(tok string) string {
 
 func (s *Sandbox) toolRunScript(ctx context.Context, args map[string]any) string {
 	if !s.AllowScript {
-		return "[erreur] RunScript desactive (definir CETAS_LITE_ALLOW_SCRIPT=1 pour l'activer)"
+		return "[error] RunScript disabled (set CETAS_LITE_ALLOW_SCRIPT=1 to enable it)"
 	}
 	lang := strings.ToLower(strings.TrimSpace(strArg(args, "language")))
 	runners := map[string]string{"python": "python3", "node": "node"}
 	runner, ok := runners[lang]
 	if !ok {
-		return "[erreur] Unsupported language: " + lang
+		return "[error] Unsupported language: " + lang
 	}
 	code := strArg(args, "code")
 	timeout := intArg(args, "timeout")
@@ -840,7 +840,7 @@ func (s *Sandbox) toolRunScript(ctx context.Context, args map[string]any) string
 	// via le même chemin que Bash : comportement identique partout.
 	rel := fmt.Sprintf(".runscript_tmp/script-%d.%s", time.Now().UnixNano(), ext)
 	if err := s.fs.WriteFile(ctx, rel, []byte(code), 0o600); err != nil {
-		return "[erreur] ecriture script impossible: " + err.Error()
+		return "[error] cannot write script: " + err.Error()
 	}
 	defer s.fs.Remove(ctx, rel)
 	env := map[string]string{
@@ -866,7 +866,7 @@ func (s *Sandbox) toolRunScript(ctx context.Context, args map[string]any) string
 		parts = append(parts, "sortie:\n"+out)
 	}
 	if err != nil && exitCodeOf(err) == 0 {
-		parts = append(parts, fmt.Sprintf("[erreur] %v", err))
+		parts = append(parts, fmt.Sprintf("[error] %v", err))
 	}
 	return strings.Join(parts, "\n\n")
 }
@@ -1047,13 +1047,13 @@ func truncateToolForModel(s string) string {
 }
 
 // Phase 2 : erreurs d'outils uniformes et actionnables. Toute erreur remonte
-// au modèle sous la forme "[erreur] <outil> : <cause> — <consigne>", pour
+// au modèle sous la forme "[error] <outil> : <cause> — <consigne>", pour
 // qu'il se corrige en UN tour au lieu de dériver. Les messages déjà
 // explicites (nom de l'outil ou consigne de correction présents) sont
 // laissés intacts ; seuls les messages bruts (ex. erreur système nue)
 // sont enrichis. Appliqué au point de passage unique toolRegistry.execute.
 func uniformToolError(tool string, tr ToolResult) ToolResult {
-	const pfx = "[erreur]"
+	const pfx = "[error]"
 	t := tr.Text
 	if !strings.HasPrefix(t, pfx) {
 		return tr
@@ -1061,11 +1061,11 @@ func uniformToolError(tool string, tr ToolResult) ToolResult {
 	rest := strings.TrimSpace(strings.TrimPrefix(t, pfx))
 	lower := strings.ToLower(rest)
 	if strings.Contains(rest, tool) ||
-		strings.Contains(lower, "renvoie") || strings.Contains(lower, "corrige") ||
-		strings.Contains(lower, "utilise") || strings.Contains(lower, "ajoute") {
+		strings.Contains(lower, "retry") || strings.Contains(lower, "fix") ||
+		strings.Contains(lower, "use") || strings.Contains(lower, "add") {
 		return tr // déjà uniforme et actionnable
 	}
-	tr.Text = pfx + " " + tool + " : " + rest + " — corrige les arguments et renvoie l'appel."
+	tr.Text = pfx + " " + tool + ": " + rest + " — fix the arguments and retry the call."
 	return tr
 }
 

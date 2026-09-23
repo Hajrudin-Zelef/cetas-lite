@@ -52,11 +52,11 @@ func (e *Engine) mcpSchemas(ctx context.Context) []provider.Tool {
 func (e *Engine) mcpExecute(ctx context.Context, name, argsJSON string) ToolResult {
 	mt := e.mcpTools()
 	if mt == nil {
-		return ToolResult{Text: "[erreur] MCP indisponible"}
+		return ToolResult{Text: "[error] MCP unavailable"}
 	}
 	out, err := mt.Call(ctx, name, parseArgs(argsJSON))
 	if err != nil {
-		return ToolResult{Text: "[erreur] MCP: " + err.Error()}
+		return ToolResult{Text: "[error] MCP: " + err.Error()}
 	}
 	return ToolResult{Text: truncate(out, toolMaxOutput)}
 }

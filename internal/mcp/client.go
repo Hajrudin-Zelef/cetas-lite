@@ -130,7 +130,7 @@ func (c *Client) CallTool(ctx context.Context, name string, args map[string]any)
 		text = "(resultat vide)"
 	}
 	if res.IsError {
-		text = "[erreur] " + text
+		text = "[error] " + text
 	}
 	return text, nil
 }

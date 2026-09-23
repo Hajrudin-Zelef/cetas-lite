@@ -38,7 +38,7 @@ func TestToolSchemasCount(t *testing.T) {
 func TestWriteThenReadPagination(t *testing.T) {
 	sb := newTestSandbox(t)
 	res := sb.Execute(context.Background(), "Write", `{"file_path":"a/b.txt","content":"l1\nl2\nl3\nl4"}`)
-	if strings.HasPrefix(res.Text, "[erreur]") {
+	if strings.HasPrefix(res.Text, "[error]") {
 		t.Fatalf("write: %s", res.Text)
 	}
 	if len(res.Diff) != 4 {
@@ -53,7 +53,7 @@ func TestWriteThenReadPagination(t *testing.T) {
 func TestReadRejectsEscape(t *testing.T) {
 	sb := newTestSandbox(t)
 	got := sb.Execute(context.Background(), "Read", `{"file_path":"../../../etc/passwd"}`)
-	if !strings.HasPrefix(got.Text, "[erreur]") {
+	if !strings.HasPrefix(got.Text, "[error]") {
 		t.Fatalf("lecture hors sandbox acceptee: %q", got.Text)
 	}
 }
@@ -63,15 +63,15 @@ func TestEditCases(t *testing.T) {
 	sb.Execute(context.Background(), "Write", `{"file_path":"f.txt","content":"hello world"}`)
 
 	ok := sb.Execute(context.Background(), "Edit", `{"file_path":"f.txt","old":"world","new":"terre"}`)
-	if strings.HasPrefix(ok.Text, "[erreur]") {
+	if strings.HasPrefix(ok.Text, "[error]") {
 		t.Fatalf("edit: %s", ok.Text)
 	}
 	again := sb.Execute(context.Background(), "Edit", `{"file_path":"f.txt","old":"world","new":"terre"}`)
-	if !strings.Contains(again.Text, "deja") && !strings.Contains(again.Text, "déjà") {
+	if !strings.Contains(again.Text, "already up to date") {
 		t.Fatalf("edit deja applique: %q", again.Text)
 	}
 	missing := sb.Execute(context.Background(), "Edit", `{"file_path":"f.txt","old":"zzz","new":"x"}`)
-	if !strings.HasPrefix(missing.Text, "[erreur]") {
+	if !strings.HasPrefix(missing.Text, "[error]") {
 		t.Fatalf("edit introuvable doit echouer: %q", missing.Text)
 	}
 	sb.Execute(context.Background(), "Write", `{"file_path":"d.txt","content":"a\na"}`)
@@ -115,7 +115,7 @@ func TestLsExcludesHiddenAndGit(t *testing.T) {
 func TestTodoWrite(t *testing.T) {
 	sb := newTestSandbox(t)
 	out := sb.Execute(context.Background(), "TodoWrite", `{"todos":[{"content":"a","status":"pending"}]}`)
-	if strings.HasPrefix(out.Text, "[erreur]") {
+	if strings.HasPrefix(out.Text, "[error]") {
 		t.Fatalf("todo: %q", out.Text)
 	}
 }
@@ -127,11 +127,11 @@ func TestBashAllowlist(t *testing.T) {
 		t.Fatalf("bash echo = %q", ok.Text)
 	}
 	denied := sb.Execute(context.Background(), "Bash", `{"command":"curl http://x"}`)
-	if !strings.Contains(denied.Text, "non autorisee") && !strings.Contains(denied.Text, "non autorisée") {
+	if !strings.Contains(denied.Text, "not allowed") {
 		t.Fatalf("bash curl doit etre refuse: %q", denied.Text)
 	}
 	flag := sb.Execute(context.Background(), "Bash", `{"command":"echo -e x"}`)
-	if !strings.Contains(flag.Text, "interdit") {
+	if !strings.Contains(flag.Text, "forbidden") {
 		t.Fatalf("flag -e doit etre refuse: %q", flag.Text)
 	}
 }
@@ -189,7 +189,7 @@ func TestBashRejectsEmbeddedAbsoluteFlag(t *testing.T) {
 func TestBashAllowsRelativeInside(t *testing.T) {
 	sb := newTestSandbox(t)
 	write := sb.Execute(context.Background(), "Write", `{"file_path":"sub/note.txt","content":"bonjour"}`)
-	if strings.HasPrefix(write.Text, "[erreur]") {
+	if strings.HasPrefix(write.Text, "[error]") {
 		t.Fatalf("write: %q", write.Text)
 	}
 	out := sb.Execute(context.Background(), "Bash", `{"command":"cat sub/note.txt"}`)
@@ -204,7 +204,7 @@ func TestRunScriptDisabledByDefault(t *testing.T) {
 		t.Fatal(err)
 	}
 	out := sb.Execute(context.Background(), "RunScript", `{"language":"python","code":"print(1)"}`)
-	if !strings.Contains(out.Text, "desactive") {
+	if !strings.Contains(out.Text, "disabled") {
 		t.Fatalf("RunScript doit etre desactive par defaut: %q", out.Text)
 	}
 }
@@ -240,7 +240,7 @@ func TestRunScript(t *testing.T) {
 func TestUnknownTool(t *testing.T) {
 	sb := newTestSandbox(t)
 	out := sb.Execute(context.Background(), "Nope", `{}`)
-	if !strings.HasPrefix(out.Text, "[erreur]") {
+	if !strings.HasPrefix(out.Text, "[error]") {
 		t.Fatalf("outil inconnu: %q", out.Text)
 	}
 }
@@ -266,7 +266,7 @@ func TestReadDefaultLimit(t *testing.T) {
 	for i := 1; i <= 500; i++ {
 		b.WriteString("ligne " + strconv.Itoa(i) + "\n")
 	}
-	if res := sb.Execute(context.Background(), "Write", `{"file_path":"gros.txt","content":`+strconv.Quote(b.String())+`}`); strings.HasPrefix(res.Text, "[erreur]") {
+	if res := sb.Execute(context.Background(), "Write", `{"file_path":"gros.txt","content":`+strconv.Quote(b.String())+`}`); strings.HasPrefix(res.Text, "[error]") {
 		t.Fatalf("write: %s", res.Text)
 	}
 	got := sb.Execute(context.Background(), "Read", `{"file_path":"gros.txt"}`)
@@ -323,7 +323,7 @@ func TestBashRejectsGluedEvalFlags(t *testing.T) {
 		`node -e1+1`,
 	} {
 		out := sb.Execute(context.Background(), "Bash", `{"command":`+strconv.Quote(cmd)+`}`)
-		if !strings.Contains(out.Text, "flag interdit") {
+		if !strings.Contains(out.Text, "forbidden flag") {
 			t.Errorf("commande %q aurait du etre refusee: %q", cmd, out.Text)
 		}
 	}
@@ -337,13 +337,13 @@ func TestBashRejectsFindExec(t *testing.T) {
 		`find . -execdir echo {} \;`,
 	} {
 		out := sb.Execute(context.Background(), "Bash", `{"command":`+strconv.Quote(cmd)+`}`)
-		if !strings.Contains(out.Text, "flag interdit") {
+		if !strings.Contains(out.Text, "forbidden flag") {
 			t.Errorf("commande %q aurait du etre refusee: %q", cmd, out.Text)
 		}
 	}
 	// find sans -exec reste utilisable.
 	out := sb.Execute(context.Background(), "Bash", `{"command":"find . -maxdepth 1"}`)
-	if strings.Contains(out.Text, "flag interdit") {
+	if strings.Contains(out.Text, "forbidden flag") {
 		t.Errorf("find simple ne devrait pas etre bloque: %q", out.Text)
 	}
 }
@@ -354,7 +354,7 @@ func TestBashRejectsBinaryPath(t *testing.T) {
 	sb := newTestSandbox(t)
 	for _, cmd := range []string{"outils/ls", "/bin/ls", "./ls", "../bin/ls"} {
 		out := sb.Execute(context.Background(), "Bash", `{"command":`+strconv.Quote(cmd)+`}`)
-		if !strings.Contains(out.Text, "chemin de binaire interdit") {
+		if !strings.Contains(out.Text, "binary path forbidden") {
 			t.Errorf("commande %q aurait du etre refusee: %q", cmd, out.Text)
 		}
 	}
@@ -425,16 +425,16 @@ func TestBashProgramRisk(t *testing.T) {
 func TestBashRejectsRiskyAwkProgram(t *testing.T) {
 	sb := newTestSandbox(t)
 	out := sb.Execute(context.Background(), "Bash", `{"command":"awk 'BEGIN{system(\"id\")}'"}`)
-	if !strings.Contains(out.Text, "outil Awk dedie") {
+	if !strings.Contains(out.Text, "dedicated Awk tool") {
 		t.Fatalf("awk system() via Bash aurait du etre refuse: %q", out.Text)
 	}
 	out = sb.Execute(context.Background(), "Bash", `{"command":"sed 'r /etc/passwd'"}`)
-	if !strings.Contains(out.Text, "outil Sed dedie") {
+	if !strings.Contains(out.Text, "dedicated Sed tool") {
 		t.Fatalf("sed r via Bash aurait du etre refuse: %q", out.Text)
 	}
 	// Une option à argument séparé (-v) ne doit pas masquer le programme.
 	out = sb.Execute(context.Background(), "Bash", `{"command":"awk -v x=1 'BEGIN{system(\"id\")}'"}`)
-	if !strings.Contains(out.Text, "outil Awk dedie") {
+	if !strings.Contains(out.Text, "dedicated Awk tool") {
 		t.Fatalf("awk -v ... system() via Bash aurait du etre refuse: %q", out.Text)
 	}
 	// Un awk -v légitime reste utilisable.
@@ -443,7 +443,7 @@ func TestBashRejectsRiskyAwkProgram(t *testing.T) {
 		t.Fatal(err)
 	}
 	out = sb2.Execute(context.Background(), "Bash", `{"command":"awk -v OFS=, '{print $1}' d.txt"}`)
-	if strings.Contains(out.Text, "outil Awk dedie") {
+	if strings.Contains(out.Text, "dedicated Awk tool") {
 		t.Fatalf("awk -v legitime refuse a tort: %q", out.Text)
 	}
 }
@@ -516,7 +516,7 @@ func TestToolEchoRuneTruncation(t *testing.T) {
 func TestGlobStarBound(t *testing.T) {
 	sb := &Sandbox{}
 	r := sb.Execute(context.Background(), "Glob", `{"pattern":"**/**/**/**/**/**/**/**/**/x"}`)
-	if !strings.Contains(r.Text, "trop complexe") {
+	if !strings.Contains(r.Text, "too complex") {
 		t.Fatalf("motif à 9 ** aurait du etre refuse : %q", r.Text)
 	}
 }
@@ -547,7 +547,7 @@ func TestWalkErrorWarnsModel(t *testing.T) {
 	}
 	for name, args := range cases {
 		r := sb.Execute(ctx, name, args)
-		if !strings.Contains(r.Text, "[avertissement] parcours incomplet") {
+		if !strings.Contains(r.Text, "[warning] incomplete walk") {
 			t.Fatalf("%s : avertissement attendu, got %q", name, r.Text)
 		}
 	}
@@ -637,6 +637,61 @@ func TestToolDescriptionsAllEnglish(t *testing.T) {
 			where := "outil " + tool.Function.Name
 			walk(tool.Function.Description, where+" description")
 			walk(tool.Function.Parameters, where+" paramètres")
+		}
+	}
+}
+
+// TestToolResultMarkersAllEnglish : règle globale — aucun résultat d'outil
+// envoyé au modèle ne doit contenir les marqueurs FR [erreur], [refuse] ou
+// [avertissement]. Exerce les chemins d'échec de chaque famille et vérifie
+// que seuls [error], [denied], [warning], [info] et [ok] y figurent.
+func TestToolResultMarkersAllEnglish(t *testing.T) {
+	ctx := context.Background()
+	sb := newTestSandbox(t)
+	var texts []string
+	collect := func(s string) { texts = append(texts, s) }
+
+	for _, tc := range [][2]string{
+		{"Read", `{"file_path":"../evil"}`},
+		{"Read", `{"file_path":"nope.txt"}`},
+		{"Write", `{"file_path":""}`},
+		{"Edit", `{"file_path":"a","old":"","new":"b"}`},
+		{"Grep", `{"pattern":""}`},
+		{"Grep", `{"pattern":"(["}`},
+		{"Glob", `{"pattern":"**/**/**/**/**/**/**/**/**/x"}`},
+		{"Bash", `{"command":""}`},
+		{"Bash", `{"command":"curl x"}`},
+		{"Bash", `{"command":"rm -rf /"}`},
+		{"Bash", `{"command":"/bin/ls"}`},
+		{"RunScript", `{"language":"ruby","code":"1"}`},
+		{"Tree", `{"path":"../evil"}`},
+		{"Mkdir", `{"path":"../evil"}`},
+		{"Mv", `{"src":"../x","dst":"y"}`},
+		{"Sed", `{"expression":"","file":"f"}`},
+		{"Awk", `{"program":""}`},
+		{"Curl", `{"url":"http://u:p@h/"}`},
+		{"Curl", `{"url":"ftp://h/"}`},
+		{"GitHubRepos", `{}`},
+		{"Nope", `{}`},
+	} {
+		collect(sb.Execute(ctx, tc[0], tc[1]).Text)
+	}
+
+	e := ragEngine(t, fakeRag{ready: false})
+	collect(e.ragExecute(ctx, "rag_search", `{"query":""}`).Text)
+	collect(e.ragExecute(ctx, "rag_bidon", `{}`).Text)
+	collect(e.memExecute("u", "mem_search", `{"query":""}`).Text)
+	collect(e.memExecute("u", "mem_bidon", `{}`).Text)
+
+	collect(missingArgErr("Read", "file_path"))
+	collect(uniformToolError("Read", ToolResult{Text: "[error] open /x: nope"}).Text)
+	collect(uniformToolError("Read", ToolResult{Text: "contenu du fichier"}).Text)
+
+	for _, txt := range texts {
+		for _, fr := range []string{"[erreur]", "[refuse]", "[avertissement]"} {
+			if strings.Contains(txt, fr) {
+				t.Errorf("marqueur FR %q dans un resultat d'outil : %q", fr, txt)
+			}
 		}
 	}
 }

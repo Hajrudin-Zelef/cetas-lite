@@ -245,7 +245,7 @@ func TestExecParallelRunRefused(t *testing.T) {
 }
 
 // TestUniformToolError vérifie l'uniformisation des erreurs : toute erreur
-// brute devient "[erreur] <outil> : <cause> — <consigne>".
+// brute devient "[error] <outil> : <cause> — <consigne>".
 func TestUniformToolError(t *testing.T) {
 	tests := []struct {
 		name string
@@ -257,19 +257,19 @@ func TestUniformToolError(t *testing.T) {
 		{
 			name: "erreur systeme nue",
 			tool: "Read",
-			in:   "[erreur] open /x.txt: no such file or directory",
-			want: "[erreur] Read : open /x.txt: no such file or directory — corrige les arguments et renvoie l'appel.",
+			in:   "[error] open /x.txt: no such file or directory",
+			want: "[error] Read: open /x.txt: no such file or directory — fix the arguments and retry the call.",
 		},
 		{
 			name: "deja actionnable : champ manquant",
 			tool: "Read",
-			in:   `[erreur] Read : champ requis manquant ou vide : "file_path" — renvoie l'appel avec ce champ renseigne.`,
+			in:   `[error] Read: missing or empty required field: "file_path" — retry the call with this field set.`,
 			unch: true,
 		},
 		{
 			name: "deja actionnable : consigne utilise",
 			tool: "Read",
-			in:   "[erreur] fichier introuvable: x. Utilise Glob pour trouver le bon chemin.",
+			in:   "[error] file not found: x. Use Glob to find the right path.",
 			unch: true,
 		},
 		{
@@ -281,7 +281,7 @@ func TestUniformToolError(t *testing.T) {
 		{
 			name: "refus intact",
 			tool: "Write",
-			in:   "[refuse] l'utilisateur a refuse.",
+			in:   "[denied] l'utilisateur a refuse.",
 			unch: true,
 		},
 	}

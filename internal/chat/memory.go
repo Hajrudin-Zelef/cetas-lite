@@ -53,14 +53,14 @@ func MemoryToolSchemas() []provider.Tool {
 func (e *Engine) memExecute(user, name, argsJSON string) ToolResult {
 	m := e.memoryTools()
 	if m == nil || user == "" {
-		return ToolResult{Text: "[erreur] memoire indisponible"}
+		return ToolResult{Text: "[error] memory unavailable"}
 	}
 	args := parseArgs(argsJSON)
 	switch name {
 	case "mem_search":
 		query := strings.TrimSpace(strArg(args, "query"))
 		if query == "" {
-			return ToolResult{Text: "[erreur] requete vide"}
+			return ToolResult{Text: "[error] empty query"}
 		}
 		hits := m.Search(user, query, intArg(args, "limit"))
 		if len(hits) == 0 {
@@ -76,33 +76,33 @@ func (e *Engine) memExecute(user, name, argsJSON string) ToolResult {
 		page := strings.TrimSpace(strArg(args, "name"))
 		out, err := m.Read(user, page, intArg(args, "offset"), intArg(args, "limit"))
 		if err != nil {
-			return ToolResult{Text: "[erreur] " + err.Error()}
+			return ToolResult{Text: "[error] " + err.Error()}
 		}
 		return ToolResult{Text: truncate(out, toolMaxOutput)}
 	case "mem_add":
 		page := strings.TrimSpace(strArg(args, "name"))
 		if err := m.Add(user, page, strArg(args, "content")); err != nil {
-			return ToolResult{Text: "[erreur] " + err.Error()}
+			return ToolResult{Text: "[error] " + err.Error()}
 		}
-		return ToolResult{Text: "[ok] page " + page + " creee"}
+		return ToolResult{Text: "[ok] page " + page + " created"}
 	case "mem_edit":
 		page := strings.TrimSpace(strArg(args, "name"))
 		err := m.Edit(user, page, strArg(args, "old"), strArg(args, "new"))
 		if errors.Is(err, memory.ErrAlreadyApplied) {
-			return ToolResult{Text: "[ok] deja a jour"}
+			return ToolResult{Text: "[ok] already up to date"}
 		}
 		if err != nil {
-			return ToolResult{Text: "[erreur] " + err.Error()}
+			return ToolResult{Text: "[error] " + err.Error()}
 		}
-		return ToolResult{Text: "[ok] page " + page + " modifiee"}
+		return ToolResult{Text: "[ok] page " + page + " modified"}
 	case "mem_delete":
 		page := strings.TrimSpace(strArg(args, "name"))
 		if err := m.Delete(user, page); err != nil {
-			return ToolResult{Text: "[erreur] " + err.Error()}
+			return ToolResult{Text: "[error] " + err.Error()}
 		}
-		return ToolResult{Text: "[ok] page " + page + " supprimee"}
+		return ToolResult{Text: "[ok] page " + page + " deleted"}
 	}
-	return ToolResult{Text: "[erreur] outil inconnu: " + name}
+	return ToolResult{Text: "[error] unknown tool: " + name}
 }
 
 func (e *Engine) memoryIndexMessage(user string) (provider.Message, bool) {

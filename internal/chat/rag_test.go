@@ -81,16 +81,16 @@ func TestRagExecuteSearchReadAndErrors(t *testing.T) {
 	if !strings.Contains(out.Text, "a/alpha.md") || !strings.Contains(out.Text, "extrait alpha") {
 		t.Fatalf("recherche: %q", out.Text)
 	}
-	if out := e.ragExecute(ctx, "rag_search", `{"query":""}`); !strings.Contains(out.Text, "[erreur]") {
+	if out := e.ragExecute(ctx, "rag_search", `{"query":""}`); !strings.Contains(out.Text, "[error]") {
 		t.Fatalf("requete vide: %q", out.Text)
 	}
 	if out := e.ragExecute(ctx, "rag_read", `{"path":"a/alpha.md"}`); !strings.Contains(out.Text, "ligne un") {
 		t.Fatalf("lecture: %q", out.Text)
 	}
-	if out := e.ragExecute(ctx, "rag_read", `{"path":""}`); !strings.Contains(out.Text, "[erreur]") {
+	if out := e.ragExecute(ctx, "rag_read", `{"path":""}`); !strings.Contains(out.Text, "[error]") {
 		t.Fatalf("chemin vide: %q", out.Text)
 	}
-	if out := e.ragExecute(ctx, "rag_bidon", `{}`); !strings.Contains(out.Text, "outil inconnu") {
+	if out := e.ragExecute(ctx, "rag_bidon", `{}`); !strings.Contains(out.Text, "unknown tool") {
 		t.Fatalf("outil inconnu: %q", out.Text)
 	}
 }
@@ -98,11 +98,11 @@ func TestRagExecuteSearchReadAndErrors(t *testing.T) {
 func TestRagExecuteUnavailable(t *testing.T) {
 	ctx := context.Background()
 	e := ragEngine(t, fakeRag{ready: false})
-	if out := e.ragExecute(ctx, "rag_search", `{"query":"x"}`); !strings.Contains(out.Text, "indisponible") {
+	if out := e.ragExecute(ctx, "rag_search", `{"query":"x"}`); !strings.Contains(out.Text, "unavailable") {
 		t.Fatalf("non pret: %q", out.Text)
 	}
 	e2 := ragEngine(t, nil)
-	if out := e2.ragExecute(ctx, "rag_search", `{"query":"x"}`); !strings.Contains(out.Text, "indisponible") {
+	if out := e2.ragExecute(ctx, "rag_search", `{"query":"x"}`); !strings.Contains(out.Text, "unavailable") {
 		t.Fatalf("sans RAG: %q", out.Text)
 	}
 }

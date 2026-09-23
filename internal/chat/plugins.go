@@ -64,7 +64,7 @@ func PluginToolSchemas(defs []plugins.Def) []provider.Tool {
 func (e *Engine) pluginExecute(ctx context.Context, name, argsJSON string) ToolResult {
 	pm := e.pluginManager()
 	if pm == nil {
-		return ToolResult{Text: "[erreur] plugins non disponibles"}
+		return ToolResult{Text: "[error] plugins unavailable"}
 	}
 	out, err := pm.Execute(ctx, name, argsJSON)
 	if err != nil {

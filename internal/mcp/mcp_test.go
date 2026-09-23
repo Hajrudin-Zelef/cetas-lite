@@ -115,7 +115,7 @@ func TestStdioCallError(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.HasPrefix(out, "[erreur]") {
+	if !strings.HasPrefix(out, "[error]") {
 		t.Fatalf("isError attendu: %q", out)
 	}
 }

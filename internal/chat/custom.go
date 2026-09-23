@@ -31,11 +31,11 @@ func CustomToolSchemas(defs []customtools.Def) []provider.Tool {
 func (e *Engine) customExecute(ctx context.Context, name, argsJSON string) ToolResult {
 	ct := e.customTools()
 	if ct == nil {
-		return ToolResult{Text: "[erreur] outils personnalises indisponibles"}
+		return ToolResult{Text: "[error] custom tools unavailable"}
 	}
 	out, err := ct.Call(ctx, name, argsJSON)
 	if err != nil {
-		return ToolResult{Text: "[erreur] " + err.Error()}
+		return ToolResult{Text: "[error] " + err.Error()}
 	}
 	return ToolResult{Text: truncate(out, toolMaxOutput)}
 }

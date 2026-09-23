@@ -79,7 +79,7 @@ func TestToolRegistryBuiltinSchemas(t *testing.T) {
 func TestToolRegistryNilFallback(t *testing.T) {
 	reg := toolRegistry{}
 	out, _ := reg.execute(context.Background(), toolEnv{}, "Inconnu", "{}")
-	if !strings.HasPrefix(out.Text, "[erreur]") {
+	if !strings.HasPrefix(out.Text, "[error]") {
 		t.Fatalf("outil inconnu sans repli = %q", out.Text)
 	}
 }
