@@ -111,7 +111,7 @@ func (ix *Index) Search(ctx context.Context, query string, limit int) Result {
 		return Result{}
 	}
 	res := Result{Total: len(ix.chunks), Corpora: ix.stats.Corpora, Ready: ix.stats.Ready}
-	terms := uniqueTerms(tokenize(query))
+	terms := uniqueTerms(tokenize(cleanQueryForSearch(query)))
 	if len(terms) == 0 || len(ix.chunks) == 0 {
 		return res
 	}
@@ -336,6 +336,92 @@ func tokenize(s string) []string {
 	}
 	flush()
 	return out
+}
+
+// ragQueryFillerPhrases : formulations conversationnelles retirees de la
+// requete avant BM25 (iteration 3). Un mot-outil rare dans le corpus
+// (ex. « nouveau ») recevait un IDF eleve + boost titre et ejectait les
+// vrais sujets : « De nouveau sur kimi k3? » classait un article contenant
+// « nouveau » dans son titre devant la section Kimi dediee. Formes deja
+// normalisees (minuscules, sans accents, separateurs -> espaces) ;
+// comparaison avec frontieres de mots. Les identifiants significatifs
+// (kimi, k3, glm-5.3…) ne sont jamais touches : seules les formulations
+// vides de sens documentaire sont retirees, jamais un mot isole qui
+// pourrait etre porteur.
+var ragQueryFillerPhrases = []string{
+	// Francais.
+	"de nouveau", "parle moi de",
+	"qu est ce que", "qu est ce qu",
+	"s il te plait", "s il vous plait",
+	"dis moi", "explique moi",
+	"c est quoi", "stp", "svp",
+	// Anglais.
+	"tell me about", "what is", "what s",
+	"can you", "could you", "please",
+}
+
+// ragQueryStopwords : mots-outils FR/EN retires de la requete (niveau
+// token). Un mot-outil rare dans le corpus (ex. « sur », df=13) recevait
+// un IDF eleve et faussait le classement meme apres retrait des
+// formulations (« De nouveau sur kimi k3? » -> « sur kimi k3 »). Formes
+// normalisees. Jamais de mot pouvant etre un identifiant.
+var ragQueryStopwords = map[string]bool{
+	// Francais.
+	"le": true, "la": true, "les": true, "de": true, "des": true, "du": true,
+	"un": true, "une": true, "et": true, "est": true, "sont": true,
+	"dans": true, "pour": true, "avec": true, "sur": true, "par": true,
+	"au": true, "aux": true, "ce": true, "cet": true, "cette": true,
+	"ces": true, "il": true, "elle": true, "ils": true, "elles": true,
+	"qui": true, "que": true, "quoi": true, "quand": true, "ou": true,
+	"comment": true, "ne": true, "pas": true, "plus": true, "moins": true,
+	"se": true, "son": true, "sa": true, "ses": true,
+	"notre": true, "nos": true, "votre": true, "vos": true,
+	"leur": true, "leurs": true, "mais": true, "donc": true, "or": true,
+	"ni": true, "car": true, "comme": true, "tout": true, "tous": true,
+	"toute": true, "toutes": true, "aussi": true, "tres": true,
+	"bien": true, "encore": true, "deja": true, "alors": true, "si": true,
+	"etre": true, "avoir": true, "faire": true,
+	// Anglais.
+	"the": true, "an": true, "of": true, "in": true, "on": true,
+	"and": true, "is": true, "are": true, "was": true, "were": true,
+	"be": true, "been": true, "to": true, "for": true, "with": true,
+	"as": true, "at": true, "by": true, "from": true, "that": true,
+	"this": true, "it": true, "its": true, "not": true, "you": true,
+	"your": true, "we": true, "they": true, "their": true,
+	"has": true, "have": true, "had": true, "will": true, "would": true,
+	"do": true, "does": true, "did": true, "if": true, "then": true,
+	"than": true, "so": true, "no": true,
+}
+
+// cleanQueryForSearch : nettoie la requete des formulations
+// conversationnelles et des mots-outils avant tokenisation BM25.
+// Les separateurs deviennent des espaces pour que « plaît, » matche
+// comme « plait ». Si le nettoyage vide la requete, les termes d'origine
+// sont conserves (fail-open).
+func cleanQueryForSearch(q string) string {
+	var b strings.Builder
+	b.Grow(len(q))
+	for _, r := range normalize(q) {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) || r == ' ' {
+			b.WriteRune(r)
+		} else {
+			b.WriteRune(' ')
+		}
+	}
+	n := " " + strings.Join(strings.Fields(b.String()), " ") + " "
+	for _, p := range ragQueryFillerPhrases {
+		n = strings.ReplaceAll(n, " "+p+" ", " ")
+	}
+	var kept []string
+	for _, t := range tokenize(n) {
+		if !ragQueryStopwords[t] {
+			kept = append(kept, t)
+		}
+	}
+	if len(kept) == 0 {
+		return q
+	}
+	return strings.Join(kept, " ")
 }
 
 func snippetFrom(ex string) string {

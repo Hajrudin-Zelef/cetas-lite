@@ -302,3 +302,53 @@ func TestFirstMatchRangeFallback(t *testing.T) {
 		t.Fatal("ok attendu faux pour un terme absent")
 	}
 }
+
+// TestCleanQueryForSearch : l'iteration 3 retire les formulations
+// conversationnelles et les mots-outils avant BM25, sans toucher aux
+// identifiants significatifs. Si le nettoyage vide la requete, l'origine
+// est conservee (fail-open).
+func TestCleanQueryForSearch(t *testing.T) {
+	cases := []struct{ in, want string }{
+		{"De nouveau sur kimi k3?", "kimi k3"},
+		{"parle-moi de Kimi K3", "kimi k3"},
+		{"s'il te plaît, qu'est-ce que vLLM ?", "vllm"},
+		{"tell me about kimi k3, please", "kimi k3"},
+		// Mot normalement retire (« nouveau » dans « de nouveau ») mais
+		// significatif ici : conserve.
+		{"le nouveau modèle de Google", "nouveau modele google"},
+		{"what's new with kimi k3", "new kimi k3"},
+		// Identifiants : jamais touches (« 5 »/« 3 » isoles sont de toute
+		// facon sous minTermLen, comme dans l'indexation des documents).
+		{"GLM-5.3", "glm"},
+		{"kimi k3", "kimi k3"},
+		// Fail-open : que du remplissage -> requete d'origine.
+		{"De nouveau", "De nouveau"},
+		{"s'il te plaît", "s'il te plaît"},
+	}
+	for _, c := range cases {
+		if got := cleanQueryForSearch(c.in); got != c.want {
+			t.Errorf("cleanQueryForSearch(%q) = %q, attendu %q", c.in, got, c.want)
+		}
+	}
+}
+
+// TestSearchQueryCleaningRanksKimiFirst : regression du cas Kimi K3 —
+// « nouveau », rare et booste en titre, ne doit plus ejecter le vrai sujet.
+func TestSearchQueryCleaningRanksKimiFirst(t *testing.T) {
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "c1", "distractor.md"),
+		"# Le nouveau modele de Google\n\nDiffusionGemma ecrit son texte d'un bloc et 4 fois plus vite.\n")
+	writeFile(t, filepath.Join(root, "c1", "kimi.md"),
+		"# Kimi K3\n\nModele ouvert de Moonshot AI : poids, specifications et tutoriel.\n")
+	ix, err := Load(root)
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	res := ix.Search(context.Background(), "De nouveau sur kimi k3?", 5)
+	if len(res.Hits) == 0 {
+		t.Fatal("aucun hit")
+	}
+	if top := res.Hits[0].Path; !strings.HasSuffix(top, "kimi.md") {
+		t.Fatalf("top hit = %q, attendu kimi.md", top)
+	}
+}
