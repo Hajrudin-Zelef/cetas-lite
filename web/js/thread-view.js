@@ -16,6 +16,7 @@ import {
 import { setTurnStats } from "./turn-tokens.js";
 import { getFeaturePref } from "./model-select.js";
 import { getAgenticStyle, AGENTIC_STYLE_OPENCODE, AGENTIC_STYLE_CODEX } from "./agentic-style.js";
+import { fillChips } from "./suggest.js";
 
 // Loader rond "Marex" pendant la generation — repris trait pour trait du
 // CETAS complet (marexcode) : point central lumineux + anneau (arc visible)
@@ -1227,6 +1228,33 @@ export class ThreadView {
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
     this.requestFollow();
+  }
+
+  // ---- Questions suggérées : diversion d'accueil (itération 4) ----
+  // Vrai si le fil ne contient encore aucun message.
+  isEmpty() {
+    return !this.log.querySelector(".message-wrapper");
+  }
+
+  // Premier « salut » sur un fil vide : on affiche la salutation puis des
+  // chips de questions suggérées, sans appel modèle. Le clic sur un chip
+  // pose la question avec focus corpus (RAG forcément sollicité).
+  showGreetingSuggestions(text) {
+    this.clearEmpty();
+    this.addUser(text);
+    const wrapper = el("div", "message-wrapper message-wrapper-assistant");
+    const bubble = el("div", "message message-assistant");
+    bubble.appendChild(
+      el("div", "suggest-intro", "Je peux chercher dans votre base documentaire. Par quoi commencer ?")
+    );
+    const box = el("div", "suggest-chips");
+    box.textContent = "Chargement des suggestions…";
+    bubble.appendChild(box);
+    wrapper.appendChild(bubble);
+    this.log.appendChild(wrapper);
+    this.toBottom();
+    fillChips(box, (s) => this.sendText(s.question, { focus_corpus: s.corpus }));
+    return wrapper;
   }
 
   addSystem(text) {
@@ -2459,7 +2487,7 @@ export class ThreadView {
     }
   }
 
-  async sendText(text) {
+  async sendText(text, extra) {
     text = String(text || "").trim();
     if (!text || this.generating) return false;
     // Écho optimiste (vue Agents uniquement) : le message et l'indicateur
@@ -2478,6 +2506,7 @@ export class ThreadView {
     }
     const payload = this.getPayload(text);
     if (clientMsgId) payload.client_msg_id = clientMsgId;
+    if (extra && typeof extra === "object") Object.assign(payload, extra);
     try {
       await api(this.sendURL, { method: "POST", body: payload });
       this.generating = true;

@@ -164,6 +164,14 @@ func buildApp() (*app, error) {
 	ragMgr := rag.New(cfg.RagDir)
 	ragMgr.Start()
 	engine.SetRAG(ragMgr)
+	// Questions suggérées (itération 4 : diversion d'accueil).
+	// Fichier copié avec les corpus ; absent => pas de chips (fail-open).
+	if suggs, err := chat.LoadSuggestions(chat.SuggestionsPath(cfg.RagDir)); err != nil {
+		slog.Warn("questions suggerees illisibles", "err", err)
+	} else if len(suggs) > 0 {
+		engine.SetSuggestions(suggs)
+		slog.Info("questions suggerees chargees", "count", len(suggs))
+	}
 	attachStore := attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20)
 	engine.SetAttachments(attachStore)
 	// Les pièces jointes ne sont plus supprimées à l'envoi (le tour agent

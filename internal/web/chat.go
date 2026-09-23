@@ -29,6 +29,9 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		Repo        string   `json:"repo"`
 		Attachments []string `json:"attachments"`
 		MaxTokens   int      `json:"max_tokens"`
+		// FocusCorpus restreint la recherche RAG à un corpus (clic sur
+		// une question suggérée). Transmis tel quel au moteur.
+		FocusCorpus string `json:"focus_corpus"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -43,7 +46,7 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		maxTokens = chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens)
 	}
 	c := s.engine.Conversation(claims.Username)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments, MaxTokens: maxTokens})
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments, MaxTokens: maxTokens, FocusCorpus: body.FocusCorpus})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return
@@ -143,4 +146,20 @@ func (s *Server) handleChatState(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, s.engine.Conversation(claims.Username).State())
+}
+
+// handleChatSuggestions sert le pool de questions suggérées
+// (suggested-questions.yaml). Le tirage (3 chips, anti-répétition,
+// mixité, épinglés) est effectué côté navigateur.
+func (s *Server) handleChatSuggestions(w http.ResponseWriter, r *http.Request) {
+	claims := claimsFrom(r)
+	if claims == nil {
+		writeError(w, http.StatusUnauthorized, "non authentifie")
+		return
+	}
+	suggs := s.engine.Suggestions()
+	if suggs == nil {
+		suggs = []chat.Suggestion{}
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"suggestions": suggs})
 }

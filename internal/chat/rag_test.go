@@ -31,6 +31,10 @@ func (f fakeRag) Search(_ context.Context, _ string, limit int) rag.Result {
 	return rag.Result{Hits: hits, Ready: f.ready, Total: len(f.hits)}
 }
 
+func (f fakeRag) SearchCorpus(_ context.Context, _ string, _ string, limit int) rag.Result {
+	return f.Search(context.Background(), "", limit)
+}
+
 func (f fakeRag) Read(string, int, int) (string, error) { return f.body, f.err }
 
 func (f fakeRag) Stats() rag.Stats { return rag.Stats{Ready: f.ready, Chunks: len(f.hits)} }

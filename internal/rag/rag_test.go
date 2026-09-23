@@ -352,3 +352,35 @@ func TestSearchQueryCleaningRanksKimiFirst(t *testing.T) {
 		t.Fatalf("top hit = %q, attendu kimi.md", top)
 	}
 }
+
+// TestSearchCorpusFilters : la recherche restreinte à un corpus ne renvoie
+// que des chunks de ce corpus ; corpus inconnu => aucun hit (fail-open) ;
+// corpus vide => équivalent à Search.
+func TestSearchCorpusFilters(t *testing.T) {
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "cA", "doc.md"),
+		"# CUDA toolkit\n\nLe toolkit CUDA de NVIDIA pour le calcul GPU.\n")
+	writeFile(t, filepath.Join(root, "cB", "doc.md"),
+		"# CUDA toolkit\n\nLe toolkit CUDA de NVIDIA pour le calcul GPU.\n")
+	ix, err := Load(root)
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	res := ix.SearchCorpus(context.Background(), "cuda toolkit", "cA", 5)
+	if len(res.Hits) == 0 {
+		t.Fatal("aucun hit dans le corpus cA")
+	}
+	for _, h := range res.Hits {
+		if h.Corpus != "cA" {
+			t.Fatalf("hit hors corpus : %q (path %q)", h.Corpus, h.Path)
+		}
+	}
+	if res := ix.SearchCorpus(context.Background(), "cuda toolkit", "nope", 5); len(res.Hits) != 0 {
+		t.Fatalf("corpus inconnu : %d hits, attendu 0", len(res.Hits))
+	}
+	full := ix.Search(context.Background(), "cuda toolkit", 5)
+	scoped := ix.SearchCorpus(context.Background(), "cuda toolkit", "", 5)
+	if len(full.Hits) != len(scoped.Hits) {
+		t.Fatalf("corpus vide : %d hits vs %d en Search", len(scoped.Hits), len(full.Hits))
+	}
+}

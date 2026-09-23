@@ -50,6 +50,10 @@ type TurnInput struct {
 	// ProjectID est le projet (upload local ou dossier SFTP) sur lequel
 	// l'agent travaille. Vide = espace partagé historique.
 	ProjectID string
+	// FocusCorpus restreint la recherche RAG à un corpus (clic sur une
+	// question suggérée). Non vide => le RAG est forcément sollicité
+	// sur ce corpus (sans porte de score, la question étant curée).
+	FocusCorpus string
 	// MaxTokens limite les tokens generes par reponse (0 = defaut).
 	MaxTokens int
 	// WebDepth regle la profondeur de recherche web de l'agent :
@@ -137,7 +141,7 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, WebDepth: in.WebDepth, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, WebDepth: in.WebDepth, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments, FocusCorpus: in.FocusCorpus}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()

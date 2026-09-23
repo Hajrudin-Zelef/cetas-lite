@@ -106,6 +106,17 @@ type Index struct {
 // Search : classe les chunks par pertinence (BM25-lite, champs ponderes).
 // Respecte ctx ; s'arrete proprement si le budget est depasse.
 func (ix *Index) Search(ctx context.Context, query string, limit int) Result {
+	return ix.search(ctx, query, limit, "")
+}
+
+// SearchCorpus : comme Search mais restreint aux chunks d'un corpus
+// (focus au clic sur une question suggeree). Corpus vide ou inconnu :
+// aucun chunk ne matche, resultat vide (fail-open).
+func (ix *Index) SearchCorpus(ctx context.Context, query, corpus string, limit int) Result {
+	return ix.search(ctx, query, limit, corpus)
+}
+
+func (ix *Index) search(ctx context.Context, query string, limit int, corpus string) Result {
 	limit = clampLimit(limit)
 	if ix == nil {
 		return Result{}
@@ -115,8 +126,20 @@ func (ix *Index) Search(ctx context.Context, query string, limit int) Result {
 	if len(terms) == 0 || len(ix.chunks) == 0 {
 		return res
 	}
+	inScope := func(i int) bool {
+		return corpus == "" || ix.chunks[i].corpus == corpus
+	}
+	n := 0
+	for i := range ix.chunks {
+		if inScope(i) {
+			n++
+		}
+	}
+	if n == 0 {
+		return res
+	}
 
-	n := float64(len(ix.chunks))
+	nf := float64(n)
 	scores := make([]float64, len(ix.chunks))
 	matched := make([]int, len(ix.chunks))
 
@@ -128,8 +151,20 @@ func (ix *Index) Search(ctx context.Context, query string, limit int) Result {
 		if !ok {
 			continue
 		}
-		idf := math.Log(1 + (n-float64(len(ids))+0.5)/(float64(len(ids))+0.5))
+		df := 0
 		for _, id := range ids {
+			if inScope(int(id)) {
+				df++
+			}
+		}
+		if df == 0 {
+			continue
+		}
+		idf := math.Log(1 + (nf-float64(df)+0.5)/(float64(df)+0.5))
+		for _, id := range ids {
+			if !inScope(int(id)) {
+				continue
+			}
 			c := &ix.chunks[int(id)]
 			tf := float64(c.tf[t])
 			dl := float64(c.length)
@@ -144,7 +179,7 @@ func (ix *Index) Search(ctx context.Context, query string, limit int) Result {
 
 	order := make([]int, 0, len(ix.chunks))
 	for i := range ix.chunks {
-		if matched[i] > 0 {
+		if matched[i] > 0 && inScope(i) {
 			order = append(order, i)
 		}
 	}

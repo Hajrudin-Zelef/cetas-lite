@@ -13,6 +13,7 @@ import (
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/modelcaps"
 	"cetas-lite/internal/provider"
+	"cetas-lite/internal/rag"
 	"cetas-lite/internal/store"
 	"cetas-lite/internal/workspace"
 	"cetas-lite/internal/worktree"
@@ -41,6 +42,11 @@ type Engine struct {
 	convs      map[string]*Conversation
 	webLimiter map[string]*rate.Limiter
 	worktrees  *worktree.Manager
+
+	// Pool de questions suggérées (itération 4 : diversion d'accueil).
+	// Chargé au démarrage depuis suggested-questions.yaml, servi tel quel
+	// au navigateur qui effectue le tirage.
+	suggestions []Suggestion
 
 	// Runs d'agents paralleles et depot associe aux worktrees par
 	// conversation (chat principal inclus).
@@ -281,7 +287,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, WebDepth: last.WebDepth, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, ProjectID: last.ProjectID, Attachments: last.Attachments}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, WebDepth: last.WebDepth, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, ProjectID: last.ProjectID, Attachments: last.Attachments, FocusCorpus: last.FocusCorpus}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)
@@ -503,16 +509,37 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	// identique d'un tour a l'autre, ce qui maximise les chances de prompt
 	// caching (prefixe automatique cote provider ; aucun marquage de cache
 	// explicite n'est emis par ce code).
-	ragRes := e.ragHits(ctx, in.Text)
-	if rc, ok := ragContextFrom(ragRes); ok {
-		msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
+	//
+	// Focus corpus (clic sur une question suggérée) : recherche restreinte
+	// au corpus, RAG forcément sollicité (sans porte de score, la question
+	// étant curée). Fail-open : aucun hit => rien d'injecté, et la note
+	// « non couvert » ne s'applique pas (choix explicite).
+	focus := strings.TrimSpace(in.FocusCorpus) != ""
+	var ragRes rag.Result
+	if focus {
+		ragRes = e.ragHitsCorpus(ctx, in.Text, in.FocusCorpus)
+		if rc, ok := ragContextForced(ragRes); ok {
+			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
+		}
+	} else {
+		ragRes = e.ragHits(ctx, in.Text)
+		if rc, ok := ragContextFrom(ragRes); ok {
+			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
+		}
+		// Base locale active mais requete non couverte (iteration 2) : le dire
+		// immediatement et interdire de presenter une invention comme issue du
+		// corpus. Note stable (cache-friendly), inseree comme le contexte RAG
+		// pour couvrir aussi le mode agent.
+		if ragRes.Ready && !ragCovered(ragRes) {
+			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: ragNotCoveredNote()})
+		}
 	}
-	// Base locale active mais requete non couverte (iteration 2) : le dire
-	// immediatement et interdire de presenter une invention comme issue du
-	// corpus. Note stable (cache-friendly), inseree comme le contexte RAG
-	// pour couvrir aussi le mode agent.
-	if ragRes.Ready && !ragCovered(ragRes) {
-		msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: ragNotCoveredNote()})
+
+	// Couverture pour la suite : en focus, « couvert » = au moins un hit
+	// dans le corpus (pas de porte de score sur un choix explicite).
+	ragCoveredNow := ragCovered(ragRes)
+	if focus {
+		ragCoveredNow = len(ragRes.Hits) > 0
 	}
 
 	if res.agent && e.workspace != "" && in.User != "" {
@@ -537,7 +564,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	msgs = append([]provider.Message{{Role: "system", Content: searchDirective(webOn, nativePrimary)}}, msgs...)
 	// La base locale couvre la requete : on remplace la consigne "cherche
 	// sur le web" par "reponds d'abord depuis la base locale".
-	if webOn && ragCovered(ragRes) {
+	if webOn && ragCoveredNow {
 		msgs = replaceWebDirective(msgs, searchDirective(true, nativePrimary), localFirstDirective())
 	}
 
@@ -555,7 +582,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	if e.webToolsFor(in) && !nativePrimary {
 		// Base locale pertinente : on economise la pre-recherche web
 		// (jusqu'a 8 s + des tokens) et on repond depuis les extraits.
-		if !ragCovered(ragRes) {
+		if !ragCoveredNow {
 			if wctx := e.webContext(ctx, in.User, in.Text); wctx != "" {
 				msgs = append([]provider.Message{{Role: "system", Content: wctx}}, msgs...)
 			}

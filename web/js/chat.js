@@ -5,6 +5,7 @@ import { getFamilies, getMaxTokens, getFeaturePref, plusModelSubmenuContains, cl
 import { initReasonPanel } from "./reasoning-panel.js";
 import { initRequestsPanel } from "./requests-panel.js";
 import { initChatHero } from "./chat-hero.js";
+import { isGreeting } from "./suggest.js";
 import {
   estimateTokens,
   refreshCtxCounter,
@@ -167,6 +168,14 @@ export function initChat() {
       return;
     }
     showModelAlert(false);
+    // Diversion d'accueil (itération 4) : premier « salut » sur un fil
+    // vide => chips de questions suggérées, sans appel modèle.
+    if (isGreeting(text) && view.isEmpty()) {
+      input.value = "";
+      autoGrow();
+      view.showGreetingSuggestions(text);
+      return;
+    }
     input.value = "";
     autoGrow();
     const ok = await view.sendText(text);

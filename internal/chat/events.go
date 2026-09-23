@@ -31,4 +31,5 @@ type snapshotTurn struct {
 	Repo        string   `json:"repo,omitempty"`
 	ProjectID   string   `json:"project_id,omitempty"`
 	Attachments []string `json:"attachments,omitempty"`
+	FocusCorpus string   `json:"focus_corpus,omitempty"`
 }

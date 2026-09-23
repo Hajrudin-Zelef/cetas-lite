@@ -118,6 +118,21 @@ func (m *Manager) Search(ctx context.Context, query string, limit int) Result {
 	return ix.Search(cctx, query, limit)
 }
 
+// SearchCorpus : recherche restreinte aux chunks d'un corpus
+// (focus au clic sur une question suggeree).
+func (m *Manager) SearchCorpus(ctx context.Context, query, corpus string, limit int) Result {
+	ix := m.current()
+	if ix == nil || !ix.Stats().Ready {
+		return Result{}
+	}
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	cctx, cancel := context.WithTimeout(ctx, DefaultTimeout)
+	defer cancel()
+	return ix.SearchCorpus(cctx, query, corpus, limit)
+}
+
 // Read : relit un chunk par chemin (ou nom de base), lignes numerotees.
 func (m *Manager) Read(rel string, offset, limit int) (string, error) {
 	return m.current().Read(rel, offset, limit)

@@ -14,6 +14,9 @@ import (
 type RagTools interface {
 	Ready() bool
 	Search(ctx context.Context, query string, limit int) rag.Result
+	// SearchCorpus : recherche restreinte aux chunks d'un corpus
+	// (focus au clic sur une question suggérée).
+	SearchCorpus(ctx context.Context, query, corpus string, limit int) rag.Result
 	Read(rel string, offset, limit int) (string, error)
 	Stats() rag.Stats
 }
@@ -111,6 +114,16 @@ func (e *Engine) ragHits(ctx context.Context, query string) rag.Result {
 	return rt.Search(ctx, query, ragContextHits)
 }
 
+// ragHitsCorpus interroge l'index local restreint à un corpus.
+// Résultat vide si le RAG est inactif ou le corpus inconnu (fail-open).
+func (e *Engine) ragHitsCorpus(ctx context.Context, query, corpus string) rag.Result {
+	rt := e.ragTools()
+	if rt == nil || !rt.Ready() || strings.TrimSpace(query) == "" || strings.TrimSpace(corpus) == "" {
+		return rag.Result{}
+	}
+	return rt.SearchCorpus(ctx, query, corpus, ragContextHits)
+}
+
 // ragContextFrom construit le message systeme depuis un resultat deja obtenu.
 // Porte de score (iteration 1) : des hits faibles ne doivent pas etre
 // presentes comme « source prioritaire ». Sans couverture, rien n'est
@@ -119,6 +132,21 @@ func ragContextFrom(res rag.Result) (string, bool) {
 	if !ragCovered(res) {
 		return "", false
 	}
+	return buildRagContext(res), true
+}
+
+// ragContextForced : comme ragContextFrom mais sans porte de score.
+// Réservé au focus corpus explicite (clic sur une question suggérée) :
+// la question est curée pour ce corpus, le RAG est forcément sollicité.
+// Fail-open : aucun hit => rien d'injecté.
+func ragContextForced(res rag.Result) (string, bool) {
+	if len(res.Hits) == 0 {
+		return "", false
+	}
+	return buildRagContext(res), true
+}
+
+func buildRagContext(res rag.Result) string {
 	var b strings.Builder
 	b.WriteString("Extraits de la base documentaire locale — source prioritaire pour les sujets couverts.\n" +
 		"Consignes de réponse (à respecter) :\n" +
@@ -141,7 +169,7 @@ func ragContextFrom(res rag.Result) (string, bool) {
 		b.WriteString(entry)
 		budget -= len(entry)
 	}
-	return b.String(), true
+	return b.String()
 }
 
 // Bornes serveur de rag_read : un appel sans limit (ou mal bornee) ne doit

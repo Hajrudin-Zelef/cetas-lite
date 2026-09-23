@@ -1,0 +1,153 @@
+# Questions suggérées — MODIFIABLES À LA MAIN.
+# Générées depuis les corpus le 2026-09-23, relues et curées.
+# Format :
+#   - question: "Texte de la question"
+#     corpus: <nom du dossier corpus existant>
+#     pinned: true            # optionnel : proposée en priorité
+# Règles : une question par entrée, corpus existant, pas de doublon.
+
+# ---- Épinglées : proposées en priorité ----
+- question: "Qu'est-ce que Kimi K3 et que vaut-il ?"
+  corpus: ai-industry-kb-2026-wave6
+  pinned: true
+- question: "vLLM ou SGLang : que choisir pour servir un LLM en 2026 ?"
+  corpus: etape4-tracka-vllm-sglang
+  pinned: true
+- question: "Qu'est-ce que GLM-5.3 de Zhipu AI ?"
+  corpus: frontier-models-2026
+  pinned: true
+- question: "CUDA, ROCm, PyTorch : comment s'y retrouver ?"
+  corpus: etape4-trackc-cuda-rocm-pytorch
+  pinned: true
+
+# ---- Modèles & industrie IA ----
+- question: "Que sait-on de GPT-6 Astra d'OpenAI ?"
+  corpus: collect-benchmarks
+- question: "Muse Spark : que vaut ce modèle ?"
+  corpus: collect-benchmarks
+- question: "Quels sont les benchmarks marquants de 2026 ?"
+  corpus: collect-benchmarks
+- question: "Qu'est-ce que MiMo V2.6 de Xiaomi ?"
+  corpus: collect-benchmarks
+- question: "Qwen : où en est la famille de modèles d'Alibaba ?"
+  corpus: ai-industry-kb-2026-wave6
+- question: "Quels deals « compute et capital » ont marqué 2026 ?"
+  corpus: ai-industry-kb-2026-wave6
+- question: "Anthropic : quelle riposte face à OpenAI ?"
+  corpus: collect-presse-fr
+- question: "L'actualité IA de 2026 en bref, c'est quoi ?"
+  corpus: briefing-ia-2026
+- question: "Quelles sont les grandes tendances tech de 2026 ?"
+  corpus: briefing-general-tech-2026
+- question: "Grok : que proposent les plateformes de xAI ?"
+  corpus: labs-grok-platforms-2026
+- question: "Hyperscalers : que font les géants du cloud en 2026 ?"
+  corpus: labs-hyperscalers-2026
+
+# ---- Inférence locale & modèles ouverts ----
+- question: "Comment faire tourner un LLM en local en 2026 ?"
+  corpus: etape4-trackb-local-inference
+- question: "Ollama, LM Studio : quel outil choisir pour l'IA locale ?"
+  corpus: etape4-trackb-local-inference
+- question: "Quels modèles ouverts sont utilisables en self-hosting ?"
+  corpus: open-local-models-2026
+- question: "Kimi K3 en GGUF : comment l'installer en local ?"
+  corpus: collect-huggingface
+- question: "C'est quoi un fichier GGUF ?"
+  corpus: collect-huggingface
+- question: "Unsloth : à quoi ça sert pour l'entraînement ?"
+  corpus: etape4-trackd-unsloth-training
+- question: "Fine-tuner un modèle : par où commencer ?"
+  corpus: etape4-trackd-unsloth-training
+- question: "Qu'est-ce que la quantization d'un modèle ?"
+  corpus: etape4-trackb-local-inference
+
+# ---- GPU & serveurs ----
+- question: "NVIDIA : quoi de neuf côté GPU en 2026 ?"
+  corpus: etape5-tracka-nvidia
+- question: "AMD ROCm : est-ce une alternative crédible à CUDA ?"
+  corpus: etape5-trackb-amd
+- question: "Huawei et Intel : que proposent-ils face à NVIDIA ?"
+  corpus: etape5-trackc-huawei-intel
+- question: "Serveurs IA : que faut-il regarder avant d'acheter ?"
+  corpus: etape5-trackd-servers
+- question: "PyTorch 2.x : quoi de neuf ?"
+  corpus: etape4-trackc-cuda-rocm-pytorch
+
+# ---- Réseau & datacenter ----
+- question: "Spine-leaf : c'est quoi cette architecture réseau ?"
+  corpus: etape6-phased1-fabrics-spine-leaf
+- question: "EVPN/VXLAN : à quoi ça sert ?"
+  corpus: etape6-phased2-evpn-vxlan
+- question: "BGP : comment assurer la haute disponibilité ?"
+  corpus: etape6-phased3-bgp-ha
+- question: "SmartNIC et DPU : quelle différence ?"
+  corpus: etape6-phasef1-nic-dpu-smartnic
+- question: "Cisco ou Juniper : que choisir ?"
+  corpus: etape6-tracka-cisco-juniper
+- question: "Arista et SONiC : que faut-il savoir ?"
+  corpus: etape6-trackb-arista-sonic
+- question: "Quel firewall choisir pour une PME ?"
+  corpus: etape6-trackd-firewalls
+- question: "NetBox ou Nautobot : quel outil pour documenter son réseau ?"
+  corpus: etape6-phasee1-netbox-nautobot
+- question: "Automatiser son réseau : Ansible, Nornir ou Terraform ?"
+  corpus: etape6-phasee2-ansible-nornir-terraform
+- question: "Fibre optique : les bases du câblage ?"
+  corpus: etape6-phasec-optics-cabling
+
+# ---- Système & infra ----
+- question: "Proxmox : comment bien gérer ses sauvegardes ?"
+  corpus: etape7-phased-proxmox-backup
+- question: "Conteneurs : Docker ou Podman en 2026 ?"
+  corpus: etape7-phaseb-containers
+- question: "IaC : par où commencer avec Terraform ?"
+  corpus: etape7-phasec-iac
+- question: "Quelle base de données choisir pour mon projet ?"
+  corpus: etape7-phasef-databases
+- question: "Stockage logiciel : quelles options en 2026 ?"
+  corpus: etape7-phasee-storage-software
+- question: "VPN : quelle solution pour un accès distant ?"
+  corpus: etape7-phaseg-linuxnet-vpn
+- question: "Serveur multimédia à la maison : que mettre en place ?"
+  corpus: etape7-phasei-media
+
+# ---- Dev ----
+- question: "Quel langage système apprendre en 2026 : Rust, Go, Zig ?"
+  corpus: etape8-phasea-system-languages
+- question: "Framework backend : que choisir en 2026 ?"
+  corpus: etape8-phasec-backend-frameworks
+- question: "Frontend : l'état de l'art en 2026 ?"
+  corpus: etape8-phased-frontend
+- question: "Kafka, NATS, RabbitMQ : quel messaging choisir ?"
+  corpus: etape8-phasef-data-messaging
+- question: "La stack GPU pour l'IA : CUDA, Python, numba ?"
+  corpus: etape8-phasee-aiml-stacks
+
+# ---- Stockage ----
+- question: "SSD d'entreprise : que regarder avant d'acheter ?"
+  corpus: etape9-phasea-enterprise-ssd
+- question: "RAID : quel niveau choisir en 2026 ?"
+  corpus: etape9-phased-data-protection-raid
+- question: "Mémoire serveur : ECC, DDR5, que faut-il savoir ?"
+  corpus: etape9-phasec-memory
+
+# ---- Actu & divers ----
+- question: "Quoi de neuf dans la tech cette semaine ?"
+  corpus: etape10-phasea-news-tech
+- question: "L'actu mobile du moment ?"
+  corpus: etape10-phaseb-news-mobile
+- question: "PC et Mac : les nouveautés ?"
+  corpus: etape10-phasec-news-pc-mac
+- question: "Un résumé de l'actu IA en français ?"
+  corpus: collect-presse-fr
+- question: "Un tutoriel pour débuter avec les LLM ?"
+  corpus: collect-tutoriels
+- question: "C'est quoi un agent IA et à quoi ça sert ?"
+  corpus: vague2-datacamp
+- question: "La génération d'images par IA : où en est-on ?"
+  corpus: vague2-vision-ia
+- question: "Les outils IA du moment à connaître ?"
+  corpus: tools-platforms-2026
+- question: "OpenCode : à quoi ça sert ?"
+  corpus: collect-opencode-docs
