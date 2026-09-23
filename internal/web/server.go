@@ -118,6 +118,7 @@ func New(cfg *config.Config, st *store.Store, authMgr *auth.Manager, engine *cha
 	mux.HandleFunc("POST /api/chat/regenerate", s.requireAuth(s.handleChatRegenerate))
 	mux.HandleFunc("GET /api/chat/state", s.requireAuth(s.handleChatState))
 	mux.HandleFunc("GET /api/chat/suggestions", s.requireAuth(s.handleChatSuggestions))
+	mux.HandleFunc("GET /api/cache/stats", s.requireAuth(s.handleCacheStats))
 	mux.HandleFunc("GET /api/chat/export", s.requireAuth(s.handleChatExport))
 	// Sessions : conversations isolées, persistantes, liées au compte.
 	mux.HandleFunc("GET /api/sessions", s.requireAuth(s.handleSessionsList))

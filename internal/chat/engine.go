@@ -9,6 +9,7 @@ import (
 
 	"cetas-lite/internal/alias"
 	"cetas-lite/internal/attach"
+	"cetas-lite/internal/cache"
 	"cetas-lite/internal/local"
 	"cetas-lite/internal/mcp"
 	"cetas-lite/internal/modelcaps"
@@ -47,6 +48,11 @@ type Engine struct {
 	// Chargé au démarrage depuis suggested-questions.yaml, servi tel quel
 	// au navigateur qui effectue le tirage.
 	suggestions []Suggestion
+
+	// Cache exact des réponses provider (itération 5a) : actif uniquement
+	// pour les requêtes déterministes (température 0, sans outils, sans
+	// paramètres supplémentaires). Nil = désactivé.
+	exactCache_ *cache.Cache
 
 	// Runs d'agents paralleles et depot associe aux worktrees par
 	// conversation (chat principal inclus).
@@ -634,6 +640,20 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			req.Extra = nativeWebExtraFor(m.Provider)
 			c.appendDelta(epoch, map[string]any{"search": map[string]any{"phase": "start", "native": true}})
 		}
+		// Cache exact (itération 5a) : requête déterministe (température 0,
+		// sans outils, sans recherche native) => on rejoue la réponse en
+		// cache au lieu d'appeler le provider. Clé vide = non éligible.
+		cc := e.exactCache()
+		cacheKey := ""
+		if cc != nil {
+			cacheKey = e.cacheKeyFor(m.Provider, req)
+			if cacheKey != "" {
+				if ce, ok := cc.Get(cacheKey); ok {
+					e.replayCached(c, epoch, in, ce)
+					return
+				}
+			}
+		}
 		resp, err := p.Stream(ctx, req, func(ev provider.Event) bool {
 			if ev.Reasoning != "" && in.Think {
 				c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})
@@ -655,6 +675,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			if native {
 				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
 			}
+			e.cacheStore(cacheKey, resp)
 			c.appendAssistant(epoch, resp.Content, "")
 			return
 		}

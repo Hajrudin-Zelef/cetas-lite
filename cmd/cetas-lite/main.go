@@ -20,6 +20,7 @@ import (
 	"cetas-lite/internal/attach"
 	"cetas-lite/internal/auth"
 	"cetas-lite/internal/backup"
+	"cetas-lite/internal/cache"
 	"cetas-lite/internal/chat"
 	"cetas-lite/internal/config"
 	"cetas-lite/internal/customtools"
@@ -174,6 +175,15 @@ func buildApp() (*app, error) {
 	}
 	attachStore := attach.New(filepath.Join(cfg.Home, "uploads"), 20<<20)
 	engine.SetAttachments(attachStore)
+	// Cache exact des réponses provider (itération 5a) : SQLite, clé SHA256,
+	// actif uniquement pour les requêtes déterministes (température 0).
+	// Absent ou illisible => désactivé (fail-open).
+	if cc, err := cache.Open(filepath.Join(cfg.Home, "cache.db"), 10000); err != nil {
+		slog.Warn("cache exact indisponible", "err", err)
+	} else {
+		engine.SetCache(cc)
+		slog.Info("cache exact SQLite actif", "path", filepath.Join(cfg.Home, "cache.db"))
+	}
 	// Les pièces jointes ne sont plus supprimées à l'envoi (le tour agent
 	// les lit de façon asynchrone, la régénération peut les relire) : on
 	// purge ici les orphelins de plus de 7 jours à chaque démarrage.
@@ -229,6 +239,9 @@ func buildApp() (*app, error) {
 			wsMgr.CloseAll()
 			termMgr.Close()
 			mcpManager.Close()
+			if cc := engine.Cache(); cc != nil {
+				_ = cc.Close()
+			}
 			_ = st.Close()
 		},
 	}, nil
