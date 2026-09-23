@@ -46,39 +46,39 @@ func extraToolSchemas() []provider.Tool {
 		return map[string]any{"type": "object", "properties": props, "required": required}
 	}
 	return []provider.Tool{
-		{Type: "function", Function: provider.ToolFunction{Name: "Tree", Description: "Affiche l'arborescence du workspace (profondeur bornée). Lecture seule.", Parameters: str(map[string]any{
-			"path":      map[string]any{"type": "string", "description": "Dossier relatif, défaut : racine"},
-			"max_depth": map[string]any{"type": "integer", "description": "Profondeur max (défaut 3, max 6)"},
+		{Type: "function", Function: provider.ToolFunction{Name: "Tree", Description: "Show the workspace tree (bounded depth). Read-only.", Parameters: str(map[string]any{
+			"path":      map[string]any{"type": "string", "description": "Relative folder, default: root"},
+			"max_depth": map[string]any{"type": "integer", "description": "Max depth (default 3, max 6)"},
 		})}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Echo", Description: "Renvoie le texte tel quel (4000 caractères max). Lecture seule.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Echo", Description: "Return the text as-is (4000 chars max). Read-only.", Parameters: str(map[string]any{
 			"text": map[string]any{"type": "string"},
 		}, "text")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Mkdir", Description: "Crée des dossiers dans le workspace (mkdir -p). Approbation requise.", Parameters: str(map[string]any{
-			"path": map[string]any{"type": "string", "description": "Chemin relatif à créer"},
+		{Type: "function", Function: provider.ToolFunction{Name: "Mkdir", Description: "Create folders in the workspace (mkdir -p). Approval required.", Parameters: str(map[string]any{
+			"path": map[string]any{"type": "string", "description": "Relative path to create"},
 		}, "path")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Mv", Description: "Déplace/renomme un fichier ou dossier du workspace. Approbation requise.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Mv", Description: "Move/rename a workspace file or folder. Approval required.", Parameters: str(map[string]any{
 			"src":       map[string]any{"type": "string"},
 			"dst":       map[string]any{"type": "string"},
-			"overwrite": map[string]any{"type": "boolean", "description": "Écraser la destination existante (défaut false)"},
+			"overwrite": map[string]any{"type": "boolean", "description": "Overwrite the existing destination (default false)"},
 		}, "src", "dst")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Sed", Description: "Édite du texte avec GNU sed (sans shell). Mode flux = lecture seule ; in_place=true modifie le fichier, approbation requise.", Parameters: str(map[string]any{
-			"expression": map[string]any{"type": "string", "description": "Expression sed, ex. s/foo/bar/g"},
-			"file":       map[string]any{"type": "string", "description": "Fichier du workspace (ou input)"},
-			"input":      map[string]any{"type": "string", "description": "Texte d'entrée au lieu d'un fichier"},
-			"in_place":   map[string]any{"type": "boolean", "description": "Modifier le fichier sur place (défaut false)"},
+		{Type: "function", Function: provider.ToolFunction{Name: "Sed", Description: "Edit text with GNU sed (no shell). Stream mode = read-only; in_place=true modifies the file, approval required.", Parameters: str(map[string]any{
+			"expression": map[string]any{"type": "string", "description": "sed expression, e.g. s/foo/bar/g"},
+			"file":       map[string]any{"type": "string", "description": "Workspace file (or input)"},
+			"input":      map[string]any{"type": "string", "description": "Input text instead of a file"},
+			"in_place":   map[string]any{"type": "boolean", "description": "Modify the file in place (default false)"},
 		}, "expression")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Awk", Description: "Traite du texte avec awk (sans shell). Flux pur = lecture seule ; effets de bord (system(), écritures) = approbation requise.", Parameters: str(map[string]any{
-			"program":         map[string]any{"type": "string", "description": "Programme awk, ex. {print $2}"},
-			"file":            map[string]any{"type": "string", "description": "Fichier du workspace (ou input)"},
-			"input":           map[string]any{"type": "string", "description": "Texte d'entree au lieu d'un fichier"},
-			"field_separator": map[string]any{"type": "string", "description": "Séparateur de champs (-F)"},
+		{Type: "function", Function: provider.ToolFunction{Name: "Awk", Description: "Process text with awk (no shell). Pure stream = read-only; side effects (system(), writes) = approval required.", Parameters: str(map[string]any{
+			"program":         map[string]any{"type": "string", "description": "awk program, e.g. {print $2}"},
+			"file":            map[string]any{"type": "string", "description": "Workspace file (or input)"},
+			"input":           map[string]any{"type": "string", "description": "Input text instead of a file"},
+			"field_separator": map[string]any{"type": "string", "description": "Field separator (-F)"},
 		}, "program")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "Curl", Description: "Requête HTTP(S) encadrée : approbation requise, 30s max, 2 Mo max, http/https uniquement.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "Curl", Description: "Framed HTTP(S) request: approval required, 30s max, 2 MB max, http/https only.", Parameters: str(map[string]any{
 			"url":     map[string]any{"type": "string"},
-			"method":  map[string]any{"type": "string", "enum": []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"}, "description": "Défaut GET"},
-			"headers": map[string]any{"type": "object", "description": "En-têtes HTTP"},
-			"body":    map[string]any{"type": "string", "description": "Corps de requête"},
-			"timeout": map[string]any{"type": "integer", "description": "Secondes (défaut 15, max 30)"},
+			"method":  map[string]any{"type": "string", "enum": []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"}, "description": "Default GET"},
+			"headers": map[string]any{"type": "object", "description": "HTTP headers"},
+			"body":    map[string]any{"type": "string", "description": "Request body"},
+			"timeout": map[string]any{"type": "integer", "description": "Seconds (default 15, max 30)"},
 		}, "url")}},
 	}
 }

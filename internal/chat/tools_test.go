@@ -11,6 +11,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
+	"cetas-lite/internal/provider"
 	"cetas-lite/internal/vfs"
 )
 
@@ -592,6 +593,50 @@ func TestClientSafeError(t *testing.T) {
 	for _, leak := range []string{"req-abc-123", "deepseek-x", "/home/user/secret"} {
 		if strings.Contains(got, leak) {
 			t.Fatalf("fuite de detail serveur vers le client : %q", leak)
+		}
+	}
+}
+
+// TestToolDescriptionsAllEnglish : règle globale — aucun texte FR envoyé au
+// modèle. Balaye les descriptions de tous les outils (y compris les
+// descriptions de paramètres imbriquées) à la recherche de diacritiques
+// français. C'est ce balayage qui aurait attrapé les 20 descriptions
+// oubliées par la traduction initiale (memory, extra, github, web).
+func TestToolDescriptionsAllEnglish(t *testing.T) {
+	all := [][]provider.Tool{
+		ToolSchemas(),
+		RagToolSchemas(),
+		MemoryToolSchemas(),
+		extraToolSchemas(),
+		githubToolSchemas(),
+		WebToolSchemas(),
+	}
+	const frDiacritics = "éèêëàâäîïôöùûüç"
+	var walk func(v any, where string)
+	walk = func(v any, where string) {
+		switch x := v.(type) {
+		case string:
+			for _, r := range x {
+				if strings.ContainsRune(frDiacritics, r) {
+					t.Errorf("texte FR dans %s : %q", where, x)
+					return
+				}
+			}
+		case map[string]any:
+			for _, v2 := range x {
+				walk(v2, where)
+			}
+		case []any:
+			for _, v2 := range x {
+				walk(v2, where)
+			}
+		}
+	}
+	for _, schemas := range all {
+		for _, tool := range schemas {
+			where := "outil " + tool.Function.Name
+			walk(tool.Function.Description, where+" description")
+			walk(tool.Function.Parameters, where+" paramètres")
 		}
 	}
 }

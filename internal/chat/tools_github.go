@@ -55,41 +55,41 @@ func githubToolSchemas() []provider.Tool {
 	limit := map[string]any{"type": "integer", "description": "Max results (default 30, max 100)"}
 	number := map[string]any{"type": "integer", "description": "Issue or pull request number"}
 	return []provider.Tool{
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubRepos", Description: "Liste tes dépôts GitHub (compte connecté), les plus récents d'abord. Lecture seule.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubRepos", Description: "List your GitHub repos (connected account), most recent first. Read-only.", Parameters: str(map[string]any{
 			"limit": limit,
 		})}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssues", Description: "Liste les issues d'un dépôt GitHub. Lecture seule.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssues", Description: "List the issues of a GitHub repo. Read-only.", Parameters: str(map[string]any{
 			"owner": owner, "repo": repo, "state": state, "limit": limit,
 		}, "owner", "repo")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssueGet", Description: "Affiche une issue GitHub avec ses commentaires. Lecture seule.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssueGet", Description: "Show a GitHub issue with its comments. Read-only.", Parameters: str(map[string]any{
 			"owner": owner, "repo": repo, "number": number,
 		}, "owner", "repo", "number")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubPRs", Description: "Liste les pull requests d'un dépôt GitHub. Lecture seule.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubPRs", Description: "List the pull requests of a GitHub repo. Read-only.", Parameters: str(map[string]any{
 			"owner": owner, "repo": repo, "state": state, "limit": limit,
 		}, "owner", "repo")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubRepoCreate", Description: "Crée un dépôt GitHub sur ton compte. Approbation requise.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubRepoCreate", Description: "Create a GitHub repo on your account. Approval required.", Parameters: str(map[string]any{
 			"name":        map[string]any{"type": "string", "description": "Repository name"},
 			"description": map[string]any{"type": "string"},
 			"private":     map[string]any{"type": "boolean", "description": "Private repository (default true)"},
 		}, "name")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssueCreate", Description: "Crée une issue GitHub. Approbation requise.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssueCreate", Description: "Create a GitHub issue. Approval required.", Parameters: str(map[string]any{
 			"owner": owner, "repo": repo,
 			"title":  map[string]any{"type": "string", "description": "Issue title"},
 			"body":   map[string]any{"type": "string", "description": "Issue body (markdown)"},
 			"labels": map[string]any{"type": "array", "items": map[string]any{"type": "string"}},
 		}, "owner", "repo", "title")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssueComment", Description: "Commente une issue (ou pull request) GitHub. Approbation requise.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubIssueComment", Description: "Comment on a GitHub issue (or pull request). Approval required.", Parameters: str(map[string]any{
 			"owner": owner, "repo": repo, "number": number,
 			"body": map[string]any{"type": "string", "description": "Comment body (markdown)"},
 		}, "owner", "repo", "number", "body")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubPRCreate", Description: "Crée une pull request GitHub. Approbation requise.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubPRCreate", Description: "Create a GitHub pull request. Approval required.", Parameters: str(map[string]any{
 			"owner": owner, "repo": repo,
 			"title": map[string]any{"type": "string", "description": "Pull request title"},
 			"head":  map[string]any{"type": "string", "description": "Branch containing the changes"},
 			"base":  map[string]any{"type": "string", "description": "Branch to merge into (default main)"},
 			"body":  map[string]any{"type": "string", "description": "Pull request body (markdown)"},
 		}, "owner", "repo", "title", "head")}},
-		{Type: "function", Function: provider.ToolFunction{Name: "GitHubPRMerge", Description: "Fusionne (merge) une pull request GitHub. Approbation requise.", Parameters: str(map[string]any{
+		{Type: "function", Function: provider.ToolFunction{Name: "GitHubPRMerge", Description: "Merge a GitHub pull request. Approval required.", Parameters: str(map[string]any{
 			"owner": owner, "repo": repo, "number": number,
 			"merge_method": map[string]any{"type": "string", "description": "merge, squash or rebase (default merge)", "enum": []string{"merge", "squash", "rebase"}},
 		}, "owner", "repo", "number")}},
