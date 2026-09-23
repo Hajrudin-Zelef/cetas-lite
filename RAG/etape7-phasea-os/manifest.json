@@ -1,0 +1,580 @@
+{
+  "corpus": "etape7-phasea-os",
+  "title": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)",
+  "source": "docs/RAG/etape7_phaseA_os.md",
+  "source_lines": 775,
+  "source_sha256": "c0472ec61947ad96bd7477284f7592f2ec023cdc29f79e01d0e1c780eb39c63e",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phasea-os/00-os/overview",
+      "path": "etape7-phasea-os/00-os/overview.md",
+      "title": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2021-12-31",
+        "2024-06-30",
+        "2025-05",
+        "2025-05-13",
+        "2025-05-20",
+        "2025-05-27",
+        "2025-06",
+        "2025-06-11",
+        "2025-08-09",
+        "2026-04",
+        "2026-04-23",
+        "2026-06-11",
+        "2026-07-11",
+        "2026-09",
+        "2026-09-22",
+        "2027-05-31",
+        "2028-06-30"
+      ],
+      "keywords": [
+        "benchmark",
+        "distribution",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 760,
+      "bytes": 5156,
+      "sha256": "db3dca249c4f4e9b7e019bb92b79cbd292ede3d147020d1074930ea0fafb9f54",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a2-master-lifecycle-table",
+      "path": "etape7-phasea-os/00-os/a2-master-lifecycle-table.md",
+      "title": "A2 — Master lifecycle table",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Oracle"
+      ],
+      "dates": [
+        "2014-06-10",
+        "2019-05-07",
+        "2019-08-06",
+        "2020-04-23",
+        "2021-03-30",
+        "2021-06-21",
+        "2021-08-14",
+        "2021-12-31",
+        "2022-04-21",
+        "2022-05-18",
+        "2022-05-26",
+        "2022-06-30",
+        "2022-07-14",
+        "2023-06-10",
+        "2024-04-25",
+        "2024-05-01",
+        "2024-05-31",
+        "2024-06-30",
+        "2025-05-20",
+        "2025-05-27",
+        "2025-05-31",
+        "2025-06-11",
+        "2025-08-09",
+        "2025-11-24",
+        "2026-04-23",
+        "2026-06",
+        "2026-06-11",
+        "2026-07-11",
+        "2026-08-31",
+        "2026-09-12",
+        "2026-12",
+        "2027-05-31",
+        "2028-06-30",
+        "2028-08-09",
+        "2029-03-01",
+        "2029-05-01",
+        "2029-05-31",
+        "2029-06-30",
+        "2030-05-31",
+        "2030-06-30",
+        "2031-06-30",
+        "2032-05-31",
+        "2033-05-31",
+        "2033-06-30",
+        "2035-05-31",
+        "2035-06-30",
+        "2036-05-31",
+        "2039-05-31"
+      ],
+      "keywords": [
+        "cost",
+        "distribution",
+        "intel",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        97
+      ],
+      "canonical_for": [],
+      "words": 958,
+      "bytes": 6924,
+      "sha256": "5a06b4619c3c6d87c5c94002248340e3bdbc7dab12995cd0154dd00c8f2ed96d",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a4-debian-12-bookworm-current-status-and-lts-transition",
+      "path": "etape7-phasea-os/00-os/a4-debian-12-bookworm-current-status-and-lts-transition.md",
+      "title": "A4 — Debian 12 \"Bookworm\": current status and LTS transition",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google"
+      ],
+      "dates": [
+        "2023-06-10",
+        "2026-04",
+        "2026-04-23",
+        "2026-06-11",
+        "2026-07-11",
+        "2026-08",
+        "2026-08-31",
+        "2026-09",
+        "2028-06-30",
+        "2031-04",
+        "2031-06-30",
+        "2033-06-30",
+        "2036-04"
+      ],
+      "keywords": [
+        "aws",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        98,
+        146
+      ],
+      "canonical_for": [],
+      "words": 744,
+      "bytes": 5410,
+      "sha256": "05366799a4ae86c22879b9fc20de836f7e702469b161815c844a3ea90467bb34",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a8-ubuntu-24-04-lts-noble-numbat-the-workhorse",
+      "path": "etape7-phasea-os/00-os/a8-ubuntu-24-04-lts-noble-numbat-the-workhorse.md",
+      "title": "A8 — Ubuntu 24.04 LTS \"Noble Numbat\": the workhorse",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2020-04",
+        "2022-04",
+        "2024-04",
+        "2025-05-31",
+        "2026-09",
+        "2027-04",
+        "2029-05",
+        "2030-04",
+        "2032-04",
+        "2034-04",
+        "2036-04"
+      ],
+      "keywords": [
+        "cost",
+        "gpus",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        147,
+        195
+      ],
+      "canonical_for": [],
+      "words": 735,
+      "bytes": 5256,
+      "sha256": "cadad1ac50789b8b566e85499d380a6b0375915962b51ed31cff35e2078b263c",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a12-ubuntu-core-the-immutable-iot-edge-variant",
+      "path": "etape7-phasea-os/00-os/a12-ubuntu-core-the-immutable-iot-edge-variant.md",
+      "title": "A12 — Ubuntu Core: the immutable IoT/edge variant",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2019-05-07",
+        "2022-05-18",
+        "2024-05-31",
+        "2024-06",
+        "2024-06-30",
+        "2025-05",
+        "2025-05-13",
+        "2025-05-20",
+        "2025-07",
+        "2025-11",
+        "2026-06",
+        "2027-05-31",
+        "2029-05-31",
+        "2029-06-30",
+        "2030-05-31",
+        "2032-05-31",
+        "2033-05-31",
+        "2035-05-31",
+        "2036-05-31",
+        "2039-05-31"
+      ],
+      "keywords": [
+        "cost",
+        "gpu",
+        "hyperscaler",
+        "open source",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        196,
+        255
+      ],
+      "canonical_for": [],
+      "words": 832,
+      "bytes": 6053,
+      "sha256": "0f11997f68fbae91ab83e293b09e1d01e684ccf1c3e9cc44d4b4d71366727be7",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a17-rhel-in-place-upgrades-leapp",
+      "path": "etape7-phasea-os/00-os/a17-rhel-in-place-upgrades-leapp.md",
+      "title": "A17 — RHEL in-place upgrades: Leapp",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2021-06-21",
+        "2022-07-14",
+        "2024-05-31",
+        "2025-05",
+        "2025-06-11",
+        "2026-09-22",
+        "2027-05-31",
+        "2029-05-31",
+        "2030-05-31",
+        "2032-05-31",
+        "2035-05-31"
+      ],
+      "keywords": [
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        256,
+        305
+      ],
+      "canonical_for": [],
+      "words": 600,
+      "bytes": 4201,
+      "sha256": "01c572aedd104d13a3a679b1fca170a49e95f09ecdbc45e124230a4ee9fec974",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a21-almalinux-10-purple-lion-the-x86-64-v2-differentiator",
+      "path": "etape7-phasea-os/00-os/a21-almalinux-10-purple-lion-the-x86-64-v2-differentiator.md",
+      "title": "A21 — AlmaLinux 10 \"Purple Lion\": the x86_64-v2 differentiator",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2021-03-30",
+        "2022-05-26",
+        "2023-06",
+        "2024-05-01",
+        "2025-05-27",
+        "2025-11-24",
+        "2027-05-31",
+        "2029-03-01",
+        "2029-05-01",
+        "2030-05-31",
+        "2032-05-31",
+        "2035-05-31"
+      ],
+      "keywords": [
+        "governance",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        306,
+        351
+      ],
+      "canonical_for": [],
+      "words": 512,
+      "bytes": 3683,
+      "sha256": "c26d3800fbc8933e204dff7b01d8c7d298c92cbbfb2a4d183046789233bd1884",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a25-migration-tooling-centos-rocky-alma-and-major-upgrades",
+      "path": "etape7-phasea-os/00-os/a25-migration-tooling-centos-rocky-alma-and-major-upgrades.md",
+      "title": "A25 — Migration tooling: CentOS → Rocky/Alma, and major upgrades",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2025-06",
+        "2025-09",
+        "2025-12",
+        "2026-08-01"
+      ],
+      "keywords": [
+        "agents",
+        "open source",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        352,
+        398
+      ],
+      "canonical_for": [],
+      "words": 484,
+      "bytes": 3379,
+      "sha256": "04ddc652f64460e518ba1a80a4421a0d035417f44d042f064fecf97d2df6fc8d",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a27-tuxcare-extended-lifecycle-and-live-patching-vendor",
+      "path": "etape7-phasea-os/00-os/a27-tuxcare-extended-lifecycle-and-live-patching-vendor.md",
+      "title": "A27 — TuxCare: extended lifecycle and live patching vendor",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2026-09",
+        "2029-06-30"
+      ],
+      "keywords": [
+        "distribution",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        399,
+        458
+      ],
+      "canonical_for": [],
+      "words": 787,
+      "bytes": 5008,
+      "sha256": "3bc22f5f0a97161e683ec04aac027a30a5fa66a156710b622fd62b6cadb427d3",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a30-live-kernel-patching-compared",
+      "path": "etape7-phasea-os/00-os/a30-live-kernel-patching-compared.md",
+      "title": "A30 — Live kernel patching compared",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "distribution",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        459,
+        518
+      ],
+      "canonical_for": [],
+      "words": 889,
+      "bytes": 6092,
+      "sha256": "b8c95919287a28b65e5d8e22d7e34bf35e3473857320d9bbce2273f2e9228ede",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a34-disa-stig-coverage",
+      "path": "etape7-phasea-os/00-os/a34-disa-stig-coverage.md",
+      "title": "A34 — DISA STIG coverage",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Oracle",
+        "United States"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-08"
+      ],
+      "keywords": [
+        "benchmarks",
+        "distribution",
+        "open source",
+        "packaging"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        519,
+        571
+      ],
+      "canonical_for": [],
+      "words": 590,
+      "bytes": 4097,
+      "sha256": "3e2e015e838651702283c830e7072abcf4dd333b7644edc2994e15f980b5ba90",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a37-proxmox-ve-s-debian-relationship",
+      "path": "etape7-phasea-os/00-os/a37-proxmox-ve-s-debian-relationship.md",
+      "title": "A37 — Proxmox VE's Debian relationship",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Oracle"
+      ],
+      "dates": [
+        "2025-08-05",
+        "2026-08"
+      ],
+      "keywords": [
+        "aws",
+        "cost",
+        "distribution",
+        "license"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        572,
+        616
+      ],
+      "canonical_for": [],
+      "words": 624,
+      "bytes": 4168,
+      "sha256": "1d0d26b37f661ed828978a5c4b4231e85d6e977ac6d9bac0ecf4c1629efdb005",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a40-minimal-and-immutable-variants-fedora-coreos-opensuse-mi",
+      "path": "etape7-phasea-os/00-os/a40-minimal-and-immutable-variants-fedora-coreos-opensuse-mi.md",
+      "title": "A40 — Minimal and immutable variants: Fedora CoreOS, openSUSE MicroOS, bootc",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        617,
+        669
+      ],
+      "canonical_for": [],
+      "words": 583,
+      "bytes": 3785,
+      "sha256": "1a12d9c9d6aa0c7beedac42983f1873176a25999d338d556ecf16e1ac1999c16",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    },
+    {
+      "id": "etape7-phasea-os/00-os/a42-decision-guide-which-distribution-for-which-role",
+      "path": "etape7-phasea-os/00-os/a42-decision-guide-which-distribution-for-which-role.md",
+      "title": "A42 — Decision guide: which distribution for which role",
+      "domain": "step-7-phase-a-server-operating-systems-linux-os-layer",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle",
+        "United States"
+      ],
+      "dates": [
+        "2024-10-22",
+        "2025-05-13",
+        "2025-05-20",
+        "2025-07-31",
+        "2026-06-11",
+        "2026-07-11",
+        "2026-08-01",
+        "2026-09-22",
+        "2029-03-01",
+        "2029-05-01"
+      ],
+      "keywords": [
+        "distribution",
+        "advisory",
+        "agent",
+        "benchmark",
+        "benchmarks",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "source_anchor": "",
+      "source_lines": [
+        670,
+        775
+      ],
+      "canonical_for": [],
+      "words": 1113,
+      "bytes": 10463,
+      "sha256": "40333989faee2d38a5d82cdd2b0aea89ae13278508f48f19a2c3c67586676807",
+      "section": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)"
+    }
+  ]
+}

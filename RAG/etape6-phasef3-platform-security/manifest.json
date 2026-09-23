@@ -1,0 +1,619 @@
+{
+  "corpus": "etape6-phasef3-platform-security",
+  "title": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust",
+  "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+  "source_lines": 752,
+  "source_sha256": "65745988975a913881cb205a18a7ab6297efd1eb621451e6ec19680e7c234914",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/overview",
+      "path": "etape6-phasef3-platform-security/00-platform-security/overview.md",
+      "title": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "EU",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-07-13",
+        "2026-09",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "amd",
+        "cyber",
+        "cybersecurity",
+        "disclosure",
+        "distribution",
+        "intel",
+        "luna",
+        "memory",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1215,
+      "bytes": 11105,
+      "sha256": "c998d357f6dffcbde79b949a6895baac7fb8a1f8773845e02ac7fa608775f469",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/5-open-firmware-coreboot-openbmc-linuxboot",
+      "path": "etape6-phasef3-platform-security/00-platform-security/5-open-firmware-coreboot-openbmc-linuxboot.md",
+      "title": "5. Open firmware: Coreboot, OpenBMC, LinuxBoot",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "China",
+        "EU",
+        "Google",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2018-05",
+        "2025-04-29",
+        "2025-10",
+        "2025-12",
+        "2025-12-05",
+        "2026-02",
+        "2026-05",
+        "2026-06",
+        "2026-08",
+        "2026-10"
+      ],
+      "keywords": [
+        "amd",
+        "compute",
+        "distribution",
+        "gpus",
+        "hyperscaler",
+        "intel",
+        "license",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
+        101
+      ],
+      "canonical_for": [],
+      "words": 1425,
+      "bytes": 13842,
+      "sha256": "7eb1b6b487e4c5553553e49229fcadd9bedcd39a46fa13bbbe2f6528e6377337",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/10-hardware-security-modules-hsm",
+      "path": "etape6-phasef3-platform-security/00-platform-security/10-hardware-security-modules-hsm.md",
+      "title": "10. Hardware Security Modules (HSM)",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Apple",
+        "CISA",
+        "EU",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2024-04",
+        "2024-11",
+        "2025-01",
+        "2025-09",
+        "2026-01",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08"
+      ],
+      "keywords": [
+        "acquisition",
+        "amd",
+        "aws",
+        "blackwell",
+        "compute",
+        "cost",
+        "cyber",
+        "cybersecurity",
+        "gpu",
+        "gpus",
+        "intel",
+        "luna"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        102,
+        149
+      ],
+      "canonical_for": [],
+      "words": 1315,
+      "bytes": 12855,
+      "sha256": "40786829f19cca949d214be9661ddc8e8fb997ace88d22087fa6ab7c90fc3f59",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/13-verification-and-audit-tooling",
+      "path": "etape6-phasef3-platform-security/00-platform-security/13-verification-and-audit-tooling.md",
+      "title": "13. Verification and audit tooling",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-10",
+        "2026-06",
+        "2026-08",
+        "2026-09",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "benchmarks",
+        "distribution",
+        "gpus",
+        "intel",
+        "memory",
+        "nvidia",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        150,
+        200
+      ],
+      "canonical_for": [],
+      "words": 938,
+      "bytes": 8329,
+      "sha256": "c88d3523f06c3c0cee26f8e5f724cf471cff106c8bcdb12324cf855809825257",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/17-amd-sev-snp-deep-dive",
+      "path": "etape6-phasef3-platform-security/00-platform-security/17-amd-sev-snp-deep-dive.md",
+      "title": "17. AMD SEV-SNP deep dive",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "China",
+        "EU",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-07-13",
+        "2026-08"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "consumer",
+        "cybersecurity",
+        "exploit",
+        "intel",
+        "luna",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        201,
+        247
+      ],
+      "canonical_for": [],
+      "words": 943,
+      "bytes": 9423,
+      "sha256": "a34f9c2e8fbed082a49010bed86f7ece32de9c57172c5df7da6a7f20166d3624",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/21-post-quantum-cryptography-timeline-for-platform-security",
+      "path": "etape6-phasef3-platform-security/00-platform-security/21-post-quantum-cryptography-timeline-for-platform-security.md",
+      "title": "21. Post-quantum cryptography timeline for platform security",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "CISA",
+        "Falcon",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2023-05",
+        "2026-06",
+        "2026-08",
+        "2026-10"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "intel",
+        "luna",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        248,
+        300
+      ],
+      "canonical_for": [],
+      "words": 769,
+      "bytes": 7331,
+      "sha256": "091d04e363e2f352d08b9337f1208f0679b398c4026a7b2b561e87c549abcd80",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/25-firmware-threat-landscape-20242026",
+      "path": "etape6-phasef3-platform-security/00-platform-security/25-firmware-threat-landscape-20242026.md",
+      "title": "25. Firmware threat landscape 2024–2026",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Intel",
+        "Meta",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "agent",
+        "amd",
+        "aws",
+        "consumer",
+        "cost",
+        "cybersecurity",
+        "distribution",
+        "intel",
+        "licenses",
+        "luna",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        301,
+        355
+      ],
+      "canonical_for": [],
+      "words": 987,
+      "bytes": 9256,
+      "sha256": "9a5ae60612beb81883fed4837307b5c5b5b9a33750cd05ff0135137f9411403f",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/29-sed-standards-detail",
+      "path": "etape6-phasef3-platform-security/00-platform-security/29-sed-standards-detail.md",
+      "title": "29. SED standards detail",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "EU",
+        "Intel",
+        "Microsoft",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-07-13"
+      ],
+      "keywords": [
+        "amd",
+        "cybersecurity",
+        "datacenter",
+        "incident",
+        "intel",
+        "nand"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        356,
+        401
+      ],
+      "canonical_for": [],
+      "words": 714,
+      "bytes": 5494,
+      "sha256": "b17cbd41d1f611ffb6621cf78f7941ed4bae8465e2c6bfb7cc778c105419a8af",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/33-threat-model-matrix-platform-security",
+      "path": "etape6-phasef3-platform-security/00-platform-security/33-threat-model-matrix-platform-security.md",
+      "title": "33. Threat-model matrix (platform security)",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-12-05",
+        "2026-07-13",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "cybersecurity",
+        "intel",
+        "luna",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        402,
+        482
+      ],
+      "canonical_for": [],
+      "words": 334,
+      "bytes": 7885,
+      "sha256": "ebfc94e31670c5d8cdcc42af13ea5340a71f49277564c08b963d5eb24b479f44",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/35-linux-secure-boot-shim-mok-distro-signing",
+      "path": "etape6-phasef3-platform-security/00-platform-security/35-linux-secure-boot-shim-mok-distro-signing.md",
+      "title": "35. Linux Secure Boot: shim, MOK, distro signing",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Apple",
+        "EU",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "cost",
+        "custom silicon",
+        "cybersecurity",
+        "embedding",
+        "intel",
+        "luna",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        483,
+        527
+      ],
+      "canonical_for": [],
+      "words": 717,
+      "bytes": 5333,
+      "sha256": "20c0df371957c27bf0cc2cde0538025bce235640e28d6d79ce52e65119f61676",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/40-key-management-and-code-signing-infrastructure",
+      "path": "etape6-phasef3-platform-security/00-platform-security/40-key-management-and-code-signing-infrastructure.md",
+      "title": "40. Key management and code-signing infrastructure",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [
+        "2026-08"
+      ],
+      "keywords": [
+        "cybersecurity",
+        "luna"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        528,
+        580
+      ],
+      "canonical_for": [],
+      "words": 704,
+      "bytes": 6247,
+      "sha256": "3cadad5bf23301d6a0302f24c177e8afc7bdbfef10ab05761fc9fe0457d570c9",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/46-caliptra-subsystem-integration-notes",
+      "path": "etape6-phasef3-platform-security/00-platform-security/46-caliptra-subsystem-integration-notes.md",
+      "title": "46. Caliptra subsystem integration notes",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "CISA",
+        "EU",
+        "Google",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-04",
+        "2026-06",
+        "2026-08",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "amd",
+        "cybersecurity",
+        "intel",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        581,
+        635
+      ],
+      "canonical_for": [],
+      "words": 543,
+      "bytes": 5097,
+      "sha256": "2a4c715b0fa34988ab12b120a1fe2c9d7cdb7f25f1dd075cbd66254841fb894c",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/50-intel-tdx-deep-dive",
+      "path": "etape6-phasef3-platform-security/00-platform-security/50-intel-tdx-deep-dive.md",
+      "title": "50. Intel TDX deep dive",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "EU",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-07",
+        "2026-07-13",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "intel",
+        "amd",
+        "blackwell",
+        "cyber",
+        "cybersecurity",
+        "disclosure",
+        "distribution",
+        "gpu",
+        "gpus",
+        "hbm",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        636,
+        691
+      ],
+      "canonical_for": [],
+      "words": 756,
+      "bytes": 7662,
+      "sha256": "d073db1bdb419c9c6c7bf6c7d7e3f417a3cfdf9265f804e6eed9c0cb75fd9738",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    },
+    {
+      "id": "etape6-phasef3-platform-security/00-platform-security/55-key-dates-timeline-20242026",
+      "path": "etape6-phasef3-platform-security/00-platform-security/55-key-dates-timeline-20242026.md",
+      "title": "55. Key dates timeline 2024–2026",
+      "domain": "step-6-phase-f3-platform-firmware-hardware-root-of-trust",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "EU",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-04-02",
+        "2025-09-18",
+        "2025-10-01",
+        "2026-01-06",
+        "2026-06-30",
+        "2026-08-20",
+        "2026-09-22",
+        "2026-12-31"
+      ],
+      "keywords": [
+        "acquisition",
+        "amd",
+        "cyber",
+        "intel",
+        "luna",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "source_anchor": "",
+      "source_lines": [
+        692,
+        752
+      ],
+      "canonical_for": [],
+      "words": 550,
+      "bytes": 4190,
+      "sha256": "ff3dc4ad1d87a3f8b4bd8a17f4529629a11c9a032f99f4d999474b2635051db6",
+      "section": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
+    }
+  ]
+}

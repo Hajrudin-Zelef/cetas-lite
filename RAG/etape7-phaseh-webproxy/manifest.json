@@ -1,0 +1,462 @@
+{
+  "corpus": "etape7-phaseh-webproxy",
+  "title": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways",
+  "source": "docs/RAG/etape7_phaseH_webproxy.md",
+  "source_lines": 751,
+  "source_sha256": "c7493b8b914a193bdd361460006ce47e72042d1c5ea532e5b50c5d182938a4b3",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/overview",
+      "path": "etape7-phaseh-webproxy/00-webproxy/overview.md",
+      "title": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [
+        "2011-11-10",
+        "2017-07",
+        "2024-12",
+        "2026-01",
+        "2026-06-08",
+        "2026-08",
+        "2026-09",
+        "2026-09-04",
+        "2026-09-17",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "apache",
+        "benchmarks",
+        "distribution",
+        "memory",
+        "packaging",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1044,
+      "bytes": 8403,
+      "sha256": "9edd3673b3e5178f3950dad6ee0df3322c246c4d2cf4d8d83f1acb84c7ee1839",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/3-nginx",
+      "path": "etape7-phaseh-webproxy/00-webproxy/3-nginx.md",
+      "title": "3. nginx",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-04-23",
+        "2025-06-24",
+        "2026-03",
+        "2026-03-24",
+        "2026-04",
+        "2026-04-07",
+        "2026-04-08",
+        "2026-04-14",
+        "2026-05",
+        "2026-05-13",
+        "2026-05-27",
+        "2026-06",
+        "2026-06-06",
+        "2026-07-06",
+        "2026-07-15",
+        "2026-07-18",
+        "2026-08",
+        "2026-08-19",
+        "2026-08-30",
+        "2026-09",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "advisory",
+        "apache",
+        "benchmark",
+        "packaging",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        118
+      ],
+      "canonical_for": [],
+      "words": 1027,
+      "bytes": 8443,
+      "sha256": "971f670515fc1d812a12fe3946a9018bf5ed768e6030497dc5e5b37808c1124f",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/6-traefik",
+      "path": "etape7-phaseh-webproxy/00-webproxy/6-traefik.md",
+      "title": "6. Traefik",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-01-29",
+        "2026-08-07",
+        "2026-09"
+      ],
+      "keywords": [
+        "agent",
+        "aws",
+        "benchmark",
+        "latency",
+        "open source",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        119,
+        165
+      ],
+      "canonical_for": [],
+      "words": 696,
+      "bytes": 6310,
+      "sha256": "d8dff52d3b5198ce289aba66e97c5bb8d4ef3d8c042d3f6df4da91b3ae49e8c6",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/8-envoy",
+      "path": "etape7-phaseh-webproxy/00-webproxy/8-envoy.md",
+      "title": "8. Envoy",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-02-10",
+        "2026-02-25",
+        "2026-07-18",
+        "2026-09",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "cost",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        166,
+        243
+      ],
+      "canonical_for": [],
+      "words": 939,
+      "bytes": 7674,
+      "sha256": "c68cce4ce4b0905f182dcb8620e7a7f088bee8b5f65230ebf90df44b4e0bdd5d",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/12-sso-integration-authelia-authentik-oauth2-proxy-keycloak",
+      "path": "etape7-phaseh-webproxy/00-webproxy/12-sso-integration-authelia-authentik-oauth2-proxy-keycloak.md",
+      "title": "12. SSO integration (Authelia, Authentik, OAuth2-Proxy, Keycloak)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-06-27",
+        "2026-02-05",
+        "2026-04-08",
+        "2026-06-16",
+        "2026-08-20",
+        "2026-09-02"
+      ],
+      "keywords": [
+        "apache",
+        "governance",
+        "mcp",
+        "memory",
+        "model context protocol",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        244,
+        306
+      ],
+      "canonical_for": [],
+      "words": 920,
+      "bytes": 7857,
+      "sha256": "09909c7364d9ba41c6128d0fc9d6c1c506bb2fdb5e04633311b07b4fe6982dc5",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/14-performance-benchmarks-with-provenance",
+      "path": "etape7-phaseh-webproxy/00-webproxy/14-performance-benchmarks-with-provenance.md",
+      "title": "14. Performance benchmarks (with provenance)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "benchmark",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-07-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "agents",
+        "apache",
+        "aws",
+        "cost",
+        "governance",
+        "mcp",
+        "memory",
+        "model context protocol",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        307,
+        363
+      ],
+      "canonical_for": [],
+      "words": 888,
+      "bytes": 7045,
+      "sha256": "484ad16f7b33794a17d2c4bf10ccf7ff571fbf16a8a4f0232dae159fede91912",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/18-source-index-verbatim-urls",
+      "path": "etape7-phaseh-webproxy/00-webproxy/18-source-index-verbatim-urls.md",
+      "title": "18. Source index (verbatim URLs)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05-27",
+        "2026-07-18"
+      ],
+      "keywords": [
+        "agents",
+        "apache",
+        "benchmarks",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        364,
+        415
+      ],
+      "canonical_for": [],
+      "words": 106,
+      "bytes": 3647,
+      "sha256": "66ae9cc6cf4e1e939a1ddf2d41988c1e748628d56877144da6e6f66bb862fee8",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/19-configuration-references-copy-adapt-snippets",
+      "path": "etape7-phaseh-webproxy/00-webproxy/19-configuration-references-copy-adapt-snippets.md",
+      "title": "19. Configuration references (copy-adapt snippets)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "apache"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        416,
+        470
+      ],
+      "canonical_for": [],
+      "words": 649,
+      "bytes": 6303,
+      "sha256": "3a3d74fcc13950b9011564b9e99422fa0b2ae5b1f1384f92d343b99a8e9de483",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/20-performance-tuning-per-proxy",
+      "path": "etape7-phaseh-webproxy/00-webproxy/20-performance-tuning-per-proxy.md",
+      "title": "20. Performance tuning per proxy",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05-12"
+      ],
+      "keywords": [
+        "apache",
+        "backlog",
+        "cost",
+        "latency",
+        "mcp"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        471,
+        520
+      ],
+      "canonical_for": [],
+      "words": 625,
+      "bytes": 5113,
+      "sha256": "83074da8285ab245cc283e6b4b2134dce0b7299c80fe52ed06567acd9fb45506",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/25-apisix-plugin-catalog-2026",
+      "path": "etape7-phaseh-webproxy/00-webproxy/25-apisix-plugin-catalog-2026.md",
+      "title": "25. APISIX plugin catalog (2026)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-07-18"
+      ],
+      "keywords": [
+        "apache",
+        "cost",
+        "governance",
+        "mcp",
+        "open source",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        521,
+        571
+      ],
+      "canonical_for": [],
+      "words": 540,
+      "bytes": 4600,
+      "sha256": "1707653283ba77d97d37cd49a1affb0216e805a36488f9b55907c31d49b4ccc0",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/31-migration-notes",
+      "path": "etape7-phaseh-webproxy/00-webproxy/31-migration-notes.md",
+      "title": "31. Migration notes",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "aws",
+        "benchmark",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        572,
+        616
+      ],
+      "canonical_for": [],
+      "words": 541,
+      "bytes": 4198,
+      "sha256": "3b7590479ad79051856515b501509257dc2c14da6c505d04b6c7478586411c7b",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/36-traefik-product-line-2026",
+      "path": "etape7-phaseh-webproxy/00-webproxy/36-traefik-product-line-2026.md",
+      "title": "36. Traefik product line (2026)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "aws",
+        "distribution",
+        "governance",
+        "license",
+        "mcp"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        617,
+        661
+      ],
+      "canonical_for": [],
+      "words": 516,
+      "bytes": 3801,
+      "sha256": "531d852076cc6e013eeb1c1a0032cf14695b31e52210c86ad348086266a5de15",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/41-cve-security-roundup-20242026",
+      "path": "etape7-phaseh-webproxy/00-webproxy/41-cve-security-roundup-20242026.md",
+      "title": "41. CVE & security roundup (2024–2026)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-01-29",
+        "2026-05",
+        "2026-06-08",
+        "2026-07-15",
+        "2026-08-19",
+        "2026-08-20",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "apache",
+        "mcp",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        662,
+        751
+      ],
+      "canonical_for": [],
+      "words": 1142,
+      "bytes": 8566,
+      "sha256": "3016d2dfd78cae4d25f1befb61e25caa0dae2c0bc474424beeb0e20e92cae761",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    }
+  ]
+}

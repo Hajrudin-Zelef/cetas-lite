@@ -1,0 +1,1517 @@
+{
+  "corpus": "etape6-phaseb-smb-networking",
+  "title": "Step 6 Extension — Phase B: SMB / Prosumer Networking",
+  "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+  "source_lines": 2612,
+  "source_sha256": "198fcf8bb640d0b80219b735d7c4c182db89881c7368ccec9f16743676ed95cb",
+  "chunk_count": 42,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phaseb-smb-networking/00-front-matter/overview",
+      "path": "etape6-phaseb-smb-networking/00-front-matter/overview.md",
+      "title": "Step 6 Extension — Phase B: SMB / Prosumer Networking",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        8
+      ],
+      "canonical_for": [],
+      "words": 47,
+      "bytes": 358,
+      "sha256": "c9197982af19e6b6eb61013c7c072f39d89e01fd6f2afc1993d87e4d6b2d5d5a",
+      "section": "Step 6 Extension — Phase B: SMB / Prosumer Networking"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/01-part-1-ubiquiti-unifi/overview",
+      "path": "etape6-phaseb-smb-networking/01-part-1-ubiquiti-unifi/overview.md",
+      "title": "Part 1 — Ubiquiti UniFi",
+      "domain": "part-1-ubiquiti-unifi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "license",
+        "memory",
+        "pricing",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        9,
+        69
+      ],
+      "canonical_for": [],
+      "words": 920,
+      "bytes": 6853,
+      "sha256": "21237563a216cff53315c4737dd4bad016c01202596c7d5506bdcd095aa68b6f",
+      "section": "Part 1 — Ubiquiti UniFi"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/01-part-1-ubiquiti-unifi/3-unifi-os-network-application-software-2026",
+      "path": "etape6-phaseb-smb-networking/01-part-1-ubiquiti-unifi/3-unifi-os-network-application-software-2026.md",
+      "title": "3. UniFi OS / Network Application software 2026",
+      "domain": "part-1-ubiquiti-unifi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-05-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "advisory",
+        "latency",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        70,
+        131
+      ],
+      "canonical_for": [],
+      "words": 770,
+      "bytes": 5486,
+      "sha256": "98e490e59556020027327ce23ec33b3d1ee643433d553285406701fb0c7a115b",
+      "section": "Part 1 — Ubiquiti UniFi"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/01-part-1-ubiquiti-unifi/6-adoption-figures-financials-2026",
+      "path": "etape6-phaseb-smb-networking/01-part-1-ubiquiti-unifi/6-adoption-figures-financials-2026.md",
+      "title": "6. Adoption figures / financials 2026",
+      "domain": "part-1-ubiquiti-unifi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-06-30",
+        "2026-07"
+      ],
+      "keywords": [
+        "acquisition",
+        "advisory",
+        "agent",
+        "disclosure",
+        "export controls",
+        "lawsuit",
+        "revenue",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        132,
+        187
+      ],
+      "canonical_for": [],
+      "words": 810,
+      "bytes": 6792,
+      "sha256": "c7f34da805f8e150518c52219bf3d673ca1eca8756ade595c809bcd4d67cdefa",
+      "section": "Part 1 — Ubiquiti UniFi"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/02-part-2-tp-link-omada-d-link-zyxel-engenius-grandstream/overview",
+      "path": "etape6-phaseb-smb-networking/02-part-2-tp-link-omada-d-link-zyxel-engenius-grandstream/overview.md",
+      "title": "Part 2 — TP-Link / Omada, D-Link, Zyxel, Engenius, Grandstream",
+      "domain": "part-2-tp-link-omada-d-link-zyxel-engenius-grandstream",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04-29",
+        "2026-05",
+        "2026-07-17",
+        "2026-07-30",
+        "2026-09",
+        "2026-09-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "cost",
+        "license",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        188,
+        255
+      ],
+      "canonical_for": [],
+      "words": 1034,
+      "bytes": 9279,
+      "sha256": "e15ef1a9fc3d94b3eb3f929f436aeeb17b52750bc9b5ac5cb9e35f7123bc2387",
+      "section": "Part 2 — TP-Link / Omada, D-Link, Zyxel, Engenius, Grandstream"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/02-part-2-tp-link-omada-d-link-zyxel-engenius-grandstream/2-d-link",
+      "path": "etape6-phaseb-smb-networking/02-part-2-tp-link-omada-d-link-zyxel-engenius-grandstream/2-d-link.md",
+      "title": "2. D-Link",
+      "domain": "part-2-tp-link-omada-d-link-zyxel-engenius-grandstream",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05",
+        "2026-09",
+        "2026-09-01",
+        "2026-09-07",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "lean",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        256,
+        305
+      ],
+      "canonical_for": [],
+      "words": 615,
+      "bytes": 5880,
+      "sha256": "9240cc557815915c52486716ac4526f7853c9969f7b95744e91a76d91c506121",
+      "section": "Part 2 — TP-Link / Omada, D-Link, Zyxel, Engenius, Grandstream"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/02-part-2-tp-link-omada-d-link-zyxel-engenius-grandstream/4-engenius-brief",
+      "path": "etape6-phaseb-smb-networking/02-part-2-tp-link-omada-d-link-zyxel-engenius-grandstream/4-engenius-brief.md",
+      "title": "4. EnGenius (brief)",
+      "domain": "part-2-tp-link-omada-d-link-zyxel-engenius-grandstream",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2025-11-26",
+        "2026-01-21"
+      ],
+      "keywords": [
+        "benchmarks",
+        "cost",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        306,
+        371
+      ],
+      "canonical_for": [],
+      "words": 919,
+      "bytes": 7250,
+      "sha256": "37c02244577d89bfd5a86a3c739c21b7ac7c026247b522788efec020265a3efa",
+      "section": "Part 2 — TP-Link / Omada, D-Link, Zyxel, Engenius, Grandstream"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/overview",
+      "path": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/overview.md",
+      "title": "Supplementary / Complementary Research Pass — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "distribution",
+        "license",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        372,
+        427
+      ],
+      "canonical_for": [],
+      "words": 860,
+      "bytes": 6197,
+      "sha256": "2537c766bf1d9fe774a11d4607e5ae1f23c6f8d492a44cd90887504e3186e99e",
+      "section": "Supplementary / Complementary Research Pass — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/s5-zyxel-wi-fi-7-aps-2026-current-lineup-and-prices-was-brie",
+      "path": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/s5-zyxel-wi-fi-7-aps-2026-current-lineup-and-prices-was-brie.md",
+      "title": "S5. Zyxel Wi-Fi 7 APs — 2026 current lineup and prices (was: brief)",
+      "domain": "supplementary-complementary-research-pass-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Qualcomm"
+      ],
+      "dates": [],
+      "keywords": [
+        "consumer",
+        "ethernet",
+        "licenses",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        428,
+        482
+      ],
+      "canonical_for": [],
+      "words": 894,
+      "bytes": 7434,
+      "sha256": "c84af676f63bfe10b998c22c91153fe5b2a26defed16c4588980c4a341a75673",
+      "section": "Supplementary / Complementary Research Pass — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/s10-uisp-fiber-xgs-unifi-uisp-pon-line-new-detail-complement",
+      "path": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/s10-uisp-fiber-xgs-unifi-uisp-pon-line-new-detail-complement.md",
+      "title": "S10. UISP Fiber XGS — UniFi/UISP PON line (new detail; complements §1 fiber)",
+      "domain": "supplementary-complementary-research-pass-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Google",
+        "United States"
+      ],
+      "dates": [
+        "2026-04-02",
+        "2026-05",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ethernet",
+        "license",
+        "memory",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        483,
+        533
+      ],
+      "canonical_for": [],
+      "words": 719,
+      "bytes": 5750,
+      "sha256": "62c1ae9dfd4b038452d97e0bb6fa5fe8ec8ffa49c0957451b14d27cacac12c4b",
+      "section": "Supplementary / Complementary Research Pass — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/s16-tp-link-omada-wi-fi-7-eap-portfolio-skus-and-september-2",
+      "path": "etape6-phaseb-smb-networking/03-supplementary-complementary-research-pass-september-22-2026/s16-tp-link-omada-wi-fi-7-eap-portfolio-skus-and-september-2.md",
+      "title": "S16. TP-Link Omada Wi-Fi 7 EAP portfolio — SKUs and September 2026 street prices (was: EAPs absent)",
+      "domain": "supplementary-complementary-research-pass-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "EU",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-03-20",
+        "2026-09"
+      ],
+      "keywords": [
+        "cost",
+        "dram",
+        "ethernet",
+        "foldable",
+        "omni",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        534,
+        582
+      ],
+      "canonical_for": [],
+      "words": 890,
+      "bytes": 6900,
+      "sha256": "54cd7be7a1e2350f95fd41b7fd92aa092c86c1aa3caa06d0f75121a7e9cf2680",
+      "section": "Supplementary / Complementary Research Pass — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/04-supplementary-complementary-research-pass-round-2-september-/overview",
+      "path": "etape6-phaseb-smb-networking/04-supplementary-complementary-research-pass-round-2-september-/overview.md",
+      "title": "Supplementary / Complementary Research Pass — Round 2 — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-round-2-september-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "licenses",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        583,
+        638
+      ],
+      "canonical_for": [],
+      "words": 880,
+      "bytes": 6674,
+      "sha256": "6f029820bde66cb23ea5478c041c1a97a347de0e4f04539f9af8ed4b829fa886",
+      "section": "Supplementary / Complementary Research Pass — Round 2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/04-supplementary-complementary-research-pass-round-2-september-/r5-qnap-switch-pricing-context-brief",
+      "path": "etape6-phaseb-smb-networking/04-supplementary-complementary-research-pass-round-2-september-/r5-qnap-switch-pricing-context-brief.md",
+      "title": "R5. QNAP switch pricing context (brief)",
+      "domain": "supplementary-complementary-research-pass-round-2-september-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        639,
+        701
+      ],
+      "canonical_for": [],
+      "words": 846,
+      "bytes": 7505,
+      "sha256": "04cbd790cba3ce51af988f3e327e7d75e9a743999dc899a04348609ed259ea2b",
+      "section": "Supplementary / Complementary Research Pass — Round 2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/05-supplementary-complementary-research-pass-2-round-2-septembe/overview",
+      "path": "etape6-phaseb-smb-networking/05-supplementary-complementary-research-pass-2-round-2-septembe/overview.md",
+      "title": "Supplementary / Complementary Research Pass #2 (Round 2) — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-2-round-2-septembe",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-08-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "cost",
+        "license",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        702,
+        750
+      ],
+      "canonical_for": [],
+      "words": 676,
+      "bytes": 5711,
+      "sha256": "732f62891fda31ffb06727b17baa025c0331a7842070f888ccbb266c3ce977b5",
+      "section": "Supplementary / Complementary Research Pass #2 (Round 2) — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/05-supplementary-complementary-research-pass-2-round-2-septembe/r4-netgear-business-wi-fi-7-wbe710-wbe750-detail-new",
+      "path": "etape6-phaseb-smb-networking/05-supplementary-complementary-research-pass-2-round-2-septembe/r4-netgear-business-wi-fi-7-wbe710-wbe750-detail-new.md",
+      "title": "R4. NETGEAR business Wi-Fi 7 — WBE710 / WBE750 detail (new)",
+      "domain": "supplementary-complementary-research-pass-2-round-2-septembe",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "United States"
+      ],
+      "dates": [
+        "2026-08-07",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "consumer",
+        "cost",
+        "datacenter",
+        "license",
+        "memory",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        751,
+        838
+      ],
+      "canonical_for": [],
+      "words": 1218,
+      "bytes": 11843,
+      "sha256": "92d9738bc9736f91db66ba9ae5dbbcd04ab48fec22fab1befd1f7e187008d268",
+      "section": "Supplementary / Complementary Research Pass #2 (Round 2) — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/overview",
+      "path": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/overview.md",
+      "title": "Supplementary / Complementary Research Pass #2 — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-2-september-22-202",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "cost",
+        "license",
+        "memory",
+        "nand",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        839,
+        888
+      ],
+      "canonical_for": [],
+      "words": 811,
+      "bytes": 6450,
+      "sha256": "2f56d0c8f4c342b1635e37eec2db15f5529d24cefc3a730a7d5608376b182008",
+      "section": "Supplementary / Complementary Research Pass #2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/t3-cross-vendor-wi-fi-7-ap-comparison-smb-relevant-sep-2026",
+      "path": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/t3-cross-vendor-wi-fi-7-ap-comparison-smb-relevant-sep-2026.md",
+      "title": "T3. Cross-vendor Wi-Fi 7 AP comparison (SMB-relevant, Sep 2026)",
+      "domain": "supplementary-complementary-research-pass-2-september-22-202",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        889,
+        939
+      ],
+      "canonical_for": [],
+      "words": 761,
+      "bytes": 5747,
+      "sha256": "999fe169baefd28bd058d405026fa92d469d9da5eeb35691d500f08d66ce35b7",
+      "section": "Supplementary / Complementary Research Pass #2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/t6-2026-cost-shock-memory-prices-tariffs-and-their-smb-impac",
+      "path": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/t6-2026-cost-shock-memory-prices-tariffs-and-their-smb-impac.md",
+      "title": "T6. 2026 cost shock — memory prices, tariffs, and their SMB impact (new dimension)",
+      "domain": "supplementary-complementary-research-pass-2-september-22-202",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "United States"
+      ],
+      "dates": [
+        "2026-07-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cost",
+        "memory",
+        "distribution",
+        "license",
+        "pricing",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        940,
+        986
+      ],
+      "canonical_for": [],
+      "words": 848,
+      "bytes": 6708,
+      "sha256": "87d1c197f10aae7d7ed5490a5742d714c3a186d0c4dbc14fd58672c198de8415",
+      "section": "Supplementary / Complementary Research Pass #2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/s20-zyxel-xs1935-street-prices-captured-was-pricing-unannoun",
+      "path": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/s20-zyxel-xs1935-street-prices-captured-was-pricing-unannoun.md",
+      "title": "S20. Zyxel XS1935 street prices captured (was: pricing unannounced)",
+      "domain": "supplementary-complementary-research-pass-2-september-22-202",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "Falcon",
+        "Intel",
+        "Malaysia",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04-10",
+        "2026-08-07",
+        "2026-08-26"
+      ],
+      "keywords": [
+        "pricing",
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        987,
+        1033
+      ],
+      "canonical_for": [],
+      "words": 727,
+      "bytes": 6255,
+      "sha256": "40d7f42aa013f52b66c16f4638a500a44cd3d9a98942345aeab159a721d0e3bf",
+      "section": "Supplementary / Complementary Research Pass #2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/supplementary-pass-4-verification-notes-open-gaps",
+      "path": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/supplementary-pass-4-verification-notes-open-gaps.md",
+      "title": "Supplementary pass #4 — verification notes / open gaps",
+      "domain": "supplementary-complementary-research-pass-2-september-22-202",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-05-15",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "dram",
+        "ethernet",
+        "license",
+        "memory",
+        "optics",
+        "pricing",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1034,
+        1126
+      ],
+      "canonical_for": [],
+      "words": 1497,
+      "bytes": 12520,
+      "sha256": "c265e27944da46ff6b591f3442928062bdf7d1f57f424c653ea6d86d2d3a2c35",
+      "section": "Supplementary / Complementary Research Pass #2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/supplementary-complementary-research-pass-2026-09-22-indepen",
+      "path": "etape6-phaseb-smb-networking/06-supplementary-complementary-research-pass-2-september-22-202/supplementary-complementary-research-pass-2026-09-22-indepen.md",
+      "title": "Supplementary / Complementary Research Pass — 2026-09-22 (independent research passes A/B/C)",
+      "domain": "supplementary-complementary-research-pass-2-september-22-202",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2025-04",
+        "2026-02-10",
+        "2026-04-24",
+        "2026-06",
+        "2026-07",
+        "2026-07-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "advisory",
+        "agents",
+        "claude",
+        "cost",
+        "distribution",
+        "ethernet",
+        "latency",
+        "license",
+        "memory",
+        "optics",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1127,
+        1201
+      ],
+      "canonical_for": [],
+      "words": 1697,
+      "bytes": 16694,
+      "sha256": "00b162f56fef8d09c9abf1db65cdcdc8323fde83d4f40c15f41de967950234c6",
+      "section": "Supplementary / Complementary Research Pass #2 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/07-supplementary-complementary-research-pass-round-3-september-/overview",
+      "path": "etape6-phaseb-smb-networking/07-supplementary-complementary-research-pass-round-3-september-/overview.md",
+      "title": "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-round-3-september-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Intel",
+        "United States"
+      ],
+      "dates": [
+        "2026-02-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "cyber",
+        "ethernet",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1202,
+        1255
+      ],
+      "canonical_for": [],
+      "words": 821,
+      "bytes": 7283,
+      "sha256": "fa6f6889f6afce8b28d1eb15e387a382440e98b9f400c3eb66767b0342862e3f",
+      "section": "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/07-supplementary-complementary-research-pass-round-3-september-/t5-netgear-m4500-25g-100g-pro-av-line-pricing-sep-2026-compl",
+      "path": "etape6-phaseb-smb-networking/07-supplementary-complementary-research-pass-round-3-september-/t5-netgear-m4500-25g-100g-pro-av-line-pricing-sep-2026-compl.md",
+      "title": "T5. NETGEAR M4500 — 25G/100G Pro AV line pricing Sep 2026 (complements S6 M4350)",
+      "domain": "supplementary-complementary-research-pass-round-3-september-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "Intel",
+        "United States"
+      ],
+      "dates": [
+        "2026-02-16"
+      ],
+      "keywords": [
+        "pricing",
+        "asic",
+        "cost",
+        "cyber",
+        "license",
+        "optics",
+        "settlement"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1256,
+        1315
+      ],
+      "canonical_for": [],
+      "words": 1052,
+      "bytes": 10377,
+      "sha256": "491965abe0bbe078af4071056c157deeb0e784182e1fb3069dc198ad48162432",
+      "section": "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/07-supplementary-complementary-research-pass-round-3-september-/pass-b-tp-link-omada-pro-agile-d-link-nuclias-zyxel-usg-flex",
+      "path": "etape6-phaseb-smb-networking/07-supplementary-complementary-research-pass-round-3-september-/pass-b-tp-link-omada-pro-agile-d-link-nuclias-zyxel-usg-flex.md",
+      "title": "Pass B — TP-Link Omada Pro/Agile, D-Link Nuclias, Zyxel USG Flex / XGS2220 / GS2200 / Wi-Fi 7 APs",
+      "domain": "supplementary-complementary-research-pass-round-3-september-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "EU",
+        "Google",
+        "Intel",
+        "Malaysia",
+        "Microsoft",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2023-03",
+        "2023-10",
+        "2025-04",
+        "2025-07",
+        "2025-10",
+        "2025-12",
+        "2026-01",
+        "2026-01-07",
+        "2026-01-15",
+        "2026-01-21",
+        "2026-03",
+        "2026-03-05",
+        "2026-03-17",
+        "2026-04-09",
+        "2026-04-14",
+        "2026-05",
+        "2026-06-18",
+        "2026-06-26",
+        "2026-07-02",
+        "2026-07-03",
+        "2026-07-29",
+        "2026-08",
+        "2026-09",
+        "2026-09-08",
+        "2026-09-13",
+        "2026-09-16",
+        "2026-09-20",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "advisory",
+        "cost",
+        "ethernet",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1316,
+        1402
+      ],
+      "canonical_for": [],
+      "words": 1938,
+      "bytes": 18805,
+      "sha256": "984f8716ea0d7ab2b979b429909ac69bc1bf2786d06666a3802350615ea202dc",
+      "section": "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/08-supplementary-complementary-research-pass-3-september-22-202/overview",
+      "path": "etape6-phaseb-smb-networking/08-supplementary-complementary-research-pass-3-september-22-202/overview.md",
+      "title": "Supplementary / Complementary Research Pass #3 — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-3-september-22-202",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "Huawei",
+        "United States"
+      ],
+      "dates": [
+        "2025-08",
+        "2025-10",
+        "2025-10-24",
+        "2025-12-23",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "consumer",
+        "cyber",
+        "disclosure",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1403,
+        1456
+      ],
+      "canonical_for": [],
+      "words": 655,
+      "bytes": 5467,
+      "sha256": "50412cd05ca75993a4eecd5cf25f7401960de6267a2959267742a989c80429b0",
+      "section": "Supplementary / Complementary Research Pass #3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/08-supplementary-complementary-research-pass-3-september-22-202/u5-zyxel-nebula-pro-pack-actual-pricing-found-closes-earlier",
+      "path": "etape6-phaseb-smb-networking/08-supplementary-complementary-research-pass-3-september-22-202/u5-zyxel-nebula-pro-pack-actual-pricing-found-closes-earlier.md",
+      "title": "U5. Zyxel Nebula Pro Pack — actual pricing found (closes earlier gap)",
+      "domain": "supplementary-complementary-research-pass-3-september-22-202",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "ethernet",
+        "license",
+        "licenses",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1457,
+        1508
+      ],
+      "canonical_for": [],
+      "words": 425,
+      "bytes": 4418,
+      "sha256": "610f1f846b093fac5184fcc78e7a34c5fce6400d2054fd8c09c03884dbc76a24",
+      "section": "Supplementary / Complementary Research Pass #3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/08-supplementary-complementary-research-pass-3-september-22-202/u9-engenius-2026-enterprise-launches-new-above-the-smb-ecs-l",
+      "path": "etape6-phaseb-smb-networking/08-supplementary-complementary-research-pass-3-september-22-202/u9-engenius-2026-enterprise-launches-new-above-the-smb-ecs-l.md",
+      "title": "U9. EnGenius 2026 enterprise launches (new — above the SMB ECS line)",
+      "domain": "supplementary-complementary-research-pass-3-september-22-202",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "consumer",
+        "optics",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1509,
+        1571
+      ],
+      "canonical_for": [],
+      "words": 588,
+      "bytes": 5130,
+      "sha256": "f93591a1c9cdf143544209a873b0fff11fdd9dd8b3b507e61662c95dcbdf9f79",
+      "section": "Supplementary / Complementary Research Pass #3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/09-supplementary-research-pass-addendum-september-22-2026/overview",
+      "path": "etape6-phaseb-smb-networking/09-supplementary-research-pass-addendum-september-22-2026/overview.md",
+      "title": "Supplementary Research Pass — Addendum (September 22, 2026)",
+      "domain": "supplementary-research-pass-addendum-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "CISA",
+        "California",
+        "EU",
+        "Malaysia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "benchmark",
+        "license",
+        "memory",
+        "pricing",
+        "voice"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1572,
+        1648
+      ],
+      "canonical_for": [],
+      "words": 1064,
+      "bytes": 8722,
+      "sha256": "147c3d4d6c514bc948eff0fdf6dc92a8e530db2729af6108f24ea77fc04d40a4",
+      "section": "Supplementary Research Pass — Addendum (September 22, 2026)"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/09-supplementary-research-pass-addendum-september-22-2026/pass-c-netgear-hpe-instant-on-grandstream-cross-vendor-wi-fi",
+      "path": "etape6-phaseb-smb-networking/09-supplementary-research-pass-addendum-september-22-2026/pass-c-netgear-hpe-instant-on-grandstream-cross-vendor-wi-fi.md",
+      "title": "Pass C — Netgear, HPE Instant On, Grandstream, cross-vendor Wi-Fi 7 table, 25G/40G pricing",
+      "domain": "supplementary-research-pass-addendum-september-22-2026",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2023-12-06",
+        "2024-03",
+        "2024-05-01",
+        "2024-08",
+        "2025-01-31",
+        "2026-01",
+        "2026-01-27",
+        "2026-02",
+        "2026-02-17",
+        "2026-03",
+        "2026-05",
+        "2026-06-30",
+        "2026-07",
+        "2026-07-02",
+        "2026-08-07",
+        "2026-09",
+        "2026-09-22",
+        "2026-14-07",
+        "2026-19-05",
+        "2026-20-03",
+        "2026-30-10"
+      ],
+      "keywords": [
+        "pricing",
+        "ethernet",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1649,
+        1737
+      ],
+      "canonical_for": [],
+      "words": 1667,
+      "bytes": 14708,
+      "sha256": "8cac9390c4ccc9ab6fb77353e1132011d392a2fdcf722614743c8db7e379dee4",
+      "section": "Supplementary Research Pass — Addendum (September 22, 2026)"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/09-supplementary-research-pass-addendum-september-22-2026/part-3",
+      "path": "etape6-phaseb-smb-networking/09-supplementary-research-pass-addendum-september-22-2026/part-3.md",
+      "title": "Supplementary Research Pass — Addendum (September 22, 2026) (part 3)",
+      "domain": "supplementary-research-pass-addendum-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2023-10-17",
+        "2024-01-30",
+        "2024-03-21",
+        "2025-09-29",
+        "2026-05",
+        "2026-05-26",
+        "2026-07-02",
+        "2026-07-22",
+        "2026-09",
+        "2026-09-22",
+        "2026-14-07"
+      ],
+      "keywords": [
+        "research",
+        "ethernet",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1738,
+        1817
+      ],
+      "canonical_for": [],
+      "words": 1336,
+      "bytes": 11568,
+      "sha256": "333a2deebb1dc156cbddcba203ef60d4f4f3cf509026af017debe6ff303f28bb",
+      "section": "Supplementary Research Pass — Addendum (September 22, 2026)"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/10-supplementary-complementary-research-pass-round-3-september-/overview",
+      "path": "etape6-phaseb-smb-networking/10-supplementary-complementary-research-pass-round-3-september-/overview.md",
+      "title": "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-round-3-september-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04-28",
+        "2026-05-28",
+        "2026-07-27",
+        "2026-09-01",
+        "2026-09-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "advisory",
+        "asic",
+        "disclosure",
+        "distribution",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1818,
+        1872
+      ],
+      "canonical_for": [],
+      "words": 847,
+      "bytes": 7040,
+      "sha256": "fa3211d1b7dbdca4d7b6cd1055614edeba9edeb40230590818bcc04bf8f8729f",
+      "section": "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/10-supplementary-complementary-research-pass-round-3-september-/t6-tp-link-eap772-sep-2026-street-prices-listings-created-se",
+      "path": "etape6-phaseb-smb-networking/10-supplementary-complementary-research-pass-round-3-september-/t6-tp-link-eap772-sep-2026-street-prices-listings-created-se.md",
+      "title": "T6. TP-Link EAP772 — Sep 2026 street prices (listings created Sep 22, 2026) [independent]",
+      "domain": "supplementary-complementary-research-pass-round-3-september-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "consumer",
+        "distribution",
+        "dram",
+        "hbm",
+        "inference",
+        "memory",
+        "nand",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1873,
+        1943
+      ],
+      "canonical_for": [],
+      "words": 1019,
+      "bytes": 9025,
+      "sha256": "68c8f05ae0723edfd4d4555c8ef6759f4eaf49fd682b7400ecd0506989380c54",
+      "section": "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/11-supplementary-complementary-research-pass-round-5-september-/overview",
+      "path": "etape6-phaseb-smb-networking/11-supplementary-complementary-research-pass-round-5-september-/overview.md",
+      "title": "Supplementary / Complementary Research Pass — Round 5 — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-round-5-september-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2024-12",
+        "2024-12-02",
+        "2026-03",
+        "2026-07-31",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1944,
+        2015
+      ],
+      "canonical_for": [],
+      "words": 991,
+      "bytes": 7943,
+      "sha256": "b539651bc6ef9509b42f038f89478cbf33cee455ca6e5fcca4ba507f0ff24143",
+      "section": "Supplementary / Complementary Research Pass — Round 5 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/12-supplementary-complementary-research-pass-round-4-september-/overview",
+      "path": "etape6-phaseb-smb-networking/12-supplementary-complementary-research-pass-round-4-september-/overview.md",
+      "title": "Supplementary / Complementary Research Pass — Round 4 — September 22, 2026",
+      "domain": "supplementary-complementary-research-pass-round-4-september-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "benchmark",
+        "license",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2016,
+        2112
+      ],
+      "canonical_for": [],
+      "words": 866,
+      "bytes": 7825,
+      "sha256": "cee17d7aed85c6cca5a46194c718b3489c0c6ba4490bacb06abd3575010cbc0b",
+      "section": "Supplementary / Complementary Research Pass — Round 4 — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/13-supplementary-complementary-research-pass-september-22-2026-/overview",
+      "path": "etape6-phaseb-smb-networking/13-supplementary-complementary-research-pass-september-22-2026-/overview.md",
+      "title": "Supplementary / Complementary Research Pass — September 22, 2026 (fourth wave; U1–U7)",
+      "domain": "supplementary-complementary-research-pass-september-22-2026-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "EU",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-03-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "asic",
+        "consumer",
+        "ethernet",
+        "license",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2113,
+        2203
+      ],
+      "canonical_for": [],
+      "words": 1256,
+      "bytes": 11608,
+      "sha256": "f53e54afee9a5dd1c73c99e9107af41e38b4b42f27855480857a5a8ce14dd377",
+      "section": "Supplementary / Complementary Research Pass — September 22, 2026 (fourth wave; U1–U7)"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/14-supplementary-complementary-research-pass-september-22-2026-/overview",
+      "path": "etape6-phaseb-smb-networking/14-supplementary-complementary-research-pass-september-22-2026-/overview.md",
+      "title": "Supplementary / Complementary Research Pass — September 22, 2026 (fifth wave; V1–V9)",
+      "domain": "supplementary-complementary-research-pass-september-22-2026-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "ethernet",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2204,
+        2250
+      ],
+      "canonical_for": [],
+      "words": 640,
+      "bytes": 5429,
+      "sha256": "db4e1edbe17aea26a20f969ff435df534036004e824979d7e51641389e7a13c2",
+      "section": "Supplementary / Complementary Research Pass — September 22, 2026 (fifth wave; V1–V9)"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/14-supplementary-complementary-research-pass-september-22-2026-/v4-grandstream-gwn7816-stacking-support-resolved-price-point",
+      "path": "etape6-phaseb-smb-networking/14-supplementary-complementary-research-pass-september-22-2026-/v4-grandstream-gwn7816-stacking-support-resolved-price-point.md",
+      "title": "V4. Grandstream GWN7816 — stacking support RESOLVED + price points (was: U13 gap #6)",
+      "domain": "supplementary-complementary-research-pass-september-22-2026-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Falcon",
+        "Intel",
+        "United States"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "intel",
+        "license",
+        "licenses",
+        "optics",
+        "pricing",
+        "voice"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2251,
+        2321
+      ],
+      "canonical_for": [],
+      "words": 997,
+      "bytes": 8296,
+      "sha256": "6a21fd2dfe1d5ea7ac1b1d6b4010fd7b55f7b3b287fb105135089ab6e16a37c9",
+      "section": "Supplementary / Complementary Research Pass — September 22, 2026 (fifth wave; V1–V9)"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/15-supplementary-research-pass-round-3b-september-22-2026/overview",
+      "path": "etape6-phaseb-smb-networking/15-supplementary-research-pass-round-3b-september-22-2026/overview.md",
+      "title": "Supplementary Research Pass — Round 3b — September 22, 2026",
+      "domain": "supplementary-research-pass-round-3b-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "United States"
+      ],
+      "dates": [
+        "2026-02-22",
+        "2026-04-13",
+        "2026-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "license",
+        "licenses",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2322,
+        2383
+      ],
+      "canonical_for": [],
+      "words": 893,
+      "bytes": 6867,
+      "sha256": "f7954017c1352d416d23a25ae012bc889516c5263ad2238fdef33e956c3122a4",
+      "section": "Supplementary Research Pass — Round 3b — September 22, 2026"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/overview",
+      "path": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/overview.md",
+      "title": "Complementary Research Pass — Fifth Wave (September 22, 2026), Items S25–S33",
+      "domain": "complementary-research-pass-fifth-wave-september-22-2026-ite",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2384,
+        2450
+      ],
+      "canonical_for": [],
+      "words": 741,
+      "bytes": 5632,
+      "sha256": "f23774a8cb5fb105af7366438f1a8ae4462ae409de5989033e14f7376307a493",
+      "section": "Complementary Research Pass — Fifth Wave (September 22, 2026), Items S25–S33"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/s27-netgear-insight-cloud-subscription-2026-pricing-state",
+      "path": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/s27-netgear-insight-cloud-subscription-2026-pricing-state.md",
+      "title": "S27. NETGEAR Insight cloud subscription — 2026 pricing state",
+      "domain": "complementary-research-pass-fifth-wave-september-22-2026-ite",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "EU",
+        "Microsoft",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-07",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "cost",
+        "distribution",
+        "license",
+        "licenses",
+        "scout"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2451,
+        2508
+      ],
+      "canonical_for": [],
+      "words": 814,
+      "bytes": 6389,
+      "sha256": "d4f310f23066be1defe9b480d1f04a2724f04eda7dda5f4f7664733454b88e55",
+      "section": "Complementary Research Pass — Fifth Wave (September 22, 2026), Items S25–S33"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/s29-tp-link-omada-2026-access-point-launches-eap775-wall-out",
+      "path": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/s29-tp-link-omada-2026-access-point-launches-eap775-wall-out.md",
+      "title": "S29. TP-Link Omada 2026 access-point launches — EAP775-Wall/Outdoor, EAP783, EAP787, EAP725",
+      "domain": "complementary-research-pass-fifth-wave-september-22-2026-ite",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "United States"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-05"
+      ],
+      "keywords": [
+        "ethernet",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2509,
+        2563
+      ],
+      "canonical_for": [],
+      "words": 570,
+      "bytes": 4394,
+      "sha256": "e7ef5d7c1f8877dc6505b3f36b879b98688836f6669cdfac2baa9bb9f920a376",
+      "section": "Complementary Research Pass — Fifth Wave (September 22, 2026), Items S25–S33"
+    },
+    {
+      "id": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/s31-omada-sdn-controller-software-state-no-v6-4-as-of-22-sep",
+      "path": "etape6-phaseb-smb-networking/16-complementary-research-pass-fifth-wave-september-22-2026-ite/s31-omada-sdn-controller-software-state-no-v6-4-as-of-22-sep.md",
+      "title": "S31. Omada SDN Controller software state — no v6.4 as of 22 Sept 2026",
+      "domain": "complementary-research-pass-fifth-wave-september-22-2026-ite",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-07",
+        "2026-07-01",
+        "2026-08"
+      ],
+      "keywords": [
+        "optics",
+        "packaging",
+        "pricing",
+        "scout"
+      ],
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "source_anchor": "",
+      "source_lines": [
+        2564,
+        2612
+      ],
+      "canonical_for": [],
+      "words": 633,
+      "bytes": 4474,
+      "sha256": "a84571c8bcec234271230e37feddee103b2252d658afa5cb9f48e19ebf8a3806",
+      "section": "Complementary Research Pass — Fifth Wave (September 22, 2026), Items S25–S33"
+    }
+  ]
+}

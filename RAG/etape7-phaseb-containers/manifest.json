@@ -1,0 +1,481 @@
+{
+  "corpus": "etape7-phaseb-containers",
+  "title": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes",
+  "source": "docs/RAG/etape7_phaseB_containers.md",
+  "source_lines": 796,
+  "source_sha256": "4109f3ed708b2f8f1b52ce788e4efc1fdec1c8cd09e1d9bfe652161a32026fbf",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phaseb-containers/00-containers/overview",
+      "path": "etape7-phaseb-containers/00-containers/overview.md",
+      "title": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-11-10",
+        "2026-01-02",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "sandbox",
+        "amd",
+        "aws",
+        "benchmark",
+        "distribution",
+        "gpu",
+        "gpus",
+        "nvidia",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        87
+      ],
+      "canonical_for": [],
+      "words": 588,
+      "bytes": 5008,
+      "sha256": "d33ca9e9fe5be232f74504d617bc4db175d9ca7a7c6ccdbff2b0afd34247bb75",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/2-desktop-and-local-development-tooling",
+      "path": "etape7-phaseb-containers/00-containers/2-desktop-and-local-development-tooling.md",
+      "title": "2. Desktop and local development tooling",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [
+        "2024-12-10",
+        "2026-08",
+        "2026-09",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "amd",
+        "apache",
+        "cost",
+        "gpu",
+        "gpus",
+        "open source",
+        "pricing",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        88,
+        164
+      ],
+      "canonical_for": [],
+      "words": 532,
+      "bytes": 4790,
+      "sha256": "cde46cd67dbd6e0421454658d201a64bdf4376b12dbf0a082987c27362f24a19",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/4-compose-and-build-tooling",
+      "path": "etape7-phaseb-containers/00-containers/4-compose-and-build-tooling.md",
+      "title": "4. Compose and build tooling",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2025-08",
+        "2025-12-17",
+        "2026-01-27",
+        "2026-04-22",
+        "2026-06-02",
+        "2026-06-23",
+        "2026-07-30",
+        "2026-09",
+        "2026-09-22",
+        "2026-10-27",
+        "2027-02-28",
+        "2027-06-28",
+        "2027-08-02",
+        "2028-08-02"
+      ],
+      "keywords": [
+        "accelerator",
+        "agent",
+        "aws",
+        "gpu",
+        "mcp",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        165,
+        227
+      ],
+      "canonical_for": [],
+      "words": 415,
+      "bytes": 3583,
+      "sha256": "8fee519bbbf18e87fcd056831ee7b83b9a53399fff885b20510bf3d7f6b1fe77",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/6-kubernetes-distributions",
+      "path": "etape7-phaseb-containers/00-containers/6-kubernetes-distributions.md",
+      "title": "6. Kubernetes distributions",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-08-27",
+        "2025-10-02",
+        "2025-12-17",
+        "2026-01-27",
+        "2026-04-22",
+        "2026-04-27",
+        "2026-05-27",
+        "2026-06-02",
+        "2026-09",
+        "2026-11-26",
+        "2026-12",
+        "2026-12-02",
+        "2027-03-27",
+        "2027-07-29",
+        "2027-08-02"
+      ],
+      "keywords": [
+        "distribution",
+        "acquisition",
+        "aws",
+        "gpu",
+        "nvidia",
+        "omni",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        228,
+        316
+      ],
+      "canonical_for": [],
+      "words": 622,
+      "bytes": 5461,
+      "sha256": "42c36f323cb6541b8ede7e1b7006e819977963d69c5b35db918136354f76dff3",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/7-packaging-and-deployment-helm-kustomize-operators",
+      "path": "etape7-phaseb-containers/00-containers/7-packaging-and-deployment-helm-kustomize-operators.md",
+      "title": "7. Packaging and deployment: Helm, Kustomize, operators",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-11-12",
+        "2026-07",
+        "2026-07-08",
+        "2026-08-05",
+        "2026-08-13",
+        "2026-09-09",
+        "2026-11-11"
+      ],
+      "keywords": [
+        "packaging",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        317,
+        361
+      ],
+      "canonical_for": [],
+      "words": 303,
+      "bytes": 2715,
+      "sha256": "38ead8b89c637b96d0a9be37e009a623bb75169185d273bb00e515adeb8d07a9",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/8-system-containers-lxc-lxd-incus",
+      "path": "etape7-phaseb-containers/00-containers/8-system-containers-lxc-lxd-incus.md",
+      "title": "8. System containers: LXC, LXD, Incus",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05-01"
+      ],
+      "keywords": [
+        "agent",
+        "governance"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        362,
+        406
+      ],
+      "canonical_for": [],
+      "words": 309,
+      "bytes": 2494,
+      "sha256": "322cd3a17ea4f095ed51061f784561c8371682a56d67e52d291d544cf0bf3eda",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/9-sandbox-and-microvm-runtimes",
+      "path": "etape7-phaseb-containers/00-containers/9-sandbox-and-microvm-runtimes.md",
+      "title": "9. Sandbox and microVM runtimes",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Intel",
+        "Lambda"
+      ],
+      "dates": [
+        "2026-06-03",
+        "2026-08-21",
+        "2026-09",
+        "2026-09-07",
+        "2026-09-10",
+        "2026-12-03",
+        "2027-03-10"
+      ],
+      "keywords": [
+        "sandbox",
+        "agent",
+        "agents",
+        "amd",
+        "apache",
+        "aws",
+        "intel"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        407,
+        464
+      ],
+      "canonical_for": [],
+      "words": 384,
+      "bytes": 3598,
+      "sha256": "a5ec06472511b26105be58746312ac0d41ccab04f15117385043d9bc617d96c2",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/10-container-registries",
+      "path": "etape7-phaseb-containers/00-containers/10-container-registries.md",
+      "title": "10. Container registries",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "EU",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "attribution",
+        "aws",
+        "nvidia",
+        "pricing",
+        "scout"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        465,
+        517
+      ],
+      "canonical_for": [],
+      "words": 364,
+      "bytes": 3076,
+      "sha256": "3303ab3ad6d831f50d8bee9e4bf45cd4dec692f843a08be37924db273e8654a3",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/11-kubernetes-networking-cni-load-balancing",
+      "path": "etape7-phaseb-containers/00-containers/11-kubernetes-networking-cni-load-balancing.md",
+      "title": "11. Kubernetes networking: CNI, load balancing",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-09",
+        "2026-09-09",
+        "2026-09-11",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "aws",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        518,
+        565
+      ],
+      "canonical_for": [],
+      "words": 292,
+      "bytes": 2423,
+      "sha256": "2cded6600031858611ae1a51a7ddeef642e5b114b8d63be66afe80c89b1e0eb1",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/12-storage-csi-drivers",
+      "path": "etape7-phaseb-containers/00-containers/12-storage-csi-drivers.md",
+      "title": "12. Storage: CSI drivers",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-02-16",
+        "2026-05-14",
+        "2026-08-27",
+        "2026-09",
+        "2026-09-09",
+        "2026-10-12"
+      ],
+      "keywords": [
+        "aws"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        566,
+        610
+      ],
+      "canonical_for": [],
+      "words": 291,
+      "bytes": 2278,
+      "sha256": "ee087dfe7c9a830b3c333c94377d52d6ce193e04bce354987ba7d254494dbfbe",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/14-gpus-in-containers",
+      "path": "etape7-phaseb-containers/00-containers/14-gpus-in-containers.md",
+      "title": "14. GPUs in containers",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "EU",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "gpu",
+        "gpus",
+        "acquisition",
+        "amd",
+        "blackwell",
+        "cost",
+        "distribution",
+        "intel",
+        "nvidia",
+        "omni",
+        "packaging"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        611,
+        726
+      ],
+      "canonical_for": [],
+      "words": 806,
+      "bytes": 6438,
+      "sha256": "01704bf2f6fe117621aeafbc23cb031d77dd5b63211c894b3e7ed0f452c49d76",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    },
+    {
+      "id": "etape7-phaseb-containers/00-containers/18-source-index-verbatim-urls",
+      "path": "etape7-phaseb-containers/00-containers/18-source-index-verbatim-urls.md",
+      "title": "18. Source index (verbatim URLs)",
+      "domain": "step-7-phase-b-containers-orchestration-sandbox-runtimes",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-05-27",
+        "2026-07-26",
+        "2026-08-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "agent",
+        "amd",
+        "aws",
+        "cost",
+        "gpu",
+        "gpus",
+        "nvidia",
+        "omni",
+        "pricing",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "source_anchor": "",
+      "source_lines": [
+        727,
+        796
+      ],
+      "canonical_for": [],
+      "words": 159,
+      "bytes": 5669,
+      "sha256": "3b6e0eac8d1463ef3e14d4bf339cd2c1631540b2946731216d134b3e372cc274",
+      "section": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes"
+    }
+  ]
+}

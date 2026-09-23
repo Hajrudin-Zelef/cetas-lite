@@ -1,0 +1,487 @@
+{
+  "corpus": "etape8-phasea-system-languages",
+  "title": "Step 8 — Phase A: Systems Languages",
+  "source": "docs/RAG/etape8_phaseA_system_languages.md",
+  "source_lines": 752,
+  "source_sha256": "16b08134862878742d547e583d0ca6514ce46a4eb1d24e52ed43e412db4f872e",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/overview",
+      "path": "etape8-phasea-system-languages/00-system-languages/overview.md",
+      "title": "Step 8 — Phase A: Systems Languages",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "benchmark",
+        "benchmarks",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 438,
+      "bytes": 3688,
+      "sha256": "f37804e2afea4cfbf6317ae665bf5919187ccf1d664c7ca16acbb6a1eaf1286a",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/1-c",
+      "path": "etape8-phasea-system-languages/00-system-languages/1-c.md",
+      "title": "1. C",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "CISA",
+        "EU",
+        "Google",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2024-10",
+        "2026-01-01",
+        "2026-03-28",
+        "2026-04",
+        "2026-04-30",
+        "2026-08-07",
+        "2026-09",
+        "2027-12"
+      ],
+      "keywords": [
+        "amd",
+        "cyber",
+        "distribution",
+        "intel",
+        "license",
+        "memory",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        54,
+        124
+      ],
+      "canonical_for": [],
+      "words": 965,
+      "bytes": 7600,
+      "sha256": "5c14f8b4552be2415459c388b9ec40908e2ba5ac6b1e2cafe51de13babdfbc92",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/3-rust",
+      "path": "etape8-phasea-system-languages/00-system-languages/3-rust.md",
+      "title": "3. Rust",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Lambda",
+        "Meta",
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-05",
+        "2026-08-20",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "aws",
+        "compute",
+        "cost",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        125,
+        192
+      ],
+      "canonical_for": [],
+      "words": 938,
+      "bytes": 7553,
+      "sha256": "7afd1ebb78c8dc5a1b6bb288f76f6db69d7ed9845e49c5a4bcc54c25b0487775",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/4-go",
+      "path": "etape8-phasea-system-languages/00-system-languages/4-go.md",
+      "title": "4. Go",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-02-11",
+        "2025-08-12",
+        "2026-02-10",
+        "2026-08-19",
+        "2026-09"
+      ],
+      "keywords": [
+        "cost",
+        "inference",
+        "memory",
+        "parameters"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        193,
+        244
+      ],
+      "canonical_for": [],
+      "words": 641,
+      "bytes": 5337,
+      "sha256": "c332bbfeb210edd0cb271c8990564ad4a2864cfcc466c44e6d22e854e40749c4",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/5-zig",
+      "path": "etape8-phasea-system-languages/00-system-languages/5-zig.md",
+      "title": "5. Zig",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2025-03-05",
+        "2025-05-21",
+        "2025-08-19",
+        "2025-10-11",
+        "2025-10-12",
+        "2025-11-26",
+        "2025-12",
+        "2026-04-13"
+      ],
+      "keywords": [
+        "claude",
+        "memory"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        245,
+        304
+      ],
+      "canonical_for": [],
+      "words": 726,
+      "bytes": 6192,
+      "sha256": "0689ad451969b5be9d107f3647123eff774981b09490a3238d3b12dab7fb47ea",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/7-mojo",
+      "path": "etape8-phasea-system-languages/00-system-languages/7-mojo.md",
+      "title": "7. Mojo",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-08-11",
+        "2026-08-16",
+        "2026-08-18",
+        "2026-09",
+        "2026-09-10",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "apache",
+        "energy",
+        "gpu",
+        "gpus",
+        "latency",
+        "memory",
+        "open source"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        305,
+        362
+      ],
+      "canonical_for": [],
+      "words": 710,
+      "bytes": 5829,
+      "sha256": "4bb103eaa53cb256ac954fb6de109113ef4ccb76dcb1d23909d0cd6a5c814681",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/9-v-secondary-coverage",
+      "path": "etape8-phasea-system-languages/00-system-languages/9-v-secondary-coverage.md",
+      "title": "9. V (secondary coverage)",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "CISA",
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-01-01",
+        "2026-07-12",
+        "2026-09",
+        "2027-12"
+      ],
+      "keywords": [
+        "cyber",
+        "memory"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        363,
+        407
+      ],
+      "canonical_for": [],
+      "words": 551,
+      "bytes": 3992,
+      "sha256": "228c77f02c809336b267c2314aebeea08a3c13c41fc3712c79fa039c0a5df05c",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/11-build-systems-and-package-management",
+      "path": "etape8-phasea-system-languages/00-system-languages/11-build-systems-and-package-management.md",
+      "title": "11. Build systems and package management",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "amd",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "latency",
+        "nvfp4",
+        "prefill",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        408,
+        460
+      ],
+      "canonical_for": [],
+      "words": 575,
+      "bytes": 4214,
+      "sha256": "6a940ba0d1cda263953cd7170878a3f852b1457757199aaeb8c4023a9fd89680",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/13-rankings-adoption-and-job-market-signals",
+      "path": "etape8-phasea-system-languages/00-system-languages/13-rankings-adoption-and-job-market-signals.md",
+      "title": "13. Rankings, adoption, and job-market signals",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Apple",
+        "Meta",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "cost",
+        "energy",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        461,
+        506
+      ],
+      "canonical_for": [],
+      "words": 424,
+      "bytes": 3341,
+      "sha256": "7f0114d41f29aaab71265d3361040a88d510614071c2511d509e69b7157dbcf0",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/14-learning-resources",
+      "path": "etape8-phasea-system-languages/00-system-languages/14-learning-resources.md",
+      "title": "14. Learning resources",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-10-11",
+        "2025-10-12",
+        "2025-12",
+        "2026-03-28",
+        "2026-09",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "benchmark",
+        "cost",
+        "gpu",
+        "latency",
+        "memory",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        507,
+        596
+      ],
+      "canonical_for": [],
+      "words": 1153,
+      "bytes": 8742,
+      "sha256": "642d44e64d9d140357ca04f37ef98d7d4aafc841a83393fbd318f27c487fd458",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/18-source-index",
+      "path": "etape8-phasea-system-languages/00-system-languages/18-source-index.md",
+      "title": "18. Source index",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "CISA",
+        "Microsoft",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-10-24",
+        "2026-02-23",
+        "2026-08-11",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "claude",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        597,
+        673
+      ],
+      "canonical_for": [],
+      "words": 542,
+      "bytes": 8094,
+      "sha256": "87d15dae61eca26b1e099563c4accf7e834aab367b2ecf06a06832865cc56758",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/appendix-a-chronological-timeline-2025-02-2026-09",
+      "path": "etape8-phasea-system-languages/00-system-languages/appendix-a-chronological-timeline-2025-02-2026-09.md",
+      "title": "Appendix A: Chronological timeline (2025-02 → 2026-09)",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "CISA",
+        "EU",
+        "Microsoft",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-02-11",
+        "2025-03-05",
+        "2025-05-21",
+        "2025-08-12",
+        "2025-08-19",
+        "2025-10-11",
+        "2025-10-12",
+        "2025-11-26",
+        "2026-01-01",
+        "2026-02-10",
+        "2026-03-28",
+        "2026-04-13",
+        "2026-04-30",
+        "2026-07-12",
+        "2026-08-07",
+        "2026-08-11",
+        "2026-08-16",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-20",
+        "2026-09",
+        "2026-09-03",
+        "2026-09-10",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cyber",
+        "latency",
+        "license",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        674,
+        752
+      ],
+      "canonical_for": [],
+      "words": 924,
+      "bytes": 6433,
+      "sha256": "62bd85da93cafd28c51bc1f25fac8547787dc1c2316427a8c77a700f01e65feb",
+      "section": "Step 8 — Phase A: Systems Languages"
+    }
+  ]
+}

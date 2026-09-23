@@ -1,0 +1,428 @@
+{
+  "corpus": "etape10-phased-news-sport",
+  "title": "Step 10D — Sports News (February 2026 → 22 September 2026)",
+  "source": "docs/RAG/etape10_phaseD_news_sport.md",
+  "source_lines": 935,
+  "source_sha256": "044731b0b35395a6398c4c48399b94b18da257fb37fd06a8c42dced6cd48861b",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/overview",
+      "path": "etape10-phased-news-sport/00-news-sport/overview.md",
+      "title": "Step 10D — Sports News (February 2026 → 22 September 2026)",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-02-01",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 455,
+      "bytes": 2953,
+      "sha256": "aa99893ba2d3aafabcebcceb572cfacf25be19c3bbe1ddc1c67947c83f5c0d1d",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/1-february-2026",
+      "path": "etape10-phased-news-sport/00-news-sport/1-february-2026.md",
+      "title": "1. February 2026",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "California",
+        "United States"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-02-01",
+        "2026-02-05",
+        "2026-02-06",
+        "2026-02-08",
+        "2026-02-22",
+        "2026-03",
+        "2026-04",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "energy",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
+        158
+      ],
+      "canonical_for": [],
+      "words": 905,
+      "bytes": 6079,
+      "sha256": "ab9a8a655eb9889d8058ce6fba330621ac61c2b252f52ffa8f06a13c8347707e",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/4-may-2026",
+      "path": "etape10-phased-news-sport/00-news-sport/4-may-2026.md",
+      "title": "4. May 2026",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-05-10",
+        "2026-05-13",
+        "2026-05-20",
+        "2026-05-24",
+        "2026-05-27",
+        "2026-05-30",
+        "2026-06-07"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        159,
+        241
+      ],
+      "canonical_for": [],
+      "words": 900,
+      "bytes": 5802,
+      "sha256": "27745b68d6d92a6c08d83bda88b985ef9db2bdac77a77d8ca8cf5b0a342a5a88",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/5-june-2026",
+      "path": "etape10-phased-news-sport/00-news-sport/5-june-2026.md",
+      "title": "5. June 2026",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-11",
+        "2026-06-13",
+        "2026-06-23",
+        "2026-06-29"
+      ],
+      "keywords": [
+        "memory"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        242,
+        282
+      ],
+      "canonical_for": [],
+      "words": 401,
+      "bytes": 2509,
+      "sha256": "2ca7ebe0188b26fac2e8296b4c1f3b5fa3eb9b4511c7d92eac7e9089544cc7ae",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/6-july-2026",
+      "path": "etape10-phased-news-sport/00-news-sport/6-july-2026.md",
+      "title": "6. July 2026",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-07-04",
+        "2026-07-12",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-26"
+      ],
+      "keywords": [
+        "revenue"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        283,
+        350
+      ],
+      "canonical_for": [],
+      "words": 666,
+      "bytes": 4542,
+      "sha256": "a309d5fae64df533b44989630c02a99521fe12b74e71649361bedc90034fab22",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/7-august-2026",
+      "path": "etape10-phased-news-sport/00-news-sport/7-august-2026.md",
+      "title": "7. August 2026",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Moonshot",
+        "United States"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-08-30",
+        "2026-09",
+        "2026-09-13",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "kimi",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        351,
+        417
+      ],
+      "canonical_for": [],
+      "words": 616,
+      "bytes": 4131,
+      "sha256": "d876b7b46e15e0096d36d1d6283a9266d4d7f38f4c429f8cb59e5db0e1535348",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/9-deep-dive-fifa-world-cup-2026",
+      "path": "etape10-phased-news-sport/00-news-sport/9-deep-dive-fifa-world-cup-2026.md",
+      "title": "9. Deep dive — FIFA World Cup 2026",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-18",
+        "2026-07-19"
+      ],
+      "keywords": [
+        "revenue"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        418,
+        498
+      ],
+      "canonical_for": [],
+      "words": 748,
+      "bytes": 4547,
+      "sha256": "2dd56ec944cb9102e745d2205ba8251b2ddfaed1dcf61e5cf15f66fbc92674ce",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/10-deep-dive-european-club-football-2025-26-and-the-summer-w",
+      "path": "etape10-phased-news-sport/00-news-sport/10-deep-dive-european-club-football-2025-26-and-the-summer-w.md",
+      "title": "10. Deep dive — European club football 2025-26 and the summer window",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05-10",
+        "2026-05-13",
+        "2026-05-20",
+        "2026-05-27",
+        "2026-08",
+        "2026-09-01"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        499,
+        567
+      ],
+      "canonical_for": [],
+      "words": 650,
+      "bytes": 3776,
+      "sha256": "c2f24abbee649a41db5ce949affdb547dcfee5d10013430f4a9b29c43b5b418e",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/11-deep-dive-nba-2025-26",
+      "path": "etape10-phased-news-sport/00-news-sport/11-deep-dive-nba-2025-26.md",
+      "title": "11. Deep dive — NBA 2025-26",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2025-09",
+        "2026-05-17",
+        "2026-06-13"
+      ],
+      "keywords": [
+        "cost"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        568,
+        632
+      ],
+      "canonical_for": [],
+      "words": 663,
+      "bytes": 3898,
+      "sha256": "e578ca7e5de9fba2a4a22e320e5249477db07b6857811bb0cc2e68ed82703f99",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/12-deep-dive-winter-olympics-milano-cortina-2026",
+      "path": "etape10-phased-news-sport/00-news-sport/12-deep-dive-winter-olympics-milano-cortina-2026.md",
+      "title": "12. Deep dive — Winter Olympics Milano Cortina 2026",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        633,
+        704
+      ],
+      "canonical_for": [],
+      "words": 650,
+      "bytes": 3771,
+      "sha256": "6c2585e1ce1fe0a9a74877ff20453b2a847405c75962fbd51502dbb575980944",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/14-formula-1-cycling-athletics-and-other-sports",
+      "path": "etape10-phased-news-sport/00-news-sport/14-formula-1-cycling-athletics-and-other-sports.md",
+      "title": "14. Formula 1, cycling, athletics and other sports",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Moonshot"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-16"
+      ],
+      "keywords": [
+        "kimi",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        705,
+        754
+      ],
+      "canonical_for": [],
+      "words": 438,
+      "bytes": 2795,
+      "sha256": "64593287bfa145a664601deec4eb187b2bacffeba3c5f44734bd622c4e7aa83d",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/15-sports-games-and-product-releases",
+      "path": "etape10-phased-news-sport/00-news-sport/15-sports-games-and-product-releases.md",
+      "title": "15. Sports games and product releases",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "United States"
+      ],
+      "dates": [
+        "2025-05-30",
+        "2025-09",
+        "2025-09-26",
+        "2026-09",
+        "2026-09-01"
+      ],
+      "keywords": [
+        "license",
+        "luna",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        755,
+        831
+      ],
+      "canonical_for": [],
+      "words": 738,
+      "bytes": 5027,
+      "sha256": "0c961a49ad134a2ac86994e768ccba3c548cb40f2292727508c5907439fb2552",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/18-source-index-verbatim-urls",
+      "path": "etape10-phased-news-sport/00-news-sport/18-source-index-verbatim-urls.md",
+      "title": "18. Source index (verbatim URLs)",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-02-01",
+        "2026-05-13",
+        "2026-09-22"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        832,
+        935
+      ],
+      "canonical_for": [],
+      "words": 215,
+      "bytes": 8092,
+      "sha256": "45eb9923bc121864136d910dc455ca35df514c28c8a63de39856f4f653fbdce7",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    }
+  ]
+}

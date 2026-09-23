@@ -1,0 +1,534 @@
+{
+  "corpus": "etape9-phasec-memory",
+  "title": "Step 9 — Phase C: Server & Accelerator Memory Hardware",
+  "source": "docs/RAG/etape9_phaseC_memory.md",
+  "source_lines": 753,
+  "source_sha256": "558b42d416f148cc4c136f924a489ef61eaf0b19b08f9deb6244c444fb0a3234",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape9-phasec-memory/00-memory/overview",
+      "path": "etape9-phasec-memory/00-memory/overview.md",
+      "title": "Step 9 — Phase C: Server & Accelerator Memory Hardware",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "California",
+        "Intel",
+        "SGLang",
+        "Samsung",
+        "TensorRT-LLM",
+        "United States",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "memory",
+        "dram",
+        "dram price",
+        "hbm",
+        "inference",
+        "intel",
+        "lawsuit",
+        "lpddr5x",
+        "power delivery",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 633,
+      "bytes": 4327,
+      "sha256": "b6dd56596d42a3307e242eb9b213bf2ee67eac601c02e7ea9cc275e703a4177e",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/3-mrdimm-multiplexed-rank-dimms-and-the-road-to-12-800-mt-s",
+      "path": "etape9-phasec-memory/00-memory/3-mrdimm-multiplexed-rank-dimms-and-the-road-to-12-800-mt-s.md",
+      "title": "3. MRDIMM: multiplexed-rank DIMMs and the road to 12,800 MT/s",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [
+        "2025-10",
+        "2025-11",
+        "2026-09"
+      ],
+      "keywords": [
+        "accelerator",
+        "agentic",
+        "amd",
+        "clearwater forest",
+        "cost",
+        "energy",
+        "gpu",
+        "gpus",
+        "helios",
+        "intel",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        60,
+        110
+      ],
+      "canonical_for": [],
+      "words": 586,
+      "bytes": 3999,
+      "sha256": "ff7be910b7cf81213a44b853eb75c6a1d71cb60c6aaed4735b523ffd070cc0cb",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/6-ddr6-status-architecture-timeline",
+      "path": "etape9-phasec-memory/00-memory/6-ddr6-status-architecture-timeline.md",
+      "title": "6. DDR6: status, architecture, timeline",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [
+        "2025-07",
+        "2025-12",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "consumer",
+        "cost",
+        "dram",
+        "lpddr",
+        "lpddr5x",
+        "memory",
+        "nvidia",
+        "parameters"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        111,
+        166
+      ],
+      "canonical_for": [],
+      "words": 582,
+      "bytes": 4220,
+      "sha256": "ea9a355866b0d103c6126c5b8eb579f21cc8b00741078053e5aa236dbda76fa8",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/9-ecc-on-die-vs-side-band",
+      "path": "etape9-phasec-memory/00-memory/9-ecc-on-die-vs-side-band.md",
+      "title": "9. ECC: on-die vs side-band",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [
+        "2023-05"
+      ],
+      "keywords": [
+        "amd",
+        "cost",
+        "dram",
+        "hbm",
+        "hbm3",
+        "hbm4",
+        "intel",
+        "memory",
+        "nand",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        167,
+        225
+      ],
+      "canonical_for": [],
+      "words": 668,
+      "bytes": 4172,
+      "sha256": "389ce635ed13ac5f8de761b91f30bf2597ea4cbaef10493ce2e79982b9ffadca",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/12-hbm2e-in-2026-legacy-but-still-deployed",
+      "path": "etape9-phasec-memory/00-memory/12-hbm2e-in-2026-legacy-but-still-deployed.md",
+      "title": "12. HBM2e in 2026: legacy but still deployed",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "DeepSeek",
+        "Google",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [
+        "2025-04-16",
+        "2026-03",
+        "2026-08",
+        "2026-08-26"
+      ],
+      "keywords": [
+        "hbm",
+        "accelerator",
+        "amd",
+        "blackwell",
+        "cost",
+        "deepseek",
+        "disaggregated",
+        "dram",
+        "foundry",
+        "fp4",
+        "fp8",
+        "gpu"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        226,
+        294
+      ],
+      "canonical_for": [],
+      "words": 790,
+      "bytes": 4887,
+      "sha256": "c130ad600e4f858252476d803005f7c580a0fd8289034f2e7c13d275da10fe16",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/16-amd-accelerators-memory-map",
+      "path": "etape9-phasec-memory/00-memory/16-amd-accelerators-memory-map.md",
+      "title": "16. AMD accelerators: memory map",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Cerebras",
+        "Falcon",
+        "Google",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "memory",
+        "aws",
+        "blackwell",
+        "compute",
+        "cost",
+        "custom silicon",
+        "disaggregated",
+        "fp4",
+        "fp8",
+        "gpu"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        295,
+        355
+      ],
+      "canonical_for": [],
+      "words": 599,
+      "bytes": 3808,
+      "sha256": "0447f4619f1d7aec4a3b064fee68ce72723cfe86d2a043c5c156718fae1c620a",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/20-hbm-supply-chain-and-market-2026",
+      "path": "etape9-phasec-memory/00-memory/20-hbm-supply-chain-and-market-2026.md",
+      "title": "20. HBM supply chain and market, 2026",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "China",
+        "Microsoft",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [
+        "2025-08",
+        "2025-11",
+        "2026-04",
+        "2026-07",
+        "2026-07-04",
+        "2026-08",
+        "2026-09-17",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "hbm",
+        "capex",
+        "compute",
+        "consumer",
+        "cost",
+        "dram",
+        "foundry",
+        "gpu",
+        "hbm4",
+        "hyperscaler",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        356,
+        425
+      ],
+      "canonical_for": [],
+      "words": 780,
+      "bytes": 5488,
+      "sha256": "23ce223984e6107efca7925fbf31331ef5cc7392a39e00b086a96921089ba4f3",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/23-cxl-as-the-optane-successor-positioning",
+      "path": "etape9-phasec-memory/00-memory/23-cxl-as-the-optane-successor-positioning.md",
+      "title": "23. CXL as the Optane successor (positioning)",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "DeepSeek",
+        "Intel",
+        "vLLM"
+      ],
+      "dates": [
+        "2023-01-31",
+        "2025-06-30",
+        "2025-10-04"
+      ],
+      "keywords": [
+        "accelerator",
+        "awq",
+        "decode",
+        "deepseek",
+        "dram",
+        "fp8",
+        "gpu",
+        "inference",
+        "int4",
+        "intel",
+        "kv cache",
+        "latency"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        426,
+        485
+      ],
+      "canonical_for": [],
+      "words": 604,
+      "bytes": 4147,
+      "sha256": "252eddddb78b3f8e950d92c39bd3f659994af92e31e7f1c101ff2ffc776c80b3",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/27-ai-memory-sizing-training-and-fine-tuning",
+      "path": "etape9-phasec-memory/00-memory/27-ai-memory-sizing-training-and-fine-tuning.md",
+      "title": "27. AI memory sizing: training and fine-tuning",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-04"
+      ],
+      "keywords": [
+        "fine-tuning",
+        "memory",
+        "training",
+        "blackwell",
+        "clearwater forest",
+        "compute",
+        "consumer",
+        "cost",
+        "dram",
+        "fp8",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        486,
+        543
+      ],
+      "canonical_for": [],
+      "words": 570,
+      "bytes": 3715,
+      "sha256": "6480f51d8259200ede8e26ea77c282768babd2f65bcfb6d190f130803c86d14c",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/31-hbm-power-thermals-and-packaging",
+      "path": "etape9-phasec-memory/00-memory/31-hbm-power-thermals-and-packaging.md",
+      "title": "31. HBM power, thermals and packaging",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AWS",
+        "China",
+        "Nvidia",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-07-04"
+      ],
+      "keywords": [
+        "hbm",
+        "packaging",
+        "accelerator",
+        "dram",
+        "gpu",
+        "hbm4",
+        "lpddr5x",
+        "memory",
+        "nvidia",
+        "nvlink"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        544,
+        590
+      ],
+      "canonical_for": [],
+      "words": 438,
+      "bytes": 2894,
+      "sha256": "1d337cfe6495484e07c152bb1f40fce11eeff75b08dbb96e7f875ffa352236ba",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/33c-memory-technology-comparison-matrix",
+      "path": "etape9-phasec-memory/00-memory/33c-memory-technology-comparison-matrix.md",
+      "title": "33C. Memory technology comparison matrix",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Falcon",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "memory",
+        "accelerator",
+        "amd",
+        "attention",
+        "compute",
+        "cost",
+        "dram",
+        "energy",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm4"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        591,
+        674
+      ],
+      "canonical_for": [],
+      "words": 873,
+      "bytes": 5965,
+      "sha256": "b6c763da3c670c734125a87272f2c041f5d9aa14d4f309c50a108db737772cf1",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    },
+    {
+      "id": "etape9-phasec-memory/00-memory/37-source-index-verbatim-urls",
+      "path": "etape9-phasec-memory/00-memory/37-source-index-verbatim-urls.md",
+      "title": "37. Source index (verbatim URLs)",
+      "domain": "step-9-phase-c-server-accelerator-memory-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-04-26",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "benchmark",
+        "dram",
+        "fp4",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm4",
+        "inference",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        675,
+        753
+      ],
+      "canonical_for": [],
+      "words": 177,
+      "bytes": 7685,
+      "sha256": "e761edb1ea70ae07ee8f9ae77aec2d63cc86e47276d3dd4e7b556e65cc56930d",
+      "section": "Step 9 — Phase C: Server & Accelerator Memory Hardware"
+    }
+  ]
+}

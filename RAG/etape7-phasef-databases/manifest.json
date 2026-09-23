@@ -1,0 +1,461 @@
+{
+  "corpus": "etape7-phasef-databases",
+  "title": "Step 7 — Phase F: Databases & Cache (Operations Angle)",
+  "source": "docs/RAG/etape7_phaseF_databases.md",
+  "source_lines": 797,
+  "source_sha256": "b7d0b122ce23b4beb5da89ac676c85f31e01a6003707991d6705dbd31bebc657",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phasef-databases/00-databases/overview",
+      "path": "etape7-phasef-databases/00-databases/overview.md",
+      "title": "Step 7 — Phase F: Databases & Cache (Operations Angle)",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        19
+      ],
+      "canonical_for": [],
+      "words": 146,
+      "bytes": 1111,
+      "sha256": "35222084d98ed6f4be5bcebe43577707b717a23ca3139a57d9a83594dfbbf365",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/1-postgresql-releases-lifecycle-2026-status",
+      "path": "etape7-phasef-databases/00-databases/1-postgresql-releases-lifecycle-2026-status.md",
+      "title": "1. PostgreSQL — releases, lifecycle, 2026 status",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2024-09",
+        "2024-11",
+        "2025-09",
+        "2025-11",
+        "2026-05",
+        "2026-08",
+        "2026-11",
+        "2027-02",
+        "2030-02"
+      ],
+      "keywords": [
+        "aws",
+        "benchmarks",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        20,
+        109
+      ],
+      "canonical_for": [],
+      "words": 701,
+      "bytes": 5333,
+      "sha256": "bd870045d1c21351adccdc8c38d0b3184e2a9e97258b5f67288b3fffcf48d0c5",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/2-postgresql-high-availability-replication-failover",
+      "path": "etape7-phasef-databases/00-databases/2-postgresql-high-availability-replication-failover.md",
+      "title": "2. PostgreSQL — high availability, replication, failover",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "latency"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        110,
+        165
+      ],
+      "canonical_for": [],
+      "words": 319,
+      "bytes": 2603,
+      "sha256": "db0a4ff671e827962b31162dd0e54b4f74d7536b0c2f43c6647cdf9d20859e9a",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/3-postgresql-connection-pooling-extensions-tuning",
+      "path": "etape7-phasef-databases/00-databases/3-postgresql-connection-pooling-extensions-tuning.md",
+      "title": "3. PostgreSQL — connection pooling, extensions, tuning",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "advisory",
+        "benchmark",
+        "memory"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        166,
+        247
+      ],
+      "canonical_for": [],
+      "words": 529,
+      "bytes": 4367,
+      "sha256": "9fe3d4b94f5f1bae9313d1d35949ca733983d5751f385555eb62b43d76893f77",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/5-mysql-releases-lifecycle-2026-status",
+      "path": "etape7-phasef-databases/00-databases/5-mysql-releases-lifecycle-2026-status.md",
+      "title": "5. MySQL — releases, lifecycle, 2026 status",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft",
+        "Oracle"
+      ],
+      "dates": [
+        "2025-09",
+        "2026-01-20",
+        "2026-04",
+        "2026-05",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2029-06"
+      ],
+      "keywords": [
+        "mcp",
+        "memory",
+        "packaging"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        248,
+        316
+      ],
+      "canonical_for": [],
+      "words": 533,
+      "bytes": 3955,
+      "sha256": "02052c4e2c411c4a3385a91f9b7aadb494ac3b108ca8d0df567aa71951540ce6",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/6-mysql-mariadb-high-availability-and-replication",
+      "path": "etape7-phasef-databases/00-databases/6-mysql-mariadb-high-availability-and-replication.md",
+      "title": "6. MySQL/MariaDB — high availability and replication",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2025-05",
+        "2026-09"
+      ],
+      "keywords": [
+        "latency"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        317,
+        370
+      ],
+      "canonical_for": [],
+      "words": 297,
+      "bytes": 2346,
+      "sha256": "9ab7e3f9f5891d772890eee4cea993e49c9176a90545ce72e392781df04ddb81",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/7-supabase-2026-status-ops-angle",
+      "path": "etape7-phasef-databases/00-databases/7-supabase-2026-status-ops-angle.md",
+      "title": "7. Supabase — 2026 status (ops angle)",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "claude",
+        "compute",
+        "cost",
+        "governance",
+        "memory",
+        "open source",
+        "pricing",
+        "valuation"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        371,
+        415
+      ],
+      "canonical_for": [],
+      "words": 328,
+      "bytes": 2483,
+      "sha256": "3df52faf94c2646636d9dd1977d89d0f5aa4c95cba79517a0ffae6080a9bce94",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/8-1-the-license-split-what-happened",
+      "path": "etape7-phasef-databases/00-databases/8-1-the-license-split-what-happened.md",
+      "title": "8.1 The license split — what happened",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "licenses",
+      "actors": [
+        "AWS",
+        "Google",
+        "Oracle"
+      ],
+      "dates": [
+        "2024-03",
+        "2024-11",
+        "2025-03",
+        "2025-05",
+        "2026-05"
+      ],
+      "keywords": [
+        "license",
+        "aws",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        416,
+        463
+      ],
+      "canonical_for": [],
+      "words": 341,
+      "bytes": 2524,
+      "sha256": "b8c16d80eab98cd2803da7d25a5b6dbf2435b2b27f48bf553ad2ec784b8361dd",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/8-4-dragonfly",
+      "path": "etape7-phasef-databases/00-databases/8-4-dragonfly.md",
+      "title": "8.4 Dragonfly",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "apache",
+        "distribution",
+        "latency",
+        "license",
+        "memory",
+        "open source",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        464,
+        512
+      ],
+      "canonical_for": [],
+      "words": 310,
+      "bytes": 2513,
+      "sha256": "bc9d29baa797fea1798dc6a777a0038818d77d56004aa75d5fc358752e07f418",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/9-managed-databases-pricing-and-positioning-2026-signals",
+      "path": "etape7-phasef-databases/00-databases/9-managed-databases-pricing-and-positioning-2026-signals.md",
+      "title": "9. Managed databases — pricing and positioning (2026 signals)",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AWS",
+        "Google"
+      ],
+      "dates": [
+        "2025-05"
+      ],
+      "keywords": [
+        "pricing",
+        "acquisition",
+        "aws",
+        "cost",
+        "open source"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        513,
+        578
+      ],
+      "canonical_for": [],
+      "words": 465,
+      "bytes": 3420,
+      "sha256": "85c507e2690b02634c11d8b73f4c57be281935c67ee5a6f0e08e11c67fd294d9",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/10-monitoring-observability-and-slow-query-work",
+      "path": "etape7-phasef-databases/00-databases/10-monitoring-observability-and-slow-query-work.md",
+      "title": "10. Monitoring, observability and slow-query work",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        579,
+        625
+      ],
+      "canonical_for": [],
+      "words": 237,
+      "bytes": 2230,
+      "sha256": "aae9fc23a86fa2cb180293ce032f0be3e5ba17a14d891edf7d7cbe8aa528c779",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/11-security-hardening-checklist-ops",
+      "path": "etape7-phasef-databases/00-databases/11-security-hardening-checklist-ops.md",
+      "title": "11. Security hardening checklist (ops)",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        626,
+        686
+      ],
+      "canonical_for": [],
+      "words": 367,
+      "bytes": 2857,
+      "sha256": "945eda4ce4a8028545864a143c3b3b9b4b7d78d988bfca975eb8abc12885ffe1",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/13-conflicts-gaps-and-unverified-claims",
+      "path": "etape7-phasef-databases/00-databases/13-conflicts-gaps-and-unverified-claims.md",
+      "title": "13. Conflicts, gaps and unverified claims",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "aws",
+        "benchmarks",
+        "compute",
+        "license",
+        "licenses",
+        "open source",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        687,
+        741
+      ],
+      "canonical_for": [],
+      "words": 399,
+      "bytes": 2882,
+      "sha256": "f6116f4c5e981564488707758d2a641e618f02a124c91ebdb6c45a194b7390df",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    },
+    {
+      "id": "etape7-phasef-databases/00-databases/15-source-index-verbatim-urls-access-2026-09-22",
+      "path": "etape7-phasef-databases/00-databases/15-source-index-verbatim-urls-access-2026-09-22.md",
+      "title": "15. Source index (verbatim URLs, access 2026-09-22)",
+      "domain": "step-7-phase-f-databases-cache-operations-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-01-04",
+        "2026-02-26",
+        "2026-06-03",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "aws",
+        "cost",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "source_anchor": "",
+      "source_lines": [
+        742,
+        797
+      ],
+      "canonical_for": [],
+      "words": 134,
+      "bytes": 4767,
+      "sha256": "499176a6095cfd8bfa08de209aa1e175051f809b7579b4ab51782d27a490fda9",
+      "section": "Step 7 — Phase F: Databases & Cache (Operations Angle)"
+    }
+  ]
+}

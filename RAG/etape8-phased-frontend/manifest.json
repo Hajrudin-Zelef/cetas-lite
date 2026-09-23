@@ -1,0 +1,49 @@
+{
+  "corpus": "etape8-phased-frontend",
+  "title": "Step 8 — Phase D: Frontend & Web Platform (Dev Angle)",
+  "source": "docs/RAG/etape8_phaseD_frontend.md",
+  "source_lines": 48,
+  "source_sha256": "e7cd0a732399a32488e031ec109f7e3d56b4b6e1411207172e4196873b2e61a1",
+  "chunk_count": 1,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape8-phased-frontend/00-frontend/overview",
+      "path": "etape8-phased-frontend/00-frontend/overview.md",
+      "title": "Step 8 — Phase D: Frontend & Web Platform (Dev Angle)",
+      "domain": "step-8-phase-d-frontend-web-platform-dev-angle",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-04",
+        "2024-12-05",
+        "2025-10",
+        "2025-12",
+        "2025-12-18",
+        "2026-04",
+        "2026-07",
+        "2026-08-06",
+        "2026-08-12",
+        "2026-09-22",
+        "2026-10",
+        "2026-10-21"
+      ],
+      "keywords": [
+        "benchmark",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseD_frontend.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 805,
+      "bytes": 6042,
+      "sha256": "e7cd0a732399a32488e031ec109f7e3d56b4b6e1411207172e4196873b2e61a1",
+      "section": "Step 8 — Phase D: Frontend & Web Platform (Dev Angle)"
+    }
+  ]
+}

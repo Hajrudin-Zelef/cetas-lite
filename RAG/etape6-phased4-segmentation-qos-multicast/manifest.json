@@ -1,0 +1,404 @@
+{
+  "corpus": "etape6-phased4-segmentation-qos-multicast",
+  "title": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services",
+  "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+  "source_lines": 770,
+  "source_sha256": "39cdb8cddf311f1e54d3788a87e921336c19c3140b36862fe144b10abb04ab88",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/overview",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/overview.md",
+      "title": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ethernet",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 724,
+      "bytes": 5998,
+      "sha256": "f7175b88f9955a03270fc4c9a45367db43b6770e49b112f0e2158595b70d049a",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-2-vrf-vrf-lite-leaking-multi-tenancy",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-2-vrf-vrf-lite-leaking-multi-tenancy.md",
+      "title": "Wave 2 — VRF: VRF-lite, leaking, multi-tenancy",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "containment",
+        "cost",
+        "datacenter",
+        "ethernet",
+        "license"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        101
+      ],
+      "canonical_for": [],
+      "words": 1133,
+      "bytes": 8885,
+      "sha256": "5ca41b5f5095702ad9aeaeffeeeeffe02d5ff773c175d550fe35cbc4603e01c6",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-4-qos-classification-marking-queuing",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-4-qos-classification-marking-queuing.md",
+      "title": "Wave 4 — QoS: classification, marking, queuing",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "ethernet",
+        "nvidia",
+        "parameters",
+        "training",
+        "voice"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        102,
+        148
+      ],
+      "canonical_for": [],
+      "words": 925,
+      "bytes": 7412,
+      "sha256": "a75fb6d648d21e1874e76543b79f6b40d965a7a3d46667dc479ee0388e082cfd",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-6-ecn-rocev2-lossless-tuning-vendor-qos-models",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-6-ecn-rocev2-lossless-tuning-vendor-qos-models.md",
+      "title": "Wave 6 — ECN, RoCEv2 lossless tuning, vendor QoS models",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei",
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "distribution",
+        "ethernet",
+        "gpu",
+        "latency",
+        "mlperf",
+        "nvidia",
+        "throughput",
+        "training",
+        "voice"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        149,
+        206
+      ],
+      "canonical_for": [],
+      "words": 1174,
+      "bytes": 9288,
+      "sha256": "e525f724e92262fb90072f1100602c0c25a58dae1c3c88c197e28dcfb35734cd",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-8-multicast-in-vxlan-overlays-igmp",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-8-multicast-in-vxlan-overlays-igmp.md",
+      "title": "Wave 8 — Multicast in VXLAN overlays + IGMP",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        207,
+        256
+      ],
+      "canonical_for": [],
+      "words": 1035,
+      "bytes": 8494,
+      "sha256": "39d60ab92a11501a111d688d170d165e00e279ec3cfec99f735e1d792f06558a",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/coverage-audit-final-verification-log",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/coverage-audit-final-verification-log.md",
+      "title": "Coverage audit & final verification log",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        257,
+        330
+      ],
+      "canonical_for": [],
+      "words": 868,
+      "bytes": 5870,
+      "sha256": "971d77c78cc7d280cf3b3a925b49b9a470fa2cba51569f64690df832ddee2cbe",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-11-vrf-deep-dive-rd-rt-mechanics-vrf-aware-services",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-11-vrf-deep-dive-rd-rt-mechanics-vrf-aware-services.md",
+      "title": "Wave 11 — VRF deep-dive: RD/RT mechanics, VRF-aware services",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "latency"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        331,
+        379
+      ],
+      "canonical_for": [],
+      "words": 812,
+      "bytes": 5522,
+      "sha256": "7e963d801a240780a4c5b5c88cf47e1f53e7f54a9a1963da70eeef6d12731fb4",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-13-roce-congestion-control-algorithms-ultra-ethernet",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-13-roce-congestion-control-algorithms-ultra-ethernet.md",
+      "title": "Wave 13 — RoCE congestion control algorithms & Ultra Ethernet",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "agents",
+        "nvidia",
+        "parameters",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        380,
+        425
+      ],
+      "canonical_for": [],
+      "words": 700,
+      "bytes": 4846,
+      "sha256": "98c7ee11cfbce8a393ab0939d8900ccbbea2f285fcd10df49c7723f744be46ac",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-15-services-deep-dive-dhcpv6-slaac-dns-ntp-nts-ptp-prof",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-15-services-deep-dive-dhcpv6-slaac-dns-ntp-nts-ptp-prof.md",
+      "title": "Wave 15 — Services deep-dive: DHCPv6/SLAAC, DNS, NTP/NTS, PTP profiles",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agents"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        426,
+        485
+      ],
+      "canonical_for": [],
+      "words": 784,
+      "bytes": 5516,
+      "sha256": "8e88026df5445f553a072eeaffb16317b52b5f2842ae0e0dc5637d41e83a53e9",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-17-multicast-in-practice-market-data-trm-checklist-trou",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-17-multicast-in-practice-market-data-trm-checklist-trou.md",
+      "title": "Wave 17 — Multicast in practice: market data, TRM checklist, troubleshooting",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "cost",
+        "latency",
+        "nvidia",
+        "voice"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        486,
+        534
+      ],
+      "canonical_for": [],
+      "words": 766,
+      "bytes": 5286,
+      "sha256": "904cb151b9267b1f722402ab199ab1917b03b321f49b116f71862079d2b001bb",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/final-verification-all-18-waves",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/final-verification-all-18-waves.md",
+      "title": "Final verification (all 18 waves)",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "ethernet",
+        "mcp"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        535,
+        611
+      ],
+      "canonical_for": [],
+      "words": 477,
+      "bytes": 3358,
+      "sha256": "cd6736827225e8426f8ac77944a4a2a214eaa84812b9817a1ccb5962368de7e5",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-20-config-walkthroughs-rocev2-lossless-qos-dell-os10",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-20-config-walkthroughs-rocev2-lossless-qos-dell-os10.md",
+      "title": "Wave 20 — Config walkthroughs: RoCEv2 lossless QoS (Dell OS10)",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        612,
+        658
+      ],
+      "canonical_for": [],
+      "words": 300,
+      "bytes": 2299,
+      "sha256": "8c78fffc12ce2ab7577d0eb525147cd52725ad0276a80a175f602ea60241797d",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-21-config-walkthroughs-anycast-rp-trm-outline",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-21-config-walkthroughs-anycast-rp-trm-outline.md",
+      "title": "Wave 21 — Config walkthroughs: anycast-RP + TRM outline",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei"
+      ],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        659,
+        708
+      ],
+      "canonical_for": [],
+      "words": 573,
+      "bytes": 3800,
+      "sha256": "060a33213dfd581e60c2dde002bf1c3954aa521c864694168377846c6d02eae4",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-22-reference-tables",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-22-reference-tables.md",
+      "title": "Wave 22 — Reference tables",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "voice"
+      ],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        709,
+        770
+      ],
+      "canonical_for": [],
+      "words": 587,
+      "bytes": 3631,
+      "sha256": "a304da5cad7b85a5d083e5c6cf4cc39b9599dbe8b8b9c2b171bc5ccb7c5477fd",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    }
+  ]
+}

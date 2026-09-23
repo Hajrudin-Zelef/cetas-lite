@@ -1,0 +1,429 @@
+{
+  "corpus": "etape6-phasee3-gnmi-openconfig-telemetry",
+  "title": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability",
+  "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+  "source_lines": 751,
+  "source_sha256": "eada60ed8571b8a0e2b1ac77ec1c7fa27ee3382dfde383c6b34e6e9fa12d511e",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/overview",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/overview.md",
+      "title": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-11-07",
+        "2025-12-11",
+        "2026-01-14",
+        "2026-08-03",
+        "2026-09",
+        "2026-09-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 688,
+      "bytes": 6607,
+      "sha256": "665fea2252a20d2f98026dd74c7c7fa172d62f3c2914bd0df8d217466aa67ebb",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-3-vendor-implementations-streaming-telemetry-gnmi-gnoi-",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-3-vendor-implementations-streaming-telemetry-gnmi-gnoi-.md",
+      "title": "Wave 3 — Vendor implementations: streaming telemetry & gNMI/gNOI support (2026)",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "distribution",
+        "ethernet",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        47,
+        96
+      ],
+      "canonical_for": [],
+      "words": 926,
+      "bytes": 11247,
+      "sha256": "f4bb088104494ccfd16c1c5da6457c7cde3a64a9ea2f35be63bdc23801f7c30c",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-4-open-source-collectors-gnmic-telegraf-prometheus-expo",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-4-open-source-collectors-gnmic-telegraf-prometheus-expo.md",
+      "title": "Wave 4 — Open-source collectors: gnmic, Telegraf, Prometheus exporters, pmacct",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        97,
+        145
+      ],
+      "canonical_for": [],
+      "words": 620,
+      "bytes": 6761,
+      "sha256": "cb4973382783ae3246a2b13bf1a365e6ed828cebb83d04012f2bee46abd0a8cd",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-6-netconf-restconf-vs-gnmi-in-2026-yang-suite",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-6-netconf-restconf-vs-gnmi-in-2026-yang-suite.md",
+      "title": "Wave 6 — NETCONF/RESTCONF vs gNMI in 2026; YANG Suite",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        146,
+        193
+      ],
+      "canonical_for": [],
+      "words": 680,
+      "bytes": 7578,
+      "sha256": "5f5d988263f60ef22ce1aec17b8d900a78d125fbe699699074eba8cc4c552668",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-8-ai-era-telemetry-roce-fabrics-pfc-ecn-watch-congestio",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-8-ai-era-telemetry-roce-fabrics-pfc-ecn-watch-congestio.md",
+      "title": "Wave 8 — AI-era telemetry: RoCE fabrics, PFC/ECN watch, congestion visibility",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-01-14",
+        "2026-08-03",
+        "2026-09-01"
+      ],
+      "keywords": [
+        "decode",
+        "ethernet",
+        "nvidia",
+        "optics",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        194,
+        254
+      ],
+      "canonical_for": [],
+      "words": 808,
+      "bytes": 8827,
+      "sha256": "7e405ba623b93ffa035048d1ba918e113aaa6a08ba210e937773a5dbfd4064da",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-11-gnmi-deep-dive-encodings-auth-cli-patterns-target-di",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-11-gnmi-deep-dive-encodings-auth-cli-patterns-target-di.md",
+      "title": "Wave 11 — gNMI deep-dive: encodings, auth, CLI patterns, target discovery",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Huawei"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "decode",
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        255,
+        303
+      ],
+      "canonical_for": [],
+      "words": 730,
+      "bytes": 7762,
+      "sha256": "b311ef123c6966392e9864d8e4948440004c7dd1acf1eaffbc2714bfe01a0afb",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-13-security-tls-certs-auth-for-telemetry-planes",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-13-security-tls-certs-auth-for-telemetry-planes.md",
+      "title": "Wave 13 — Security: TLS, certs, auth for telemetry planes",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "asic",
+        "benchmarks",
+        "distribution",
+        "latency",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        304,
+        376
+      ],
+      "canonical_for": [],
+      "words": 712,
+      "bytes": 5630,
+      "sha256": "7614590f17c2c6859137a201751298df55ddf0052314403a463d54b0df681088",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-16-arista-deep-dive-eos-streaming-cloudvision-netdl-ava",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-16-arista-deep-dive-eos-streaming-cloudvision-netdl-ava.md",
+      "title": "Wave 16 — Arista deep-dive: EOS streaming, CloudVision NetDL, AVA, AI observability",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        377,
+        432
+      ],
+      "canonical_for": [],
+      "words": 604,
+      "bytes": 5806,
+      "sha256": "48a838cc9f26c7d261c5c3c513be95b5861f309c55a82ace4ea857870354515d",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-19-grpc-tunnel-dial-out-the-third-pattern",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-19-grpc-tunnel-dial-out-the-third-pattern.md",
+      "title": "Wave 19 — gRPC tunnel dial-out: the third pattern",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei"
+      ],
+      "dates": [
+        "2026-01-14",
+        "2026-09-01"
+      ],
+      "keywords": [
+        "agent",
+        "coherent optics",
+        "dci",
+        "ethernet",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        433,
+        478
+      ],
+      "canonical_for": [],
+      "words": 489,
+      "bytes": 5513,
+      "sha256": "3688560aaa65c54ccc682ac9bc0ca3dcde635b245d1dec494dfb60dee50bc907",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-21-nokia-eda-and-event-driven-network-operations",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-21-nokia-eda-and-event-driven-network-operations.md",
+      "title": "Wave 21 — Nokia EDA and event-driven network operations",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-01-14",
+        "2026-09-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "decode",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        479,
+        531
+      ],
+      "canonical_for": [],
+      "words": 549,
+      "bytes": 5177,
+      "sha256": "ba3dbb657182ced8d2ef496bf1462629c72ad29b07519356dd8c2e66ab13c829",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-25-juniper-jti-dial-out-configuration-anatomy",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-25-juniper-jti-dial-out-configuration-anatomy.md",
+      "title": "Wave 25 — Juniper JTI dial-out configuration anatomy",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "ethernet",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        532,
+        576
+      ],
+      "canonical_for": [],
+      "words": 376,
+      "bytes": 4414,
+      "sha256": "2d21ad23776838b6179965d47fadd08a6e0d99714b503adab747cce795de9753",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-27-lldp-topology-the-openconfig-data-model-and-reconcil",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-27-lldp-topology-the-openconfig-data-model-and-reconcil.md",
+      "title": "Wave 27 — LLDP topology: the OpenConfig data model and reconciliation loop",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        577,
+        629
+      ],
+      "canonical_for": [],
+      "words": 554,
+      "bytes": 4479,
+      "sha256": "77640a1e9b60a7ada03fc17653fccab7ee9a530cde70e9b892f774eb4377b708",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-31-quick-reference-card-ports-transports-defaults",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-31-quick-reference-card-ports-transports-defaults.md",
+      "title": "Wave 31 — Quick-reference card: ports, transports, defaults",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "decode",
+        "ethernet",
+        "latency",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        630,
+        682
+      ],
+      "canonical_for": [],
+      "words": 642,
+      "bytes": 6277,
+      "sha256": "3209e622472ddfcd6cb57682a904a645b874648cafe8058f1874fbfd42e33d27",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-34-research-method-note-and-provenance-ledger",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-34-research-method-note-and-provenance-ledger.md",
+      "title": "Wave 34 — Research method note and provenance ledger",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-01-14",
+        "2026-09-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "distribution",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        683,
+        751
+      ],
+      "canonical_for": [],
+      "words": 661,
+      "bytes": 5926,
+      "sha256": "f1ec58c3d992beda859ebe0688a9beab5b4bc335b52dd1f2a96b519b0a710a7f",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    }
+  ]
+}

@@ -1,0 +1,455 @@
+{
+  "corpus": "etape7-phased-proxmox-backup",
+  "title": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research",
+  "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+  "source_lines": 755,
+  "source_sha256": "d1866194cd83284c7b0325c50efa7b49732a1a1d84a71b7b0c83d3efa7c0cadf",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/overview",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/overview.md",
+      "title": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-08",
+        "2025-08-09",
+        "2026-05-21",
+        "2026-08",
+        "2026-08-13",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "amd",
+        "benchmarks",
+        "datacenter",
+        "distribution",
+        "intel",
+        "memory",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 1228,
+      "bytes": 11621,
+      "sha256": "94f4134b8e65442d66e3288641ffe188d45b144191dcfa371c89265a805e3f8e",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/4-proxmox-ve-storage-ceph-zfs-lvm-pbs-integration",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/4-proxmox-ve-storage-ceph-zfs-lvm-pbs-integration.md",
+      "title": "4. Proxmox VE storage: Ceph, ZFS, LVM, PBS integration",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [
+        "2020-07",
+        "2025-08",
+        "2026-01-12",
+        "2026-04",
+        "2026-10-19",
+        "2027-01-10"
+      ],
+      "keywords": [
+        "agent",
+        "cost",
+        "datacenter",
+        "distribution",
+        "latency",
+        "license",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        52,
+        111
+      ],
+      "canonical_for": [],
+      "words": 1139,
+      "bytes": 10835,
+      "sha256": "667d4dadd38d2eae51081f7ec8f24fc09b2bf2c1989e2b02b3c89f3baf9b1936",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/8-proxmox-datacenter-manager-pdm",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/8-proxmox-datacenter-manager-pdm.md",
+      "title": "8. Proxmox Datacenter Manager (PDM)",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Broadcom",
+        "Microsoft"
+      ],
+      "dates": [
+        "2024-10-07",
+        "2025-07-31",
+        "2025-11",
+        "2026-05-28"
+      ],
+      "keywords": [
+        "datacenter",
+        "agent",
+        "agents",
+        "aws",
+        "cost",
+        "cyber",
+        "gpu",
+        "license",
+        "open source",
+        "parameters",
+        "pricing",
+        "training"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        112,
+        172
+      ],
+      "canonical_for": [],
+      "words": 1312,
+      "bytes": 11858,
+      "sha256": "45ed1a8dd1570224ef3ca91e2eceb12795ec360ff5fc45fa6c038ee60c771c6c",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/11-open-source-backup-tools",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/11-open-source-backup-tools.md",
+      "title": "11. Open-source backup tools",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-06-24",
+        "2026-07",
+        "2026-07-15",
+        "2026-07-20",
+        "2026-07-21",
+        "2026-08-17",
+        "2026-09-09"
+      ],
+      "keywords": [
+        "agent",
+        "distribution",
+        "license",
+        "pricing",
+        "robotics"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        173,
+        237
+      ],
+      "canonical_for": [],
+      "words": 1199,
+      "bytes": 11138,
+      "sha256": "319f5b1e95a1494bc1ae17f1f6094fd560e3775e8c942b5fa7876f0094d1e646",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/13-ransomware-proof-backup-design-2026",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/13-ransomware-proof-backup-design-2026.md",
+      "title": "13. Ransomware-proof backup design (2026)",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "cost",
+        "cyber",
+        "governance",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        238,
+        284
+      ],
+      "canonical_for": [],
+      "words": 914,
+      "bytes": 7017,
+      "sha256": "78788b7c18c8c6a1319b61e409a0d45774961d76c113b089f385c7d702231b3d",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/16-gaps-conflicts-and-unverified-claims",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/16-gaps-conflicts-and-unverified-claims.md",
+      "title": "16. Gaps, conflicts and unverified claims",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cost",
+        "cyber",
+        "datacenter",
+        "distribution",
+        "license",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        285,
+        369
+      ],
+      "canonical_for": [],
+      "words": 541,
+      "bytes": 7669,
+      "sha256": "d6f16531c6449b4be6994c1f8238beaa5feefc313d2f2f2a9b4c07587587c776",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/19-proxmox-ve-operations-deep-dive-supplement",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/19-proxmox-ve-operations-deep-dive-supplement.md",
+      "title": "19. Proxmox VE operations deep-dive (supplement)",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "datacenter",
+        "latency",
+        "memory",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        370,
+        422
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 9524,
+      "sha256": "56d2f773431692af1adf49a4a13ad4c3f237f6699972d8c0a0433d191ac9e0f9",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/21-hypervisor-alternatives-deep-dive-supplement",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/21-hypervisor-alternatives-deep-dive-supplement.md",
+      "title": "21. Hypervisor alternatives deep-dive (supplement)",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "aws",
+        "cost",
+        "license",
+        "packaging"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        423,
+        469
+      ],
+      "canonical_for": [],
+      "words": 892,
+      "bytes": 7962,
+      "sha256": "c177c96103f7a4e592cdc6af092d0ca5609050ea8f79448e889db70a408821e6",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/24-database-backup-operations-deep-dive-supplement",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/24-database-backup-operations-deep-dive-supplement.md",
+      "title": "24. Database backup operations deep-dive (supplement)",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-01"
+      ],
+      "keywords": [
+        "datacenter",
+        "governance",
+        "latency",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        470,
+        528
+      ],
+      "canonical_for": [],
+      "words": 988,
+      "bytes": 8277,
+      "sha256": "3e9ce91a26507d1cdaae26ef3191c293bec4eeb4f62de7bf7b9bf8314cff6582",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/27-capacity-planning-formulas-and-rules-of-thumb",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/27-capacity-planning-formulas-and-rules-of-thumb.md",
+      "title": "27. Capacity planning formulas and rules of thumb",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-08"
+      ],
+      "keywords": [
+        "datacenter",
+        "distribution",
+        "gpus",
+        "pricing",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        529,
+        591
+      ],
+      "canonical_for": [],
+      "words": 1043,
+      "bytes": 8026,
+      "sha256": "7d2b887d0575f0d65e7f9a6a8dcc9ac626732c0c4b5e1f415b8d1c6be02cc3c4",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/31-platform-comparison-decision-factors-in-detail",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/31-platform-comparison-decision-factors-in-detail.md",
+      "title": "31. Platform comparison: decision factors in detail",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "cost",
+        "cyber",
+        "datacenter",
+        "license"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        592,
+        641
+      ],
+      "canonical_for": [],
+      "words": 618,
+      "bytes": 5272,
+      "sha256": "8aeebc9cea4f8fda70fb42d3854179a0548f128b928cf304782591e0dc31173f",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/34-ransomware-case-study-lessons-patterns-20242026",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/34-ransomware-case-study-lessons-patterns-20242026.md",
+      "title": "34. Ransomware case-study lessons (patterns, 2024–2026)",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cyber",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        642,
+        697
+      ],
+      "canonical_for": [],
+      "words": 663,
+      "bytes": 5258,
+      "sha256": "01e4e2c8f2bfb5f6f317bf693ce6e7f465c2f76c7af237b3462c74e491d8cbef",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    },
+    {
+      "id": "etape7-phased-proxmox-backup/00-proxmox-backup/37-version-timeline-20242026",
+      "path": "etape7-phased-proxmox-backup/00-proxmox-backup/37-version-timeline-20242026.md",
+      "title": "37. Version timeline (2024–2026)",
+      "domain": "step-7-phase-d-proxmox-ve-virtualization-platforms-backup-re",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2024-10-07",
+        "2025-07-20",
+        "2025-08-09",
+        "2025-08-11",
+        "2026-05-21",
+        "2026-05-28",
+        "2026-06-24",
+        "2026-07-15",
+        "2026-08",
+        "2026-08-17",
+        "2026-09-09",
+        "2026-09-22",
+        "2026-10-19"
+      ],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "datacenter",
+        "pricing",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "source_anchor": "",
+      "source_lines": [
+        698,
+        755
+      ],
+      "canonical_for": [],
+      "words": 646,
+      "bytes": 4680,
+      "sha256": "8ff057fa09feebb001b2681d4addbf6a4276ad2d4561a8fd8dd42e4b647ba42a",
+      "section": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
+    }
+  ]
+}

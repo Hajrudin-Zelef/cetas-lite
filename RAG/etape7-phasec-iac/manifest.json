@@ -1,0 +1,493 @@
+{
+  "corpus": "etape7-phasec-iac",
+  "title": "Step 7 Phase C — IaC & Platform Automation",
+  "source": "docs/RAG/etape7_phaseC_iac.md",
+  "source_lines": 750,
+  "source_sha256": "253aa351d753bc1b8e1e038c286a3842935b725a4a1c71f6ac56ee94238e36a5",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phasec-iac/00-iac/overview",
+      "path": "etape7-phasec-iac/00-iac/overview.md",
+      "title": "Step 7 Phase C — IaC & Platform Automation",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2023-08-10",
+        "2024-04",
+        "2024-05-20",
+        "2024-11-04",
+        "2025-02",
+        "2025-06",
+        "2025-07-21",
+        "2025-11-03",
+        "2025-11-30",
+        "2026-03-12",
+        "2026-04-30",
+        "2026-05-31",
+        "2026-06-02",
+        "2026-06-18",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-22",
+        "2026-11-30",
+        "2027-05-31",
+        "2027-11-30"
+      ],
+      "keywords": [
+        "acquisition",
+        "apache",
+        "benchmarks",
+        "compute",
+        "governance",
+        "license",
+        "pricing",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        77
+      ],
+      "canonical_for": [],
+      "words": 1079,
+      "bytes": 9553,
+      "sha256": "664b39ef02913a483699da3170fb21e64ec5070cbcff66b5ee8bc7104faa6912",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/b-terraform-vs-opentofu-vs-pulumi-crossplane",
+      "path": "etape7-phasec-iac/00-iac/b-terraform-vs-opentofu-vs-pulumi-crossplane.md",
+      "title": "B. Terraform vs OpenTofu vs Pulumi (+ Crossplane)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2023-08",
+        "2023-08-10",
+        "2024-04",
+        "2024-07-29",
+        "2025-01-09",
+        "2025-02",
+        "2025-06-24",
+        "2025-12-09",
+        "2026-03-31",
+        "2026-05-11",
+        "2026-05-14",
+        "2026-06",
+        "2026-08-19",
+        "2026-09",
+        "2027-02-01"
+      ],
+      "keywords": [
+        "acquisition",
+        "apache",
+        "aws",
+        "cost",
+        "governance",
+        "license",
+        "memory",
+        "open source",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        78,
+        162
+      ],
+      "canonical_for": [],
+      "words": 1094,
+      "bytes": 10400,
+      "sha256": "c2bfc662e43c2b9633f135392ee978aa291d3930c7ad12c653b5b09372846dbb",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/c-image-building-packer-cloud-init-golden-images",
+      "path": "etape7-phasec-iac/00-iac/c-image-building-packer-cloud-init-golden-images.md",
+      "title": "C. Image building: Packer, cloud-init, golden images",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "JFrog"
+      ],
+      "dates": [
+        "2023-08-10",
+        "2024-02",
+        "2025-02-20",
+        "2025-05-01",
+        "2025-09-26",
+        "2025-11-03",
+        "2026-02-02",
+        "2026-02-27",
+        "2026-04-24",
+        "2026-05-05",
+        "2026-06-02",
+        "2026-07-28",
+        "2026-08-04",
+        "2026-08-21",
+        "2026-08-27",
+        "2026-08-31",
+        "2026-09-12",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-22",
+        "2026-11-03",
+        "2027-02-02"
+      ],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "cost",
+        "hyperscaler",
+        "latency",
+        "license",
+        "memory",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        163,
+        233
+      ],
+      "canonical_for": [],
+      "words": 747,
+      "bytes": 6751,
+      "sha256": "d82969ac138dd75bbe9ae0c28fcee6f9310c3026e3cde20bd4deaad71ca2f2bf",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/e-secrets-management",
+      "path": "etape7-phasec-iac/00-iac/e-secrets-management.md",
+      "title": "E. Secrets management",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2025-08"
+      ],
+      "keywords": [
+        "apache",
+        "aws",
+        "governance",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        234,
+        278
+      ],
+      "canonical_for": [],
+      "words": 523,
+      "bytes": 4399,
+      "sha256": "8cbb69b4f179f9033168642b9f102da93966cf966959df7ed575a46037c3826c",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/f-policy-as-code",
+      "path": "etape7-phasec-iac/00-iac/f-policy-as-code.md",
+      "title": "F. Policy as code",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "cost",
+        "governance",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        279,
+        325
+      ],
+      "canonical_for": [],
+      "words": 482,
+      "bytes": 5276,
+      "sha256": "a9f904b63bb9b3a4b824ef3d774b02938ddef8880130a09d661209613d314587",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/h-adoption-numbers-case-studies-market-signals-2026",
+      "path": "etape7-phasec-iac/00-iac/h-adoption-numbers-case-studies-market-signals-2026.md",
+      "title": "H. Adoption numbers, case studies, market signals (2026)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-02",
+        "2026-03-31",
+        "2026-06",
+        "2026-08-19",
+        "2026-08-25",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "acquisition",
+        "agents",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        326,
+        375
+      ],
+      "canonical_for": [],
+      "words": 590,
+      "bytes": 4489,
+      "sha256": "bcce7669377291053d72764a5f68ff46800a3b3b6a25bf92a035e298cdeb7a42",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/k-source-index-verbatim-urls-consulted",
+      "path": "etape7-phasec-iac/00-iac/k-source-index-verbatim-urls-consulted.md",
+      "title": "K. Source index (verbatim URLs consulted)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "aws",
+        "governance",
+        "license",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        376,
+        430
+      ],
+      "canonical_for": [],
+      "words": 120,
+      "bytes": 3798,
+      "sha256": "403c8901c6366401295d1e104fa1f96b07cd2a18d2704c257b469ac6690494b0",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/l-deep-dives-supplement",
+      "path": "etape7-phasec-iac/00-iac/l-deep-dives-supplement.md",
+      "title": "L. Deep dives (supplement)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "cost",
+        "distribution",
+        "governance",
+        "memory",
+        "open source",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        431,
+        477
+      ],
+      "canonical_for": [],
+      "words": 785,
+      "bytes": 7414,
+      "sha256": "96fa5b4be8bb65a38b8b639d9088875f75cb1c691206e936a3c266f2bc6bde0a",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/l7-gitops-operational-deep-dive",
+      "path": "etape7-phasec-iac/00-iac/l7-gitops-operational-deep-dive.md",
+      "title": "L7. GitOps operational deep dive",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-08-27"
+      ],
+      "keywords": [
+        "agents",
+        "aws",
+        "cost",
+        "governance",
+        "guardrails",
+        "memory",
+        "parameters",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        478,
+        526
+      ],
+      "canonical_for": [],
+      "words": 700,
+      "bytes": 6004,
+      "sha256": "054bc87ba73db6185cdd6b85569ce25916f0ab14813983050b91bca095143865",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/m-reference-tables-and-timelines-supplement-2",
+      "path": "etape7-phasec-iac/00-iac/m-reference-tables-and-timelines-supplement-2.md",
+      "title": "M. Reference tables and timelines (supplement 2)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2023-08-10",
+        "2024-01-09",
+        "2024-04-30",
+        "2025-05-06",
+        "2025-06-24",
+        "2025-07-21",
+        "2025-11-03",
+        "2025-12-09",
+        "2026-03-12",
+        "2026-03-31",
+        "2026-05-14",
+        "2026-05-31",
+        "2026-06-02",
+        "2026-07-28",
+        "2026-08-04",
+        "2026-08-31",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "acquisition",
+        "cost",
+        "license",
+        "open source",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        527,
+        581
+      ],
+      "canonical_for": [],
+      "words": 558,
+      "bytes": 4593,
+      "sha256": "75201e9b65e6fb11009f047d82367a4f44d57d93c43ea68f8ea1d8f285e1d6ee",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/m4-vault-secrets-engines-and-auth-methods-reference",
+      "path": "etape7-phasec-iac/00-iac/m4-vault-secrets-engines-and-auth-methods-reference.md",
+      "title": "M4. Vault secrets engines and auth methods (reference)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "apache",
+        "aws",
+        "distribution",
+        "governance",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        582,
+        663
+      ],
+      "canonical_for": [],
+      "words": 519,
+      "bytes": 4960,
+      "sha256": "e4deeb536461e4f984b00766e042b9bba147b91d3d842ff749b764a9f4d957be",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/n-final-supplement",
+      "path": "etape7-phasec-iac/00-iac/n-final-supplement.md",
+      "title": "N. Final supplement",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-03-12",
+        "2026-03-31",
+        "2026-06-18",
+        "2026-07-28",
+        "2026-08-19",
+        "2026-08-27",
+        "2026-08-31",
+        "2026-09",
+        "2026-09-08",
+        "2026-09-14",
+        "2026-09-22",
+        "2026-11-03",
+        "2026-11-30",
+        "2027-05-31",
+        "2027-11-30"
+      ],
+      "keywords": [
+        "apache",
+        "aws",
+        "compute",
+        "packaging",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        664,
+        750
+      ],
+      "canonical_for": [],
+      "words": 1054,
+      "bytes": 8457,
+      "sha256": "31cd046cfa9ab99353c60b4e8f45501dca17fb31893cf88d13e8da6884dfea87",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    }
+  ]
+}

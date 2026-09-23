@@ -1,0 +1,461 @@
+{
+  "corpus": "etape9-phasea-enterprise-ssd",
+  "title": "Step 9 — Enterprise SSD Hardware (Phase A)",
+  "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+  "source_lines": 759,
+  "source_sha256": "759b2306a6bbecbcead571d1cc15f900af59b557ced651ca5f04b3ca919a1bf8",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/overview",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/overview.md",
+      "title": "Step 9 — Enterprise SSD Hardware (Phase A)",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [
+        "2021-12-22",
+        "2025-08",
+        "2026-04",
+        "2026-08-23",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "consumer",
+        "datacenter",
+        "dram",
+        "hyperscaler",
+        "ipo",
+        "latency",
+        "nand",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 953,
+      "bytes": 9444,
+      "sha256": "f40c454e21ea38598f68ba333345726637c504dca656eba85940502edcf4cff6",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/3-kioxia-enterprise-ssds",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/3-kioxia-enterprise-ssds.md",
+      "title": "3. Kioxia enterprise SSDs",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "datacenter",
+        "dram",
+        "latency",
+        "nand",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        63,
+        122
+      ],
+      "canonical_for": [],
+      "words": 858,
+      "bytes": 9261,
+      "sha256": "61fb9fb0e20a1c4ba41181cbaa67dae5df31389b98ba996d74ef23402458ca77",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/5-solidigm-enterprise-ssds",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/5-solidigm-enterprise-ssds.md",
+      "title": "5. Solidigm enterprise SSDs",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "TSMC"
+      ],
+      "dates": [
+        "2024-08-06"
+      ],
+      "keywords": [
+        "cost",
+        "datacenter",
+        "dram",
+        "ipo",
+        "memory",
+        "nand",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        123,
+        172
+      ],
+      "canonical_for": [],
+      "words": 683,
+      "bytes": 7935,
+      "sha256": "2e2b42bff6911d92cbbc7df659bcf24caa11041c3edb574b71b6082ce3b143bc",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/7-western-digital-ultrastar-dc-sn861",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/7-western-digital-ultrastar-dc-sn861.md",
+      "title": "7. Western Digital Ultrastar DC SN861",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "asic",
+        "compute",
+        "consumer",
+        "datacenter",
+        "dram",
+        "inference",
+        "intel",
+        "latency",
+        "nand",
+        "training"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        173,
+        227
+      ],
+      "canonical_for": [],
+      "words": 723,
+      "bytes": 8270,
+      "sha256": "3b05eac824dc3e01d083e8a2ae5a0bc0998b555109f3739c8076ce76da625d31",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/10-nand-flash-deep-dive-2026",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/10-nand-flash-deep-dive-2026.md",
+      "title": "10. NAND flash deep dive (2026)",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [
+        "2024-04",
+        "2026-08",
+        "2026-08-23"
+      ],
+      "keywords": [
+        "nand",
+        "cost",
+        "datacenter",
+        "latency",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        228,
+        289
+      ],
+      "canonical_for": [],
+      "words": 1049,
+      "bytes": 10837,
+      "sha256": "ac6b899d40c00eb658e8c8c7f611800ea29fc2131a445b6decb5707337312f1f",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/13-comparison-matrix-gen5-flagships-top-skus",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/13-comparison-matrix-gen5-flagships-top-skus.md",
+      "title": "13. Comparison matrix (Gen5 flagships, top SKUs)",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "compute",
+        "datacenter",
+        "memory",
+        "nand"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        290,
+        355
+      ],
+      "canonical_for": [],
+      "words": 1038,
+      "bytes": 7689,
+      "sha256": "f87096e8a9d175306e832df59b93ceee3a783905bdaa5618dc5ce4e275d5d477",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/16-source-index-verbatim-urls",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/16-source-index-verbatim-urls.md",
+      "title": "16. Source index (verbatim URLs)",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "datacenter",
+        "ipo",
+        "nand",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        356,
+        421
+      ],
+      "canonical_for": [],
+      "words": 142,
+      "bytes": 6266,
+      "sha256": "060b45cb5740227c106d17a809029dcfa1eca94f373efbd9023b7d1595548e2a",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/17-workload-decision-guide",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/17-workload-decision-guide.md",
+      "title": "17. Workload decision guide",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "datacenter",
+        "dram",
+        "ipo",
+        "latency",
+        "memory",
+        "nand"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        422,
+        476
+      ],
+      "canonical_for": [],
+      "words": 1060,
+      "bytes": 9596,
+      "sha256": "15a7c74d6512b70d0b6b5b139c24bc0dadf221c554198bdbeb649142ae369d3f",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/21-vendor-detail-expansions",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/21-vendor-detail-expansions.md",
+      "title": "21. Vendor detail expansions",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "EU",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "datacenter",
+        "inference",
+        "ipo",
+        "liquid cooling",
+        "memory",
+        "nand",
+        "training"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        477,
+        525
+      ],
+      "canonical_for": [],
+      "words": 890,
+      "bytes": 8473,
+      "sha256": "d20930fa269f779d350f53f24be4fd466498fc0212155a6928d86da9a10cbc81",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/24-nand-industry-structure-2026",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/24-nand-industry-structure-2026.md",
+      "title": "24. NAND industry structure (2026)",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "China",
+        "Samsung"
+      ],
+      "dates": [
+        "2024-04",
+        "2025-08",
+        "2026-08-23",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "nand",
+        "consumer",
+        "cost",
+        "datacenter",
+        "dram",
+        "ipo",
+        "memory",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        526,
+        581
+      ],
+      "canonical_for": [],
+      "words": 854,
+      "bytes": 8301,
+      "sha256": "0efc2c609f77b8ae8d98c0d30157dbdbf055968628d6fc8aca7cd1c3c2de9e8b",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/28-gen4-vs-gen5-purchase-decision-2026",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/28-gen4-vs-gen5-purchase-decision-2026.md",
+      "title": "28. Gen4 vs Gen5 purchase decision (2026)",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "datacenter",
+        "dram",
+        "ipo",
+        "latency",
+        "memory",
+        "nand",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        582,
+        648
+      ],
+      "canonical_for": [],
+      "words": 1027,
+      "bytes": 10745,
+      "sha256": "23749a7881df15853f8ee492a26a865c88ed2bcbe582a8fc67780ee5d37e7222",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/32-how-to-read-a-datacenter-ssd-datasheet-method-notes",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/32-how-to-read-a-datacenter-ssd-datasheet-method-notes.md",
+      "title": "32. How to read a datacenter SSD datasheet (method notes)",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "datacenter",
+        "latency",
+        "nand",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        649,
+        708
+      ],
+      "canonical_for": [],
+      "words": 828,
+      "bytes": 7777,
+      "sha256": "f3d284ea679248992ca4a1b5733dfc0f4098409cedce611d0bde84bc7cb30945",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    },
+    {
+      "id": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/36-form-factor-availability-matrix",
+      "path": "etape9-phasea-enterprise-ssd/00-enterprise-ssd/36-form-factor-availability-matrix.md",
+      "title": "36. Form-factor availability matrix",
+      "domain": "step-9-enterprise-ssd-hardware-phase-a",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "datacenter",
+        "ipo",
+        "memory",
+        "nand",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "source_anchor": "",
+      "source_lines": [
+        709,
+        759
+      ],
+      "canonical_for": [],
+      "words": 606,
+      "bytes": 5724,
+      "sha256": "d6d11cfe9b1d7fc2f4e4211a216a752794f76650c8a6d6becc4ca17c616c6c0e",
+      "section": "Step 9 — Enterprise SSD Hardware (Phase A)"
+    }
+  ]
+}

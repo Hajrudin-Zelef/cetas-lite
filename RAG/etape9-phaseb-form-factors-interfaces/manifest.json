@@ -1,0 +1,427 @@
+{
+  "corpus": "etape9-phaseb-form-factors-interfaces",
+  "title": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)",
+  "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+  "source_lines": 751,
+  "source_sha256": "91f586b7f290675546e65829d4cc393cfb0027879e9468b18b96c8b5ef571909",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/overview",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/overview.md",
+      "title": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-04-01",
+        "2026-08",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "compute",
+        "datacenter",
+        "hyperscaler",
+        "intel",
+        "latency",
+        "memory",
+        "nand",
+        "nvidia",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 943,
+      "bytes": 8563,
+      "sha256": "1719c0835d5952632db66ce8c83498e8322da80e741f8a4c069c4737aad37e6a",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/4-edsff-the-nvme-native-family",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/4-edsff-the-nvme-native-family.md",
+      "title": "4. EDSFF — the NVMe-native family",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [
+        "2026-04-01"
+      ],
+      "keywords": [
+        "alignment",
+        "compute",
+        "cost",
+        "datacenter",
+        "gpu",
+        "gpus",
+        "nand"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        95
+      ],
+      "canonical_for": [],
+      "words": 916,
+      "bytes": 7669,
+      "sha256": "69ef90010bb6f23c1174ec4a88b70adf77c1dd2051188fb24196d9f38e5f4169",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/5-other-physical-formats-in-the-2026-datacenter",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/5-other-physical-formats-in-the-2026-datacenter.md",
+      "title": "5. Other physical formats in the 2026 datacenter",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "datacenter",
+        "amd",
+        "compute",
+        "consumer",
+        "packaging"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        96,
+        140
+      ],
+      "canonical_for": [],
+      "words": 775,
+      "bytes": 5926,
+      "sha256": "4aa9a7b07412647fc4cb46bcae78fa1f3fc0d55ad782b3e7bb0dba50f2f45753",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/7-nvme-specification-family-2-0-2-4-august-2026",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/7-nvme-specification-family-2-0-2-4-august-2026.md",
+      "title": "7. NVMe specification family: 2.0 → 2.4 (August 2026)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [
+        "2025-08-05",
+        "2026-08",
+        "2026-08-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "datacenter",
+        "memory",
+        "nand",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        141,
+        204
+      ],
+      "canonical_for": [],
+      "words": 1165,
+      "bytes": 11067,
+      "sha256": "1c13dbe26243e092b74aad295ecb1b16ffe95d24184035b1756253f5104b2e5b",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/9-nvme-over-fabrics-transports-in-2026",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/9-nvme-over-fabrics-transports-in-2026.md",
+      "title": "9. NVMe over Fabrics — transports in 2026",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [
+        "2025-06-11",
+        "2026-01"
+      ],
+      "keywords": [
+        "accelerator",
+        "compute",
+        "consumer",
+        "cost",
+        "datacenter",
+        "disaggregated",
+        "dram",
+        "ethernet",
+        "gpus",
+        "inference",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        205,
+        276
+      ],
+      "canonical_for": [],
+      "words": 1234,
+      "bytes": 11683,
+      "sha256": "bea41c258dc5f329386f22517292b415d36a02c6f590ba59e5ecaf39c80d0a55",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/12-sas-and-sata-in-2026-not-dead-repositioned",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/12-sas-and-sata-in-2026-not-dead-repositioned.md",
+      "title": "12. SAS and SATA in 2026 — not dead, repositioned",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom",
+        "Intel",
+        "Samsung"
+      ],
+      "dates": [
+        "2024-03"
+      ],
+      "keywords": [
+        "compute",
+        "consumer",
+        "intel",
+        "nand",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        277,
+        326
+      ],
+      "canonical_for": [],
+      "words": 842,
+      "bytes": 9422,
+      "sha256": "7a52a9901b311f95fb942143354062d75dbc38a5ca251d043a483ef7dcc99cef",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/14-storage-cabling-and-connectors",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/14-storage-cabling-and-connectors.md",
+      "title": "14. Storage cabling and connectors",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-04-01"
+      ],
+      "keywords": [
+        "amd",
+        "compute",
+        "datacenter",
+        "gpu",
+        "intel",
+        "memory",
+        "nvidia",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        327,
+        402
+      ],
+      "canonical_for": [],
+      "words": 1176,
+      "bytes": 10544,
+      "sha256": "263800741a9bb79908261011b18b0bc8ba316c092f22dd94aba8db3cfddb2feb",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/16-decision-guide-picking-form-factor-interface",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/16-decision-guide-picking-form-factor-interface.md",
+      "title": "16. Decision guide — picking form factor & interface",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "compute",
+        "datacenter",
+        "ethernet",
+        "gpu",
+        "intel",
+        "latency",
+        "memory",
+        "nand",
+        "training"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        403,
+        486
+      ],
+      "canonical_for": [],
+      "words": 964,
+      "bytes": 7451,
+      "sha256": "5eabe4220f32eb29c785acf2ff76f9043e5768e71e81e3387fc08f81c8e240df",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/19-source-index-verbatim-urls",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/19-source-index-verbatim-urls.md",
+      "title": "19. Source index (verbatim URLs)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [
+        "2026-04-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "compute",
+        "datacenter",
+        "intel",
+        "memory",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        487,
+        566
+      ],
+      "canonical_for": [],
+      "words": 181,
+      "bytes": 8188,
+      "sha256": "32b464375a2d7949b77a2673544dc690f0412629131538f9af9055faa71c7db4",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/20-interface-timeline-1990-2026",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/20-interface-timeline-1990-2026.md",
+      "title": "20. Interface timeline (1990 → 2026)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        567,
+        611
+      ],
+      "canonical_for": [],
+      "words": 579,
+      "bytes": 4042,
+      "sha256": "b9a496eeb6572f17fff3504a8ca2f21aac9c06c5e423114e82a128e8cf4a2d26",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/22-pcie-lane-budgeting-example-gen5-2p-server",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/22-pcie-lane-budgeting-example-gen5-2p-server.md",
+      "title": "22. PCIe lane budgeting example (Gen5 2P server)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "cost",
+        "datacenter",
+        "inference",
+        "memory",
+        "nvidia",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        612,
+        668
+      ],
+      "canonical_for": [],
+      "words": 708,
+      "bytes": 7078,
+      "sha256": "a242da7871a364bd92f4ebe0351a5bce421a3dfe53c0187fbc61f8d821322f66",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/27-security-features-drive-level",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/27-security-features-drive-level.md",
+      "title": "27. Security features (drive-level)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "compute",
+        "datacenter",
+        "ethernet",
+        "latency",
+        "memory",
+        "nand",
+        "research",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        669,
+        751
+      ],
+      "canonical_for": [],
+      "words": 1088,
+      "bytes": 9318,
+      "sha256": "9194f499508832537492d072abaa02e283fdd09a4753e97df7d5ca4178daaf48",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    }
+  ]
+}

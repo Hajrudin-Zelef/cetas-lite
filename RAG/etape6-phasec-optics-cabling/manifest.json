@@ -1,0 +1,2147 @@
+{
+  "corpus": "etape6-phasec-optics-cabling",
+  "title": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure",
+  "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+  "source_lines": 3012,
+  "source_sha256": "e00dea72da1d850f6fc44b2076d560e12f4971e16961a2c2db268c943680425a",
+  "chunk_count": 52,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/overview",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/overview.md",
+      "title": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "optics",
+        "cpo",
+        "dsp",
+        "lpo",
+        "npo",
+        "nvidia",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 965,
+      "bytes": 8432,
+      "sha256": "9fbd7fab803e86757c50e796b0167d93247fbcd7a8f1389f491558dcf21c485b",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/1-2-400g-modules-dr4-fr4-sr4-lr4-pricing-summary",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/1-2-400g-modules-dr4-fr4-sr4-lr4-pricing-summary.md",
+      "title": "1.2 400G modules — DR4 / FR4 / SR4 / LR4 (pricing summary)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "pricing",
+      "actors": [
+        "Broadcom",
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "dsp",
+        "lpo",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        69,
+        126
+      ],
+      "canonical_for": [],
+      "words": 862,
+      "bytes": 6167,
+      "sha256": "d7c5444451a3acc8ecb1f5a2db77434ce712a32da12c7150520f1922186f8e4e",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/1-5-aoc-cables",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/1-5-aoc-cables.md",
+      "title": "1.5 AOC cables",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "EU",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "pricing",
+        "tpu"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        127,
+        173
+      ],
+      "canonical_for": [],
+      "words": 652,
+      "bytes": 5884,
+      "sha256": "143a15efa7e9727301e23672a78d4e93e0b65ea61e2ac5c42b24ce5d5c4f97ab",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/1-9-compatibility-coding-warranty-shipping-2026-pricing-note",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/1-9-compatibility-coding-warranty-shipping-2026-pricing-note.md",
+      "title": "1.9 Compatibility coding, warranty, shipping, 2026 pricing notes",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "pricing",
+      "actors": [
+        "Alibaba",
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2017-07",
+        "2018-03",
+        "2019-07",
+        "2021-05",
+        "2024-06",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "asic",
+        "datacenter",
+        "ethernet",
+        "gpu",
+        "liquid cooling",
+        "nvidia",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        174,
+        237
+      ],
+      "canonical_for": [],
+      "words": 1313,
+      "bytes": 10427,
+      "sha256": "9e32bf8b813d8cae197a63a08e447ddb8871a5f6dc294d78ed3ad4de5f6c8f38",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/2-2-400g-module-types",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/2-2-400g-module-types.md",
+      "title": "2.2 400G module types",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Lambda"
+      ],
+      "dates": [
+        "2024-03",
+        "2026-03",
+        "2026-10"
+      ],
+      "keywords": [
+        "cost",
+        "dsp",
+        "ethernet",
+        "lpo",
+        "optics",
+        "parameters",
+        "training",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        238,
+        283
+      ],
+      "canonical_for": [],
+      "words": 1132,
+      "bytes": 7333,
+      "sha256": "b102eaf835e984884c1a29194dfdcdbf3851beee7a0dbd689666e9692db7c472",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/2-4-1-6t-early-status-as-of-22-sept-2026",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/2-4-1-6t-early-status-as-of-22-sept-2026.md",
+      "title": "2.4 1.6T early status (as of 22 Sept 2026)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "China",
+        "Cohere",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [
+        "2025-03",
+        "2026-03"
+      ],
+      "keywords": [
+        "2nm",
+        "3nm",
+        "backlog",
+        "cost",
+        "cpo",
+        "dsp",
+        "ethernet",
+        "gpus",
+        "lpo",
+        "npo",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        284,
+        329
+      ],
+      "canonical_for": [],
+      "words": 1514,
+      "bytes": 12302,
+      "sha256": "0c8c1e1f0cc76476d871b4b72236b919d998793a3d92b6c3851d330ee92d4e4c",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/2-8-standards-bodies-status-sept-2026",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/2-8-standards-bodies-status-sept-2026.md",
+      "title": "2.8 Standards bodies status (Sept 2026)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "China",
+        "Cohere",
+        "Lambda",
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [
+        "2024-03",
+        "2024-05",
+        "2024-06",
+        "2026-03",
+        "2026-06",
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "asic",
+        "cost",
+        "cpo",
+        "dsp",
+        "energy",
+        "ethernet",
+        "lpo",
+        "npo",
+        "nvidia",
+        "optics",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        330,
+        385
+      ],
+      "canonical_for": [],
+      "words": 1303,
+      "bytes": 11852,
+      "sha256": "4c92e1bc22477ffbf269c58c21294c8aa0a77b1fdffe98e678f490fa94941700",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/3-2-latency-power-trade-offs",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/3-2-latency-power-trade-offs.md",
+      "title": "3.2 Latency & power trade-offs",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "China",
+        "Cohere",
+        "Microsoft",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [
+        "2022-03",
+        "2025-03",
+        "2026-02-10",
+        "2026-03",
+        "2026-06",
+        "2026-07-14"
+      ],
+      "keywords": [
+        "latency",
+        "2nm",
+        "asic",
+        "backlog",
+        "benchmark",
+        "cpo",
+        "disclosure",
+        "dpo",
+        "dsp",
+        "ethernet",
+        "gpu",
+        "ipo"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        386,
+        439
+      ],
+      "canonical_for": [],
+      "words": 1647,
+      "bytes": 16692,
+      "sha256": "8fef99f87c11554ef422c58897c829f537f775b5b2138f12b83f149e1c7943ce",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/3-4-hyperscaler-adoption-signals-for-800g-lpo",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/3-4-hyperscaler-adoption-signals-for-800g-lpo.md",
+      "title": "3.4 Hyperscaler adoption signals for 800G LPO",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Alibaba",
+        "Broadcom",
+        "ByteDance",
+        "China",
+        "Cohere",
+        "Google",
+        "Intel",
+        "Malaysia",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Oracle",
+        "TSMC",
+        "United States"
+      ],
+      "dates": [
+        "2021-06",
+        "2023-04-05",
+        "2024-03",
+        "2025-03",
+        "2025-03-17",
+        "2025-03-25",
+        "2025-04",
+        "2025-05",
+        "2026-02-10",
+        "2026-03-13",
+        "2026-05",
+        "2026-06",
+        "2026-07-14"
+      ],
+      "keywords": [
+        "hyperscaler",
+        "lpo",
+        "alignment",
+        "amd",
+        "capex",
+        "cost",
+        "cpo",
+        "datacenter",
+        "disclosure",
+        "dsp",
+        "ethernet",
+        "gpu"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        440,
+        489
+      ],
+      "canonical_for": [],
+      "words": 1443,
+      "bytes": 13707,
+      "sha256": "3f44365f403d18893f91489507a13fe0d9dd63fa8f39da3d0df1c753fd0d1856",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/wave-4-fiber-optic-infrastructure-research-date-2026-09-22",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/wave-4-fiber-optic-infrastructure-research-date-2026-09-22.md",
+      "title": "Wave 4 — Fiber-optic infrastructure (research date 2026-09-22)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "cost",
+        "dci",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        490,
+        563
+      ],
+      "canonical_for": [],
+      "words": 988,
+      "bytes": 7449,
+      "sha256": "7d6b0df4a2284e9ade4602bb7d2d2dc3e1e7da7ebfd1b8a140282b98d2b7d1c7",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/4-2-mpo-mtp-connectors",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/4-2-mpo-mtp-connectors.md",
+      "title": "4.2 MPO/MTP connectors",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "alignment",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        564,
+        622
+      ],
+      "canonical_for": [],
+      "words": 863,
+      "bytes": 7228,
+      "sha256": "24fcfe356b2618cdec1fbea9b7c7f9ee190489436a24a655393843c6fef3d23c",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/4-4-mtp-pro-us-conec",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/4-4-mtp-pro-us-conec.md",
+      "title": "4.4 MTP PRO / US Conec",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "datacenter",
+        "inference",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        623,
+        679
+      ],
+      "canonical_for": [],
+      "words": 869,
+      "bytes": 6707,
+      "sha256": "eb17f01d28dfe4d59d7c0e61515ac1c58a84a555c88090756b47d8619120a6a5",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/4-6-cassettes-panels",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/4-6-cassettes-panels.md",
+      "title": "4.6 Cassettes & panels",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "distribution",
+        "gpu",
+        "gpus",
+        "nvidia",
+        "optics",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        680,
+        737
+      ],
+      "canonical_for": [],
+      "words": 945,
+      "bytes": 7643,
+      "sha256": "3688cdd4929e45795303f8b9dd020901e3ebb1b20e842ea7e468dd28f92c65b6",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/4-9-flags-gaps-wave-4",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/4-9-flags-gaps-wave-4.md",
+      "title": "4.9 Flags & gaps (Wave 4)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2017-11",
+        "2018-09",
+        "2026-06",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "consumer",
+        "distribution",
+        "pricing",
+        "regulation",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        738,
+        818
+      ],
+      "canonical_for": [],
+      "words": 1838,
+      "bytes": 12866,
+      "sha256": "5adc408b882038f6c53dcaa24ac1b87b33a4370f1e6683efc9ef87c20ed2a038",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/5-3-patch-cords",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/5-3-patch-cords.md",
+      "title": "5.3 Patch cords",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        819,
+        873
+      ],
+      "canonical_for": [],
+      "words": 983,
+      "bytes": 7169,
+      "sha256": "cd92a6f5a66d622bff1fe5a5c5ddac1bafd67a7bc47d6b9d98dcbc3f80455457",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/5-5-data-center-vs-enterprise-use",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/5-5-data-center-vs-enterprise-use.md",
+      "title": "5.5 Data center vs enterprise use",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "distribution",
+        "ethernet",
+        "latency",
+        "memory",
+        "parameters",
+        "sol",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        874,
+        934
+      ],
+      "canonical_for": [],
+      "words": 1277,
+      "bytes": 8745,
+      "sha256": "f907c561a7ea279d1619c2a97fdebb22a0cd5fe9e17d6a17491180fe1c738c57",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/5-8-market",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/5-8-market.md",
+      "title": "5.8 Market",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2025-03"
+      ],
+      "keywords": [
+        "consumer",
+        "cost",
+        "ethernet",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        935,
+        993
+      ],
+      "canonical_for": [],
+      "words": 819,
+      "bytes": 7055,
+      "sha256": "74ae8c43cb81a6466ca7b253950079af4c92ed1dfe4d2a4bfda7c410107082cc",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/wave-6-dac-vs-aoc-vs-aec-direct-attach-cable-technologies",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/wave-6-dac-vs-aoc-vs-aec-direct-attach-cable-technologies.md",
+      "title": "Wave 6 — DAC vs AOC vs AEC: Direct-Attach Cable Technologies",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2021-10",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "capex",
+        "cost",
+        "dsp",
+        "gpu",
+        "hyperscaler",
+        "latency",
+        "memory",
+        "nvidia",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        994,
+        1046
+      ],
+      "canonical_for": [],
+      "words": 1411,
+      "bytes": 10052,
+      "sha256": "66378e67e8b62721c464e39f3d7dadc22323199ec7270d43e5ed458feccbba49",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/6-3-aoc-active-optical-cable",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/6-3-aoc-active-optical-cable.md",
+      "title": "6.3 AOC (Active Optical Cable)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "EU",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2021-09",
+        "2022-03",
+        "2022-10",
+        "2023-10",
+        "2023-11",
+        "2024-03",
+        "2024-10",
+        "2024-10-10",
+        "2026-01",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "cost",
+        "disaggregated",
+        "dsp",
+        "ethernet",
+        "gpu",
+        "hyperscaler",
+        "latency",
+        "optics",
+        "packaging",
+        "pricing",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1047,
+        1098
+      ],
+      "canonical_for": [],
+      "words": 1637,
+      "bytes": 11534,
+      "sha256": "07c359672a1aca0568637f450415cce3db367668e5025543506b588b4fd291f0",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/6-5-comparison-table-sourced-numbers-only",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/6-5-comparison-table-sourced-numbers-only.md",
+      "title": "6.5 Comparison table (sourced numbers only)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "EU",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "aws",
+        "blackwell",
+        "compute",
+        "cost",
+        "dsp",
+        "ethernet",
+        "gpu",
+        "hyperscaler",
+        "latency",
+        "lpo"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1099,
+        1179
+      ],
+      "canonical_for": [],
+      "words": 1913,
+      "bytes": 13405,
+      "sha256": "3af133d1cc5fae95fd16f1145ea58626afd766842a6e7d1ccf18bf77fa47dd46",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/wave-7-fs-com-optics-catalog-pricing-second-pass-skus-dac-ao",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/wave-7-fs-com-optics-catalog-pricing-second-pass-skus-dac-ao.md",
+      "title": "Wave 7 — FS.com Optics Catalog & Pricing (Second Pass: SKUs, DAC/AOC Gaps, Coding, Warranty)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "pricing",
+      "actors": [
+        "Broadcom",
+        "Cohere",
+        "EU",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2025-12-22",
+        "2026-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "optics",
+        "pricing",
+        "3nm",
+        "dsp",
+        "ethernet",
+        "intel",
+        "latency",
+        "lpo",
+        "nvidia",
+        "research",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1180,
+        1253
+      ],
+      "canonical_for": [],
+      "words": 2346,
+      "bytes": 17136,
+      "sha256": "5c431644e5201b79f936b5fbf06da3a5bc461035a72a5880523872dd3b345d34",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/wave-8-fiber-optic-infrastructure-os2-om3-om4-om5-mpo-mtp-po",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/wave-8-fiber-optic-infrastructure-os2-om3-om4-om5-mpo-mtp-po.md",
+      "title": "Wave 8 — Fiber-Optic Infrastructure: OS2/OM3/OM4/OM5, MPO/MTP, Polarity, Trunks, Cassettes, Testing",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "China",
+        "United States"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "datacenter",
+        "optics",
+        "pricing",
+        "research",
+        "tpu",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1254,
+        1303
+      ],
+      "canonical_for": [],
+      "words": 1257,
+      "bytes": 9163,
+      "sha256": "e75e89bc069e8b49de099d0dfddfebd0d7f1d3210106a1fdbd274df6a6cb5ce6",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/8-4-mtp-mpo-trunk-cables-and-breakouts",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/8-4-mtp-mpo-trunk-cables-and-breakouts.md",
+      "title": "8.4 MTP/MPO trunk cables and breakouts",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cost",
+        "ethernet",
+        "gpu",
+        "nvidia",
+        "optics",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1304,
+        1355
+      ],
+      "canonical_for": [],
+      "words": 1168,
+      "bytes": 8543,
+      "sha256": "6f252ce48abf2546fc93209204e387c0ba6827cb4d038ffc8cd00e19734bb2b8",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/8-8-price-data-points-summary-single-unit-list-2026-09-22",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/8-8-price-data-points-summary-single-unit-list-2026-09-22.md",
+      "title": "8.8 Price data points summary (single-unit list, 2026-09-22)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "inference",
+        "nvidia",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1356,
+        1406
+      ],
+      "canonical_for": [],
+      "words": 1016,
+      "bytes": 6414,
+      "sha256": "a6b1bca6d25b5308d1e6a42b649b027888bd0f9488f37b23874ba48418bdb872",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/9-2-where-copper-still-fits-in-2026-datacenters",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/9-2-where-copper-still-fits-in-2026-datacenters.md",
+      "title": "9.2 Where copper still fits in 2026 datacenters",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "dsp",
+        "energy",
+        "ethernet",
+        "latency",
+        "optics",
+        "power delivery",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1407,
+        1454
+      ],
+      "canonical_for": [],
+      "words": 1155,
+      "bytes": 7872,
+      "sha256": "04405d6ebab694d1f69f225ad1bbdb21b304091e2f6ea806ffeafd240db7d533",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/9-6-twinax-dac-vs-structured-twisted-pair",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/9-6-twinax-dac-vs-structured-twisted-pair.md",
+      "title": "9.6 Twinax DAC vs structured twisted-pair",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Intel",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2022-08",
+        "2023-01",
+        "2023-03",
+        "2023-04",
+        "2023-04-27",
+        "2025-03",
+        "2025-06-04",
+        "2025-10-08",
+        "2026-02",
+        "2026-02-20",
+        "2026-05",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "asic",
+        "attention",
+        "capex",
+        "cost",
+        "cpo",
+        "datacenter",
+        "distribution",
+        "ethernet",
+        "full-duplex",
+        "gpus",
+        "hbm",
+        "inference"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1455,
+        1509
+      ],
+      "canonical_for": [],
+      "words": 1916,
+      "bytes": 14231,
+      "sha256": "0e7b42ab5fab92581852f2c7ebdaff6e91f9d3d2aec82b6d06329a49b669c5d5",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/10-2-fixed-51-2t-systems-64-800g-class",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/10-2-fixed-51-2t-systems-64-800g-class.md",
+      "title": "10.2 Fixed 51.2T systems (64 × 800G class)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Huawei",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [
+        "2023-10",
+        "2024-10-16",
+        "2025-10",
+        "2026-02",
+        "2026-06"
+      ],
+      "keywords": [
+        "accelerator",
+        "asic",
+        "cpo",
+        "dci",
+        "ethernet",
+        "full-duplex",
+        "gpu",
+        "hbm",
+        "inference",
+        "latency",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1510,
+        1558
+      ],
+      "canonical_for": [],
+      "words": 1835,
+      "bytes": 13228,
+      "sha256": "ab76a4dcc0df95cedf3edeb843c35b4f30c894feee0b6915e66de7e54e6abc00",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/10-6-deployment-signals-named-operators",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/10-6-deployment-signals-named-operators.md",
+      "title": "10.6 Deployment signals (named operators)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "CoreWeave",
+        "EU",
+        "Google",
+        "Huawei",
+        "Intel",
+        "Lambda",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "xAI"
+      ],
+      "dates": [
+        "2024-10",
+        "2024-10-16",
+        "2024-10-28",
+        "2025-06-04",
+        "2025-10-08",
+        "2025-10-16",
+        "2026-03",
+        "2026-09",
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "asic",
+        "cpo",
+        "dsp",
+        "ethernet",
+        "full-duplex",
+        "gpu",
+        "gpus",
+        "hbm",
+        "intel",
+        "latency",
+        "liquid cooling",
+        "lpo"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1559,
+        1621
+      ],
+      "canonical_for": [],
+      "words": 1240,
+      "bytes": 9312,
+      "sha256": "83b4d971670402bc52263a6023e0c23297482e64d44dba7fd8622b9a82412b8f",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/10-11-source-list-verbatim-urls",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/10-11-source-list-verbatim-urls.md",
+      "title": "10.11 Source list (verbatim URLs)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "CoreWeave",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Oracle",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2023-01-09",
+        "2023-04-27",
+        "2024-10-16",
+        "2024-10-28",
+        "2025-05-20",
+        "2025-06",
+        "2025-06-04",
+        "2025-06-10",
+        "2025-10",
+        "2025-10-08",
+        "2025-10-14",
+        "2025-10-29",
+        "2026-02-20",
+        "2026-09",
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "compute",
+        "cpo",
+        "ethernet",
+        "gpu",
+        "intel",
+        "latency",
+        "lpo",
+        "nvidia",
+        "nvlink",
+        "optics",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1622,
+        1672
+      ],
+      "canonical_for": [],
+      "words": 1100,
+      "bytes": 8793,
+      "sha256": "4789e789cbdb24d92125b6b7f9b4829efd6e277c494cb7f056326c8a5d9abfc1",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/11-3-nvidia-bluefield-4-dpu-800g",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/11-3-nvidia-bluefield-4-dpu-800g.md",
+      "title": "11.3 NVIDIA BlueField-4 DPU (800G)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "actor-profile",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "CoreWeave",
+        "Crusoe",
+        "IREN",
+        "Lambda",
+        "Mistral",
+        "Nebius",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [
+        "2024-05",
+        "2025-10-14",
+        "2025-10-28",
+        "2026-03",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "benchmark",
+        "compute",
+        "ethernet",
+        "gpu",
+        "helios",
+        "latency",
+        "lpo",
+        "memory",
+        "mistral",
+        "nvlink"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1673,
+        1726
+      ],
+      "canonical_for": [],
+      "words": 776,
+      "bytes": 5541,
+      "sha256": "fbafe943bea2db8e27a0a5f6884ccf52b16467b0bfeb69a195213e1ea8e9baaf",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/11-8-intel-e830-200g-ceiling-correction",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/11-8-intel-e830-200g-ceiling-correction.md",
+      "title": "11.8 Intel (E830 = 200G ceiling — correction)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2023-01-09",
+        "2025-06-11",
+        "2025-07",
+        "2025-09-05",
+        "2026-01-28",
+        "2026-06",
+        "2026-07-16",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "intel",
+        "acquisition",
+        "cost",
+        "ethernet",
+        "full-duplex",
+        "latency",
+        "lpo",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1727,
+        1773
+      ],
+      "canonical_for": [],
+      "words": 732,
+      "bytes": 5254,
+      "sha256": "796fde6913133d390873abf8cf629267cab66f1a3d6949096c7b3fd7bd721dfa",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/11-13-pricing-summary",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/11-13-pricing-summary.md",
+      "title": "11.13 Pricing summary",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "pricing",
+      "actors": [
+        "Broadcom",
+        "CoreWeave",
+        "Intel",
+        "Nvidia",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2024-10",
+        "2025-02",
+        "2025-03-14",
+        "2026-01-28"
+      ],
+      "keywords": [
+        "pricing",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "latency",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1774,
+        1821
+      ],
+      "canonical_for": [],
+      "words": 603,
+      "bytes": 4585,
+      "sha256": "bc400be9142daef8df3d309da1f6912f322df733868e6a1b370c577fabd2cc08",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/11-19-meta",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/11-19-meta.md",
+      "title": "11.19 Meta",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "actor-profile",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "CoreWeave",
+        "Crusoe",
+        "Google",
+        "IREN",
+        "Lambda",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "Nebius",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-02",
+        "2026-03"
+      ],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "aws",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "helios",
+        "llama",
+        "lpo",
+        "maia",
+        "memory",
+        "mistral"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1822,
+        1876
+      ],
+      "canonical_for": [],
+      "words": 888,
+      "bytes": 6489,
+      "sha256": "0311c6f1f1b342b97b9b052633ecc6afad41f1fe4a8c49b75f7d6eacca4cfff6",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/00-front-matter/11-26-structured-cabling-9-216-strands-commscope-propel-mpo-",
+      "path": "etape6-phasec-optics-cabling/00-front-matter/11-26-structured-cabling-9-216-strands-commscope-propel-mpo-.md",
+      "title": "11.26 Structured cabling: 9,216 strands, CommScope Propel, MPO-16",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "CoreWeave",
+        "Crusoe",
+        "Google",
+        "IREN",
+        "Intel",
+        "Lambda",
+        "Meta",
+        "Microsoft",
+        "Nebius",
+        "Nvidia",
+        "Oracle",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2022-03-31",
+        "2024-05",
+        "2025-11-04",
+        "2026-01",
+        "2026-02-11",
+        "2026-03-12",
+        "2026-03-17",
+        "2026-04-20",
+        "2026-07-25",
+        "2026-09"
+      ],
+      "keywords": [
+        "acquisition",
+        "alignment",
+        "amd",
+        "aws",
+        "compute",
+        "cost",
+        "cpo",
+        "dsp",
+        "ethernet",
+        "gpu",
+        "helios",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1877,
+        1937
+      ],
+      "canonical_for": [],
+      "words": 1051,
+      "bytes": 8401,
+      "sha256": "53ca85835d27650eff37a9ca88bdf982d1c6c2888c8f1361f0e861efa7031ba0",
+      "section": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/overview",
+      "path": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/overview.md",
+      "title": "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal",
+      "domain": "wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "optics",
+        "attribution",
+        "ethernet",
+        "memory",
+        "pricing",
+        "research",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        1938,
+        2005
+      ],
+      "canonical_for": [],
+      "words": 1497,
+      "bytes": 12024,
+      "sha256": "e0d719cae72f0d9964bf5bb9fd44e8b193853f6af8aebdeade26d2dc00d113f0",
+      "section": "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/2-programmers-and-coding-tools",
+      "path": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/2-programmers-and-coding-tools.md",
+      "title": "2. Programmers and coding tools",
+      "domain": "wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "Apple",
+        "Broadcom",
+        "EU",
+        "Huawei",
+        "Lambda",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "dsp",
+        "ethernet",
+        "nvidia",
+        "optics",
+        "packaging",
+        "pricing",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2006,
+        2054
+      ],
+      "canonical_for": [],
+      "words": 806,
+      "bytes": 7143,
+      "sha256": "3e23fb892423d1cb7d4ee6938c091fa0205aade44702b4056896e6d10c79487e",
+      "section": "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/3-3-10gtek",
+      "path": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/3-3-10gtek.md",
+      "title": "3.3 10Gtek",
+      "domain": "wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "ethernet",
+        "intel",
+        "optics",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2055,
+        2100
+      ],
+      "canonical_for": [],
+      "words": 570,
+      "bytes": 6080,
+      "sha256": "41d8fb9204d682a86f596e6f85514933a96c94d16b3c4d263a44e897a393b969",
+      "section": "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/3-10-fluxlight",
+      "path": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/3-10-fluxlight.md",
+      "title": "3.10 FluxLight",
+      "domain": "wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "California",
+        "Nvidia"
+      ],
+      "dates": [
+        "2021-01-28",
+        "2021-10-20",
+        "2025-05-28",
+        "2026-01-09"
+      ],
+      "keywords": [
+        "acquisition",
+        "attribution",
+        "datacenter",
+        "nvidia",
+        "optics",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2101,
+        2155
+      ],
+      "canonical_for": [],
+      "words": 899,
+      "bytes": 8681,
+      "sha256": "8720ad5f5290530a0a8770086a42a3134386488fa69944046679ed495384abb9",
+      "section": "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/5-oem-lock-in-behavior-and-support-implications",
+      "path": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/5-oem-lock-in-behavior-and-support-implications.md",
+      "title": "5. OEM lock-in behavior and support implications",
+      "domain": "wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "incident",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2156,
+        2202
+      ],
+      "canonical_for": [],
+      "words": 742,
+      "bytes": 7441,
+      "sha256": "4fc7b5fe60d32aad3ed0a424a16785b0aa98adc8c49e24fff7b15213a053fb14",
+      "section": "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/6-representative-price-gaps-with-dates-and-comparability-fla",
+      "path": "etape6-phasec-optics-cabling/01-wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra/6-representative-price-gaps-with-dates-and-comparability-fla.md",
+      "title": "6. Representative price gaps (with dates and comparability flags)",
+      "domain": "wave-12-third-party-coded-optics-eeprom-msa-mechanics-progra",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Cohere",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2021-01-28",
+        "2025-05-28",
+        "2026-01-09",
+        "2026-03-12",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "advisory",
+        "amd",
+        "antitrust",
+        "asic",
+        "attribution",
+        "compute",
+        "consumer",
+        "datacenter",
+        "hyperscaler",
+        "incident",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2203,
+        2279
+      ],
+      "canonical_for": [],
+      "words": 1570,
+      "bytes": 15388,
+      "sha256": "4e5c52b4078d459d222058fa3dfafebc0a76f5a3cf56307ce85bb9d4c0714549",
+      "section": "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/overview",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/overview.md",
+      "title": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "license",
+        "nvidia",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2280,
+        2352
+      ],
+      "canonical_for": [],
+      "words": 861,
+      "bytes": 7580,
+      "sha256": "8e1a203494304544bad3be661366b691066828d83402fec22457d92f6fe95315",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/2-eeprom-identification-mechanics",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/2-eeprom-identification-mechanics.md",
+      "title": "2. EEPROM / identification mechanics",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "memory",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2353,
+        2426
+      ],
+      "canonical_for": [],
+      "words": 1200,
+      "bytes": 10377,
+      "sha256": "fd8d0cc9f9233eb46616a573017a6ff0eb1a2f8d1fc41474c2e10a8633f59487",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/5-dom-ddm-failure-diagnosis-and-failure-modes",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/5-dom-ddm-failure-diagnosis-and-failure-modes.md",
+      "title": "5. DOM/DDM failure diagnosis and failure modes",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "consumer",
+        "ethernet",
+        "nvidia",
+        "optics",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2427,
+        2483
+      ],
+      "canonical_for": [],
+      "words": 932,
+      "bytes": 7931,
+      "sha256": "a8cab489807b7d1f4d32402deda8d04549ed3eac8ca0f01a9bb5355219707ad7",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/wave-14-vendor-compatibility-matrix-third-party-coded-optics",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/wave-14-vendor-compatibility-matrix-third-party-coded-optics.md",
+      "title": "Wave 14 — Vendor compatibility matrix: third-party coded optics vs OEM platforms (research date 2026-09-22)",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "China",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2020-12",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "optics",
+        "research",
+        "advisory",
+        "cost",
+        "foundry",
+        "inference",
+        "intel",
+        "nvidia",
+        "parameters",
+        "pricing",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2484,
+        2549
+      ],
+      "canonical_for": [],
+      "words": 2067,
+      "bytes": 19201,
+      "sha256": "36a29224232ed7c48f6fa0e82f6614aeff74f11e0142ec8483a169f51ee7ba08",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/14-3-per-oem-platform-compatibility-matrix-enforcement-postu",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/14-3-per-oem-platform-compatibility-matrix-enforcement-postu.md",
+      "title": "14.3 Per-OEM platform compatibility matrix (enforcement posture, policy, support)",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "coherent optics",
+        "liability",
+        "nvidia",
+        "optics",
+        "pricing",
+        "wavelength"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2550,
+        2597
+      ],
+      "canonical_for": [],
+      "words": 2321,
+      "bytes": 21227,
+      "sha256": "ef794d7ddd4fe7c2ed5c267dbed7cf76aeaef64cf0677869d279819c62767141",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/14-7-firmware-software-upgrade-concerns",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/14-7-firmware-software-upgrade-concerns.md",
+      "title": "14.7 Firmware / software upgrade concerns",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Broadcom",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2024-09",
+        "2025-06",
+        "2025-10",
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "asic",
+        "cpo",
+        "dsp",
+        "ethernet",
+        "inference",
+        "license",
+        "lpo",
+        "nvidia",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2598,
+        2653
+      ],
+      "canonical_for": [],
+      "words": 1255,
+      "bytes": 11233,
+      "sha256": "2b3e10ff591252b62ada1e40136d7ffd9a5705215203b0a2e373edebc63a80df",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/15-2-800g-nics-dpus",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/15-2-800g-nics-dpus.md",
+      "title": "15.2 800G NICs / DPUs",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "Cohere",
+        "CoreWeave",
+        "Crusoe",
+        "Intel",
+        "Lambda",
+        "Meta",
+        "Nvidia",
+        "Oracle",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2024-07",
+        "2025-03",
+        "2025-10",
+        "2025-11",
+        "2026-08",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "2nm",
+        "amd",
+        "aws",
+        "blackwell",
+        "chiplet",
+        "cpo",
+        "dsp",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2654,
+        2699
+      ],
+      "canonical_for": [],
+      "words": 870,
+      "bytes": 8655,
+      "sha256": "9f3d0fb858e9ced41d3947ff365ef3454274eae28bf776580f45043de1a27b67",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/15-6-1-6t-early-signals-sept-2026",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/15-6-1-6t-early-signals-sept-2026.md",
+      "title": "15.6 1.6T early signals (Sept 2026)",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Cohere",
+        "CoreWeave",
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "alignment",
+        "consumer",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "nvidia",
+        "optics",
+        "pricing",
+        "rubin",
+        "serdes",
+        "training",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2700,
+        2748
+      ],
+      "canonical_for": [],
+      "words": 855,
+      "bytes": 7944,
+      "sha256": "afe9dbb9c0d699e227470038fd466cdc0ab14277f48208157e8cc2ac75d08c6e",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/wave-16-dac-aoc-coding-lab-validation-playbook-buyer-s-decis",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/wave-16-dac-aoc-coding-lab-validation-playbook-buyer-s-decis.md",
+      "title": "Wave 16 — DAC/AOC coding, lab validation playbook, buyer's decision framework, 800G price ladder & glossary (research date 2026-09-22)",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "cost",
+        "cpo",
+        "dsp",
+        "ethernet",
+        "liability",
+        "lpo",
+        "npo",
+        "nvidia",
+        "optics",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2749,
+        2830
+      ],
+      "canonical_for": [],
+      "words": 1658,
+      "bytes": 12548,
+      "sha256": "046e0ea44a170474800a4c24034e1d4cb054602c72761be15bf8cc10d0288ae2",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/wave-17-reference-tables-coded-sku-examples-oem-part-numbers",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/wave-17-reference-tables-coded-sku-examples-oem-part-numbers.md",
+      "title": "Wave 17 — Reference tables: coded-SKU examples, OEM part numbers, 800G catalog detail, retailer price matrices, programming workflow (research date 2026-09-22)",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "EU",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2831,
+        2888
+      ],
+      "canonical_for": [],
+      "words": 680,
+      "bytes": 4262,
+      "sha256": "4e5df804d31feb3ff87542aa4b25f43387bff459c62d2da2ccd1e309a93faf9d",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/17-3-800g-fs-com-catalog-detail-us-listings-observed-2026-09",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/17-3-800g-fs-com-catalog-detail-us-listings-observed-2026-09.md",
+      "title": "17.3 800G FS.com catalog detail (US listings, observed 2026-09-22) [vendor-reported]",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Broadcom",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "dsp",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2889,
+        2941
+      ],
+      "canonical_for": [],
+      "words": 560,
+      "bytes": 3744,
+      "sha256": "11ad56a15c108940ba8fe771877b0377a2e7e6c4499aa4145bf181a741f83829",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    },
+    {
+      "id": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/17-6-programming-coding-workflow-how-a-module-gets-its-oem-c",
+      "path": "etape6-phasec-optics-cabling/02-wave-13-oem-vs-third-party-transceiver-compatibility-exact-e/17-6-programming-coding-workflow-how-a-module-gets-its-oem-c.md",
+      "title": "17.6 Programming / coding workflow (how a module gets its OEM code)",
+      "domain": "wave-13-oem-vs-third-party-transceiver-compatibility-exact-e",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [
+        "Broadcom",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cpo",
+        "dsp",
+        "ethernet",
+        "lpo",
+        "npo",
+        "nvidia",
+        "optics",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "source_anchor": "",
+      "source_lines": [
+        2942,
+        3012
+      ],
+      "canonical_for": [],
+      "words": 941,
+      "bytes": 6602,
+      "sha256": "2cc5821e72e30dee0c452eeabf211bbc44bc4a82e2e81dbf7758bba37e782b76",
+      "section": "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
+    }
+  ]
+}

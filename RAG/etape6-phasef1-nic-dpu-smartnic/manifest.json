@@ -1,0 +1,547 @@
+{
+  "corpus": "etape6-phasef1-nic-dpu-smartnic",
+  "title": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)",
+  "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+  "source_lines": 756,
+  "source_sha256": "438cfd3ac26fa9e539bda4b9bc92c36e77c92742827cf35cffa849e6e25b53be",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/overview",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/overview.md",
+      "title": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "Baidu",
+        "Broadcom",
+        "California",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "intel",
+        "nvidia",
+        "pricing",
+        "accelerator",
+        "blackwell",
+        "compute",
+        "cybersecurity",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1029,
+      "bytes": 8439,
+      "sha256": "6761f01781c9a1093b1600f0edb28b558b008d4aa6b752893ce2d2d194f52baa",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-2-doca-software-framework",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-2-doca-software-framework.md",
+      "title": "Wave 2 — DOCA software framework",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [
+        "2022-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "agent",
+        "amd",
+        "asic",
+        "benchmark",
+        "cybersecurity",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "helios",
+        "hyperscaler",
+        "inference"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        113
+      ],
+      "canonical_for": [],
+      "words": 968,
+      "bytes": 7840,
+      "sha256": "dbfefd6b42fe18e5e247bfc627dacd1572c088aaf42a79e865d2811dc602623a",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-5-marvell-octeon-broadcom-stingray-fungible-other-dpu-v",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-5-marvell-octeon-broadcom-stingray-fungible-other-dpu-v.md",
+      "title": "Wave 5 — Marvell OCTEON, Broadcom Stingray, Fungible, other DPU vendors",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "China",
+        "Google",
+        "Intel",
+        "Lambda",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2021-06",
+        "2023-01-09",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "accelerator",
+        "acquisition",
+        "amd",
+        "asic",
+        "aws",
+        "compute",
+        "datacenter",
+        "disaggregated",
+        "ethernet",
+        "hyperscaler",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        114,
+        203
+      ],
+      "canonical_for": [],
+      "words": 1301,
+      "bytes": 10523,
+      "sha256": "66845e7ff3f7f0ceace8d80ae0b427dca839332c52c706e3ceaf26918c02c704",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-7-offloads-deep-dive",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-7-offloads-deep-dive.md",
+      "title": "Wave 7 — Offloads deep-dive",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Baidu",
+        "Broadcom",
+        "CoreWeave",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "asic",
+        "aws",
+        "compute",
+        "disaggregated",
+        "ethernet",
+        "gpu",
+        "helios",
+        "hyperscaler",
+        "intel",
+        "latency",
+        "maia"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        204,
+        271
+      ],
+      "canonical_for": [],
+      "words": 1033,
+      "bytes": 9039,
+      "sha256": "fd63439bfec4192ba1807f8622948381a82179a1fc965a9d63c82f1ab6d62956",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-9-open-items-conflicts-glossary-source-index",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-9-open-items-conflicts-glossary-source-index.md",
+      "title": "Wave 9 — Open items, conflicts, glossary, source index",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Google",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "acquisition",
+        "amd",
+        "asic",
+        "benchmark",
+        "compute",
+        "datacenter",
+        "ethernet",
+        "gpus",
+        "helios",
+        "intel",
+        "ipo"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        272,
+        360
+      ],
+      "canonical_for": [],
+      "words": 529,
+      "bytes": 7494,
+      "sha256": "647b68d30fb84b5bf49b10bd57bc8f2e7baccfa301795ad28edf2768058dfe34",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-10-oem-integration-and-form-factors",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-10-oem-integration-and-form-factors.md",
+      "title": "Wave 10 — OEM integration and form factors",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2023-07",
+        "2023-07-19",
+        "2025-06-11",
+        "2025-11",
+        "2026-06",
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "intel",
+        "latency",
+        "lean",
+        "nvidia",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        361,
+        426
+      ],
+      "canonical_for": [],
+      "words": 851,
+      "bytes": 7409,
+      "sha256": "0894dfe833d45e7fdd939c77d3f571ce9f4882c40cf705884166645af513abfe",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-12-master-comparison-tables",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-12-master-comparison-tables.md",
+      "title": "Wave 12 — Master comparison tables",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "asic",
+        "aws",
+        "ethernet",
+        "helios",
+        "intel",
+        "kv cache",
+        "lean",
+        "license",
+        "nvidia",
+        "open source"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        427,
+        472
+      ],
+      "canonical_for": [],
+      "words": 599,
+      "bytes": 3500,
+      "sha256": "82d498f92ce178e3351edb35461cb9b94bb1d64a9b7cdc2b4e1271d506580878",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-13-pricing-recap-matrix-all-2026-snapshots",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-13-pricing-recap-matrix-all-2026-snapshots.md",
+      "title": "Wave 13 — Pricing recap matrix (all 2026 snapshots)",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "Google",
+        "Intel",
+        "Lambda",
+        "Nvidia",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "acquisition",
+        "apache",
+        "chiplet",
+        "gpu",
+        "intel",
+        "nvidia",
+        "research",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        473,
+        536
+      ],
+      "canonical_for": [],
+      "words": 824,
+      "bytes": 5908,
+      "sha256": "fa4a2659a17350a097486124f92fd3a4b839efefe0183410d3756577d3d04452",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-15-ai-fabric-architecture-and-deployment-framework",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-15-ai-fabric-architecture-and-deployment-framework.md",
+      "title": "Wave 15 — AI fabric architecture and deployment framework",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Google",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2024-05",
+        "2025-12",
+        "2026-06",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "asic",
+        "benchmarks",
+        "chiplet",
+        "cost",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "helios",
+        "inference",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        537,
+        603
+      ],
+      "canonical_for": [],
+      "words": 947,
+      "bytes": 7942,
+      "sha256": "c97512d28799133fff3c037cd77f388c797bb6ea252651d1ebbeb7bb62d87a04",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-17-marvell-octeon-10-skus-remaining-vendors-lineage-tim",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-17-marvell-octeon-10-skus-remaining-vendors-lineage-tim.md",
+      "title": "Wave 17 — Marvell OCTEON 10 SKUs, remaining vendors, lineage timelines",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Qualcomm",
+        "TSMC"
+      ],
+      "dates": [
+        "2022-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "asic",
+        "ethernet",
+        "helios",
+        "inference",
+        "intel",
+        "ipo",
+        "nvidia",
+        "pricing",
+        "research",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        604,
+        653
+      ],
+      "canonical_for": [],
+      "words": 651,
+      "bytes": 5111,
+      "sha256": "3b56274f3c03d8e4494bf8fd2cd4c1e78253d818ac5d8ba401100b21a7fae6d8",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-18-2026-chronology-optics-form-factors-management-secur",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-18-2026-chronology-optics-form-factors-management-secur.md",
+      "title": "Wave 18 — 2026 chronology, optics/form factors, management & security",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "CoreWeave",
+        "Intel",
+        "Nvidia",
+        "Oracle",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "optics",
+        "acquisition",
+        "amd",
+        "ethernet",
+        "gpus",
+        "helios",
+        "hyperscaler",
+        "intel",
+        "memory",
+        "mi400",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        654,
+        708
+      ],
+      "canonical_for": [],
+      "words": 720,
+      "bytes": 4880,
+      "sha256": "d38c1596e2482f27ae8cfe11296c9dde4f37cb15a02e5b76df1ad2191252e726",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-19-generational-spec-tables-quick-reference",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/wave-19-generational-spec-tables-quick-reference.md",
+      "title": "Wave 19 — Generational spec tables (quick-reference)",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "gpu",
+        "memory",
+        "nvidia",
+        "optics",
+        "research",
+        "rubin",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        709,
+        756
+      ],
+      "canonical_for": [],
+      "words": 463,
+      "bytes": 2756,
+      "sha256": "a9af30e82fae10f5073f8741cf9ea11d334ce9e819c82ab26ddb56d0eb6889cb",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    }
+  ]
+}

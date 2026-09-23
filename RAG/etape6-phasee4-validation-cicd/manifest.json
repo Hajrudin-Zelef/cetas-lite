@@ -1,0 +1,454 @@
+{
+  "corpus": "etape6-phasee4-validation-cicd",
+  "title": "Phase E4 — Network Validation, Observability & CI/CD",
+  "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+  "source_lines": 782,
+  "source_sha256": "be9b2f563ce68a95d6dabc1b45ef82e4c621463b5670e46278e664d8c074150f",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/overview",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/overview.md",
+      "title": "Phase E4 — Network Validation, Observability & CI/CD",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "funding",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 889,
+      "bytes": 7424,
+      "sha256": "64464bec8fde5c504b14d98b12ec330cef3f227b6bed1e36a0ec09bd69b594b7",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-2-suzieq-multi-vendor-network-observability",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-2-suzieq-multi-vendor-network-observability.md",
+      "title": "E4.2 — SuzieQ: multi-vendor network observability",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2023-06",
+        "2025-02",
+        "2026-01",
+        "2026-09"
+      ],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "funding",
+        "pricing",
+        "research",
+        "series a",
+        "series b"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        63,
+        132
+      ],
+      "canonical_for": [],
+      "words": 783,
+      "bytes": 7043,
+      "sha256": "0f96945a363dc1c061f324e77a3be77bebe8eeaa17193aaa0fb83dd004aa8af6",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-4-forward-formerly-forward-networks-network-digital-twin",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-4-forward-formerly-forward-networks-network-digital-twin.md",
+      "title": "E4.4 — Forward (formerly Forward Networks): network digital twin",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-04",
+        "2026-05",
+        "2026-09"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "aws",
+        "mcp",
+        "packaging",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        133,
+        188
+      ],
+      "canonical_for": [],
+      "words": 512,
+      "bytes": 4923,
+      "sha256": "e2f172801be0f7c6bf1bdd19ff18846da1b0e84abe98a3f1f4fd7624b26b653d",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-6-lab-and-emulation-environments",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-6-lab-and-emulation-environments.md",
+      "title": "E4.6 — Lab and emulation environments",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-05",
+        "2026-05-13",
+        "2026-06",
+        "2026-06-23",
+        "2026-07-11",
+        "2026-09",
+        "2026-09-06"
+      ],
+      "keywords": [
+        "claude",
+        "compute",
+        "license",
+        "licenses",
+        "mcp",
+        "mit license",
+        "model context protocol",
+        "open source",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        189,
+        244
+      ],
+      "canonical_for": [],
+      "words": 834,
+      "bytes": 7005,
+      "sha256": "eec8115f17f72398ce74a14365f64b090fc095795a50b56a013dc7273c78097c",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-7-testing-frameworks",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-7-testing-frameworks.md",
+      "title": "E4.7 — Testing frameworks",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05",
+        "2026-09"
+      ],
+      "keywords": [
+        "apache",
+        "license",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        245,
+        310
+      ],
+      "canonical_for": [],
+      "words": 954,
+      "bytes": 8530,
+      "sha256": "35668bdd8a216bd480e70d002d7681916665bcc383da7d6d6ae98e0d77814c6e",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-9-event-driven-automation",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-9-event-driven-automation.md",
+      "title": "E4.9 — Event-driven automation",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2019-10"
+      ],
+      "keywords": [
+        "agentic",
+        "apache",
+        "aws",
+        "consumer",
+        "mcp",
+        "open source",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        311,
+        375
+      ],
+      "canonical_for": [],
+      "words": 720,
+      "bytes": 6233,
+      "sha256": "73eacb2b82aa13883b52e1c952d003db8f7df62bc57eb937e4c29bf01f9f2199",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-11-open-items-and-gaps-log",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-11-open-items-and-gaps-log.md",
+      "title": "E4.11 — Open items and gaps log",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        376,
+        464
+      ],
+      "canonical_for": [],
+      "words": 401,
+      "bytes": 6121,
+      "sha256": "90f2b2db91d86b40d8fd00a8feeeff5ffdf79fd14db0ffedbec500e76a88b90d",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-13-deep-dive-expansions",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-13-deep-dive-expansions.md",
+      "title": "E4.13 — Deep-dive expansions",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Huawei"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-05",
+        "2026-07"
+      ],
+      "keywords": [
+        "agents",
+        "aws",
+        "embedding",
+        "license",
+        "licenses",
+        "mcp",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        465,
+        542
+      ],
+      "canonical_for": [],
+      "words": 1265,
+      "bytes": 10276,
+      "sha256": "c8324b750b92669a9ec58f7d03b9b7edfd63095d508280bdafab4f995424e333",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-14-verification",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-14-verification.md",
+      "title": "E4.14 — Verification",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-07",
+        "2026-07-03",
+        "2026-09-06"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        543,
+        595
+      ],
+      "canonical_for": [],
+      "words": 458,
+      "bytes": 2957,
+      "sha256": "1fb39e624ea99978bdead05819a132eb0486a37feb1c09fc9925d1f69fe68dfa",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-15-3-lab-platform-edition-pricing-snapshot-sept-2026",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-15-3-lab-platform-edition-pricing-snapshot-sept-2026.md",
+      "title": "E4.15.3 Lab platform edition/pricing snapshot (Sept 2026)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "pricing",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "pricing",
+        "aws",
+        "licenses",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        596,
+        646
+      ],
+      "canonical_for": [],
+      "words": 405,
+      "bytes": 2361,
+      "sha256": "62e248e19ba415d8f08723f659f5ac10b9241f7b4f856031e83fdb68504d2fd9",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-15-7-stackstorm-pack-examples-network-relevant",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-15-7-stackstorm-pack-examples-network-relevant.md",
+      "title": "E4.15.7 StackStorm pack examples (network-relevant)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-01-15",
+        "2026-01-27",
+        "2026-01-28",
+        "2026-01-29",
+        "2026-03-23",
+        "2026-05-13",
+        "2026-07-11",
+        "2026-08-19",
+        "2026-09-06",
+        "2026-09-14",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "aws",
+        "compute",
+        "latency",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        647,
+        721
+      ],
+      "canonical_for": [],
+      "words": 706,
+      "bytes": 5603,
+      "sha256": "361efae04d5a9d14ee70db9e694048d279ddbc4d3b5166d543e807c7f1d1255b",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/01-github-workflows-network-validate-yml-illustrative/overview",
+      "path": "etape6-phasee4-validation-cicd/01-github-workflows-network-validate-yml-illustrative/overview.md",
+      "title": ".github/workflows/network-validate.yml (illustrative)",
+      "domain": "github-workflows-network-validate-yml-illustrative",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        722,
+        742
+      ],
+      "canonical_for": [],
+      "words": 65,
+      "bytes": 610,
+      "sha256": "1328180ddfaa1dbff0171c75e08d0cdf36d4fa334f98c2fa2170b9efcb59e004",
+      "section": ".github/workflows/network-validate.yml (illustrative)"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/02-rulebooks-bgp-flap-remediate-yml-illustrative/overview",
+      "path": "etape6-phasee4-validation-cicd/02-rulebooks-bgp-flap-remediate-yml-illustrative/overview.md",
+      "title": "rulebooks/bgp_flap_remediate.yml (illustrative)",
+      "domain": "rulebooks-bgp-flap-remediate-yml-illustrative",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        743,
+        769
+      ],
+      "canonical_for": [],
+      "words": 70,
+      "bytes": 731,
+      "sha256": "b8008bf27b6e3a050eb7cd38b8a035df1324c75fb81a239df6e46bdaf679b69e",
+      "section": "rulebooks/bgp_flap_remediate.yml (illustrative)"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/03-ci-batfish-questions-py-illustrative/overview",
+      "path": "etape6-phasee4-validation-cicd/03-ci-batfish-questions-py-illustrative/overview.md",
+      "title": "ci/batfish_questions.py (illustrative)",
+      "domain": "ci-batfish-questions-py-illustrative",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        770,
+        782
+      ],
+      "canonical_for": [],
+      "words": 59,
+      "bytes": 599,
+      "sha256": "91bcd23ac1fbff22127e9942416572341daf656cdf5085541115c135300a6006",
+      "section": "ci/batfish_questions.py (illustrative)"
+    }
+  ]
+}

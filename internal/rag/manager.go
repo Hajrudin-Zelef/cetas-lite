@@ -57,8 +57,9 @@ func (m *Manager) Start() {
 			log.Printf("rag: aucun corpus dans %s (inactif)", m.root)
 			return
 		}
-		log.Printf("rag: %d chunks, %d corpus, %d termes en %s",
-			st.Chunks, st.Corpora, st.Terms, st.Duration.Round(time.Millisecond))
+		log.Printf("rag: %d chunks, %d corpus, %d termes, %.1f Mo de texte en %s",
+			st.Chunks, st.Corpora, st.Terms, float64(st.Bytes)/1024/1024,
+			st.Duration.Round(time.Millisecond))
 		for _, e := range st.Errors {
 			log.Printf("rag: corpus ignore: %s", e)
 		}

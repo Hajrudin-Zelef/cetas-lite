@@ -1,0 +1,404 @@
+{
+  "corpus": "etape7-phaseg-linuxnet-vpn",
+  "title": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring",
+  "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+  "source_lines": 834,
+  "source_sha256": "5dd2c8ae85bdf1da9bca433d16a42ec591be8b34874b86850f9818d105694fdb",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/overview",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/overview.md",
+      "title": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "memory",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 950,
+      "bytes": 7845,
+      "sha256": "5a3131521e5f33a08d9c1ad16deeb710879f8a4770f28ad0c473e49480cf5408",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/2-iptables-migration-and-nftables",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/2-iptables-migration-and-nftables.md",
+      "title": "2. iptables migration and nftables",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        63,
+        118
+      ],
+      "canonical_for": [],
+      "words": 791,
+      "bytes": 7099,
+      "sha256": "d384570ddf1e084e88b4a77f8098414f8b020ea6b0f82047da4415a040392881",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/4-openssh-2026-versions-hardening-certificates-bastions",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/4-openssh-2026-versions-hardening-certificates-bastions.md",
+      "title": "4. OpenSSH: 2026 versions, hardening, certificates, bastions",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-04",
+        "2026-01-15",
+        "2026-04",
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "distribution",
+        "incident",
+        "intel",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        119,
+        197
+      ],
+      "canonical_for": [],
+      "words": 1330,
+      "bytes": 11739,
+      "sha256": "da7231c3205a1147374a8699bc01f57b6f9ee28ac9740d3e46e2604521f11ab2",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/6-wazuh-architecture-2026-releases-fim-vulnerability-detecti",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/6-wazuh-architecture-2026-releases-fim-vulnerability-detecti.md",
+      "title": "6. Wazuh: architecture, 2026 releases, FIM, vulnerability detection, Cloud pricing",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-05",
+        "2026-07",
+        "2026-08",
+        "2026-08-29",
+        "2026-09",
+        "2026-09-06",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "agent",
+        "agents",
+        "cost",
+        "distribution",
+        "incident",
+        "lean",
+        "license",
+        "mcp",
+        "open source",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        198,
+        262
+      ],
+      "canonical_for": [],
+      "words": 1190,
+      "bytes": 10546,
+      "sha256": "36e47811f5da64f6881606868425183e8f7d32afc70465ce8a1455cb4d1d1764",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/7-wireguard-protocol-kernel-integration-wg-quick",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/7-wireguard-protocol-kernel-integration-wg-quick.md",
+      "title": "7. WireGuard: protocol, kernel integration, wg-quick",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-05-22",
+        "2026-06",
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "claude",
+        "cost",
+        "distribution",
+        "packaging",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        263,
+        333
+      ],
+      "canonical_for": [],
+      "words": 1291,
+      "bytes": 11021,
+      "sha256": "64aebcc1065cc5ae95988ffb30adc32b2070a0e7055c6381b7793e942403f9f5",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/9-zerotier-overlay-networking-pricing-planet-moon-architectu",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/9-zerotier-overlay-networking-pricing-planet-moon-architectu.md",
+      "title": "9. ZeroTier: overlay networking, pricing, planet/moon architecture",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "Apple",
+        "United States"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "pricing",
+        "cost",
+        "open source",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        334,
+        385
+      ],
+      "canonical_for": [],
+      "words": 845,
+      "bytes": 7284,
+      "sha256": "3779386074436a9706f92207443c45f19862bb3cf2a0b5ce7fdbac7e853ca30e",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/11-openvpn-2-6-2-7-and-dco",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/11-openvpn-2-6-2-7-and-dco.md",
+      "title": "11. OpenVPN 2.6/2.7 and DCO",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05",
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "license",
+        "open source",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        386,
+        466
+      ],
+      "canonical_for": [],
+      "words": 1075,
+      "bytes": 8350,
+      "sha256": "623a1993387c781534bc4bb30b3f2b826fecb359860478803e3ea366019d9234",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/14-adoption-signals-2026",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/14-adoption-signals-2026.md",
+      "title": "14. Adoption signals (2026)",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "advisory",
+        "agent",
+        "agents",
+        "benchmarks",
+        "consumer",
+        "embedding",
+        "mcp",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        467,
+        534
+      ],
+      "canonical_for": [],
+      "words": 997,
+      "bytes": 8041,
+      "sha256": "30075c611747da5bb0dd8fb94dd65561e6e4d89b9dc481beb534de1d50f58da5",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/18-source-urls-retrieved-2026-09-22-verbatim",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/18-source-urls-retrieved-2026-09-22-verbatim.md",
+      "title": "18. Source URLs (retrieved 2026-09-22; verbatim)",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-01-15",
+        "2026-05-22",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agents",
+        "benchmark",
+        "claude",
+        "mcp",
+        "pricing",
+        "sandbox",
+        "training"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        535,
+        618
+      ],
+      "canonical_for": [],
+      "words": 166,
+      "bytes": 6437,
+      "sha256": "895ab58002424ff10e3a6474f2e11db052ba3a0149a132fe7e6d375a8772cc67",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/19-appendix-a-annotated-configuration-references",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/19-appendix-a-annotated-configuration-references.md",
+      "title": "19. Appendix A — annotated configuration references",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        619,
+        676
+      ],
+      "canonical_for": [],
+      "words": 262,
+      "bytes": 1810,
+      "sha256": "8d5400511903c6cdb06dc6642f22ca16d04b8a23298255a1b3870be4de192c6f",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/19-3-openssh-hardening-snippet-with-match-blocks-and-ca-trus",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/19-3-openssh-hardening-snippet-with-match-blocks-and-ca-trus.md",
+      "title": "19.3 OpenSSH hardening snippet with Match blocks and CA trust",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        677,
+        750
+      ],
+      "canonical_for": [],
+      "words": 286,
+      "bytes": 2212,
+      "sha256": "906f3af8790364b84d22a2c765ed7b13235f59cedda700f5762add77f2ad2641",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    },
+    {
+      "id": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/19-6-tailscale-acl-policy-least-privilege-example",
+      "path": "etape7-phaseg-linuxnet-vpn/00-linuxnet-vpn/19-6-tailscale-acl-policy-least-privilege-example.md",
+      "title": "19.6 Tailscale ACL policy (least-privilege example)",
+      "domain": "step-7g-linux-networking-and-access-nat-firewalls-ssh-vpns-a",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agents",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "source_anchor": "",
+      "source_lines": [
+        751,
+        834
+      ],
+      "canonical_for": [],
+      "words": 433,
+      "bytes": 3481,
+      "sha256": "54e4c9538412fc2a678bb58b5481f6bc0a479e2a22aa2a6f1701dc7e770e2a98",
+      "section": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
+    }
+  ]
+}

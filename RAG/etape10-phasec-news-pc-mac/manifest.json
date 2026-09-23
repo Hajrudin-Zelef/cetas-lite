@@ -1,0 +1,681 @@
+{
+  "corpus": "etape10-phasec-news-pc-mac",
+  "title": "Step 10 Phase C — PC & Mac News (February → September 2026)",
+  "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+  "source_lines": 751,
+  "source_sha256": "3b520b416be732383f25781c63ff15e7bf411bb731a984f845d0930d1f7b3160",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/overview",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/overview.md",
+      "title": "Step 10 Phase C — PC & Mac News (February → September 2026)",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-01-05",
+        "2026-02",
+        "2026-02-01",
+        "2026-02-03",
+        "2026-02-06",
+        "2026-02-09",
+        "2026-03",
+        "2026-03-02",
+        "2026-03-18",
+        "2026-03-23",
+        "2026-06",
+        "2026-08-25",
+        "2026-09",
+        "2026-09-22",
+        "2026-10",
+        "2026-11-19"
+      ],
+      "keywords": [
+        "18a",
+        "amd",
+        "benchmark",
+        "compute",
+        "dram",
+        "gpu",
+        "gpus",
+        "intel",
+        "memory",
+        "memory shortage",
+        "nvidia",
+        "panther lake"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 847,
+      "bytes": 6797,
+      "sha256": "af21020e4c0b3847177dd18a69a01265374a1cf17b6d9bee4f34bb96de51d718",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/3-chronology-april-2026",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/3-chronology-april-2026.md",
+      "title": "3. Chronology — April 2026",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2024-12",
+        "2025-05",
+        "2026-04",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-05",
+        "2026-05-31",
+        "2026-06",
+        "2026-06-01",
+        "2026-06-09",
+        "2026-07",
+        "2026-08",
+        "2026-08-20",
+        "2026-08-25",
+        "2026-09-22",
+        "2026-11-19",
+        "2027-02",
+        "2027-03-31"
+      ],
+      "keywords": [
+        "2nm",
+        "accelerator",
+        "amd",
+        "compute",
+        "consumer",
+        "crescent island",
+        "datacenter",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        48,
+        103
+      ],
+      "canonical_for": [],
+      "words": 1033,
+      "bytes": 8905,
+      "sha256": "ff2fd98d5a962a7f3d0c16f1a7843a039366b39fdd0cd9dd9ccf99f6b6751777",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/8-chronology-september-2026-through-09-22",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/8-chronology-september-2026-through-09-22.md",
+      "title": "8. Chronology — September 2026 (through 09-22)",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "Qualcomm",
+        "TSMC",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-09",
+        "2026-09-01",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-18",
+        "2026-09-20",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "18a",
+        "2nm",
+        "3nm",
+        "amd",
+        "consumer",
+        "cost",
+        "gpu",
+        "intel",
+        "lpddr5x",
+        "memory",
+        "nvidia",
+        "panther lake"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        104,
+        156
+      ],
+      "canonical_for": [],
+      "words": 883,
+      "bytes": 6288,
+      "sha256": "e9b2ce8795c5c3c35c12fb69438eaaaa6ee61f3a9422509c69e4c1af75c1a7fb",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/10-deep-dive-gpus",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/10-deep-dive-gpus.md",
+      "title": "10. Deep Dive — GPUs",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "gpus",
+        "2nm",
+        "amd",
+        "compute",
+        "crescent island",
+        "datacenter",
+        "intel",
+        "lpddr5x",
+        "memory",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        157,
+        203
+      ],
+      "canonical_for": [],
+      "words": 538,
+      "bytes": 3077,
+      "sha256": "4f31602bd87c80856899fbc9ed997e15a42b3f93003f80b0fbfa32374acee5ba",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/12-deep-dive-windows-microsoft",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/12-deep-dive-windows-microsoft.md",
+      "title": "12. Deep Dive — Windows & Microsoft",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-03",
+        "2026-05-26",
+        "2026-06"
+      ],
+      "keywords": [
+        "amd",
+        "copilot",
+        "intel",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        204,
+        264
+      ],
+      "canonical_for": [],
+      "words": 723,
+      "bytes": 4025,
+      "sha256": "4966b092da4a3f75cdacef47454bb8dfcd5b09203b5fb3ad1ecb577b9c3bb435",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/15-market-data-price-tables",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/15-market-data-price-tables.md",
+      "title": "15. Market Data & Price Tables",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [
+        "2024-12-13",
+        "2026-08-25",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "amd",
+        "copilot",
+        "gpu",
+        "hbm",
+        "intel",
+        "memory",
+        "memory shortage",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        265,
+        310
+      ],
+      "canonical_for": [],
+      "words": 461,
+      "bytes": 2415,
+      "sha256": "6e3b3c1c74e2bb7be486a62c2562994ee9f5ac05da8b35dd25701b44a2740c60",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/17-glossary",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/17-glossary.md",
+      "title": "17. Glossary",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-11-07"
+      ],
+      "keywords": [
+        "18a",
+        "amd",
+        "copilot",
+        "datacenter",
+        "gpu",
+        "gpus",
+        "intel",
+        "memory",
+        "nvidia",
+        "panther lake",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        311,
+        393
+      ],
+      "canonical_for": [],
+      "words": 308,
+      "bytes": 7463,
+      "sha256": "5c90bfd424e10a30d5e9794fbc50aa668dc28a99a9979bbbfbf80f97adaf0d07",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/19-january-2026-context-pre-scope-background",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/19-january-2026-context-pre-scope-background.md",
+      "title": "19. January 2026 Context (pre-scope background)",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Qualcomm",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-01-05",
+        "2026-01-06",
+        "2026-01-22"
+      ],
+      "keywords": [
+        "18a",
+        "2nm",
+        "3nm",
+        "accelerator",
+        "agent",
+        "agentic",
+        "agents",
+        "ai pc",
+        "amd",
+        "consumer",
+        "copilot",
+        "cost"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        394,
+        440
+      ],
+      "canonical_for": [],
+      "words": 658,
+      "bytes": 4383,
+      "sha256": "cb5b049e480a9a7519417415a95d12da84714d28f6f17bf0373a300282afce08",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/22-2026-gpu-landscape-what-you-could-actually-buy",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/22-2026-gpu-landscape-what-you-could-actually-buy.md",
+      "title": "22. 2026 GPU Landscape — What You Could Actually Buy",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Nvidia",
+        "Qualcomm",
+        "TSMC"
+      ],
+      "dates": [
+        "2025-03",
+        "2026-03",
+        "2026-11-19"
+      ],
+      "keywords": [
+        "gpu",
+        "accelerator",
+        "amd",
+        "blackwell",
+        "datacenter",
+        "dram",
+        "gpus",
+        "hbm",
+        "intel",
+        "memory",
+        "nand",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        441,
+        495
+      ],
+      "canonical_for": [],
+      "words": 661,
+      "bytes": 3636,
+      "sha256": "d88e1ac949463ebb2a7fa614a174c6388b8a4db9d006b01ed0fdd64dfd05548e",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/25-watch-list-q4-2026-and-beyond",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/25-watch-list-q4-2026-and-beyond.md",
+      "title": "25. Watch List — Q4 2026 and Beyond",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-10",
+        "2026-11-19"
+      ],
+      "keywords": [
+        "18a",
+        "amd",
+        "copilot",
+        "crescent island",
+        "gpu",
+        "intel",
+        "memory",
+        "memory shortage",
+        "nvidia",
+        "panther lake",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        496,
+        540
+      ],
+      "canonical_for": [],
+      "words": 500,
+      "bytes": 3056,
+      "sha256": "93e588de92ea9e0922f4505410c3bf28f3e2e9619c2eda2823f5aaf437971252",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/28-nintendo-2026-full-news-roundup",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/28-nintendo-2026-full-news-roundup.md",
+      "title": "28. Nintendo 2026 — Full News Roundup",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-02-03",
+        "2026-02-06",
+        "2026-02-09",
+        "2026-03-02",
+        "2026-03-05",
+        "2026-03-18",
+        "2026-03-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-05-31",
+        "2026-06-01",
+        "2026-06-09",
+        "2026-06-30",
+        "2026-08-20",
+        "2026-08-25",
+        "2026-09-01",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-18",
+        "2026-09-20",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "crescent island",
+        "gpu",
+        "gpus",
+        "intel",
+        "memory",
+        "memory shortage",
+        "nvidia",
+        "panther lake",
+        "research",
+        "revenue",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        541,
+        596
+      ],
+      "canonical_for": [],
+      "words": 717,
+      "bytes": 4205,
+      "sha256": "11b0b74703946aeba0087f7b94d2cd5fd4e8eb5b35d3374105f20d859ca324b6",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/30-key-people-outlets-index",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/30-key-people-outlets-index.md",
+      "title": "30. Key People & Outlets Index",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "18a",
+        "2nm",
+        "agentic",
+        "agents",
+        "ai pc",
+        "amd",
+        "crescent island",
+        "gpu",
+        "gpus",
+        "intel",
+        "lpddr5x",
+        "memory"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        597,
+        648
+      ],
+      "canonical_for": [],
+      "words": 794,
+      "bytes": 5038,
+      "sha256": "e45f70505e54c6749575846beaabdf80703438f0da174f1788343952fb7fd2f6",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/34-deep-dive-apple-in-2026-m5-ultra-m6-mac-lineup",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/34-deep-dive-apple-in-2026-m5-ultra-m6-mac-lineup.md",
+      "title": "34. Deep Dive — Apple in 2026 (M5 Ultra, M6, Mac Lineup)",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-11-19"
+      ],
+      "keywords": [
+        "2nm",
+        "accelerator",
+        "amd",
+        "crescent island",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "memory",
+        "nvidia",
+        "panther lake",
+        "parameters"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        649,
+        701
+      ],
+      "canonical_for": [],
+      "words": 788,
+      "bytes": 4938,
+      "sha256": "6e72e490d71073aeffa1b0571c06abfb03dba8d2cc23201c0ab10c493d57767a",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phasec-news-pc-mac/00-news-pc-mac/37-questions-this-file-answers-rag-retrieval-aid",
+      "path": "etape10-phasec-news-pc-mac/00-news-pc-mac/37-questions-this-file-answers-rag-retrieval-aid.md",
+      "title": "37. Questions This File Answers (RAG retrieval aid)",
+      "domain": "step-10-phase-c-pc-mac-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-09-22",
+        "2026-11-19"
+      ],
+      "keywords": [
+        "3nm",
+        "amd",
+        "copilot",
+        "datacenter",
+        "dram",
+        "gpu",
+        "gpus",
+        "hbm",
+        "intel",
+        "memory",
+        "nand",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        702,
+        751
+      ],
+      "canonical_for": [],
+      "words": 705,
+      "bytes": 4090,
+      "sha256": "40c65c5828544adea148d367226cd5c16ed9b36d998cc526b8685b4bdc3e6297",
+      "section": "Step 10 Phase C — PC & Mac News (February → September 2026)"
+    }
+  ]
+}

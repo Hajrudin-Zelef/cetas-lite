@@ -26,25 +26,24 @@ RAG/
 ├── labs-grok-platforms-2026/     # corpus n°6 — Labs, Grok & platforms, Vague 2 (17 chunks)
 ├── open-local-models-2026/       # corpus n°7 — Open / Local AI Models (26 chunks)
 ├── tools-platforms-2026/         # corpus n°8 — AI Tools & Platforms, Step 2 (8 chunks)
-├── etape4-trackd-unsloth-training/   # corpus n°9  — Unsloth & outillage training (3 chunks)
-├── etape5-tracka-nvidia/             # corpus n°10 — Nvidia (4 chunks)
-├── etape5-trackc-huawei-intel/       # corpus n°11 — Huawei & Intel (3 chunks)
-├── etape4-trackc-cuda-rocm-pytorch/  # corpus n°12 — CUDA / ROCm / PyTorch (3 chunks)
-├── etape5-trackb-amd/                # corpus n°13 — AMD (4 chunks)
-├── etape4-tracka-vllm-sglang/        # corpus n°14 — vLLM + SGLang (20 chunks)
-├── etape4-trackb-local-inference/    # corpus n°15 — inférence locale (17 chunks)
-├── etape5-trackd-servers/            # corpus n°16 — serveurs IA & réseau (24 chunks)
-├── labs-hyperscalers-2026/           # corpus n°17 — Labs & Hyperscalers (47 chunks)
-├── etape6-trackc-huawei-mikrotik/    # corpus n°18 — Huawei + MikroTik, réseau (3 chunks)
-├── etape6-trackd-firewalls/          # corpus n°19 — pare-feu & sécurité réseau (4 chunks)
-├── etape6-trackb-arista-sonic/       # corpus n°20 — Arista + SONiC + Cumulus (5 chunks)
-└── etape6-tracka-cisco-juniper/      # corpus n°21 — Cisco + Juniper (10 chunks)
+├── labs-hyperscalers-2026/       # corpus n°9 — Labs & Hyperscalers (47 chunks)
+│
+├── etape4-*/                     # corpus n°10-13 — inférence & outillage (4 corpus)
+├── etape5-*/                     # corpus n°14-17 — silicium & serveurs (4 corpus)
+├── etape6-*/                     # corpus n°18-36 — réseau & sécurité (19 corpus)
+├── etape7-*/                     # corpus n°37-45 — OS, containers, stockage, bases (9 corpus)
+├── etape8-*/                     # corpus n°46-51 — langages & frameworks (6 corpus)
+├── etape9-*/                     # corpus n°52-56 — stockage & mémoire (5 corpus)
+└── etape10-*/                    # corpus n°57-63 — actualités 2026 (7 corpus)
 ```
 
+Détail par étape (séries `etape*`) : chaque source de `docs/RAG/` donne **un corpus**
+autonome. Liste complète et à jour : `INDEX.md` (racine) et `manifest.json`.
+
 Corpus n°1–2 : découpe « explicite » par H3 (listes de mapping figées).
-Corpus n°3–21 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
+Corpus n°3–63 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
 sources ne portant aucune ancre. Cibles 70–170 lignes pour n°3–4 (fichiers de 10 000–
-14 000 lignes), 50–110 pour n°5–8 (500–1 100 lignes) et 45–90 pour n°9–21 (200–3 000 lignes).
+14 000 lignes), 50–110 pour n°5–8 (500–1 100 lignes) et 45–90 pour n°9–63 (48–3 000 lignes).
 
 Options du mode auto : `first_is_content` (le H1 unique est du contenu, pas un entête),
 `folder_name` (nom court du dossier pour ce cas), et rattachement automatique des titres H1
@@ -112,8 +111,26 @@ pour répondre avant d'aller sur le web. Aucun service externe, aucun réseau.
 - **Sûreté** : index immuable, chargement en tâche de fond, recherche bornée à 120 ms,
   fail-open (une erreur RAG ne bloque jamais la réponse).
 
-Vérifier au démarrage : le log affiche `rag: N chunks, M corpus, …` ou
-`rag: aucun corpus … (inactif)`.
+Vérifier au démarrage : le log affiche `rag: N chunks, M corpus, K termes, X Mo de texte en …`
+ou `rag: aucun corpus … (inactif)`.
+
+## Ressources (mesuré)
+
+L'index est en mémoire et **proportionnel au texte des corpus** ; il ne dépend pas du
+nombre de requêtes (index immuable, aucune écriture, aucun cache qui grandit).
+
+| mesure | 21 corpus | 63 corpus |
+|---|---|---|
+| texte des corpus | 6,4 Mo | 10,4 Mo |
+| chunks / termes | 707 / 25 789 | 1 325 / 41 707 |
+| **mémoire heap** | **32 Mo** | **71 Mo** (ratio ≈ 6,8×) |
+| construction (arrière-plan) | 0,3 s | 0,7 s |
+| recherche (BM25, plafond 120 ms) | 207 µs | 302 µs |
+
+Ordres de grandeur : ~1 Mo de corpus ⇒ ~7 Mo de heap. Le service complet (RAG inclus)
+tient dans **~80 Mo de RSS**. Sur un VPS sans swap, prévoir la marge : un corpus de
+100 Mo de texte demanderait ~0,7 Go de heap. Au-delà, réduire les cibles de taille
+(`max_lines`) ou ne charger que les corpus utiles.
 
 ## Régénérer
 

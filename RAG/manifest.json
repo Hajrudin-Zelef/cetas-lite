@@ -170,6 +170,342 @@
       "index": "etape6-tracka-cisco-juniper/INDEX.md",
       "manifest": "etape6-tracka-cisco-juniper/manifest.json",
       "chunk_count": 10
+    },
+    {
+      "corpus": "etape10-phasea-news-tech",
+      "title": "Step 10A — Tech News: AI, Chips, Cloud, Cybersecurity (February → 22 September 2026)",
+      "source": "docs/RAG/etape10_phaseA_news_tech.md",
+      "index": "etape10-phasea-news-tech/INDEX.md",
+      "manifest": "etape10-phasea-news-tech/manifest.json",
+      "chunk_count": 11
+    },
+    {
+      "corpus": "etape10-phaseb-news-mobile",
+      "title": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)",
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "index": "etape10-phaseb-news-mobile/INDEX.md",
+      "manifest": "etape10-phaseb-news-mobile/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape10-phasec-news-pc-mac",
+      "title": "Step 10 Phase C — PC & Mac News (February → September 2026)",
+      "source": "docs/RAG/etape10_phaseC_news_pc_mac.md",
+      "index": "etape10-phasec-news-pc-mac/INDEX.md",
+      "manifest": "etape10-phasec-news-pc-mac/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape10-phased-news-sport",
+      "title": "Step 10D — Sports News (February 2026 → 22 September 2026)",
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "index": "etape10-phased-news-sport/INDEX.md",
+      "manifest": "etape10-phased-news-sport/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape10-phasee-news-world",
+      "title": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)",
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "index": "etape10-phasee-news-world/INDEX.md",
+      "manifest": "etape10-phasee-news-world/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape10-phasef-news-buzz",
+      "title": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)",
+      "source": "docs/RAG/etape10_phaseF_news_buzz.md",
+      "index": "etape10-phasef-news-buzz/INDEX.md",
+      "manifest": "etape10-phasef-news-buzz/manifest.json",
+      "chunk_count": 11
+    },
+    {
+      "corpus": "etape10-phaseg-news-science",
+      "title": "Step 10 Phase G — Science & Planet News (February → September 2026)",
+      "source": "docs/RAG/etape10_phaseG_news_science.md",
+      "index": "etape10-phaseg-news-science/INDEX.md",
+      "manifest": "etape10-phaseg-news-science/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape6-phasea-vendors-dc",
+      "title": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors",
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "index": "etape6-phasea-vendors-dc/INDEX.md",
+      "manifest": "etape6-phasea-vendors-dc/manifest.json",
+      "chunk_count": 38
+    },
+    {
+      "corpus": "etape6-phaseb-smb-networking",
+      "title": "Step 6 Extension — Phase B: SMB / Prosumer Networking",
+      "source": "docs/RAG/etape6_phaseB_smb_networking.md",
+      "index": "etape6-phaseb-smb-networking/INDEX.md",
+      "manifest": "etape6-phaseb-smb-networking/manifest.json",
+      "chunk_count": 42
+    },
+    {
+      "corpus": "etape6-phasec-optics-cabling",
+      "title": "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure",
+      "source": "docs/RAG/etape6_phaseC_optics_cabling.md",
+      "index": "etape6-phasec-optics-cabling/INDEX.md",
+      "manifest": "etape6-phasec-optics-cabling/manifest.json",
+      "chunk_count": 52
+    },
+    {
+      "corpus": "etape6-phased1-fabrics-spine-leaf",
+      "title": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs",
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "index": "etape6-phased1-fabrics-spine-leaf/INDEX.md",
+      "manifest": "etape6-phased1-fabrics-spine-leaf/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape6-phased2-evpn-vxlan",
+      "title": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay",
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "index": "etape6-phased2-evpn-vxlan/INDEX.md",
+      "manifest": "etape6-phased2-evpn-vxlan/manifest.json",
+      "chunk_count": 16
+    },
+    {
+      "corpus": "etape6-phased3-bgp-ha",
+      "title": "Phase D3 — BGP underlay and high availability in the data center",
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "index": "etape6-phased3-bgp-ha/INDEX.md",
+      "manifest": "etape6-phased3-bgp-ha/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape6-phased4-segmentation-qos-multicast",
+      "title": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services",
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "index": "etape6-phased4-segmentation-qos-multicast/INDEX.md",
+      "manifest": "etape6-phased4-segmentation-qos-multicast/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape6-phasee1-netbox-nautobot",
+      "title": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)",
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "index": "etape6-phasee1-netbox-nautobot/INDEX.md",
+      "manifest": "etape6-phasee1-netbox-nautobot/manifest.json",
+      "chunk_count": 11
+    },
+    {
+      "corpus": "etape6-phasee2-ansible-nornir-terraform",
+      "title": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries",
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "index": "etape6-phasee2-ansible-nornir-terraform/INDEX.md",
+      "manifest": "etape6-phasee2-ansible-nornir-terraform/manifest.json",
+      "chunk_count": 16
+    },
+    {
+      "corpus": "etape6-phasee3-gnmi-openconfig-telemetry",
+      "title": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability",
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "index": "etape6-phasee3-gnmi-openconfig-telemetry/INDEX.md",
+      "manifest": "etape6-phasee3-gnmi-openconfig-telemetry/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape6-phasee4-validation-cicd",
+      "title": "Phase E4 — Network Validation, Observability & CI/CD",
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "index": "etape6-phasee4-validation-cicd/INDEX.md",
+      "manifest": "etape6-phasee4-validation-cicd/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape6-phasef1-nic-dpu-smartnic",
+      "title": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)",
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "index": "etape6-phasef1-nic-dpu-smartnic/INDEX.md",
+      "manifest": "etape6-phasef1-nic-dpu-smartnic/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape6-phasef2-fpga",
+      "title": "Phase F2 — FPGA (Field-Programmable Gate Arrays)",
+      "source": "docs/RAG/etape6_phaseF2_fpga.md",
+      "index": "etape6-phasef2-fpga/INDEX.md",
+      "manifest": "etape6-phasef2-fpga/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape6-phasef3-platform-security",
+      "title": "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust",
+      "source": "docs/RAG/etape6_phaseF3_platform_security.md",
+      "index": "etape6-phasef3-platform-security/INDEX.md",
+      "manifest": "etape6-phasef3-platform-security/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape6-phasef4-virtualization-io",
+      "title": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions",
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "index": "etape6-phasef4-virtualization-io/INDEX.md",
+      "manifest": "etape6-phasef4-virtualization-io/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape7-phasea-os",
+      "title": "Step 7 — Phase A: Server Operating Systems (Linux OS Layer)",
+      "source": "docs/RAG/etape7_phaseA_os.md",
+      "index": "etape7-phasea-os/INDEX.md",
+      "manifest": "etape7-phasea-os/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape7-phaseb-containers",
+      "title": "Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes",
+      "source": "docs/RAG/etape7_phaseB_containers.md",
+      "index": "etape7-phaseb-containers/INDEX.md",
+      "manifest": "etape7-phaseb-containers/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape7-phasec-iac",
+      "title": "Step 7 Phase C — IaC & Platform Automation",
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "index": "etape7-phasec-iac/INDEX.md",
+      "manifest": "etape7-phasec-iac/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape7-phased-proxmox-backup",
+      "title": "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research",
+      "source": "docs/RAG/etape7_phaseD_proxmox_backup.md",
+      "index": "etape7-phased-proxmox-backup/INDEX.md",
+      "manifest": "etape7-phased-proxmox-backup/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape7-phasee-storage-software",
+      "title": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)",
+      "source": "docs/RAG/etape7_phaseE_storage_software.md",
+      "index": "etape7-phasee-storage-software/INDEX.md",
+      "manifest": "etape7-phasee-storage-software/manifest.json",
+      "chunk_count": 11
+    },
+    {
+      "corpus": "etape7-phasef-databases",
+      "title": "Step 7 — Phase F: Databases & Cache (Operations Angle)",
+      "source": "docs/RAG/etape7_phaseF_databases.md",
+      "index": "etape7-phasef-databases/INDEX.md",
+      "manifest": "etape7-phasef-databases/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "etape7-phaseg-linuxnet-vpn",
+      "title": "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring",
+      "source": "docs/RAG/etape7_phaseG_linuxnet_vpn.md",
+      "index": "etape7-phaseg-linuxnet-vpn/INDEX.md",
+      "manifest": "etape7-phaseg-linuxnet-vpn/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape7-phaseh-webproxy",
+      "title": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways",
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "index": "etape7-phaseh-webproxy/INDEX.md",
+      "manifest": "etape7-phaseh-webproxy/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape7-phasei-media",
+      "title": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling",
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "index": "etape7-phasei-media/INDEX.md",
+      "manifest": "etape7-phasei-media/manifest.json",
+      "chunk_count": 16
+    },
+    {
+      "corpus": "etape8-phasea-system-languages",
+      "title": "Step 8 — Phase A: Systems Languages",
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "index": "etape8-phasea-system-languages/INDEX.md",
+      "manifest": "etape8-phasea-system-languages/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape8-phaseb-web-mobile-languages",
+      "title": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains",
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "index": "etape8-phaseb-web-mobile-languages/INDEX.md",
+      "manifest": "etape8-phaseb-web-mobile-languages/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape8-phasec-backend-frameworks",
+      "title": "Step 8 — Phase C: Backend Frameworks & APIs",
+      "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
+      "index": "etape8-phasec-backend-frameworks/INDEX.md",
+      "manifest": "etape8-phasec-backend-frameworks/manifest.json",
+      "chunk_count": 10
+    },
+    {
+      "corpus": "etape8-phased-frontend",
+      "title": "Step 8 — Phase D: Frontend & Web Platform (Dev Angle)",
+      "source": "docs/RAG/etape8_phaseD_frontend.md",
+      "index": "etape8-phased-frontend/INDEX.md",
+      "manifest": "etape8-phased-frontend/manifest.json",
+      "chunk_count": 1
+    },
+    {
+      "corpus": "etape8-phasee-aiml-stacks",
+      "title": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)",
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "index": "etape8-phasee-aiml-stacks/INDEX.md",
+      "manifest": "etape8-phasee-aiml-stacks/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape8-phasef-data-messaging",
+      "title": "Step 8 Phase F — Data & Messaging: Developer Angle",
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "index": "etape8-phasef-data-messaging/INDEX.md",
+      "manifest": "etape8-phasef-data-messaging/manifest.json",
+      "chunk_count": 15
+    },
+    {
+      "corpus": "etape9-phasea-enterprise-ssd",
+      "title": "Step 9 — Enterprise SSD Hardware (Phase A)",
+      "source": "docs/RAG/etape9_phaseA_enterprise_ssd.md",
+      "index": "etape9-phasea-enterprise-ssd/INDEX.md",
+      "manifest": "etape9-phasea-enterprise-ssd/manifest.json",
+      "chunk_count": 13
+    },
+    {
+      "corpus": "etape9-phaseb-form-factors-interfaces",
+      "title": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)",
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "index": "etape9-phaseb-form-factors-interfaces/INDEX.md",
+      "manifest": "etape9-phaseb-form-factors-interfaces/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape9-phasec-memory",
+      "title": "Step 9 — Phase C: Server & Accelerator Memory Hardware",
+      "source": "docs/RAG/etape9_phaseC_memory.md",
+      "index": "etape9-phasec-memory/INDEX.md",
+      "manifest": "etape9-phasec-memory/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "etape9-phased-data-protection-raid",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware",
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "index": "etape9-phased-data-protection-raid/INDEX.md",
+      "manifest": "etape9-phased-data-protection-raid/manifest.json",
+      "chunk_count": 11
+    },
+    {
+      "corpus": "etape9-phasee-storage-market",
+      "title": "Step 9 Phase E — Storage & Memory Market 2026",
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "index": "etape9-phasee-storage-market/INDEX.md",
+      "manifest": "etape9-phasee-storage-market/manifest.json",
+      "chunk_count": 8
     }
   ]
 }

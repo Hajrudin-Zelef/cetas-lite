@@ -1,0 +1,104 @@
+# INDEX — Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains
+
+Corpus `etape8-phaseb-web-mobile-languages` · **12 fichiers** · 762 lignes source · ~7950 mots · partition exacte de `docs/RAG/etape8_phaseB_web_mobile_languages.md`.
+
+## Mode d'emploi
+
+1. Filtrer dans `manifest.json` (ou les tableaux ci-dessous) sur `domain`, `task`, `actors`, `dates` ou `keywords`.
+2. Ouvrir 1 à 3 fichiers ciblés ; chaque fichier est une unité thématique auto-suffisante avec un en-tête YAML.
+3. Pour un événement répété dans plusieurs sections, préférer le fichier marqué `canonical_for` (voir la table Événements canoniques).
+
+## Domaines (dossiers → fichiers)
+
+### `00-web-mobile-languages/`
+
+| # | fichier | lignes source | rôle | tâche |
+|---|---|---|---|---|
+| 01 | [Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains](00-web-mobile-languages/overview.md) | 1–45 | deep-dive | reference |
+| 02 | [1. JavaScript language standard — ECMAScript 2025 / 2026 and TC39 proposals](00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md) | 46–96 | deep-dive | reference |
+| 03 | [3. Node.js — 22/24/26 lifecycle and runtime features](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md) | 97–167 | deep-dive | reference |
+| 04 | [7. Supply-chain security — Shai-Hulud and registry hardening](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md) | 168–236 | deep-dive | reference |
+| 05 | [10. PyPI statistics and packaging standards](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md) | 237–297 | deep-dive | reference |
+| 06 | [14. Kotlin — 2.2 / 2.3 / 2.4 claims and KMP](00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md) | 298–357 | deep-dive | reference |
+| 07 | [17. PHP 8.5](00-web-mobile-languages/17-php-8-5.md) | 358–407 | deep-dive | reference |
+| 08 | [19. Elixir 1.19](00-web-mobile-languages/19-elixir-1-19.md) | 408–497 | deep-dive | reference |
+| 09 | [22. Lifecycle / support / license comparison tables](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md) | 498–568 | deep-dive | licenses |
+| 10 | [24. Conflict and gap register](00-web-mobile-languages/24-conflict-and-gap-register.md) | 569–614 | deep-dive | reference |
+| 11 | [26. Source index](00-web-mobile-languages/26-source-index.md) | 615–702 | deep-dive | reference |
+| 12 | [27. Release timeline quick reference (2025-01 → 2026-09-22)](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md) | 703–762 | deep-dive | reference |
+
+## Par tâche
+
+- **licenses** — [22. Lifecycle / support / license comparison tables](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md)
+- **reference** — [Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains](00-web-mobile-languages/overview.md), [1. JavaScript language standard — ECMAScript 2025 / 2026 and TC39 proposals](00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md), [3. Node.js — 22/24/26 lifecycle and runtime features](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md), [7. Supply-chain security — Shai-Hulud and registry hardening](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md), [10. PyPI statistics and packaging standards](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [14. Kotlin — 2.2 / 2.3 / 2.4 claims and KMP](00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md), [17. PHP 8.5](00-web-mobile-languages/17-php-8-5.md), [19. Elixir 1.19](00-web-mobile-languages/19-elixir-1-19.md), [24. Conflict and gap register](00-web-mobile-languages/24-conflict-and-gap-register.md), [26. Source index](00-web-mobile-languages/26-source-index.md), [27. Release timeline quick reference (2025-01 → 2026-09-22)](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+
+## Par acteur
+
+- **Anthropic** (2) — [00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **Apple** (2) — [00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md](00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md)
+- **Hugging Face** (1) — [00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md)
+- **Microsoft** (3) — [00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md](00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md), [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **OpenAI** (5) — [00-web-mobile-languages/overview.md](00-web-mobile-languages/overview.md), [00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md), [00-web-mobile-languages/26-source-index.md](00-web-mobile-languages/26-source-index.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **Oracle** (1) — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md)
+
+## Par date
+
+- **2025-01** — [00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md)
+- **2025-03** — [00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md](00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-03-18** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-05** — [00-web-mobile-languages/17-php-8-5.md](00-web-mobile-languages/17-php-8-5.md)
+- **2025-05-06** — [00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-06** — [00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md](00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md), [00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md)
+- **2025-08** — [00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md](00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md), [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md)
+- **2025-09** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **2025-09-15** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-09-16** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **2025-10** — [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md)
+- **2025-10-07** — [00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-10-16** — [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-10-31** — [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-11** — [00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md)
+- **2025-11-11** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-11-12** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **2025-11-13** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/26-source-index.md](00-web-mobile-languages/26-source-index.md)
+- **2025-11-17** — [00-web-mobile-languages/17-php-8-5.md](00-web-mobile-languages/17-php-8-5.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-11-20** — [00-web-mobile-languages/17-php-8-5.md](00-web-mobile-languages/17-php-8-5.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-12-17** — [00-web-mobile-languages/17-php-8-5.md](00-web-mobile-languages/17-php-8-5.md), [00-web-mobile-languages/26-source-index.md](00-web-mobile-languages/26-source-index.md)
+- **2025-12-18** — [00-web-mobile-languages/17-php-8-5.md](00-web-mobile-languages/17-php-8-5.md), [00-web-mobile-languages/26-source-index.md](00-web-mobile-languages/26-source-index.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-12-23** — [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-12-25** — [00-web-mobile-languages/17-php-8-5.md](00-web-mobile-languages/17-php-8-5.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/26-source-index.md](00-web-mobile-languages/26-source-index.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2025-12-27** — [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-01-20** — [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-03** — [00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md](00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md), [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **2026-04-08** — [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-06** — [00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md](00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **2026-07** — [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md)
+- **2026-07-23** — [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-09** — [00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md), [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md), [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-09-10** — [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-09-11** — [00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md](00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-09-16** — [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-09-22** — [00-web-mobile-languages/overview.md](00-web-mobile-languages/overview.md), [00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md), [00-web-mobile-languages/19-elixir-1-19.md](00-web-mobile-languages/19-elixir-1-19.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md](00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md)
+- **2026-10** — [00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md), [00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md](00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md), [00-web-mobile-languages/24-conflict-and-gap-register.md](00-web-mobile-languages/24-conflict-and-gap-register.md)
+- **2026-11** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md)
+- **2027-04-30** — [00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md)
+- **2028-04-30** — [00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md](00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md), [00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md](00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md)
+- **2028-11** — [00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md](00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md)
+
+## Carte de couverture (lignes source)
+
+| plage | fichier |
+|---|---|
+| 1–45 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/overview.md |
+| 46–96 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md |
+| 97–167 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md |
+| 168–236 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md |
+| 237–297 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md |
+| 298–357 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md |
+| 358–407 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/17-php-8-5.md |
+| 408–497 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/19-elixir-1-19.md |
+| 498–568 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md |
+| 569–614 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/24-conflict-and-gap-register.md |
+| 615–702 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/26-source-index.md |
+| 703–762 | etape8-phaseb-web-mobile-languages/00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md |
+

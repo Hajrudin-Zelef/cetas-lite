@@ -1,0 +1,474 @@
+{
+  "corpus": "etape8-phasef-data-messaging",
+  "title": "Step 8 Phase F — Data & Messaging: Developer Angle",
+  "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+  "source_lines": 757,
+  "source_sha256": "c923fc5201b3ec716c2727b6bfdca0cce7b74f77271f08bb6db7c87ff136ea9e",
+  "chunk_count": 15,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/overview",
+      "path": "etape8-phasef-data-messaging/00-front-matter/overview.md",
+      "title": "Step 8 Phase F — Data & Messaging: Developer Angle",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2025-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 780,
+      "bytes": 5896,
+      "sha256": "67a9cf04042249e4d8ce7e77b51f487c0a69bccb9f31fb4e5ed20da33ec31095",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/2-orms-query-builders-and-schema-migrations",
+      "path": "etape8-phasef-data-messaging/00-front-matter/2-orms-query-builders-and-schema-migrations.md",
+      "title": "2. ORMs, query builders, and schema migrations",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "lean"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        100
+      ],
+      "canonical_for": [],
+      "words": 650,
+      "bytes": 4841,
+      "sha256": "ee722dbc1fa5cee4bc8a16f63a47ecbe04ddabb64f90cf898c4d6ac6bfbf4eaa",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/3-sqlite-ecosystem-wal-litestream-turso-libsql",
+      "path": "etape8-phasef-data-messaging/00-front-matter/3-sqlite-ecosystem-wal-litestream-turso-libsql.md",
+      "title": "3. SQLite ecosystem: WAL, Litestream, Turso/libSQL",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-05-21",
+        "2025-05-29",
+        "2025-09-16",
+        "2026-02",
+        "2026-03"
+      ],
+      "keywords": [
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        101,
+        149
+      ],
+      "canonical_for": [],
+      "words": 660,
+      "bytes": 4942,
+      "sha256": "cc30cab5fc1bacde9fcad8f749663363d3ae56c7640dbf761a2078081fe6d050",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/5-clickhouse",
+      "path": "etape8-phasef-data-messaging/00-front-matter/5-clickhouse.md",
+      "title": "5. ClickHouse",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-10-21",
+        "2026-04",
+        "2026-04-30",
+        "2026-07-06",
+        "2026-09-24",
+        "2026-10-21",
+        "2027-10-21"
+      ],
+      "keywords": [
+        "agentic",
+        "apache",
+        "consumer",
+        "latency",
+        "license",
+        "mit license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        150,
+        232
+      ],
+      "canonical_for": [],
+      "words": 1322,
+      "bytes": 10120,
+      "sha256": "ba05611f055ef8b4ac0288fce7123b3adfcb11ae68dd07cd0571706ca3601653",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/8-event-driven-patterns-and-delivery-semantics",
+      "path": "etape8-phasef-data-messaging/00-front-matter/8-event-driven-patterns-and-delivery-semantics.md",
+      "title": "8. Event-driven patterns and delivery semantics",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-03",
+        "2025-05",
+        "2026-02",
+        "2026-04",
+        "2026-09"
+      ],
+      "keywords": [
+        "consumer",
+        "latency",
+        "lean",
+        "license"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        233,
+        290
+      ],
+      "canonical_for": [],
+      "words": 783,
+      "bytes": 6042,
+      "sha256": "163ae321f2aa3b95b155d05947e757fb30459560b2d6db514a4c1957df736a4e",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/10-mongodb-developer-angle",
+      "path": "etape8-phasef-data-messaging/00-front-matter/10-mongodb-developer-angle.md",
+      "title": "10. MongoDB developer angle",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-05",
+        "2026-03",
+        "2026-05-13",
+        "2026-05-14",
+        "2026-06",
+        "2026-07-14",
+        "2026-08-20"
+      ],
+      "keywords": [
+        "agentic",
+        "apache",
+        "aws",
+        "compute",
+        "cost",
+        "inference",
+        "lean",
+        "quantization"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        291,
+        373
+      ],
+      "canonical_for": [],
+      "words": 1344,
+      "bytes": 10438,
+      "sha256": "92fbc7b35440fe2c28a4437e967e2bb101f247fbf389ef4ac792c66be6ee61a5",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/13-version-release-timeline-2025-2026-09-22",
+      "path": "etape8-phasef-data-messaging/00-front-matter/13-version-release-timeline-2025-2026-09-22.md",
+      "title": "13. Version-release timeline (2025 → 2026-09-22)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-10-21",
+        "2025-05-21",
+        "2025-05-29",
+        "2025-09",
+        "2025-09-16",
+        "2026-03",
+        "2026-03-24",
+        "2026-04-14",
+        "2026-04-27",
+        "2026-04-30",
+        "2026-05-13",
+        "2026-06-23",
+        "2026-07-14",
+        "2026-08-20",
+        "2026-09-22",
+        "2026-09-24",
+        "2026-10-21",
+        "2026-12-19",
+        "2026-12-31",
+        "2027-10-21"
+      ],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "latency",
+        "license",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        374,
+        418
+      ],
+      "canonical_for": [],
+      "words": 603,
+      "bytes": 4251,
+      "sha256": "ec886f423fc655c9fef6382f34d94fa256044ce55d7af2cf1f798dad84231be9",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/15-glossary-and-verbatim-source-index",
+      "path": "etape8-phasef-data-messaging/00-front-matter/15-glossary-and-verbatim-source-index.md",
+      "title": "15. Glossary and verbatim source index",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-05-21",
+        "2025-09-11",
+        "2025-09-16",
+        "2026-03-02",
+        "2026-08-27"
+      ],
+      "keywords": [
+        "agentic",
+        "apache",
+        "claude",
+        "consumer",
+        "embedding",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        419,
+        488
+      ],
+      "canonical_for": [],
+      "words": 327,
+      "bytes": 5428,
+      "sha256": "dba06d15a3b321a8c5a98f3ea7704042796eb81edab23b9f1c6fef39631f2d6a",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/16-sql-dialect-comparison-matrix-developer-relevant",
+      "path": "etape8-phasef-data-messaging/00-front-matter/16-sql-dialect-comparison-matrix-developer-relevant.md",
+      "title": "16. SQL dialect comparison matrix (developer-relevant)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "consumer",
+        "latency",
+        "license"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        489,
+        591
+      ],
+      "canonical_for": [],
+      "words": 919,
+      "bytes": 6149,
+      "sha256": "629cdc717ec60b30b7cd001ffa05d5465b6ebf8f9212a64b32251c5ba533c09a",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/01-producer-idempotence-durability-baseline/overview",
+      "path": "etape8-phasef-data-messaging/01-producer-idempotence-durability-baseline/overview.md",
+      "title": "producer: idempotence + durability baseline",
+      "domain": "producer-idempotence-durability-baseline",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        592,
+        596
+      ],
+      "canonical_for": [],
+      "words": 10,
+      "bytes": 138,
+      "sha256": "ba3b966990a9b073d5796581c248f31adea28333bf8000a3eb7acd08b6dc6a26",
+      "section": "producer: idempotence + durability baseline"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/02-consumer-control-your-own-offsets-for-effectively-once/overview",
+      "path": "etape8-phasef-data-messaging/02-consumer-control-your-own-offsets-for-effectively-once/overview.md",
+      "title": "consumer: control your own offsets for effectively-once",
+      "domain": "consumer-control-your-own-offsets-for-effectively-once",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "consumer"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        597,
+        609
+      ],
+      "canonical_for": [],
+      "words": 56,
+      "bytes": 498,
+      "sha256": "9e231ad3e90b8c227d8efad5db5ae913c60ca07981c33642078425530130859c",
+      "section": "consumer: control your own offsets for effectively-once"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/03-crashed-consumer-recovery/overview",
+      "path": "etape8-phasef-data-messaging/03-crashed-consumer-recovery/overview.md",
+      "title": "crashed consumer recovery:",
+      "domain": "crashed-consumer-recovery",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "consumer",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        610,
+        631
+      ],
+      "canonical_for": [],
+      "words": 85,
+      "bytes": 647,
+      "sha256": "28fada1799811b698ec3959de7da8c58ed25af1cc0c76dfc0355286c70980486",
+      "section": "crashed consumer recovery:"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/04-models-marts-schema-yml/overview",
+      "path": "etape8-phasef-data-messaging/04-models-marts-schema-yml/overview.md",
+      "title": "models/marts/schema.yml",
+      "domain": "models-marts-schema-yml",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        632,
+        668
+      ],
+      "canonical_for": [],
+      "words": 92,
+      "bytes": 878,
+      "sha256": "23a0bb437f69ae77a56973bf77130bd015ff4affc030fa0ff7421d17473d4613",
+      "section": "models/marts/schema.yml"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/05-review-alembic-versions-rev-add-is-admin-to-users-py-autogen/overview",
+      "path": "etape8-phasef-data-messaging/05-review-alembic-versions-rev-add-is-admin-to-users-py-autogen/overview.md",
+      "title": "REVIEW alembic/versions/<rev>_add_is_admin_to_users.py -- autogenerate is a draft",
+      "domain": "review-alembic-versions-rev-add-is-admin-to-users-py-autogen",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        669,
+        682
+      ],
+      "canonical_for": [],
+      "words": 58,
+      "bytes": 502,
+      "sha256": "aab0ca169c8505e86c0e9920c0aff3c07dd1a6e77c6d91c9845b4a600f2e5cdc",
+      "section": "REVIEW alembic/versions/<rev>_add_is_admin_to_users.py -- autogenerate is a draft"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/06-spark-4-default-ansi-mode-on-divide-by-zero-and-bad-casts-ra/overview",
+      "path": "etape8-phasef-data-messaging/06-spark-4-default-ansi-mode-on-divide-by-zero-and-bad-casts-ra/overview.md",
+      "title": "Spark 4 default: ANSI mode on -> divide-by-zero and bad casts raise",
+      "domain": "spark-4-default-ansi-mode-on-divide-by-zero-and-bad-casts-ra",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "apache",
+        "aws",
+        "benchmarks",
+        "consumer",
+        "cost",
+        "latency"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        683,
+        757
+      ],
+      "canonical_for": [],
+      "words": 742,
+      "bytes": 5192,
+      "sha256": "69e172acbd7f202d70235ad804851b069acc81c34b3c9a18a8c98a5186e01fb1",
+      "section": "Spark 4 default: ANSI mode on -> divide-by-zero and bad casts raise"
+    }
+  ]
+}

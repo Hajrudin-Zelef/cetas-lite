@@ -1,0 +1,494 @@
+{
+  "corpus": "etape6-phasee2-ansible-nornir-terraform",
+  "title": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries",
+  "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+  "source_lines": 755,
+  "source_sha256": "9260f450986110a202992321a36f75570bfc6ef119dbcd05b6a90b5e7701d457",
+  "chunk_count": 16,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/overview.md",
+      "title": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Meta"
+      ],
+      "dates": [
+        "2025-11-03",
+        "2026-01-08",
+        "2026-03-12",
+        "2026-05",
+        "2026-05-31",
+        "2026-06-01",
+        "2026-06-22",
+        "2026-07",
+        "2026-07-23",
+        "2026-09-08",
+        "2026-09-10",
+        "2026-09-22",
+        "2026-11-30",
+        "2027-05",
+        "2027-05-31",
+        "2027-11-30",
+        "2028-03",
+        "2028-04-01",
+        "2028-05"
+      ],
+      "keywords": [
+        "aws",
+        "benchmarks",
+        "compute",
+        "gpu",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 955,
+      "bytes": 9849,
+      "sha256": "62efb361d55f7945017608ff4135e8cfe4b7a2838877e940a2df571a3ac4771e",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-3-awx-ansible-automation-platform-event-driven-ansible",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-3-awx-ansible-automation-platform-event-driven-ansible.md",
+      "title": "Wave 3 — AWX, Ansible Automation Platform & Event-Driven Ansible",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2024-07",
+        "2025-04",
+        "2026-03",
+        "2026-03-25",
+        "2026-05",
+        "2026-06",
+        "2026-06-12",
+        "2026-06-14",
+        "2026-07-30",
+        "2026-08-19",
+        "2026-08-21",
+        "2026-08-30",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "guardrails",
+        "memory",
+        "sandbox"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        53,
+        107
+      ],
+      "canonical_for": [],
+      "words": 1238,
+      "bytes": 12042,
+      "sha256": "1281ee9873a12294a60c370ab2c535986af74a10185ce94e7cb0a6775d75ca82",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-6-python-network-libraries",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-6-python-network-libraries.md",
+      "title": "Wave 6 — Python network libraries",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-03",
+        "2026-03-12",
+        "2026-04-16",
+        "2026-06",
+        "2026-06-13",
+        "2026-07-03",
+        "2026-09-22",
+        "2026-11-30"
+      ],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "mcp",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        108,
+        155
+      ],
+      "canonical_for": [],
+      "words": 946,
+      "bytes": 8185,
+      "sha256": "8653b8667b394e72d88e7100db235a97ccefdd75c68d99a0176bb39bb5e1b554",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-9-ansible-networking-internals-validated-patterns",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-9-ansible-networking-internals-validated-patterns.md",
+      "title": "Wave 9 — Ansible networking internals & validated patterns",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-07",
+        "2028-03"
+      ],
+      "keywords": [
+        "embedding",
+        "guardrails",
+        "latency",
+        "lean"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        156,
+        201
+      ],
+      "canonical_for": [],
+      "words": 1004,
+      "bytes": 8971,
+      "sha256": "05c52ffa3f36b2b4542976d5524a5ada3046657aaa3eec12d2df00675368563a",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-11-terraform-opentofu-deep-dive-for-networks",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-11-terraform-opentofu-deep-dive-for-networks.md",
+      "title": "Wave 11 — Terraform/OpenTofu deep dive for networks",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "aws",
+        "benchmark",
+        "embedding",
+        "license",
+        "mcp",
+        "model context protocol"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        202,
+        287
+      ],
+      "canonical_for": [],
+      "words": 1726,
+      "bytes": 14451,
+      "sha256": "40974c62cd0ebb7d28e601599e2bd550ef9b703397fbf1083f75aefd0afb060c",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/01-requirements-yml-pin-everything/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/01-requirements-yml-pin-everything/overview.md",
+      "title": "requirements.yml — pin everything",
+      "domain": "requirements-yml-pin-everything",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        288,
+        298
+      ],
+      "canonical_for": [],
+      "words": 23,
+      "bytes": 224,
+      "sha256": "594cbffd290cebf62938db3eb29548a93b6f28e677a7b96aa99c7bfec43d68d4",
+      "section": "requirements.yml — pin everything"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/02-playbooks-vlan-push-yml/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/02-playbooks-vlan-push-yml/overview.md",
+      "title": "playbooks/vlan_push.yml",
+      "domain": "playbooks-vlan-push-yml",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        299,
+        339
+      ],
+      "canonical_for": [],
+      "words": 128,
+      "bytes": 1258,
+      "sha256": "3784742d5b42deeafedd73644d7e2ab743ccadb49594938c194e6542a4599200",
+      "section": "playbooks/vlan_push.yml"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/03-filter-to-one-site-for-canary-rollout/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/03-filter-to-one-site-for-canary-rollout/overview.md",
+      "title": "Filter to one site for canary rollout",
+      "domain": "filter-to-one-site-for-canary-rollout",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        340,
+        359
+      ],
+      "canonical_for": [],
+      "words": 61,
+      "bytes": 617,
+      "sha256": "d05af9404ba0cb99607227b1687d78b8b35ad75d16dbf09451ed56243fc29c3f",
+      "section": "Filter to one site for canary rollout"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/04-versions-pinned-binary-pinned-in-mise-toml-opentofu-1-12-6/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/04-versions-pinned-binary-pinned-in-mise-toml-opentofu-1-12-6/overview.md",
+      "title": "versions pinned; binary pinned in mise.toml (opentofu = \"1.12.6\")",
+      "domain": "versions-pinned-binary-pinned-in-mise-toml-opentofu-1-12-6",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        360,
+        378
+      ],
+      "canonical_for": [],
+      "words": 68,
+      "bytes": 483,
+      "sha256": "30b6be7c068bf4fb67726a05cf2e53acf041162e25f0f001dd600967cf741511",
+      "section": "versions pinned; binary pinned in mise.toml (opentofu = \"1.12.6\")"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/05-brownfield-adoption-import-existing-vlans-without-recreation/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/05-brownfield-adoption-import-existing-vlans-without-recreation/overview.md",
+      "title": "Brownfield adoption: import existing VLANs without recreation",
+      "domain": "brownfield-adoption-import-existing-vlans-without-recreation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        379,
+        389
+      ],
+      "canonical_for": [],
+      "words": 31,
+      "bytes": 230,
+      "sha256": "a74a16e71ad81816eeb4e7c8fcb1c9d3206c9ab70aceb620c72eb3b756a79ceb",
+      "section": "Brownfield adoption: import existing VLANs without recreation"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/06-rulebooks-interface-flap-yml/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/06-rulebooks-interface-flap-yml/overview.md",
+      "title": "rulebooks/interface_flap.yml",
+      "domain": "rulebooks-interface-flap-yml",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        390,
+        415
+      ],
+      "canonical_for": [],
+      "words": 80,
+      "bytes": 734,
+      "sha256": "7ebb19ad54b37b8b9e51d9dd6d04402db737a28fa391a4d6ce1884bbe9c5b125",
+      "section": "rulebooks/interface_flap.yml"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/overview",
+      "path": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/overview.md",
+      "title": ".github/workflows/network-ci.yml (sketch)",
+      "domain": "github-workflows-network-ci-yml-sketch",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "advisory",
+        "mcp"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        416,
+        502
+      ],
+      "canonical_for": [],
+      "words": 357,
+      "bytes": 7046,
+      "sha256": "5c28f39df6706134c20b5b74e16b926420b982b8f7a453198ddc12eec12adb5c",
+      "section": ".github/workflows/network-ci.yml (sketch)"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-17-vendor-provider-collection-catalog-details",
+      "path": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-17-vendor-provider-collection-catalog-details.md",
+      "title": "Wave 17 — Vendor provider & collection catalog details",
+      "domain": "github-workflows-network-ci-yml-sketch",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-01-08",
+        "2026-03-12",
+        "2026-03-25",
+        "2026-04-16",
+        "2026-05",
+        "2026-05-31",
+        "2026-06-01",
+        "2026-06-13",
+        "2026-06-14",
+        "2026-06-22",
+        "2026-07-03",
+        "2026-07-23",
+        "2026-07-30",
+        "2026-08-19",
+        "2026-09-08",
+        "2026-09-10",
+        "2026-09-22",
+        "2028-04-01"
+      ],
+      "keywords": [
+        "aws",
+        "compute",
+        "mcp",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        503,
+        554
+      ],
+      "canonical_for": [],
+      "words": 703,
+      "bytes": 5881,
+      "sha256": "a3017948790e3cef3961978d8ff325d74ca2ae9700aae3119af9f47bfeec69a6",
+      "section": ".github/workflows/network-ci.yml (sketch)"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-19-glossary-concept-map",
+      "path": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-19-glossary-concept-map.md",
+      "title": "Wave 19 — Glossary & concept map",
+      "domain": "github-workflows-network-ci-yml-sketch",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        555,
+        607
+      ],
+      "canonical_for": [],
+      "words": 763,
+      "bytes": 6952,
+      "sha256": "d0c4fc1256676dcfbf0c2d24c04fec0a193a7df381f1e79b56a56d44ae589aa4",
+      "section": ".github/workflows/network-ci.yml (sketch)"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-22-migration-playbooks",
+      "path": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-22-migration-playbooks.md",
+      "title": "Wave 22 — Migration playbooks",
+      "domain": "github-workflows-network-ci-yml-sketch",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2028-03",
+        "2028-04-01"
+      ],
+      "keywords": [
+        "apache",
+        "license",
+        "open source"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        608,
+        675
+      ],
+      "canonical_for": [],
+      "words": 787,
+      "bytes": 5570,
+      "sha256": "b423980a96607102a713e1ac2d56c7b4645688f5d393033b152949b248c8b97f",
+      "section": ".github/workflows/network-ci.yml (sketch)"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-25-key-numbers-at-a-glance-2026-09-22",
+      "path": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/wave-25-key-numbers-at-a-glance-2026-09-22.md",
+      "title": "Wave 25 — Key numbers at a glance (2026-09-22)",
+      "domain": "github-workflows-network-ci-yml-sketch",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-07",
+        "2026-08-19",
+        "2026-09-22",
+        "2026-11-30",
+        "2027-05",
+        "2028-04-01"
+      ],
+      "keywords": [
+        "guardrails",
+        "mcp",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        676,
+        755
+      ],
+      "canonical_for": [],
+      "words": 1070,
+      "bytes": 8073,
+      "sha256": "cab82f884cffc4398afa4cac20903f8e18cd50ec66716217686a7b5cc0ddf523",
+      "section": ".github/workflows/network-ci.yml (sketch)"
+    }
+  ]
+}

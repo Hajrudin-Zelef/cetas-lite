@@ -1,0 +1,524 @@
+{
+  "corpus": "etape7-phasei-media",
+  "title": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling",
+  "source": "docs/RAG/etape7_phaseI_media.md",
+  "source_lines": 750,
+  "source_sha256": "82c9ab78b79639675115f360711df5ed5f3b85b3fc8d3ee05626aa7fbe34cb5e",
+  "chunk_count": 16,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape7-phasei-media/00-front-matter/overview",
+      "path": "etape7-phasei-media/00-front-matter/overview.md",
+      "title": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "AWS",
+        "Apple",
+        "Google",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [
+        "2018-12",
+        "2019-01",
+        "2024-05-11",
+        "2024-10-26",
+        "2024-10-27",
+        "2025-10-19",
+        "2025-10-20",
+        "2026-01",
+        "2026-02",
+        "2026-07-01",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-17",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cost",
+        "license",
+        "nvidia",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        89
+      ],
+      "canonical_for": [],
+      "words": 1610,
+      "bytes": 12041,
+      "sha256": "daf26c0ca6ce192eda3a229f969fa6a088ace707f069d763400c057482a446da",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/2-ffmpeg-and-the-hardware-encoder-landscape",
+      "path": "etape7-phasei-media/00-front-matter/2-ffmpeg-and-the-hardware-encoder-landscape.md",
+      "title": "2. FFmpeg and the hardware-encoder landscape",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2024-10-28",
+        "2025-02-18",
+        "2025-07-24",
+        "2026-01-13",
+        "2026-03",
+        "2026-03-16",
+        "2026-03-22",
+        "2026-03-23",
+        "2026-05-04",
+        "2026-07-14",
+        "2026-09"
+      ],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "compute",
+        "consumer",
+        "decode",
+        "distribution",
+        "gpu",
+        "intel",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        90,
+        149
+      ],
+      "canonical_for": [],
+      "words": 1245,
+      "bytes": 9803,
+      "sha256": "b15232a0734c94a91e7d83d3d67a2a07020d4cb64abb6492f8b8c1c1cb8fce04",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/4-transcoder-configurations-jellyfin-plex-emby",
+      "path": "etape7-phasei-media/00-front-matter/4-transcoder-configurations-jellyfin-plex-emby.md",
+      "title": "4. Transcoder configurations (Jellyfin / Plex / Emby)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "cost",
+        "gpu",
+        "gpus",
+        "intel",
+        "licenses",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        150,
+        200
+      ],
+      "canonical_for": [],
+      "words": 754,
+      "bytes": 5850,
+      "sha256": "b8017e5034f982082f3617f5b9f4efa4b226b1cd5663ee8215c434312ac9c167",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/7-audio-passthrough-and-transcoding",
+      "path": "etape7-phasei-media/00-front-matter/7-audio-passthrough-and-transcoding.md",
+      "title": "7. Audio: passthrough and transcoding",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "acquisition",
+        "arr",
+        "cost",
+        "decode"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        201,
+        261
+      ],
+      "canonical_for": [],
+      "words": 773,
+      "bytes": 5442,
+      "sha256": "88a67bb2c5690174a02999723874f637cdf5809c7a7713ced002bb4af620bd8e",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/10-decision-guides",
+      "path": "etape7-phasei-media/00-front-matter/10-decision-guides.md",
+      "title": "10. Decision guides",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "arr",
+        "benchmarks",
+        "consumer",
+        "cost",
+        "decode",
+        "gpu",
+        "gpus",
+        "intel",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        262,
+        306
+      ],
+      "canonical_for": [],
+      "words": 526,
+      "bytes": 4111,
+      "sha256": "8367686ac7c8e0771c20e67c0b575a486edfedf49fa9adfc11824611901b71b3",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/14-1-jellyfin-internals-worth-knowing",
+      "path": "etape7-phasei-media/00-front-matter/14-1-jellyfin-internals-worth-knowing.md",
+      "title": "14.1 Jellyfin internals worth knowing",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "intel"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        307,
+        362
+      ],
+      "canonical_for": [],
+      "words": 592,
+      "bytes": 4778,
+      "sha256": "c5b47c4e7fa9c1e9d478270791afc1f5b9dfe04904fee8838ff6cfbed4bdf0ae",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/14-5-svt-av1-command-patterns",
+      "path": "etape7-phasei-media/00-front-matter/14-5-svt-av1-command-patterns.md",
+      "title": "14.5 SVT-AV1 command patterns",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "Apple",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "decode",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        363,
+        410
+      ],
+      "canonical_for": [],
+      "words": 364,
+      "bytes": 2939,
+      "sha256": "df167465aa9c6454c844732fa0fdab3edb3dea4e741c32c91eca5f4d6a1019f5",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/14-9-arr-stack-reference-deployment",
+      "path": "etape7-phasei-media/00-front-matter/14-9-arr-stack-reference-deployment.md",
+      "title": "14.9 *arr stack reference deployment",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "arr",
+        "amd",
+        "intel"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        411,
+        455
+      ],
+      "canonical_for": [],
+      "words": 203,
+      "bytes": 2057,
+      "sha256": "58d777f09ad2f95598552987a463c02cb0c75ac3156c064327cc956db2a615bd",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/14-11-transcode-troubleshooting-matrix",
+      "path": "etape7-phasei-media/00-front-matter/14-11-transcode-troubleshooting-matrix.md",
+      "title": "14.11 Transcode troubleshooting matrix",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-02"
+      ],
+      "keywords": [
+        "decode"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        456,
+        506
+      ],
+      "canonical_for": [],
+      "words": 780,
+      "bytes": 5687,
+      "sha256": "4e5c585848529eda3e48d1082a6fa65bdc166f3a0e5cb834d2e8e657e9ad7365",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/14-16-intro-skipper-tuning",
+      "path": "etape7-phasei-media/00-front-matter/14-16-intro-skipper-tuning.md",
+      "title": "14.16 Intro Skipper tuning",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "decode",
+        "gpu",
+        "gpus",
+        "latency"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        507,
+        556
+      ],
+      "canonical_for": [],
+      "words": 557,
+      "bytes": 4296,
+      "sha256": "d61ba5229df13dadea980db25c1546aeeb7f382fe0488174f756f7c49f9924f4",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/01-list-installed-plugins-and-versions/overview",
+      "path": "etape7-phasei-media/01-list-installed-plugins-and-versions/overview.md",
+      "title": "List installed plugins and versions",
+      "domain": "list-installed-plugins-and-versions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        557,
+        559
+      ],
+      "canonical_for": [],
+      "words": 22,
+      "bytes": 190,
+      "sha256": "d69bd0eb148779159d0ef289a3775d94b1c26e638258341ebb33b82ac31288d6",
+      "section": "List installed plugins and versions"
+    },
+    {
+      "id": "etape7-phasei-media/02-trigger-a-library-scan/overview",
+      "path": "etape7-phasei-media/02-trigger-a-library-scan/overview.md",
+      "title": "Trigger a library scan",
+      "domain": "trigger-a-library-scan",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        560,
+        561
+      ],
+      "canonical_for": [],
+      "words": 13,
+      "bytes": 84,
+      "sha256": "f1d3a71ec781f5da3a8a50aead3149494a7218ac7ff30bc7d215966bf1f2081c",
+      "section": "Trigger a library scan"
+    },
+    {
+      "id": "etape7-phasei-media/03-active-sessions-see-transcode-reasons/overview",
+      "path": "etape7-phasei-media/03-active-sessions-see-transcode-reasons/overview.md",
+      "title": "Active sessions (see transcode reasons)",
+      "domain": "active-sessions-see-transcode-reasons",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "embedding"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        562,
+        604
+      ],
+      "canonical_for": [],
+      "words": 471,
+      "bytes": 3441,
+      "sha256": "e4b6b6e44a2e5cb05d11ad4574f53e0618843cf1dad1772160a8755858444b8d",
+      "section": "Active sessions (see transcode reasons)"
+    },
+    {
+      "id": "etape7-phasei-media/04-copy-chapters-from-source-when-remuxing/overview",
+      "path": "etape7-phasei-media/04-copy-chapters-from-source-when-remuxing/overview.md",
+      "title": "Copy chapters from source when remuxing",
+      "domain": "copy-chapters-from-source-when-remuxing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        605,
+        606
+      ],
+      "canonical_for": [],
+      "words": 17,
+      "bytes": 98,
+      "sha256": "fe0014b9adbafc8f2d0f96d103eac01a7e01188e705296166db0b1960df2da54",
+      "section": "Copy chapters from source when remuxing"
+    },
+    {
+      "id": "etape7-phasei-media/05-strip-global-metadata-that-confuses-some-clients/overview",
+      "path": "etape7-phasei-media/05-strip-global-metadata-that-confuses-some-clients/overview.md",
+      "title": "Strip global metadata that confuses some clients",
+      "domain": "strip-global-metadata-that-confuses-some-clients",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Apple",
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "benchmark",
+        "decode",
+        "gpu",
+        "intel",
+        "nvidia",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        607,
+        683
+      ],
+      "canonical_for": [],
+      "words": 1036,
+      "bytes": 7359,
+      "sha256": "213d9dad7def1a41bc0e00e9c537702fbde0d679cd9e26436ea224cd16b726e9",
+      "section": "Strip global metadata that confuses some clients"
+    },
+    {
+      "id": "etape7-phasei-media/05-strip-global-metadata-that-confuses-some-clients/15-line-count-and-qc-attestation",
+      "path": "etape7-phasei-media/05-strip-global-metadata-that-confuses-some-clients/15-line-count-and-qc-attestation.md",
+      "title": "15. Line-count and QC attestation",
+      "domain": "strip-global-metadata-that-confuses-some-clients",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [],
+      "dates": [
+        "2026-08-06",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "arr",
+        "compute",
+        "consumer",
+        "cost",
+        "gpus",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        684,
+        750
+      ],
+      "canonical_for": [],
+      "words": 277,
+      "bytes": 5271,
+      "sha256": "d258c0f4a266bdf55a46fb240713366cbe225c5904343a84019d9b08cbe3d480",
+      "section": "Strip global metadata that confuses some clients"
+    }
+  ]
+}

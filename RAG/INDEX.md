@@ -27,5 +27,47 @@ Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source déj
 | `etape6-trackd-firewalls` | Step 6 — Track D : FortiGate + pfSense + OPNsense (pare-feu & sécurité réseau) |  | 4 | `docs/RAG/etape6_trackD_firewalls.md` | [INDEX](etape6-trackd-firewalls/INDEX.md) |
 | `etape6-trackb-arista-sonic` | Step 6 — Track B : Arista + SONiC + Cumulus (fabric datacenter & réseau ouvert) |  | 5 | `docs/RAG/etape6_trackB_arista_sonic.md` | [INDEX](etape6-trackb-arista-sonic/INDEX.md) |
 | `etape6-tracka-cisco-juniper` | Step 6 — Track A : Cisco + Juniper (réseau datacenter entreprise) |  | 10 | `docs/RAG/etape6_trackA_cisco_juniper.md` | [INDEX](etape6-tracka-cisco-juniper/INDEX.md) |
+| `etape10-phasea-news-tech` | Step 10A — Tech News: AI, Chips, Cloud, Cybersecurity (February → 22 September 2026) |  | 11 | `docs/RAG/etape10_phaseA_news_tech.md` | [INDEX](etape10-phasea-news-tech/INDEX.md) |
+| `etape10-phaseb-news-mobile` | Step 10 — Phase B: Mobile & Devices News (February → September 2026) |  | 13 | `docs/RAG/etape10_phaseB_news_mobile.md` | [INDEX](etape10-phaseb-news-mobile/INDEX.md) |
+| `etape10-phasec-news-pc-mac` | Step 10 Phase C — PC & Mac News (February → September 2026) |  | 14 | `docs/RAG/etape10_phaseC_news_pc_mac.md` | [INDEX](etape10-phasec-news-pc-mac/INDEX.md) |
+| `etape10-phased-news-sport` | Step 10D — Sports News (February 2026 → 22 September 2026) |  | 13 | `docs/RAG/etape10_phaseD_news_sport.md` | [INDEX](etape10-phased-news-sport/INDEX.md) |
+| `etape10-phasee-news-world` | Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026) |  | 13 | `docs/RAG/etape10_phaseE_news_world.md` | [INDEX](etape10-phasee-news-world/INDEX.md) |
+| `etape10-phasef-news-buzz` | STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22) |  | 11 | `docs/RAG/etape10_phaseF_news_buzz.md` | [INDEX](etape10-phasef-news-buzz/INDEX.md) |
+| `etape10-phaseg-news-science` | Step 10 Phase G — Science & Planet News (February → September 2026) |  | 12 | `docs/RAG/etape10_phaseG_news_science.md` | [INDEX](etape10-phaseg-news-science/INDEX.md) |
+| `etape6-phasea-vendors-dc` | Step 6 — Phase A: Enterprise Data-Center Switching Vendors |  | 38 | `docs/RAG/etape6_phaseA_vendors_dc.md` | [INDEX](etape6-phasea-vendors-dc/INDEX.md) |
+| `etape6-phaseb-smb-networking` | Step 6 Extension — Phase B: SMB / Prosumer Networking |  | 42 | `docs/RAG/etape6_phaseB_smb_networking.md` | [INDEX](etape6-phaseb-smb-networking/INDEX.md) |
+| `etape6-phasec-optics-cabling` | Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure |  | 52 | `docs/RAG/etape6_phaseC_optics_cabling.md` | [INDEX](etape6-phasec-optics-cabling/INDEX.md) |
+| `etape6-phased1-fabrics-spine-leaf` | Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs |  | 13 | `docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md` | [INDEX](etape6-phased1-fabrics-spine-leaf/INDEX.md) |
+| `etape6-phased2-evpn-vxlan` | Step 6 — Phase D wave 2: EVPN-VXLAN overlay |  | 16 | `docs/RAG/etape6_phaseD2_evpn_vxlan.md` | [INDEX](etape6-phased2-evpn-vxlan/INDEX.md) |
+| `etape6-phased3-bgp-ha` | Phase D3 — BGP underlay and high availability in the data center |  | 13 | `docs/RAG/etape6_phaseD3_bgp_ha.md` | [INDEX](etape6-phased3-bgp-ha/INDEX.md) |
+| `etape6-phased4-segmentation-qos-multicast` | Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services |  | 14 | `docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md` | [INDEX](etape6-phased4-segmentation-qos-multicast/INDEX.md) |
+| `etape6-phasee1-netbox-nautobot` | Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File) |  | 11 | `docs/RAG/etape6_phaseE1_netbox_nautobot.md` | [INDEX](etape6-phasee1-netbox-nautobot/INDEX.md) |
+| `etape6-phasee2-ansible-nornir-terraform` | Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries |  | 16 | `docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md` | [INDEX](etape6-phasee2-ansible-nornir-terraform/INDEX.md) |
+| `etape6-phasee3-gnmi-openconfig-telemetry` | Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability |  | 14 | `docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md` | [INDEX](etape6-phasee3-gnmi-openconfig-telemetry/INDEX.md) |
+| `etape6-phasee4-validation-cicd` | Phase E4 — Network Validation, Observability & CI/CD |  | 14 | `docs/RAG/etape6_phaseE4_validation_cicd.md` | [INDEX](etape6-phasee4-validation-cicd/INDEX.md) |
+| `etape6-phasef1-nic-dpu-smartnic` | Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing) |  | 12 | `docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md` | [INDEX](etape6-phasef1-nic-dpu-smartnic/INDEX.md) |
+| `etape6-phasef2-fpga` | Phase F2 — FPGA (Field-Programmable Gate Arrays) |  | 14 | `docs/RAG/etape6_phaseF2_fpga.md` | [INDEX](etape6-phasef2-fpga/INDEX.md) |
+| `etape6-phasef3-platform-security` | Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust |  | 14 | `docs/RAG/etape6_phaseF3_platform_security.md` | [INDEX](etape6-phasef3-platform-security/INDEX.md) |
+| `etape6-phasef4-virtualization-io` | Phase F4 — I/O Virtualization & CPU Acceleration Extensions |  | 12 | `docs/RAG/etape6_phaseF4_virtualization_io.md` | [INDEX](etape6-phasef4-virtualization-io/INDEX.md) |
+| `etape7-phasea-os` | Step 7 — Phase A: Server Operating Systems (Linux OS Layer) |  | 14 | `docs/RAG/etape7_phaseA_os.md` | [INDEX](etape7-phasea-os/INDEX.md) |
+| `etape7-phaseb-containers` | Step 7 — Phase B: Containers, Orchestration & Sandbox Runtimes |  | 12 | `docs/RAG/etape7_phaseB_containers.md` | [INDEX](etape7-phaseb-containers/INDEX.md) |
+| `etape7-phasec-iac` | Step 7 Phase C — IaC & Platform Automation |  | 12 | `docs/RAG/etape7_phaseC_iac.md` | [INDEX](etape7-phasec-iac/INDEX.md) |
+| `etape7-phased-proxmox-backup` | Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research |  | 13 | `docs/RAG/etape7_phaseD_proxmox_backup.md` | [INDEX](etape7-phased-proxmox-backup/INDEX.md) |
+| `etape7-phasee-storage-software` | Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS) |  | 11 | `docs/RAG/etape7_phaseE_storage_software.md` | [INDEX](etape7-phasee-storage-software/INDEX.md) |
+| `etape7-phasef-databases` | Step 7 — Phase F: Databases & Cache (Operations Angle) |  | 14 | `docs/RAG/etape7_phaseF_databases.md` | [INDEX](etape7-phasef-databases/INDEX.md) |
+| `etape7-phaseg-linuxnet-vpn` | Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring |  | 12 | `docs/RAG/etape7_phaseG_linuxnet_vpn.md` | [INDEX](etape7-phaseg-linuxnet-vpn/INDEX.md) |
+| `etape7-phaseh-webproxy` | Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways |  | 13 | `docs/RAG/etape7_phaseH_webproxy.md` | [INDEX](etape7-phaseh-webproxy/INDEX.md) |
+| `etape7-phasei-media` | Step 7 — Phase I: Media Servers, Transcoding and Upscaling |  | 16 | `docs/RAG/etape7_phaseI_media.md` | [INDEX](etape7-phasei-media/INDEX.md) |
+| `etape8-phasea-system-languages` | Step 8 — Phase A: Systems Languages |  | 12 | `docs/RAG/etape8_phaseA_system_languages.md` | [INDEX](etape8-phasea-system-languages/INDEX.md) |
+| `etape8-phaseb-web-mobile-languages` | Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains |  | 12 | `docs/RAG/etape8_phaseB_web_mobile_languages.md` | [INDEX](etape8-phaseb-web-mobile-languages/INDEX.md) |
+| `etape8-phasec-backend-frameworks` | Step 8 — Phase C: Backend Frameworks & APIs |  | 10 | `docs/RAG/etape8_phaseC_backend_frameworks.md` | [INDEX](etape8-phasec-backend-frameworks/INDEX.md) |
+| `etape8-phased-frontend` | Step 8 — Phase D: Frontend & Web Platform (Dev Angle) |  | 1 | `docs/RAG/etape8_phaseD_frontend.md` | [INDEX](etape8-phased-frontend/INDEX.md) |
+| `etape8-phasee-aiml-stacks` | Step 8, Phase E — AI/ML Software Stacks (Developer-Facing) |  | 13 | `docs/RAG/etape8_phaseE_aiml_stacks.md` | [INDEX](etape8-phasee-aiml-stacks/INDEX.md) |
+| `etape8-phasef-data-messaging` | Step 8 Phase F — Data & Messaging: Developer Angle |  | 15 | `docs/RAG/etape8_phaseF_data_messaging.md` | [INDEX](etape8-phasef-data-messaging/INDEX.md) |
+| `etape9-phasea-enterprise-ssd` | Step 9 — Enterprise SSD Hardware (Phase A) |  | 13 | `docs/RAG/etape9_phaseA_enterprise_ssd.md` | [INDEX](etape9-phasea-enterprise-ssd/INDEX.md) |
+| `etape9-phaseb-form-factors-interfaces` | Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle) |  | 12 | `docs/RAG/etape9_phaseB_form_factors_interfaces.md` | [INDEX](etape9-phaseb-form-factors-interfaces/INDEX.md) |
+| `etape9-phasec-memory` | Step 9 — Phase C: Server & Accelerator Memory Hardware |  | 12 | `docs/RAG/etape9_phaseC_memory.md` | [INDEX](etape9-phasec-memory/INDEX.md) |
+| `etape9-phased-data-protection-raid` | Step 9 — Phase D: Data Protection & RAID Hardware |  | 11 | `docs/RAG/etape9_phaseD_data_protection_raid.md` | [INDEX](etape9-phased-data-protection-raid/INDEX.md) |
+| `etape9-phasee-storage-market` | Step 9 Phase E — Storage & Memory Market 2026 |  | 8 | `docs/RAG/etape9_phaseE_storage_market.md` | [INDEX](etape9-phasee-storage-market/INDEX.md) |
 
 Voir aussi [README](README.md) et `manifest.json`.

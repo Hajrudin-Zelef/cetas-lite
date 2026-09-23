@@ -1,0 +1,81 @@
+---
+id: etape6-phasef4-virtualization-io/00-virtualization-io/wave-7-vdpa-and-the-virtio-1-4-admin-queue-track-deep-dive
+title: "Wave 7 — vDPA and the virtio 1.4 admin-queue track (deep dive)"
+domain: phase-f4-i-o-virtualization-cpu-acceleration-extensions
+role: deep-dive
+task: reference
+actors: ["Intel", "Nvidia"]
+dates: ["2026-04", "2026-07"]
+keywords: ["benchmark", "blackwell", "compute", "datacenter", "gpu", "intel", "latency", "memory", "nvidia"]
+source: docs/RAG/etape6_phaseF4_virtualization_io.md
+source_anchor: ""
+source_lines: [429, 491]
+section: "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+sha256: ee9fa0e943402b31dc687473d81bacc2024b53c95af67d786ccbd55d3adc535b
+---
+
+# Wave 7 — vDPA and the virtio 1.4 admin-queue track (deep dive)
+
+## Wave 7 — vDPA and the virtio 1.4 admin-queue track (deep dive)
+
+### 7.1 vDPA: hardware virtqueues, vendor control plane
+- **vDPA (virtio Data Path Acceleration)**: NIC hardware implements the virtio data path (virtqueues, descriptor rings, notifications) in its DMA engine; the guest runs an **unmodified standard virtio driver** while the data path bypasses the hypervisor entirely [secondary].
+  Source: https://github.com/davidlin2k/rdma-book/blob/HEAD/src/part-5-deployment/ch15-cloud-and-virtualization/virtio-vdpa.md
+- Kernel framework (`drivers/vdpa/`): `vdpa_bus` abstraction with two main drivers — **virtio_vdpa** (exposes device as a virtio-net netdev) and **vhost_vdpa** (exposes as a vhost-vdpa device using a vhost-net protocol extension so userspace apps can access rings directly) [secondary].
+  Source: https://github.com/k8snetworkplumbingwg/sriov-network-device-plugin/blob/HEAD/docs/vdpa/README.md
+- The full notification chain (Red Hat): guest MMIO kick → KVM ioeventfd → vhost-vdpa driver → vDPA bus op rings the real hardware doorbell; RX DMA completion → vDPA VF driver → virtqueue callback → irqfd → KVM injects MSI-X into the guest [vendor-reported].
+  Source: https://www.redhat.com/pt-br/blog/vdpa-kernel-framework-part-3-usage-vms-and-containers
+- Why it matters vs SR-IOV/VFIO: **live migration works without per-vendor VFIO migration drivers** — because DMA goes through virtqueues, the standard virtio migration story applies; VFIO passthrough needs each vendor to implement the VFIO migration framework [secondary].
+  Source: https://github.com/cocoonstack/cloud-hypervisor/blob/HEAD/docs/vdpa.md
+- Cloud-hypervisor exposes vDPA via `--vdpa path=<dev>,num_queues=<n>,iommu=on|off` — a concrete hypervisor integration [secondary].
+  Source: https://github.com/cloud-hypervisor/cloud-hypervisor/blob/main/docs/vdpa.md
+- Kubernetes story: vDPA CNI + vDPA device plugin give pods a virtio mdev interface bound to a VF, with a **single vendor-neutral virtio-net DPDK PMD** on the CNF side — the vendor's control plane stays hidden behind the vDPA kernel framework [vendor-reported].
+  Source: https://www.redhat.com/it/blog/breaking-cloud-native-network-performance-barriers?source=tag&term=121
+- [unverified] vDPA hardware support remains limited to newer NIC generations (the NIC must implement the virtio descriptor layout in its DMA engine); adoption breadth in 2026 is vendor-dependent.
+
+### 7.2 virtio 1.4: the admin-virtqueue change (cs01, 8 April 2026)
+- The standout 1.4 feature is **admin virtqueues** (feature bit `VIRTIO_F_ADMIN_VQ`): a device-agnostic command interface, "the virtqueue analog to a transport" — existing control virtqueues are device-type-specific (net, scsi) and hard to extend; admin queues carry cross-device admin commands instead, with support for **multiple** admin queues for QoS/scalability [official].
+  Source: https://docs.oasis-open.org/virtio/virtio/v1.4/virtio-v1.4.pdf
+- PCI transport changes: the common configuration gains `admin_queue_index` / `admin_queue_num` registers (placed after `queue_reset`); when `VIRTIO_F_ADMIN_VQ` is negotiated, `num_queues` **excludes** the admin queues [official] [independent — test-suite confirms layout].
+  Source: https://docs.oasis-open.org/virtio/virtio/v1.4/virtio-v1.4.pdf
+  Source: https://github.com/weltling/virtio-villain/commit/aa87bbd443b7a1876ba1699fd20b28dd2db8f108
+- Spec hygiene in 1.4: common config also gained `queue_notif_config_data` (0x38) and `queue_reset` (0x3A), each live only under negotiated features [secondary].
+  Source: https://github.com/mirivlad/tos/blob/HEAD/docs/evidence/STAGE4D1_FIRST_VIRTQUEUE.md
+- Version-status correction: OASIS published **virtio-v1.4-csprd01 (9 Dec 2025)** and **virtio-v1.4-cs01 (8 April 2026)** — so a formal 1.4 Committee Specification *does* exist as of April 2026; earlier Wave 1 wording that "no formal publication found" referred to the missing 1.3, and the 1.4 cs01 PDF is the current normative draft [official].
+  Source: https://docs.oasis-open.org/virtio/virtio/v1.4/virtio-v1.4.pdf
+  Source: https://docs.oasis-open.org/virtio/virtio/v1.4/csprd01/virtio-v1.4-csprd01-diff-from-v1.2-cs01.pdf
+- Open-source conformance tooling: `virtio-villain` test suite (July 2026) validates admin-queue common-config fields per spec §4.1.4.3 — implementers can check `admin_queue_num ≥ 1` and queue-range non-overlap [independent].
+  Source: https://github.com/weltling/virtio-villain/commit/aa87bbd443b7a1876ba1699fd20b28dd2db8f108
+
+---
+## Wave 8 — DPDK PMD ecosystem / OVS-DPDK and NVIDIA MIG profiles
+
+### 8.1 OVS-DPDK: the vSwitch workhorse
+- OVS gained a DPDK datapath in OVS 2.2 and a DPDK-backed `vhost-user` virtual interface in OVS 2.4 — the DPDK datapath gives lower latency and higher performance than the kernel datapath while `vhost-user` ports attach guests to it [secondary].
+  Source: https://github.com/sapcc/neutron/blob/HEAD/doc/source/admin/config-ovs-dpdk.rst
+- Red Hat cites roughly **~10×** performance of OVS-DPDK over native kernel OVS; Intel's Ubuntu setup guide measured ~2.5× (inter-VM iPerf3) and ~1.45× in another test — the spread shows how topology-dependent these numbers are; do not quote a single figure as a 2026 benchmark [vendor-reported].
+  Source: https://www.redhat.com/de/blog/journey-vhost-users-realm
+  Source: https://www.intel.com/content/www/us/en/developer/articles/technical/set-up-open-vswitch-with-dpdk-on-ubuntu-server.html
+- Multiqueue matters: an old KVM/DPDK benchmark showed 13.02 Mpps single-queue vs 21.13 Mpps dual-queue on 10 GbE (historical, RHEL 7 era) — multiqueue vhost-user (`queues=N` in libvirt) remains a required tuning knob [secondary — dated].
+  Source: http://www.linux-kvm.org/images/c/c8/DPDK.pdf
+- Operations notes (OpenNebula docs, current): OVS/DPDK version compatibility must match (`ovs-vswitchd --version`), hugepages per NUMA node, `dpdk-socket-mem` aligned to NUMA topology, PCI device bound to the PMD's driver, and PMD threads poll at 100% CPU by design — `pmd-sleep-max` trades wake latency for idle CPU [secondary].
+  Source: https://github.com/opennebula/one-docs/blob/HEAD/content/product/cluster_configuration/networking_system/openvswitch_dpdk.md
+- libvirt/QEMU wiring: `<interface type='vhostuser'>` with unix socket path + `<model type='virtio'/>`, OVS side `type: dpdkvhostuserclient` with `vhost-server-path` — client/server modes must be complementary [secondary].
+  Source: https://github.com/opennebula/one-docs/blob/HEAD/content/product/cluster_configuration/networking_system/openvswitch_dpdk.md
+
+### 8.2 NVIDIA MIG profiles (the slicing table)
+- A100 40GB: 1g.5gb / 1g.5gb+me / 2g.10gb / 3g.20gb / 4g.20gb / 7g.40gb — max 7 instances; `+me` adds one NVDEC/JPEG+OFA media engine slice (R470+) [official].
+  Source: https://docs.nvidia.com/datacenter/tesla/pdf/MIG_User_Guide.pdf
+- A100 80GB: 1g.10gb / 1g.10gb+me / 1g.20gb / 2g.20gb / 3g.40gb / 4g.40gb / 7g.80gb [official].
+  Source: https://docs.nvidia.com/datacenter/tesla/pdf/MIG_User_Guide.pdf
+- H100 80GB (PCIe/SXM): 1g.10gb / 1g.20gb / 2g.20gb / 3g.40gb / 4g.40gb / 7g.80gb — 7 max; H100 NVL 94GB scales to 1g.12gb/1g.24gb/2g.24gb/3g.47gb/4g.47gb/7g.94gb [secondary].
+  Source: https://github.com/interloperok/ai.infracalculator/blob/HEAD/docs/mig-feasibility.md
+- H200 141GB: 1g.18gb / 1g.35gb / 2g.35gb / 3g.71gb / 4g.71gb / 7g.141gb; GH200 inherits the H200 profile set [secondary].
+  Source: https://github.com/interloperok/ai.infracalculator/blob/HEAD/docs/mig-feasibility.md
+- B200 SXM 192GB (Blackwell datasheet): 1g.23gb / 1g.45gb / 2g.45gb / 3g.90gb / 4g.90gb / 7g.180gb — max 7; B300 SXM 288GB scales the same geometry [secondary].
+  Source: https://github.com/interloperok/ai.infracalculator/blob/HEAD/docs/mig-feasibility.md
+- K8s exposure: `mig-strategy=mixed` exposes `nvidia.com/mig-<compute>g.<memory>gb` resources (e.g. `nvidia.com/mig-1g.10gb`); `single` keeps `nvidia.com/gpu` semantics per MIG device with a node selector; without MIG, partial-GPU sharing is impossible [secondary].
+  Source: https://github.com/nvidia/deepops/blob/HEAD/workloads/examples/k8s/gpu-usage/README.md
+- [unverified] B200 MIG support details come from community calculators citing the Blackwell datasheet, not the public MIG User Guide r580 captured here — re-check before fleet planning.
+
+---

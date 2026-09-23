@@ -1,0 +1,380 @@
+{
+  "corpus": "etape9-phasee-storage-market",
+  "title": "Step 9 Phase E — Storage & Memory Market 2026",
+  "source": "docs/RAG/etape9_phaseE_storage_market.md",
+  "source_lines": 476,
+  "source_sha256": "d0526473c0421c1c502ca5bba88f8ed01884cd70b409abb55e3f5e8188c574a8",
+  "chunk_count": 8,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/overview",
+      "path": "etape9-phasee-storage-market/00-storage-market/overview.md",
+      "title": "Step 9 Phase E — Storage & Memory Market 2026",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [
+        "2025-08",
+        "2026-05",
+        "2026-06",
+        "2026-08",
+        "2026-08-05",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "memory",
+        "benchmark",
+        "capex",
+        "consumer",
+        "cost",
+        "dram",
+        "dram price",
+        "foundry",
+        "hbm",
+        "hbm4",
+        "inference",
+        "kv cache"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1603,
+      "bytes": 12576,
+      "sha256": "a0bf4599fd8f603229164607c7dc4f5256f5d2425fa131533ce9fd3a4560d21b",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    },
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/e4-m-a-and-corporate-events-20252026",
+      "path": "etape9-phasee-storage-market/00-storage-market/e4-m-a-and-corporate-events-20252026.md",
+      "title": "E4 — M&A and corporate events 2025–2026",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "China",
+        "Google",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2025-01-02",
+        "2025-02-24",
+        "2026-02-18",
+        "2026-03",
+        "2026-07",
+        "2026-07-21",
+        "2026-08-31",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "accelerator",
+        "capex",
+        "compute",
+        "consumer",
+        "cost",
+        "datacenter",
+        "distribution",
+        "dram",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm4"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
+        113
+      ],
+      "canonical_for": [],
+      "words": 1610,
+      "bytes": 12890,
+      "sha256": "e7a1edfa4a1d4b7205034813b71eb60a2725b9f1a280b93bb6761da17a0e1c86",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    },
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/e8-firmware-lock-in-and-platform-friction-dell-hpe",
+      "path": "etape9-phasee-storage-market/00-storage-market/e8-firmware-lock-in-and-platform-friction-dell-hpe.md",
+      "title": "E8 — Firmware lock-in and platform friction (Dell/HPE)",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "consumer",
+        "cost",
+        "dram",
+        "embedding",
+        "gpu",
+        "gpus",
+        "license",
+        "licenses",
+        "llama",
+        "memory"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        114,
+        170
+      ],
+      "canonical_for": [],
+      "words": 1563,
+      "bytes": 11577,
+      "sha256": "9e999007d3e3258ba0a33474af6c1815a6e6fbe796ddedcfb3e190ccd058a83c",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    },
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/e13-ai-storage-sizing-ii-inference-kv-cache-and-vram",
+      "path": "etape9-phasee-storage-market/00-storage-market/e13-ai-storage-sizing-ii-inference-kv-cache-and-vram.md",
+      "title": "E13 — AI storage sizing II: inference KV-cache and VRAM",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Meta",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "inference",
+        "accelerator",
+        "amd",
+        "attention",
+        "compute",
+        "consumer",
+        "cost",
+        "datacenter",
+        "dram",
+        "energy",
+        "fp8",
+        "gpu"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        171,
+        237
+      ],
+      "canonical_for": [],
+      "words": 1493,
+      "bytes": 10889,
+      "sha256": "314b9d95b74a9c72e8804c069ed81042c1a22d91b5fe98c87be0b6f335765d8a",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    },
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/e18-glossary",
+      "path": "etape9-phasee-storage-market/00-storage-market/e18-glossary.md",
+      "title": "E18 — Glossary",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-01-02",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "attention",
+        "aws",
+        "benchmark",
+        "cost",
+        "dram",
+        "gpu",
+        "gpus",
+        "gqa",
+        "hbm",
+        "hbm4",
+        "inference"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        238,
+        307
+      ],
+      "canonical_for": [],
+      "words": 249,
+      "bytes": 6074,
+      "sha256": "b2f12e03a9cddc6619f92472edd59d58017b9fef08fe16a8ad4ffb8f5502689d",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    },
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/e3b-nand-technology-race-2026-layers-density-and-the-china-f",
+      "path": "etape9-phasee-storage-market/00-storage-market/e3b-nand-technology-race-2026-layers-density-and-the-china-f.md",
+      "title": "E3b — NAND technology race 2026: layers, density, and the China factor",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "China",
+        "Google",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2023-05"
+      ],
+      "keywords": [
+        "nand",
+        "amd",
+        "asic",
+        "capex",
+        "consumer",
+        "cost",
+        "datacenter",
+        "dram",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm3"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        308,
+        353
+      ],
+      "canonical_for": [],
+      "words": 1305,
+      "bytes": 9036,
+      "sha256": "3ecccd19726a5944a09b3d3827cac7471f0682d6f3277483e8dd7f62aa1ecd87",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    },
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/e12b-checkpoint-math-for-moe-and-400b-models",
+      "path": "etape9-phasee-storage-market/00-storage-market/e12b-checkpoint-math-for-moe-and-400b-models.md",
+      "title": "E12b — Checkpoint math for MoE and 400B+ models",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "architecture",
+      "actors": [
+        "DeepSeek",
+        "Google",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "moe",
+        "agents",
+        "consumer",
+        "cost",
+        "datacenter",
+        "deepseek",
+        "dram",
+        "fine-tuning",
+        "fp8",
+        "gpu",
+        "gpus",
+        "hbm"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        354,
+        419
+      ],
+      "canonical_for": [],
+      "words": 1440,
+      "bytes": 8975,
+      "sha256": "f21103bd66cdcfa90bf7a5151818b1ed58c78487b5bd540c7f17106c0ed321b2",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    },
+    {
+      "id": "etape9-phasee-storage-market/00-storage-market/e22-2026-timeline-of-market-events",
+      "path": "etape9-phasee-storage-market/00-storage-market/e22-2026-timeline-of-market-events.md",
+      "title": "E22 — 2026 timeline of market events",
+      "domain": "step-9-phase-e-storage-memory-market-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "China",
+        "Google",
+        "Nvidia",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-02-18",
+        "2026-03-24",
+        "2026-04-18",
+        "2026-06-24",
+        "2026-07-10",
+        "2026-07-19",
+        "2026-07-21",
+        "2026-07-22",
+        "2026-08-05",
+        "2026-08-15",
+        "2026-08-31",
+        "2026-09",
+        "2026-09-07",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-18",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "capex",
+        "consumer",
+        "cost",
+        "dram",
+        "foundry",
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm4",
+        "inference",
+        "ipo"
+      ],
+      "source": "docs/RAG/etape9_phaseE_storage_market.md",
+      "source_anchor": "",
+      "source_lines": [
+        420,
+        476
+      ],
+      "canonical_for": [],
+      "words": 1066,
+      "bytes": 7505,
+      "sha256": "b764b513e2e7f757a9372dfde6cf8c9dbb142613cfdd74999f3cb874524af6e3",
+      "section": "Step 9 Phase E — Storage & Memory Market 2026"
+    }
+  ]
+}

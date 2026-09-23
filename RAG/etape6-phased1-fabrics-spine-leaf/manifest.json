@@ -1,0 +1,491 @@
+{
+  "corpus": "etape6-phased1-fabrics-spine-leaf",
+  "title": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs",
+  "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+  "source_lines": 750,
+  "source_sha256": "5c700620dd3472d1d97eac9559ec7ed2429cf119bf9c42386ecdbbc0660d9cad",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/overview",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/overview.md",
+      "title": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "compute",
+        "cost",
+        "distribution",
+        "gpu",
+        "hyperscaler",
+        "latency",
+        "nvidia",
+        "pricing",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 1074,
+      "bytes": 7533,
+      "sha256": "5244350677e31e52c6c62995d91fc6eaa2a6ea9528e1c1ddc7e2ddf1a9753c1d",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-2-core-distribution-access-vs-spine-leaf-fit-trade-offs",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-2-core-distribution-access-vs-spine-leaf-fit-trade-offs.md",
+      "title": "Wave 2 — Core/distribution/access vs spine-leaf: fit, trade-offs, migration",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
+        "2020-04"
+      ],
+      "keywords": [
+        "distribution",
+        "acquisition",
+        "alignment",
+        "benchmarks",
+        "cost",
+        "dci",
+        "ethernet",
+        "gpu",
+        "latency",
+        "nvidia",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        69,
+        157
+      ],
+      "canonical_for": [],
+      "words": 1231,
+      "bytes": 9540,
+      "sha256": "27d5bcea8303fc3432e61f2f73897e2a8085cc68f50aaf3d827f79d08754f1ed",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-4-fabric-level-underlay-essentials-numbered-vs-unnumber",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-4-fabric-level-underlay-essentials-numbered-vs-unnumber.md",
+      "title": "Wave 4 — Fabric-level underlay essentials (numbered vs unnumbered, cabling plans)",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "cost",
+        "ethernet",
+        "gpu",
+        "hyperscaler",
+        "license",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        158,
+        203
+      ],
+      "canonical_for": [],
+      "words": 699,
+      "bytes": 5250,
+      "sha256": "8f9f4271b3cd6fcd313e08aaa6f989e94171b91bcfaf6ea072d3c1507efd42a2",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-7-clos-sizing-worked-examples-with-published-sources",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-7-clos-sizing-worked-examples-with-published-sources.md",
+      "title": "Wave 7 — Clos sizing worked examples with published sources",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-03"
+      ],
+      "keywords": [
+        "agents",
+        "cost",
+        "governance",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        204,
+        267
+      ],
+      "canonical_for": [],
+      "words": 842,
+      "bytes": 6784,
+      "sha256": "1181efd1fd6425d4dd3730e71be82dc409ab43f8ea8d769387eb191368b0b8ac",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-9-arista-deep-dive-800g-hardware-and-avd-data-model",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-9-arista-deep-dive-800g-hardware-and-avd-data-model.md",
+      "title": "Wave 9 — Arista deep-dive: 800G hardware and AVD data model",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2023-05",
+        "2025-11"
+      ],
+      "keywords": [
+        "dci",
+        "ethernet",
+        "full-duplex",
+        "gpu",
+        "lpo",
+        "nvidia",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        268,
+        318
+      ],
+      "canonical_for": [],
+      "words": 639,
+      "bytes": 5629,
+      "sha256": "9c27c5270283fb765d39204c28a68eaa2fbb30f4cf292cd83e7a1f11414efef0",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-11-dell-and-aruba-deep-dive",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-11-dell-and-aruba-deep-dive.md",
+      "title": "Wave 11 — Dell and Aruba deep-dive",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "lean",
+        "omni"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        319,
+        370
+      ],
+      "canonical_for": [],
+      "words": 579,
+      "bytes": 5161,
+      "sha256": "5b70dcec87d33a8c1d2ae7687416c67129ffe4dba8501d89260ffc06bfb4ecd3",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-13-switch-silicon-radix-update-tomahawk-6-systems-20252",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-13-switch-silicon-radix-update-tomahawk-6-systems-20252.md",
+      "title": "Wave 13 — Switch-silicon radix update: Tomahawk 6 systems (2025–2026)",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "TSMC",
+        "xAI"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-03"
+      ],
+      "keywords": [
+        "3nm",
+        "benchmark",
+        "blackwell",
+        "compute",
+        "cost",
+        "cpo",
+        "disaggregated",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "hyperscaler",
+        "latency"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        371,
+        425
+      ],
+      "canonical_for": [],
+      "words": 710,
+      "bytes": 6418,
+      "sha256": "8b783254d0e6fd0cea9d12fdbf75eceb5c303a43b7d08eefa07efd2ebaf00bc7",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-16-updated-coverage-audit-open-items",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-16-updated-coverage-audit-open-items.md",
+      "title": "Wave 16 — Updated coverage audit & open items",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-09-02"
+      ],
+      "keywords": [
+        "acquisition",
+        "alignment",
+        "benchmarks",
+        "claude",
+        "cost",
+        "disclosure",
+        "gpu",
+        "gpus",
+        "hyperscaler",
+        "license",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        426,
+        482
+      ],
+      "canonical_for": [],
+      "words": 809,
+      "bytes": 6172,
+      "sha256": "f91497a609c21e19a07d639bf94f05ab4cc8ad45ccfb9e3286d90d935878ac3f",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-19-fabric-level-multi-homing-options-vpc-vsx-mc-lag-esi",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-19-fabric-level-multi-homing-options-vpc-vsx-mc-lag-esi.md",
+      "title": "Wave 19 — Fabric-level multi-homing options (vPC / VSX / MC-LAG / ESI)",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "benchmarks",
+        "cost",
+        "ethernet",
+        "hyperscaler",
+        "license",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        483,
+        528
+      ],
+      "canonical_for": [],
+      "words": 593,
+      "bytes": 3752,
+      "sha256": "5d314b38c7c4bb25f131b8c755c77bcca1505b658dea3740da89888fbdc057c8",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-22-vendor-reference-design-comparison-matrix-synthesis",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-22-vendor-reference-design-comparison-matrix-synthesis.md",
+      "title": "Wave 22 — Vendor reference-design comparison matrix (synthesis)",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "datacenter",
+        "dci",
+        "gpu",
+        "gpus",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        529,
+        573
+      ],
+      "canonical_for": [],
+      "words": 639,
+      "bytes": 4563,
+      "sha256": "1018405307196f75764c70076fb89acaa60a4c9be862678eaae0415feec784e7",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-24-deployment-notes-and-field-patterns",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-24-deployment-notes-and-field-patterns.md",
+      "title": "Wave 24 — Deployment notes and field patterns",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Google",
+        "Meta",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "cost",
+        "cpo",
+        "ethernet",
+        "license",
+        "nvidia",
+        "pricing",
+        "serdes",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        574,
+        628
+      ],
+      "canonical_for": [],
+      "words": 814,
+      "bytes": 5649,
+      "sha256": "ebb9ff430b4e7c9465484e3a318040e1d82cce12bfbbe8efea9db56b272e91c9",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-28-source-index-key-urls-consulted",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-28-source-index-key-urls-consulted.md",
+      "title": "Wave 28 — Source index (key URLs consulted)",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Meta",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "cpo",
+        "datacenter",
+        "dci",
+        "disaggregated",
+        "distribution",
+        "ethernet",
+        "nvidia",
+        "optics",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        629,
+        696
+      ],
+      "canonical_for": [],
+      "words": 505,
+      "bytes": 7036,
+      "sha256": "d5ae0ecd19fec50b44211faeecf489c85e372759c5e113001b4cba66da250df6",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-30-worked-example-64-leaf-fabric-bill-of-materials-and-",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/wave-30-worked-example-64-leaf-fabric-bill-of-materials-and-.md",
+      "title": "Wave 30 — Worked example: 64-leaf fabric bill of materials and acceptance checks",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Meta",
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-02"
+      ],
+      "keywords": [
+        "asic",
+        "gpus",
+        "latency",
+        "licenses",
+        "llama",
+        "nvidia",
+        "optics",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        697,
+        750
+      ],
+      "canonical_for": [],
+      "words": 589,
+      "bytes": 3352,
+      "sha256": "92133ae0a4e38627cefbe49fb7954f06acb09a790918e63183228e82e32aa404",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    }
+  ]
+}

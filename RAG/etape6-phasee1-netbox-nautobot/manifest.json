@@ -1,0 +1,467 @@
+{
+  "corpus": "etape6-phasee1-netbox-nautobot",
+  "title": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)",
+  "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+  "source_lines": 750,
+  "source_sha256": "d1b07fee1eb03dfae39418f712635381e323254410cae1f26fbbaa66d83d9c40",
+  "chunk_count": 11,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/overview",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/overview.md",
+      "title": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-05",
+        "2026-01-06",
+        "2026-06-30",
+        "2026-08-25",
+        "2026-09",
+        "2026-09-02",
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "apache",
+        "benchmarks",
+        "governance",
+        "license"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        77
+      ],
+      "canonical_for": [],
+      "words": 1613,
+      "bytes": 13505,
+      "sha256": "75174b0103e2693b79d81644ee69d4231a08fbbd8570b9f1d49860e90ec37cd0",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-2-netbox-labs-commercial-ecosystem-cloud-assurance-diod",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-2-netbox-labs-commercial-ecosystem-cloud-assurance-diod.md",
+      "title": "Wave 2 — NetBox Labs commercial ecosystem: Cloud, Assurance, Diode, Discovery",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-04-02"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "cost",
+        "funding",
+        "pricing",
+        "research",
+        "valuation"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        78,
+        135
+      ],
+      "canonical_for": [],
+      "words": 731,
+      "bytes": 6132,
+      "sha256": "8c4f175ce2d4ff0e0c404ea23fa0546ca2f8850e9af8b308604d2b891e0f01f9",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-4-nautobot-core-version-line-and-platform-features-2023",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-4-nautobot-core-version-line-and-platform-features-2023.md",
+      "title": "Wave 4 — Nautobot core: version line and platform features (2023–2026)",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "JFrog",
+        "Microsoft"
+      ],
+      "dates": [
+        "2024-03",
+        "2024-08",
+        "2025-01",
+        "2025-04",
+        "2025-04-10",
+        "2025-11",
+        "2026-04",
+        "2026-04-15",
+        "2026-06-30",
+        "2026-07",
+        "2026-07-01",
+        "2026-07-28",
+        "2026-08-06",
+        "2026-08-13",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "apache",
+        "distribution"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        136,
+        208
+      ],
+      "canonical_for": [],
+      "words": 1292,
+      "bytes": 11350,
+      "sha256": "93aa9f4150f25594b02e19f3d8a9caeecbc63c2401bfdb20aedc3e1f3a58becb",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-6-head-to-head-netbox-vs-nautobot-2026-view",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-6-head-to-head-netbox-vs-nautobot-2026-view.md",
+      "title": "Wave 6 — Head-to-head: NetBox vs Nautobot (2026 view)",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "JFrog",
+        "United States"
+      ],
+      "dates": [
+        "2026-04-15",
+        "2026-09"
+      ],
+      "keywords": [
+        "agent",
+        "apache",
+        "lean",
+        "open source",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        209,
+        258
+      ],
+      "canonical_for": [],
+      "words": 700,
+      "bytes": 5479,
+      "sha256": "dc5233bf43725255908f75eb982df8fbb712acbc91bcc4d1794e85823d164932",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-7-adjacent-ipam-dcim-tools",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-7-adjacent-ipam-dcim-tools.md",
+      "title": "Wave 7 — Adjacent IPAM/DCIM tools",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "California",
+        "CoreWeave",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-07-14",
+        "2025-11-27",
+        "2026-04-21",
+        "2026-04-27",
+        "2026-05-24",
+        "2026-06-22",
+        "2026-07",
+        "2026-08-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "apache",
+        "datacenter",
+        "distribution",
+        "embedding",
+        "ethernet",
+        "funding",
+        "nvidia",
+        "open source",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        259,
+        320
+      ],
+      "canonical_for": [],
+      "words": 1129,
+      "bytes": 10055,
+      "sha256": "1c6c6ee5f4d3f4d15bb2fa1630f4d36f09527298b7016d22cf0b45ebbed162f8",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-10-netbox-labs-portfolio-expansion-ai-discovery-and-ing",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-10-netbox-labs-portfolio-expansion-ai-discovery-and-ing.md",
+      "title": "Wave 10 — NetBox Labs portfolio expansion: AI, discovery, and ingestion",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-07",
+        "2026-02",
+        "2026-02-10",
+        "2026-05-24"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "copilot",
+        "funding",
+        "governance"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        321,
+        379
+      ],
+      "canonical_for": [],
+      "words": 988,
+      "bytes": 8483,
+      "sha256": "38219fc6cbd4eb65bffd382e1f1818c0742a36029e1adeafde3b61d1e1f13269",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-12-migration-tooling-and-cross-pollination",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-12-migration-tooling-and-cross-pollination.md",
+      "title": "Wave 12 — Migration tooling and cross-pollination",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2021-02-20",
+        "2025-05-28",
+        "2025-06-13",
+        "2026-01-06",
+        "2026-02-10",
+        "2026-04",
+        "2026-06-30",
+        "2026-07",
+        "2026-08-16",
+        "2026-08-25",
+        "2026-09-02",
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "apache",
+        "copilot",
+        "governance",
+        "license",
+        "open source",
+        "revenue",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        380,
+        456
+      ],
+      "canonical_for": [],
+      "words": 1241,
+      "bytes": 9833,
+      "sha256": "b9ecb122e7fd4a306e19eded6d8d316dff9fe2a2a84564c6d76ff1748d3b028e",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-15-gaps-conflicts-and-unverified-claims-log",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-15-gaps-conflicts-and-unverified-claims-log.md",
+      "title": "Wave 15 — Gaps, conflicts, and unverified claims log",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "CoreWeave",
+        "JFrog",
+        "Microsoft"
+      ],
+      "dates": [
+        "2024-07",
+        "2025-04",
+        "2025-07",
+        "2026-02",
+        "2026-07",
+        "2026-09-22",
+        "2026-10",
+        "2026-10-13"
+      ],
+      "keywords": [
+        "acquisition",
+        "agentic",
+        "agents",
+        "apache",
+        "benchmark",
+        "copilot",
+        "funding",
+        "gpu",
+        "lean",
+        "open source",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        457,
+        521
+      ],
+      "canonical_for": [],
+      "words": 1106,
+      "bytes": 8346,
+      "sha256": "d8193b653a5c3d7ef9b6c2ebb0219cf90916ca68ac79d99e4492bf9f20680189",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-17-glossary-of-terms-used-in-this-file",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-17-glossary-of-terms-used-in-this-file.md",
+      "title": "Wave 17 — Glossary of terms used in this file",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-05-28",
+        "2025-07",
+        "2026-02",
+        "2026-02-10",
+        "2026-10-13"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "copilot",
+        "governance",
+        "latency",
+        "pricing",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        522,
+        619
+      ],
+      "canonical_for": [],
+      "words": 1666,
+      "bytes": 12807,
+      "sha256": "90f6e554ddb0da4bb71ecc32ce236c5316e93866a16f8d3803c500d7994622ec",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-20-consolidated-source-index-all-urls-cited-in-this-fil",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-20-consolidated-source-index-all-urls-cited-in-this-fil.md",
+      "title": "Wave 20 — Consolidated source index (all URLs cited in this file)",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-04-10",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "claude",
+        "copilot",
+        "funding",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        620,
+        702
+      ],
+      "canonical_for": [],
+      "words": 211,
+      "bytes": 5719,
+      "sha256": "824ae5fb81a83fc93bfcda1ce287a22ee5b319c2e18f1a880b5a86ce42d2f2be",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    },
+    {
+      "id": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-21-timeline-netbox-nautobot-january-2024-september-2026",
+      "path": "etape6-phasee1-netbox-nautobot/00-netbox-nautobot/wave-21-timeline-netbox-nautobot-january-2024-september-2026.md",
+      "title": "Wave 21 — Timeline: NetBox & Nautobot, January 2024 → September 2026 `[official][vendor-reported]`",
+      "domain": "phase-e1-netbox-nautobot-network-source-of-truth-research-fi",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "CoreWeave",
+        "Microsoft"
+      ],
+      "dates": [
+        "2024-01",
+        "2024-01-31",
+        "2025-01-06",
+        "2025-04",
+        "2025-04-02",
+        "2025-04-15",
+        "2025-05-28",
+        "2025-06-30",
+        "2025-07",
+        "2026-02",
+        "2026-02-10",
+        "2026-06-30",
+        "2026-07",
+        "2026-08-16",
+        "2026-08-25",
+        "2026-09",
+        "2026-09-02",
+        "2026-09-15",
+        "2026-09-22",
+        "2026-10-13"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "copilot",
+        "packaging",
+        "pricing",
+        "research",
+        "series b",
+        "valuation"
+      ],
+      "source": "docs/RAG/etape6_phaseE1_netbox_nautobot.md",
+      "source_anchor": "",
+      "source_lines": [
+        703,
+        750
+      ],
+      "canonical_for": [],
+      "words": 790,
+      "bytes": 6137,
+      "sha256": "857017993cae1ea96ee56dfd9d3159b0f4741c4f6c82b9471b87a203f9d1abfb",
+      "section": "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
+    }
+  ]
+}

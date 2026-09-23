@@ -1,0 +1,419 @@
+{
+  "corpus": "etape6-phased2-evpn-vxlan",
+  "title": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay",
+  "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+  "source_lines": 879,
+  "source_sha256": "116ee827326604a1bd0633ff9a133e3e3f6a0ec9f9599028acf8f641674db747",
+  "chunk_count": 16,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/overview",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/overview.md",
+      "title": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "dci",
+        "ethernet",
+        "nvidia",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 372,
+      "bytes": 2742,
+      "sha256": "e55c8d24a5f5e8e5546e4cdbaae6f08b0c80a9e45e5de3e37d1d991eff02d341",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/1-2-packet-format-rfc-7348-4",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/1-2-packet-format-rfc-7348-4.md",
+      "title": "1.2 Packet format (RFC 7348 §4)",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        54,
+        100
+      ],
+      "canonical_for": [],
+      "words": 401,
+      "bytes": 2486,
+      "sha256": "eab63718eebacf37e7b01e6aa3f00125bdd23e117ec3efc717b0a70729680a0e",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/1-4-vtep-and-nve",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/1-4-vtep-and-nve.md",
+      "title": "1.4 VTEP and NVE",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        101,
+        147
+      ],
+      "canonical_for": [],
+      "words": 335,
+      "bytes": 2515,
+      "sha256": "de4a885d0f39941125972def41c334ff7238d968cc4fb299399b68bc30b342ec",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/1-6-underlay-requirements",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/1-6-underlay-requirements.md",
+      "title": "1.6 Underlay requirements",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        148,
+        192
+      ],
+      "canonical_for": [],
+      "words": 354,
+      "bytes": 2343,
+      "sha256": "d6fada53ad503499b1e57faacd523b974d21d91d84087392ea563ce036145476",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/wave-2-evpn-control-plane",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/wave-2-evpn-control-plane.md",
+      "title": "Wave 2 — EVPN control plane",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-04-23"
+      ],
+      "keywords": [
+        "ethernet",
+        "parameters"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        193,
+        245
+      ],
+      "canonical_for": [],
+      "words": 495,
+      "bytes": 3193,
+      "sha256": "a3b68ae12635984789438bbabd63e06886ba2792f0914cc300c00dcd146c0f65",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/2-3-evpn-building-blocks-evi-rd-rt-esi",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/2-3-evpn-building-blocks-evi-rd-rt-esi.md",
+      "title": "2.3 EVPN building blocks: EVI, RD, RT, ESI",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        246,
+        306
+      ],
+      "canonical_for": [],
+      "words": 502,
+      "bytes": 3534,
+      "sha256": "4f2296ab740f3c291ab33490fafdcb4ae6b4cc74cf3499d92132e96af7e6e30f",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/2-6-distributed-anycast-gateway",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/2-6-distributed-anycast-gateway.md",
+      "title": "2.6 Distributed anycast gateway",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        307,
+        360
+      ],
+      "canonical_for": [],
+      "words": 382,
+      "bytes": 2604,
+      "sha256": "c9e101b076fa968910c78913028d8d93234de6a49b7a3204063debed2a8c6437",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/3-2-esi-ethernet-segment-identifier",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/3-2-esi-ethernet-segment-identifier.md",
+      "title": "3.2 ESI (Ethernet Segment Identifier)",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "decode"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        361,
+        412
+      ],
+      "canonical_for": [],
+      "words": 418,
+      "bytes": 2872,
+      "sha256": "6e727d49b06830e6d26b656089cfdcdcdb6b4f47f1581bb15d449611bfa6cbd4",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/3-5-aliasing-and-backup-paths",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/3-5-aliasing-and-backup-paths.md",
+      "title": "3.5 Aliasing and backup paths",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "dci"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        413,
+        478
+      ],
+      "canonical_for": [],
+      "words": 470,
+      "bytes": 3304,
+      "sha256": "fda0512cae1396ef65db4a875eae9b18fd46b8a99fcfccdeccd606ab1663f271",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/4-3-evpn-vxlan-mpls-vpn-stitching-dci-l3-gateway",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/4-3-evpn-vxlan-mpls-vpn-stitching-dci-l3-gateway.md",
+      "title": "4.3 EVPN-VXLAN ↔ MPLS-VPN stitching (DCI L3 gateway)",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "dci",
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        479,
+        526
+      ],
+      "canonical_for": [],
+      "words": 318,
+      "bytes": 2256,
+      "sha256": "2f23e78b1bb2ff8b937ab1644eff9c5938669e391ab0e4731fea5906705456fd",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/wave-5-vendor-implementations-and-interop",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/wave-5-vendor-implementations-and-interop.md",
+      "title": "Wave 5 — Vendor implementations and interop",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "dci"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        527,
+        582
+      ],
+      "canonical_for": [],
+      "words": 277,
+      "bytes": 2146,
+      "sha256": "195af1cb8f83a935dca253635ec4b90e3957c21ef1a9feba66b1bb905e85b4c9",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-2-arista-eos-vxlan1-interface-mlag-esi",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-2-arista-eos-vxlan1-interface-mlag-esi.md",
+      "title": "5.2 Arista EOS — Vxlan1 interface + MLAG/ESI",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        583,
+        629
+      ],
+      "canonical_for": [],
+      "words": 223,
+      "bytes": 1777,
+      "sha256": "b7811098b4ea5fdafb54004745b0071e4b275a5e06e6d73f5531fec64f6566c7",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-3-nvidia-cumulus-linux-frr-and-sonic",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-3-nvidia-cumulus-linux-frr-and-sonic.md",
+      "title": "5.3 NVIDIA — Cumulus Linux (FRR) and SONiC",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "asic",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        630,
+        696
+      ],
+      "canonical_for": [],
+      "words": 380,
+      "bytes": 2875,
+      "sha256": "121f8631ef1c87b541b449e10b3d642b68d9aa3d03cbce5bac15613ef8af5adb",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-5-aruba-cx-hpe-aruba-networking",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-5-aruba-cx-hpe-aruba-networking.md",
+      "title": "5.5 Aruba CX (HPE Aruba Networking)",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "dci"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        697,
+        745
+      ],
+      "canonical_for": [],
+      "words": 336,
+      "bytes": 2618,
+      "sha256": "24e1c466b940b2dadca6e5ae2c61184b25237bf53e3583e557cb5ce4b5c1933f",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-8-gaps-wave-5",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/5-8-gaps-wave-5.md",
+      "title": "5.8 Gaps — Wave 5",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "ethernet",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        746,
+        821
+      ],
+      "canonical_for": [],
+      "words": 486,
+      "bytes": 3368,
+      "sha256": "24de212f7f155c29bdaefe45346cb9bb01c45846a169d7e5b4cdaaf392bd5ae1",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    },
+    {
+      "id": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/6-3-common-failure-modes",
+      "path": "etape6-phased2-evpn-vxlan/00-evpn-vxlan/6-3-common-failure-modes.md",
+      "title": "6.3 Common failure modes",
+      "domain": "step-6-phase-d-wave-2-evpn-vxlan-overlay",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "dci",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseD2_evpn_vxlan.md",
+      "source_anchor": "",
+      "source_lines": [
+        822,
+        879
+      ],
+      "canonical_for": [],
+      "words": 552,
+      "bytes": 3788,
+      "sha256": "8abbb4e9f97f21c837633f36a71ac9641a2f0914de23b98e74960ac7478f0f32",
+      "section": "Step 6 — Phase D wave 2: EVPN-VXLAN overlay"
+    }
+  ]
+}

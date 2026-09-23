@@ -1,0 +1,530 @@
+{
+  "corpus": "etape8-phasee-aiml-stacks",
+  "title": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)",
+  "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+  "source_lines": 881,
+  "source_sha256": "9b5377adfe231409c8d78289ae3acf811749bcfa159c55e384bb8b222b102666",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/overview",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/overview.md",
+      "title": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "quantization",
+        "research",
+        "sglang",
+        "tpu",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 293,
+      "bytes": 2247,
+      "sha256": "a346b5d713a4ed8ccf7e86fe58f9318e487cffd3b62555800afb44c1a573ec4a",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/1-pytorch-the-2-6-2-7-2-8-era",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/1-pytorch-the-2-6-2-7-2-8-era.md",
+      "title": "1. PyTorch — the 2.6/2.7/2.8 era",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Google",
+        "Hugging Face",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "memory",
+        "nvidia",
+        "parameters",
+        "research",
+        "throughput",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        48,
+        109
+      ],
+      "canonical_for": [],
+      "words": 437,
+      "bytes": 3238,
+      "sha256": "b908e078455790c34aef6bd15ecfe07f9d980ea313ea423dde7020d63d77c0da",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/2-tensorflow-keras-3-jax-and-mindspore",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/2-tensorflow-keras-3-jax-and-mindspore.md",
+      "title": "2. TensorFlow, Keras 3, JAX, and MindSpore",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "Google",
+        "Huawei",
+        "Nvidia",
+        "TensorRT-LLM"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "ascend",
+        "attention",
+        "gpu",
+        "inference",
+        "nvfp4",
+        "nvidia",
+        "research",
+        "tensorrt",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        110,
+        186
+      ],
+      "canonical_for": [],
+      "words": 606,
+      "bytes": 4344,
+      "sha256": "87c32f80a77ee564d8ce4d9a90318e07e1b062f50b54ee0e25ea7bc7153628bd",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/3-the-hugging-face-ecosystem",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/3-the-hugging-face-ecosystem.md",
+      "title": "3. The Hugging Face ecosystem",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "platform",
+      "actors": [
+        "Alibaba",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2025-12",
+        "2025-12-18",
+        "2026-01",
+        "2026-01-26",
+        "2026-05",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "diffusion",
+        "dpo",
+        "fine-tuning",
+        "gpus",
+        "lora",
+        "qlora",
+        "qwen",
+        "reasoning",
+        "training"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        187,
+        266
+      ],
+      "canonical_for": [],
+      "words": 589,
+      "bytes": 4369,
+      "sha256": "37bb429dc3ee392bf65843d2d5ac32929c07cb692620ee4a139318dfc24f829e",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/4-llm-application-frameworks-langchain-langgraph-llamaindex-",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/4-llm-application-frameworks-langchain-langgraph-llamaindex-.md",
+      "title": "4. LLM application frameworks: LangChain, LangGraph, LlamaIndex, Haystack, DSPy",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-02",
+        "2026-05-14",
+        "2026-05-22",
+        "2026-06",
+        "2026-06-22",
+        "2026-08-24"
+      ],
+      "keywords": [
+        "llama",
+        "agent",
+        "agentic",
+        "agents",
+        "distribution",
+        "license",
+        "mit license",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        267,
+        355
+      ],
+      "canonical_for": [],
+      "words": 598,
+      "bytes": 4600,
+      "sha256": "020f2413a1b41c73417f600f23d07f39c6fc78dda7c5ef769de2568d2feabc37",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/5-vector-databases-developer-angle-comparison",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/5-vector-databases-developer-angle-comparison.md",
+      "title": "5. Vector databases — developer-angle comparison",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-03"
+      ],
+      "keywords": [
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "disclosure",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        356,
+        403
+      ],
+      "canonical_for": [],
+      "words": 315,
+      "bytes": 2217,
+      "sha256": "1149e7d7f99e53025c94244b1087075f59ef61310d1941b37a3bef510c6f64d2",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/6-kernel-compilers-and-model-formats-triton-onnx-tensorrt-op",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/6-kernel-compilers-and-model-formats-triton-onnx-tensorrt-op.md",
+      "title": "6. Kernel compilers and model formats: Triton, ONNX, TensorRT, OpenVINO",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM"
+      ],
+      "dates": [
+        "2026-05-08"
+      ],
+      "keywords": [
+        "tensorrt",
+        "amd",
+        "attention",
+        "blackwell",
+        "cost",
+        "fp8",
+        "gpu",
+        "gpus",
+        "inference",
+        "inference engine",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        404,
+        475
+      ],
+      "canonical_for": [],
+      "words": 500,
+      "bytes": 3507,
+      "sha256": "ae9cb1b5f235078197b0c3209d0240d152055bc3bb86539427c8c6131786f408",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/7-quantization-tooling-bitsandbytes-gptq-awq-gguf",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/7-quantization-tooling-bitsandbytes-gptq-awq-gguf.md",
+      "title": "7. Quantization tooling: bitsandbytes, GPTQ, AWQ, GGUF",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "quantization",
+      "actors": [
+        "AMD",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "awq",
+        "gguf",
+        "gptq",
+        "quantization",
+        "accelerator",
+        "amd",
+        "compute",
+        "fine-tuning",
+        "fp8",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        476,
+        534
+      ],
+      "canonical_for": [],
+      "words": 401,
+      "bytes": 2934,
+      "sha256": "d4788a9f3a24cbefd6766b50bfa98663bf83667887c8c6e58942445d66860f13",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/8-gpu-accelerator-programming-interfaces-cuda-python-numba-c",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/8-gpu-accelerator-programming-interfaces-cuda-python-numba-c.md",
+      "title": "8. GPU/accelerator programming interfaces: CUDA Python, Numba, CuPy, ROCm, MLX",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-08-29"
+      ],
+      "keywords": [
+        "accelerator",
+        "gpu",
+        "amd",
+        "decode",
+        "fine-tuning",
+        "gpus",
+        "memory",
+        "nvidia",
+        "prefill",
+        "pricing",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        535,
+        607
+      ],
+      "canonical_for": [],
+      "words": 529,
+      "bytes": 3570,
+      "sha256": "e089f21503c73bfd21f1f7824d21b99167d4d9a27f4ae44deef49444ae977b1d",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/9-distributed-training-systems-deepspeed-fsdp-megatron-lm-to",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/9-distributed-training-systems-deepspeed-fsdp-megatron-lm-to.md",
+      "title": "9. Distributed training systems: DeepSpeed, FSDP, Megatron-LM, TorchTitan",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "training",
+      "actors": [
+        "Meta",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "training",
+        "benchmarks",
+        "moe",
+        "nvidia",
+        "tpu"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        608,
+        661
+      ],
+      "canonical_for": [],
+      "words": 342,
+      "bytes": 2578,
+      "sha256": "630cc153bc92e0243930f39ce5bc9ca701709c1cfeac173e60180571115e14c9",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/10-experiment-tracking-and-evaluation-w-b-mlflow-lm-eval-ins",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/10-experiment-tracking-and-evaluation-w-b-mlflow-lm-eval-ins.md",
+      "title": "10. Experiment tracking and evaluation: W&B, MLflow, lm-eval, Inspect",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "CoreWeave",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2025-06",
+        "2025-11",
+        "2026-04",
+        "2026-06-29"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "leaderboard",
+        "pricing",
+        "tool use",
+        "vllm"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        662,
+        734
+      ],
+      "canonical_for": [],
+      "words": 507,
+      "bytes": 3778,
+      "sha256": "ea01f05087d3af6505570a76c8590f53a0591dbe9c56a66f5180ae9205ce52a1",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/11-end-to-end-stack-decision-guide-2026",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/11-end-to-end-stack-decision-guide-2026.md",
+      "title": "11. End-to-end stack decision guide (2026)",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "CoreWeave",
+        "Google",
+        "Hugging Face",
+        "Nvidia",
+        "TensorRT-LLM"
+      ],
+      "dates": [
+        "2025-12-18",
+        "2026-06"
+      ],
+      "keywords": [
+        "acquisition",
+        "agents",
+        "amd",
+        "benchmarks",
+        "dpo",
+        "gpu",
+        "nvidia",
+        "pricing",
+        "qlora",
+        "reasoning",
+        "research",
+        "tensorrt"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        735,
+        809
+      ],
+      "canonical_for": [],
+      "words": 446,
+      "bytes": 3315,
+      "sha256": "277a30773d09c75260dc05ba34875469a42123a92563a69332df21731a59f49e",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    },
+    {
+      "id": "etape8-phasee-aiml-stacks/00-aiml-stacks/13-glossary",
+      "path": "etape8-phasee-aiml-stacks/00-aiml-stacks/13-glossary.md",
+      "title": "13. Glossary",
+      "domain": "step-8-phase-e-ai-ml-software-stacks-developer-facing",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-08-29",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "awq",
+        "benchmark",
+        "fine-tuning",
+        "gguf",
+        "gptq",
+        "gpu",
+        "ipo",
+        "llama",
+        "lora",
+        "mcp"
+      ],
+      "source": "docs/RAG/etape8_phaseE_aiml_stacks.md",
+      "source_anchor": "",
+      "source_lines": [
+        810,
+        881
+      ],
+      "canonical_for": [],
+      "words": 245,
+      "bytes": 4871,
+      "sha256": "f874e0531fbfa994eb276459a5c6cd43dff8ff539bf3d195fea0a5fd5d29eb14",
+      "section": "Step 8, Phase E — AI/ML Software Stacks (Developer-Facing)"
+    }
+  ]
+}

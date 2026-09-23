@@ -1,0 +1,368 @@
+{
+  "corpus": "etape6-phased3-bgp-ha",
+  "title": "Phase D3 — BGP underlay and high availability in the data center",
+  "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+  "source_lines": 755,
+  "source_sha256": "ca2b65c93c9761b97022c3d2d82b87158c728dd063a842e9cb7bab06c50db6f0",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/overview",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/overview.md",
+      "title": "Phase D3 — BGP underlay and high availability in the data center",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        18
+      ],
+      "canonical_for": [],
+      "words": 214,
+      "bytes": 1723,
+      "sha256": "af4666e000536ae39225d597abd2670e37b2f0fdeed3b200a4a58ca15d04d073",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/wave-1-bgp-as-the-data-center-underlay-design-patterns-addre",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/wave-1-bgp-as-the-data-center-underlay-design-patterns-addre.md",
+      "title": "Wave 1 — BGP as the data-center underlay: design patterns, addressing, and tuning",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "ethernet",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        19,
+        96
+      ],
+      "canonical_for": [],
+      "words": 1377,
+      "bytes": 9962,
+      "sha256": "8d516d97eba750fc9ded2f8c21bfc1c55920bb772f05290803c9b1e1ecd09afd",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/wave-2-route-policy-in-the-dc-fabric-prefix-lists-route-maps",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/wave-2-route-policy-in-the-dc-fabric-prefix-lists-route-maps.md",
+      "title": "Wave 2 — Route policy in the DC fabric: prefix lists, route maps, communities, RPKI",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "regulation",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "dci"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        97,
+        144
+      ],
+      "canonical_for": [],
+      "words": 753,
+      "bytes": 5448,
+      "sha256": "b0b445578fd718e1a4693dac03c1cbd58a7f885f14a479463eebd20bccc59223",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/3-1-cisco-vpc-virtual-port-channel-nx-os",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/3-1-cisco-vpc-virtual-port-channel-nx-os.md",
+      "title": "3.1 Cisco vPC (virtual Port Channel) — NX-OS",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        145,
+        190
+      ],
+      "canonical_for": [],
+      "words": 1002,
+      "bytes": 7577,
+      "sha256": "245ca5ef5cbd622fbbd14bb00e88fe2f8d13c3372c7ed113f4a5b27e1b0e0936",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/3-5-aruba-cx-vsx-virtual-switching-extension-aos-cx",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/3-5-aruba-cx-vsx-virtual-switching-extension-aos-cx.md",
+      "title": "3.5 Aruba CX VSX (Virtual Switching Extension) — AOS-CX",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark",
+        "benchmarks"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        191,
+        236
+      ],
+      "canonical_for": [],
+      "words": 792,
+      "bytes": 5628,
+      "sha256": "536dd6c08f7d454986814bf119131f4329c7e394dafd777a90e13f6978d55766",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/wave-4-first-hop-redundancy-anycast-gateway-issu-nsf-and-con",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/wave-4-first-hop-redundancy-anycast-gateway-issu-nsf-and-con.md",
+      "title": "Wave 4 — First-hop redundancy, anycast gateway, ISSU/NSF, and convergence",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "dci",
+        "nvidia",
+        "preemption"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        237,
+        294
+      ],
+      "canonical_for": [],
+      "words": 991,
+      "bytes": 7650,
+      "sha256": "dce5db67c781553eb07505397996f681f3cc91b2f7d1d4d4039899f844ed9f5a",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/wave-5-file-verification-and-coverage-audit",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/wave-5-file-verification-and-coverage-audit.md",
+      "title": "Wave 5 — File verification and coverage audit",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        295,
+        341
+      ],
+      "canonical_for": [],
+      "words": 294,
+      "bytes": 1694,
+      "sha256": "ea043ed35ce0645449ec7567071b912b3a469de99404a128276c34bff9eedc9e",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/wave-6-bgp-session-security-dynamic-peering-and-evpn-overlay",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/wave-6-bgp-session-security-dynamic-peering-and-evpn-overlay.md",
+      "title": "Wave 6 — BGP session security, dynamic peering, and EVPN overlay control-plane design",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "dci",
+        "ethernet",
+        "preemption"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        342,
+        426
+      ],
+      "canonical_for": [],
+      "words": 1360,
+      "bytes": 9792,
+      "sha256": "74b8a217adb2298abdb5e0d129bc363e32ff4282e988ba0ef6e479885a852bce",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/wave-8-detection-extras-fhrp-tracking-control-plane-protecti",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/wave-8-detection-extras-fhrp-tracking-control-plane-protecti.md",
+      "title": "Wave 8 — Detection extras, FHRP tracking, control-plane protection, and GR procedures",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "dci",
+        "optics",
+        "preemption"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        427,
+        511
+      ],
+      "canonical_for": [],
+      "words": 1408,
+      "bytes": 10127,
+      "sha256": "452bcf4fe982440f4f4ca19eadc1494b09743d0bb8bc054fabe1c19062e4a829",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/wave-10-monitoring-telemetry-and-the-dc-bgp-troubleshooting-",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/wave-10-monitoring-telemetry-and-the-dc-bgp-troubleshooting-.md",
+      "title": "Wave 10 — Monitoring, telemetry, and the DC BGP troubleshooting checklist",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "dci",
+        "optics",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        512,
+        562
+      ],
+      "canonical_for": [],
+      "words": 546,
+      "bytes": 3740,
+      "sha256": "bb62fabc293ae23f1ccf284b1e65a2591f2d4e7e790bbc9fcb238d757f3e7706",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/appendix-consolidated-open-items-all-waves",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/appendix-consolidated-open-items-all-waves.md",
+      "title": "Appendix — Consolidated open items (all waves)",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        563,
+        636
+      ],
+      "canonical_for": [],
+      "words": 320,
+      "bytes": 2441,
+      "sha256": "0bf3efbbb4d38e2a7952aa893f5c7f9b18d40bbf186632297055a3f15b04df2c",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/11-2-bgp-timer-defaults-reference-control-plane",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/11-2-bgp-timer-defaults-reference-control-plane.md",
+      "title": "11.2 BGP timer defaults reference (control-plane)",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "asic"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        637,
+        685
+      ],
+      "canonical_for": [],
+      "words": 569,
+      "bytes": 3353,
+      "sha256": "6cb4b4d0efda4afd8fa36284afef955e2259e58ed50f0777535942cf00f8f8bc",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/11-5-acronym-glossary-this-file",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/11-5-acronym-glossary-this-file.md",
+      "title": "11.5 Acronym glossary (this file)",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ethernet",
+        "gpu",
+        "nvidia",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        686,
+        755
+      ],
+      "canonical_for": [],
+      "words": 814,
+      "bytes": 5487,
+      "sha256": "ecb7e8c0ad585dba4e721439c5d9af3053711ef9f0d1ff85103a06e12e3dd965",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    }
+  ]
+}

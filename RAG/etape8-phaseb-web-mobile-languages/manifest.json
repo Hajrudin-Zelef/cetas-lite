@@ -1,0 +1,454 @@
+{
+  "corpus": "etape8-phaseb-web-mobile-languages",
+  "title": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains",
+  "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+  "source_lines": 762,
+  "source_sha256": "e4c10bfe4518ffcd6d3b7b8db33663a270ed631982a6d401875e73004987ac82",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/overview",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/overview.md",
+      "title": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "benchmark",
+        "license",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 400,
+      "bytes": 2736,
+      "sha256": "7dcaeff82de719fc34964d8142bd36de18b9b339cf6eb1047f4e6ca9ffa0c6df",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/1-javascript-language-standard-ecmascript-2025-2026-and-tc39.md",
+      "title": "1. JavaScript language standard — ECMAScript 2025 / 2026 and TC39 proposals",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-03",
+        "2025-06",
+        "2025-08",
+        "2026-03"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        96
+      ],
+      "canonical_for": [],
+      "words": 641,
+      "bytes": 5046,
+      "sha256": "3de9b7918401efb732cd651131e1881db9a188b816dd0ec76ed6c332613fd373",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/3-node-js-22-24-26-lifecycle-and-runtime-features.md",
+      "title": "3. Node.js — 22/24/26 lifecycle and runtime features",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2025-05-06",
+        "2025-06",
+        "2026-09",
+        "2026-10",
+        "2027-04-30",
+        "2028-04-30"
+      ],
+      "keywords": [
+        "acquisition",
+        "benchmark",
+        "benchmarks",
+        "exploit"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        97,
+        167
+      ],
+      "canonical_for": [],
+      "words": 815,
+      "bytes": 6674,
+      "sha256": "5cea0a4c4e3ad3e0dba507196142ab56918cd15560fc347a5a758eeeeceff32b",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/7-supply-chain-security-shai-hulud-and-registry-hardening.md",
+      "title": "7. Supply-chain security — Shai-Hulud and registry hardening",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-01",
+        "2025-10-07",
+        "2025-11",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "benchmarks",
+        "consumer",
+        "inference",
+        "latency",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        168,
+        236
+      ],
+      "canonical_for": [],
+      "words": 958,
+      "bytes": 7555,
+      "sha256": "19e19ec700b3b3919a97957ad172a1ba02da72f9b700963b5f31d4fc3eb288f9",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/10-pypi-statistics-and-packaging-standards",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/10-pypi-statistics-and-packaging-standards.md",
+      "title": "10. PyPI statistics and packaging standards",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Oracle"
+      ],
+      "dates": [
+        "2025-03-18",
+        "2025-09",
+        "2025-09-15",
+        "2025-09-16",
+        "2025-11-11",
+        "2025-11-12",
+        "2025-11-13",
+        "2026-03",
+        "2026-09",
+        "2026-11",
+        "2028-11"
+      ],
+      "keywords": [
+        "packaging",
+        "memory"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        237,
+        297
+      ],
+      "canonical_for": [],
+      "words": 550,
+      "bytes": 4430,
+      "sha256": "a444e0a114a43927b576824f4acee0910410e82843b929d5ae7adfa5284e5cb5",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/14-kotlin-2-2-2-3-2-4-claims-and-kmp.md",
+      "title": "14. Kotlin — 2.2 / 2.3 / 2.4 claims and KMP",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-11"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        298,
+        357
+      ],
+      "canonical_for": [],
+      "words": 375,
+      "bytes": 3513,
+      "sha256": "8fb638c29d41883b728bc1a493545bca476873f762b108c56427ab880ed58971",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/17-php-8-5",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/17-php-8-5.md",
+      "title": "17. PHP 8.5",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-05",
+        "2025-11-17",
+        "2025-11-20",
+        "2025-12-17",
+        "2025-12-18",
+        "2025-12-25"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        358,
+        407
+      ],
+      "canonical_for": [],
+      "words": 581,
+      "bytes": 5019,
+      "sha256": "6e41a8498666dd735f43d262a5d398ce528d3a610d0dd5250d4ab7873349539c",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/19-elixir-1-19",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/19-elixir-1-19.md",
+      "title": "19. Elixir 1.19",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-08",
+        "2025-10",
+        "2025-10-16",
+        "2025-12-23",
+        "2025-12-27",
+        "2026-07",
+        "2026-07-23",
+        "2026-09",
+        "2026-09-10",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "advisory",
+        "bedrock",
+        "copilot",
+        "inference",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        408,
+        497
+      ],
+      "canonical_for": [],
+      "words": 1307,
+      "bytes": 9749,
+      "sha256": "d31cd46ee570ff5e38db1983d3e61a1a87db7893ad1016fee218ed3b6e16b494",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/22-lifecycle-support-license-comparison-tables",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/22-lifecycle-support-license-comparison-tables.md",
+      "title": "22. Lifecycle / support / license comparison tables",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "licenses",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [
+        "2025-10-07",
+        "2025-10-16",
+        "2025-11-20",
+        "2025-12-25",
+        "2026-07-23",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-22",
+        "2026-10",
+        "2027-04-30",
+        "2028-04-30"
+      ],
+      "keywords": [
+        "license",
+        "acquisition",
+        "alignment",
+        "apache",
+        "benchmark",
+        "inference",
+        "licenses"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        498,
+        568
+      ],
+      "canonical_for": [],
+      "words": 740,
+      "bytes": 4775,
+      "sha256": "edd5f4855d5245da9dedad146a3bfd121bbefebc1500dbc6134706ceee9f3040",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/24-conflict-and-gap-register",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/24-conflict-and-gap-register.md",
+      "title": "24. Conflict and gap register",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-09",
+        "2025-09-15",
+        "2025-09-16",
+        "2025-11-11",
+        "2025-11-12",
+        "2026-03",
+        "2026-06",
+        "2026-10"
+      ],
+      "keywords": [
+        "acquisition"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        569,
+        614
+      ],
+      "canonical_for": [],
+      "words": 551,
+      "bytes": 3434,
+      "sha256": "58fbfece9cccd5ff81b71f7c6aa257dcacafd8bf969eded6dfd12105b743133e",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/26-source-index",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/26-source-index.md",
+      "title": "26. Source index",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-11-13",
+        "2025-12-17",
+        "2025-12-18",
+        "2025-12-25"
+      ],
+      "keywords": [
+        "agent",
+        "benchmarks",
+        "claude",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        615,
+        702
+      ],
+      "canonical_for": [],
+      "words": 192,
+      "bytes": 7126,
+      "sha256": "69377f364750417a4b0ccec3cb3cbaa1afedf45c8480012b7cfc2e1bcd8f724e",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/27-release-timeline-quick-reference-2025-01-2026-09-22.md",
+      "title": "27. Release timeline quick reference (2025-01 → 2026-09-22)",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-03",
+        "2025-03-18",
+        "2025-05-06",
+        "2025-09-15",
+        "2025-10-07",
+        "2025-10-16",
+        "2025-10-31",
+        "2025-11-11",
+        "2025-11-17",
+        "2025-11-20",
+        "2025-12-18",
+        "2025-12-23",
+        "2025-12-25",
+        "2025-12-27",
+        "2026-01-20",
+        "2026-04-08",
+        "2026-07-23",
+        "2026-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-16",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "embedding",
+        "memory"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        703,
+        762
+      ],
+      "canonical_for": [],
+      "words": 840,
+      "bytes": 5375,
+      "sha256": "1742104d4c7ebc2893e18d50555b971f7800a48c4e837e0d9fba45f98e9b3e58",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    }
+  ]
+}

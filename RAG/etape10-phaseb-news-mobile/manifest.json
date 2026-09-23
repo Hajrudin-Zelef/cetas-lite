@@ -1,0 +1,519 @@
+{
+  "corpus": "etape10-phaseb-news-mobile",
+  "title": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)",
+  "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+  "source_lines": 751,
+  "source_sha256": "23b0e3e63d477b9855648f851d41c1b71ef8dfba378d0e26026961f1b063880d",
+  "chunk_count": 13,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/overview",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/overview.md",
+      "title": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "Samsung",
+        "United States",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2025-09",
+        "2026-02",
+        "2026-02-01",
+        "2026-02-25",
+        "2026-02-28",
+        "2026-03-11",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "2nm",
+        "benchmarks",
+        "foldable",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 535,
+      "bytes": 3734,
+      "sha256": "4746db92cbef60acffad51e03fc1c9eac80a912a63fd9d167e56de8a437a2f9e",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b2-chronology-march-2026-mwc-barcelona-march-25",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b2-chronology-march-2026-mwc-barcelona-march-25.md",
+      "title": "B2. Chronology — March 2026 (MWC Barcelona, March 2–5)",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "Huawei",
+        "Qualcomm",
+        "Samsung",
+        "SpaceX",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-02-28",
+        "2026-03",
+        "2026-05"
+      ],
+      "keywords": [
+        "agentic",
+        "foldable",
+        "humanoid"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        104
+      ],
+      "canonical_for": [],
+      "words": 649,
+      "bytes": 4572,
+      "sha256": "2f1e6830b67f6af53c98841982c2aeed5257394e65cba2197e590595e6d22ae1",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b4-chronology-june-2026",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b4-chronology-june-2026.md",
+      "title": "B4. Chronology — June 2026",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Meta",
+        "Qualcomm",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-24",
+        "2026-07",
+        "2026-08-07"
+      ],
+      "keywords": [
+        "2nm",
+        "3nm",
+        "cost",
+        "foldable"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        105,
+        151
+      ],
+      "canonical_for": [],
+      "words": 541,
+      "bytes": 3581,
+      "sha256": "cd0790f2abb714c144f0f9d93d24f010e1c353094473f4d77480ebf576e1ff0d",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b6-chronology-august-2026-made-by-google-august-12",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b6-chronology-august-2026-made-by-google-august-12.md",
+      "title": "B6. Chronology — August 2026 (Made by Google, August 12)",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Apple",
+        "EU",
+        "Google",
+        "Qualcomm",
+        "Samsung",
+        "TSMC",
+        "United States"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-08-12",
+        "2026-08-20",
+        "2026-09",
+        "2026-09-09",
+        "2026-09-14",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "2nm",
+        "accelerator",
+        "compute",
+        "foldable",
+        "gemini",
+        "memory",
+        "moe",
+        "pricing",
+        "tpu",
+        "voice"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        152,
+        214
+      ],
+      "canonical_for": [],
+      "words": 856,
+      "bytes": 5792,
+      "sha256": "44a4d7651c626b770ab2232ebed76cfeef805ac2eb7339140ccfeeb5e3dcd6e0",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b8-deep-dive-apple",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b8-deep-dive-apple.md",
+      "title": "B8. Deep dive — Apple",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "EU",
+        "Perplexity",
+        "Samsung",
+        "United States"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "2nm",
+        "3nm",
+        "crease",
+        "foldable",
+        "foundry",
+        "gpu",
+        "memory",
+        "perplexity",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        215,
+        281
+      ],
+      "canonical_for": [],
+      "words": 692,
+      "bytes": 4907,
+      "sha256": "5b5055d108cd0973e1a86533952f3b2d5cc8a77d9016ecdd3adbb897f3b6e7b6",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b10-deep-dive-google",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b10-deep-dive-google.md",
+      "title": "B10. Deep dive — Google",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Apple",
+        "China",
+        "Google",
+        "Huawei",
+        "Samsung",
+        "TSMC",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "2nm",
+        "foldable",
+        "gemini",
+        "humanoid",
+        "tpu"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        282,
+        339
+      ],
+      "canonical_for": [],
+      "words": 538,
+      "bytes": 3649,
+      "sha256": "dc29b77115bf7e6fcd3026376ab405608d7600373984ec8dc4e9e932400cd87a",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b12-chipsets-the-2026-silicon-story",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b12-chipsets-the-2026-silicon-story.md",
+      "title": "B12. Chipsets — the 2026 silicon story",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Apple",
+        "Google",
+        "Qualcomm",
+        "Samsung",
+        "TSMC",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "2nm",
+        "3nm",
+        "accelerator",
+        "benchmarks",
+        "gemini",
+        "gpu",
+        "inference",
+        "memory",
+        "moe",
+        "tpu",
+        "voice"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        340,
+        388
+      ],
+      "canonical_for": [],
+      "words": 447,
+      "bytes": 2715,
+      "sha256": "9c793a9226eb01da8b4e50a5c04aecba92710076d0380cadd25a31cf3fa4a470",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b13-wearables-smart-glasses",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b13-wearables-smart-glasses.md",
+      "title": "B13. Wearables & smart glasses",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Malaysia",
+        "Meta",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-24",
+        "2026-08"
+      ],
+      "keywords": [
+        "3nm",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        389,
+        453
+      ],
+      "canonical_for": [],
+      "words": 627,
+      "bytes": 4303,
+      "sha256": "2b0e7cb4d008d1e9b6e6e63d4632e525a05e407f597e1831afb393893dda485d",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b15-mobile-os-ecosystem",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b15-mobile-os-ecosystem.md",
+      "title": "B15. Mobile OS & ecosystem",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "EU",
+        "Google",
+        "Qualcomm",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "foldable",
+        "memory",
+        "regulation",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        454,
+        500
+      ],
+      "canonical_for": [],
+      "words": 359,
+      "bytes": 2453,
+      "sha256": "e9440e6f1de135ffeaf25876be3401ff301cc2da0d1dfa448b910e6ec5071b9b",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b17-flagship-comparison-tables-sept-2026",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b17-flagship-comparison-tables-sept-2026.md",
+      "title": "B17. Flagship comparison tables (Sept 2026)",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "EU",
+        "Meta",
+        "Samsung",
+        "United States",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "2nm",
+        "3nm",
+        "foldable"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        501,
+        550
+      ],
+      "canonical_for": [],
+      "words": 803,
+      "bytes": 3581,
+      "sha256": "01a8b8ec02c3a3c1edae28d2dacaf93a696e69f67f6ae871951cd28f23888c88",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b18-market-data-industry-notes",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b18-market-data-industry-notes.md",
+      "title": "B18. Market data & industry notes",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "Google",
+        "Huawei",
+        "Samsung",
+        "United States",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "crease",
+        "foldable",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        551,
+        599
+      ],
+      "canonical_for": [],
+      "words": 580,
+      "bytes": 4243,
+      "sha256": "37224537e7ee9ec6624a82b2cc7dd7743415938920ac9432ed1d9707bcc906dd",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b21-glossary",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b21-glossary.md",
+      "title": "B21. Glossary",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Google",
+        "Meta",
+        "Qualcomm",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "2nm",
+        "3nm",
+        "foldable",
+        "gemini",
+        "mixture of experts",
+        "moe",
+        "parameters",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        600,
+        668
+      ],
+      "canonical_for": [],
+      "words": 320,
+      "bytes": 5608,
+      "sha256": "68d25841e3a4077b391f90e84ecf47cb1841104960bb5372e10dc4fda259c2f6",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseb-news-mobile/00-news-mobile/b23-mid-range-budget-wave-febsept-2026",
+      "path": "etape10-phaseb-news-mobile/00-news-mobile/b23-mid-range-budget-wave-febsept-2026.md",
+      "title": "B23. Mid-range & budget wave (Feb–Sept 2026)",
+      "domain": "step-10-phase-b-mobile-devices-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "EU",
+        "Google",
+        "Huawei",
+        "Meta",
+        "Qualcomm",
+        "Samsung",
+        "United States",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "benchmarks",
+        "consumer",
+        "foldable",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape10_phaseB_news_mobile.md",
+      "source_anchor": "",
+      "source_lines": [
+        669,
+        751
+      ],
+      "canonical_for": [],
+      "words": 1013,
+      "bytes": 6999,
+      "sha256": "a63173f8b895ed789ac95e377d1d99233e3314faf0eea463debe2befbf973430",
+      "section": "Step 10 — Phase B: Mobile & Devices News (February → September 2026)"
+    }
+  ]
+}

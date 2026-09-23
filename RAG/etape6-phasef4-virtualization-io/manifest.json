@@ -1,0 +1,485 @@
+{
+  "corpus": "etape6-phasef4-virtualization-io",
+  "title": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions",
+  "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+  "source_lines": 751,
+  "source_sha256": "9cfd4a3183b25482bc763f93fe744ca25385eef103859f25dfd53b6ba6d37919",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/overview",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/overview.md",
+      "title": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "benchmark",
+        "compute",
+        "cost",
+        "ethernet",
+        "gpu",
+        "intel",
+        "latency",
+        "memory",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 1177,
+      "bytes": 9867,
+      "sha256": "d11aff1cacfd6b4afeaab49a773aca3a3a0a2122f9accfd15e0cf2070043af84",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-2-sr-iov-vfs-switchdev-and-the-live-migration-trade-off",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-2-sr-iov-vfs-switchdev-and-the-live-migration-trade-off.md",
+      "title": "Wave 2 — SR-IOV: VFs, switchdev, and the live-migration trade-off",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "aws",
+        "gpu",
+        "latency",
+        "memory",
+        "neocloud",
+        "nvidia",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        76,
+        132
+      ],
+      "canonical_for": [],
+      "words": 791,
+      "bytes": 7637,
+      "sha256": "a0e71d1ba478ed4fcdf8f170762b30ed7272e6508bbc4de857bb1511982e54a7",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-3-cpu-virtualization-extensions-vt-x-vt-d-amd-v-amd-vi-",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-3-cpu-virtualization-extensions-vt-x-vt-d-amd-v-amd-vi-.md",
+      "title": "Wave 3 — CPU virtualization extensions: VT-x/VT-d, AMD-V/AMD-Vi, ATS/PRI/PASID",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpus",
+        "intel",
+        "latency",
+        "mcp",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        133,
+        185
+      ],
+      "canonical_for": [],
+      "words": 715,
+      "bytes": 6851,
+      "sha256": "654b14bb62d6dc8161985189904c9e8bb0297892c14a9f0c930a5078d075511e",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-4-avx-512-avx10-and-amx-simd-for-packet-and-ai-work",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-4-avx-512-avx10-and-amx-simd-for-packet-and-ai-work.md",
+      "title": "Wave 4 — AVX-512, AVX10, and AMX: SIMD for packet and AI work",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "18a",
+        "amd",
+        "claude",
+        "consumer",
+        "fp8",
+        "inference",
+        "intel",
+        "latency",
+        "licenses",
+        "memory",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        186,
+        234
+      ],
+      "canonical_for": [],
+      "words": 697,
+      "bytes": 6490,
+      "sha256": "9b43139b47a2b0e8c1917e4841d4f417f9d3c44ec76a0add123f40ec3c84a462",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-5-dpdk-spdk-2026-releases-pmd-coverage-and-where-they-r",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-5-dpdk-spdk-2026-releases-pmd-coverage-and-where-they-r.md",
+      "title": "Wave 5 — DPDK & SPDK: 2026 releases, PMD coverage, and where they run",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-01-28",
+        "2026-05",
+        "2026-05-28",
+        "2026-07"
+      ],
+      "keywords": [
+        "agent",
+        "amd",
+        "blackwell",
+        "claude",
+        "compute",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "latency",
+        "license",
+        "licenses"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        235,
+        305
+      ],
+      "canonical_for": [],
+      "words": 1029,
+      "bytes": 9832,
+      "sha256": "0c01c3bae74d24c80a4fba5257ee25ac7ca974079b52d6877f96079d867c5ffa",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/part-c-decision-guides",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/part-c-decision-guides.md",
+      "title": "Part C — Decision guides",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "aws",
+        "benchmark",
+        "blackwell",
+        "compute",
+        "fp8",
+        "gpu",
+        "inference",
+        "intel",
+        "license",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        306,
+        358
+      ],
+      "canonical_for": [],
+      "words": 550,
+      "bytes": 3269,
+      "sha256": "0906e9cb57f6d5766cf7c78ae5c550e1c6d12e1a6e301e67285ba3a355e45dea",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/part-e-glossary-key-terms",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/part-e-glossary-key-terms.md",
+      "title": "Part E — Glossary (key terms)",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-01-28",
+        "2026-05-28",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "claude",
+        "compute",
+        "datacenter",
+        "fp8",
+        "gpu",
+        "gpus",
+        "intel",
+        "licenses",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        359,
+        428
+      ],
+      "canonical_for": [],
+      "words": 293,
+      "bytes": 5532,
+      "sha256": "48d0f733b28037fe7ca6552b6b8e513e7179337906b9d418aa15657db3c3689d",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-7-vdpa-and-the-virtio-1-4-admin-queue-track-deep-dive",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-7-vdpa-and-the-virtio-1-4-admin-queue-track-deep-dive.md",
+      "title": "Wave 7 — vDPA and the virtio 1.4 admin-queue track (deep dive)",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-07"
+      ],
+      "keywords": [
+        "benchmark",
+        "blackwell",
+        "compute",
+        "datacenter",
+        "gpu",
+        "intel",
+        "latency",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        429,
+        491
+      ],
+      "canonical_for": [],
+      "words": 901,
+      "bytes": 8378,
+      "sha256": "ee9fa0e943402b31dc687473d81bacc2024b53c95af67d786ccbd55d3adc535b",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-9-sr-iov-operations-vt-d-internals-and-vhost-user-proto",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-9-sr-iov-operations-vt-d-internals-and-vhost-user-proto.md",
+      "title": "Wave 9 — SR-IOV operations, VT-d internals, and vhost-user protocol notes",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "aws",
+        "fp8",
+        "gpu",
+        "intel",
+        "latency",
+        "memory",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        492,
+        547
+      ],
+      "canonical_for": [],
+      "words": 858,
+      "bytes": 7500,
+      "sha256": "fd0bb8e921912d0a9fd5b5ce1f422b186b21b4c8287594084ba9792c778d46e1",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-10-arm-virtualization-virtio-fs-and-the-rust-vmm-ecosys",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-10-arm-virtualization-virtio-fs-and-the-rust-vmm-ecosys.md",
+      "title": "Wave 10 — ARM virtualization, virtio-fs, and the rust-vmm ecosystem",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "datacenter",
+        "gpu",
+        "graviton",
+        "intel",
+        "memory",
+        "nvidia",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        548,
+        621
+      ],
+      "canonical_for": [],
+      "words": 632,
+      "bytes": 7972,
+      "sha256": "fa6e6a266b58f45fdd9d9c9f6d8325484430b020e88836a6dce2e64edbd121fe",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-11-dpdk-security-offloads-and-nvme-of-transport-selecti",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/wave-11-dpdk-security-offloads-and-nvme-of-transport-selecti.md",
+      "title": "Wave 11 — DPDK security offloads and NVMe-oF transport selection",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Intel",
+        "United States"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-05",
+        "2026-07"
+      ],
+      "keywords": [
+        "accelerator",
+        "aws",
+        "cost",
+        "ethernet",
+        "hyperscaler",
+        "intel",
+        "latency",
+        "memory",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        622,
+        689
+      ],
+      "canonical_for": [],
+      "words": 883,
+      "bytes": 8729,
+      "sha256": "155ba88b41735dbbf082a36de79d09e7db93474e416f9c64de37b10ae1f0e5e4",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/part-f-continued-3-additional-source-urls",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/part-f-continued-3-additional-source-urls.md",
+      "title": "Part F (continued 3) — additional source URLs",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "aws",
+        "benchmarks",
+        "blackwell",
+        "cost",
+        "gpu",
+        "intel",
+        "latency",
+        "memory",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        690,
+        751
+      ],
+      "canonical_for": [],
+      "words": 703,
+      "bytes": 5560,
+      "sha256": "2161f9a57e68fdbde5100fa48cc0e8a3c814b1b103e3db94d03cfa1ba26f3cc0",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    }
+  ]
+}
