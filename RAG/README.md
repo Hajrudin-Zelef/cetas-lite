@@ -58,6 +58,13 @@ Options du mode auto : `first_is_content` (le H1 unique est du contenu, pas un e
 - **Traçabilité** : chaque chunk porte `source`, `source_lines`, `source_anchor` et
   `sha256` (du corps source).
 
+## Périmètre des sources
+
+Toutes les sources de corpus vivent sous **`docs/RAG/`**. Les documents de l'application
+— **`README.md` (racine) et `docs/index.md`** — ne sont **jamais** des sources de corpus :
+ils sont privés et ne doivent pas être utilisés pour répondre. Ne pas les déposer dans
+`$CETAS_LITE_HOME/rag/` non plus.
+
 ## Conventions d'en-tête
 
 ```yaml
