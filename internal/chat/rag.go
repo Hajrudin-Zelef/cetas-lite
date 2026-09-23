@@ -44,15 +44,15 @@ func RagToolSchemas() []provider.Tool {
 	return []provider.Tool{
 		{Type: "function", Function: provider.ToolFunction{
 			Name: "rag_search",
-			Description: "Cherche dans la base documentaire locale (actualites tech/IA, notes perso). " +
-				"Renvoie les passages les plus pertinents avec leur chemin. A utiliser avant toute recherche web.",
+			Description: "Search the local document base (tech/AI news, personal notes). " +
+				"Returns the most relevant passages with their paths. Use before any web search.",
 			Parameters: str(map[string]any{
 				"query": map[string]any{"type": "string"},
 				"limit": map[string]any{"type": "integer", "description": "Default 8, max 30"},
 			}, "query")}},
 		{Type: "function", Function: provider.ToolFunction{
 			Name:        "rag_read",
-			Description: "Relit un passage de la base locale par son chemin (issu de rag_search), lignes numerotees. Limite serveur : defaut 80 lignes, maximum 200 lignes.",
+			Description: "Read a passage from the local base by its path (from rag_search), numbered lines. Server limit: default 80 lines, max 200 lines.",
 			Parameters: str(map[string]any{
 				"path":   map[string]any{"type": "string"},
 				"offset": map[string]any{"type": "integer", "description": "First line (1-based), default 1"},
