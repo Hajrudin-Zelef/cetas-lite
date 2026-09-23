@@ -116,11 +116,11 @@ func (m *Manager) Defs() []Def {
 
 func (m *Manager) Call(ctx context.Context, name, argsJSON string) (string, error) {
 	if m == nil {
-		return "", fmt.Errorf("outils personnalises indisponibles")
+		return "", fmt.Errorf("custom tools unavailable")
 	}
 	t, ok := m.tools[name]
 	if !ok {
-		return "", fmt.Errorf("outil inconnu: %s", name)
+		return "", fmt.Errorf("unknown tool: %s", name)
 	}
 	args := map[string]any{}
 	if strings.TrimSpace(argsJSON) != "" {
@@ -197,7 +197,7 @@ func buildURL(tpl, method string, args map[string]any) (string, error) {
 	raw := substitute(tpl, args, url.PathEscape)
 	u, err := url.Parse(raw)
 	if err != nil {
-		return "", fmt.Errorf("url invalide: %w", err)
+		return "", fmt.Errorf("invalid url: %w", err)
 	}
 	if method == http.MethodGet || method == http.MethodHead || method == http.MethodDelete {
 		q := u.Query()

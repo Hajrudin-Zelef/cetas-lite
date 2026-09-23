@@ -155,3 +155,41 @@ func TestCallHTTPErrorAndUnknown(t *testing.T) {
 		t.Fatal("outil inconnu doit echouer")
 	}
 }
+
+// TestCallErrorsAllEnglish : les erreurs de Manager.Call remontent au
+// modèle via "[error] " + err.Error() — aucun texte FR ne doit y figurer.
+// Exerce les 3 chemins : manager nil, outil inconnu, URL invalide.
+func TestCallErrorsAllEnglish(t *testing.T) {
+	ctx := context.Background()
+	var errs []string
+
+	var nilMgr *Manager
+	if _, err := nilMgr.Call(ctx, "x", `{}`); err != nil {
+		errs = append(errs, err.Error())
+	}
+	path := writeConfig(t, map[string]Tool{
+		"badurl": {URL: "http://[::1"},
+	})
+	m, err := NewManager(path, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := m.Call(ctx, "custom_nope", `{}`); err != nil {
+		errs = append(errs, err.Error())
+	}
+	if _, err := m.Call(ctx, "custom_badurl", `{}`); err != nil {
+		errs = append(errs, err.Error())
+	}
+	if len(errs) != 3 {
+		t.Fatalf("3 erreurs attendues, obtenu %d : %v", len(errs), errs)
+	}
+	const fr = "éèêëàâäîïôöùûüç"
+	for _, e := range errs {
+		for _, r := range e {
+			if strings.ContainsRune(fr, r) {
+				t.Errorf("texte FR dans une erreur customtools : %q", e)
+				break
+			}
+		}
+	}
+}
