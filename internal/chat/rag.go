@@ -124,7 +124,8 @@ func ragContextFrom(res rag.Result) (string, bool) {
 		"Consignes de réponse (à respecter) :\n" +
 		"- Structure ta réponse : idée principale d'abord, puis points clés étayés, puis limites ou incertitudes.\n" +
 		"- Synthétise les extraits avec tes propres mots ; ne recopie pas de longs passages et ne juxtapose pas des faits bruts sans articulation.\n" +
-		"- Cite discrètement les sources avec [1], [2]… ; n'affiche pas les chemins internes sauf si l'utilisateur les demande.\n" +
+		"- Réponds naturellement : aucune citation visible ([1], [2]…), aucun chemin interne, sauf si l'utilisateur les demande explicitement.\n" +
+		"- N'utilise que les faits présents dans ces extraits. Si un point demandé n'y figure pas, dis-le franchement au lieu de l'inventer ou de le compléter avec tes connaissances internes.\n" +
 		"- Ne fais une recherche web que si l'information manque vraiment dans ces extraits.\n" +
 		"- N'utilise rag_read que si les extraits ci-dessus sont insuffisants, et par petits passages (offset/limit) plutôt que le document entier.\n\n")
 	budget := ragContextBudget
@@ -184,6 +185,16 @@ func ragCovered(res rag.Result) bool {
 // locale couvre deja la requete : evite une recherche inutile (cout + latence).
 func localFirstDirective() string {
 	return "A local document base already provides relevant extracts for this request " +
-		"(see the local-base system message). Answer from those extracts first and cite them [1], [2]… " +
-		"Only search the web if the local extracts clearly do not contain the answer."
+		"(see the local-base system message). Answer from those extracts first, in natural prose " +
+		"without visible citations. Only search the web if the local extracts clearly do not contain the answer."
+}
+
+// ragNotCoveredNote : note systeme injectee quand la base locale est active
+// mais ne couvre pas la requete. Texte strictement stable (pas de contenu
+// dynamique) pour ne pas casser le préfixe de prompt caching. Dit
+// immediatement la non-couverture et interdit de presenter une invention
+// comme issue du corpus.
+func ragNotCoveredNote() string {
+	return "La base documentaire locale ne couvre pas cette demande : ne presente " +
+		"rien comme issu de la base locale. Si tu ne sais pas, dis-le franchement."
 }

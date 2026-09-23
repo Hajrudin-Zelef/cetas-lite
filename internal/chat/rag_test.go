@@ -257,6 +257,82 @@ func TestRagCoveredThreshold(t *testing.T) {
 	}
 }
 
+// TestRagDirectiveNaturalNoCitations : l'iteration 2 impose le naturel
+// total — plus aucune consigne de citation visible dans la directive
+// injectee, et interdiction explicite d'inventer.
+func TestRagDirectiveNaturalNoCitations(t *testing.T) {
+	res := rag.Result{Hits: []rag.Hit{
+		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
+	}}
+	txt, ok := ragContextFrom(res)
+	if !ok {
+		t.Fatal("contexte attendu pour des hits forts")
+	}
+	for _, banned := range []string{"cite them [1]", "Cite discrètement", "cite [1]"} {
+		if strings.Contains(txt, banned) {
+			t.Fatalf("consigne de citation encore presente: %q", banned)
+		}
+	}
+	if !strings.Contains(txt, "aucune citation visible") {
+		t.Fatal("directive 'naturel total' absente")
+	}
+	if !strings.Contains(txt, "dis-le franchement au lieu de l'inventer") {
+		t.Fatal("interdiction d'inventer absente de la directive")
+	}
+	if strings.Contains(localFirstDirective(), "[1]") {
+		t.Fatal("localFirstDirective mentionne encore des citations")
+	}
+}
+
+func TestChatSystemPromptAntiHallucination(t *testing.T) {
+	p := chatSystemPrompt()
+	if !strings.Contains(p, "Never present internal knowledge or guesses as coming from the local document base.") {
+		t.Fatal("regle anti-hallucination RAG absente du prompt permanent")
+	}
+}
+
+// TestRagNotCoveredNoteInjected : base active mais requete non couverte →
+// la note « non couvert » est injectee comme message systeme ; couverte →
+// absente.
+func TestRagNotCoveredNoteInjected(t *testing.T) {
+	check := func(hits []rag.Hit, wantNote bool) {
+		t.Helper()
+		st, err := store.Open(filepath.Join(t.TempDir(), "nc.db"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Cleanup(func() { _ = st.Close() })
+		reg := provider.NewRegistry()
+		cp := &captureProvider{}
+		reg.Set(cp)
+		e := NewEngine(reg, nil, st, nil, t.TempDir())
+		e.SetRAG(fakeRag{ready: true, hits: hits})
+		e.SetFamilies([]alias.Family{{
+			ID: "code", Label: "Code",
+			Modes: []alias.Mode{{ID: "standard", Pool: []alias.Member{{Provider: "cap", Model: "m"}}}},
+		}})
+		c := e.Conversation("u")
+		if err := c.StartTurn(TurnInput{User: "u", Family: "code", Mode: "standard", Text: "question hors base"}); err != nil {
+			t.Fatalf("StartTurn: %v", err)
+		}
+		waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+
+		cp.mu.Lock()
+		defer cp.mu.Unlock()
+		found := false
+		for _, m := range cp.msgs {
+			if m.Role == "system" && strings.Contains(msgText(m), "ne couvre pas cette demande") {
+				found = true
+			}
+		}
+		if found != wantNote {
+			t.Fatalf("note 'non couvert' : trouvee=%v, attendue=%v", found, wantNote)
+		}
+	}
+	check([]rag.Hit{{Title: "W", Path: "w.md", Excerpt: "faible", Score: 1.0}}, true)
+	check([]rag.Hit{{Title: "S", Path: "s.md", Excerpt: "fort", Score: ragStrongScore}}, false)
+}
+
 // TestRagContextRefusedWhenWeak : la porte de score de l'iteration 1 —
 // des hits sous le seuil ne produisent aucun contexte injecte, meme
 // si des passages existent.

@@ -507,6 +507,13 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	if rc, ok := ragContextFrom(ragRes); ok {
 		msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
 	}
+	// Base locale active mais requete non couverte (iteration 2) : le dire
+	// immediatement et interdire de presenter une invention comme issue du
+	// corpus. Note stable (cache-friendly), inseree comme le contexte RAG
+	// pour couvrir aussi le mode agent.
+	if ragRes.Ready && !ragCovered(ragRes) {
+		msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: ragNotCoveredNote()})
+	}
 
 	if res.agent && e.workspace != "" && in.User != "" {
 		e.runAgent(ctx, c, epoch, res, msgs, in)
