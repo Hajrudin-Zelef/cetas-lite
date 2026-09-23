@@ -180,15 +180,16 @@ func ragContextForced(res rag.Result) (string, bool) {
 
 func buildRagContext(res rag.Result) string {
 	var b strings.Builder
-	b.WriteString("Extraits de la base documentaire locale — source prioritaire pour les sujets couverts.\n" +
-		"Consignes de réponse (à respecter) :\n" +
-		"- Structure ta réponse : idée principale d'abord, puis points clés étayés, puis limites ou incertitudes.\n" +
-		"- Synthétise les extraits avec tes propres mots ; ne recopie pas de longs passages et ne juxtapose pas des faits bruts sans articulation.\n" +
-		"- Croise les extraits entre eux et réponds en prose continue et naturelle, comme dans une conversation : pas de section par extrait, pas de sous-titres par source, pas d'énumération mécanique.\n" +
-		"- Réponds naturellement : aucune citation visible ([1], [2]…), aucun chemin interne, sauf si l'utilisateur les demande explicitement.\n" +
-		"- N'utilise que les faits présents dans ces extraits. Si un point demandé n'y figure pas, dis-le franchement au lieu de l'inventer ou de le compléter avec tes connaissances internes.\n" +
-		"- Ne fais une recherche web que si l'information manque vraiment dans ces extraits.\n" +
-		"- N'utilise rag_read que si les extraits ci-dessus sont insuffisants, et par petits passages (offset/limit) plutôt que le document entier.\n\n")
+	b.WriteString("The following is your document knowledge base: treat it as things you know, not as documents handed to you.\n" +
+		"Response guidelines (must follow):\n" +
+		"- Answer the question directly, in your own words, in continuous natural prose, like in a conversation.\n" +
+		"- Never mention the excerpts, the documents, or the base: \"according to the excerpts\", \"the provided documents\", \"the base does (not) cover\" are banned. No visible citations ([1], [2]…), no internal paths, unless the user explicitly asks where the information comes from.\n" +
+		"- Never describe the content or limits of the sources; never send the user back to reading (\"tell me if I should read it\", \"go look for yourself\" are banned).\n" +
+		"- Weave the information together instead of juxtaposing it: no section per excerpt, no per-source subtitles, no mechanical enumeration.\n" +
+		"- Structure your answer: main idea first, then key points, then limits or uncertainties — without turning it into a formal report.\n" +
+		"- Prioritize the facts above; do not contradict them. If a requested point is not there, answer from your general knowledge or simply say you don't know — without presenting invention as coming from the base, and without verbalizing this rule.\n" +
+		"- Only search the web if the information is truly missing above.\n" +
+		"- Only use rag_read if the passages above are insufficient, and in small passages (offset/limit) rather than the whole document.\n\n")
 	budget := ragContextBudget
 	for i, h := range res.Hits {
 		ex := strings.TrimSpace(h.Excerpt)
@@ -245,9 +246,10 @@ func ragCovered(res rag.Result) bool {
 // localFirstDirective remplace la directive de recherche web quand la base
 // locale couvre deja la requete : evite une recherche inutile (cout + latence).
 func localFirstDirective() string {
-	return "A local document base already provides relevant extracts for this request " +
-		"(see the local-base system message). Answer from those extracts first, weaving them " +
-		"together in natural prose without visible citations. Only search the web if the local extracts clearly do not contain the answer."
+	return "A local document base already provides background knowledge for this request " +
+		"(see the local-base system message) — treat it as things you know, not as documents handed to you. " +
+		"Answer directly in natural prose, weaving the facts together, without visible citations and without ever mentioning " +
+		"the extracts, the documents or the base. Only search the web if that knowledge clearly does not contain the answer."
 }
 
 // ragNotCoveredNote : note systeme injectee quand la base locale est active
@@ -257,7 +259,7 @@ func localFirstDirective() string {
 // comme issue du corpus — en modelisant le ton naturel attendu (iteration 6 :
 // pas de rapport formel ni d'enumeration de sources).
 func ragNotCoveredNote() string {
-	return "La base documentaire locale ne couvre pas cette demande : ne la mentionne pas " +
-		"et ne présente rien comme en étant issu. Si tu réponds, fais-le simplement et " +
-		"naturellement, sans énumérer de sources ni rédiger un rapport formel."
+	return "The local document base does not cover this request: do not mention it " +
+		"and do not present anything as coming from it. If you answer, do so simply and " +
+		"naturally, without enumerating sources or writing a formal report."
 }

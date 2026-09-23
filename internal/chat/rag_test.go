@@ -281,11 +281,20 @@ func TestRagDirectiveNaturalNoCitations(t *testing.T) {
 			t.Fatalf("consigne de citation encore presente: %q", banned)
 		}
 	}
-	if !strings.Contains(txt, "aucune citation visible") {
-		t.Fatal("directive 'naturel total' absente")
+	if !strings.Contains(txt, "treat it as things you know") {
+		t.Fatal("directive 'treat it as things you know' absente")
 	}
-	if !strings.Contains(txt, "dis-le franchement au lieu de l'inventer") {
-		t.Fatal("interdiction d'inventer absente de la directive")
+	if !strings.Contains(txt, "are banned") {
+		t.Fatal("interdiction explicite (are banned) absente de la directive")
+	}
+	if !strings.Contains(txt, "without verbalizing this rule") {
+		t.Fatal("interdiction de verbaliser la regle absente de la directive")
+	}
+	// Aucune chaîne FR dans la directive (règle globale : tout en anglais).
+	for _, fr := range []string{"Extraits de la base", "Consignes de réponse", "aucune citation visible"} {
+		if strings.Contains(txt, fr) {
+			t.Fatalf("texte FR encore present dans la directive: %q", fr)
+		}
 	}
 	if strings.Contains(localFirstDirective(), "[1]") {
 		t.Fatal("localFirstDirective mentionne encore des citations")
@@ -329,7 +338,7 @@ func TestRagNotCoveredNoteInjected(t *testing.T) {
 		defer cp.mu.Unlock()
 		found := false
 		for _, m := range cp.msgs {
-			if m.Role == "system" && strings.Contains(msgText(m), "ne couvre pas cette demande") {
+			if m.Role == "system" && strings.Contains(msgText(m), "does not cover this request") {
 				found = true
 			}
 		}
@@ -496,17 +505,17 @@ func TestRagContextSynthesisDirective(t *testing.T) {
 		t.Fatal("contexte attendu pour des hits forts")
 	}
 	for _, want := range []string{
-		"Croise les extraits entre eux",
-		"prose continue et naturelle",
-		"pas de section par extrait",
+		"Weave the information together",
+		"continuous natural prose",
+		"no section per excerpt",
 	} {
 		if !strings.Contains(txt, want) {
 			t.Fatalf("consigne de synthese absente: %q", want)
 		}
 	}
 	for _, keep := range []string{
-		"aucune citation visible",
-		"dis-le franchement au lieu de l'inventer",
+		"without verbalizing this rule",
+		"say you don't know",
 	} {
 		if !strings.Contains(txt, keep) {
 			t.Fatalf("garde-fou iteration 2 perdu: %q", keep)
@@ -520,13 +529,19 @@ func TestRagContextSynthesisDirective(t *testing.T) {
 func TestRagNotCoveredNoteNatural(t *testing.T) {
 	n := ragNotCoveredNote()
 	for _, want := range []string{
-		"ne couvre pas cette demande",
-		"ne présente rien comme en étant issu",
-		"naturellement",
-		"sans énumérer de sources",
+		"does not cover this request",
+		"do not present anything as coming from it",
+		"naturally",
+		"without enumerating sources",
 	} {
 		if !strings.Contains(n, want) {
 			t.Fatalf("note 'non couvert' incomplete, manque %q", want)
+		}
+	}
+	// Aucune chaîne FR dans la note (règle globale : tout en anglais).
+	for _, fr := range []string{"ne couvre pas", "présente rien", "énumérant"} {
+		if strings.Contains(n, fr) {
+			t.Fatalf("texte FR encore present dans la note: %q", fr)
 		}
 	}
 }
