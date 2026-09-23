@@ -35,6 +35,10 @@ func (f fakeRag) SearchCorpus(_ context.Context, _ string, _ string, limit int) 
 	return f.Search(context.Background(), "", limit)
 }
 
+func (f fakeRag) SearchBoosted(_ context.Context, _ string, _ map[string]float64, limit int) rag.Result {
+	return f.Search(context.Background(), "", limit)
+}
+
 func (f fakeRag) Read(string, int, int) (string, error) { return f.body, f.err }
 
 func (f fakeRag) Stats() rag.Stats { return rag.Stats{Ready: f.ready, Chunks: len(f.hits)} }
@@ -105,23 +109,23 @@ func TestRagExecuteUnavailable(t *testing.T) {
 
 func TestRagContextFailOpenAndBudget(t *testing.T) {
 	ctx := context.Background()
-	if _, ok := ragContextFrom(ragEngine(t, nil).ragHits(ctx, "q")); ok {
+	if _, ok := ragContextFrom(ragEngine(t, nil).ragHits(ctx, "q", nil)); ok {
 		t.Fatal("sans RAG: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: false}).ragHits(ctx, "q")); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: false}).ragHits(ctx, "q", nil)); ok {
 		t.Fatal("non pret: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "  ")); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "  ", nil)); ok {
 		t.Fatal("requete vide: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "q")); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "q", nil)); ok {
 		t.Fatal("aucun hit: ok attendu faux")
 	}
 	// Porte de score : des hits faibles ne sont pas injectes.
 	weak := ragEngine(t, fakeRag{ready: true, hits: []rag.Hit{
 		{Title: "W", Path: "w.md", Excerpt: "extrait faible", Score: ragStrongScore - 0.1},
 	}})
-	if _, ok := ragContextFrom(weak.ragHits(ctx, "q")); ok {
+	if _, ok := ragContextFrom(weak.ragHits(ctx, "q", nil)); ok {
 		t.Fatal("hits faibles: ok attendu faux")
 	}
 
@@ -131,7 +135,7 @@ func TestRagContextFailOpenAndBudget(t *testing.T) {
 		{Title: "B", Path: "b.md", Excerpt: long, Score: ragStrongScore + 1},
 		{Title: "C", Path: "c.md", Excerpt: long, Score: ragStrongScore + 2},
 	}})
-	txt, ok := ragContextFrom(e.ragHits(ctx, "q"))
+	txt, ok := ragContextFrom(e.ragHits(ctx, "q", nil))
 	if !ok {
 		t.Fatal("contexte attendu")
 	}
@@ -477,5 +481,129 @@ func TestRagReadServerBounds(t *testing.T) {
 				t.Fatalf("offset/limit = %d/%d, attendu %d/%d", c.offset, c.limit, tc.wantOffset, tc.wantLimit)
 			}
 		})
+	}
+}
+
+// TestRagContextSynthesisDirective : l'iteration 6 demande une synthese
+// croisee en prose continue, pas une section par extrait. Les garde-fous
+// de l'iteration 2 (naturel, anti-hallucination) restent en place.
+func TestRagContextSynthesisDirective(t *testing.T) {
+	res := rag.Result{Hits: []rag.Hit{
+		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
+	}}
+	txt, ok := ragContextFrom(res)
+	if !ok {
+		t.Fatal("contexte attendu pour des hits forts")
+	}
+	for _, want := range []string{
+		"Croise les extraits entre eux",
+		"prose continue et naturelle",
+		"pas de section par extrait",
+	} {
+		if !strings.Contains(txt, want) {
+			t.Fatalf("consigne de synthese absente: %q", want)
+		}
+	}
+	for _, keep := range []string{
+		"aucune citation visible",
+		"dis-le franchement au lieu de l'inventer",
+	} {
+		if !strings.Contains(txt, keep) {
+			t.Fatalf("garde-fou iteration 2 perdu: %q", keep)
+		}
+	}
+}
+
+// TestRagNotCoveredNoteNatural : la note « non couvert » garde le sens de
+// l'iteration 2 (dire la non-couverture, interdire l'invention presentee
+// comme issue du corpus) mais modelise un ton naturel, sans rapport formel.
+func TestRagNotCoveredNoteNatural(t *testing.T) {
+	n := ragNotCoveredNote()
+	for _, want := range []string{
+		"ne couvre pas cette demande",
+		"ne présente rien comme en étant issu",
+		"naturellement",
+		"sans énumérer de sources",
+	} {
+		if !strings.Contains(n, want) {
+			t.Fatalf("note 'non couvert' incomplete, manque %q", want)
+		}
+	}
+}
+
+// captureQueryRag : faux RagTools qui capture la requete envoyee a Search
+// et le boost (iteration 6b).
+type captureQueryRag struct {
+	ready bool
+	query string
+	boost map[string]float64
+}
+
+func (f *captureQueryRag) Ready() bool { return f.ready }
+
+func (f *captureQueryRag) Search(_ context.Context, q string, _ int) rag.Result {
+	f.query = q
+	f.boost = nil
+	return rag.Result{Ready: f.ready}
+}
+
+func (f *captureQueryRag) SearchCorpus(_ context.Context, q, _ string, _ int) rag.Result {
+	return f.Search(context.Background(), q, 0)
+}
+
+func (f *captureQueryRag) SearchBoosted(_ context.Context, q string, boost map[string]float64, _ int) rag.Result {
+	f.query = q
+	f.boost = boost
+	return rag.Result{Ready: f.ready}
+}
+
+func (f *captureQueryRag) Read(string, int, int) (string, error) { return "", nil }
+
+func (f *captureQueryRag) Stats() rag.Stats { return rag.Stats{Ready: f.ready} }
+
+// TestRagHitsEnrichesEllipticalQuery : le tour principal enrichit les
+// requetes elliptiques avec le sujet de l'historique avant BM25
+// (iteration 6) ; les requetes deja porteuses d'entites passent telles quelles.
+func TestRagHitsEnrichesEllipticalQuery(t *testing.T) {
+	f := &captureQueryRag{ready: true}
+	e := ragEngine(t, f)
+	hist := []provider.Message{
+		{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"},
+		{Role: "assistant", Content: "Kimi K3 est le modèle de Moonshot AI."},
+	}
+	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", hist)
+	if !strings.Contains(f.query, "K3") {
+		t.Fatalf("requete non enrichie: %q", f.query)
+	}
+	// Iteration 6b : l'enrichissement declenche SearchBoosted avec les
+	// tokens d'entite et le facteur calibre. L'historique le plus recent
+	// (assistant) domine : groupes « K3 » + « Moonshot AI » — « Kimi » en
+	// debut de phrase n'est pas un marqueur d'entite (regle iter6 ; le
+	// message utilisateur seul produirait « Kimi K3 », cf. 2e cas).
+	if f.boost == nil {
+		t.Fatal("boost absent : la requete enrichie doit passer par SearchBoosted")
+	}
+	for _, k := range []string{"k3", "moonshot", "ai"} {
+		if f.boost[k] != entityBoostFactor {
+			t.Fatalf("boost[%q] = %v, attendu %v (boost=%v)", k, f.boost[k], entityBoostFactor, f.boost)
+		}
+	}
+	// Historique reduit au message utilisateur : le groupe complet est repris.
+	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?",
+		[]provider.Message{{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"}})
+	if !strings.Contains(f.query, "Kimi K3") {
+		t.Fatalf("sujet utilisateur non repris: %q", f.query)
+	}
+	e.ragHits(context.Background(), "parle-moi de Kimi K3", hist)
+	if strings.Contains(f.query, "Moonshot") {
+		t.Fatalf("requete porteuse d'entite enrichie a tort: %q", f.query)
+	}
+	if f.boost != nil {
+		t.Fatalf("requête directe : boost inattendu %v (Search attendu)", f.boost)
+	}
+	// Historique vide : fail-open, requete inchangee, sans boost.
+	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", nil)
+	if strings.Contains(f.query, "Kimi") || f.boost != nil {
+		t.Fatalf("enrichissement sans historique: %q boost=%v", f.query, f.boost)
 	}
 }

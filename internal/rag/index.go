@@ -106,17 +106,26 @@ type Index struct {
 // Search : classe les chunks par pertinence (BM25-lite, champs ponderes).
 // Respecte ctx ; s'arrete proprement si le budget est depasse.
 func (ix *Index) Search(ctx context.Context, query string, limit int) Result {
-	return ix.search(ctx, query, limit, "")
+	return ix.search(ctx, query, limit, "", nil)
 }
 
 // SearchCorpus : comme Search mais restreint aux chunks d'un corpus
 // (focus au clic sur une question suggeree). Corpus vide ou inconnu :
 // aucun chunk ne matche, resultat vide (fail-open).
 func (ix *Index) SearchCorpus(ctx context.Context, query, corpus string, limit int) Result {
-	return ix.search(ctx, query, limit, corpus)
+	return ix.search(ctx, query, limit, corpus, nil)
 }
 
-func (ix *Index) search(ctx context.Context, query string, limit int, corpus string) Result {
+// SearchBoosted : comme Search mais avec un facteur de boost par terme de
+// requete (iteration 6b : boost des entites reprises de l'historique,
+// dont l'idf faible — df eleve — les ferait passer apres des termes
+// conversationnels rares). boost nil ou terme absent => facteur 1.0
+// (strictement identique a Search).
+func (ix *Index) SearchBoosted(ctx context.Context, query string, boost map[string]float64, limit int) Result {
+	return ix.search(ctx, query, limit, "", boost)
+}
+
+func (ix *Index) search(ctx context.Context, query string, limit int, corpus string, boost map[string]float64) Result {
 	limit = clampLimit(limit)
 	if ix == nil {
 		return Result{}
@@ -161,6 +170,12 @@ func (ix *Index) search(ctx context.Context, query string, limit int, corpus str
 			continue
 		}
 		idf := math.Log(1 + (nf-float64(df)+0.5)/(float64(df)+0.5))
+		bt := 1.0
+		if boost != nil {
+			if v, ok := boost[t]; ok {
+				bt = v
+			}
+		}
 		for _, id := range ids {
 			if !inScope(int(id)) {
 				continue
@@ -172,7 +187,7 @@ func (ix *Index) search(ctx context.Context, query string, limit int, corpus str
 			if denom <= 0 {
 				continue
 			}
-			scores[id] += idf * (tf * (k1 + 1)) / denom
+			scores[id] += bt * idf * (tf * (k1 + 1)) / denom
 			matched[id]++
 		}
 	}

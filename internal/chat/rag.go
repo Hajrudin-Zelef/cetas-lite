@@ -17,6 +17,9 @@ type RagTools interface {
 	// SearchCorpus : recherche restreinte aux chunks d'un corpus
 	// (focus au clic sur une question suggérée).
 	SearchCorpus(ctx context.Context, query, corpus string, limit int) rag.Result
+	// SearchBoosted : recherche avec facteur de boost par terme (entités
+	// reprises de l'historique, itération 6b).
+	SearchBoosted(ctx context.Context, query string, boost map[string]float64, limit int) rag.Result
 	Read(rel string, offset, limit int) (string, error)
 	Stats() rag.Stats
 }
@@ -24,6 +27,13 @@ type RagTools interface {
 const (
 	ragContextHits   = 3
 	ragContextBudget = 3600
+	// entityBoostFactor : boost appliqué aux tokens d'entité ajoutés par
+	// l'enrichissement (itération 6b). Le corpus réel (1819 chunks) :
+	// sans boost, l'entité à idf faible perdait face aux termes
+	// conversationnels rares (RTX Spark 12.99 > Kimi 8.86, aucun Kimi
+	// dans le top-10). Calibré à ×3 sur ce corpus ; mesurer avant de
+	// bouger.
+	entityBoostFactor = 3.0
 )
 
 // RagToolSchemas : outils rag_search / rag_read exposes a l'agent.
@@ -104,14 +114,36 @@ func formatRagHits(res rag.Result) string {
 	return truncate(b.String(), toolMaxOutput)
 }
 
-// ragHits interroge l'index local. Resultat vide si le RAG est inactif
-// (fail-open : l'appelant traite le vide comme "pas de contexte").
-func (e *Engine) ragHits(ctx context.Context, query string) rag.Result {
+// ragHits interroge l'index local. La requete est enrichie avec le sujet
+// de la conversation quand elle est elliptique (iteration 6 : anaphore
+// « la » resolue au lieu d'etre jetee comme mot-outil). Resultat vide si
+// le RAG est inactif (fail-open : l'appelant traite le vide comme
+// "pas de contexte").
+func (e *Engine) ragHits(ctx context.Context, query string, history []provider.Message) rag.Result {
 	rt := e.ragTools()
 	if rt == nil || !rt.Ready() || strings.TrimSpace(query) == "" {
 		return rag.Result{}
 	}
-	return rt.Search(ctx, query, ragContextHits)
+	var hist []string
+	for _, m := range history {
+		if s, ok := m.Content.(string); ok && strings.TrimSpace(s) != "" {
+			hist = append(hist, s)
+		}
+	}
+	q, ents := rag.EnrichQueryWithHistory(query, hist)
+	if len(ents) > 0 {
+		return rt.SearchBoosted(ctx, q, boostMap(ents, entityBoostFactor), ragContextHits)
+	}
+	return rt.Search(ctx, q, ragContextHits)
+}
+
+// boostMap : facteur de boost par token d'entité (itération 6b).
+func boostMap(entities []string, factor float64) map[string]float64 {
+	m := make(map[string]float64, len(entities))
+	for _, t := range entities {
+		m[t] = factor
+	}
+	return m
 }
 
 // ragHitsCorpus interroge l'index local restreint à un corpus.
@@ -152,6 +184,7 @@ func buildRagContext(res rag.Result) string {
 		"Consignes de réponse (à respecter) :\n" +
 		"- Structure ta réponse : idée principale d'abord, puis points clés étayés, puis limites ou incertitudes.\n" +
 		"- Synthétise les extraits avec tes propres mots ; ne recopie pas de longs passages et ne juxtapose pas des faits bruts sans articulation.\n" +
+		"- Croise les extraits entre eux et réponds en prose continue et naturelle, comme dans une conversation : pas de section par extrait, pas de sous-titres par source, pas d'énumération mécanique.\n" +
 		"- Réponds naturellement : aucune citation visible ([1], [2]…), aucun chemin interne, sauf si l'utilisateur les demande explicitement.\n" +
 		"- N'utilise que les faits présents dans ces extraits. Si un point demandé n'y figure pas, dis-le franchement au lieu de l'inventer ou de le compléter avec tes connaissances internes.\n" +
 		"- Ne fais une recherche web que si l'information manque vraiment dans ces extraits.\n" +
@@ -213,16 +246,18 @@ func ragCovered(res rag.Result) bool {
 // locale couvre deja la requete : evite une recherche inutile (cout + latence).
 func localFirstDirective() string {
 	return "A local document base already provides relevant extracts for this request " +
-		"(see the local-base system message). Answer from those extracts first, in natural prose " +
-		"without visible citations. Only search the web if the local extracts clearly do not contain the answer."
+		"(see the local-base system message). Answer from those extracts first, weaving them " +
+		"together in natural prose without visible citations. Only search the web if the local extracts clearly do not contain the answer."
 }
 
 // ragNotCoveredNote : note systeme injectee quand la base locale est active
 // mais ne couvre pas la requete. Texte strictement stable (pas de contenu
 // dynamique) pour ne pas casser le préfixe de prompt caching. Dit
 // immediatement la non-couverture et interdit de presenter une invention
-// comme issue du corpus.
+// comme issue du corpus — en modelisant le ton naturel attendu (iteration 6 :
+// pas de rapport formel ni d'enumeration de sources).
 func ragNotCoveredNote() string {
-	return "La base documentaire locale ne couvre pas cette demande : ne presente " +
-		"rien comme issu de la base locale. Si tu ne sais pas, dis-le franchement."
+	return "La base documentaire locale ne couvre pas cette demande : ne la mentionne pas " +
+		"et ne présente rien comme en étant issu. Si tu réponds, fais-le simplement et " +
+		"naturellement, sans énumérer de sources ni rédiger un rapport formel."
 }

@@ -483,6 +483,11 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	}
 	msgs := c.MessagesSnapshot()
 
+	// Historique conversationnel brut (iteration 6) : copie avant les
+	// inserts systeme (memory index, pieces jointes) pour que
+	// l'enrichissement de requete RAG travaille sur la conversation seule.
+	ragHistory := append([]provider.Message(nil), msgs...)
+
 	// Effort de raisonnement résolu une fois pour le tour : pilotage du
 	// payload provider, de la directive system et de l'affichage (badge).
 	reasoningEffort := resolveEffort(in.Think, in.Text, in.Effort)
@@ -528,7 +533,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
 		}
 	} else {
-		ragRes = e.ragHits(ctx, in.Text)
+		ragRes = e.ragHits(ctx, in.Text, ragHistory)
 		if rc, ok := ragContextFrom(ragRes); ok {
 			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
 		}

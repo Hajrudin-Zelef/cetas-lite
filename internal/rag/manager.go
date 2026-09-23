@@ -133,6 +133,21 @@ func (m *Manager) SearchCorpus(ctx context.Context, query, corpus string, limit 
 	return ix.SearchCorpus(cctx, query, corpus, limit)
 }
 
+// SearchBoosted : recherche avec boost de termes (entites reprises de
+// l'historique, iteration 6b). Meme fail-open que Search.
+func (m *Manager) SearchBoosted(ctx context.Context, query string, boost map[string]float64, limit int) Result {
+	ix := m.current()
+	if ix == nil || !ix.Stats().Ready {
+		return Result{}
+	}
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	cctx, cancel := context.WithTimeout(ctx, DefaultTimeout)
+	defer cancel()
+	return ix.SearchBoosted(cctx, query, boost, limit)
+}
+
 // Read : relit un chunk par chemin (ou nom de base), lignes numerotees.
 func (m *Manager) Read(rel string, offset, limit int) (string, error) {
 	return m.current().Read(rel, offset, limit)
