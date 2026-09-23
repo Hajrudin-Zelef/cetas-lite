@@ -1313,6 +1313,34 @@ CORPORA = [
         "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "labs-hyperscalers",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
+    {
+        "slug": "etape6-trackc-huawei-mikrotik",
+        "title": "Step 6 — Track C : Huawei + MikroTik (matériel réseau)",
+        "source": "docs/RAG/etape6_trackC_huawei_mikrotik.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "huawei-mikrotik",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape6-trackd-firewalls",
+        "title": "Step 6 — Track D : FortiGate + pfSense + OPNsense (pare-feu & sécurité réseau)",
+        "source": "docs/RAG/etape6_trackD_firewalls.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "firewalls",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape6-trackb-arista-sonic",
+        "title": "Step 6 — Track B : Arista + SONiC + Cumulus (fabric datacenter & réseau ouvert)",
+        "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "arista-sonic",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "etape6-tracka-cisco-juniper",
+        "title": "Step 6 — Track A : Cisco + Juniper (réseau datacenter entreprise)",
+        "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+        "mode": "auto", "max_lines": 90, "min_lines": 45,
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
 ]
 
 

@@ -1,0 +1,465 @@
+{
+  "corpus": "etape6-tracka-cisco-juniper",
+  "title": "Step 6 — Track A : Cisco + Juniper (réseau datacenter entreprise)",
+  "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+  "source_lines": 510,
+  "source_sha256": "cf4d91091c821fa38498846c079b1358f82deff4a8181c0b28ea22deed8b63c1",
+  "chunk_count": 10,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-tracka-cisco-juniper/00-front-matter/overview",
+      "path": "etape6-tracka-cisco-juniper/00-front-matter/overview.md",
+      "title": "Step 6 Track A — Cisco + Juniper (Enterprise Data-Center Networking), 2026",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        6
+      ],
+      "canonical_for": [],
+      "words": 27,
+      "bytes": 183,
+      "sha256": "bf974a90418dd9f4c459de3efbc6aacb8e404bd0b982e39cb86928383385dd54",
+      "section": "Step 6 Track A — Cisco + Juniper (Enterprise Data-Center Networking), 2026"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/01-part-1-cisco/overview",
+      "path": "etape6-tracka-cisco-juniper/01-part-1-cisco/overview.md",
+      "title": "PART 1 — CISCO",
+      "domain": "part-1-cisco",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-02-10",
+        "2026-09-15",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cpo",
+        "energy",
+        "ethernet",
+        "gpu",
+        "hbm",
+        "hyperscaler",
+        "latency",
+        "memory",
+        "nvidia",
+        "optics",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        7,
+        71
+      ],
+      "canonical_for": [],
+      "words": 1006,
+      "bytes": 7126,
+      "sha256": "8ace20bc6e45b12a49e2abaa6df2ce1904df34e7a3ebb4afcbdaf4806dc71a91",
+      "section": "PART 1 — CISCO"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/01-part-1-cisco/4-cisco-ai-pods-2026-updates",
+      "path": "etape6-tracka-cisco-juniper/01-part-1-cisco/4-cisco-ai-pods-2026-updates.md",
+      "title": "4. Cisco AI PODs — 2026 updates",
+      "domain": "part-1-cisco",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-03",
+        "2026-05",
+        "2026-05-13",
+        "2026-07-25"
+      ],
+      "keywords": [
+        "agent",
+        "amd",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "hyperscaler",
+        "intel",
+        "latency",
+        "memory",
+        "neocloud",
+        "nvidia",
+        "nvlink"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        72,
+        124
+      ],
+      "canonical_for": [],
+      "words": 966,
+      "bytes": 6926,
+      "sha256": "d31e54a6fef56d0488e1dcc13ecc2864c0ed8129122a69f842306a0955a58300",
+      "section": "PART 1 — CISCO"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/01-part-1-cisco/6-key-2026-product-launches-nexus-dashboard-fabric-ai-cluste",
+      "path": "etape6-tracka-cisco-juniper/01-part-1-cisco/6-key-2026-product-launches-nexus-dashboard-fabric-ai-cluste.md",
+      "title": "6. Key 2026 product launches: Nexus Dashboard, fabric, AI-cluster networking",
+      "domain": "part-1-cisco",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Nvidia",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04",
+        "2026-04-14",
+        "2026-05-04",
+        "2026-06",
+        "2026-06-02",
+        "2026-07"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "amd",
+        "aws",
+        "cost",
+        "cyber",
+        "data centre",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "latency"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        125,
+        172
+      ],
+      "canonical_for": [],
+      "words": 933,
+      "bytes": 7207,
+      "sha256": "949a3c946d80ae44a783ea61d287a9148c060cb6233d1d126e5e2a5f9bb1e99f",
+      "section": "PART 1 — CISCO"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/01-part-1-cisco/8-400g-800g-portfolio-optics-cpo",
+      "path": "etape6-tracka-cisco-juniper/01-part-1-cisco/8-400g-800g-portfolio-optics-cpo.md",
+      "title": "8. 400G/800G portfolio, optics, CPO",
+      "domain": "part-1-cisco",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-05-04",
+        "2026-05-13",
+        "2026-06-23"
+      ],
+      "keywords": [
+        "cpo",
+        "optics",
+        "agentic",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "dci",
+        "dsp",
+        "ethernet",
+        "gpu",
+        "hbm",
+        "hyperscaler"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        173,
+        225
+      ],
+      "canonical_for": [],
+      "words": 961,
+      "bytes": 6750,
+      "sha256": "af96ce1717f3a586259f7db8f3a5dfa05babd62a93962ac5790cdd4bc271d7d9",
+      "section": "PART 1 — CISCO"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/01-part-1-cisco/11-gaps-and-uncertainties-explicit-flags",
+      "path": "etape6-tracka-cisco-juniper/01-part-1-cisco/11-gaps-and-uncertainties-explicit-flags.md",
+      "title": "11. Gaps and uncertainties (explicit flags)",
+      "domain": "part-1-cisco",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-05-14",
+        "2026-06-23",
+        "2026-07-08",
+        "2026-09-17"
+      ],
+      "keywords": [
+        "acquisition",
+        "agentic",
+        "agents",
+        "amd",
+        "benchmarks",
+        "cpo",
+        "data centre",
+        "datacenter",
+        "hyperscaler",
+        "lpo",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        226,
+        272
+      ],
+      "canonical_for": [],
+      "words": 450,
+      "bytes": 5592,
+      "sha256": "18197f6dbecac4b1b758aeb2c9ef6f3fba04ecbb4f711cc6d3b99661dfd44b6d",
+      "section": "PART 1 — CISCO"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/overview",
+      "path": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/overview.md",
+      "title": "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)",
+      "domain": "part-2-juniper-networks-post-hpe-acquisition",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Microsoft",
+        "United States"
+      ],
+      "dates": [
+        "2024-01",
+        "2024-04",
+        "2025-06",
+        "2025-07",
+        "2026-05",
+        "2026-06",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "acquisition",
+        "agentic",
+        "amd",
+        "asic",
+        "benchmark",
+        "copilot",
+        "cpo",
+        "dci",
+        "gpu",
+        "helios",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        273,
+        328
+      ],
+      "canonical_for": [],
+      "words": 1399,
+      "bytes": 9772,
+      "sha256": "9c827241c8deb642c0b4db2ddabba1b455d4f087761f6d0ed4e6117fa3fc42aa",
+      "section": "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/3-ai-networking-revenue-figures-customer-wins-2026",
+      "path": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/3-ai-networking-revenue-figures-customer-wins-2026.md",
+      "title": "3. AI networking revenue figures & customer wins (2026)",
+      "domain": "part-2-juniper-networks-post-hpe-acquisition",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Huawei",
+        "Nvidia",
+        "Oracle",
+        "TSMC",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-09"
+      ],
+      "keywords": [
+        "revenue",
+        "accelerator",
+        "acquisition",
+        "amd",
+        "backlog",
+        "blackwell",
+        "coherent optics",
+        "compute",
+        "cpo",
+        "dci",
+        "ethernet",
+        "gpus"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        329,
+        410
+      ],
+      "canonical_for": [],
+      "words": 1826,
+      "bytes": 13131,
+      "sha256": "a160aa42e66aab696fb33e4e6282dc0fe0758a92b80f16e224bf9c2dfee57f6a",
+      "section": "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/03-part-3-cross-vendor-synthesis/overview",
+      "path": "etape6-tracka-cisco-juniper/03-part-3-cross-vendor-synthesis/overview.md",
+      "title": "PART 3 — CROSS-VENDOR SYNTHESIS",
+      "domain": "part-3-cross-vendor-synthesis",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "China",
+        "Huawei",
+        "Meta",
+        "Nvidia",
+        "Oracle",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "asic",
+        "backlog",
+        "cpo",
+        "dci",
+        "ethernet",
+        "helios",
+        "hyperscaler",
+        "lpo",
+        "nvidia",
+        "optics",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        411,
+        455
+      ],
+      "canonical_for": [],
+      "words": 759,
+      "bytes": 4925,
+      "sha256": "dd9d90d64e852ddf0dd6183e2ecce096d2267004d98de6173f283e2d25f0c83e",
+      "section": "PART 3 — CROSS-VENDOR SYNTHESIS"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/03-part-3-cross-vendor-synthesis/9-4-master-timeline-january-september-2026",
+      "path": "etape6-tracka-cisco-juniper/03-part-3-cross-vendor-synthesis/9-4-master-timeline-january-september-2026.md",
+      "title": "9.4 Master timeline (January → September 2026)",
+      "domain": "part-3-cross-vendor-synthesis",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "CoreWeave",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-02-10",
+        "2026-02-25",
+        "2026-03-17",
+        "2026-03-24",
+        "2026-05-04",
+        "2026-05-06",
+        "2026-05-08",
+        "2026-06-01",
+        "2026-06-02",
+        "2026-06-15",
+        "2026-08-14",
+        "2026-08-25",
+        "2026-08-31",
+        "2026-09",
+        "2026-09-15",
+        "2026-09-17",
+        "2026-09-20",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "acquisition",
+        "amd",
+        "benchmarks",
+        "cpo",
+        "ethernet",
+        "nvidia",
+        "research",
+        "rubin",
+        "settlement",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        456,
+        510
+      ],
+      "canonical_for": [],
+      "words": 640,
+      "bytes": 4506,
+      "sha256": "53190fb3c48975888fe37431117bdea9b2e0888511ba48afab24e0a7a0c35862",
+      "section": "PART 3 — CROSS-VENDOR SYNTHESIS"
+    }
+  ]
+}

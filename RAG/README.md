@@ -34,13 +34,17 @@ RAG/
 ├── etape4-tracka-vllm-sglang/        # corpus n°14 — vLLM + SGLang (20 chunks)
 ├── etape4-trackb-local-inference/    # corpus n°15 — inférence locale (17 chunks)
 ├── etape5-trackd-servers/            # corpus n°16 — serveurs IA & réseau (24 chunks)
-└── labs-hyperscalers-2026/           # corpus n°17 — Labs & Hyperscalers (47 chunks)
+├── labs-hyperscalers-2026/           # corpus n°17 — Labs & Hyperscalers (47 chunks)
+├── etape6-trackc-huawei-mikrotik/    # corpus n°18 — Huawei + MikroTik, réseau (3 chunks)
+├── etape6-trackd-firewalls/          # corpus n°19 — pare-feu & sécurité réseau (4 chunks)
+├── etape6-trackb-arista-sonic/       # corpus n°20 — Arista + SONiC + Cumulus (5 chunks)
+└── etape6-tracka-cisco-juniper/      # corpus n°21 — Cisco + Juniper (10 chunks)
 ```
 
 Corpus n°1–2 : découpe « explicite » par H3 (listes de mapping figées).
-Corpus n°3–17 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
+Corpus n°3–21 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
 sources ne portant aucune ancre. Cibles 70–170 lignes pour n°3–4 (fichiers de 10 000–
-14 000 lignes), 50–110 pour n°5–8 (500–1 100 lignes) et 45–90 pour n°9–17 (200–3 000 lignes).
+14 000 lignes), 50–110 pour n°5–8 (500–1 100 lignes) et 45–90 pour n°9–21 (200–3 000 lignes).
 
 Options du mode auto : `first_is_content` (le H1 unique est du contenu, pas un entête),
 `folder_name` (nom court du dossier pour ce cas), et rattachement automatique des titres H1

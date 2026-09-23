@@ -1,0 +1,242 @@
+{
+  "corpus": "etape6-trackb-arista-sonic",
+  "title": "Step 6 — Track B : Arista + SONiC + Cumulus (fabric datacenter & réseau ouvert)",
+  "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+  "source_lines": 326,
+  "source_sha256": "cf7b5f7875c448670d1064fdeb44c286e61ddae84be4d12adf2e7ce30d51640e",
+  "chunk_count": 5,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/overview",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/overview.md",
+      "title": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-01-01",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmarks",
+        "ethernet",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        18
+      ],
+      "canonical_for": [],
+      "words": 174,
+      "bytes": 1319,
+      "sha256": "c12e5a68f8e61ec536626d04826bdb6e82e1659462d88d9f2494da28f74a79ad",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    },
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/1-arista-networks",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/1-arista-networks.md",
+      "title": "1. ARISTA NETWORKS",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "Meta",
+        "Microsoft",
+        "Oracle"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-05",
+        "2026-06",
+        "2026-06-04",
+        "2026-06-09",
+        "2026-08-04"
+      ],
+      "keywords": [
+        "accelerator",
+        "agentic",
+        "amd",
+        "aws",
+        "capex",
+        "compute",
+        "ethernet",
+        "hyperscaler",
+        "latency",
+        "lpo",
+        "maia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        19,
+        95
+      ],
+      "canonical_for": [],
+      "words": 1390,
+      "bytes": 10111,
+      "sha256": "2689a9b8f41afaade560cd4dd12ef9d61d30d132ecf4e130526fc553c35a7ab5",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    },
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/2-sonic-software-for-open-networking-in-the-cloud",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/2-sonic-software-for-open-networking-in-the-cloud.md",
+      "title": "2. SONiC (SOFTWARE FOR OPEN NETWORKING IN THE CLOUD)",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Broadcom",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-05",
+        "2025-12-09",
+        "2026-03-29",
+        "2026-04-15",
+        "2026-05",
+        "2026-05-27",
+        "2026-06",
+        "2026-10"
+      ],
+      "keywords": [
+        "agent",
+        "aws",
+        "ethernet",
+        "inference",
+        "nvidia",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        96,
+        162
+      ],
+      "canonical_for": [],
+      "words": 973,
+      "bytes": 7328,
+      "sha256": "54f58c53dbf27af72443ca0ed20e8f6778612cdf09e2346341d007aeccd586e9",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    },
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/4-open-networking-landscape-2026",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/4-open-networking-landscape-2026.md",
+      "title": "4. OPEN NETWORKING LANDSCAPE 2026",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Anthropic",
+        "Broadcom",
+        "Huawei",
+        "Intel",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "TSMC"
+      ],
+      "dates": [
+        "2023-07-19",
+        "2025-06-11",
+        "2026-03-12",
+        "2026-07-16"
+      ],
+      "keywords": [
+        "3nm",
+        "alignment",
+        "amd",
+        "asic",
+        "cpo",
+        "ethernet",
+        "gpu",
+        "inference",
+        "intel",
+        "latency",
+        "lpo",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        163,
+        243
+      ],
+      "canonical_for": [],
+      "words": 1296,
+      "bytes": 9419,
+      "sha256": "9ac80d4406d936c7fe5c5340870c01bb2f8d72e10fe8ae2ee5e773a369d8b34a",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    },
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/6-open-verification-items",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/6-open-verification-items.md",
+      "title": "6. OPEN VERIFICATION ITEMS",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Meta",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-02",
+        "2026-03-12",
+        "2026-05",
+        "2026-05-27",
+        "2026-06",
+        "2026-07",
+        "2026-07-16",
+        "2026-09-22",
+        "2026-11",
+        "2027-04",
+        "2027-07",
+        "2027-08",
+        "2027-11"
+      ],
+      "keywords": [
+        "accelerator",
+        "asic",
+        "datacenter",
+        "distribution",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "hyperscaler",
+        "latency",
+        "nvidia",
+        "nvlink",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        244,
+        326
+      ],
+      "canonical_for": [],
+      "words": 1198,
+      "bytes": 8884,
+      "sha256": "88551885ab6e3e004b388458a146e007d3d884ba1faccbe694b6416f16e84ae3",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    }
+  ]
+}

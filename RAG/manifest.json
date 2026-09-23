@@ -138,6 +138,38 @@
       "index": "labs-hyperscalers-2026/INDEX.md",
       "manifest": "labs-hyperscalers-2026/manifest.json",
       "chunk_count": 47
+    },
+    {
+      "corpus": "etape6-trackc-huawei-mikrotik",
+      "title": "Step 6 — Track C : Huawei + MikroTik (matériel réseau)",
+      "source": "docs/RAG/etape6_trackC_huawei_mikrotik.md",
+      "index": "etape6-trackc-huawei-mikrotik/INDEX.md",
+      "manifest": "etape6-trackc-huawei-mikrotik/manifest.json",
+      "chunk_count": 3
+    },
+    {
+      "corpus": "etape6-trackd-firewalls",
+      "title": "Step 6 — Track D : FortiGate + pfSense + OPNsense (pare-feu & sécurité réseau)",
+      "source": "docs/RAG/etape6_trackD_firewalls.md",
+      "index": "etape6-trackd-firewalls/INDEX.md",
+      "manifest": "etape6-trackd-firewalls/manifest.json",
+      "chunk_count": 4
+    },
+    {
+      "corpus": "etape6-trackb-arista-sonic",
+      "title": "Step 6 — Track B : Arista + SONiC + Cumulus (fabric datacenter & réseau ouvert)",
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "index": "etape6-trackb-arista-sonic/INDEX.md",
+      "manifest": "etape6-trackb-arista-sonic/manifest.json",
+      "chunk_count": 5
+    },
+    {
+      "corpus": "etape6-tracka-cisco-juniper",
+      "title": "Step 6 — Track A : Cisco + Juniper (réseau datacenter entreprise)",
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "index": "etape6-tracka-cisco-juniper/INDEX.md",
+      "manifest": "etape6-tracka-cisco-juniper/manifest.json",
+      "chunk_count": 10
     }
   ]
 }

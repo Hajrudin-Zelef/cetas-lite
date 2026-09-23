@@ -23,5 +23,9 @@ Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source déj
 | `etape4-trackb-local-inference` | Step 4 — Track B : pile d'inférence locale (llama.cpp, Ollama, LM Studio) |  | 17 | `docs/RAG/etape4_trackB_local_inference.md` | [INDEX](etape4-trackb-local-inference/INDEX.md) |
 | `etape5-trackd-servers` | Step 5 — Track D : serveurs IA, marché et réseau datacenter (2026) |  | 24 | `docs/RAG/etape5_trackD_servers.md` | [INDEX](etape5-trackd-servers/INDEX.md) |
 | `labs-hyperscalers-2026` | Step 3 — Labs & Hyperscalers (2026) |  | 47 | `docs/RAG/Labos  hyperscalersEN.md` | [INDEX](labs-hyperscalers-2026/INDEX.md) |
+| `etape6-trackc-huawei-mikrotik` | Step 6 — Track C : Huawei + MikroTik (matériel réseau) |  | 3 | `docs/RAG/etape6_trackC_huawei_mikrotik.md` | [INDEX](etape6-trackc-huawei-mikrotik/INDEX.md) |
+| `etape6-trackd-firewalls` | Step 6 — Track D : FortiGate + pfSense + OPNsense (pare-feu & sécurité réseau) |  | 4 | `docs/RAG/etape6_trackD_firewalls.md` | [INDEX](etape6-trackd-firewalls/INDEX.md) |
+| `etape6-trackb-arista-sonic` | Step 6 — Track B : Arista + SONiC + Cumulus (fabric datacenter & réseau ouvert) |  | 5 | `docs/RAG/etape6_trackB_arista_sonic.md` | [INDEX](etape6-trackb-arista-sonic/INDEX.md) |
+| `etape6-tracka-cisco-juniper` | Step 6 — Track A : Cisco + Juniper (réseau datacenter entreprise) |  | 10 | `docs/RAG/etape6_trackA_cisco_juniper.md` | [INDEX](etape6-tracka-cisco-juniper/INDEX.md) |
 
 Voir aussi [README](README.md) et `manifest.json`.
