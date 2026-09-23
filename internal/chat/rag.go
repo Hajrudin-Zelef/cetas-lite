@@ -112,8 +112,11 @@ func (e *Engine) ragHits(ctx context.Context, query string) rag.Result {
 }
 
 // ragContextFrom construit le message systeme depuis un resultat deja obtenu.
+// Porte de score (iteration 1) : des hits faibles ne doivent pas etre
+// presentes comme « source prioritaire ». Sans couverture, rien n'est
+// injecte (fail-open) et la recherche web prend le relais si activee.
 func ragContextFrom(res rag.Result) (string, bool) {
-	if len(res.Hits) == 0 {
+	if !ragCovered(res) {
 		return "", false
 	}
 	var b strings.Builder

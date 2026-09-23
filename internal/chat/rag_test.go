@@ -113,12 +113,19 @@ func TestRagContextFailOpenAndBudget(t *testing.T) {
 	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "q")); ok {
 		t.Fatal("aucun hit: ok attendu faux")
 	}
+	// Porte de score : des hits faibles ne sont pas injectes.
+	weak := ragEngine(t, fakeRag{ready: true, hits: []rag.Hit{
+		{Title: "W", Path: "w.md", Excerpt: "extrait faible", Score: ragStrongScore - 0.1},
+	}})
+	if _, ok := ragContextFrom(weak.ragHits(ctx, "q")); ok {
+		t.Fatal("hits faibles: ok attendu faux")
+	}
 
 	long := strings.Repeat("mot ", 2000)
 	e := ragEngine(t, fakeRag{ready: true, hits: []rag.Hit{
-		{Title: "A", Path: "a.md", Excerpt: long},
-		{Title: "B", Path: "b.md", Excerpt: long},
-		{Title: "C", Path: "c.md", Excerpt: long},
+		{Title: "A", Path: "a.md", Excerpt: long, Score: ragStrongScore},
+		{Title: "B", Path: "b.md", Excerpt: long, Score: ragStrongScore + 1},
+		{Title: "C", Path: "c.md", Excerpt: long, Score: ragStrongScore + 2},
 	}})
 	txt, ok := ragContextFrom(e.ragHits(ctx, "q"))
 	if !ok {
@@ -163,7 +170,7 @@ func TestRagContextInjectedIntoRequest(t *testing.T) {
 	reg.Set(cp)
 	e := NewEngine(reg, nil, st, nil, t.TempDir())
 	e.SetRAG(fakeRag{ready: true, hits: []rag.Hit{
-		{Title: "Alpha", Path: "a/alpha.md", Excerpt: "EXTRAIT-RAG-UNIQUE"},
+		{Title: "Alpha", Path: "a/alpha.md", Excerpt: "EXTRAIT-RAG-UNIQUE", Score: ragStrongScore},
 	}})
 	e.SetFamilies([]alias.Family{{
 		ID: "code", Label: "Code",
@@ -247,6 +254,26 @@ func TestRagCoveredThreshold(t *testing.T) {
 	}
 	if !ragCovered(rag.Result{Hits: []rag.Hit{{Score: ragStrongScore}}}) {
 		t.Fatal("score au seuil couvre")
+	}
+}
+
+// TestRagContextRefusedWhenWeak : la porte de score de l'iteration 1 —
+// des hits sous le seuil ne produisent aucun contexte injecte, meme
+// si des passages existent.
+func TestRagContextRefusedWhenWeak(t *testing.T) {
+	weak := rag.Result{Hits: []rag.Hit{
+		{Title: "Hors sujet", Path: "x.md", Excerpt: "extrait", Score: 1.2},
+		{Title: "Bruit", Path: "y.md", Excerpt: "extrait", Score: 0.8},
+	}}
+	if txt, ok := ragContextFrom(weak); ok || txt != "" {
+		t.Fatalf("hits faibles injectes: ok=%v txt=%q", ok, txt)
+	}
+	strong := rag.Result{Hits: []rag.Hit{
+		{Title: "Couvert", Path: "z.md", Excerpt: "extrait pertinent", Score: ragStrongScore},
+	}}
+	txt, ok := ragContextFrom(strong)
+	if !ok || !strings.Contains(txt, "extrait pertinent") {
+		t.Fatalf("hits forts non injectes: ok=%v", ok)
 	}
 }
 
