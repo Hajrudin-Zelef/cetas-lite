@@ -94,7 +94,7 @@ func extractPDF(data []byte) (string, error) {
 	if s, err := pdftotext(data); err == nil && strings.TrimSpace(s) != "" {
 		return strings.TrimSpace(s), nil
 	}
-	return "", errors.New("extraction PDF impossible (installer poppler-utils/pdftotext pour un meilleur support)")
+	return "", errors.New("PDF extraction unavailable (install poppler-utils/pdftotext for better support)")
 }
 
 func pdftotext(data []byte) (string, error) {

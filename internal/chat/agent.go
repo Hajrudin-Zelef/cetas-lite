@@ -1109,8 +1109,8 @@ var readLoopFamily = map[string]bool{
 const maxReadStreakWarn = 5
 const maxReadStreakStop = 8
 
-const readLoopWarnText = "[boucle] Tu as enchaîné 5 lectures d'affilée sans rien modifier ni exécuter. " +
-	"Arrête de relire : agis maintenant avec ce que tu sais déjà (modifie, exécute), ou réponds à l'utilisateur."
+const readLoopWarnText = "[loop] You have chained 5 reads in a row without modifying or executing anything. " +
+	"Stop re-reading: act now with what you already know (modify, execute), or answer the user."
 
 // noteReadLoopCall fait progresser le détecteur de boucle de lecture
 // (F2). Retourne warn=true quand le seuil d'avertissement est atteint,
@@ -1132,12 +1132,12 @@ func (st *toolExecState) noteReadLoopCall(name string) (warn, stop bool) {
 
 func repeatedCallResult(prev string, repeats int) string {
 	if repeats >= 2 {
-		return "[deja fait] Cet appel exact a deja ete execute " + strconv.Itoa(repeats) +
-			" fois dans ce tour ; son resultat est plus haut dans la conversation. " +
-			"Ne le redemande plus : reponds avec ce que tu as, ou change d'approche."
+		return "[already done] This exact call was already executed " + strconv.Itoa(repeats) +
+			" times in this turn; its result is higher up in the conversation. " +
+			"Do not ask for it again: answer with what you have, or change approach."
 	}
-	return "[deja fait] Appel identique deja execute dans ce tour — non rejoue. " +
-		"Voici a nouveau son resultat ; ne le redemande pas une troisieme fois.\n\n" + prev
+	return "[already done] Identical call already executed in this turn — not replayed. " +
+		"Here is its result again; do not ask for it a third time.\n\n" + prev
 }
 
 func nudgeText(n int) string {

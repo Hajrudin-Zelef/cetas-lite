@@ -695,3 +695,22 @@ func TestToolResultMarkersAllEnglish(t *testing.T) {
 		}
 	}
 }
+
+// TestAgentLoopMessagesAllEnglish : les messages de contrôle de la boucle
+// agent (avertissement lectures en chaîne, déduplication) sont injectés au
+// modèle — aucun texte FR ne doit y figurer.
+func TestAgentLoopMessagesAllEnglish(t *testing.T) {
+	const fr = "éèêëàâäîïôöùûüç"
+	for _, s := range []string{
+		readLoopWarnText,
+		repeatedCallResult("prev", 1),
+		repeatedCallResult("prev", 3),
+	} {
+		for _, r := range s {
+			if strings.ContainsRune(fr, r) {
+				t.Errorf("texte FR dans un message de boucle agent : %q", s)
+				break
+			}
+		}
+	}
+}

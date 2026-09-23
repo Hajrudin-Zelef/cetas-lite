@@ -107,7 +107,7 @@ func (m *Manager) Defs() []Def {
 		}
 		desc := t.Description
 		if desc == "" {
-			desc = "Appel HTTP " + strings.ToUpper(methodOf(t)) + " " + t.URL
+			desc = "HTTP call " + strings.ToUpper(methodOf(t)) + " " + t.URL
 		}
 		out = append(out, Def{Name: exposed, Description: desc, Schema: schema})
 	}

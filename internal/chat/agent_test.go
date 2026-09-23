@@ -158,7 +158,7 @@ func TestAgentDedupNonBash(t *testing.T) {
 	found := false
 	for _, m := range reqs[1].Messages {
 		if m.Role == "tool" {
-			if s, _ := m.Content.(string); strings.HasPrefix(s, "[deja fait]") {
+			if s, _ := m.Content.(string); strings.HasPrefix(s, "[already done]") {
 				found = true
 			}
 		}
@@ -191,7 +191,7 @@ func TestAgentBashNotDeduped(t *testing.T) {
 	reqs := sp.requests()
 	for _, m := range reqs[1].Messages {
 		if m.Role == "tool" {
-			if s, _ := m.Content.(string); strings.HasPrefix(s, "[deja fait]") {
+			if s, _ := m.Content.(string); strings.HasPrefix(s, "[already done]") {
 				t.Fatal("Bash ne doit jamais etre deduplique")
 			}
 		}
