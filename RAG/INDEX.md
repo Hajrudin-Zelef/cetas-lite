@@ -69,5 +69,12 @@ Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source déj
 | `etape9-phasec-memory` | Step 9 — Phase C: Server & Accelerator Memory Hardware |  | 12 | `docs/RAG/etape9_phaseC_memory.md` | [INDEX](etape9-phasec-memory/INDEX.md) |
 | `etape9-phased-data-protection-raid` | Step 9 — Phase D: Data Protection & RAID Hardware |  | 11 | `docs/RAG/etape9_phaseD_data_protection_raid.md` | [INDEX](etape9-phased-data-protection-raid/INDEX.md) |
 | `etape9-phasee-storage-market` | Step 9 Phase E — Storage & Memory Market 2026 |  | 8 | `docs/RAG/etape9_phaseE_storage_market.md` | [INDEX](etape9-phasee-storage-market/INDEX.md) |
+| `collect-korben` | Korben.info — veille IA & tech (2026) |  | 18 | `docs/RAG/Collect RAG/01_korben` | [INDEX](collect-korben/INDEX.md) |
+| `collect-mindstudio` | MindStudio — IA locale, modèles open-weight & agents (2026) |  | 170 | `docs/RAG/Collect RAG/02_mindstudio` | [INDEX](collect-mindstudio/INDEX.md) |
+| `collect-huggingface` | Hugging Face — fiches de modèles (2026) |  | 125 | `docs/RAG/Collect RAG/03_huggingface` | [INDEX](collect-huggingface/INDEX.md) |
+| `collect-opencode-docs` | opencode — documentation officielle |  | 4 | `docs/RAG/Collect RAG/04_opencode_docs` | [INDEX](collect-opencode-docs/INDEX.md) |
+| `collect-presse-fr` | Presse FR — IA & tech (2026) |  | 8 | `docs/RAG/Collect RAG/05_presse_fr` | [INDEX](collect-presse-fr/INDEX.md) |
+| `collect-benchmarks` | Benchmarks — modèles 2026 |  | 5 | `docs/RAG/Collect RAG/06_benchmarks` | [INDEX](collect-benchmarks/INDEX.md) |
+| `collect-tutoriels` | Tutoriels & reviews — IA (2026) |  | 6 | `docs/RAG/Collect RAG/07_tutoriels` | [INDEX](collect-tutoriels/INDEX.md) |
 
 Voir aussi [README](README.md) et `manifest.json`.

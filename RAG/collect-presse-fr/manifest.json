@@ -1,0 +1,330 @@
+{
+  "corpus": "collect-presse-fr",
+  "title": "Presse FR — IA & tech (2026)",
+  "source": "docs/RAG/Collect RAG/05_presse_fr",
+  "source_dir": "docs/RAG/Collect RAG/05_presse_fr",
+  "source_files": 8,
+  "source_sha256": "c0a4b66df9880ee75f6c32bcb72fb4f39490f807820cdf893794a4199cc44daf",
+  "chunk_count": 8,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-presse-fr/presse-fr/adoption-ia-france-4e-place",
+      "path": "collect-presse-fr/presse-fr/adoption-ia-france-4e-place.md",
+      "title": "Adoption de l'IA : la France s'installe à la 4ᵉ place du classement mondial",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Microsoft",
+        "Moonshot",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "copilot",
+        "cost",
+        "deepseek",
+        "diffusion",
+        "kimi",
+        "open weights",
+        "open-weight",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/adoption-ia-france-4e-place.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 777,
+      "bytes": 4835,
+      "sha256": "12ece28daa8c2ed43fe35121e2b77fe33cd0be5347cbae7e99594f57f2d6abfc"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/claude-opus-5-5-gpt-6-sol-luna-lesnumeriques",
+      "path": "collect-presse-fr/presse-fr/claude-opus-5-5-gpt-6-sol-luna-lesnumeriques.md",
+      "title": "Claude Opus 5.5 face à GPT-6 Sol et Luna : trois nouvelles IA d'un coup, et des prix qui chutent",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "gpt-6",
+        "luna",
+        "opus 5",
+        "sol",
+        "agents",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "fable 5",
+        "gpt-5.6"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/claude-opus-5-5-gpt-6-sol-luna-lesnumeriques.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 760,
+      "bytes": 4827,
+      "sha256": "87100f96d3b199c6180d0fe85b9590c2d9ed130267e0d45fc4cb23643bb8f5b3"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/claude-opus-5-5-gpt-6-sol-numerama",
+      "path": "collect-presse-fr/presse-fr/claude-opus-5-5-gpt-6-sol-numerama.md",
+      "title": "Claude Opus 5.5 et GPT-6 Sol sortent le même jour : Anthropic et OpenAI ont du mal à « ralentir » l'IA",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "EU",
+        "Google",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2023-03",
+        "2026-08",
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "gpt-6",
+        "opus 5",
+        "sol",
+        "agents",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "cost",
+        "cybersecurity",
+        "fable 5"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/claude-opus-5-5-gpt-6-sol-numerama.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 1041,
+      "bytes": 6082,
+      "sha256": "627914f1d3a2afde07d0760fb202ec2ea293dbd3a054c30ad3a1654bbdee246a"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret",
+      "path": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret.md",
+      "title": "Aux États-Unis, les data centers se négocient dans le secret",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Applied Digital",
+        "Meta",
+        "United States"
+      ],
+      "dates": [
+        "2023-12",
+        "2025-03",
+        "2025-12",
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "disclosure",
+        "energy",
+        "governance",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/etats-unis-data-centers-secret.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1248,
+      "bytes": 8022,
+      "sha256": "8dea3a7471f927a47fe2762221b987cae4ab9a3e34d0b5c9f0d43071e5ff1dce"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/gpt-6-astra-koul",
+      "path": "collect-presse-fr/presse-fr/gpt-6-astra-koul.md",
+      "title": "GPT-6 Astra : le modèle le plus intelligent et le mieux aligné au monde",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Hugging Face",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agentic",
+        "agents",
+        "agi",
+        "alignment",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/gpt-6-astra-koul.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1073,
+      "bytes": 6787,
+      "sha256": "26672f898524dc9da37b75a9bc8a0aec3e005a23f11ebb157c04b75efd571edd"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/meta-muse-spark-1-3",
+      "path": "collect-presse-fr/presse-fr/meta-muse-spark-1-3.md",
+      "title": "Meta lance Muse Spark 1.3, axé sur le code et le contexte long",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "muse",
+        "muse spark",
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "gemini",
+        "gpt-5.6",
+        "open weights",
+        "open-weight",
+        "opus 5"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/meta-muse-spark-1-3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 742,
+      "bytes": 4576,
+      "sha256": "9e87052c424ac940ac7ea44fc38d3cb92609bf2c14c0e5eedf133c4b00e0e555"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/openai-gpt-6-astra-anthropic-riposte-zdnet",
+      "path": "collect-presse-fr/presse-fr/openai-gpt-6-astra-anthropic-riposte-zdnet.md",
+      "title": "OpenAI gagne du terrain avec GPT-6 Astra, Anthropic prépare sa riposte : un nouveau Claude se profile",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "astra",
+        "claude",
+        "gpt-6"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/openai-gpt-6-astra-anthropic-riposte-zdnet.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 303,
+      "bytes": 2014,
+      "sha256": "a1fd7830a39174628f612283cbfa8871a6d4691543a53368e895a61b76b9a225"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/openai-gpt-6-sol-luna-tarifs",
+      "path": "collect-presse-fr/presse-fr/openai-gpt-6-sol-luna-tarifs.md",
+      "title": "OpenAI lance GPT-6 Sol et Luna, avec des tarifs API divisés par deux",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpt-6",
+        "luna",
+        "sol",
+        "agents",
+        "astra",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "cost",
+        "fable 5",
+        "gpt-5.6",
+        "opus 5"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/openai-gpt-6-sol-luna-tarifs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 783,
+      "bytes": 4949,
+      "sha256": "91161d61b9726a1887f5509d49d04bb78e2212a54227fe255c2a40e8463e24bd"
+    }
+  ]
+}

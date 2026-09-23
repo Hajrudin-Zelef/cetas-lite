@@ -1,0 +1,5204 @@
+{
+  "corpus": "collect-huggingface",
+  "title": "Hugging Face — fiches de modèles (2026)",
+  "source": "docs/RAG/Collect RAG/03_huggingface",
+  "source_dir": "docs/RAG/Collect RAG/03_huggingface",
+  "source_files": 125,
+  "source_sha256": "8959e8183e4a214a67ca7f1a128281aa0dfb45fd3a40b2b209846da51d546524",
+  "chunk_count": 125,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-huggingface/huggingface/baai-bge-m3",
+      "path": "collect-huggingface/huggingface/baai-bge-m3.md",
+      "title": "BGE-M3 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "distillation",
+        "embedding",
+        "embeddings",
+        "fine-tuning",
+        "license",
+        "mit license",
+        "reranker",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/BAAI-bge-m3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 582,
+      "bytes": 4196,
+      "sha256": "df67207db28366249201ee3dc5e42f2772256c47e1434afc8afe791af5693e91"
+    },
+    {
+      "id": "collect-huggingface/huggingface/coherelabs-north-small-translate-1-0-w4a16",
+      "path": "collect-huggingface/huggingface/coherelabs-north-small-translate-1-0-w4a16.md",
+      "title": "North-Small-Translate-1.0-w4a16 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Cohere",
+        "Hugging Face",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "attention",
+        "benchmarks",
+        "blackwell",
+        "cohere",
+        "embeddings",
+        "fp4",
+        "fp8",
+        "gpus",
+        "license",
+        "moe",
+        "nvfp4"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/CohereLabs-North-Small-Translate-1.0-w4a16.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 629,
+      "bytes": 4200,
+      "sha256": "a485765351a6d6b1b56f11e54eb909d1a3fadd034d2f2b2441bc46380677a748"
+    },
+    {
+      "id": "collect-huggingface/huggingface/coherelabs-north-small-translate-1-0",
+      "path": "collect-huggingface/huggingface/coherelabs-north-small-translate-1-0.md",
+      "title": "North-Small-Translate-1.0 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Cohere",
+        "Hugging Face",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "attention",
+        "benchmarks",
+        "cohere",
+        "embeddings",
+        "fp8",
+        "license",
+        "memory",
+        "moe",
+        "nvfp4",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/CohereLabs-North-Small-Translate-1.0.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 612,
+      "bytes": 4214,
+      "sha256": "39460196cd79472b53c8f272a6661f33f5156b3c14b0cccabe0d7c9ac364d6ef"
+    },
+    {
+      "id": "collect-huggingface/huggingface/coherelabs-cohere-transcribe-03-2026",
+      "path": "collect-huggingface/huggingface/coherelabs-cohere-transcribe-03-2026.md",
+      "title": "cohere-transcribe-03-2026 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "China",
+        "Cohere",
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-03-26",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cohere",
+        "apache",
+        "benchmarks",
+        "inference",
+        "leaderboard",
+        "license",
+        "nvidia",
+        "open-weight",
+        "qwen",
+        "vllm",
+        "voice"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/CohereLabs-cohere-transcribe-03-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 566,
+      "bytes": 4103,
+      "sha256": "483f7920743953b2fbf84aa5b1676b9bbf980574c898d628d1927feec4f27e2b"
+    },
+    {
+      "id": "collect-huggingface/huggingface/comfy-org-minimax-h3",
+      "path": "collect-huggingface/huggingface/comfy-org-minimax-h3.md",
+      "title": "MiniMax H3 (ComfyUI) - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "MiniMax",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "awq",
+        "blackwell",
+        "diffusion",
+        "distribution",
+        "embedding",
+        "embeddings",
+        "fp8",
+        "gpu",
+        "license",
+        "lora",
+        "multimodal",
+        "nvfp4"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Comfy-Org-MiniMax-H3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 525,
+      "bytes": 4095,
+      "sha256": "ccc6c8b7b7e6b46267df0a70c850fdc9dfb3110c2093d4833a925a289eb7d616"
+    },
+    {
+      "id": "collect-huggingface/huggingface/comfy-org-qwen-image-comfyui",
+      "path": "collect-huggingface/huggingface/comfy-org-qwen-image-comfyui.md",
+      "title": "Qwen-Image_ComfyUI - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "apache",
+        "diffusion",
+        "fp8",
+        "license",
+        "lora",
+        "nvfp4",
+        "quantization",
+        "safetensors",
+        "text-to-image",
+        "video generation"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Comfy-Org-Qwen-Image_ComfyUI.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 444,
+      "bytes": 3473,
+      "sha256": "497be45bff938cbb0b47ff5de7c26440c1d2b600cbbed5c4f6d76c01c405915b"
+    },
+    {
+      "id": "collect-huggingface/huggingface/hauhaucs-gpt-oss-20b-uncensored-hauhaucs-aggressive",
+      "path": "collect-huggingface/huggingface/hauhaucs-gpt-oss-20b-uncensored-hauhaucs-aggressive.md",
+      "title": "GPT-OSS-20B-Uncensored-HauhauCS-Aggressive - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "fine-tuning",
+        "gguf",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "mxfp4",
+        "open-weight",
+        "packaging"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/HauhauCS-GPT-OSS-20B-Uncensored-HauhauCS-Aggressive.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 451,
+      "bytes": 2946,
+      "sha256": "7d50d3d7bf530d30af42693c714f46e11a49b74ca163a007ea6423876af95d78"
+    },
+    {
+      "id": "collect-huggingface/huggingface/hauhaucs-gemma-4-e4b-uncensored-hauhaucs-aggressive",
+      "path": "collect-huggingface/huggingface/hauhaucs-gemma-4-e4b-uncensored-hauhaucs-aggressive.md",
+      "title": "Gemma-4-E4B-Uncensored-HauhauCS-Aggressive - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "attention",
+        "context window",
+        "embeddings",
+        "gguf",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "multimodal",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/HauhauCS-Gemma-4-E4B-Uncensored-HauhauCS-Aggressive.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 611,
+      "bytes": 3992,
+      "sha256": "d19bcd5987d16fe26698c4b86dcdf399f95970007a8f1f3c2e3c3ab493945688"
+    },
+    {
+      "id": "collect-huggingface/huggingface/hauhaucs-gemma4-26b-a4b-qat-uncensored-hauhaucs-balanced-mtp",
+      "path": "collect-huggingface/huggingface/hauhaucs-gemma4-26b-a4b-qat-uncensored-hauhaucs-balanced-mtp.md",
+      "title": "Gemma4-26B-A4B-QAT-Uncensored-HauhauCS-Balanced-MTP - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "benchmarks",
+        "context window",
+        "gguf",
+        "gpu",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "multimodal",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/HauhauCS-Gemma4-26B-A4B-QAT-Uncensored-HauhauCS-Balanced-MTP.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 646,
+      "bytes": 4230,
+      "sha256": "e67830d39ab3d81be3338b036394f4a61805e0dc0d43a29bab3ef02d38e3f3ee"
+    },
+    {
+      "id": "collect-huggingface/huggingface/hauhaucs-qwen3-8-27b-uncensored-hauhaucs-aggressive-mtp-gguf",
+      "path": "collect-huggingface/huggingface/hauhaucs-qwen3-8-27b-uncensored-hauhaucs-aggressive-mtp-gguf.md",
+      "title": "Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "qwen",
+        "agentic",
+        "apache",
+        "attention",
+        "benchmarks",
+        "blackwell",
+        "license",
+        "llama",
+        "llama.cpp",
+        "open-weight",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/HauhauCS-Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 619,
+      "bytes": 4153,
+      "sha256": "488c077ec75a5c09f872063ad906ffdc16e23162e3a531d9bc35baf09ab9d135"
+    },
+    {
+      "id": "collect-huggingface/huggingface/minimaxai-minimax-h3",
+      "path": "collect-huggingface/huggingface/minimaxai-minimax-h3.md",
+      "title": "MiniMax-H3 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "China",
+        "EU",
+        "Hugging Face",
+        "MiniMax",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "inference",
+        "license",
+        "multimodal",
+        "omni",
+        "open-weight",
+        "sglang",
+        "video generation",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/MiniMaxAI-MiniMax-H3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 612,
+      "bytes": 4281,
+      "sha256": "b59c9b31b5116e6c9ba0f2988a0bf147d2570e31e6f44b479751ac908f05d089"
+    },
+    {
+      "id": "collect-huggingface/huggingface/minimaxai-minimax-m2-5",
+      "path": "collect-huggingface/huggingface/minimaxai-minimax-m2-5.md",
+      "title": "MiniMax-M2.5 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "MiniMax",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "distribution",
+        "fp8",
+        "license",
+        "mit license",
+        "moe",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/MiniMaxAI-MiniMax-M2.5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 555,
+      "bytes": 3888,
+      "sha256": "40c57738dc4da1a21c8a41c87a745aa3e1b794f6e98916eca26913fe62ffd1ae"
+    },
+    {
+      "id": "collect-huggingface/huggingface/minimaxai-minimax-m2-7",
+      "path": "collect-huggingface/huggingface/minimaxai-minimax-m2-7.md",
+      "title": "MiniMax-M2.7 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "MiniMax",
+        "Nvidia",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmarks",
+        "fp8",
+        "incident",
+        "license",
+        "memory",
+        "moe",
+        "nvidia",
+        "open-weight",
+        "opus 4",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/MiniMaxAI-MiniMax-M2.7.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 530,
+      "bytes": 3798,
+      "sha256": "90e99240f4f4eb091138e16ddce164204502ecd67646e2b5fd9f086324feb685"
+    },
+    {
+      "id": "collect-huggingface/huggingface/minimaxai-minimax-m3",
+      "path": "collect-huggingface/huggingface/minimaxai-minimax-m3.md",
+      "title": "MiniMax-M3 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "AMD",
+        "Hugging Face",
+        "MiniMax",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "attention",
+        "benchmarks",
+        "compute",
+        "decode",
+        "gqa",
+        "inference",
+        "latency",
+        "license",
+        "memory",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/MiniMaxAI-MiniMax-M3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 510,
+      "bytes": 3551,
+      "sha256": "b045eb9401f3b2ec62630e3fd51341f4d910207d4c6ab6774a7064a70801dcc0"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen-72b",
+      "path": "collect-huggingface/huggingface/qwen-qwen-72b.md",
+      "title": "Qwen-72B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "China",
+        "Hugging Face",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "attention",
+        "benchmarks",
+        "gpu",
+        "int4",
+        "license",
+        "memory",
+        "open-weight",
+        "parameters",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen-72B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 492,
+      "bytes": 3277,
+      "sha256": "7ef3da339b69b8cdbb2e7e7d9fd3c7daa6ecff694d08d5f7ad7c757cc04bcd22"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen-image-2-1",
+      "path": "collect-huggingface/huggingface/qwen-qwen-image-2-1.md",
+      "title": "Qwen-Image-2.1 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "apache",
+        "attention",
+        "consumer",
+        "inference",
+        "kv cache",
+        "license",
+        "memory",
+        "parameters",
+        "research",
+        "text-to-image"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen-Image-2.1.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 560,
+      "bytes": 4050,
+      "sha256": "2b5983bc5e57f64957458d682dd1b0030e07e98452dc8c9444c8ada734997edc"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-coder-next-fp8",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-coder-next-fp8.md",
+      "title": "Qwen3-Coder-Next-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "qwen",
+        "agent",
+        "agentic",
+        "agents",
+        "apache",
+        "attention",
+        "claude",
+        "cost",
+        "embedding",
+        "inference",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3-Coder-Next-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 478,
+      "bytes": 3133,
+      "sha256": "4bac1bb46e3a1012c87e05fec34ac246191a72104dcab9febfaaf16429f15491"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-embedding-0-6b",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-embedding-0-6b.md",
+      "title": "Qwen3-Embedding-0.6B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "vLLM"
+      ],
+      "dates": [
+        "2025-06-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "embedding",
+        "qwen",
+        "apache",
+        "attention",
+        "benchmarks",
+        "embeddings",
+        "inference",
+        "leaderboard",
+        "license",
+        "memory",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3-Embedding-0.6B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 517,
+      "bytes": 3461,
+      "sha256": "995b25dd0ec50b4a274f33fbe2144d889252c8a91776731b2db247040f8f1381"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-tts-12hz-1-7b-base",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-tts-12hz-1-7b-base.md",
+      "title": "Qwen3-TTS-12Hz-1.7B-Base - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "China",
+        "Hugging Face",
+        "MiniMax",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agents",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "fine-tuning",
+        "inference",
+        "latency",
+        "license",
+        "multimodal",
+        "omni",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3-TTS-12Hz-1.7B-Base.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 517,
+      "bytes": 3660,
+      "sha256": "6e97abb8aa9002b4734ce2dd58c22d84f43b310784d9b766248d166ef265badc"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-vl-embedding-8b",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-vl-embedding-8b.md",
+      "title": "Qwen3-VL-Embedding-8B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "embedding",
+        "qwen",
+        "apache",
+        "benchmarks",
+        "embeddings",
+        "license",
+        "multimodal",
+        "parameters",
+        "quantization",
+        "reranker",
+        "sglang",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3-VL-Embedding-8B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 458,
+      "bytes": 3208,
+      "sha256": "60f43b8785ec27e5347404f47da2192dcd91410148cc81b656a4371b75950891"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-5-122b-a10b-fp8",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-5-122b-a10b-fp8.md",
+      "title": "Qwen3.5-122B-A10B-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "qwen",
+        "agent",
+        "agentic",
+        "agents",
+        "apache",
+        "attention",
+        "benchmark",
+        "cost",
+        "license",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3.5-122B-A10B-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 507,
+      "bytes": 3300,
+      "sha256": "d3115153a2e89d8ec5f9db98896ca1fd070d7f5d3931bc62f39668a411d35198"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-6-35b-a3b-fp8",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-6-35b-a3b-fp8.md",
+      "title": "Qwen3.6-35B-A3B-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "qwen",
+        "agentic",
+        "agents",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "inference",
+        "license",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3.6-35B-A3B-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 536,
+      "bytes": 3529,
+      "sha256": "4694329772ac95224fd9481ea27dcd158e1eb2ba5bd3e55268485a2a11e3c5ad"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-6-35b-a3b",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-6-35b-a3b.md",
+      "title": "Qwen3.6-35B-A3B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agentic",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "fp8",
+        "gguf",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3.6-35B-A3B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 521,
+      "bytes": 3416,
+      "sha256": "b24ca0557fa5e892f1880de23031de52a401b328542f9693ca63687db52b0356"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-8-2-4t-a95b-fp8",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-8-2-4t-a95b-fp8.md",
+      "title": "Qwen3.8-2.4T-A95B-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "qwen",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "embedding",
+        "fable 5",
+        "license",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3.8-2.4T-A95B-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 658,
+      "bytes": 4407,
+      "sha256": "66c5e06c6f2e0365b59a1d508c9b2465b512fdc9b28072737098b62255922b73"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-8-2-4t-a95b",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-8-2-4t-a95b.md",
+      "title": "Qwen3.8-2.4T-A95B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "embedding",
+        "fable 5",
+        "fp8",
+        "license",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3.8-2.4T-A95B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 652,
+      "bytes": 4402,
+      "sha256": "47cc51cdbe9800aaa312c4df521d5f985684b97350eefb9f86619fbfb6b114c8"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-8-27b",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-8-27b.md",
+      "title": "Qwen3.8-27B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Meta",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agent",
+        "agentic",
+        "agents",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "embedding",
+        "license",
+        "multimodal",
+        "muse"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3.8-27B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 662,
+      "bytes": 4576,
+      "sha256": "27bb3b39babf60e6810c4c21d8d667eb9a7a7c05a978ebdaee5a9abedb5d956c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/qwen-qwen3-8-flash-next",
+      "path": "collect-huggingface/huggingface/qwen-qwen3-8-flash-next.md",
+      "title": "Qwen3.8-Flash-Next - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmarks",
+        "claude",
+        "compute",
+        "deepseek",
+        "embedding",
+        "embeddings",
+        "latency",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Qwen-Qwen3.8-Flash-Next.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 618,
+      "bytes": 4186,
+      "sha256": "34313ba81fe0adfe746ca4f61fc069732ddf0e8580113419ebad382a294f2270"
+    },
+    {
+      "id": "collect-huggingface/huggingface/radixark-kimi-k3-dspark",
+      "path": "collect-huggingface/huggingface/radixark-kimi-k3-dspark.md",
+      "title": "Kimi K3 DSpark speculator - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Moonshot",
+        "SGLang"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "attention",
+        "benchmarks",
+        "distillation",
+        "embedding",
+        "embeddings",
+        "gqa",
+        "inference",
+        "parameters",
+        "safetensors",
+        "sglang",
+        "speculative decoding"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/RadixArk-Kimi-K3-DSpark.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 565,
+      "bytes": 3984,
+      "sha256": "30cacf15f459df1427d946dbbd8c014be401bb765a4c8ff024c4194dd8176a5e"
+    },
+    {
+      "id": "collect-huggingface/huggingface/vontra-mimo-v2-6-flash-rl-mlx-4bit-mtp",
+      "path": "collect-huggingface/huggingface/vontra-mimo-v2-6-flash-rl-mlx-4bit-mtp.md",
+      "title": "MiMo-V2.6-Flash-RL-MLX-4bit-MTP - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Apple",
+        "Hugging Face",
+        "OpenAI",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "attention",
+        "decode",
+        "fp8",
+        "license",
+        "memory",
+        "mit license",
+        "moe",
+        "mxfp4",
+        "quantization",
+        "safetensors",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/Vontra-MiMo-V2.6-Flash-RL-MLX-4bit-MTP.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 577,
+      "bytes": 3820,
+      "sha256": "a8df5dd2be36817bd5376d733a3ea21213768947c93369673942008abb9efe2a"
+    },
+    {
+      "id": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-5-pro",
+      "path": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-5-pro.md",
+      "title": "MiMo-V2.5-Pro - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "Xiaomi",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "distillation",
+        "fp8",
+        "gqa",
+        "inference",
+        "license",
+        "mit license",
+        "moe",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/XiaomiMiMo-MiMo-V2.5-Pro.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 619,
+      "bytes": 3921,
+      "sha256": "3b49b4fd122dbee0d647471488598bdce2cda70c64c7fcd16673c7083d4e236b"
+    },
+    {
+      "id": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-5",
+      "path": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-5.md",
+      "title": "MiMo-V2.5 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "SGLang",
+        "Xiaomi",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "attention",
+        "benchmarks",
+        "context window",
+        "distillation",
+        "fp8",
+        "kv cache",
+        "license",
+        "mit license",
+        "moe",
+        "multimodal",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/XiaomiMiMo-MiMo-V2.5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 636,
+      "bytes": 3938,
+      "sha256": "3a9c003c3c7d8c5d31da3cae5686d234d843434e85d6d7f46f09f72008b66b1d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-6-distill-qwen-9b",
+      "path": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-6-distill-qwen-9b.md",
+      "title": "MiMo-V2.6-Distill-Qwen-9B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "SGLang",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "cyber",
+        "cybersecurity",
+        "distillation",
+        "fine-tuning",
+        "license",
+        "mit license",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/XiaomiMiMo-MiMo-V2.6-Distill-Qwen-9B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 487,
+      "bytes": 3332,
+      "sha256": "17bda5cc57a06bc82ec49231f3fd0a74e207e5f53233d3a842e8683b359dcb2c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-6-flash-rl",
+      "path": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-6-flash-rl.md",
+      "title": "MiMo-V2.6-Flash-RL - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "OpenRouter",
+        "SGLang",
+        "Xiaomi",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "context window",
+        "cyber",
+        "cybersecurity",
+        "distillation",
+        "fp8",
+        "license",
+        "mit license",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/XiaomiMiMo-MiMo-V2.6-Flash-RL.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 603,
+      "bytes": 3934,
+      "sha256": "78a572218fecba1ae6b99d392a932711d57d472b43ae0ec30455b3ad64b8e7c5"
+    },
+    {
+      "id": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-6-pro-rl",
+      "path": "collect-huggingface/huggingface/xiaomimimo-mimo-v2-6-pro-rl.md",
+      "title": "MiMo-V2.6-Pro-RL - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "OpenAI",
+        "OpenRouter",
+        "SGLang",
+        "Xiaomi",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmarks",
+        "claude",
+        "compute",
+        "cybersecurity",
+        "distillation",
+        "fp8",
+        "gpt-5.6",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/XiaomiMiMo-MiMo-V2.6-Pro-RL.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 617,
+      "bytes": 4061,
+      "sha256": "d50599e33072ab60df36ad5fd49e86011cdc6c6f12c805fde68a631430421d46"
+    },
+    {
+      "id": "collect-huggingface/huggingface/black-forest-labs-flux-1-schnell",
+      "path": "collect-huggingface/huggingface/black-forest-labs-flux-1-schnell.md",
+      "title": "FLUX.1 [schnell] - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "diffusion",
+        "distillation",
+        "gguf",
+        "inference",
+        "license",
+        "open-weight",
+        "parameters",
+        "qwen",
+        "safetensors",
+        "text-to-image"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/black-forest-labs-FLUX.1-schnell.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 502,
+      "bytes": 3579,
+      "sha256": "922bbad67cd43c01602b5b885de8fb06457aa8f893f9f9318c14368366057ce3"
+    },
+    {
+      "id": "collect-huggingface/huggingface/black-forest-labs-flux-2-klein-base-9b-fp8",
+      "path": "collect-huggingface/huggingface/black-forest-labs-flux-2-klein-base-9b-fp8.md",
+      "title": "FLUX.2-klein-base-9b-fp8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Apple",
+        "Hugging Face",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "apache",
+        "diffusion",
+        "fine-tuning",
+        "governance",
+        "inference",
+        "license",
+        "nvidia",
+        "open-weight",
+        "safetensors",
+        "text-to-image",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/black-forest-labs-FLUX.2-klein-base-9b-fp8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 490,
+      "bytes": 3757,
+      "sha256": "817843f2a9058daaea0e35b2a01d127408426f3ac0395761999e1b505515db0c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/cross-encoder-ms-marco-minilm-l6-v2",
+      "path": "collect-huggingface/huggingface/cross-encoder-ms-marco-minilm-l6-v2.md",
+      "title": "ms-marco-MiniLM-L6-v2 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "latency",
+        "license",
+        "parameters",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/cross-encoder-ms-marco-MiniLM-L6-v2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 497,
+      "bytes": 3463,
+      "sha256": "0b5dd9931b4a40368baa04e835ac8c34ccff276364d84eabbcc95058e88afd0b"
+    },
+    {
+      "id": "collect-huggingface/huggingface/deepseek-ai-deepseek-ocr-2",
+      "path": "collect-huggingface/huggingface/deepseek-ai-deepseek-ocr-2.md",
+      "title": "DeepSeek-OCR-2 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "gpus",
+        "inference",
+        "license",
+        "nvidia",
+        "parameters",
+        "safetensors",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/deepseek-ai-DeepSeek-OCR-2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 502,
+      "bytes": 3835,
+      "sha256": "7c6e386ad7c343b53f02ec680a62444e04bc03f926c3caadcc8d07c0f2315c57"
+    },
+    {
+      "id": "collect-huggingface/huggingface/deepseek-ai-deepseek-r1-distill-qwen-1-5b",
+      "path": "collect-huggingface/huggingface/deepseek-ai-deepseek-r1-distill-qwen-1-5b.md",
+      "title": "DeepSeek-R1-Distill-Qwen-1.5B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "qwen",
+        "apache",
+        "benchmarks",
+        "distillation",
+        "license",
+        "llama",
+        "mit license",
+        "parameters",
+        "reasoning",
+        "sglang",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/deepseek-ai-DeepSeek-R1-Distill-Qwen-1.5B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 588,
+      "bytes": 3901,
+      "sha256": "468efc7003712a7630c4979b6765c46a4f015a798fea5512019abf081699ac60"
+    },
+    {
+      "id": "collect-huggingface/huggingface/deepseek-ai-deepseek-r1",
+      "path": "collect-huggingface/huggingface/deepseek-ai-deepseek-r1.md",
+      "title": "DeepSeek-R1 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "distillation",
+        "fine-tuning",
+        "fp8",
+        "license",
+        "licenses",
+        "llama",
+        "mit license",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/deepseek-ai-DeepSeek-R1.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 624,
+      "bytes": 4327,
+      "sha256": "4c45c78f9c0275202469b0c290c5af6c5df47e55a77bb80969b19f05d0a72bc3"
+    },
+    {
+      "id": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-flash-0731",
+      "path": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-flash-0731.md",
+      "title": "DeepSeek-V4-Flash-0731 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "fp4",
+        "fp8",
+        "glm",
+        "inference",
+        "kv cache",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/deepseek-ai-DeepSeek-V4-Flash-0731.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 600,
+      "bytes": 4239,
+      "sha256": "2654ccba89faf10b83b53a20248fc4e713c007c919378f7124465956f973daed"
+    },
+    {
+      "id": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-flash-vision-exp",
+      "path": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-flash-vision-exp.md",
+      "title": "DeepSeek-V4-Flash-Vision-Exp - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agent",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "fp8",
+        "inference",
+        "kv cache",
+        "license",
+        "mit license",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/deepseek-ai-DeepSeek-V4-Flash-Vision-Exp.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 611,
+      "bytes": 4466,
+      "sha256": "92c64405ec3bd3cc1eb6e1997e47d49b1180cd3c8264e72e618b6b62761a9ea9"
+    },
+    {
+      "id": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-pro",
+      "path": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-pro.md",
+      "title": "DeepSeek-V4-Pro - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "distillation",
+        "fp4",
+        "fp8",
+        "inference",
+        "kv cache",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/deepseek-ai-DeepSeek-V4-Pro.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 638,
+      "bytes": 4257,
+      "sha256": "8172ae9c95a1c69fe8891fc71a134445b4ccfad1b5b603f77a3245fa69bae7f1"
+    },
+    {
+      "id": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-1-flash",
+      "path": "collect-huggingface/huggingface/deepseek-ai-deepseek-v4-1-flash.md",
+      "title": "DeepSeek-V4.1-Flash - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost",
+        "decode",
+        "distillation",
+        "fp4",
+        "fp8",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/deepseek-ai-DeepSeek-V4.1-Flash.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 708,
+      "bytes": 4780,
+      "sha256": "28583e40fcb04d2f64f237be7e47986cfc688c62d008b9004bfd1ebc30368d93"
+    },
+    {
+      "id": "collect-huggingface/huggingface/google-bert-bert-base-uncased",
+      "path": "collect-huggingface/huggingface/google-bert-bert-base-uncased.md",
+      "title": "bert-base-uncased - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "embeddings",
+        "fine-tuning",
+        "license",
+        "parameters",
+        "research",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/google-bert-bert-base-uncased.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 560,
+      "bytes": 3682,
+      "sha256": "cbafc0248e3016826575a49e4390459a1afe15b60895503c846c36a66fe6820d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/google-electra-base-discriminator",
+      "path": "collect-huggingface/huggingface/google-electra-base-discriminator.md",
+      "title": "electra-base-discriminator - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "compute",
+        "gpu",
+        "license",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/google-electra-base-discriminator.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 513,
+      "bytes": 3628,
+      "sha256": "7dc7eb4ab61272a078ba2bab2c8636a53f374cd604170a6ae6e5835bf216674d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/google-gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "path": "collect-huggingface/huggingface/google-gemma-4-26b-a4b-it-qat-q4-0-gguf.md",
+      "title": "gemma-4-26B-A4B-it-qat-q4_0-gguf - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/google-gemma-4-26B-A4B-it-qat-q4_0-gguf.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 643,
+      "bytes": 4195,
+      "sha256": "bdb533c9f3acae1c694953f7aea449a95d0b2e76de91daa16a1fa6f2938aee3d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/google-gemma-4-26b-a4b-it",
+      "path": "collect-huggingface/huggingface/google-gemma-4-26b-a4b-it.md",
+      "title": "gemma-4-26B-A4B-it - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2025-01",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "inference",
+        "license",
+        "memory",
+        "moe",
+        "multimodal",
+        "open weights",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/google-gemma-4-26B-A4B-it.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 625,
+      "bytes": 3856,
+      "sha256": "d00133cd7097b19acd7f8ad9c7d61e1e80161577182fd1db1b1f83b7d770e17e"
+    },
+    {
+      "id": "collect-huggingface/huggingface/google-gemma-4-31b-it",
+      "path": "collect-huggingface/huggingface/google-gemma-4-31b-it.md",
+      "title": "gemma-4-31B-it - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2025-01",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "gguf",
+        "license",
+        "memory",
+        "multimodal",
+        "open weights",
+        "parameters",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/google-gemma-4-31B-it.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 615,
+      "bytes": 3882,
+      "sha256": "b00cff775ad5827775e3b69fd24af5f367ffb9ce6d83ff31b8c5b2d949fd5bd5"
+    },
+    {
+      "id": "collect-huggingface/huggingface/google-t5-t5-small",
+      "path": "collect-huggingface/huggingface/google-t5-t5-small.md",
+      "title": "T5-small - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "fine-tuning",
+        "license",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/google-t5-t5-small.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 533,
+      "bytes": 3671,
+      "sha256": "056caf583b41a720f8b1ca31b1ca99a7bc06754c8774498dbb522b6d412324c6"
+    },
+    {
+      "id": "collect-huggingface/huggingface/inclusionai-ming-image-0-1-design",
+      "path": "collect-huggingface/huggingface/inclusionai-ming-image-0-1-design.md",
+      "title": "Ming-Image-0.1-Design - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Ant",
+        "Hugging Face",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpu",
+        "inference",
+        "leaderboard",
+        "license",
+        "mit license",
+        "omni",
+        "open-weight",
+        "safetensors",
+        "text-to-image",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/inclusionAI-Ming-Image-0.1-Design.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 484,
+      "bytes": 3514,
+      "sha256": "c12a33c7d47efa94f857ad8096fb37e51cf6de20cfb9d7da15d02855b9a30a20"
+    },
+    {
+      "id": "collect-huggingface/huggingface/juspay-jev-one",
+      "path": "collect-huggingface/huggingface/juspay-jev-one.md",
+      "title": "jev-one - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "SGLang"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "blackwell",
+        "distribution",
+        "gpus",
+        "inference",
+        "license",
+        "memory",
+        "moe",
+        "nvidia",
+        "parameters",
+        "prefill",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/juspay-jev-one.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 743,
+      "bytes": 5098,
+      "sha256": "d0bc205b197d6df7430e946eba809c061defbf7800a257a3fdca63c4242f59e7"
+    },
+    {
+      "id": "collect-huggingface/huggingface/lmstudio-community-glm-4-7-flash-mlx-8bit",
+      "path": "collect-huggingface/huggingface/lmstudio-community-glm-4-7-flash-mlx-8bit.md",
+      "title": "GLM-4.7-Flash-MLX-8bit - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "agent",
+        "agentic",
+        "benchmarks",
+        "consumer",
+        "inference",
+        "license",
+        "mit license",
+        "moe",
+        "parameters",
+        "quantization",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/lmstudio-community-GLM-4.7-Flash-MLX-8bit.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 453,
+      "bytes": 2859,
+      "sha256": "29875af06f5ccd70e214439186b1b0e2d35a27881909ef77c0ed986ef88431b3"
+    },
+    {
+      "id": "collect-huggingface/huggingface/lmstudio-community-qwen3-8-27b-mlx-6bit",
+      "path": "collect-huggingface/huggingface/lmstudio-community-qwen3-8-27b-mlx-6bit.md",
+      "title": "Qwen3.8-27B-MLX-6bit - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "Hugging Face",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agentic",
+        "apache",
+        "attention",
+        "fine-tuning",
+        "inference",
+        "license",
+        "parameters",
+        "quantization",
+        "reasoning",
+        "research",
+        "sglang"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/lmstudio-community-Qwen3.8-27B-MLX-6bit.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 516,
+      "bytes": 3353,
+      "sha256": "cec1c47c1aec9b804e4d53bd6366448d96e8f951e4c902fa30d90493e9197b10"
+    },
+    {
+      "id": "collect-huggingface/huggingface/meta-llama-llama-4-maverick-17b-128e-instruct-fp8",
+      "path": "collect-huggingface/huggingface/meta-llama-llama-4-maverick-17b-128e-instruct-fp8.md",
+      "title": "Llama-4-Maverick-17B-128E-Instruct-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2024-08",
+        "2025-04-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "llama",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "gpu",
+        "inference",
+        "license",
+        "moe",
+        "multimodal",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/meta-llama-Llama-4-Maverick-17B-128E-Instruct-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 579,
+      "bytes": 3742,
+      "sha256": "5be25f26f721c561086e29b4a15ec24b7a3d8c40731643dbbe8bd5df8f0ed680"
+    },
+    {
+      "id": "collect-huggingface/huggingface/meta-llama-llama-4-maverick-17b-128e-instruct",
+      "path": "collect-huggingface/huggingface/meta-llama-llama-4-maverick-17b-128e-instruct.md",
+      "title": "Llama-4-Maverick-17B-128E-Instruct - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2024-08",
+        "2025-04-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "fp8",
+        "gpu",
+        "license",
+        "moe",
+        "multimodal",
+        "parameters",
+        "pretraining"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/meta-llama-Llama-4-Maverick-17B-128E-Instruct.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 584,
+      "bytes": 3847,
+      "sha256": "a1d75ebcbf783a466e578556d405a98ac1a4ae74a220e0ba1cb2ce7c91ce4fee"
+    },
+    {
+      "id": "collect-huggingface/huggingface/meta-llama-llama-4-scout-17b-16e-instruct",
+      "path": "collect-huggingface/huggingface/meta-llama-llama-4-scout-17b-16e-instruct.md",
+      "title": "Llama-4-Scout-17B-16E-Instruct - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2024-08",
+        "2025-04-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "scout",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "context window",
+        "gguf",
+        "gpu",
+        "int4",
+        "license",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/meta-llama-Llama-4-Scout-17B-16E-Instruct.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 614,
+      "bytes": 3998,
+      "sha256": "50d92311f1b0ae956bb23d8f407d969fb057fc94d4b82bbb7fb7b50385b644f5"
+    },
+    {
+      "id": "collect-huggingface/huggingface/meta-llama-llama-guard-4-12b",
+      "path": "collect-huggingface/huggingface/meta-llama-llama-guard-4-12b.md",
+      "title": "Llama-Guard-4-12B - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "gpu",
+        "license",
+        "moe",
+        "multimodal",
+        "parameters",
+        "pretraining",
+        "pruning",
+        "scout",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/meta-llama-Llama-Guard-4-12B.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 618,
+      "bytes": 4040,
+      "sha256": "faeb6db8da5b18ba51f4711bc71b0f02c42e1f07a5367975c13774d6c9fe368e"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-k2-instruct",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-k2-instruct.md",
+      "title": "Kimi K2 Instruct - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "agentic",
+        "attention",
+        "benchmarks",
+        "claude",
+        "deepseek",
+        "fp8",
+        "gemini",
+        "license",
+        "mit license",
+        "moe",
+        "opus 4"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-K2-Instruct.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 576,
+      "bytes": 3864,
+      "sha256": "f211bc3fd7575fdb640cb52d0dcf87532eac336747b4b8fea0781d4868af3c4a"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-k2-5",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-k2-5.md",
+      "title": "Kimi K2.5 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "deepseek",
+        "gemini",
+        "int4",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-K2.5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 598,
+      "bytes": 4075,
+      "sha256": "5829a0cd6f9a137326b4a2f0e85110a43acd5027778a686eca332cb5263d262c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-k2-6",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-k2-6.md",
+      "title": "Kimi K2.6 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "gemini",
+        "int4",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-K2.6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 609,
+      "bytes": 4192,
+      "sha256": "5e811403f37726c65117cbcd472472d99bc29fa50bbb6e75de12eb1aaf7da872"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-k2-7-code",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-k2-7-code.md",
+      "title": "Kimi K2.7 Code - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "agent",
+        "agentic",
+        "attention",
+        "benchmarks",
+        "claude",
+        "int4",
+        "license",
+        "mcp",
+        "mit license",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-K2.7-Code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 606,
+      "bytes": 3940,
+      "sha256": "8b4f028a9267a1bc177112590f9100938017a9612562ba55ba66b7f0afe45520"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-k3",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-k3.md",
+      "title": "Kimi K3 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "agent",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "fable 5",
+        "glm",
+        "gpt-5.6",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-K3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 593,
+      "bytes": 4102,
+      "sha256": "c7cd6ea56813c4119750de057481f2ae40b23f65b7c89cdfcf81d2078970bcba"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-linear-48b-a3b-base",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-linear-48b-a3b-base.md",
+      "title": "Kimi Linear 48B-A3B Base - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Moonshot",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "attention",
+        "benchmarks",
+        "inference",
+        "kv cache",
+        "latency",
+        "license",
+        "memory",
+        "mit license",
+        "moe",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-Linear-48B-A3B-Base.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 590,
+      "bytes": 3901,
+      "sha256": "319d0e70e065020bab024cea700401d88c0660cbfc6bfde7da5a95488994f5f2"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-linear-48b-a3b-instruct",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-linear-48b-a3b-instruct.md",
+      "title": "Kimi Linear 48B-A3B Instruct - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Moonshot",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "attention",
+        "benchmarks",
+        "context window",
+        "decode",
+        "inference",
+        "kv cache",
+        "license",
+        "memory",
+        "mit license",
+        "moe",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-Linear-48B-A3B-Instruct.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 568,
+      "bytes": 3771,
+      "sha256": "1a0801974ea1801e87669b76c2a8372dbff9a5489565e349f895e73cb820a429"
+    },
+    {
+      "id": "collect-huggingface/huggingface/moonshotai-kimi-vl-a3b-thinking",
+      "path": "collect-huggingface/huggingface/moonshotai-kimi-vl-a3b-thinking.md",
+      "title": "Kimi-VL-A3B-Thinking - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "agent",
+        "benchmarks",
+        "context window",
+        "fine-tuning",
+        "inference",
+        "license",
+        "mit license",
+        "moe",
+        "multimodal",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/moonshotai-Kimi-VL-A3B-Thinking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 533,
+      "bytes": 3834,
+      "sha256": "0a1fa328c40eb6a42445b50ea3946ed5300fae6d0fd36744456e7cddec9aea52"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-glm-5-2-nvfp4",
+      "path": "collect-huggingface/huggingface/nvidia-glm-5-2-nvfp4.md",
+      "title": "GLM-5.2-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp4",
+        "glm",
+        "nvfp4",
+        "agent",
+        "attention",
+        "benchmarks",
+        "blackwell",
+        "cost",
+        "fp8",
+        "inference",
+        "license",
+        "mit license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-GLM-5.2-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 537,
+      "bytes": 3564,
+      "sha256": "298042e377084a21a680e074e674d4849c2fa503e95c280dbc1ee492a53c26fb"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-llama-3-3-70b-instruct-nvfp4",
+      "path": "collect-huggingface/huggingface/nvidia-llama-3-3-70b-instruct-nvfp4.md",
+      "title": "Llama-3.3-70B-Instruct-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "Nvidia",
+        "TensorRT-LLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp4",
+        "llama",
+        "nvfp4",
+        "benchmarks",
+        "blackwell",
+        "gpu",
+        "inference",
+        "license",
+        "memory",
+        "nvidia",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-Llama-3.3-70B-Instruct-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 490,
+      "bytes": 3094,
+      "sha256": "54a178e256575fc3d10a472840812ea524f5832b4e1d148abb1008e17c521a57"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-llama-4-scout-17b-16e-instruct-nvfp4",
+      "path": "collect-huggingface/huggingface/nvidia-llama-4-scout-17b-16e-instruct-nvfp4.md",
+      "title": "Llama-4-Scout-17B-16E-Instruct-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "EU",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "TensorRT-LLM"
+      ],
+      "dates": [
+        "2025-07-28",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp4",
+        "llama",
+        "nvfp4",
+        "scout",
+        "agent",
+        "agents",
+        "blackwell",
+        "gpu",
+        "gpus",
+        "inference",
+        "license",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-Llama-4-Scout-17B-16E-Instruct-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 598,
+      "bytes": 3833,
+      "sha256": "904fee86c0abeb492ce4dcb56d55e76d105c74ddefb47c266839529b9430a80c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-nano-30b-a3b-nvfp4",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-nano-30b-a3b-nvfp4.md",
+      "title": "NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-01-28",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvfp4",
+        "nvidia",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "distillation",
+        "fp8",
+        "kv cache",
+        "license",
+        "moe",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 538,
+      "bytes": 3387,
+      "sha256": "79cfddc85a2328c4c1153e8e11ea7f99eec4f54ed4752bc8be947ac42cef24a6"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-super-120b-a12b-bf16",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-super-120b-a12b-bf16.md",
+      "title": "NVIDIA-Nemotron-3-Super-120B-A12B-BF16 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "China",
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03-11",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "fine-tuning",
+        "gpu",
+        "license",
+        "moe",
+        "nvfp4"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-3-Super-120B-A12B-BF16.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 541,
+      "bytes": 3586,
+      "sha256": "84e57c57614fc47c36e120e4022c2ccf9046862aa40635d76036232e94ee0582"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-super-120b-a12b-nvfp4",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-super-120b-a12b-nvfp4.md",
+      "title": "NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Hugging Face",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-02",
+        "2026-03",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvfp4",
+        "nvidia",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "embeddings",
+        "fp8",
+        "gpu",
+        "license",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 703,
+      "bytes": 4768,
+      "sha256": "2e351f7f21babdd9f9babac02a886e083a5df4e8e4f2291aecfebdaa6e94cdc4"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-ultra-550b-a55b-bf16",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-ultra-550b-a55b-bf16.md",
+      "title": "NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-06-04",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "distillation",
+        "gpu",
+        "license",
+        "moe",
+        "nvfp4",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 516,
+      "bytes": 3491,
+      "sha256": "f6bf2a6ed6a74aa2faf6f9f3d78b4bd28cde317b9ba4d3fef570991a05523ccd"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-base-bf16",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-base-bf16.md",
+      "title": "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Base-BF16 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-08-11",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "attention",
+        "benchmarks",
+        "distillation",
+        "fine-tuning",
+        "license",
+        "moe",
+        "nvfp4",
+        "parameters",
+        "reasoning",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Base-BF16.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 464,
+      "bytes": 3111,
+      "sha256": "f2af46126dd647e6b763e83926735b7dd6b1e52c25d11af1ed94037a873dd4dc"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-nvfp4-dspark",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-nvfp4-dspark.md",
+      "title": "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4-DSpark - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-08-11",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvfp4",
+        "nvidia",
+        "agentic",
+        "attention",
+        "benchmarks",
+        "distribution",
+        "embedding",
+        "gqa",
+        "inference",
+        "latency",
+        "license",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4-DSpark.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 548,
+      "bytes": 3723,
+      "sha256": "681f3c7cb2f55a2634d8468d6e993effb16f1db840b67d37143c74061f000511"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-nvfp4",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-3-5-lightning-30b-a3b-nvfp4.md",
+      "title": "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-08-11",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvfp4",
+        "nvidia",
+        "agent",
+        "agents",
+        "attention",
+        "benchmarks",
+        "blackwell",
+        "fine-tuning",
+        "fp8",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 527,
+      "bytes": 3443,
+      "sha256": "c8c322f10f42f9d597765b38050023eb6698f981d8abc94c89e296223c267b30"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-nano-12b-v2-vl-fp8",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-nano-12b-v2-vl-fp8.md",
+      "title": "NVIDIA-Nemotron-Nano-12B-v2-VL-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Hugging Face",
+        "Nvidia",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2025-10-28",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "nvidia",
+        "benchmarks",
+        "embedding",
+        "foundry",
+        "inference",
+        "license",
+        "parameters",
+        "quantization",
+        "reasoning",
+        "tensorrt",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-Nano-12B-v2-VL-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 508,
+      "bytes": 3428,
+      "sha256": "02f164dfe5fa4170e0d5cfe4a6d5d47c7ce7d265c3cf0b7048dce273ecc76e15"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-parse-v1-2",
+      "path": "collect-huggingface/huggingface/nvidia-nvidia-nemotron-parse-v1-2.md",
+      "title": "NVIDIA-Nemotron-Parse-v1.2 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Nvidia",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-02-17",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "agentic",
+        "blackwell",
+        "embedding",
+        "license",
+        "parameters",
+        "tensorrt",
+        "tensorrt-llm",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-NVIDIA-Nemotron-Parse-v1.2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 557,
+      "bytes": 3926,
+      "sha256": "7c690b6733993e1d602725b329d3b1f4de824db16e7371d948b2c3ab99c2066b"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-nemotron-3-nano-omni-30b-a3b-reasoning-fp8",
+      "path": "collect-huggingface/huggingface/nvidia-nemotron-3-nano-omni-30b-a3b-reasoning-fp8.md",
+      "title": "Nemotron 3 Nano Omni 30B-A3B Reasoning FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-04-28",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "omni",
+        "reasoning",
+        "gpu",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "multimodal",
+        "nvfp4",
+        "nvidia",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-Nemotron-3-Nano-Omni-30B-A3B-Reasoning-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 543,
+      "bytes": 3514,
+      "sha256": "1b2f2778bfa83bfe4031b40d06f8c05721983fc598bd5d5e7f81aea2af50467e"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-qwen3-5-122b-a10b-nvfp4",
+      "path": "collect-huggingface/huggingface/nvidia-qwen3-5-122b-a10b-nvfp4.md",
+      "title": "Qwen3.5-122B-A10B-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp4",
+        "nvfp4",
+        "agent",
+        "apache",
+        "blackwell",
+        "cost",
+        "fp8",
+        "gpu",
+        "inference",
+        "license",
+        "memory",
+        "mixture of experts"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-Qwen3.5-122B-A10B-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 543,
+      "bytes": 3690,
+      "sha256": "fede3846c1f4d2031c150243a5b2a85c3219d2be77a3f50d7bc2ffe753eb4b5e"
+    },
+    {
+      "id": "collect-huggingface/huggingface/nvidia-llama-nemotron-embed-1b-v2",
+      "path": "collect-huggingface/huggingface/nvidia-llama-nemotron-embed-1b-v2.md",
+      "title": "llama-nemotron-embed-1b-v2 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Hugging Face",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "embedding",
+        "embeddings",
+        "fine-tuning",
+        "license",
+        "nvidia",
+        "parameters",
+        "throughput",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/nvidia-llama-nemotron-embed-1b-v2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 576,
+      "bytes": 3932,
+      "sha256": "91f15760d7f013f6dc1847e52c146f024e991271b3d74b17d18a4d8a698171c3"
+    },
+    {
+      "id": "collect-huggingface/huggingface/openai-gpt-oss-120b",
+      "path": "collect-huggingface/huggingface/openai-gpt-oss-120b.md",
+      "title": "gpt-oss-120b - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "amd",
+        "apache",
+        "benchmarks",
+        "fine-tuning",
+        "gpu",
+        "latency",
+        "license",
+        "memory",
+        "moe",
+        "mxfp4",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/openai-gpt-oss-120b.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 523,
+      "bytes": 3412,
+      "sha256": "5d3660388ef4d84b693c477b7734393ff95dbbaf130c1fc658f435faedff1a33"
+    },
+    {
+      "id": "collect-huggingface/huggingface/openai-gpt-oss-20b",
+      "path": "collect-huggingface/huggingface/openai-gpt-oss-20b.md",
+      "title": "gpt-oss-20b - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "apache",
+        "benchmarks",
+        "consumer",
+        "fine-tuning",
+        "gguf",
+        "gpu",
+        "inference",
+        "latency",
+        "license",
+        "memory",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/openai-gpt-oss-20b.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 499,
+      "bytes": 3334,
+      "sha256": "e6dec09af5876dcb8e6d86b70241a11671d56521d94d4fd45317e5512484f79c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/orcarouter-deepseek-v4-flash-vision-uncensored",
+      "path": "collect-huggingface/huggingface/orcarouter-deepseek-v4-flash-vision-uncensored.md",
+      "title": "DeepSeek-V4-Flash-Vision-Uncensored - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "SGLang"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "attention",
+        "embeddings",
+        "fp4",
+        "fp8",
+        "license",
+        "lora",
+        "mit license",
+        "moe",
+        "parameters",
+        "quantization",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/orcarouter-DeepSeek-V4-Flash-Vision-Uncensored.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 678,
+      "bytes": 5157,
+      "sha256": "f2b9cab407b696e63d04207241fe9f2e6a57552c672f993d9228393ccb77ef64"
+    },
+    {
+      "id": "collect-huggingface/huggingface/orcarouter-glm-5-3-flash-uncensored-fp8",
+      "path": "collect-huggingface/huggingface/orcarouter-glm-5-3-flash-uncensored-fp8.md",
+      "title": "GLM-5.3-Flash-Uncensored-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "glm",
+        "alignment",
+        "attention",
+        "benchmark",
+        "guardrails",
+        "license",
+        "lora",
+        "mit license",
+        "moe",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/orcarouter-GLM-5.3-Flash-Uncensored-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 579,
+      "bytes": 4009,
+      "sha256": "37f113c9d29cdc1f8c2f91665d47c6986543856ada66c0ff692c7450e5fa5d3f"
+    },
+    {
+      "id": "collect-huggingface/huggingface/orcarouter-qwen3-8-27b-uncensored-gguf",
+      "path": "collect-huggingface/huggingface/orcarouter-qwen3-8-27b-uncensored-gguf.md",
+      "title": "Qwen3.8-27B-Uncensored-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "China",
+        "Hugging Face",
+        "OpenAI",
+        "Perplexity",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "qwen",
+        "apache",
+        "attention",
+        "fp8",
+        "gpu",
+        "license",
+        "llama",
+        "llama.cpp",
+        "parameters",
+        "perplexity",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/orcarouter-Qwen3.8-27B-Uncensored-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 601,
+      "bytes": 4385,
+      "sha256": "f9729969cdb43a2ae8107e9dfa4f8ab83bc3b1d4f3cc2cafb9837b97f41bcff7"
+    },
+    {
+      "id": "collect-huggingface/huggingface/poolside-laguna-s-2-1-dflash-nvfp4",
+      "path": "collect-huggingface/huggingface/poolside-laguna-s-2-1-dflash-nvfp4.md",
+      "title": "Laguna S 2.1-DFlash-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvfp4",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "latency",
+        "license",
+        "moe",
+        "open-weight",
+        "safetensors",
+        "sglang",
+        "speculative decoding",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/poolside-Laguna-S-2.1-DFlash-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 518,
+      "bytes": 3747,
+      "sha256": "f6649e7483fccca135a11cea5d2a73969d80926b36408718b6b4ac7eee44ece9"
+    },
+    {
+      "id": "collect-huggingface/huggingface/poolside-laguna-s-2-1-gguf",
+      "path": "collect-huggingface/huggingface/poolside-laguna-s-2-1-gguf.md",
+      "title": "Laguna S 2.1 GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "agentic",
+        "attention",
+        "context window",
+        "embeddings",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "open-weight",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/poolside-Laguna-S-2.1-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 624,
+      "bytes": 4065,
+      "sha256": "27eeaca41ce8b7c35a9d8d9fe9b05c812ccfb8734d27cc1a3d3a8058faa4381b"
+    },
+    {
+      "id": "collect-huggingface/huggingface/poolside-laguna-s-2-1-nvfp4",
+      "path": "collect-huggingface/huggingface/poolside-laguna-s-2-1-nvfp4.md",
+      "title": "Laguna S 2.1-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Apple",
+        "DeepSeek",
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvfp4",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "context window",
+        "decode",
+        "deepseek",
+        "embeddings",
+        "fp8",
+        "gguf"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/poolside-Laguna-S-2.1-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 663,
+      "bytes": 4466,
+      "sha256": "7a44a801a8187e16421c5098a0302ba76dc80aacee467e81c22cff2133aff7ae"
+    },
+    {
+      "id": "collect-huggingface/huggingface/realrebelai-qwen-image-2-1-ggufs",
+      "path": "collect-huggingface/huggingface/realrebelai-qwen-image-2-1-ggufs.md",
+      "title": "Qwen-Image 2.1 GGUFs - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "qwen",
+        "attention",
+        "diffusion",
+        "license",
+        "memory",
+        "packaging",
+        "quantization",
+        "text-to-image"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/realrebelai-Qwen-Image-2.1_GGUFs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 517,
+      "bytes": 3638,
+      "sha256": "26baddd8bd8d8662b6075a0df3f2d62b2a6e5329e7e78fe3dbc467f19867fcab"
+    },
+    {
+      "id": "collect-huggingface/huggingface/sentence-transformers-all-minilm-l6-v2",
+      "path": "collect-huggingface/huggingface/sentence-transformers-all-minilm-l6-v2.md",
+      "title": "all-MiniLM-L6-v2 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "embedding",
+        "fine-tuning",
+        "license",
+        "parameters",
+        "quantization",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/sentence-transformers-all-MiniLM-L6-v2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 573,
+      "bytes": 3855,
+      "sha256": "0babd65405a261dfad12afc616515656a1a443f73e936d2779f80cece3493a7f"
+    },
+    {
+      "id": "collect-huggingface/huggingface/sentence-transformers-paraphrase-multilingual-minilm-l12-v2",
+      "path": "collect-huggingface/huggingface/sentence-transformers-paraphrase-multilingual-minilm-l12-v2.md",
+      "title": "paraphrase-multilingual-MiniLM-L12-v2 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "embedding",
+        "embeddings",
+        "inference",
+        "license",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 472,
+      "bytes": 3454,
+      "sha256": "11bc51c32a0a05866a22b6ddf4981e18865ba7a63db05b5ebefd75cfe22bcdfa"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-deepseek-v4-flash-0731-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-deepseek-v4-flash-0731-gguf.md",
+      "title": "DeepSeek-V4-Flash-0731-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "gguf",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-DeepSeek-V4-Flash-0731-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 596,
+      "bytes": 4271,
+      "sha256": "5eb6570cc0041fa4c3410356fe6a83bc34025aa6fbafebe22881221c294b6928"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-deepseek-v4-flash-vision-exp-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-deepseek-v4-flash-vision-exp-gguf.md",
+      "title": "DeepSeek-V4-Flash-Vision-Exp-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "OpenAI",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "gguf",
+        "agent",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "mit license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-DeepSeek-V4-Flash-Vision-Exp-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 603,
+      "bytes": 4395,
+      "sha256": "3ec5953da021e76b2a6a64e23d4c6178f5346db0fc342ca5cda650771bbbab0d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-glm-5-2-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-glm-5-2-gguf.md",
+      "title": "GLM-5.2-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "glm",
+        "agent",
+        "agents",
+        "attention",
+        "benchmarks",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "mcp",
+        "mit license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-GLM-5.2-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 589,
+      "bytes": 3522,
+      "sha256": "17776cd0d555b09bc2f5f0aaa517cb25dbac0affc68eeb3f443c2a109bc3160b"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-glm-5-3-flash-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-glm-5-3-flash-gguf.md",
+      "title": "GLM-5.3-Flash-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Hugging Face",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "glm",
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmarks",
+        "claude",
+        "fp8",
+        "inference",
+        "license",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-GLM-5.3-Flash-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 504,
+      "bytes": 3194,
+      "sha256": "c4c0517818e80b62249a8265c124c595ec66ae72cfb9efb286dd1e5f7028060c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-glm-5-3-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-glm-5-3-gguf.md",
+      "title": "GLM-5.3-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "glm",
+        "agent",
+        "agents",
+        "benchmarks",
+        "cyber",
+        "deepseek",
+        "fable 5",
+        "gpt-5.6",
+        "inference",
+        "kimi",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-GLM-5.3-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 543,
+      "bytes": 3406,
+      "sha256": "723b27710444dc0cd84009165b885ed940207415c5476494e628e8ebb4e3e36d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-kimi-k2-6-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-kimi-k2-6-gguf.md",
+      "title": "Kimi K2.6 GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "kimi",
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "gemini",
+        "int4"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Kimi-K2.6-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 595,
+      "bytes": 3907,
+      "sha256": "3f949205bfc62cf24f765623b4e91fa7ca3c53b45a6fde91b9bb777c885be62d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-kimi-k2-7-code-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-kimi-k2-7-code-gguf.md",
+      "title": "Kimi K2.7 Code GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "kimi",
+        "agent",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "int4",
+        "license",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Kimi-K2.7-Code-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 593,
+      "bytes": 3861,
+      "sha256": "2386644ab569dafcdb2514b3a66d9b18cf3a3ca2fed8a9fdca60999ae01809c9"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-kimi-k3-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-kimi-k3-gguf.md",
+      "title": "Kimi K3 GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Moonshot",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "kimi",
+        "agent",
+        "agentic",
+        "attention",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "multimodal",
+        "mxfp4",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Kimi-K3-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 562,
+      "bytes": 3578,
+      "sha256": "2782222489c8b0c09d7417fd9b650ce715a31f4a2b0c89e6f1c0f5bdbf58044e"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-llama-3-2-3b-instruct-bnb-4bit",
+      "path": "collect-huggingface/huggingface/unsloth-llama-3-2-3b-instruct-bnb-4bit.md",
+      "title": "Llama-3.2-3B-Instruct-bnb-4bit - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2023-12",
+        "2024-09-25",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "agentic",
+        "alignment",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "fine-tuning",
+        "gguf",
+        "gqa",
+        "inference",
+        "license",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Llama-3.2-3B-Instruct-bnb-4bit.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 529,
+      "bytes": 3604,
+      "sha256": "4dbae6bdeb9246450589e7a7f6e9b6a238e137718b819ff947b665b54ab6c135"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-llama-3-3-70b-instruct-bnb-4bit",
+      "path": "collect-huggingface/huggingface/unsloth-llama-3-3-70b-instruct-bnb-4bit.md",
+      "title": "Llama-3.3-70B-Instruct-bnb-4bit - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2023-12",
+        "2024-12-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "context window",
+        "fine-tuning",
+        "gguf",
+        "gpu",
+        "gqa",
+        "inference",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Llama-3.3-70B-Instruct-bnb-4bit.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 561,
+      "bytes": 3721,
+      "sha256": "38bbf43baffbc4a246df7392af68b483d6f7a7aeabb7e674fe3d15cdf5acadb6"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-llama-4-maverick-17b-128e-instruct-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-llama-4-maverick-17b-128e-instruct-gguf.md",
+      "title": "Llama-4-Maverick-17B-128E-Instruct-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2024-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "llama",
+        "context window",
+        "fine-tuning",
+        "gpu",
+        "license",
+        "llama.cpp",
+        "memory",
+        "moe",
+        "multimodal",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Llama-4-Maverick-17B-128E-Instruct-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 508,
+      "bytes": 3495,
+      "sha256": "c71db645d2f171562f6a3c2fb1747230f1129482a21cca8db58e561b16035b13"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-llama-4-scout-17b-16e-instruct-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-llama-4-scout-17b-16e-instruct-gguf.md",
+      "title": "Llama-4-Scout-17B-16E-Instruct-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2024-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "llama",
+        "scout",
+        "consumer",
+        "context window",
+        "fine-tuning",
+        "gpu",
+        "license",
+        "llama.cpp",
+        "moe",
+        "multimodal",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Llama-4-Scout-17B-16E-Instruct-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 517,
+      "bytes": 3565,
+      "sha256": "b372d7619bf2535ec6260c98b034016c344d5c566b1302bca8b36fbe5e77191c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-minimax-h3-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-minimax-h3-gguf.md",
+      "title": "MiniMax-H3-GGUF (unsloth) - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "MiniMax",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "attribution",
+        "diffusion",
+        "fp8",
+        "gpus",
+        "license",
+        "omni",
+        "quantization",
+        "video generation"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-MiniMax-H3-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 576,
+      "bytes": 3852,
+      "sha256": "7a58a9b97b032c95c85f4f4b842def45f91ccbb0e24c679490ce09859ffbdcab"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-minimax-m3-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-minimax-m3-gguf.md",
+      "title": "MiniMax-M3-GGUF (unsloth) - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "MiniMax",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "agent",
+        "attention",
+        "compute",
+        "decode",
+        "gpus",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-MiniMax-M3-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 567,
+      "bytes": 3762,
+      "sha256": "4eae63161ba510325ee750f5fe04828d77b56e2034e453e36c9d7e64cc2ab613"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-nvidia-nemotron-3-5-lightning-30b-a3b-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-nvidia-nemotron-3-5-lightning-30b-a3b-gguf.md",
+      "title": "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF (Unsloth) - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "nvidia",
+        "agent",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 467,
+      "bytes": 3228,
+      "sha256": "5e1f00634922fabd57b8c881db853bc4bc6f8cbad6d74490973c7804bf5af8cd"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-qwen3-coder-30b-a3b-instruct-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-qwen3-coder-30b-a3b-instruct-gguf.md",
+      "title": "Qwen3-Coder-30B-A3B-Instruct-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "qwen",
+        "agent",
+        "agentic",
+        "agents",
+        "apache",
+        "cost",
+        "gqa",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Qwen3-Coder-30B-A3B-Instruct-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 654,
+      "bytes": 4390,
+      "sha256": "cf0acff9566a03e5b4f646ff37c2146c6adb33cb3e7acb688b4a0239436e1cb8"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-qwen3-8-2-4t-a95b-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-qwen3-8-2-4t-a95b-gguf.md",
+      "title": "Qwen3.8-2.4T-A95B-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "qwen",
+        "agent",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "license",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Qwen3.8-2.4T-A95B-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 614,
+      "bytes": 4172,
+      "sha256": "5fbc52662200361685d49dd54e22f7db5feac1c99370217bf2477f8a27602d2c"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-qwen3-8-27b-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-qwen3-8-27b-gguf.md",
+      "title": "Qwen3.8-27B-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "qwen",
+        "agent",
+        "agentic",
+        "apache",
+        "attention",
+        "license",
+        "llama",
+        "llama.cpp",
+        "multimodal",
+        "parameters",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Qwen3.8-27B-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 624,
+      "bytes": 4179,
+      "sha256": "af1267fb4e4717178ad31570e2fc86c25a254851f250ba21830d9b49d9caabec"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-qwen3-8-27b-nvfp4",
+      "path": "collect-huggingface/huggingface/unsloth-qwen3-8-27b-nvfp4.md",
+      "title": "Qwen3.8-27B-NVFP4 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvfp4",
+        "qwen",
+        "agentic",
+        "apache",
+        "attention",
+        "fine-tuning",
+        "fp8",
+        "gguf",
+        "license",
+        "parameters",
+        "quantization",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Qwen3.8-27B-NVFP4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 499,
+      "bytes": 3448,
+      "sha256": "5720c0745b1f971782e5b25115f7edc21e79ef5dea5440b26c5509b3d5fdc25d"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-qwen3-8-flash-next-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-qwen3-8-flash-next-gguf.md",
+      "title": "Qwen3.8-Flash-Next-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "qwen",
+        "agent",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "embedding",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-Qwen3.8-Flash-Next-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 633,
+      "bytes": 4289,
+      "sha256": "4e58ce5fe34e238a7ce82dab3223de2db7d403d5726c48a9a2ded310b0b91d64"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-gemma-4-12b-it-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-gemma-4-12b-it-gguf.md",
+      "title": "gemma-4-12b-it-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Google",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "apache",
+        "attention",
+        "benchmarks",
+        "context window",
+        "embedding",
+        "inference",
+        "latency",
+        "license",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-gemma-4-12b-it-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 620,
+      "bytes": 4060,
+      "sha256": "81802388fbd32be895a98efe2f86b1fdafa505c7d588a1c5f547d136920e3ca9"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-gemma-4-26b-a4b-it-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-gemma-4-26b-a4b-it-gguf.md",
+      "title": "gemma-4-26B-A4B-it-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-gemma-4-26B-A4B-it-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 627,
+      "bytes": 3960,
+      "sha256": "34e433834d0451a4bee45b1b83b8afd65d23dc016d053cd799368f1d001d12b1"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-gemma-4-26b-a4b-it-qat-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-gemma-4-26b-a4b-it-qat-gguf.md",
+      "title": "gemma-4-26B-A4B-it-qat-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "moe",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-gemma-4-26B-A4B-it-qat-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 630,
+      "bytes": 4130,
+      "sha256": "459e22946852e6291d2eebe5000a454e56e24b637f76bf5a646d46ddd8f67996"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-gemma-4-31b-it-qat-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-gemma-4-31b-it-qat-gguf.md",
+      "title": "gemma-4-31B-it-qat-GGUF - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "context window",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-gemma-4-31B-it-qat-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 637,
+      "bytes": 4313,
+      "sha256": "6a27e4001f6f5d501047198dafc118b917d62ef8198ca51e7b0b2221c8450a73"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-gpt-oss-120b-bf16",
+      "path": "collect-huggingface/huggingface/unsloth-gpt-oss-120b-bf16.md",
+      "title": "gpt-oss-120b-BF16 (Unsloth) - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "apache",
+        "benchmark",
+        "fine-tuning",
+        "gguf",
+        "gpu",
+        "license",
+        "memory",
+        "moe",
+        "mxfp4",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-gpt-oss-120b-BF16.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 493,
+      "bytes": 3236,
+      "sha256": "d2dea396a359891f5d77a3ba52801f4310b8327fa0caef248932177eec4d7294"
+    },
+    {
+      "id": "collect-huggingface/huggingface/unsloth-gpt-oss-20b-gguf",
+      "path": "collect-huggingface/huggingface/unsloth-gpt-oss-20b-gguf.md",
+      "title": "gpt-oss-20b-GGUF (Unsloth) - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "agentic",
+        "apache",
+        "consumer",
+        "fine-tuning",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "mxfp4",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/unsloth-gpt-oss-20b-GGUF.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 506,
+      "bytes": 3398,
+      "sha256": "735d6562ddd28adeae2f08b1570c01138ddf0ea1bc10336c447ae1684b25c874"
+    },
+    {
+      "id": "collect-huggingface/huggingface/zai-org-glm-4-5-air-fp8",
+      "path": "collect-huggingface/huggingface/zai-org-glm-4-5-air-fp8.md",
+      "title": "GLM-4.5-Air-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "China",
+        "Hugging Face",
+        "Meta",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "glm",
+        "agentic",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "fine-tuning",
+        "gguf",
+        "gpus",
+        "inference",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/zai-org-GLM-4.5-Air-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 647,
+      "bytes": 4283,
+      "sha256": "c4d5785109a7771845ac5c1d95dc13e8a92c5cd5e0597f748450e875bd6366e7"
+    },
+    {
+      "id": "collect-huggingface/huggingface/zai-org-glm-4-7-flash",
+      "path": "collect-huggingface/huggingface/zai-org-glm-4-7-flash.md",
+      "title": "GLM-4.7-Flash - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "agent",
+        "agentic",
+        "attention",
+        "benchmarks",
+        "blackwell",
+        "gpus",
+        "license",
+        "mit license",
+        "moe",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/zai-org-GLM-4.7-Flash.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 430,
+      "bytes": 2897,
+      "sha256": "33e0727461295b9d55b0cd1d27b513a39c51ada0d19c5382eb711341658cfc97"
+    },
+    {
+      "id": "collect-huggingface/huggingface/zai-org-glm-5-fp8",
+      "path": "collect-huggingface/huggingface/zai-org-glm-5-fp8.md",
+      "title": "GLM-5-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Mistral",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "glm",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "deepseek",
+        "gemini",
+        "kimi",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/zai-org-GLM-5-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 606,
+      "bytes": 4217,
+      "sha256": "422d6a648a4ce82d37c7e1854ff1bbf671af921b8a64dd4ba9cdae1587a48ebf"
+    },
+    {
+      "id": "collect-huggingface/huggingface/zai-org-glm-5-2-fp8",
+      "path": "collect-huggingface/huggingface/zai-org-glm-5-2-fp8.md",
+      "title": "GLM-5.2-FP8 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Huawei",
+        "Hugging Face",
+        "MiniMax",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fp8",
+        "glm",
+        "agents",
+        "ascend",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "deepseek",
+        "gemini",
+        "latency",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/zai-org-GLM-5.2-FP8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 481,
+      "bytes": 3179,
+      "sha256": "c3feac6c7f31793db218aa67a5804927fcf43cb58ec6e12a420d734e3edd75c7"
+    },
+    {
+      "id": "collect-huggingface/huggingface/zai-org-glm-5-3-flash",
+      "path": "collect-huggingface/huggingface/zai-org-glm-5-3-flash.md",
+      "title": "GLM-5.3-Flash - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Hugging Face",
+        "SGLang",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "cost",
+        "deepseek",
+        "license",
+        "mit license",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/zai-org-GLM-5.3-Flash.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 521,
+      "bytes": 3516,
+      "sha256": "f4467b0d0c556af728a7883c8c14e416e7653ddb42567ec84d582fcc84ad9767"
+    },
+    {
+      "id": "collect-huggingface/huggingface/zai-org-glm-5-3",
+      "path": "collect-huggingface/huggingface/zai-org-glm-5-3.md",
+      "title": "GLM-5.3 - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "ExploitGym",
+        "Huawei",
+        "Hugging Face",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "SGLang",
+        "Unsloth",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "agent",
+        "agentic",
+        "agents",
+        "ascend",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cyber",
+        "deepseek",
+        "fable 5"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/zai-org-GLM-5.3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 513,
+      "bytes": 3330,
+      "sha256": "47be5b2643dc70c0d17a68fc7879e5a28b2fb3450e773495b3991164ddeedb69"
+    },
+    {
+      "id": "collect-huggingface/huggingface/zai-org-glm-ocr",
+      "path": "collect-huggingface/huggingface/zai-org-glm-ocr.md",
+      "title": "GLM-OCR - Hugging Face model card",
+      "domain": "huggingface",
+      "role": "reference",
+      "task": "model-card",
+      "actors": [
+        "Hugging Face",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "apache",
+        "benchmarks",
+        "license",
+        "licenses",
+        "mit license",
+        "multimodal",
+        "parameters",
+        "sglang",
+        "throughput",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/03_huggingface/zai-org-GLM-OCR.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 460,
+      "bytes": 3289,
+      "sha256": "ae7132f09a9cfb3d821654d647ef72adc03371e06e9a128ab1b6b0c4b32933fa"
+    }
+  ]
+}

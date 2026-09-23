@@ -1,0 +1,260 @@
+{
+  "corpus": "collect-tutoriels",
+  "title": "Tutoriels & reviews — IA (2026)",
+  "source": "docs/RAG/Collect RAG/07_tutoriels",
+  "source_dir": "docs/RAG/Collect RAG/07_tutoriels",
+  "source_files": 6,
+  "source_sha256": "10a10b208f759a4e99fc18b2a24adbd43eedc418f7c7681aa5658d37d2fb2f50",
+  "chunk_count": 6,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-tutoriels/tutoriels/claude-opus-5-5-taste",
+      "path": "collect-tutoriels/tutoriels/claude-opus-5-5-taste.md",
+      "title": "Claude Opus 5.5 vs GPT-6 Astra : un test gustatif qui a dépassé les benchmarks",
+      "domain": "tutoriels",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "gpt-6",
+        "opus 5",
+        "cost",
+        "fable 5",
+        "gpt-5.6",
+        "opus 4",
+        "parameters",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG/07_tutoriels/claude-opus-5-5-taste.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1232,
+      "bytes": 7502,
+      "sha256": "fd8db2906362d0c9b367717e6cf59e6d220b813cfc4007c73dad177ad9d9f87d"
+    },
+    {
+      "id": "collect-tutoriels/tutoriels/kimi-k3-coding-test",
+      "path": "collect-tutoriels/tutoriels/kimi-k3-coding-test.md",
+      "title": "Kimi K3 Coding Test: A Reproducible Repository and Agent Evaluation",
+      "domain": "tutoriels",
+      "role": "reference",
+      "task": "tutorial",
+      "actors": [
+        "MiniMax",
+        "Moonshot",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "kimi",
+        "agents",
+        "benchmark",
+        "cost",
+        "gpt-5.6",
+        "pricing",
+        "reasoning",
+        "research",
+        "sol",
+        "tool use"
+      ],
+      "source": "docs/RAG/Collect RAG/07_tutoriels/kimi-k3-coding-test.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 812,
+      "bytes": 5450,
+      "sha256": "d244e352abb44ec6be3324c705720363f715eeca2c7cdc94d927211413a71755"
+    },
+    {
+      "id": "collect-tutoriels/tutoriels/kimi-k3-tutorial",
+      "path": "collect-tutoriels/tutoriels/kimi-k3-tutorial.md",
+      "title": "Kimi K3 : fonctionnalités, benchmarks, API et 5 exemples pratiques",
+      "domain": "tutoriels",
+      "role": "reference",
+      "task": "tutorial",
+      "actors": [
+        "Moonshot",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmarks",
+        "kimi",
+        "agent",
+        "context window",
+        "cost",
+        "multimodal",
+        "parameters",
+        "pricing",
+        "reasoning",
+        "tool calling"
+      ],
+      "source": "docs/RAG/Collect RAG/07_tutoriels/kimi-k3-tutorial.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        61
+      ],
+      "canonical_for": [],
+      "words": 769,
+      "bytes": 4906,
+      "sha256": "645b864d748f29ca82ae8f68660292e96ac676381452ea4e6e5c54fbd61a1df6"
+    },
+    {
+      "id": "collect-tutoriels/tutoriels/mimo-2-6-vs-mimo-v2-6",
+      "path": "collect-tutoriels/tutoriels/mimo-2-6-vs-mimo-v2-6.md",
+      "title": "MiMo-2.6 vs MiMo-V2.6 : deux orthographes, une seule version, et un troisième nom qui correspond vraiment à un modèle différent",
+      "domain": "tutoriels",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Moonshot",
+        "OpenAI",
+        "Xiaomi",
+        "Z.ai"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "astra",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "cost",
+        "embedding",
+        "fable 5",
+        "fp8",
+        "glm"
+      ],
+      "source": "docs/RAG/Collect RAG/07_tutoriels/mimo-2-6-vs-mimo-v2-6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 1660,
+      "bytes": 10505,
+      "sha256": "b61b088fa5c1654f7928bded04d7ca7425e65ae81161791d7e462fe949fd09a9"
+    },
+    {
+      "id": "collect-tutoriels/tutoriels/qwen-3-8-27b-review",
+      "path": "collect-tutoriels/tutoriels/qwen-3-8-27b-review.md",
+      "title": "Qwen3.8-27B Review: The Open-Weight 27B Worth Running",
+      "domain": "tutoriels",
+      "role": "reference",
+      "task": "review",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Anthropic",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "open-weight",
+        "qwen",
+        "agentic",
+        "amd",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "fp8",
+        "gguf"
+      ],
+      "source": "docs/RAG/Collect RAG/07_tutoriels/qwen-3-8-27b-review.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 980,
+      "bytes": 5991,
+      "sha256": "9ba6efde453624d95749a1fa82e7fb939da424f3542e662b35a9dcb3b8c7fee1"
+    },
+    {
+      "id": "collect-tutoriels/tutoriels/qwen-38-27b",
+      "path": "collect-tutoriels/tutoriels/qwen-38-27b.md",
+      "title": "Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things",
+      "domain": "tutoriels",
+      "role": "reference",
+      "task": "review",
+      "actors": [
+        "Alibaba",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agent",
+        "agents",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "datacenter",
+        "gguf",
+        "gpt-5.6",
+        "license",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/07_tutoriels/qwen-38-27b.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        90
+      ],
+      "canonical_for": [],
+      "words": 1039,
+      "bytes": 6563,
+      "sha256": "bd6fbf332746ca2565aacf44731e9283fac0f05bc9124d77bca6b5a601bd27a0"
+    }
+  ]
+}

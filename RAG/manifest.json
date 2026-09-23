@@ -506,6 +506,62 @@
       "index": "etape9-phasee-storage-market/INDEX.md",
       "manifest": "etape9-phasee-storage-market/manifest.json",
       "chunk_count": 8
+    },
+    {
+      "corpus": "collect-korben",
+      "title": "Korben.info — veille IA & tech (2026)",
+      "source": "docs/RAG/Collect RAG/01_korben",
+      "index": "collect-korben/INDEX.md",
+      "manifest": "collect-korben/manifest.json",
+      "chunk_count": 18
+    },
+    {
+      "corpus": "collect-mindstudio",
+      "title": "MindStudio — IA locale, modèles open-weight & agents (2026)",
+      "source": "docs/RAG/Collect RAG/02_mindstudio",
+      "index": "collect-mindstudio/INDEX.md",
+      "manifest": "collect-mindstudio/manifest.json",
+      "chunk_count": 170
+    },
+    {
+      "corpus": "collect-huggingface",
+      "title": "Hugging Face — fiches de modèles (2026)",
+      "source": "docs/RAG/Collect RAG/03_huggingface",
+      "index": "collect-huggingface/INDEX.md",
+      "manifest": "collect-huggingface/manifest.json",
+      "chunk_count": 125
+    },
+    {
+      "corpus": "collect-opencode-docs",
+      "title": "opencode — documentation officielle",
+      "source": "docs/RAG/Collect RAG/04_opencode_docs",
+      "index": "collect-opencode-docs/INDEX.md",
+      "manifest": "collect-opencode-docs/manifest.json",
+      "chunk_count": 4
+    },
+    {
+      "corpus": "collect-presse-fr",
+      "title": "Presse FR — IA & tech (2026)",
+      "source": "docs/RAG/Collect RAG/05_presse_fr",
+      "index": "collect-presse-fr/INDEX.md",
+      "manifest": "collect-presse-fr/manifest.json",
+      "chunk_count": 8
+    },
+    {
+      "corpus": "collect-benchmarks",
+      "title": "Benchmarks — modèles 2026",
+      "source": "docs/RAG/Collect RAG/06_benchmarks",
+      "index": "collect-benchmarks/INDEX.md",
+      "manifest": "collect-benchmarks/manifest.json",
+      "chunk_count": 5
+    },
+    {
+      "corpus": "collect-tutoriels",
+      "title": "Tutoriels & reviews — IA (2026)",
+      "source": "docs/RAG/Collect RAG/07_tutoriels",
+      "index": "collect-tutoriels/INDEX.md",
+      "manifest": "collect-tutoriels/manifest.json",
+      "chunk_count": 6
     }
   ]
 }

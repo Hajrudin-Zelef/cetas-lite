@@ -1,0 +1,6804 @@
+{
+  "corpus": "collect-mindstudio",
+  "title": "MindStudio — IA locale, modèles open-weight & agents (2026)",
+  "source": "docs/RAG/Collect RAG/02_mindstudio",
+  "source_dir": "docs/RAG/Collect RAG/02_mindstudio",
+  "source_files": 170,
+  "source_sha256": "8a8638011592bf2a2ad4250ab0e02a574706841cc069c3c80258bc5d67622705",
+  "chunk_count": 170,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-mindstudio/mindstudio/1-bit-quantization-cactus-bonsai-27b-model-phone",
+      "path": "collect-mindstudio/mindstudio/1-bit-quantization-cactus-bonsai-27b-model-phone.md",
+      "title": "What Is 1-Bit Quantization for AI Models? How Cactus Bonsai Runs 27B Parameters on a Phone",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Apple",
+        "Microsoft",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "parameters",
+        "quantization",
+        "attention",
+        "bitnet",
+        "compute",
+        "cost",
+        "dsp",
+        "inference",
+        "int4",
+        "latency",
+        "memory",
+        "pruning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/1-bit-quantization-cactus-bonsai-27b-model-phone.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 770,
+      "bytes": 5521,
+      "sha256": "7638e343ebfcb547741688afd937f35fe3ebf34869f7df768b79f201fea80a80"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/7-model-local-ai-portfolio-routing-local-cloud",
+      "path": "collect-mindstudio/mindstudio/7-model-local-ai-portfolio-routing-local-cloud.md",
+      "title": "The 7-Model Local AI Portfolio: How to Route Tasks Across Local and Cloud Models for Maximum Performance",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "apache",
+        "claude",
+        "compute",
+        "deepseek",
+        "embedding",
+        "embeddings",
+        "gguf",
+        "latency",
+        "llama",
+        "llama.cpp",
+        "mcp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/7-model-local-ai-portfolio-routing-local-cloud.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 879,
+      "bytes": 5915,
+      "sha256": "37fd9c676379df8cf14fbe8ba43434fca66243b86514c357a0f580146558290e"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/add-vision-to-local-ai-agent-low-vram",
+      "path": "collect-mindstudio/mindstudio/add-vision-to-local-ai-agent-low-vram.md",
+      "title": "How to Add Vision to a Local AI Agent Without Blowing Your VRAM",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "consumer",
+        "context window",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency",
+        "memory",
+        "multimodal",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/add-vision-to-local-ai-agent-low-vram.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 758,
+      "bytes": 5227,
+      "sha256": "fdbcf6673908fb9eb9930d5c26d930cb4886e63630f7c0e5a872d0857d169aad"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/add-vision-to-local-ai-agent-small-model",
+      "path": "collect-mindstudio/mindstudio/add-vision-to-local-ai-agent-small-model.md",
+      "title": "How to Add Vision Capabilities to a Local AI Agent Without Blowing Your VRAM",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "context window",
+        "cost",
+        "gemini",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/add-vision-to-local-ai-agent-small-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 852,
+      "bytes": 5739,
+      "sha256": "08f6a963dc05952e9864ec82ff3b78e520eb4afe1096fdcc8e980540c566ea2b"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/advanced-context-engineering-token-savings",
+      "path": "collect-mindstudio/mindstudio/advanced-context-engineering-token-savings.md",
+      "title": "Cutting AI Context Costs at Scale: Tool Overhead, Caching, Compaction",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cost",
+        "agent",
+        "agentic",
+        "agents",
+        "context window",
+        "mcp",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/advanced-context-engineering-token-savings.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 802,
+      "bytes": 5669,
+      "sha256": "8ab239f77c5dd3a5e8139928e50506c79748409be4dd30649b6195c82267a483"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules",
+      "path": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules.md",
+      "title": "What Is the Agentic Context Management System? Folder Structures, Rules, and Injection",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "context window",
+        "cost",
+        "latency",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/agentic-context-management-system-folder-structures-rules.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        81
+      ],
+      "canonical_for": [],
+      "words": 1280,
+      "bytes": 9387,
+      "sha256": "bf654400c0fa450888bd03af7a8cc94d943d70cd6178c9aa9f9f4ca21d876f16"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern",
+      "path": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern.md",
+      "title": "How to Build an AI Agent That Catches Its Own Hallucinations: The Checker Agent Pattern",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "context window",
+        "cost",
+        "latency",
+        "parameters",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 1148,
+      "bytes": 8357,
+      "sha256": "4d6fda0d8e209ab394ba2194ac0f0f06e92fadf5812f38e4126cfee4d6ffd86f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers",
+      "path": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers.md",
+      "title": "AI Agent Infrastructure: The 5 Control Layers That Decide If Your Agent Ships",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "compute",
+        "cost",
+        "guardrails",
+        "latency",
+        "memory",
+        "reasoning",
+        "research",
+        "tool calling"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agent-infrastructure-5-control-layers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 1196,
+      "bytes": 8963,
+      "sha256": "bf6a29fae0ce3ae0d7732f7d7067270bde567fdb2534e691890a16ea319e5445"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security",
+      "path": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security.md",
+      "title": "Why Prompt Rules Can't Stop Your AI Agent From Going Rogue",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "incident",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agent-tool-permissioning-security.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1466,
+      "bytes": 8933,
+      "sha256": "d8906d998b26890a3950cf49a6dcf746570be635a2edb67b314859ce87b438c6"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering",
+      "path": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering.md",
+      "title": "How AI Agents Learned to Spoof Tool Calls and Tamper With Logs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Google",
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "agentic",
+        "containment",
+        "cybersecurity",
+        "exploit",
+        "incident",
+        "jailbreak",
+        "reasoning",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agents-reward-hacking-transcript-tampering.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1629,
+      "bytes": 10585,
+      "sha256": "6f47998b2105b8f96b9cfdc105a5e67188c98e7e86bae9efe28091c9cf7e7fb7"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics",
+      "path": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics.md",
+      "title": "AI Agents Built a Cheating Ring and Sabotaged Themselves for It",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "ExploitGym",
+        "Hugging Face",
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "compute",
+        "cost",
+        "exploit",
+        "incident",
+        "reasoning",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agents-scorer-tripwire-cheating-tactics.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1587,
+      "bytes": 10786,
+      "sha256": "77fcd5cae7c84a494303c6c7144709ab3eee05df23e21f9cf0a7f82e282839d2"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-coding-agent-project-cost-breakdown",
+      "path": "collect-mindstudio/mindstudio/ai-coding-agent-project-cost-breakdown.md",
+      "title": "What Does It Really Cost to Build an App With an AI Coding Agent?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "cost",
+        "agentic",
+        "agents",
+        "claude",
+        "compute",
+        "inference",
+        "pricing",
+        "research",
+        "valuation"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-coding-agent-project-cost-breakdown.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 1097,
+      "bytes": 6995,
+      "sha256": "650fe8ab1918764e9b90fc643a9edfd320e3d8ec378ec298856612a6cf537512"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-deep-research-reports-local-models",
+      "path": "collect-mindstudio/mindstudio/ai-deep-research-reports-local-models.md",
+      "title": "How to Use AI for Deep Research Reports: Local Models, Web Search, and Visual Output",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI",
+        "Perplexity"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "research",
+        "agent",
+        "agentic",
+        "chatgpt",
+        "claude",
+        "cost",
+        "distribution",
+        "embedding",
+        "llama",
+        "mistral",
+        "perplexity",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-deep-research-reports-local-models.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 679,
+      "bytes": 4807,
+      "sha256": "60e7994aeb752f97e5f6ebf5f925cb91fb05c1e88cd7a0fffc41fa4245b0043a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-email-triage-workflow-chatgpt-claude",
+      "path": "collect-mindstudio/mindstudio/ai-email-triage-workflow-chatgpt-claude.md",
+      "title": "How to Automate Email Triage With ChatGPT or Claude",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "chatgpt",
+        "claude"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-email-triage-workflow-chatgpt-claude.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 851,
+      "bytes": 5374,
+      "sha256": "12ef432006f4fc4c1d044ecb4b5a96cd68f90ab225ef73e17a352beb75f0949f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-generated-cyberattacks-critical-infrastructure",
+      "path": "collect-mindstudio/mindstudio/ai-generated-cyberattacks-critical-infrastructure.md",
+      "title": "NSA Warning: AI-Generated Cyberattacks Are Already Hitting Infrastructure",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "CISA",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cyberattack",
+        "advisory",
+        "agent",
+        "agentic",
+        "agents",
+        "attribution",
+        "cost",
+        "cybersecurity",
+        "disclosure",
+        "energy",
+        "exploit",
+        "incident"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-generated-cyberattacks-critical-infrastructure.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1125,
+      "bytes": 7881,
+      "sha256": "c427ef850e0b0739741ee68c7b710006341026ba7e40c9fc7fce37b2f614ed9f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-lab-revenue-per-megawatt-economics",
+      "path": "collect-mindstudio/mindstudio/ai-lab-revenue-per-megawatt-economics.md",
+      "title": "How OpenAI and Anthropic Turn Compute Into Profit",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Nvidia",
+        "OpenAI",
+        "SpaceX"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "compute",
+        "capex",
+        "cost",
+        "gpu",
+        "gpus",
+        "inference",
+        "nvidia",
+        "open-weight",
+        "optics",
+        "pricing",
+        "revenue",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-lab-revenue-per-megawatt-economics.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 950,
+      "bytes": 5905,
+      "sha256": "5989af956894bbd53cc625dbc44e32ae0c1cf78dd36ea80cb02b4c9e9eeef808"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion",
+      "path": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion.md",
+      "title": "GPT-5.6 Codex \"Soul\" Deleted a Live Database. What Does That Mean?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpt-5.6",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "containment",
+        "cyber",
+        "cybersecurity",
+        "gpt-6",
+        "incident",
+        "preparedness framework",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-misalignment-soul-database-deletion.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 1379,
+      "bytes": 9091,
+      "sha256": "9a44fa1ff0d5fde6cdff27e3a04af2ed5ab90d25a8c68acc335bb436858a4d9a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-model-pricing-2026-gpt-5-6-grok-4-5-muse-spark-fable-5",
+      "path": "collect-mindstudio/mindstudio/ai-model-pricing-2026-gpt-5-6-grok-4-5-muse-spark-fable-5.md",
+      "title": "AI Model Pricing in 2026: GPT-5.6, Grok 4.5, Muse Spark, and Claude Fable 5 Compared",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Meta",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "fable 5",
+        "gpt-5.6",
+        "grok",
+        "grok 4",
+        "muse",
+        "muse spark",
+        "pricing",
+        "agent",
+        "benchmarks",
+        "context window",
+        "cost"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-pricing-2026-gpt-5-6-grok-4-5-muse-spark-fable-5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1082,
+      "bytes": 7519,
+      "sha256": "84cad8981ad6ff8d1ff968dc9fb9cb83aa8a2b1042ca276067adad25e27ab348"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution",
+      "path": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution.md",
+      "title": "AI Model Routing: How to Cut Costs 60% by Matching Tasks to the Right Model",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cost",
+        "agent",
+        "agents",
+        "claude",
+        "gemini",
+        "inference",
+        "latency",
+        "llama",
+        "mistral",
+        "pricing",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-routing-cut-costs-planning-execution.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1257,
+      "bytes": 8906,
+      "sha256": "d86203ca0bd55f962451438d998ca1199c008b63459c11e85df9e0888705a986"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack",
+      "path": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack.md",
+      "title": "AI Model Routing: When to Use Frontier Models vs Cheap Models in Your Agent Stack",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "alignment",
+        "claude",
+        "compute",
+        "cost",
+        "distribution",
+        "gemini",
+        "inference",
+        "latency",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1736,
+      "bytes": 11781,
+      "sha256": "0de18b31d04117b27e4483389a71f861a256d831a244e390e493830a2bac1f86"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-operating-system-context-management",
+      "path": "collect-mindstudio/mindstudio/ai-operating-system-context-management.md",
+      "title": "Stop AI Hallucinations With a Context Management Framework for Your AI OS",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "cost",
+        "pruning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-operating-system-context-management.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        63
+      ],
+      "canonical_for": [],
+      "words": 1005,
+      "bytes": 6683,
+      "sha256": "75b8ffd5406acbf412affecf5a25acf73104e5098731bf3c39114ca620c346a3"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code",
+      "path": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code.md",
+      "title": "How to Build an AI Operating System Using the Four C's Framework",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "claude",
+        "mcp",
+        "memory",
+        "model context protocol",
+        "reasoning",
+        "research",
+        "tool use",
+        "voice"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-operating-system-four-cs-framework-claude-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        87
+      ],
+      "canonical_for": [],
+      "words": 1226,
+      "bytes": 8440,
+      "sha256": "a5a965a74123920dc56079b784d0c85702a4288fc71bc959f7838523ef6bdd14"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki",
+      "path": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki.md",
+      "title": "How to Build an AI Second Brain with Obsidian and Claude: The LLM Wiki Method",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Meta",
+        "Mistral"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "llama",
+        "mistral"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-second-brain-obsidian-claude-llm-wiki.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        73
+      ],
+      "canonical_for": [],
+      "words": 1162,
+      "bytes": 8170,
+      "sha256": "c98f798f07162bd6ec6e8526b4015af13dad0b05377223613dcc3d1cfd83007a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-token-cost-optimization-strategy",
+      "path": "collect-mindstudio/mindstudio/ai-token-cost-optimization-strategy.md",
+      "title": "Not All AI Tokens Are Equal: A Real Guide to Cutting Costs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Moonshot",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cost",
+        "benchmark",
+        "claude",
+        "cost per token",
+        "grok",
+        "inference",
+        "kimi",
+        "open-weight",
+        "pricing",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-token-cost-optimization-strategy.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 909,
+      "bytes": 5979,
+      "sha256": "3ee566df28ae1cbee1190ca7c046ceabde5d7934c8a14331c2342a7694d379e5"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction",
+      "path": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction.md",
+      "title": "How to Build an AI Workflow That Converts Text Prompts to Images to Cut Token Costs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Lambda",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cost",
+        "claude",
+        "compute",
+        "gemini",
+        "latency",
+        "memory",
+        "parameters",
+        "pricing",
+        "text-to-image",
+        "transcription"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-workflow-text-to-image-token-cost-reduction.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1396,
+      "bytes": 9284,
+      "sha256": "9212e613e2d80f53e1f83a35bcb321885c862cbdf57ae138f6a92044b3ec6c35"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/amd-ryzen-ai-max-plus-395-local-ai-workstation",
+      "path": "collect-mindstudio/mindstudio/amd-ryzen-ai-max-plus-395-local-ai-workstation.md",
+      "title": "AMD Ryzen AI Max Plus 395: 128GB Unified Memory for Local LLMs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "amd",
+        "memory",
+        "agents",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "hbm",
+        "inference",
+        "latency",
+        "llama",
+        "llama.cpp",
+        "lpddr5x"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/amd-ryzen-ai-max-plus-395-local-ai-workstation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 768,
+      "bytes": 4771,
+      "sha256": "e6a1aec1fb672b38912649bca6863860114e730a2b5b1457598a73ff7b05e163"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/apple-m5-ultra-m6-ai-chips",
+      "path": "collect-mindstudio/mindstudio/apple-m5-ultra-m6-ai-chips.md",
+      "title": "Apple M5 Ultra and M6: Pricing, Specs, and Local AI Performance",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "pricing",
+        "amd",
+        "benchmarks",
+        "compute",
+        "consumer",
+        "cost",
+        "custom silicon",
+        "deepseek",
+        "glm",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/apple-m5-ultra-m6-ai-chips.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 914,
+      "bytes": 5661,
+      "sha256": "dff5f9cfa594c4cc661fae06107e5620f98e2a1f861d21043fc8bea20b388d87"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/apple-mac-studio-local-ai-agents",
+      "path": "collect-mindstudio/mindstudio/apple-mac-studio-local-ai-agents.md",
+      "title": "Apple's New Macs Bet You'll Own AI Instead of Renting It",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agentic",
+        "agents",
+        "compute",
+        "cost",
+        "glm",
+        "memory",
+        "nvidia",
+        "open-weight",
+        "pricing",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/apple-mac-studio-local-ai-agents.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 935,
+      "bytes": 5855,
+      "sha256": "5890c22bbcba00d8a905f178bed9df459b4adc83cf90e844a9f76b8fbd152929"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/build-ai-agent-simulation-lovable",
+      "path": "collect-mindstudio/mindstudio/build-ai-agent-simulation-lovable.md",
+      "title": "How to Build an AI Agent Simulation Game in Lovable (With MCP Access)",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "mcp",
+        "claude",
+        "cost",
+        "lean",
+        "model context protocol",
+        "opus 5",
+        "settlement"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/build-ai-agent-simulation-lovable.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 914,
+      "bytes": 5875,
+      "sha256": "cadfa3f6f59c0414dc817ccf06d4943c9318dd7bc022643e610b93ead1e56a7a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/build-ai-operating-system-business-claude-code",
+      "path": "collect-mindstudio/mindstudio/build-ai-operating-system-business-claude-code.md",
+      "title": "How to Build an AI Operating System for Your Business Using Claude Code",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Lambda",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "chatgpt",
+        "mcp",
+        "pricing",
+        "reasoning",
+        "research",
+        "voice"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/build-ai-operating-system-business-claude-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1074,
+      "bytes": 7615,
+      "sha256": "6e41dfd456d6927d8d4a296c79b4042c4388ee6c92d6a18cd13269e9221ffb55"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/build-custom-sub-agents-claude-code-yaml",
+      "path": "collect-mindstudio/mindstudio/build-custom-sub-agents-claude-code-yaml.md",
+      "title": "How to Build Custom Sub-Agents in Claude Code: YAML, Tools, and Triggers",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "mcp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/build-custom-sub-agents-claude-code-yaml.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 1001,
+      "bytes": 7529,
+      "sha256": "1d937c582cc1d6ee72d94bbf809df19cd137f7299268400c1a2b2d90a80207c3"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes",
+      "path": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes.md",
+      "title": "How to Build a Semantic Memory System for AI Agents Without Hermes Agent",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "memory",
+        "claude",
+        "context window",
+        "cost",
+        "embedding",
+        "embeddings",
+        "latency",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/build-semantic-memory-system-ai-agents-without-hermes.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 1082,
+      "bytes": 8124,
+      "sha256": "e38df3f155733181b40386438cad0da224a92ffa66cfed7eee41392b6d32ffaf"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/china-ai-chips-glm-inference",
+      "path": "collect-mindstudio/mindstudio/china-ai-chips-glm-inference.md",
+      "title": "GLM 5.3 Flash Runs on Chinese Chips Without Nvidia",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Google",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "nvidia",
+        "agentic",
+        "benchmark",
+        "claude",
+        "cost",
+        "cost per token",
+        "gemini",
+        "gpt-5.6",
+        "gpus",
+        "inference",
+        "kimi"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/china-ai-chips-glm-inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 867,
+      "bytes": 5326,
+      "sha256": "112e42c48858dc8bb22bc79c68b99a1ac0d476d9ab78943b7af489a3a7e84562"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/claude-code-skills-marketing-automation",
+      "path": "collect-mindstudio/mindstudio/claude-code-skills-marketing-automation.md",
+      "title": "Claude Code Skills Explained: Automating Marketing Tasks With AI",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "agent",
+        "cost",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/claude-code-skills-marketing-automation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 846,
+      "bytes": 5535,
+      "sha256": "a3ba839b48daba8afea3386a0cac0c013cb73f157a52267b9410804eb0e6fa93"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/context-rot-ai-agents-auto-compact-fix",
+      "path": "collect-mindstudio/mindstudio/context-rot-ai-agents-auto-compact-fix.md",
+      "title": "What Is Context Rot in AI Agents and How Does Auto-Compact Fix It?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "attention",
+        "claude",
+        "context window",
+        "latency",
+        "memory",
+        "reasoning",
+        "research",
+        "tool use"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/context-rot-ai-agents-auto-compact-fix.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 992,
+      "bytes": 7159,
+      "sha256": "b05d9d7ad4349dd1734652ccedfb2f5f0d2c7a2f730f3c3521ddc5094906a0cd"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/context-rot-ai-agents-session-handoff-fix",
+      "path": "collect-mindstudio/mindstudio/context-rot-ai-agents-session-handoff-fix.md",
+      "title": "Context Rot in AI Agents: What It Is and How to Fix It with Session Handoffs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "attention",
+        "claude",
+        "context window",
+        "gemini",
+        "lean",
+        "memory",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/context-rot-ai-agents-session-handoff-fix.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        78
+      ],
+      "canonical_for": [],
+      "words": 1150,
+      "bytes": 7966,
+      "sha256": "6a56a7b40a95f12a5707ac85267ef36187654b42e3c00c0682cb2efb3cef3c37"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/context-sandwich-prompting-method-better-ai-results",
+      "path": "collect-mindstudio/mindstudio/context-sandwich-prompting-method-better-ai-results.md",
+      "title": "The Context Sandwich: The Prompting Method That Gets Better AI Results",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "gemini",
+        "memory",
+        "mistral",
+        "parameters",
+        "reasoning",
+        "research",
+        "series a",
+        "training",
+        "video generation"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/context-sandwich-prompting-method-better-ai-results.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1152,
+      "bytes": 7626,
+      "sha256": "05aad9876833f8081e25f48e4cf2b95b3b4c7618761e4b6f55470974f073cb2f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/dark-bloom-distributed-ai-inference",
+      "path": "collect-mindstudio/mindstudio/dark-bloom-distributed-ai-inference.md",
+      "title": "Dark Bloom: Rent Out Your Mac for AI Inference and Get Paid",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "OpenRouter",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "inference",
+        "compute",
+        "cost",
+        "gpu",
+        "inference engine",
+        "memory",
+        "open-weight",
+        "qwen",
+        "revenue",
+        "tokens per second"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/dark-bloom-distributed-ai-inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 906,
+      "bytes": 5900,
+      "sha256": "d6e05e317eff997dbec8af600b86ae80eac444bc9370042991080654c11a3487"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/dark-bloom-earnings-requirements",
+      "path": "collect-mindstudio/mindstudio/dark-bloom-earnings-requirements.md",
+      "title": "Dark Bloom Earnings: RAM Requirements and Payout Mechanics Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "OpenRouter",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "attention",
+        "benchmark",
+        "compute",
+        "cost",
+        "distribution",
+        "inference",
+        "memory",
+        "open-weight",
+        "qwen",
+        "revenue",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/dark-bloom-earnings-requirements.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 881,
+      "bytes": 5698,
+      "sha256": "4d0c0562d37e0c29a252ae76d2d71cfa835c389d61d37104d1814a8332c917e5"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-thinking-visual-primitives-5-technical-breakthroughs-paper",
+      "path": "collect-mindstudio/mindstudio/deepseek-thinking-visual-primitives-5-technical-breakthroughs-paper.md",
+      "title": "DeepSeek's 'Thinking with Visual Primitives': 5 Technical Breakthroughs in the Paper That Briefly Disappeared",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2024-03",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "attention",
+        "benchmark",
+        "claude",
+        "consumer",
+        "cost",
+        "distillation",
+        "gemini",
+        "gpu",
+        "kv cache",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-thinking-visual-primitives-5-technical-breakthroughs-paper.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 812,
+      "bytes": 5473,
+      "sha256": "a0588e57a520f912a083bc1c04cef9e140c6ea19d1ae260b6e25e51210a6b946"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-1-flash-hands-on-test",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-1-flash-hands-on-test.md",
+      "title": "DeepSeek V4.1 Flash: Hands-On Coding and Reasoning Test",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "reasoning",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "distribution",
+        "energy",
+        "fp8",
+        "inference",
+        "license",
+        "open-weight",
+        "safetensors"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-1-flash-hands-on-test.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 867,
+      "bytes": 5856,
+      "sha256": "5b9e5395e70264cbc626c3678cd4f51665ffbfea8aa39932d054f5377fb7e255"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-flash-local-benchmarks",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-flash-local-benchmarks.md",
+      "title": "DeepSeek V4 Flash: The Cheapest Frontier-Level Open Model Yet",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agentic",
+        "agi",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "gemini",
+        "glm",
+        "kv cache",
+        "nvidia",
+        "opus 4",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-flash-local-benchmarks.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 757,
+      "bytes": 4746,
+      "sha256": "7c29b522bf722afa7d88b3c7037e8c615ccc67022a650139011b1e459e2b635d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-local-vllm-sglang",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-local-vllm-sglang.md",
+      "title": "How to Run DeepSeek V4 Pro Locally with vLLM or SGLang",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Moonshot",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "sglang",
+        "vllm",
+        "agent",
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "fp4",
+        "fp8",
+        "glm",
+        "gpu"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-local-vllm-sglang.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 759,
+      "bytes": 5189,
+      "sha256": "adfa8a639b062bd3c3f402894babdee9736cf1b665090b15d0a9a7abdb2fe3c1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-pro-pricing-value",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-pro-pricing-value.md",
+      "title": "DeepSeek V4 Pro Pricing: Is It the Best Value AI Model Right Now?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "pricing",
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost",
+        "fable 5",
+        "fine-tuning",
+        "gemini",
+        "glm"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-pro-pricing-value.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 888,
+      "bytes": 5779,
+      "sha256": "68518c45958b5b16e6a71961c35b4d0ac7714c327c6d474431ffe31d358cc1d9"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-vision-cheaper-multimodal-ai-workflows",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-vision-cheaper-multimodal-ai-workflows.md",
+      "title": "DeepSeek V4 Vision: 10x Cheaper Multimodal AI for Your Workflows",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "multimodal",
+        "agent",
+        "agents",
+        "claude",
+        "compute",
+        "cost",
+        "gemini",
+        "inference",
+        "kv cache",
+        "memory",
+        "mixture of experts"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-vision-cheaper-multimodal-ai-workflows.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 794,
+      "bytes": 5508,
+      "sha256": "3b5a9a6408a6dcfe08d61480f4f8e33016c91e0e1a08f048f2fd414731dbabbe"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-vision-model-kv-cache-efficiency-maze-navigation-benchmark",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-vision-model-kv-cache-efficiency-maze-navigation-benchmark.md",
+      "title": "DeepSeek V4 Vision Model: 10x KV-Cache Efficiency and 67% Maze Navigation vs GPT-5.4's 50%",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2024-03",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "attention",
+        "benchmark",
+        "claude",
+        "cost",
+        "distillation",
+        "gemini",
+        "gpus",
+        "inference",
+        "kv cache",
+        "memory",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-vision-model-kv-cache-efficiency-maze-navigation-benchmark.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 825,
+      "bytes": 5491,
+      "sha256": "768c5ba40e4b0aa96e356dc05a91735adeb6b288876da0433b9e13fb6fcde43d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-vs-gpt-55-vs-claude-opus-47-pricing",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-vs-gpt-55-vs-claude-opus-47-pricing.md",
+      "title": "DeepSeek V4 vs GPT-5.5 vs Claude Opus 4.7: Is 3x Cheaper Worth the Benchmark Trade-Off?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "claude",
+        "deepseek",
+        "opus 4",
+        "agent",
+        "agentic",
+        "agents",
+        "compute",
+        "context window",
+        "cost",
+        "fine-tuning",
+        "gemini"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-vs-gpt-55-vs-claude-opus-47-pricing.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 815,
+      "bytes": 5822,
+      "sha256": "d9a16d1b48b0ec1706d31bbc2c8787183a6ece99af7e3235134580f980336462"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-v4-vs-us-ai-models",
+      "path": "collect-mindstudio/mindstudio/deepseek-v4-vs-us-ai-models.md",
+      "title": "DeepSeek V4 vs US AI Models: The Cost and Capability Gap Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cost",
+        "deepseek",
+        "agentic",
+        "agi",
+        "alignment",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "context window",
+        "distillation"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-v4-vs-us-ai-models.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 795,
+      "bytes": 5852,
+      "sha256": "164fed53e2813fb9f3d58be64b76ca4862363c9b5003b01442f68cf3725a10cf"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/deepseek-vision-vs-claude-sonnet-4-6-vs-gemini-flash-3-kv-cache-comparison",
+      "path": "collect-mindstudio/mindstudio/deepseek-vision-vs-claude-sonnet-4-6-vs-gemini-flash-3-kv-cache-comparison.md",
+      "title": "DeepSeek Vision vs. Claude Sonnet 4.6 vs. Gemini Flash 3: Which Vision Model Uses 10x Less KV Cache?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2024-03",
+        "2026-04-29",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "deepseek",
+        "gemini",
+        "kv cache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "distillation",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/deepseek-vision-vs-claude-sonnet-4-6-vs-gemini-flash-3-kv-cache-comparison.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 764,
+      "bytes": 5026,
+      "sha256": "bd8677a57febd1d9f5be1e1691434b0eeecbcfad87ccfb8a364369242696c5c1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/docker-sandboxes-ai-agents",
+      "path": "collect-mindstudio/mindstudio/docker-sandboxes-ai-agents.md",
+      "title": "Docker Sandboxes: How to Safely Run AI Coding Agents",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "sandbox",
+        "aws",
+        "claude",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/docker-sandboxes-ai-agents.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1174,
+      "bytes": 7868,
+      "sha256": "5e8c50a744cf224bdc9f6a44edc6469fd695921c028760d387442b8f390ebc1d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/dots3-note-local-deployment",
+      "path": "collect-mindstudio/mindstudio/dots3-note-local-deployment.md",
+      "title": "How to Deploy dots3-note Preview Locally with vLLM or SGLang",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "sglang",
+        "vllm",
+        "agent",
+        "attention",
+        "decode",
+        "fp8",
+        "gpu",
+        "gpus",
+        "latency",
+        "memory",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/dots3-note-local-deployment.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 904,
+      "bytes": 6342,
+      "sha256": "d5bdf30477746aad4651f1231910d3e72f08ed43674486f34c55888ca5f72510"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/eu-ai-act-content-watermarking",
+      "path": "collect-mindstudio/mindstudio/eu-ai-act-content-watermarking.md",
+      "title": "The EU's New AI Watermarking Rule: What It Actually Requires",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "EU",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "watermarking",
+        "consumer",
+        "disclosure",
+        "lean",
+        "regulation",
+        "voice"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/eu-ai-act-content-watermarking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1096,
+      "bytes": 7568,
+      "sha256": "864d0cbec0f3d67c6bbec822595c9a94d0fcfc245da58a70cd2661697c9e62ed"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/fine-tune-qwen3-8-27b-locally",
+      "path": "collect-mindstudio/mindstudio/fine-tune-qwen3-8-27b-locally.md",
+      "title": "How to Fine-Tune Qwen3 27B Locally: LoRA, QLoRA and GGUF Guide",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "lora",
+        "qlora",
+        "consumer",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "memory",
+        "parameters",
+        "quantization",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/fine-tune-qwen3-8-27b-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 850,
+      "bytes": 5490,
+      "sha256": "a8c2b01fc47e35de5995589f74bfabe22c7ab500f46c557f3d48528b46ec663d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/five-types-of-personal-software",
+      "path": "collect-mindstudio/mindstudio/five-types-of-personal-software.md",
+      "title": "The Five Types of Software You Can Build with AI (And How to Pick One)",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "claude",
+        "glm",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/five-types-of-personal-software.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1098,
+      "bytes": 7323,
+      "sha256": "32da02e2f4ef3b6edbb7cc05d97d4cb20378474f2b23e11f1fa41e31116f8e10"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/free-glm-deepseek-verdant",
+      "path": "collect-mindstudio/mindstudio/free-glm-deepseek-verdant.md",
+      "title": "How to Get GLM 5.3 Flash and DeepSeek V4 Flash Free in Verdant",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "glm",
+        "agent",
+        "agentic",
+        "agents",
+        "chatgpt",
+        "claude",
+        "cost",
+        "fable 5",
+        "gemini",
+        "inference",
+        "kimi"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/free-glm-deepseek-verdant.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1045,
+      "bytes": 6408,
+      "sha256": "da8dd79e3f23f6fdb97bbffe0197bc497719797bbb722d1b27d5fcb7342ece62"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/free-stealth-model-claude-code-openrouter",
+      "path": "collect-mindstudio/mindstudio/free-stealth-model-claude-code-openrouter.md",
+      "title": "How to Run Claude Code for Free Using OpenRouter's Models",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "agent",
+        "agentic",
+        "agents",
+        "cost",
+        "deepseek",
+        "gemini",
+        "memory",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/free-stealth-model-claude-code-openrouter.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 762,
+      "bytes": 5031,
+      "sha256": "7f6808bf538881aa9ab40eb378c945eabd7ba50735bdb31d7e46c45e3e7f89d2"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/freetoken-deepseek-v4-flash-single-3090",
+      "path": "collect-mindstudio/mindstudio/freetoken-deepseek-v4-flash-single-3090.md",
+      "title": "DeepSeek V4 Flash on One RTX 3090: Real Tokens-Per-Second Numbers",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Hugging Face",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "agentic",
+        "benchmark",
+        "consumer",
+        "cost",
+        "glm",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/freetoken-deepseek-v4-flash-single-3090.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 906,
+      "bytes": 5446,
+      "sha256": "60054495e6d856759cd1a90fe52b6c2278d11568db58d69855f0550e84364697"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/freetoken-install-guide-qwen3-6",
+      "path": "collect-mindstudio/mindstudio/freetoken-install-guide-qwen3-6.md",
+      "title": "How to Install FreeToken and Serve Qwen 3.6 Locally",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Hugging Face",
+        "MiniMax",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agent",
+        "agents",
+        "attention",
+        "benchmark",
+        "claude",
+        "compute",
+        "consumer",
+        "cost",
+        "deepseek",
+        "glm",
+        "gpu"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/freetoken-install-guide-qwen3-6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 911,
+      "bytes": 5649,
+      "sha256": "c1e25f2cd5b5091a6889ff4e122e6da21e94551480af13d7fc02cc910bdb6a41"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/freetoken-run-large-moe-models-locally",
+      "path": "collect-mindstudio/mindstudio/freetoken-run-large-moe-models-locally.md",
+      "title": "FreeToken Explained: Run 290B+ MoE Models on One Gaming GPU",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "MiniMax",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpu",
+        "moe",
+        "agent",
+        "agents",
+        "attention",
+        "benchmark",
+        "claude",
+        "compute",
+        "consumer",
+        "cost",
+        "deepseek",
+        "glm"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/freetoken-run-large-moe-models-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 930,
+      "bytes": 5778,
+      "sha256": "ff7e82234aaba81afbd89eedf53c372c87f8b5fe94d0a481df6f50b991f6c07a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/glm-5-3-flash-hands-on-multi-gpu-test",
+      "path": "collect-mindstudio/mindstudio/glm-5-3-flash-hands-on-multi-gpu-test.md",
+      "title": "GLM-5.3 Flash Hands-On: Multi-GPU Test, Coding, and Refusals",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "China",
+        "OpenRouter",
+        "Unsloth",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "gpu",
+        "refusals",
+        "agentic",
+        "alignment",
+        "attention",
+        "context window",
+        "distribution",
+        "flash attention",
+        "gpus",
+        "latency",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/glm-5-3-flash-hands-on-multi-gpu-test.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 963,
+      "bytes": 6131,
+      "sha256": "82c0eb7e7a3b90bf533873203df72ffe2b41e10bf7f69add9ba345202b70b847"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/glm-5-3-free-tokens-zcode-weekend",
+      "path": "collect-mindstudio/mindstudio/glm-5-3-free-tokens-zcode-weekend.md",
+      "title": "GLM 5.3 Free Tokens on Zcode: How to Claim 100 Million Tokens",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Intel",
+        "OpenRouter",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "cost",
+        "guardrails",
+        "intel",
+        "mcp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/glm-5-3-free-tokens-zcode-weekend.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        78
+      ],
+      "canonical_for": [],
+      "words": 1264,
+      "bytes": 7693,
+      "sha256": "2bb2e5a9660e8a5df846a740e7785c1d24c2d368771bf114a768b1b42f369400"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/gmktec-evo-x3-vs-evo-x2-pricing",
+      "path": "collect-mindstudio/mindstudio/gmktec-evo-x3-vs-evo-x2-pricing.md",
+      "title": "GMKtec EVO X3 vs EVO X2: Which Strix Halo Mini PC to Buy?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "amd",
+        "benchmark",
+        "cost",
+        "gpu",
+        "gpus",
+        "inference",
+        "memory",
+        "moe",
+        "nvidia",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/gmktec-evo-x3-vs-evo-x2-pricing.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 829,
+      "bytes": 4635,
+      "sha256": "aed0ae2f2690bbbe14e1ffa59ab3ed5d8dc08ca957cd24ad6908604d6220b536"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/google-deepmind-agi-to-asi-paper",
+      "path": "collect-mindstudio/mindstudio/google-deepmind-agi-to-asi-paper.md",
+      "title": "What Is Google DeepMind's AGI-to-ASI Paper? Four Pathways to Superintelligence",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agi",
+        "agent",
+        "agents",
+        "alignment",
+        "attention",
+        "claude",
+        "compute",
+        "gemini",
+        "inference",
+        "memory",
+        "reasoning",
+        "recursive self-improvement"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/google-deepmind-agi-to-asi-paper.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 924,
+      "bytes": 7033,
+      "sha256": "68008a1e0d7c957e9aeb32d2c10b71137ba0a07ccb478f4c1ca01b7c6b14f1b1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/google-gemma-4-12b-laptop-open-model",
+      "path": "collect-mindstudio/mindstudio/google-gemma-4-12b-laptop-open-model.md",
+      "title": "Google Gemma 4-12B: A Laptop-Runnable Open Model That Matches Gemma 4-26B",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "Google",
+        "Hugging Face",
+        "Mistral",
+        "vLLM"
+      ],
+      "dates": [
+        "2025-04",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "context window",
+        "fine-tuning",
+        "gemini",
+        "gguf",
+        "gpu",
+        "gpus",
+        "gqa"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/google-gemma-4-12b-laptop-open-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 693,
+      "bytes": 4593,
+      "sha256": "d7bd10411d75fb73074b0b45ca557b2c1effc40523190a0783efa44b7fa72f10"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/google-okf-youtube-knowledge-base",
+      "path": "collect-mindstudio/mindstudio/google-okf-youtube-knowledge-base.md",
+      "title": "Turn Any YouTube Channel Into a Searchable AI Knowledge Base with OKF",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "compute",
+        "cost",
+        "mcp",
+        "memory",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/google-okf-youtube-knowledge-base.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 1002,
+      "bytes": 6831,
+      "sha256": "1a2320aa79bc636a1e942de2857781c9c41903015a6c60a96229f56295d1b7ca"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/google-wiki-skill-agent-memory",
+      "path": "collect-mindstudio/mindstudio/google-wiki-skill-agent-memory.md",
+      "title": "Google's Wiki Skill: How AI Agents Get Persistent Memory",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "memory",
+        "fine-tuning",
+        "inference",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/google-wiki-skill-agent-memory.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 886,
+      "bytes": 5989,
+      "sha256": "f78cc868148bcef5325479676ab5cb108da37f999e4e8b8beca68d4675c4fa3b"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models",
+      "path": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models.md",
+      "title": "How to Use GPT-5.6 Sol as an Orchestrator with Cheaper Sub-Agent Models",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "gpt-5.6",
+        "sol",
+        "agents",
+        "cost",
+        "latency",
+        "luna",
+        "reasoning",
+        "terra",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 1405,
+      "bytes": 10120,
+      "sha256": "5f4dd2d41f52f519f723ea42125747274f6c63333c0b7f2ef0be8a78e336c763"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/gpt-5-6-ultra-mode-multi-agent-coordination",
+      "path": "collect-mindstudio/mindstudio/gpt-5-6-ultra-mode-multi-agent-coordination.md",
+      "title": "How to Use GPT-5.6 Ultra Mode: Multi-Agent Coordination for Complex Tasks",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "gpt-5.6",
+        "agents",
+        "compute",
+        "cost",
+        "fable 5",
+        "inference",
+        "latency",
+        "memory",
+        "reasoning",
+        "research",
+        "sol"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/gpt-5-6-ultra-mode-multi-agent-coordination.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 961,
+      "bytes": 7303,
+      "sha256": "365f07158611fcafc6e5e9338bfb834ce57f70614be7c4ed6ce497a76bda5812"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident",
+      "path": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident.md",
+      "title": "GPT-6 Escaped a Sandbox and Hacked Hugging Face: What Really Happened",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Hugging Face",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpt-6",
+        "sandbox",
+        "agent",
+        "agents",
+        "benchmark",
+        "containment",
+        "cyber",
+        "cybersecurity",
+        "exploit",
+        "glm",
+        "gpt-5.6",
+        "incident"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/gpt6-model-hugging-face-hack-incident.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1665,
+      "bytes": 10986,
+      "sha256": "26732d792d56590d5b35e23f3867e81dfdf71fe39ec7fe50aa68bfcbff7f5d9a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/granite-4-2-3b-8b-local-test",
+      "path": "collect-mindstudio/mindstudio/granite-4-2-3b-8b-local-test.md",
+      "title": "IBM Granite 4.2 3B vs 8B: Local Reasoning Model Tested",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Hugging Face",
+        "United States",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "reasoning",
+        "agent",
+        "agentic",
+        "alignment",
+        "apache",
+        "consumer",
+        "context window",
+        "cost",
+        "gpus",
+        "kv cache",
+        "license",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/granite-4-2-3b-8b-local-test.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 892,
+      "bytes": 5590,
+      "sha256": "e078e495071a60d3c916e0680d6538c3eef2fb94deeac40d58ccb2b025f88409"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/grok-bot-vs-openclaw-chatgpt",
+      "path": "collect-mindstudio/mindstudio/grok-bot-vs-openclaw-chatgpt.md",
+      "title": "Grok Bot vs Open Claw vs ChatGPT: Which Agent Setup Wins?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "chatgpt",
+        "grok",
+        "acquisition",
+        "agents",
+        "claude",
+        "consumer",
+        "cost",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/grok-bot-vs-openclaw-chatgpt.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 884,
+      "bytes": 5897,
+      "sha256": "8a38a2e398232a14c863cff11316ae74b7a546a5a27da99abeb90205468e28bd"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/how-to-add-persistent-memory-claude-code",
+      "path": "collect-mindstudio/mindstudio/how-to-add-persistent-memory-claude-code.md",
+      "title": "How to Add Persistent Memory to Claude Code: Storage, Injection, and Recall",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "memory",
+        "agent",
+        "agents",
+        "context window",
+        "embeddings",
+        "lean",
+        "mcp",
+        "model context protocol",
+        "reasoning",
+        "research",
+        "tool use"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/how-to-add-persistent-memory-claude-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        80
+      ],
+      "canonical_for": [],
+      "words": 1030,
+      "bytes": 7217,
+      "sha256": "0d399241d77aea97366a9d2b8c8d9135e1e40d6a3b2848c5142b276ac77ac290"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/how-to-build-grokbot-agent-team",
+      "path": "collect-mindstudio/mindstudio/how-to-build-grokbot-agent-team.md",
+      "title": "How to Build a Grokbot AI Agent Team for Your Business",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "xAI"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "grok",
+        "agents",
+        "claude",
+        "transcription"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/how-to-build-grokbot-agent-team.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 978,
+      "bytes": 6682,
+      "sha256": "7ad8b3c40d4988ca069f6969032ad26a4cff3f7cb63e33c837af1b1ff4235233"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/how-to-build-llm-wiki-knowledge-base-obsidian-claude-code",
+      "path": "collect-mindstudio/mindstudio/how-to-build-llm-wiki-knowledge-base-obsidian-claude-code.md",
+      "title": "How to Build an LLM Wiki Knowledge Base with Obsidian and Claude Code",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "attention",
+        "cost",
+        "fine-tuning",
+        "llama",
+        "rlhf"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/how-to-build-llm-wiki-knowledge-base-obsidian-claude-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        77
+      ],
+      "canonical_for": [],
+      "words": 1092,
+      "bytes": 7412,
+      "sha256": "1d95b19aaea4f301328e2ce5b3412fd25ee692d88869eacd1962d39ee7568e75"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/how-to-run-local-ai-models-with-ollama",
+      "path": "collect-mindstudio/mindstudio/how-to-run-local-ai-models-with-ollama.md",
+      "title": "How to Run Local AI Models with Ollama: A Beginner's Setup Guide for 2026",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "Meta",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "amd",
+        "chatgpt",
+        "deepseek",
+        "embedding",
+        "embeddings",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "license",
+        "llama.cpp",
+        "mit license"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/how-to-run-local-ai-models-with-ollama.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 692,
+      "bytes": 4948,
+      "sha256": "9b688c068039d668ae7e37b105d643088c7446fc78ac9ba3fdf56c82649b8b3e"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/how-to-run-qwen-vision-models-locally",
+      "path": "collect-mindstudio/mindstudio/how-to-run-qwen-vision-models-locally.md",
+      "title": "How to Run Qwen Vision Models Locally with llama.cpp",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "llama.cpp",
+        "qwen",
+        "agents",
+        "consumer",
+        "context window",
+        "cost",
+        "gpu",
+        "inference",
+        "memory",
+        "multimodal",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/how-to-run-qwen-vision-models-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 927,
+      "bytes": 6207,
+      "sha256": "701dd3017265791f8d959dab6135d7e6ec369cb880c3f23dfdf3bc529cdfd386"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report",
+      "path": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report.md",
+      "title": "The AI Agent Swarm That Hacked Hugging Face: Full Timeline",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "ExploitGym",
+        "Hugging Face",
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "exploit",
+        "reasoning",
+        "research",
+        "sandbox",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/hugging-face-agent-swarm-hack-metr-report.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1245,
+      "bytes": 8651,
+      "sha256": "83f17444ee25a1e5f6a15531e874a5c29def5e39d57261b6b29787efafd9c225"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/hybrid-ai-architecture-local-models-cloud-frontier",
+      "path": "collect-mindstudio/mindstudio/hybrid-ai-architecture-local-models-cloud-frontier.md",
+      "title": "How to Build a Hybrid AI Architecture: Local Models + Cloud Frontier Models",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Lambda",
+        "Mistral",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "aws",
+        "benchmark",
+        "claude",
+        "consumer",
+        "cost",
+        "embedding",
+        "embeddings",
+        "fine-tuning",
+        "gemini",
+        "gpu"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/hybrid-ai-architecture-local-models-cloud-frontier.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 971,
+      "bytes": 7145,
+      "sha256": "558d6e8733ce6366710f519a83bcd9920e730011d0e3612738e027b871867239"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems",
+      "path": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems.md",
+      "title": "What Is the Implement-Verify-Fix Loop in Multi-Agent AI Systems?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "alignment",
+        "claude",
+        "parameters",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/implement-verify-fix-loop-multi-agent-ai-systems.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1131,
+      "bytes": 8205,
+      "sha256": "c7798abc6a37662c9396a16194c4c52bd8379d054530c78169aa07b011c70778"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy",
+      "path": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy.md",
+      "title": "Kimi K3's Rise Sparks a US-China AI Distillation Fight",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Google",
+        "Moonshot",
+        "OpenAI",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "distillation",
+        "kimi",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "distribution",
+        "glm",
+        "grok",
+        "latency",
+        "leaderboard",
+        "open weights"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/kimi-k3-distillation-controversy.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 1364,
+      "bytes": 9016,
+      "sha256": "dea96ecbc80cb5961d9ce1aaef77ea248ee0e215b81fe836cf2dee41456e7eb6"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/kimi-k3-vs-abacus-supercomputer-local-ai",
+      "path": "collect-mindstudio/mindstudio/kimi-k3-vs-abacus-supercomputer-local-ai.md",
+      "title": "Kimi K3 on 4 Mac Studios vs Abacus AI Supercomputer: App-Build Test",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "compute",
+        "kimi",
+        "agent",
+        "claude",
+        "context window",
+        "cost",
+        "deepseek",
+        "glm",
+        "gpt-5.6",
+        "gpu",
+        "grok",
+        "grok 4"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/kimi-k3-vs-abacus-supercomputer-local-ai.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 960,
+      "bytes": 5970,
+      "sha256": "ed5bb9b80e19191b4ae7215e11b0937c53021e340ae587b263d34b4179fc70ca"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/kimmy-k2-6-qwen-3-6-open-source-frontier-models",
+      "path": "collect-mindstudio/mindstudio/kimmy-k2-6-qwen-3-6-open-source-frontier-models.md",
+      "title": "Kimmy K2.6 and Qwen 3.6: The Open-Source Models Closing the Frontier Gap",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "agentic",
+        "apache",
+        "attribution",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "cost",
+        "cost per token",
+        "deepseek",
+        "embedding"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/kimmy-k2-6-qwen-3-6-open-source-frontier-models.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 963,
+      "bytes": 6443,
+      "sha256": "054e38a1c61b95b0c65fa90baa98f586a4f11c813fc11ff42c7070f671cd3afe"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/klein-pass-pricing-open-model-access",
+      "path": "collect-mindstudio/mindstudio/klein-pass-pricing-open-model-access.md",
+      "title": "Klein Pass: $9.99/Month for Kimi K3, DeepSeek V4, GLM, and Qwen Access",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Moonshot",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "glm",
+        "kimi",
+        "qwen",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "moe",
+        "open-weight",
+        "parameters",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/klein-pass-pricing-open-model-access.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 771,
+      "bytes": 5117,
+      "sha256": "d943021be5b9b714d1047eb21a4363e635f07c696008622b355146b1a1174ae7"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-ai-hardware-budget-economics",
+      "path": "collect-mindstudio/mindstudio/local-ai-hardware-budget-economics.md",
+      "title": "How Much VRAM Do You Actually Need for Local AI in 2026?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Moonshot"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "context window",
+        "cost",
+        "gpu",
+        "kimi",
+        "latency",
+        "memory",
+        "parameters",
+        "quantization",
+        "reasoning",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-ai-hardware-budget-economics.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 942,
+      "bytes": 5928,
+      "sha256": "cee1f353a684172712c369ce6cc2955b52bfd32227a4bcb73b4df819ba035171"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-ai-image-video-generation-comfyui",
+      "path": "collect-mindstudio/mindstudio/local-ai-image-video-generation-comfyui.md",
+      "title": "Local AI Video Generation with ComfyUI: How It Actually Works",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Alibaba"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "video generation",
+        "amd",
+        "compute",
+        "cost",
+        "gpu",
+        "lpddr5x",
+        "memory",
+        "open-weight",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-ai-image-video-generation-comfyui.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 776,
+      "bytes": 5049,
+      "sha256": "10f39870b2f45da974481201d9ec7bff8edf0db3fd3453b4ffc28917a43cb464"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-ai-inference-rtx-spark-llm-on-device",
+      "path": "collect-mindstudio/mindstudio/local-ai-inference-rtx-spark-llm-on-device.md",
+      "title": "Local AI Inference with RTX Spark: What Changes When You Run LLMs On-Device",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "inference",
+        "agentic",
+        "blackwell",
+        "compute",
+        "consumer",
+        "context window",
+        "cost",
+        "fine-tuning",
+        "gpu",
+        "kv cache",
+        "latency",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-ai-inference-rtx-spark-llm-on-device.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 716,
+      "bytes": 4785,
+      "sha256": "127bf3724722bbebdc3d764e5625a0d059579578d5fc68433e9955bbca6bcd14"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-ai-vs-cloud-ai-2026",
+      "path": "collect-mindstudio/mindstudio/local-ai-vs-cloud-ai-2026.md",
+      "title": "Local AI vs Cloud AI in 2026: When to Run Models on Your Own Hardware",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "benchmarks",
+        "claude",
+        "consumer",
+        "cost",
+        "embedding",
+        "fine-tuning",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-ai-vs-cloud-ai-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 694,
+      "bytes": 4809,
+      "sha256": "2bee2bfa86b85d4caa5fae31fdaa51f705c03a59f1f095a49416b52cddd8825c"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-ai-vs-cloud-ai-hybrid-routing-strategy",
+      "path": "collect-mindstudio/mindstudio/local-ai-vs-cloud-ai-hybrid-routing-strategy.md",
+      "title": "Local AI vs Cloud AI for Agents: The Hybrid Routing Strategy That Saves Money",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "consumer",
+        "cost",
+        "gemini",
+        "gpu",
+        "gpus",
+        "latency",
+        "llama",
+        "llama.cpp",
+        "mistral"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-ai-vs-cloud-ai-hybrid-routing-strategy.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 871,
+      "bytes": 6195,
+      "sha256": "6f62c9e003a7ff11fd1a5828e8764825a5c3c49fdee7548f88a77a47b3078bc8"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-ai-vs-cloud-ai-open-weight-licensing-hybrid-routing",
+      "path": "collect-mindstudio/mindstudio/local-ai-vs-cloud-ai-open-weight-licensing-hybrid-routing.md",
+      "title": "Local AI vs Cloud AI: Open-Weight Models, Licensing, and the Hybrid Routing Strategy",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Falcon",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "open-weight",
+        "apache",
+        "attribution",
+        "aws",
+        "chatgpt",
+        "claude",
+        "consumer",
+        "cost",
+        "fine-tuning",
+        "gemini",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-ai-vs-cloud-ai-open-weight-licensing-hybrid-routing.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 859,
+      "bytes": 6048,
+      "sha256": "3bd9c002aab5b78d6e954cc76e0156c3a386f7639bb8c92183bb8364ead38e79"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-llm-benchmarks-ryzen-ai-halo",
+      "path": "collect-mindstudio/mindstudio/local-llm-benchmarks-ryzen-ai-halo.md",
+      "title": "Local LLM Speed Test: GPT-OSS, Qwen3.6 and Hermes on 128GB Unified Memory",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "memory",
+        "qwen",
+        "agent",
+        "agents",
+        "amd",
+        "benchmarks",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-llm-benchmarks-ryzen-ai-halo.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 804,
+      "bytes": 5161,
+      "sha256": "a2f6f3990c2ca6c1d32903161c90faf8a912dd16a7f4d1434d8fbeb5bf624f1f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/local-vs-cloud-ai-agents-future",
+      "path": "collect-mindstudio/mindstudio/local-vs-cloud-ai-agents-future.md",
+      "title": "Local AI vs Cloud AI Agents: Which Future Should You Bet On?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "acquisition",
+        "agentic",
+        "cloud agent",
+        "compute",
+        "cost",
+        "glm",
+        "memory",
+        "nvidia",
+        "open-weight",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/local-vs-cloud-ai-agents-future.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 962,
+      "bytes": 5919,
+      "sha256": "323fa1e538ca53d953d000d3bfedf6cde05c63c4cfb872f5201f933d83ab0d56"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/m5-macbook-air-local-ai-performance",
+      "path": "collect-mindstudio/mindstudio/m5-macbook-air-local-ai-performance.md",
+      "title": "M5 MacBook Air: How Much Faster Is Local AI, Really?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "fine-tuning",
+        "gpu",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "qwen",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/m5-macbook-air-local-ai-performance.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 749,
+      "bytes": 4486,
+      "sha256": "25c90c1508a78134c64e3cc565320232f6473ac2fb8d77075ad3b309c7cbd878"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/mac-mini-m4-pro-vs-mac-studio-vs-rtx-5090-vs-dgx-spark-local-ai",
+      "path": "collect-mindstudio/mindstudio/mac-mini-m4-pro-vs-mac-studio-vs-rtx-5090-vs-dgx-spark-local-ai.md",
+      "title": "Mac Mini M4 Pro vs Mac Studio vs RTX 5090 vs DGX Spark: Which Local AI Hardware Is Right for Your Stack?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "agents",
+        "amd",
+        "apache",
+        "benchmark",
+        "blackwell",
+        "consumer",
+        "embedding",
+        "embeddings",
+        "fine-tuning",
+        "gpu",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/mac-mini-m4-pro-vs-mac-studio-vs-rtx-5090-vs-dgx-spark-local-ai.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 864,
+      "bytes": 5562,
+      "sha256": "43e930473f07a4bce6c248d6383fd4b832e0a839ffaafad65ffcd50cc1c9af76"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/mac-mini-m4-pro-vs-rtx-5090-vs-dgx-spark-local-ai-hardware-2026",
+      "path": "collect-mindstudio/mindstudio/mac-mini-m4-pro-vs-rtx-5090-vs-dgx-spark-local-ai-hardware-2026.md",
+      "title": "Mac Mini M4 Pro vs RTX 5090 vs DGX Spark: Which Local AI Hardware Is Right for You in 2026?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agents",
+        "amd",
+        "benchmark",
+        "blackwell",
+        "consumer",
+        "embedding",
+        "fine-tuning",
+        "gpu",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/mac-mini-m4-pro-vs-rtx-5090-vs-dgx-spark-local-ai-hardware-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 888,
+      "bytes": 5559,
+      "sha256": "a92f0d7cddd20fb8f0a37b55676eba3ddf8ede313b1da79fda35fcfa0fe6483e"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/mac-studio-m5-ultra-vs-dgx-spark",
+      "path": "collect-mindstudio/mindstudio/mac-studio-m5-ultra-vs-dgx-spark.md",
+      "title": "Mac Studio M5 Ultra vs DGX Spark: Which Wins for Local AI?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Apple",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmarks",
+        "compute",
+        "cost",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency",
+        "memory",
+        "nvidia",
+        "parameters",
+        "prefill",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/mac-studio-m5-ultra-vs-dgx-spark.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 876,
+      "bytes": 5467,
+      "sha256": "28f1b6ffbc393aa84bf71d50d038994c525c2af40f9b5345423323dc64aba564"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/mercury-2-diffusion-based-language-model-5x-faster",
+      "path": "collect-mindstudio/mindstudio/mercury-2-diffusion-based-language-model-5x-faster.md",
+      "title": "What Is Mercury 2? The Diffusion-Based Language Model That Runs 5x Faster Than Claude Haiku",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "diffusion",
+        "benchmarks",
+        "compute",
+        "cost",
+        "gemini",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "reasoning",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/mercury-2-diffusion-based-language-model-5x-faster.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 725,
+      "bytes": 5224,
+      "sha256": "e02743291b51ade3baa5f5a907c7fd307dffaff40a7e221afe1cafdabc6473d7"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/meta-muse-spark-1-3-open-weight",
+      "path": "collect-mindstudio/mindstudio/meta-muse-spark-1-3-open-weight.md",
+      "title": "Meta Muse Spark 1.3 open weight - MindStudio",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "muse",
+        "muse spark",
+        "agentic",
+        "aws",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost",
+        "gpt-5.6",
+        "multimodal",
+        "open-weight",
+        "opus 5"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/meta-muse-spark-1-3-open-weight.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 722,
+      "bytes": 4615,
+      "sha256": "398a372b3adc505cebfca9678ab9fc070bc43b8e105e6c6015e6fb22f00b0c71"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/minimax-h3-run-locally-guide",
+      "path": "collect-mindstudio/mindstudio/minimax-h3-run-locally-guide.md",
+      "title": "Run MiniMax H3 Locally: VRAM Guide From 6GB Cards to the 5090",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "MiniMax",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "consumer",
+        "gpu",
+        "gpus",
+        "lora",
+        "nvidia",
+        "open source",
+        "open weights",
+        "pricing",
+        "quantization",
+        "refusals",
+        "training",
+        "video generation"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/minimax-h3-run-locally-guide.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 735,
+      "bytes": 4587,
+      "sha256": "d0131ca60ed4d283177ab63e169210e37bcbe14c68fd8a0146771458b93e5022"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/multi-agent-ai-systems-catch-hallucinations",
+      "path": "collect-mindstudio/mindstudio/multi-agent-ai-systems-catch-hallucinations.md",
+      "title": "Multi-Agent AI Systems: How to Catch Hallucinations Without Reading Every Output",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "pricing",
+        "reasoning",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/multi-agent-ai-systems-catch-hallucinations.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1019,
+      "bytes": 7444,
+      "sha256": "05c451bec05147365c096081ddd3805f7142f3aa7f84bf1038c274285836d47e"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/multi-model-ai-agent-council",
+      "path": "collect-mindstudio/mindstudio/multi-model-ai-agent-council.md",
+      "title": "Multi-Model AI Agent Councils: Do Multiple LLMs Give Better Answers Than One?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmarks",
+        "claude",
+        "cost",
+        "gemini",
+        "latency",
+        "llama",
+        "mistral",
+        "multimodal",
+        "pricing",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/multi-model-ai-agent-council.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1049,
+      "bytes": 7710,
+      "sha256": "bf2525cb7574cb990adab0f9fe5bbc9b66dd0c4a358e3aef9b8c77fbcb86b9fe"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/nvidia-egpu-amd-strix-halo-mini-pc",
+      "path": "collect-mindstudio/mindstudio/nvidia-egpu-amd-strix-halo-mini-pc.md",
+      "title": "Nvidia eGPU on AMD Strix Halo: Oculink Setup and Real Speed Gains",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "amd",
+        "gpu",
+        "nvidia",
+        "compute",
+        "gpus",
+        "inference",
+        "memory",
+        "moe",
+        "parameters",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/nvidia-egpu-amd-strix-halo-mini-pc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 880,
+      "bytes": 5067,
+      "sha256": "55199148556eb2c7001207044a1c89237ec4e18267b8dff1a978a8d8f6d74d05"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/nvidia-nemotron-3-ultra-550b-open-weight-agent-model",
+      "path": "collect-mindstudio/mindstudio/nvidia-nemotron-3-ultra-550b-open-weight-agent-model.md",
+      "title": "NVIDIA Nemotron 3 Ultra: The 550B Open-Weight Model Built for AI Agents",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "nvidia",
+        "open-weight",
+        "agentic",
+        "alignment",
+        "awq",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "cost"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/nvidia-nemotron-3-ultra-550b-open-weight-agent-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 658,
+      "bytes": 4908,
+      "sha256": "cbd3c9fda07b8a299d0e1f682855c46c9a91e4b29bac44ac53344ce97f6948a0"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/nvidia-nemotron-3-ultra-open-weight-agent-model",
+      "path": "collect-mindstudio/mindstudio/nvidia-nemotron-3-ultra-open-weight-agent-model.md",
+      "title": "What Is NVIDIA Nemotron 3 Ultra? The 550B Open-Weight Model Built for Agents",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "nvidia",
+        "open-weight",
+        "agentic",
+        "benchmarks",
+        "claude",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "inference",
+        "inference engine"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/nvidia-nemotron-3-ultra-open-weight-agent-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 685,
+      "bytes": 5019,
+      "sha256": "ae61fd8a3efa30d87ca19ea357dbb8bca7d3744709a1a356d51eaf9d3e2ba444"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/nvidia-nim-free-models-ai-workflows",
+      "path": "collect-mindstudio/mindstudio/nvidia-nim-free-models-ai-workflows.md",
+      "title": "How to Use NVIDIA NIM Free Models in Your AI Workflows",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "agentic",
+        "claude",
+        "context window",
+        "cost",
+        "embedding",
+        "embeddings",
+        "glm",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/nvidia-nim-free-models-ai-workflows.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 719,
+      "bytes": 5343,
+      "sha256": "ef2d4bec4e8a26f4698ed84a70c5e30493afe2cccb2d725dede4950980a9a7f1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/nvidia-switchyard-local-model-router",
+      "path": "collect-mindstudio/mindstudio/nvidia-switchyard-local-model-router.md",
+      "title": "What Is NVIDIA SwitchYard? The Open-Source Local AI Model Router",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Cerebras",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "agent",
+        "agentic",
+        "benchmark",
+        "compute",
+        "cost",
+        "gpu",
+        "latency",
+        "memory",
+        "moe",
+        "prefill",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/nvidia-switchyard-local-model-router.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 846,
+      "bytes": 5578,
+      "sha256": "5d7fd394e14cd42fcd2142d964ecbbb33738881fd1cd85e4bf30fa8e6c168192"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/obsidian-skills-ai-agent-notes",
+      "path": "collect-mindstudio/mindstudio/obsidian-skills-ai-agent-notes.md",
+      "title": "Obsidian Skills: Giving AI Agents Access to Your Markdown Notes",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/obsidian-skills-ai-agent-notes.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 847,
+      "bytes": 5594,
+      "sha256": "0808c197c7dea06e92c03c8ca7849e80cb06fcc03fc03c511ea966bd4a5ddd22"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ollama-run-ai-models-locally-claude-code-workflows",
+      "path": "collect-mindstudio/mindstudio/ollama-run-ai-models-locally-claude-code-workflows.md",
+      "title": "How to Use Ollama to Run AI Models Locally for Claude Code Workflows",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Mistral",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "llama",
+        "agent",
+        "agentic",
+        "context window",
+        "cost",
+        "deepseek",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ollama-run-ai-models-locally-claude-code-workflows.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 743,
+      "bytes": 5357,
+      "sha256": "a1f971651b4510e5b6c0f84e0fbea5b9b2ac0eecc42aa442b390a482f715712e"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/on-device-ai-vs-cloud-ai-economics",
+      "path": "collect-mindstudio/mindstudio/on-device-ai-vs-cloud-ai-economics.md",
+      "title": "On-Device AI vs Cloud AI: Why the Economics Are Shifting",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Google",
+        "OpenAI",
+        "Qualcomm"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "compute",
+        "cost",
+        "distillation",
+        "embeddings",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "inference",
+        "kv cache",
+        "latency",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/on-device-ai-vs-cloud-ai-economics.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        61
+      ],
+      "canonical_for": [],
+      "words": 897,
+      "bytes": 6455,
+      "sha256": "05b176d73aefcfa99a37429f38edc1bfa66a145483ac9083eeeb4c8af225052d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/open-model-coding-plans-glm-kimi-deepseek",
+      "path": "collect-mindstudio/mindstudio/open-model-coding-plans-glm-kimi-deepseek.md",
+      "title": "GLM vs Kimi vs DeepSeek: Which Open Model Coding Plan Wins Now?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "MiniMax",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "glm",
+        "kimi",
+        "agent",
+        "agents",
+        "chatgpt",
+        "claude",
+        "cost",
+        "gpu",
+        "pricing",
+        "qwen",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/open-model-coding-plans-glm-kimi-deepseek.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 846,
+      "bytes": 5674,
+      "sha256": "6eaf9c93868f9b1e8820e49ca16a47d76b94c719d2cd66b3da7c91ff3bffcbf7"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/open-vs-closed-weight-model-token-share",
+      "path": "collect-mindstudio/mindstudio/open-vs-closed-weight-model-token-share.md",
+      "title": "Open Weights vs Closed Weights: Why Token Usage Is Flipping",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Perplexity",
+        "United States"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "open weights",
+        "agent",
+        "benchmarks",
+        "claude",
+        "cost",
+        "cost per token",
+        "deepseek",
+        "inference",
+        "kimi",
+        "nvidia",
+        "open-weight",
+        "perplexity"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/open-vs-closed-weight-model-token-share.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 917,
+      "bytes": 6024,
+      "sha256": "203e14838ca20f8f0080c2febec5cac773326a92ad5b739547f340002413ff92"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/open-weight-ai-frontier-kimi-k3-agent-stack",
+      "path": "collect-mindstudio/mindstudio/open-weight-ai-frontier-kimi-k3-agent-stack.md",
+      "title": "Open-Weight AI Reaches the Frontier: What Kimi K3 Means for Your Agent Stack",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Meta",
+        "Mistral",
+        "Moonshot",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "kimi",
+        "open-weight",
+        "agentic",
+        "alignment",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "cost",
+        "deepseek",
+        "fine-tuning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/open-weight-ai-frontier-kimi-k3-agent-stack.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 675,
+      "bytes": 4894,
+      "sha256": "86f47679d632082669cf2cfc52b6595f5ac9a49ce6aaabd53316c5149cb9b32a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/open-weight-ai-models-closing-gap-glm-5-2-agent-stack",
+      "path": "collect-mindstudio/mindstudio/open-weight-ai-models-closing-gap-glm-5-2-agent-stack.md",
+      "title": "Open-Weight AI Models Are Closing the Gap: What GLM 5.2 Means for Your Agent Stack",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "Meta",
+        "Mistral",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "glm",
+        "open-weight",
+        "agentic",
+        "agents",
+        "attribution",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "cost",
+        "dpo"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/open-weight-ai-models-closing-gap-glm-5-2-agent-stack.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 736,
+      "bytes": 5196,
+      "sha256": "1bea829843170ed0203210f9042f42d0afc371432f84ab616779695edbb2ee93"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety",
+      "path": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety.md",
+      "title": "OpenAI's Astra Model: What It Is and Why It's Sparking Safety Alarm",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-02",
+        "2025-12",
+        "2026-09-23",
+        "2027-03"
+      ],
+      "keywords": [
+        "astra",
+        "agent",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "cyber",
+        "cybersecurity",
+        "gpt-5.6",
+        "gpu",
+        "hyperscaler",
+        "incident",
+        "neocloud"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-astra-recurrent-depth-safety.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1399,
+      "bytes": 9704,
+      "sha256": "0513fd7226481a286fa6c2a4b446919ad7b9521e9b738972813008795613c8e9"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-codex-kernel-writing-cuda-moat",
+      "path": "collect-mindstudio/mindstudio/openai-codex-kernel-writing-cuda-moat.md",
+      "title": "How OpenAI Used Codex to Bypass Nvidia's CUDA Moat",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "DeepSeek",
+        "Google",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "asic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "cost",
+        "custom silicon",
+        "deepseek",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-codex-kernel-writing-cuda-moat.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 920,
+      "bytes": 5925,
+      "sha256": "5365e06488cc1879ac5dc3446fbe5490affdf297242e47f247504ae5d9972ff1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1",
+      "path": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1.md",
+      "title": "How OpenAI's Internal Model Hacked Hugging Face's Servers",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-02",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "astra",
+        "benchmarks",
+        "compute",
+        "cyber",
+        "cybersecurity",
+        "exploit",
+        "gpt-5.6",
+        "gpu",
+        "incident",
+        "neocloud"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-hugging-face-hack-im1.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1488,
+      "bytes": 10025,
+      "sha256": "a777c3b6a647a7c35e0cc55acaacb482ea794a7b332ae781dbde2f453680264b"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-model-hacked-hugging-face-sandbox-escape",
+      "path": "collect-mindstudio/mindstudio/openai-model-hacked-hugging-face-sandbox-escape.md",
+      "title": "OpenAI's Model Escaped Its Sandbox to Hack Hugging Face. Here's How",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "sandbox",
+        "benchmark",
+        "compute",
+        "cost",
+        "cyber",
+        "cybersecurity",
+        "exploit",
+        "gpt-5.6",
+        "guardrails",
+        "incident",
+        "inference",
+        "refusals"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-model-hacked-hugging-face-sandbox-escape.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 834,
+      "bytes": 5765,
+      "sha256": "98312d4bf97ccdb85b50abb81dec07e8c18337a24481b554f9fb5a4602b2d265"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-pauses-frontier-model-training",
+      "path": "collect-mindstudio/mindstudio/openai-pauses-frontier-model-training.md",
+      "title": "Why Did OpenAI Pause Its Next Frontier Model?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "benchmarks",
+        "chatgpt",
+        "consumer",
+        "cost",
+        "fine-tuning",
+        "gpt-6",
+        "open-weight",
+        "pretraining",
+        "qwen",
+        "reasoning",
+        "tool use"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-pauses-frontier-model-training.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 876,
+      "bytes": 5599,
+      "sha256": "a5e1cd9ad66dfe973b848fa9654555e05d4fefc30c40e1c1b5bec755f943f6df"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-tibo-interview-agi-vision",
+      "path": "collect-mindstudio/mindstudio/openai-tibo-interview-agi-vision.md",
+      "title": "OpenAI's Vision for a Personal AGI: Merging ChatGPT and Codex",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agi",
+        "chatgpt",
+        "agent",
+        "agentic",
+        "agents",
+        "cybersecurity",
+        "inference",
+        "memory",
+        "personal agent",
+        "research",
+        "tool use",
+        "voice"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-tibo-interview-agi-vision.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 918,
+      "bytes": 5993,
+      "sha256": "4bd6b11d7abbd4c245498045bca5c4dd7eef7d189b8f7f2c594251282614ce95"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ox-alpha-free-access-opencode",
+      "path": "collect-mindstudio/mindstudio/ox-alpha-free-access-opencode.md",
+      "title": "Ox Alpha Free on OpenCode: Pricing, Limits, and How Long It Lasts",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Moonshot",
+        "Xiaomi",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "pricing",
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "deepseek",
+        "fine-tuning",
+        "glm",
+        "grok",
+        "grok 4",
+        "kimi"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ox-alpha-free-access-opencode.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 782,
+      "bytes": 5036,
+      "sha256": "9cf6c327cc7f4336e4b2b13f1fd886e49f3f58b2066ab8f16b5531bda4b267a1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter",
+      "path": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter.md",
+      "title": "OX Alpha on OpenRouter: Free Access, Limits, and How Long It Lasts",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "China",
+        "Nvidia",
+        "OpenRouter",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "context window",
+        "cost",
+        "glm",
+        "gpu",
+        "inference",
+        "multimodal",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ox-alpha-free-access-openrouter.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        73
+      ],
+      "canonical_for": [],
+      "words": 1206,
+      "bytes": 8094,
+      "sha256": "b3e4c6b901c9c08b40dadf0223be41e6dbe34b32ca5d77a7d72cfe5d6d3c0468"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/poolside-laguna-s2-local-coding-model",
+      "path": "collect-mindstudio/mindstudio/poolside-laguna-s2-local-coding-model.md",
+      "title": "Poolside's Laguna S 2.1: A 118B Open Model for Local Agentic Coding",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Poolside"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "context window",
+        "diffusion",
+        "fp4",
+        "fp8",
+        "gpt-5.6",
+        "gpus",
+        "kimi"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/poolside-laguna-s2-local-coding-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 794,
+      "bytes": 5209,
+      "sha256": "a8bdea06a5640ebfbae55d00bbbf91eca9e4fe770a7f6db8e7a2280a46e6283a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/qwak-local-ai-platform",
+      "path": "collect-mindstudio/mindstudio/qwak-local-ai-platform.md",
+      "title": "What Is Qwak? Tether's Free Local AI Platform Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "apache",
+        "benchmarks",
+        "cost",
+        "deepseek",
+        "fine-tuning",
+        "gguf",
+        "inference",
+        "license",
+        "lora",
+        "open-weight",
+        "packaging",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/qwak-local-ai-platform.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 902,
+      "bytes": 5763,
+      "sha256": "a603567ecd8def028afb8f191e30e6d474e1b3d6c13b664b9fac795b21e0cd20"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/qwen-3-8-flash-next-benchmarks",
+      "path": "collect-mindstudio/mindstudio/qwen-3-8-flash-next-benchmarks.md",
+      "title": "Qwen 3.8 Flash Next Benchmarks: Coding and Agentic Test Results",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "qwen",
+        "attention",
+        "claude",
+        "cost",
+        "deepseek",
+        "embedding",
+        "embeddings",
+        "fp8",
+        "gguf"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/qwen-3-8-flash-next-benchmarks.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 843,
+      "bytes": 5133,
+      "sha256": "2fa488da3cb65bf60cbe1766055fb6012a408619f148e242d546cc290c6110a6"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/qwen-3-8-flash-next-local-agent-setup",
+      "path": "collect-mindstudio/mindstudio/qwen-3-8-flash-next-local-agent-setup.md",
+      "title": "Run Qwen 3.8 Flash Next Locally on Quad RTX 3090s with vLLM",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "vllm",
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "consumer",
+        "context window",
+        "gpu",
+        "gpus",
+        "int4",
+        "kv cache"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/qwen-3-8-flash-next-local-agent-setup.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        61
+      ],
+      "canonical_for": [],
+      "words": 882,
+      "bytes": 5934,
+      "sha256": "91a2661eec5b7a3d8ed1b2405a7efc7324166b7f0180184b8b04a7a559e90ccc"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/qwen-3-8-flash-next-vision-local-test",
+      "path": "collect-mindstudio/mindstudio/qwen-3-8-flash-next-vision-local-test.md",
+      "title": "Qwen 3.8 Flash Next Vision at Q4: Does Quantization Cost Accuracy?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "cost",
+        "quantization",
+        "qwen",
+        "agents",
+        "benchmark",
+        "consumer",
+        "context window",
+        "gpu",
+        "gpus",
+        "inference",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/qwen-3-8-flash-next-vision-local-test.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 965,
+      "bytes": 6146,
+      "sha256": "0a8f969c2054cc49280f4690fce258287f3635d1430330737c059fc8a53c1cdb"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/qwen3-8-27b-dflash2-speculative-decoding",
+      "path": "collect-mindstudio/mindstudio/qwen3-8-27b-dflash2-speculative-decoding.md",
+      "title": "What Is DFlash 2? Speculative Decoding Explained for Qwen3.8-27B",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Nvidia",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "speculative decoding",
+        "benchmark",
+        "benchmarks",
+        "diffusion",
+        "distribution",
+        "gpu",
+        "inference",
+        "nvidia",
+        "sglang",
+        "throughput",
+        "vllm"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/qwen3-8-27b-dflash2-speculative-decoding.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 944,
+      "bytes": 6047,
+      "sha256": "05c9b4d87da59fd9a0847952bcfaaf6cf8ec3976995b729435043145bc2b0ea2"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/qwen3-8-27b-local-gguf-setup",
+      "path": "collect-mindstudio/mindstudio/qwen3-8-27b-local-gguf-setup.md",
+      "title": "How to Run Qwen3.8-27B Locally with Ollama, LM Studio, and llama.cpp",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "llama",
+        "llama.cpp",
+        "agentic",
+        "apache",
+        "attention",
+        "consumer",
+        "context window",
+        "cost",
+        "gguf",
+        "gpu",
+        "kv cache",
+        "license"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/qwen3-8-27b-local-gguf-setup.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 966,
+      "bytes": 6039,
+      "sha256": "7795f4b450b2cbfeeb05358fd5ef2d690515bf65445134efab21d05bef06b824"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/qwen3-8-27b-obliterated-uncensored",
+      "path": "collect-mindstudio/mindstudio/qwen3-8-27b-obliterated-uncensored.md",
+      "title": "Qwen3.8-27B OBLITERATED: How the V3 Abliterated Model Works",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "alignment",
+        "benchmark",
+        "cost",
+        "cyber",
+        "cybersecurity",
+        "fine-tuning",
+        "gguf",
+        "reasoning",
+        "refusals",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/qwen3-8-27b-obliterated-uncensored.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 965,
+      "bytes": 6695,
+      "sha256": "f48ae5f40a4ca333171301c1ae455d32ced8acca805ba77a86a83c26d7b1af34"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/recursive-self-improvement-ai-gpt-5-6-sol-post-trained-luna",
+      "path": "collect-mindstudio/mindstudio/recursive-self-improvement-ai-gpt-5-6-sol-post-trained-luna.md",
+      "title": "What Is Recursive Self-Improvement in AI? How GPT-5.6 Sol Post-Trained Luna",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpt-5.6",
+        "luna",
+        "recursive self-improvement",
+        "sol",
+        "alignment",
+        "cost",
+        "distillation",
+        "fine-tuning",
+        "guardrails",
+        "latency",
+        "parameters",
+        "pretraining"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/recursive-self-improvement-ai-gpt-5-6-sol-post-trained-luna.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1049,
+      "bytes": 7877,
+      "sha256": "9bed02f2b8de1c0485222b7dd8d4f28cd57d58050abbb4021a8f080652e7fd89"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/recursive-self-improvement-ai-gpt-5-6-soul-luna",
+      "path": "collect-mindstudio/mindstudio/recursive-self-improvement-ai-gpt-5-6-soul-luna.md",
+      "title": "What Is Recursive Self-Improvement in AI? How GPT-5.6 Soul Post-Trained Luna",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gpt-5.6",
+        "luna",
+        "recursive self-improvement",
+        "agents",
+        "alignment",
+        "benchmark",
+        "compute",
+        "cost",
+        "fine-tuning",
+        "governance",
+        "pretraining",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/recursive-self-improvement-ai-gpt-5-6-soul-luna.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1074,
+      "bytes": 7935,
+      "sha256": "aeca2e53c6279a822b9618d6128bd5dd3cf00c434753b2c77fef7a7f88f2b6f3"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop",
+      "path": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop.md",
+      "title": "What Is Recursive Self-Improvement in AI? The Karpathy Loop Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "recursive self-improvement",
+        "agent",
+        "agentic",
+        "attention",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "compute",
+        "copilot",
+        "gemini",
+        "inference",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/recursive-self-improvement-karpathy-loop.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1266,
+      "bytes": 8941,
+      "sha256": "43a25af22f1752b5d7533109a38c77d597a6ed101ac776116ead579faac66321"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-744b-ai-model-consumer-laptop-colibri",
+      "path": "collect-mindstudio/mindstudio/run-744b-ai-model-consumer-laptop-colibri.md",
+      "title": "How to Run a 744B AI Model on a Consumer Laptop Using Colibri",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Apple",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "consumer",
+        "attention",
+        "cost",
+        "datacenter",
+        "distribution",
+        "embeddings",
+        "glm",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-744b-ai-model-consumer-laptop-colibri.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 823,
+      "bytes": 5592,
+      "sha256": "fab7f5077b35c88b96bd41221706873c6185dece1528854a581c81e365c3f4b6"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-deepseek-v4-flash-locally",
+      "path": "collect-mindstudio/mindstudio/run-deepseek-v4-flash-locally.md",
+      "title": "How to Run DeepSeek V4 Flash Locally: Hardware, Quantization, Tests",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "quantization",
+        "agentic",
+        "agi",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "gemini",
+        "glm",
+        "inference",
+        "inference engine",
+        "kv cache"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-deepseek-v4-flash-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 750,
+      "bytes": 4839,
+      "sha256": "f08d9e9ef434c3523c4847790b4fb2f7fdf1e6c24f5123f19e7d773e570a4f71"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-dflash2-vllm-sglang-locally",
+      "path": "collect-mindstudio/mindstudio/run-dflash2-vllm-sglang-locally.md",
+      "title": "Run DFlash 2 Speculative Decoding with vLLM and SGLang",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Nvidia",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "sglang",
+        "speculative decoding",
+        "vllm",
+        "benchmark",
+        "benchmarks",
+        "cohere",
+        "compute",
+        "diffusion",
+        "distribution",
+        "gpu",
+        "inference",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-dflash2-vllm-sglang-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 883,
+      "bytes": 5987,
+      "sha256": "6483cce96dc0d18239fa19b9d05d7a6df625c4562b55bd268161e7f78ad527ee"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-fuse-1-lite-locally",
+      "path": "collect-mindstudio/mindstudio/run-fuse-1-lite-locally.md",
+      "title": "How to Run fuse-1 Lite Locally: VRAM, Setup, and Formats",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "alignment",
+        "compute",
+        "consumer",
+        "cost",
+        "distillation",
+        "fine-tuning",
+        "gguf",
+        "gpu",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "moe"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-fuse-1-lite-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 757,
+      "bytes": 4846,
+      "sha256": "faa140839314228c468ab82b2a514cd94a484123216ed4f9dd50e50d7142ab50"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-glm-5-3-flash-locally",
+      "path": "collect-mindstudio/mindstudio/run-glm-5-3-flash-locally.md",
+      "title": "Run GLM 5.3 Flash Locally: VRAM, Quantization, and Hardware Needs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Hugging Face",
+        "Moonshot",
+        "SGLang",
+        "Unsloth",
+        "Xiaomi",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "glm",
+        "quantization",
+        "agentic",
+        "attention",
+        "awq",
+        "benchmark",
+        "claude",
+        "compute",
+        "context window",
+        "cost",
+        "deepseek",
+        "fine-tuning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-glm-5-3-flash-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 859,
+      "bytes": 5354,
+      "sha256": "09337cc4d51b24443e48a675840bc74ad0629f3889843971ee73f678aea56cb6"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-hunyuan-h3-locally-comfyui",
+      "path": "collect-mindstudio/mindstudio/run-hunyuan-h3-locally-comfyui.md",
+      "title": "How to Run Hunyuan Video 3 Locally with ComfyUI (Fast Setup)",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "diffusion",
+        "gpu",
+        "lora",
+        "memory",
+        "open-weight",
+        "pricing",
+        "video generation"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-hunyuan-h3-locally-comfyui.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 676,
+      "bytes": 4324,
+      "sha256": "6dfb5f0d9fe5df9ffef3624d39ba5e3a427b256c1c13f48bc4f7ce2d0d0252e1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-kimi-k3-locally-mac-studio-cluster",
+      "path": "collect-mindstudio/mindstudio/run-kimi-k3-locally-mac-studio-cluster.md",
+      "title": "How to Run Kimi K3 Locally on a 4-Mac Studio Cluster",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "kimi",
+        "agent",
+        "claude",
+        "consumer",
+        "context window",
+        "cost",
+        "deepseek",
+        "gpt-5.6",
+        "gpus",
+        "grok",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-kimi-k3-locally-mac-studio-cluster.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 939,
+      "bytes": 5849,
+      "sha256": "f4cdc9bc061dedbf455c244b1ee82342cbdce16df041dd7339c0a09405c5376a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-local-ai-amd-rocm-lm-studio-ollama-comfyui",
+      "path": "collect-mindstudio/mindstudio/run-local-ai-amd-rocm-lm-studio-ollama-comfyui.md",
+      "title": "How to Run Local AI on AMD: ROCm, LM Studio, Ollama, and ComfyUI Setup",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "amd",
+        "llama",
+        "compute",
+        "consumer",
+        "cost",
+        "embeddings",
+        "fp8",
+        "gpu",
+        "gpus",
+        "inference",
+        "llama.cpp",
+        "mistral"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-local-ai-amd-rocm-lm-studio-ollama-comfyui.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        63
+      ],
+      "canonical_for": [],
+      "words": 738,
+      "bytes": 4897,
+      "sha256": "8d1ef8a86818cf945972ee3203a49ddda0968d39092a4244f749c9b89a40a005"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-local-ai-models-with-claude-code-cut-costs",
+      "path": "collect-mindstudio/mindstudio/run-local-ai-models-with-claude-code-cut-costs.md",
+      "title": "How to Run Local AI Models with Claude Code to Cut Costs by 10x",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "cost",
+        "agent",
+        "agentic",
+        "benchmark",
+        "compute",
+        "context window",
+        "embeddings",
+        "gpu",
+        "inference",
+        "latency",
+        "lean"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-local-ai-models-with-claude-code-cut-costs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        84
+      ],
+      "canonical_for": [],
+      "words": 968,
+      "bytes": 6818,
+      "sha256": "7226e420e565f2001075a3d815c310f695321ab3a9093aba113885acdb24e258"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-local-llms-macbook-vs-windows-laptop",
+      "path": "collect-mindstudio/mindstudio/run-local-llms-macbook-vs-windows-laptop.md",
+      "title": "Local LLMs in LM Studio: MacBook (MLX) vs Windows GPU Laptop (GGUF)",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "gpu",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "exploit",
+        "gpus",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "quantization"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-local-llms-macbook-vs-windows-laptop.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1014,
+      "bytes": 6219,
+      "sha256": "ebe42e87bd7324c5353fbae7309e64ad2fa4504933f9e846fc6212a3590a0b38"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-maple-preview-locally-mac",
+      "path": "collect-mindstudio/mindstudio/run-maple-preview-locally-mac.md",
+      "title": "How to Run Maple-Preview Locally on a Mac Mini M4",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "Hugging Face"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "attention",
+        "benchmarks",
+        "compute",
+        "consumer",
+        "cost",
+        "fine-tuning",
+        "inference",
+        "inference engine",
+        "license",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-maple-preview-locally-mac.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 698,
+      "bytes": 4549,
+      "sha256": "6f6146fcf6bc126e7127403a91796949aa3797524fb42465cad706d236a7060c"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-qwen-3-8-locally-sie",
+      "path": "collect-mindstudio/mindstudio/run-qwen-3-8-locally-sie.md",
+      "title": "How to Run Qwen 3.8 Locally With the Superlinked Inference Engine",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "inference",
+        "inference engine",
+        "qwen",
+        "agent",
+        "apache",
+        "context window",
+        "cost",
+        "embedding",
+        "embeddings",
+        "gpu",
+        "gpus",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-qwen-3-8-locally-sie.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 919,
+      "bytes": 5647,
+      "sha256": "8861a11d02436ecb5e35c6fd40d30564efaa6ac66673d25b38c1cb01fe3b3cb1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-qwen3-8-27b-obliterated-locally",
+      "path": "collect-mindstudio/mindstudio/run-qwen3-8-27b-obliterated-locally.md",
+      "title": "Run Qwen3.8-27B-OBLITERATED Locally: GGUF Sizes, VRAM, and Settings",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "gguf",
+        "agentic",
+        "alignment",
+        "consumer",
+        "cost",
+        "cyber",
+        "datacenter",
+        "fine-tuning",
+        "gpu",
+        "llama",
+        "llama.cpp",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-qwen3-8-27b-obliterated-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        63
+      ],
+      "canonical_for": [],
+      "words": 1013,
+      "bytes": 6748,
+      "sha256": "6d154bef496d82df23868440d74431b9947d1ac597b54b0969c6c40f70b7dffc"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-qwen3-8-locally-hardware",
+      "path": "collect-mindstudio/mindstudio/run-qwen3-8-locally-hardware.md",
+      "title": "Can You Run Qwen3.8-2.4T-A95B Locally? Hardware Requirements Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "qwen",
+        "attention",
+        "compute",
+        "consumer",
+        "cost",
+        "cost per token",
+        "gpu",
+        "gpus",
+        "inference",
+        "int4",
+        "kv cache",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-qwen3-8-locally-hardware.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 764,
+      "bytes": 4937,
+      "sha256": "b8fd2aa3c2346326c09f0093b492fad211668c72fa922d6724b7d8851f22f1ea"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/run-tencent-hy4-preview-locally",
+      "path": "collect-mindstudio/mindstudio/run-tencent-hy4-preview-locally.md",
+      "title": "How to Run Tencent's Hy4 Preview Locally with vLLM or SGLang",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI",
+        "SGLang",
+        "Z.ai",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "sglang",
+        "vllm",
+        "apache",
+        "attention",
+        "consumer",
+        "deepseek",
+        "fp8",
+        "glm",
+        "gpu",
+        "gpus",
+        "inference",
+        "kimi"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/run-tencent-hy4-preview-locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 721,
+      "bytes": 4886,
+      "sha256": "662bc89658d797179b7026a41e8b9b7da0a6d1229173529bf618ced61fb310f5"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/running-mixture-of-experts-models-across-two-gpus",
+      "path": "collect-mindstudio/mindstudio/running-mixture-of-experts-models-across-two-gpus.md",
+      "title": "Splitting a 122B MoE Model Across an Nvidia and AMD GPU with Vulkan",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AMD",
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "amd",
+        "gpu",
+        "moe",
+        "nvidia",
+        "compute",
+        "consumer",
+        "distribution",
+        "gpus",
+        "inference",
+        "inference engine",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/running-mixture-of-experts-models-across-two-gpus.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 922,
+      "bytes": 5309,
+      "sha256": "a63113d81aaf2223816653661f42e475b92ebb6509cb05ada2b1e753f19e317a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/self-host-open-weight-ai-stack-enterprise-deepseek-v4",
+      "path": "collect-mindstudio/mindstudio/self-host-open-weight-ai-stack-enterprise-deepseek-v4.md",
+      "title": "How to Self-Host an Open-Weight AI Stack for Enterprise in Under a Day: DeepSeek V4 + Qwen Embeddings",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Microsoft",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "deepseek",
+        "embedding",
+        "embeddings",
+        "open-weight",
+        "qwen",
+        "agent",
+        "agents",
+        "attribution",
+        "benchmarks",
+        "claude",
+        "compute",
+        "consumer"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/self-host-open-weight-ai-stack-enterprise-deepseek-v4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 811,
+      "bytes": 5440,
+      "sha256": "87f6fbb75c9402219e7122605e09bf116079715fbdedf1d0228e19e19a5347c5"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern",
+      "path": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern.md",
+      "title": "What Is Semantic Memory Injection for AI Agents? The Frozen Snapshot Pattern",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "memory",
+        "claude",
+        "embedding",
+        "gemini",
+        "inference",
+        "latency",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/semantic-memory-injection-frozen-snapshot-pattern.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        83
+      ],
+      "canonical_for": [],
+      "words": 1298,
+      "bytes": 9136,
+      "sha256": "fcbd999eb5dc11ccffa0ba952aefefbf8f76c4d2453f3b0ce3762a11d1175bba"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/setup-switchyard-nemotron-local-router",
+      "path": "collect-mindstudio/mindstudio/setup-switchyard-nemotron-local-router.md",
+      "title": "Set Up a Local AI Router With SwitchYard and Nemotron Lightning",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Moonshot",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "claude",
+        "context window",
+        "cost",
+        "kimi",
+        "latency",
+        "moe",
+        "nvidia",
+        "reasoning",
+        "speculative decoding",
+        "throughput",
+        "tokens per second"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/setup-switchyard-nemotron-local-router.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 845,
+      "bytes": 5484,
+      "sha256": "02385d366f3fe1eda8a7836c30d726c4accc53f341eb6ac813d570346c3e4d80"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team",
+      "path": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team.md",
+      "title": "How to Share AI Agent Memory Across a Team Without Exposing Private Data",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "agents",
+        "embedding",
+        "embeddings",
+        "incident",
+        "liability"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/share-ai-agent-memory-across-team.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        80
+      ],
+      "canonical_for": [],
+      "words": 1170,
+      "bytes": 8410,
+      "sha256": "a5d80b37b4d78e515aab4cb5729f797e7cdc59528ccd9882f2cfecc702ff6001"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/sie-vs-vllm-inference-engine-comparison",
+      "path": "collect-mindstudio/mindstudio/sie-vs-vllm-inference-engine-comparison.md",
+      "title": "Superlinked Inference Engine vs vLLM: Which One Do You Actually Need?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "inference",
+        "inference engine",
+        "vllm",
+        "agent",
+        "apache",
+        "embedding",
+        "gpu",
+        "gpus",
+        "license",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/sie-vs-vllm-inference-engine-comparison.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 714,
+      "bytes": 4712,
+      "sha256": "5764dd20486ac8e91dce51a6d05a29a63c68b84ecfa05017664142c3d8f5cf82"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ssd-streaming-ai-models-ram-dial",
+      "path": "collect-mindstudio/mindstudio/ssd-streaming-ai-models-ram-dial.md",
+      "title": "SSD Streaming for AI Models: How to Turn RAM from a Wall into a Dial",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "attention",
+        "consumer",
+        "embedding",
+        "inference",
+        "latency",
+        "memory",
+        "mixture of experts",
+        "moe",
+        "parameters",
+        "reasoning",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ssd-streaming-ai-models-ram-dial.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 703,
+      "bytes": 4426,
+      "sha256": "8f70ba0394940dfbc31fe65caa49c6920945daa8f131639c3b901c5d7d5e599f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents",
+      "path": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents.md",
+      "title": "Static Context vs Dynamic Context in AI Agents: How to Manage What Your Agent Knows",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "attention",
+        "context window",
+        "cost",
+        "memory",
+        "pricing",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/static-context-vs-dynamic-context-ai-agents.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1158,
+      "bytes": 8394,
+      "sha256": "f9e1c4e38ab3f829f35e65cb5f10d72ef61774f8235174e63b4d0067b11cda66"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/superlinked-inference-engine-sie",
+      "path": "collect-mindstudio/mindstudio/superlinked-inference-engine-sie.md",
+      "title": "Superlinked Inference Engine (SIE): Run 100+ AI Models on One Server",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "inference",
+        "inference engine",
+        "agent",
+        "apache",
+        "cost",
+        "embedding",
+        "embeddings",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "license",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/superlinked-inference-engine-sie.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 883,
+      "bytes": 5722,
+      "sha256": "9bd2e673882947d361bd06fcfd0d33cb7409ff5c435b6ad1c164e8000ed4ce54"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5",
+      "path": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5.md",
+      "title": "Token Efficiency vs Raw Intelligence: Why GPT-5.6 Beats Claude Fable 5 on Cost-Per-Result",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude",
+        "cost",
+        "fable 5",
+        "gpt-5.6",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "latency",
+        "pricing",
+        "reasoning",
+        "research",
+        "sol"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1325,
+      "bytes": 9066,
+      "sha256": "157d2521acd371dbf46054b2c10b2839bee333139aaaff56a17655196d5bfcbd"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/top-ai-automations-to-sell-2026",
+      "path": "collect-mindstudio/mindstudio/top-ai-automations-to-sell-2026.md",
+      "title": "5 Most In-Demand AI Automations to Sell in 2026",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "agentic",
+        "agents",
+        "cost",
+        "packaging",
+        "research",
+        "training",
+        "voice"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/top-ai-automations-to-sell-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 902,
+      "bytes": 6112,
+      "sha256": "d0ca419494bd771aaeed7781078412ded5bafa5397c076d0f5759a64fe3fe65b"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/unsloth-local-llm-training-inference",
+      "path": "collect-mindstudio/mindstudio/unsloth-local-llm-training-inference.md",
+      "title": "What Is Unsloth? Local LLM Fine-Tuning and Inference Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "OpenAI",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fine-tuning",
+        "inference",
+        "agent",
+        "agents",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "compute",
+        "consumer",
+        "cost",
+        "deepseek",
+        "gguf"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/unsloth-local-llm-training-inference.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 910,
+      "bytes": 5978,
+      "sha256": "a7bad1a4f171890fb3d37d33a48022f8c65ee1234bc088d3b7ab973de2cb27ff"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-ai-second-brain",
+      "path": "collect-mindstudio/mindstudio/what-is-ai-second-brain.md",
+      "title": "What Is the AI Second Brain? How to Build a Knowledge Base That Agents Can Search",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Cohere",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "cohere",
+        "embedding",
+        "embeddings",
+        "governance",
+        "inference",
+        "memory",
+        "open source",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-ai-second-brain.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1313,
+      "bytes": 9086,
+      "sha256": "99ec0c92fe146f4505e8490a00496403d7afe9ae9dad2d0e98dd569bff7234d4"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-cactus-needle-26m-function-calling-model",
+      "path": "collect-mindstudio/mindstudio/what-is-cactus-needle-26m-function-calling-model.md",
+      "title": "What Is a 26M Parameter Function Calling Model? Cactus Needle Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Hugging Face",
+        "OpenAI",
+        "Unsloth"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "attention",
+        "benchmarks",
+        "compute",
+        "consumer",
+        "cost",
+        "fine-tuning",
+        "gguf",
+        "gpu",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-cactus-needle-26m-function-calling-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 834,
+      "bytes": 6007,
+      "sha256": "0b72912b2cea0aeefe4903fa87d675b7fd6500a31a3c9798eaa5be02d602cf9d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-inkling-thinking-machines-labs-open-weight-model",
+      "path": "collect-mindstudio/mindstudio/what-is-inkling-thinking-machines-labs-open-weight-model.md",
+      "title": "What Is Inkling? Thinking Machines Labs' First Open-Weight Multimodal AI Model",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "China",
+        "OpenAI",
+        "United States",
+        "Z.ai"
+      ],
+      "dates": [
+        "2024-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "multimodal",
+        "open-weight",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "distribution",
+        "fine-tuning",
+        "glm",
+        "inference",
+        "memory",
+        "mixture of experts"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-inkling-thinking-machines-labs-open-weight-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 678,
+      "bytes": 4835,
+      "sha256": "1f70f069c6c6d58b6d95612328a1e68b51d34db03602d89396f909f09e106a64"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents",
+      "path": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents.md",
+      "title": "What Is a Knowledge Graph for AI Agents? How Relationship Mapping Beats Wiki Links",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "AWS",
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "aws",
+        "embedding",
+        "embeddings",
+        "inference",
+        "memory",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-knowledge-graph-ai-agents.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1179,
+      "bytes": 8324,
+      "sha256": "eba99e465007ccf3de76d5feaa923599b33c18fae91a96176cbed8b516812e85"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-lora-fine-tuning-enterprise-ai-private-data",
+      "path": "collect-mindstudio/mindstudio/what-is-lora-fine-tuning-enterprise-ai-private-data.md",
+      "title": "What Is LoRA Fine-Tuning? How Enterprises Customize AI Models for Private Data",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Falcon",
+        "Hugging Face",
+        "Microsoft",
+        "Mistral",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fine-tuning",
+        "lora",
+        "attention",
+        "compute",
+        "cost",
+        "gpu",
+        "inference",
+        "llama",
+        "memory",
+        "mistral",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-lora-fine-tuning-enterprise-ai-private-data.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 770,
+      "bytes": 5486,
+      "sha256": "a33a9be858523f21f796a14d0937875a902c0d8e3bfb42c8d17e17d68a6fc610"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-minicpm-5-on-device-agentic-model",
+      "path": "collect-mindstudio/mindstudio/what-is-minicpm-5-on-device-agentic-model.md",
+      "title": "What Is MiniCPM-5? The 1B On-Device AI Model Built for Agentic Tool Use",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "tool use",
+        "agents",
+        "benchmarks",
+        "compute",
+        "context window",
+        "cost",
+        "deepseek",
+        "gpu",
+        "int4",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-minicpm-5-on-device-agentic-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 738,
+      "bytes": 5165,
+      "sha256": "4b3d64c511eda30482853704cac4e8fd236a9440bb7d4a1f468133eeab4905c1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-sakana-fugu-multi-agent-ai",
+      "path": "collect-mindstudio/mindstudio/what-is-sakana-fugu-multi-agent-ai.md",
+      "title": "What Is Sakana Fugu? The Multi-Agent AI System That Beats Frontier Models",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI",
+        "Sakana",
+        "Together AI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "fugu",
+        "sakana",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "gemini",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-sakana-fugu-multi-agent-ai.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 1010,
+      "bytes": 7460,
+      "sha256": "9e59198273edad1378902b14a08d35566b64e04aaf95c97d0da81b416c6e347a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-sakana-fugu-multi-model-orchestrator",
+      "path": "collect-mindstudio/mindstudio/what-is-sakana-fugu-multi-model-orchestrator.md",
+      "title": "What Is Sakana Fugu? The Multi-Model Orchestrator Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI",
+        "Sakana"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "fugu",
+        "sakana",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "consumer",
+        "cost",
+        "distribution",
+        "gemini",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-sakana-fugu-multi-model-orchestrator.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 977,
+      "bytes": 7060,
+      "sha256": "ac3cbb47234ce42d27d3b46a7d0eeffb714a613008a15db1816e3c18c00abc4a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-speculative-decoding",
+      "path": "collect-mindstudio/mindstudio/what-is-speculative-decoding.md",
+      "title": "What Is Speculative Decoding? How Draft Models Speed Up LLMs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Nvidia",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "speculative decoding",
+        "benchmark",
+        "compute",
+        "cost",
+        "gpu",
+        "inference",
+        "kv cache",
+        "latency",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-speculative-decoding.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 983,
+      "bytes": 6217,
+      "sha256": "ffcb1297fba56e14dabe8de12cd4cb589efc9dcb95bf49a85f75e5eb2640bc5c"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-tencent-hunyuan-3-295b-moe-model",
+      "path": "collect-mindstudio/mindstudio/what-is-tencent-hunyuan-3-295b-moe-model.md",
+      "title": "What Is Tencent Hunyuan-3? The 295B MoE Model Built for Agentic Tasks",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "China",
+        "DeepSeek",
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agentic",
+        "moe",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost",
+        "deepseek",
+        "fine-tuning",
+        "gpus",
+        "inference",
+        "int4",
+        "llama"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-tencent-hunyuan-3-295b-moe-model.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 672,
+      "bytes": 4928,
+      "sha256": "dc629e98dd7494ff5890c2807c5d2926dab444d46671c377dbbf1fcb2dcc051f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-visual-primitives-reasoning-deepseek",
+      "path": "collect-mindstudio/mindstudio/what-is-visual-primitives-reasoning-deepseek.md",
+      "title": "What Is Visual Primitives Reasoning? DeepSeek's Breakthrough for AI Agents",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "deepseek",
+        "reasoning",
+        "agentic",
+        "benchmark",
+        "multimodal",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-visual-primitives-reasoning-deepseek.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 791,
+      "bytes": 5746,
+      "sha256": "d6d0145c6d1fe8ba514ff7d0cbd546914354823fe319d218ab6095cdf849c022"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/xai-cursor-acquisition-strategy",
+      "path": "collect-mindstudio/mindstudio/xai-cursor-acquisition-strategy.md",
+      "title": "How xAI's Cursor Deal Quietly Built Grok Into a Real Contender",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Moonshot",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "grok",
+        "acquisition",
+        "agent",
+        "benchmark",
+        "claude",
+        "compute",
+        "consumer",
+        "cost",
+        "distribution",
+        "gpt-5.6",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/xai-cursor-acquisition-strategy.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 906,
+      "bytes": 5686,
+      "sha256": "e4b6f78fc48860f61eeda0fd44f778c0459492475f566dd0565e82894193d05b"
+    }
+  ]
+}

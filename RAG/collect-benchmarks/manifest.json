@@ -1,0 +1,213 @@
+{
+  "corpus": "collect-benchmarks",
+  "title": "Benchmarks — modèles 2026",
+  "source": "docs/RAG/Collect RAG/06_benchmarks",
+  "source_dir": "docs/RAG/Collect RAG/06_benchmarks",
+  "source_files": 5,
+  "source_sha256": "fd72334f056ac80855fcdaaa2dcfe5c2eadda434464546c9be984f4249df84eb",
+  "chunk_count": 5,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-benchmarks/benchmarks/benchmarking-gpt-6-astra",
+      "path": "collect-benchmarks/benchmarks/benchmarking-gpt-6-astra.md",
+      "title": "Benchmarking GPT-6 Astra",
+      "domain": "benchmarks",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Meta",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-09",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "astra",
+        "benchmark",
+        "gpt-6",
+        "agent",
+        "claude",
+        "cost",
+        "fable 5",
+        "glm",
+        "gpt-5.6",
+        "grok",
+        "grok 4",
+        "leaderboard"
+      ],
+      "source": "docs/RAG/Collect RAG/06_benchmarks/benchmarking-gpt-6-astra.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 797,
+      "bytes": 4657,
+      "sha256": "8af1a7d4e0b7465968a1e410e45c6fae241d7153e1329f958cd7a56b8946c5bf"
+    },
+    {
+      "id": "collect-benchmarks/benchmarks/mimo-v2-6-flash",
+      "path": "collect-benchmarks/benchmarks/mimo-v2-6-flash.md",
+      "title": "MiMo V2.6 Flash — pricing, benchmarks & speed",
+      "domain": "benchmarks",
+      "role": "reference",
+      "task": "benchmark",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Meta",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "pricing",
+        "agent",
+        "agentic",
+        "claude",
+        "context window",
+        "cost",
+        "deepseek",
+        "latency",
+        "multimodal",
+        "muse"
+      ],
+      "source": "docs/RAG/Collect RAG/06_benchmarks/mimo-v2-6-flash.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 788,
+      "bytes": 4689,
+      "sha256": "eb3bb86aff491a4af1cf1aa15d1cdeefc055d31a003845eb380b87d28b59734d"
+    },
+    {
+      "id": "collect-benchmarks/benchmarks/mimo-v2-6-pro",
+      "path": "collect-benchmarks/benchmarks/mimo-v2-6-pro.md",
+      "title": "MiMo-V2.6-Pro Benchmark Scores & Performance",
+      "domain": "benchmarks",
+      "role": "reference",
+      "task": "benchmark",
+      "actors": [
+        "ExploitGym",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "context window",
+        "multimodal",
+        "open-weight",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/06_benchmarks/mimo-v2-6-pro.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 609,
+      "bytes": 3915,
+      "sha256": "b27dbcff22a0e22b232b70e6ef3e4681d0583f4a04990113e347fce7021e67a9"
+    },
+    {
+      "id": "collect-benchmarks/benchmarks/muse-spark-1-2",
+      "path": "collect-benchmarks/benchmarks/muse-spark-1-2.md",
+      "title": "Muse Spark 1.2: Benchmarks and analysis",
+      "domain": "benchmarks",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Meta",
+        "Moonshot",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-08-05",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmarks",
+        "muse",
+        "muse spark",
+        "agentic",
+        "claude",
+        "context window",
+        "cost",
+        "fable 5",
+        "gpt-5.6",
+        "grok",
+        "grok 4",
+        "kimi"
+      ],
+      "source": "docs/RAG/Collect RAG/06_benchmarks/muse-spark-1-2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 839,
+      "bytes": 4864,
+      "sha256": "2a8568b599e7931aa0ae174816025d5e0b1d3561169bf873e9597f03dc16c709"
+    },
+    {
+      "id": "collect-benchmarks/benchmarks/qwen3-8-flash-next",
+      "path": "collect-benchmarks/benchmarks/qwen3-8-flash-next.md",
+      "title": "Qwen3.8-Flash-Next Benchmark Scores & Performance",
+      "domain": "benchmarks",
+      "role": "reference",
+      "task": "benchmark",
+      "actors": [
+        "Alibaba"
+      ],
+      "dates": [
+        "2026-09-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "agentic",
+        "agents",
+        "benchmarks",
+        "context window",
+        "multimodal",
+        "open-weight",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/06_benchmarks/qwen3-8-flash-next.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 659,
+      "bytes": 4140,
+      "sha256": "77739341a8105fae78bebeaad0322dc2e07c2fcc0c790e90243c835a1cc96205"
+    }
+  ]
+}

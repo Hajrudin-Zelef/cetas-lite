@@ -30,14 +30,54 @@ def check(cond, msg):
         fail.append(msg)
 
 
+def verify_files(corpus: dict, man: dict, chunks: list):
+    """Corpus `files` : une source = un dossier de fiches, une fiche = un chunk."""
+    slug = corpus["corpus"]
+    base = ROOT / man["source_dir"]
+    srcs = sorted(p for p in base.rglob("*.md") if not p.name.startswith("_"))
+    print(f"\n=== {slug} === ({len(srcs)} fiches, {len(chunks)} chunks)")
+
+    print("1) une fiche = un chunk")
+    check(len(srcs) == len(chunks), f"{len(srcs)} fiches == {len(chunks)} chunks")
+    want = {str(p.relative_to(ROOT)) for p in srcs}
+    got = {c["source"] for c in chunks}
+    check(got == want, "chaque fiche a exactement un chunk")
+
+    print("2) contenu verbatim + sha256")
+    ok_sha, ok_verbatim = True, True
+    for c in chunks:
+        body = (ROOT / c["source"]).read_text(encoding="utf-8")
+        if hashlib.sha256(body.encode("utf-8")).hexdigest() != c["sha256"]:
+            ok_sha = False
+            check(False, f"{c['path']} sha256 mismatch")
+        if body not in (RAG_ROOT / c["path"]).read_text(encoding="utf-8"):
+            ok_verbatim = False
+            check(False, f"{c['path']} ne contient pas la fiche verbatim")
+    check(ok_sha, "sha256 de chaque fiche == chunk")
+    check(ok_verbatim, "corps de chaque fiche présent verbatim dans son chunk")
+
+    print("3) manifest <-> fichiers")
+    check(man["chunk_count"] == len(chunks), "chunk_count consistent")
+    check(man.get("source_files") == len(srcs), "source_files consistent")
+    expect = hashlib.sha256("".join(
+        f"{c['source']}\0{c['sha256']}\n" for c in chunks).encode("utf-8")).hexdigest()
+    check(man["source_sha256"] == expect, "global source sha256 matches")
+    check(all((RAG_ROOT / c["path"]).exists() for c in chunks), "every path exists")
+
+    print("4) corpus relationship")
+    check("delta_of" not in man, "no delta_of without a delta relationship")
+
+
 def verify(corpus: dict):
     slug = corpus["corpus"]
+    man = json.loads((RAG_ROOT / slug / "manifest.json").read_text(encoding="utf-8"))
+    chunks = man["chunks"]
+    if man.get("source_dir"):
+        return verify_files(corpus, man, chunks)
     src_path = ROOT / corpus["source"]
     src = src_path.read_text(encoding="utf-8")
     lines = src.splitlines(keepends=True)
     n = len(lines)
-    man = json.loads((RAG_ROOT / slug / "manifest.json").read_text(encoding="utf-8"))
-    chunks = man["chunks"]
     print(f"\n=== {slug} === ({n} lines, {len(chunks)} chunks)")
 
     print("1) exact cover")

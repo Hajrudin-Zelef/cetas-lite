@@ -646,11 +646,11 @@ KB_TERMS = sorted(set(IA_TERMS + GT_TERMS + [
 ]))
 
 
-def slugify(s):
+def slugify(s, maxlen=60):
     s = re.sub(r"[§#]", " ", s)
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
     s = re.sub(r"[^A-Za-z0-9]+", "-", s)
-    return s.strip("-").lower()[:60] or "part"
+    return s.strip("-").lower()[:maxlen] or "part"
 
 
 def _strip_num(s):
@@ -989,19 +989,72 @@ def explicit_items(cfg, lines, n):
     return items
 
 
-def build_corpus(cfg, lines, n):
-    auto = cfg.get("mode") == "auto"
-    items = auto_items(cfg, lines, n) if auto else explicit_items(cfg, lines, n)
+def _first_heading(text):
+    for ln in text.splitlines():
+        m = re.match(r"^# +(.+?)\s*$", ln)
+        if m:
+            return m.group(1).strip()
+    return ""
 
-    if items[0]["start"] != 1:
-        sys.exit(f"[{cfg['slug']}] first chunk must start at line 1")
-    for i, it in enumerate(items):
-        if it["end"] < it["start"]:
-            sys.exit(f"[{cfg['slug']}] empty chunk {it['slug']}")
-        if i + 1 < len(items) and it["end"] + 1 != items[i + 1]["start"]:
-            sys.exit(f"[{cfg['slug']}] gap/overlap before {items[i + 1]['slug']}")
-    if items[-1]["end"] != n:
-        sys.exit(f"[{cfg['slug']}] last chunk must end at {n}")
+
+_TYPE_TASK = [
+    ("model card", "model-card"), ("benchmark", "benchmark"), ("tutorial", "tutorial"),
+    ("documentation", "documentation"), ("review", "review"), ("article", "article"),
+]
+
+
+def _type_task(body):
+    m = re.search(r"^-\s*\*\*Type\*\*\s*:\s*(.+)$", body, re.M)
+    low = (m.group(1) if m else "").lower()
+    for k, t in _TYPE_TASK:
+        if k in low:
+            return t
+    return ""
+
+
+def files_items(cfg):
+    base = ROOT / cfg["source_dir"]
+    if not base.is_dir():
+        sys.exit(f"[{cfg['slug']}] missing source dir: {base}")
+    files = sorted(p for p in base.rglob("*.md") if not p.name.startswith("_"))
+    if not files:
+        sys.exit(f"[{cfg['slug']}] no .md file in {base}")
+    folder = cfg.get("folder", slugify(base.name))
+    items, seen = [], {}
+    for p in files:
+        body = p.read_text(encoding="utf-8")
+        title = _first_heading(body) or p.stem
+        slug = slugify(p.stem, 90)
+        seen[slug] = seen.get(slug, 0) + 1
+        if seen[slug] > 1:
+            slug = f"{slug}-{seen[slug]}"
+        items.append({
+            "folder": folder, "slug": slug, "title": title, "body": body,
+            "src": str(p.relative_to(ROOT)),
+            "start": 1, "end": len(body.splitlines()),
+            "domain": cfg.get("domain", folder), "role": "reference",
+            "task": _type_task(body) or cfg.get("task", "reference"),
+        })
+    return items
+
+
+def build_corpus(cfg, lines, n):
+    files_mode = cfg.get("mode") == "files"
+    auto = cfg.get("mode") == "auto"
+    if files_mode:
+        items = files_items(cfg)
+    else:
+        items = auto_items(cfg, lines, n) if auto else explicit_items(cfg, lines, n)
+
+        if items[0]["start"] != 1:
+            sys.exit(f"[{cfg['slug']}] first chunk must start at line 1")
+        for i, it in enumerate(items):
+            if it["end"] < it["start"]:
+                sys.exit(f"[{cfg['slug']}] empty chunk {it['slug']}")
+            if i + 1 < len(items) and it["end"] + 1 != items[i + 1]["start"]:
+                sys.exit(f"[{cfg['slug']}] gap/overlap before {items[i + 1]['slug']}")
+        if items[-1]["end"] != n:
+            sys.exit(f"[{cfg['slug']}] last chunk must end at {n}")
 
     out = RAG_ROOT / cfg["slug"]
     out.mkdir(parents=True, exist_ok=True)
@@ -1018,7 +1071,8 @@ def build_corpus(cfg, lines, n):
         start, end, anchor = it["start"], it["end"], it.get("anchor", "")
         domain, role, task = it["domain"], it["role"], it["task"]
         section = it.get("section", "")
-        body = "".join(lines[start - 1:end])
+        body = it["body"] if files_mode else "".join(lines[start - 1:end])
+        src = it.get("src") or cfg.get("source", "")
         actors = extract_actors(body, cfg["actors"])
         dates = extract_dates(body)
         keywords = extract_keywords(body, title, cfg["terms"])
@@ -1029,7 +1083,7 @@ def build_corpus(cfg, lines, n):
         header = ["---", f"id: {cid}", f"title: {ystr(title)}", f"domain: {domain}",
                   f"role: {role}", f"task: {task}", f"actors: {ylist(actors)}",
                   f"dates: {ylist(dates)}", f"keywords: {ylist(keywords)}",
-                  f"source: {cfg['source']}", f"source_anchor: {ystr('#' + anchor if anchor else '')}",
+                  f"source: {src}", f"source_anchor: {ystr('#' + anchor if anchor else '')}",
                   f"source_lines: [{start}, {end}]"]
         if auto and section:
             header.append(f"section: {ystr(section)}")
@@ -1055,7 +1109,7 @@ def build_corpus(cfg, lines, n):
         entry = {
             "id": cid, "path": f"{cfg['slug']}/{folder}/{slug}.md", "title": title,
             "domain": domain, "role": role, "task": task, "actors": actors, "dates": dates,
-            "keywords": keywords, "source": cfg["source"], "source_anchor": anchor,
+            "keywords": keywords, "source": src, "source_anchor": anchor,
             "source_lines": [start, end], "canonical_for": canon,
             "words": len(body.split()), "bytes": len(body.encode("utf-8")), "sha256": digest,
         }
@@ -1071,10 +1125,15 @@ def build_corpus(cfg, lines, n):
         folders.setdefault(folder, []).append(entry)
 
     total_words = sum(e["words"] for e in manifest)
-    lines_out = ["# INDEX — " + cfg["title"], "",
-                 f"Corpus `{cfg['slug']}` · **{len(manifest)} fichiers** · "
-                 f"{sum(e['source_lines'][1] - e['source_lines'][0] + 1 for e in manifest)} lignes source · "
-                 f"~{total_words} mots · partition exacte de `{cfg['source']}`.", ""]
+    total_lines = sum(e["source_lines"][1] - e["source_lines"][0] + 1 for e in manifest)
+    if files_mode:
+        intro = (f"Corpus `{cfg['slug']}` · **{len(manifest)} fiches** · {total_lines} lignes · "
+                 f"~{total_words} mots · **une fiche = un chunk**, copiée verbatim de "
+                 f"`{cfg['source_dir']}`.")
+    else:
+        intro = (f"Corpus `{cfg['slug']}` · **{len(manifest)} fichiers** · {total_lines} lignes source · "
+                 f"~{total_words} mots · partition exacte de `{cfg['source']}`.")
+    lines_out = ["# INDEX — " + cfg["title"], "", intro, ""]
     if cfg.get("delta_of"):
         lines_out += [
             f"> **Corpus delta** — volume de faits nouveaux ou corrigés, à lire "
@@ -1148,11 +1207,21 @@ def build_corpus(cfg, lines, n):
     lines_out.append("")
     (out / "INDEX.md").write_text("\n".join(lines_out) + "\n", encoding="utf-8")
 
-    corpus_manifest = {
-        "corpus": cfg["slug"], "title": cfg["title"], "source": cfg["source"],
-        "source_lines": n, "source_sha256": hashlib.sha256("".join(lines).encode("utf-8")).hexdigest(),
-        "chunk_count": len(manifest), "generated_by": "RAG/_tools/build_rag.py",
-    }
+    if files_mode:
+        corpus_manifest = {
+            "corpus": cfg["slug"], "title": cfg["title"],
+            "source": cfg["source_dir"], "source_dir": cfg["source_dir"],
+            "source_files": len(items),
+            "source_sha256": hashlib.sha256("".join(
+                f"{c['source']}\0{c['sha256']}\n" for c in manifest).encode("utf-8")).hexdigest(),
+            "chunk_count": len(manifest), "generated_by": "RAG/_tools/build_rag.py",
+        }
+    else:
+        corpus_manifest = {
+            "corpus": cfg["slug"], "title": cfg["title"], "source": cfg["source"],
+            "source_lines": n, "source_sha256": hashlib.sha256("".join(lines).encode("utf-8")).hexdigest(),
+            "chunk_count": len(manifest), "generated_by": "RAG/_tools/build_rag.py",
+        }
     if cfg.get("relationship"):
         corpus_manifest["relationship"] = cfg["relationship"]
     if cfg.get("delta_of"):
@@ -1165,6 +1234,18 @@ def build_corpus(cfg, lines, n):
 
 
 def verify_corpus(cfg, lines, n, man):
+    if cfg.get("mode") == "files":
+        base = ROOT / cfg["source_dir"]
+        srcs = sorted(p for p in base.rglob("*.md") if not p.name.startswith("_"))
+        want = {str(p.relative_to(ROOT)) for p in srcs}
+        got = {c["source"] for c in man["chunks"]}
+        assert got == want, "files: source set mismatch"
+        assert len(man["chunks"]) == len(want), "files: one chunk per file expected"
+        for c in man["chunks"]:
+            body = (ROOT / c["source"]).read_text(encoding="utf-8")
+            assert hashlib.sha256(body.encode("utf-8")).hexdigest() == c["sha256"], \
+                f"files: sha mismatch {c['path']}"
+        return 0
     ordered = sorted(man["chunks"], key=lambda c: c["source_lines"][0])
     assert ordered[0]["source_lines"][0] == 1, "cover must start at 1"
     assert ordered[-1]["source_lines"][1] == n, "cover must end at n"
@@ -1634,6 +1715,55 @@ CORPORA = [
         "mode": "auto", "max_lines": 90, "min_lines": 45, "first_is_content": True, "folder_name": "storage-market",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
+    {
+        "slug": "collect-korben",
+        "title": "Korben.info — veille IA & tech (2026)",
+        "source_dir": "docs/RAG/Collect RAG/01_korben",
+        "mode": "files", "folder": "korben",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-mindstudio",
+        "title": "MindStudio — IA locale, modèles open-weight & agents (2026)",
+        "source_dir": "docs/RAG/Collect RAG/02_mindstudio",
+        "mode": "files", "folder": "mindstudio",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-huggingface",
+        "title": "Hugging Face — fiches de modèles (2026)",
+        "source_dir": "docs/RAG/Collect RAG/03_huggingface",
+        "mode": "files", "folder": "huggingface",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-opencode-docs",
+        "title": "opencode — documentation officielle",
+        "source_dir": "docs/RAG/Collect RAG/04_opencode_docs",
+        "mode": "files", "folder": "opencode-docs",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-presse-fr",
+        "title": "Presse FR — IA & tech (2026)",
+        "source_dir": "docs/RAG/Collect RAG/05_presse_fr",
+        "mode": "files", "folder": "presse-fr",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-benchmarks",
+        "title": "Benchmarks — modèles 2026",
+        "source_dir": "docs/RAG/Collect RAG/06_benchmarks",
+        "mode": "files", "folder": "benchmarks",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-tutoriels",
+        "title": "Tutoriels & reviews — IA (2026)",
+        "source_dir": "docs/RAG/Collect RAG/07_tutoriels",
+        "mode": "files", "folder": "tutoriels",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
 ]
 
 
@@ -1641,15 +1771,19 @@ def main():
     RAG_ROOT.mkdir(parents=True, exist_ok=True)
     summaries = []
     for cfg in CORPORA:
-        src = ROOT / cfg["source"]
-        if not src.exists():
-            sys.exit(f"missing source: {src}")
-        lines = src.read_text(encoding="utf-8").splitlines(keepends=True)
-        n = len(lines)
+        if cfg.get("mode") == "files":
+            lines, n = [], 0
+        else:
+            src = ROOT / cfg["source"]
+            if not src.exists():
+                sys.exit(f"missing source: {src}")
+            lines = src.read_text(encoding="utf-8").splitlines(keepends=True)
+            n = len(lines)
         man = build_corpus(cfg, lines, n)
         anchors = verify_corpus(cfg, lines, n, man)
         summaries.append(man)
-        print(f"OK  {cfg['slug']}: {man['chunk_count']} chunks | {n} lines | "
+        scope = f"{man.get('source_files', n)} files" if cfg.get("mode") == "files" else f"{n} lines"
+        print(f"OK  {cfg['slug']}: {man['chunk_count']} chunks | {scope} | "
               f"{anchors} anchors | {sum(c['words'] for c in man['chunks'])} words")
         print(f"    source_sha256 = {man['source_sha256']}")
 

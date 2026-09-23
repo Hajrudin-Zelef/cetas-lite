@@ -34,11 +34,34 @@ RAG/
 ├── etape7-*/                     # corpus n°37-45 — OS, containers, stockage, bases (9 corpus)
 ├── etape8-*/                     # corpus n°46-51 — langages & frameworks (6 corpus)
 ├── etape9-*/                     # corpus n°52-56 — stockage & mémoire (5 corpus)
-└── etape10-*/                    # corpus n°57-63 — actualités 2026 (7 corpus)
+├── etape10-*/                    # corpus n°57-63 — actualités 2026 (7 corpus)
+├── collect-korben/                # corpus n°64 — Korben.info (18 fiches, mode files)
+├── collect-mindstudio/            # corpus n°65 — MindStudio (170 fiches, mode files)
+├── collect-huggingface/           # corpus n°66 — Hugging Face (125 fiches, mode files)
+├── collect-opencode-docs/         # corpus n°67 — opencode docs (4 fiches, mode files)
+├── collect-presse-fr/             # corpus n°68 — Presse FR (8 fiches, mode files)
+├── collect-benchmarks/            # corpus n°69 — Benchmarks (5 fiches, mode files)
+└── collect-tutoriels/             # corpus n°70 — Tutoriels & reviews (6 fiches, mode files)
 ```
 
 Détail par étape (séries `etape*`) : chaque source de `docs/RAG/` donne **un corpus**
 autonome. Liste complète et à jour : `INDEX.md` (racine) et `manifest.json`.
+Série `collect-*` : dossier de fiches individuelles, **une fiche = un chunk**
+(voir le mode `files` ci-dessous).
+
+### Trois modes de découpe
+
+| mode | source | découpe | cas d'usage |
+|---|---|---|---|
+| **explicite** | fichier unique | mapping figé (dossier, slug, ligne) | briefings annotés avec ancres |
+| **auto** | fichier unique | partition par titres H1→H2→H3, cibles de taille | fiches de recherche longues, sans ancre |
+| **files** | **dossier de fiches** | 1 fichier = 1 chunk (verbatim) | collecte organisée en fiches courtes (template) |
+
+Mode **files** : un corpus pointe vers un `source_dir` (dossier de fiches `.md`).
+Chaque fiche est copiée verbatim dans un chunk ; `sha256` vérifie chaque copie.
+`task` est dérivée du champ `Type` de la fiche (`article`, `model-card`, `benchmark`,
+`documentation`, `tutorial`, `review`). Les fichiers `_*.md` (template, index) sont
+exclus automatiquement.
 
 Corpus n°1–2 : découpe « explicite » par H3 (listes de mapping figées).
 Corpus n°3–63 : découpe « auto » (partition par titres H1→H2→H3, cibles de taille), les
@@ -53,6 +76,7 @@ Options du mode auto : `first_is_content` (le H1 unique est du contenu, pas un e
 
 - **Aucune perte** : les plages de lignes de tous les chunks couvrent `[1, n]` sans trou
   ni chevauchement ; la concaténation des corps est identique à la source.
+  Mode `files` : chaque fiche du dossier a exactement un chunk, sha256 correspondant.
 - **Aucune réécriture** : le texte source est copié verbatim, titres d'origine conservés.
   Le seul ajout est un en-tête YAML délimité (`--- … ---`) et un H1 de titre.
 - **Traçabilité** : chaque chunk porte `source`, `source_lines`, `source_anchor` et
@@ -126,13 +150,13 @@ ou `rag: aucun corpus … (inactif)`.
 L'index est en mémoire et **proportionnel au texte des corpus** ; il ne dépend pas du
 nombre de requêtes (index immuable, aucune écriture, aucun cache qui grandit).
 
-| mesure | 21 corpus | 63 corpus |
-|---|---|---|
-| texte des corpus | 6,4 Mo | 10,4 Mo |
-| chunks / termes | 707 / 25 789 | 1 325 / 41 707 |
-| **mémoire heap** | **32 Mo** | **71 Mo** (ratio ≈ 6,8×) |
-| construction (arrière-plan) | 0,3 s | 0,7 s |
-| recherche (BM25, plafond 120 ms) | 207 µs | 302 µs |
+| mesure | 21 corpus | 63 corpus | **70 corpus** |
+|---|---|---|---|
+| texte des corpus | 6,4 Mo | 10,4 Mo | **12,1 Mo** |
+| chunks / termes | 707 / 25 789 | 1 325 / 41 707 | **1 661 / 43 577** |
+| **mémoire heap** | 32 Mo | 71 Mo (6,8×) | **69 Mo** (5,7×) |
+| construction (arrière-plan) | 0,3 s | 0,7 s | **0,7 s** |
+| recherche (BM25, plafond 120 ms) | 207 µs | 302 µs | **296 µs** |
 
 Ordres de grandeur : ~1 Mo de corpus ⇒ ~7 Mo de heap. Le service complet (RAG inclus)
 tient dans **~80 Mo de RSS**. Sur un VPS sans swap, prévoir la marge : un corpus de
@@ -152,9 +176,14 @@ une entrée dans la table `CORPORA` de `build_rag.py`.
 
 ## Ajouter un corpus
 
-1. Placer la source dans `docs/RAG/<fichier>.md` (intacte).
+1. Placer la source dans `docs/RAG/` :
+   - un **fichier** `.md` (intact) ;
+   - ou un **dossier de fiches** `docs/RAG/<mon-dossier>/` (template de fiche courant).
 2. Ajouter une entrée dans `CORPORA` (`build_rag.py`) :
-   - source **sans ancre** → `"mode": "auto"` + `max_lines`/`min_lines`
+   - source **fichier unique, sans ancre** → `"mode": "auto"` + `max_lines`/`min_lines`
      (et `first_is_content: True` si le fichier n'a qu'un seul H1 qui est du contenu) ;
-   - source **avec ancres** → table de chunks explicite `(dossier, slug, ligne, titre)`.
+   - source **fichier unique, avec ancres** → table de chunks explicite
+     `(dossier, slug, ligne, titre)` ;
+   - source **dossier de fiches** → `"mode": "files"` + `source_dir` + `folder`
+     (une fiche = un chunk ; `task` déduite du champ `Type`).
 3. Lancer `build_rag.py` puis `verify_rag.py`.
