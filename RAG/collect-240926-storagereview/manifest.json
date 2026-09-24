@@ -1,0 +1,2580 @@
+{
+  "corpus": "collect-240926-storagereview",
+  "title": "StorageReview — stockage & serveurs (Collect 240926)",
+  "source": "docs/RAG/clean_en/storagereview",
+  "source_dir": "docs/RAG/clean_en/storagereview",
+  "source_files": 74,
+  "source_sha256": "748220014f7c42f97416d6fd1d4e4916643f8aec5f72219aa1603eebc953a5d4",
+  "chunk_count": 74,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655",
+      "path": "collect-240926-storagereview/storagereview/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655.md",
+      "title": "fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "alignment",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "consumer",
+        "cost",
+        "distribution",
+        "exploit",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        90
+      ],
+      "canonical_for": [],
+      "words": 3918,
+      "bytes": 25670,
+      "sha256": "4ed51ae5cbcc619c7212effe23ccf3a8334a6a5b7b62eb7da7ed9156c535b77b"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-after-the-pi-record-serving-a-130-tb-dataset-with-backblaze-b2-c0672672",
+      "path": "collect-240926-storagereview/storagereview/fr-review-after-the-pi-record-serving-a-130-tb-dataset-with-backblaze-b2-c0672672.md",
+      "title": "fr-review-after-the-pi-record-serving-a-130-tb-dataset-with-backblaze-b2-c0672672",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "compute",
+        "distribution",
+        "research",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-after-the-pi-record-serving-a-130-tb-dataset-with-backblaze-b2-c0672672.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 1799,
+      "bytes": 11613,
+      "sha256": "20abcf735b83b7e330ec3af7470e8a52e4dbdb395e8f5f5a9ca86b7ff1aa480c"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-amd-epyc-4005-review-am5-economics-with-enterprise-focus-5f50297a",
+      "path": "collect-240926-storagereview/storagereview/fr-review-amd-epyc-4005-review-am5-economics-with-enterprise-focus-5f50297a.md",
+      "title": "fr-review-amd-epyc-4005-review-am5-economics-with-enterprise-focus-5f50297a",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "EU",
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "ethernet",
+        "gpu",
+        "intel",
+        "latency",
+        "licenses",
+        "liquid cooling"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-amd-epyc-4005-review-am5-economics-with-enterprise-focus-5f50297a.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        110
+      ],
+      "canonical_for": [],
+      "words": 2717,
+      "bytes": 15538,
+      "sha256": "5ae9b1c77842d36610deaa71c5a08339c32bd1ba06a430ddd6cc9c2754eb5b32"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356",
+      "path": "collect-240926-storagereview/storagereview/fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356.md",
+      "title": "fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "exploit",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1104,
+      "bytes": 6530,
+      "sha256": "383a28d0557cdb0858324fe0a9a91cc5b4dde51cf434ac2b289771170d2559c4"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5",
+      "path": "collect-240926-storagereview/storagereview/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5.md",
+      "title": "fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "compute",
+        "decode",
+        "distribution",
+        "energy",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "latency",
+        "liquid cooling"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        143
+      ],
+      "canonical_for": [],
+      "words": 4552,
+      "bytes": 27321,
+      "sha256": "cd60394f8f28a01e6df5a95234891059f251edf1034f09694092ff798d49a4ed"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-artesca-veeam-unified-software-appliance-74a26655",
+      "path": "collect-240926-storagereview/storagereview/fr-review-artesca-veeam-unified-software-appliance-74a26655.md",
+      "title": "fr-review-artesca-veeam-unified-software-appliance-74a26655",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Microsoft",
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "cyber",
+        "ethernet",
+        "memory",
+        "parameters",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-artesca-veeam-unified-software-appliance-74a26655.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 3145,
+      "bytes": 20846,
+      "sha256": "16aff573a9c811ea9816d0e7f8d406779d017203a9cd9b61159dfab791e38bfe"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-boost-ai-efficiency-with-solidigms-massive-61-44tb-nvme-ssds-40c564f6",
+      "path": "collect-240926-storagereview/storagereview/fr-review-boost-ai-efficiency-with-solidigms-massive-61-44tb-nvme-ssds-40c564f6.md",
+      "title": "fr-review-boost-ai-efficiency-with-solidigms-massive-61-44tb-nvme-ssds-40c564f6",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "energy",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-boost-ai-efficiency-with-solidigms-massive-61-44tb-nvme-ssds-40c564f6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        148
+      ],
+      "canonical_for": [],
+      "words": 3718,
+      "bytes": 23607,
+      "sha256": "66aa2139b6a3227b4d7934adce478fa4f665075babaca605d4533abc8027677d"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-boosting-data-center-efficiency-with-solidigm-ssds-and-liquid-cooled-s-43f0153a",
+      "path": "collect-240926-storagereview/storagereview/fr-review-boosting-data-center-efficiency-with-solidigm-ssds-and-liquid-cooled-s-43f0153a.md",
+      "title": "fr-review-boosting-data-center-efficiency-with-solidigm-ssds-and-liquid-cooled-s-43f0153a",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "energy",
+        "gpus",
+        "latency",
+        "liquid cooling",
+        "nand"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-boosting-data-center-efficiency-with-solidigm-ssds-and-liquid-cooled-s-43f0153a.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        38
+      ],
+      "canonical_for": [],
+      "words": 1660,
+      "bytes": 10337,
+      "sha256": "4cd397e465bb967fb44a015bcb6cae4e55ed85667825ec4e3cdb6d36f45df7b2"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50",
+      "path": "collect-240926-storagereview/storagereview/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50.md",
+      "title": "fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Broadcom",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "MiniMax",
+        "Mistral",
+        "Nvidia",
+        "OpenRouter",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "claude",
+        "compute",
+        "cost",
+        "decode",
+        "distribution",
+        "dram",
+        "ethernet"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        152
+      ],
+      "canonical_for": [],
+      "words": 5329,
+      "bytes": 33971,
+      "sha256": "ab56e0c743a0e1ce4c9cf328a060b60495a03723139644402a7b0df8ce2c0015"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-coolit-5d9994f0",
+      "path": "collect-240926-storagereview/storagereview/fr-review-coolit-5d9994f0.md",
+      "title": "fr-review-coolit-5d9994f0",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "dram",
+        "energy",
+        "gpu",
+        "intel",
+        "liquid cooling"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-coolit-5d9994f0.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        24
+      ],
+      "canonical_for": [],
+      "words": 1484,
+      "bytes": 8729,
+      "sha256": "37129542d9eb468a6402653e465246afb418c3c82fb40e2c97d3a39c9ccccf66"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-apex-navigator-delivers-simplified-multicloud-management-7f8156e5",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-apex-navigator-delivers-simplified-multicloud-management-7f8156e5.md",
+      "title": "fr-review-dell-apex-navigator-delivers-simplified-multicloud-management-7f8156e5",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "governance",
+        "latency",
+        "licenses"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-apex-navigator-delivers-simplified-multicloud-management-7f8156e5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 1342,
+      "bytes": 9472,
+      "sha256": "04c2d056fdb3660623e71d9a0a5e67ff7c08e1e117b0bfcbacf615e79f9b425d"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-emc-prosupport-enterprise-suite-review-eb9bbd24",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-emc-prosupport-enterprise-suite-review-eb9bbd24.md",
+      "title": "fr-review-dell-emc-prosupport-enterprise-suite-review-eb9bbd24",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "consumer"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-emc-prosupport-enterprise-suite-review-eb9bbd24.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        19
+      ],
+      "canonical_for": [],
+      "words": 1091,
+      "bytes": 6781,
+      "sha256": "161a01160b025faf27c8066e8f6e6cb8b36152f02993ca143538e3e86ebfb505"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-c6615-server-review-e5a753e4",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-c6615-server-review-e5a753e4.md",
+      "title": "fr-review-dell-poweredge-c6615-server-review-e5a753e4",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "compute",
+        "datacenter",
+        "distribution",
+        "ethernet",
+        "exploit",
+        "gpu",
+        "inference",
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-c6615-server-review-e5a753e4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        159
+      ],
+      "canonical_for": [],
+      "words": 3321,
+      "bytes": 18761,
+      "sha256": "6a54f2713ffd227ae3d9155ba9686da0a3ec2f4a61aecd29b2310690300cffee"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf.md",
+      "title": "fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "datacenter",
+        "energy",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "intel",
+        "license"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        127
+      ],
+      "canonical_for": [],
+      "words": 3086,
+      "bytes": 19382,
+      "sha256": "6c15b07385fabf74da072a2e5cb853a186272c46f2620df3727ffbf152c97ac2"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r5715-review-bc780bb6",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r5715-review-bc780bb6.md",
+      "title": "fr-review-dell-poweredge-r5715-review-bc780bb6",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "consumer",
+        "datacenter",
+        "energy",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "license"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-r5715-review-bc780bb6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        122
+      ],
+      "canonical_for": [],
+      "words": 3077,
+      "bytes": 19305,
+      "sha256": "0e12883d6d467120fc405be2cc9d49c70b65c70f2f4090b9e4113a5f3d5ea118"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r7615-review-536a6ae7",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r7615-review-536a6ae7.md",
+      "title": "fr-review-dell-poweredge-r7615-review-536a6ae7",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "consumer",
+        "cost",
+        "dram",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-r7615-review-536a6ae7.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        138
+      ],
+      "canonical_for": [],
+      "words": 3659,
+      "bytes": 22720,
+      "sha256": "1134ec7b7d853dd3877813f485c260828e864f6d96f8afff03c84c14344e4331"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Hugging Face",
+        "Intel",
+        "Microsoft",
+        "Nvidia",
+        "Samsung",
+        "TensorRT-LLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "datacenter",
+        "decode",
+        "deepseek",
+        "distillation",
+        "distribution",
+        "energy"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        219
+      ],
+      "canonical_for": [],
+      "words": 5683,
+      "bytes": 36525,
+      "sha256": "a7ca5535b923238924e272e6e6b70204296999b7a65910b0438b77ec8c391d4e"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r770ap-review-84b71047",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r770ap-review-84b71047.md",
+      "title": "fr-review-dell-poweredge-r770ap-review-84b71047",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "datacenter",
+        "ethernet",
+        "exploit",
+        "gpu",
+        "inference",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-r770ap-review-84b71047.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        137
+      ],
+      "canonical_for": [],
+      "words": 3749,
+      "bytes": 23587,
+      "sha256": "f8366cf7b1493136f58ef8b8384e3b68b33280e6e6e03a32e81aa8fc3dfd6f2d"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r7715-review-a-smart-balance-of-cores-memory-and-storag-154cb662",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-r7715-review-a-smart-balance-of-cores-memory-and-storag-154cb662.md",
+      "title": "fr-review-dell-poweredge-r7715-review-a-smart-balance-of-cores-memory-and-storag-154cb662",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "memory",
+        "accelerator",
+        "amd",
+        "benchmark",
+        "compute",
+        "cost",
+        "energy",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "latency",
+        "liquid cooling"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-r7715-review-a-smart-balance-of-cores-memory-and-storag-154cb662.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        178
+      ],
+      "canonical_for": [],
+      "words": 4903,
+      "bytes": 29934,
+      "sha256": "187d2ddab5c27535492720782fe1b73be008ea7d2e9a21b14f75e866432f5f01"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2.md",
+      "title": "fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "SGLang",
+        "TSMC",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "agents",
+        "attention",
+        "benchmarks",
+        "compute",
+        "cost",
+        "cyber",
+        "decode",
+        "ethernet",
+        "fp8",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        113
+      ],
+      "canonical_for": [],
+      "words": 4950,
+      "bytes": 32351,
+      "sha256": "6a48c4744295f0911825f869957fa069e6afc7250fb68720b16e3761dd3aeb8a"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5.md",
+      "title": "fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "benchmark",
+        "compute",
+        "energy",
+        "exploit",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "latency",
+        "memory",
+        "mlperf"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        109
+      ],
+      "canonical_for": [],
+      "words": 2556,
+      "bytes": 16581,
+      "sha256": "ef707eb2b7df30cd7a11b4d0e02d481168c8b79f7aca241b8ed7a4508742695f"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-powerprotect-data-domain-all-flash-appliance-the-intel-powered-al-145f5125",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-powerprotect-data-domain-all-flash-appliance-the-intel-powered-al-145f5125.md",
+      "title": "fr-review-dell-powerprotect-data-domain-all-flash-appliance-the-intel-powered-al-145f5125",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "compute",
+        "cost",
+        "cyber",
+        "cybersecurity",
+        "energy",
+        "latency",
+        "memory",
+        "parameters",
+        "revenue",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-powerprotect-data-domain-all-flash-appliance-the-intel-powered-al-145f5125.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 2868,
+      "bytes": 20197,
+      "sha256": "d9607e9bec4f43f6175ceb2fcc4bbc3581d269fbecc79dd0d13afdc3177ca49b"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-powerprotect-one-9dec1a23",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-powerprotect-one-9dec1a23.md",
+      "title": "fr-review-dell-powerprotect-one-9dec1a23",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft",
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "cyber",
+        "cybersecurity",
+        "governance",
+        "license",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-powerprotect-one-9dec1a23.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 2628,
+      "bytes": 18242,
+      "sha256": "41ecc04deaff234504120150694233f5113f9dc2066271324f2fa175b149b8a5"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-powerstore-container-storage-modules-csm-559407da",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-powerstore-container-storage-modules-csm-559407da.md",
+      "title": "fr-review-dell-powerstore-container-storage-modules-csm-559407da",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-powerstore-container-storage-modules-csm-559407da.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1402,
+      "bytes": 9511,
+      "sha256": "3b779ce68198289eba1a2a0e6a145c9a7f15a8e67e39ed2a87acf84926f2ceda"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dell-powerstore-gen-3-ac26ebce",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dell-powerstore-gen-3-ac26ebce.md",
+      "title": "fr-review-dell-powerstore-gen-3-ac26ebce",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "cost",
+        "dram",
+        "ethernet",
+        "intel",
+        "latency",
+        "memory",
+        "nand",
+        "parameters",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dell-powerstore-gen-3-ac26ebce.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        80
+      ],
+      "canonical_for": [],
+      "words": 3303,
+      "bytes": 20032,
+      "sha256": "d45cb87d17e45b4969ce8d7fc38d10be2d7879e61ff6c0426a23e2b454a94ae4"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe",
+      "path": "collect-240926-storagereview/storagereview/fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe.md",
+      "title": "fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "consumer",
+        "energy",
+        "gpus",
+        "intel",
+        "liquid cooling"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        32
+      ],
+      "canonical_for": [],
+      "words": 1021,
+      "bytes": 6080,
+      "sha256": "f1fedd478378295bd947c4ebd00b428f78baf4607d6eac0522741a87ce067f9c"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-edge-ai-anywhere-this-immersion-cooled-mobile-data-center-makes-it-pos-2cc302d0",
+      "path": "collect-240926-storagereview/storagereview/fr-review-edge-ai-anywhere-this-immersion-cooled-mobile-data-center-makes-it-pos-2cc302d0.md",
+      "title": "fr-review-edge-ai-anywhere-this-immersion-cooled-mobile-data-center-makes-it-pos-2cc302d0",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "data centre",
+        "energy",
+        "gpu",
+        "gpus",
+        "latency",
+        "liquid cooling",
+        "regulation",
+        "research",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-edge-ai-anywhere-this-immersion-cooled-mobile-data-center-makes-it-pos-2cc302d0.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        23
+      ],
+      "canonical_for": [],
+      "words": 1159,
+      "bytes": 8086,
+      "sha256": "0e4251fb72442374fc431f3c4e5d4b528d640c99987afbd68d88feb3de811cd1"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-elevate-your-cloud-experience-hpe-greenlake-for-private-cloud-business-b0180b1a",
+      "path": "collect-240926-storagereview/storagereview/fr-review-elevate-your-cloud-experience-hpe-greenlake-for-private-cloud-business-b0180b1a.md",
+      "title": "fr-review-elevate-your-cloud-experience-hpe-greenlake-for-private-cloud-business-b0180b1a",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Microsoft"
+      ],
+      "dates": [
+        "2020-06"
+      ],
+      "keywords": [
+        "aws",
+        "compute",
+        "disaggregated",
+        "sovereignty"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-elevate-your-cloud-experience-hpe-greenlake-for-private-cloud-business-b0180b1a.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        87
+      ],
+      "canonical_for": [],
+      "words": 1988,
+      "bytes": 12959,
+      "sha256": "813aa6e8b6d97caa141ae8955c6bd43808d3df15380eb59a6bf1bc912975ee16"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-enabling-gen5-ssd-evaluations-with-serial-cables-57af70e4",
+      "path": "collect-240926-storagereview/storagereview/fr-review-enabling-gen5-ssd-evaluations-with-serial-cables-57af70e4.md",
+      "title": "fr-review-enabling-gen5-ssd-evaluations-with-serial-cables-57af70e4",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "consumer",
+        "cost"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-enabling-gen5-ssd-evaluations-with-serial-cables-57af70e4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        23
+      ],
+      "canonical_for": [],
+      "words": 774,
+      "bytes": 4572,
+      "sha256": "a2238b5f1efd001ac55d5efcdd7a67986f24168142ba71b4fc720140e49cf1cc"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903",
+      "path": "collect-240926-storagereview/storagereview/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903.md",
+      "title": "fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-03"
+      ],
+      "keywords": [
+        "accelerator",
+        "acquisition",
+        "amd",
+        "benchmark",
+        "compute",
+        "cost",
+        "energy",
+        "gpus",
+        "latency",
+        "licenses",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        99
+      ],
+      "canonical_for": [],
+      "words": 2982,
+      "bytes": 18770,
+      "sha256": "86877047eb1ef57d83eb5caf70610a970eafa3cdfd4e267434626737e22e75aa"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-getting-started-in-information-technology-da6908ec",
+      "path": "collect-240926-storagereview/storagereview/fr-review-getting-started-in-information-technology-da6908ec.md",
+      "title": "fr-review-getting-started-in-information-technology-da6908ec",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "cybersecurity",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-getting-started-in-information-technology-da6908ec.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        26
+      ],
+      "canonical_for": [],
+      "words": 1160,
+      "bytes": 7433,
+      "sha256": "329949d60a43889d5362c20ab2887d16e424e972d0238013fb1b8d518a3e96b6"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-hci-intel-qlc-ssd-277e2f61",
+      "path": "collect-240926-storagereview/storagereview/fr-review-hci-intel-qlc-ssd-277e2f61.md",
+      "title": "fr-review-hci-intel-qlc-ssd-277e2f61",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft",
+        "Samsung"
+      ],
+      "dates": [
+        "2017-09"
+      ],
+      "keywords": [
+        "intel",
+        "benchmark",
+        "cost",
+        "latency",
+        "lean",
+        "memory",
+        "nand"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-hci-intel-qlc-ssd-277e2f61.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 2439,
+      "bytes": 14875,
+      "sha256": "a802472cfe63e6131c752ee73444c202ac232301a72771909c72018d0af95d79"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-hpe-alletra-storage-mp-b10000-and-nist-csf-2-0-a-full-stack-cyber-resi-99bd300c",
+      "path": "collect-240926-storagereview/storagereview/fr-review-hpe-alletra-storage-mp-b10000-and-nist-csf-2-0-a-full-stack-cyber-resi-99bd300c.md",
+      "title": "fr-review-hpe-alletra-storage-mp-b10000-and-nist-csf-2-0-a-full-stack-cyber-resi-99bd300c",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "Falcon",
+        "Microsoft",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "cyber",
+        "attention",
+        "compute",
+        "cybersecurity",
+        "energy",
+        "governance",
+        "incident",
+        "liability",
+        "packaging",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-hpe-alletra-storage-mp-b10000-and-nist-csf-2-0-a-full-stack-cyber-resi-99bd300c.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        81
+      ],
+      "canonical_for": [],
+      "words": 4440,
+      "bytes": 30536,
+      "sha256": "060aaa6b0d0944fafeee9814ff151b3277ce35c723cb96ab524bc0d533dc0353"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594",
+      "path": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594.md",
+      "title": "fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "dram",
+        "energy",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        137
+      ],
+      "canonical_for": [],
+      "words": 3352,
+      "bytes": 20684,
+      "sha256": "4cf586209fa167aca700ac77109e34bd93214a623252f065c05919ed4005a432"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2",
+      "path": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2.md",
+      "title": "fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "distribution",
+        "fine-tuning",
+        "fp4",
+        "governance",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        101
+      ],
+      "canonical_for": [],
+      "words": 3262,
+      "bytes": 22072,
+      "sha256": "8617c4f6784f1e25ce6bacb6b9bf43324167f256b1be396fb0af136b6931f890"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8",
+      "path": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8.md",
+      "title": "fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "dram",
+        "gpu",
+        "gpus",
+        "intel",
+        "license",
+        "liquid cooling",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        81
+      ],
+      "canonical_for": [],
+      "words": 1645,
+      "bytes": 9617,
+      "sha256": "75f9b683416eccbde82c89f884d6a1dec5b3b968532261dd2c90076b7f6b7dfe"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45",
+      "path": "collect-240926-storagereview/storagereview/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45.md",
+      "title": "fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "distribution",
+        "dram",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "license",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        116
+      ],
+      "canonical_for": [],
+      "words": 1840,
+      "bytes": 10699,
+      "sha256": "c2a8994ad864476d201e18f389e24e31149b578466d7030aa8945885b4fba032"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-innovation-and-reliability-make-fibre-channel-the-choice-for-data-cent-871e430a",
+      "path": "collect-240926-storagereview/storagereview/fr-review-innovation-and-reliability-make-fibre-channel-the-choice-for-data-cent-871e430a.md",
+      "title": "fr-review-innovation-and-reliability-make-fibre-channel-the-choice-for-data-cent-871e430a",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "compute",
+        "energy",
+        "ethernet",
+        "latency",
+        "memory",
+        "revenue",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-innovation-and-reliability-make-fibre-channel-the-choice-for-data-cent-871e430a.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 2687,
+      "bytes": 18078,
+      "sha256": "25ba8d333169ba9ea1a0b732ee0c3494ffc0409aaa0bcf3afeef864d754ca6ad"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43",
+      "path": "collect-240926-storagereview/storagereview/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43.md",
+      "title": "fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "benchmark",
+        "compute",
+        "consumer",
+        "dram",
+        "energy",
+        "inference",
+        "latency",
+        "memory",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        117
+      ],
+      "canonical_for": [],
+      "words": 2882,
+      "bytes": 16819,
+      "sha256": "18ac3851062cdd3e654697612deefa1de26811b5a1b53e8833e7dc80ca0d54cd"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753",
+      "path": "collect-240926-storagereview/storagereview/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753.md",
+      "title": "fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "benchmark",
+        "compute",
+        "gpu",
+        "inference",
+        "latency",
+        "memory",
+        "parameters",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        124
+      ],
+      "canonical_for": [],
+      "words": 2379,
+      "bytes": 12787,
+      "sha256": "f96604701fecf753fbd2ac94ee974a9fc86a5d214c8201e913ec0dba83977fc5"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84",
+      "path": "collect-240926-storagereview/storagereview/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84.md",
+      "title": "fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "accelerator",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "dram",
+        "energy",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        154
+      ],
+      "canonical_for": [],
+      "words": 3932,
+      "bytes": 23640,
+      "sha256": "06919fae4edacccbe458be74a67646cb5cb586b1bbe9a7e562399b63e7b718bf"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f",
+      "path": "collect-240926-storagereview/storagereview/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f.md",
+      "title": "fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "compute",
+        "cost",
+        "decode",
+        "energy",
+        "gpu",
+        "gpus",
+        "intel",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        158
+      ],
+      "canonical_for": [],
+      "words": 4025,
+      "bytes": 24081,
+      "sha256": "1ca117cb05fa3ec759948865df7dc00f99cf4f70b7da6d111765ae69ab58dd92"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7",
+      "path": "collect-240926-storagereview/storagereview/fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7.md",
+      "title": "fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "gpus",
+        "memory",
+        "packaging"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 1742,
+      "bytes": 11825,
+      "sha256": "3d90b8fbe776edd85ef85dcf06e8aee23c607ccf96cc36d510916099d67e2480"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc",
+      "path": "collect-240926-storagereview/storagereview/fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc.md",
+      "title": "fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "cost",
+        "ethernet",
+        "latency",
+        "nand",
+        "parameters",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 2249,
+      "bytes": 14486,
+      "sha256": "5d62718c016345953b068a01c2a15f69211588a4c89c8632a999466386f90d99"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-nvidia-jetson-orin-nano-super-powering-deepseek-r1-70b-inference-at-th-0ddc77ba",
+      "path": "collect-240926-storagereview/storagereview/fr-review-nvidia-jetson-orin-nano-super-powering-deepseek-r1-70b-inference-at-th-0ddc77ba.md",
+      "title": "fr-review-nvidia-jetson-orin-nano-super-powering-deepseek-r1-70b-inference-at-th-0ddc77ba",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "Nvidia",
+        "SpaceX"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "inference",
+        "nvidia",
+        "cost",
+        "distribution",
+        "energy",
+        "ethernet",
+        "gpu",
+        "latency",
+        "memory",
+        "nand",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-nvidia-jetson-orin-nano-super-powering-deepseek-r1-70b-inference-at-th-0ddc77ba.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 2056,
+      "bytes": 13292,
+      "sha256": "5ef26d6aadc7245a1af4d17ea06d3d257abcf914c72d23ca24c67d6c56b8c9be"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594",
+      "path": "collect-240926-storagereview/storagereview/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594.md",
+      "title": "fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "fp8",
+        "gpus",
+        "inference",
+        "intel",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        174
+      ],
+      "canonical_for": [],
+      "words": 2985,
+      "bytes": 17454,
+      "sha256": "55f1a5c6b8162a016b6d47756028ff70402be6653618a0606cc2ad12e39d0962"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-nvidia-l40s-for-omniverse-from-openusd-scenes-to-physics-aware-world-m-2da62e9f",
+      "path": "collect-240926-storagereview/storagereview/fr-review-nvidia-l40s-for-omniverse-from-openusd-scenes-to-physics-aware-world-m-2da62e9f.md",
+      "title": "fr-review-nvidia-l40s-for-omniverse-from-openusd-scenes-to-physics-aware-world-m-2da62e9f",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "cost",
+        "fp8",
+        "gpu",
+        "gpus",
+        "humanoid",
+        "inference",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-nvidia-l40s-for-omniverse-from-openusd-scenes-to-physics-aware-world-m-2da62e9f.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 2686,
+      "bytes": 18221,
+      "sha256": "bce56c025d1620fa489cd381e4af7738c3318db085c143ce889a6244ea03e1d8"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-peakaio-monai-and-solidigm-revolutionizing-storage-for-medical-ai-fc832b01",
+      "path": "collect-240926-storagereview/storagereview/fr-review-peakaio-monai-and-solidigm-revolutionizing-storage-for-medical-ai-fc832b01.md",
+      "title": "fr-review-peakaio-monai-and-solidigm-revolutionizing-storage-for-medical-ai-fc832b01",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "compute",
+        "cost",
+        "energy",
+        "gpu",
+        "nvidia",
+        "regulation",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-peakaio-monai-and-solidigm-revolutionizing-storage-for-medical-ai-fc832b01.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 3125,
+      "bytes": 21555,
+      "sha256": "37c64a275004208b0017332bf60a42a143c74133df416e969a3ff8f0e8789c1b"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-run-a-private-rag-chatgpt-on-qnap-nas-9539170f",
+      "path": "collect-240926-storagereview/storagereview/fr-review-run-a-private-rag-chatgpt-on-qnap-nas-9539170f.md",
+      "title": "fr-review-run-a-private-rag-chatgpt-on-qnap-nas-9539170f",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "chatgpt",
+        "amd",
+        "cost",
+        "gpu",
+        "gpus",
+        "memory",
+        "nvidia",
+        "parameters",
+        "tensorrt"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-run-a-private-rag-chatgpt-on-qnap-nas-9539170f.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 2132,
+      "bytes": 13533,
+      "sha256": "2dcf814ddced774c52832751282f0e15c81a2d205ef96e02d9eca1de3011c9b5"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-scaling-ai-checkpoints-the-impact-of-high-capacity-ssds-on-model-train-5dfc8c98",
+      "path": "collect-240926-storagereview/storagereview/fr-review-scaling-ai-checkpoints-the-impact-of-high-capacity-ssds-on-model-train-5dfc8c98.md",
+      "title": "fr-review-scaling-ai-checkpoints-the-impact-of-high-capacity-ssds-on-model-train-5dfc8c98",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2024-08-13"
+      ],
+      "keywords": [
+        "benchmark",
+        "cost",
+        "gpu",
+        "gpus",
+        "intel",
+        "latency",
+        "llama",
+        "memory",
+        "nvidia",
+        "parameters",
+        "throughput",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-scaling-ai-checkpoints-the-impact-of-high-capacity-ssds-on-model-train-5dfc8c98.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 2007,
+      "bytes": 13419,
+      "sha256": "ffa48d8c94393608b0045ec8a3e074ca11b150f4dd1c6c71aa9012292412a24a"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-seagate-exos-m-30tb-review-hamr-ing-storage-density-e91c1ee3",
+      "path": "collect-240926-storagereview/storagereview/fr-review-seagate-exos-m-30tb-review-hamr-ing-storage-density-e91c1ee3.md",
+      "title": "fr-review-seagate-exos-m-30tb-review-hamr-ing-storage-density-e91c1ee3",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "DeepSeek",
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "consumer",
+        "deepseek",
+        "energy",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-seagate-exos-m-30tb-review-hamr-ing-storage-density-e91c1ee3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        120
+      ],
+      "canonical_for": [],
+      "words": 2574,
+      "bytes": 15453,
+      "sha256": "51741cf71128a0f2f3251efeb32c24f6551a781853fb9518a06c039704f43e0d"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-serial-cables-pcie-gen4-m-2-adapter-review-1c1ebfe3",
+      "path": "collect-240926-storagereview/storagereview/fr-review-serial-cables-pcie-gen4-m-2-adapter-review-1c1ebfe3.md",
+      "title": "fr-review-serial-cables-pcie-gen4-m-2-adapter-review-1c1ebfe3",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "consumer"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-serial-cables-pcie-gen4-m-2-adapter-review-1c1ebfe3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        15
+      ],
+      "canonical_for": [],
+      "words": 653,
+      "bytes": 3898,
+      "sha256": "6adc9206408d60c24c2b2ab2f3f6c533606f442831f57294e2128d1dc1b85401"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-seven-things-to-love-about-arc-enabled-sql-managed-instances-721979cb",
+      "path": "collect-240926-storagereview/storagereview/fr-review-seven-things-to-love-about-arc-enabled-sql-managed-instances-721979cb.md",
+      "title": "fr-review-seven-things-to-love-about-arc-enabled-sql-managed-instances-721979cb",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "cost",
+        "intel",
+        "license",
+        "open source",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-seven-things-to-love-about-arc-enabled-sql-managed-instances-721979cb.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 1254,
+      "bytes": 8443,
+      "sha256": "98af6e109ef8904cd605188b8c832648959b0cd4e7fc094149407973c2ccd867"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73",
+      "path": "collect-240926-storagereview/storagereview/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73.md",
+      "title": "fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "datacenter",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        91
+      ],
+      "canonical_for": [],
+      "words": 2852,
+      "bytes": 18803,
+      "sha256": "9320484213b3194f65d6d6f1276f411d5907c63ea1c840e1e028cfedf48df36e"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-small-stack-big-impact-hpe-simplivity-and-vm-essentials-simplify-enter-c03a5525",
+      "path": "collect-240926-storagereview/storagereview/fr-review-small-stack-big-impact-hpe-simplivity-and-vm-essentials-simplify-enter-c03a5525.md",
+      "title": "fr-review-small-stack-big-impact-hpe-simplivity-and-vm-essentials-simplify-enter-c03a5525",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "cost",
+        "governance",
+        "gpu",
+        "latency",
+        "license",
+        "licenses",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-small-stack-big-impact-hpe-simplivity-and-vm-essentials-simplify-enter-c03a5525.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 2535,
+      "bytes": 17863,
+      "sha256": "a85da9bcd4e480b70555539350abd6d4856ebf1f8ab3c58106b5eac447f8733d"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-smarter-media-anywhere-axle-ai-brings-intelligence-to-the-edge-5fd9550f",
+      "path": "collect-240926-storagereview/storagereview/fr-review-smarter-media-anywhere-axle-ai-brings-intelligence-to-the-edge-5fd9550f.md",
+      "title": "fr-review-smarter-media-anywhere-axle-ai-brings-intelligence-to-the-edge-5fd9550f",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "accelerator",
+        "amd",
+        "backlog",
+        "benchmark",
+        "compute",
+        "cost",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-smarter-media-anywhere-axle-ai-brings-intelligence-to-the-edge-5fd9550f.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 3012,
+      "bytes": 19031,
+      "sha256": "cc8b62b43a5f229846b234f29160d99cb6d645fa4def379a59e5e3f358a917b1"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-storage-innovation-in-action-transforming-film-and-tv-workflows-89d97f09",
+      "path": "collect-240926-storagereview/storagereview/fr-review-storage-innovation-in-action-transforming-film-and-tv-workflows-89d97f09.md",
+      "title": "fr-review-storage-innovation-in-action-transforming-film-and-tv-workflows-89d97f09",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "energy",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "intel",
+        "latency",
+        "memory",
+        "nvidia",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-storage-innovation-in-action-transforming-film-and-tv-workflows-89d97f09.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 2349,
+      "bytes": 14935,
+      "sha256": "70efd7d7dae143275e0fc6955296fcd89ed8d12de8132e3a190f8ce4bb9b38d0"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-storagereview-it-helpdesk-fd0891ae",
+      "path": "collect-240926-storagereview/storagereview/fr-review-storagereview-it-helpdesk-fd0891ae.md",
+      "title": "fr-review-storagereview-it-helpdesk-fd0891ae",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "cost",
+        "datacenter",
+        "energy",
+        "liability"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-storagereview-it-helpdesk-fd0891ae.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        32
+      ],
+      "canonical_for": [],
+      "words": 993,
+      "bytes": 5924,
+      "sha256": "7c4c523d1ca846133df722026945df487e24b35a0873156fe967cad4d7bd08fd"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887",
+      "path": "collect-240926-storagereview/storagereview/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887.md",
+      "title": "fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "accelerator",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "distribution",
+        "energy",
+        "gpu",
+        "gpus",
+        "inference",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        169
+      ],
+      "canonical_for": [],
+      "words": 3468,
+      "bytes": 22897,
+      "sha256": "ed397f1806200ae03a0ebf0c9e96d0d9a10cb9be9239f7fb43d8e09eeb597399"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf",
+      "path": "collect-240926-storagereview/storagereview/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf.md",
+      "title": "fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "compute",
+        "cost",
+        "energy",
+        "exploit",
+        "gpu",
+        "gpus",
+        "inference",
+        "memory",
+        "nvidia",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        181
+      ],
+      "canonical_for": [],
+      "words": 3139,
+      "bytes": 19547,
+      "sha256": "a019e7f461c96b2649cbf2dfb7f23146ea2983bad0a66731e14d2d418b165301"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb",
+      "path": "collect-240926-storagereview/storagereview/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "benchmark",
+        "cost",
+        "decode",
+        "energy",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "latency",
+        "memory",
+        "packaging"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        137
+      ],
+      "canonical_for": [],
+      "words": 2971,
+      "bytes": 18329,
+      "sha256": "22f6301330fecb709745a4641b0ac6585f8cd66131231382fb496966dced075d"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1",
+      "path": "collect-240926-storagereview/storagereview/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "benchmark",
+        "benchmarks",
+        "energy",
+        "gpu",
+        "gpus",
+        "inference",
+        "intel",
+        "liquid cooling",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        146
+      ],
+      "canonical_for": [],
+      "words": 2399,
+      "bytes": 14874,
+      "sha256": "0ccefce7af18816dc22a1684c0d8dad796ce65cd3ed7e216bd93ac8c570f9503"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c",
+      "path": "collect-240926-storagereview/storagereview/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c.md",
+      "title": "fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "DeepSeek",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "compute",
+        "deepseek",
+        "fp4",
+        "fp8",
+        "gpu",
+        "gpus",
+        "inference"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        90
+      ],
+      "canonical_for": [],
+      "words": 3919,
+      "bytes": 25330,
+      "sha256": "76c9127c7d339e6c901a9f136c8c77523f212bf968751578e88d5d8cdff14d9e"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79",
+      "path": "collect-240926-storagereview/storagereview/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79.md",
+      "title": "fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 1217,
+      "bytes": 7621,
+      "sha256": "bcb7910b3de7a762b687866e43e0f56595b8085e5cf49145ee4600dda110c979"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-synology-e10m20-t1-review-a0ab7b39",
+      "path": "collect-240926-storagereview/storagereview/fr-review-synology-e10m20-t1-review-a0ab7b39.md",
+      "title": "fr-review-synology-e10m20-t1-review-a0ab7b39",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "ethernet",
+        "latency",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-synology-e10m20-t1-review-a0ab7b39.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        63
+      ],
+      "canonical_for": [],
+      "words": 1853,
+      "bytes": 10285,
+      "sha256": "135d097a9b303d77a47707fb026cee1e884cd791e32853b1b5abf58cba1cc348"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-the-fast-path-to-hybrid-cloud-dell-technologies-cloud-704fa971",
+      "path": "collect-240926-storagereview/storagereview/fr-review-the-fast-path-to-hybrid-cloud-dell-technologies-cloud-704fa971.md",
+      "title": "fr-review-the-fast-path-to-hybrid-cloud-dell-technologies-cloud-704fa971",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2019-11"
+      ],
+      "keywords": [
+        "compute",
+        "memory",
+        "research"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-the-fast-path-to-hybrid-cloud-dell-technologies-cloud-704fa971.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 3139,
+      "bytes": 20346,
+      "sha256": "9b609089bd14034f441d8eb3b4f9e618f3d338e55350c32707d8154f0cbb9b28"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176",
+      "path": "collect-240926-storagereview/storagereview/fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176.md",
+      "title": "fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "MiniMax",
+        "Nvidia",
+        "OpenRouter",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "inference",
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "blackwell",
+        "claude",
+        "compute",
+        "context window",
+        "cost",
+        "cost per token",
+        "decode"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        85
+      ],
+      "canonical_for": [],
+      "words": 5272,
+      "bytes": 32104,
+      "sha256": "3ed7df54267279a7368a2cd82422f11d1c122cad9a1777e2c1e8764fcab99cfb"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-ubiquiti-enterprise-nas-review-16-bays-dual-25gbe-and-zfs-for-3999-25cfd5e9",
+      "path": "collect-240926-storagereview/storagereview/fr-review-ubiquiti-enterprise-nas-review-16-bays-dual-25gbe-and-zfs-for-3999-25cfd5e9.md",
+      "title": "fr-review-ubiquiti-enterprise-nas-review-16-bays-dual-25gbe-and-zfs-for-3999-25cfd5e9",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-11"
+      ],
+      "keywords": [
+        "cost",
+        "ethernet",
+        "exploit",
+        "guardrails",
+        "latency",
+        "license",
+        "licenses",
+        "memory",
+        "nvidia",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-ubiquiti-enterprise-nas-review-16-bays-dual-25gbe-and-zfs-for-3999-25cfd5e9.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        101
+      ],
+      "canonical_for": [],
+      "words": 3939,
+      "bytes": 24300,
+      "sha256": "7ec361df0f89785fada8dd793c3642168517595f8c4c42e305f09735c98e80a5"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-ubiquiti-sfp-wizard-review-a914f8b3",
+      "path": "collect-240926-storagereview/storagereview/fr-review-ubiquiti-sfp-wizard-review-a914f8b3.md",
+      "title": "fr-review-ubiquiti-sfp-wizard-review-a914f8b3",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "energy",
+        "optics",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-ubiquiti-sfp-wizard-review-a914f8b3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1224,
+      "bytes": 7776,
+      "sha256": "a5365d79a69d2e873be464b6f3e578f30e529a6c71f4fd894c506794d8e6302b"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-unifi-protect-superlink-environmental-sensor-review-reliable-leak-and-e9cfea41",
+      "path": "collect-240926-storagereview/storagereview/fr-review-unifi-protect-superlink-environmental-sensor-review-reliable-leak-and-e9cfea41.md",
+      "title": "fr-review-unifi-protect-superlink-environmental-sensor-review-reliable-leak-and--e9cfea41",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "latency",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-unifi-protect-superlink-environmental-sensor-review-reliable-leak-and--e9cfea41.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1452,
+      "bytes": 9431,
+      "sha256": "de6152967d0668405eee437243e1fd3a8d687bca995845239b8c89a1d7845733"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee",
+      "path": "collect-240926-storagereview/storagereview/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee.md",
+      "title": "fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Google",
+        "Intel",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "intel",
+        "accelerator",
+        "benchmarks",
+        "compute",
+        "cost",
+        "decode",
+        "energy",
+        "gpus",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        115
+      ],
+      "canonical_for": [],
+      "words": 2522,
+      "bytes": 15279,
+      "sha256": "d751296e3ce7830fd259e3683a0e9e80dabe1e9854d693e7ff11691597c3d769"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-vergeio-high-performance-vmware-alternative-040958db",
+      "path": "collect-240926-storagereview/storagereview/fr-review-vergeio-high-performance-vmware-alternative-040958db.md",
+      "title": "fr-review-vergeio-high-performance-vmware-alternative-040958db",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "attention",
+        "compute",
+        "cost",
+        "gpus",
+        "license",
+        "liquid cooling",
+        "memory",
+        "nand",
+        "nvidia",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-vergeio-high-performance-vmware-alternative-040958db.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 2594,
+      "bytes": 16965,
+      "sha256": "be12eb93e1192b1f43de70b71a30264c4656d9682486262fdfb883e931daed35"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-wd-gold-24tb-hdd-review-6de6b88d",
+      "path": "collect-240926-storagereview/storagereview/fr-review-wd-gold-24tb-hdd-review-6de6b88d.md",
+      "title": "fr-review-wd-gold-24tb-hdd-review-6de6b88d",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2023-11"
+      ],
+      "keywords": [
+        "benchmarks",
+        "latency",
+        "pricing",
+        "series a",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-wd-gold-24tb-hdd-review-6de6b88d.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        88
+      ],
+      "canonical_for": [],
+      "words": 1647,
+      "bytes": 9990,
+      "sha256": "f31cf2f8a6fd88c0e20a1f81c8d4c37f6d844bf508d550e1d0c93fdb11ff99ce"
+    },
+    {
+      "id": "collect-240926-storagereview/storagereview/fr-review-western-digital-ultrastar-dc-hc590-review-dfc98626",
+      "path": "collect-240926-storagereview/storagereview/fr-review-western-digital-ultrastar-dc-hc590-review-dfc98626.md",
+      "title": "fr-review-western-digital-ultrastar-dc-hc590-review-dfc98626",
+      "domain": "storagereview",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "DeepSeek",
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "deepseek",
+        "energy",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/storagereview/fr-review-western-digital-ultrastar-dc-hc590-review-dfc98626.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1896,
+      "bytes": 11366,
+      "sha256": "435907d0da26a05a84ba950d83c55f61fec01dbf847a2a995e8f5674153edc0d"
+    }
+  ]
+}

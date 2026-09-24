@@ -1,0 +1,371 @@
+{
+  "corpus": "collect-240926-hardwarecooking",
+  "title": "HardwareCooking — PC & matériel (Collect 240926)",
+  "source": "docs/RAG/clean_en/hardwarecooking",
+  "source_dir": "docs/RAG/clean_en/hardwarecooking",
+  "source_files": 12,
+  "source_sha256": "ea4a31f171e3e315dff26cd8516a46b13fbeba508db2e6c19492658c5546d04c",
+  "chunk_count": 12,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/asus-lance-ses-premiers-routeurs-wifi-8-la-gamme-rog-rapture-gt-bn98-et-le-syste",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/asus-lance-ses-premiers-routeurs-wifi-8-la-gamme-rog-rapture-gt-bn98-et-le-syste.md",
+      "title": "asus-lance-ses-premiers-routeurs-wifi-8-la-gamme-rog-rapture-gt-bn98-et-le-syste",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/asus-lance-ses-premiers-routeurs-wifi-8-la-gamme-rog-rapture-gt-bn98-et-le-syste.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        35
+      ],
+      "canonical_for": [],
+      "words": 657,
+      "bytes": 4283,
+      "sha256": "10449f87ca563f7d9f38aa64982a5d525d1d8b0f4499892b4c458ed9f73ee122"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/asus-securise-l-avenir-de-ses-routeurs-wifi-et-prepare-l-arrivee-du-wifi-8-aux-e",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/asus-securise-l-avenir-de-ses-routeurs-wifi-et-prepare-l-arrivee-du-wifi-8-aux-e.md",
+      "title": "asus-securise-l-avenir-de-ses-routeurs-wifi-et-prepare-l-arrivee-du-wifi-8-aux-e",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "consumer"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/asus-securise-l-avenir-de-ses-routeurs-wifi-et-prepare-l-arrivee-du-wifi-8-aux-e.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        29
+      ],
+      "canonical_for": [],
+      "words": 552,
+      "bytes": 3932,
+      "sha256": "76fad879130b927732fe4eace021ce18be9c61501dae6cb37e05bc0f98d9fe57"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves.md",
+      "title": "build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Lambda",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "consumer",
+        "energy",
+        "ethernet",
+        "intel",
+        "memory",
+        "nand",
+        "nvidia",
+        "power delivery",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        84
+      ],
+      "canonical_for": [],
+      "words": 2184,
+      "bytes": 12693,
+      "sha256": "dd87352d10953f5684cbf04d94fc6c518ef38c10cfc6fc714fecf0f5c21f4309"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070.md",
+      "title": "build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Lambda",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "energy",
+        "gpu",
+        "intel",
+        "memory",
+        "nand",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1783,
+      "bytes": 10189,
+      "sha256": "3df0b14b4773fa64af6330e2319f73146021dbcb7af6a6c09dee54cfab0d07ae"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg.md",
+      "title": "build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "blackwell",
+        "consumer",
+        "energy",
+        "intel",
+        "memory",
+        "nvidia",
+        "power delivery",
+        "regulation",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        94
+      ],
+      "canonical_for": [],
+      "words": 2094,
+      "bytes": 12512,
+      "sha256": "a1e7fc439e8d05e592951394cfdd5f11d75c71597393c1e175b1bfbb5fc30249"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/le-dlss-5-tourne-sur-une-intel-arc-140v-un-moddeur-reussit-l-improbable-mais-a-q",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/le-dlss-5-tourne-sur-une-intel-arc-140v-un-moddeur-reussit-l-improbable-mais-a-q.md",
+      "title": "le-dlss-5-tourne-sur-une-intel-arc-140v-un-moddeur-reussit-l-improbable-mais-a-q",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "fp8",
+        "gpus",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/le-dlss-5-tourne-sur-une-intel-arc-140v-un-moddeur-reussit-l-improbable-mais-a-q.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        29
+      ],
+      "canonical_for": [],
+      "words": 615,
+      "bytes": 4027,
+      "sha256": "0d96cafd7dda3e556cd3708f501905ba85d8c95ffabbfbf39947b6d01300e88e"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/sony-imagine-des-consoles-playstation-capables-de-se-reparer-automatiquement-gra",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/sony-imagine-des-consoles-playstation-capables-de-se-reparer-automatiquement-gra.md",
+      "title": "sony-imagine-des-consoles-playstation-capables-de-se-reparer-automatiquement-gra",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "consumer"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/sony-imagine-des-consoles-playstation-capables-de-se-reparer-automatiquement-gra.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 666,
+      "bytes": 4540,
+      "sha256": "e46ee8fad2e9220ef8899ed297b753248266a696ca93d723605d3d4cfcf1d3c7"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu.md",
+      "title": "test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "dci",
+        "packaging"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        100
+      ],
+      "canonical_for": [],
+      "words": 1500,
+      "bytes": 8668,
+      "sha256": "39e34b0a7db5f44c0297696b99171e43d33ce9638d50a78dcbe993b8553c3858"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/test-be-quiet-dark-power-pro-14-io-la-nouvelle-reference-ultime-hardwarecooking",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/test-be-quiet-dark-power-pro-14-io-la-nouvelle-reference-ultime-hardwarecooking.md",
+      "title": "test-be-quiet-dark-power-pro-14-io-la-nouvelle-reference-ultime-hardwarecooking",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "energy",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/test-be-quiet-dark-power-pro-14-io-la-nouvelle-reference-ultime-hardwarecooking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 1079,
+      "bytes": 6579,
+      "sha256": "e9a7c0803aed3248ea711442ce52d52a8575e4bacf2f8499fced991f5a4435fb"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/test-msi-mag-274qp-qd-oled-x24-un-ecran-oled-accessible-mais-a-quel-prix",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/test-msi-mag-274qp-qd-oled-x24-un-ecran-oled-accessible-mais-a-quel-prix.md",
+      "title": "test-msi-mag-274qp-qd-oled-x24-un-ecran-oled-accessible-mais-a-quel-prix",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "dci",
+        "packaging"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/test-msi-mag-274qp-qd-oled-x24-un-ecran-oled-accessible-mais-a-quel-prix.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        90
+      ],
+      "canonical_for": [],
+      "words": 1262,
+      "bytes": 7014,
+      "sha256": "c5b691d741af44420324302b1e00770510e4a8bd0d3a19d0b2e17f6314cfd3e3"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/test-msi-mpg-341cqr-qd-oled-x36",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/test-msi-mpg-341cqr-qd-oled-x36.md",
+      "title": "test-msi-mpg-341cqr-qd-oled-x36",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "dci",
+        "energy",
+        "packaging",
+        "power delivery"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/test-msi-mpg-341cqr-qd-oled-x36.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        96
+      ],
+      "canonical_for": [],
+      "words": 1404,
+      "bytes": 7819,
+      "sha256": "66cbff94836907a4b307c2676cc483ea0e83769bff9e5939226e67a85dd16728"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/test-noctua-nh-d15-g2-chromax-black-un-excellent-ventirad-hardwarecooking",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/test-noctua-nh-d15-g2-chromax-black-un-excellent-ventirad-hardwarecooking.md",
+      "title": "test-noctua-nh-d15-g2-chromax-black-un-excellent-ventirad-hardwarecooking",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/test-noctua-nh-d15-g2-chromax-black-un-excellent-ventirad-hardwarecooking.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 1311,
+      "bytes": 7612,
+      "sha256": "b0a2c87187dbce5bf0c6022c3e69abd9e6174e7f52582851baf1ac37265d81ca"
+    }
+  ]
+}

@@ -1,0 +1,2453 @@
+{
+  "corpus": "collect-240926-datacamp",
+  "title": "DataCamp — IA, data & dev (Collect 240926)",
+  "source": "docs/RAG/clean_en/datacamp",
+  "source_dir": "docs/RAG/clean_en/datacamp",
+  "source_files": 69,
+  "source_sha256": "ba8d8c0452d12b30fb6e034dc462fa52d3dbb5e312894c9f4fe443305126d647",
+  "chunk_count": 69,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-240926-datacamp/datacamp/10-idees-de-projets-docker-du-debutant-au-confirme",
+      "path": "collect-240926-datacamp/datacamp/10-idees-de-projets-docker-du-debutant-au-confirme.md",
+      "title": "Stage 1: Build",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "aws",
+        "inference"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/10-idees-de-projets-docker-du-debutant-au-confirme.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        501
+      ],
+      "canonical_for": [],
+      "words": 2635,
+      "bytes": 18859,
+      "sha256": "7f0ec6276612291ff2aebc00f31f6444e4d5a7aba4ef77827a8211774b349b75"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/claude-cowork-vs-openclaw-comparatif-des-agents-de-bureau",
+      "path": "collect-240926-datacamp/datacamp/claude-cowork-vs-openclaw-comparatif-des-agents-de-bureau.md",
+      "title": "Curriculum",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Cohere",
+        "DeepSeek",
+        "Google",
+        "Microsoft",
+        "Mistral",
+        "OpenAI",
+        "OpenRouter",
+        "SGLang",
+        "vLLM",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-24",
+        "2026-04-09"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "bedrock",
+        "chatgpt",
+        "claude",
+        "cohere",
+        "cost",
+        "deepseek",
+        "gemini",
+        "grok",
+        "guardrails"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/claude-cowork-vs-openclaw-comparatif-des-agents-de-bureau.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        214
+      ],
+      "canonical_for": [],
+      "words": 3188,
+      "bytes": 19900,
+      "sha256": "8be5d036011a624480b5badb55337bd998c5aaff91b6ada3d83271300b495984"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/claude-mythos-5-fonctionnalites-benchmarks-et-capacites",
+      "path": "collect-240926-datacamp/datacamp/claude-mythos-5-fonctionnalites-benchmarks-et-capacites.md",
+      "title": "claude-mythos-5-fonctionnalites-benchmarks-et-capacites",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Glasswing",
+        "Google",
+        "OpenAI",
+        "Stripe"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-06-09",
+        "2026-07-01"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "agent",
+        "agentic",
+        "cyber",
+        "cybersecurity",
+        "export control",
+        "fable 5",
+        "gemini",
+        "guardrails",
+        "jailbreak"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/claude-mythos-5-fonctionnalites-benchmarks-et-capacites.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        175
+      ],
+      "canonical_for": [],
+      "words": 2636,
+      "bytes": 16287,
+      "sha256": "0de30fc8d3e0279c3cb1c7b70d79b9de107af3f80a5122fa07c95dd209dd3c8f"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/comment-apprendre-docker-depuis-zero-guide-pour-les-professionnels-des-donnees",
+      "path": "collect-240926-datacamp/datacamp/comment-apprendre-docker-depuis-zero-guide-pour-les-professionnels-des-donnees.md",
+      "title": "Use an official Python runtime as a parent image",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "apache",
+        "aws",
+        "distribution",
+        "memory",
+        "open source",
+        "packaging",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/comment-apprendre-docker-depuis-zero-guide-pour-les-professionnels-des-donnees.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        466
+      ],
+      "canonical_for": [],
+      "words": 3199,
+      "bytes": 22583,
+      "sha256": "8d1926cd6d0959ec858e084a0e573ba3a297910bc7c84809c0657da8bec7a16d"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/comment-apprendre-git-en-2026-guide-complet-pour-les-debutants",
+      "path": "collect-240926-datacamp/datacamp/comment-apprendre-git-en-2026-guide-complet-pour-les-debutants.md",
+      "title": "comment-apprendre-git-en-2026-guide-complet-pour-les-debutants",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "copilot",
+        "license",
+        "open source",
+        "research"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/comment-apprendre-git-en-2026-guide-complet-pour-les-debutants.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        320
+      ],
+      "canonical_for": [],
+      "words": 3620,
+      "bytes": 21907,
+      "sha256": "7027754416ea5dfeaacb86f6010af343dc8446c845c500547e4716d88cfd3676"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/comment-rediger-une-fiche-de-poste-danalyste-de-donnees",
+      "path": "collect-240926-datacamp/datacamp/comment-rediger-une-fiche-de-poste-danalyste-de-donnees.md",
+      "title": "comment-rediger-une-fiche-de-poste-danalyste-de-donnees",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "chatgpt",
+        "governance",
+        "revenue",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/comment-rediger-une-fiche-de-poste-danalyste-de-donnees.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        139
+      ],
+      "canonical_for": [],
+      "words": 1689,
+      "bytes": 11420,
+      "sha256": "0b02c42fb25d118122782a4762851e97396005f6748d7d17bca289ff35248a5e"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/comparatif-des-5-principaux-fournisseurs-de-services-cloud-en-2026",
+      "path": "collect-240926-datacamp/datacamp/comparatif-des-5-principaux-fournisseurs-de-services-cloud-en-2026.md",
+      "title": "comparatif-des-5-principaux-fournisseurs-de-services-cloud-en-2026",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Microsoft",
+        "Oracle"
+      ],
+      "dates": [
+        "2025-07"
+      ],
+      "keywords": [
+        "aws",
+        "compute",
+        "cost",
+        "gpus",
+        "latency",
+        "pricing",
+        "sovereignty",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/comparatif-des-5-principaux-fournisseurs-de-services-cloud-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        191
+      ],
+      "canonical_for": [],
+      "words": 2828,
+      "bytes": 20357,
+      "sha256": "2c255ae3300c442f638d589ce94e83b5017e8d55ed469dfe167b0f5c6e0dc7fc"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/confidentialite-de-github-copilot-protections-et-guide-de-depannage",
+      "path": "collect-240926-datacamp/datacamp/confidentialite-de-github-copilot-protections-et-guide-de-depannage.md",
+      "title": "confidentialite-de-github-copilot-protections-et-guide-de-depannage",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "copilot",
+        "agent",
+        "agents",
+        "attribution",
+        "cloud agent",
+        "copyright",
+        "guardrails",
+        "license",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/confidentialite-de-github-copilot-protections-et-guide-de-depannage.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        253
+      ],
+      "canonical_for": [],
+      "words": 2607,
+      "bytes": 16790,
+      "sha256": "5ed2a96460a238b7ee3d3b5c3ae999e5bb939688f9e42066ec69e2a4ff5e3d41"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/containerd-et-docker-comprendre-les-durees-d-execution-des-conteneurs",
+      "path": "collect-240926-datacamp/datacamp/containerd-et-docker-comprendre-les-durees-d-execution-des-conteneurs.md",
+      "title": "containerd-et-docker-comprendre-les-durees-d-execution-des-conteneurs",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "attention",
+        "aws",
+        "latency",
+        "memory",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/containerd-et-docker-comprendre-les-durees-d-execution-des-conteneurs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        307
+      ],
+      "canonical_for": [],
+      "words": 3771,
+      "bytes": 27327,
+      "sha256": "2210cac76205ca74b0e1c39e4daabd67cc41e4a680a743cade2e15987392f2fa"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/dagster-vs-airflow-comparaison-des-meilleurs-outils-dorchestration-de-donnees-pour-des-dat",
+      "path": "collect-240926-datacamp/datacamp/dagster-vs-airflow-comparaison-des-meilleurs-outils-dorchestration-de-donnees-pour-des-dat.md",
+      "title": "dagster-vs-airflow-comparaison-des-meilleurs-outils-dorchestration-de-donnees-pour-des-data-stacks-m",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "aws",
+        "benchmark",
+        "cost",
+        "license",
+        "open source"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/dagster-vs-airflow-comparaison-des-meilleurs-outils-dorchestration-de-donnees-pour-des-data-stacks-m.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        199
+      ],
+      "canonical_for": [],
+      "words": 2478,
+      "bytes": 15906,
+      "sha256": "0ce358b6abba3da63570f218280d5562285e033030db20ff23767df5d37e0d3a"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/datacamp-vs-deeplearning-ai-lequel-choisir-en-2026",
+      "path": "collect-240926-datacamp/datacamp/datacamp-vs-deeplearning-ai-lequel-choisir-en-2026.md",
+      "title": "datacamp-vs-deeplearning-ai-lequel-choisir-en-2026",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Hugging Face",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "aws",
+        "benchmarks",
+        "cost",
+        "fine-tuning",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/datacamp-vs-deeplearning-ai-lequel-choisir-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        81
+      ],
+      "canonical_for": [],
+      "words": 1197,
+      "bytes": 8078,
+      "sha256": "22be40ac24e353c5131a4a9715f61d3ad00ab39dc650174683874ee0a07cef8a"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/deepseek-harness-explique-cordis-et-architecture-par-plugins",
+      "path": "collect-240926-datacamp/datacamp/deepseek-harness-explique-cordis-et-architecture-par-plugins.md",
+      "title": "Curriculum",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "deepseek",
+        "inference",
+        "license",
+        "mcp",
+        "memory",
+        "mit license"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/deepseek-harness-explique-cordis-et-architecture-par-plugins.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        255
+      ],
+      "canonical_for": [],
+      "words": 2901,
+      "bytes": 18296,
+      "sha256": "c59f6216379ca8c7652ccab5032526bb9fd67b3624f21c092e262600ea5281e1"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/deepseek-harness-vs-claude-code-comparaison-des-outils-dia-agentique",
+      "path": "collect-240926-datacamp/datacamp/deepseek-harness-vs-claude-code-comparaison-des-outils-dia-agentique.md",
+      "title": "Curriculum",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "DeepSeek",
+        "OpenAI",
+        "vLLM",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "alignment",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "compute",
+        "cost",
+        "deepseek",
+        "grok"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/deepseek-harness-vs-claude-code-comparaison-des-outils-dia-agentique.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        301
+      ],
+      "canonical_for": [],
+      "words": 2942,
+      "bytes": 19284,
+      "sha256": "0d50daeb3d0c54e11e67377f49e1fdcf887021cb62205c46f9e7ba0388c87fe6"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/docker-swarm-vs-kubernetes-guide-complet",
+      "path": "collect-240926-datacamp/datacamp/docker-swarm-vs-kubernetes-guide-complet.md",
+      "title": "docker-swarm-vs-kubernetes-guide-complet",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "aws",
+        "benchmark",
+        "claude",
+        "compute",
+        "cost",
+        "datacenter",
+        "distribution",
+        "memory",
+        "parameters",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/docker-swarm-vs-kubernetes-guide-complet.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        415
+      ],
+      "canonical_for": [],
+      "words": 4401,
+      "bytes": 31964,
+      "sha256": "607ae69c6210f437a5f3f58ce246e918d574365089becf60c30eeccdf240f91e"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/docker-vs-podman-quel-outil-de-conteneurisation-vous-convient-le-mieux",
+      "path": "collect-240926-datacamp/datacamp/docker-vs-podman-quel-outil-de-conteneurisation-vous-convient-le-mieux.md",
+      "title": "docker-vs-podman-quel-outil-de-conteneurisation-vous-convient-le-mieux",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/docker-vs-podman-quel-outil-de-conteneurisation-vous-convient-le-mieux.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        202
+      ],
+      "canonical_for": [],
+      "words": 2677,
+      "bytes": 16914,
+      "sha256": "daaeea360e18a4feb5826e7664e0f807305f4da1633baccf31d2f1e11da6a317"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/evaluation-des-llm-metriques-methodologies-bonnes-pratiques",
+      "path": "collect-240926-datacamp/datacamp/evaluation-des-llm-metriques-methodologies-bonnes-pratiques.md",
+      "title": "evaluation-des-llm-metriques-methodologies-bonnes-pratiques",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Cohere",
+        "Perplexity"
+      ],
+      "dates": [],
+      "keywords": [
+        "alignment",
+        "benchmarks",
+        "distribution",
+        "exploit",
+        "fine-tuning",
+        "perplexity"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/evaluation-des-llm-metriques-methodologies-bonnes-pratiques.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        166
+      ],
+      "canonical_for": [],
+      "words": 1697,
+      "bytes": 11743,
+      "sha256": "f04465ada3eb7f8bccd6d0eb84c37a8ee09df1f9a27fff339b8dd4bc76f21f95"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/formules-github-copilot-guide-des-fonctionnalites-et-de-l-administration",
+      "path": "collect-240926-datacamp/datacamp/formules-github-copilot-guide-des-fonctionnalites-et-de-l-administration.md",
+      "title": "Ignore the /src/some-dir/kernel.rs file in this repository.",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Microsoft"
+      ],
+      "dates": [
+        "2022-11-28",
+        "2026-04",
+        "2026-05-01",
+        "2026-05-31",
+        "2026-06"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "attention",
+        "claude",
+        "cloud agent",
+        "copilot",
+        "cost",
+        "fine-tuning",
+        "governance",
+        "latency",
+        "liability"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/formules-github-copilot-guide-des-fonctionnalites-et-de-l-administration.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        328
+      ],
+      "canonical_for": [],
+      "words": 3221,
+      "bytes": 22338,
+      "sha256": "b657197421953e902e420d8ae9fd3dc87d14e8debbbf4d4d9e8e9266e850e45d"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/frameworks-dagents-ia-des-outils-pour-des-systemes-plus-intelligents",
+      "path": "collect-240926-datacamp/datacamp/frameworks-dagents-ia-des-outils-pour-des-systemes-plus-intelligents.md",
+      "title": "frameworks-dagents-ia-des-outils-pour-des-systemes-plus-intelligents",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Lambda",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "agentic",
+        "aws",
+        "gemini",
+        "incident",
+        "memory",
+        "multimodal",
+        "open source",
+        "reasoning",
+        "research",
+        "tool use"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/frameworks-dagents-ia-des-outils-pour-des-systemes-plus-intelligents.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        246
+      ],
+      "canonical_for": [],
+      "words": 2433,
+      "bytes": 15931,
+      "sha256": "be0f996e5f119a35ce84d45b6057a2df64ae3433982b5fdb3b15c8dd52531f9a"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/gemini-3-8-live-fonctionnalites-benchmarks-tarifs-acces",
+      "path": "collect-240926-datacamp/datacamp/gemini-3-8-live-fonctionnalites-benchmarks-tarifs-acces.md",
+      "title": "gemini-3-8-live-fonctionnalites-benchmarks-tarifs-acces",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-15"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "gemini",
+        "agent",
+        "agentic",
+        "agents",
+        "astra",
+        "consumer",
+        "cost",
+        "gemini 3.8",
+        "gpt-6",
+        "gpt-live"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/gemini-3-8-live-fonctionnalites-benchmarks-tarifs-acces.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        201
+      ],
+      "canonical_for": [],
+      "words": 3079,
+      "bytes": 19615,
+      "sha256": "d367e958cc44a88794cb10ddbf49fa1897fe3bbc41fea46a76bfd07837e714c7"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/git-merge-vs-git-rebase-avantages-inconvenients-et-meilleures-pratiques",
+      "path": "collect-240926-datacamp/datacamp/git-merge-vs-git-rebase-avantages-inconvenients-et-meilleures-pratiques.md",
+      "title": "On main, bring in feature-xyz:",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/git-merge-vs-git-rebase-avantages-inconvenients-et-meilleures-pratiques.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        246
+      ],
+      "canonical_for": [],
+      "words": 3150,
+      "bytes": 21278,
+      "sha256": "c346e6badbec0c7a7bdfd65487244ec639ccb881c4b4f6a0a5501df8b89c6b29"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/git-vs-github-differences-que-tout-developpeur-doit-connaitre",
+      "path": "collect-240926-datacamp/datacamp/git-vs-github-differences-que-tout-developpeur-doit-connaitre.md",
+      "title": "git-vs-github-differences-que-tout-developpeur-doit-connaitre",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "copilot",
+        "open source"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/git-vs-github-differences-que-tout-developpeur-doit-connaitre.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        131
+      ],
+      "canonical_for": [],
+      "words": 1956,
+      "bytes": 12619,
+      "sha256": "8a025a8f41ab1fdfd961bb3071572d60e276cdf646b83afae719d7917a4f9e88"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/github-copilot-enterprise-spaces-et-api-des-metriques-dusage",
+      "path": "collect-240926-datacamp/datacamp/github-copilot-enterprise-spaces-et-api-des-metriques-dusage.md",
+      "title": "github-copilot-enterprise-spaces-et-api-des-metriques-dusage",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-10-01",
+        "2025-10-10",
+        "2025-11-01",
+        "2026-02",
+        "2026-03-10",
+        "2026-04",
+        "2026-05-14"
+      ],
+      "keywords": [
+        "copilot",
+        "agent",
+        "benchmarks",
+        "cost",
+        "governance",
+        "license",
+        "licenses",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/github-copilot-enterprise-spaces-et-api-des-metriques-dusage.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        594
+      ],
+      "canonical_for": [],
+      "words": 2996,
+      "bytes": 22349,
+      "sha256": "7ec5aac7099677f9a9d039f870f369ed093cc82735936e534f12950e1bd11125"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/google-i-o-2026-le-debut-de-l-ere-gemini-agentique",
+      "path": "collect-240926-datacamp/datacamp/google-i-o-2026-le-debut-de-l-ere-gemini-agentique.md",
+      "title": "google-i-o-2026-le-debut-de-l-ere-gemini-agentique",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Meta",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "gemini",
+        "agentic",
+        "agents",
+        "agi",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "compute",
+        "consumer",
+        "cost"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/google-i-o-2026-le-debut-de-l-ere-gemini-agentique.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        146
+      ],
+      "canonical_for": [],
+      "words": 2789,
+      "bytes": 17745,
+      "sha256": "b24cae93538421aeafcf573391772d79fbcaa62f7527d6ba4068815cb8fe8e3c"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/gpt-6-astra-vs-claude-fable-5-1-performances-et-tarifs",
+      "path": "collect-240926-datacamp/datacamp/gpt-6-astra-vs-claude-fable-5-1-performances-et-tarifs.md",
+      "title": "gpt-6-astra-vs-claude-fable-5-1-performances-et-tarifs",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Glasswing",
+        "Google",
+        "Irregular",
+        "Microsoft",
+        "OpenAI",
+        "OpenRouter",
+        "SpaceX"
+      ],
+      "dates": [
+        "2026-04-30",
+        "2026-06",
+        "2026-09-01",
+        "2026-09-03"
+      ],
+      "keywords": [
+        "astra",
+        "claude",
+        "gpt-6",
+        "agent",
+        "agentic",
+        "agents",
+        "alignment",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "consumer"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/gpt-6-astra-vs-claude-fable-5-1-performances-et-tarifs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        303
+      ],
+      "canonical_for": [],
+      "words": 4661,
+      "bytes": 27543,
+      "sha256": "3113e2098a26f6da1f372921a056cd82ddf7bdf6fcf9e6bc88ff9863f698e3e1"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/gpt6-sol-et-luna-des-performances-de-pointe-mais-a-moindre-cout",
+      "path": "collect-240926-datacamp/datacamp/gpt6-sol-et-luna-des-performances-de-pointe-mais-a-moindre-cout.md",
+      "title": "gpt6-sol-et-luna-des-performances-de-pointe-mais-a-moindre-cout",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Microsoft",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [],
+      "keywords": [
+        "luna",
+        "sol",
+        "agent",
+        "agents",
+        "alignment",
+        "astra",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/gpt6-sol-et-luna-des-performances-de-pointe-mais-a-moindre-cout.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        285
+      ],
+      "canonical_for": [],
+      "words": 3260,
+      "bytes": 19889,
+      "sha256": "aa5777209195523a590381b336c6fd7e23530d493a236980c3a0401214b5fd5c"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/grok-bot-vs-claude-cowork-equipe-ia-ou-espace-de-travail-ia",
+      "path": "collect-240926-datacamp/datacamp/grok-bot-vs-claude-cowork-equipe-ia-ou-espace-de-travail-ia.md",
+      "title": "grok-bot-vs-claude-cowork-equipe-ia-ou-espace-de-travail-ia",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Microsoft",
+        "SpaceX",
+        "Stripe",
+        "United States",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "grok",
+        "agent",
+        "agents",
+        "compute",
+        "cost",
+        "mcp",
+        "memory",
+        "model context protocol",
+        "pricing",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/grok-bot-vs-claude-cowork-equipe-ia-ou-espace-de-travail-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        282
+      ],
+      "canonical_for": [],
+      "words": 3684,
+      "bytes": 22666,
+      "sha256": "c07f1e22cbf1a645031b9132b1ea81c2e505a43b36cbad59336c7e4056367ccc"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/grok-voice-transcribe-2-0-fonctions-tarifs-et-acces",
+      "path": "collect-240926-datacamp/datacamp/grok-voice-transcribe-2-0-fonctions-tarifs-et-acces.md",
+      "title": "grok-voice-transcribe-2-0-fonctions-tarifs-et-acces",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Meta",
+        "OpenAI",
+        "OpenRouter",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-21"
+      ],
+      "keywords": [
+        "grok",
+        "voice",
+        "agent",
+        "agents",
+        "benchmarks",
+        "consumer",
+        "cost",
+        "grok 4",
+        "latency",
+        "leaderboard",
+        "muse",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/grok-voice-transcribe-2-0-fonctions-tarifs-et-acces.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        170
+      ],
+      "canonical_for": [],
+      "words": 2255,
+      "bytes": 14158,
+      "sha256": "e8d108918ea592624c2019f3e5399c512f648ae48bef46a6137555e3f5676eac"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/guide-complet-de-la-certification-docker-dca-pour-2026",
+      "path": "collect-240926-datacamp/datacamp/guide-complet-de-la-certification-docker-dca-pour-2026.md",
+      "title": "guide-complet-de-la-certification-docker-dca-pour-2026",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/guide-complet-de-la-certification-docker-dca-pour-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        123
+      ],
+      "canonical_for": [],
+      "words": 1542,
+      "bytes": 11136,
+      "sha256": "5dbe3f69eb3a7970f50ced4ff84e70d86ab3cd2744218b4b280df8a14aa3bb45"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/guide-de-certification-kubernetes-examens-conseils-et-ressources-d-etude",
+      "path": "collect-240926-datacamp/datacamp/guide-de-certification-kubernetes-examens-conseils-et-ressources-d-etude.md",
+      "title": "guide-de-certification-kubernetes-examens-conseils-et-ressources-d-etude",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "cost",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/guide-de-certification-kubernetes-examens-conseils-et-ressources-d-etude.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        316
+      ],
+      "canonical_for": [],
+      "words": 2513,
+      "bytes": 17421,
+      "sha256": "c3fe9397787626d02de42939dc0fea5793376cb0da0504cde7551c48bcb69344"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/introduction-a-lorchestration-des-donnees-processus-et-avantages",
+      "path": "collect-240926-datacamp/datacamp/introduction-a-lorchestration-des-donnees-processus-et-avantages.md",
+      "title": "introduction-a-lorchestration-des-donnees-processus-et-avantages",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "compute",
+        "governance",
+        "latency",
+        "open source",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/introduction-a-lorchestration-des-donnees-processus-et-avantages.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        210
+      ],
+      "canonical_for": [],
+      "words": 1951,
+      "bytes": 13407,
+      "sha256": "5330cbb6d60eecad4762ee0794d66e38ae140b8d4344f89db63594b39991adff"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/introduction-aux-produits-github-le-guide-complet",
+      "path": "collect-240926-datacamp/datacamp/introduction-aux-produits-github-le-guide-complet.md",
+      "title": "introduction-aux-produits-github-le-guide-complet",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "cost",
+        "licenses",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/introduction-aux-produits-github-le-guide-complet.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        133
+      ],
+      "canonical_for": [],
+      "words": 1982,
+      "bytes": 13196,
+      "sha256": "b3886857ddbebb9bda3517bbd26171709bb18264e3b4371eb9cd5d24c387ca7e"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/ipython-ou-jupyter",
+      "path": "collect-240926-datacamp/datacamp/ipython-ou-jupyter.md",
+      "title": "Assign the result to `ls`",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2010-10",
+        "2011-12-21",
+        "2013-03-23"
+      ],
+      "keywords": [
+        "apache",
+        "attention",
+        "distribution",
+        "funding",
+        "parameters",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/ipython-ou-jupyter.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        331
+      ],
+      "canonical_for": [],
+      "words": 4268,
+      "bytes": 27990,
+      "sha256": "889f3b4f61984a1c9b9871f1ba8d9b88fa34cedb068f8b518cfb7a75712e06cd"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/jev-vs-gpt-6-astra-vitesse-cout-et-quand-utiliser-chacun",
+      "path": "collect-240926-datacamp/datacamp/jev-vs-gpt-6-astra-vitesse-cout-et-quand-utiliser-chacun.md",
+      "title": "jev-vs-gpt-6-astra-vitesse-cout-et-quand-utiliser-chacun",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Microsoft",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-03",
+        "2026-09-15",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agent",
+        "agentic",
+        "agents",
+        "agi",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/jev-vs-gpt-6-astra-vitesse-cout-et-quand-utiliser-chacun.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        233
+      ],
+      "canonical_for": [],
+      "words": 3125,
+      "bytes": 19148,
+      "sha256": "f09e3a50337987900eba62a20a2c67cd22ba0a91abd5197cbd80fd0b2e5a2c1a"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/kimi-k3-fonctionnalites-benchmarks-api-et-5-exemples-pratiques",
+      "path": "collect-240926-datacamp/datacamp/kimi-k3-fonctionnalites-benchmarks-api-et-5-exemples-pratiques.md",
+      "title": "kimi-k3-fonctionnalites-benchmarks-api-et-5-exemples-pratiques",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Moonshot",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-07-16",
+        "2026-07-17"
+      ],
+      "keywords": [
+        "benchmark",
+        "kimi",
+        "agent",
+        "alignment",
+        "claude",
+        "context window",
+        "cost",
+        "decode",
+        "license",
+        "multimodal",
+        "open weights",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/kimi-k3-fonctionnalites-benchmarks-api-et-5-exemples-pratiques.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        224
+      ],
+      "canonical_for": [],
+      "words": 2164,
+      "bytes": 14174,
+      "sha256": "53781fbb3dd35a340b4d25151ff5dde003a9561d8b76125f5e9beaf3ada25675"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/kubernetes-vs-docker-differences-que-tout-developpeur-doit-connaitre",
+      "path": "collect-240926-datacamp/datacamp/kubernetes-vs-docker-differences-que-tout-developpeur-doit-connaitre.md",
+      "title": "Use the official Python base image with version 3.9",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/datacamp/kubernetes-vs-docker-differences-que-tout-developpeur-doit-connaitre.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        233
+      ],
+      "canonical_for": [],
+      "words": 2463,
+      "bytes": 17461,
+      "sha256": "7e6208bdc5be079030106895b2f82e91cc6f26455ac758a114f93d6b6c5f646b"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/le-paradoxe-de-lia-en-entreprise-deployer-des-agents-a-grande-echelle-sans-perdre-le-contr",
+      "path": "collect-240926-datacamp/datacamp/le-paradoxe-de-lia-en-entreprise-deployer-des-agents-a-grande-echelle-sans-perdre-le-contr.md",
+      "title": "le-paradoxe-de-lia-en-entreprise-deployer-des-agents-a-grande-echelle-sans-perdre-le-controle",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "agentic",
+        "cost",
+        "governance",
+        "guardrails",
+        "incident",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/le-paradoxe-de-lia-en-entreprise-deployer-des-agents-a-grande-echelle-sans-perdre-le-controle.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        150
+      ],
+      "canonical_for": [],
+      "words": 1621,
+      "bytes": 10792,
+      "sha256": "2a480644030ef4da5e2326ceccc951065402a735da9aad07474b117ab3b25077"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-10-meilleurs-projets-d-agents-ia-a-developper-en-2026-avec-guides-et-demonstrations",
+      "path": "collect-240926-datacamp/datacamp/les-10-meilleurs-projets-d-agents-ia-a-developper-en-2026-avec-guides-et-demonstrations.md",
+      "title": "les-10-meilleurs-projets-d-agents-ia-a-developper-en-2026-avec-guides-et-demonstrations",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Google",
+        "Groq",
+        "Hugging Face",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "agentic",
+        "gguf",
+        "inference",
+        "llama",
+        "memory",
+        "mistral",
+        "qwen",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-10-meilleurs-projets-d-agents-ia-a-developper-en-2026-avec-guides-et-demonstrations.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        125
+      ],
+      "canonical_for": [],
+      "words": 1751,
+      "bytes": 11011,
+      "sha256": "dcb8ecc217be0b746377498509a0055c5235be593e70a209f611f62d4955289d"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-10-meilleurs-serveurs-et-clients-mcp-pour-l-automatisation-des-flux-de-travail-ia-en-2",
+      "path": "collect-240926-datacamp/datacamp/les-10-meilleurs-serveurs-et-clients-mcp-pour-l-automatisation-des-flux-de-travail-ia-en-2.md",
+      "title": "les-10-meilleurs-serveurs-et-clients-mcp-pour-l-automatisation-des-flux-de-travail-ia-en-2026",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "chatgpt",
+        "claude",
+        "memory",
+        "model context protocol",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-10-meilleurs-serveurs-et-clients-mcp-pour-l-automatisation-des-flux-de-travail-ia-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        168
+      ],
+      "canonical_for": [],
+      "words": 1422,
+      "bytes": 9130,
+      "sha256": "ac9b3757bfbb95ee8e3717bdf0f72ed2694a14cde22f380062f451ed61f9b0ff"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-15-meilleurs-serveurs-mcp-distants-a-connaitre-pour-tout-builder-ia-en-2026",
+      "path": "collect-240926-datacamp/datacamp/les-15-meilleurs-serveurs-mcp-distants-a-connaitre-pour-tout-builder-ia-en-2026.md",
+      "title": "les-15-meilleurs-serveurs-mcp-distants-a-connaitre-pour-tout-builder-ia-en-2026",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "Microsoft",
+        "OpenAI",
+        "Stripe"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agentic",
+        "agents",
+        "alignment",
+        "backlog",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "latency",
+        "memory",
+        "model context protocol"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-15-meilleurs-serveurs-mcp-distants-a-connaitre-pour-tout-builder-ia-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        382
+      ],
+      "canonical_for": [],
+      "words": 3838,
+      "bytes": 26920,
+      "sha256": "2b44c91f31d5cd9b094461bf3b7708577e9ea34aa566e1972b75dfff37c191c0"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-18-principales-commandes-docker-pour-construire-executer-et-gerer-des-conteneurs",
+      "path": "collect-240926-datacamp/datacamp/les-18-principales-commandes-docker-pour-construire-executer-et-gerer-des-conteneurs.md",
+      "title": "syntax=docker/dockerfile:1",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/datacamp/les-18-principales-commandes-docker-pour-construire-executer-et-gerer-des-conteneurs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        429
+      ],
+      "canonical_for": [],
+      "words": 3642,
+      "bytes": 23088,
+      "sha256": "891c1a5a2306bca339aac6a302021695ce8cbe48aebd3da6ec9dc84e2476599a"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-25-meilleures-questions-d-entretien-git-et-leurs-reponses-pour-tous-niveaux",
+      "path": "collect-240926-datacamp/datacamp/les-25-meilleures-questions-d-entretien-git-et-leurs-reponses-pour-tous-niveaux.md",
+      "title": "Git extracts an intermediate commit; you test, then:",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "open source",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-25-meilleures-questions-d-entretien-git-et-leurs-reponses-pour-tous-niveaux.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        272
+      ],
+      "canonical_for": [],
+      "words": 2821,
+      "bytes": 17831,
+      "sha256": "552625b0761f595a9aefdf40f298670ab5d3076a653d32203da20d5de5b44a22"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-26-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-concernant-d",
+      "path": "collect-240926-datacamp/datacamp/les-26-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-concernant-d.md",
+      "title": "Step 1: Choose a base image",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-26-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-concernant-docker-pour.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        384
+      ],
+      "canonical_for": [],
+      "words": 3963,
+      "bytes": 25481,
+      "sha256": "8c13744e4e25749e0a0c2b583374ce7858061ffd1cd87c314aabe738c7d59920"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-30-meilleures-questions-d-entretien-sur-le-big-data-guide-pratique-complet",
+      "path": "collect-240926-datacamp/datacamp/les-30-meilleures-questions-d-entretien-sur-le-big-data-guide-pratique-complet.md",
+      "title": "les-30-meilleures-questions-d-entretien-sur-le-big-data-guide-pratique-complet",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Lambda"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "aws",
+        "compute",
+        "cost",
+        "governance",
+        "gpu",
+        "latency",
+        "tpu",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-30-meilleures-questions-d-entretien-sur-le-big-data-guide-pratique-complet.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        273
+      ],
+      "canonical_for": [],
+      "words": 3563,
+      "bytes": 23408,
+      "sha256": "5466f10dc09cb909ebcfbe40ecf57e5cb2b022923b51109e0deb39b80ab4bcaf"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-30-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-dans-le-doma",
+      "path": "collect-240926-datacamp/datacamp/les-30-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-dans-le-doma.md",
+      "title": "les-30-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-dans-le-domaine-de-l-i",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "alignment",
+        "attention",
+        "benchmark",
+        "claude",
+        "compute",
+        "context window",
+        "cost",
+        "deepseek",
+        "distillation"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-30-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-dans-le-domaine-de-l-i.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        238
+      ],
+      "canonical_for": [],
+      "words": 4017,
+      "bytes": 25578,
+      "sha256": "5c9e6b2d78e628e24ab001d8760c7eeea009b2ccf8da03c7e7fc17df6fdb0924"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-40-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-sur-typescri",
+      "path": "collect-240926-datacamp/datacamp/les-40-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-sur-typescri.md",
+      "title": "les-40-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-sur-typescript-pour-20",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "inference",
+        "parameters",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-40-questions-et-reponses-les-plus-frequentes-lors-d-entretiens-d-embauche-sur-typescript-pour-20.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        919
+      ],
+      "canonical_for": [],
+      "words": 4352,
+      "bytes": 29038,
+      "sha256": "8ee80bd23d2b7ddfa105503fb27be636d55d7798bb0ae372a7a4785c304a0f70"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-meilleures-alternatives-a-cursor-en-2026-classees-par-flux-de-travail-de-developpement",
+      "path": "collect-240926-datacamp/datacamp/les-meilleures-alternatives-a-cursor-en-2026-classees-par-flux-de-travail-de-developpement.md",
+      "title": "les-meilleures-alternatives-a-cursor-en-2026-classees-par-flux-de-travail-de-developpement",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "astra",
+        "chatgpt",
+        "claude",
+        "cloud agent",
+        "copilot",
+        "cost",
+        "deepseek",
+        "gpt-5.6",
+        "gpt-6"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-meilleures-alternatives-a-cursor-en-2026-classees-par-flux-de-travail-de-developpement.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        387
+      ],
+      "canonical_for": [],
+      "words": 4435,
+      "bytes": 28026,
+      "sha256": "ce89ec272f1c2e1f3c4bb6a3a914c129a4e774696c633d2a38004df6a1fce866"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-meilleures-certifications-sql-en-2026-une-evaluation-honnete",
+      "path": "collect-240926-datacamp/datacamp/les-meilleures-certifications-sql-en-2026-une-evaluation-honnete.md",
+      "title": "les-meilleures-certifications-sql-en-2026-une-evaluation-honnete",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Microsoft",
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "cost",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-meilleures-certifications-sql-en-2026-une-evaluation-honnete.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        209
+      ],
+      "canonical_for": [],
+      "words": 2551,
+      "bytes": 16235,
+      "sha256": "3bd1ebbfc1cb743813f56bc0ebc359454d67dd3f86250e13a77e9701682f4bb6"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/les-meilleurs-agents-ia-en-2026-comparaison-des-outils-et-frameworks",
+      "path": "collect-240926-datacamp/datacamp/les-meilleurs-agents-ia-en-2026-comparaison-des-outils-et-frameworks.md",
+      "title": "les-meilleurs-agents-ia-en-2026-comparaison-des-outils-et-frameworks",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "EU",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Moonshot",
+        "OpenAI",
+        "Perplexity",
+        "xAI"
+      ],
+      "dates": [
+        "2023-09",
+        "2024-12",
+        "2025-03",
+        "2025-12",
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-05-19",
+        "2026-06-18",
+        "2026-08"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "agentic",
+        "astra",
+        "aws",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "cost",
+        "deepseek",
+        "distribution"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/les-meilleurs-agents-ia-en-2026-comparaison-des-outils-et-frameworks.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        437
+      ],
+      "canonical_for": [],
+      "words": 5350,
+      "bytes": 37131,
+      "sha256": "2bfad76af0deb92d6fb8e1e2b7678e0cdfa5856c5e23280bcbc879d535d74204"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/llama-4-fonctionnalites-acces-fonctionnement-et-plus-encore",
+      "path": "collect-240926-datacamp/datacamp/llama-4-fonctionnalites-acces-fonctionnement-et-plus-encore.md",
+      "title": "llama-4-fonctionnalites-acces-fonctionnement-et-plus-encore",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Mistral",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "llama",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "consumer",
+        "context window",
+        "deepseek",
+        "distillation",
+        "fine-tuning",
+        "gemini",
+        "gpu",
+        "gpus"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/llama-4-fonctionnalites-acces-fonctionnement-et-plus-encore.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        164
+      ],
+      "canonical_for": [],
+      "words": 2460,
+      "bytes": 15806,
+      "sha256": "76f7cca4f98a266568df2f8f8ac1110b34051d28f795588e04014bbda4238700"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/maitriser-la-conception-dapi-strategies-essentielles-pour-developper-des-api-haute-perform",
+      "path": "collect-240926-datacamp/datacamp/maitriser-la-conception-dapi-strategies-essentielles-pour-developper-des-api-haute-perform.md",
+      "title": "maitriser-la-conception-dapi-strategies-essentielles-pour-developper-des-api-haute-performance",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "OpenAI",
+        "Stripe"
+      ],
+      "dates": [],
+      "keywords": [
+        "parameters",
+        "sandbox"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/maitriser-la-conception-dapi-strategies-essentielles-pour-developper-des-api-haute-performance.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        183
+      ],
+      "canonical_for": [],
+      "words": 1949,
+      "bytes": 12597,
+      "sha256": "6a2a8b46faedffa488bc5c8e1a7e47e3369474d158590e3d4ee2718bd9c2477f"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/meilleures-alternatives-a-claude-cowork-comparees-2026",
+      "path": "collect-240926-datacamp/datacamp/meilleures-alternatives-a-claude-cowork-comparees-2026.md",
+      "title": "meilleures-alternatives-a-claude-cowork-comparees-2026",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Microsoft",
+        "Mistral",
+        "OpenAI",
+        "Perplexity"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "agent",
+        "agentic",
+        "agents",
+        "alignment",
+        "benchmarks",
+        "chatgpt",
+        "cloud agent",
+        "copilot",
+        "cost",
+        "deepseek",
+        "gemini"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/meilleures-alternatives-a-claude-cowork-comparees-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        311
+      ],
+      "canonical_for": [],
+      "words": 4145,
+      "bytes": 25468,
+      "sha256": "9fb458c6f560714eb3b234b600452d943ebfe2ec589823fc1805d3b2008a81c6"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/modeles-claude-code-skills-agents-hooks-et-plus-encore",
+      "path": "collect-240926-datacamp/datacamp/modeles-claude-code-skills-agents-hooks-et-plus-encore.md",
+      "title": "Database Migration Skill",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "distribution",
+        "guardrails",
+        "mcp",
+        "model context protocol",
+        "reasoning",
+        "safeguards"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/modeles-claude-code-skills-agents-hooks-et-plus-encore.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        382
+      ],
+      "canonical_for": [],
+      "words": 3055,
+      "bytes": 21005,
+      "sha256": "3ba80960bbfed21886279b3272b7643e1c658a30f5229d575953c74ec5243118"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/muse-spark-caracteristiques-benchmarks-et-mode-demploi",
+      "path": "collect-240926-datacamp/datacamp/muse-spark-caracteristiques-benchmarks-et-mode-demploi.md",
+      "title": "muse-spark-caracteristiques-benchmarks-et-mode-demploi",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-06-30",
+        "2025-11",
+        "2026-03-13",
+        "2026-04-08"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "muse",
+        "agent",
+        "agentic",
+        "agents",
+        "agi",
+        "alignment",
+        "attention",
+        "chatgpt",
+        "claude",
+        "compute"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/muse-spark-caracteristiques-benchmarks-et-mode-demploi.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        269
+      ],
+      "canonical_for": [],
+      "words": 3576,
+      "bytes": 22122,
+      "sha256": "0b7a931e0625863a569bcd71c7903429f3336503711db094c8319bc4179798b6"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/mysql-vs-mongodb-choisir-la-bonne-base-de-donnees-pour-votre-projet",
+      "path": "collect-240926-datacamp/datacamp/mysql-vs-mongodb-choisir-la-bonne-base-de-donnees-pour-votre-projet.md",
+      "title": "mysql-vs-mongodb-choisir-la-bonne-base-de-donnees-pour-votre-projet",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "embedding",
+        "memory",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/mysql-vs-mongodb-choisir-la-bonne-base-de-donnees-pour-votre-projet.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        236
+      ],
+      "canonical_for": [],
+      "words": 3209,
+      "bytes": 21781,
+      "sha256": "058f9ead6fc29479bb8010388be08ce15fa7e5e86d4a6aa77401250bf10bad00"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/nouveaux-projets-interactifs-de-code-sql",
+      "path": "collect-240926-datacamp/datacamp/nouveaux-projets-interactifs-de-code-sql.md",
+      "title": "nouveaux-projets-interactifs-de-code-sql",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "revenue"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/nouveaux-projets-interactifs-de-code-sql.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        30
+      ],
+      "canonical_for": [],
+      "words": 131,
+      "bytes": 835,
+      "sha256": "d2e3f988146b692140804719c8c94d84ae9b233714c8f1d7d2c54de310caebc0"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/observabilite-des-llm-6-lecons-pour-l-ere-du-code-avec-l-ia",
+      "path": "collect-240926-datacamp/datacamp/observabilite-des-llm-6-lecons-pour-l-ere-du-code-avec-l-ia.md",
+      "title": "observabilite-des-llm-6-lecons-pour-l-ere-du-code-avec-l-ia",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Mistral"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "cost",
+        "guardrails",
+        "incident",
+        "kill switch",
+        "reasoning",
+        "sandbox"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/observabilite-des-llm-6-lecons-pour-l-ere-du-code-avec-l-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        160
+      ],
+      "canonical_for": [],
+      "words": 1930,
+      "bytes": 11614,
+      "sha256": "6dbd7e4f4723d9d5616ddd9f30af72f6c1ba680ed8b91444ed9b24b81ec258b9"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/openai-frontier-explique-le-passage-aux-agents-d-ia-pour-l-entreprise",
+      "path": "collect-240926-datacamp/datacamp/openai-frontier-explique-le-passage-aux-agents-d-ia-pour-l-entreprise.md",
+      "title": "openai-frontier-explique-le-passage-aux-agents-d-ia-pour-l-entreprise",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "Oracle"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "agentic",
+        "benchmark",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "cost",
+        "energy",
+        "governance",
+        "guardrails",
+        "licenses"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/openai-frontier-explique-le-passage-aux-agents-d-ia-pour-l-entreprise.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        186
+      ],
+      "canonical_for": [],
+      "words": 2219,
+      "bytes": 14891,
+      "sha256": "1a5698f61b9a7ae1c89eb93f011360bc8c4a280c1aef97167c80b535d512c352"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/opencode-vs-claude-code-quel-outil-agentique-choisir",
+      "path": "collect-240926-datacamp/datacamp/opencode-vs-claude-code-quel-outil-agentique-choisir.md",
+      "title": "opencode-vs-claude-code-quel-outil-agentique-choisir",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Microsoft",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "claude",
+        "agents",
+        "benchmarks",
+        "context window",
+        "cost",
+        "gemini",
+        "glm",
+        "gpus",
+        "guardrails",
+        "kimi",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/opencode-vs-claude-code-quel-outil-agentique-choisir.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        208
+      ],
+      "canonical_for": [],
+      "words": 2398,
+      "bytes": 14914,
+      "sha256": "50a35c1d74abfc40fd8f0e40f7c01d7451866c6c9d0389a13a6b57d201fbe8e9"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/openshift-vs-kubernetes-explication-des-principales-differences",
+      "path": "collect-240926-datacamp/datacamp/openshift-vs-kubernetes-explication-des-principales-differences.md",
+      "title": "openshift-vs-kubernetes-explication-des-principales-differences",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "compute",
+        "cost",
+        "distribution",
+        "governance",
+        "license",
+        "licenses",
+        "pricing",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/openshift-vs-kubernetes-explication-des-principales-differences.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        350
+      ],
+      "canonical_for": [],
+      "words": 4067,
+      "bytes": 27617,
+      "sha256": "5dc715842d946d8d76d1cd5b369d7adff64869fad79b62678deffea11d59fb61"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/pourquoi-les-agents-dia-peinent-davantage-avec-le-code-data-science-quavec-le-code-genie-l",
+      "path": "collect-240926-datacamp/datacamp/pourquoi-les-agents-dia-peinent-davantage-avec-le-code-data-science-quavec-le-code-genie-l.md",
+      "title": "pourquoi-les-agents-dia-peinent-davantage-avec-le-code-data-science-quavec-le-code-genie-logiciel",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "cost",
+        "distribution",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/pourquoi-les-agents-dia-peinent-davantage-avec-le-code-data-science-quavec-le-code-genie-logiciel.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        173
+      ],
+      "canonical_for": [],
+      "words": 2039,
+      "bytes": 13166,
+      "sha256": "b65b6a2f5b141439b9a7ed622130ef154a6fcd28a6e8b13d501efd6c3849e127"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/principales-alternatives-a-docker-en-2026-un-guide-complet",
+      "path": "collect-240926-datacamp/datacamp/principales-alternatives-a-docker-en-2026-un-guide-complet.md",
+      "title": "Buildah scripting approach with CI integration",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "compute",
+        "cost",
+        "distribution",
+        "energy",
+        "governance",
+        "gpus",
+        "incident",
+        "latency",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/principales-alternatives-a-docker-en-2026-un-guide-complet.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        422
+      ],
+      "canonical_for": [],
+      "words": 5950,
+      "bytes": 43977,
+      "sha256": "570c637d55f1fa03d8373a5787ef84ff32828e5965525a670ff70fde08d5d2ac"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/qu-est-ce-que-codestral-de-mistral-principales-fonctionnalites-cas-d-usage-et-limites",
+      "path": "collect-240926-datacamp/datacamp/qu-est-ce-que-codestral-de-mistral-principales-fonctionnalites-cas-d-usage-et-limites.md",
+      "title": "qu-est-ce-que-codestral-de-mistral-principales-fonctionnalites-cas-d-usage-et-limites",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "DeepSeek",
+        "Hugging Face",
+        "Mistral"
+      ],
+      "dates": [],
+      "keywords": [
+        "mistral",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost",
+        "deepseek",
+        "fine-tuning",
+        "latency",
+        "license",
+        "llama",
+        "open-weight"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/qu-est-ce-que-codestral-de-mistral-principales-fonctionnalites-cas-d-usage-et-limites.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        205
+      ],
+      "canonical_for": [],
+      "words": 1774,
+      "bytes": 12382,
+      "sha256": "c897dcb0acf451da5a5d0bc6fc07978ea428b3989a6902ebc0af42a4e5fa54d6"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/qu-est-ce-que-git-guide-du-debutant-sur-le-controle-de-version-git",
+      "path": "collect-240926-datacamp/datacamp/qu-est-ce-que-git-guide-du-debutant-sur-le-controle-de-version-git.md",
+      "title": "qu-est-ce-que-git-guide-du-debutant-sur-le-controle-de-version-git",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "exploit",
+        "open source"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/qu-est-ce-que-git-guide-du-debutant-sur-le-controle-de-version-git.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        178
+      ],
+      "canonical_for": [],
+      "words": 2481,
+      "bytes": 15206,
+      "sha256": "84112d442721fbb2020083dc246dfab53518b0a8a75977f7b06b4ad5ce2c2777"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/qu-est-ce-que-github-le-guide-ultime",
+      "path": "collect-240926-datacamp/datacamp/qu-est-ce-que-github-le-guide-ultime.md",
+      "title": "qu-est-ce-que-github-le-guide-ultime",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "aws",
+        "distribution",
+        "license",
+        "open source"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/qu-est-ce-que-github-le-guide-ultime.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        249
+      ],
+      "canonical_for": [],
+      "words": 2314,
+      "bytes": 15191,
+      "sha256": "57a72983846862d1aff5b4b88c2b2e57f572b6653a7c0eeecc8d5095791afb21"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/quest-ce-quun-agent-harness-guide-pour-debutants",
+      "path": "collect-240926-datacamp/datacamp/quest-ce-quun-agent-harness-guide-pour-debutants.md",
+      "title": "Course",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-02",
+        "2026-04"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "aws",
+        "bedrock",
+        "claude",
+        "context window",
+        "cost",
+        "disclosure",
+        "gemini",
+        "guardrails",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/quest-ce-quun-agent-harness-guide-pour-debutants.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        198
+      ],
+      "canonical_for": [],
+      "words": 2739,
+      "bytes": 17301,
+      "sha256": "5d2803675779f0028e9f8bffb24db9b4aab0b02894a1c4ceb324550182699141"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/rag-par-rapport-a-cag-principales-differences-avantages-et-cas-d-utilisation",
+      "path": "collect-240926-datacamp/datacamp/rag-par-rapport-a-cag-principales-differences-avantages-et-cas-d-utilisation.md",
+      "title": "rag-par-rapport-a-cag-principales-differences-avantages-et-cas-d-utilisation",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "attention",
+        "aws",
+        "context window",
+        "cost",
+        "latency",
+        "memory",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/rag-par-rapport-a-cag-principales-differences-avantages-et-cas-d-utilisation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        344
+      ],
+      "canonical_for": [],
+      "words": 4206,
+      "bytes": 29435,
+      "sha256": "eb3e1b4babc367e36d49a038181ac2eadf0e674ab0b5e37ed97b91fa466a3b90"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/top-15-frameworks-python-pour-creer-des-applications-dia-agentique-completes",
+      "path": "collect-240926-datacamp/datacamp/top-15-frameworks-python-pour-creer-des-applications-dia-agentique-completes.md",
+      "title": "pip install -U langchain \"langchain[openai]\"",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "OpenAI",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "cost",
+        "gemini",
+        "gpt-5.6",
+        "guardrails",
+        "inference",
+        "llama",
+        "mcp",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/top-15-frameworks-python-pour-creer-des-applications-dia-agentique-completes.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        586
+      ],
+      "canonical_for": [],
+      "words": 3846,
+      "bytes": 29107,
+      "sha256": "f499e817941368749ce99b80a5108a5f7a11bc5ab2428f5b483e8de24f1bd25c"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/top-34-questions-d-entretien-mysql-et-reponses-pour-2026",
+      "path": "collect-240926-datacamp/datacamp/top-34-questions-d-entretien-mysql-et-reponses-pour-2026.md",
+      "title": "top-34-questions-d-entretien-mysql-et-reponses-pour-2026",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft",
+        "Oracle",
+        "United States"
+      ],
+      "dates": [
+        "2024-01-01",
+        "2024-12-24",
+        "2024-12-31",
+        "9999-12-31"
+      ],
+      "keywords": [
+        "cost",
+        "memory",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/top-34-questions-d-entretien-mysql-et-reponses-pour-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        687
+      ],
+      "canonical_for": [],
+      "words": 4460,
+      "bytes": 28699,
+      "sha256": "06982b7e0dfd2036f57ee4da77a82abed74e9f58b2f236ad1e86235661bcc07c"
+    },
+    {
+      "id": "collect-240926-datacamp/datacamp/un-stack-tech-de-vibe-coding-pragmatique-pour-livrer-vite",
+      "path": "collect-240926-datacamp/datacamp/un-stack-tech-de-vibe-coding-pragmatique-pour-livrer-vite.md",
+      "title": "un-stack-tech-de-vibe-coding-pragmatique-pour-livrer-vite",
+      "domain": "datacamp",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Mistral",
+        "OpenAI",
+        "Stripe"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "cost",
+        "mcp",
+        "open source",
+        "pricing",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean_en/datacamp/un-stack-tech-de-vibe-coding-pragmatique-pour-livrer-vite.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        305
+      ],
+      "canonical_for": [],
+      "words": 2982,
+      "bytes": 19017,
+      "sha256": "2322762856244bf4e2ea038f93678625b1954e63f0c05e542e63cf44f93b0471"
+    }
+  ]
+}

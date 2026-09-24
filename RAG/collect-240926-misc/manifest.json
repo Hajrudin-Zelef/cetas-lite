@@ -1,0 +1,1182 @@
+{
+  "corpus": "collect-240926-misc",
+  "title": "Collect 240926 — longue traîne (14 sites)",
+  "source": "docs/RAG/clean_en/misc",
+  "source_dir": "docs/RAG/clean_en/misc",
+  "source_files": 29,
+  "source_sha256": "ef4734eeb04ccbfb0058514a0f4c7cceea54f79328c83f78191b3936a8c3ca38",
+  "chunk_count": 29,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-240926-misc/misc/adoption-de-l-ia-la-france-s-installe-a-la-4-place-du-classement-mondial",
+      "path": "collect-240926-misc/misc/adoption-de-l-ia-la-france-s-installe-a-la-4-place-du-classement-mondial.md",
+      "title": "adoption-de-l-ia-la-france-s-installe-a-la-4-place-du-classement-mondial",
+      "domain": "blogdumoderateur",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Microsoft",
+        "Moonshot",
+        "OpenRouter"
+      ],
+      "dates": [],
+      "keywords": [
+        "copilot",
+        "cost",
+        "deepseek",
+        "diffusion",
+        "kimi",
+        "lean",
+        "open weights",
+        "qwen"
+      ],
+      "source": "docs/RAG/clean_en/misc/adoption-de-l-ia-la-france-s-installe-a-la-4-place-du-classement-mondial.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        27
+      ],
+      "canonical_for": [],
+      "words": 538,
+      "bytes": 3285,
+      "sha256": "88fef4f5760f41ada6ddfdbe13346f5674d01a406778e08274449caee9dd69fe"
+    },
+    {
+      "id": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret",
+      "path": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret.md",
+      "title": "aux-etats-unis-les-data-centers-se-negocient-dans-le-secret",
+      "domain": "blogdumoderateur",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Applied Digital",
+        "California",
+        "Meta",
+        "United States"
+      ],
+      "dates": [
+        "2023-12",
+        "2025-03",
+        "2025-12"
+      ],
+      "keywords": [
+        "agent",
+        "disclosure",
+        "energy",
+        "research"
+      ],
+      "source": "docs/RAG/clean_en/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1693,
+      "bytes": 10759,
+      "sha256": "3a73ebd62d4597f3beb89bd5b66a6043fcbea997c1b367d092950cc08a3eba83"
+    },
+    {
+      "id": "collect-240926-misc/misc/benchmarking-gpt-6-astra",
+      "path": "collect-240926-misc/misc/benchmarking-gpt-6-astra.md",
+      "title": "benchmarking-gpt-6-astra",
+      "domain": "artificialanalysis",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Meta",
+        "OpenAI",
+        "SpaceX",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "astra",
+        "benchmark",
+        "gpt-6",
+        "agent",
+        "claude",
+        "cost",
+        "fable 5",
+        "glm",
+        "gpt-5.6",
+        "grok",
+        "grok 4",
+        "luna"
+      ],
+      "source": "docs/RAG/clean_en/misc/benchmarking-gpt-6-astra.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        73
+      ],
+      "canonical_for": [],
+      "words": 1135,
+      "bytes": 6868,
+      "sha256": "279783666c96b2eeed74a72e6d7f4982686755ee03ba17951f61035af2f22345"
+    },
+    {
+      "id": "collect-240926-misc/misc/claude-opus-5-5-et-gpt-6-sol-sortent-le-maame-jour-anthropic-et-openai-ont-du-mal-a-a-rale",
+      "path": "collect-240926-misc/misc/claude-opus-5-5-et-gpt-6-sol-sortent-le-maame-jour-anthropic-et-openai-ont-du-mal-a-a-rale.md",
+      "title": "claude-opus-5-5-et-gpt-6-sol-sortent-le-maame-jour-anthropic-et-openai-ont-du-mal-a-a-ralentir-a-l-i",
+      "domain": "numerama",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Meta",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2023-03-14",
+        "2026-08-02"
+      ],
+      "keywords": [
+        "claude",
+        "gpt-6",
+        "sol",
+        "agents",
+        "agi",
+        "astra",
+        "benchmarks",
+        "chatgpt",
+        "cost",
+        "cybersecurity",
+        "fable 5",
+        "gemini"
+      ],
+      "source": "docs/RAG/clean_en/misc/claude-opus-5-5-et-gpt-6-sol-sortent-le-maame-jour-anthropic-et-openai-ont-du-mal-a-a-ralentir-a-l-i.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        80
+      ],
+      "canonical_for": [],
+      "words": 1112,
+      "bytes": 6797,
+      "sha256": "cd0217a1c9aa30f81cf1c808738dec8256d055949105699c39d9195f6ff6bca3"
+    },
+    {
+      "id": "collect-240926-misc/misc/claude-opus-5-5-face-a-gpt-6-sol-et-luna-trois-nouvelles-ia-d-un-coup-et-des-pri",
+      "path": "collect-240926-misc/misc/claude-opus-5-5-face-a-gpt-6-sol-et-luna-trois-nouvelles-ia-d-un-coup-et-des-pri.md",
+      "title": "Claude Opus 5.5 vs GPT-6 Sol and Luna: three new AIs at once, and falling prices",
+      "domain": "lesnumeriques",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "gpt-6",
+        "luna",
+        "opus 5",
+        "sol",
+        "agents",
+        "astra",
+        "benchmarks",
+        "fable 5",
+        "gpt-5.6",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/misc/claude-opus-5-5-face-a-gpt-6-sol-et-luna-trois-nouvelles-ia-d-un-coup-et-des-pri.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        26
+      ],
+      "canonical_for": [],
+      "words": 359,
+      "bytes": 2287,
+      "sha256": "c328b70a4aeae11ef74dbfc0428935c37710ca86cafd02c686fe770a7c217fd9"
+    },
+    {
+      "id": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores",
+      "path": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores.md",
+      "title": "claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores",
+      "domain": "orcarouter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "claude",
+        "gpt-6",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "context window",
+        "cost",
+        "cybersecurity",
+        "fable 5",
+        "gpt-5.6",
+        "incident"
+      ],
+      "source": "docs/RAG/clean_en/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        87
+      ],
+      "canonical_for": [],
+      "words": 2028,
+      "bytes": 12408,
+      "sha256": "15fd5eaffba14d5376ea4f4fe3937ed38176a8e47b5664d338db24e50307771e"
+    },
+    {
+      "id": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation",
+      "path": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation.md",
+      "title": "deepseek-v4-how-to-run-locally-unsloth-documentation",
+      "domain": "unsloth",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Perplexity",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "agentic",
+        "agents",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "fp8",
+        "gguf",
+        "gpu",
+        "inference",
+        "kv cache"
+      ],
+      "source": "docs/RAG/clean_en/misc/deepseek-v4-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        356
+      ],
+      "canonical_for": [],
+      "words": 1495,
+      "bytes": 10012,
+      "sha256": "72ffb93d4986ddeb167281a9b432f09fe8ffa97006540cec0622eb60e465a59a"
+    },
+    {
+      "id": "collect-240926-misc/misc/glm-5-3-flash-how-to-run-locally-unsloth-documentation",
+      "path": "collect-240926-misc/misc/glm-5-3-flash-how-to-run-locally-unsloth-documentation.md",
+      "title": "glm-5-3-flash-how-to-run-locally-unsloth-documentation",
+      "domain": "unsloth",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "Google",
+        "Nvidia",
+        "OpenAI",
+        "Unsloth",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "glm",
+        "agentic",
+        "agents",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "deepseek",
+        "gemini",
+        "gpt-5.6",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean_en/misc/glm-5-3-flash-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        448
+      ],
+      "canonical_for": [],
+      "words": 865,
+      "bytes": 5625,
+      "sha256": "6b56b0ed0067eb34518eab549034f48603238eb4f017406143c7f5a84593f48c"
+    },
+    {
+      "id": "collect-240926-misc/misc/glm-5-3-how-to-run-locally-unsloth-documentation",
+      "path": "collect-240926-misc/misc/glm-5-3-how-to-run-locally-unsloth-documentation.md",
+      "title": "glm-5-3-how-to-run-locally-unsloth-documentation",
+      "domain": "unsloth",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "DeepSeek",
+        "ExploitGym",
+        "Hugging Face",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Unsloth",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "glm",
+        "agentic",
+        "agents",
+        "benchmark",
+        "context window",
+        "cyber",
+        "deepseek",
+        "fable 5",
+        "gguf",
+        "gpt-5.6",
+        "gpu",
+        "inference"
+      ],
+      "source": "docs/RAG/clean_en/misc/glm-5-3-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        537
+      ],
+      "canonical_for": [],
+      "words": 1065,
+      "bytes": 6974,
+      "sha256": "e86de6f05f56b3ccbfd95c4e1993f09098114ab8533c061f22c765e6fa36e586"
+    },
+    {
+      "id": "collect-240926-misc/misc/go",
+      "path": "collect-240926-misc/misc/go.md",
+      "title": "Go",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "LongCat",
+        "Meta",
+        "Microsoft",
+        "MiniMax",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-30"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "copilot",
+        "cost",
+        "deepseek",
+        "glm",
+        "gpt-5.6",
+        "gpt-6",
+        "gpu",
+        "grok",
+        "grok 4"
+      ],
+      "source": "docs/RAG/clean_en/misc/go.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        332
+      ],
+      "canonical_for": [],
+      "words": 3454,
+      "bytes": 19935,
+      "sha256": "795137dd96bf457f91b0720a88a163d267093583323ccf8e6c63bba4b64f78c6"
+    },
+    {
+      "id": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul",
+      "path": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul.md",
+      "title": "GPT-6 Astra: the most intelligent and best-aligned model in the world",
+      "domain": "koul",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Hugging Face",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-09-03"
+      ],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agentic",
+        "agents",
+        "agi",
+        "alignment",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude"
+      ],
+      "source": "docs/RAG/clean_en/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        77
+      ],
+      "canonical_for": [],
+      "words": 1529,
+      "bytes": 9785,
+      "sha256": "9dd2e7222cafc8d29b204963b975f10721b4eb317e25f75e5b60343c92ec0f8c"
+    },
+    {
+      "id": "collect-240926-misc/misc/introduction",
+      "path": "collect-240926-misc/misc/introduction.md",
+      "title": "Introduction",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "open source"
+      ],
+      "source": "docs/RAG/clean_en/misc/introduction.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        121
+      ],
+      "canonical_for": [],
+      "words": 703,
+      "bytes": 4082,
+      "sha256": "5b78878ce208e0fefd69f710895c6a957f920964c082a98ec3454f4f09733885"
+    },
+    {
+      "id": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation",
+      "path": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation.md",
+      "title": "kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation",
+      "domain": "poyo",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Moonshot",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07-21"
+      ],
+      "keywords": [
+        "agent",
+        "kimi",
+        "agents",
+        "benchmarks",
+        "cost",
+        "gpt-5.6",
+        "latency",
+        "pricing",
+        "reasoning",
+        "research",
+        "sol",
+        "tool use"
+      ],
+      "source": "docs/RAG/clean_en/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        314
+      ],
+      "canonical_for": [],
+      "words": 1795,
+      "bytes": 11307,
+      "sha256": "5a97cbde93e23d05040abceac2cc83b0dff5fc76ab8e15ab0f6ea9f4fd6364d7"
+    },
+    {
+      "id": "collect-240926-misc/misc/kimi-k3-how-to-run-locally-unsloth-documentation",
+      "path": "collect-240926-misc/misc/kimi-k3-how-to-run-locally-unsloth-documentation.md",
+      "title": "kimi-k3-how-to-run-locally-unsloth-documentation",
+      "domain": "unsloth",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "kimi",
+        "agentic",
+        "benchmarks",
+        "claude",
+        "compute",
+        "context window",
+        "gguf",
+        "gpt-5.6",
+        "gpu",
+        "inference",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/clean_en/misc/kimi-k3-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        305
+      ],
+      "canonical_for": [],
+      "words": 1222,
+      "bytes": 7608,
+      "sha256": "6294863aa7a03ac868395a2c5836cc141d4e929a69307b83d2319f2b5384566a"
+    },
+    {
+      "id": "collect-240926-misc/misc/llama-4-how-to-run-fine-tune-unsloth-documentation",
+      "path": "collect-240926-misc/misc/llama-4-how-to-run-fine-tune-unsloth-documentation.md",
+      "title": "llama-4-how-to-run-fine-tune-unsloth-documentation",
+      "domain": "unsloth",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "llama",
+        "attention",
+        "gguf",
+        "gpu",
+        "gpus",
+        "inference",
+        "llama.cpp",
+        "memory",
+        "moe",
+        "parameters",
+        "quantization",
+        "scout"
+      ],
+      "source": "docs/RAG/clean_en/misc/llama-4-how-to-run-fine-tune-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 561,
+      "bytes": 3834,
+      "sha256": "7ba71d30c5587242b798d3e9374d6f1366eb75f0e91fb799c9115955e3ff13c3"
+    },
+    {
+      "id": "collect-240926-misc/misc/meta-lance-muse-spark-1-3-axe-sur-le-code-et-le-contexte-long",
+      "path": "collect-240926-misc/misc/meta-lance-muse-spark-1-3-axe-sur-le-code-et-le-contexte-long.md",
+      "title": "meta-lance-muse-spark-1-3-axe-sur-le-code-et-le-contexte-long",
+      "domain": "blogdumoderateur",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "muse",
+        "agent",
+        "agentic",
+        "benchmarks",
+        "claude",
+        "gemini",
+        "gpt-5.6",
+        "muse spark",
+        "opus 5",
+        "reasoning",
+        "sol"
+      ],
+      "source": "docs/RAG/clean_en/misc/meta-lance-muse-spark-1-3-axe-sur-le-code-et-le-contexte-long.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        20
+      ],
+      "canonical_for": [],
+      "words": 433,
+      "bytes": 2698,
+      "sha256": "05b1baf4b4deda2950693301f6e3a05f0c2d0d0bbf1923cd42211e500e528489"
+    },
+    {
+      "id": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege",
+      "path": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege.md",
+      "title": "mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege",
+      "domain": "orcarouter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Moonshot",
+        "OpenAI",
+        "Xiaomi",
+        "Z.ai"
+      ],
+      "dates": [
+        "2025-12",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "agent",
+        "astra",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "cost",
+        "embedding",
+        "fable 5",
+        "fp8",
+        "glm"
+      ],
+      "source": "docs/RAG/clean_en/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        71
+      ],
+      "canonical_for": [],
+      "words": 1791,
+      "bytes": 11055,
+      "sha256": "e06676d348953248264ef27d738a1713e51d07ad354f82c2386f0415c17ac2de"
+    },
+    {
+      "id": "collect-240926-misc/misc/mimo-v2-6-flash-a-pricing-benchmarks-speed-command-code",
+      "path": "collect-240926-misc/misc/mimo-v2-6-flash-a-pricing-benchmarks-speed-command-code.md",
+      "title": "MiMo V2.6 Flash",
+      "domain": "commandcode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Meta"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "claude",
+        "cost",
+        "deepseek",
+        "multimodal",
+        "muse",
+        "muse spark"
+      ],
+      "source": "docs/RAG/clean_en/misc/mimo-v2-6-flash-a-pricing-benchmarks-speed-command-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 466,
+      "bytes": 2458,
+      "sha256": "2b9d6088576539ca05e0d855eee81c7512bf169c4c26805378687e4557e6693d"
+    },
+    {
+      "id": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026",
+      "path": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026.md",
+      "title": "mimo-v2-6-pro-benchmarks-pricing-speed-september-2026",
+      "domain": "benchlm",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "ExploitGym",
+        "Meta",
+        "OpenAI",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09-22",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "pricing",
+        "agentic",
+        "agents",
+        "astra",
+        "claude",
+        "context window",
+        "cost",
+        "cyber",
+        "deepseek",
+        "gpt-6"
+      ],
+      "source": "docs/RAG/clean_en/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        190
+      ],
+      "canonical_for": [],
+      "words": 1681,
+      "bytes": 10886,
+      "sha256": "b22023047291d690f434bcebe8c2d44d0977df099f090cc8fbbe49fae913a518"
+    },
+    {
+      "id": "collect-240926-misc/misc/muse-spark-1-2-benchmarks-and-analysis",
+      "path": "collect-240926-misc/misc/muse-spark-1-2-benchmarks-and-analysis.md",
+      "title": "Muse Spark 1.2: Improved Agentic Performance at Higher Cost per Task",
+      "domain": "artificialanalysis",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Meta",
+        "Moonshot",
+        "OpenAI",
+        "SpaceX",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "cost",
+        "muse",
+        "muse spark",
+        "benchmarks",
+        "claude",
+        "context window",
+        "fable 5",
+        "gpt-5.6",
+        "gpt-6",
+        "grok"
+      ],
+      "source": "docs/RAG/clean_en/misc/muse-spark-1-2-benchmarks-and-analysis.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 843,
+      "bytes": 5367,
+      "sha256": "23c2e2bc36261a6eae72ee7c4b23d8ac312d306e83ed259b26707ea394759a85"
+    },
+    {
+      "id": "collect-240926-misc/misc/openai-classe-gpt-6-astra-critique-en-cybersecurite-brief-ia",
+      "path": "collect-240926-misc/misc/openai-classe-gpt-6-astra-critique-en-cybersecurite-brief-ia.md",
+      "title": "openai-classe-gpt-6-astra-critique-en-cybersecurite-brief-ia",
+      "domain": "briefia",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agi",
+        "alignment",
+        "attention",
+        "chatgpt",
+        "cybersecurity",
+        "exploit",
+        "reasoning",
+        "research",
+        "safeguards",
+        "sol"
+      ],
+      "source": "docs/RAG/clean_en/misc/openai-classe-gpt-6-astra-critique-en-cybersecurite-brief-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 691,
+      "bytes": 4749,
+      "sha256": "bdcadf323574f08c09c7e524c6006bde9b563573599d785d3f1579e228fca0c3"
+    },
+    {
+      "id": "collect-240926-misc/misc/openai-lance-gpt-6-sol-et-luna-avec-des-tarifs-api-divises-par-deux",
+      "path": "collect-240926-misc/misc/openai-lance-gpt-6-sol-et-luna-avec-des-tarifs-api-divises-par-deux.md",
+      "title": "openai-lance-gpt-6-sol-et-luna-avec-des-tarifs-api-divises-par-deux",
+      "domain": "blogdumoderateur",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpt-6",
+        "luna",
+        "sol",
+        "agents",
+        "astra",
+        "chatgpt",
+        "claude",
+        "cost",
+        "fable 5",
+        "gpt-5.6",
+        "opus 5",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/misc/openai-lance-gpt-6-sol-et-luna-avec-des-tarifs-api-divises-par-deux.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        32
+      ],
+      "canonical_for": [],
+      "words": 492,
+      "bytes": 3112,
+      "sha256": "e52d1399b16c14e7e7e0a6de18d9249eefb4af7cbc8c44e00debf3c280593058"
+    },
+    {
+      "id": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
+      "path": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
+      "title": "processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
+      "domain": "amd",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [
+        "2022-03-11",
+        "2022-10-11",
+        "2022-11-03",
+        "2022-11-10",
+        "2022-19-09"
+      ],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "cost",
+        "energy",
+        "intel",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 2857,
+      "bytes": 25859,
+      "sha256": "0d8a8308e19b79ccba1d9605890d4c4f56269bfd6576dbeced6b908068b09aee"
+    },
+    {
+      "id": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things",
+      "path": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things.md",
+      "title": "qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things",
+      "domain": "simonwillison",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "qwen",
+        "agent",
+        "agents",
+        "apache",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "consumer",
+        "cost",
+        "datacenter"
+      ],
+      "source": "docs/RAG/clean_en/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        196
+      ],
+      "canonical_for": [],
+      "words": 2130,
+      "bytes": 13007,
+      "sha256": "a3bcbd7c22ca5a2f93ab483af0d26eedc1248ced4f3aa4cbb702fee14b728e42"
+    },
+    {
+      "id": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running",
+      "path": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running.md",
+      "title": "qwen3-8-27b-review-the-open-weight-27b-worth-running",
+      "domain": "orcarouter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Anthropic",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-08-14",
+        "2026-08-15"
+      ],
+      "keywords": [
+        "qwen",
+        "agent",
+        "agentic",
+        "amd",
+        "apache",
+        "attention",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "cost",
+        "datacenter",
+        "fp8"
+      ],
+      "source": "docs/RAG/clean_en/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        97
+      ],
+      "canonical_for": [],
+      "words": 1721,
+      "bytes": 10412,
+      "sha256": "1282024efa7b34d0c1fe8827f138125be77649ee5aa540455187d476d027148f"
+    },
+    {
+      "id": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026",
+      "path": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026.md",
+      "title": "qwen3-8-flash-next-benchmarks-speed-september-2026",
+      "domain": "benchlm",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Moonshot",
+        "OpenAI",
+        "Sakana"
+      ],
+      "dates": [
+        "2026-08-26",
+        "2026-09-23"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "qwen",
+        "agent",
+        "agentic",
+        "agents",
+        "astra",
+        "claude",
+        "context window",
+        "cost",
+        "deepseek",
+        "fable 5"
+      ],
+      "source": "docs/RAG/clean_en/misc/qwen3-8-flash-next-benchmarks-speed-september-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        258
+      ],
+      "canonical_for": [],
+      "words": 2360,
+      "bytes": 15513,
+      "sha256": "01bd8e7e64c6eb3e1ad5efcfa2f5b39df16c408ef6f95dcc4bc7f575eabb9302"
+    },
+    {
+      "id": "collect-240926-misc/misc/qwen3-8-flash-next-how-to-run-locally-unsloth-documentation",
+      "path": "collect-240926-misc/misc/qwen3-8-flash-next-how-to-run-locally-unsloth-documentation.md",
+      "title": "qwen3-8-flash-next-how-to-run-locally-unsloth-documentation",
+      "domain": "unsloth",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Nvidia",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "qwen",
+        "benchmarks",
+        "claude",
+        "context window",
+        "cost",
+        "embeddings",
+        "gguf",
+        "gpu",
+        "gpus",
+        "inference",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/clean_en/misc/qwen3-8-flash-next-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        266
+      ],
+      "canonical_for": [],
+      "words": 1115,
+      "bytes": 7276,
+      "sha256": "b8327678d1bddebea774267d8ae0c56acd3dab5c24ee1fb5556f149531c56c73"
+    },
+    {
+      "id": "collect-240926-misc/misc/utilisation-coa-t-et-rang-de-test-opencode-data",
+      "path": "collect-240926-misc/misc/utilisation-coa-t-et-rang-de-test-opencode-data.md",
+      "title": "test",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost"
+      ],
+      "source": "docs/RAG/clean_en/misc/utilisation-coa-t-et-rang-de-test-opencode-data.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 96,
+      "bytes": 809,
+      "sha256": "6ccab2291d9b3669d6158005452cae87ea5bfb18e4512e474186259c18f8c943"
+    },
+    {
+      "id": "collect-240926-misc/misc/zen",
+      "path": "collect-240926-misc/misc/zen.md",
+      "title": "Zen",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "United States",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-02-06",
+        "2026-02-16",
+        "2026-03-06",
+        "2026-03-09",
+        "2026-03-15",
+        "2026-05-14",
+        "2026-06-15",
+        "2026-07-23",
+        "2026-08-05"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "astra",
+        "benchmark",
+        "claude",
+        "cost",
+        "deepseek",
+        "fable 5",
+        "gemini",
+        "gemini 3.8",
+        "glm",
+        "gpt-5.6"
+      ],
+      "source": "docs/RAG/clean_en/misc/zen.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        309
+      ],
+      "canonical_for": [],
+      "words": 3693,
+      "bytes": 21857,
+      "sha256": "02fa0a5ae1edc280191d2d7013858033aa8e1528764d8e8cf53dc972681b9c39"
+    }
+  ]
+}

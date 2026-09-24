@@ -80,5 +80,16 @@ Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source déj
 | `vague2-datacamp` | DataCamp — articles IA, data & dev (Collect Vague 2) |  | 68 | `docs/RAG/Collect RAG Vague 2/02_datacamp` | [INDEX](vague2-datacamp/INDEX.md) |
 | `vague2-nerdykings` | NerdyKings — guides IA & dev (Collect Vague 2) |  | 34 | `docs/RAG/Collect RAG Vague 2/03_nerdykings` | [INDEX](vague2-nerdykings/INDEX.md) |
 | `vague2-vision-ia` | Vision-IA — newsletter IA (Collect Vague 2) |  | 55 | `docs/RAG/Collect RAG Vague 2/04_vision_ia` | [INDEX](vague2-vision-ia/INDEX.md) |
+| `collect-240926-mindstudio` | MindStudio — agents, modèles & routing (Collect 240926) |  | 170 | `docs/RAG/clean_en/mindstudio` | [INDEX](collect-240926-mindstudio/INDEX.md) |
+| `collect-240926-huggingface` | Hugging Face — modèles & fiches (Collect 240926) |  | 125 | `docs/RAG/clean_en/huggingface` | [INDEX](collect-240926-huggingface/INDEX.md) |
+| `collect-240926-storagereview` | StorageReview — stockage & serveurs (Collect 240926) |  | 74 | `docs/RAG/clean_en/storagereview` | [INDEX](collect-240926-storagereview/INDEX.md) |
+| `collect-240926-datacamp` | DataCamp — IA, data & dev (Collect 240926) |  | 69 | `docs/RAG/clean_en/datacamp` | [INDEX](collect-240926-datacamp/INDEX.md) |
+| `collect-240926-tomshardware` | Tom's Hardware — CPU, GPU & PC (Collect 240926) |  | 68 | `docs/RAG/clean_en/tomshardware` | [INDEX](collect-240926-tomshardware/INDEX.md) |
+| `collect-240926-vision-ia` | Vision-IA — newsletter IA (Collect 240926) |  | 55 | `docs/RAG/clean_en/vision-ia` | [INDEX](collect-240926-vision-ia/INDEX.md) |
+| `collect-240926-nerdykings` | NerdyKings — guides IA & dev (Collect 240926) |  | 34 | `docs/RAG/clean_en/nerdykings` | [INDEX](collect-240926-nerdykings/INDEX.md) |
+| `collect-240926-korben` | Korben.info — veille IA & tech (Collect 240926) |  | 18 | `docs/RAG/clean_en/korben` | [INDEX](collect-240926-korben/INDEX.md) |
+| `collect-240926-frandroid` | FrAndroid — mobile & tech (Collect 240926) |  | 14 | `docs/RAG/clean_en/frandroid` | [INDEX](collect-240926-frandroid/INDEX.md) |
+| `collect-240926-hardwarecooking` | HardwareCooking — PC & matériel (Collect 240926) |  | 12 | `docs/RAG/clean_en/hardwarecooking` | [INDEX](collect-240926-hardwarecooking/INDEX.md) |
+| `collect-240926-misc` | Collect 240926 — longue traîne (14 sites) |  | 29 | `docs/RAG/clean_en/misc` | [INDEX](collect-240926-misc/INDEX.md) |
 
 Voir aussi [README](README.md) et `manifest.json`.

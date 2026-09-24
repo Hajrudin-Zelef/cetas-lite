@@ -1012,6 +1012,21 @@ def _type_task(body):
     return ""
 
 
+_SRC_URL = re.compile(r"<!--\s*source:\s*(\S+?)\s*-->")
+
+
+def _domain_from_source(body):
+    """Domaine (1er label d'hôte) issu du marqueur `<!-- source: URL -->`.
+    Les corpus sans site-fichiers explicite gardent ainsi le vrai site comme
+    facet `domain`, au lieu du dossier générique."""
+    m = _SRC_URL.search(body[:500])
+    if not m:
+        return ""
+    h = re.sub(r"^https?://", "", m.group(1)).split("/")[0]
+    h = re.sub(r"^www\.", "", h)
+    return h.split(".")[0].lower()
+
+
 def files_items(cfg):
     base = ROOT / cfg["source_dir"]
     if not base.is_dir():
@@ -1032,7 +1047,8 @@ def files_items(cfg):
             "folder": folder, "slug": slug, "title": title, "body": body,
             "src": str(p.relative_to(ROOT)),
             "start": 1, "end": len(body.splitlines()),
-            "domain": cfg.get("domain", folder), "role": "reference",
+            "domain": cfg.get("domain") or _domain_from_source(body) or folder,
+            "role": "reference",
             "task": _type_task(body) or cfg.get("task", "reference"),
         })
     return items
@@ -1790,6 +1806,83 @@ CORPORA = [
         "title": "Vision-IA — newsletter IA (Collect Vague 2)",
         "source_dir": "docs/RAG/Collect RAG Vague 2/04_vision_ia",
         "mode": "files", "folder": "vision-ia",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-mindstudio",
+        "title": "MindStudio — agents, modèles & routing (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/mindstudio",
+        "mode": "files", "folder": "mindstudio",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-huggingface",
+        "title": "Hugging Face — modèles & fiches (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/huggingface",
+        "mode": "files", "folder": "huggingface",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-storagereview",
+        "title": "StorageReview — stockage & serveurs (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/storagereview",
+        "mode": "files", "folder": "storagereview",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-datacamp",
+        "title": "DataCamp — IA, data & dev (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/datacamp",
+        "mode": "files", "folder": "datacamp",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-tomshardware",
+        "title": "Tom's Hardware — CPU, GPU & PC (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/tomshardware",
+        "mode": "files", "folder": "tomshardware",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-vision-ia",
+        "title": "Vision-IA — newsletter IA (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/vision-ia",
+        "mode": "files", "folder": "vision-ia",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-nerdykings",
+        "title": "NerdyKings — guides IA & dev (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/nerdykings",
+        "mode": "files", "folder": "nerdykings",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-korben",
+        "title": "Korben.info — veille IA & tech (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/korben",
+        "mode": "files", "folder": "korben",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-frandroid",
+        "title": "FrAndroid — mobile & tech (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/frandroid",
+        "mode": "files", "folder": "frandroid",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-hardwarecooking",
+        "title": "HardwareCooking — PC & matériel (Collect 240926)",
+        "source_dir": "docs/RAG/clean_en/hardwarecooking",
+        "mode": "files", "folder": "hardwarecooking",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-240926-misc",
+        "title": "Collect 240926 — longue traîne (14 sites)",
+        "source_dir": "docs/RAG/clean_en/misc",
+        "mode": "files", "folder": "misc",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
 ]

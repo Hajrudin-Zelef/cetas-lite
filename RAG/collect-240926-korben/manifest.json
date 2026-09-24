@@ -1,0 +1,625 @@
+{
+  "corpus": "collect-240926-korben",
+  "title": "Korben.info — veille IA & tech (Collect 240926)",
+  "source": "docs/RAG/clean_en/korben",
+  "source_dir": "docs/RAG/clean_en/korben",
+  "source_files": 18,
+  "source_sha256": "765a194a97b31e0dd4c8cdcb09c9da257e2edae5d87ead7dbecd8a106bcc6d87",
+  "chunk_count": 18,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-240926-korben/korben/chatgpt-openai-rend-son-ia-gratuite-plus-douae-pour-comprendre-ce-que-vous-voulez-vraiment",
+      "path": "collect-240926-korben/korben/chatgpt-openai-rend-son-ia-gratuite-plus-douae-pour-comprendre-ce-que-vous-voulez-vraiment.md",
+      "title": "ChatGPT: OpenAI makes its free AI better at understanding what you really want",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "chatgpt",
+        "claude",
+        "cost",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/korben/chatgpt-openai-rend-son-ia-gratuite-plus-douae-pour-comprendre-ce-que-vous-voulez-vraiment-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        35
+      ],
+      "canonical_for": [],
+      "words": 535,
+      "bytes": 3338,
+      "sha256": "aa29cc8bbd11019bdc21974db26c0550c9bd57e12658ed58194469923252de99"
+    },
+    {
+      "id": "collect-240926-korben/korben/claude-opus-5-anthropic-vous-refile-du-fable-5-pour-moins-cher-korben",
+      "path": "collect-240926-korben/korben/claude-opus-5-anthropic-vous-refile-du-fable-5-pour-moins-cher-korben.md",
+      "title": "Claude Opus 5: Anthropic hands you Fable 5 for less",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "fable 5",
+        "opus 5",
+        "agent",
+        "agi",
+        "benchmarks",
+        "context window",
+        "memory",
+        "opus 4",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean_en/korben/claude-opus-5-anthropic-vous-refile-du-fable-5-pour-moins-cher-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 542,
+      "bytes": 3198,
+      "sha256": "0a22fafcd89a7ced383e1955c9596339b283880e1e9783399d822b3225bcd18a"
+    },
+    {
+      "id": "collect-240926-korben/korben/cloudflare-lance-son-skill-d-audit-de-sacurita-par-ia-korben",
+      "path": "collect-240926-korben/korben/cloudflare-lance-son-skill-d-audit-de-sacurita-par-ia-korben.md",
+      "title": "Cloudflare launches its AI security audit skill",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "cybersecurity",
+        "exploit",
+        "guardrails",
+        "license",
+        "memory",
+        "mit license",
+        "sandbox"
+      ],
+      "source": "docs/RAG/clean_en/korben/cloudflare-lance-son-skill-d-audit-de-sacurita-par-ia-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 952,
+      "bytes": 5753,
+      "sha256": "d661b940c5cb85bbc316481f2880747c845b0dc04f24ecdf99fd9d8661a9d5cf"
+    },
+    {
+      "id": "collect-240926-korben/korben/diffusiongemma-le-nouveau-moda-le-de-google-acrit-son-texte-d-un-bloc-et-4-fois-plus-vite-",
+      "path": "collect-240926-korben/korben/diffusiongemma-le-nouveau-moda-le-de-google-acrit-son-texte-d-un-bloc-et-4-fois-plus-vite-.md",
+      "title": "DiffusionGemma: Google's new model writes its text in one block, and 4 times faster",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "diffusion",
+        "accelerator",
+        "apache",
+        "claude",
+        "consumer",
+        "gemini",
+        "gpu",
+        "license",
+        "memory",
+        "mixture of experts",
+        "nvidia",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/korben/diffusiongemma-le-nouveau-moda-le-de-google-acrit-son-texte-d-un-bloc-et-4-fois-plus-vite-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 615,
+      "bytes": 3840,
+      "sha256": "eb4bbbc720166e3b6551739b4792361d64ae9f4806cfd2ab661ffa1c837618ab"
+    },
+    {
+      "id": "collect-240926-korben/korben/firefox-inta-gre-l-ia-de-mistral-et-la-france-y-a-droit-avant-tout-le-monde-korben",
+      "path": "collect-240926-korben/korben/firefox-inta-gre-l-ia-de-mistral-et-la-france-y-a-droit-avant-tout-le-monde-korben.md",
+      "title": "Firefox integrates Mistral's AI and France gets it before everyone else",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "California",
+        "China",
+        "Google",
+        "Mistral",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "mistral",
+        "apache",
+        "claude",
+        "gemini",
+        "license",
+        "qwen"
+      ],
+      "source": "docs/RAG/clean_en/korben/firefox-inta-gre-l-ia-de-mistral-et-la-france-y-a-droit-avant-tout-le-monde-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        35
+      ],
+      "canonical_for": [],
+      "words": 504,
+      "bytes": 3096,
+      "sha256": "9adc31f52f9a307c59111c0095d8c5762a26f9f1a933856d9121887a5a95ef77"
+    },
+    {
+      "id": "collect-240926-korben/korben/gemini-arrive-sur-windows-avec-quelques-limites-korben",
+      "path": "collect-240926-korben/korben/gemini-arrive-sur-windows-avec-quelques-limites-korben.md",
+      "title": "Gemini arrives on Windows, with some limitations",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "gemini",
+        "agent",
+        "claude",
+        "memory",
+        "omni"
+      ],
+      "source": "docs/RAG/clean_en/korben/gemini-arrive-sur-windows-avec-quelques-limites-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        29
+      ],
+      "canonical_for": [],
+      "words": 488,
+      "bytes": 3107,
+      "sha256": "cb528d313db2a1607543fcec379f72c053200dd360a9759c08415ef443863a2c"
+    },
+    {
+      "id": "collect-240926-korben/korben/glm-5-2-le-premier-moda-le-ia-open-source-que-je-garde-korben",
+      "path": "collect-240926-korben/korben/glm-5-2-le-premier-moda-le-ia-open-source-que-je-garde-korben.md",
+      "title": "GLM 5.2 - The first open source AI model I'm keeping",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Hugging Face",
+        "Moonshot",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "glm",
+        "open source",
+        "benchmark",
+        "claude",
+        "context window",
+        "deepseek",
+        "fable 5",
+        "kimi",
+        "leaderboard",
+        "license",
+        "llama",
+        "mit license"
+      ],
+      "source": "docs/RAG/clean_en/korben/glm-5-2-le-premier-moda-le-ia-open-source-que-je-garde-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 806,
+      "bytes": 4652,
+      "sha256": "94cfa990c053804f3df94caed2fcc3507765bea5e1c90c95842303dc680311fa"
+    },
+    {
+      "id": "collect-240926-korben/korben/gpt-6-astra-dachiffre-un-message-allemand-de-1918-korben",
+      "path": "collect-240926-korben/korben/gpt-6-astra-dachiffre-un-message-allemand-de-1918-korben.md",
+      "title": "GPT-6 Astra Deciphers a German Message from 1918",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "1918-11-27"
+      ],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "claude",
+        "transcription"
+      ],
+      "source": "docs/RAG/clean_en/korben/gpt-6-astra-dachiffre-un-message-allemand-de-1918-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        29
+      ],
+      "canonical_for": [],
+      "words": 473,
+      "bytes": 3030,
+      "sha256": "daa788dfc6dbe614c5621f33c7ecd47ce3333ddb725936247d561e0fe0d64442"
+    },
+    {
+      "id": "collect-240926-korben/korben/hugging-face-pirata-les-ia-amaricaines-refusent-de-les-aider-korben",
+      "path": "collect-240926-korben/korben/hugging-face-pirata-les-ia-amaricaines-refusent-de-les-aider-korben.md",
+      "title": "Hugging Face hacked, American AIs refuse to help them",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "ExploitGym",
+        "Hugging Face",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-07-16",
+        "2026-07-22"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "claude",
+        "compute",
+        "containment",
+        "cyber",
+        "cybersecurity",
+        "disclosure",
+        "exploit",
+        "glm",
+        "gpt-5.6"
+      ],
+      "source": "docs/RAG/clean_en/korben/hugging-face-pirata-les-ia-amaricaines-refusent-de-les-aider-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1244,
+      "bytes": 7824,
+      "sha256": "759851382d5c9c658a8fe74a7381ee10bd29246dbab0543c178db0fba4f9ca6e"
+    },
+    {
+      "id": "collect-240926-korben/korben/l-europe-veut-interdire-raseaux-sociaux-et-chatbots-ia-aux-moins-de-15-ans-korben",
+      "path": "collect-240926-korben/korben/l-europe-veut-interdire-raseaux-sociaux-et-chatbots-ia-aux-moins-de-15-ans-korben.md",
+      "title": "Europe wants to ban social media and AI chatbots for under-15s",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2025-12"
+      ],
+      "keywords": [
+        "claude"
+      ],
+      "source": "docs/RAG/clean_en/korben/l-europe-veut-interdire-raseaux-sociaux-et-chatbots-ia-aux-moins-de-15-ans-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 510,
+      "bytes": 3239,
+      "sha256": "4c709971a780db13511dd62ce47c5bc353de8b787b773ff06c6f34839c84c424"
+    },
+    {
+      "id": "collect-240926-korben/korben/le-mode-vocal-de-chatgpt-arraate-de-faire-talkie-walkie-et-parle-enfin-comme-un-humain-kor",
+      "path": "collect-240926-korben/korben/le-mode-vocal-de-chatgpt-arraate-de-faire-talkie-walkie-et-parle-enfin-comme-un-humain-kor.md",
+      "title": "ChatGPT's voice mode stops acting like a walkie-talkie and finally talks like a human",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "chatgpt",
+        "voice",
+        "claude",
+        "full-duplex",
+        "gpt-live"
+      ],
+      "source": "docs/RAG/clean_en/korben/le-mode-vocal-de-chatgpt-arraate-de-faire-talkie-walkie-et-parle-enfin-comme-un-humain-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 504,
+      "bytes": 3077,
+      "sha256": "e66c3bb692cae5f30eab997095d3396bfc2e94b7949bfedb0056bc9bd14e9cec"
+    },
+    {
+      "id": "collect-240926-korben/korben/microsoft-lance-intelligent-terminal-un-terminal-open-source-qui-vous-laisse-choisir-votre",
+      "path": "collect-240926-korben/korben/microsoft-lance-intelligent-terminal-un-terminal-open-source-qui-vous-laisse-choisir-votre.md",
+      "title": "Microsoft launches Intelligent Terminal, an open source terminal that lets you choose your AI",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "open source",
+        "agent",
+        "claude",
+        "copilot",
+        "license",
+        "mit license"
+      ],
+      "source": "docs/RAG/clean_en/korben/microsoft-lance-intelligent-terminal-un-terminal-open-source-qui-vous-laisse-choisir-votre-ia-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 579,
+      "bytes": 3821,
+      "sha256": "7585e4683d8276ae25caba9ea9dfcf5b2240829e044bfcca0de9c1faf05a5391"
+    },
+    {
+      "id": "collect-240926-korben/korben/odysseus-l-ia-auto-habergae-de-pewdiepie-enfin-rapide-sur-mac-korben",
+      "path": "collect-240926-korben/korben/odysseus-l-ia-auto-habergae-de-pewdiepie-enfin-rapide-sur-mac-korben.md",
+      "title": "Odysseus - PewDiePie's self-hosted AI finally fast on Mac",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "gpu",
+        "license",
+        "llama",
+        "llama.cpp",
+        "parameters",
+        "qwen",
+        "research"
+      ],
+      "source": "docs/RAG/clean_en/korben/odysseus-l-ia-auto-habergae-de-pewdiepie-enfin-rapide-sur-mac-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        92
+      ],
+      "canonical_for": [],
+      "words": 1228,
+      "bytes": 7431,
+      "sha256": "1428e451d0d6ed19e88f4b3494ac9fa882b2499114b14c7c5e696c278fa9791e"
+    },
+    {
+      "id": "collect-240926-korben/korben/openai-coupe-ses-moda-les-a-cursor-apra-s-son-rachat-par-le-spacexai-de-musk-korben",
+      "path": "collect-240926-korben/korben/openai-coupe-ses-moda-les-a-cursor-apra-s-son-rachat-par-le-spacexai-de-musk-korben.md",
+      "title": "OpenAI cuts off its models from Cursor after its acquisition by Musk's SpaceXAI",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-11-12"
+      ],
+      "keywords": [
+        "acquisition",
+        "agents",
+        "astra",
+        "claude",
+        "compute",
+        "distillation",
+        "merger",
+        "sandbox"
+      ],
+      "source": "docs/RAG/clean_en/korben/openai-coupe-ses-moda-les-a-cursor-apra-s-son-rachat-par-le-spacexai-de-musk-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        31
+      ],
+      "canonical_for": [],
+      "words": 471,
+      "bytes": 2977,
+      "sha256": "82b61ad0386026cb3a65d568ec54ecdaac79df3c6561d8ae436094eda929723b"
+    },
+    {
+      "id": "collect-240926-korben/korben/un-chatbot-d-ia-a-failli-daclencher-un-conflit-avec-la-chine-korben",
+      "path": "collect-240926-korben/korben/un-chatbot-d-ia-a-failli-daclencher-un-conflit-avec-la-chine-korben.md",
+      "title": "An AI chatbot nearly triggered a conflict with China",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "China"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude"
+      ],
+      "source": "docs/RAG/clean_en/korben/un-chatbot-d-ia-a-failli-daclencher-un-conflit-avec-la-chine-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        31
+      ],
+      "canonical_for": [],
+      "words": 523,
+      "bytes": 3432,
+      "sha256": "c1c7193c5ae92b9da75b58315370e87221a62429c631783692dc11e433ac084d"
+    },
+    {
+      "id": "collect-240926-korben/korben/un-chercheur-s-aide-de-chatgpt-pour-davelopper-un-madicament-contre-la-schizophranie-korbe",
+      "path": "collect-240926-korben/korben/un-chercheur-s-aide-de-chatgpt-pour-davelopper-un-madicament-contre-la-schizophranie-korbe.md",
+      "title": "A researcher uses ChatGPT to develop a drug against schizophrenia",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2024-09"
+      ],
+      "keywords": [
+        "chatgpt",
+        "research",
+        "attention",
+        "claude"
+      ],
+      "source": "docs/RAG/clean_en/korben/un-chercheur-s-aide-de-chatgpt-pour-davelopper-un-madicament-contre-la-schizophranie-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 517,
+      "bytes": 3372,
+      "sha256": "10dce1b05240cde8ab5889b3dc20542e06ba1af3c883a8d9b036ac5b80cb6635"
+    },
+    {
+      "id": "collect-240926-korben/korben/un-dapa-t-github-trop-propre-suffit-a-pirater-claude-code-korben",
+      "path": "collect-240926-korben/korben/un-dapa-t-github-trop-propre-suffit-a-pirater-claude-code-korben.md",
+      "title": "A GitHub repository that's too clean is enough to hack Claude Code",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "agent",
+        "agents",
+        "aws",
+        "cybersecurity",
+        "gemini",
+        "open source",
+        "sandbox"
+      ],
+      "source": "docs/RAG/clean_en/korben/un-dapa-t-github-trop-propre-suffit-a-pirater-claude-code-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        84
+      ],
+      "canonical_for": [],
+      "words": 1022,
+      "bytes": 6419,
+      "sha256": "ff6a4487c52eb559db5402dd14c58124864ab1746af09085d39c1dbc24846a2d"
+    },
+    {
+      "id": "collect-240926-korben/korben/zcode-l-app-maison-de-z-ai-pour-coder-avec-glm-korben",
+      "path": "collect-240926-korben/korben/zcode-l-app-maison-de-z-ai-pour-coder-avec-glm-korben.md",
+      "title": "ZCode - z.ai's in-house app for coding with GLM",
+      "domain": "korben",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "China",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "glm",
+        "agent",
+        "agents",
+        "claude",
+        "cost",
+        "mcp",
+        "open source"
+      ],
+      "source": "docs/RAG/clean_en/korben/zcode-l-app-maison-de-z-ai-pour-coder-avec-glm-korben.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        25
+      ],
+      "canonical_for": [],
+      "words": 527,
+      "bytes": 3046,
+      "sha256": "8cbba4a73eecd917f0f6f525b144c06b897199a50c7d7698c0243ad3b73cc7d3"
+    }
+  ]
+}

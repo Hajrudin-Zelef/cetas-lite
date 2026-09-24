@@ -1,0 +1,502 @@
+{
+  "corpus": "collect-240926-frandroid",
+  "title": "FrAndroid — mobile & tech (Collect 240926)",
+  "source": "docs/RAG/clean_en/frandroid",
+  "source_dir": "docs/RAG/clean_en/frandroid",
+  "source_files": 14,
+  "source_sha256": "8718044ac889e30762d27f3450cc08f259c4344caface31888bb1d7866285aa8",
+  "chunk_count": 14,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-240926-frandroid/frandroid/a-pas-besoin-de-lui-demander-de-raflachir-a-les-astuces-pour-bien-utiliser-claude-opus-5-5",
+      "path": "collect-240926-frandroid/frandroid/a-pas-besoin-de-lui-demander-de-raflachir-a-les-astuces-pour-bien-utiliser-claude-opus-5-5.md",
+      "title": "a-pas-besoin-de-lui-demander-de-raflachir-a-les-astuces-pour-bien-utiliser-claude-opus-5-5",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "cost",
+        "cybersecurity",
+        "gpt-6",
+        "humanoid",
+        "opus 4",
+        "opus 5",
+        "safeguards",
+        "sol"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/a-pas-besoin-de-lui-demander-de-raflachir-a-les-astuces-pour-bien-utiliser-claude-opus-5-5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        41
+      ],
+      "canonical_for": [],
+      "words": 895,
+      "bytes": 5355,
+      "sha256": "c7362722e38dc968b2dfbc514cbe0cb140e5231fbcfeffe79620594a61e5385f"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/asus-zenbook-14-ux3480-snapdragon-achat-au-meilleur-prix-fiche-technique-et-actualita-pc-p",
+      "path": "collect-240926-frandroid/frandroid/asus-zenbook-14-ux3480-snapdragon-achat-au-meilleur-prix-fiche-technique-et-actualita-pc-p.md",
+      "title": "asus-zenbook-14-ux3480-snapdragon-achat-au-meilleur-prix-fiche-technique-et-actualita-pc-portables-f",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "copilot",
+        "dci",
+        "energy",
+        "lpddr5x",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/asus-zenbook-14-ux3480-snapdragon-achat-au-meilleur-prix-fiche-technique-et-actualita-pc-portables-f.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        24
+      ],
+      "canonical_for": [],
+      "words": 521,
+      "bytes": 3224,
+      "sha256": "ad7666b510225d962cf1f5799d6d2969b416fa1591b1d5dc2e47819fe35017ef"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid",
+      "path": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid.md",
+      "title": "comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "distribution",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "humanoid",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        105
+      ],
+      "canonical_for": [],
+      "words": 1631,
+      "bytes": 9834,
+      "sha256": "af0ddefd367addd1b619884d2d1f197b101048b8e0d8f6265c88733d3574e506"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphon",
+      "path": "collect-240926-frandroid/frandroid/de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphon.md",
+      "title": "de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphone-18",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "alignment",
+        "tpu"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphone-18.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1130,
+      "bytes": 7191,
+      "sha256": "e90d49ee9acd45f3d71a742a9c19324a7e31b010763bb3c46210cf45bc5eaddf"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026",
+      "path": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026.md",
+      "title": "du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Apple",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2024-09"
+      ],
+      "keywords": [
+        "gpu",
+        "humanoid"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        145
+      ],
+      "canonical_for": [],
+      "words": 2203,
+      "bytes": 13134,
+      "sha256": "f6a89f4fcc4308aede2409b3cc0ac6d9d25cf907ecfbd16d4216c7a14dd4b653"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Apple",
+        "China",
+        "Google",
+        "Huawei",
+        "Qualcomm",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "cost",
+        "exploit",
+        "gpu",
+        "humanoid",
+        "lawsuit",
+        "license",
+        "memory",
+        "packaging"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        639
+      ],
+      "canonical_for": [],
+      "words": 11196,
+      "bytes": 63000,
+      "sha256": "0002ccab949226ea63db34337c1d5bbb3d19529e946decb8a92a9a42dcee792c"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes",
+      "path": "collect-240926-frandroid/frandroid/google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes.md",
+      "title": "google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [
+        "2026-04"
+      ],
+      "keywords": [
+        "gemini",
+        "agents",
+        "gemini 3.8",
+        "humanoid",
+        "voice"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 649,
+      "bytes": 4201,
+      "sha256": "e1d442b3c4e6a766eb53e9f0adb725bfab0765ea73ae2f57f3919ac9e0cb7a82"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/intel-core-ultra-7-rtx-5070-et-acran-oled-ce-monstre-de-puissance-coate-200-a-de-moins-che",
+      "path": "collect-240926-frandroid/frandroid/intel-core-ultra-7-rtx-5070-et-acran-oled-ce-monstre-de-puissance-coate-200-a-de-moins-che.md",
+      "title": "intel-core-ultra-7-rtx-5070-et-acran-oled-ce-monstre-de-puissance-coate-200-a-de-moins-chez-boulange",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "dci",
+        "helios",
+        "humanoid",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/intel-core-ultra-7-rtx-5070-et-acran-oled-ce-monstre-de-puissance-coate-200-a-de-moins-chez-boulange.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 601,
+      "bytes": 3509,
+      "sha256": "0abe7802256c2297e27e334357d4ba8d2b20507fb7fcbb651cc3555c69dc148e"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix",
+      "path": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix.md",
+      "title": "j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Apple",
+        "Intel",
+        "Qualcomm",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "exploit",
+        "gpu",
+        "humanoid",
+        "inference",
+        "latency",
+        "memory",
+        "nand"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        112
+      ],
+      "canonical_for": [],
+      "words": 1912,
+      "bytes": 10824,
+      "sha256": "ce6b5004d2d4cd525ea425cfd47346841f5f9ff556d92cb17731ce00d8cba479"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui",
+      "path": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui.md",
+      "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "Microsoft",
+        "Mistral",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "diffusion",
+        "gpu",
+        "humanoid",
+        "license",
+        "llama",
+        "memory",
+        "mistral",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        139
+      ],
+      "canonical_for": [],
+      "words": 3682,
+      "bytes": 20842,
+      "sha256": "73a287e493c0c743ed5d1c49b73b030e628b63b1fdd828a671ffd22b5a3525ed"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/ps6-et-xbox-helix-les-puces-seraient-finalisaes-40-contre-56-tflops-annoncas-frandroid",
+      "path": "collect-240926-frandroid/frandroid/ps6-et-xbox-helix-les-puces-seraient-finalisaes-40-contre-56-tflops-annoncas-frandroid.md",
+      "title": "ps6-et-xbox-helix-les-puces-seraient-finalisaes-40-contre-56-tflops-annoncas-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "foundry",
+        "gpu",
+        "humanoid",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/ps6-et-xbox-helix-les-puces-seraient-finalisaes-40-contre-56-tflops-annoncas-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        27
+      ],
+      "canonical_for": [],
+      "words": 534,
+      "bytes": 3351,
+      "sha256": "238c2ceaa9b7b98dd205a803013bf00ef8be6110a66fb460b7bd3528f7af3409"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026",
+      "path": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026.md",
+      "title": "quels-sont-les-meilleurs-tv-55-pouces-en-2026",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Apple",
+        "Google",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "humanoid",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        253
+      ],
+      "canonical_for": [],
+      "words": 3612,
+      "bytes": 21238,
+      "sha256": "7d7321af3c1d579dafaffe4dcca37639dc932b7c04f95496dc93d8d8bb1f1472"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "China",
+        "DeepSeek",
+        "EU",
+        "Google",
+        "Huawei",
+        "Qualcomm",
+        "Samsung",
+        "United States",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09-18",
+        "2027-03"
+      ],
+      "keywords": [
+        "acquisition",
+        "agent",
+        "benchmark",
+        "dci",
+        "deepseek",
+        "energy",
+        "gemini",
+        "gpu",
+        "humanoid",
+        "latency",
+        "lean",
+        "llama"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        344
+      ],
+      "canonical_for": [],
+      "words": 8638,
+      "bytes": 49150,
+      "sha256": "f481e50b4f8ef75ec64e5e136bf48953584929a298a66a43ea3bada9c6201224"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide",
+      "path": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide.md",
+      "title": "test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "Google",
+        "Qualcomm",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [
+        "2026-09-17",
+        "2027-01-03"
+      ],
+      "keywords": [
+        "benchmarks",
+        "cost",
+        "exploit",
+        "gpu",
+        "hbm",
+        "humanoid",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        194
+      ],
+      "canonical_for": [],
+      "words": 2929,
+      "bytes": 16844,
+      "sha256": "cc408aa2396742a8694799d86bcef06e27b46a46b0f77ab58297af23d64f5a47"
+    }
+  ]
+}

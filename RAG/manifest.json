@@ -594,6 +594,94 @@
       "index": "vague2-vision-ia/INDEX.md",
       "manifest": "vague2-vision-ia/manifest.json",
       "chunk_count": 55
+    },
+    {
+      "corpus": "collect-240926-mindstudio",
+      "title": "MindStudio — agents, modèles & routing (Collect 240926)",
+      "source": "docs/RAG/clean_en/mindstudio",
+      "index": "collect-240926-mindstudio/INDEX.md",
+      "manifest": "collect-240926-mindstudio/manifest.json",
+      "chunk_count": 170
+    },
+    {
+      "corpus": "collect-240926-huggingface",
+      "title": "Hugging Face — modèles & fiches (Collect 240926)",
+      "source": "docs/RAG/clean_en/huggingface",
+      "index": "collect-240926-huggingface/INDEX.md",
+      "manifest": "collect-240926-huggingface/manifest.json",
+      "chunk_count": 125
+    },
+    {
+      "corpus": "collect-240926-storagereview",
+      "title": "StorageReview — stockage & serveurs (Collect 240926)",
+      "source": "docs/RAG/clean_en/storagereview",
+      "index": "collect-240926-storagereview/INDEX.md",
+      "manifest": "collect-240926-storagereview/manifest.json",
+      "chunk_count": 74
+    },
+    {
+      "corpus": "collect-240926-datacamp",
+      "title": "DataCamp — IA, data & dev (Collect 240926)",
+      "source": "docs/RAG/clean_en/datacamp",
+      "index": "collect-240926-datacamp/INDEX.md",
+      "manifest": "collect-240926-datacamp/manifest.json",
+      "chunk_count": 69
+    },
+    {
+      "corpus": "collect-240926-tomshardware",
+      "title": "Tom's Hardware — CPU, GPU & PC (Collect 240926)",
+      "source": "docs/RAG/clean_en/tomshardware",
+      "index": "collect-240926-tomshardware/INDEX.md",
+      "manifest": "collect-240926-tomshardware/manifest.json",
+      "chunk_count": 68
+    },
+    {
+      "corpus": "collect-240926-vision-ia",
+      "title": "Vision-IA — newsletter IA (Collect 240926)",
+      "source": "docs/RAG/clean_en/vision-ia",
+      "index": "collect-240926-vision-ia/INDEX.md",
+      "manifest": "collect-240926-vision-ia/manifest.json",
+      "chunk_count": 55
+    },
+    {
+      "corpus": "collect-240926-nerdykings",
+      "title": "NerdyKings — guides IA & dev (Collect 240926)",
+      "source": "docs/RAG/clean_en/nerdykings",
+      "index": "collect-240926-nerdykings/INDEX.md",
+      "manifest": "collect-240926-nerdykings/manifest.json",
+      "chunk_count": 34
+    },
+    {
+      "corpus": "collect-240926-korben",
+      "title": "Korben.info — veille IA & tech (Collect 240926)",
+      "source": "docs/RAG/clean_en/korben",
+      "index": "collect-240926-korben/INDEX.md",
+      "manifest": "collect-240926-korben/manifest.json",
+      "chunk_count": 18
+    },
+    {
+      "corpus": "collect-240926-frandroid",
+      "title": "FrAndroid — mobile & tech (Collect 240926)",
+      "source": "docs/RAG/clean_en/frandroid",
+      "index": "collect-240926-frandroid/INDEX.md",
+      "manifest": "collect-240926-frandroid/manifest.json",
+      "chunk_count": 14
+    },
+    {
+      "corpus": "collect-240926-hardwarecooking",
+      "title": "HardwareCooking — PC & matériel (Collect 240926)",
+      "source": "docs/RAG/clean_en/hardwarecooking",
+      "index": "collect-240926-hardwarecooking/INDEX.md",
+      "manifest": "collect-240926-hardwarecooking/manifest.json",
+      "chunk_count": 12
+    },
+    {
+      "corpus": "collect-240926-misc",
+      "title": "Collect 240926 — longue traîne (14 sites)",
+      "source": "docs/RAG/clean_en/misc",
+      "index": "collect-240926-misc/INDEX.md",
+      "manifest": "collect-240926-misc/manifest.json",
+      "chunk_count": 29
     }
   ]
 }
