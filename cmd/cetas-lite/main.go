@@ -57,6 +57,7 @@ Usage:
   cetas-lite tools                 liste les outils personnalises (tools.json)
   cetas-lite backup <fichier>      sauvegarde la base (+ mcp.json) dans un tar.gz (serveur arrete)
   cetas-lite restore <fichier>     restaure la base depuis un tar.gz (serveur arrete)
+  cetas-lite rag-vectors <action>  vecteurs d'embedding RAG : status | build | probe
 
 Variables:
   CETAS_LITE_HOME                 repertoire de donnees (defaut: config/cetas-lite)
@@ -99,6 +100,8 @@ func main() {
 		err = runBackup(os.Args[2:])
 	case "restore":
 		err = runRestore(os.Args[2:])
+	case "rag-vectors":
+		err = runRagVectors(os.Args[2:])
 	case "help", "-h", "--help":
 		usage()
 	default:
@@ -163,6 +166,15 @@ func buildApp() (*app, error) {
 	engine.SetSearcher(search.NewWithConfig(web.LoadSearchConfig(st, keys), client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
 	ragMgr := rag.New(cfg.RagDir)
+	// Recherche hybride (lot 2) : l'embedder reutilise la cle OpenRouter
+	// deja configuree. Sans cle ou sans vecteurs : BM25 seul (fail-open).
+	if rawKey := strings.TrimSpace(keys["openrouter"]); rawKey != "" {
+		if em, ok := rag.LookupEmbedModel(rag.EmbedModelSlugFromEnv()); ok {
+			ragMgr.SetEmbedder(rag.NewOpenRouterEmbedder(rawKey, em, client))
+		} else {
+			slog.Warn("modele d'embedding inconnu, BM25 seul", "slug", rag.EmbedModelSlugFromEnv())
+		}
+	}
 	ragMgr.Start()
 	engine.SetRAG(ragMgr)
 	// Questions suggérées (itération 4 : diversion d'accueil).

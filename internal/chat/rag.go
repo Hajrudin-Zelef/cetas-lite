@@ -3,6 +3,8 @@ package chat
 import (
 	"context"
 	"fmt"
+	"os"
+	"strconv"
 	"strings"
 
 	"cetas-lite/internal/provider"
@@ -14,6 +16,10 @@ import (
 type RagTools interface {
 	Ready() bool
 	Search(ctx context.Context, query string, limit int) rag.Result
+	// SearchHybrid : BM25 + semantique (embeddings), fusion RRF (lot 2).
+	// Sans jambe semantique (pas de vecteurs / pas de cle), strictement
+	// equivalent a SearchBoosted avec boost nil.
+	SearchHybrid(ctx context.Context, query string, boost map[string]float64, limit int) rag.Result
 	// SearchCorpus : recherche restreinte aux chunks d'un corpus
 	// (focus au clic sur une question suggérée).
 	SearchCorpus(ctx context.Context, query, corpus string, limit int) rag.Result
@@ -73,7 +79,7 @@ func (e *Engine) ragExecute(ctx context.Context, name, argsJSON string) ToolResu
 		if query == "" {
 			return ToolResult{Text: "[error] empty query"}
 		}
-		res := rt.Search(ctx, query, intArg(args, "limit"))
+		res := rt.SearchHybrid(ctx, query, nil, intArg(args, "limit"))
 		if len(res.Hits) == 0 {
 			return ToolResult{Text: "[info] no relevant passage in the local base"}
 		}
@@ -132,9 +138,9 @@ func (e *Engine) ragHits(ctx context.Context, query string, history []provider.M
 	}
 	q, ents := rag.EnrichQueryWithHistory(query, hist)
 	if len(ents) > 0 {
-		return rt.SearchBoosted(ctx, q, boostMap(ents, entityBoostFactor), ragContextHits)
+		return rt.SearchHybrid(ctx, q, boostMap(ents, entityBoostFactor), ragContextHits)
 	}
-	return rt.Search(ctx, q, ragContextHits)
+	return rt.SearchHybrid(ctx, q, nil, ragContextHits)
 }
 
 // boostMap : facteur de boost par token d'entité (itération 6b).
@@ -219,6 +225,34 @@ const (
 // comme couvrant la requete. Sert a economiser la pre-recherche web du tour.
 const ragStrongScore = 2.5
 
+// ragSemCoverScore : au-dela de ce cosinus, la jambe semantique seule
+// suffit a considerer la requete couverte (lot 2).
+//
+// CALIBRE le 2026-09-25 sur le corpus reel (2487 chunks, modele
+// openai-text-embedding-3-small) avec `rag-vectors probe` — 10 requetes
+// couvertes vs 10 hors sujet :
+//
+//	bon     : 0.394 … 0.632 (median 0.55)   ← min 0.394
+//	mauvais : 0.154 … 0.361 (median 0.23)   ← max 0.361
+//
+// Seuil place entre les deux (0.38) : aucun faux positif sur les 10 hors
+// sujet, aucun faux negatif sur les 10 couvertes. L'ecart est etroit
+// (0.033) : en cas de derive, remonter vers 0.45 (l'ancien defaut) est le
+// repli prudent — un faux negatif ne fait que relancer la recherche web,
+// un faux positif repond a cote. Re-calibrer avec rag-vectors probe.
+// CETAS_LITE_SEM_COVER surcharge la valeur ; <= 0 desactive la jambe
+// semantique dans la porte (retour au comportement BM25 seul).
+var ragSemCoverScore = semCoverFromEnv()
+
+func semCoverFromEnv() float64 {
+	if raw := strings.TrimSpace(os.Getenv("CETAS_LITE_SEM_COVER")); raw != "" {
+		if v, err := strconv.ParseFloat(raw, 64); err == nil {
+			return v
+		}
+	}
+	return 0.38
+}
+
 // insertBeforeLastUser insere des messages dynamiques juste avant le dernier
 // message utilisateur (le tour courant), donc apres l'historique. Le
 // prefixe [prompts systeme stables + historique] reste ainsi identique d'un
@@ -239,9 +273,17 @@ func insertBeforeLastUser(msgs []provider.Message, dyn ...provider.Message) []pr
 	return append(msgs, dyn...)
 }
 
-// ragCovered : la base locale repond a la requete.
+// ragCovered : la base locale repond a la requete. Porte hybride (lot 2) :
+// BM25 fort OU cosinus semantique fort. Sans jambe semantique (SemTop=0),
+// la regle se reduit a l'ancienne porte BM25.
 func ragCovered(res rag.Result) bool {
-	return len(res.Hits) > 0 && res.Hits[0].Score >= ragStrongScore
+	if len(res.Hits) == 0 {
+		return false
+	}
+	if res.BM25Top >= ragStrongScore {
+		return true
+	}
+	return ragSemCoverScore > 0 && res.SemTop >= ragSemCoverScore
 }
 
 // localFirstDirective remplace la directive de recherche web quand la base

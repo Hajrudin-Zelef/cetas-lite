@@ -7,6 +7,7 @@ package rag
 
 import (
 	"context"
+	"crypto/sha256"
 	"fmt"
 	"math"
 	"sort"
@@ -65,6 +66,14 @@ type Result struct {
 	Total   int
 	Corpora int
 	Ready   bool
+	// Lot 2 (hybride) : signaux de couverture, independants du classement.
+	// BM25Top : meilleur score BM25 brut de la requete (0 si aucun hit).
+	// SemTop : meilleure similarite cosinus semantique (0 si la jambe
+	// semantique n'a pas contribue).
+	// Hybrid : la jambe semantique a contribue au resultat.
+	BM25Top float64
+	SemTop  float64
+	Hybrid  bool
 }
 
 // Stats : etat de l'index.
@@ -135,9 +144,33 @@ func (ix *Index) search(ctx context.Context, query string, limit int, corpus str
 	if len(terms) == 0 || len(ix.chunks) == 0 {
 		return res
 	}
+	ranked := ix.rankChunks(ctx, terms, corpus, boost)
+	if len(ranked) > limit {
+		ranked = ranked[:limit]
+	}
+	if len(ranked) > 0 {
+		res.BM25Top = ranked[0].score
+	}
+	res.Hits = make([]Hit, 0, len(ranked))
+	for rank, rc := range ranked {
+		res.Hits = append(res.Hits, ix.hitFor(rc.idx, terms, rc.score, rank))
+	}
+	return res
+}
+
+// rankedChunk : chunk candidat avec son score BM25 (fusion hybride, lot 2).
+type rankedChunk struct {
+	idx   int
+	score float64
+}
+
+// rankChunks : scoring BM25 et tri decroissant (egalite => chemin croissant,
+// deterministe). Retourne les candidats avant troncature a limit.
+func (ix *Index) rankChunks(ctx context.Context, terms []string, corpus string, boost map[string]float64) []rankedChunk {
 	inScope := func(i int) bool {
 		return corpus == "" || ix.chunks[i].corpus == corpus
 	}
+
 	n := 0
 	for i := range ix.chunks {
 		if inScope(i) {
@@ -145,7 +178,7 @@ func (ix *Index) search(ctx context.Context, query string, limit int, corpus str
 		}
 	}
 	if n == 0 {
-		return res
+		return nil
 	}
 
 	nf := float64(n)
@@ -205,30 +238,61 @@ func (ix *Index) search(ctx context.Context, query string, limit int, corpus str
 		}
 		return ix.chunks[a].path < ix.chunks[b].path
 	})
-	if len(order) > limit {
-		order = order[:limit]
+	ranked := make([]rankedChunk, 0, len(order))
+	for _, i := range order {
+		ranked = append(ranked, rankedChunk{idx: i, score: scores[i]})
 	}
+	return ranked
+}
 
-	res.Hits = make([]Hit, 0, len(order))
-	for rank, i := range order {
-		c := &ix.chunks[i]
-		// La plage de correspondance est calculee une seule fois (les
-		// extraits 240 et 900 car. partagent le meme ancrage).
-		mstart, mend, mok := firstMatchRange(c.body, terms)
-		ex := excerptAround(c.body, mstart, mend, mok, maxSnippet)
-		snip := ex
-		if rank < excerptTop {
-			ex = excerptAround(c.body, mstart, mend, mok, excerptChars)
-			snip = snippetFrom(ex)
-		}
-		res.Hits = append(res.Hits, Hit{
-			Path: c.path, Corpus: c.corpus, Title: c.title, Domain: c.domain,
-			Task: c.task, Actors: c.actors, Dates: c.dates, Keywords: c.keywords,
-			Section: c.section, DeltaOf: c.deltaOf,
-			Score: scores[i], Snippet: snip, Excerpt: ex,
-		})
+// hitFor : construit le Hit d'un chunk (extrait ancre sur terms).
+func (ix *Index) hitFor(i int, terms []string, score float64, rank int) Hit {
+	c := &ix.chunks[i]
+	// La plage de correspondance est calculee une seule fois (les
+	// extraits 240 et 900 car. partagent le meme ancrage).
+	mstart, mend, mok := firstMatchRange(c.body, terms)
+	ex := excerptAround(c.body, mstart, mend, mok, maxSnippet)
+	snip := ex
+	if rank < excerptTop {
+		ex = excerptAround(c.body, mstart, mend, mok, excerptChars)
+		snip = snippetFrom(ex)
 	}
-	return res
+	return Hit{
+		Path: c.path, Corpus: c.corpus, Title: c.title, Domain: c.domain,
+		Task: c.task, Actors: c.actors, Dates: c.dates, Keywords: c.keywords,
+		Section: c.section, DeltaOf: c.deltaOf,
+		Score: score, Snippet: snip, Excerpt: ex,
+	}
+}
+
+// ChunkRef : reference lisible d'un chunk (diagnostic : `rag-vectors probe`).
+func (ix *Index) ChunkRef(i int) string {
+	if ix == nil || i < 0 || i >= len(ix.chunks) {
+		return ""
+	}
+	c := &ix.chunks[i]
+	if c.section != "" {
+		return c.path + " :: " + c.section
+	}
+	return c.path
+}
+
+// CorpusHash : empreinte du corpus (path + "\x00" + body par chunk, en
+// ordre). Les vecteurs d'embedding sont alignes 1:1 avec l'index via ce
+// hash : corpus modifie => vecteurs obsoletes (fail-open).
+func (ix *Index) CorpusHash() [32]byte {
+	h := sha256.New()
+	if ix != nil {
+		for _, c := range ix.chunks {
+			h.Write([]byte(c.path))
+			h.Write([]byte{0})
+			h.Write([]byte(c.body))
+			h.Write([]byte{0})
+		}
+	}
+	var out [32]byte
+	copy(out[:], h.Sum(nil))
+	return out
 }
 
 // Read : relit un chunk par son chemin (ou son nom de base), lignes numerotees.

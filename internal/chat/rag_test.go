@@ -28,7 +28,18 @@ func (f fakeRag) Search(_ context.Context, _ string, limit int) rag.Result {
 	if limit > 0 && len(hits) > limit {
 		hits = hits[:limit]
 	}
-	return rag.Result{Hits: hits, Ready: f.ready, Total: len(f.hits)}
+	res := rag.Result{Hits: hits, Ready: f.ready, Total: len(f.hits)}
+	// Le faux simule le producteur reel : BM25Top = meilleur score BM25.
+	for _, h := range hits {
+		if h.Score > res.BM25Top {
+			res.BM25Top = h.Score
+		}
+	}
+	return res
+}
+
+func (f fakeRag) SearchHybrid(_ context.Context, _ string, _ map[string]float64, limit int) rag.Result {
+	return f.Search(context.Background(), "", limit)
 }
 
 func (f fakeRag) SearchCorpus(_ context.Context, _ string, _ string, limit int) rag.Result {
@@ -257,11 +268,66 @@ func TestRagCoveredThreshold(t *testing.T) {
 	if ragCovered(rag.Result{}) {
 		t.Fatal("resultat vide ne couvre pas")
 	}
-	if ragCovered(rag.Result{Hits: []rag.Hit{{Score: ragStrongScore - 0.1}}}) {
+	if ragCovered(rag.Result{Hits: []rag.Hit{{Score: ragStrongScore - 0.1}}, BM25Top: ragStrongScore - 0.1}) {
 		t.Fatal("score sous le seuil ne couvre pas")
 	}
-	if !ragCovered(rag.Result{Hits: []rag.Hit{{Score: ragStrongScore}}}) {
+	if !ragCovered(rag.Result{Hits: []rag.Hit{{Score: ragStrongScore}}, BM25Top: ragStrongScore}) {
 		t.Fatal("score au seuil couvre")
+	}
+}
+
+// TestRagCoveredHybrid : porte hybride du lot 2 — un cosinus semantique
+// fort couvre meme sans BM25 ; deux signaux faibles => refuse.
+func TestRagCoveredHybrid(t *testing.T) {
+	sem := rag.Result{
+		Hits:    []rag.Hit{{Score: 0}},
+		BM25Top: 0,
+		SemTop:  ragSemCoverScore,
+		Hybrid:  true,
+	}
+	if !ragCovered(sem) {
+		t.Fatal("cosinus au seuil semantique couvre sans BM25")
+	}
+	weak := rag.Result{
+		Hits:    []rag.Hit{{Score: 1.0}},
+		BM25Top: 1.0,
+		SemTop:  ragSemCoverScore - 0.1,
+		Hybrid:  true,
+	}
+	if ragCovered(weak) {
+		t.Fatal("deux signaux faibles ne couvrent pas")
+	}
+	// Sans jambe semantique, la regle se reduit a l'ancienne porte BM25.
+	bm25only := rag.Result{Hits: []rag.Hit{{Score: ragStrongScore}}, BM25Top: ragStrongScore}
+	if !ragCovered(bm25only) {
+		t.Fatal("BM25 seul au seuil couvre (compatibilite)")
+	}
+}
+
+// TestRagCoveredSemGateDisabled : CETAS_LITE_SEM_COVER <= 0 desactive la
+// jambe semantique dans la porte (retour strict au comportement BM25 seul).
+func TestRagCoveredSemGateDisabled(t *testing.T) {
+	old := ragSemCoverScore
+	defer func() { ragSemCoverScore = old }()
+	ragSemCoverScore = 0
+	res := rag.Result{Hits: []rag.Hit{{Score: 0}}, BM25Top: 0, SemTop: 0.99, Hybrid: true}
+	if ragCovered(res) {
+		t.Fatal("porte semantique desactivee mais couverte")
+	}
+}
+
+func TestSemCoverFromEnv(t *testing.T) {
+	t.Setenv("CETAS_LITE_SEM_COVER", "0.7")
+	if v := semCoverFromEnv(); v != 0.7 {
+		t.Fatalf("v = %f", v)
+	}
+	t.Setenv("CETAS_LITE_SEM_COVER", "nimporte")
+	if v := semCoverFromEnv(); v != 0.38 {
+		t.Fatalf("defaut attendu (calibre 2026-09-25, entre 0.361 et 0.394), v = %f", v)
+	}
+	t.Setenv("CETAS_LITE_SEM_COVER", "")
+	if v := semCoverFromEnv(); v != 0.38 {
+		t.Fatalf("defaut sans variable, v = %f", v)
 	}
 }
 
@@ -271,7 +337,7 @@ func TestRagCoveredThreshold(t *testing.T) {
 func TestRagDirectiveNaturalNoCitations(t *testing.T) {
 	res := rag.Result{Hits: []rag.Hit{
 		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
-	}}
+	}, BM25Top: ragStrongScore}
 	txt, ok := ragContextFrom(res)
 	if !ok {
 		t.Fatal("contexte attendu pour des hits forts")
@@ -309,7 +375,7 @@ func TestRagDirectiveNaturalNoCitations(t *testing.T) {
 func TestRagDirectiveGroundingPlusReasoning(t *testing.T) {
 	res := rag.Result{Hits: []rag.Hit{
 		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
-	}}
+	}, BM25Top: ragStrongScore}
 	txt, ok := ragContextFrom(res)
 	if !ok {
 		t.Fatal("contexte attendu pour des hits forts")
@@ -413,7 +479,7 @@ func TestRagContextRefusedWhenWeak(t *testing.T) {
 	}
 	strong := rag.Result{Hits: []rag.Hit{
 		{Title: "Couvert", Path: "z.md", Excerpt: "extrait pertinent", Score: ragStrongScore},
-	}}
+	}, BM25Top: ragStrongScore}
 	txt, ok := ragContextFrom(strong)
 	if !ok || !strings.Contains(txt, "extrait pertinent") {
 		t.Fatalf("hits forts non injectes: ok=%v", ok)
@@ -549,7 +615,7 @@ func TestRagReadServerBounds(t *testing.T) {
 func TestRagContextSynthesisDirective(t *testing.T) {
 	res := rag.Result{Hits: []rag.Hit{
 		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
-	}}
+	}, BM25Top: ragStrongScore}
 	txt, ok := ragContextFrom(res)
 	if !ok {
 		t.Fatal("contexte attendu pour des hits forts")
@@ -617,6 +683,10 @@ func (f *captureQueryRag) SearchCorpus(_ context.Context, q, _ string, _ int) ra
 }
 
 func (f *captureQueryRag) SearchBoosted(_ context.Context, q string, boost map[string]float64, _ int) rag.Result {
+	return f.SearchHybrid(context.Background(), q, boost, 0)
+}
+
+func (f *captureQueryRag) SearchHybrid(_ context.Context, q string, boost map[string]float64, _ int) rag.Result {
 	f.query = q
 	f.boost = boost
 	return rag.Result{Ready: f.ready}
@@ -640,13 +710,13 @@ func TestRagHitsEnrichesEllipticalQuery(t *testing.T) {
 	if !strings.Contains(f.query, "K3") {
 		t.Fatalf("requete non enrichie: %q", f.query)
 	}
-	// Iteration 6b : l'enrichissement declenche SearchBoosted avec les
+	// Iteration 6b : l'enrichissement declenche SearchHybrid avec les
 	// tokens d'entite et le facteur calibre. L'historique le plus recent
 	// (assistant) domine : groupes « K3 » + « Moonshot AI » — « Kimi » en
 	// debut de phrase n'est pas un marqueur d'entite (regle iter6 ; le
 	// message utilisateur seul produirait « Kimi K3 », cf. 2e cas).
 	if f.boost == nil {
-		t.Fatal("boost absent : la requete enrichie doit passer par SearchBoosted")
+		t.Fatal("boost absent : la requete enrichie doit passer par SearchHybrid")
 	}
 	for _, k := range []string{"k3", "moonshot", "ai"} {
 		if f.boost[k] != entityBoostFactor {

@@ -16,6 +16,8 @@ import (
 type Manager struct {
 	root string
 	idx  atomic.Pointer[Index]
+	emb  atomic.Pointer[Embedder]
+	vec  atomic.Pointer[VectorStore]
 	mu   sync.Mutex
 }
 
@@ -39,6 +41,67 @@ func (m *Manager) Root() string {
 		return ""
 	}
 	return m.root
+}
+
+// SetEmbedder : branche le client d'embedding (lot 2). Appele une fois au
+// demarrage, avant Start. Embedder nil => recherche BM25 seule.
+func (m *Manager) SetEmbedder(emb *Embedder) {
+	if m == nil {
+		return
+	}
+	if emb == nil {
+		return
+	}
+	m.emb.Store(emb)
+}
+
+func (m *Manager) embedder() *Embedder {
+	if m == nil {
+		return nil
+	}
+	return m.emb.Load()
+}
+
+func (m *Manager) vectors() *VectorStore {
+	if m == nil {
+		return nil
+	}
+	return m.vec.Load()
+}
+
+// VectorsReady : des vecteurs alignes avec l'index courant sont charges.
+func (m *Manager) VectorsReady() bool { return m.vectors() != nil }
+
+// EmbedModelSlug : modele d'embedding selectionne ("" si aucun).
+func (m *Manager) EmbedModelSlug() string {
+	if e := m.embedder(); e != nil {
+		return e.Model().Slug
+	}
+	return ""
+}
+
+// loadVectors : charge les vecteurs du modele selectionne et verifie leur
+// alignement avec l'index (hash du corpus). Absents, illisibles, obsoletes
+// ou desalignes => vecteurs desactives, BM25 seul (fail-open, loggue).
+func (m *Manager) loadVectors(ix *Index) {
+	m.vec.Store(nil)
+	emb := m.embedder()
+	if emb == nil || ix == nil || !ix.Stats().Ready {
+		return
+	}
+	slug := emb.Model().Slug
+	path := VectorFilePath(m.root, slug)
+	vs, err := LoadVectorFile(path)
+	if err != nil {
+		log.Printf("rag: vecteurs %s indisponibles (%v) : BM25 seul", slug, err)
+		return
+	}
+	if want := ix.CorpusHash(); vs.Hash != want {
+		log.Printf("rag: vecteurs %s obsoletes (corpus modifie) : BM25 seul, reconstruire via `rag-vectors build`", slug)
+		return
+	}
+	m.vec.Store(vs)
+	log.Printf("rag: vecteurs %s charges (%d chunks, dim %d)", slug, vs.Count, vs.Dims)
 }
 
 // Start lance la construction de l'index en arriere-plan. Ne bloque jamais.
@@ -80,6 +143,7 @@ func (m *Manager) Reload() (*Index, error) {
 		return nil, err
 	}
 	m.idx.Store(ix)
+	m.loadVectors(ix)
 	return ix, nil
 }
 
