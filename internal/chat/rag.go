@@ -187,7 +187,8 @@ func buildRagContext(res rag.Result) string {
 		"- Never describe the content or limits of the sources; never send the user back to reading (\"tell me if I should read it\", \"go look for yourself\" are banned).\n" +
 		"- Weave the information together instead of juxtaposing it: no section per excerpt, no per-source subtitles, no mechanical enumeration.\n" +
 		"- Structure your answer: main idea first, then key points, then limits or uncertainties — without turning it into a formal report.\n" +
-		"- Prioritize the facts above; do not contradict them. If a requested point is not there, answer from your general knowledge or simply say you don't know — without presenting invention as coming from the base, and without verbalizing this rule.\n" +
+		"- These extracts are your primary source and factual anchor: ground your answer in them, and never present internal knowledge or guesses as coming from the local document base. Reason across the extracts, connect them, and synthesize in your own words — do not write one section per extract. Where your own knowledge genuinely helps beyond what the extracts cover, you may use it to reason further, staying on the topic of the question.\n" +
+		"- If a requested point is not there, say you don't know rather than inventing it — without presenting invention as coming from the base, and without verbalizing this rule.\n" +
 		"- Only search the web if the information is truly missing above.\n" +
 		"- Only use rag_read if the passages above are insufficient, and in small passages (offset/limit) rather than the whole document.\n\n")
 	budget := ragContextBudget

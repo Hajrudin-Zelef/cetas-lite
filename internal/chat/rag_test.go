@@ -301,6 +301,56 @@ func TestRagDirectiveNaturalNoCitations(t *testing.T) {
 	}
 }
 
+// TestRagDirectiveGroundingPlusReasoning : l'iteration 9 (directive
+// assouplie) fait des extraits la source PRIORITAIRE (ancrage
+// anti-hallucination conserve) mais plus la source EXCLUSIVE : le modele
+// peut raisonner a travers eux et completer avec ses propres connaissances.
+// L'ancienne formulation stricte a disparu.
+func TestRagDirectiveGroundingPlusReasoning(t *testing.T) {
+	res := rag.Result{Hits: []rag.Hit{
+		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
+	}}
+	txt, ok := ragContextFrom(res)
+	if !ok {
+		t.Fatal("contexte attendu pour des hits forts")
+	}
+	// Ancrage conserve : les extraits sont la source prioritaire.
+	if !strings.Contains(txt, "primary source") {
+		t.Fatal("ancrage primary source absent de la directive")
+	}
+	if !strings.Contains(txt, "never present internal knowledge or guesses as coming from the local document base") {
+		t.Fatal("interdiction de presenter des suppositions comme faits de la base absente")
+	}
+	// Autorisation : raisonnement croise + connaissances propres.
+	for _, want := range []string{"Reason across the extracts", "your own knowledge", "reason further"} {
+		if !strings.Contains(txt, want) {
+			t.Fatalf("autorisation de raisonner absente: %q", want)
+		}
+	}
+	// L'exclusivite stricte ne doit plus etre la.
+	for _, banned := range []string{
+		"only the facts present",
+		"Use only the facts",
+		"Prioritize the facts above",
+	} {
+		if strings.Contains(txt, banned) {
+			t.Fatalf("exclusivite stricte encore presente: %q", banned)
+		}
+	}
+	// Protocole it.2 preserve : couvert / non couvert (refus honnete).
+	if _, ok := ragContextFrom(rag.Result{}); ok {
+		t.Fatal("sans hit, aucun contexte attendu (fail-open)")
+	}
+	if !strings.Contains(ragNotCoveredNote(), "does not cover this request") {
+		t.Fatal("refus honnete de non-couverture perdu")
+	}
+	// La regle permanente du prompt systeme ne bouge pas.
+	if !strings.Contains(chatSystemPrompt(),
+		"Never present internal knowledge or guesses as coming from the local document base.") {
+		t.Fatal("regle anti-hallucination permanente modifiee")
+	}
+}
+
 func TestChatSystemPromptAntiHallucination(t *testing.T) {
 	p := chatSystemPrompt()
 	if !strings.Contains(p, "Never present internal knowledge or guesses as coming from the local document base.") {
