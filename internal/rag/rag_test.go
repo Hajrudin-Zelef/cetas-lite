@@ -313,10 +313,24 @@ func TestCleanQueryForSearch(t *testing.T) {
 		{"parle-moi de Kimi K3", "kimi k3"},
 		{"s'il te plaît, qu'est-ce que vLLM ?", "vllm"},
 		{"tell me about kimi k3, please", "kimi k3"},
-		// Mot normalement retire (« nouveau » dans « de nouveau ») mais
-		// significatif ici : conserve.
-		{"le nouveau modèle de Google", "nouveau modele google"},
-		{"what's new with kimi k3", "new kimi k3"},
+		// Correctif 2026-09-24 : « nouveau »/« new » ne sont plus
+		// conservés comme « significatifs ». Mesuré sur le corpus réel
+		// (2487 chunks) : terme rare donc IDF élevé, il éjectait
+		// l'entité porteuse (« Il ya du nouveau chez glm » classait un
+		// article Kimi contenant « nouveau » #1 devant tout extrait
+		// GLM). Le besoin d'information est porté par l'entité.
+		{"le nouveau modèle de Google", "google"},
+		{"what's new with kimi k3", "kimi k3"},
+		// Résidu conversationnel mesuré sur les requêtes GLM fautives
+		// (sessions B/C) : « tu », « peut », « dire », « sorti »,
+		// « dernier », « pense », « men »/« na » (sms) écrasaient
+		// « glm » (fréquent, IDF faible) — ex. « GLM-5.3 est sorti tu
+		// peut men dire plus? » classait un article « PC gaming »
+		// #1 sans aucun extrait GLM dans le top-3.
+		{"Il ya du nouveau chez glm", "glm"},
+		{"GLM-5.3 est sorti tu peut men dire plus?", "glm"},
+		{"Le modèle glm-5.3 est le dernier je pense", "glm"},
+		{"Donc tu na aucune info sur GLM-5.3 ?", "glm"},
 		// Identifiants : jamais touches (« 5 »/« 3 » isoles sont de toute
 		// facon sous minTermLen, comme dans l'indexation des documents).
 		{"GLM-5.3", "glm"},
@@ -350,6 +364,36 @@ func TestSearchQueryCleaningRanksKimiFirst(t *testing.T) {
 	}
 	if top := res.Hits[0].Path; !strings.HasSuffix(top, "kimi.md") {
 		t.Fatalf("top hit = %q, attendu kimi.md", top)
+	}
+}
+
+// TestSearchQueryCleaningRanksGlmFirst : régression du cas GLM-5.3
+// (correctif 2026-09-24) — le résidu conversationnel (« nouveau », « tu »,
+// « peut », « dire », « sorti »…), rare donc à IDF élevé, ne doit plus
+// éjecter l'entité fréquente (« glm », IDF faible). Sans le correctif,
+// « Il ya du nouveau chez glm » classait le distractor #1.
+func TestSearchQueryCleaningRanksGlmFirst(t *testing.T) {
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "c1", "distractor.md"),
+		"# Un nouveau rival\n\nCe nouveau modèle fait parler avec ses nouveautés.\n")
+	writeFile(t, filepath.Join(root, "c1", "glm.md"),
+		"# GLM 5\n\nGLM est un modèle ouvert de Z.ai. GLM GLM : poids, tutoriel.\n")
+	ix, err := Load(root)
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	for _, q := range []string{
+		"Il ya du nouveau chez glm",
+		"GLM-5.3 est sorti tu peut men dire plus?",
+		"Le modèle glm-5.3 est le dernier je pense",
+	} {
+		res := ix.Search(context.Background(), q, 5)
+		if len(res.Hits) == 0 {
+			t.Fatalf("aucun hit pour %q", q)
+		}
+		if top := res.Hits[0].Path; !strings.HasSuffix(top, "glm.md") {
+			t.Fatalf("top hit = %q pour %q, attendu glm.md", top, q)
+		}
 	}
 }
 

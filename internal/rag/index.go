@@ -398,9 +398,17 @@ func tokenize(s string) []string {
 // (kimi, k3, glm-5.3…) ne sont jamais touches : seules les formulations
 // vides de sens documentaire sont retirees, jamais un mot isole qui
 // pourrait etre porteur.
+//
+// Extension (correctif 2026-09-24, incohérence inter-sessions GLM) :
+// « Il y a du nouveau chez glm » (sens « des nouveautés », pas la
+// reformulation « de nouveau ») laissait passer « nouveau » — terme rare
+// donc IDF élevé — qui éjectait les vrais sujets (« glm », df élevé donc
+// IDF faible). Mesuré sur le corpus réel (2487 chunks) : sans « du
+// nouveau », un article Kimi contenant « nouveau » dans son titre
+// arrivait #1 (16.32) devant tout extrait GLM.
 var ragQueryFillerPhrases = []string{
 	// Francais.
-	"de nouveau", "parle moi de",
+	"de nouveau", "du nouveau", "parle moi de",
 	"qu est ce que", "qu est ce qu",
 	"s il te plait", "s il vous plait",
 	"dis moi", "explique moi",
@@ -415,6 +423,16 @@ var ragQueryFillerPhrases = []string{
 // un IDF eleve et faussait le classement meme apres retrait des
 // formulations (« De nouveau sur kimi k3? » -> « sur kimi k3 »). Formes
 // normalisees. Jamais de mot pouvant etre un identifiant.
+//
+// Extension (correctif 2026-09-24) : résidu conversationnel mesuré sur
+// les requêtes GLM fautives — « tu », « je », « peut », « dire »,
+// « sorti », « dernier », « pense », « men » (sms), « na » (sms),
+// « aucun », « info », « chez », « ya » (sms), « nouveau »… survivaient
+// au nettoyage ; rares dans le corpus (IDF élevé), ils écrasaient
+// l'entité « glm » (fréquente, IDF faible). Ex. « GLM-5.3 est sorti tu
+// peut men dire plus? » -> « glm sorti tu peut men dire » classait un
+// article « PC gaming titane » #1 (16.00) sans aucun extrait GLM dans
+// le top-3. Les pronoms « je »/« tu » manquaient à la liste initiale.
 var ragQueryStopwords = map[string]bool{
 	// Francais.
 	"le": true, "la": true, "les": true, "de": true, "des": true, "du": true,
@@ -431,6 +449,22 @@ var ragQueryStopwords = map[string]bool{
 	"toute": true, "toutes": true, "aussi": true, "tres": true,
 	"bien": true, "encore": true, "deja": true, "alors": true, "si": true,
 	"etre": true, "avoir": true, "faire": true,
+	// Correctif 2026-09-24 : residu conversationnel (mesure ci-dessus).
+	"je": true, "tu": true, "nous": true, "vous": true,
+	"me": true, "te": true, "moi": true, "toi": true, "en": true,
+	"y": true, "cela": true, "ceci": true, "ca": true,
+	"na": true, "men": true, "ya": true,
+	"peut": true, "peux": true, "peuvent": true, "pouvoir": true,
+	"dire": true, "dis": true, "dit": true, "dites": true,
+	"sais": true, "sait": true, "savoir": true,
+	"connais": true, "connait": true,
+	"sorti": true, "sortie": true, "sortis": true, "sorties": true,
+	"nouveau": true, "nouvelle": true, "nouveaux": true, "nouvelles": true,
+	"dernier": true, "derniere": true, "derniers": true, "dernieres": true,
+	"chez": true, "aucun": true, "aucune": true,
+	"info": true, "infos": true,
+	"modele": true, "modeles": true,
+	"pense": true, "penses": true, "penser": true,
 	// Anglais.
 	"the": true, "an": true, "of": true, "in": true, "on": true,
 	"and": true, "is": true, "are": true, "was": true, "were": true,
@@ -441,6 +475,10 @@ var ragQueryStopwords = map[string]bool{
 	"has": true, "have": true, "had": true, "will": true, "would": true,
 	"do": true, "does": true, "did": true, "if": true, "then": true,
 	"than": true, "so": true, "no": true,
+	// Correctif 2026-09-24 : equivalents EN du residu ci-dessus.
+	"know": true, "mean": true, "means": true,
+	"tell": true, "say": true, "says": true,
+	"latest": true, "new": true,
 }
 
 // cleanQueryForSearch : nettoie la requete des formulations
