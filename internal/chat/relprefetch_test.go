@@ -171,7 +171,7 @@ func TestRagHits_ReusesPrefetched(t *testing.T) {
 	prefetched := rag.Result{Hits: []rag.Hit{{Title: "prefetched"}}, Ready: true}
 	e.relPrefetch.getStore().put(rag.CleanQueryKey("GLM-5.3"), prefetched)
 
-	res := e.ragHits(context.Background(), "GLM-5.3", nil)
+	res := e.ragHits(context.Background(), "GLM-5.3", nil, false)
 	if len(res.Hits) != 1 || res.Hits[0].Title != "prefetched" {
 		t.Fatalf("reutilisation attendue, obtenu %+v", res.Hits)
 	}
@@ -194,7 +194,7 @@ func TestRagHits_NoReuseWhenBoosted(t *testing.T) {
 	e.relPrefetch.getStore().put(rag.CleanQueryKey(qe),
 		rag.Result{Hits: []rag.Hit{{Title: "prefetched"}}})
 
-	res := e.ragHits(context.Background(), "et le prix ?", history)
+	res := e.ragHits(context.Background(), "et le prix ?", history, false)
 	if len(res.Hits) != 1 || res.Hits[0].Title != "live" {
 		t.Fatalf("chemin normal attendu (boost non nul), obtenu %+v", res.Hits)
 	}
@@ -209,7 +209,7 @@ func TestRagHits_NoReuseWhenDisabled(t *testing.T) {
 	e.relPrefetch.getStore().put(rag.CleanQueryKey("GLM-5.3"),
 		rag.Result{Hits: []rag.Hit{{Title: "prefetched"}}})
 
-	res := e.ragHits(context.Background(), "GLM-5.3", nil)
+	res := e.ragHits(context.Background(), "GLM-5.3", nil, false)
 	if len(res.Hits) != 1 || res.Hits[0].Title != "live" {
 		t.Fatalf("mecanisme desactive => chemin normal, obtenu %+v", res.Hits)
 	}

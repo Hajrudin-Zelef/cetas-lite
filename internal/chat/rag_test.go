@@ -120,23 +120,23 @@ func TestRagExecuteUnavailable(t *testing.T) {
 
 func TestRagContextFailOpenAndBudget(t *testing.T) {
 	ctx := context.Background()
-	if _, ok := ragContextFrom(ragEngine(t, nil).ragHits(ctx, "q", nil)); ok {
+	if _, ok := ragContextFrom(ragEngine(t, nil).ragHits(ctx, "q", nil, false), ragContextBudget); ok {
 		t.Fatal("sans RAG: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: false}).ragHits(ctx, "q", nil)); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: false}).ragHits(ctx, "q", nil, false), ragContextBudget); ok {
 		t.Fatal("non pret: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "  ", nil)); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "  ", nil, false), ragContextBudget); ok {
 		t.Fatal("requete vide: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "q", nil)); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "q", nil, false), ragContextBudget); ok {
 		t.Fatal("aucun hit: ok attendu faux")
 	}
 	// Porte de score : des hits faibles ne sont pas injectes.
 	weak := ragEngine(t, fakeRag{ready: true, hits: []rag.Hit{
 		{Title: "W", Path: "w.md", Excerpt: "extrait faible", Score: ragStrongScore - 0.1},
 	}})
-	if _, ok := ragContextFrom(weak.ragHits(ctx, "q", nil)); ok {
+	if _, ok := ragContextFrom(weak.ragHits(ctx, "q", nil, false), ragContextBudget); ok {
 		t.Fatal("hits faibles: ok attendu faux")
 	}
 
@@ -146,7 +146,7 @@ func TestRagContextFailOpenAndBudget(t *testing.T) {
 		{Title: "B", Path: "b.md", Excerpt: long, Score: ragStrongScore + 1},
 		{Title: "C", Path: "c.md", Excerpt: long, Score: ragStrongScore + 2},
 	}})
-	txt, ok := ragContextFrom(e.ragHits(ctx, "q", nil))
+	txt, ok := ragContextFrom(e.ragHits(ctx, "q", nil, false), ragContextBudget)
 	if !ok {
 		t.Fatal("contexte attendu")
 	}
@@ -338,7 +338,7 @@ func TestRagDirectiveNaturalNoCitations(t *testing.T) {
 	res := rag.Result{Hits: []rag.Hit{
 		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
 	}, BM25Top: ragStrongScore}
-	txt, ok := ragContextFrom(res)
+	txt, ok := ragContextFrom(res, ragContextBudget)
 	if !ok {
 		t.Fatal("contexte attendu pour des hits forts")
 	}
@@ -376,7 +376,7 @@ func TestRagDirectiveGroundingPlusReasoning(t *testing.T) {
 	res := rag.Result{Hits: []rag.Hit{
 		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
 	}, BM25Top: ragStrongScore}
-	txt, ok := ragContextFrom(res)
+	txt, ok := ragContextFrom(res, ragContextBudget)
 	if !ok {
 		t.Fatal("contexte attendu pour des hits forts")
 	}
@@ -404,7 +404,7 @@ func TestRagDirectiveGroundingPlusReasoning(t *testing.T) {
 		}
 	}
 	// Protocole it.2 preserve : couvert / non couvert (refus honnete).
-	if _, ok := ragContextFrom(rag.Result{}); ok {
+	if _, ok := ragContextFrom(rag.Result{}, ragContextBudget); ok {
 		t.Fatal("sans hit, aucun contexte attendu (fail-open)")
 	}
 	if !strings.Contains(ragNotCoveredNote(), "does not cover this request") {
@@ -474,13 +474,13 @@ func TestRagContextRefusedWhenWeak(t *testing.T) {
 		{Title: "Hors sujet", Path: "x.md", Excerpt: "extrait", Score: 1.2},
 		{Title: "Bruit", Path: "y.md", Excerpt: "extrait", Score: 0.8},
 	}}
-	if txt, ok := ragContextFrom(weak); ok || txt != "" {
+	if txt, ok := ragContextFrom(weak, ragContextBudget); ok || txt != "" {
 		t.Fatalf("hits faibles injectes: ok=%v txt=%q", ok, txt)
 	}
 	strong := rag.Result{Hits: []rag.Hit{
 		{Title: "Couvert", Path: "z.md", Excerpt: "extrait pertinent", Score: ragStrongScore},
 	}, BM25Top: ragStrongScore}
-	txt, ok := ragContextFrom(strong)
+	txt, ok := ragContextFrom(strong, ragContextBudget)
 	if !ok || !strings.Contains(txt, "extrait pertinent") {
 		t.Fatalf("hits forts non injectes: ok=%v", ok)
 	}
@@ -616,7 +616,7 @@ func TestRagContextSynthesisDirective(t *testing.T) {
 	res := rag.Result{Hits: []rag.Hit{
 		{Title: "T", Path: "t.md", Excerpt: "extrait", Score: ragStrongScore},
 	}, BM25Top: ragStrongScore}
-	txt, ok := ragContextFrom(res)
+	txt, ok := ragContextFrom(res, ragContextBudget)
 	if !ok {
 		t.Fatal("contexte attendu pour des hits forts")
 	}
@@ -706,7 +706,7 @@ func TestRagHitsEnrichesEllipticalQuery(t *testing.T) {
 		{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"},
 		{Role: "assistant", Content: "Kimi K3 est le modèle de Moonshot AI."},
 	}
-	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", hist)
+	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", hist, false)
 	if !strings.Contains(f.query, "K3") {
 		t.Fatalf("requete non enrichie: %q", f.query)
 	}
@@ -725,11 +725,11 @@ func TestRagHitsEnrichesEllipticalQuery(t *testing.T) {
 	}
 	// Historique reduit au message utilisateur : le groupe complet est repris.
 	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?",
-		[]provider.Message{{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"}})
+		[]provider.Message{{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"}}, false)
 	if !strings.Contains(f.query, "Kimi K3") {
 		t.Fatalf("sujet utilisateur non repris: %q", f.query)
 	}
-	e.ragHits(context.Background(), "parle-moi de Kimi K3", hist)
+	e.ragHits(context.Background(), "parle-moi de Kimi K3", hist, false)
 	if strings.Contains(f.query, "Moonshot") {
 		t.Fatalf("requete porteuse d'entite enrichie a tort: %q", f.query)
 	}
@@ -737,8 +737,66 @@ func TestRagHitsEnrichesEllipticalQuery(t *testing.T) {
 		t.Fatalf("requête directe : boost inattendu %v (Search attendu)", f.boost)
 	}
 	// Historique vide : fail-open, requete inchangee, sans boost.
-	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", nil)
+	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", nil, false)
 	if strings.Contains(f.query, "Kimi") || f.boost != nil {
 		t.Fatalf("enrichissement sans historique: %q boost=%v", f.query, f.boost)
+	}
+}
+
+// recRag enregistre quelle methode de recherche est appelee (C2 : les
+// moteurs locaux doivent passer par BM25 seul, jamais par la jambe
+// semantique).
+type recRag struct {
+	RagTools
+	searchCalls  int
+	hybridCalls  int
+	boostedCalls int
+}
+
+func (r *recRag) Search(ctx context.Context, q string, limit int) rag.Result {
+	r.searchCalls++
+	return r.RagTools.Search(ctx, q, limit)
+}
+
+func (r *recRag) SearchHybrid(ctx context.Context, q string, boost map[string]float64, limit int) rag.Result {
+	r.hybridCalls++
+	return r.RagTools.SearchHybrid(ctx, q, boost, limit)
+}
+
+func (r *recRag) SearchBoosted(ctx context.Context, q string, boost map[string]float64, limit int) rag.Result {
+	r.boostedCalls++
+	return r.RagTools.SearchBoosted(ctx, q, boost, limit)
+}
+
+func TestRagHitsLocalSkipsSemanticLeg(t *testing.T) {
+	rec := &recRag{RagTools: fakeRag{ready: true, hits: []rag.Hit{{Title: "h"}}}}
+	e := ragEngine(t, rec)
+	e.ragHits(context.Background(), "une question anodine", nil, true)
+	if rec.hybridCalls != 0 || rec.searchCalls != 1 {
+		t.Fatalf("local => BM25 seul attendu (search=%d hybrid=%d)", rec.searchCalls, rec.hybridCalls)
+	}
+	e.ragHits(context.Background(), "une question anodine", nil, false)
+	if rec.hybridCalls != 1 {
+		t.Fatalf("cloud => hybride attendu (hybrid=%d)", rec.hybridCalls)
+	}
+}
+
+// C1 : les extraits locaux tiennent dans un budget reduit (2 hits /
+// 1200 caracteres) — le premier hit passe, le second depasse.
+func TestBuildRagContextBudgetLocal(t *testing.T) {
+	hits := []rag.Hit{
+		{Title: "t1", Path: "p1", Excerpt: strings.Repeat("x", 900)},
+		{Title: "t2", Path: "p2", Excerpt: strings.Repeat("y", 900)},
+	}
+	local := buildRagContext(rag.Result{Hits: hits}, ragContextBudgetLocal)
+	if !strings.Contains(local, "t1") {
+		t.Fatal("premier hit attendu dans le budget local")
+	}
+	if strings.Contains(local, "t2") {
+		t.Fatal("second hit hors budget local : ne doit pas etre injecte")
+	}
+	full := buildRagContext(rag.Result{Hits: hits}, ragContextBudget)
+	if !strings.Contains(full, "t2") {
+		t.Fatal("budget cloud : les deux hits doivent tenir")
 	}
 }

@@ -140,7 +140,7 @@ func TestRagHitsCorpusForwardsCorpus(t *testing.T) {
 		{Title: "T", Path: "p", Excerpt: "e", Score: 9.0},
 	}}}
 	e := ragEngine(t, fr)
-	res := e.ragHitsCorpus(context.Background(), "kimi k3", "wave6")
+	res := e.ragHitsCorpus(context.Background(), "kimi k3", "wave6", ragContextHits)
 	if fr.gotCorpus != "wave6" {
 		t.Fatalf("corpus transmis = %q, attendu wave6", fr.gotCorpus)
 	}
@@ -149,7 +149,7 @@ func TestRagHitsCorpusForwardsCorpus(t *testing.T) {
 	}
 	// RAG inactif => vide.
 	e2 := ragEngine(t, &corpusRag{fakeRag: fakeRag{ready: false}})
-	if res := e2.ragHitsCorpus(context.Background(), "q", "c"); len(res.Hits) != 0 {
+	if res := e2.ragHitsCorpus(context.Background(), "q", "c", ragContextHits); len(res.Hits) != 0 {
 		t.Fatal("RAG inactif : hits inattendus")
 	}
 }
@@ -158,14 +158,14 @@ func TestRagContextForcedIgnoresScoreGate(t *testing.T) {
 	res := rag.Result{Ready: true, Hits: []rag.Hit{
 		{Title: "T", Path: "p", Excerpt: "extrait pertinent", Score: 1.0},
 	}}
-	if _, ok := ragContextFrom(res); ok {
+	if _, ok := ragContextFrom(res, ragContextBudget); ok {
 		t.Fatal("ragContextFrom aurait dû refuser (porte de score 2.5)")
 	}
-	rc, ok := ragContextForced(res)
+	rc, ok := ragContextForced(res, ragContextBudget)
 	if !ok || !strings.Contains(rc, "extrait pertinent") {
 		t.Fatal("ragContextForced aurait dû injecter les hits faibles")
 	}
-	if _, ok := ragContextForced(rag.Result{Ready: true}); ok {
+	if _, ok := ragContextForced(rag.Result{Ready: true}, ragContextBudget); ok {
 		t.Fatal("ragContextForced sans hit : injection inattendue")
 	}
 }

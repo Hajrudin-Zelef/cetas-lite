@@ -1,5 +1,6 @@
 import { api, getToken, readSSE } from "./api.js";
 import { appendLinkified, createMarkdownRenderer } from "./markdown.js";
+import { createStreamRenderer } from "./stream-render.js";
 import {
   appendReasoningPanel,
   beginReasonTurn,
@@ -685,6 +686,17 @@ export class ThreadView {
     this.reasonPanel = opts.reasonPanel === true;
     this.reasonHooks = opts.reasonHooks || null;
     this.trackTokens = opts.trackTokens === true;
+    // Lissage du flux (l'œil s'ennuie pendant le vide, pas pendant un flux
+    // fluide) : les deltas SSE partent dans un tampon rendu à cadence
+    // constante (30 cps, catch-up len/8) au lieu d'un re-rendu par delta.
+    // Les stats live restent calculees sur assistantText (debit reel).
+    this.revealer = createStreamRenderer({
+      onRender: (shown) => {
+        if (this.assistantBody) mdRenderer.update(this.assistantBody, shown);
+        this.requestFollow();
+      },
+      cps: 30,
+    });
     this.onEvent = typeof opts.onEvent === "function" ? opts.onEvent : null;
     // Module Agentic (vue Agents uniquement) : Harness = rendu actuel,
     // OpenCode = reproduction fidele du TUI OpenCode.
@@ -926,6 +938,12 @@ export class ThreadView {
   // Fige le rendu du message assistant en cours (fin de tour, outil, approbation).
   finalizeAssistant() {
     this.stopStreamSpinner();
+    // Vide le tampon de lissage : la fin du tour doit afficher l'integralite
+    // du texte immediatement (un tampon bloque = du texte perdu).
+    if (this.revealer) {
+      this.revealer.flush();
+      this.revealer.reset();
+    }
     if (this.assistantBody) mdRenderer.finalize(this.assistantBody, this.assistantText);
   }
 
@@ -939,6 +957,7 @@ export class ThreadView {
     this.reasoningActive = false;
     this.reasonBtn = null;
     this.reasonAssistantWrapper = null;
+    if (this.revealer) this.revealer.reset();
     this.stopStreamSpinner();
   }
 
@@ -954,15 +973,29 @@ export class ThreadView {
     this.waitEl = el("div", "stream-waiting");
     this.waitEl.appendChild(buildMarexLoader());
     this.waitStart = Date.now();
-    this.waitLabel = el("div", "wait-label", "✨ En cours… 0s");
+    this.waitPhase = "";
+    this.waitLabel = el("div", "wait-label", "");
     this.waitEl.appendChild(this.waitLabel);
-    this.waitTimer = setInterval(() => {
-      if (this.waitLabel)
-        this.waitLabel.textContent =
-          "✨ En cours… " + Math.floor((Date.now() - this.waitStart) / 1000) + "s";
-    }, 1000);
+    this.waitTimer = setInterval(() => this.updateWaitLabel(), 1000);
+    this.updateWaitLabel();
     this.log.appendChild(this.waitEl);
     this.toBottom();
+  }
+
+  // Phase d'attente : le libelle suit l'avancement reel du tour (evenement
+  // SSE "route" = moteur choisi) pour tuer le vide avant le premier token
+  // sans rien simuler — la phase vient du serveur, le compteur est reel.
+  setWaitPhase(text) {
+    if (!this.waitEl) return;
+    this.waitPhase = String(text || "");
+    this.updateWaitLabel();
+  }
+
+  updateWaitLabel() {
+    if (!this.waitLabel) return;
+    const secs = Math.floor((Date.now() - this.waitStart) / 1000);
+    this.waitLabel.textContent =
+      "✨ " + (this.waitPhase || "En cours…") + " " + secs + "s";
   }
 
   hideWait() {
@@ -971,6 +1004,7 @@ export class ThreadView {
       this.waitTimer = 0;
     }
     this.waitLabel = null;
+    this.waitPhase = "";
     if (this.waitEl) {
       this.waitEl.remove();
       this.waitEl = null;
@@ -1131,11 +1165,16 @@ export class ThreadView {
     // Streaming accelere (technique Marexcode) : update() bufferise et rend
     // au plus une fois par frame, en ne re-rendant que les blocs modifies.
     if (isReplace) {
+      // Replay coalesce : le client a deja vu le debut — rendu complet
+      // immediat, sans animation, et tampon synchronise sur le texte
+      // complet (les deltas suivants ne doivent rien perdre).
       this.assistantText = String(text);
-      mdRenderer.render(this.assistantBody, text);
+      this.revealer.replace(String(text));
     } else {
       this.assistantText += String(text);
-      mdRenderer.update(this.assistantBody, this.assistantText);
+      // Lissage : le tampon est rendu a cadence constante (30 cps +
+      // catch-up) ; assistantText garde le texte integral (stats, copie).
+      this.revealer.add(String(text));
     }
     this.requestFollow();
   }
@@ -2221,6 +2260,7 @@ export class ThreadView {
   reset() {
     this.hideWait();
     this.setBusy(false);
+    if (this.revealer) this.revealer.reset();
     if (this.reasonPanel) resetReasonPanel();
       else if (this.reasonHooks) this.reasonHooks.reset();
     // F10 : on ne jette pas les cartes d'approbation en attente lors d'un
@@ -2413,9 +2453,9 @@ export class ThreadView {
       const r = ev.route || {};
       this.turnRoute = r;
       if (this.reasonPanel) setReasonModel(r.label || r.model || "", r.provider || "", r.model || "");
+      const name = r.label || r.model || "";
       if (this.routeBadge) {
         this.routeBadge.hidden = false;
-        const name = r.label || r.model || "";
         // L'effort affiché est celui RÉSOLU par le moteur ("" si thinking
         // désactivé) : rend visible la résolution du mode "Défaut"
         // (texte long > 400 caractères → Moyen).
@@ -2423,6 +2463,12 @@ export class ThreadView {
         this.routeBadge.textContent =
           (r.provider ? r.provider + "/" : "") + name + (r.local ? " (local)" : "") + (r.fallback ? " (repli)" : "") +
           (effortFr ? " · effort " + effortFr : "");
+      }
+      // Phase d'attente : le moteur est choisi, la generation suit. Nom
+      // borne a 40 caracteres (les ids locaux sont des chemins complets).
+      if (this.waitEl) {
+        const phase = String(name || r.provider || "").slice(0, 40);
+        this.setWaitPhase(phase ? phase + " · rédige…" : "");
       }
       return;
     }

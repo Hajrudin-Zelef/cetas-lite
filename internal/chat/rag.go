@@ -33,6 +33,12 @@ type RagTools interface {
 const (
 	ragContextHits   = 3
 	ragContextBudget = 3600
+	// Moteurs locaux (SamGen) : le prompt processing est lent (~54 tok/s
+	// mesuré sur llama.cpp distant) — chaque token injecté se paie en
+	// TTFT (~1,4 s par centaine). Extraites réduits : 2 hits / 1200 car.
+	// au lieu de 3 / 3600 ; BM25 seul (pas de jambe sémantique).
+	ragContextHitsLocal   = 2
+	ragContextBudgetLocal = 1200
 	// entityBoostFactor : boost appliqué aux tokens d'entité ajoutés par
 	// l'enrichissement (itération 6b). Le corpus réel (1819 chunks) :
 	// sans boost, l'entité à idf faible perdait face aux termes
@@ -125,10 +131,19 @@ func formatRagHits(res rag.Result) string {
 // « la » resolue au lieu d'etre jetee comme mot-outil). Resultat vide si
 // le RAG est inactif (fail-open : l'appelant traite le vide comme
 // "pas de contexte").
-func (e *Engine) ragHits(ctx context.Context, query string, history []provider.Message) rag.Result {
+//
+// bm25Only (moteurs locaux) : jambe semantique coupee (embeddings lents,
+// pre-traitement paye avant le premier token) et depot prefetch ignore
+// (ses resultats sont hybrides — servir autre chose que ce que le chemin
+// normal produirait fausserait le contrat).
+func (e *Engine) ragHits(ctx context.Context, query string, history []provider.Message, bm25Only bool) rag.Result {
 	rt := e.ragTools()
 	if rt == nil || !rt.Ready() || strings.TrimSpace(query) == "" {
 		return rag.Result{}
+	}
+	hits := ragContextHits
+	if bm25Only {
+		hits = ragContextHitsLocal
 	}
 	var hist []string
 	for _, m := range history {
@@ -137,8 +152,14 @@ func (e *Engine) ragHits(ctx context.Context, query string, history []provider.M
 		}
 	}
 	q, ents := rag.EnrichQueryWithHistory(query, hist)
+	if bm25Only {
+		if len(ents) > 0 {
+			return rt.SearchBoosted(ctx, q, boostMap(ents, entityBoostFactor), hits)
+		}
+		return rt.Search(ctx, q, hits)
+	}
 	if len(ents) > 0 {
-		return rt.SearchHybrid(ctx, q, boostMap(ents, entityBoostFactor), ragContextHits)
+		return rt.SearchHybrid(ctx, q, boostMap(ents, entityBoostFactor), hits)
 	}
 	// Prefetch continu (version maigre) : si le tour precedent a
 	// pre-recupere exactement cette requete (sans boost, comme ici),
@@ -147,7 +168,7 @@ func (e *Engine) ragHits(ctx context.Context, query string, history []provider.M
 	if res, ok := e.relPrefetchLookup(q); ok {
 		return res
 	}
-	return rt.SearchHybrid(ctx, q, nil, ragContextHits)
+	return rt.SearchHybrid(ctx, q, nil, hits)
 }
 
 // boostMap : facteur de boost par token d'entité (itération 6b).
@@ -159,39 +180,43 @@ func boostMap(entities []string, factor float64) map[string]float64 {
 	return m
 }
 
-// ragHitsCorpus interroge l'index local restreint à un corpus.
+// ragHitsCorpus interroge l'index local restreint à un corpus (BM25 seul :
+// SearchCorpus ne passe jamais par la jambe sémantique).
 // Résultat vide si le RAG est inactif ou le corpus inconnu (fail-open).
-func (e *Engine) ragHitsCorpus(ctx context.Context, query, corpus string) rag.Result {
+func (e *Engine) ragHitsCorpus(ctx context.Context, query, corpus string, hits int) rag.Result {
 	rt := e.ragTools()
 	if rt == nil || !rt.Ready() || strings.TrimSpace(query) == "" || strings.TrimSpace(corpus) == "" {
 		return rag.Result{}
 	}
-	return rt.SearchCorpus(ctx, query, corpus, ragContextHits)
+	if hits <= 0 {
+		hits = ragContextHits
+	}
+	return rt.SearchCorpus(ctx, query, corpus, hits)
 }
 
 // ragContextFrom construit le message systeme depuis un resultat deja obtenu.
 // Porte de score (iteration 1) : des hits faibles ne doivent pas etre
 // presentes comme « source prioritaire ». Sans couverture, rien n'est
 // injecte (fail-open) et la recherche web prend le relais si activee.
-func ragContextFrom(res rag.Result) (string, bool) {
+func ragContextFrom(res rag.Result, budget int) (string, bool) {
 	if !ragCovered(res) {
 		return "", false
 	}
-	return buildRagContext(res), true
+	return buildRagContext(res, budget), true
 }
 
 // ragContextForced : comme ragContextFrom mais sans porte de score.
 // Réservé au focus corpus explicite (clic sur une question suggérée) :
 // la question est curée pour ce corpus, le RAG est forcément sollicité.
 // Fail-open : aucun hit => rien d'injecté.
-func ragContextForced(res rag.Result) (string, bool) {
+func ragContextForced(res rag.Result, budget int) (string, bool) {
 	if len(res.Hits) == 0 {
 		return "", false
 	}
-	return buildRagContext(res), true
+	return buildRagContext(res, budget), true
 }
 
-func buildRagContext(res rag.Result) string {
+func buildRagContext(res rag.Result, budget int) string {
 	var b strings.Builder
 	b.WriteString("The following is your document knowledge base: treat it as things you know, not as documents handed to you.\n" +
 		"Response guidelines (must follow):\n" +
@@ -204,7 +229,9 @@ func buildRagContext(res rag.Result) string {
 		"- If a requested point is not there, say you don't know rather than inventing it — without presenting invention as coming from the base, and without verbalizing this rule.\n" +
 		"- Only search the web if the information is truly missing above.\n" +
 		"- Only use rag_read if the passages above are insufficient, and in small passages (offset/limit) rather than the whole document.\n\n")
-	budget := ragContextBudget
+	if budget <= 0 {
+		budget = ragContextBudget
+	}
 	for i, h := range res.Hits {
 		ex := strings.TrimSpace(h.Excerpt)
 		if ex == "" {

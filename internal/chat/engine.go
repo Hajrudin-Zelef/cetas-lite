@@ -535,16 +535,30 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	// au corpus, RAG forcément sollicité (sans porte de score, la question
 	// étant curée). Fail-open : aucun hit => rien d'injecté, et la note
 	// « non couvert » ne s'applique pas (choix explicite).
+	// Moteur local (SamGen) : le prompt processing est lent — extraits
+	// reduits (C1) et BM25 sans jambe semantique (C2) pour reduire le
+	// TTFT. res.local est pose par resolve (fallback cloud => false).
+	localFam := res.local
 	focus := strings.TrimSpace(in.FocusCorpus) != ""
 	var ragRes rag.Result
 	if focus {
-		ragRes = e.ragHitsCorpus(ctx, in.Text, in.FocusCorpus)
-		if rc, ok := ragContextForced(ragRes); ok {
+		hits := ragContextHits
+		budget := ragContextBudget
+		if localFam {
+			hits = ragContextHitsLocal
+			budget = ragContextBudgetLocal
+		}
+		ragRes = e.ragHitsCorpus(ctx, in.Text, in.FocusCorpus, hits)
+		if rc, ok := ragContextForced(ragRes, budget); ok {
 			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
 		}
 	} else {
-		ragRes = e.ragHits(ctx, in.Text, ragHistory)
-		if rc, ok := ragContextFrom(ragRes); ok {
+		ragRes = e.ragHits(ctx, in.Text, ragHistory, localFam)
+		budget := ragContextBudget
+		if localFam {
+			budget = ragContextBudgetLocal
+		}
+		if rc, ok := ragContextFrom(ragRes, budget); ok {
 			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
 		}
 		// Base locale active mais requete non couverte (iteration 2) : le dire
