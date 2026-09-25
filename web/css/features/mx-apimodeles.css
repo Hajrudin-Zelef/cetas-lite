@@ -590,6 +590,9 @@ body.dark .provider-tab-icon {
 .apikeys-panel .samgen-card {
     display: block;
 }
+.apikeys-panel .samgen-card .apikey-label-row {
+    margin-bottom: 0;
+}
 .samgen-card {
     border: 1px solid var(--border, #e5e7eb);
     border-radius: 8px;
