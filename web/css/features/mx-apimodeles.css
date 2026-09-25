@@ -584,6 +584,12 @@ body.dark .provider-tab-icon {
 }
 
 /* Panneau IA locale (SamGen) : cartes moteurs, logique separee des providers cloud */
+/* Les cartes portent .provider-section (styles partages) : cette classe est
+   display:none par defaut (visibilite par .active cote providers). Dans le
+   panneau SamGen, les cartes sont toujours visibles. */
+.apikeys-panel .samgen-card {
+    display: block;
+}
 .samgen-card {
     border: 1px solid var(--border, #e5e7eb);
     border-radius: 8px;
