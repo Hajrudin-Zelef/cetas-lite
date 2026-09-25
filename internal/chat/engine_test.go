@@ -501,3 +501,59 @@ func TestResolveAutoAppendsFallbackLast(t *testing.T) {
 		}
 	}
 }
+
+func TestCoalesceSystemMessages(t *testing.T) {
+	// Aucun system : inchange.
+	noSys := []provider.Message{{Role: "user", Content: "u"}}
+	if got := coalesceSystemMessages(noSys); len(got) != 1 || got[0].Role != "user" {
+		t.Fatalf("sans system : %+v", got)
+	}
+	// Un seul system deja en tete : inchange (meme slice).
+	one := []provider.Message{{Role: "system", Content: "s"}, {Role: "user", Content: "u"}}
+	if got := coalesceSystemMessages(one); len(got) != 2 || got[0].Content != "s" {
+		t.Fatalf("un system : %+v", got)
+	}
+	// Plusieurs system consecutifs : fusionnes en un seul, en tete.
+	multi := []provider.Message{
+		{Role: "system", Content: "a"},
+		{Role: "system", Content: "b"},
+		{Role: "user", Content: "q"},
+		{Role: "assistant", Content: "r"},
+		{Role: "user", Content: "q2"},
+	}
+	got := coalesceSystemMessages(multi)
+	if len(got) != 4 {
+		t.Fatalf("4 messages attendus, obtenu %d : %+v", len(got), got)
+	}
+	if got[0].Role != "system" || got[0].Content != "a\n\nb" {
+		t.Fatalf("fusion incorrecte : %+v", got[0])
+	}
+	for i, want := range []string{"user", "assistant", "user"} {
+		if got[i+1].Role != want {
+			t.Fatalf("ordre des roles altere : %+v", got)
+		}
+	}
+	// System intercale (defensif) : remonte en tete, ordre des autres garde.
+	inter := []provider.Message{
+		{Role: "system", Content: "a"},
+		{Role: "user", Content: "q"},
+		{Role: "system", Content: "b"},
+	}
+	got = coalesceSystemMessages(inter)
+	if got[0].Role != "system" || got[0].Content != "a\n\nb" || got[1].Role != "user" {
+		t.Fatalf("system intercale mal fusionne : %+v", got)
+	}
+	if len(got) != 2 {
+		t.Fatalf("2 messages attendus, obtenu %d", len(got))
+	}
+	// System vide ignore.
+	empty := []provider.Message{
+		{Role: "system", Content: "  "},
+		{Role: "system", Content: "b"},
+		{Role: "user", Content: "q"},
+	}
+	got = coalesceSystemMessages(empty)
+	if len(got) != 2 || got[0].Content != "b" {
+		t.Fatalf("system vide non ignore : %+v", got)
+	}
+}

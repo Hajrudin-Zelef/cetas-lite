@@ -615,6 +615,12 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	emitted := false
 	var lastErr error
 
+	// Les consignes sont empilees par prepend (chat, thinking, recherche,
+	// RAG, memoire, MAREX) : jusqu'a six messages "system". Certains
+	// moteurs stricts (template Qwen de llama.cpp) refusent plus d'un
+	// message system : on les fusionne en un seul, en tete, dans l'ordre.
+	msgs = coalesceSystemMessages(msgs)
+
 	for i, m := range res.members {
 		if ctx.Err() != nil {
 			c.appendDelta(epoch, map[string]any{"content": "\n\n_Génération interrompue._"})
@@ -735,4 +741,44 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		lastErr = fmt.Errorf("aucun modele disponible")
 	}
 	c.appendDelta(epoch, map[string]any{"error": clientSafeError(lastErr, "Échec de la génération — réessaie dans un instant.")})
+}
+
+// coalesceSystemMessages fusionne tous les messages "system" en un seul,
+// place en tete, dans leur ordre courant (les consignes sont empilees par
+// prepend). Les autres messages gardent leur ordre relatif.
+//
+// Raison : plusieurs moteurs OpenAI-compatibles stricts (chat template
+// Qwen de llama.cpp) rejettent plus d'un message system ("System message
+// must be at the beginning"). Un unique system en tete est valide partout.
+// Sans system dans msgs, la liste est renvoyee telle quelle.
+func coalesceSystemMessages(msgs []provider.Message) []provider.Message {
+	count := 0
+	for _, m := range msgs {
+		if m.Role == "system" {
+			count++
+		}
+	}
+	if count == 0 {
+		return msgs
+	}
+	if count == 1 && len(msgs) > 0 && msgs[0].Role == "system" {
+		return msgs
+	}
+	var parts []string
+	for _, m := range msgs {
+		if m.Role != "system" {
+			continue
+		}
+		if s, ok := m.Content.(string); ok && strings.TrimSpace(s) != "" {
+			parts = append(parts, s)
+		}
+	}
+	out := make([]provider.Message, 0, len(msgs))
+	out = append(out, provider.Message{Role: "system", Content: strings.Join(parts, "\n\n")})
+	for _, m := range msgs {
+		if m.Role != "system" {
+			out = append(out, m)
+		}
+	}
+	return out
 }
