@@ -19,7 +19,8 @@ coffre chiffré pour vos clés. Aucun service externe n'est requis.
 - **Recherche web** : intégrée (native au fournisseur ou via outils), avec panneau de sources.
 - **Mémoire** : pages Markdown persistantes, indexées et recherchables.
 - **Base documentaire locale (RAG)** : vos documents sont indexés localement et injectés dans les
-  réponses ; la recherche web est évitée quand la base suffit. Aucun appel réseau.
+  réponses ; recherche **hybride** (mots exacts + embeddings optionnels) — la recherche web est
+  évitée quand la base suffit.
 - **Multi-agents** : plusieurs agents en parallèle, chacun avec son fil, ses approbations et son
   espace de travail isolé.
 - **Terminal intégré**, pièces jointes (images, PDF, texte/HTML), lecture et dictée via le navigateur.
@@ -108,6 +109,8 @@ de la fenêtre arrête proprement le serveur.
 | `CETAS_LITE_SANDBOX` | Isolation des commandes : `none` · `auto` · `bwrap` | `auto` |
 | `CETAS_LITE_ALLOW_SCRIPT` | Autoriser l'exécution de scripts par l'agent | `false` |
 | `CETAS_LITE_RAG_DIR` | Dossier de la base documentaire locale (vide = désactivée) | `$CETAS_LITE_HOME/rag` |
+| `CETAS_LITE_EMBED_MODEL` | Modèle d'embedding de la jambe sémantique RAG | `openai-text-embedding-3-small` |
+| `CETAS_LITE_SEM_COVER` | Seuil de couverture sémantique RAG (`0` = jambe désactivée) | `0.38` |
 | `CETAS_LITE_VAULT_PASSWORD` | Mot de passe déchiffrant les clés stockées | *(vide)* |
 | `CETAS_PEPPER` | Secret serveur complémentaire du coffre | *(vide)* |
 | `CETAS_LITE_OLLAMA_URL`, `CETAS_LITE_LMSTUDIO_URL`, `CETAS_LITE_LLAMACPP_URL` | Points d'accès des moteurs locaux | *(vide)* |
@@ -119,8 +122,32 @@ Déposez vos documents dans `$CETAS_LITE_HOME/rag/` (ou `CETAS_LITE_RAG_DIR`) :
 - **corpus structurés** : un sous-dossier avec un `manifest.json` (métadonnées et facettes) ;
 - **fichiers bruts** : tout `.md`/`.txt` est indexé tel quel (un fichier = un passage).
 
-L'index est construit **localement, en mémoire** — aucun appel réseau, aucune dépendance externe.
+L'indexation du corpus est **locale et en mémoire**, sans aucune dépendance externe.
 Dossier vide ⇒ fonctionnalité inactive (coût nul).
+
+### Recherche hybride (optionnelle)
+
+Par défaut la recherche porte sur les **mots exacts** (BM25) : les identifiants restent fiables
+(`Kimi K3` ≠ `K2`). Vous pouvez y ajouter une jambe **sémantique** (embeddings), fusionnée avec
+BM25 — elle apporte le sens (« mémoire serveur » → HBM/DDR5).
+
+Cela demande un jeu de vecteurs construit une fois sur le corpus :
+
+```bash
+./bin/cetas-lite rag-vectors status    # état des vecteurs par modèle
+./bin/cetas-lite rag-vectors build      # construction (appels API, quelques minutes)
+./bin/cetas-lite rag-vectors probe "…"  # cosinus d'une requête, pour le calibrage
+```
+
+- **clé d'API** : la même que celle du chat — aucune clé supplémentaire ;
+- **modèle** : `CETAS_LITE_EMBED_MODEL` (défaut `openai/text-embedding-3-small`, 1536 dimensions) ;
+- **vecteurs** : `rag/.vectors/<modèle>.bin`, liés au corpus par empreinte ; si le corpus change,
+  ils sont marqués *obsolètes* et la recherche repasse en BM25 ;
+- **sans clé, sans vecteurs, ou si l'API tombe** → comportement strictement identique au BM25 seul ;
+- `CETAS_LITE_SEM_COVER` règle le seuil de couverture sémantique (défaut `0.38`, `0` désactive la
+  jambe).
+
+Construire les vecteurs lit vos clés stockées : **arrêtez le serveur** avant `rag-vectors build`.
 
 ## Sécurité
 
@@ -150,6 +177,10 @@ Binaire statique (`CGO_ENABLED=0`), sans dépendance d'exécution.
 - **Le port 8787 est déjà utilisé** → changer d'adresse : `CETAS_LITE_ADDR=127.0.0.1:8899 ./bin/cetas-lite serve`.
 - **Mes clés d'API ne sont pas prises en compte** → définir `CETAS_LITE_VAULT_PASSWORD` avant de
   lancer le serveur.
+- **La recherche sémantique ne s'active pas** → `./bin/cetas-lite rag-vectors status` :
+  `absent` = lancer `rag-vectors build` (serveur arrêté) ; `OBSOLETE` = corpus modifié, rebuilder ;
+  si le journal affiche `rag_hybrid mode=bm25_only`, regardez `reason=` (`no_embedder` = pas de clé,
+  `embed_timeout`/`embed_error` = API).
 - **Rien ne s'affiche dans le navigateur** → vérifier `http://127.0.0.1:8787/api/health` et les logs
   du serveur.
 
