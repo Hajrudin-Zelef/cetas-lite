@@ -567,6 +567,10 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 	turns := 0
 	disableTools := false
 	transientRetries := 0
+	// toolsUsed : au moins un appel d'outil a ete execute ce tour (ses
+	// resultats sont dans le contexte) — condition du dernier recours
+	// "reponse vide" plus bas.
+	toolsUsed := false
 	last := ""
 	// lastReasoning suit last tour par tour : le raisonnement du dernier
 	// tour est persiste avec le message assistant final (point 2 du fix
@@ -718,6 +722,7 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 
 		if len(resp.ToolCalls) > 0 {
 			*emitted = true
+			toolsUsed = true
 			assistant := provider.Message{Role: "assistant", ToolCalls: resp.ToolCalls}
 			if resp.Content != "" {
 				assistant.Content = resp.Content
@@ -771,6 +776,18 @@ func (e *Engine) agentMember(ctx context.Context, c *Conversation, epoch int, p 
 				nudges++
 				c.appendDelta(epoch, map[string]any{"drop_reasoning": true})
 				msgs = append(msgs, provider.Message{Role: "user", Content: nudgeText(nudges)})
+				continue
+			}
+			// Dernier recours : des outils ont ete executes ce tour (leurs
+			// resultats sont dans le contexte) mais le modele ne produit
+			// pas de reponse finale. Une ultime tentative bornee, outils
+			// coupes, avec consigne de repondre directement (meme motif que
+			// le repli sur erreur HTTP plus haut) — au lieu de persister un
+			// message vide que l'utilisateur doit regenerer a la main.
+			if toolsUsed && !disableTools && len(tools) > 0 {
+				disableTools = true
+				log.Printf("chat: tour %d: reponse vide apres execution d'outils, ultime tentative sans outils", epoch)
+				msgs = append(msgs, provider.Message{Role: "system", Content: "Stop calling tools. Answer directly now using only the information already gathered."})
 				continue
 			}
 			c.appendDelta(epoch, map[string]any{"content": "_(le modele n'a pas produit de reponse)_"})
