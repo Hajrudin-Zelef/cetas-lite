@@ -2,6 +2,8 @@ package rag
 
 import (
 	"context"
+	"errors"
+	"log/slog"
 	"time"
 )
 
@@ -36,6 +38,10 @@ func (m *Manager) SearchHybrid(ctx context.Context, query string, boost map[stri
 	vec := m.vectors()
 	emb := m.embedder()
 	if vec == nil || emb == nil {
+		// Observabilite : le repli BM25 est silencieux par construction ;
+		// cette ligne montre quand il a lieu et pourquoi.
+		slog.Info("rag_hybrid", "mode", "bm25_only",
+			"reason", semSkipReason(vec == nil, emb == nil))
 		cctx, cancel := context.WithTimeout(ctx, DefaultTimeout)
 		defer cancel()
 		return ix.SearchBoosted(cctx, query, boost, limit)
@@ -63,17 +69,21 @@ func (m *Manager) SearchHybrid(ctx context.Context, query string, boost map[stri
 	}()
 	type semOut struct {
 		hits []SemHit
+		ms   int64 // duree de l'appel d'embedding, meme en echec
+		err  error // erreur d'embedding (nil si TopK simplement vide)
 	}
 	semCh := make(chan semOut, 1)
 	go func() {
+		start := time.Now()
 		cctx, cancel := context.WithTimeout(ctx, hybridEmbedTimeout)
 		defer cancel()
 		qv, err := emb.Embed(cctx, []string{query}, true)
+		ms := time.Since(start).Milliseconds()
 		if err != nil || len(qv) == 0 {
-			semCh <- semOut{}
+			semCh <- semOut{ms: ms, err: err}
 			return
 		}
-		semCh <- semOut{hits: vec.TopK(qv[0], candN)}
+		semCh <- semOut{hits: vec.TopK(qv[0], candN), ms: ms}
 	}()
 
 	b := <-bm25Ch
@@ -111,5 +121,51 @@ func (m *Manager) SearchHybrid(ctx context.Context, query string, boost map[stri
 		// chunk (0 si la jambe BM25 ne l'a pas vu). L'ordre vient de RRF.
 		res.Hits = append(res.Hits, ix.hitFor(f.Idx, terms, bm25ByIdx[f.Idx], rank))
 	}
+	// Observabilite : une ligne par recherche hybride. Montre si la jambe
+	// semantique a travaille (mode=hybrid) ou si le repli BM25 s'est
+	// declenche, avec la raison (erreur ou timeout d'embedding).
+	if len(semRanked) > 0 {
+		slog.Info("rag_hybrid", "mode", "hybrid",
+			"model", emb.Model().Slug,
+			"sem_top", round3f(s.hits[0].Cosine),
+			"sem_ms", s.ms,
+			"bm25_top", round3f(res.BM25Top),
+			"hits", len(res.Hits))
+	} else {
+		slog.Info("rag_hybrid", "mode", "bm25_only",
+			"reason", semErrReason(s.err),
+			"sem_ms", s.ms,
+			"bm25_top", round3f(res.BM25Top),
+			"hits", len(res.Hits))
+	}
 	return res
+}
+
+// semSkipReason : pourquoi la jambe semantique est inactive des le depart
+// (embedder ou vecteurs absents).
+func semSkipReason(noVec, noEmb bool) string {
+	switch {
+	case noVec && noEmb:
+		return "no_vectors_no_embedder"
+	case noVec:
+		return "no_vectors"
+	default:
+		return "no_embedder"
+	}
+}
+
+// semErrReason : pourquoi l'embedding de la requete n'a rien produit.
+func semErrReason(err error) string {
+	if err == nil {
+		return "no_sem_hits"
+	}
+	if errors.Is(err, context.DeadlineExceeded) {
+		return "embed_timeout"
+	}
+	return "embed_error"
+}
+
+// round3f : scores lisibles dans les logs (0.394 au lieu de 0.394213...).
+func round3f(f float64) float64 {
+	return float64(int(f*1000+0.5)) / 1000
 }

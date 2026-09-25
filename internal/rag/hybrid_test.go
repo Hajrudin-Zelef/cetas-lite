@@ -2,8 +2,11 @@ package rag
 
 import (
 	"context"
+	"errors"
+	"log/slog"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
 
@@ -132,5 +135,84 @@ func TestSearchHybridBoostKept(t *testing.T) {
 	plain := m.SearchHybrid(context.Background(), "pomme", nil, 3)
 	if res.BM25Top <= plain.BM25Top {
 		t.Fatalf("boost sans effet: %f <= %f", res.BM25Top, plain.BM25Top)
+	}
+}
+
+// captureSlog : remplace le logger slog par defaut par un buffer texte,
+// pour verifier la ligne d'observabilite rag_hybrid.
+func captureSlog(t *testing.T) *strings.Builder {
+	t.Helper()
+	var buf strings.Builder
+	h := slog.NewTextHandler(&buf, nil)
+	old := slog.Default()
+	slog.SetDefault(slog.New(h))
+	t.Cleanup(func() { slog.SetDefault(old) })
+	return &buf
+}
+
+func TestSearchHybridLogsHybridMode(t *testing.T) {
+	buf := captureSlog(t)
+	m := hybridFixture(t, http.StatusOK)
+	m.SearchHybrid(context.Background(), "pomme", nil, 3)
+	out := buf.String()
+	for _, want := range []string{"msg=rag_hybrid", "mode=hybrid", "model=t", "sem_top=1"} {
+		if !strings.Contains(out, want) {
+			t.Fatalf("log sans %q : %q", want, out)
+		}
+	}
+}
+
+func TestSearchHybridLogsFallbackReason(t *testing.T) {
+	buf := captureSlog(t)
+	m := hybridFixture(t, http.StatusInternalServerError)
+	res := m.SearchHybrid(context.Background(), "pomme", nil, 3)
+	if res.Hybrid {
+		t.Fatal("jambe semantique active malgre l'erreur")
+	}
+	out := buf.String()
+	for _, want := range []string{"msg=rag_hybrid", "mode=bm25_only", "reason=embed_error"} {
+		if !strings.Contains(out, want) {
+			t.Fatalf("log sans %q : %q", want, out)
+		}
+	}
+}
+
+func TestSearchHybridLogsNoVectors(t *testing.T) {
+	buf := captureSlog(t)
+	dir := miniCorpus(t)
+	m := New(dir)
+	if _, err := m.Reload(); err != nil {
+		t.Fatal(err)
+	}
+	m.SearchHybrid(context.Background(), "pomme", nil, 3)
+	out := buf.String()
+	for _, want := range []string{"msg=rag_hybrid", "mode=bm25_only", "reason=no_vectors"} {
+		if !strings.Contains(out, want) {
+			t.Fatalf("log sans %q : %q", want, out)
+		}
+	}
+}
+
+func TestSemReasons(t *testing.T) {
+	if got := semSkipReason(true, true); got != "no_vectors_no_embedder" {
+		t.Fatalf("got %q", got)
+	}
+	if got := semSkipReason(true, false); got != "no_vectors" {
+		t.Fatalf("got %q", got)
+	}
+	if got := semSkipReason(false, true); got != "no_embedder" {
+		t.Fatalf("got %q", got)
+	}
+	if got := semErrReason(nil); got != "no_sem_hits" {
+		t.Fatalf("got %q", got)
+	}
+	if got := semErrReason(context.DeadlineExceeded); got != "embed_timeout" {
+		t.Fatalf("got %q", got)
+	}
+	if got := semErrReason(errors.New("boom")); got != "embed_error" {
+		t.Fatalf("got %q", got)
+	}
+	if got := round3f(0.39421); got != 0.394 {
+		t.Fatalf("got %f", got)
 	}
 }
