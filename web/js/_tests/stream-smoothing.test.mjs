@@ -20,7 +20,7 @@ const { ThreadView } = await import("../thread-view.js");
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-function makeView() {
+function makeView(extra = {}) {
   const log = document.createElement("div");
   document.body.appendChild(log);
   const view = new ThreadView({
@@ -30,6 +30,7 @@ function makeView() {
     stopURL: "/x",
     getPayload: (t) => ({ message: t }),
     actions: false,
+    ...extra,
   });
   return view;
 }
@@ -120,6 +121,59 @@ test("envoi : erreur réseau => indicateur retiré, jamais bloqué", async () =>
   assert.equal(ok, false);
   assert.equal(view.waitEl, null, "spinner retiré après échec");
   assert.ok(view.lastSendError);
+  globalThis.fetch = realFetch;
+  document.body.innerHTML = "";
+});
+
+test("timeout client : POST qui pend => envoi coupe, erreur visible", async () => {
+  const view = makeView({ sendTimeoutMs: 30 });
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (url, opts) =>
+    new Promise((_, reject) => {
+      if (opts && opts.signal)
+        opts.signal.addEventListener("abort", () => {
+          const e = new Error("aborted");
+          e.name = "AbortError";
+          reject(e);
+        });
+    });
+  const done = view.sendText("salut");
+  await sleep(100); // tient la boucle : seul le timer d'abort est unrefernce
+  const ok = await done;
+  assert.equal(ok, false);
+  assert.equal(view.waitEl, null, "spinner retire");
+  assert.match(view.lastSendError, /ne répond pas/);
+  globalThis.fetch = realFetch;
+  document.body.innerHTML = "";
+});
+
+test("watchdog : POST ok mais flux muet => erreur visible et envoi débloqué", async () => {
+  const view = makeView({ turnWatchdogMs: 30 });
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async () => ({ ok: true, status: 200, text: async () => "{}" });
+  const done = view.sendText("salut");
+  await sleep(20);
+  const ok = await done;
+  assert.equal(ok, true);
+  assert.ok(view.generating);
+  await sleep(80);
+  assert.equal(view.generating, false, "etat de blocage libere");
+  assert.equal(view.waitEl, null);
+  assert.match(view.lastSendError, /pas démarré/);
+  globalThis.fetch = realFetch;
+  document.body.innerHTML = "";
+});
+
+test("watchdog : un evenement SSE le desarme (pas de fausse alerte)", async () => {
+  const view = makeView({ turnWatchdogMs: 40 });
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async () => ({ ok: true, status: 200, text: async () => "{}" });
+  const done = view.sendText("salut");
+  await sleep(20);
+  await done;
+  view.handleEvent({ seq: 1, user: "salut" });
+  await sleep(80);
+  assert.ok(view.generating, "le tour demarre ne doit pas declencher l'erreur");
   globalThis.fetch = realFetch;
   document.body.innerHTML = "";
 });

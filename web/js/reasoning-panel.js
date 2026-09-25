@@ -402,6 +402,9 @@ export function initReasonPanel() {
 export function openReasonPanel() {
   const p = panel();
   if (!p) return;
+  // Panneau vide (seul l'espace reserve est present) => on ne l'ouvre pas.
+  const b = body();
+  if (!b || !b.querySelector(".reason-turn")) return;
   p.classList.add("open");
 }
 
@@ -477,6 +480,10 @@ export function resetReasonPanel() {
     b.innerHTML = "";
     b.appendChild(el("div", "reason-panel-empty", EMPTY_HTML));
   }
+  // Corps vidé => rien à y afficher : on referme (plus de placeholder
+  // permanent à l'écran).
+  const p = panel();
+  if (p) p.classList.remove("open");
   setReasoningStreaming(false);
 }
 
@@ -510,6 +517,8 @@ export function dropCurrentReasonTurn() {
   if (b && !b.querySelector(".reason-turn")) {
     b.innerHTML = "";
     b.appendChild(el("div", "reason-panel-empty", EMPTY_HTML));
+    const p = panel();
+    if (p) p.classList.remove("open");
   }
   turn.modelLabel = "";
   turn.provider = "";

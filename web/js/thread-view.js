@@ -697,6 +697,11 @@ export class ThreadView {
       },
       cps: 30,
     });
+    // Watchdog « le tour ne démarre pas » : si rien ne vient du flux dans
+    // les 30 s apres un POST ok, on le dit (fini l'echec silencieux).
+    this._turnWatchdog = 0;
+    this.sendTimeoutMs = opts.sendTimeoutMs || 20000;
+    this.turnWatchdogMs = opts.turnWatchdogMs || 15000;
     this.onEvent = typeof opts.onEvent === "function" ? opts.onEvent : null;
     // Module Agentic (vue Agents uniquement) : Harness = rendu actuel,
     // OpenCode = reproduction fidele du TUI OpenCode.
@@ -970,14 +975,22 @@ export class ThreadView {
   // ("En cours… 12s") — seul le compteur utilise un timer JS.
   showWait(phase = "") {
     if (this.waitEl) return;
-    this.waitEl = el("div", "stream-waiting");
+    // chat.css : .stream-waiting est en opacity:0 tant que .visible n'est
+    // pas pose — sans cette classe, l'element est rendu mais invisible.
+    this.waitEl = el("div", "stream-waiting visible");
     this.waitEl.appendChild(buildMarexLoader());
     this.waitStart = Date.now();
     this.waitPhase = String(phase || "");
     this.waitLabel = el("div", "wait-label", "");
     this.waitEl.appendChild(this.waitLabel);
     this.waitTimer = setInterval(() => this.updateWaitLabel(), 1000);
+    // Node (tests) : ne pas retenir la boucle d'evenements.
+    if (this.waitTimer && typeof this.waitTimer.unref === "function") this.waitTimer.unref();
     this.updateWaitLabel();
+    // L'attente remplace l'etat vide : sans ce retrait, le hero d'accueil
+    // (slot composer dans [data-empty]) recouvre le fil et l'indicateur
+    // reste invisuel pendant tout le vide.
+    this.clearEmpty();
     this.log.appendChild(this.waitEl);
     this.toBottom();
   }
@@ -2210,6 +2223,7 @@ export class ThreadView {
 
   finishTurn() {
     this.finalizeAssistant();
+    this.clearTurnWatchdog();
     const box = this.assistant;
     const raw = this.assistantText;
     if (box) box.classList.remove("streaming");
@@ -2259,6 +2273,7 @@ export class ThreadView {
 
   reset() {
     this.hideWait();
+    this.clearTurnWatchdog();
     this.setBusy(false);
     if (this.revealer) this.revealer.reset();
     if (this.reasonPanel) resetReasonPanel();
@@ -2327,8 +2342,41 @@ export class ThreadView {
     }
   }
 
+  armTurnWatchdog() {
+    this.clearTurnWatchdog();
+    const base = this.lastSeq;
+    this._turnWatchdog = setTimeout(() => {
+      this._turnWatchdog = 0;
+      // Le flux a livre des evenements depuis l'armement : le tour a
+      // demarre (le delta "user" a pu passer avant la reponse du POST).
+      if (this.lastSeq !== base) return;
+      this.hideWait();
+      this.generating = false;
+      this.setBusy(false);
+      if (this.stopBtn) this.stopBtn.hidden = true;
+      this.lastSendError = "Le tour n'a pas démarré — le serveur n'a rien renvoyé. Réessaie.";
+      this.addError(this.lastSendError);
+    }, this.turnWatchdogMs);
+    if (this._turnWatchdog && typeof this._turnWatchdog.unref === "function") this._turnWatchdog.unref();
+  }
+
+  clearTurnWatchdog() {
+    if (this._turnWatchdog) {
+      clearTimeout(this._turnWatchdog);
+      this._turnWatchdog = 0;
+    }
+  }
+
   handleEvent(ev) {
     if (typeof ev.seq === "number" && ev.seq > this.lastSeq) this.lastSeq = ev.seq;
+    // Le premier evenement reel du tour desarme le watchdog : le tour a
+    // demarre (user/route/content/raisonnement). Les pads ne comptent pas.
+    if (this._turnWatchdog &&
+        (ev.user !== undefined || ev.route !== undefined || ev.content !== undefined ||
+         ev.reasoning_content !== undefined || ev.tool !== undefined)) {
+      clearTimeout(this._turnWatchdog);
+      this._turnWatchdog = 0;
+    }
     if (this.onEvent) {
       try { this.onEvent(ev); } catch (e) { /* jamais bloquant pour le fil */ }
     }
@@ -2348,6 +2396,9 @@ export class ThreadView {
       return;
     }
     if (ev.user !== undefined) {
+      // Le delta "user" confirme que le tour a demarre cote serveur :
+      // plus besoin du watchdog d'envoi.
+      this.clearTurnWatchdog();
       this.resetAssistantState();
       // Déduplication de l'écho optimiste : le message a déjà été affiché
       // à l'envoi avec ce client_msg_id — on le confirme au lieu de le
@@ -2566,15 +2617,29 @@ export class ThreadView {
     const payload = this.getPayload(text);
     if (clientMsgId) payload.client_msg_id = clientMsgId;
     if (extra && typeof extra === "object") Object.assign(payload, extra);
+    // Le POST /send doit revenir vite (le tour est lance en asynchrone
+    // cote serveur) : un envoi qui pend n'est pas un tour lent, c'est une
+    // connexion morte — on coupe et on le dit au lieu de laisser l'appel
+    // pendant sans limite.
+    let ctrl = null;
+    let sendTimer = 0;
+    if (typeof AbortController === "function") {
+      ctrl = new AbortController();
+      sendTimer = setTimeout(() => ctrl.abort(), this.sendTimeoutMs);
+      if (typeof sendTimer.unref === "function") sendTimer.unref();
+    }
     try {
-      await api(this.sendURL, { method: "POST", body: payload });
+      await api(this.sendURL, { method: "POST", body: payload, signal: ctrl && ctrl.signal });
+      if (sendTimer) { clearTimeout(sendTimer); sendTimer = 0; }
       this.generating = true;
       this.lastSendError = null;
       if (this.stopBtn) this.stopBtn.hidden = false;
       this.setBusy(true);
       this.toBottom();
+      this.armTurnWatchdog();
       return true;
     } catch (err) {
+      if (sendTimer) clearTimeout(sendTimer);
       // Échec ou abort : le flux n'a peut-être jamais ouvert — retirer
       // l'indicateur dans tous les cas (jamais de spinner bloqué).
       this.hideWait();
@@ -2583,6 +2648,11 @@ export class ThreadView {
         // jamais le delta correspondant.
         this.removeOptimistic(optimistic);
         this.setBusy(false);
+      }
+      if (err && err.name === "AbortError") {
+        this.lastSendError = "Le serveur ne répond pas — réessaie dans un instant.";
+        this.addError(this.lastSendError);
+        return false;
       }
       if (/en cours/i.test(err.message)) {
         this.generating = true;

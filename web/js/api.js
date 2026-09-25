@@ -50,8 +50,12 @@ export async function api(path, opts = {}) {
       method: opts.method || "GET",
       headers,
       body: opts.body !== undefined ? JSON.stringify(opts.body) : undefined,
+      signal: opts.signal,
     });
   } catch (e) {
+    // Abort (timeout client) : remonte tel quel pour que l'appelant le
+    // distingue d'une vraie panne reseau.
+    if (e && e.name === "AbortError") throw e;
     throw new Error("Connexion au serveur impossible.");
   }
 
