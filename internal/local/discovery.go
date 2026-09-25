@@ -10,8 +10,9 @@ import (
 )
 
 type Engine struct {
-	ID  string
-	URL string
+	ID     string
+	URL    string
+	APIKey string
 }
 
 type Model struct {
@@ -21,11 +22,11 @@ type Model struct {
 
 var EngineIDs = []string{"llamacpp", "ollama", "lmstudio"}
 
-func DefaultEngines(urls map[string]string) []Engine {
+func DefaultEngines(urls map[string]string, keys map[string]string) []Engine {
 	var out []Engine
 	for _, id := range EngineIDs {
 		if u := strings.TrimSpace(urls[id]); u != "" {
-			out = append(out, Engine{ID: id, URL: strings.TrimRight(u, "/")})
+			out = append(out, Engine{ID: id, URL: strings.TrimRight(u, "/"), APIKey: strings.TrimSpace(keys[id])})
 		}
 	}
 	return out
@@ -81,6 +82,9 @@ func (d *Discoverer) probe(ctx context.Context, e Engine) []string {
 	req, err := http.NewRequestWithContext(probeCtx, http.MethodGet, e.URL+"/v1/models", nil)
 	if err != nil {
 		return nil
+	}
+	if e.APIKey != "" {
+		req.Header.Set("Authorization", "Bearer "+e.APIKey)
 	}
 	resp, err := d.client.Do(req)
 	if err != nil {

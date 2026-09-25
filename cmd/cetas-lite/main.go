@@ -148,7 +148,7 @@ func buildApp() (*app, error) {
 	}
 	keys := loadProviderKeys(st)
 	registry := provider.Build(keys, localURLs, client)
-	discover := local.New(local.DefaultEngines(localURLs), client)
+	discover := local.New(local.DefaultEngines(localURLs, keys), client)
 	families := loadFamilies(st)
 	engine := chat.NewEngine(registry, families, st, discover, cfg.WorkspaceDir)
 	engine.SetAllowScript(cfg.AllowScript)

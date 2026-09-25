@@ -61,8 +61,8 @@ func CloudEndpoint(providerID, apiKey string) (Endpoint, bool) {
 	return ep, true
 }
 
-func LocalEndpoint(engine, baseURL string) Endpoint {
-	return Endpoint{Provider: engine, BaseURL: baseURL, Path: "/v1/chat/completions"}
+func LocalEndpoint(engine, baseURL, apiKey string) Endpoint {
+	return Endpoint{Provider: engine, BaseURL: baseURL, Path: "/v1/chat/completions", APIKey: apiKey}
 }
 
 type Registry struct {
@@ -115,7 +115,7 @@ func Build(keys map[string]string, localURLs map[string]string, client *http.Cli
 	}
 	for engine, url := range localURLs {
 		if url != "" {
-			r.Set(NewOpenAICompat(LocalEndpoint(engine, url), client))
+			r.Set(NewOpenAICompat(LocalEndpoint(engine, url, keys[engine]), client))
 		}
 	}
 	return r

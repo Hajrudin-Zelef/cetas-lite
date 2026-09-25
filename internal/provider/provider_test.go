@@ -181,6 +181,35 @@ func TestBuildRegistry(t *testing.T) {
 	}
 }
 
+func TestLocalEndpointCarriesAPIKey(t *testing.T) {
+	ep := LocalEndpoint("llamacpp", "https://neva.example", "secret")
+	if ep.Provider != "llamacpp" || ep.BaseURL != "https://neva.example" || ep.Path != "/v1/chat/completions" {
+		t.Fatalf("endpoint local = %+v", ep)
+	}
+	if ep.APIKey != "secret" {
+		t.Fatalf("cle non transmise : %q", ep.APIKey)
+	}
+}
+
+func TestBuildRegistryWiresLocalKey(t *testing.T) {
+	r := Build(
+		map[string]string{"llamacpp": "secret"},
+		map[string]string{"llamacpp": "https://neva.example"},
+		NewHTTPClient(),
+	)
+	p, ok := r.Get("llamacpp")
+	if !ok {
+		t.Fatal("moteur local absent")
+	}
+	oc, ok := p.(*OpenAICompat)
+	if !ok {
+		t.Fatalf("type inattendu : %T", p)
+	}
+	if oc.endpoint.APIKey != "secret" {
+		t.Fatalf("cle du moteur non propagee : %q", oc.endpoint.APIKey)
+	}
+}
+
 func TestStreamAnnotationsEtExtra(t *testing.T) {
 	var payload map[string]any
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

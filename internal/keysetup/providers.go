@@ -107,6 +107,15 @@ var Providers = []Provider{
 		TestModel: "hy3", Mode: ModeChat,
 		Headers: map[string]string{openCodeSessionHeader: openCodeSessionValue},
 		AppID:   "opencode-go"},
+	// Moteur local distant (SamGen/nano) : llama.cpp OpenAI-compatible
+	// derrière une passerelle authentifiée. L'ID est celui du moteur
+	// (`llamacpp`) pour que la clé rangée sous ce nom soit reprise par la
+	// découverte locale et le provider local (keys["llamacpp"]).
+	{ID: "llamacpp", Label: "SamGen (llama.cpp distant)", Hint: "clé hexadécimale",
+		TestURL:   envOr("CETAS_LLAMACPP_TEST_URL", "https://nsweb.neva-ci.pro/v1/chat/completions"),
+		TestModel: envOr("CETAS_LLAMACPP_TEST_MODEL", "Qwen3.5-4B-Q4_K_M.gguf"),
+		Mode:      ModeChat,
+		AppID:     "llamacpp"},
 }
 
 // openCodeSessionHeader — depuis 2026-09-05, la gateway OpenCode (Zen et Go)

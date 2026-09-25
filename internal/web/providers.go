@@ -64,8 +64,29 @@ func (s *Server) handleLocalURLPut(w http.ResponseWriter, r *http.Request, id st
 		writeError(w, http.StatusInternalServerError, "enregistrement impossible")
 		return
 	}
-	s.registry.Set(provider.NewOpenAICompat(provider.LocalEndpoint(id, u), s.httpClient))
+	// La cle du moteur (si rangee au coffre, ex. SamGen/llama.cpp distant)
+	// doit survivre au changement d'URL : sans elle, la prise en compte a
+	// chaud repartirait sans auth alors que le demarrage l'injecte.
+	s.registry.Set(provider.NewOpenAICompat(provider.LocalEndpoint(id, u, s.localSecret(id)), s.httpClient))
 	writeJSON(w, http.StatusOK, map[string]any{"ok": true, "id": id, "url": u})
+}
+
+// localSecret rend la cle dechiffree d'un moteur local, ou "" si absente ou
+// illisible (fail-open : le moteur reste sans auth, comportement historique).
+func (s *Server) localSecret(id string) string {
+	ct, ok := s.st.GetSecret(id)
+	if !ok {
+		return ""
+	}
+	v, err := vault.Open(s.st)
+	if err != nil {
+		return ""
+	}
+	pt, err := v.Decrypt(ct, []byte(id))
+	if err != nil {
+		return ""
+	}
+	return string(pt)
 }
 
 func providerLabel(id string) string {
