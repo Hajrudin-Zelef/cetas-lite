@@ -681,6 +681,7 @@ export class ThreadView {
     this.actions = opts.actions !== false;
     this.regenerateURL = opts.regenerateURL || null;
     this.onDone = opts.onDone || null;
+    this.notifyPregen = opts.notifyPregen || null;
     this.reasonPanel = opts.reasonPanel === true;
     this.reasonHooks = opts.reasonHooks || null;
     this.trackTokens = opts.trackTokens === true;
@@ -1253,7 +1254,15 @@ export class ThreadView {
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
     this.toBottom();
-    fillChips(box, (s) => this.sendText(s.question, { focus_corpus: s.corpus }));
+    fillChips(
+      box,
+      (s) => this.sendText(s.question, { focus_corpus: s.corpus }),
+      // Lot 5 : les questions affichées partent en pré-génération
+      // arrière-plan (le clic rejouera la réponse quasi instantanément).
+      (picked) => {
+        if (this.notifyPregen) this.notifyPregen(picked);
+      }
+    );
     return wrapper;
   }
 

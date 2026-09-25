@@ -42,11 +42,18 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	maxTokens := chat.ClampMaxTokens(body.MaxTokens)
+	settings := s.storedSettings(claims.Username)
 	if maxTokens == 0 {
-		maxTokens = chat.ClampMaxTokens(s.storedSettings(claims.Username).MaxTokens)
+		maxTokens = chat.ClampMaxTokens(settings.MaxTokens)
+	}
+	// Lot 5 (pré-génération) : un message tapé annule les fantômes en
+	// cours (l'historique change, leurs réponses ne serviraient plus) ;
+	// un clic sur une question suggérée (focus_corpus) les consomme.
+	if body.FocusCorpus == "" {
+		s.engine.PregenCancel(claims.Username)
 	}
 	c := s.engine.Conversation(claims.Username)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments, MaxTokens: maxTokens, FocusCorpus: body.FocusCorpus})
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments, MaxTokens: maxTokens, FocusCorpus: body.FocusCorpus, PregenLookup: body.FocusCorpus != "" && settings.pregenEnabled()})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return
@@ -162,4 +169,62 @@ func (s *Server) handleChatSuggestions(w http.ResponseWriter, r *http.Request) {
 		suggs = []chat.Suggestion{}
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"suggestions": suggs})
+}
+
+// handleChatPrefetch reçoit les questions suggérées affichées en chips
+// et lance leur pré-génération en arrière-plan (lot 5). Le navigateur
+// notifie après chaque tirage ; le serveur rejoue les 3 tours sur des
+// conversations fantômes. 202 immédiat : la génération est asynchrone.
+// Fail-open : réglage désactivé ou requête invalide => {"ok":true} sans
+// effet, le clic suivra le chemin normal.
+func (s *Server) handleChatPrefetch(w http.ResponseWriter, r *http.Request) {
+	claims := claimsFrom(r)
+	if claims == nil {
+		writeError(w, http.StatusUnauthorized, "non authentifie")
+		return
+	}
+	var body struct {
+		Suggestions []struct {
+			Question string `json:"question"`
+			Corpus   string `json:"corpus"`
+		} `json:"suggestions"`
+		Family    string `json:"family"`
+		Mode      string `json:"mode"`
+		Web       bool   `json:"web"`
+		MCP       bool   `json:"mcp"`
+		Think     bool   `json:"think"`
+		Effort    string `json:"effort"`
+		MaxTokens int    `json:"max_tokens"`
+	}
+	if err := decodeJSON(r, &body); err != nil {
+		writeJSON(w, http.StatusOK, map[string]any{"ok": true})
+		return
+	}
+	settings := s.storedSettings(claims.Username)
+	if !settings.pregenEnabled() || body.Family == "" || body.Mode == "" || len(body.Suggestions) == 0 {
+		writeJSON(w, http.StatusOK, map[string]any{"ok": true})
+		return
+	}
+	maxTokens := chat.ClampMaxTokens(body.MaxTokens)
+	if maxTokens == 0 {
+		maxTokens = chat.ClampMaxTokens(settings.MaxTokens)
+	}
+	items := make([]chat.PregenSuggestion, 0, len(body.Suggestions))
+	for _, sg := range body.Suggestions {
+		if sg.Question == "" {
+			continue
+		}
+		items = append(items, chat.PregenSuggestion{Question: sg.Question, Corpus: sg.Corpus})
+	}
+	if len(items) == 0 {
+		writeJSON(w, http.StatusOK, map[string]any{"ok": true})
+		return
+	}
+	history := s.engine.Conversation(claims.Username).MessagesSnapshot()
+	s.engine.PregenSuggestions(claims.Username, items, chat.TurnInput{
+		User: claims.Username, Family: body.Family, Mode: body.Mode,
+		Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort,
+		MaxTokens: maxTokens,
+	}, history)
+	writeJSON(w, http.StatusAccepted, map[string]any{"ok": true})
 }

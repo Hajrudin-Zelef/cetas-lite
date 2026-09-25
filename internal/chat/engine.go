@@ -68,6 +68,10 @@ type Engine struct {
 	marexMu       sync.Mutex
 	marexPath     string
 	marexSessions map[string]*marexEntry
+
+	// Pré-génération des questions suggérées (lot 5) : jobs en cours par
+	// utilisateur et dépôt de réponses (valeur zéro utilisable).
+	pregen pregenState
 }
 
 // LocalDiscoverer fournit les modeles decouverts sur les moteurs locaux.
@@ -659,6 +663,12 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 				}
 			}
 		}
+		// Pré-génération (lot 5) : si un fantôme a préparé la réponse de
+		// ce tour exact, on la rejoue sans appel provider (~1 ms). Un
+		// fantôme en cours est attendu (borné) plutôt que doublé.
+		if e.pregenServe(ctx, c, epoch, in, m.Provider, req) {
+			return
+		}
 		resp, err := p.Stream(ctx, req, func(ev provider.Event) bool {
 			if ev.Reasoning != "" && in.Think {
 				c.appendDelta(epoch, map[string]any{"reasoning_content": ev.Reasoning})
@@ -681,6 +691,9 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
 			}
 			e.cacheStore(cacheKey, resp)
+			// Tour fantôme (lot 5) : la réponse réussie alimente le dépôt
+			// de pré-génération (le clic la rejouera sans appel).
+			e.pregenCapture(in, m.Provider, req, resp)
 			c.appendAssistant(epoch, resp.Content, "")
 			return
 		}

@@ -135,7 +135,9 @@ export function renderChips(box, suggestions, { onPick, onMore } = {}) {
 
 // Remplit une boîte de chips : tirage initial puis « Autre » => nouveau
 // tirage hors questions déjà vues. onPick reçoit la suggestion cliquée.
-export async function fillChips(box, onPick) {
+// onDrawn (optionnel, lot 5) reçoit les questions affichées après chaque
+// tirage, pour leur pré-génération en arrière-plan.
+export async function fillChips(box, onPick, onDrawn) {
   let pool = [];
   try {
     pool = await loadPool();
@@ -146,6 +148,12 @@ export async function fillChips(box, onPick) {
     box.innerHTML = "";
     return;
   }
+  const notifyDrawn = (picked) => {
+    if (typeof onDrawn !== "function") return;
+    try {
+      onDrawn(picked);
+    } catch {}
+  };
   const draw = () => {
     const seen = readSeen();
     let picked = drawSuggestions(pool, { count: 3, exclude: seen });
@@ -161,8 +169,10 @@ export async function fillChips(box, onPick) {
         const final = again.length ? again : drawSuggestions(pool, { count: 3 });
         markSeen(final);
         renderChips(box, final, { onPick, onMore: draw });
+        notifyDrawn(final);
       },
     });
+    notifyDrawn(picked);
   };
   draw();
 }

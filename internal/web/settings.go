@@ -32,6 +32,16 @@ type uiSettings struct {
 	Summarizer    string `json:"summarizer"`
 	TitleGen      string `json:"title_gen"`
 	ErrorAnalysis string `json:"error_analysis"`
+	// PregenSuggestions : pré-génération des questions suggérées (lot 5).
+	// Pointeur pour distinguer « non défini » (défaut : activé) de
+	// « désactivé ». nil = activé.
+	PregenSuggestions *bool `json:"pregen_suggestions,omitempty"`
+}
+
+// pregenEnabled rend l'état du réglage de pré-génération : activé par
+// défaut (nil), désactivé uniquement si explicitement false.
+func (u uiSettings) pregenEnabled() bool {
+	return u.PregenSuggestions == nil || *u.PregenSuggestions
 }
 
 func validEffort(e string) bool {
@@ -174,23 +184,24 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var body struct {
-		Theme           *string `json:"theme"`
-		Family          *string `json:"family"`
-		Mode            *string `json:"mode"`
-		AppMode         *string `json:"app_mode"`
-		WebDefault      *bool   `json:"web_default"`
-		MCPDefault      *bool   `json:"mcp_default"`
-		WebSearchMode   *string `json:"websearch_mode"`
-		ThinkingDefault *bool   `json:"thinking_default"`
-		ThinkingEffort  *string `json:"thinking_effort"`
-		MaxTokens       *int    `json:"max_tokens"`
-		Palette         *string `json:"palette"`
-		TTS             *string `json:"tts"`
-		Transcription   *string `json:"transcription"`
-		PromptEnhance   *string `json:"prompt_enhance"`
-		Summarizer      *string `json:"summarizer"`
-		TitleGen        *string `json:"title_gen"`
-		ErrorAnalysis   *string `json:"error_analysis"`
+		Theme             *string `json:"theme"`
+		Family            *string `json:"family"`
+		Mode              *string `json:"mode"`
+		AppMode           *string `json:"app_mode"`
+		WebDefault        *bool   `json:"web_default"`
+		MCPDefault        *bool   `json:"mcp_default"`
+		WebSearchMode     *string `json:"websearch_mode"`
+		ThinkingDefault   *bool   `json:"thinking_default"`
+		ThinkingEffort    *string `json:"thinking_effort"`
+		MaxTokens         *int    `json:"max_tokens"`
+		Palette           *string `json:"palette"`
+		TTS               *string `json:"tts"`
+		Transcription     *string `json:"transcription"`
+		PromptEnhance     *string `json:"prompt_enhance"`
+		PregenSuggestions *bool   `json:"pregen_suggestions"`
+		Summarizer        *string `json:"summarizer"`
+		TitleGen          *string `json:"title_gen"`
+		ErrorAnalysis     *string `json:"error_analysis"`
 	}
 	if err := decodeJSON(r, &body); err != nil {
 		writeError(w, http.StatusBadRequest, "corps JSON invalide")
@@ -232,6 +243,9 @@ func (s *Server) handleSettingsPut(w http.ResponseWriter, r *http.Request) {
 	}
 	if body.MCPDefault != nil {
 		cur.MCPDefault = body.MCPDefault
+	}
+	if body.PregenSuggestions != nil {
+		cur.PregenSuggestions = body.PregenSuggestions
 	}
 	if body.ThinkingDefault != nil {
 		cur.ThinkingDefault = *body.ThinkingDefault

@@ -78,6 +78,25 @@ export function initChat() {
       };
     },
     onDone: () => refreshHint(),
+    // Lot 5 : notifie le serveur des questions suggérées affichées pour
+    // leur pré-génération en arrière-plan. Fire-and-forget : en cas
+    // d'échec, le clic suit simplement le chemin normal.
+    notifyPregen: (picked) => {
+      const sel = currentSelection();
+      api("/api/chat/prefetch", {
+        method: "POST",
+        body: {
+          suggestions: (picked || []).map((s) => ({ question: s.question, corpus: s.corpus })),
+          family: sel.family,
+          mode: sel.mode,
+          web: sel.web,
+          mcp: sel.mcp,
+          think: sel.think,
+          effort: sel.effort,
+          max_tokens: getMaxTokens(),
+        },
+      }).catch(() => {});
+    },
   });
 
   function showModelAlert(show) {

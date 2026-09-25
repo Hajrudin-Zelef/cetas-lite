@@ -128,6 +128,8 @@ function initConfigModal() {
     };
     set("cfg-web-default", prefs && prefs.web_default);
     set("cfg-thinking-default", prefs && prefs.thinking_default);
+    // Pré-génération (lot 5) : activée par défaut (réglage absent = true).
+    set("cfg-pregen-default", !prefs || prefs.pregen_suggestions !== false);
     set("cfg-mcp-default", prefs && typeof prefs.mcp_default === "boolean" ? prefs.mcp_default : true);
     const eff = document.getElementById("cfg-thinking-effort");
     if (eff) eff.value = (prefs && prefs.thinking_effort) || "default";
@@ -172,12 +174,13 @@ function initConfigModal() {
       thinking_default: !!document.getElementById("cfg-thinking-default")?.checked,
       thinking_effort: document.getElementById("cfg-thinking-effort")?.value || "default",
       mcp_default: mcpEl ? !!mcpEl.checked : true,
+      pregen_suggestions: !!document.getElementById("cfg-pregen-default")?.checked,
     };
   }
 
   function bindFeatureToggles() {
     const onAdvChange = () => notifyConfigDirty();
-    ["cfg-web-default", "cfg-thinking-default", "cfg-mcp-default"].forEach((id) => {
+    ["cfg-web-default", "cfg-thinking-default", "cfg-mcp-default", "cfg-pregen-default"].forEach((id) => {
       document.getElementById(id)?.addEventListener("change", onAdvChange);
     });
     document.getElementById("cfg-thinking-effort")?.addEventListener("change", onAdvChange);

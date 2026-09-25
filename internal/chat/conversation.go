@@ -66,6 +66,18 @@ type TurnInput struct {
 	// frontend de dedupliquer le message deja affiche avant la reponse
 	// du POST. Vide = pas d'echo optimiste (comportement historique).
 	ClientMsgID string
+	// IsPregenShadow marque un tour fantôme (lot 5) : exécuté en
+	// arrière-plan sur une conversation jetable, sa réponse réussie est
+	// capturée dans le dépôt de pré-génération (jamais servie à un client).
+	IsPregenShadow bool
+	// PregenLookup autorise le tour à consommer une réponse pré-générée
+	// (lot 5) : clic sur une question suggérée, réglage activé.
+	PregenLookup bool
+	// PregenKey est la clé d'entrée précalculée pour un tour fantôme
+	// (lot 5). Calculée une fois côté PregenSuggestions depuis
+	// l'historique brut ; la recalculer depuis msgs serait faux car
+	// msgs contient déjà les prompts système injectés.
+	PregenKey string
 }
 
 // Bornes du reglage "tokens max par reponse".
