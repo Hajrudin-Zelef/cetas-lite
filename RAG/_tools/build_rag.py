@@ -1885,6 +1885,13 @@ CORPORA = [
         "mode": "files", "folder": "misc",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
+    {
+        "slug": "collect-250926-servers-hardware",
+        "title": "Clean 4 — serveurs, GPU & stockage 2026",
+        "source_dir": "docs/RAG/clean4",
+        "mode": "files", "folder": "servers-hardware",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
 ]
 
 

@@ -56,13 +56,15 @@ RAG/
 ├── collect-240926-korben/         # corpus n°82 — Korben (18 fichiers, mode files)
 ├── collect-240926-frandroid/      # corpus n°83 — FrAndroid (14 fichiers, mode files)
 ├── collect-240926-hardwarecooking/ # corpus n°84 — HardwareCooking (12 fichiers, mode files)
-└── collect-240926-misc/           # corpus n°85 — longue traîne (29 fichiers, 14 sites)
+├── collect-240926-misc/           # corpus n°85 — longue traîne (29 fichiers, 14 sites)
+└── collect-250926-servers-hardware/ # corpus n°86 — Clean 4 : serveurs, GPU, Ollama/Unsloth (196 fichiers, mode files)
 ```
 
 Détail par étape (séries `etape*`) : chaque source de `docs/RAG/` donne **un corpus**
 autonome. Liste complète et à jour : `INDEX.md` (racine) et `manifest.json`.
-Séries `collect-*` / `vague2-*` / `collect-240926-*` : dossiers de fichiers individuels,
-**un fichier = un chunk** (mode `files`, voir plus bas). Total **85 corpus / 2 487 chunks**.
+Séries `collect-*` / `vague2-*` / `collect-240926-*` / `collect-250926-*` : dossiers de
+fichiers individuels, **un fichier = un chunk** (mode `files`, voir plus bas). Total
+**86 corpus / 2 683 chunks**.
 
 La vague `collect-240926` (668 articles scrapés, `docs/RAG/clean_en/`) est découpée
 **par site** — un dossier par site ≥ 10 fichiers, le reste regroupé en `misc` (14 sites).
@@ -170,13 +172,13 @@ ou `rag: aucun corpus … (inactif)`.
 L'index est en mémoire et **proportionnel au texte des corpus** ; il ne dépend pas du
 nombre de requêtes (index immuable, aucune écriture, aucun cache qui grandit).
 
-| mesure | 21 corpus | 63 corpus | 70 corpus | 74 corpus | **85 corpus** |
+| mesure | 21 corpus | 70 corpus | 74 corpus | 85 corpus | **86 corpus** |
 |---|---|---|---|---|---|
-| texte des corpus | 6,4 Mo | 10,4 Mo | 12,1 Mo | 13,0 Mo | **21,6 Mo** |
-| chunks / termes | 707 / 25 789 | 1 325 / 41 707 | 1 661 / 43 577 | 1 819 / 45 319 | **2 487 / 56 375** |
-| **mémoire heap** | 32 Mo | 71 Mo (6,8×) | 69 Mo (5,7×) | 84 Mo (6,5×) | **140 Mo** (6,5×) |
-| construction (arrière-plan) | 0,3 s | 0,7 s | 0,7 s | 0,75 s | **1,2 s** |
-| recherche (BM25, plafond 120 ms) | 207 µs | 302 µs | 296 µs | 428 µs | **571 µs** |
+| texte des corpus | 6,4 Mo | 12,1 Mo | 13,0 Mo | 21,6 Mo | **25,7 Mo** |
+| chunks / termes | 707 / 25 789 | 1 661 / 43 577 | 1 819 / 45 319 | 2 487 / 56 375 | **2 683 / 59 340** |
+| **mémoire heap** | 32 Mo | 69 Mo (5,7×) | 84 Mo (6,5×) | 140 Mo (6,5×) | **à mesurer** |
+| construction (arrière-plan) | 0,3 s | 0,7 s | 0,75 s | 1,2 s | **à mesurer** |
+| recherche (BM25, plafond 120 ms) | 207 µs | 296 µs | 428 µs | 571 µs | **à mesurer** |
 
 Ordres de grandeur : ~1 Mo de corpus ⇒ ~7 Mo de heap. Le service complet (RAG inclus)
 est passé à **~140 Mo de heap** (RSS mesurée à suivre au démarrage). Sur un VPS sans swap,

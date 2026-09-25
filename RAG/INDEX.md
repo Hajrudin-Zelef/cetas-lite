@@ -91,5 +91,6 @@ Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source déj
 | `collect-240926-frandroid` | FrAndroid — mobile & tech (Collect 240926) |  | 14 | `docs/RAG/clean_en/frandroid` | [INDEX](collect-240926-frandroid/INDEX.md) |
 | `collect-240926-hardwarecooking` | HardwareCooking — PC & matériel (Collect 240926) |  | 12 | `docs/RAG/clean_en/hardwarecooking` | [INDEX](collect-240926-hardwarecooking/INDEX.md) |
 | `collect-240926-misc` | Collect 240926 — longue traîne (14 sites) |  | 29 | `docs/RAG/clean_en/misc` | [INDEX](collect-240926-misc/INDEX.md) |
+| `collect-250926-servers-hardware` | Clean 4 — serveurs, GPU & stockage 2026 |  | 196 | `docs/RAG/clean4` | [INDEX](collect-250926-servers-hardware/INDEX.md) |
 
 Voir aussi [README](README.md) et `manifest.json`.

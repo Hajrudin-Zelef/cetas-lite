@@ -1,0 +1,98 @@
+---
+id: collect-250926-servers-hardware/servers-hardware/plugins
+title: "Plugins"
+domain: servers-hardware
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["agents"]
+source: docs/RAG/clean4/plugins.md
+source_anchor: ""
+source_lines: [1, 83]
+sha256: 61638af46e9b315d5767b3a938cc4cbfa03c84db4304b7def9a00a4b2502573c
+---
+
+# Plugins
+
+Add published packages, versioned packages, scoped packages, or local plugin directories to `opencode.json(c)`.
+
+## Configure
+
+Relative paths resolve from the config file containing the entry. Plugin arrays from applicable config files are applied from lowest to highest precedence instead of replacing one another.
+
+```
+~/.config/opencode/opencode.jsonc
+./opencode.jsonc
+./.opencode/opencode.jsonc
+```
+## Discover
+
+OpenCode also loads direct `.ts` and `.js` files and immediate plugin package directories from every discovered
+`.opencode/plugins/` directory.
+
+```
+.opencode/
+âââ plugins/
+    âââ concise.ts
+    âââ reviewer.js
+    âââ acme-package/
+```
+Global plugins use the same discovery layout under the OpenCode config directory.
+
+`~/.config/opencode/plugins/`
+A `plugins/` directory beside a project-root `opencode.json(c)` is not discovered automatically; configure its files
+explicitly or move it under `.opencode/`.
+
+## Control
+
+Plugin entries are processed in order. Prefix an ID or wildcard with `-` to disable it, use `*` for every plugin, and
+use `.*` to match an ID prefix. A later ID re-enables a plugin.
+
+Two built-in plugins ignore removals so that a repository cannot switch off
+policy enforcement: `opencode.config.policy` and
+`opencode.provider.opencode`, the Console connection that delivers organization
+policy.
+
+## Manage
+
+Install, list, check, update, or remove global package plugins with the CLI.
+
+```
+opencode plugin add opencode-acme-plugin@1.2.0
+opencode plugin list
+opencode plugin list --builtin
+opencode plugin check
+opencode plugin update
+opencode plugin update opencode-acme-plugin
+opencode plugin remove opencode-acme-plugin@1.2.0
+```
+`plugin check` checks server and TUI-only package plugins for updates. `plugin update` updates every outdated package;
+pass a configured package target to check or update only that package. Local plugins and exact package revisions are skipped.
+
+Package installation accepts npm names with versions, tags, or ranges, plus npm-compatible Git package specifications. Git repositories can use hosted shortcuts, HTTPS, or SSH, including private repositories available through your existing Git credentials.
+
+```
+opencode plugin add @acme/opencode-plugin@latest
+opencode plugin add github:acme/opencode-plugin
+opencode plugin add git+ssh://git@github.com/acme/opencode-plugin.git#main
+opencode plugin add 'github:acme/plugins#main::path:packages/opencode-plugin'
+```
+Branches, tags, complete commit hashes, and npmâs `::path:` repository-subdirectory selectors are supported. Configure
+local paths directly; tarball and npm alias targets are not accepted by `plugin add`.
+
+## Reload
+
+Changes under watched config directories reload automatically. Server startup loads cached package plugins immediately, installs missing packages in the background, and checks unpinned npm and Git plugins for updates without changing the installed package. Exact npm versions and full Git commit hashes stay pinned. Changes to unwatched local dependencies may still require restarting OpenCode.
+
+```
+touch .opencode/plugins/concise/index.ts
+opencode service restart
+```
+## Terminal
+
+CLI-only plugins are configured separately and remain active when connected to a remote server.
+
+**Build a plugin**
+
+Create plugins that add tools, hooks, integrations, commands, agents, and other behavior.

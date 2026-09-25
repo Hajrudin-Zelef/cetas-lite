@@ -1,0 +1,194 @@
+---
+id: collect-250926-servers-hardware/servers-hardware/policies
+title: "Policies"
+domain: servers-hardware
+role: reference
+task: reference
+actors: ["Anthropic"]
+dates: []
+keywords: ["agent", "mcp"]
+source: docs/RAG/clean4/policies.md
+source_anchor: ""
+source_lines: [1, 179]
+sha256: 669d7968b065c7ea3a24e698b3111deed62b1762db6bec405cbacef134136f9c
+---
+
+# Policies
+
+Policies decide whether OpenCode may perform an action on a named resource. They are
+authored under `experimental.policies` and can also be delivered by a connected
+OpenCode Console workspace.
+
+Policies are separate from permissions. Permissions are per-agent tool
+rules that can `allow`, `deny`, or `ask`. Policies are binary, never prompt, and only
+ever tighten what permissions and providers would otherwise allow.
+
+## Configure
+
+Deny one provider everywhere by adding a statement to `opencode.jsonc`:
+
+```
+{
+  "$schema": "https://opencode.ai/config.json",
+  "experimental": {
+    "policies": [{ "action": "provider.use", "resource": "openai", "effect": "deny" }],
+  },
+}
+```
+A denied provider disappears from the catalog and model selection even when it has valid credentials.
+
+## Statements
+
+Each statement has three fields:
+
+| Field | Values | Meaning | 
+|---|---|---|
+| `action` | `provider.use` ,`permission` | The operation being controlled | 
+| `resource` | string or wildcard pattern | What the statement applies to; depends on the action | 
+| `effect` | `allow` ,`deny` | The decision when this statement matches | 
+
+Statements that fail validation are dropped with a warning in the server log and
+the rest of the list still applies. Check the log after editing a `deny`.
+
+## Matching
+
+Resources use the same whole-value wildcards as permissions: `*` matches zero or
+more characters and `?` matches one.
+
+```
+{
+  "experimental": {
+    "policies": [{ "action": "provider.use", "resource": "company-*", "effect": "deny" }],
+  },
+}
+```
+This denies `company-us` and `company-eu`. A pattern ending in  `*` also matches the
+value without arguments, so `shell:git push *` covers `git push` on its own.
+
+## Order
+
+When several statements match, the last one wins. There is no specificity rule, so put broad statements first and exceptions after them. If nothing matches, the action is allowed.
+
+```
+{
+  "experimental": {
+    "policies": [
+      { "action": "provider.use", "resource": "*", "effect": "deny" },
+      { "action": "provider.use", "resource": "anthropic", "effect": "allow" },
+    ],
+  },
+}
+```
+Only Anthropic remains available.
+
+## Providers
+
+`provider.use` controls whether a provider is usable at all. The resource is the
+provider ID: `anthropic`, `openai`, `opencode`, or a custom ID from
+`providers`.
+
+```
+{
+  "providers": {
+    "company-ai": {
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": { "baseURL": "https://ai.company.example/v1" },
+    },
+  },
+  "experimental": {
+    "policies": [
+      { "action": "provider.use", "resource": "*", "effect": "deny" },
+      { "action": "provider.use", "resource": "company-ai", "effect": "allow" },
+    ],
+  },
+}
+```
+The `providers` entry configures the endpoint; the statements make it the only
+provider OpenCode will use. Policy applies however a provider became known: catalog
+data, environment variables, saved accounts, built-in plugins, or configuration.
+
+Use `provider.use` instead of the V1 `enabled_providers` and `disabled_providers`
+lists. V1 files still load; see
+Migrate from V1.
+
+## Permissions
+
+`permission` statements hard-deny a permission check. The resource is
+`<action>:<value>`, matched against every resource the tool checks.
+
+```
+{
+  "experimental": {
+    "policies": [
+      { "action": "permission", "resource": "shell:git push *", "effect": "deny" },
+      { "action": "permission", "resource": "edit:*.env", "effect": "deny" },
+      { "action": "permission", "resource": "webfetch:*", "effect": "deny" },
+    ],
+  },
+}
+```
+A denied check fails with `Blocked by configuration policy` instead of prompting. It
+applies after agent rules and saved approvals, so it overrides an `ask` and an
+âAllow alwaysâ approval alike.
+
+| Pattern | Blocks | 
+|---|---|
+| `shell:*` | Every shell command | 
+| `read:*/.ssh/*` | Reading SSH material | 
+| `external_directory:*` | Any access outside the Location or worktree | 
+| `subagent:general` | Launching one subagent | 
+| `github_delete_repository:*` | One MCP tool | 
+| `*` | Everything not already denied | 
+
+A `permission` statement with `allow` never grants access. It only lifts an earlier
+broader `deny`, after which the agentâs own rules decide.
+
+```
+{
+  "experimental": {
+    "policies": [
+      { "action": "permission", "resource": "shell:*", "effect": "deny" },
+      { "action": "permission", "resource": "shell:git status *", "effect": "allow" },
+    ],
+  },
+}
+```
+`git status` falls back to the agentâs `shell` rule; every other command is blocked.
+
+## Precedence
+
+Ordinary settings let the nearest configuration win. Policies reverse that: statements from broader configuration are evaluated later, so they override narrower ones.
+
+| Authority | Source | 
+|---|---|
+| 1 (highest) | Connected OpenCode Console workspace | 
+| 2 | Global `~/.config/opencode/opencode.json(c)` | 
+| 3 | Direct `opencode.json(c)` ; outer directories beat inner ones | 
+| 4 (lowest) | `.opencode/opencode.json(c)` ; outer directories beat inner ones | 
+
+A repository cannot re-enable a provider you deny globally:
+
+`openai` stays denied. Within one file, statements keep their written order.
+
+## Console
+
+A workspace on the OpenCode Console compiles its Providers and Tools
+policies into statements and returns them with the workspace configuration. OpenCode
+appends them after every authored statement, so they have the final say: an
+organization `deny` cannot be lifted by a repository or user `allow`, and an
+organization `allow` lifts a lower-authority `deny`.
+
+Denials from these statements name the workspace:
+
+`Blocked by Acme's policy`
+Statements follow the connected account.
+
+| Event | Result | 
+|---|---|
+| Console policy changes | Applied on the next fetch, about once a minute | 
+| Switch to another workspace | Statements replaced with that workspaceâs | 
+| Disconnect | Statements cleared | 
+| Console unreachable | Last statements for that connection stay in effect | 
+
+The Console plugin and the policy plugin cannot be disabled from `plugins`; see
+plugin control.

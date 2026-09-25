@@ -682,6 +682,14 @@
       "index": "collect-240926-misc/INDEX.md",
       "manifest": "collect-240926-misc/manifest.json",
       "chunk_count": 29
+    },
+    {
+      "corpus": "collect-250926-servers-hardware",
+      "title": "Clean 4 — serveurs, GPU & stockage 2026",
+      "source": "docs/RAG/clean4",
+      "index": "collect-250926-servers-hardware/INDEX.md",
+      "manifest": "collect-250926-servers-hardware/manifest.json",
+      "chunk_count": 196
     }
   ]
 }
