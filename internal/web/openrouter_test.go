@@ -55,25 +55,32 @@ func TestLocalURLPut(t *testing.T) {
 	s := newTestServer(t, true)
 	token := registerAndLogin(t, s.Handler(), "sam")
 
-	// URL valide : 200 + persistee + visible dans la liste.
-	rec := doJSON(t, s.Handler(), http.MethodPut, "/api/providers/ollama", token,
+	// URL valide via le namespace SamGen : 200 + persistee + visible dans la liste.
+	rec := doJSON(t, s.Handler(), http.MethodPut, "/api/local/engines/ollama", token,
 		map[string]any{"url": "http://192.168.1.10:11434"})
 	if rec.Code != http.StatusOK {
 		t.Fatalf("put url status = %d", rec.Code)
 	}
-	rec = doJSON(t, s.Handler(), http.MethodGet, "/api/providers", token, nil)
-	provs := providersByID(t, decode(t, rec))
-	if provs["ollama"]["url"] != "http://192.168.1.10:11434" {
-		t.Fatalf("url non exposee dans la liste: %v", provs["ollama"]["url"])
+	rec = doJSON(t, s.Handler(), http.MethodGet, "/api/local/engines", token, nil)
+	engs := enginesByID(t, decode(t, rec))
+	if engs["ollama"]["url"] != "http://192.168.1.10:11434" {
+		t.Fatalf("url non exposee dans la liste: %v", engs["ollama"]["url"])
 	}
 
 	// URL invalide -> 400.
 	for _, bad := range []string{"", "ftp://x", "notaurl"} {
-		rec = doJSON(t, s.Handler(), http.MethodPut, "/api/providers/ollama", token,
+		rec = doJSON(t, s.Handler(), http.MethodPut, "/api/local/engines/ollama", token,
 			map[string]any{"url": bad})
 		if rec.Code != http.StatusBadRequest {
 			t.Fatalf("url %q: status = %d, attendu 400", bad, rec.Code)
 		}
+	}
+
+	// L'ancien chemin /api/providers/ollama ne gere plus les moteurs locaux -> 404.
+	rec = doJSON(t, s.Handler(), http.MethodPut, "/api/providers/ollama", token,
+		map[string]any{"url": "http://192.168.1.10:11434"})
+	if rec.Code != http.StatusNotFound {
+		t.Fatalf("put url via /api/providers: status = %d, attendu 404", rec.Code)
 	}
 
 	// Sur un provider cloud, {"url": ...} n'est pas une cle -> 400 (cle vide).

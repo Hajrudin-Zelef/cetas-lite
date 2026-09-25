@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"cetas-lite/internal/alias"
 	"cetas-lite/internal/chat"
 )
 
@@ -202,6 +203,14 @@ func (s *Server) handleChatPrefetch(w http.ResponseWriter, r *http.Request) {
 	}
 	settings := s.storedSettings(claims.Username)
 	if !settings.pregenEnabled() || body.Family == "" || body.Mode == "" || len(body.Suggestions) == 0 {
+		writeJSON(w, http.StatusOK, map[string]any{"ok": true})
+		return
+	}
+	// SamGen (famille locale) : pas de pre-generation speculative. Les
+	// moteurs locaux sont lents et souvent mono-slot : les 3 tours fantomes
+	// monopoliseraient le moteur et le message reel de l'utilisateur
+	// attendrait derriere (hangs constates : 0 token pendant 8-23 s).
+	if fam, ok := alias.Find(s.engine.Families(), body.Family); ok && fam.Local {
 		writeJSON(w, http.StatusOK, map[string]any{"ok": true})
 		return
 	}

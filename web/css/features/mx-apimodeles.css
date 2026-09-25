@@ -582,3 +582,16 @@ body.dark .provider-tab-icon {
     border-color: #22c55e !important;
     color: #fff !important;
 }
+
+/* Panneau IA locale (SamGen) : cartes moteurs, logique separee des providers cloud */
+.samgen-card {
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 14px;
+}
+.samgen-actions {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0 4px;
+}

@@ -701,6 +701,7 @@
     <div class="sp-modal apikeys-modal">
         <div class="apikeys-tabs">
             <button class="apikeys-tab active" data-tab="apimodeles">API et Modèles</button>
+            <button class="apikeys-tab" data-tab="samgen">IA locale (SamGen)</button>
             <button class="apikeys-tab" data-tab="selector">Sélecteur de modèles</button>
             <button class="apikeys-tab" data-tab="selector-agent">Sélecteur agent</button>
             <button class="apikeys-tab" data-tab="credits">Crédit API</button>
@@ -731,6 +732,14 @@
                 <div class="models-save-row apimodeles-save-row">
                     <span class="apikey-autosave-note">Tous les paramètres sont sauvegardés automatiquement.</span>
                     <button type="button" id="apimodeles-save-btn" class="models-save-btn">Sauvegarder tout</button>
+                </div>
+            </div>
+            <!-- Panel IA locale (SamGen) : logique separee des providers cloud -->
+            <div class="apikeys-panel" id="panel-samgen">
+                <h3>IA locale (SamGen)</h3>
+                <p class="apikey-intro">Moteurs d'inférence locale : renseignez l'URL du serveur et, si besoin, sa clé API (chiffrée au coffre, jamais affichée). Utilisez « Tester » pour vérifier la connexion.</p>
+                <div class="apikeys-panel-body">
+                    <div id="samgen-body"></div>
                 </div>
             </div>
             <!-- Panel Sélecteur de modèles -->

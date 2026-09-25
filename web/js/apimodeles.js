@@ -10,10 +10,10 @@ const PROVIDERS_META = [
   { id: "deepseek", label: "DeepSeek", icon: "DeepSeek.svg", keyUrl: "https://platform.deepseek.com/api_keys", keyLabel: "Obtenir une clé API DeepSeek", catalog: "static" },
   { id: "opencode", label: "OpenCode Zen", icon: "Opencode.svg", keyUrl: "https://opencode.ai/", keyLabel: "Obtenir une clé API OpenCode", catalog: "static" },
   { id: "opencode-go", label: "OpenCode Go", icon: "Opencode.svg", keyUrl: "https://opencode.ai/", keyLabel: "Obtenir une clé API OpenCode", catalog: "static" },
-  { id: "llamacpp", label: "llama.cpp", icon: "LlamaCpp.svg", local: true, defaultUrl: "" },
-  { id: "ollama", label: "Ollama", icon: "Ollama.svg", local: true, defaultUrl: "http://localhost:11434" },
-  { id: "lmstudio", label: "LM Studio", icon: "LMStudio.svg", local: true, defaultUrl: "http://localhost:1234" },
 ];
+// Les moteurs SamGen (llama.cpp, Ollama, LM Studio) ont leur propre panneau
+// "IA locale" (samgen.js, namespace /api/local/engines) : logique separee
+// des providers cloud, ils ne sont plus listes ici.
 
 const MAKER_LABELS = {
   "openai": "OpenAI", "anthropic": "Anthropic", "google": "Google",
@@ -138,17 +138,7 @@ export function selectProvider(id) {
 function _sectionHtml(id, active) {
   const m = metaFor(id);
   const st = providerState(id);
-  let keyBlock;
-  if (m.local) {
-    keyBlock =
-      '<div class="apikey-label-row"><label class="sp-modal-label" for="apikey-' + escHtml(id) + '">URL du serveur ' + escHtml(m.label) + "</label></div>" +
-      '<div class="apikey-field"><div class="apikey-input-wrap">' +
-      '<input type="text" id="apikey-' + escHtml(id) + '" class="sp-modal-input apikey-input" style="padding-right:12px" placeholder="' + escHtml(m.defaultUrl || "http://…") + '" value="' + escHtml(st.url || "") + '" autocomplete="off" spellcheck="false">' +
-      "</div>" +
-      '<button type="button" class="apikey-local-update-btn" id="apikey-update-' + escHtml(id) + '">Mettre à jour</button></div>' +
-      '<p class="apikey-local-status" id="apikey-status-' + escHtml(id) + '"></p>';
-  } else {
-    const maskedRow = st.configured
+  const maskedRow = st.configured
       ? '<div class="apikey-masked-row" id="apikey-masked-' + escHtml(id) + '">' +
         '<span class="apikey-masked-key">••••••••</span>' +
         '<button type="button" class="apikey-validate-btn" data-provider="' + escHtml(id) + '">Valider</button>' +
@@ -159,7 +149,7 @@ function _sectionHtml(id, active) {
         '<button type="button" class="apikey-validate-btn" data-provider="' + escHtml(id) + '">Valider</button>' +
         '<button type="button" class="apikey-delete-link" data-provider="' + escHtml(id) + '" title="Supprimer la clé">Supprimer</button>' +
         "</div>";
-    keyBlock =
+  const keyBlock =
       '<div class="apikey-label-row"><label class="sp-modal-label" for="apikey-' + escHtml(id) + '">Clé API ' + escHtml(m.label) +
       (m.llmImages ? ' <span class="apikey-local-hint">(LLM &amp; Images)</span>' : "") + "</label>" +
       (m.keyUrl ? '<a class="apikey-get-link" href="' + escHtml(m.keyUrl) + '" target="_blank" rel="noopener noreferrer">' + escHtml(m.keyLabel) + "</a>" : "") +
@@ -169,7 +159,6 @@ function _sectionHtml(id, active) {
       '<input type="password" id="apikey-' + escHtml(id) + '" class="sp-modal-input apikey-input" placeholder="' + (st.configured ? "Nouvelle clé (laisser vide pour conserver)" : "Coller la clé API…") + '" autocomplete="off" spellcheck="false">' +
       '<button type="button" class="apikey-eye-btn" data-target="apikey-' + escHtml(id) + '" title="Afficher la clé" aria-label="Afficher la clé">' + EYE_SHOW + EYE_HIDE + "</button>" +
       "</div></div>";
-  }
 
   const catalogBlock = m.catalog
     ? '<div class="provider-models-header"><span class="provider-models-title">Sélectionnez les modèles à utiliser</span>' +
@@ -193,30 +182,8 @@ function _sectionHtml(id, active) {
 }
 
 function _bindSection(id) {
-  const m = metaFor(id);
   const sec = document.querySelector('#provider-content .provider-section[data-provider="' + id + '"]');
   if (!sec) return;
-
-  if (m.local) {
-    const btn = sec.querySelector("#apikey-update-" + id);
-    const input = sec.querySelector("#apikey-" + id);
-    const status = sec.querySelector("#apikey-status-" + id);
-    _setLocalStatus(id, providerState(id).url);
-    if (btn) btn.addEventListener("click", async () => {
-      const url = (input.value || "").trim();
-      if (!url) { _localStatus(id, "error", "Saisissez une URL."); return; }
-      btn.disabled = true;
-      try {
-        await api("/api/providers/" + encodeURIComponent(id), { method: "PUT", body: { url } });
-        const st = providerState(id);
-        st.url = url; st.configured = true;
-        _localStatus(id, "success", "URL mise à jour.");
-      } catch (e) {
-        _localStatus(id, "error", "Échec : " + e.message);
-      } finally { btn.disabled = false; }
-    });
-    return;
-  }
 
   // Œil afficher/masquer.
   sec.querySelectorAll(".apikey-eye-btn").forEach((eye) => {
@@ -291,18 +258,6 @@ async function _validateKey(id) {
   } finally {
     if (btn) btn.disabled = false;
   }
-}
-
-function _localStatus(id, kind, msg) {
-  const el = document.getElementById("apikey-status-" + id);
-  if (!el) return;
-  el.className = "apikey-local-status " + (kind || "");
-  el.textContent = msg || "";
-}
-
-function _setLocalStatus(id, url) {
-  if (url) _localStatus(id, "success", "Serveur configuré : " + url);
-  else _localStatus(id, "", "");
 }
 
 // --- Catalogue ---
@@ -447,7 +402,6 @@ function _bindSaveAll() {
     try {
       // Clés saisies mais non validées.
       for (const m of PROVIDERS_META) {
-        if (m.local) continue;
         const input = document.getElementById("apikey-" + m.id);
         const key = input ? input.value.trim() : "";
         if (key) {

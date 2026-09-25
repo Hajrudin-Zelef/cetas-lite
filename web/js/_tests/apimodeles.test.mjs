@@ -29,9 +29,10 @@ const mod = await import(`${ROOT}/apimodeles.js`);
 
 test("helpers : PROVIDERS_META, escHtml, makerLabel, priceStr", () => {
   const { _test } = mod;
-  assert.equal(_test.PROVIDERS_META.length, 7);
+  assert.equal(_test.PROVIDERS_META.length, 4);
   assert.deepEqual(_test.PROVIDERS_META.map((m) => m.id),
-    ["openrouter", "deepseek", "opencode", "opencode-go", "llamacpp", "ollama", "lmstudio"]);
+    ["openrouter", "deepseek", "opencode", "opencode-go"]);
+  assert.ok(_test.PROVIDERS_META.every((m) => !m.local), "aucun moteur local ici (panneau SamGen separe)");
   assert.ok(_test.PROVIDERS_META.every((m) => m.icon && m.label));
   assert.equal(_test.escHtml('<b>"x"</b>'), "&lt;b&gt;&quot;x&quot;&lt;/b&gt;");
   assert.equal(_test.makerLabel("openai/gpt-4o"), "OpenAI");
@@ -49,9 +50,6 @@ const providersPayload = {
     { id: "deepseek", configured: false },
     { id: "opencode", configured: false },
     { id: "opencode-go", configured: false },
-    { id: "llamacpp", configured: false, url: "" },
-    { id: "ollama", configured: true, url: "http://192.168.1.10:11434" },
-    { id: "lmstudio", configured: false, url: "" },
   ],
 };
 const orPayload = {
@@ -91,16 +89,18 @@ document.body.innerHTML =
 
 await mod.initApiModelesPanel();
 
-test("init : 7 onglets, OpenRouter actif par défaut, sections rendues", () => {
+test("init : 4 onglets cloud, OpenRouter actif par défaut, sections rendues", () => {
   const tabs = document.querySelectorAll("#providers-tabs .provider-tab");
-  assert.equal(tabs.length, 7);
+  assert.equal(tabs.length, 4);
   assert.ok(tabs[0].classList.contains("active"));
   assert.equal(tabs[0].dataset.provider, "openrouter");
   assert.ok(tabs[0].querySelector("img.provider-tab-icon"));
   assert.ok(tabs[0].textContent.includes("OpenRouter"));
   const secs = document.querySelectorAll("#provider-content .provider-section");
-  assert.equal(secs.length, 7);
+  assert.equal(secs.length, 4);
   assert.ok(document.querySelector('.provider-section[data-provider="openrouter"]').classList.contains("active"));
+  // Les moteurs SamGen ne sont plus ici (panneau "IA locale" separe).
+  assert.ok(!document.querySelector('.provider-section[data-provider="ollama"]'));
 });
 
 test("OpenRouter : toggle Textes/Images, lignes avec prix, recherche", () => {
@@ -184,20 +184,6 @@ test("décocher un modèle : PUT /api/catalog/selection (debounce 800ms)", async
   const put = calls.filter((c) => c.path === "/api/catalog/selection" && c.method === "PUT").pop();
   assert.ok(put, "PUT selection émis");
   assert.deepEqual(put.body.disabled.openrouter, ["openai/gpt-4o"]);
-});
-
-test("local : Ollama affiche l'URL serveur, Mettre à jour émet PUT", async () => {
-  const input = document.getElementById("apikey-ollama");
-  assert.equal(input.value, "http://192.168.1.10:11434");
-  input.value = "http://192.168.1.20:11434";
-  const btn = document.getElementById("apikey-update-ollama");
-  btn.dispatchEvent(new dom.window.Event("click", { bubbles: true }));
-  await new Promise((r) => setTimeout(r, 50));
-  const put = calls.find((c) => c.path === "/api/providers/ollama" && c.method === "PUT");
-  assert.ok(put, "PUT /api/providers/ollama émis");
-  assert.equal(put.body.url, "http://192.168.1.20:11434");
-  const status = document.getElementById("apikey-status-ollama");
-  assert.ok(status.classList.contains("success"));
 });
 
 test("Sauvegarder tout : flush clés + sélection", async () => {

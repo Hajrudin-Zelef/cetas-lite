@@ -6,6 +6,7 @@ import { getCategories, saveCategories } from "./sidebar.js";
 import { saveRoles } from "./right-panel.js";
 import { renderConnectorsInto, openNewProjectModal, ProjectsAPI } from "./projects.js";
 import { initApiModelesPanel } from "./apimodeles.js";
+import { initSamGenPanel } from "./samgen.js";
 import { loadFeaturesPanel, loadSearchPanel, loadAppearancePanel, registerPanelSaver, notifyConfigDirty, saveConfigPanel, saveAllConfigPanels } from "./config-panels.js";
 import { loadVaultPanel } from "./vault.js";
 import { loadSelectorPanel, loadAgentSelectorPanel } from "./model-selector.js";
@@ -68,6 +69,8 @@ function initConfigModal() {
       if (tab.dataset.tab === "selector") loadSelectorPanel();
       // Onglet Sélecteur agent : idem, dédié aux familles agent.
       if (tab.dataset.tab === "selector-agent") loadAgentSelectorPanel();
+      // Onglet IA locale (SamGen) : moteurs locaux, logique separee des providers cloud.
+      if (tab.dataset.tab === "samgen") initSamGenPanel();
       // Onglet Crédit API : suivi du crédit restant par provider.
       if (tab.dataset.tab === "credits") loadCreditsPanel();
       // Onglet Agentic : style de rendu de la vue Agents (Harness/OpenCode).
@@ -242,6 +245,7 @@ function initConfigModal() {
   window.addEventListener("cetas:open-config", () => {
     openOverlay("apikeys-modal-overlay");
     initApiModelesPanel();
+    initSamGenPanel();
     loadFeatureDefaults();
     loadMarex();
   });

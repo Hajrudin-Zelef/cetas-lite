@@ -619,3 +619,33 @@ func TestAliasesPutResetsOmittedModes(t *testing.T) {
 		t.Fatalf("standard pool = %+v, want %+v", modes["standard"].Pool, def.Pool)
 	}
 }
+
+func TestChatPrefetchSkipsLocalFamily(t *testing.T) {
+	s := newTestServer(t, true)
+	h := s.Handler()
+	token := registerAndLogin(t, h, "sam")
+
+	prefetchBody := func(family, mode string) map[string]any {
+		return map[string]any{
+			"suggestions": []map[string]string{{"question": "question test ?", "corpus": ""}},
+			"family":      family,
+			"mode":        mode,
+		}
+	}
+	// Famille locale (SamGen) : pas de pre-generation speculative -> 200
+	// (skip), pas 202. Les moteurs locaux sont lents et mono-slot.
+	rec := doJSON(t, h, http.MethodPost, "/api/chat/prefetch", token, prefetchBody("samgen", "nano"))
+	if rec.Code != http.StatusOK {
+		t.Fatalf("prefetch samgen: status = %d, attendu 200 (skip)", rec.Code)
+	}
+	// Famille cloud : pre-generation lancee -> 202.
+	rec = doJSON(t, h, http.MethodPost, "/api/chat/prefetch", token, prefetchBody("samagent-nano", "free"))
+	if rec.Code != http.StatusAccepted {
+		t.Fatalf("prefetch samagent-nano: status = %d, attendu 202", rec.Code)
+	}
+	// Requete invalide -> 200 fail-open.
+	rec = doJSON(t, h, http.MethodPost, "/api/chat/prefetch", token, map[string]any{})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("prefetch vide: status = %d, attendu 200", rec.Code)
+	}
+}
