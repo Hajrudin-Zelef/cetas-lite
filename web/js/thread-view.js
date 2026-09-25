@@ -23,8 +23,9 @@ import { fillChips } from "./suggest.js";
 // CETAS complet (marexcode) : point central lumineux + anneau (arc visible)
 // + 4 satellites en orbite. La couleur vient de currentColor, heritee de
 // .marex-loader (var(--accent)) : suit le theme et la palette selectionnee.
-function buildMarexLoader() {
-  const root = el("div", "marex-loader");
+// mini : variante inline ~14 px (indicateur d'attente), meme animation.
+function buildMarexLoader(mini) {
+  const root = el("div", mini ? "marex-loader marex-loader--mini" : "marex-loader");
   const ring = el("div", "loader");
   ring.appendChild(el("div", "loader__inner"));
   const orbit = el("div", "loader__orbit");
@@ -32,6 +33,38 @@ function buildMarexLoader() {
   ring.appendChild(orbit);
   root.appendChild(ring);
   return root;
+}
+
+// Messages d'attente rotatifs (esprit Claude Code / Gemini CLI) : le
+// compteur de secondes reste le temps reel ; seuls les mots tournent.
+// Ordre melange a chaque showWait, sans repetition immediate.
+const WAIT_MESSAGES = [
+  "Réflexion en cours", "Consultation des archives", "Alignement des neurones",
+  "Décryptage de la question", "Exploration documentaire", "Brassage des idées",
+  "Mise en chauffe des circuits", "Interrogation des étoiles", "Démêlage des concepts",
+  "Fouille dans les mémoires", "Calibration des synapses", "Pondération des hypothèses",
+  "Remontage du fil logique", "Distillation de l'essentiel", "Cartographie des possibles",
+  "Écoute du bruit de fond", "Tri des souvenirs", "Assemblage des pièces",
+  "Vérification des intuitions", "Polissage de la réponse", "Dépoussiérage des connaissances",
+  "Connexion des points", "Élaboration en cours", "Pesée du pour et du contre",
+  "Exploration des recoins", "Synchronisation des idées", "Lecture entre les lignes",
+  "Mise en ordre des pensées", "Sondage des profondeurs", "Réveil des neurones",
+  "Compilation mentale", "Tissage de la réponse", "Auscultation du sujet",
+  "Mise au point des idées", "Ratissage des données", "Formulation en gestation",
+  "Jonglage avec les concepts", "Mise en perspective", "Épluchage de la question",
+  "Recalibrage en cours", "Infusion des connaissances", "Démêlage du vrai du plausible",
+  "Orchestration des idées", "Mise en lumière du sujet", "Palpation du contexte",
+  "Échauffement cognitif", "Décantation des idées", "Assemblage en cours",
+  "Lecture approfondie", "Cogitation intense",
+];
+
+function shuffleList(list) {
+  const out = list.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
 }
 
 // Défilement calqué sur la vue de référence (ChatView.tsx) :
@@ -702,6 +735,8 @@ export class ThreadView {
     this._turnWatchdog = 0;
     this.sendTimeoutMs = opts.sendTimeoutMs || 20000;
     this.turnWatchdogMs = opts.turnWatchdogMs || 15000;
+    this.waitRotateMs = opts.waitRotateMs || 1800;
+    this.reducedMotionOverride = opts.reducedMotion;
     this.onEvent = typeof opts.onEvent === "function" ? opts.onEvent : null;
     // Module Agentic (vue Agents uniquement) : Harness = rendu actuel,
     // OpenCode = reproduction fidele du TUI OpenCode.
@@ -973,42 +1008,66 @@ export class ThreadView {
   // Attente du premier token : le loader rond s'affiche immediatement
   // (animation 100 % CSS). Libellé façon Harness avec secondes écoulées
   // ("En cours… 12s") — seul le compteur utilise un timer JS.
-  showWait(phase = "") {
+  showWait() {
     if (this.waitEl) return;
     // chat.css : .stream-waiting est en opacity:0 tant que .visible n'est
     // pas pose — sans cette classe, l'element est rendu mais invisible.
     this.waitEl = el("div", "stream-waiting visible");
     this.waitEl.appendChild(buildMarexLoader());
     this.waitStart = Date.now();
-    this.waitPhase = String(phase || "");
-    this.waitLabel = el("div", "wait-label", "");
+    // Rotatif : ordre melange a chaque attente, sans repetition immediate.
+    this.waitPool = shuffleList(WAIT_MESSAGES);
+    this.waitMsg = this.nextWaitMessage();
+    this.waitLabel = el("div", "wait-label");
+    // Anneau de points en mini devant le libelle (remplace le ✨).
+    this.waitLabel.appendChild(buildMarexLoader(true));
+    this.waitTextEl = el("span", "wait-text", "");
+    this.waitLabel.appendChild(this.waitTextEl);
     this.waitEl.appendChild(this.waitLabel);
     this.waitTimer = setInterval(() => this.updateWaitLabel(), 1000);
-    // Node (tests) : ne pas retenir la boucle d'evenements.
-    if (this.waitTimer && typeof this.waitTimer.unref === "function") this.waitTimer.unref();
+    this.waitRotateTimer = this.reducedMotion()
+      ? 0
+      : setInterval(() => {
+          this.waitMsg = this.nextWaitMessage();
+          this.updateWaitLabel();
+        }, this.waitRotateMs);
+    for (const t of [this.waitTimer, this.waitRotateTimer]) {
+      if (t && typeof t.unref === "function") t.unref();
+    }
     this.updateWaitLabel();
     // L'attente remplace l'etat vide : sans ce retrait, le hero d'accueil
     // (slot composer dans [data-empty]) recouvre le fil et l'indicateur
-    // reste invisuel pendant tout le vide.
+    // reste invisible pendant tout le vide.
     this.clearEmpty();
     this.log.appendChild(this.waitEl);
     this.toBottom();
   }
 
-  // Phase d'attente : le libelle suit l'avancement reel du tour (evenement
-  // SSE "route" = moteur choisi) pour tuer le vide avant le premier token
-  // sans rien simuler — la phase vient du serveur, le compteur est reel.
-  setWaitPhase(text) {
-    if (!this.waitEl) return;
-    this.waitPhase = String(text || "");
-    this.updateWaitLabel();
+  // Message suivant : tirage sans repetition immediate (si la tete du
+  // paquet vient d'etre affichee, on la renvoie au fond).
+  nextWaitMessage() {
+    if (!this.waitPool || this.waitPool.length === 0) {
+      this.waitPool = shuffleList(WAIT_MESSAGES);
+    }
+    let m = this.waitPool.shift();
+    if (m === this.waitMsg && this.waitPool.length > 0) {
+      this.waitPool.push(m);
+      m = this.waitPool.shift();
+    }
+    return m;
+  }
+
+  reducedMotion() {
+    if (typeof this.reducedMotionOverride === "boolean") return this.reducedMotionOverride;
+    return typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
   updateWaitLabel() {
-    if (!this.waitLabel) return;
+    if (!this.waitTextEl) return;
     const secs = Math.floor((Date.now() - this.waitStart) / 1000);
-    this.waitLabel.textContent =
-      "✨ " + (this.waitPhase || "En cours…") + " " + secs + "s";
+    this.waitTextEl.textContent = this.waitMsg + "… " + secs + "s";
   }
 
   hideWait() {
@@ -1016,8 +1075,14 @@ export class ThreadView {
       clearInterval(this.waitTimer);
       this.waitTimer = 0;
     }
+    if (this.waitRotateTimer) {
+      clearInterval(this.waitRotateTimer);
+      this.waitRotateTimer = 0;
+    }
     this.waitLabel = null;
-    this.waitPhase = "";
+    this.waitTextEl = null;
+    this.waitMsg = "";
+    this.waitPool = null;
     if (this.waitEl) {
       this.waitEl.remove();
       this.waitEl = null;
@@ -2515,12 +2580,6 @@ export class ThreadView {
           (r.provider ? r.provider + "/" : "") + name + (r.local ? " (local)" : "") + (r.fallback ? " (repli)" : "") +
           (effortFr ? " · effort " + effortFr : "");
       }
-      // Phase d'attente : le moteur est choisi, la generation suit. Nom
-      // borne a 40 caracteres (les ids locaux sont des chemins complets).
-      if (this.waitEl) {
-        const phase = String(name || r.provider || "").slice(0, 40);
-        this.setWaitPhase(phase ? phase + " · rédige…" : "");
-      }
       return;
     }
     if (ev.drop_reasoning) {
@@ -2597,10 +2656,9 @@ export class ThreadView {
     text = String(text).trim();
     if (!text || this.generating) return false;
     // L'indicateur s'accroche à l'envoi, pas au flux : spinner visible
-    // immédiatement ("Réflexion…"), phases ensuite nourries par le SSE
-    // (route → "modèle · rédige…", premier token → retrait). Sur erreur
-    // ou abort il est retiré — jamais de spinner bloqué.
-    this.showWait("Réflexion…");
+    // immediatement, messages rotatifs + compteur reel. Retire au premier
+    // token, sur erreur et sur abort — jamais de spinner bloque.
+    this.showWait();
     // Écho optimiste (vue Agents uniquement) : le message et l'indicateur
     // d'attente s'affichent immédiatement, sans attendre l'aller-retour
     // POST. Le delta "user" du serveur porte le même client_msg_id et

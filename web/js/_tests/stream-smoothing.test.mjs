@@ -63,17 +63,43 @@ test("lissage : le tampon rend progressivement (pas de rendu instantane obligato
   document.body.innerHTML = "";
 });
 
-test("phase d'attente : route met a jour le libelle avant le premier token", () => {
+test("libelle rotatif : variante + compteur, le nom du modele n'y est plus", () => {
   const view = makeView();
   view.handleEvent({ user: "salut" });
   assert.ok(view.waitEl, "loader d'attente affiche");
-  assert.match(view.waitLabel.textContent, /En cours/);
+  assert.match(view.waitTextEl.textContent, /… \d+s$/);
   view.handleEvent({ route: { provider: "llamacpp", label: "Qwen3.5", model: "m", local: true } });
-  assert.match(view.waitLabel.textContent, /Qwen3.5 · rédige/);
+  assert.doesNotMatch(view.waitTextEl.textContent, /Qwen3\.5/);
   // Premier token : le loader disparait.
   view.handleEvent({ content: "voila" });
   assert.equal(view.waitEl, null);
   view.handleEvent({ turn_done: { elapsed_ms: 3 } });
+  document.body.innerHTML = "";
+});
+
+test("rotation : le message change apres ~1,8 s, sans repetition immediate", async () => {
+  const view = makeView({ waitRotateMs: 40 });
+  view.handleEvent({ user: "salut" });
+  const first = view.waitMsg;
+  const seen = new Set([first]);
+  for (let i = 0; i < 5; i++) {
+    await sleep(60);
+    seen.add(view.waitMsg);
+  }
+  assert.ok(seen.size >= 3, "les messages doivent tourner (" + seen.size + ")");
+  view.handleEvent({ content: "x" });
+  assert.equal(view.waitRotateTimer, 0, "rotation arretee au premier token");
+  document.body.innerHTML = "";
+});
+
+test("prefers-reduced-motion : pas de rotation (message statique)", async () => {
+  const view = makeView({ reducedMotion: true, waitRotateMs: 20 });
+  view.handleEvent({ user: "salut" });
+  assert.equal(view.waitRotateTimer, 0, "aucun timer de rotation en reduced-motion");
+  const msg = view.waitMsg;
+  await sleep(80);
+  assert.equal(view.waitMsg, msg, "message statique attendu");
+  view.handleEvent({ content: "x" });
   document.body.innerHTML = "";
 });
 
@@ -99,13 +125,17 @@ test("envoi : l'indicateur part avec le POST, pas avec le flux", async () => {
   const done = view.sendText("bonjour");
   // Immédiat (avant toute réponse réseau) : spinner + phase Réflexion.
   assert.ok(view.waitEl, "spinner affiche des l'envoi");
-  assert.match(view.waitLabel.textContent, /Réflexion/);
+  // Message rotatif (une des variantes) + compteur reel.
+  assert.match(view.waitTextEl.textContent, /… \d+s$/);
   release();
   await done;
   // POST réussi, flux pas encore ouvert : l'indicateur reste.
   assert.ok(view.waitEl, "indicateur maintenu en attendant le flux");
+  // Le nom du modele n'apparait plus dans l'indicateur (rotatif seul).
+  const before = view.waitTextEl.textContent;
   view.handleEvent({ route: { provider: "llamacpp", label: "Qwen3.5", model: "m", local: true } });
-  assert.match(view.waitLabel.textContent, /Qwen3.5 · rédige/);
+  assert.equal(view.waitTextEl.textContent, before);
+  assert.doesNotMatch(view.waitTextEl.textContent, /Qwen3\.5/);
   view.handleEvent({ content: "voila" });
   assert.equal(view.waitEl, null);
   view.handleEvent({ turn_done: { elapsed_ms: 1 } });

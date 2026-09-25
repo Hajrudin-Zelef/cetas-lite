@@ -318,14 +318,17 @@ describe("thread-view : bouton par réponse + loader rond", () => {
       view.showWait();
       const loader = log.querySelector(".stream-waiting .marex-loader");
       assert.ok(loader, "loader rond dans la zone d'attente");
-      // Libellé façon Harness avec secondes écoulées.
+      assert.ok(log.querySelector(".stream-waiting .marex-loader--mini"), "mini anneau inline");
+      // Libellé rotatif : une variante + le compteur de secondes réel.
       const label = log.querySelector(".stream-waiting .wait-label");
       assert.ok(label, "libellé d'attente présent");
-      assert.match(label.textContent, /En cours…\s*\d+s/);
+      assert.match(label.textContent, /…\s*\d+s/);
       assert.ok(view.waitTimer, "timer du compteur actif pendant l'attente");
+      assert.ok(view.waitRotateTimer, "timer de rotation actif pendant l'attente");
       view.hideWait();
       assert.equal(log.querySelector(".stream-waiting"), null, "zone d'attente retirée");
       assert.equal(view.waitTimer, 0, "timer libéré après hideWait");
+      assert.equal(view.waitRotateTimer, 0, "rotation libérée après hideWait");
     } finally {
       view.reset();
       panelMod.resetReasonPanel();
