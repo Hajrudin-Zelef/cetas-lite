@@ -968,12 +968,12 @@ export class ThreadView {
   // Attente du premier token : le loader rond s'affiche immediatement
   // (animation 100 % CSS). Libellé façon Harness avec secondes écoulées
   // ("En cours… 12s") — seul le compteur utilise un timer JS.
-  showWait() {
+  showWait(phase = "") {
     if (this.waitEl) return;
     this.waitEl = el("div", "stream-waiting");
     this.waitEl.appendChild(buildMarexLoader());
     this.waitStart = Date.now();
-    this.waitPhase = "";
+    this.waitPhase = String(phase || "");
     this.waitLabel = el("div", "wait-label", "");
     this.waitEl.appendChild(this.waitLabel);
     this.waitTimer = setInterval(() => this.updateWaitLabel(), 1000);
@@ -2543,8 +2543,13 @@ export class ThreadView {
   }
 
   async sendText(text, extra) {
-    text = String(text || "").trim();
+    text = String(text).trim();
     if (!text || this.generating) return false;
+    // L'indicateur s'accroche à l'envoi, pas au flux : spinner visible
+    // immédiatement ("Réflexion…"), phases ensuite nourries par le SSE
+    // (route → "modèle · rédige…", premier token → retrait). Sur erreur
+    // ou abort il est retiré — jamais de spinner bloqué.
+    this.showWait("Réflexion…");
     // Écho optimiste (vue Agents uniquement) : le message et l'indicateur
     // d'attente s'affichent immédiatement, sans attendre l'aller-retour
     // POST. Le delta "user" du serveur porte le même client_msg_id et
@@ -2555,7 +2560,6 @@ export class ThreadView {
       clientMsgId = this.newClientMsgId();
       optimistic = this.addUserOptimistic(text);
       this.pendingUserId = clientMsgId;
-      this.showWait();
       this.setBusy(true);
       if (this.stopBtn) this.stopBtn.hidden = false;
     }
@@ -2571,11 +2575,13 @@ export class ThreadView {
       this.toBottom();
       return true;
     } catch (err) {
+      // Échec ou abort : le flux n'a peut-être jamais ouvert — retirer
+      // l'indicateur dans tous les cas (jamais de spinner bloqué).
+      this.hideWait();
       if (this.optimisticEcho) {
         // Échec du POST : on retire l'écho optimiste, le serveur n'émettra
         // jamais le delta correspondant.
         this.removeOptimistic(optimistic);
-        this.hideWait();
         this.setBusy(false);
       }
       if (/en cours/i.test(err.message)) {

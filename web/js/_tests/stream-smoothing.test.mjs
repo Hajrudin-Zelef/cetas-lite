@@ -86,3 +86,40 @@ test("replace (replay) synchronise le tampon : les deltas suivants ne perdent ri
   assert.ok(view.assistantBody.textContent.includes("debut suite"));
   document.body.innerHTML = "";
 });
+
+test("envoi : l'indicateur part avec le POST, pas avec le flux", async () => {
+  const view = makeView();
+  let release;
+  const gate = new Promise((res) => { release = res; });
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = () => gate.then(() => ({
+    ok: true, status: 200, text: async () => "{}",
+  }));
+  const done = view.sendText("bonjour");
+  // Immédiat (avant toute réponse réseau) : spinner + phase Réflexion.
+  assert.ok(view.waitEl, "spinner affiche des l'envoi");
+  assert.match(view.waitLabel.textContent, /Réflexion/);
+  release();
+  await done;
+  // POST réussi, flux pas encore ouvert : l'indicateur reste.
+  assert.ok(view.waitEl, "indicateur maintenu en attendant le flux");
+  view.handleEvent({ route: { provider: "llamacpp", label: "Qwen3.5", model: "m", local: true } });
+  assert.match(view.waitLabel.textContent, /Qwen3.5 · rédige/);
+  view.handleEvent({ content: "voila" });
+  assert.equal(view.waitEl, null);
+  view.handleEvent({ turn_done: { elapsed_ms: 1 } });
+  globalThis.fetch = realFetch;
+  document.body.innerHTML = "";
+});
+
+test("envoi : erreur réseau => indicateur retiré, jamais bloqué", async () => {
+  const view = makeView();
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async () => { throw new TypeError("network down"); };
+  const ok = await view.sendText("salut");
+  assert.equal(ok, false);
+  assert.equal(view.waitEl, null, "spinner retiré après échec");
+  assert.ok(view.lastSendError);
+  globalThis.fetch = realFetch;
+  document.body.innerHTML = "";
+});
