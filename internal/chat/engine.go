@@ -72,6 +72,12 @@ type Engine struct {
 	// Pré-génération des questions suggérées (lot 5) : jobs en cours par
 	// utilisateur et dépôt de réponses (valeur zéro utilisable).
 	pregen pregenState
+
+	// Pré-récupération des sujets liés (prefetch continu, version maigre) :
+	// dépôt de récupérations RAG pré-calculées en arrière-plan après chaque
+	// tour réussi, réutilisées au tour suivant sur correspondance exacte
+	// (valeur zéro utilisable).
+	relPrefetch relPrefetchState
 }
 
 // LocalDiscoverer fournit les modeles decouverts sur les moteurs locaux.
@@ -659,6 +665,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			if cacheKey != "" {
 				if ce, ok := cc.Get(cacheKey); ok {
 					e.replayCached(c, epoch, in, ce)
+					e.maybeRelatedPrefetch(in, ragRes)
 					return
 				}
 			}
@@ -667,6 +674,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		// ce tour exact, on la rejoue sans appel provider (~1 ms). Un
 		// fantôme en cours est attendu (borné) plutôt que doublé.
 		if e.pregenServe(ctx, c, epoch, in, m.Provider, req) {
+			e.maybeRelatedPrefetch(in, ragRes)
 			return
 		}
 		resp, err := p.Stream(ctx, req, func(ev provider.Event) bool {
@@ -695,6 +703,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			// de pré-génération (le clic la rejouera sans appel).
 			e.pregenCapture(in, m.Provider, req, resp)
 			c.appendAssistant(epoch, resp.Content, "")
+			e.maybeRelatedPrefetch(in, ragRes)
 			return
 		}
 		lastErr = err

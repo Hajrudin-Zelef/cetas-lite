@@ -140,6 +140,13 @@ func (e *Engine) ragHits(ctx context.Context, query string, history []provider.M
 	if len(ents) > 0 {
 		return rt.SearchHybrid(ctx, q, boostMap(ents, entityBoostFactor), ragContextHits)
 	}
+	// Prefetch continu (version maigre) : si le tour precedent a
+	// pre-recupere exactement cette requete (sans boost, comme ici),
+	// servir le depot au lieu de rejouer la recuperation. Echec =>
+	// chemin normal.
+	if res, ok := e.relPrefetchLookup(q); ok {
+		return res
+	}
 	return rt.SearchHybrid(ctx, q, nil, ragContextHits)
 }
 
