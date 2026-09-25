@@ -1013,7 +1013,6 @@ export class ThreadView {
     // chat.css : .stream-waiting est en opacity:0 tant que .visible n'est
     // pas pose — sans cette classe, l'element est rendu mais invisible.
     this.waitEl = el("div", "stream-waiting visible");
-    this.waitEl.appendChild(buildMarexLoader());
     this.waitStart = Date.now();
     // Rotatif : ordre melange a chaque attente, sans repetition immediate.
     this.waitPool = shuffleList(WAIT_MESSAGES);
@@ -1025,12 +1024,10 @@ export class ThreadView {
     this.waitLabel.appendChild(this.waitTextEl);
     this.waitEl.appendChild(this.waitLabel);
     this.waitTimer = setInterval(() => this.updateWaitLabel(), 1000);
-    this.waitRotateTimer = this.reducedMotion()
-      ? 0
-      : setInterval(() => {
-          this.waitMsg = this.nextWaitMessage();
-          this.updateWaitLabel();
-        }, this.waitRotateMs);
+    this.waitRotateTimer = setInterval(() => {
+      this.waitMsg = this.nextWaitMessage();
+      this.updateWaitLabel();
+    }, this.waitRotateMs);
     for (const t of [this.waitTimer, this.waitRotateTimer]) {
       if (t && typeof t.unref === "function") t.unref();
     }

@@ -641,12 +641,16 @@ body.dark.hard-dark .msg-tool.harness-tool {
   border-radius: 0;
 }
 
-/* Libellé d'attente façon Harness sous le loader ("✨ En cours… 12s"). */
+/* Libellé d'attente : anneau de points mini inline + message rotatif +
+   compteur réel ("◌ Consultation des archives… 5s"). */
 .wait-label {
-  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 0;
   font-size: 0.78rem;
   color: var(--text-secondary);
-  text-align: center;
+  text-align: left;
 }
 
 .tool-diff {

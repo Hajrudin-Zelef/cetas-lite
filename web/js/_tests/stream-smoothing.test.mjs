@@ -92,13 +92,13 @@ test("rotation : le message change apres ~1,8 s, sans repetition immediate", asy
   document.body.innerHTML = "";
 });
 
-test("prefers-reduced-motion : pas de rotation (message statique)", async () => {
+test("rotation active même en reduced-motion (seul l'anneau est calmé)", async () => {
   const view = makeView({ reducedMotion: true, waitRotateMs: 20 });
   view.handleEvent({ user: "salut" });
-  assert.equal(view.waitRotateTimer, 0, "aucun timer de rotation en reduced-motion");
+  assert.ok(view.waitRotateTimer, "rotation du texte active");
   const msg = view.waitMsg;
   await sleep(80);
-  assert.equal(view.waitMsg, msg, "message statique attendu");
+  assert.notEqual(view.waitMsg, msg, "le message doit tourner");
   view.handleEvent({ content: "x" });
   document.body.innerHTML = "";
 });
