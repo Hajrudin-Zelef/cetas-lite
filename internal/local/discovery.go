@@ -106,15 +106,19 @@ func (d *Discoverer) probe(ctx context.Context, e Engine) []string {
 		return nil
 	}
 	var ids []string
-	for _, m := range payload.Data {
-		if m.ID != "" {
-			ids = append(ids, m.ID)
+	seen := make(map[string]bool, len(payload.Data)+len(payload.Models))
+	add := func(id string) {
+		if id == "" || seen[id] {
+			return
 		}
+		seen[id] = true
+		ids = append(ids, id)
+	}
+	for _, m := range payload.Data {
+		add(m.ID)
 	}
 	for _, m := range payload.Models {
-		if m.Name != "" {
-			ids = append(ids, m.Name)
-		}
+		add(m.Name)
 	}
 	return ids
 }

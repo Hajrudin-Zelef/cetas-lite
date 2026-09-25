@@ -129,3 +129,15 @@ func TestDiscoveryNoAuthWithoutKey(t *testing.T) {
 		t.Fatalf("aucun en-tete attendu sans cle, obtenu %q", gotAuth)
 	}
 }
+
+func TestDiscoveryDedupesBothShapes(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`{"data":[{"id":"m1"},{"id":"m2"}],"models":[{"name":"m1"},{"name":"m3"}]}`))
+	}))
+	defer srv.Close()
+	d := New(DefaultEngines(map[string]string{"llamacpp": srv.URL}, nil), srv.Client())
+	models := d.ModelsForEngine(context.Background(), "llamacpp")
+	if len(models) != 3 || models[0].ID != "m1" || models[1].ID != "m2" || models[2].ID != "m3" {
+		t.Fatalf("dedup attendu [m1 m2 m3], obtenu %+v", models)
+	}
+}
