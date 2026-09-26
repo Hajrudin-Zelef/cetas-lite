@@ -3,6 +3,7 @@ package rag
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -131,4 +132,20 @@ func indexOf(s, sub string) int {
 		}
 	}
 	return -1
+}
+
+func TestDesktop401IsBadKey(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusUnauthorized)
+	}))
+	t.Cleanup(srv.Close)
+	model := EmbedModel{Slug: "BAAI/bge-m3", Dims: 1024}
+	emb := NewDesktopEmbedder(srv.URL, "morte", model, srv.Client())
+	_, err := emb.Embed(context.Background(), []string{"a"}, false)
+	if !errors.Is(err, ErrBadKey) {
+		t.Fatalf("401 doit remonter ErrBadKey, obtenu: %v", err)
+	}
+	if _, err := NewReranker(srv.URL, "morte", 20, 4000, srv.Client()).Rerank(context.Background(), "q", []string{"a"}); !errors.Is(err, ErrBadKey) {
+		t.Fatalf("401 rerank doit remonter ErrBadKey, obtenu: %v", err)
+	}
 }

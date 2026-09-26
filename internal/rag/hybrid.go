@@ -221,6 +221,9 @@ func rerankErrReason(err error) string {
 	if err == nil {
 		return ""
 	}
+	if errors.Is(err, ErrBadKey) {
+		return "bad_key"
+	}
 	if errors.Is(err, context.DeadlineExceeded) {
 		return "rerank_timeout"
 	}
@@ -244,6 +247,9 @@ func semSkipReason(noVec, noEmb bool) string {
 func semErrReason(err error) string {
 	if err == nil {
 		return "no_sem_hits"
+	}
+	if errors.Is(err, ErrBadKey) {
+		return "bad_key"
 	}
 	if errors.Is(err, context.DeadlineExceeded) {
 		return "embed_timeout"

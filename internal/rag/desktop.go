@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -14,6 +15,11 @@ import (
 // Plateforme RAG desktop (cetasrag) : /embed (BAAI/bge-m3, 1024 dims) et
 // /rerank (BAAI/bge-reranker-v2-m3). Ces endpoints sont optionnels : sans
 // URL ou sans cle, la jambe semantique reste BM25 seul (fail-open).
+
+// ErrBadKey : la cle desktop a ete refusee (401). Sentinelle partagee pour
+// que les logs distinguent une configuration morte (bad_key) d'une panne
+// reseau ou d'un timeout.
+var ErrBadKey = errors.New("cle desktop invalide (401)")
 
 // Reranker : client du endpoint /rerank. Construit une fois au demarrage.
 type Reranker struct {
@@ -86,7 +92,7 @@ func (r *Reranker) Rerank(ctx context.Context, query string, texts []string) ([]
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode == http.StatusUnauthorized {
-		return nil, fmt.Errorf("rerank: cle invalide (401)")
+		return nil, fmt.Errorf("rerank: %w", ErrBadKey)
 	}
 	if resp.StatusCode != http.StatusOK {
 		snippet := make([]byte, 300)

@@ -186,7 +186,7 @@ func (e *Embedder) embedDesktop(ctx context.Context, in []string) ([][]float32, 
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode == http.StatusUnauthorized {
-		return nil, fmt.Errorf("embeddings desktop: cle invalide (401)")
+		return nil, fmt.Errorf("embeddings desktop: %w", ErrBadKey)
 	}
 	if resp.StatusCode != http.StatusOK {
 		snippet := make([]byte, 400)

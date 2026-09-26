@@ -289,3 +289,12 @@ func TestRerankErrReason(t *testing.T) {
 		t.Fatal("erreur attendue")
 	}
 }
+
+func TestBadKeyReason(t *testing.T) {
+	if got := semErrReason(ErrBadKey); got != "bad_key" {
+		t.Fatalf("semErrReason(ErrBadKey) = %q", got)
+	}
+	if got := rerankErrReason(ErrBadKey); got != "bad_key" {
+		t.Fatalf("rerankErrReason(ErrBadKey) = %q", got)
+	}
+}
