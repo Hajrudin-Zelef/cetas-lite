@@ -16,15 +16,24 @@ import (
 // .vectors/<slug>.bin sous la racine RAG (dossier ignore par le loader,
 // qui saute tout ce qui commence par '.').
 //
-//	 magic "CVEC0001" (8 octets)
+//	 magic "CVEC0002" (8 octets)
 //	 slugLen u16 | slug | dims u32 | count u32
+//	 chunkerVersionLen u8 | chunkerVersion
 //	 corpusHash : SHA256 sur (path + "\x00" + body) de chaque chunk, en ordre
 //	 vecteurs : count * dims float32
 //
 // Le hash garantit l'alignement 1:1 avec l'index : corpus modifie =>
-// vecteurs declares obsoletes (fail-open), jamais melanges.
+// vecteurs declares obsoletes (fail-open), jamais melanges. La version du
+// chunker couvre les changements de decoupage (meme contenu source, chunks
+// differents) : mismatch => obsoletes.
 
-const vectorFileMagic = "CVEC0001"
+const vectorFileMagic = "CVEC0002"
+
+// ChunkerVersion : version du pipeline de decoupage. A incrementer quand
+// build_rag.py change la maniere de produire les chunks (meme source, chunks
+// differents). Le serveur desktop rejoue le meme build_rag.py : un mismatch
+// declare les vecteurs obsoletes plutot que de les melanger a l'index courant.
+const ChunkerVersion = "build_rag_v1"
 
 // VectorsDir : sous-dossier des vecteurs dans la racine RAG.
 const VectorsDir = ".vectors"
@@ -39,11 +48,12 @@ func VectorFilePath(root, slug string) string {
 
 // VectorStore : vecteurs de documents, normalises (cosinus = produit scalaire).
 type VectorStore struct {
-	Model EmbedModel
-	Dims  int
-	Count int
-	Hash  [32]byte
-	vecs  []float32 // Count * Dims, normalises
+	Model          EmbedModel
+	Dims           int
+	Count          int
+	Hash           [32]byte
+	ChunkerVersion string
+	vecs           []float32 // Count * Dims, normalises
 }
 
 // LoadVectorFile : lit et valide un fichier de vecteurs.
@@ -60,10 +70,14 @@ func LoadVectorFile(path string) (*VectorStore, error) {
 	slug := string(r.bytes(int(slugLen)))
 	dims := int(r.u32())
 	count := int(r.u32())
+	chunker := string(r.bytes(int(r.u8())))
 	var hash [32]byte
 	copy(hash[:], r.bytes(32))
 	if r.err != nil {
 		return nil, fmt.Errorf("vecteurs: en-tete tronque: %w", r.err)
+	}
+	if chunker != ChunkerVersion {
+		return nil, fmt.Errorf("vecteurs: version chunker %q != %q", chunker, ChunkerVersion)
 	}
 	model, ok := LookupEmbedModel(slug)
 	if !ok {
@@ -80,7 +94,7 @@ func LoadVectorFile(path string) (*VectorStore, error) {
 	for i := range vecs {
 		vecs[i] = math.Float32frombits(r.u32())
 	}
-	vs := &VectorStore{Model: model, Dims: dims, Count: count, Hash: hash, vecs: vecs}
+	vs := &VectorStore{Model: model, Dims: dims, Count: count, Hash: hash, ChunkerVersion: chunker, vecs: vecs}
 	vs.normalize()
 	return vs, nil
 }
@@ -182,6 +196,14 @@ func (r *binReader) u16() uint16 {
 	return binary.LittleEndian.Uint16(b)
 }
 
+func (r *binReader) u8() uint8 {
+	b := r.bytes(1)
+	if b == nil {
+		return 0
+	}
+	return b[0]
+}
+
 func (r *binReader) u32() uint32 {
 	b := r.bytes(4)
 	if b == nil {
@@ -208,6 +230,12 @@ func writeVectorFile(path string, vs *VectorStore) error {
 	b = append(b, tmp[:]...)
 	binary.LittleEndian.PutUint32(tmp[:], uint32(vs.Count))
 	b = append(b, tmp[:]...)
+	cv := vs.ChunkerVersion
+	if cv == "" {
+		cv = ChunkerVersion
+	}
+	b = append(b, byte(len(cv)))
+	b = append(b, cv...)
 	b = append(b, vs.Hash[:]...)
 	for _, x := range vs.vecs {
 		binary.LittleEndian.PutUint32(tmp[:], math.Float32bits(x))
@@ -223,6 +251,9 @@ const (
 	embedMaxChars     = 20000
 	embedBatchTokens  = 90000
 	embedBatchMaxSize = 96
+	// Plateforme desktop (cetasrag) : 8 textes maximum par requete /embed.
+	desktopEmbedBatchSize   = 8
+	desktopEmbedBatchTokens = 90000
 )
 
 // BuildVectors : construit le fichier de vecteurs d'un modele pour le
@@ -251,10 +282,18 @@ func BuildVectors(root string, emb *Embedder, progress func(done, total int)) er
 	vecs := make([]float32, 0, len(texts)*model.Dims)
 	// BuildVectors est appele depuis la CLI, sans requete parente.
 	ctx := context.Background()
+	// La plateforme desktop (cetasrag) plafonne a 8 textes par requete :
+	// le backend desktop impose donc sa propre borne.
+	maxBatch := embedBatchMaxSize
+	batchTokens := embedBatchTokens
+	if emb.Desktop() {
+		maxBatch = desktopEmbedBatchSize
+		batchTokens = desktopEmbedBatchTokens
+	}
 	for start := 0; start < len(texts); {
 		end := start
 		budget := 0
-		for end < len(texts) && end-start < embedBatchMaxSize && budget < embedBatchTokens {
+		for end < len(texts) && end-start < maxBatch && budget < batchTokens {
 			budget += len(texts[end]) / 4
 			end++
 		}
@@ -274,7 +313,7 @@ func BuildVectors(root string, emb *Embedder, progress func(done, total int)) er
 		start = end
 	}
 	hash := ix.CorpusHash()
-	vs := &VectorStore{Model: model, Dims: model.Dims, Count: len(texts), Hash: hash, vecs: vecs}
+	vs := &VectorStore{Model: model, Dims: model.Dims, Count: len(texts), Hash: hash, ChunkerVersion: ChunkerVersion, vecs: vecs}
 	if err := writeVectorFile(VectorFilePath(root, model.Slug), vs); err != nil {
 		return fmt.Errorf("vecteurs: ecriture: %w", err)
 	}

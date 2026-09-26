@@ -2,6 +2,7 @@ package rag
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"log/slog"
 	"net/http"
@@ -214,5 +215,77 @@ func TestSemReasons(t *testing.T) {
 	}
 	if got := round3f(0.39421); got != 0.394 {
 		t.Fatalf("got %f", got)
+	}
+}
+
+// rerankFixture : manager avec le reranker desktop branche. Le faux serveur
+// /rerank inverse l'ordre des candidats RRF.
+func rerankFixture(t *testing.T) *Manager {
+	t.Helper()
+	m := hybridFixture(t, http.StatusOK)
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/rerank" {
+			http.NotFound(w, r)
+			return
+		}
+		var body rerankRequest
+		_ = json.NewDecoder(r.Body).Decode(&body)
+		out := make([]rerankHit, 0, len(body.Texts))
+		for i := len(body.Texts) - 1; i >= 0; i-- {
+			out = append(out, rerankHit{Index: i, Score: float64(i) + 0.5})
+		}
+		_ = json.NewEncoder(w).Encode(out)
+	}))
+	t.Cleanup(srv.Close)
+	m.SetReranker(NewReranker(srv.URL, "cle-desktop", 20, 4000, srv.Client()))
+	return m
+}
+
+func TestSearchHybridAppliesRerank(t *testing.T) {
+	plain := hybridFixture(t, http.StatusOK)
+	reranked := rerankFixture(t)
+
+	a := plain.SearchHybrid(context.Background(), "pomme", nil, 3)
+	b := reranked.SearchHybrid(context.Background(), "pomme", nil, 3)
+	if len(a.Hits) < 2 || len(b.Hits) < 2 {
+		t.Fatalf("hits insuffisants: %d / %d", len(a.Hits), len(b.Hits))
+	}
+	// Sans rerank, alpha.md (semantique) est premier ; avec, l'ordre est
+	// inverse par le faux serveur.
+	if a.Hits[0].Path != "alpha.md" {
+		t.Fatalf("ordre RRF inattendu: %s", a.Hits[0].Path)
+	}
+	if b.Hits[0].Path == a.Hits[0].Path {
+		t.Fatalf("rerank non applique: premier hit inchange (%s)", b.Hits[0].Path)
+	}
+}
+
+func TestRerankFailOpenKeepsRRF(t *testing.T) {
+	m := hybridFixture(t, http.StatusOK)
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+	}))
+	t.Cleanup(srv.Close)
+	m.SetReranker(NewReranker(srv.URL, "cle-desktop", 20, 4000, srv.Client()))
+
+	plain := hybridFixture(t, http.StatusOK)
+	got := m.SearchHybrid(context.Background(), "pomme", nil, 3)
+	want := plain.SearchHybrid(context.Background(), "pomme", nil, 3)
+	if len(got.Hits) != len(want.Hits) {
+		t.Fatalf("hits = %d, attendus %d", len(got.Hits), len(want.Hits))
+	}
+	for i := range want.Hits {
+		if got.Hits[i].Path != want.Hits[i].Path {
+			t.Fatalf("repli RRF: %s != %s (position %d)", got.Hits[i].Path, want.Hits[i].Path, i)
+		}
+	}
+}
+
+func TestRerankErrReason(t *testing.T) {
+	if rerankErrReason(context.DeadlineExceeded) != "rerank_timeout" {
+		t.Fatal("timeout attendu")
+	}
+	if rerankErrReason(errors.New("boom")) != "rerank_error" {
+		t.Fatal("erreur attendue")
 	}
 }

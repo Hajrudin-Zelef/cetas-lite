@@ -23,6 +23,13 @@ type Config struct {
 	AllowScript      bool
 	TrustProxy       bool
 	Sandbox          string
+	// Jambe semantique : backend d'embedding (desktop|openrouter) et URL du
+	// serveur desktop (bge-m3 + rerank). Vides => BM25 seul (fail-open).
+	EmbedBackend    string
+	EmbedURL        string
+	EmbedModel      string
+	RerankTopN      int
+	RerankTimeoutMs int
 }
 
 func Load() (*Config, error) {
@@ -93,6 +100,44 @@ func Load() (*Config, error) {
 		return nil, fmt.Errorf("CETAS_LITE_SANDBOX invalide: %q (none|auto|bwrap)", sandbox)
 	}
 
+	// Jambe semantique : backend d'embedding. "desktop" (defaut) pointe sur
+	// la plateforme RAG bge-m3 ; "openrouter" conserve l'ancien chemin
+	// (rollback manuel : rebuild vecteurs + flip de cette variable).
+	embedBackend := strings.ToLower(strings.TrimSpace(os.Getenv("CETAS_LITE_EMBED_BACKEND")))
+	if embedBackend == "" {
+		embedBackend = "desktop"
+	}
+	switch embedBackend {
+	case "desktop", "openrouter":
+	default:
+		return nil, fmt.Errorf("CETAS_LITE_EMBED_BACKEND invalide: %q (desktop|openrouter)", embedBackend)
+	}
+	embedURL := strings.TrimRight(strings.TrimSpace(os.Getenv("CETAS_LITE_EMBED_URL")), "/")
+	embedModel := strings.TrimSpace(os.Getenv("CETAS_LITE_EMBED_MODEL"))
+	if embedModel == "" {
+		if embedBackend == "desktop" {
+			embedModel = "BAAI/bge-m3"
+		} else {
+			embedModel = "openai-text-embedding-3-small"
+		}
+	}
+	rerankTopN := 20
+	if raw := strings.TrimSpace(os.Getenv("CETAS_LITE_RERANK_TOPN")); raw != "" {
+		v, err := strconv.Atoi(raw)
+		if err != nil || v < 1 {
+			return nil, fmt.Errorf("CETAS_LITE_RERANK_TOPN invalide: %q", raw)
+		}
+		rerankTopN = v
+	}
+	rerankTimeoutMs := 4000
+	if raw := strings.TrimSpace(os.Getenv("CETAS_LITE_RERANK_TIMEOUT_MS")); raw != "" {
+		v, err := strconv.Atoi(raw)
+		if err != nil || v < 1 {
+			return nil, fmt.Errorf("CETAS_LITE_RERANK_TIMEOUT_MS invalide: %q", raw)
+		}
+		rerankTimeoutMs = v
+	}
+
 	cfg := &Config{
 		Home:             home,
 		Addr:             addr,
@@ -108,6 +153,11 @@ func Load() (*Config, error) {
 		AllowScript:      allowScript,
 		TrustProxy:       trustProxy,
 		Sandbox:          sandbox,
+		EmbedBackend:     embedBackend,
+		EmbedURL:         embedURL,
+		EmbedModel:       embedModel,
+		RerankTopN:       rerankTopN,
+		RerankTimeoutMs:  rerankTimeoutMs,
 	}
 
 	for _, dir := range []string{cfg.Home, cfg.DataDir, cfg.WorkspaceDir, cfg.MemoryDir, cfg.PluginsDir} {

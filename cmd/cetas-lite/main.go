@@ -166,13 +166,32 @@ func buildApp() (*app, error) {
 	engine.SetSearcher(search.NewWithConfig(web.LoadSearchConfig(st, keys), client))
 	engine.SetMemory(memory.New(cfg.MemoryDir))
 	ragMgr := rag.New(cfg.RagDir)
-	// Recherche hybride (lot 2) : l'embedder reutilise la cle OpenRouter
-	// deja configuree. Sans cle ou sans vecteurs : BM25 seul (fail-open).
-	if rawKey := strings.TrimSpace(keys["openrouter"]); rawKey != "" {
-		if em, ok := rag.LookupEmbedModel(rag.EmbedModelSlugFromEnv()); ok {
-			ragMgr.SetEmbedder(rag.NewOpenRouterEmbedder(rawKey, em, client))
-		} else {
-			slog.Warn("modele d'embedding inconnu, BM25 seul", "slug", rag.EmbedModelSlugFromEnv())
+	// Recherche hybride : backend selectionne par CETAS_LITE_EMBED_BACKEND.
+	//  - desktop (defaut) : plateforme RAG cetasrag (bge-m3 + rerank),
+	//    cle du coffre `rag_desktop_key`, URL CETAS_LITE_EMBED_URL.
+	//  - openrouter : ancien chemin, garde pour le rollback manuel.
+	// Sans cle, sans URL ou sans vecteurs : BM25 seul (fail-open).
+	{
+		slug := cfg.EmbedModel
+		if slug == "" {
+			slug = rag.EmbedModelSlugFromEnv()
+		}
+		em, ok := rag.LookupEmbedModel(slug)
+		if !ok {
+			slog.Warn("modele d'embedding inconnu, BM25 seul", "slug", slug)
+		} else if cfg.EmbedBackend == "openrouter" {
+			if rawKey := strings.TrimSpace(keys["openrouter"]); rawKey != "" {
+				ragMgr.SetEmbedder(rag.NewOpenRouterEmbedder(rawKey, em, client))
+			}
+		} else if cfg.EmbedURL != "" {
+			if rawKey := strings.TrimSpace(keys["rag_desktop_key"]); rawKey != "" {
+				ragMgr.SetEmbedder(rag.NewDesktopEmbedder(cfg.EmbedURL, rawKey, em, client))
+				if rrk := rag.NewReranker(cfg.EmbedURL, rawKey, cfg.RerankTopN, cfg.RerankTimeoutMs, client); rrk != nil {
+					ragMgr.SetReranker(rrk)
+				}
+			} else {
+				slog.Warn("cle rag_desktop_key absente du coffre, BM25 seul")
+			}
 		}
 	}
 	ragMgr.Start()

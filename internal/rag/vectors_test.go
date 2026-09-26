@@ -167,3 +167,41 @@ func TestTopKCorrectness(t *testing.T) {
 		t.Fatal("k > count mal gere")
 	}
 }
+
+// TestVectorFileChunkerVersion : un fichier ecrit avec une autre version de
+// chunker est refuse (meme source, decoupage different => obsolète).
+func TestVectorFileChunkerVersion(t *testing.T) {
+	dir := miniCorpus(t)
+	ix, err := Load(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	model, _ := LookupEmbedModel("BAAI/bge-m3")
+	vs := &VectorStore{
+		Model: model, Dims: model.Dims, Count: len(ix.chunks),
+		Hash: ix.CorpusHash(), ChunkerVersion: "build_rag_v0",
+		vecs: make([]float32, len(ix.chunks)*model.Dims),
+	}
+	path := filepath.Join(t.TempDir(), "v.bin")
+	if err := writeVectorFile(path, vs); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := LoadVectorFile(path); err == nil {
+		t.Fatal("version chunker differente acceptee")
+	}
+	// Sans version explicite : la version courante est posee a l'ecriture.
+	vs.ChunkerVersion = ""
+	if err := writeVectorFile(path, vs); err != nil {
+		t.Fatal(err)
+	}
+	back, err := LoadVectorFile(path)
+	if err != nil {
+		t.Fatalf("version courante refusee: %v", err)
+	}
+	if back.ChunkerVersion != ChunkerVersion {
+		t.Fatalf("version = %q, attendue %q", back.ChunkerVersion, ChunkerVersion)
+	}
+	if back.Model.Slug != "BAAI/bge-m3" || back.Dims != 1024 {
+		t.Fatalf("modele/dims: %s/%d", back.Model.Slug, back.Dims)
+	}
+}

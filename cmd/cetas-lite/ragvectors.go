@@ -90,32 +90,34 @@ func printRagVectorsUsage() {
 	}
 }
 
-// openRouterKeyForCLI : cle "openrouter" du coffre, sinon OPENROUTER_API_KEY.
-func openRouterKeyForCLI(cfg *config.Config) (string, error) {
-	if k := strings.TrimSpace(os.Getenv("OPENROUTER_API_KEY")); k != "" {
-		return k, nil
+// embedKeyForCLI : cle d'embedding lue dans le coffre (priorite), sinon
+// l'environnement de secours. Le coffre d'abord : l'env n'est qu'une
+// facilite de test, jamais la source de verite (le commentaire d'origine
+// annoncait cet ordre sans l'appliquer). Backend desktop => rag_desktop_key
+// (repli OPENROUTER_API_KEY non, les deux cles ne sont pas interchangeables).
+func embedKeyForCLI(cfg *config.Config, backend string) (string, error) {
+	secret := "rag_desktop_key"
+	envName := "CETAS_LITE_EMBED_KEY"
+	if backend == "openrouter" {
+		secret = "openrouter"
+		envName = "OPENROUTER_API_KEY"
 	}
 	st, err := store.Open(cfg.DBPath)
-	if err != nil {
-		return "", fmt.Errorf("coffre illisible et OPENROUTER_API_KEY absent: %w", err)
+	if err == nil {
+		defer st.Close()
+		if ct, ok := st.GetSecret(secret); ok {
+			v, verr := vault.Open(st)
+			if verr == nil {
+				if pt, derr := v.Decrypt(ct, []byte(secret)); derr == nil && strings.TrimSpace(string(pt)) != "" {
+					return string(pt), nil
+				}
+			}
+		}
 	}
-	defer st.Close()
-	ct, ok := st.GetSecret("openrouter")
-	if !ok {
-		return "", fmt.Errorf("cle \"openrouter\" absente du coffre et OPENROUTER_API_KEY non defini")
+	if k := strings.TrimSpace(os.Getenv(envName)); k != "" {
+		return k, nil
 	}
-	v, err := vault.Open(st)
-	if err != nil {
-		return "", fmt.Errorf("coffre indisponible: %w", err)
-	}
-	pt, err := v.Decrypt(ct, []byte("openrouter"))
-	if err != nil {
-		return "", fmt.Errorf("dechiffrement impossible: %w", err)
-	}
-	if strings.TrimSpace(string(pt)) == "" {
-		return "", fmt.Errorf("cle \"openrouter\" vide")
-	}
-	return string(pt), nil
+	return "", fmt.Errorf("cle %q absente du coffre et %s non defini", secret, envName)
 }
 
 func lookupModelOrFail(slug string) (rag.EmbedModel, error) {
@@ -126,17 +128,49 @@ func lookupModelOrFail(slug string) (rag.EmbedModel, error) {
 	return m, nil
 }
 
+// cliEmbedder : construit l'embedder selon le backend courant (meme logique
+// que le runtime) : desktop si CETAS_LITE_EMBED_URL est pose, sinon
+// openrouter. --embed-url prime sur l'env pour le backend desktop.
+func cliEmbedder(cfg *config.Config, model rag.EmbedModel) (*rag.Embedder, error) {
+	backend := cfg.EmbedBackend
+	if backend == "" {
+		backend = "desktop"
+	}
+	if backend == "openrouter" {
+		key, err := embedKeyForCLI(cfg, "openrouter")
+		if err != nil {
+			return nil, err
+		}
+		return rag.NewOpenRouterEmbedder(key, model, nil), nil
+	}
+	baseURL := cfg.EmbedURL
+	if v := embedURLFlag(os.Args); v != "" {
+		baseURL = v
+	}
+	if baseURL == "" {
+		return nil, fmt.Errorf("URL desktop absente (--embed-url ou CETAS_LITE_EMBED_URL)")
+	}
+	key, err := embedKeyForCLI(cfg, "desktop")
+	if err != nil {
+		return nil, err
+	}
+	return rag.NewDesktopEmbedder(baseURL, key, model, nil), nil
+}
+
 func ragVectorsBuild(cfg *config.Config, slug string) error {
 	model, err := lookupModelOrFail(slug)
 	if err != nil {
 		return err
 	}
-	key, err := openRouterKeyForCLI(cfg)
+	emb, err := cliEmbedder(cfg, model)
 	if err != nil {
 		return err
 	}
-	emb := rag.NewOpenRouterEmbedder(key, model, nil)
-	fmt.Printf("indexation des vecteurs (%s, %d dims)...\n", model.Slug, model.Dims)
+	backend := cfg.EmbedBackend
+	if backend == "" {
+		backend = "desktop"
+	}
+	fmt.Printf("indexation des vecteurs (%s, %d dims, backend=%s)...\n", model.Slug, model.Dims, backend)
 	start := time.Now()
 	last := 0
 	err = rag.BuildVectors(cfg.RagDir, emb, func(done, total int) {
@@ -151,6 +185,11 @@ func ragVectorsBuild(cfg *config.Config, slug string) error {
 	}
 	fmt.Printf("termine en %s : %s\n", time.Since(start).Round(time.Second), rag.VectorFilePath(cfg.RagDir, model.Slug))
 	return nil
+}
+
+// embedURLFlag : valeur de --embed-url dans les arguments du process.
+func embedURLFlag(args []string) string {
+	return flagValue(args, "embed-url", "")
 }
 
 func ragVectorsStatus(cfg *config.Config) error {
@@ -186,11 +225,10 @@ func ragVectorsProbe(cfg *config.Config, query, slug string, top int) error {
 	if err != nil {
 		return fmt.Errorf("vecteurs %s indisponibles: %w (lancer `rag-vectors build`)", slug, err)
 	}
-	key, err := openRouterKeyForCLI(cfg)
+	emb, err := cliEmbedder(cfg, model)
 	if err != nil {
 		return err
 	}
-	emb := rag.NewOpenRouterEmbedder(key, model, nil)
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	qv, err := emb.Embed(ctx, []string{query}, true)

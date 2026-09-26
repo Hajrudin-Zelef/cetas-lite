@@ -17,13 +17,15 @@ import (
 // compatible /embeddings) avec la cle deja configuree pour l'inference :
 // aucun modele local sur le VPS (RAM et sidecar incompatibles).
 
-// EmbedModel : un modele d'embedding adressable via OpenRouter.
-// Les identifiants et dimensions ont ete valides contre le catalogue
-// OpenRouter reel le 2026-09-24.
+// EmbedModel : un modele d'embedding adressable.
+// Les identifiants et dimensions OpenRouter ont ete valides contre le
+// catalogue reel le 2026-09-24 ; bge-m3 est servi par la plateforme RAG
+// desktop (cetasrag), 1024 dims.
 type EmbedModel struct {
 	// Slug : identifiant local, utilise pour le nom du fichier de vecteurs.
 	Slug string
-	// OpenRouterID : identifiant envoye a l'API.
+	// OpenRouterID : identifiant envoye a l'API OpenRouter (backend
+	// "openrouter"). Inutilise par le backend "desktop".
 	OpenRouterID string
 	// Dims : largeur native des vecteurs.
 	Dims int
@@ -37,6 +39,9 @@ type EmbedModel struct {
 // est namespacé par Slug, et la bascule reutilise le fichier deja construit
 // (voir vectors.go).
 var EmbedModels = []EmbedModel{
+	// Plateforme RAG desktop (cetasrag, BAAI/bge-m3) : backend par defaut.
+	{Slug: "BAAI/bge-m3", Dims: 1024},
+	// Backend de rollback OpenRouter (conserves : retour arriere manuel).
 	{Slug: "openai-text-embedding-3-small", OpenRouterID: "openai/text-embedding-3-small", Dims: 1536},
 	{Slug: "openai-text-embedding-3-large", OpenRouterID: "openai/text-embedding-3-large", Dims: 3072},
 	{Slug: "mistralai-mistral-embed-2312", OpenRouterID: "mistralai/mistral-embed-2312", Dims: 1024},
@@ -45,9 +50,8 @@ var EmbedModels = []EmbedModel{
 	{Slug: "google-gemini-embedding-001", OpenRouterID: "google/gemini-embedding-001", Dims: 3072},
 }
 
-// DefaultEmbedModel : compromis cout/qualite/taille (15 Mo pour 2487 chunks
-// en float32). $0.02/M tokens : l'indexation complete coute quelques centimes.
-const DefaultEmbedModel = "openai-text-embedding-3-small"
+// DefaultEmbedModel : backend desktop (bge-m3, 1024 dims).
+const DefaultEmbedModel = "BAAI/bge-m3"
 
 // EmbedModelSlugFromEnv : modele selectionne via CETAS_LITE_EMBED_MODEL,
 // defaut sinon. L'UI de selection (lot 4) ecrira ici.
@@ -73,15 +77,19 @@ func LookupEmbedModel(slug string) (EmbedModel, bool) {
 // serveur factice.
 var openRouterEmbedURL = "https://openrouter.ai/api/v1/embeddings"
 
-// Embedder : client d'embedding via OpenRouter. Reutilise la cle API deja
-// configuree pour l'inference (aucune cle supplementaire).
+// Embedder : client d'embedding. Deux backends : "desktop" (plateforme RAG
+// cetasrag, POST /embed, format [[...]]) et "openrouter" (endpoint
+// OpenAI-compatible, format {data:[{embedding}]}), garde pour le rollback.
+// Le champ desktop distingue les deux au moment de la requete.
 type Embedder struct {
-	apiKey string
-	model  EmbedModel
-	client *http.Client
+	apiKey  string
+	model   EmbedModel
+	client  *http.Client
+	desktop bool
+	baseURL string
 }
 
-// NewOpenRouterEmbedder : construit le client. client nil => http.DefaultClient.
+// NewOpenRouterEmbedder : constructeur du backend OpenRouter (rollback).
 func NewOpenRouterEmbedder(apiKey string, model EmbedModel, client *http.Client) *Embedder {
 	if client == nil {
 		client = http.DefaultClient
@@ -89,10 +97,29 @@ func NewOpenRouterEmbedder(apiKey string, model EmbedModel, client *http.Client)
 	return &Embedder{apiKey: strings.TrimSpace(apiKey), model: model, client: client}
 }
 
+// NewDesktopEmbedder : constructeur du backend desktop (cetasrag). baseURL
+// est l'URL du serveur (ex. https://cetasrag.neva-ci.pro) : /embed et
+// /rerank sont ajoutes. Cle vide => embedder indisponible (fail-open).
+func NewDesktopEmbedder(baseURL, apiKey string, model EmbedModel, client *http.Client) *Embedder {
+	if client == nil {
+		client = http.DefaultClient
+	}
+	return &Embedder{
+		apiKey:  strings.TrimSpace(apiKey),
+		model:   model,
+		client:  client,
+		desktop: true,
+		baseURL: strings.TrimRight(strings.TrimSpace(baseURL), "/"),
+	}
+}
+
 // Model : le modele d'embedding utilise.
 func (e *Embedder) Model() EmbedModel { return e.model }
 
-// embedRequest / embedResponse : format OpenAI-compatible.
+// Desktop : vrai si l'embedder parle au serveur desktop (cetasrag).
+func (e *Embedder) Desktop() bool { return e != nil && e.desktop }
+
+// embedRequest / embedResponse : format OpenAI-compatible (backend openrouter).
 type embedRequest struct {
 	Model string   `json:"model"`
 	Input []string `json:"input"`
@@ -103,6 +130,13 @@ type embedResponse struct {
 		Embedding []float32 `json:"embedding"`
 		Index     int       `json:"index"`
 	} `json:"data"`
+}
+
+// desktopEmbedRequest : format de la plateforme cetasrag (POST /embed).
+// "inputs" accepte une chaine seule ou une liste.
+type desktopEmbedRequest struct {
+	Model  string      `json:"model,omitempty"`
+	Inputs interface{} `json:"inputs"`
 }
 
 // embedTimeout : budget d'un appel d'embedding (indexation par lots).
@@ -125,13 +159,65 @@ func (e *Embedder) Embed(ctx context.Context, texts []string, forQuery bool) ([]
 			in[i] = e.model.QueryPrefix + t
 		}
 	}
+	cctx, cancel := context.WithTimeout(ctx, embedTimeout)
+	defer cancel()
+	if e.desktop {
+		return e.embedDesktop(cctx, in)
+	}
+	return e.embedOpenRouter(cctx, in)
+}
+
+// embedDesktop : POST /embed sur la plateforme cetasrag. Reponse [[...]] :
+// un vecteur par entree, dans l'ordre. La dimension est verifiee.
+func (e *Embedder) embedDesktop(ctx context.Context, in []string) ([][]float32, error) {
+	body, err := json.Marshal(desktopEmbedRequest{Inputs: in})
+	if err != nil {
+		return nil, err
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, e.baseURL+"/embed", bytes.NewReader(body))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+e.apiKey)
+	resp, err := e.client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("embeddings desktop: %w", err)
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode == http.StatusUnauthorized {
+		return nil, fmt.Errorf("embeddings desktop: cle invalide (401)")
+	}
+	if resp.StatusCode != http.StatusOK {
+		snippet := make([]byte, 400)
+		n, _ := io.ReadFull(resp.Body, snippet)
+		return nil, fmt.Errorf("embeddings desktop: statut %d: %s", resp.StatusCode,
+			strings.TrimSpace(string(snippet[:n])))
+	}
+	var out [][]float32
+	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+		return nil, fmt.Errorf("embeddings desktop: reponse illisible: %w", err)
+	}
+	if len(out) != len(in) {
+		return nil, fmt.Errorf("embeddings desktop: %d vecteurs pour %d textes", len(out), len(in))
+	}
+	for i, v := range out {
+		if len(v) != e.model.Dims {
+			return nil, fmt.Errorf("embeddings desktop: %d dims recues, %d attendues (%s)",
+				len(v), e.model.Dims, e.model.Slug)
+		}
+		out[i] = v
+	}
+	return out, nil
+}
+
+// embedOpenRouter : endpoint OpenAI-compatible d'OpenRouter (rollback).
+func (e *Embedder) embedOpenRouter(ctx context.Context, in []string) ([][]float32, error) {
 	body, err := json.Marshal(embedRequest{Model: e.model.OpenRouterID, Input: in})
 	if err != nil {
 		return nil, err
 	}
-	cctx, cancel := context.WithTimeout(ctx, embedTimeout)
-	defer cancel()
-	req, err := http.NewRequestWithContext(cctx, http.MethodPost, openRouterEmbedURL, bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, openRouterEmbedURL, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}

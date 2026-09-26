@@ -112,6 +112,23 @@ func (m *Manager) SearchHybrid(ctx context.Context, query string, boost map[stri
 	}
 	fused := FuseRRF(bm25Ranked, semRanked)
 	limit = clampLimit(limit)
+
+	// Rerank (plateforme desktop) : reordonne les candidats RRF avant la
+	// selection finale. Fail-open : erreur/timeout => ordre RRF conserve.
+	rerankMs := int64(-1)
+	rerankTop := 0.0
+	rerankReason := ""
+	if rrk := m.reranker(); rrk != nil && len(fused) > 1 {
+		rr, err := m.applyRerank(ctx, ix, rrk, query, fused)
+		if err != nil {
+			rerankReason = rerankErrReason(err)
+		} else {
+			rerankMs = rr.ms
+			rerankTop = rr.top
+			fused = rr.ranked
+		}
+	}
+
 	if len(fused) > limit {
 		fused = fused[:limit]
 	}
@@ -126,9 +143,12 @@ func (m *Manager) SearchHybrid(ctx context.Context, query string, boost map[stri
 	// declenche, avec la raison (erreur ou timeout d'embedding).
 	if len(semRanked) > 0 {
 		slog.Info("rag_hybrid", "mode", "hybrid",
-			"model", emb.Model().Slug,
+			"embed_model", emb.Model().Slug,
 			"sem_top", round3f(s.hits[0].Cosine),
 			"sem_ms", s.ms,
+			"rerank_ms", rerankMs,
+			"rerank_top", round3f(rerankTop),
+			"rerank_reason", rerankReason,
 			"bm25_top", round3f(res.BM25Top),
 			"hits", len(res.Hits))
 	} else {
@@ -139,6 +159,72 @@ func (m *Manager) SearchHybrid(ctx context.Context, query string, boost map[stri
 			"hits", len(res.Hits))
 	}
 	return res
+}
+
+// rerankOut : resultat d'un rerank reussi.
+type rerankOut struct {
+	ranked []Ranked
+	ms     int64
+	top    float64
+}
+
+// applyRerank : envoie les `topN` premiers candidats RRF au /rerank et
+// renvoie l'ordre du reranker (les candidats au-dela de topN sont
+// conserves a la suite, dans l'ordre RRF). Le budget final (3 hits) est
+// inchange : on ne fait que reordonner.
+func (m *Manager) applyRerank(ctx context.Context, ix *Index, rrk *Reranker, query string, fused []Ranked) (rerankOut, error) {
+	topN := rrk.TopN()
+	if topN > len(fused) {
+		topN = len(fused)
+	}
+	texts := make([]string, topN)
+	for i := 0; i < topN; i++ {
+		texts[i] = ix.rerankText(fused[i].Idx)
+	}
+	start := time.Now()
+	hits, err := rrk.Rerank(ctx, query, texts)
+	ms := time.Since(start).Milliseconds()
+	if err != nil {
+		return rerankOut{ms: ms}, err
+	}
+	seen := make(map[int]bool, len(hits))
+	out := make([]Ranked, 0, len(fused))
+	for _, h := range hits {
+		f := fused[h.Index]
+		seen[h.Index] = true
+		out = append(out, f)
+	}
+	for i := 0; i < len(fused); i++ {
+		if seen[i] {
+			continue
+		}
+		out = append(out, fused[i])
+	}
+	out = reassignRanks(out)
+	top := 0.0
+	if len(hits) > 0 {
+		top = hits[0].Score
+	}
+	return rerankOut{ranked: out, ms: ms, top: top}, nil
+}
+
+// reassignRanks : renumérote les rangs 1-based apres reordonnancement.
+func reassignRanks(rs []Ranked) []Ranked {
+	for i := range rs {
+		rs[i].Rank = i + 1
+	}
+	return rs
+}
+
+// rerankErrReason : cause lisible du repli sur l'ordre RRF.
+func rerankErrReason(err error) string {
+	if err == nil {
+		return ""
+	}
+	if errors.Is(err, context.DeadlineExceeded) {
+		return "rerank_timeout"
+	}
+	return "rerank_error"
 }
 
 // semSkipReason : pourquoi la jambe semantique est inactive des le depart

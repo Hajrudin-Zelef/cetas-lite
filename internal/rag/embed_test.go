@@ -16,6 +16,7 @@ import (
 // (ex. MRL) doit faire echouer ce test, pas passer inapercu.
 func TestEmbedModelRegistry(t *testing.T) {
 	want := map[string]int{
+		"BAAI/bge-m3":                   1024,
 		"openai-text-embedding-3-small": 1536,
 		"openai-text-embedding-3-large": 3072,
 		"mistralai-mistral-embed-2312":  1024,
@@ -33,7 +34,9 @@ func TestEmbedModelRegistry(t *testing.T) {
 		if m.Dims != d {
 			t.Fatalf("%s: %d dims, attendues %d", m.Slug, m.Dims, d)
 		}
-		if !strings.Contains(m.OpenRouterID, "/") {
+		// Identifiant OpenRouter requis, sauf pour le modele desktop
+		// (bge-m3, servi par la plateforme cetasrag).
+		if m.Slug != "BAAI/bge-m3" && !strings.Contains(m.OpenRouterID, "/") {
 			t.Fatalf("%s: identifiant OpenRouter invalide: %q", m.Slug, m.OpenRouterID)
 		}
 	}

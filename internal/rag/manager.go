@@ -18,6 +18,7 @@ type Manager struct {
 	idx  atomic.Pointer[Index]
 	emb  atomic.Pointer[Embedder]
 	vec  atomic.Pointer[VectorStore]
+	rrk  atomic.Pointer[Reranker]
 	mu   sync.Mutex
 }
 
@@ -61,6 +62,28 @@ func (m *Manager) embedder() *Embedder {
 	}
 	return m.emb.Load()
 }
+
+// SetReranker : branche le client /rerank (plateforme desktop). Nil ou cle
+// absente => pas de rerank, l'ordre RRF est conserve (fail-open).
+func (m *Manager) SetReranker(r *Reranker) {
+	if m == nil {
+		return
+	}
+	if r == nil {
+		return
+	}
+	m.rrk.Store(r)
+}
+
+func (m *Manager) reranker() *Reranker {
+	if m == nil {
+		return nil
+	}
+	return m.rrk.Load()
+}
+
+// RerankReady : un reranker est branche (observabilite / CLI status).
+func (m *Manager) RerankReady() bool { return m.reranker() != nil }
 
 func (m *Manager) vectors() *VectorStore {
 	if m == nil {

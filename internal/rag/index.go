@@ -246,6 +246,23 @@ func (ix *Index) rankChunks(ctx context.Context, terms []string, corpus string, 
 }
 
 // hitFor : construit le Hit d'un chunk (extrait ancre sur terms).
+// rerankText : texte d'un chunk envoye au reranker. Le reranker juge la
+// pertinence sur le fond du document, pas sur l'extrait requete : on
+// envoie le debut du corps (borne, le serveur a ses propres limites).
+func (ix *Index) rerankText(i int) string {
+	if ix == nil || i < 0 || i >= len(ix.chunks) {
+		return ""
+	}
+	b := ix.chunks[i].body
+	if len(b) > rerankTextMaxChars {
+		b = b[:rerankTextMaxChars]
+	}
+	return b
+}
+
+// rerankTextMaxChars : borne du texte transmis au reranker (par candidat).
+const rerankTextMaxChars = 4000
+
 func (ix *Index) hitFor(i int, terms []string, score float64, rank int) Hit {
 	c := &ix.chunks[i]
 	// La plage de correspondance est calculee une seule fois (les
