@@ -4,14 +4,14 @@ title: "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automa
 domain: front-matter
 role: reference
 task: reference
-actors: ["Meta"]
-dates: ["2025-11-03", "2026-01-08", "2026-03-12", "2026-05", "2026-05-31", "2026-06-01", "2026-06-22", "2026-07", "2026-07-23", "2026-09-08", "2026-09-10", "2026-09-22", "2026-11-30", "2027-05", "2027-05-31", "2027-11-30", "2028-03", "2028-04-01", "2028-05"]
-keywords: ["aws", "benchmarks", "compute", "gpu", "research"]
+actors: []
+dates: ["2025-11-03", "2026-01-08", "2026-03-12", "2026-05-31", "2026-06-01", "2026-06-22", "2026-07", "2026-07-23", "2026-09-08", "2026-09-10", "2026-09-22", "2026-11-30", "2027-05", "2027-05-31", "2027-11-30", "2028-05"]
+keywords: ["benchmarks", "compute", "gpu", "research"]
 source: docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md
 source_anchor: ""
-source_lines: [1, 52]
+source_lines: [1, 38]
 section: "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
-sha256: 62efb361d55f7945017608ff4135e8cfe4b7a2838877e940a2df571a3ac4771e
+sha256: ba87eea400665651ecfc0ca28423f42eddcb99bdeb173ed2622aeae3e2aca786
 ---
 
 # Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries
@@ -51,18 +51,4 @@ sha256: 62efb361d55f7945017608ff4135e8cfe4b7a2838877e940a2df571a3ac4771e
 - **ciscodevnet/ansible-gnmi v3.0.0** (2026-06-01): BREAKING — removed nokia_sros and arista_eos placeholder platform profiles; tested platform support is Cisco IOS XE / IOS XR / NX-OS; non-Cisco devices use platform='auto' [official — https://github.com/ciscodevnet/ansible-gnmi/commit/d759860f574ec9d9bd75b7].
 
 ### Arista, Juniper
-
-- **arista.eos v12.1.2** (Sept 2026): v12.1.1 standardized action plugin naming with the `eos_` prefix (runtime routing for backward compat), removed deprecated action plugins for deleted modules, bumped `ansible.netcommon` to **>=8.5.2**; v12.1.0 added `content` parameter to `eos_config` (pre-rendered templates); `src` auto-Jinja2-processing deprecated, removal planned **March 2028** [official — https://github.com/ansible-collections/arista.eos/blob/HEAD/CHANGELOG.rst].
-- **junipernetworks.junos**: repo moved to **Juniper/ansible-junos-stdlib**; **v11.1.1** current (Sept 2026); v11.0.0 requires ansible.netcommon >=8.1.0 and ansible-core >=2.16 [official — https://github.com/juniper/ansible-junos-stdlib/blob/HEAD/ansible_collections/junipernetworks/junos/CHANGELOG.rst].
-- Migration path: `junipernetworks.junos` → **`juniper.device`** namespace (e.g., `juniper.device.junos_config`); redirects emit deprecation warnings, removal after **2028-04-01** (v11.1.0 extended the window ~2 years) [official — juniper changelog]. juniper.device observed at **2.0.1** (Jan 2026 field report) [secondary].
-- **Deprecation warning:** the Ansible 11 porting guide states the `junipernetworks.junos` collection **has been deprecated** and will be **removed from Ansible 14** if no one resumes maintenance [official — https://github.com/ansible/ansible-documentation/blob/HEAD/docs/docsite/rst/porting_guides/porting_guide_11.rst].
-- A Galaxy release-process issue noted junipernetworks.junos **11.1.0 was released to Galaxy but not git-tagged** (repo-management requirement violation; risk of removal from the community package) [secondary — https://github.com/ansible-collections/junipernetworks.junos/issues/589].
-
-### Meta/utility collections
-
-- **ansible.netcommon** is the shared transport/facts layer (network_cli, netconf, httpapi connections); 8.x line current (8.2.0, 8.5.2 required by arista.eos 12.1.x); **ansible.utils** and **ansible.network** (meta collection) complete the stack [official changelogs; secondary field reports].
-- **community.network 5.1.0** observed in May 2026 stacks [secondary].
-- Community stack snapshot (May 2026, one user's listing): amazon.aws 9.4.0, ansible.posix 1.6.2, ansible.utils 5.1.2, arista.eos 10.1.1, awx.awx 24.6.1, check_point.mgmt 6.4.0, community.general 10.6.0, community.hashi_vault 6.2.0, cisco.ucs 1.16.0, cisco.mso 2.10.0, community.ciscosmb 1.0.10 — useful as a real-world pinned-set example [secondary — juniper.device issue env dump].
-
----
 

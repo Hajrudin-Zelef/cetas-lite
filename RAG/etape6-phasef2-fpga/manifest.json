@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseF2_fpga.md",
   "source_lines": 754,
   "source_sha256": "b2e0cc394e95e0807e900b42816a008555daa98dc2fea307c29fe4ce20603afe",
-  "chunk_count": 14,
+  "chunk_count": 16,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -16,8 +16,7 @@
       "task": "reference",
       "actors": [
         "AMD",
-        "Intel",
-        "United States"
+        "Intel"
       ],
       "dates": [
         "2025-09-12",
@@ -30,24 +29,57 @@
         "amd",
         "asic",
         "benchmark",
-        "compute",
         "cost",
         "dsp",
         "gpu",
-        "hbm",
         "inference",
-        "intel"
+        "intel",
+        "lpddr5x",
+        "memory"
       ],
       "source": "docs/RAG/etape6_phaseF2_fpga.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 760,
+      "bytes": 6938,
+      "sha256": "a712f395039abeb4032a545aa2fedc8ac49930ea7ff45cbc02ce3ff105d77e94",
+      "section": "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
+    },
+    {
+      "id": "etape6-phasef2-fpga/00-fpga/2-3-versal-ai-edge-gen-2",
+      "path": "etape6-phasef2-fpga/00-fpga/2-3-versal-ai-edge-gen-2.md",
+      "title": "2.3 Versal AI Edge Gen 2",
+      "domain": "phase-f2-fpga-field-programmable-gate-arrays",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "asic",
+        "compute",
+        "dsp",
+        "gpu",
+        "hbm",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseF2_fpga.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         78
       ],
       "canonical_for": [],
-      "words": 1112,
-      "bytes": 10348,
-      "sha256": "d6c32776f3e0fec746ff2570b9ff0d7fdd2ff3ca3f6b22afcf05bb7b87062054",
+      "words": 352,
+      "bytes": 3410,
+      "sha256": "507aaae47f0694deecbfc04f5d03ba51dfdd63ece033d0780bf3bee8284a45ee",
       "section": "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
     },
     {
@@ -65,6 +97,7 @@
       "dates": [
         "2026-01-14",
         "2026-05-19",
+        "2026-08-11",
         "2026-09",
         "2026-09-22"
       ],
@@ -73,29 +106,31 @@
         "amd",
         "acquisition",
         "asic",
+        "benchmarks",
+        "compute",
         "datacenter",
         "dsp",
+        "ethernet",
         "inference",
         "latency",
-        "memory",
-        "pricing"
+        "memory"
       ],
       "source": "docs/RAG/etape6_phaseF2_fpga.md",
       "source_anchor": "",
       "source_lines": [
         79,
-        127
+        144
       ],
       "canonical_for": [],
-      "words": 535,
-      "bytes": 5307,
-      "sha256": "5d76022a45d167336c57c746bde9b30d08ab434e905e30a5de96a8c54ad3fe5b",
+      "words": 802,
+      "bytes": 7978,
+      "sha256": "f2ffbdf43988cbc1551ecbf4054775bbcaeceb99c6d0efb37f16ab6d7ab2bf30",
       "section": "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
     },
     {
-      "id": "etape6-phasef2-fpga/00-fpga/5-lattice-semiconductor-nexus-and-avant",
-      "path": "etape6-phasef2-fpga/00-fpga/5-lattice-semiconductor-nexus-and-avant.md",
-      "title": "5. Lattice Semiconductor — Nexus and Avant",
+      "id": "etape6-phasef2-fpga/00-fpga/8-packet-processing-and-p4-on-fpgas",
+      "path": "etape6-phasef2-fpga/00-fpga/8-packet-processing-and-p4-on-fpgas.md",
+      "title": "8. Packet processing and P4 on FPGAs",
       "domain": "phase-f2-fpga-field-programmable-gate-arrays",
       "role": "deep-dive",
       "task": "reference",
@@ -106,33 +141,27 @@
       ],
       "dates": [
         "2025-06",
-        "2026-08-11",
         "2026-09-22"
       ],
       "keywords": [
         "accelerator",
         "amd",
-        "benchmarks",
-        "compute",
-        "ethernet",
         "gpus",
         "intel",
         "latency",
         "pricing",
-        "research",
-        "robotics",
-        "serdes"
+        "research"
       ],
       "source": "docs/RAG/etape6_phaseF2_fpga.md",
       "source_anchor": "",
       "source_lines": [
-        128,
+        145,
         179
       ],
       "canonical_for": [],
-      "words": 876,
-      "bytes": 8080,
-      "sha256": "7a906da108590b4a3f6d1323742c3492b2e5642006f72235355256fcada29e2a",
+      "words": 609,
+      "bytes": 5409,
+      "sha256": "48e02d70f4c7ff8cc43cf69b71b4ed05edc35b2e192d41932289c812444b297e",
       "section": "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
     },
     {
@@ -211,55 +240,92 @@
       "source_anchor": "",
       "source_lines": [
         235,
-        288
+        290
       ],
       "canonical_for": [],
-      "words": 342,
-      "bytes": 6500,
-      "sha256": "10634e747126e0a7712b68fdebe3f905ae52220ff5d2d340585a297bf247508c",
+      "words": 355,
+      "bytes": 6568,
+      "sha256": "f59b1dae28d91a61eabee51f9cc0b19451b94cbb9775767265aba026022d2925",
       "section": "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
     },
     {
-      "id": "etape6-phasef2-fpga/00-fpga/17-amd-versal-ai-core-figures-of-merit-vc1502-vc2802",
-      "path": "etape6-phasef2-fpga/00-fpga/17-amd-versal-ai-core-figures-of-merit-vc1502-vc2802.md",
-      "title": "17. AMD Versal AI Core — figures of merit (VC1502 → VC2802)",
+      "id": "etape6-phasef2-fpga/00-fpga/18-napatech-nt400-and-n3070x-agilex-based-smartnics",
+      "path": "etape6-phasef2-fpga/00-fpga/18-napatech-nt400-and-n3070x-agilex-based-smartnics.md",
+      "title": "18. Napatech — NT400 and N3070X (Agilex-based SmartNICs)",
       "domain": "phase-f2-fpga-field-programmable-gate-arrays",
       "role": "deep-dive",
       "task": "reference",
       "actors": [
         "AMD",
-        "Anthropic",
         "Intel",
         "TSMC",
         "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "asic",
+        "chiplet",
+        "compute",
+        "dsp",
+        "ethernet",
+        "full-duplex",
+        "inference",
+        "int4",
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseF2_fpga.md",
+      "source_anchor": "",
+      "source_lines": [
+        291,
+        317
+      ],
+      "canonical_for": [],
+      "words": 691,
+      "bytes": 5436,
+      "sha256": "84bbfc8655c50e41b2c9d36635a08aef821550480359bc7ff1de01f48a6776cb",
+      "section": "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
+    },
+    {
+      "id": "etape6-phasef2-fpga/00-fpga/20-microchip-polarfire-additional-detail",
+      "path": "etape6-phasef2-fpga/00-fpga/20-microchip-polarfire-additional-detail.md",
+      "title": "20. Microchip PolarFire — additional detail",
+      "domain": "phase-f2-fpga-field-programmable-gate-arrays",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Anthropic",
+        "TSMC"
       ],
       "dates": [
         "2026-09-16"
       ],
       "keywords": [
-        "amd",
-        "accelerator",
         "agentic",
-        "asic",
-        "chiplet",
         "claude",
         "compute",
         "dsp",
         "energy",
         "ethernet",
-        "full-duplex",
-        "inference"
+        "latency",
+        "mcp",
+        "memory",
+        "model context protocol",
+        "pricing",
+        "serdes"
       ],
       "source": "docs/RAG/etape6_phaseF2_fpga.md",
       "source_anchor": "",
       "source_lines": [
-        289,
+        318,
         335
       ],
       "canonical_for": [],
-      "words": 1236,
-      "bytes": 10506,
-      "sha256": "f0d06ff4ee4132fe07028b0fef2a20449d837be01b9b44423458e270b99520a6",
+      "words": 532,
+      "bytes": 5002,
+      "sha256": "75340a961196be501ef19638e913e23c9044635b2c47d9280bf97a576cd7a198",
       "section": "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
     },
     {

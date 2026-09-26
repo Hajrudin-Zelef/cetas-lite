@@ -4,15 +4,15 @@ title: "Figures and metrics"
 domain: qwen-and-alibaba
 role: deep-dive
 task: actor-profile
-actors: ["Alibaba", "Baseten", "China", "DeepSeek", "Google", "Meta", "Moonshot", "Nvidia", "OpenRouter"]
+actors: ["Alibaba", "Baseten", "China", "DeepSeek", "Google", "Meta", "Moonshot", "Nvidia", "OpenRouter", "SGLang"]
 dates: ["2025-06-05", "2026-02-03", "2026-02-15", "2026-02-16", "2026-03-30", "2026-04-02", "2026-04-16", "2026-04-20", "2026-04-22", "2026-05-20", "2026-06-30", "2026-07-15", "2026-07-21", "2026-08-03", "2026-08-22", "2026-08-26", "2026-09", "2026-09-02", "2026-09-17", "2026-09-22"]
 keywords: ["agent", "apache", "benchmark", "benchmarks", "blackwell", "capex", "cost", "decode", "deepseek", "embedding", "kimi", "leaderboard"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [1258, 1359]
+source_lines: [1258, 1366]
 section: "§3. Qwen and Alibaba"
 delta_of: ai-industry-kb-2026
-sha256: c2401187d4c8df4f7075264a32fbad7c0d8f6a26b4c2e1680cc34c84cd0e0907
+sha256: 03b23c08497c8ab6c8b4d0eca401e140fd4ddd946a6d3541ac075e94a8631e23
 ---
 
 # Figures and metrics
@@ -118,4 +118,11 @@ sha256: c2401187d4c8df4f7075264a32fbad7c0d8f6a26b4c2e1680cc34c84cd0e0907
 | Alibaba cloud (Sep report) | $5.6B, +34%; rationing access | Q2 FY2026 | [SECONDARY] |
 
 ---
+
+## Main actors
+
+- **Alibaba (Qwen team)** — vendor of the Qwen3.5–3.8 lines; Apache-2.0 open mid-tiers plus custom-licensed Max flagships; stated Qwen 4 in training as of the window. [VENDOR]
+- **Community trackers** — r/LocalLLaMA/alextech for the 0902 checkpoint score; SGLang ecosystem for `qwen4_exp` day-0 support. [COMMUNITY]
+
+## Timeline and context
 

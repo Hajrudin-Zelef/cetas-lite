@@ -5,13 +5,13 @@ domain: phase-e1-netbox-nautobot-network-source-of-truth-research-fi
 role: deep-dive
 task: reference
 actors: ["JFrog", "United States"]
-dates: ["2026-04-15", "2026-09"]
-keywords: ["agent", "apache", "lean", "open source", "research", "training"]
+dates: ["2025-11-27", "2026-04-15", "2026-04-21", "2026-04-27", "2026-06-22", "2026-07", "2026-08-16", "2026-09", "2026-09-22"]
+keywords: ["agent", "apache", "distribution", "embedding", "lean", "open source", "research", "training"]
 source: docs/RAG/etape6_phaseE1_netbox_nautobot.md
 source_anchor: ""
-source_lines: [209, 258]
+source_lines: [209, 276]
 section: "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
-sha256: dc5233bf43725255908f75eb982df8fbb712acbc91bcc4d1794e85823d164932
+sha256: eaacd69cab760ef7eb17065fc7f444e8e78496c02a0c7f61aeb92f36837873b1
 ---
 
 # Wave 6 — Head-to-head: NetBox vs Nautobot (2026 view)
@@ -65,4 +65,22 @@ Source: https://www.youtube.com/watch?v=bMeE2BwkExc ("NetBox vs Nautobot in 2026
 - Config context/rendering: both have config contexts (NetBox) / config contexts + Jinja rendering API (Nautobot) `[official]`.
 
 ---
+
+## Wave 7 — Adjacent IPAM/DCIM tools
+
+### 7.1 phpIPAM `[official]`
+
+- Active open-source web IPAM (PHP + MySQL/MariaDB, jQuery/ajax frontend). Goal: light and simple IP address management. Default fresh-install credentials `Admin / ipamadmin`; demo at http://demo.phpipam.net.
+- **2026 releases:** v1.8.2 (2026-08-16, latest as of 2026-09-22), v1.8.1 (2026-04-27), v1.8.0 (2026-04-21); v1.7.4 (2025-11-27). Download distribution via SourceForge (63 downloads/week recorded for v1.8.2 at crawl time) and GitHub (`phpipam/phpipam`, forks e.g. cristianandreiu/phpipam, maisondasilva/phpipam).
+- Requirements: PHP 7.2–8.5 for 1.8.x; MySQL 8.0+/MariaDB 10.2.1+ recommended (CTE support); utf8mb4 mandatory since v1.6.0; reverse-proxy deployments set `$trust_x_forwarded_headers` / `IPAM_TRUST_X_FORWARDED=true` (with header-filtering warning); community Docker images at `hub.docker.com/u/phpipam`.
+- Feature set (per project docs): sections/subnets/IP lifecycle, VRFs, VLANs, circuits, DNS/DHCP integration, API, scanning/ping discovery, SAML/LDAP auth. Sources: https://SourceForge.net/projects/phpipam/files/ ; https://github.com/cristianandreiu/phpipam ; https://computingforgeeks.com/install-phpipam-debian/
+- Positioning vs NetBox/Nautobot: phpIPAM is IPAM-focused (no DCIM rack/device modeling depth); commonly used as a lightweight standalone IPAM or as a feeder via SSoT syncs `[secondary]`.
+
+### 7.2 teemIP `[secondary]`
+
+- Open-source web-based IPAM and DDI solution built on the iTop framework: IPv4/IPv6 plan management, subnet hierarchy, IP lifecycle, VLAN and DNS/DHCP integration. Open source under **AGPL v3**.
+- Now maintained by the teemIP SAS founding team (Christophe Naud — original creator — Martin de Laval, Quentin Ville); company officially being incorporated **July 2026**; professional support/integration services/subscriptions at https://www.teemip.com. SourceForge listing updated 2026-06-22. Source: http://sourceforge.net/directory/it-subnet-calculators/php/
+- Note: AGPL v3 vs NetBox/Nautobot's Apache 2.0 — relevant for embedding in commercial products `[secondary]`.
+
+### 7.3 RackTables and openDCIM `[secondary][unverified]`
 

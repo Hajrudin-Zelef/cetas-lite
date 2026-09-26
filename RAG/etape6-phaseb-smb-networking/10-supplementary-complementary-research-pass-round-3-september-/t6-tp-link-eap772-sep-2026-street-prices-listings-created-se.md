@@ -4,14 +4,14 @@ title: "T6. TP-Link EAP772 — Sep 2026 street prices (listings created Sep 22, 
 domain: supplementary-complementary-research-pass-round-3-september-
 role: deep-dive
 task: reference
-actors: ["EU", "Samsung", "United States"]
+actors: ["Samsung", "United States"]
 dates: ["2026-06"]
 keywords: ["consumer", "distribution", "dram", "hbm", "inference", "memory", "nand", "pricing"]
 source: docs/RAG/etape6_phaseB_smb_networking.md
 source_anchor: ""
-source_lines: [1873, 1943]
+source_lines: [1873, 1931]
 section: "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026"
-sha256: 68c8f05ae0723edfd4d4555c8ef6759f4eaf49fd682b7400ecd0506989380c54
+sha256: 7a036f18b58114a5844b3d218a83da4a26796bc17d709babba46d2ab2079ebb8
 ---
 
 # T6. TP-Link EAP772 — Sep 2026 street prices (listings created Sep 22, 2026) [independent]
@@ -74,16 +74,4 @@ sha256: 68c8f05ae0723edfd4d4555c8ef6759f4eaf49fd682b7400ecd0506989380c54
   - **Q3 2026 (TrendForce)**: increases cooling to +13–18% QoQ DRAM / +10–15% NAND as consumers hit affordability ceilings — but supply remains tight; AI/inference demand keeps pressure on through 2027 [secondary].
 - Implication for networking buyers 2026: BOM pressure on switches/routers (memory + packet-buffer + flash); vendor surcharges and shorter price-list validity; prioritize in-stock checks over MSRP for budget planning [independent assessment].
 - Sources: https://www.networkworld.com/article/4113772/samsung-warns-of-memory-shortages-driving-industry-wide-price-surge-in-2026.html ; https://www.electronicsweekly.com/news/business/q1-memory-prices-forecast-to-double-qoq-2026-02/ ; https://tech.slashdot.org/story/26/02/13/1921232/600-memory-price-surge-threatens-telcos-broadband-router-set-top-box-supply ; https://aaawave.com/blogs/aaa-blog/why-ram-ssd-prices-skyrocketing-2026-when-to-buy
-
-## T12. Round-3 verification log / remaining gaps
-
-1. NETGEAR M4350-16M4V / -16C street prices (launched Mar 2026) — not found in retailer crawls; MSRP also unconfirmed [unverified].
-2. Aruba Instant On 1960 S0F35A — PB Tech listing only; no HPE press page found yet; US street price unknown [unverified].
-3. HPE CX 6000 — only NRF 2026 press; no street prices or HPE datasheets surfaced in this pass [unverified].
-4. EAP772 "BE9300" vs "BE11000" naming conflict between retailers — TP-Link official SKU clarification pending [unverified].
-5. XS1935-10 and XS1935-12HP street prices — not found; vendor regional MSRP still unpublished [unverified].
-6. UISP-FIBER-OLT-XGS US/EU street price — not captured (retailer pages show specs only) [unverified].
-7. UniFi 400G — no product found after re-check; remains unconfirmed as of Sep 22, 2026 [unverified].
-8. Omada Pro controller hardware pricing — still not found publicly (Omada Pro line appears to reuse standard Omada/Pro controller software per reseller specs) [unverified].
----
 

@@ -9,9 +9,9 @@ dates: ["2025-05", "2026-02", "2026-02-03", "2026-02-05", "2026-03", "2026-06-30
 keywords: ["research", "agent", "agentic", "agents", "bedrock", "benchmark", "benchmarks", "chatgpt", "claude", "cloud agent", "context window", "copilot"]
 source: docs/RAG/Grands titres IA modèlesEN.md
 source_anchor: ""
-source_lines: [7, 95]
+source_lines: [7, 90]
 section: "VOLET 1 — Wave 1 Research Fiche (EN)"
-sha256: 9d3e32af642105aa4f2063cf46b513ba429ff363711d1c3511cf57ab0b853a9a
+sha256: bca46acb9b782a0be94bdefd24f7be390e283df22ed64dae2fe2d8f7921f8971
 ---
 
 # VOLET 1 — Wave 1 Research Fiche (EN)
@@ -97,9 +97,4 @@ sha256: 9d3e32af642105aa4f2063cf46b513ba429ff363711d1c3511cf57ab0b853a9a
 - Interactive agentic coding paradigm: **real-time steering** — developers intervene mid-execution (e.g., switching protocol requirements) without restarting; frequent progress updates; plan → tool-use → iterate loops.
 - Beyond code: debugging, test creation, documentation, refactoring, deployment support, monitoring, PRD writing, user research — near every professional computing task.
 - Long-horizon projects: builds functional complex games/apps from scratch over multi-day runs.
-
-### What distinguished it in 2026
-- **Terminal-first agentic specialist**: it dominated terminal-based workflows (Terminal-Bench 2.0 77.3% vs rivals) at 2.9× cheaper input pricing than Opus-class models — the price-efficiency leader for terminal-heavy engineering, with enterprise-grade LTS stability.
-
----
 

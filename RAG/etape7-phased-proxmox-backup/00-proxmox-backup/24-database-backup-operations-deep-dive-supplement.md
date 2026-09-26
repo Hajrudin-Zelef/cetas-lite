@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: []
 dates: ["2026-09-01"]
-keywords: ["datacenter", "governance", "latency", "pricing"]
+keywords: ["datacenter", "latency", "pricing"]
 source: docs/RAG/etape7_phaseD_proxmox_backup.md
 source_anchor: ""
-source_lines: [470, 528]
+source_lines: [470, 515]
 section: "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
-sha256: 3e9ce91a26507d1cdaae26ef3191c293bec4eeb4f62de7bf7b9bf8314cff6582
+sha256: be3df7fbe7ce4edd39a9ce1552b619dec0313d717a5a3e012edf1eda49391b6c
 ---
 
 # 24. Database backup operations deep-dive (supplement)
@@ -61,17 +61,4 @@ sha256: 3e9ce91a26507d1cdaae26ef3191c293bec4eeb4f62de7bf7b9bf8314cff6582
 - Disable unused services on hosts (e.g., no extra daemons on hypervisors) to shrink attack surface `[secondary]`.
 
 ## 26. Backup scheduling and retention policy examples
-
-- Bronze (file servers): daily incremental, weekly full, 30-day retention, off-site weekly copy `[secondary]`.
-- Silver (app VMs): daily incremental with dirty-bitmap CBT, 14-day local retention, 90-day S3 immutable copy `[secondary]`.
-- Gold (databases): pgBackRest/XtraBackup daily full or weekly full + daily diff, WAL/binlog continuous, 7-day local + 1-year S3/archive tier `[secondary]`.
-- PBS prune example: keep-last=3, keep-daily=7, keep-weekly=4, keep-monthly=6, keep-yearly=1 — tune per datastore `[secondary]`.
-- Restic forget example: `--keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 3` then `--prune` `[secondary]`.
-- Borg prune example: `--keep-daily=7 --keep-weekly=4 --keep-monthly=6` `[secondary]`.
-- Grandfather-father-son (GFS): daily son, weekly father, monthly grandfather — classic tape rotation still valid for LTO pools `[secondary]`.
-- Backup windows: stagger start times; PBS fleecing avoids production I/O contention; verify jobs run outside backup windows `[secondary]`.
-- Full-backup frequency vs restore speed: more frequent fulls = faster restores but more storage; synthetic fulls (Veeam) merge incrementals server-side `[secondary]`.
-- Retention vs immutability: Object Lock duration must cover the retention you promise; extending retention later does not extend existing locks `[secondary]`.
-- Legal hold: compliance mode Object Lock for regulated data; governance mode allows privileged deletion with bypass permission `[secondary]`.
-- Test restores on a cadence: monthly automated, quarterly full DR drill, annual tabletop with stakeholders `[secondary]`.
 

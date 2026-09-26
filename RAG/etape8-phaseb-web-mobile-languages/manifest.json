@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
   "source_lines": 762,
   "source_sha256": "e4c10bfe4518ffcd6d3b7b8db33663a270ed631982a6d401875e73004987ac82",
-  "chunk_count": 12,
+  "chunk_count": 13,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -250,25 +250,19 @@
       "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
       "role": "deep-dive",
       "task": "reference",
-      "actors": [
-        "Microsoft"
-      ],
+      "actors": [],
       "dates": [
-        "2025-08",
-        "2025-10",
         "2025-10-16",
         "2025-12-23",
         "2025-12-27",
         "2026-07",
         "2026-07-23",
         "2026-09",
-        "2026-09-10",
-        "2026-09-22"
+        "2026-09-10"
       ],
       "keywords": [
         "advisory",
         "bedrock",
-        "copilot",
         "inference",
         "memory",
         "research"
@@ -277,12 +271,43 @@
       "source_anchor": "",
       "source_lines": [
         408,
+        482
+      ],
+      "canonical_for": [],
+      "words": 953,
+      "bytes": 7128,
+      "sha256": "1680e47cb4910a4d2337df371543642a9ae93572adedbd51c83fda52da46be4c",
+      "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
+    },
+    {
+      "id": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/21-4-rankings-synthesis-interpretive-tag-each-claim",
+      "path": "etape8-phaseb-web-mobile-languages/00-web-mobile-languages/21-4-rankings-synthesis-interpretive-tag-each-claim.md",
+      "title": "21.4 Rankings synthesis (interpretive, tag each claim)",
+      "domain": "step-8-phase-b-web-mobile-languages-runtimes-and-toolchains",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-08",
+        "2025-10",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "copilot"
+      ],
+      "source": "docs/RAG/etape8_phaseB_web_mobile_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        483,
         497
       ],
       "canonical_for": [],
-      "words": 1307,
-      "bytes": 9749,
-      "sha256": "d31cd46ee570ff5e38db1983d3e61a1a87db7893ad1016fee218ed3b6e16b494",
+      "words": 354,
+      "bytes": 2621,
+      "sha256": "888d98c357aae9f3c429d214618bcf2231857790a5639c77cf3a83fae04f51bc",
       "section": "Step 8 — Phase B — Web & Mobile Languages, Runtimes and Toolchains"
     },
     {

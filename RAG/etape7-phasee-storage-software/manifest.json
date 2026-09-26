@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape7_phaseE_storage_software.md",
   "source_lines": 751,
   "source_sha256": "9ac0e8828c86b6c8476d72dc64933a31699457ddb5e94cbd0d4767a391f87fff",
-  "chunk_count": 11,
+  "chunk_count": 14,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -65,12 +65,36 @@
       "source_anchor": "",
       "source_lines": [
         46,
+        102
+      ],
+      "canonical_for": [],
+      "words": 1079,
+      "bytes": 7950,
+      "sha256": "15d5739d342607c7e395bd41669cc855dc0fdf844264bb1f9431ae3fffb98a71",
+      "section": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
+    },
+    {
+      "id": "etape7-phasee-storage-software/00-storage-software/part-3",
+      "path": "etape7-phasee-storage-software/00-storage-software/part-3.md",
+      "title": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS) (part 3)",
+      "domain": "step-7-phase-e-software-defined-nas-storage-ceph-rclone-true",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost"
+      ],
+      "source": "docs/RAG/etape7_phaseE_storage_software.md",
+      "source_anchor": "",
+      "source_lines": [
+        103,
         110
       ],
       "canonical_for": [],
-      "words": 1300,
-      "bytes": 9680,
-      "sha256": "ff469c374076e03013fa748cc5cfeb90323a15441e6a3cd7faaf84b85c8ec83a",
+      "words": 221,
+      "bytes": 1730,
+      "sha256": "52f01bd0c577834f43b2675758e675c03c6a65d0186f26ed2462ff46f0b3c69f",
       "section": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
     },
     {
@@ -92,7 +116,6 @@
       ],
       "keywords": [
         "agent",
-        "compute",
         "intel",
         "memory",
         "pricing",
@@ -102,12 +125,36 @@
       "source_anchor": "",
       "source_lines": [
         111,
+        183
+      ],
+      "canonical_for": [],
+      "words": 989,
+      "bytes": 7536,
+      "sha256": "51e537f4af7e61d648a7926523a5456930a77c365f552d2b4f2aa8660d23eaae",
+      "section": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
+    },
+    {
+      "id": "etape7-phasee-storage-software/00-storage-software/part-5",
+      "path": "etape7-phasee-storage-software/00-storage-software/part-5.md",
+      "title": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS) (part 5)",
+      "domain": "step-7-phase-e-software-defined-nas-storage-ceph-rclone-true",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "compute"
+      ],
+      "source": "docs/RAG/etape7_phaseE_storage_software.md",
+      "source_anchor": "",
+      "source_lines": [
+        184,
         188
       ],
       "canonical_for": [],
-      "words": 1061,
-      "bytes": 8008,
-      "sha256": "06f6b5753ed3c454b53dc6c6ab99cc22f68a64d62ce367f299beae6b53ad30ba",
+      "words": 72,
+      "bytes": 472,
+      "sha256": "e9bdb4a9aed8d09afc08292f7ae8b5f81103196076b9d547ffa80251e085f444",
       "section": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
     },
     {
@@ -364,8 +411,6 @@
       ],
       "dates": [
         "2026-03",
-        "2026-04-06",
-        "2026-07",
         "2026-08",
         "2026-09",
         "2026-09-22"
@@ -380,12 +425,39 @@
       "source_anchor": "",
       "source_lines": [
         652,
+        739
+      ],
+      "canonical_for": [],
+      "words": 1031,
+      "bytes": 7596,
+      "sha256": "6c9a0655696aa922b635e65a9b861ed602188bc9c7d3029f8aa5b7c6f5b3b123",
+      "section": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
+    },
+    {
+      "id": "etape7-phasee-storage-software/00-storage-software/part-14",
+      "path": "etape7-phasee-storage-software/00-storage-software/part-14.md",
+      "title": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS) (part 14)",
+      "domain": "step-7-phase-e-software-defined-nas-storage-ceph-rclone-true",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-03",
+        "2026-04-06",
+        "2026-07",
+        "2026-09-22"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseE_storage_software.md",
+      "source_anchor": "",
+      "source_lines": [
+        740,
         751
       ],
       "canonical_for": [],
-      "words": 1209,
-      "bytes": 8910,
-      "sha256": "5589ba3b5a99b05adb8df50220ddd5bcf92ce166afaa4049bb12c7e31e05842b",
+      "words": 178,
+      "bytes": 1314,
+      "sha256": "791d4c0f27f39aa0992dbb0b964a3db7de18ffbaf20b88bf354d970af91cad71",
       "section": "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
     }
   ]

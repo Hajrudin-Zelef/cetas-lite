@@ -4,14 +4,14 @@ title: "§9 — MISTRAL AI"
 domain: step-3-labs-hyperscalers-february-1-september-22-2026
 role: deep-dive
 task: actor-profile
-actors: ["AWS", "Alibaba", "Anthropic", "EU", "Microsoft", "Mistral", "OpenAI"]
-dates: ["2026-06"]
+actors: ["AWS", "Alibaba", "Anthropic", "EU", "Microsoft", "Mistral", "Nvidia", "OpenAI", "Samsung"]
+dates: ["2026-06", "2026-09-08"]
 keywords: ["mistral", "agent", "agentic", "agents", "apache", "benchmarks", "claude", "compute", "consumer", "foundry", "funding", "gpus"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [1250, 1298]
+source_lines: [1250, 1307]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 8ae4b6011204acf72000e39851bb886ceaa784daa081475961b1fb214de6a205
+sha256: 1191eb8fe2668ba7d29a1c40cf7dc5e05be7c25b2d3307eb48520f2503b1ac52
 ---
 
 # §9 — MISTRAL AI
@@ -64,4 +64,13 @@ sha256: 8ae4b6011204acf72000e39851bb886ceaa784daa081475961b1fb214de6a205
 **Robostral Navigate — Jul 2026 [unverified]:** Described as Mistral's first robotics model, formalizing the "physical AI" push. Sourced only from an internal research doc mirrored on GitHub (marked "not for public repo") [unverified] — treat cautiously.
 
 **What did NOT ship in-window:** No new Mixtral (8x22B/8x7B successors) announced Feb–Sep 2026 [unverified negative]. **Mistral Large 3** (675B MoE, 41B active, Apache 2.0) was released **Dec 2, 2025** — before the window; remains the flagship open-weight model [secondary]. **Devstral 2** released Dec 2025; not a 2026 release [independent]. A viral June 2026 hoax ("Le Chaton Fat" meme) was **fake** — no such model exists [independent: ExplainX] https://explainx.ai/blog/le-chaton-fat-mistral-ai-viral-hoax-meme-2026.
+
+### 9.7 Mistral funding — detailed
+
+**Series D — announced Sep 8, 2026** [independent: Reuters, AFP] https://www.reuters.com/world/europe/french-ai-company-mistral-hits-24-billion-valuation-funding-round-2026-09-08/:
+- **€3.0 billion raised at >€21B valuation (~$24B)** — Mistral's claim: biggest equity round by a privately owned European tech firm [vendor-reported claim; reported by Reuters].
+- Jointly led by: existing investor **PSG Equity**, **Samsung Electronics**, and the **EU-backed Scaleup Europe Fund** (all first-time investors except PSG). Other participants per secondary roundups: Advent, BlackRock-managed funds, Grand Duchy of Luxembourg, NVIDIA, ASML, a16z, General Catalyst, Lightspeed, Salesforce Ventures [secondary].
+- Use of funds: frontier research, compute capacity, infrastructure, products, international expansion. CFO **Johan Bergqvist**: IPO "always an optionality," timing "up in the air," no active discussions [independent: Reuters].
+- Valuation nearly doubled vs Sep 2025 Series C (€1.7B at €11.7B, led by ASML with €1.3B) [independent: Reuters/Bloomberg lineage].
+- Sifted separately confirmed the Series D a day before the robotics-chief story (Sep 9), describing backers including NVIDIA, ASML and Scaleup Europe [secondary].
 

@@ -4,14 +4,14 @@ title: "5. VS Code AI features / GitHub Copilot (Microsoft & GitHub)"
 domain: step-2-ai-tools-platforms-febsep-2026
 role: deep-dive
 task: reference
-actors: ["Anthropic", "China", "Google", "Microsoft", "OpenAI", "Z.ai"]
+actors: ["Anthropic", "China", "Google", "Microsoft", "OpenAI", "SpaceX", "United States", "Z.ai", "xAI"]
 dates: ["2026-03", "2026-05", "2026-06", "2026-06-01", "2026-07", "2026-07-02", "2026-07-04", "2026-07-30", "2026-07-31", "2026-08", "2026-08-31"]
-keywords: ["copilot", "agent", "agentic", "agents", "claude", "cloud agent", "gemini", "glm", "inference", "pricing", "research", "revenue"]
+keywords: ["copilot", "agent", "agentic", "agents", "claude", "cloud agent", "gemini", "glm", "grok", "inference", "pricing", "research"]
 source: docs/RAG/Outils & plateformes IAEN.md
 source_anchor: ""
-source_lines: [212, 278]
+source_lines: [212, 283]
 section: "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
-sha256: 4106efd631b0da98e9095ddf420478ccffa310ec000344b0d199feaeae327683
+sha256: c0c7f1234b74d2b0442e580a6e50492eb183475f8b4dca770c62b697e9072f09
 ---
 
 # 5. VS Code AI features / GitHub Copilot (Microsoft & GitHub)
@@ -83,3 +83,8 @@ GitHub replaced premium requests with **GitHub AI Credits (1 credit = $0.01)** b
 - https://github.com/weijt606/ai-agent-map/blob/HEAD/agents/zcode.md
 
 ---
+## 7. Grok Build / xAI developer tooling (SpaceXAI)
+
+### 7.1 xAI API — current model catalog and pricing (official)
+Source: SpaceXAI official API pricing page, crawled within hours of this report (`docs.x.ai/developers/pricing`) — **[official]**. Prices in USD per 1M tokens. Models with long-context pricing bill the long-context rates for **all** tokens in a request once the prompt reaches the model's long-context threshold (≥ 200K tokens). Requests to the US regional endpoint run inference in the United States and are billed at 1.1× the global token rates (10% premium).
+

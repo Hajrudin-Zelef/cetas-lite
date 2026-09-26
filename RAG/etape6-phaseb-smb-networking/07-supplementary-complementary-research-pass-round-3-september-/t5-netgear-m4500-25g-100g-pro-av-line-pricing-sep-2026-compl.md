@@ -4,14 +4,14 @@ title: "T5. NETGEAR M4500 — 25G/100G Pro AV line pricing Sep 2026 (complements
 domain: supplementary-complementary-research-pass-round-3-september-
 role: deep-dive
 task: pricing
-actors: ["Intel", "United States"]
-dates: ["2026-02-16"]
-keywords: ["pricing", "asic", "cost", "cyber", "license", "optics", "settlement"]
+actors: ["United States"]
+dates: []
+keywords: ["pricing", "asic", "cost", "license", "settlement"]
 source: docs/RAG/etape6_phaseB_smb_networking.md
 source_anchor: ""
-source_lines: [1256, 1315]
+source_lines: [1256, 1300]
 section: "Supplementary / Complementary Research Pass — Round 3 — September 22, 2026"
-sha256: 491965abe0bbe078af4071056c157deeb0e784182e1fb3069dc198ad48162432
+sha256: 7acfcd5abfbdfdc68f23cbb3d47ea9907b4155a3685fed503d8655f70d6e9c82
 ---
 
 # T5. NETGEAR M4500 — 25G/100G Pro AV line pricing Sep 2026 (complements S6 M4350)
@@ -60,19 +60,4 @@ sha256: 491965abe0bbe078af4071056c157deeb0e784182e1fb3069dc198ad48162432
 - Sources: https://www.morningstar.com/news/pr-newswire/20260115ph63498/engenius-unveils-cloud-managed-wi-fi-7-enterprise-ap-with-247-airguard-security ; https://www.advfn.com/stock-market/stock-news/97823066/engenius-ecw515-brings-wi-fi-7-performance-to-in-r
 
 ## T10. Round-3 verification log
-
-1. D-Link DAP-E3620 prices: too fresh (Aug 19, 2026 announcement) — no retailer listings by Sep 22; re-check later [open].
-2. Zyxel USG FLEX 50H launch date (2026-02-16) comes from Bonanza marketplace metadata, not a Zyxel press release — verify before citing as launch fact [unverified].
-3. Grandstream GWN7813 £172.70 / GWN7816 £359.40 (voipon UK) — UK prices; regional variance vs US/CZ/AE/IN/AU captured but not normalized [noted].
-4. Instant On divestiture claims (T7) rest on a single vendor-blog source — **cross-verify independently before use** [unverified].
-5. Aruba CX 6000 (T6) — announced at NRF 2026 (Jan); no street price or confirmed GA date found [unverified].
-6. "No separate Omada Pro controller SKU" (T8) is an absence-of-evidence finding from retail/TP-Link listings — do not state as a confirmed TP-Link policy [unverified].
-7. NETGEAR M4500-32C SHI data — page last crawled 61 days ago; MSRP $27,048.27 vs street $20,509.99 should be re-verified live [flag].
-8. ECW536S/ECW515 announcements are Jan/Feb 2026 PRNewswire releases re-hosted on aggregator sites; dates taken from the original PR datelines [vendor-reported].
-9. Zyxel USG FLEX H still has no 2026 *platform refresh* — 50H/50HP is a range extension, not a generation change [assessment].
-10. Phase C scope (FS.com, 25G/40G enterprise optics, Spine/Leaf hardware) remains intentionally excluded here.
-
-**Round-3 sources (verbatim):** https://aapnews.aap.com.au/aapreleases/cision20260819AE28553 ; https://aapnews.aap.com.au/aapreleases/cision20251218AE49456 ; https://www.bonanza.com/listings/Zyxel-USGFLEX50H-Cyber-Security-Firewall-2-Gbps-Up-to-25-Users-Hardware-Onl/1801209230 ; https://www.manilarepublic.com/zyxel-usg-flex-50hp-firewall-wins-taiwan-excellence-award/ ; https://info.zyxel.com/hubfs/USG%20FLEX%20H%20Comparison_Partners_Rev2026.pdf ; https://www.einpresswire.com/article_pdf/838918940/zyxel-networks-firmware-enables-zero-touch-nebula-deployment-for-usg-flex-h-series-firewalls ; https://www.voipon.co.uk/grandstream-gwn7813-managed-network-switch-p-10157.html ; https://www.discomp.cz/grandstream-gwn7816-layer-3-managed-network-switch-48-portu-6x-sfp-_d127143.html ; https://gear-up.me/grandstream-gwn7813p-layer-3-managed-network-poe-switch-24-ports-4-sfp.html ; https://www.shi.com/product/38680664/NETGEAR-M4500-32C-Switch ; https://proavwarehouse.com/infrastructure-and-cabling/netgear/netgear-xsm4556-100nas-m4500-48xf8c-managed-switch-with-48x10g-25g-sfp28/ ; https://www.misco.co.uk/product/Networking/Switch/NETGEAR/NETGEAR-M4500-48XF8C---Switch---L3---Managed---48-?prodid=5362747 ; https://www.networkworld.com/article/4115610/nrf-2026-hpe-expands-network-server-products-for-retailers.html ; https://networkdevicesinc.com/community/blog/aruba-vs-juniper-2026-buyers-guide ; https://www.yorkshire.com/marketplace/electronics-222/networking-342/4141c45c-cf62-4b7f-9077-e0fbf8a2b57a ; https://cpcireland.farnell.com/tp-link/oc400/omada-hardware-controller/dp/CS37095 ; https://www.netxl.com/wifi-access-points/tp-link-oc300-omada-cloud-controller/ ; https://www.morningstar.com/news/pr-newswire/20260115ph63498/engenius-unveils-cloud-managed-wi-fi-7-enterprise-ap-with-247-airguard-security ; https://www.advfn.com/stock-market/stock-news/97823066/engenius-ecw515-brings-wi-fi-7-performance-to-in-r
-
----
 

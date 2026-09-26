@@ -5,13 +5,13 @@ domain: front-matter
 role: reference
 task: reference
 actors: ["AMD", "AWS", "Broadcom", "EU", "Meta", "Microsoft", "Nvidia", "OpenAI", "Oracle", "United States", "xAI"]
-dates: ["2025-04", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-06", "2026-07", "2026-08", "2026-09"]
-keywords: ["accelerator", "amd", "aws", "blackwell", "compute", "cost", "dsp", "ethernet", "gpu", "hyperscaler", "latency", "lpo"]
+dates: ["2026-01", "2026-02", "2026-03", "2026-06", "2026-07", "2026-08", "2026-09"]
+keywords: ["accelerator", "amd", "aws", "blackwell", "compute", "cost", "ethernet", "gpu", "hyperscaler", "latency", "nvidia", "nvlink"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [1099, 1179]
+source_lines: [1099, 1153]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 3af133d1cc5fae95fd16f1145ea58626afd766842a6e7d1ccf18bf77fa47dd46
+sha256: 2bf559a6d32da152e62080f4377008ab96611709192a699e94e703e28013f497
 ---
 
 # 6.5 Comparison table (sourced numbers only)
@@ -70,30 +70,4 @@ sha256: 3af133d1cc5fae95fd16f1145ea58626afd766842a6e7d1ccf18bf77fa47dd46
 - Amphenol SF-NND1JA0303-003M: 800G OSFP→2×400G OSFP AEC 3 m, 32AWG — $1,869.93 (1–50 qty) — cablesondemand.com QSFP-DD/OSFP cables page.
 - Amphenol SF-NND1JE0305-005M: 5 m, 30AWG — $2,131.02.
 - Amphenol SF-NND1JH0317-007M: 7 m, 28AWG — $2,503.51.
-
-**Others:**
-- Optcore Cisco QDD-400-CU3M-compat 400G QSFP-DD passive DAC 3 m, 26AWG — US$209.00 excl. VAT — optcore.net QDD-400G-DAC-P3M (page updated ~700 days ago; still live ~April 2026 crawl).
-- ROBOfiber/DataInterfaces (US, crawled ~September 2026): 100G QSFP28 passive DAC 1 m $40.00; 100G→4×SFP28 breakout 3 m $99.00; 400G QSFP-DD AOC 3 m $705.00; 400G→4×QSFP56 passive DAC 3 m $330.00; 100G→4×SFP28 AOC breakout 3 m $201.00 — datainterfaces.com.
-
-**Volume-price context note:** 800G DR8 optical transceivers at volume (1000+ units) list $1,000–1,400, LPO $700–900 [secondary] (saastisfy.fr price list, April 2025) — context only; transceivers are not DAC/AOC/AEC and are included solely to frame the "AEC ≈ half of optics" claim.
-
-### 6.8 Reliability / compatibility
-
-**EEPROM coding.** Every DAC/AOC/AEC carries an EEPROM (SFF-8636 for QSFP28-class; CMIS for QSFP-DD/OSFP-class) readable over I2C, programmed with vendor name, part number, length, and compliance codes [vendor-reported] (Dawnray, FS.com). Third-party vendors (FS.com, QSFPTEK, Optcore) operate in-house coding labs that program cables to mimic OEM identities (Cisco, Arista, Juniper, NVIDIA/Mellanox, Dell EMC…); FS.com: "Our in-house coding facility programs all of our parts to standard OEM specs for compatibility" [vendor-reported] (FS datasheet 20240428120743z6yjda.pdf). **Vendor lock-in is real:** "Some switches enforce vendor coding (lock-in)" — always confirm vendor-approved/coded cables for critical deployments [secondary] (network-switch.com). AECs additionally run a microcontroller implementing CMIS (Microchip META-DX2C SDK implements CMIS 5.2; Credo CLOS AEC uses CMIS) — AECs present a much richer management interface (telemetry, diagnostics, firmware) than passive DACs [official] (Microchip; Credo CLOS brief).
-
-**Failure modes (by type).** Passive DAC: mechanical — conductor fatigue from tight bends (respect min. bend radius: 33–72 mm depending on AWG/length), connector mating-cycle wear, crosstalk/insertion-loss degradation. Thick 26AWG bundles also create airflow/thermal issues in dense racks (a deployment-level "failure" via overheating neighbors) [secondary]. AOC: VCSEL/laser wear-out and fiber-connector contamination/damage; no re-termination — one bad end scraps the whole assembly [secondary]. AEC: active-silicon failure modes (retimer chip, PMIC, thermal) — but far fewer components than an optical link. Credo claims up to 100M hours MTBF and "100 times better reliability" than optical solutions for its 800G AECs [vendor-reported] — **flag: vendor marketing claim, not independently verified.** Link-flap sensitivity in AI backends: Credo's ZeroFlap family specifically targets "zero soft link flaps" for lossless RDMA AI fabrics [official].
-
-**BER considerations at 100G PAM4 lanes.** IEEE 802.3 requires pre-FEC BER ≤ 2.4×10⁻⁴ for 100G-PAM4-class clauses (e.g., 100GBASE-CR2/KP4), with KP4 RS(544,514) Reed-Solomon FEC mandatory on 400G and most 100G-PAM4 electrical/optical interfaces, delivering post-FEC BER <10⁻¹²–10⁻¹⁵ [official-via-secondary] (Tektronix PAM4 primer; EDN 400G FEC coverage). Raw (pre-FEC) BER on PAM4 links "can easily reach 10⁻⁶ to 10⁻⁴" vs the traditional 10⁻¹² NRZ target; RS-FEC provides ~7–8 dB coding gain [secondary] (fibermall.com FEC explainer, December 2025). Cable-vendor BER claims: 400G passive DAC "BER better than 1E-15" (Vchung) [vendor-reported]; 800G AEC "BER (Post-FEC) <10⁻¹⁵" (QSFPTEK) [vendor-reported]; Credo retimer/DSP cables are specified against KP4 FEC thresholds (optional inner Hamming (128,120) FEC in some DSPs) [official] (Credo Bluebird brief). Practical implication: at 100G/lane PAM4, DAC/AEC link budgets assume FEC is ON; a passive DAC that meets pre-FEC 2.4e-4 at its rated length/loss will deliver effectively error-free post-FEC operation. Switch ASICs (Broadcom Tomahawk/Jericho, NVIDIA Spectrum, Cisco Silicon One) terminate FEC in hardware; disabling FEC breaks auto-negotiation on standards-compliant ports [secondary]. AEC retimers regenerate the signal and can terminate/monitor FEC, which is why AECs hold BER margin at 5–7 m where passive copper's pre-FEC BER would exceed the KP4 correction threshold (mechanism per vendor DSP descriptions; specific threshold margins per cable are vendor-proprietary — [unverified] at per-SKU level).
-
-### 6.9 Flags & conflicts summary (Wave 6)
-1. **Credo "Dove" chip** — could not verify; do not use. **Seagull** verified only as optical DSP, not AEC retimer.
-2. **100G QSFP28 passive max length** — 3 m standard vs 5 m vendor-stretch (Optcore); unresolved.
-3. **ACC chip placement** — Rx-end only (Fibermall) vs both ends (VEEX); unresolved, likely vendor-dependent.
-4. **800G "DAC hits the wall" (Credo 2021)** vs 2026 reality of widely sold 800G passive DACs (FS.com, QSFPTEK) — vendor positioning vs market fact.
-5. **AEC retimer latency** — no cable-level ns figure sourced; ~100 ns/hop is industry lore [unverified]; only verified figure is Credo Bluebird *optical* DSP <40 ns/direction.
-6. **All prices** are single-unit web list prices (crawled Jul–Sept 2026), region/currency/SKU-dependent, and not comparable to hyperscaler volume pricing; several comparisons above are explicitly directional.
-7. **Credo reliability/power/cost claims** (100M-hr MTBF, 100× reliability, half-power vs optics, $1,000/GPU saving) are vendor-reported marketing figures without independent verification.
-8. **10G/25G passive DAC lengths and TE/Molex AEC SKUs** were not directly sourced — omitted or flagged rather than invented.
-
----
 

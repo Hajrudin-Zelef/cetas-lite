@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
   "source_lines": 751,
   "source_sha256": "eada60ed8571b8a0e2b1ac77ec1c7fa27ee3382dfde383c6b34e6e9fa12d511e",
-  "chunk_count": 14,
+  "chunk_count": 16,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -33,21 +33,46 @@
       "source_anchor": "",
       "source_lines": [
         1,
-        46
+        50
       ],
       "canonical_for": [],
-      "words": 688,
-      "bytes": 6607,
-      "sha256": "665fea2252a20d2f98026dd74c7c7fa172d62f3c2914bd0df8d217466aa67ebb",
+      "words": 709,
+      "bytes": 6740,
+      "sha256": "2249b7029d60f5695288afba9cfddfd1e7a571a554712e3f65f167cee3090316",
       "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
     },
     {
-      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-3-vendor-implementations-streaming-telemetry-gnmi-gnoi-",
-      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/wave-3-vendor-implementations-streaming-telemetry-gnmi-gnoi-.md",
-      "title": "Wave 3 — Vendor implementations: streaming telemetry & gNMI/gNOI support (2026)",
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/3-2-cisco-ios-xr-model-driven-telemetry",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/3-2-cisco-ios-xr-model-driven-telemetry.md",
+      "title": "3.2 Cisco (IOS-XR model-driven telemetry)",
       "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
       "role": "deep-dive",
       "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
+        77
+      ],
+      "canonical_for": [],
+      "words": 544,
+      "bytes": 6901,
+      "sha256": "f66dce2c4d4b286e245480ef96088d1f0de822fe246f63ebab412086d3fc80ca",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/3-5-arista-eos-ceos-and-hardware",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/3-5-arista-eos-ceos-and-hardware.md",
+      "title": "3.5 Arista EOS (cEOS and hardware)",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "hardware",
       "actors": [
         "Nvidia"
       ],
@@ -55,19 +80,18 @@
       "keywords": [
         "agent",
         "distribution",
-        "ethernet",
         "nvidia"
       ],
       "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
       "source_anchor": "",
       "source_lines": [
-        47,
+        78,
         96
       ],
       "canonical_for": [],
-      "words": 926,
-      "bytes": 11247,
-      "sha256": "f4bb088104494ccfd16c1c5da6457c7cde3a64a9ea2f35be63bdc23801f7c30c",
+      "words": 361,
+      "bytes": 4213,
+      "sha256": "6b5b5b9b9e18ebe12dcc9869fda51ee54cbb44fcf9fbb12bbb99a5ee6a7299cb",
       "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
     },
     {
@@ -137,19 +161,42 @@
         "decode",
         "ethernet",
         "nvidia",
-        "optics",
         "training"
       ],
       "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
       "source_anchor": "",
       "source_lines": [
         194,
+        249
+      ],
+      "canonical_for": [],
+      "words": 697,
+      "bytes": 7649,
+      "sha256": "6fd38e6785c0f4fb6050b5cf1eed15eeb56e8690eca276c8ce5b55b972e68a6b",
+      "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
+    },
+    {
+      "id": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/part-7",
+      "path": "etape6-phasee3-gnmi-openconfig-telemetry/00-gnmi-openconfig-telemetry/part-7.md",
+      "title": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability (part 7)",
+      "domain": "step-6-phase-e3-gnmi-openconfig-model-driven-telemetry-progr",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md",
+      "source_anchor": "",
+      "source_lines": [
+        250,
         254
       ],
       "canonical_for": [],
-      "words": 808,
-      "bytes": 8827,
-      "sha256": "7e405ba623b93ffa035048d1ba918e113aaa6a08ba210e937773a5dbfd4064da",
+      "words": 111,
+      "bytes": 1178,
+      "sha256": "a4f5a272067dd907ff4a91ec8e310eecedb82fd3c85d686e818238e175af8047",
       "section": "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
     },
     {

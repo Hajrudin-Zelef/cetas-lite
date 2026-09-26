@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape5_trackD_servers.md",
   "source_lines": 1403,
   "source_sha256": "4e2077c95bb2fedf2379cc7bf28d02977d2ebe2d0d70bf544baaed83be1b1dea",
-  "chunk_count": 24,
+  "chunk_count": 32,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -387,27 +387,59 @@
       "keywords": [
         "acquisition",
         "amd",
-        "backlog",
         "blackwell",
         "compute",
         "cost",
         "disclosure",
         "gpu",
         "gpus",
-        "hbm",
         "hyperscaler",
-        "inference"
+        "inference",
+        "intel",
+        "license"
       ],
       "source": "docs/RAG/etape5_trackD_servers.md",
       "source_anchor": "",
       "source_lines": [
         486,
+        530
+      ],
+      "canonical_for": [],
+      "words": 864,
+      "bytes": 6974,
+      "sha256": "52a6579fac5002d18726b71a18dfcca9341119b53c74ac4fcf2e3d124619f3d7",
+      "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
+    },
+    {
+      "id": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/1-4-ai-revenue-figures-q3-fy2026-earnings-reported-sept-2-20",
+      "path": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/1-4-ai-revenue-figures-q3-fy2026-earnings-reported-sept-2-20.md",
+      "title": "1.4 AI revenue figures — Q3 FY2026 earnings (reported Sept 2, 2026; quarter ended July 31, 2026)",
+      "domain": "server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-07-31"
+      ],
+      "keywords": [
+        "revenue",
+        "backlog",
+        "hbm",
+        "memory",
+        "nand",
+        "pricing",
+        "wafer"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        531,
         542
       ],
       "canonical_for": [],
-      "words": 1101,
-      "bytes": 9106,
-      "sha256": "b2fa824f813e5420c37b9f48013c77516b5b128ad91f6d6c9e9798b89fac0667",
+      "words": 237,
+      "bytes": 2132,
+      "sha256": "8d3bc4b66060db48e84d39e3b31b8ee1f9c494039f83fb8b4f31b500b0a47a4a",
       "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
     },
     {
@@ -438,22 +470,57 @@
         "compute",
         "deepseek",
         "disclosure",
-        "energy",
         "ethernet",
         "gpu",
         "gpus",
-        "hyperscaler"
+        "hyperscaler",
+        "inference"
       ],
       "source": "docs/RAG/etape5_trackD_servers.md",
       "source_anchor": "",
       "source_lines": [
         543,
+        596
+      ],
+      "canonical_for": [],
+      "words": 893,
+      "bytes": 7627,
+      "sha256": "f7b1e4f173876e6fb23e57c6b712baa80e82a4d5dd19c565ed4aa04fcdb10688",
+      "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
+    },
+    {
+      "id": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/3-2-customer-wins",
+      "path": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/3-2-customer-wins.md",
+      "title": "3.2 Customer wins",
+      "domain": "server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "blackwell",
+        "energy",
+        "gpus",
+        "liquid cooling",
+        "nvidia",
+        "nvlink",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        597,
         614
       ],
       "canonical_for": [],
-      "words": 1154,
-      "bytes": 9801,
-      "sha256": "9316501d3054c441194f45bda1be84658179e09ac8e5b8dddde55bfc8b5cc675",
+      "words": 261,
+      "bytes": 2174,
+      "sha256": "49cedf7379663fd781faeba8ab79538160dbdab502b2f3b8f2da91c3a57665fa",
       "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
     },
     {
@@ -494,12 +561,46 @@
       "source_anchor": "",
       "source_lines": [
         615,
+        662
+      ],
+      "canonical_for": [],
+      "words": 806,
+      "bytes": 6846,
+      "sha256": "e434cf22a1c7e89a5acb7fa42c61f4d05dbd7face673436180b14826607fddaa",
+      "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
+    },
+    {
+      "id": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/3-data-center-networking",
+      "path": "etape5-trackd-servers/02-server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x/3-data-center-networking.md",
+      "title": "§3 Data-center networking",
+      "domain": "server-vendors-wave-2-hpe-giga-computing-gigabyte-asus-msi-x",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "blackwell",
+        "gpu",
+        "nvidia",
+        "pricing",
+        "rack-scale",
+        "research",
+        "rubin",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        663,
         676
       ],
       "canonical_for": [],
-      "words": 997,
-      "bytes": 8260,
-      "sha256": "e6556f77870d1651c8c806a561e875dece09126556e92862ab6da3d9727a4aa5",
+      "words": 191,
+      "bytes": 1414,
+      "sha256": "63560b3c302acdf0dc18975633c3c22165a3a8dd65711a4441bb960a7268c750",
       "section": "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
     },
     {
@@ -528,28 +629,64 @@
       ],
       "keywords": [
         "3nm",
-        "asic",
         "blackwell",
         "cpo",
         "dci",
         "ethernet",
         "gpu",
-        "hyperscaler",
         "inference",
         "latency",
         "llama",
-        "lpo"
+        "lpo",
+        "nvidia",
+        "optics"
       ],
       "source": "docs/RAG/etape5_trackD_servers.md",
       "source_anchor": "",
       "source_lines": [
         677,
+        727
+      ],
+      "canonical_for": [],
+      "words": 1121,
+      "bytes": 7868,
+      "sha256": "adb0ee71097af70a8c56c8af70c12f43105739caf26164c6fc673f53ab71541f",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/1-5-nvidia-spectrum-x-switches-sn5000-class-sn5600-spectrum-",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/1-5-nvidia-spectrum-x-switches-sn5000-class-sn5600-spectrum-.md",
+      "title": "1.5 NVIDIA Spectrum-X switches (SN5000-class / SN5600 / Spectrum-X800)",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "nvidia",
+        "asic",
+        "cpo",
+        "ethernet",
+        "gpu",
+        "hyperscaler",
+        "nvlink",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        728,
         744
       ],
       "canonical_for": [],
-      "words": 1397,
-      "bytes": 9944,
-      "sha256": "63288f9d206e79a6df79357d60ed9065c19b5b31fe460773047732c64634c3fb",
+      "words": 276,
+      "bytes": 2076,
+      "sha256": "1b3a108036b1f5abd3e03879b1fc4f8a19a36798cb34422c988451c31f04919d",
       "section": "Data-Center Networking for AI (2026)"
     },
     {
@@ -589,12 +726,40 @@
       "source_anchor": "",
       "source_lines": [
         745,
+        802
+      ],
+      "canonical_for": [],
+      "words": 1055,
+      "bytes": 7836,
+      "sha256": "0229f27792d9e1f362772d4ac07f3bf9e3e438565c4947c84b9d831d71f2a5c4",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/part-4",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/part-4.md",
+      "title": "Data-Center Networking for AI (2026) (part 4)",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "cpo",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        803,
         806
       ],
       "canonical_for": [],
-      "words": 1092,
-      "bytes": 8100,
-      "sha256": "433fc9c1ad4c5f17f6beafa3a2d17c4659a18d0b2a14f97759208e8a1ad0f2a7",
+      "words": 37,
+      "bytes": 264,
+      "sha256": "2983e7d36d92676f570a016d21c327567bda8d73e8178aab23692e777a488ca5",
       "section": "Data-Center Networking for AI (2026)"
     },
     {
@@ -608,7 +773,6 @@
         "AMD",
         "Broadcom",
         "China",
-        "Cohere",
         "Google",
         "Intel",
         "Meta",
@@ -621,10 +785,8 @@
         "2023-07-19",
         "2025-06-11",
         "2025-09",
-        "2026-03",
         "2026-06",
         "2026-06-09",
-        "2026-07",
         "2026-07-16",
         "2026-08-25"
       ],
@@ -634,24 +796,70 @@
         "asic",
         "benchmark",
         "chiplet",
-        "coherent optics",
-        "cost",
         "cpo",
-        "datacenter",
-        "dci",
         "dsp",
-        "energy"
+        "foundry",
+        "hyperscaler",
+        "intel",
+        "latency",
+        "lpo"
       ],
       "source": "docs/RAG/etape5_trackD_servers.md",
       "source_anchor": "",
       "source_lines": [
         807,
+        853
+      ],
+      "canonical_for": [],
+      "words": 884,
+      "bytes": 6385,
+      "sha256": "8dc986c60d9c65760806871e8573459a5c34d28104b14609e45bc808e18f0178",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/5-4-nvidia-silicon-photonics",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/5-4-nvidia-silicon-photonics.md",
+      "title": "5.4 NVIDIA silicon photonics",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Broadcom",
+        "Cohere",
+        "Google",
+        "Meta",
+        "Nvidia",
+        "Oracle"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-06",
+        "2026-07"
+      ],
+      "keywords": [
+        "nvidia",
+        "coherent optics",
+        "cost",
+        "cpo",
+        "datacenter",
+        "dci",
+        "energy",
+        "ethernet",
+        "gpus",
+        "hyperscaler",
+        "optics",
+        "rack-scale"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        854,
         875
       ],
       "canonical_for": [],
-      "words": 1395,
-      "bytes": 10230,
-      "sha256": "259dffd6a48daac90a6594a4187df89aa3cebd06df53791cc3c244d041f9aebd",
+      "words": 511,
+      "bytes": 3845,
+      "sha256": "b712ec5e090ea52cccade077001b254fd8e115311bfc958e65124d5f3f660578",
       "section": "Data-Center Networking for AI (2026)"
     },
     {
@@ -662,18 +870,22 @@
       "role": "deep-dive",
       "task": "reference",
       "actors": [
+        "Google",
         "Meta",
         "Microsoft",
         "Nvidia",
+        "Oracle",
         "xAI"
       ],
       "dates": [
         "2026-05",
+        "2026-06",
         "2026-07",
         "2026-08-04"
       ],
       "keywords": [
         "revenue",
+        "dci",
         "ethernet",
         "gpu",
         "gpus",
@@ -687,61 +899,85 @@
       "source_anchor": "",
       "source_lines": [
         876,
-        932
+        945
       ],
       "canonical_for": [],
-      "words": 833,
-      "bytes": 5834,
-      "sha256": "84fd4da3de8d0f4fbea0b29524ccf49b9f3e8e8c5d43864827cca5f0362984ec",
+      "words": 1008,
+      "bytes": 7152,
+      "sha256": "22c1a1e275e4201ed676076c23aed5277277bf1480b86cbfa59f5f3c2e1b3835",
       "section": "Data-Center Networking for AI (2026)"
     },
     {
-      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/8-data-center-interconnect-800g-adoption-1-6t-timeline",
-      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/8-data-center-interconnect-800g-adoption-1-6t-timeline.md",
-      "title": "8. Data center interconnect: 800G adoption, 1.6T timeline",
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/10-sources-urls-as-found",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/10-sources-urls-as-found.md",
+      "title": "10. Sources (URLs as found)",
+      "domain": "data-center-networking-for-ai-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-07-16"
+      ],
+      "keywords": [
+        "cpo",
+        "ethernet",
+        "hyperscaler",
+        "latency",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        946,
+        959
+      ],
+      "canonical_for": [],
+      "words": 215,
+      "bytes": 1645,
+      "sha256": "ced2d7b3dd07f1802143cc39f2368a606971909c12453d857ed95ed029e9a64c",
+      "section": "Data-Center Networking for AI (2026)"
+    },
+    {
+      "id": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/4-ai-server-market-figures",
+      "path": "etape5-trackd-servers/03-data-center-networking-for-ai-2026/4-ai-server-market-figures.md",
+      "title": "§4 AI server market figures",
       "domain": "data-center-networking-for-ai-2026",
       "role": "deep-dive",
       "task": "reference",
       "actors": [
         "Broadcom",
-        "Google",
-        "Meta",
-        "Nvidia",
-        "Oracle"
+        "Nvidia"
       ],
       "dates": [
-        "2026-06",
         "2026-07-02",
         "2026-07-14",
-        "2026-07-16",
         "2026-08-26",
         "2026-09-06",
         "2026-09-17"
       ],
       "keywords": [
         "compute",
-        "cpo",
-        "dci",
         "ethernet",
         "gpu",
         "gpus",
-        "hyperscaler",
-        "latency",
         "lpo",
         "nvidia",
         "optics",
-        "research"
+        "research",
+        "revenue"
       ],
       "source": "docs/RAG/etape5_trackD_servers.md",
       "source_anchor": "",
       "source_lines": [
-        933,
+        960,
         1007
       ],
       "canonical_for": [],
-      "words": 578,
-      "bytes": 8452,
-      "sha256": "68d4684a84653c46ea815e18282df29c9e622c71c93942989765782115a1e8d2",
+      "words": 188,
+      "bytes": 5489,
+      "sha256": "0eae029e1d45d7bd986379408f216422cfb95c0f82277c45f73f85784f10f02e",
       "section": "Data-Center Networking for AI (2026)"
     },
     {
@@ -855,11 +1091,9 @@
       ],
       "dates": [
         "2026-03",
-        "2026-03-09",
         "2026-04-28",
         "2026-05",
         "2026-06",
-        "2026-06-30",
         "2026-07",
         "2026-07-30"
       ],
@@ -881,12 +1115,42 @@
       "source_anchor": "",
       "source_lines": [
         1099,
+        1169
+      ],
+      "canonical_for": [],
+      "words": 936,
+      "bytes": 7909,
+      "sha256": "83d60bd1aa664584aed3b11e670801284c52aba4eb657691fab2d25c64863a17",
+      "section": "AI Server Market Figures (2026) — Research Draft"
+    },
+    {
+      "id": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/part-4",
+      "path": "etape5-trackd-servers/04-ai-server-market-figures-2026-research-draft/part-4.md",
+      "title": "AI Server Market Figures (2026) — Research Draft (part 4)",
+      "domain": "ai-server-market-figures-2026-research-draft",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-03-09",
+        "2026-05",
+        "2026-06-30"
+      ],
+      "keywords": [
+        "backlog",
+        "gpu",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape5_trackD_servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1170,
         1187
       ],
       "canonical_for": [],
-      "words": 1153,
-      "bytes": 9959,
-      "sha256": "5e872bbf957a075d0cbe90e3ae1aa68baa4808c5d534ea8f8fabf7f7d6483135",
+      "words": 217,
+      "bytes": 2050,
+      "sha256": "5bbed6b8d71559caaa46094ce2570c3b8b07f096b74a647e1e179bd60a9dbed0",
       "section": "AI Server Market Figures (2026) — Research Draft"
     },
     {

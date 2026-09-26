@@ -4,15 +4,15 @@ title: "MiniMax M2.7 — self-evolving agent model"
 domain: minimax
 role: deep-dive
 task: agents
-actors: ["AMD", "Alibaba", "Anthropic", "China", "Google", "Hugging Face", "MiniMax", "Nvidia", "OpenAI", "SGLang", "Z.ai", "vLLM"]
-dates: ["2025-12-30", "2026-01-01", "2026-01-09", "2026-04", "2026-04-12", "2026-06-03", "2026-06-18"]
-keywords: ["agent", "amd", "attention", "benchmark", "benchmarks", "blackwell", "claude", "context window", "gemini", "glm", "gpu", "gqa"]
+actors: ["AMD", "Anthropic", "Google", "Hugging Face", "MiniMax", "Nvidia", "OpenAI", "SGLang", "Z.ai", "vLLM"]
+dates: ["2026-04", "2026-04-12", "2026-06-03", "2026-06-18"]
+keywords: ["agent", "amd", "attention", "benchmarks", "blackwell", "claude", "context window", "gemini", "glm", "gpu", "gqa", "inference"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [3225, 3295]
+source_lines: [3225, 3280]
 section: "§7. MiniMax"
 delta_of: ai-industry-kb-2026
-sha256: 8a25a9a8ff22c6379e765e73c98f9fd7ef8f73feaefff3ccb9439aa77085c031
+sha256: aa3519c576570ca4d366648d7f753e72b358cd84dcafe0ba8b2ddc8a73c49451
 ---
 
 # MiniMax M2.7 — self-evolving agent model
@@ -72,19 +72,4 @@ sha256: 8a25a9a8ff22c6379e765e73c98f9fd7ef8f73feaefff3ccb9439aa77085c031
   - **9× / 15×**: rounded figures from the launch model card [SECONDARY] (morphllm.com).
   - **14.2× / 7.6×**: measured on the **109B research model** (the 3T-token testbed), not production M3 [SECONDARY] (techtimes.com, 2026-06-18).
 - Headline vendor framing: MSA is positioned as the sparse-attention mechanism that makes the 428B/23B operating point economical [VENDOR via secondary] (morphllm.com).
-
-### MiniMax-M3 — vendor benchmark set (all [VENDOR] unless independently rerun)
-- **SWE-bench Verified 80.5; SWE-bench Pro 59.0; Terminal-Bench 2.1 66.0; MCP Atlas 74.2; OSWorld-Verified 70.06; BrowseComp 83.5; KernelBench Hard 28.8** [SECONDARY reporting vendor] (inferencex-app; codingfleet.com; pasqualepillitteri.it).
-- Keep SWE-bench **Verified** (80.5) and SWE-bench **Pro** (59.0) strictly separate — different suites [DIRECTIONAL].
-- Benchmark-hygiene example worth preserving: one comparison source **incorrectly juxtaposes M3's Terminal-Bench 2.1 score with GPT-5.5's Terminal-Bench 2.0 score and explicitly warns they are not comparable** — cite this as the canonical example of why version labels are mandatory [SECONDARY] (codingfleet.com).
-
-### MiniMax-M3 — API pricing
-- Standard API: **$0.60/M input / $2.40/M output**, cached input **$0.15/M** [SECONDARY] (aitoolgrade.com review; codingfleet.com).
-- Launch promotion: **$0.30/M input / $1.20/M output**; promo cached-input figure **$0.06/M** appears in secondary breakdowns [SECONDARY] (aitoolgrade.com; YouTube breakdown via search coverage).
-- Available through **MiniMax Code** (first-party coding agent), the **Token Plan**, and the **API** [SECONDARY] (aitoolgrade.com; secondary coverage quoting MiniMax).
-
-### MiniMax — Hong Kong IPO facts
-- Target: **up to HK$4.19B** from **25.4M shares at HK$151–165**; debut planned **January 9, 2026**; implied valuation **~$6.5B** [SECONDARY] (reuters.com, 2025-12-30).
-- Cornerstone investors reportedly included **Alibaba and ADIA** (Abu Dhabi Investment Authority) [SECONDARY] (reuters.com, 2025-12-30).
-- Part of a **year-end 2025 Hong Kong IPO rush** of Chinese AI firms [SECONDARY] (bworldonline.com, 2026-01-01).
 

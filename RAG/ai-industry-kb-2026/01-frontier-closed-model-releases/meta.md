@@ -1,0 +1,43 @@
+---
+id: ai-industry-kb-2026/01-frontier-closed-model-releases/meta
+title: "Meta"
+domain: frontier-closed-model-releases
+role: deep-dive
+task: model-release
+actors: ["Alibaba", "Anthropic", "Apple", "ByteDance", "Google", "Meta", "Microsoft", "OpenAI", "OpenRouter", "SpaceX", "xAI"]
+dates: ["2025-11-17", "2026-02-01", "2026-02-17", "2026-04", "2026-04-11", "2026-04-17", "2026-05-26", "2026-06-28", "2026-07-08", "2026-07-09", "2026-07-23", "2026-08-05", "2026-08-07", "2026-08-10", "2026-08-12", "2026-09-02", "2026-09-21"]
+keywords: ["agent", "agentic", "agents", "apache", "attribution", "benchmark", "benchmarks", "claude", "consumer", "copilot", "fable 5", "gemini"]
+source: docs/RAG/ai-industry-knowledge-base-2026.md
+source_anchor: ""
+source_lines: [272, 296]
+section: "1. Frontier Closed-Model Releases"
+sha256: e2b2a56c1d630e56d9d4588c82ac3cacdedfc0845a9cb7178c9493de2f563ba4
+---
+
+# Meta
+
+- **2025-11-17 — Grok 4.1** (baseline for the 2026 chain): EQ-Bench leader, ~3× lower hallucination rate vs Grok 4, 64–65% blind-preference win rate vs 4.0; silent two-week rollout across grok.com, X, iOS/Android. API: `grok-4-1-fast-reasoning` / `grok-4-1-fast-non-reasoning`, 2M-token context, Agent Tools API. (Real date — the April 2026 attribution is false.)
+- **2026-02-17/18 — Grok 4.20 Beta** launched (public beta; "Grok 4.2"): rapid-learning architecture with weekly capability updates from user feedback; multi-agent reasoning (4 internal agents per chats-llm; up to 16 per kennedyjournal); 256K context; medical document analysis; improved temporal awareness. Still in public beta as of April 2026 (tokenmix, April 25) with **no announced GA date** — no separate April 11 launch ever existed. [UNVERIFIED] Musk's public promise to open-source Grok 4.2 (~500B params) "by the twilight of 2026" — single-source secondary (securityexpress.info); vendor-intent only.
+- **2026-04-17/19 — Grok STT and TTS standalone voice APIs (unversioned)**: same stack as Grok Voice (mobile/Tesla/Starlink). STT GA ~April 18 (aitoolsrecap): 25+ languages, REST batch + WebSocket streaming, word-level timestamps, speaker diarization, multichannel audio, inverse text normalization. TTS: five voices (Ara, Eve, Leo, Rex, Sal), 20 languages, **$4.20/M characters**. Phone-call entity benchmark 5.0% WER vs ElevenLabs 12.0%, Deepgram 13.5%, AssemblyAI 21.3% [VENDOR].
+- **2026-05-26 — V9 primary training completed** (disclosed June 28), ground-up redesign, ~**1.5 trillion parameters** (~3× the ~500B V8-small architecture behind public Grok 4.x). The 1.5T figure is widely reported but **no one at xAI has confirmed it in writing** (kie.ai) — PARTIALLY VERIFIED / vendor-unconfirmed. Supplemental Cursor developer-workflow data added after the base run ("not quite as good as having it in initial training," one xAI engineer).
+- **2026-06-28 — Grok 4.5 (base "V9") private beta.** Elon Musk posted "Grok 4.5 private beta" on X; controlled testing at **SpaceX and Tesla** — first real-world V9 deployment. Performance claim: Musk said early internal evals showed Grok 4.5 "close to, perhaps exceeding Opus" — **internal only, no independent benchmark, no system card, no third-party access** [UNVERIFIED]. Musk confirmed plans for entirely new foundation models **every month through end of 2026** [UNVERIFIED]; leaked roadmaps mention a Grok 5 pair (6T and 10T params) in the Fable 5 weight class [UNVERIFIED roadmap claim].
+- **2026-07-08 / 09 — Grok 4.5 developer release / public GA**: **$2 ($0.50 cached) / $6** per M, **500K context**, "#1 agentic tool-use" on the AA Intelligence Index, marketed as an "Opus-class competitor," built in collaboration with Cursor using real debugging-session data. Public launch landed the same day as GPT-5.6 — the "most competitive day" core.
+- **2026-07-23 — Grok STT 1.0 versioned** (`x-ai/grok-stt-1-0` on OpenRouter, a day before xAI's public announcement July 24 per basenor.com/@SpaceXAI): REST batch transcription billed on audio duration at **$0.10/hour** (streaming $0.20/hr via xAI API); word-level timestamps, optional diarization, multichannel audio. The brief's "April" STT 1.0 claim was the right month for the voice-API launch but the wrong "1.0" versioning — a ~3-month date split.
+- **2026-08-07 — Grok Imagine Image 2.0**: editing-first image model, new default "Quality Mode" on grok.com/imagine and the Grok mobile apps; API "coming soon" at launch, available by September 16 via `/v1/images/generations` and `/v1/images/edits` as `grok-imagine-image-2.0` (OpenAI-compatible SDKs). Features: Magic Wand region-only edits, segmentation-based precise selection, background removal with transparency export, multi-reference editing (up to 5 input images), Smart Resize (9 aspect ratios), workflow templates (product shots, headshots, e-commerce, game assets, posters), typography/layout planning for sharp small text. Benchmarks at launch [VENDOR/community]: #2 on both image arenas — Text-to-Image **1,320 Elo**, Image Edit **1,439** — trailing only OpenAI's GPT-Image-2 (1,380 / 1,463); ahead of Reve 2.1, Meta's Muse-Image, Alibaba's Qwen-Image-3.0-Pro, Google's Gemini models, ByteDance's SeedDream.
+- **2026-08-12 — Grok 4.6** (announced by the @SpaceXAI account; day one in Cursor, Grok Build, Grok Bot, developer API; 2× usage volume in Cursor/Grok Build first week). **Not a new base model**: post-training upgrade (SFT + RL) on the same 1.5T V9 base as 4.5, synthetic training data covering reasoning/science/engineering/knowledge work (Grok 4.5 generated additional examples, automated quality filtering). Specs: 500K context, text+image in / text out, knowledge cutoff **February 1, 2026**, configurable reasoning effort (low/medium/high/xhigh), native tool use. Pricing **$2/$6** per M (2× for Fast variant). Benchmarks [VENDOR, widely covered, harness variance flags]: AA Intelligence Index **61** (up from 4.5's 56; joint third, tied with GPT-5.6 Sol Max, behind Fable 5 at 62 and Opus 5 at 63); CursorBench v3.2 **69.9%** ($2.81/task); FrontierCode v1.1 Extended **61.3%**; APEX-Agents **57.5%** (vs 47.1% for 4.5); DeepSWE 65.9% (launch table) vs 73% independent measurement; Terminal-Bench v3.0 26% (launch table) vs 34.6% measured — provenance-tag every score, never compare across harnesses.
+- **2026-09-21 — Grok 4.7** (Wave 2.1 record): **$2/$6** per M, DeepSWE v1.1 **71.0%** [VENDOR], TB 4.0 37.58% (xAI's Grok Build harness) vs 38.0% (company announcements) — 0.4-point harness/rounding noise, keep both with provenance; day-one GitHub Copilot rollout; Grok Voice Transcribe 2.0 shipped two days earlier (Sep 19).
+
+### Meta
+
+- **2026-04 (exact day undocumented) — original Muse Spark**: Meta Superintelligence Labs' frontier line debut; AA index v4.0 score **52**, free to use, "Contemplating" mode, strong on medical/vision, weak on coding/agentic. This is the April-dated Muse release — not 1.2.
+- **2026-07-09 — Muse Spark 1.1** (first paid API) — the same day as the GPT-5.6/Grok 4.5 double launch.
+- **2026-08-05 — Muse Spark 1.2** (closed + API; the April 2026 attribution is false): coding-focused update **co-launched with Muse Code**, Meta's terminal coding agent (macOS/Linux, Meta Model API, replay-exact event-log runtime; no dedicated GUI app unlike Claude Code/Codex). Specs: **1,048,576-token context** (~1M), mandatory reasoning, text/image/video/audio/PDF inputs (text out), multi-agent planning/delegation, built-in search with citations, structured output, parallel tool calling. Pricing **$1.25/$4.25** per M (cache read $0.15/M, web search $2.50/1K calls). AA Intelligence Index: **57** on v4.1.1 (felloai) vs **54** in AA's independent evaluation (witho2) — methodology/index-version difference; flag, do not average. Described as level with Grok 4.5 on reasoning benchmarks. [UNVERIFIED] dev.to comparison-table figures (128K context, "hybrid reasoning transformer," SWE-bench Verified 54.2%) conflict with stronger sources — table treated as unreliable.
+- **2026-08-10 — Zuckerberg and Alexandr Wang announced Muse Spark 1.2's open weights would be released "soon" under a permissive license** (date unconfirmed as of Sept 22); same day saw the immediate open-weight release of **Muse Glimmer** (30B multimodal, Apache 2.0, single 24GB consumer GPU, distilled from Muse Spark) — open-weight detail lives in the open sections; cross-ref only.
+- **2026-09-02 — Muse Spark 1.3** (Wave 2.1 record): AA **61**, discounted "contributor" tier — covered in the Wave 2.1 delta; provenance only.
+
+### ByteDance
+
+- ByteDance Seed models (SeedDream referenced above as a 2026 image-arena contender) are covered in depth in §4 — cross-reference only; not duplicated here.
+
+### Debunked: the "April 11, 2026 grouped release wave"
+

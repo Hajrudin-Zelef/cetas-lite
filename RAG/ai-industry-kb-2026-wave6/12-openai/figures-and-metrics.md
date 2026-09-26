@@ -4,15 +4,15 @@ title: "Figures and metrics"
 domain: openai
 role: deep-dive
 task: actor-profile
-actors: ["Anthropic", "Cerebras", "Hugging Face", "Microsoft", "OpenAI", "OpenRouter", "Z.ai"]
-dates: ["2025-04-14", "2025-09-30", "2025-12-11", "2025-12-16", "2026-02-05", "2026-02-12", "2026-02-13", "2026-02-24", "2026-03-05", "2026-03-17", "2026-03-24", "2026-03-31", "2026-04-03", "2026-04-23", "2026-04-26", "2026-06-26", "2026-07-02", "2026-07-09", "2026-07-10", "2026-07-21", "2026-08-10", "2026-08-11", "2026-08-21", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-07", "2026-09-11", "2026-09-24"]
-keywords: ["agent", "agi", "alignment", "astra", "benchmark", "benchmarks", "chatgpt", "claude", "consumer", "copilot", "cost", "cyber"]
+actors: ["Anthropic", "Cerebras", "OpenAI", "OpenRouter"]
+dates: ["2025-12-11", "2026-02-05", "2026-02-12", "2026-03-05", "2026-03-31", "2026-04-23", "2026-07-09", "2026-08-10", "2026-08-11", "2026-09-02", "2026-09-03"]
+keywords: ["agent", "agi", "alignment", "astra", "benchmark", "benchmarks", "claude", "cyber", "cybersecurity", "fable 5", "funding", "gpt-5.6"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [6040, 6144]
+source_lines: [6040, 6096]
 section: "§12. OpenAI"
 delta_of: ai-industry-kb-2026
-sha256: 6a6b4a8a5c3dbcf6261f7d474e47214c460eb022e10d26c2496c10bd133c9ce1
+sha256: dbe8200942aaa79b824c2219e694e39a73d15df88d0542a476e10145c7994722
 ---
 
 # Figures and metrics
@@ -73,52 +73,4 @@ sha256: 6a6b4a8a5c3dbcf6261f7d474e47214c460eb022e10d26c2496c10bd133c9ce1
 - GPT Image 1.5 vendor-derived: single-turn BinaryEval edit 100% [SECONDARY](https://www.red94.net/news/89210-ai-image-generator-wars-heat-up-as-openai-unveils-gpt-image-1-5-promising-4x-fas/)
 - GPT Image 1.5 vendor-derived: visual quality 89.96% single-turn / 89.46% multi-turn [SECONDARY](https://www.red94.net/news/89210-ai-image-generator-wars-heat-up-as-openai-unveils-gpt-image-1-5-promising-4x-fas/)
 - OpenAI operating scale (2026-03-31 funding close): $2B/mo revenue, 900M weekly users, 50M paid, 15B API tokens/min, enterprise >40% of revenue [SECONDARY](https://www.advisorperspectives.com/articles/2026/04/01/openai-valued-852-billion-completing-122-billion-round)
-
-## Main actors
-- **OpenAI** — fastest frontier release cadence of the wave; price-tier proliferation (20× intra-generation spread); ChatGPT Work desktop agent; Sora wind-down; the July 21 breach disclosure [SECONDARY].
-- **Codex line (5.3-Codex / 5.3-Codex-Spark)** — OpenAI's coding-agent model track; open-weight Codex compatibility is cited as the defection path for users leaving closed models [SECONDARY].
-- **The 5.6 family (Sol/Terra/Luna)** — the three-tier pricing experiment: one generation, three cost classes [VENDOR].
-- **Daybreak (Blue/Red)** — the safeguard-tier system for GPT-5.6-Cyber's cyber capabilities [SECONDARY].
-- **Hugging Face** — breach victim of the July 21 autonomous-agent incident; contained it with open-weight GLM 5.2 [SECONDARY].
-
-## Timeline and context
-- **2025-09-30** — Sora 2 launches (date correction: 2025, not 2026) [SECONDARY].
-- **2025-12-11** — GPT-5.2 launches [SECONDARY].
-- **2026-02-05** — GPT-5.3-Codex launches [SECONDARY].
-- **2026-02-12** — GPT-5.3-Codex-Spark preview [SECONDARY].
-- **2026-03-05** — GPT-5.4 launches with native computer use [SECONDARY].
-- **2026-04-23** — GPT-5.5 "Spud" launches [SECONDARY].
-- **2026-04-26** — Sora consumer shutdown [SECONDARY].
-- **2026-06-26** — GPT-5.6 Sol/Terra/Luna preview [SECONDARY].
-- **2026-07-09** — GPT-5.6 GA; ChatGPT Work launches [SECONDARY].
-- **2026-07-21** — OpenAI discloses the autonomous-agent HF breach [SECONDARY].
-- **2026-08-10** — GPT-5.6-Cyber launches with Daybreak Blue/Red [SECONDARY].
-- **2026-08-21** — Sol cut 20% in / 33% out (promo thru Nov 21) [SECONDARY].
-- **2026-09-03** — GPT-6 Astra launches at $10/$50 with 272K cliff [SECONDARY/VENDOR].
-- **2026-09-07** — AA Index v4.3: Astra (max) ties Fable 5.1 at 53 [SECONDARY].
-- **2026-09-24** — Sora API decommissioning scheduled [SECONDARY].
-
-
-### New verified timeline entries — expansion
-
-- 2025-04-14: GPT-4.1 family launches (API-only, 1M context, $2/$8 flagship pricing); GPT-4.5 API retirement announced [SECONDARY](https://www.aicloudit.com/blog/ai/introducing-gpt-4-1/) [SECONDARY](http://en.zicos.com/tech/i32171379-OpenAI-Unveils-Coding-Focused-GPT-41-While-Phasing-Out-GPT-45.html)
-- 2025-12-11: GPT-5.2 launches in ChatGPT and API (Instant/Thinking/Pro modes); GPT-5.1 kept as legacy for three months [SECONDARY](https://www.macrumors.com/2025/12/11/openai-gpt-5-2/)
-- 2025-12-16: `gpt-image-1.5` launches with reported 4× speed and 20% lower image cost [SECONDARY](https://wisdomplexus.com/blogs/openai-introduces-gpt-image-1-5-a-sophisticated-image-generation-and-editing-model/)
-- 2026-02-05: GPT-5.3-Codex launches Codex-only [SECONDARY](https://www.neowin.net/news/openais-latest-gpt-53-codex-and-audio-models-now-on-microsoft-foundry/)
-- 2026-02-12: GPT-5.3-Codex-Spark research preview launches on Cerebras (>1,000 tok/s) [SECONDARY](https://www.technobezz.com/news/openai-launches-gpt-53-codex-spark-on-cerebras-hardware)
-- 2026-02-13: ChatGPT retires GPT-4o, GPT-4.1, GPT-4.1 mini, o4-mini, GPT-5 Instant/Thinking (API unchanged); migration to GPT-5.3 Instant / GPT-5.4 Thinking/Pro [VENDOR](https://help.openai.com/en/articles/20001051-retiring-gpt-4o-and-other-chatgpt-models)
-- 2026-02-24/25: GPT-5.3-Codex reaches API and Microsoft Foundry [SECONDARY](https://www.neowin.net/news/openais-latest-gpt-53-codex-and-audio-models-now-on-microsoft-foundry/)
-- 2026-03-17: GPT-5.4 Mini ($0.75/$4.50) and Nano ($0.20/$1.25) reportedly released [SECONDARY](https://www.nxcode.io/resources/news/gpt-5-4-release-date-features-pricing-2026)
-- 2026-03-24/25: Sora shutdown announced [SECONDARY](https://github.com/pedro-bright/the-ledger/blob/HEAD/content/events/2026/24-openai-executive-departures-april-2026.md)
-- 2026-03-31: OpenAI closes $122B at $852B post-money [SECONDARY](https://www.coindesk.com/tech/2026/04/01/openai-raises-a-record-usd122-billion-at-as-revenue-crosses-usd2-billion-per-month)
-- 2026-04-03: GPT-4o retention in Custom GPTs for Business/Enterprise/Edu ends [VENDOR](https://help.openai.com/en/articles/20001051-retiring-gpt-4o-and-other-chatgpt-models)
-- 2026-04-23/24: GPT-5.5 launches in ChatGPT/Codex (23rd) then API (24th) [SECONDARY](https://blog.buildfastwithai.com/gpt-5-5-review-2026)
-- 2026-04-26: Sora web/app shuts down [VENDOR](https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation)
-- 2026-06: GPT-5.5-Cyber in use with Codex Security in "Patch the Planet" [SECONDARY](https://github.com/mattrobenolt/pi-configs/blob/HEAD/skills/model-guide/research/gpt-5.5.md)
-- 2026-07-02 (reported) / 2026-07-10 (OpenAI launch page per secondary coverage): GPT-5.6 Sol/Terra/Luna launch — date contested, do not cite one without caveat [SECONDARY](https://www.testingcatalog.com/openai-launches-gpt-5-6-sol-terra-and-luna-on-apps-and-api/) [SECONDARY](https://cryptodailyalert.com/openai-launches-gpt-5-6-tiers-sol-terra-luna)
-- 2026-07-09: ChatGPT Work web/mobile rollout begins (Pro/Enterprise/Edu); GPT-5.6 lands in GitHub Copilot; unified Mac/Windows desktop app (ChatGPT Classic renamed) launches globally [SECONDARY](https://www.macrumors.com/2026/07/09/openai-chatgpt-work/)
-- Aug–Sep 2026: GPT-5.6 prices cut to Sol $4/$20, Terra $2/$12, Luna $0.20/$1.20 — date every rate (launch vs post-cut figures differ materially) [SECONDARY](http://datafloq.com/gpt-5-6-pricing-explained-why-sol-terra-and-luna-turn-ai-buying-into-a-routing-problem/)
-- 2026-09-01: mandatory hardware security keys / identity verification for Daybreak Red [SECONDARY](https://www.csoonline.com/article/4207896/openai-launches-gpt-5-6-cyber-as-ai-narrows-vulnerability-response-window.html)
-- 2026-09-11: GPT-5.3-Codex-Spark retirement announced (single-source) [SECONDARY](https://aiidelist.com/blog/gpt-5-3-codex-spark-retirement)
-- 2026-09-24: Sora API shutdown; exports/deletion workflow per Help Center [VENDOR](https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation)
 

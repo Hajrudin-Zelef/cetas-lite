@@ -5,13 +5,13 @@ domain: step-10-phase-c-pc-mac-news-february-september-2026
 role: deep-dive
 task: reference
 actors: ["AMD", "Apple", "Intel", "Microsoft", "Nvidia"]
-dates: ["2025-06", "2026-01-05", "2026-02", "2026-02-01", "2026-02-03", "2026-02-06", "2026-02-09", "2026-03", "2026-03-02", "2026-03-18", "2026-03-23", "2026-06", "2026-08-25", "2026-09", "2026-09-22", "2026-10", "2026-11-19"]
+dates: ["2025-06", "2026-01-05", "2026-02", "2026-02-01", "2026-02-03", "2026-02-06", "2026-02-09", "2026-03", "2026-03-02", "2026-03-18", "2026-03-23", "2026-04", "2026-06", "2026-08-25", "2026-09", "2026-09-22", "2026-10", "2026-11-19"]
 keywords: ["18a", "amd", "benchmark", "compute", "dram", "gpu", "gpus", "intel", "memory", "memory shortage", "nvidia", "panther lake"]
 source: docs/RAG/etape10_phaseC_news_pc_mac.md
 source_anchor: ""
-source_lines: [1, 47]
+source_lines: [1, 49]
 section: "Step 10 Phase C — PC & Mac News (February → September 2026)"
-sha256: af21020e4c0b3847177dd18a69a01265374a1cf17b6d9bee4f34bb96de51d718
+sha256: 4004b173cbf8dcd330f9c752a1d40be84c37c080e09e622c522162705a0aa397
 ---
 
 # Step 10 Phase C — PC & Mac News (February → September 2026)
@@ -60,4 +60,6 @@ sha256: af21020e4c0b3847177dd18a69a01265374a1cf17b6d9bee4f34bb96de51d718
 - 2026-03-18: Tech Insider published a 31-minute deep comparison "Panther Lake vs Ryzen AI 400," noting Panther Lake (Core Ultra Series 3) officially launched at CES on January 5, 2026 per Reuters, on Intel 18A, with 14 SKUs up to 16 cores and 5.1 GHz boost [secondary]. URL: https://tech-insider.org/intel-panther-lake-vs-amd-ryzen-ai-400-2026/
 
 ---
+
+## 3. Chronology — April 2026
 

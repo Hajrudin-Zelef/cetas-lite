@@ -4,15 +4,15 @@ title: "§23. Master Model Inventory"
 domain: master-model-inventory
 role: deep-dive
 task: reference
-actors: ["Alibaba", "Anthropic", "Cohere", "DeepSeek", "Falcon", "Google", "Hugging Face", "LongCat", "MiniMax", "Mistral", "Moonshot", "Nvidia", "OpenAI", "Poolside", "SGLang", "Z.ai", "vLLM", "xAI"]
-dates: ["2025-03-13", "2025-08", "2025-09-22", "2025-12", "2026-04", "2026-04-20", "2026-05", "2026-06-01", "2026-06-03", "2026-07-24", "2026-07-31", "2026-08-11", "2026-08-12", "2026-08-13", "2026-08-20", "2026-08-31", "2026-09-03", "2026-09-10", "2026-09-22", "2026-12-31"]
-keywords: ["acquisition", "agents", "apache", "astra", "benchmark", "benchmarks", "claude", "cost", "deepseek", "embedding", "fable 5", "gemini"]
+actors: ["Alibaba", "Anthropic", "Cohere", "DeepSeek", "Falcon", "Google", "LongCat", "MiniMax", "Mistral", "Moonshot", "Nvidia", "OpenAI", "Poolside", "SGLang", "Z.ai", "vLLM", "xAI"]
+dates: ["2025-08", "2025-09-22", "2025-12", "2026-04", "2026-04-20", "2026-05", "2026-06-01", "2026-06-03", "2026-07-24", "2026-08-11", "2026-08-12", "2026-08-13", "2026-08-20", "2026-08-31", "2026-09-03", "2026-09-10", "2026-09-22"]
+keywords: ["acquisition", "apache", "astra", "benchmark", "benchmarks", "claude", "cost", "deepseek", "fable 5", "gemini", "glm", "gpt-5.6"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [10951, 11025]
+source_lines: [10951, 11004]
 section: "§23. Master Model Inventory"
 delta_of: ai-industry-kb-2026
-sha256: 8be80214711422d4450448a3111fb274de9ab16e90aff46cd189c2d76fff772d
+sha256: f6efc4c51485459691c4db17621d4f713a551991ceb466e7599dbb7e809eb2dd
 ---
 
 # §23. Master Model Inventory
@@ -68,25 +68,4 @@ This section is a condensed one-row-per-model master inventory of every model ve
 - **Claude Opus 4.8**: Terminal-Bench 2.1: 78.9%±1.3 with Claude Code high — the pre-Opus-5 reference point [SECONDARY]; superseded. Source: https://github.com/jetbrains/ytdb-slate/blob/HEAD/research/gaps.md
 
 ### Google
-
-- **Gemini 3.8 Flash** (2026-09): four tiers — Standard $0.75/$0.075/$3.75, Pro $4.50/$0.45/$18.00 (2M context), Lite $0.30/$0.03/$1.20, Max $9/$0.90/$36; DeepSWE 2026-09-22: 74%±1 at $2.36 (high, tied #1) [SECONDARY]; proprietary; status: current price-performance leader. Sources: https://deepswe.datacurve.ai/ and https://github.com/aaronmarchant96-max/rei-ai/blob/HEAD/docs/CACHE_PRICING_LANDSCAPE.md
-- **Gemini 3.7 Flash** (2026): intro pricing $0.75/$0.075/$3.75 through 2026-12-31, then $1.50/$0.15/$7.50; 50% introductory cut for coding/agents [SECONDARY]; proprietary. Sources: https://venturebeat.com/technology/googles-gemini-3-7-flash-targets-coding-and-agents-with-a-50-introductory-price-cut and https://devtk.ai/en/blog/gemini-api-pricing-guide-2026/
-- **Gemini 3.6 Flash**: same intro/standard schedule as 3.7 Flash; the 3.6→3.7 delta is benchmark-measured in §19 [SECONDARY]; proprietary. Source: https://github.com/caudena/beam_weaver/blob/HEAD/docs/partners/google.md
-- **Gemini 3.5 Flash**: older generation; $9/M output — do not confuse with 3.6/3.7 pricing [SECONDARY]; proprietary. Source: https://devtk.ai/en/blog/gemini-api-pricing-guide-2026/
-- **Gemini 3.1 Pro / 2.5 Flash / 3.5 Flash-Lite**: named in corpus; 2026 pricing UNVERIFIED [UNVERIFIED].
-- **Gemma 3** (2025-03-13): 1B (2T tokens/32K), 4B (4T/128K), 12B (12T/128K), 27B (14T/128K), 270M (6T/32K); Gemma Terms of Use; cutoff Aug 2024 [SECONDARY]. Source: https://github.com/xp-py/llm-prep-2026/blob/HEAD/docs/Model_Zoo/Vision_Language_Models/Gemma_3.md
-- **Gemma 4** (2026): gemma-4-31B-it and gemma-4-26B-A4B-it, Apache 2.0 — Google's license transition [COMMUNITY]. Source: https://github.com/ufal/atrium-project/issues/9
-- **EmbeddingGemma-300M**: 69.67 MTEB-eng-v2 (<500M class top), Matryoshka 768/512/256/128, <200MB RAM via QAT; license UNVERIFIED [SECONDARY]. Sources: https://github.com/gunnarguy/openintelligence/blob/HEAD/Docs/Research/EMBEDDING_AND_INGESTION_UPGRADE_2026-08.md and https://www.codesota.com/benchmarks/mteb
-
-### xAI
-
-- **Grok 4.5 / 4.6**: proprietary API-only; 2026 pricing UNVERIFIED in this pass [UNVERIFIED]. Source: https://www.aipricing.guru/xai-grok-pricing/
-- **Grok Code Fast 1**: coding-specialized; specs UNVERIFIED [UNVERIFIED].
-
-### DeepSeek
-
-- **DeepSeek V4 Pro** (2026): MIT, weights on Hugging Face day one; DeepSWE 2026-09-22: 63%±6 [SECONDARY]; Terminal-Bench 2.1 (Ante harness): 65.8%±2.25 [SECONDARY]; price UNVERIFIED; status: current open flagship. Sources: https://deepswe.datacurve.ai/ and https://github.com/antigmalabs/ante/blob/HEAD/docs-site/docs/benchmarks/eval.mdx
-- **DeepSeek V4 Flash** (2026): MIT; positioned as the cheaper/faster V4 [SECONDARY]; price UNVERIFIED. Source: https://kimi-k2.org/blog/56-kimi-k3-vs-deepseek-v4-flash-0731
-- **DeepSeek V4.1 Flash** (2026-07-31, "0731"): MIT, 284B total/13B active, text; Terminal-Bench 2.1 (Ante): 83.9%, 370/445 trials, ~$18 total inference [SECONDARY]; DeepSWE 2026-09-22: 90.6% on TB 2.1 / 74.2 DeepSWE v1.1 per corpus [SECONDARY]; keep separate from generic V4 Flash. Sources: https://github.com/antigmalabs/ante/blob/HEAD/docs-site/docs/benchmarks/eval.mdx and https://kimi-k2.org/blog/56-kimi-k3-vs-deepseek-v4-flash-0731
-- **DeepSeek V3**: prior generation, MIT; superseded by V4 line [SECONDARY]. Source: https://orphentisai.com/kimi-k3-vs-deepseek-v4-pro-vs-glm-5-2-open-trillion-scale-moe-models-compared-on-benchmarks-license-and-serving-cost/
 

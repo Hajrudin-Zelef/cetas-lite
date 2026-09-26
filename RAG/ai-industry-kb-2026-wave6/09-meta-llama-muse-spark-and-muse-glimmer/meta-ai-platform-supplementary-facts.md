@@ -5,14 +5,14 @@ domain: meta-llama-muse-spark-and-muse-glimmer
 role: deep-dive
 task: actor-profile
 actors: ["AWS", "Anthropic", "EU", "Hugging Face", "Meta", "Microsoft", "OpenAI"]
-dates: ["2023-12", "2024-12-06", "2025-04-05", "2026-01", "2026-01-26", "2026-02-05", "2026-08", "2026-08-05", "2026-08-10", "2026-09-02"]
-keywords: ["agent", "agentic", "apache", "aws", "bedrock", "benchmark", "benchmarks", "compute", "consumer", "context window", "cost", "distillation"]
+dates: ["2024-12-06", "2025-04-05", "2026-01", "2026-01-26", "2026-02-05", "2026-08", "2026-08-05", "2026-08-10", "2026-09-02"]
+keywords: ["agent", "agentic", "apache", "aws", "bedrock", "benchmarks", "compute", "consumer", "context window", "distillation", "distribution", "fp8"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [4246, 4329]
+source_lines: [4246, 4314]
 section: "§9. Meta: Llama, Muse Spark, and Muse Glimmer"
 delta_of: ai-industry-kb-2026
-sha256: ad5c98a679df1292e99e16b17d7f8ad62c71ea7d235352dc3ab22d408e7e22fd
+sha256: 9825e5a460b09b4af7956235e7822ddf0cacdd67af8b837a4c412a78985b203f
 ---
 
 # Meta AI platform supplementary facts
@@ -84,20 +84,5 @@ sha256: ad5c98a679df1292e99e16b17d7f8ad62c71ea7d235352dc3ab22d408e7e22fd
 - Spark 1.3's 943,718-token maximum output is unusually close to its 1,048,576-token context window (~90%), implying most of the context budget can be converted to output. [SECONDARY, S22]
 - Muse Code's `/grill` command name is a distinctive product detail corroborated in launch coverage; it has no analogue in competing agent CLIs covered in this research. [SECONDARY, S14]
 - The contributor-pricing data-use term applies to the Muse API pricing tiers generally, not only to Spark — it is a platform-level policy. [SECONDARY, S16]
-
-
-### Llama 3.3, Llama 4 training, and Behemoth — corroborated details (2024-12 → 2026-04)
-- Llama 3.3 full vendor benchmark table: MMLU Pro 68.9; IFEval 92.1; GPQA Diamond 50.5; MBPP EvalPlus (base) 87.6; MATH 77.0; BFCL v2 77.3; MGSM 91.1. [VENDOR, S34][VENDOR, S35]
-- Llama 3.3 pretraining data cutoff: December 2023. [VENDOR, S35 — single source]
-- Llama 3.3 API pricing at the time: $0.1 per million input tokens, $0.4 per million output tokens. [SECONDARY, S43 — single source]
-- Llama 4 (Scout/Maverick) parameter counts: Maverick 17B active / 400B total across 128 experts, 1M context (needs H100 DGX-class); Scout 17B active / 109B total across 16 experts, 10M context (runs on a single H100). [SECONDARY, S40][SECONDARY, S63][SECONDARY, S64][SECONDARY, S65][COMMUNITY, S66]
-- Llama 4 training carbon: Maverick and Scout training emitted 2,000 tons of CO2 (Behemoth's figure undisclosed). [SECONDARY, S40 — single source]
-- Maverick operating cost estimate: 19–49 cents per million input/output tokens. [SECONDARY, S40 — single source]
-- Llama 4 long-context retrieval: needle-in-haystack tests show retrieval up to 1M tokens for Maverick and 10M for Scout (retrieval only, not full-context problem solving). [SECONDARY, S36 — single source]
-- LMArena aftermath: 2,000+ head-to-head battle results released publicly; the experimental Maverick produced longer, more formatted, emoji-heavy responses than the public build; LMArena updated its leaderboard policies and added the HF version of Maverick. [SECONDARY, S37][SECONDARY, S38]
-- Behemoth scale: ~2T total parameters with ~288B active per token across 16 experts. [SECONDARY, S39][SECONDARY, S63][SECONDARY, S65]
-- Meta's stated intent was an open-weight Behemoth under the same Llama 4 community license (restricting companies with 700M+ MAU, and EU-domiciled companies barred without explicit approval) — no release has confirmed it. [SECONDARY, S39][SECONDARY, S63][SECONDARY, S65]
-- Research-team attrition: 11 of the 14 researchers behind the original Llama model had left Meta by late 2025. [SECONDARY, S41 — single source]
-- Meta's planned annual capital expenditure at the time: up to $72B, much of it for AI development. [SECONDARY, S41 — single source]
 
 

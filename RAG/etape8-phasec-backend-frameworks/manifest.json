@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
   "source_lines": 751,
   "source_sha256": "cb6f585ced62cfc0d29b2950221bffe7b22dc4d605f6ee0ff67fcea327568e2c",
-  "chunk_count": 10,
+  "chunk_count": 15,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -120,7 +120,6 @@
         "2025-11",
         "2026-01-18",
         "2026-02",
-        "2026-02-11",
         "2026-03-12",
         "2026-03-17",
         "2026-05",
@@ -132,22 +131,48 @@
         "2027-10-10"
       ],
       "keywords": [
-        "benchmarks",
         "claude",
         "embedding",
-        "energy",
-        "throughput"
+        "energy"
       ],
       "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
       "source_anchor": "",
       "source_lines": [
         139,
+        202
+      ],
+      "canonical_for": [],
+      "words": 786,
+      "bytes": 6654,
+      "sha256": "9e8574367d30e10e00fd1c9c4f0f1f7a82c7b9203a32be741c1df4726892b325",
+      "section": "Step 8 — Phase C: Backend Frameworks & APIs"
+    },
+    {
+      "id": "etape8-phasec-backend-frameworks/00-backend-frameworks/part-4",
+      "path": "etape8-phasec-backend-frameworks/00-backend-frameworks/part-4.md",
+      "title": "Step 8 — Phase C: Backend Frameworks & APIs (part 4)",
+      "domain": "step-8-phase-c-backend-frameworks-apis",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-02",
+        "2026-02-11"
+      ],
+      "keywords": [
+        "benchmarks",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
+      "source_anchor": "",
+      "source_lines": [
+        203,
         219
       ],
       "canonical_for": [],
-      "words": 1063,
-      "bytes": 9130,
-      "sha256": "88465198b2d66a767017fa8ca37fc48c5932e1e0f5496b4491d61b150aa5aa18",
+      "words": 277,
+      "bytes": 2476,
+      "sha256": "8b27da711f9584721e75d5527d451156086b3ea1abf6bc8596e1af6ed6bc7b05",
       "section": "Step 8 — Phase C: Backend Frameworks & APIs"
     },
     {
@@ -160,19 +185,16 @@
       "actors": [
         "AWS",
         "Google",
-        "Lambda",
-        "Microsoft"
+        "Lambda"
       ],
       "dates": [
         "2025-01",
         "2025-06-30",
         "2025-12",
         "2026-01-27",
-        "2026-04",
         "2026-05",
         "2026-07",
         "2026-07-30",
-        "2026-08",
         "2026-09",
         "2026-09-11",
         "2026-09-22"
@@ -180,7 +202,6 @@
       "keywords": [
         "agent",
         "agents",
-        "alignment",
         "aws",
         "compute",
         "cost",
@@ -191,12 +212,43 @@
       "source_anchor": "",
       "source_lines": [
         220,
+        296
+      ],
+      "canonical_for": [],
+      "words": 887,
+      "bytes": 7366,
+      "sha256": "188da62e6b97217dfc49778f493c147a27f2cf8227bf6bf23bb23a12520a8cc0",
+      "section": "Step 8 — Phase C: Backend Frameworks & APIs"
+    },
+    {
+      "id": "etape8-phasec-backend-frameworks/00-backend-frameworks/11-api-contracts-and-auth-openapi-oauth-2-0-oidc-jwt",
+      "path": "etape8-phasec-backend-frameworks/00-backend-frameworks/11-api-contracts-and-auth-openapi-oauth-2-0-oidc-jwt.md",
+      "title": "11. API contracts and auth: OpenAPI, OAuth 2.0/OIDC, JWT",
+      "domain": "step-8-phase-c-backend-frameworks-apis",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-08"
+      ],
+      "keywords": [
+        "alignment",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
+      "source_anchor": "",
+      "source_lines": [
+        297,
         321
       ],
       "canonical_for": [],
-      "words": 1414,
-      "bytes": 11396,
-      "sha256": "f4106644dbecf7ce3769e5ec2bf2e65d2d053942b25a23b18fe1090b3eed2a2a",
+      "words": 527,
+      "bytes": 4030,
+      "sha256": "1e9067dd532e9bf6f96aa62d7f7748d953f747d0cd4b256fec39f71886a0674f",
       "section": "Step 8 — Phase C: Backend Frameworks & APIs"
     },
     {
@@ -232,12 +284,37 @@
       "source_anchor": "",
       "source_lines": [
         322,
+        383
+      ],
+      "canonical_for": [],
+      "words": 932,
+      "bytes": 7741,
+      "sha256": "df4da9bc045c94c2843b4adf783ca9e9a3e52df77e1d77ae195d403b48ffe995",
+      "section": "Step 8 — Phase C: Backend Frameworks & APIs"
+    },
+    {
+      "id": "etape8-phasec-backend-frameworks/00-backend-frameworks/part-8",
+      "path": "etape8-phasec-backend-frameworks/00-backend-frameworks/part-8.md",
+      "title": "Step 8 — Phase C: Backend Frameworks & APIs (part 8)",
+      "domain": "step-8-phase-c-backend-frameworks-apis",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "guardrails"
+      ],
+      "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
+      "source_anchor": "",
+      "source_lines": [
+        384,
         391
       ],
       "canonical_for": [],
-      "words": 1040,
-      "bytes": 8443,
-      "sha256": "e8a094dce78ca354b1af561d50356755a3339ac3a9af86e301cce3cda6e2d29b",
+      "words": 108,
+      "bytes": 702,
+      "sha256": "535ebdad437e9a69f051f548214f0f1910ac6017e9c5d10d3a3d8a937b2a261c",
       "section": "Step 8 — Phase C: Backend Frameworks & APIs"
     },
     {
@@ -292,9 +369,7 @@
       "domain": "step-8-phase-c-backend-frameworks-apis",
       "role": "deep-dive",
       "task": "reference",
-      "actors": [
-        "Lambda"
-      ],
+      "actors": [],
       "dates": [
         "2026-03-24",
         "2026-05",
@@ -302,16 +377,13 @@
         "2026-09",
         "2026-09-22",
         "2026-09-24",
-        "2026-11-10",
-        "2026-12-31"
+        "2026-11-10"
       ],
       "keywords": [
         "advisory",
         "agent",
-        "agents",
         "benchmarks",
         "consumer",
-        "inference",
         "mcp",
         "memory",
         "throughput"
@@ -320,12 +392,68 @@
       "source_anchor": "",
       "source_lines": [
         447,
+        492
+      ],
+      "canonical_for": [],
+      "words": 761,
+      "bytes": 5643,
+      "sha256": "1f99493a9d386e08b8fd146b4ae39291c9657f7c09f8d086bc0c04301100de75",
+      "section": "Step 8 — Phase C: Backend Frameworks & APIs"
+    },
+    {
+      "id": "etape8-phasec-backend-frameworks/00-backend-frameworks/19-real-time-deployment-and-observability-notes",
+      "path": "etape8-phasec-backend-frameworks/00-backend-frameworks/19-real-time-deployment-and-observability-notes.md",
+      "title": "19. Real-time, deployment and observability notes",
+      "domain": "step-8-phase-c-backend-frameworks-apis",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Lambda"
+      ],
+      "dates": [
+        "2026-11-10",
+        "2026-12-31"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "inference",
+        "mcp",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
+      "source_anchor": "",
+      "source_lines": [
+        493,
+        536
+      ],
+      "canonical_for": [],
+      "words": 935,
+      "bytes": 7253,
+      "sha256": "7355615f2ef2d298c45490a32ea03fe4b85858dc0097945b83df5000136f736d",
+      "section": "Step 8 — Phase C: Backend Frameworks & APIs"
+    },
+    {
+      "id": "etape8-phasec-backend-frameworks/00-backend-frameworks/part-12",
+      "path": "etape8-phasec-backend-frameworks/00-backend-frameworks/part-12.md",
+      "title": "Step 8 — Phase C: Backend Frameworks & APIs (part 12)",
+      "domain": "step-8-phase-c-backend-frameworks-apis",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
+      "source_anchor": "",
+      "source_lines": [
+        537,
         550
       ],
       "canonical_for": [],
-      "words": 2009,
-      "bytes": 15548,
-      "sha256": "af03982193cde053ad9a188b3a258b3ac2faa0ed6047cd22ef4162d103770f8e",
+      "words": 313,
+      "bytes": 2652,
+      "sha256": "4c5ecb335ba5735c0b2d2da863f879637b3ac79102ba6af4291c6109b83ef6e6",
       "section": "Step 8 — Phase C: Backend Frameworks & APIs"
     },
     {
@@ -368,6 +496,7 @@
         "2026-07-29",
         "2026-08-21",
         "2026-09-02",
+        "2026-09-08",
         "2026-09-11",
         "2026-09-15",
         "2026-09-16",
@@ -384,26 +513,28 @@
       "keywords": [
         "agent",
         "alignment",
+        "energy",
         "guardrails",
         "memory",
+        "research",
         "throughput"
       ],
       "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
       "source_anchor": "",
       "source_lines": [
         638,
-        699
+        710
       ],
       "canonical_for": [],
-      "words": 844,
-      "bytes": 5382,
-      "sha256": "94efff0885ccdef28a2a1fccbdfb29acb005a662517d4221e95e489765ffd7d4",
+      "words": 974,
+      "bytes": 6396,
+      "sha256": "d821994c394e9fa7ef839a1576a414a6f1438ec6ae6128ad0a955dfb9ffd109d",
       "section": "Step 8 — Phase C: Backend Frameworks & APIs"
     },
     {
-      "id": "etape8-phasec-backend-frameworks/00-backend-frameworks/25-ecosystem-and-community-health-signals-2026",
-      "path": "etape8-phasec-backend-frameworks/00-backend-frameworks/25-ecosystem-and-community-health-signals-2026.md",
-      "title": "25. Ecosystem and community health signals (2026)",
+      "id": "etape8-phasec-backend-frameworks/00-backend-frameworks/26-source-index-all-urls-cited-verbatim",
+      "path": "etape8-phasec-backend-frameworks/00-backend-frameworks/26-source-index-all-urls-cited-verbatim.md",
+      "title": "26. Source index (all URLs cited, verbatim)",
       "domain": "step-8-phase-c-backend-frameworks-apis",
       "role": "deep-dive",
       "task": "reference",
@@ -411,9 +542,6 @@
       "dates": [
         "2026-01-27",
         "2026-02-11",
-        "2026-05",
-        "2026-09-08",
-        "2026-09-17",
         "2026-09-22"
       ],
       "keywords": [
@@ -427,13 +555,13 @@
       "source": "docs/RAG/etape8_phaseC_backend_frameworks.md",
       "source_anchor": "",
       "source_lines": [
-        700,
+        711,
         751
       ],
       "canonical_for": [],
-      "words": 542,
-      "bytes": 8181,
-      "sha256": "6ac87e233533a9606ff171f1a5e2c4faef6a637460457f2fb725359ce9e3753f",
+      "words": 412,
+      "bytes": 7167,
+      "sha256": "f7e5d96f0a84b1f322932b76beb146ae45f75b75a77dcd91659905a196b315cb",
       "section": "Step 8 — Phase C: Backend Frameworks & APIs"
     }
   ]

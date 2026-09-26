@@ -4,15 +4,15 @@ title: "Figures and metrics"
 domain: small-models-edge-quantization-serving-embeddings-and-rerank
 role: deep-dive
 task: quantization
-actors: ["Alibaba", "Apple", "Cohere", "DeepSeek", "Hugging Face", "Microsoft", "Mistral", "Moonshot", "Nvidia", "SGLang", "TensorRT-LLM", "Unsloth", "Z.ai", "vLLM", "xAI"]
-dates: ["2025-02-26", "2025-03-13", "2025-04-29", "2025-04-30", "2025-07-08", "2026-01-15", "2026-02-18", "2026-02-23", "2026-03-02", "2026-03-31", "2026-04-03", "2026-04-07", "2026-04-16", "2026-04-29", "2026-05", "2026-05-07", "2026-05-12", "2026-05-16", "2026-05-28", "2026-06-08", "2026-06-27", "2026-07-11", "2026-07-25", "2026-08-10", "2026-08-13", "2026-08-14", "2026-08-26"]
-keywords: ["apache", "benchmarks", "cohere", "decode", "deepseek", "embedding", "embeddings", "fp8", "gemini", "gguf", "glm", "gpu"]
+actors: ["Alibaba", "Apple", "Cohere", "Microsoft", "Mistral", "Nvidia", "SGLang", "TensorRT-LLM", "Unsloth", "vLLM"]
+dates: ["2026-01-15", "2026-02-18", "2026-02-23", "2026-03-02", "2026-03-31", "2026-04-03", "2026-04-07", "2026-04-16", "2026-04-29", "2026-05", "2026-05-07", "2026-05-12", "2026-05-16", "2026-05-28", "2026-06-08", "2026-06-27", "2026-07-11", "2026-07-25", "2026-08-13", "2026-08-26"]
+keywords: ["apache", "benchmarks", "cohere", "decode", "embedding", "embeddings", "fp8", "gemini", "gguf", "gpu", "int4", "license"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [9829, 9915]
+source_lines: [9829, 9907]
 section: "§20. Small Models, Edge, Quantization, Serving, Embeddings, and Rerankers"
 delta_of: ai-industry-kb-2026
-sha256: 5ef7357781a6795e98ad43d133b13b70d736954214aea876ba0d000246c2b337
+sha256: 5cdd64d2fb99e542d81053d34c7a5a2b24cf3e4614956963c6d2aa40350fc7a6
 ---
 
 # Figures and metrics
@@ -95,12 +95,4 @@ sha256: 5ef7357781a6795e98ad43d133b13b70d736954214aea876ba0d000246c2b337
 
 
 ### New verified timeline entries — expansion
-
-- 2025-03-13: Gemma 3 launches (1B/4B/12B/27B); 270M added later [SECONDARY]. Source: https://themunicheye.com/google-launches-gemma-3-open-source-ai-model-13085
-- 2025-04-29: Qwen3 dense family launches (0.6B–32B + 30B-A3B), Apache 2.0 [SECONDARY]. Source: http://dev.to/best_codes/qwen-3-benchmarks-comparisons-model-specifications-and-more-4hoa
-- 2025-02-26: Phi-4-mini (3.8B) and Phi-4-multimodal (5.6B) announced [SECONDARY]. Source: https://www.turing.com/blog/exploring-phi-4
-- 2025-04-30: Phi-4-reasoning and Phi-4-reasoning-plus (14B) launched [SECONDARY]. Source: https://www.turing.com/blog/exploring-phi-4
-- 2025-07-08: SmolLM3-3B released by Hugging Face, Apache 2.0 [SECONDARY]. Sources: https://atomic.chat/models/smollm3-3b and https://github.com/huggingface/blog/blob/HEAD/smollm3.md
-- 2026-03: Phi-4-reasoning-vision-15B covered as the newest Phi member [SECONDARY]. Source: https://medium.com/@mealermed/microsofts-phi-4-reasoning-vision-15b-the-ai-that-knows-when-to-think-and-when-to-just-answer-de6f2a83bb9b
-- 2026-08-14: live-verified Moonshot Kimi context-caching rates; 2026-08-10: DeepSeek/GLM/Grok/Kimi cache-read catalog verified against official pages [COMMUNITY]. Sources: https://github.com/aaronmarchant96-max/rei-ai/blob/HEAD/docs/CACHE_PRICING_LANDSCAPE.md and https://github.com/2389-research/dippin-lang/commit/437a8a2889b92a4842582195f2a525836ad93645
 

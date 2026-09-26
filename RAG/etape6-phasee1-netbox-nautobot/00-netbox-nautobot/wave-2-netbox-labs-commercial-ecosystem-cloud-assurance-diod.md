@@ -5,13 +5,13 @@ domain: phase-e1-netbox-nautobot-network-source-of-truth-research-fi
 role: deep-dive
 task: reference
 actors: []
-dates: ["2025-04-02"]
+dates: ["2025-04-02", "2026-09-22"]
 keywords: ["agent", "agents", "cost", "funding", "pricing", "research", "valuation"]
 source: docs/RAG/etape6_phaseE1_netbox_nautobot.md
 source_anchor: ""
-source_lines: [78, 135]
+source_lines: [78, 139]
 section: "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
-sha256: 8c4f175ce2d4ff0e0c404ea23fa0546ca2f8850e9af8b308604d2b891e0f01f9
+sha256: 5872f7912dff6486a96c709ae2767bd91e1b2d0482ec2d5132ac3d6ac29a6531
 ---
 
 # Wave 2 — NetBox Labs commercial ecosystem: Cloud, Assurance, Diode, Discovery
@@ -73,4 +73,8 @@ Source: https://www.globenewswire.com/news-release/2024/01/31/2820957/0/en/NetBo
 - Community plugin development has modernized around `uv` for installs/CI and ruff for linting (observed across plugin changelogs, e.g. jsenecal/netbox-notices, jsenecal/netbox-sqids in 2026) `[secondary]`.
 
 ---
+
+## Wave 4 — Nautobot core: version line and platform features (2023–2026)
+
+### 4.1 Version timeline (latest first, as of 2026-09-22)
 

@@ -4,14 +4,14 @@ title: "10.6 Deployment signals (named operators)"
 domain: front-matter
 role: reference
 task: reference
-actors: ["Broadcom", "CoreWeave", "EU", "Google", "Huawei", "Intel", "Lambda", "Meta", "Microsoft", "Nvidia", "OpenAI", "Oracle", "xAI"]
-dates: ["2024-10", "2024-10-16", "2024-10-28", "2025-06-04", "2025-10-08", "2025-10-16", "2026-03", "2026-09", "2026-09-16", "2026-09-22"]
-keywords: ["asic", "cpo", "dsp", "ethernet", "full-duplex", "gpu", "gpus", "hbm", "intel", "latency", "liquid cooling", "lpo"]
+actors: ["Broadcom", "CoreWeave", "EU", "Google", "Intel", "Lambda", "Meta", "Microsoft", "Nvidia", "OpenAI", "Oracle", "xAI"]
+dates: ["2024-10", "2024-10-16", "2024-10-28", "2025-06-04", "2025-10-08", "2025-10-16", "2026-03", "2026-09", "2026-09-16"]
+keywords: ["cpo", "dsp", "ethernet", "gpu", "gpus", "hbm", "intel", "latency", "liquid cooling", "lpo", "nvidia", "optics"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [1559, 1621]
+source_lines: [1559, 1604]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 83b4d971670402bc52263a6023e0c23297482e64d44dba7fd8622b9a82412b8f
+sha256: 97b34235cd232a7140a1759daae411149019005b945885ffb44d6a78e15f0b4d
 ---
 
 # 10.6 Deployment signals (named operators)
@@ -61,21 +61,4 @@ sha256: 83b4d971670402bc52263a6023e0c23297482e64d44dba7fd8622b9a82412b8f
 - **2026-Q4 → 2027-Q1** (planned, future relative to research date): Arista 7060XE7-64PS (Q4 2026), 7060XE7-64PRS/128PE (early 2027), 7060XE7-64PRS-RV3-L (Q1 2027) — announced, not confirmed shipping [independent].
 
 ### 10.10 Gaps, rumors, and unverified claims (do not use without confirmation)
-
-- **SN5800**: no evidence of a real announced NVIDIA system by 2026-09-22 [unverified].
-- **Juniper Express5 / Trio 800G data-center ASIC**: no fresh primary source captured; Juniper's documented 800G systems use merchant silicon (Tomahawk 5/6, Trident 5) [unverified].
-- **Arista "7388X5"** as an 800G fixed system: not found [unverified].
-- **Celestica 800G model** (e.g., DS-series 800G SKU with ASIC mapping): not found [unverified].
-- **ZTE native 800G data-center switch**: not found [unverified].
-- **Ruijie RG-S6990-64OC2XS**: reseller-only, no official datasheet; claimed 102.4T figure is full-duplex-implied and non-comparable [unverified].
-- **Huawei 16800-X 288 × 800GE**: secondary claim only; official datasheet dual capacity figures (179/387 etc.) need accounting clarification; exact 800G line card unverified [unverified].
-- **Cisco N9364F-SG3** details (cages, buffer, power, form factor, ship date): announced Feb 2026, awaiting official datasheet [unverified].
-- **Edgecore per-cage optic budget**: 24 W vs 30 W across sources — unresolved [unverified].
-- **Cisco N9364E-SG2 max power**: 2,270 W vs 2,779 W across official pages — unresolved [unverified].
-- **Q3200-RA aggregate bandwidth**: 57.6 Tbps vs 2 × 28.8 Tbps across mirrored datasheets — inconsistent aggregation [unverified].
-- **Tomahawk 6 production ramp scale** through 2026 (volumes, lead customers beyond announced OEM systems): not quantified in captured sources [unverified].
-- **Arista 7800R4 line-card ASIC** (Jericho3-AI vs merchant deep-buffer silicon): datasheet excerpt lists SKUs but not the ASIC — do not assert a mapping [unverified].
-- **Dell SN6800-LD ASIC identity**: sheet states 102.4 Tb/s modules without naming silicon — do not label "Spectrum-X successor" as fact [unverified].
-- **Adtran LiteWave800 0.8W** and **Micas 30% CPO power saving**: vendor claims, not independently measured [unverified].
-- **Meta/Microsoft/Google/Lambda/xAI (beyond Colossus) named 800G deployments** with models and quantities: not verified [unverified].
 

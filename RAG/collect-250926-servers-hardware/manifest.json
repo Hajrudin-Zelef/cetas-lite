@@ -4,8 +4,8 @@
   "source": "docs/RAG/clean4",
   "source_dir": "docs/RAG/clean4",
   "source_files": 196,
-  "source_sha256": "fa52964bf9700cbb8cd9e0352c607a3bb29146c74e9218a5830643c26b108c61",
-  "chunk_count": 196,
+  "source_sha256": "d0ec553fc7cb36937da77ae76d0308c930363656c0f5c058ab53b5e565f3afc5",
+  "chunk_count": 272,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -39,8 +39,8 @@
       "sha256": "3517687b1aaffebc9cedb4fc0c9e08b178600cbc26e28b72579d87a01e9c8811"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/3x-faster-llm-training-with-unsloth-kernels-packing",
-      "path": "collect-250926-servers-hardware/servers-hardware/3x-faster-llm-training-with-unsloth-kernels-packing.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/3x-faster-llm-training-with-unsloth-kernels-packing-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/3x-faster-llm-training-with-unsloth-kernels-packing-1.md",
       "title": "3x Faster LLM Training with Unsloth Kernels + Packing",
       "domain": "servers-hardware",
       "role": "reference",
@@ -55,14 +55,47 @@
       ],
       "keywords": [
         "training",
-        "agent",
-        "agents",
         "attention",
         "benchmarks",
         "embedding",
         "fine-tuning",
-        "flash attention",
         "gpu",
+        "gpus",
+        "memory",
+        "pretraining",
+        "rotary",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean4/3x Faster LLM Training with Unsloth Kernels + Packing.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        65
+      ],
+      "canonical_for": [],
+      "words": 941,
+      "bytes": 6370,
+      "sha256": "1ff5a6d12326def696357eae704a5170159156eb1793f921e95ee98457af6a41"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/3x-faster-llm-training-with-unsloth-kernels-packing-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/3x-faster-llm-training-with-unsloth-kernels-packing-2.md",
+      "title": "3x Faster LLM Training with Unsloth Kernels + Packing",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "training",
+        "agent",
+        "agents",
+        "attention",
+        "fine-tuning",
+        "flash attention",
         "gpus",
         "llama",
         "memory"
@@ -70,17 +103,17 @@
       "source": "docs/RAG/clean4/3x Faster LLM Training with Unsloth Kernels + Packing.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        66,
         125
       ],
       "canonical_for": [],
-      "words": 1578,
-      "bytes": 10682,
-      "sha256": "ab6585bfed67016e6191f92178f119400f7160bf4fcb7259c7d62208d93c8d56"
+      "words": 637,
+      "bytes": 4312,
+      "sha256": "d6d4b49910a3f5c18c7162e48078d46e06fdf3122e0eb96b5c239e5ea5e33d36"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server",
-      "path": "collect-250926-servers-hardware/servers-hardware/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server-1.md",
       "title": "48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server",
       "domain": "servers-hardware",
       "role": "reference",
@@ -94,23 +127,47 @@
         "amd",
         "cost",
         "dram",
-        "gpus",
-        "research"
+        "gpus"
       ],
       "source": "docs/RAG/clean4/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 1330,
+      "bytes": 7688,
+      "sha256": "f9fc14af522c8439d52e62f5382d44ea0354aea1e74d342c3afa4c67c1e05d70"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server-2.md",
+      "title": "48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "memory",
+        "dram",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/48-ddr5-memory-slots-twisting-to-fit-in-a-2u-server.md",
+      "source_anchor": "",
+      "source_lines": [
+        61,
         89
       ],
       "canonical_for": [],
-      "words": 1825,
-      "bytes": 10621,
-      "sha256": "0ffcc761b3d78381073764553e1e543d8d4cf1375f1c6ea97419da3bec2c4112"
+      "words": 495,
+      "bytes": 2933,
+      "sha256": "dbc05af45e1a11cff1e3727bc32d19cbcccaf32c55698f7ed8d90ade2b7b6194"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/500k-context-length-fine-tuning",
-      "path": "collect-250926-servers-hardware/servers-hardware/500k-context-length-fine-tuning.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/500k-context-length-fine-tuning-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/500k-context-length-fine-tuning-1.md",
       "title": "500K Context Length Fine-tuning",
       "domain": "servers-hardware",
       "role": "reference",
@@ -123,8 +180,6 @@
       ],
       "keywords": [
         "fine-tuning",
-        "agent",
-        "agents",
         "context window",
         "cost",
         "gpu",
@@ -139,12 +194,41 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1049,
+      "bytes": 7775,
+      "sha256": "0696587345ed26a42317f36d3f6c996b434c4a4afa89eac86937577608da8af9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/500k-context-length-fine-tuning-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/500k-context-length-fine-tuning-2.md",
+      "title": "500K Context Length Fine-tuning",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "fine-tuning",
+        "agent",
+        "agents",
+        "gpu",
+        "memory",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/500K Context Length Fine-tuning.md",
+      "source_anchor": "",
+      "source_lines": [
+        71,
         91
       ],
       "canonical_for": [],
-      "words": 1375,
-      "bytes": 10073,
-      "sha256": "d05c983d4add3fafc6c0f2a6cc92e6e5bf295c546275f691ac9a0e6f0797d5c5"
+      "words": 326,
+      "bytes": 2298,
+      "sha256": "15eed1b01a1fa1a26af08674bc77e084d09093ef42aca73288a0328063568ad4"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/960535b9",
@@ -170,8 +254,8 @@
       "sha256": "63804443a05f26afc30b9123496f418951acca8fc779c3f5ecfa2dd8ed988c4c"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/deepseek-ocr-how-to-run-fine-tune",
-      "path": "collect-250926-servers-hardware/servers-hardware/deepseek-ocr-how-to-run-fine-tune.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/deepseek-ocr-how-to-run-fine-tune-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/deepseek-ocr-how-to-run-fine-tune-1.md",
       "title": "DeepSeek-OCR: How to Run & Fine-tune",
       "domain": "servers-hardware",
       "role": "reference",
@@ -184,8 +268,6 @@
       "dates": [],
       "keywords": [
         "deepseek",
-        "agent",
-        "agents",
         "fine-tuning",
         "inference",
         "lora",
@@ -198,12 +280,37 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        154
+      ],
+      "canonical_for": [],
+      "words": 813,
+      "bytes": 7216,
+      "sha256": "0345389e6fc4dbeab9f8cd1908b26b5d0837705ff11d577b338244ecde8386ca"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/deepseek-ocr-how-to-run-fine-tune-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/deepseek-ocr-how-to-run-fine-tune-2.md",
+      "title": "DeepSeek-OCR: How to Run & Fine-tune",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "agent",
+        "agents"
+      ],
+      "source": "docs/RAG/clean4/DeepSeek-OCR How to Run & Fine-tune.md",
+      "source_anchor": "",
+      "source_lines": [
+        155,
         201
       ],
       "canonical_for": [],
-      "words": 1147,
-      "bytes": 10173,
-      "sha256": "0f231397abd67d1fe740a3a79a0a443828a04d32b83e24fb83df8d516c8f9164"
+      "words": 334,
+      "bytes": 2957,
+      "sha256": "4545519aa1a0747da67d8088181fcef6107a0a3b85e5f97c19d4c4b0b96b5efb"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/diffusiongemma-how-to-run-locally",
@@ -361,8 +468,8 @@
       "sha256": "fe18891d34214fffffcd6a008da5ae4c50190beed2a2a7c0627e0cf0700a6d3b"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-on-intel-gpus-with-unsloth",
-      "path": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-on-intel-gpus-with-unsloth.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-on-intel-gpus-with-unsloth-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-on-intel-gpus-with-unsloth-1.md",
       "title": "Fine-tuning LLMs on Intel GPUs with Unsloth",
       "domain": "servers-hardware",
       "role": "reference",
@@ -379,25 +486,61 @@
         "gpu",
         "gpus",
         "intel",
-        "agent",
-        "agents",
         "consumer",
         "inference",
         "llama",
         "lora",
         "memory",
-        "mistral"
+        "mistral",
+        "qlora",
+        "reasoning"
       ],
       "source": "docs/RAG/clean4/Fine-tuning LLMs on Intel GPUs with Unsloth.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        195
+      ],
+      "canonical_for": [],
+      "words": 930,
+      "bytes": 7999,
+      "sha256": "b043e43216e6969d4bd20187d1ba8f922adc2499710fd3bde45236330e6a8957"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-on-intel-gpus-with-unsloth-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-on-intel-gpus-with-unsloth-2.md",
+      "title": "Fine-tuning LLMs on Intel GPUs with Unsloth",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Intel",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "fine-tuning",
+        "gpu",
+        "intel",
+        "agent",
+        "agents",
+        "inference",
+        "lora",
+        "memory",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/clean4/Fine-tuning LLMs on Intel GPUs with Unsloth.md",
+      "source_anchor": "",
+      "source_lines": [
+        196,
         326
       ],
       "canonical_for": [],
-      "words": 1636,
-      "bytes": 14359,
-      "sha256": "20f50909d4cdc3782dbadc0307d0f5f88ef79be6dcfae1763460ddc4c7293fe2"
+      "words": 706,
+      "bytes": 6360,
+      "sha256": "e7eb5f422385bf0e7a0214917641d529ed3e4c0f3435f5b9e7da775f488aa559"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/how-to-fine-tune-llms-in-vs-code-with-unsloth-colab-gpus",
@@ -434,8 +577,8 @@
       "sha256": "28bba90551b96bddaaf3a40a5af769018a31ab5c75f28eadb9762240382f7ae8"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-ai-models-with-hermes-agent",
-      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-ai-models-with-hermes-agent.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-ai-models-with-hermes-agent-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-ai-models-with-hermes-agent-1.md",
       "title": "How to Run Local AI Models with Hermes Agent",
       "domain": "servers-hardware",
       "role": "reference",
@@ -452,7 +595,6 @@
       "dates": [],
       "keywords": [
         "agent",
-        "agents",
         "amd",
         "deepseek",
         "gguf",
@@ -462,18 +604,48 @@
         "nvidia",
         "quantization",
         "qwen",
-        "reasoning"
+        "reasoning",
+        "research"
       ],
       "source": "docs/RAG/clean4/How to Run Local AI Models with Hermes Agent.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        153
+      ],
+      "canonical_for": [],
+      "words": 1102,
+      "bytes": 7945,
+      "sha256": "0796560601f06149d30616576221fa93a0c39b912320dcb750988ad4010e6a70"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-ai-models-with-hermes-agent-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-ai-models-with-hermes-agent-2.md",
+      "title": "How to Run Local AI Models with Hermes Agent",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "gguf",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean4/How to Run Local AI Models with Hermes Agent.md",
+      "source_anchor": "",
+      "source_lines": [
+        154,
         204
       ],
       "canonical_for": [],
-      "words": 1660,
-      "bytes": 11646,
-      "sha256": "850baade6e5f2c77fa63440fda1c5896dabe1e4d1a1928f4b02b9afb21c7ffb4"
+      "words": 558,
+      "bytes": 3701,
+      "sha256": "a66031f332a0682c59a0ad681de86fe73a02c1033d013cdfd85bd02704654a70"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-ai-models-with-openclaw",
@@ -552,8 +724,83 @@
       "sha256": "1c3834a56190710010dde0996828536652dc4937f59dd06de5fb7b00da0beb0a"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code",
-      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-1.md",
+      "title": "How to Run Local LLMs with Claude Code",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "agent",
+        "agentic",
+        "attribution",
+        "deepseek",
+        "gguf",
+        "inference",
+        "kv cache",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/clean4/How to Run Local LLMs with Claude Code.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 535,
+      "bytes": 4032,
+      "sha256": "19d38134c65b82062978c23d5a278fc33d526ae88589a57ee94cc867dbbb3ae2"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-2.md",
+      "title": "How to Run Local LLMs with Claude Code",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "diffusion",
+        "embedding",
+        "gguf",
+        "gpu",
+        "inference",
+        "kv cache",
+        "llama",
+        "llama.cpp",
+        "mcp",
+        "quantization",
+        "reasoning"
+      ],
+      "source": "docs/RAG/clean4/How to Run Local LLMs with Claude Code.md",
+      "source_anchor": "",
+      "source_lines": [
+        76,
+        238
+      ],
+      "canonical_for": [],
+      "words": 1137,
+      "bytes": 7980,
+      "sha256": "6ca188eb91e034eaaa552f0d4e3389a3594025c673914a5a6732b4680e78d213"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-3.md",
       "title": "How to Run Local LLMs with Claude Code",
       "domain": "servers-hardware",
       "role": "reference",
@@ -562,7 +809,6 @@
         "Alibaba",
         "Anthropic",
         "Apple",
-        "DeepSeek",
         "Hugging Face",
         "OpenAI",
         "Unsloth",
@@ -573,30 +819,60 @@
         "claude",
         "agent",
         "agentic",
-        "agents",
-        "attribution",
-        "deepseek",
-        "diffusion",
-        "embedding",
         "gguf",
         "glm",
         "gpu",
-        "inference"
+        "inference",
+        "kv cache",
+        "llama",
+        "llama.cpp",
+        "mcp",
+        "parameters"
       ],
       "source": "docs/RAG/clean4/How to Run Local LLMs with Claude Code.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        239,
+        361
+      ],
+      "canonical_for": [],
+      "words": 1109,
+      "bytes": 7984,
+      "sha256": "f9e059d3bc2eb5556882bbd56acb88b7d6ad3acbbc292223495a526bce28e9d7"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-claude-code-4.md",
+      "title": "How to Run Local LLMs with Claude Code",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "agent",
+        "agents",
+        "gpu",
+        "inference",
+        "kv cache"
+      ],
+      "source": "docs/RAG/clean4/How to Run Local LLMs with Claude Code.md",
+      "source_anchor": "",
+      "source_lines": [
+        362,
         387
       ],
       "canonical_for": [],
-      "words": 3117,
-      "bytes": 22224,
-      "sha256": "ba840e79d48b3c4e2446f3872cac3911c4f3934bf5b407ce8d53f369e93aedab"
+      "words": 336,
+      "bytes": 2228,
+      "sha256": "54786778f7efdb07da1a719b21a4d991d06eacf858fe003ea6ca5c2718a3b0e9"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex",
-      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex-1.md",
       "title": "How to Run Local LLMs with OpenAI Codex",
       "domain": "servers-hardware",
       "role": "reference",
@@ -604,9 +880,7 @@
       "actors": [
         "Alibaba",
         "Anthropic",
-        "Apple",
         "DeepSeek",
-        "Google",
         "Microsoft",
         "OpenAI",
         "Unsloth"
@@ -615,7 +889,6 @@
       "keywords": [
         "agent",
         "agentic",
-        "agents",
         "chatgpt",
         "claude",
         "deepseek",
@@ -624,22 +897,95 @@
         "gguf",
         "gpu",
         "inference",
-        "kv cache"
+        "llama",
+        "llama.cpp"
       ],
       "source": "docs/RAG/clean4/How to Run Local LLMs with OpenAI Codex.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        115
+      ],
+      "canonical_for": [],
+      "words": 967,
+      "bytes": 6976,
+      "sha256": "ba712272693b6db07d7bb3f43f744743fa6a62366428c599162dfb75f4702399"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex-2.md",
+      "title": "How to Run Local LLMs with OpenAI Codex",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "OpenAI",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "chatgpt",
+        "gpu",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "sandbox"
+      ],
+      "source": "docs/RAG/clean4/How to Run Local LLMs with OpenAI Codex.md",
+      "source_anchor": "",
+      "source_lines": [
+        116,
+        207
+      ],
+      "canonical_for": [],
+      "words": 910,
+      "bytes": 6156,
+      "sha256": "b4d8a6803c9ee5e1d3158d869673e3a4595fa15aec3cc06139362a101f1280c1"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-run-local-llms-with-openai-codex-3.md",
+      "title": "How to Run Local LLMs with OpenAI Codex",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "Google",
+        "OpenAI",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "gguf",
+        "gpu",
+        "inference",
+        "kv cache",
+        "llama",
+        "llama.cpp",
+        "parameters",
+        "quantization",
+        "tool calling"
+      ],
+      "source": "docs/RAG/clean4/How to Run Local LLMs with OpenAI Codex.md",
+      "source_anchor": "",
+      "source_lines": [
+        208,
         314
       ],
       "canonical_for": [],
-      "words": 2720,
-      "bytes": 19371,
-      "sha256": "89c78a226c8c8fdb013ac6c51f996402a281ff7af1c618b9eccb3b48a8bfee42"
+      "words": 843,
+      "bytes": 6239,
+      "sha256": "a1bd95d98ab500c3ea5d850a13ddc383abb9057c5520a8301568f6a577aefee8"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide",
-      "path": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide-1.md",
       "title": "LoRA fine-tuning Hyperparameters Guide",
       "domain": "servers-hardware",
       "role": "reference",
@@ -653,26 +999,83 @@
         "fine-tuning",
         "lora",
         "parameters",
-        "agent",
-        "agents",
         "attention",
-        "cost",
         "dpo",
         "gpu",
         "gpus",
-        "inference",
-        "llama"
+        "llama",
+        "memory",
+        "qlora",
+        "research",
+        "training"
       ],
       "source": "docs/RAG/clean4/LoRA fine-tuning Hyperparameters Guide.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        117
+      ],
+      "canonical_for": [],
+      "words": 994,
+      "bytes": 7216,
+      "sha256": "e09424f0c8242b337b872768b644af69eeca0dd67c6e5d6e36cc2173f7932ced"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide-2.md",
+      "title": "LoRA fine-tuning Hyperparameters Guide",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "fine-tuning",
+        "lora",
+        "parameters",
+        "agent",
+        "agents",
+        "cost",
+        "gpus",
+        "inference",
+        "llama",
+        "memory",
+        "open source",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/LoRA fine-tuning Hyperparameters Guide.md",
+      "source_anchor": "",
+      "source_lines": [
+        118,
+        214
+      ],
+      "canonical_for": [],
+      "words": 1129,
+      "bytes": 7894,
+      "sha256": "dbd54e956736e3439f9ed1649974ae744901129c75463837a70e93bd0805f33d"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/lora-fine-tuning-hyperparameters-guide-3.md",
+      "title": "LoRA fine-tuning Hyperparameters Guide",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/LoRA fine-tuning Hyperparameters Guide.md",
+      "source_anchor": "",
+      "source_lines": [
+        215,
         215
       ],
       "canonical_for": [],
-      "words": 2151,
-      "bytes": 15293,
-      "sha256": "028304802fb6722931ff53151eaffd3517e2446b634eb8d214b39a06c9a98d9a"
+      "words": 28,
+      "bytes": 183,
+      "sha256": "410c618a2a0cc4337a19c042bad4e762e3246de0f7b06d2fa433c25748e7a40a"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/mistral-3-5-how-to-run-locally",
@@ -715,8 +1118,45 @@
       "sha256": "4e13d62d183f90301558771abc2ee114a89ccdb388a21fbf7fc0e0683b6b542e"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-nano-omni-how-to-run-locally",
-      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-nano-omni-how-to-run-locally.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-nano-omni-how-to-run-locally-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-nano-omni-how-to-run-locally-1.md",
+      "title": "NVIDIA Nemotron 3 Nano Omni - How To Run Locally",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "omni",
+        "agentic",
+        "gguf",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "multimodal",
+        "reasoning",
+        "tool calling",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/NVIDIA Nemotron 3 Nano Omni - How To Run Locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        40
+      ],
+      "canonical_for": [],
+      "words": 381,
+      "bytes": 2989,
+      "sha256": "0301efbe12565d0f73eec73462db467653a124fd5e558468f70c3a30162ce444"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-nano-omni-how-to-run-locally-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-nano-omni-how-to-run-locally-2.md",
       "title": "NVIDIA Nemotron 3 Nano Omni - How To Run Locally",
       "domain": "servers-hardware",
       "role": "reference",
@@ -733,30 +1173,30 @@
         "nvidia",
         "omni",
         "agent",
-        "agentic",
         "benchmark",
         "benchmarks",
         "decode",
         "fine-tuning",
         "gguf",
-        "inference",
         "llama",
-        "llama.cpp"
+        "llama.cpp",
+        "memory",
+        "multimodal"
       ],
       "source": "docs/RAG/clean4/NVIDIA Nemotron 3 Nano Omni - How To Run Locally.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        41,
         180
       ],
       "canonical_for": [],
-      "words": 1111,
-      "bytes": 9156,
-      "sha256": "ac8df0eda5818258f38988cdffa799d04b878909fb64c24618c3411bb18db60a"
+      "words": 730,
+      "bytes": 6167,
+      "sha256": "0888953cacf996e7e9884134c3a0b72b95e644b7deda111d1c37af4d9803e72d"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally",
-      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally-1.md",
       "title": "NVIDIA Nemotron 3 Ultra - How To Run Locally",
       "domain": "servers-hardware",
       "role": "reference",
@@ -764,6 +1204,43 @@
       "actors": [
         "Apple",
         "Hugging Face",
+        "Nvidia",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "agent",
+        "agents",
+        "benchmarks",
+        "gguf",
+        "gpu",
+        "inference",
+        "license",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "nvfp4"
+      ],
+      "source": "docs/RAG/clean4/NVIDIA Nemotron 3 Ultra - How To Run Locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        144
+      ],
+      "canonical_for": [],
+      "words": 958,
+      "bytes": 7870,
+      "sha256": "e8a21d20d15388be64622e2b8e4a78a4087563378540ee7d991df9ff15852082"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally-2.md",
+      "title": "NVIDIA Nemotron 3 Ultra - How To Run Locally",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
         "MiniMax",
         "Moonshot",
         "Nvidia",
@@ -776,30 +1253,85 @@
         "nvidia",
         "agent",
         "agentic",
-        "agents",
         "benchmark",
         "benchmarks",
         "cost",
         "gguf",
         "glm",
-        "gpu",
-        "inference",
-        "kimi"
+        "kimi",
+        "reasoning",
+        "research",
+        "throughput"
       ],
       "source": "docs/RAG/clean4/NVIDIA Nemotron 3 Ultra - How To Run Locally.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        145,
+        218
+      ],
+      "canonical_for": [],
+      "words": 918,
+      "bytes": 7998,
+      "sha256": "8de558e18923cc02add849d7ab829409a3ce74bae5272b8155237151284978b7"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-nemotron-3-ultra-how-to-run-locally-3.md",
+      "title": "NVIDIA Nemotron 3 Ultra - How To Run Locally",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents"
+      ],
+      "source": "docs/RAG/clean4/NVIDIA Nemotron 3 Ultra - How To Run Locally.md",
+      "source_anchor": "",
+      "source_lines": [
+        219,
         239
       ],
       "canonical_for": [],
-      "words": 2190,
-      "bytes": 18367,
-      "sha256": "9cae8615a1c0f30ec3f1fc7ee0c2ba419bd9e12ded1a032c77393f0cd04acb16"
+      "words": 314,
+      "bytes": 2499,
+      "sha256": "aea72d815c98e5c8e7350b320ff7cd40dc179a8eba32c10157aa8b5efde0ef4b"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/quantization-aware-training-qat",
-      "path": "collect-250926-servers-hardware/servers-hardware/quantization-aware-training-qat.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/quantization-aware-training-qat-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/quantization-aware-training-qat-1.md",
+      "title": "Quantization-Aware Training (QAT)",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "quantization",
+        "training",
+        "benchmarks",
+        "gguf",
+        "inference",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/Quantization-Aware Training (QAT).md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        19
+      ],
+      "canonical_for": [],
+      "words": 264,
+      "bytes": 2003,
+      "sha256": "5f7b8759b84a4a77f2e5d405a841ca651a09225d9faafb7d04057350f91a8bbe"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/quantization-aware-training-qat-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/quantization-aware-training-qat-2.md",
       "title": "Quantization-Aware Training (QAT)",
       "domain": "servers-hardware",
       "role": "reference",
@@ -816,29 +1348,29 @@
         "training",
         "agent",
         "agents",
-        "benchmarks",
         "compute",
         "fine-tuning",
         "fp8",
-        "gguf",
         "gpu",
         "inference",
-        "int4"
+        "int4",
+        "lora",
+        "memory"
       ],
       "source": "docs/RAG/clean4/Quantization-Aware Training (QAT).md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        20,
         121
       ],
       "canonical_for": [],
-      "words": 1166,
-      "bytes": 8853,
-      "sha256": "dacb1964445e756cd4ecc220d39c3d0817fe6e17c0b3a37902c1357d299b2c8b"
+      "words": 902,
+      "bytes": 6850,
+      "sha256": "4131e8d2c23794fbe5c9a4dd0ba06af43154922423c75a1b6f607937d69b35a4"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/run-mtp-models-multitoken-prediction-guide",
-      "path": "collect-250926-servers-hardware/servers-hardware/run-mtp-models-multitoken-prediction-guide.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/run-mtp-models-multitoken-prediction-guide-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/run-mtp-models-multitoken-prediction-guide-1.md",
       "title": "How to Run MTP Models: Multi-Token Prediction Guide",
       "domain": "servers-hardware",
       "role": "reference",
@@ -846,13 +1378,10 @@
       "actors": [
         "Alibaba",
         "Google",
-        "Hugging Face",
         "Unsloth"
       ],
       "dates": [],
       "keywords": [
-        "agent",
-        "agents",
         "gguf",
         "gpu",
         "gpus",
@@ -861,36 +1390,142 @@
         "llama.cpp",
         "memory",
         "qwen",
-        "speculative decoding",
         "throughput"
       ],
       "source": "docs/RAG/clean4/Run MTP Models MultiToken Prediction Guide.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        101
+      ],
+      "canonical_for": [],
+      "words": 784,
+      "bytes": 5592,
+      "sha256": "ab916ade651e0ecfb7aafbf9ff8e233c1c247ef64d288c1825534f51830ec427"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/run-mtp-models-multitoken-prediction-guide-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/run-mtp-models-multitoken-prediction-guide-2.md",
+      "title": "How to Run MTP Models: Multi-Token Prediction Guide",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "gguf",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "speculative decoding"
+      ],
+      "source": "docs/RAG/clean4/Run MTP Models MultiToken Prediction Guide.md",
+      "source_anchor": "",
+      "source_lines": [
+        102,
         244
       ],
       "canonical_for": [],
-      "words": 1523,
-      "bytes": 11402,
-      "sha256": "74295ae128361307035d1981692052a07d8e1811b50a1012eb30d635241d73fd"
+      "words": 739,
+      "bytes": 5810,
+      "sha256": "595211308922fdd408018786cd11b4638c76fbca6a55196f24dda261858d8b45"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs",
-      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs-1.md",
       "title": "Unsloth Dynamic 3.0 GGUFs",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "Alibaba",
-        "Apple",
-        "DeepSeek",
         "Google",
         "Meta",
         "Microsoft",
         "Mistral",
         "Moonshot",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "gguf",
+        "agentic",
+        "benchmarks",
+        "inference",
+        "kimi",
+        "llama",
+        "llama.cpp",
+        "mistral",
+        "perplexity",
+        "quantization",
+        "reasoning",
+        "tool calling"
+      ],
+      "source": "docs/RAG/clean4/Unsloth Dynamic 3.0 GGUFs.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1084,
+      "bytes": 7748,
+      "sha256": "c7b9960cad1f664eeb1ac1e48f9d0d4f5ae55973c714e13fa988f5819a103529"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs-2.md",
+      "title": "Unsloth Dynamic 3.0 GGUFs",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "DeepSeek",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "gguf",
+        "benchmark",
+        "benchmarks",
+        "deepseek",
+        "int4",
+        "llama",
+        "llama.cpp",
+        "moe",
+        "perplexity",
+        "pruning",
+        "quantization",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/Unsloth Dynamic 3.0 GGUFs.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        131
+      ],
+      "canonical_for": [],
+      "words": 940,
+      "bytes": 6795,
+      "sha256": "d70101788ecb23f86a7045ae386be6cc2d7a6c20822ca3d87043fc2d58f85bec"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-dynamic-3-0-ggufs-3.md",
+      "title": "Unsloth Dynamic 3.0 GGUFs",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft",
         "Unsloth",
         "vLLM"
       ],
@@ -898,27 +1533,26 @@
       "keywords": [
         "gguf",
         "agent",
-        "agentic",
         "agents",
-        "benchmark",
         "benchmarks",
-        "deepseek",
         "gpu",
         "inference",
-        "int4",
-        "kimi",
-        "llama"
+        "llama",
+        "llama.cpp",
+        "quantization",
+        "scout",
+        "vllm"
       ],
       "source": "docs/RAG/clean4/Unsloth Dynamic 3.0 GGUFs.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        132,
         243
       ],
       "canonical_for": [],
-      "words": 3137,
-      "bytes": 21315,
-      "sha256": "74c20d4d8a1a154b6cd862afd2e95c42c64a36ce6251ce0f9e4f5e9598083917"
+      "words": 1113,
+      "bytes": 6772,
+      "sha256": "ccd7d61aa15876087f8d0a2d536ec8470015d9f8c032f69d5fe731adb14d2eb4"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/unsloth-on-linux",
@@ -991,14 +1625,51 @@
       "sha256": "8c750a388a42e521b3edd80e2a4f3ec087a4acd3344cfabde202da6f7c0d9c7d"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows",
-      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows-1.md",
       "title": "Install Unsloth on Windows",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "Anthropic",
+        "Nvidia",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "diffusion",
+        "embedding",
+        "fine-tuning",
+        "gpu",
+        "gpus",
+        "license",
+        "lora",
+        "mcp",
+        "memory",
+        "nvidia",
+        "quantization"
+      ],
+      "source": "docs/RAG/clean4/Unsloth on Windows.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        182
+      ],
+      "canonical_for": [],
+      "words": 1088,
+      "bytes": 7680,
+      "sha256": "3b9ff6f1b6061e0f6e1f9309c8697d236e96c606b8a7e97dfab45d4bd6135de9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows-2.md",
+      "title": "Install Unsloth on Windows",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
         "Hugging Face",
         "Intel",
         "Microsoft",
@@ -1008,33 +1679,121 @@
       ],
       "dates": [],
       "keywords": [
-        "agent",
-        "agents",
         "blackwell",
-        "claude",
         "datacenter",
-        "diffusion",
-        "embedding",
         "fine-tuning",
         "gpu",
         "gpus",
         "intel",
-        "license"
+        "nvidia",
+        "training",
+        "vllm"
       ],
       "source": "docs/RAG/clean4/Unsloth on Windows.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        183,
+        322
+      ],
+      "canonical_for": [],
+      "words": 982,
+      "bytes": 7971,
+      "sha256": "56d9b9273e9d8d63c62c08402f5c70d36f99dab0518d345ec3463a4e329ccadd"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-on-windows-3.md",
+      "title": "Install Unsloth on Windows",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents"
+      ],
+      "source": "docs/RAG/clean4/Unsloth on Windows.md",
+      "source_anchor": "",
+      "source_lines": [
+        323,
         337
       ],
       "canonical_for": [],
-      "words": 2279,
-      "bytes": 17087,
-      "sha256": "bd0f31b587c1c80df16b8d5d84faac9e1e2cbb3c73b4ed161245caed64afcd01"
+      "words": 209,
+      "bytes": 1436,
+      "sha256": "f5d5611cbf874716cbd46878e05a1e7b9f065b813904ccd0a1dfd0e9642c4c41"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker",
-      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker-1.md",
+      "title": "Install Unsloth via Docker",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "datacenter",
+        "gpu",
+        "gpus",
+        "nvidia",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/Unsloth via Docker.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        155
+      ],
+      "canonical_for": [],
+      "words": 1028,
+      "bytes": 7982,
+      "sha256": "73a253f641fbd124dca108958f56d4ff893d5f0468a8302071196e27358fbb8e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker-2.md",
+      "title": "Install Unsloth via Docker",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "diffusion",
+        "embedding",
+        "embeddings",
+        "fine-tuning",
+        "gguf",
+        "gpu",
+        "memory",
+        "parameters",
+        "quantization",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/Unsloth via Docker.md",
+      "source_anchor": "",
+      "source_lines": [
+        156,
+        238
+      ],
+      "canonical_for": [],
+      "words": 827,
+      "bytes": 5572,
+      "sha256": "954709b4e360fb87b838d006e81f4672f7def60cad1425fd11ec3f6ebfc2a863"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-via-docker-3.md",
       "title": "Install Unsloth via Docker",
       "domain": "servers-hardware",
       "role": "reference",
@@ -1050,26 +1809,20 @@
         "agent",
         "agents",
         "amd",
-        "datacenter",
-        "diffusion",
-        "embedding",
-        "embeddings",
-        "fine-tuning",
-        "gguf",
         "gpu",
         "gpus",
-        "memory"
+        "nvidia"
       ],
       "source": "docs/RAG/clean4/Unsloth via Docker.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        239,
         306
       ],
       "canonical_for": [],
-      "words": 2527,
-      "bytes": 18109,
-      "sha256": "913f14bc8c7f70c1cf2e64c30c8719d4b1bb319c58a3d77eca21fcc178f99c1f"
+      "words": 672,
+      "bytes": 4555,
+      "sha256": "b613298df89048da9432438ec31a16187313f172c54cadf0d211e0647c17607b"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/agents",
@@ -1169,8 +1922,8 @@
       "sha256": "83cd8ebc3c7cfd259fb023cb32946dd1e49912e5599bb9fc834f02c242717fd3"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct",
-      "path": "collect-250926-servers-hardware/servers-hardware/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct-1.md",
       "title": "amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct",
       "domain": "servers-hardware",
       "role": "reference",
@@ -1184,7 +1937,6 @@
         "amd",
         "mi455x",
         "2nm",
-        "3nm",
         "accelerator",
         "compute",
         "dram",
@@ -1192,22 +1944,83 @@
         "fp8",
         "gpu",
         "gpus",
-        "hbm"
+        "hbm",
+        "hbm4"
       ],
       "source": "docs/RAG/clean4/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 1338,
+      "bytes": 7924,
+      "sha256": "72dd2b316ccc09469d83f9122c5de212a127ef15f2fd265391da77cdb81220d3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct-2.md",
+      "title": "amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "2nm",
+        "3nm"
+      ],
+      "source": "docs/RAG/clean4/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct.md",
+      "source_anchor": "",
+      "source_lines": [
+        48,
         60
       ],
       "canonical_for": [],
-      "words": 1479,
-      "bytes": 8699,
-      "sha256": "d63dc853e746f9183ee785f5215e3dc6b017d975520314d66e87c068286e8a85"
+      "words": 141,
+      "bytes": 775,
+      "sha256": "cbc1f5aabf151a4cb8833f8677092e87494d72de42a6410f8a6d80b529265fd6"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards",
-      "path": "collect-250926-servers-hardware/servers-hardware/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards-1.md",
+      "title": "amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "amd",
+        "compute",
+        "gpu",
+        "gpus",
+        "hbm",
+        "inference",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 1347,
+      "bytes": 7695,
+      "sha256": "59c6dff5dc02fde00fb3f3cf8eea3c0e3611913cac003e2d9b322bfa4ecfd187"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards-2.md",
       "title": "amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards",
       "domain": "servers-hardware",
       "role": "reference",
@@ -1221,30 +2034,57 @@
         "accelerator",
         "amd",
         "agents",
-        "compute",
         "consumer",
         "disclosure",
         "gpu",
-        "gpus",
-        "hbm",
-        "inference",
         "memory",
-        "nvidia"
+        "nvidia",
+        "pricing",
+        "throughput"
       ],
       "source": "docs/RAG/clean4/amd-intros-instinct-mi350p-accelerator-cdna-4-comes-to-pcie-cards.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        47,
         65
       ],
       "canonical_for": [],
-      "words": 1754,
-      "bytes": 10124,
-      "sha256": "d994d15d85338d094399e6b3bd751ad892056606da477ba67165fc27b61a54db"
+      "words": 407,
+      "bytes": 2429,
+      "sha256": "c89850936b19b4c9bbc5d078906dc720f7d1bdff5a34f23abf29517b85e8b8d7"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026",
-      "path": "collect-250926-servers-hardware/servers-hardware/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026-1.md",
+      "title": "amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "consumer",
+        "gpu",
+        "lpddr5x",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1387,
+      "bytes": 7866,
+      "sha256": "2704667e35de308369e13bec3aefe4c417cef13a6456cbda0fc5aff98d9fb355"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026-2.md",
       "title": "amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026",
       "domain": "servers-hardware",
       "role": "reference",
@@ -1256,22 +2096,19 @@
       "keywords": [
         "amd",
         "compute",
-        "consumer",
         "gpu",
-        "lpddr5x",
-        "memory",
         "pricing"
       ],
       "source": "docs/RAG/clean4/amd-reveals-new-ryzen-ai-400-series-ryzen-ai-max-and-ryzen-7-9850x3d-chips-at-ces-2026.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        50,
         58
       ],
       "canonical_for": [],
-      "words": 1645,
-      "bytes": 9342,
-      "sha256": "6dcbb94e8f07a160e8715b6df4a381451e2bac6b294eefe38306aa572f4e5c7e"
+      "words": 258,
+      "bytes": 1476,
+      "sha256": "24cebcfb7f28a64e85bd99ca09eb898b5d5cebf58dcb6f6f9daeebce27dbde8c"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/amd-teases-ryzen-ai-halo-a-rocm-ecosystem-ai-development-mini-pc",
@@ -1307,8 +2144,8 @@
       "sha256": "07f40093246430fdc5af3e16a76f1669a534077ed6d44ef4410cd023f07833a0"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems",
-      "path": "collect-250926-servers-hardware/servers-hardware/amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems-1.md",
       "title": "amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems",
       "domain": "servers-hardware",
       "role": "reference",
@@ -1335,25 +2172,51 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 1465,
+      "bytes": 7947,
+      "sha256": "b3728757f3bbeab26c0699bdb65a3fcaa5b3f874c7c55032cefcda284a15dd78"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems-2.md",
+      "title": "amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/amd-ups-ante-with-192gb-ryzen-ai-max-pro-400-chips-for-ai-systems.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
         62
       ],
       "canonical_for": [],
-      "words": 1764,
-      "bytes": 9653,
-      "sha256": "b3e2129cb4e616cf9c479d248ce7707c94a4772e8b84c2933680ffb12c95b606"
+      "words": 299,
+      "bytes": 1706,
+      "sha256": "bf829b040764247a33b1a2e3d9bd3411c6b388c72377d7313e201852b06c02e4"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026",
-      "path": "collect-250926-servers-hardware/servers-hardware/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026-1.md",
       "title": "amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
-        "Cerebras",
-        "Intel",
-        "Microsoft",
         "Nvidia",
         "TSMC"
       ],
@@ -1365,23 +2228,63 @@
         "2nm",
         "3nm",
         "attention",
-        "chiplet",
         "compute",
-        "cpo",
-        "dram",
         "fp4",
-        "gpu"
+        "gpu",
+        "gpus",
+        "hbm",
+        "hbm4"
       ],
       "source": "docs/RAG/clean4/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 1353,
+      "bytes": 7777,
+      "sha256": "8a1c93bb04a9f5794c95d91ba493fcbb3e74bb15395635b78bbefed7fc63e55a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026-2.md",
+      "title": "amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Cerebras",
+        "Intel",
+        "Microsoft",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "mi455x",
+        "chiplet",
+        "compute",
+        "cpo",
+        "dram",
+        "gpu",
+        "hbm",
+        "hbm4",
+        "intel",
+        "memory",
+        "optics"
+      ],
+      "source": "docs/RAG/clean4/amds-epyc-venice-instinct-mi455x-helios-hardware-on-display-for-first-time-at-ces-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        45,
         77
       ],
       "canonical_for": [],
-      "words": 2595,
-      "bytes": 14755,
-      "sha256": "35169470576287da1060b9020be4be36bd9b338d13f97362a7c3b5dce34fe02e"
+      "words": 1242,
+      "bytes": 6978,
+      "sha256": "3ef8fa8bda0d55dae38c9aa2336bbf8d778e0652529f3f49888d91597a26c115"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/arm-neoverse-css-n4-launched-for-next-gen-cpus-and-dpus",
@@ -1412,15 +2315,14 @@
       "sha256": "a8a66e3347fa641034bf82b75fc63b54552d010d5be1e7baf4665edb5803d433"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/asrock-industrial-nuc-box-358h-mini-pc-review",
-      "path": "collect-250926-servers-hardware/servers-hardware/asrock-industrial-nuc-box-358h-mini-pc-review.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/asrock-industrial-nuc-box-358h-mini-pc-review-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/asrock-industrial-nuc-box-358h-mini-pc-review-1.md",
       "title": "asrock-industrial-nuc-box-358h-mini-pc-review",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
-        "EU",
         "Intel"
       ],
       "dates": [],
@@ -1437,12 +2339,35 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 1342,
+      "bytes": 7881,
+      "sha256": "104b823964bf4a4009e02646d2b8160df6ad365348912905b229bd5a52a1f529"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/asrock-industrial-nuc-box-358h-mini-pc-review-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/asrock-industrial-nuc-box-358h-mini-pc-review-2.md",
+      "title": "asrock-industrial-nuc-box-358h-mini-pc-review",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "EU"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/asrock-industrial-nuc-box-358h-mini-pc-review.md",
+      "source_anchor": "",
+      "source_lines": [
+        61,
         63
       ],
       "canonical_for": [],
-      "words": 1413,
-      "bytes": 8242,
-      "sha256": "8abc36e7dd9b0da42472bd9ebea7d9f444f36182a2affccc0e38a8a020c9df03"
+      "words": 71,
+      "bytes": 361,
+      "sha256": "74127da47fb51b89ca2b792ae14b36e451907976913e85a91c97b277492532dd"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/asrock-rack-2u12l2s-siena-review-2u-amd-epyc-8004-siena-server",
@@ -1665,20 +2590,18 @@
       "sha256": "daf4a831366ad0141c81327e28d0a086a2262cabb9925d8b76b5cf76fdf7cfd7"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/asus-pro-ws-w890e-sage-se-motherboard-review",
-      "path": "collect-250926-servers-hardware/servers-hardware/asus-pro-ws-w890e-sage-se-motherboard-review.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/asus-pro-ws-w890e-sage-se-motherboard-review-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/asus-pro-ws-w890e-sage-se-motherboard-review-1.md",
       "title": "asus-pro-ws-w890e-sage-se-motherboard-review",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
-        "AMD",
         "AWS",
         "Intel"
       ],
       "dates": [],
       "keywords": [
-        "amd",
         "ethernet",
         "intel",
         "memory",
@@ -1688,12 +2611,40 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        61
+      ],
+      "canonical_for": [],
+      "words": 1359,
+      "bytes": 7823,
+      "sha256": "585db626bd045506eb0f161bed3dd6b5de5aba6accea3106821c679f7bf3704e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/asus-pro-ws-w890e-sage-se-motherboard-review-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/asus-pro-ws-w890e-sage-se-motherboard-review-2.md",
+      "title": "asus-pro-ws-w890e-sage-se-motherboard-review",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "ethernet",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/asus-pro-ws-w890e-sage-se-motherboard-review.md",
+      "source_anchor": "",
+      "source_lines": [
+        62,
         98
       ],
       "canonical_for": [],
-      "words": 1958,
-      "bytes": 11392,
-      "sha256": "823904338a5a69ba81189e097c34424a7592bebcc92835421077c30438aff050"
+      "words": 599,
+      "bytes": 3569,
+      "sha256": "58619b5f7871ce39ed473a611bfc8f8b076faa4a8c08d7f73ea90478e05692ea"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/asus-rs720-e12-rs8g-2u-intel-xeon-6-server-review",
@@ -1749,15 +2700,14 @@
       "sha256": "5d9715a437a89398ac2314934aa83b412e5526421764fc7d2633fe7d9b801c9e"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster",
-      "path": "collect-250926-servers-hardware/servers-hardware/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster-1.md",
       "title": "big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AWS",
-        "Apple",
         "Moonshot",
         "Nvidia"
       ],
@@ -1768,26 +2718,58 @@
         "nvidia",
         "agent",
         "agents",
-        "arr",
-        "benchmark",
         "blackwell",
         "cost",
         "embedding",
         "gpu",
         "gpus",
         "inference",
-        "kimi"
+        "kimi",
+        "latency",
+        "lpddr5x"
       ],
       "source": "docs/RAG/clean4/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 1399,
+      "bytes": 7797,
+      "sha256": "14f0614acb1ed5ab2e789a290a63628868e8e4c72cdf99a65d259b1b863d6f2e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster-2.md",
+      "title": "big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "arr",
+        "benchmark",
+        "gpu",
+        "memory",
+        "prefill",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean4/big-ai-cluster-little-power-the-8x-nvidia-gb10-cluster.md",
+      "source_anchor": "",
+      "source_lines": [
+        65,
         127
       ],
       "canonical_for": [],
-      "words": 2246,
-      "bytes": 12903,
-      "sha256": "3681d90094e95bc478528301e0c4b33828f98931bcd64f8f8b649297e217ab40"
+      "words": 847,
+      "bytes": 5106,
+      "sha256": "a6cdbd5c1f4c5923401aefcc8e5bf5939e23e5533f162b4dfeef1be2d5657244"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/broadcom-shows-the-pex90144-144-lane-pcie-gen6-switch-at-sc25",
@@ -1967,8 +2949,8 @@
       "sha256": "da22adec189e4a602e85fc4731507ddb3f9b321a98979850c033b2c2de48ca2e"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/compaction",
-      "path": "collect-250926-servers-hardware/servers-hardware/compaction.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/compaction-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/compaction-1.md",
       "title": "Compaction",
       "domain": "servers-hardware",
       "role": "reference",
@@ -1978,19 +2960,41 @@
       ],
       "dates": [],
       "keywords": [
-        "agent",
-        "pruning"
+        "agent"
       ],
       "source": "docs/RAG/clean4/compaction.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        148
+      ],
+      "canonical_for": [],
+      "words": 1128,
+      "bytes": 7672,
+      "sha256": "41bbb3e6aab78e8bc2ebd12ab8e9cb30aa336b551625683629a3f12c73f7ed91"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/compaction-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/compaction-2.md",
+      "title": "Compaction",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "pruning"
+      ],
+      "source": "docs/RAG/clean4/compaction.md",
+      "source_anchor": "",
+      "source_lines": [
+        149,
         190
       ],
       "canonical_for": [],
-      "words": 1513,
-      "bytes": 10260,
-      "sha256": "d75b7d813568d7e5ea240fa500672ff7d523e770bd5c6f1577d15eb637f1241a"
+      "words": 385,
+      "bytes": 2588,
+      "sha256": "102e4f97ae17a7100174e974f6424671972310569d21945b51ec81622890e68a"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/compal-sg720-2a-amd-epyc-and-amd-instinct-mi325x-ai-server-at-sc24",
@@ -2183,8 +3187,31 @@
       "sha256": "d146b2c72710c4d2946e2cac53277ab452dce4a3919d47702c237c5d2e162d4a"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/dapannage",
-      "path": "collect-250926-servers-hardware/servers-hardware/dapannage.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/dapannage-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/dapannage-1.md",
+      "title": "DÃ©pannage",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/dapannage.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        127
+      ],
+      "canonical_for": [],
+      "words": 1004,
+      "bytes": 7786,
+      "sha256": "9e164243958b63931bbfddded7c63c73c713e7120934267a8d4ec43d86b63437"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/dapannage-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/dapannage-2.md",
       "title": "DÃ©pannage",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2192,7 +3219,6 @@
       "actors": [
         "Anthropic",
         "Google",
-        "Microsoft",
         "OpenAI"
       ],
       "dates": [],
@@ -2203,13 +3229,13 @@
       "source": "docs/RAG/clean4/dapannage.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        128,
         178
       ],
       "canonical_for": [],
-      "words": 1317,
-      "bytes": 10238,
-      "sha256": "fcb70a9fa1456069b2800829dbdc8959e1edffe83ae2a94195e22f76cc5a5d0a"
+      "words": 313,
+      "bytes": 2452,
+      "sha256": "6b712255c8df8cb2ff730bf53c531bd8562376c9b4677bf2a89cd374f0feead2"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/dell-poweredge-r6715-review-a-spiffy-1u-amd-epyc-server",
@@ -2276,8 +3302,8 @@
       "sha256": "3b698e8514116dc6fb627d5da29740d4d07953d677a36efcfff1cfb15e35bb6d"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/dell-pro-5-16-amd-laptop-review",
-      "path": "collect-250926-servers-hardware/servers-hardware/dell-pro-5-16-amd-laptop-review.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/dell-pro-5-16-amd-laptop-review-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/dell-pro-5-16-amd-laptop-review-1.md",
       "title": "dell-pro-5-16-amd-laptop-review",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2294,6 +3320,34 @@
         "ethernet",
         "gpus",
         "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/dell-pro-5-16-amd-laptop-review.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1293,
+      "bytes": 7579,
+      "sha256": "dcfac139f196c39dfb6f29a425aa29fdbadc63a96263efec591029997f7005bb"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/dell-pro-5-16-amd-laptop-review-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/dell-pro-5-16-amd-laptop-review-2.md",
+      "title": "dell-pro-5-16-amd-laptop-review",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel",
         "latency",
         "lpddr5x",
         "memory",
@@ -2302,17 +3356,17 @@
       "source": "docs/RAG/clean4/dell-pro-5-16-amd-laptop-review.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        54,
         84
       ],
       "canonical_for": [],
-      "words": 1910,
-      "bytes": 11114,
-      "sha256": "fb5710f5be24d2212e9fd4cdeda6d3d5f268d51bfa0ace9d081a579daf979398"
+      "words": 617,
+      "bytes": 3535,
+      "sha256": "8379ea84c698c39a9b51a69b22ae62db30a12f7f66e4a5888a37c6940f4ef60b"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system",
-      "path": "collect-250926-servers-hardware/servers-hardware/dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system-1.md",
       "title": "dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2338,16 +3392,43 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 1368,
+      "bytes": 7808,
+      "sha256": "45d08c1c323144aaf86b1b52218ee335701a54c3969cd510c3061d00c9f30f90"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system-2.md",
+      "title": "dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "blackwell",
+        "nvidia",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/dell-pro-max-16-plus-review-a-more-mobile-nvidia-rtx-pro-5000-blackwell-system.md",
+      "source_anchor": "",
+      "source_lines": [
+        59,
         73
       ],
       "canonical_for": [],
-      "words": 1663,
-      "bytes": 9389,
-      "sha256": "10b534a172971362a668d12f39acd81934070859d96fb5ae7a505cfb6406c39d"
+      "words": 295,
+      "bytes": 1581,
+      "sha256": "9a8af2caa82a06fae50ac56e0ee50116e09b9362c4b3a7db4f971fe915ed65d4"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks",
-      "path": "collect-250926-servers-hardware/servers-hardware/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks-1.md",
       "title": "diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2362,26 +3443,63 @@
         "benchmark",
         "benchmarks",
         "nvidia",
+        "amd",
+        "decode",
+        "disclosure",
+        "fp8",
+        "gpu",
+        "gpus",
+        "intel",
+        "lpddr5x",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 1356,
+      "bytes": 7945,
+      "sha256": "8e4d47085a1edaf0e93a4bf9e78761fb1e0b7855c915ea8dc6dfcf0cee8e2559"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks-2.md",
+      "title": "diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
         "agentic",
         "amd",
         "consumer",
         "decode",
         "disclosure",
         "fp8",
-        "gpu",
-        "gpus",
-        "intel"
+        "intel",
+        "latency",
+        "memory",
+        "throughput"
       ],
       "source": "docs/RAG/clean4/diving-deeper-on-nvidia-s-vera-cpu-new-architectural-details-and-spec-cpu-2026-benchmarks.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        49,
         81
       ],
       "canonical_for": [],
-      "words": 2337,
-      "bytes": 13984,
-      "sha256": "7c2c530b8ce5c698d97b970b0c0bcb93e5c0a4b04429fca5b4fea62d494f0b24"
+      "words": 981,
+      "bytes": 6039,
+      "sha256": "5c8d0046ef18cc384d1285e1561b6eef5a18e53bee8b01e921403634a4f6d17e"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/docker-ollama",
@@ -2501,8 +3619,35 @@
       "sha256": "46a60372f85bad29951e9772e8152a800e2750be0f22e5246194e8c95bf9d8ec"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/faq-ollama",
-      "path": "collect-250926-servers-hardware/servers-hardware/faq-ollama.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/faq-ollama-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/faq-ollama-1.md",
+      "title": "faq-ollama",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "context window",
+        "gpu",
+        "memory",
+        "mistral",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/faq-ollama.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        123
+      ],
+      "canonical_for": [],
+      "words": 1191,
+      "bytes": 7521,
+      "sha256": "dd2af67d1fac6b14af784c13f3f38767a6fd85739bcf07ec5706fdda1fb0aba9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/faq-ollama-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/faq-ollama-2.md",
       "title": "faq-ollama",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2511,26 +3656,23 @@
       "dates": [],
       "keywords": [
         "attention",
-        "context window",
         "flash attention",
         "gpu",
         "gpus",
         "inference",
         "memory",
-        "mistral",
-        "nvidia",
         "quantization"
       ],
       "source": "docs/RAG/clean4/faq-ollama.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        124,
         193
       ],
       "canonical_for": [],
-      "words": 2155,
-      "bytes": 13515,
-      "sha256": "cba8e43304a600699169999893e7ce869696f0c8a4c3955edfb75765731969ac"
+      "words": 964,
+      "bytes": 5994,
+      "sha256": "271af46ff394d757f67d3c5fc3c3f49f79bff06fc33ccb93792960089a003e43"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/faster-gemma-4-on-mlx-with-multi-token-prediction-ollama-blog",
@@ -2572,8 +3714,8 @@
       "sha256": "07c188d793d3dc311cd2fc979af9a59f471c71d169ea7443d2886ed61dc558ef"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation",
-      "path": "collect-250926-servers-hardware/servers-hardware/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation-1.md",
       "title": "fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2592,25 +3734,65 @@
         "agentic",
         "attention",
         "benchmarks",
-        "compute",
         "consumer",
         "deepseek",
         "fine-tuning",
         "glm",
         "gpu",
         "gpus",
-        "inference"
+        "inference",
+        "lora"
       ],
       "source": "docs/RAG/clean4/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        276
+      ],
+      "canonical_for": [],
+      "words": 1198,
+      "bytes": 7867,
+      "sha256": "ef99046b90484e90fe96d171e39b3beed3001e2330872e394efb38fbdf99481c"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation-2.md",
+      "title": "fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Hugging Face",
+        "Unsloth",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "moe",
+        "attention",
+        "compute",
+        "deepseek",
+        "fine-tuning",
+        "glm",
+        "gpus",
+        "lora",
+        "memory",
+        "parameters",
+        "qwen",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/fine-tune-moe-models-12x-faster-with-unsloth-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        277,
         506
       ],
       "canonical_for": [],
-      "words": 1882,
-      "bytes": 12044,
-      "sha256": "f7e80a283ba5a4259142914d365546fe4b9fb8062ca9e81d169d60347fcbeda0"
+      "words": 684,
+      "bytes": 4177,
+      "sha256": "8dfde8085dba5fe1349654b3237ee197b9ea7d3bffce72652536a476ad48fb03"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-for-beginnersunsloth",
@@ -2653,8 +3835,39 @@
       "sha256": "af5360a5e29dfce9b3106617c0cbfde1f490a1b82f031a9462c482c25ff978bc"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide",
-      "path": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide-1.md",
+      "title": "Datasets Guide",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "embeddings",
+        "fine-tuning",
+        "pretraining",
+        "research",
+        "rlhf",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/fine-tuning-llms-guidedatasets-guide.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 652,
+      "bytes": 4252,
+      "sha256": "fed85acdd08026898c1fa7b97b155529b18bfdcfcc2e78c0ec9352aae481d780"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide-2.md",
       "title": "Datasets Guide",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2668,29 +3881,52 @@
       ],
       "dates": [],
       "keywords": [
-        "agent",
-        "agents",
         "chatgpt",
         "deepseek",
-        "embeddings",
         "fine-tuning",
-        "inference",
         "llama",
         "multimodal",
-        "pretraining",
         "reasoning",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/fine-tuning-llms-guidedatasets-guide.md",
+      "source_anchor": "",
+      "source_lines": [
+        71,
+        134
+      ],
+      "canonical_for": [],
+      "words": 1236,
+      "bytes": 7602,
+      "sha256": "6c903b89fbc1953399a188f35a4b251f2844a824da2b3c6b9cfceafa7602218f"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fine-tuning-llms-guidedatasets-guide-3.md",
+      "title": "Datasets Guide",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "fine-tuning",
+        "inference",
         "research"
       ],
       "source": "docs/RAG/clean4/fine-tuning-llms-guidedatasets-guide.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        135,
         240
       ],
       "canonical_for": [],
-      "words": 2639,
-      "bytes": 17526,
-      "sha256": "b07592d05703938652df91fc656952a0012e9d77cc5346f56ea023d4d4ea6975"
+      "words": 751,
+      "bytes": 5672,
+      "sha256": "a302bf3d71e769153996acf787cdd8efadff6518b24d0f37196143eaff3c0e47"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/formatters",
@@ -2714,8 +3950,8 @@
       "sha256": "77c3f7e2391b8feffe1c9fd40974c8d2cfca906f166f6c7edbd1337dfa1f2a0e"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box",
-      "path": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box-1.md",
       "title": "gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2744,12 +3980,37 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1414,
+      "bytes": 7936,
+      "sha256": "f166a713e435765fac377d2ba8103d08d73e32bbb3149f0f67d549bafd7956ed"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box-2.md",
+      "title": "gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         67
       ],
       "canonical_for": [],
-      "words": 1614,
-      "bytes": 9011,
-      "sha256": "4d1a9474f346469e174b780b7c4e390bcdf5309fa8d53d2780b279bf619245fd"
+      "words": 200,
+      "bytes": 1075,
+      "sha256": "31170591e9de25bc7721af4036eacfdb375e47bd62178e985e1e186c9bc39fef"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/gigabyte-b343-c40-aaj1-review-10-node-amd-epyc-4005-goes-high-density",
@@ -2835,8 +4096,8 @@
       "sha256": "65a3ae3140843abc9d5fe2ffd15821a4fb0db2b1d9f5311e07f240edaa586efb"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/go-2",
-      "path": "collect-250926-servers-hardware/servers-hardware/go-2.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/go-2-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/go-2-1.md",
       "title": "Go",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2853,9 +4114,7 @@
         "Z.ai",
         "xAI"
       ],
-      "dates": [
-        "2026-09-30"
-      ],
+      "dates": [],
       "keywords": [
         "agent",
         "agents",
@@ -2864,26 +4123,113 @@
         "cost",
         "deepseek",
         "glm",
-        "gpt-5.6",
-        "gpt-6",
-        "gpu",
         "grok",
-        "grok 4"
+        "grok 4",
+        "kimi",
+        "luna",
+        "muse"
       ],
       "source": "docs/RAG/clean4/go-2.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        161
+      ],
+      "canonical_for": [],
+      "words": 1471,
+      "bytes": 7786,
+      "sha256": "c4fdeabb976a4a8ec563894e0ece7ed5611766a3f91a6ac581dbd94f06cd4396"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/go-2-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/go-2-2.md",
+      "title": "Go",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "LongCat",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "deepseek",
+        "glm",
+        "gpu",
+        "grok",
+        "grok 4",
+        "kimi",
+        "luna",
+        "muse",
+        "muse spark",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean4/go-2.md",
+      "source_anchor": "",
+      "source_lines": [
+        162,
+        250
+      ],
+      "canonical_for": [],
+      "words": 895,
+      "bytes": 4737,
+      "sha256": "c26b959da04a133ec6fc5d87fb55c4160539ce9c49e3914236cc7a5c0de5c090"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/go-2-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/go-2-3.md",
+      "title": "Go",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "LongCat",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-30"
+      ],
+      "keywords": [
+        "agent",
+        "cost",
+        "deepseek",
+        "glm",
+        "gpt-5.6",
+        "gpt-6",
+        "grok",
+        "grok 4",
+        "kimi",
+        "latency",
+        "luna",
+        "muse"
+      ],
+      "source": "docs/RAG/clean4/go-2.md",
+      "source_anchor": "",
+      "source_lines": [
+        251,
         359
       ],
       "canonical_for": [],
-      "words": 3414,
-      "bytes": 19774,
-      "sha256": "a6e26f3305bd62af7fb89e8cc423bb98a1e8dfcd17e65841f84ff864dba8930b"
+      "words": 1048,
+      "bytes": 7251,
+      "sha256": "340699c57be9aef3686a9ec3d014a757a84f34315a5b8aa890bf487a081403ff"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/go",
-      "path": "collect-250926-servers-hardware/servers-hardware/go.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/go-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/go-1.md",
       "title": "Go",
       "domain": "servers-hardware",
       "role": "reference",
@@ -2908,23 +4254,137 @@
         "copilot",
         "deepseek",
         "glm",
-        "gpt-5.6",
-        "gpt-6",
-        "gpu",
         "grok",
         "grok 4",
-        "kimi"
+        "kimi",
+        "luna",
+        "muse",
+        "muse spark"
       ],
       "source": "docs/RAG/clean4/go.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        108
+      ],
+      "canonical_for": [],
+      "words": 973,
+      "bytes": 6540,
+      "sha256": "3917431ce8e28bd5a3ef35e949bffa05a600faf5f25e29fae5420fa64eff8e95"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/go-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/go-2.md",
+      "title": "Go",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "LongCat",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "glm",
+        "grok",
+        "grok 4",
+        "kimi",
+        "luna",
+        "muse",
+        "muse spark"
+      ],
+      "source": "docs/RAG/clean4/go.md",
+      "source_anchor": "",
+      "source_lines": [
+        109,
+        229
+      ],
+      "canonical_for": [],
+      "words": 1615,
+      "bytes": 8000,
+      "sha256": "0577e2f3a8740b5c68ac64160e4798e2257efa607e6c558320f7f5d2d4aff67b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/go-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/go-3.md",
+      "title": "Go",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "LongCat",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "glm",
+        "gpt-5.6",
+        "gpt-6",
+        "gpu",
+        "grok",
+        "grok 4",
+        "kimi",
+        "luna",
+        "muse",
+        "muse spark"
+      ],
+      "source": "docs/RAG/clean4/go.md",
+      "source_anchor": "",
+      "source_lines": [
+        230,
+        318
+      ],
+      "canonical_for": [],
+      "words": 918,
+      "bytes": 6788,
+      "sha256": "6a67aae4a8341a4cf76f29d22c19e580a10486369bbbbb2ee4085ca7d839aadc"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/go-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/go-4.md",
+      "title": "Go",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "DeepSeek",
+        "Meta",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "deepseek",
+        "grok",
+        "grok 4",
+        "luna",
+        "muse",
+        "muse spark"
+      ],
+      "source": "docs/RAG/clean4/go.md",
+      "source_anchor": "",
+      "source_lines": [
+        319,
         330
       ],
       "canonical_for": [],
-      "words": 3742,
-      "bytes": 23039,
-      "sha256": "0654302af40c39e5786e1e9c67f745c5e1b64ba0a3501e8b51b1adc0025a4931"
+      "words": 236,
+      "bytes": 1711,
+      "sha256": "3d7442584a5d1a91f2b10a9c4eff77d30de3d720f6acd9c2bc07bce6985c3b70"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/gpt-oss-how-to-run-guide",
@@ -3124,8 +4584,8 @@
       "sha256": "ea504ec55b179c22adf921016bd967ab016b10a31970b1776457db0557d08a61"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth-",
-      "path": "collect-250926-servers-hardware/servers-hardware/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth-.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth--1",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth--1.md",
       "title": "how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth-documentat",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3139,19 +4599,43 @@
       "keywords": [
         "agent",
         "aws",
-        "gpus",
-        "mcp"
+        "gpus"
       ],
       "source": "docs/RAG/clean4/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth-documentat.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        162
+      ],
+      "canonical_for": [],
+      "words": 1216,
+      "bytes": 7924,
+      "sha256": "b4dd735c16f6a80dd84d3ecf1d62375e938fad74cc91f87bb8415ba577b84bb8"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth--2",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth--2.md",
+      "title": "how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth-documentat",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp"
+      ],
+      "source": "docs/RAG/clean4/how-to-serve-local-llms-anywhere-secure-remote-access-with-cloudflare-and-unsloth-unsloth-documentat.md",
+      "source_anchor": "",
+      "source_lines": [
+        163,
         271
       ],
       "canonical_for": [],
-      "words": 1823,
-      "bytes": 12265,
-      "sha256": "41299353c733d3472417097aa0c4f5a2a433e888d4a9a2d3cd14cfa8a85ff6cc"
+      "words": 607,
+      "bytes": 4341,
+      "sha256": "fccaac1d59f3af632129143410ac0ca4d7806aafae71ec56599c237ae17938c5"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/how-to-use-mcp-servers-with-local-llms-unsloth-documentation",
@@ -3196,8 +4680,8 @@
       "sha256": "7b289dcff23d5465eee5ef9843f4fc5b6fe2f79db0e37b05d0e97ffd84ae3b7b"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation",
-      "path": "collect-250926-servers-hardware/servers-hardware/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation-1.md",
       "title": "how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3217,29 +4701,59 @@
         "agentic",
         "amd",
         "claude",
-        "context window",
         "gguf",
         "gpu",
         "inference",
         "intel",
         "latency",
         "llama",
-        "memory"
+        "memory",
+        "nvidia"
       ],
       "source": "docs/RAG/clean4/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        130
+      ],
+      "canonical_for": [],
+      "words": 1177,
+      "bytes": 7862,
+      "sha256": "f3f6ef3d98377449c3ac81a7f634806be17b80475a07accf75addad5d91258ad"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation-2.md",
+      "title": "how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "context window",
+        "gguf",
+        "throughput",
+        "tool calling"
+      ],
+      "source": "docs/RAG/clean4/how-to-use-unsloth-as-an-api-endpoint-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        131,
         154
       ],
       "canonical_for": [],
-      "words": 1530,
-      "bytes": 10116,
-      "sha256": "94016ea37334d9efd7ba663c46e66d1e433db3220f4827d04b9a3cc4fe547f7d"
+      "words": 353,
+      "bytes": 2254,
+      "sha256": "886cfbac2222257171548464a1b15423c4760c343699fcdcc88d168f2e1a532a"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10",
-      "path": "collect-250926-servers-hardware/servers-hardware/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10-1.md",
       "title": "hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3255,19 +4769,41 @@
         "fp4",
         "gpu",
         "lpddr5x",
-        "memory",
-        "pricing"
+        "memory"
       ],
       "source": "docs/RAG/clean4/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 1388,
+      "bytes": 7778,
+      "sha256": "f5f5f54271766867b5774df11abe79d732e21385cde3f618ae7581caa60e50e6"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10-2.md",
+      "title": "hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "pricing"
+      ],
+      "source": "docs/RAG/clean4/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10.md",
+      "source_anchor": "",
+      "source_lines": [
+        59,
         75
       ],
       "canonical_for": [],
-      "words": 1663,
-      "bytes": 9189,
-      "sha256": "01960533c244560dc1943cbdc51cdbc30f6bbb7b4bce62e37fc3203012755e9d"
+      "words": 275,
+      "bytes": 1411,
+      "sha256": "3bbd355c82d01e085599994a40e41561907bcc35a65037705c8e6985d6235772"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/hpe-proliant-dl145-gen11-review-an-amd-epyc-8004-edge-server",
@@ -3484,8 +5020,8 @@
       "sha256": "8eb83d7473eb3763c13c8522e486645dfeea19000a6729bbfc17fa247d06d499"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk",
-      "path": "collect-250926-servers-hardware/servers-hardware/inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk-1.md",
       "title": "inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3517,12 +5053,33 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        74
+      ],
+      "canonical_for": [],
+      "words": 1363,
+      "bytes": 7926,
+      "sha256": "51bb38d111b3336ac5e3df3fde0740e2713f75477902cbcb421d88a131637b1b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk-2.md",
+      "title": "inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/inside-the-100k-gpu-xai-colossus-cluster-that-supermicro-helped-build-for-elon-musk.md",
+      "source_anchor": "",
+      "source_lines": [
+        75,
         83
       ],
       "canonical_for": [],
-      "words": 1464,
-      "bytes": 8566,
-      "sha256": "642d20a41eb07545a17ee760c5821141b3053777e282a1240bdc1297cb6608d9"
+      "words": 101,
+      "bytes": 640,
+      "sha256": "14b241947ead3525626e234b1a5d1547d9765f76239308cb4bfccd6aee2ce73d"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/inside-the-lab-where-the-arm-agi-cpu-is-brought-to-life",
@@ -3588,8 +5145,39 @@
       "sha256": "67a572f2f56447f0c7993f7dbbf467083f6620489075054481610c31b1514e52"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations",
-      "path": "collect-250926-servers-hardware/servers-hardware/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations-1.md",
+      "title": "intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "compute",
+        "ethernet",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean4/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 1317,
+      "bytes": 7709,
+      "sha256": "c882738ff3716662041aaea305f17287a97ae4708dfa73e46afeca0df48def8a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations-2.md",
       "title": "intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3604,7 +5192,6 @@
         "amd",
         "chiplet",
         "compute",
-        "ethernet",
         "latency",
         "memory",
         "pricing"
@@ -3612,13 +5199,13 @@
       "source": "docs/RAG/clean4/intel-announces-xeon-600-series-this-is-granite-rapids-for-workstations.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        38,
         84
       ],
       "canonical_for": [],
-      "words": 2396,
-      "bytes": 14098,
-      "sha256": "dddb5285b8ef627a8cdb6905ce9ab7b75907d3c885ccc6b4996c11477960d2ac"
+      "words": 1079,
+      "bytes": 6389,
+      "sha256": "7558fc032047abbde7435c155d19d6a5b864f85ac12bf1bdd4214dbe99075b3c"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/intel-gaudi-2-complete-servers-from-supermicro-for-90k",
@@ -3686,8 +5273,8 @@
       "sha256": "a475f92220de2d70ebb3edb0f7e13def10c324ab1029da694ef5e5577ea0db39"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better",
-      "path": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better-1.md",
       "title": "lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3709,23 +5296,45 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1371,
+      "bytes": 7872,
+      "sha256": "d0fbef58f3afa9b7267ba227858aa0ff5ddb0c037cbf41768cc7524dac559fe9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better-2.md",
+      "title": "lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/lenovo-thinkstation-p3-ultra-sff-g2-review-a-bit-bigger-and-a-bit-better.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         73
       ],
       "canonical_for": [],
-      "words": 1689,
-      "bytes": 9564,
-      "sha256": "7311a4cfd7ce8aeb8d873b04924fe8a9559e5d04439fa4881ed8ce28b917ecc6"
+      "words": 318,
+      "bytes": 1692,
+      "sha256": "0af4a4cf936002222522937bf78b6e15945c3cadbf8274c618754b5152cd8fcb"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate",
-      "path": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate-1.md",
       "title": "lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
-        "Alibaba",
         "Intel",
         "Nvidia",
         "Qualcomm"
@@ -3733,14 +5342,11 @@
       "dates": [],
       "keywords": [
         "nvidia",
-        "agentic",
         "amd",
-        "benchmark",
         "blackwell",
         "ethernet",
         "fp4",
         "gpu",
-        "inference",
         "intel",
         "lpddr5x",
         "memory"
@@ -3749,12 +5355,48 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 1379,
+      "bytes": 7821,
+      "sha256": "df11e9a68f8b111714d41032b5eaaf1f8818b7909acbeb9693860cc543db6f85"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate-2.md",
+      "title": "lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "agentic",
+        "amd",
+        "benchmark",
+        "gpu",
+        "inference",
+        "memory",
+        "moe",
+        "pricing",
+        "training",
+        "vllm"
+      ],
+      "source": "docs/RAG/clean4/lenovo-thinkstation-pgx-review-the-nvidia-gb10-128gb-ai-workstation-goes-corporate.md",
+      "source_anchor": "",
+      "source_lines": [
+        57,
         117
       ],
       "canonical_for": [],
-      "words": 2401,
-      "bytes": 13789,
-      "sha256": "0a08aecc1094ce1914b108c248678f49cdafa8b395e5fd72e002da00c71934b1"
+      "words": 1022,
+      "bytes": 5968,
+      "sha256": "474c89f6a3b912732a938a690f750695844ae8b8bc2fdda1a2a97fbbf2ce2e0a"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/linux-ollama",
@@ -3871,8 +5513,8 @@
       "sha256": "c9a86e9d4d0e65ebbfa2d359b9fe6af5a28e3edb43375a65432d535a413e629e"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/mcp-servers",
-      "path": "collect-250926-servers-hardware/servers-hardware/mcp-servers.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/mcp-servers-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/mcp-servers-1.md",
       "title": "MCP servers",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3891,12 +5533,35 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        200
+      ],
+      "canonical_for": [],
+      "words": 1181,
+      "bytes": 7890,
+      "sha256": "d859bd69308877259c965f43b7adefe06c77d3c0c49cb0d9b2eb1fac728147fb"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/mcp-servers-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/mcp-servers-2.md",
+      "title": "MCP servers",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "mcp"
+      ],
+      "source": "docs/RAG/clean4/mcp-servers.md",
+      "source_anchor": "",
+      "source_lines": [
+        201,
         243
       ],
       "canonical_for": [],
-      "words": 1355,
-      "bytes": 9024,
-      "sha256": "8f691fefbc263dc06eaed91a996ee0e406e93f61f675cf3a55be34eec37f702d"
+      "words": 174,
+      "bytes": 1134,
+      "sha256": "cf9a011ba2fac3f8d8c93c719e5afc73273f37371c01cc94a72c7c2b98081f52"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/meta-brings-amd-epyc-turin-to-yosemite-v4",
@@ -3962,8 +5627,8 @@
       "sha256": "652b9230458ccaf158804d52abd7d48e65139f712dfda89062e9e8226a8ea4be"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm",
-      "path": "collect-250926-servers-hardware/servers-hardware/mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm-1.md",
       "title": "mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm",
       "domain": "servers-hardware",
       "role": "reference",
@@ -3981,23 +5646,74 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        85
+      ],
+      "canonical_for": [],
+      "words": 1435,
+      "bytes": 7953,
+      "sha256": "85b17890eccfaaae747805c7b40ba8b74ad8bddc801f765eabefaf14a63fef69"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm-2.md",
+      "title": "mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/mikrotik-rds2216-inbound-with-20x-u-2-nvme-and-100gbe-on-arm.md",
+      "source_anchor": "",
+      "source_lines": [
+        86,
         88
       ],
       "canonical_for": [],
-      "words": 1455,
-      "bytes": 8072,
-      "sha256": "2ef7d6c76257e8262382bb9ab1b4e6ab7b53fd4146f8ee7bb6c9841b61be1558"
+      "words": 20,
+      "bytes": 119,
+      "sha256": "618f591b5e5be53a9df3c0d9db91d03ca58cb448ff537e129e441ba184a78b52"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/minisforum-ms-02-ultra-review-the-new-home-lab-king",
-      "path": "collect-250926-servers-hardware/servers-hardware/minisforum-ms-02-ultra-review-the-new-home-lab-king.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/minisforum-ms-02-ultra-review-the-new-home-lab-king-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/minisforum-ms-02-ultra-review-the-new-home-lab-king-1.md",
+      "title": "minisforum-ms-02-ultra-review-the-new-home-lab-king",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "ethernet",
+        "gpu",
+        "intel",
+        "memory",
+        "power delivery"
+      ],
+      "source": "docs/RAG/clean4/minisforum-ms-02-ultra-review-the-new-home-lab-king.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1361,
+      "bytes": 7880,
+      "sha256": "bcd1e996576e095b08ecf61e3bd48094d8e9236e5cafdf22bc3975e54df74b65"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/minisforum-ms-02-ultra-review-the-new-home-lab-king-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/minisforum-ms-02-ultra-review-the-new-home-lab-king-2.md",
       "title": "minisforum-ms-02-ultra-review-the-new-home-lab-king",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
-        "AWS",
         "Alibaba",
         "Intel"
       ],
@@ -4007,8 +5723,6 @@
         "amd",
         "benchmark",
         "compute",
-        "cost",
-        "ethernet",
         "gpu",
         "gpus",
         "intel",
@@ -4019,13 +5733,13 @@
       "source": "docs/RAG/clean4/minisforum-ms-02-ultra-review-the-new-home-lab-king.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        54,
         129
       ],
       "canonical_for": [],
-      "words": 2678,
-      "bytes": 15077,
-      "sha256": "2eb5583ff9ae5a44909389c71a74ff26166e360a2e5ba74e4799a088d9860b63"
+      "words": 1317,
+      "bytes": 7197,
+      "sha256": "dc0482db40f2085b88dad996e8daf3a1760cb1d035c8a098db323babb45c7a37"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/minisforum-n5-max-review-with-amd-ryzen-ai-max-395",
@@ -4273,15 +5987,14 @@
       "sha256": "76766e419e6b273be6d9dccf0179c1abfd0db78b34e8c064f5b5f1af23bbafa8"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs",
-      "path": "collect-250926-servers-hardware/servers-hardware/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs-1.md",
       "title": "nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
-        "Apple",
         "Intel",
         "Microsoft",
         "Nvidia",
@@ -4298,21 +6011,56 @@
         "consumer",
         "fp4",
         "gpu",
-        "gpus",
         "intel",
         "lpddr5x",
-        "memory"
+        "memory",
+        "nvidia"
       ],
       "source": "docs/RAG/clean4/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1295,
+      "bytes": 7693,
+      "sha256": "7bec599a94a7147d64c6d1b3e1372b1a63b10d18d6563f868adab0cf92bdba96"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs-2.md",
+      "title": "nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "consumer",
+        "gpus",
+        "lpddr5x",
+        "memory",
+        "nvidia",
+        "nvlink",
+        "rubin",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/clean4/nvida-introduces-rtx-spark-an-arm-soc-for-windows-pcs.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
         69
       ],
       "canonical_for": [],
-      "words": 1676,
-      "bytes": 9983,
-      "sha256": "f7e929a73cf1318903ab2f5028620ea690c822c315f0c36e524754e14022c999"
+      "words": 381,
+      "bytes": 2290,
+      "sha256": "961b297f49a195b0b573f5dd42438c1f2c72221ffd3d958ae1c72586694f0929"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/nvidia-announces-dsx-ready-qualification-program-for-data-center-power-and-cooling-hardwar",
@@ -4380,16 +6128,13 @@
       "sha256": "30aa51a2a4623f52a7cc591c61bd389ea66520a10269a7fb00f01263006c72d9"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026",
-      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026-1.md",
       "title": "nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
-        "AWS",
-        "Google",
-        "Microsoft",
         "Nvidia",
         "TSMC"
       ],
@@ -4400,24 +6145,91 @@
         "rubin",
         "3nm",
         "attention",
-        "aws",
         "blackwell",
         "consumer",
-        "cost",
         "ethernet",
         "gpu",
-        "gpus"
+        "gpus",
+        "hbm4",
+        "inference"
       ],
       "source": "docs/RAG/clean4/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1335,
+      "bytes": 7949,
+      "sha256": "b3cb6d832763315a97040a43adc87200579efd81ababa0cbba4ed76233703105"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026-2.md",
+      "title": "nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "nvidia",
+        "rubin",
+        "blackwell",
+        "cost",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "hbm4",
+        "inference",
+        "kv cache",
+        "lpddr5x"
+      ],
+      "source": "docs/RAG/clean4/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        50,
+        95
+      ],
+      "canonical_for": [],
+      "words": 1281,
+      "bytes": 7867,
+      "sha256": "766d728f28e785c36ebe7bbf1460a75446fbbafafc5239274bc7db9523f9d261"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026-3.md",
+      "title": "nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "rubin",
+        "aws",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/clean4/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        96,
         98
       ],
       "canonical_for": [],
-      "words": 2718,
-      "bytes": 16431,
-      "sha256": "58f6d7006571fb333ffc89667bfff8acebd13622d1232ad95d138a5cb3062337"
+      "words": 102,
+      "bytes": 615,
+      "sha256": "0eb29e9c631954c2c5faf1cfbeb477c32ee20266f94e090eca1451a691b0fc81"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/nvidia-mms1x00-n5400-qsfp112-1310nm-400gbps-optic-quick-look",
@@ -4521,8 +6333,8 @@
       "sha256": "41ae91a820f70d787fc76c92cd7f84ba30f59abe1c831a0529cb1ff80dc62fc5"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026",
-      "path": "collect-250926-servers-hardware/servers-hardware/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026-1.md",
       "title": "nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026",
       "domain": "servers-hardware",
       "role": "reference",
@@ -4550,12 +6362,44 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1257,
+      "bytes": 7440,
+      "sha256": "5017cfadfce110825b349988f3651b8d5ef031a50674c2d0c5540f90475471c8"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026-2.md",
+      "title": "nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Groq",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "gpus",
+        "inference",
+        "latency",
+        "rubin",
+        "throughput",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/clean4/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        77,
         81
       ],
       "canonical_for": [],
-      "words": 1434,
-      "bytes": 8531,
-      "sha256": "b2771d5ea661961aa2f89ce6fb7350670bf14be71c91b1594de37fdae70df4bf"
+      "words": 177,
+      "bytes": 1091,
+      "sha256": "8f8f7ec8ea01c37280f227335e3c9316c97ce9011b73476e03684917a3460a25"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/ollama-all-aboard-open-models-ollama-blog",
@@ -4933,8 +6777,8 @@
       "sha256": "b642da6f82575d4283c24ef1d22008cd15a6d4c6c29ff0b7ab8d8f9e8711003c"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/permissions",
-      "path": "collect-250926-servers-hardware/servers-hardware/permissions.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/permissions-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/permissions-1.md",
       "title": "Permissions",
       "domain": "servers-hardware",
       "role": "reference",
@@ -4951,12 +6795,33 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        229
+      ],
+      "canonical_for": [],
+      "words": 1168,
+      "bytes": 7944,
+      "sha256": "21bb14179a9ec4dbb1e452e1e847fb2ac0f3db560a2abfa337199394fca02338"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/permissions-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/permissions-2.md",
+      "title": "Permissions",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/permissions.md",
+      "source_anchor": "",
+      "source_lines": [
+        230,
         251
       ],
       "canonical_for": [],
-      "words": 1301,
-      "bytes": 8867,
-      "sha256": "f00d32b30f31eb40ba47972055c583b5167b683ab542caa4250e45e629f3ffed"
+      "words": 133,
+      "bytes": 923,
+      "sha256": "acf27bc39ad7a7f96d4068375b0186f407ff93b85b0a9bcbd2e93317e5de4dde"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/plugins",
@@ -5008,8 +6873,8 @@
       "sha256": "669d7968b065c7ea3a24e698b3111deed62b1762db6bec405cbacef134136f9c"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/providers",
-      "path": "collect-250926-servers-hardware/servers-hardware/providers.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/providers-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/providers-1.md",
       "title": "Providers",
       "domain": "servers-hardware",
       "role": "reference",
@@ -5018,6 +6883,39 @@
         "AWS",
         "Anthropic",
         "Google",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "bedrock",
+        "copilot",
+        "cost",
+        "foundry",
+        "gemini",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean4/providers.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        191
+      ],
+      "canonical_for": [],
+      "words": 1070,
+      "bytes": 7938,
+      "sha256": "5aa99d45ce9c2518bb49502a03fba752af22b3d51c34f76a1a227f1125041695"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/providers-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/providers-2.md",
+      "title": "Providers",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
         "Microsoft",
         "OpenAI",
         "OpenRouter",
@@ -5029,24 +6927,20 @@
         "aws",
         "bedrock",
         "copilot",
-        "cost",
         "embedding",
-        "foundry",
-        "gemini",
-        "pricing",
         "reasoning",
         "vllm"
       ],
       "source": "docs/RAG/clean4/providers.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        192,
         268
       ],
       "canonical_for": [],
-      "words": 1822,
-      "bytes": 13079,
-      "sha256": "0c3051888ccaa718924ad0c5227261cd9964b2f274e587eb4c25cd2188b401ed"
+      "words": 752,
+      "bytes": 5141,
+      "sha256": "864057b68d693ec8095a6166747d55077f28b39251d43c242e13a88d6c84070c"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/qotom-q30952ue-review-the-new-black-box-for-10g-networking",
@@ -5117,20 +7011,17 @@
       "sha256": "21c5d0d2708baaa543b8c43f2339f66c78c918a2b6d2b2db3100875b304eeaf6"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/qualcomm-computex-2026-live-coverage",
-      "path": "collect-250926-servers-hardware/servers-hardware/qualcomm-computex-2026-live-coverage.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/qualcomm-computex-2026-live-coverage-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/qualcomm-computex-2026-live-coverage-1.md",
       "title": "qualcomm-computex-2026-live-coverage",
       "domain": "servers-hardware",
       "role": "reference",
       "task": "reference",
       "actors": [
-        "Google",
         "Intel",
-        "Microsoft",
         "Nvidia",
         "Qualcomm",
-        "TSMC",
-        "United States"
+        "TSMC"
       ],
       "dates": [],
       "keywords": [
@@ -5139,24 +7030,61 @@
         "agent",
         "agentic",
         "agents",
-        "consumer",
-        "cost",
-        "distribution",
         "gpu",
         "inference",
         "intel",
-        "memory"
+        "memory",
+        "nvidia",
+        "robotics"
       ],
       "source": "docs/RAG/clean4/qualcomm-computex-2026-live-coverage.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        106
+      ],
+      "canonical_for": [],
+      "words": 1310,
+      "bytes": 7857,
+      "sha256": "eb5a16d715ab0e1c839a003b2f63564ee2926505d15108d0f737709d638aa17b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/qualcomm-computex-2026-live-coverage-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/qualcomm-computex-2026-live-coverage-2.md",
+      "title": "qualcomm-computex-2026-live-coverage",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "agent",
+        "agentic",
+        "agents",
+        "consumer",
+        "cost",
+        "distribution",
+        "intel",
+        "reasoning",
+        "robotics"
+      ],
+      "source": "docs/RAG/clean4/qualcomm-computex-2026-live-coverage.md",
+      "source_anchor": "",
+      "source_lines": [
+        107,
         215
       ],
       "canonical_for": [],
-      "words": 2155,
-      "bytes": 12967,
-      "sha256": "892a08a84b8f247a56fb1bd857163e94753d098c69351b65b3e7c154ba837796"
+      "words": 845,
+      "bytes": 5110,
+      "sha256": "8f4c963c4fe126ffc3f3f0f27731bcaced95b93803f3b66030f2b1de41effc94"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/qualcomm-modular-open-sourced-at-modcon-2026",
@@ -5238,8 +7166,47 @@
       "sha256": "83e0283c97444587d2d6d5404b9c248242f47b997a920e563d25043e88c52255"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation",
-      "path": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation-1.md",
+      "title": "qwen3-6-how-to-run-locally-unsloth-documentation",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Apple",
+        "Hugging Face",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "qwen",
+        "agentic",
+        "benchmarks",
+        "context window",
+        "fine-tuning",
+        "gguf",
+        "gpu",
+        "gpus",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/qwen3-6-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        201
+      ],
+      "canonical_for": [],
+      "words": 1235,
+      "bytes": 7865,
+      "sha256": "93706d24f2b7ba1f85deb02dc8a7ff536a3c8bad5ec72dd0768cf1e601502a1b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation-2.md",
       "title": "qwen3-6-how-to-run-locally-unsloth-documentation",
       "domain": "servers-hardware",
       "role": "reference",
@@ -5257,29 +7224,61 @@
       ],
       "dates": [],
       "keywords": [
-        "qwen",
         "agentic",
         "benchmarks",
         "blackwell",
         "claude",
-        "context window",
         "decode",
         "distribution",
-        "fine-tuning",
         "fp4",
         "fp8",
-        "gguf"
+        "gguf",
+        "gpu",
+        "gpus",
+        "inference"
       ],
       "source": "docs/RAG/clean4/qwen3-6-how-to-run-locally-unsloth-documentation.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        202,
+        478
+      ],
+      "canonical_for": [],
+      "words": 1235,
+      "bytes": 7939,
+      "sha256": "afc251d3e89456ebbcec4bc98431b745c0fa59121488c50d570407bf16148c9b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/qwen3-6-how-to-run-locally-unsloth-documentation-3.md",
+      "title": "qwen3-6-how-to-run-locally-unsloth-documentation",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Nvidia",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "blackwell",
+        "gpus",
+        "memory",
+        "moe",
+        "nvfp4",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean4/qwen3-6-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        479,
         489
       ],
       "canonical_for": [],
-      "words": 2620,
-      "bytes": 16654,
-      "sha256": "a1747f3b571d54ccdd4a12ae9bd160f10b1b8a27646badc7072115febc8004bc"
+      "words": 150,
+      "bytes": 850,
+      "sha256": "185e1df21a747c96f4609ff4a25de302435ea0a0ddfb868ff01bfbdc64893fff"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/references",
@@ -5327,8 +7326,8 @@
       "sha256": "ca1910ba6de914a0568d9df0567b9f4773057bc939309e9cd8ab0e520a24db92"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth",
-      "path": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth-1.md",
       "title": "Train & run models on AMD GPUs with Unsloth",
       "domain": "servers-hardware",
       "role": "reference",
@@ -5354,24 +7353,99 @@
         "gpus",
         "agent",
         "agents",
-        "benchmarks",
         "claude",
-        "consumer",
-        "datacenter",
         "deepseek",
         "fine-tuning",
-        "gguf"
+        "gguf",
+        "glm",
+        "inference",
+        "intel"
       ],
       "source": "docs/RAG/clean4/run models on AMD GPUs with Unsloth.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        93
+      ],
+      "canonical_for": [],
+      "words": 781,
+      "bytes": 6365,
+      "sha256": "a71fca87b420bcf9eb6b57c5bc50bc0488c15547713608cbb27bcb86b50e402a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth-2.md",
+      "title": "Train & run models on AMD GPUs with Unsloth",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Unsloth",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "gpus",
+        "benchmarks",
+        "consumer",
+        "datacenter",
+        "fine-tuning",
+        "gguf",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "lora"
+      ],
+      "source": "docs/RAG/clean4/run models on AMD GPUs with Unsloth.md",
+      "source_anchor": "",
+      "source_lines": [
+        94,
+        251
+      ],
+      "canonical_for": [],
+      "words": 877,
+      "bytes": 5252,
+      "sha256": "26b3a09cf212df16fc740d2bf5fa275de529780027980b88a47a9a823988304d"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/run-models-on-amd-gpus-with-unsloth-3.md",
+      "title": "Train & run models on AMD GPUs with Unsloth",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "gpus",
+        "agent",
+        "agents",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "qlora",
+        "safeguards",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/run models on AMD GPUs with Unsloth.md",
+      "source_anchor": "",
+      "source_lines": [
+        252,
         282
       ],
       "canonical_for": [],
-      "words": 2258,
-      "bytes": 16310,
-      "sha256": "ef8a1a12735aa4b4817f8aa7f560f9d0a7fb9eb3d1886b3428d378f2cd8a8f96"
+      "words": 600,
+      "bytes": 4693,
+      "sha256": "5651d68ff885bbe64422c68d53b5bdb9519476a957b4add6a776ec848b3e191a"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/saving-to-gguf-unsloth-documentation",
@@ -5656,8 +7730,8 @@
       "sha256": "87a4e59eb58b5facd9fc02b0e409b16d8a3a392a38ad62cd3729a46aa0997195"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review",
-      "path": "collect-250926-servers-hardware/servers-hardware/supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review-1.md",
       "title": "supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review",
       "domain": "servers-hardware",
       "role": "reference",
@@ -5679,12 +7753,33 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1366,
+      "bytes": 7879,
+      "sha256": "4dc074ebe6f9db7e58a8efd534bbe953dc65a74dfbaca58a8f603f684ea4d5c7"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review-2.md",
+      "title": "supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/supermicro-sys-110a-16c-rn10sp-1u-25gbe-intel-snow-ridge-server-review.md",
+      "source_anchor": "",
+      "source_lines": [
+        77,
         81
       ],
       "canonical_for": [],
-      "words": 1424,
-      "bytes": 8258,
-      "sha256": "fe2f01b8bc7a867c10a12724198a67569e8a191f105b5d90734f16da529b8245"
+      "words": 58,
+      "bytes": 379,
+      "sha256": "8da7c79323983aa2953d90d05facea37624bb6a0763a9f0f6a405f56d389dfd2"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/supermicro-sys-112c-tn-review-1p-intel-xeon-6-1u-server",
@@ -5960,8 +8055,32 @@
       "sha256": "087c27fce6be30f99b1bde3bb0f653daac8bbcb5e660d88bac1812b08d1aa6cd"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama",
-      "path": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama-1.md",
+      "title": "with pip",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "parameters",
+        "tool calling"
+      ],
+      "source": "docs/RAG/clean4/tool-calling-ollama.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        260
+      ],
+      "canonical_for": [],
+      "words": 809,
+      "bytes": 7136,
+      "sha256": "00de38e6fd833d963ec61b49ae59192728fe53d5466a75b739c1230adf72332d"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama-2.md",
       "title": "with pip",
       "domain": "servers-hardware",
       "role": "reference",
@@ -5976,17 +8095,40 @@
       "source": "docs/RAG/clean4/tool-calling-ollama.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        261,
+        516
+      ],
+      "canonical_for": [],
+      "words": 942,
+      "bytes": 7904,
+      "sha256": "045b9296559e2f0d2625e46a48593417916d69ce152bd847e3ce3feb715ee5f9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/tool-calling-ollama-3.md",
+      "title": "with pip",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "parameters"
+      ],
+      "source": "docs/RAG/clean4/tool-calling-ollama.md",
+      "source_anchor": "",
+      "source_lines": [
+        517,
         662
       ],
       "canonical_for": [],
-      "words": 2231,
-      "bytes": 19459,
-      "sha256": "968d19ff7261b194cd32fcaf934a1c0859056bdc071769c9b7cd78c15a413354"
+      "words": 480,
+      "bytes": 4419,
+      "sha256": "b349fa4528d4fc842b83e295341006371f5630a9cff278bf2959112f5bb9e779"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/tools",
-      "path": "collect-250926-servers-hardware/servers-hardware/tools.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/tools-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/tools-1.md",
       "title": "Tools",
       "domain": "servers-hardware",
       "role": "reference",
@@ -5995,19 +8137,42 @@
       "dates": [],
       "keywords": [
         "agent",
-        "agents",
-        "mcp"
+        "agents"
       ],
       "source": "docs/RAG/clean4/tools.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        188
+      ],
+      "canonical_for": [],
+      "words": 1200,
+      "bytes": 7763,
+      "sha256": "7f1ef62a304042e78f98bbd9a370c8c286e9074836e946ea34c9b8402848c054"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/tools-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/tools-2.md",
+      "title": "Tools",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "mcp"
+      ],
+      "source": "docs/RAG/clean4/tools.md",
+      "source_anchor": "",
+      "source_lines": [
+        189,
         202
       ],
       "canonical_for": [],
-      "words": 1361,
-      "bytes": 8905,
-      "sha256": "02c75c4e5a5e7e45ed1a08d8830198b1746d2cc60f139443a7d2a3fa731a7d65"
+      "words": 161,
+      "bytes": 1142,
+      "sha256": "5f61a0ecad753212788b77fb2088b9eb82105fe4f8c0f583d4fc2d44edc555e9"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/troubleshooting-faqs-unsloth-documentation",
@@ -6131,8 +8296,8 @@
       "sha256": "f0dd4dad9201e165a1d0063954007d525b189e352b8de3eefff47d59f8656d8d"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-studio-installation-unsloth-documentation",
-      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-studio-installation-unsloth-documentation.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-studio-installation-unsloth-documentation-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-studio-installation-unsloth-documentation-1.md",
       "title": "unsloth-studio-installation-unsloth-documentation",
       "domain": "servers-hardware",
       "role": "reference",
@@ -6140,8 +8305,6 @@
       "actors": [
         "AMD",
         "Apple",
-        "Google",
-        "Hugging Face",
         "Intel",
         "Nvidia",
         "Unsloth"
@@ -6150,12 +8313,46 @@
       "keywords": [
         "amd",
         "blackwell",
+        "gguf",
+        "gpu",
+        "gpus",
+        "intel",
+        "llama",
+        "llama.cpp",
+        "nvidia",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/unsloth-studio-installation-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        143
+      ],
+      "canonical_for": [],
+      "words": 1241,
+      "bytes": 7941,
+      "sha256": "ff3c27a3bc6cf08462c14639e142b0e1e48f184e906bbded38012b7e44241e52"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/unsloth-studio-installation-unsloth-documentation-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/unsloth-studio-installation-unsloth-documentation-2.md",
+      "title": "unsloth-studio-installation-unsloth-documentation",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "Nvidia",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
         "fine-tuning",
         "gguf",
         "gpu",
         "gpus",
         "inference",
-        "intel",
         "llama",
         "llama.cpp",
         "nvidia",
@@ -6164,13 +8361,13 @@
       "source": "docs/RAG/clean4/unsloth-studio-installation-unsloth-documentation.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        144,
         222
       ],
       "canonical_for": [],
-      "words": 1769,
-      "bytes": 11756,
-      "sha256": "1c8f411fcba2dfaa921c2de2677f3f86c9927a7e4923d8954a642a7c5d636039"
+      "words": 528,
+      "bytes": 3815,
+      "sha256": "8c7b0502a0d81564502267a966e1857c4db3668093d06d6ed3606c6fa0faf677"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/usage-api",
@@ -6448,8 +8645,33 @@
       "sha256": "2fcefec852b01ab4cae0e732693e7a2a2bde7d896296cb8a9056e229f41b3615"
     },
     {
-      "id": "collect-250926-servers-hardware/servers-hardware/zen",
-      "path": "collect-250926-servers-hardware/servers-hardware/zen.md",
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-1.md",
+      "title": "Zen",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "OpenRouter"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents"
+      ],
+      "source": "docs/RAG/clean4/zen.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        30
+      ],
+      "canonical_for": [],
+      "words": 286,
+      "bytes": 1983,
+      "sha256": "2acea6578c1e5bac0cf3ff94fe3f4692afeafe1a62ee2df0ec9f5b96bae73e65"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-2.md",
       "title": "Zen",
       "domain": "servers-hardware",
       "role": "reference",
@@ -6462,12 +8684,99 @@
         "Meta",
         "MiniMax",
         "Moonshot",
-        "Nvidia",
         "OpenAI",
-        "OpenRouter",
-        "United States",
         "Z.ai",
         "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "claude",
+        "deepseek",
+        "fable 5",
+        "gemini",
+        "gemini 3.8",
+        "glm",
+        "gpt-5.6",
+        "gpt-6",
+        "grok",
+        "grok 4",
+        "kimi"
+      ],
+      "source": "docs/RAG/clean4/zen.md",
+      "source_anchor": "",
+      "source_lines": [
+        31,
+        109
+      ],
+      "canonical_for": [],
+      "words": 845,
+      "bytes": 7897,
+      "sha256": "c0d34f79c251364f36f7b08d3bd864cb6853083beb6468a71bb56a74bf4dad83"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-3.md",
+      "title": "Zen",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "claude",
+        "deepseek",
+        "fable 5",
+        "gemini",
+        "gemini 3.8",
+        "glm",
+        "grok",
+        "grok 4",
+        "kimi",
+        "luna",
+        "muse"
+      ],
+      "source": "docs/RAG/clean4/zen.md",
+      "source_anchor": "",
+      "source_lines": [
+        110,
+        227
+      ],
+      "canonical_for": [],
+      "words": 1549,
+      "bytes": 7145,
+      "sha256": "55382896a72d7448e0427ec513bf9c99bf2d6584ac60d8da838597bfe3cc193e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-4.md",
+      "title": "Zen",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "Z.ai"
       ],
       "dates": [
         "2026-02-06",
@@ -6483,27 +8792,26 @@
       "keywords": [
         "agent",
         "agents",
-        "astra",
         "benchmark",
         "claude",
-        "deepseek",
-        "fable 5",
         "gemini",
-        "gemini 3.8",
         "glm",
-        "gpt-5.6",
-        "gpt-6"
+        "kimi",
+        "muse",
+        "muse spark",
+        "nvidia",
+        "opus 4"
       ],
       "source": "docs/RAG/clean4/zen.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        228,
         307
       ],
       "canonical_for": [],
-      "words": 3832,
-      "bytes": 24775,
-      "sha256": "2146a9859dd93cb38c0a6225f9a17ce8494757c83beee8fc74d010cd63d7452d"
+      "words": 1152,
+      "bytes": 7750,
+      "sha256": "35da7d9c6689dfe9e5e3ad41cd7d947398e402f15e60bb37735e5271eac69bb3"
     }
   ]
 }

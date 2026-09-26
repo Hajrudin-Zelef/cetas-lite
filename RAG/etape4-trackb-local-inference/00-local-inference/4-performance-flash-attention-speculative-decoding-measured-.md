@@ -6,12 +6,12 @@ role: deep-dive
 task: model-release
 actors: ["AMD", "Alibaba", "Apple", "DeepSeek", "Nvidia", "OpenAI", "SGLang", "Z.ai", "vLLM"]
 dates: ["2026-08-18", "2026-08-19", "2026-08-27", "2026-09"]
-keywords: ["attention", "flash attention", "speculative decoding", "amd", "apache", "bitnet", "consumer", "decode", "deepseek", "diffusion", "distribution", "gguf"]
+keywords: ["attention", "flash attention", "speculative decoding", "amd", "apache", "bitnet", "decode", "deepseek", "diffusion", "distribution", "glm", "gpu"]
 source: docs/RAG/etape4_trackB_local_inference.md
 source_anchor: ""
-source_lines: [133, 180]
+source_lines: [133, 178]
 section: "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
-sha256: c933bd2f9dbe33760cb209a9ec2f26583799b835e156f3f26849790556250123
+sha256: 358d52a599a8b605cae2c01c961a697ff1c7f20ab29d7f905eeef6d5df5f7556
 ---
 
 # 4. Performance: flash attention, speculative decoding, measured pp/tg
@@ -61,6 +61,4 @@ sha256: c933bd2f9dbe33760cb209a9ec2f26583799b835e156f3f26849790556250123
 - Self-speculative decoding (n-gram #1261, suffix #1646); DFlash initial support (#1970); DSpark initial support (#2280).
 - Server extras: **OpenAI `/v1/responses` endpoint** (#1184), function-call support (#628), jinja template support (#677), expiring logit bias, string-ban, Adaptive-P sampler, multimodal vision in llama-mtmd-cli and llama-server, mikupad alt WebUI, MCP support (#1904), dynamic control-vector endpoints, on-demand tensor reload.
 - Checkpoints for recurrent models (#1310/#1398); GLM-DSA indexer cache; GLM-5.2 vision hack (#2283).
-
-**Why it matters:** the go-to engine for **CPU and hybrid CPU/GPU MoE inference** (DeepSeek-class models on consumer hardware); origin of IQK quants widely considered the best GGUF quality-per-bit; source of several ideas later re-adopted upstream (auto-fit/`--fit` logic). **Scope limits (explicit):** only CPU (AVX2+/NEON+) and CUDA (Turing+) are fully supported backends — ROCm/Vulkan/Metal issues are not handled [secondary] (ik README). Only use `-rtr` (row-interleaved repack) deliberately for k-quants, which lack CUDA row-interleaved implementations [secondary] (ik README).
 

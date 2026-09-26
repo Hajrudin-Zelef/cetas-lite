@@ -9,9 +9,9 @@ dates: ["2026-05", "2026-07", "2026-09-22"]
 keywords: ["agents", "benchmark", "benchmarks", "consumer", "license", "open source", "throughput"]
 source: docs/RAG/etape7_phaseG_linuxnet_vpn.md
 source_anchor: ""
-source_lines: [386, 466]
+source_lines: [386, 460]
 section: "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
-sha256: 623a1993387c781534bc4bb30b3f2b826fecb359860478803e3ea366019d9234
+sha256: b1e0862f19b94d2ba1982efa08a5e970ee62a4640ddb1591e6b2e115707eee82
 ---
 
 # 11. OpenVPN 2.6/2.7 and DCO
@@ -90,10 +90,4 @@ sha256: 623a1993387c781534bc4bb30b3f2b826fecb359860478803e3ea366019d9234
 | Typical sizing | 4 vCPU / 8–16 GB start [secondary] | heavier (full capture) [secondary] | varies [unverified] |
 
 ### 13.5 Performance guidance (methodology-preserving)
-
-- Do not compare headline numbers across the WireGuard-vs-OpenVPN benchmarks cited in section 11.3: the datazone.de 2026 benchmark [independent], the voxihost write-up [secondary], and consumer-VPN comparisons [secondary] use different hardware, ciphers, stream counts, and DCO states.
-- The only safe directional summary: kernel-path VPNs (WireGuard, OpenVPN with DCO, IPsec/XFRM) substantially outperform userspace tun-based OpenVPN on the same hardware; among kernel-path options, results depend on cipher, MTU, and CPU crypto acceleration [secondary/independent].
-- For mesh overlays, relay-vs-direct path selection dominates real-world performance more than protocol crypto speed: a DERP-relayed Tailscale path can underperform a direct WireGuard link regardless of cipher efficiency [secondary].
-
----
 

@@ -9,9 +9,9 @@ dates: ["2026-05", "2026-05-13", "2026-07-01", "2026-07-08", "2026-07-16"]
 keywords: ["hyperscaler", "inference", "acquisition", "agent", "agents", "aws", "backlog", "bedrock", "capex", "claude", "cohere", "copilot"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [1692, 1801]
+source_lines: [1692, 1799]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 3e0cd06cd6017677b57288ec0146670194bd96d0e8a3e225237bc74c3ceddc0f
+sha256: 0ec10f9fb8bb5af887a9ee8a6e0ff90cc94b6b60a552cdc1bb9f8fb6f46cb3b9
 ---
 
 # §13 — INFERENCE HYPERSCALERS: CEREBRAS, SAMBANOVA, TOGETHER AI, FIREWORKS AI, NEBIUS, COREWEAVE
@@ -123,6 +123,4 @@ sha256: 3e0cd06cd6017677b57288ec0146670194bd96d0e8a3e225237bc74c3ceddc0f
 | Mistral La Plateforme | Mistral family | 1P (+ Azure Local route) |
 | Cohere Platform | Command A+; Tiny Aya | 1P |
 | Sakana API | Fugu orchestration (routes to Claude/GPT/Gemini/Nemotron pools) | Meta-router |
-
-**Routing-layer trend (2026):** the value migrates from single-model APIs to routers/orchestrators — OpenRouter (acquired by Stripe), Sakana Fugu (multi-agent orchestration), Microsoft Foundry, Mistral Workflows, AWS Bedrock AgentCore. Inference is becoming a routing problem, not just a serving problem. [research finding]
 

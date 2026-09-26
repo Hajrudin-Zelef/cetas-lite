@@ -6,13 +6,13 @@ role: deep-dive
 task: reference
 actors: ["China", "DeepSeek", "Huawei", "LongCat", "Meituan", "Nvidia", "OpenRouter", "Z.ai"]
 dates: ["2025-09-22", "2025-11", "2026-01-14", "2026-05-29", "2026-06-12", "2026-06-29", "2026-06-30", "2026-07-05", "2026-08-13", "2026-08-28"]
-keywords: ["agent", "apache", "ascend", "attention", "compute", "cost", "decode", "deepseek", "disaggregated", "embedding", "glm", "inference"]
+keywords: ["agent", "apache", "ascend", "attention", "cost", "decode", "deepseek", "disaggregated", "embedding", "glm", "inference", "latency"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [2603, 2674]
+source_lines: [2603, 2667]
 section: "§6. LongCat and Meituan"
 delta_of: ai-industry-kb-2026
-sha256: ed9ec550a5c279072be5f42a998a608f0197abdf998234d8eae5fe7203ef86e3
+sha256: 01dbd6064db85577f2cd37c902b348128507bb1c3352cbb5c9eec664e4a65ade
 ---
 
 # §6. LongCat and Meituan
@@ -79,11 +79,4 @@ This section also carries the "Other 2026 Chinese open-weight flagships": **Tenc
 - **Post-training (MOPD)**: a dedicated pipeline fusing **three teacher expert groups — Agent, Reasoning, Interaction** — into one unified model [SECONDARY] (marktechpost.com).
 - Serving stack: **6D parallelism**, **prefill-decode disaggregated architecture**, **"super kernels"**, and **L2-cache weight prefetching** to hide I/O latency [SECONDARY] (marktechpost.com).
 - The stability claim is framed as mattering **on non-Nvidia hardware, where tooling is less mature** [SECONDARY] (marktechpost.com).
-
-### Training infrastructure (mbrukman GitHub technical notes)
-- **Determinism & reliability**: enforced determinism for training reproducibility; numerical reliability via optimized foundational operators; **automated monitoring for seamless fault recovery** to secure stable production operations [SECONDARY] (github.com/mbrukman/longcat-2.0).
-- **Training at scale**: 6D parallelism integrated with **super-node architectures**; multi-dimensional memory optimizations; **pioneering large-scale deployment of a customized Muon optimizer** [SECONDARY].
-- **Long-context training**: optimized in-house operators; context scaled to 1M via an **all-gather-based CP (context-parallelism) scheme**; compute-communication overlap to minimize synchronization overhead [SECONDARY].
-- Inference optimization on domestic superpod accelerators: **indexer pipelining and KV-cache parallelism** to mitigate KV-cache overhead; **explicit per-core control** for fully parallel dense+MoE execution; super kernels; L2 weight prefetching; high-speed interconnects for scale-up/out [SECONDARY].
-- Serving: prefill-decode disaggregation with tailored schemes — **CPP and SP for prefill, KVP and large EP for decode** — plus **asynchronous load balancing** against stage-specific bottlenecks [SECONDARY].
 

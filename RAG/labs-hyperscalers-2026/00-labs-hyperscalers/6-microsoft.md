@@ -9,9 +9,9 @@ dates: ["2026-03", "2026-04", "2026-05", "2026-06", "2026-06-02", "2026-07", "20
 keywords: ["accelerator", "agent", "agentic", "agents", "agi", "benchmark", "benchmarks", "chatgpt", "claude", "compute", "copilot", "cost"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [868, 913]
+source_lines: [868, 915]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 791493bd9f342595429c3834345940af898ed2ef9f5d5119fe562637b41272d1
+sha256: b976bacdc1ef4f16d292ded237a6af4fdc85cbad43f6bae61003c0fbff627a3e
 ---
 
 # §6 — MICROSOFT
@@ -61,4 +61,6 @@ sha256: 791493bd9f342595429c3834345940af898ed2ef9f5d5119fe562637b41272d1
 - **Earlier Phi-4 family (timeline context, pre-window):** Phi-4 (14B, Dec 2024), Phi-4-mini (3.8B, Feb 2025), Phi-4-multimodal-instruct (5.6B, Feb 2025), Phi-4-reasoning / reasoning-plus / mini-reasoning (Apr 2025) — all MIT-licensed. **No Phi-5 announcement found in window; no Phi-5 release in 2026 confirmed.**
 - **Phi lead personnel (context):** Sébastien Bubeck, key Phi researcher, left Microsoft for OpenAI (reported Dec 2025) [secondary].
 - **Project Polaris (secondary only):** mirrors claim Microsoft announced Project Polaris, an in-house mixture-of-experts coding model to replace GPT-4 Turbo as the default GitHub Copilot model starting August 2026, with a 3-month fallback window; runs on Maia accelerators; companion fine-tuning service "Turing Forge"; claimed to outperform GPT-4 Turbo on HumanEval and MBPP [unverified][secondary]. Not corroborated by an official Microsoft announcement in collected sources.
+
+### 6.7 On-device models: Microsoft Aion 1.0 / Copilot+ PC pivot (Build 2026)
 

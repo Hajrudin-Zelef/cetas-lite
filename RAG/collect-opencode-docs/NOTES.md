@@ -10,8 +10,9 @@ Chaque chunk reçoit un en-tête YAML avec `source` = chemin de la fiche source,
 `source_lines: [1, N]` (bornes de la fiche), `task` dérivée du champ `Type`
 (article, model-card, benchmark, tutorial, documentation, review).
 
-- **4 fiches** · **4 chunks**
-- 1 fiche = 1 chunk : les fiches sont auto-suffisantes, aucune fusion ni découpe.
+- **6 fiches** · **14 chunks** (chunker v2, garde-fou 8000 car. : les fiches
+  `config` et `providers` — ajoutées le 2026-09-26 — sont découpées, les 4 autres
+  tiennent en un chunk).
 - `00_INDEX.md` et `_TEMPLATE.md` (à la racine de la collecte) sont exclus du chunking
   (scaffolding de collecte, pas un contenu à interroger). Les sources restent intacts
   sur le disque.

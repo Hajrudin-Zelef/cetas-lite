@@ -9,9 +9,9 @@ dates: ["2025-06-12", "2026-04-28"]
 keywords: ["benchmark", "benchmarks", "pricing", "accelerator", "agent", "agi", "amd", "blackwell", "compute", "deepseek", "fp4", "fp8"]
 source: docs/RAG/etape5_trackB_amd.md
 source_anchor: ""
-source_lines: [52, 98]
+source_lines: [52, 100]
 section: "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
-sha256: 719900cbc9b2c1c43306d9360d9bc5b7101a11b7d4d78e43ace0337f65b6314e
+sha256: 38a04268093389de2e16a9440ef6a1856534ed2cb1685efca9740da8071d054b
 ---
 
 # 2. INSTINCT MI350X / MI355X (CDNA 4) — specs, release status, benchmarks vs B200, pricing, customers
@@ -62,4 +62,6 @@ At launch AMD claimed for MI355X **[vendor-reported — https://www.crn.com/news
 - Rack-scale traction: Pegatron preparing **128-GPU racks** (EIA-compliant 96-GPU variant offers ~27 TB memory); full AMD rack vision: 96–128 MI350-series GPUs, up to ~36 TB HBM3E, ~2.6 exaflops FP4 / ~1.3 exaflops FP8, paired with EPYC "Turin" and Pollara 400 NICs **[secondary — https://webpronews.com (via search result); https://www.tweaktown.com/news/105766/amd-launches-instinct-mi350-series-ai-chips-185-billion-transistors-288gb-hbm3e-memory/index.html]**. ⚠️ The 30,000-unit figure and rack claims come from secondary aggregators.
 
 ---
+
+## 3. INSTINCT MI400 SERIES — roadmap status, announced specs, timeline
 

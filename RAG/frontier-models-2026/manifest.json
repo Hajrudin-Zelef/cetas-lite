@@ -4,7 +4,7 @@
   "source": "docs/RAG/Grands titres IA modèlesEN.md",
   "source_lines": 510,
   "source_sha256": "77fa9d1eadc56fb302ea22fc7a42cc6e2477d5cb5d6f4938e0c1238ad60ffc04",
-  "chunk_count": 12,
+  "chunk_count": 13,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -77,12 +77,37 @@
       "source_anchor": "",
       "source_lines": [
         7,
+        90
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 7730,
+      "sha256": "bca46acb9b782a0be94bdefd24f7be390e283df22ed64dae2fe2d8f7921f8971",
+      "section": "VOLET 1 — Wave 1 Research Fiche (EN)"
+    },
+    {
+      "id": "frontier-models-2026/01-volet-1-wave-1-research-fiche-en/what-distinguished-it-in-2026",
+      "path": "frontier-models-2026/01-volet-1-wave-1-research-fiche-en/what-distinguished-it-in-2026.md",
+      "title": "What distinguished it in 2026",
+      "domain": "volet-1-wave-1-research-fiche-en",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agentic",
+        "pricing"
+      ],
+      "source": "docs/RAG/Grands titres IA modèlesEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        91,
         95
       ],
       "canonical_for": [],
-      "words": 1142,
-      "bytes": 8041,
-      "sha256": "9d3e32af642105aa4f2063cf46b513ba429ff363711d1c3511cf57ab0b853a9a",
+      "words": 39,
+      "bytes": 311,
+      "sha256": "ae78cbac12fc7c985379509f02642681512ac6cea2331cd34a42bb41fe61eb72",
       "section": "VOLET 1 — Wave 1 Research Fiche (EN)"
     },
     {

@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
   "source_lines": 750,
   "source_sha256": "241fcef5c1d56e8cceacbed634cd9bac1a19b0ab8e2444c30e953c6e95c05e7e",
-  "chunk_count": 11,
+  "chunk_count": 23,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -15,13 +15,38 @@
       "role": "deep-dive",
       "task": "hardware",
       "actors": [
-        "Broadcom",
-        "Samsung"
+        "Broadcom"
       ],
       "dates": [
         "2026-09",
         "2026-09-22"
       ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        11
+      ],
+      "canonical_for": [],
+      "words": 197,
+      "bytes": 1491,
+      "sha256": "ce7097cf3de66fe9131c6aea77b9581e54ad4ec63c6eab6e2b24aba5032833b9",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-2",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-2.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 2)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Samsung"
+      ],
+      "dates": [],
       "keywords": [
         "benchmark",
         "consumer",
@@ -29,25 +54,48 @@
         "dram",
         "latency",
         "memory",
-        "nand",
-        "research"
+        "nand"
       ],
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
-        1,
-        48
+        12,
+        38
       ],
       "canonical_for": [],
-      "words": 1650,
-      "bytes": 11435,
-      "sha256": "8e25ecb393100addf955af60800dc2f9a3da8516d48170b949b1fbf4d1c31832",
+      "words": 1169,
+      "bytes": 7950,
+      "sha256": "bd297a59dfe76f68f758949e8020c2685b50c03f169eaa6d7cfe5cc6a669e22c",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
       "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d2-end-to-end-data-path-protection-t10-pi-dif-dix-and-nvme",
       "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d2-end-to-end-data-path-protection-t10-pi-dif-dix-and-nvme.md",
       "title": "D2 — End-to-end data path protection: T10 PI / DIF / DIX and NVMe",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "latency"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        39,
+        50
+      ],
+      "canonical_for": [],
+      "words": 299,
+      "bytes": 2066,
+      "sha256": "2740066cab97ec4bbb1aa7bd3c10a960b50fc47f7922a1ba6182c71adc974f28",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d3-firmware-resilience-nist-sp-800-193-and-storage-specific-",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d3-firmware-resilience-nist-sp-800-193-and-storage-specific-.md",
+      "title": "D3 — Firmware resilience: NIST SP 800-193 and storage-specific controls",
       "domain": "step-9-phase-d-data-protection-raid-hardware",
       "role": "deep-dive",
       "task": "hardware",
@@ -58,30 +106,79 @@
       ],
       "dates": [],
       "keywords": [
-        "containment",
         "cost",
         "dram",
         "memory",
         "nand",
-        "research",
         "throughput"
       ],
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
-        49,
-        106
+        51,
+        80
       ],
       "canonical_for": [],
-      "words": 1986,
-      "bytes": 14081,
-      "sha256": "7853d34c8e273b3a4a91b8798685ff2341677037968dddc6386c9121bcc2f9ce",
+      "words": 1044,
+      "bytes": 7330,
+      "sha256": "248441a8c349f2f57c3800d28576eac95d94127b5661c0d4d433dac54acdef80",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
       "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d4-secure-erase-and-sanitize-retiring-drives-without-leaking",
       "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d4-secure-erase-and-sanitize-retiring-drives-without-leaking.md",
       "title": "D4 — Secure erase and sanitize: retiring drives without leaking data",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "containment",
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        81,
+        108
+      ],
+      "canonical_for": [],
+      "words": 939,
+      "bytes": 6754,
+      "sha256": "45628df1786dae00f982e7f973d49ca16b239d4f40a6589ef4a86723b4f92cc7",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-6",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-6.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 6)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "nand"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        109,
+        138
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 7925,
+      "sha256": "6dbbe997cf5e2344c2ec0917c601de7b9ee7048b73f69fb03078658a8d48b985",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d5-reliability-metrics-mtbf-afr-uber-and-how-to-read-them",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d5-reliability-metrics-mtbf-afr-uber-and-how-to-read-them.md",
+      "title": "D5 — Reliability metrics: MTBF, AFR, UBER, and how to read them",
       "domain": "step-9-phase-d-data-protection-raid-hardware",
       "role": "deep-dive",
       "task": "hardware",
@@ -98,19 +195,19 @@
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
-        107,
-        172
+        139,
+        174
       ],
       "canonical_for": [],
-      "words": 2202,
-      "bytes": 15216,
-      "sha256": "7571487d53042f6918152d9b65c9be1fd50d6c2addb8a36c0a2acaae35cbb953",
+      "words": 1096,
+      "bytes": 7286,
+      "sha256": "1c71dbac4db28a7256a0a4be8f3203086bb1cb6d5458894cd9e5709df435cd40",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
-      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d6-wear-leveling-garbage-collection-over-provisioning-trim",
-      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d6-wear-leveling-garbage-collection-over-provisioning-trim.md",
-      "title": "D6 — Wear leveling, garbage collection, over-provisioning, TRIM",
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d7-smart-monitoring-and-thermal-management",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d7-smart-monitoring-and-thermal-management.md",
+      "title": "D7 — SMART monitoring and thermal management",
       "domain": "step-9-phase-d-data-protection-raid-hardware",
       "role": "deep-dive",
       "task": "hardware",
@@ -123,19 +220,42 @@
         "dram",
         "latency",
         "memory",
-        "nand",
+        "nand"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        175,
+        204
+      ],
+      "canonical_for": [],
+      "words": 940,
+      "bytes": 6469,
+      "sha256": "2c5c8e9b5a105a6121a157521b6e41ce02ab230e972f4c67c9377fc91f733a39",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-9",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-9.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 9)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
         "throughput"
       ],
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
-        173,
-        244
+        205,
+        213
       ],
       "canonical_for": [],
-      "words": 2216,
-      "bytes": 15934,
-      "sha256": "a2a051bcc5b41430c065e5c0c9ec7e14996d4f9fa8eb71168804bab4e51356bb",
+      "words": 276,
+      "bytes": 2320,
+      "sha256": "f35d96daea4e5a972412c70f3ac048b0516ff3b3f16568ad35084693e6ae49bc",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
@@ -145,9 +265,33 @@
       "domain": "step-9-phase-d-data-protection-raid-hardware",
       "role": "deep-dive",
       "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "memory",
+        "nand"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        214,
+        246
+      ],
+      "canonical_for": [],
+      "words": 999,
+      "bytes": 7128,
+      "sha256": "959e1e2be2106eede472ef947786698e660c82b66792bb6560065c37e9a18f32",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-11",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-11.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 11)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
       "actors": [
-        "Broadcom",
-        "Stripe"
+        "Broadcom"
       ],
       "dates": [
         "2025-08-05"
@@ -156,10 +300,7 @@
         "accelerator",
         "benchmark",
         "compute",
-        "consumer",
-        "cost",
         "disaggregated",
-        "energy",
         "latency",
         "nand",
         "pricing"
@@ -167,13 +308,70 @@
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
-        245,
+        247,
+        274
+      ],
+      "canonical_for": [],
+      "words": 1122,
+      "bytes": 7966,
+      "sha256": "383d133366c75444fbe402b378e36def8b367cda52b73c841448be5e5473f3be",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d9-raid-levels-math-write-penalties-and-rebuild-reality",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d9-raid-levels-math-write-penalties-and-rebuild-reality.md",
+      "title": "D9 — RAID levels: math, write penalties, and rebuild reality",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "consumer",
+        "energy",
+        "latency",
+        "nand"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        275,
+        299
+      ],
+      "canonical_for": [],
+      "words": 735,
+      "bytes": 4733,
+      "sha256": "880162560ea8cf76e09bd784b9b4ef3f3a5fa7b36ed0016a6588277d24fce9ec",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-13",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-13.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 13)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Stripe"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "cost",
+        "energy"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        300,
         333
       ],
       "canonical_for": [],
-      "words": 2850,
-      "bytes": 18717,
-      "sha256": "91ce82258f8422345b961e26abea29d9a3456822a5e5d50568edae72aac29f24",
+      "words": 985,
+      "bytes": 5965,
+      "sha256": "5872b3355a8f7c333310b3ab0675e5273507853a1f406f471d737f37f7496377",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
@@ -184,7 +382,34 @@
       "role": "deep-dive",
       "task": "hardware",
       "actors": [
-        "Broadcom",
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "latency",
+        "serdes",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        334,
+        368
+      ],
+      "canonical_for": [],
+      "words": 1052,
+      "bytes": 7172,
+      "sha256": "deea16239dced145c286e08a35b48e055fde5078f74c1313b753cfdc01edf23e",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-15",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-15.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 15)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
         "Nvidia"
       ],
       "dates": [],
@@ -198,19 +423,18 @@
         "license",
         "licenses",
         "nvidia",
-        "serdes",
         "throughput"
       ],
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
-        334,
+        369,
         406
       ],
       "canonical_for": [],
-      "words": 2127,
-      "bytes": 14475,
-      "sha256": "2008bc812df40d33cb54fe5adccb525f01f187dfd50c5314b537b4089e79f6d1",
+      "words": 1075,
+      "bytes": 7303,
+      "sha256": "0c0313d84560b3a45697766502098e39c38a90df84d136424da8c1ae74a32cd3",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
@@ -226,23 +450,50 @@
       "dates": [],
       "keywords": [
         "alignment",
-        "capex",
         "cost",
-        "gpu",
         "incident",
-        "license",
         "throughput"
       ],
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
         407,
+        459
+      ],
+      "canonical_for": [],
+      "words": 1207,
+      "bytes": 7817,
+      "sha256": "02c88c230773c40b5803d11650a68051a1763612cac0fd942ec882c75f3298c8",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-17",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-17.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 17)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "capex",
+        "cost",
+        "gpu",
+        "license",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        460,
         487
       ],
       "canonical_for": [],
-      "words": 2021,
-      "bytes": 13222,
-      "sha256": "dffbc807acd2f09b8cca8aa6c653fabe44e2c80874ce9e9cfabd831d0bb19e75",
+      "words": 814,
+      "bytes": 5405,
+      "sha256": "e0e2f80e0e440fca65164f42faef4426f78ce10a97aa1caa00f02ff7bcdf4c61",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
@@ -261,28 +512,76 @@
         "2026-04"
       ],
       "keywords": [
-        "consumer",
         "cost",
         "license",
-        "pricing",
-        "throughput"
+        "pricing"
       ],
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
         488,
-        549
+        527
       ],
       "canonical_for": [],
-      "words": 1834,
-      "bytes": 12608,
-      "sha256": "86f11673a6238ab67630cfa42db05e56e59a9b87078bd9a0ced5bf12f264d6ae",
+      "words": 1154,
+      "bytes": 7903,
+      "sha256": "c72536ebaa1bfbf64f6bd28b9875f7c02bdcf6a9c4234efd28aa56d5d5a0bbc6",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {
       "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d16-operational-playbook-protecting-data-day-to-day",
       "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d16-operational-playbook-protecting-data-day-to-day.md",
       "title": "D16 — Operational playbook: protecting data day to day",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "consumer",
+        "pricing",
+        "throughput"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        528,
+        551
+      ],
+      "canonical_for": [],
+      "words": 690,
+      "bytes": 4766,
+      "sha256": "63457999e59893154d1d46a6bb8da4515c0a0a3513436dafbf760e9736998531",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/d17-worked-numerical-examples-reproducible-arithmetic",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/d17-worked-numerical-examples-reproducible-arithmetic.md",
+      "title": "D17 — Worked numerical examples (reproducible arithmetic)",
+      "domain": "step-9-phase-d-data-protection-raid-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "incident"
+      ],
+      "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
+      "source_anchor": "",
+      "source_lines": [
+        552,
+        580
+      ],
+      "canonical_for": [],
+      "words": 793,
+      "bytes": 5773,
+      "sha256": "e9bac1c59b0773186d2826f2ee9acd8914951aacff8a3cae23c1e9cd10a4b4c2",
+      "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
+    },
+    {
+      "id": "etape9-phased-data-protection-raid/00-data-protection-raid/part-21",
+      "path": "etape9-phased-data-protection-raid/00-data-protection-raid/part-21.md",
+      "title": "Step 9 — Phase D: Data Protection & RAID Hardware (part 21)",
       "domain": "step-9-phase-d-data-protection-raid-hardware",
       "role": "deep-dive",
       "task": "hardware",
@@ -304,13 +603,13 @@
       "source": "docs/RAG/etape9_phaseD_data_protection_raid.md",
       "source_anchor": "",
       "source_lines": [
-        550,
+        581,
         613
       ],
       "canonical_for": [],
-      "words": 2183,
-      "bytes": 13639,
-      "sha256": "7561a9525bec2aa6427344e9a8fd06643d7a9d253ef38c8887cc9f9773d5a4da",
+      "words": 1380,
+      "bytes": 7805,
+      "sha256": "8c9737f643ea1ba8d5a5d5f0fe0da6c0a6eb161dd2c3b232ed9ae7c1a83444d4",
       "section": "Step 9 — Phase D: Data Protection & RAID Hardware"
     },
     {

@@ -9,10 +9,10 @@ dates: ["2025-10", "2025-10-27", "2026-02", "2026-02-12", "2026-03-18", "2026-04
 keywords: ["agent", "agentic", "agents", "apache", "attention", "attribution", "benchmark", "consumer", "copyright", "cost", "decode", "ipo"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [3074, 3149]
+source_lines: [3074, 3141]
 section: "§7. MiniMax"
 delta_of: ai-industry-kb-2026
-sha256: 17af719764620b28882d4ff494cf79073af27626ef8c7e9f8525d40e67edf159
+sha256: 4312da483949ac0bea09737a9f31cf61fb63ce3f70ae1a845e537713f9f50235
 ---
 
 # §7. MiniMax
@@ -82,12 +82,4 @@ Keywords: MiniMax, M2, M2.5, M2.7, M3, MiniMax M3, Hailuo 3, H3, MiniMax Communi
 - Commercial positioning: advertising, branding, e-commerce, product design, UI/UX mockups, gaming assets, film opening titles; noted strengths: **instruction following, accurate on-screen text and brand rendering, video-to-video motion transfer** [SECONDARY].
 - This resolves the §7 audio-reference question: **a reference audio file is a first-class input alongside image and video** — the "audio-reference-alone" rule from earlier sources is superseded by the launch documentation [SECONDARY].
 - Access: **H3 replaced Hailuo 2.3 as the default model in the Hailuo AI consumer app (hailuoai.video)**; API via MiniMax's platform plus third-party hosts **Segmind and fal** [SECONDARY].
-
-### The licensing catch (H3 Community License)
-- Weights published to Hugging Face **August 3, 2026** — what shipped is **H3-Base, a 33.1B-parameter model generating natively at 768p** [SECONDARY].
-- The license defines an **"Applicable Territory" for local deployment that specifically excludes the United States, the European Union, the United Kingdom, and South Korea** — users there are not licensed to run, modify, or deploy outputs from locally hosted H3 weights [SECONDARY].
-- **Ryan Lee, MiniMax's Head of Developer Relations, confirmed publicly** that the US exclusion ties directly to the company's active copyright litigation [SECONDARY].
-- Second stated reason: video models sit in a messier regulatory spot (EU AI Act, evolving UK/South Korean rules, unsettled US landscape); once weights are public the company cannot enforce safeguards downstream, so license restriction became the alternative to delaying release [SECONDARY].
-- **The 2K output in every promotional clip comes from H3-Regenerate-2K — a separate module that was NOT open-sourced and remains API-only**; even a fully licensed self-hosted setup must call MiniMax's servers for the marketed resolution [SECONDARY].
-- Free for organizations under **$20M annual revenue** (with **"MiniMax H3" in the product interface**), subject to individual licensing for excluded territories; **bans using H3 outputs to train or improve a competing model** — a restriction that applies everywhere [SECONDARY].
 

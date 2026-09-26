@@ -9,9 +9,9 @@ dates: ["2025-11-07", "2025-12-11", "2026-01-14", "2026-08-03", "2026-09", "2026
 keywords: ["benchmark", "optics", "research"]
 source: docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md
 source_anchor: ""
-source_lines: [1, 46]
+source_lines: [1, 50]
 section: "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
-sha256: 665fea2252a20d2f98026dd74c7c7fa172d62f3c2914bd0df8d217466aa67ebb
+sha256: 2249b7029d60f5695288afba9cfddfd1e7a571a554712e3f65f167cee3090316
 ---
 
 # Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability
@@ -59,4 +59,8 @@ sha256: 665fea2252a20d2f98026dd74c7c7fa172d62f3c2914bd0df8d217466aa67ebb
 - Install surface: script installer (`https://get-gnmic.openconfig.net`), deb/rpm packages, Docker images (`gnmic/gnmic`, `ghcr.io/openconfig/gnmic`) tagged per release, `latest` pointer; upgrade via `gnmic version upgrade` [official](https://github.com/openconfig/gnmic/blob/HEAD/docs/install.md).
 - Cisco IOS-XR (KNE lab example, 8000e): `gnmic capabilities` against a live device reported **gNMI version 0.8.0**, encodings `JSON_IETF`, `ASCII`, `PROTO`; supported models included `openconfig-bgp-types` / `openconfig-bgp-errors` at 5.3.1 [secondary — lab example README](https://github.com/openconfig/kne/blob/HEAD/examples/cisco/8000e/README.md).
 - Same lab verified `gnoic` (gNOI System service ping) and `gribic` (gRIBI flush) against IOS-XR 8000 on ports 9337/9340 — evidence of the gNXI suite (gNMI/gNOI/gRIBI) working together on a production NOS [secondary](https://github.com/openconfig/kne/blob/HEAD/examples/cisco/8000e/README.md).
+
+## Wave 3 — Vendor implementations: streaming telemetry & gNMI/gNOI support (2026)
+
+### 3.1 Juniper (Junos OS / Junos OS Evolved)
 

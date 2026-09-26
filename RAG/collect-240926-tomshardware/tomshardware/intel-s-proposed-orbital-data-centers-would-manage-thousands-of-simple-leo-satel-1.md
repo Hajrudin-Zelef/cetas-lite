@@ -1,0 +1,57 @@
+---
+id: collect-240926-tomshardware/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel-1
+title: "intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel"
+domain: tomshardware
+role: reference
+task: reference
+actors: ["AMD", "AWS", "Google", "Intel", "Nvidia", "SpaceX", "United States"]
+dates: []
+keywords: ["intel", "amd", "compute", "cost", "energy", "gpus", "latency", "nvidia", "robotics"]
+source: docs/RAG/clean_en/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel.md
+source_anchor: ""
+source_lines: [1, 40]
+sha256: a26539eed9516347dd32e7870e803686f15d68f8ec61efd18a7ab56842c63a87
+---
+
+# intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel
+
+<!-- source: https://www.tomshardware.com/tech-industry/space/intels-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satellites-two-tier-network-puts-the-brains-of-satellite-constellations-in-higher-orbit -->
+
+An Intel patent application published on August 6, spotted by __Patentlyze__, describes an orbital data center architecture that moves some of the computing used to operate massive satellite constellations off the ground and into space. The architecture proposes a two-tier satellite network in which a small number of more powerful satellites in higher orbits manage large constellations of relatively simple satellites in low-Earth orbit, handling much of the computing and constellation coordination normally performed by data centers and network operations centers on the ground.
+
+The application, US 2026/0230175 A1, is a continuation of an earlier Intel filing that was granted as US 12,542,604 B2 in February.
+
+Intel’s proposed architecture is a different proposition from the orbital AI data centers now being pursued by companies such as SpaceX and Google, which aim to move AI compute itself into low-Earth orbit. SpaceX’s planned AI1 satellite and Google’s Project Suncatcher both envision running large-scale computing workloads in space, with the resulting data beamed back to Earth over high-bandwidth optical links. Intel’s orbital data centers, on the other hand, are designed primarily to serve the satellite network itself, acting as higher-orbit compute and control hubs for the much larger constellations operating below them.
+
+In large LEO constellations such as Starlink, Telesat Lightspeed, and Amazon’s Project Kuiper, thousands of satellites are constantly moving relative to one another and the Earth. While the satellites perform their individual tasks, the network itself still has to determine how traffic is routed, which satellites and links should communicate, how spectrum is allocated, and how the constellation responds to failures, interference, weather, and other changing conditions. Much of that network planning and control processing is traditionally handled by computers on the ground, with routing and operational instructions calculated at terrestrial network operations centers and then transmitted back up to the satellites.
+
+Intel says that this constant dependency on terrestrial infrastructure delays time-sensitive decisions, increases reliance on ground stations, and makes management harder as constellations grow into the thousands of satellites. Intel’s solution is to move part of that control and compute layer into orbit. Its architecture places more powerful satellites — which contain much more compute and storage capability than the individual LEO satellites — in Medium Earth Orbit (MEO), Geosynchronous Earth Orbit (GEO), or highly elliptical orbits, where they can maintain a broader and more persistent view of the LEO constellation below and take over tasks such as routing, mission planning, scheduling and network coordination without continually sending those workloads back to Earth.
+
+The proposed setup does not eliminate the need for ground stations. It just keeps satellite network control processing in space. Intel specifically describes moving mission planning and scheduling operations into orbit. The company also argues that offloading heavier network-management tasks to a smaller number of powerful satellites could allow operators to build simpler, cheaper LEO spacecraft. Under current architectures, individual satellites still have to actively participate in network-control functions, requiring additional onboard compute and communications hardware. There’s currently no indication that Intel is actively building the satellites.
+
+*Follow* *Tom's Hardware on Google News**, or* *add us as a preferred source**, to get our latest news, analysis, & reviews in your feeds.*
+
+Get Tom's Hardware's best news and in-depth reviews, straight to your inbox.
+
+Etiido Uko is a news contributor for Tom's Hardware covering the latest updates in big tech and the PC industry. He is a mechanical engineer and senior technical writer with over nine years of experience in documentation and reporting. He is deeply passionate about all things engineering and technology, and is an expert in gadgets, manufacturing, robotics, automotive, and aerospace.
+
+- 
+The patents have some merit but they can't really restrict the natural evolution of satellite placement or the natural progression of trying to make low latency or orbital efficiency of data centers better. Companies like SpaceX would likely develop something similar without running afoul of these patents if the logistics of lower and higher orbit synergy made sense. Ultimately a lot of this is just the likely evolution of orbital data center progression especially once we connect AI to space station and moon base operations. I'm not sure how much value it has for terrestrial AI data center operations over low earth orbit networks that likely interconnect with laser speed systems anyway. Adding more latency with higher orbit operations has some trade offs when coordinating back on Earth.Reply
+- 
+Reply
+ If you mean this one, it's not even started construction yet, and also it's going to use/be an intel FAB.re3eyul said:the 3l0n will be there before Intel figures out how to make Leo , already got a factory doing Starship payload sized orbital compute modules .
+https://www.tomshardware.com/tech-industry/semiconductors/terafab-starts-to-take-shape-100-million-square-feet-of-manufacturing-space-and-usd16-8b-initial-capital-investment
+- 
+A patent does not a "proposed orbital data center" make.Reply
+ 
+The economics of the whole idea are simply ludicrous. Datacenters are big, heavy, power hungry machines that need cooling, regular maintenance, and upgrades to remain competitive. Literally none of that gets easier or cheaper in space.
+- 
+Reply
+ Even though Nvidia and AMD want to release new accelerators on a near yearly cadence (these roadmaps are slipping in practice), I think the rate of improvement could be slowing down by a lot. The move to support lower precision formats was like a free lunch that couldn't last forever. Yearly upgrades won't make sense for most users. Big users that are buying whatever they can will gradually phase out the old as they buy the new ones.chaos215bar2 said:Datacenters are big, heavy, power hungry machines that need cooling, regular maintenance, and upgrades to remain competitive. Literally none of that gets easier or cheaper in space.
+ 
+ You can't do any maintenance, so you have to make it robust and failure tolerant in the first place. It will last a few years before being deorbited to burn up, talk about planned obsolescence.
+ 
+ Cooling in space is simply balancing an equation. It has to radiate away the energy that it uses, around 100-150 kW. So the satellites have to be relatively large, and fit in a payload bay using an unfolding design. It's a solvable engineering problem of a scale already accomplished by the International Space Station. They will put as many GPUs/accelerators on there as can be supported.
+ 
+ If Starship becomes operational in a fully reusable configuration, it will be able to lift >100 metric tons to orbit at a relatively low cost, much faster than datacenters can be constructed on the ground. The supply chain to build a lot of these and lower costs is already there, since the satellites will be based on Starlink. The sun-synchronous orbits targeted will power the satellites nearly continuously.
+ 

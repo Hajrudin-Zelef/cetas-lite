@@ -4,14 +4,14 @@ title: "Key dated facts"
 domain: multimodality-open-weight-omni-models
 role: deep-dive
 task: multimodal
-actors: ["AMD", "Alibaba", "Anthropic", "ByteDance", "China", "DeepSeek", "ExploitGym", "Google", "Huawei", "Hugging Face", "MiniMax", "Moonshot", "OpenAI", "OpenRouter", "SGLang", "StepFun", "Unsloth", "Xiaomi", "Z.ai", "vLLM"]
-dates: ["2025-09-23", "2026-01-13", "2026-03-30", "2026-04-02", "2026-06", "2026-06-01", "2026-06-03", "2026-07-31", "2026-08-02", "2026-08-11", "2026-08-20", "2026-08-26", "2026-08-27", "2026-09", "2026-09-10", "2026-09-11", "2026-09-15", "2026-09-17", "2026-09-18", "2026-09-21", "2026-09-22"]
-keywords: ["agent", "agentic", "apache", "ascend", "awq", "benchmark", "benchmarks", "claude", "compute", "consumer", "cost", "decode"]
+actors: ["AMD", "Alibaba", "Anthropic", "ByteDance", "China", "DeepSeek", "ExploitGym", "Google", "Huawei", "Hugging Face", "MiniMax", "Moonshot", "OpenAI", "OpenRouter", "SGLang", "StepFun", "Xiaomi", "Z.ai", "vLLM"]
+dates: ["2025-09-23", "2026-01-13", "2026-03-30", "2026-04-02", "2026-06", "2026-06-01", "2026-06-03", "2026-07-31", "2026-08-02", "2026-08-11", "2026-08-20", "2026-08-26", "2026-08-27", "2026-09-10", "2026-09-11", "2026-09-15", "2026-09-17", "2026-09-18", "2026-09-21", "2026-09-22"]
+keywords: ["agent", "agentic", "apache", "ascend", "awq", "benchmark", "benchmarks", "claude", "consumer", "decode", "deepseek", "diffusion"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [5893, 5997]
+source_lines: [5893, 5982]
 section: "11. Multimodality — Open-Weight Omni Models"
-sha256: d16ea626084a1e82a1fa434e13ef218a3af6a38c344371145176d1ea20bdb1e9
+sha256: f676eaa2fbb448e4ee21b39e50c8001d49c6526367e076da2e154bf05c702a44
 ---
 
 # Key dated facts
@@ -105,19 +105,4 @@ sha256: d16ea626084a1e82a1fa434e13ef218a3af6a38c344371145176d1ea20bdb1e9
 | Image-to-Video (With Audio), Artificial Analysis | HiDream-O1-Video-1.0 | #4 claimed | [VENDOR] (unreproduced) |
 
 ### Training and inference economics
-
-- **MiMo-V2.6 RL cost (disclosed by Xiaomi, Sept 2026)**: Flash ~$850K, Pro ~$2.62M (combined >$3M); 30 steps each over ~750K trajectories in <6 days; 60K+ parallel Linux/Docker sandboxes; DeepSWE v1.1 rose 48.8→65.68 (Flash) and 58.4→72.57 (Pro). First livestreamed trillion-scale RL run — the training process, not just the weights, is becoming an open artifact.
-- **GLM-5.3-Flash training/serving compute**: 100 trillion tokens/day trial week served entirely on ~100,000 domestic (Chinese) chips (likely Huawei Ascend).
-- **Token rates**: MiMo audio ~6.25 tok/sec (10 hours of audio ≈ 225K tokens — why 1M-context omni models can ingest very long audio natively); DeepSeek V4 Flash images capped at 384 tokens/image; SGLang `--mm-process-config` defaults (image max_pixels 1,048,576; video fps 3, max_pixels 602,112, max_frames 60); MiMo video billed as fps×resolution.
-- **Latency**: Qwen3-Omni first-packet audio ~211–234 ms (audio-video ~507 ms); fal H3 Max renders 5s 768p in <3s (hosted); community NVFP4 H3 on RTX 5090 ~175s per 10s clip.
-- **Pricing (per 1M tokens, uncached unless noted)**: MiniMax M3 $0.30/$1.20; MiMo-Flash $0.14/$0.28, MiMo-Pro $0.435/$0.87 (cache-hit input $0.0028/$0.0036); GLM-5.3-Flash $0.15/$0.50 (launch discount $0.075/$0.25 through Sept 9); DeepSeek V4.1-Flash peak $0.30/$1.20, cache-read $0.006, off-peak half (50× hit/miss input gap); Gemini Omni Flash $0.10/sec 720p (closed, §1 cross-ref); H3 Max 5s clip $0.10→$0.40 after Sept 15 discount expiry.
-- **KV-cache engineering**: DeepSeek V4.1-Flash 890 bytes/token (~4× vs V4-Flash via MXFP4 KV + CSA2; ~437× only against a 2023 4K-context V1 denominator); 1M-token context ≈ 0.93 GB KV cache; 8× H200 → ~915 concurrent full-1M sessions (vs ~40 for DeepSeek V3) — secondary analysis, unverified independently.
-- **Speech tokenization rates**: discrete neural codecs at ~25 Hz semantic tokens (CosyVoice v1 VQ, v2 FSQ, 6561 speech tokens → flow-matching → 24 kHz); Qwen3-Omni multi-codebook Talker with 12 Hz acoustic compression + causal ConvNet/Code2Wav decoder replacing iterative diffusion; VoxCPM2 (MiniMax) tokenizer-free TTS preserving prosodic nuance.
-- **VRAM recipes (September 2026)**:
-  - Edge/phone (≤4 GB): Gemma 4 E2B-QAT 4.3 GB (Ollama `gemma4:e2b-it-qat`); text/image/audio.
-  - Laptop 8–16 GB: Gemma 4 E4B-QAT 4.3 GB, Gemma 4 12B-QAT 7.2 GB, Qwen3-VL-8B 4-bit ~6 GB (MLX), Qwen3.5-9B Q4_K_M 6.6 GB — native vision, some audio.
-  - Workstation (24–48 GB): Qwen3-VL-30B-A3B AWQ 4-bit (~10–12 GiB/GPU at TP2, 120–150 tok/s, ~25% below text-only from vision-encoder overhead), Qwen3-Omni-30B-A3B via vLLM-Omni (≥48 GB total, TP2); Unsloth Dynamic 2.0 GGUFs for Qwen3.x/GLM-5.3 at IQ2–Q4.
-  - Server (multi-node): MiMo-V2.6-Flash 172.9 GB FP8 (SGLang TP16/DP2 or vLLM TP8), MiniMax-M3-MXFP8, Kimi K3 MXFP4 (~1.4 TB, 64+ accelerators).
-  - API-only: Qwen3.8-Omni-Flash (1M ctx, text-out), DeepSeek-V4-Flash-vision-exp (384 tokens/image cap, now retired), MiMo Pro on Xiaomi API.
-- **The memory equation**: total ≈ weights + KV cache + activations + **modality encoders** (vision/audio towers are a separate, often overlooked line item; SGLang's default offloads their features to CPU to save VRAM). Encoder quantization is conservative — towers are usually kept at higher precision than the LLM backbone; mmproj sidecars ship alongside GGUF quants rather than inside them. KV cache at 1M context remains the binding constraint (GQA/MLA, shared KV, HybridKV, TurboQuant 3-bit KV ÷6 memory).
 

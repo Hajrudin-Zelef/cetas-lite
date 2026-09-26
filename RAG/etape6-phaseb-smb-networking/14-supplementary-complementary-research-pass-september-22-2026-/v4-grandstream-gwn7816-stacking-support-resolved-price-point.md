@@ -4,14 +4,14 @@ title: "V4. Grandstream GWN7816 — stacking support RESOLVED + price points (wa
 domain: supplementary-complementary-research-pass-september-22-2026-
 role: deep-dive
 task: reference
-actors: ["Falcon", "Intel", "United States"]
+actors: ["Falcon", "Intel"]
 dates: ["2026-01", "2026-09", "2026-09-22"]
-keywords: ["intel", "license", "licenses", "optics", "pricing", "voice"]
+keywords: ["intel", "licenses", "optics", "pricing", "voice"]
 source: docs/RAG/etape6_phaseB_smb_networking.md
 source_anchor: ""
-source_lines: [2251, 2321]
+source_lines: [2251, 2310]
 section: "Supplementary / Complementary Research Pass — September 22, 2026 (fifth wave; V1–V9)"
-sha256: 6a21fd2dfe1d5ea7ac1b1d6b4010fd7b55f7b3b287fb105135089ab6e16a37c9
+sha256: 947794c26c3f6a8f56d3bed17ee0f9bd443e943cfeac9e0c46fb187869f1bad9
 ---
 
 # V4. Grandstream GWN7816 — stacking support RESOLVED + price points (was: U13 gap #6)
@@ -75,15 +75,4 @@ sha256: 6a21fd2dfe1d5ea7ac1b1d6b4010fd7b55f7b3b287fb105135089ab6e16a37c9
   - https://news.asbis.com/news/suppliers/ubiquiti-revolutionizes-connectivity-with-new-unifi-wi-fi-7-access-points-u7-pro-max-u7-pro-wall-and-u7-outdoor/
 
 ## V9. Wave-5 verification log / remaining gaps
-
-**Gaps closed in this wave:** U13 #2 (XS1935 pricing), U13 #3 (NWA210BE specs/pricing), U13 #5 (EAP783 naming conflict), U13 #6 (GWN7816 stacking).
-**Gaps retained:**
-1. D-Link DQS-5000 street pricing — second attempt failed; quote-only channel [U13 #4 retained].
-2. Aruba Instant On 1930R successor — no evidence; B-revision refreshes are the 2026 state [U13 #7 retained].
-3. TP-Link US regulatory outcome — developing; beyond this pass's scope [U13 #1 retained].
-4. Currency conversions not applied — all prices are raw regional snapshots [U13 #8 retained].
-5. Omada Pro controller appliance SKU + license pricing — still not found publicly in this wave (noted across passes).
-**New uncertainty introduced:** some NZ reseller listings misquote EAP783 5 GHz radio as 8,640 Mbps — resolved in favor of TP-Link official spec; anyone re-scraping reseller catalogs will hit the conflict again [secondary].
-
----
 

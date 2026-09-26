@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["AMD", "Anthropic", "Cohere", "Google", "Hugging Face", "Inflection AI", "Meta", "Microsoft", "Mistral", "Nvidia", "OpenAI", "Poolside", "Sakana", "SpaceX", "TensorRT-LLM", "Together AI", "xAI"]
 dates: ["2026-03", "2026-05", "2026-07", "2026-09"]
-keywords: ["acquisition", "amd", "apache", "benchmarks", "blackwell", "capex", "cohere", "cost", "cyber", "distribution", "fugu", "funding"]
+keywords: ["acquisition", "amd", "apache", "benchmarks", "blackwell", "cohere", "cost", "cyber", "distribution", "fugu", "funding", "funding round"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [1554, 1638]
+source_lines: [1554, 1633]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 997cfa19b9c2dfdf909dbcccdc59578f58620bdcbafcf1073022b971a53381ae
+sha256: 23cf4f7c1dbff7e60bdd0eae1e6557a03cd4a21bc3a9b518a6ade61f4859f7cf
 ---
 
 # 10.11 Other labs — brief notes (Feb–Sep 2026)
@@ -95,9 +95,4 @@ sha256: 997cfa19b9c2dfdf909dbcccdc59578f58620bdcbafcf1073022b971a53381ae
 - **Gap:** no public per-token NIM price list as of Sep 22, 2026.
 
 ### 11.7 Rubin / Vera Rubin roadmap + DGX Spark (from Track D)
-
-- **Vera Rubin platform:** NVIDIA's next-gen GPU platform after Blackwell; the March 2026 Thinking Machines deal commits ≥1 GW of Vera Rubin systems with deployment starting 2027 [independent].
-- **Cost scale:** industry estimates ~$50B for 1 GW-class AI capacity [secondary] — the capex bar for next-gen training clusters.
-- **DGX Spark:** personal AI supercomputer (GB10 Grace Blackwell Superchip desktop) shipping 2026; NIM-compatible local inference target for developers running Nemotron-class models at the desk [secondary].
-- **Strategic read:** NVIDIA is simultaneously (a) selling the picks and shovels (Rubin), (b) giving away the models (Nemotron open weights), and (c) buying the distribution (Hugging Face, pending) — a full-stack capture of the open-model inference path. [research finding]
 

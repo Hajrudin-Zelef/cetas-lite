@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape10_phaseD_news_sport.md",
   "source_lines": 935,
   "source_sha256": "044731b0b35395a6398c4c48399b94b18da257fb37fd06a8c42dced6cd48861b",
-  "chunk_count": 13,
+  "chunk_count": 14,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -407,21 +407,44 @@
       "task": "reference",
       "actors": [],
       "dates": [
-        "2026-02-01",
-        "2026-05-13",
-        "2026-09-22"
+        "2026-05-13"
       ],
       "keywords": [],
       "source": "docs/RAG/etape10_phaseD_news_sport.md",
       "source_anchor": "",
       "source_lines": [
         832,
+        933
+      ],
+      "canonical_for": [],
+      "words": 193,
+      "bytes": 7920,
+      "sha256": "0991ca00f4f48ccc1aba6f735ad6ba9c5bdf32785fd2a3d7ac9a34d0cfd27ce0",
+      "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
+    },
+    {
+      "id": "etape10-phased-news-sport/00-news-sport/part-14",
+      "path": "etape10-phased-news-sport/00-news-sport/part-14.md",
+      "title": "Step 10D — Sports News (February 2026 → 22 September 2026) (part 14)",
+      "domain": "step-10d-sports-news-february-2026-22-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-02-01",
+        "2026-09-22"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseD_news_sport.md",
+      "source_anchor": "",
+      "source_lines": [
+        934,
         935
       ],
       "canonical_for": [],
-      "words": 215,
-      "bytes": 8092,
-      "sha256": "45eb9923bc121864136d910dc455ca35df514c28c8a63de39856f4f653fbdce7",
+      "words": 22,
+      "bytes": 172,
+      "sha256": "fde5ce8d61a68d17adfc433b75f73b59f4af90d5f6fbb42df6c2602b2d2a8903",
       "section": "Step 10D — Sports News (February 2026 → 22 September 2026)"
     }
   ]

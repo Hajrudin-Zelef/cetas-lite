@@ -9,9 +9,9 @@ dates: ["2024-04", "2025-08", "2026-08-23", "2026-09-18", "2026-09-22"]
 keywords: ["nand", "consumer", "cost", "datacenter", "dram", "ipo", "memory", "pricing", "research"]
 source: docs/RAG/etape9_phaseA_enterprise_ssd.md
 source_anchor: ""
-source_lines: [526, 581]
+source_lines: [526, 575]
 section: "Step 9 — Enterprise SSD Hardware (Phase A)"
-sha256: 0efc2c609f77b8ae8d98c0d30157dbdbf055968628d6fc8aca7cd1c3c2de9e8b
+sha256: 8c5409187882c161df8463d07da8d0636d8c81ca845e6f3bc7912f3e98fe8ef5
 ---
 
 # 24. NAND industry structure (2026)
@@ -65,10 +65,4 @@ sha256: 0efc2c609f77b8ae8d98c0d30157dbdbf055968628d6fc8aca7cd1c3c2de9e8b
 | VDURA reference 30 TB TLC | $22,600 | $753 | ~54,750 | $0.41 | vendor-published ref [secondary](https://pcserverandparts.com/news/enterprise-ssd-prices-2026-server-storage-buying-guide/) |
 | Used ent. SATA/SAS 3.84 TB | — | $78–$127 | varies | — | decommissioned pool [secondary](https://pcserverandparts.com/news/enterprise-ssd-prices-2026-server-storage-buying-guide/) |
 | New ent. NVMe U.2 (market) | — | $300–$1,172 | varies | — | 2026-08-23 band [secondary](https://pcserverandparts.com/news/enterprise-ssd-prices-2026-server-storage-buying-guide/) |
-
-- $/TBW derivation: TBW = capacity × DWPD × 365 × 5 (formula matches published TBW for all rows above); prices are single-channel snapshots, currencies as listed [independent calculation from cited sources].
-- Reading the table: 3-DWPD and large-capacity SKUs dominate $/TBW; small-capacity 1-DWPD SKUs are the worst value — buy the largest capacity the workload fits [independent guidance].
-- OEM-branded (Lenovo/Dell/HPE) SKUs carry 2–10x markups over street pricing — the PM1743 $4,671/TB row is a channel artifact, not NAND economics [secondary](https://www.shi.com/product/45962451/Samsung-PM1743-SSD).
-
----
 

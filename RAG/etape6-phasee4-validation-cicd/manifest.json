@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
   "source_lines": 782,
   "source_sha256": "be9b2f563ce68a95d6dabc1b45ef82e4c621463b5670e46278e664d8c074150f",
-  "chunk_count": 14,
+  "chunk_count": 16,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -173,12 +173,34 @@
       "source_anchor": "",
       "source_lines": [
         245,
+        302
+      ],
+      "canonical_for": [],
+      "words": 894,
+      "bytes": 7975,
+      "sha256": "618a489243444b51eba426dafacc425a82ee6dcb2893aa29789411351daf5e58",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-8-4-config-diff-testing",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-8-4-config-diff-testing.md",
+      "title": "E4.8.4 Config diff testing",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        303,
         310
       ],
       "canonical_for": [],
-      "words": 954,
-      "bytes": 8530,
-      "sha256": "35668bdd8a216bd480e70d002d7681916665bcc383da7d6d6ae98e0d77814c6e",
+      "words": 60,
+      "bytes": 555,
+      "sha256": "6a4ca10824cbf0a26850d5355cede10cef8d133d73df425e50faabb07a6d414b",
       "section": "Phase E4 — Network Validation, Observability & CI/CD"
     },
     {
@@ -271,12 +293,34 @@
       "source_anchor": "",
       "source_lines": [
         465,
+        520
+      ],
+      "canonical_for": [],
+      "words": 942,
+      "bytes": 7800,
+      "sha256": "b88b630ca9632a2d2a73fb206ebd82bad91e5ccc3059248a4805ffba57308064",
+      "section": "Phase E4 — Network Validation, Observability & CI/CD"
+    },
+    {
+      "id": "etape6-phasee4-validation-cicd/00-front-matter/e4-13-8-glossary",
+      "path": "etape6-phasee4-validation-cicd/00-front-matter/e4-13-8-glossary.md",
+      "title": "E4.13.8 Glossary",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE4_validation_cicd.md",
+      "source_anchor": "",
+      "source_lines": [
+        521,
         542
       ],
       "canonical_for": [],
-      "words": 1265,
-      "bytes": 10276,
-      "sha256": "c8324b750b92669a9ec58f7d03b9b7edfd63095d508280bdafab4f995424e333",
+      "words": 323,
+      "bytes": 2476,
+      "sha256": "cdf9efec514c6058bd7cd5de8796995dae4a8d6f13beebd02b2673c6a11e56bf",
       "section": "Phase E4 — Network Validation, Observability & CI/CD"
     },
     {

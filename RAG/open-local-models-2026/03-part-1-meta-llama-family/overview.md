@@ -4,14 +4,14 @@ title: "PART 1 — META LLAMA FAMILY"
 domain: part-1-meta-llama-family
 role: deep-dive
 task: actor-profile
-actors: ["AMD", "AWS", "Alibaba", "Anthropic", "China", "DeepSeek", "Google", "Hugging Face", "Meta", "Microsoft", "Mistral", "Moonshot", "Nvidia", "OpenAI", "OpenRouter", "United States"]
-dates: ["2025-04", "2025-04-05", "2026-01", "2026-04", "2026-04-08", "2026-07", "2026-07-09", "2026-07-31", "2026-08", "2026-08-05", "2026-08-10", "2026-09", "2026-09-02", "2026-09-08"]
-keywords: ["llama", "agent", "amd", "apache", "attention", "attribution", "aws", "bedrock", "benchmark", "benchmarks", "capex", "claude"]
+actors: ["AWS", "Alibaba", "Anthropic", "China", "DeepSeek", "Google", "Hugging Face", "Meta", "Microsoft", "Mistral", "Moonshot", "Nvidia", "OpenAI", "OpenRouter"]
+dates: ["2025-04", "2025-04-05", "2026-01", "2026-04-08", "2026-07-09", "2026-07-31", "2026-08", "2026-08-05", "2026-08-10", "2026-09", "2026-09-02", "2026-09-08"]
+keywords: ["llama", "agent", "apache", "attention", "attribution", "aws", "bedrock", "benchmark", "benchmarks", "claude", "consumer", "context window"]
 source: docs/RAG/Modèles IA open  locauxEN.md
 source_anchor: ""
-source_lines: [287, 367]
+source_lines: [287, 360]
 section: "PART 1 — META LLAMA FAMILY"
-sha256: 4dbf38e29709b814a7d75928a3cc7bb649570e5fe1fe725105711aa923e2e0f3
+sha256: 209532ffbc83e10a94ca4b8c99f2c0c4430baee1f545c35c0a2c2bd0eb00f20c
 ---
 
 # PART 1 — META LLAMA FAMILY
@@ -87,11 +87,4 @@ Multiple independent sources confirm **no Llama 5 has been released**: "the newe
 **The benchmark controversy (relevant context):** Meta submitted an unreleased experimental variant (`Llama-4-Maverick-03-26-Experimental`) to LMArena that scored far above the public model; in January 2026 Yann LeCun publicly acknowledged the manipulation. This damaged Meta's open-weight credibility and is widely cited as a driver of the 2026 strategy pivot.
 
 ## 1.7 Meta's 2026 open-weight strategy shifts — summary
-
-1. **April 2026: Llama brand retired** — Meta pivots from open weights to the closed, API-monetized **Muse Spark** line (first proprietary Meta model ever). "Meta's last open release was Llama 4, and Llama 4's adoption was 'disappointing' by Meta's own admission."
-2. **July 2026: Meta Model API goes public/paid** — Meta joins the metered-API revenue model it once undercut, with an aggressive Contributor tier ($0.10/$0.20) that trades price for training-data rights.
-3. **August 10, 2026: the reversal** — **Muse Glimmer 30B under Apache 2.0** (genuinely OSI-approved, no MAU carve-out) plus a promise to open-source **Muse Spark 1.2's** weights. The strategy is now **two-track: closed API for enterprise revenue, open weights for ecosystem leverage** — and Zuckerberg's accompanying essay reframes open weights as a US-competitiveness/national-security argument.
-4. **Infrastructure scale-up underpins it:** ~$14B Scale AI investment, up to **$60B AMD chip deal** (Feb 2026), **$115–135B AI capex** reported around earnings (single weak source; treat as indicative).
-
----
 

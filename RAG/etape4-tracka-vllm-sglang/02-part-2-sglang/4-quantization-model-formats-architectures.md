@@ -6,12 +6,12 @@ role: deep-dive
 task: quantization
 actors: ["Alibaba", "Cohere", "DeepSeek", "Hugging Face", "LongCat", "MiniMax", "Mistral", "Moonshot", "Nvidia", "SGLang", "TensorRT-LLM", "Z.ai", "vLLM"]
 dates: ["2024-07-25", "2024-09-04", "2024-12-04", "2025-05", "2025-05-05", "2025-06-16", "2025-09-25", "2026-01-16", "2026-02-19", "2026-02-20", "2026-05-19", "2026-05-20"]
-keywords: ["quantization", "agent", "agentic", "agents", "attention", "awq", "benchmark", "benchmarks", "blackwell", "cohere", "consumer", "cost"]
+keywords: ["quantization", "agent", "agentic", "attention", "awq", "benchmark", "benchmarks", "blackwell", "cohere", "cost", "decode", "deepseek"]
 source: docs/RAG/etape4_trackA_vllm_sglang.md
 source_anchor: ""
-source_lines: [814, 871]
+source_lines: [814, 855]
 section: "PART 2 — SGLang"
-sha256: 38deb92d0b4eb0f8007925ac8e024cc235027c70aa2fcb7ca46c35d29fbf97cf
+sha256: e64000ba57cb06e3378c3bb3385431048a3b85600fe100fc8ce2fe35e7e17519
 ---
 
 # 4. Quantization, model formats & architectures
@@ -57,20 +57,4 @@ sha256: 38deb92d0b4eb0f8007925ac8e024cc235027c70aa2fcb7ca46c35d29fbf97cf
 - **SemiAnalysis InferenceX — Qwen3.5-397B-A17B FP8 on MI355X** (published ~2026-05, runs 2026-02-20 → 2026-05-19): throughput/GPU on 8k/1k workload went **192 → 3,660 tok/s/GPU (19.0× at iso-interactivity 40 tok/s/user)** across three SGLang releases (v0.5.8.post1 → v0.5.10rc0 → v0.5.12) plus three AITER MoE kernel landings; another ~1.5× from the May image bump [independent](https://github.com/semianalysisai/inferencex-app/blob/HEAD/packages/app/content/blog/mi355x-qwen3-5-sglang-v0-5-12-up-to-17x.mdx). (Note: one related InferenceX post wrote "SGLang v0.12" for its GLM-5 run — likely a typo; treated as [unverified] version label.)
 - **SemiAnalysis InferenceX — GLM-5 FP8 cost (2026-05-20 run):** MI355X+SGLang undercuts B200+SGLang on $/M tokens by up to **1.41× at 18 tok/s/user with MTP ($0.30/M vs $0.22/M — a ~40% reduction)** and 1.36× without MTP; B200 noses back ahead above ~90 tok/s/user [independent](https://github.com/semianalysisai/inferencex-app/blob/HEAD/packages/app/content/blog/mi355x-glm5-fp8-sglang-40-cheaper-than-b200.mdx).
 - **dstack — DeepSeek-R1 on 8×H200 SXM5:** online (SGLang `bench_serving.py`, concurrencies 4–128, 3200-in/800-out) and offline inference benchmark comparing SGLang vs TensorRT-LLM; full results in their repo [independent](https://github.com/dstackai/dstack/blob/HEAD/docs/blog/posts/h200-mi300x-deepskeek-benchmark.md).
-
-### 6.3 vLLM vs SGLang comparisons (all secondary/independent — methodology varies)
-- **PremAI 2026 benchmark (H100 80GB, Llama 3.1 8B):** SGLang ~16,200 tok/s vs vLLM ~12,500 tok/s — **SGLang +29%**; LMDeploy ~16,100 (tie) [secondary](https://blog.premai.io/vllm-vs-sglang-vs-lmdeploy-fastest-llm-inference-engine-in-2026/) via [secondary summary](https://github.com/profsynapse/synaptic-tuner/blob/HEAD/docs/preparation/vllm-vs-sglang-inference-serving-research.md).
-- **Spheron (Llama 3.3 70B FP8, H100):** SGLang +29% total throughput, **+117% output-token throughput** (894 vs 413 tok/s), TTFT 79 vs 103 ms (−23%), ITL 6.0 vs 7.1 ms (−15%) [secondary](https://particula.tech/blog/sglang-vs-vllm-inference-engine-comparison). Same source: with **unique prompts (no shared prefixes) the gap shrinks to near-zero** — concurrency 1→100 shows only +2–5%.
-- **Community single-request test (old, ~2025-06):** vLLM 60.0 tok/s vs SGLang 52.7 tok/s on a single unique prompt — vLLM ~1.1× faster [secondary](https://github.com/brendanmckeag/sglang-vllm-benchmark/blob/HEAD/README.md). Dated; treat as historical.
-- **DeepSeek-specific:** SGLang claimed **3.1× faster than vLLM on DeepSeek-V3** via optimized MLA backends (FA3/FlashInfer/FlashMLA/CutlassMLA) [secondary](https://particula.tech/blog/sglang-vs-vllm-inference-engine-comparison).
-- **Consumer GPUs (RTX PRO 6000, Sept 2026, community):** Qwen3.8-27B NVFP4 + DSpark: 119.19 tok/s output, 1,072.69 tok/s total (8K-in/1K-out, 8 reqs), mean TTFT 729.82 ms, mean TPOT 7.68 ms, DSpark accept length 2.50 [secondary/independent](https://github.com/lEWFkRAD/qwen38-rtx-pro-6000).
-- **Artificial Analysis:** no Artificial-Analysis-published SGLang-vs-vLLM engine benchmark was found in this research pass ([unverified]/not found). SemiAnalysis InferenceX (above) is the closest independent price/performance source.
-- **ServeTheHome:** no STH SGLang benchmark article was surfaced in this pass ([unverified]/not found).
-- **SiliconANGLE:** no SiliconANGLE SGLang article was surfaced in this pass ([unverified]/not found).
-
-### 6.4 Caveats
-- The +29% SGLang-vs-vLLM gap is a **high-concurrency batching** result; single-stream unique-prompt workloads show ~0–12% either way. RadixAttention's advantage concentrates in prefix-sharing workloads (agents, RAG, multi-turn chat) [secondary].
-- One community SM120 report (Aug 2026) flagged garbage output with INT4 quantized models on SGLang (issue #21132) and recommended vLLM for that config; upstream fixed NVFP4 paths in v0.5.16+ and improved SM120 support in v0.5.19/0.5.20 — current status [unverified] [secondary](https://github.com/randomchaos7800-hub/inference-research/blob/HEAD/tower/gdn-blackwell/sglang-vs-vllm-sm120.md).
-
----
 

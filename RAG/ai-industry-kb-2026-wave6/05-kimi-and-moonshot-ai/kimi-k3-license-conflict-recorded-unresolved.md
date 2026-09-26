@@ -6,13 +6,13 @@ role: deep-dive
 task: licenses
 actors: ["Anthropic", "Baseten", "China", "DeepSeek", "Fireworks AI", "LongCat", "Meituan", "Moonshot", "Nebius", "OpenAI", "OpenRouter", "SGLang", "Z.ai", "vLLM"]
 dates: ["2026-01", "2026-01-27", "2026-03", "2026-04", "2026-04-20", "2026-05", "2026-06-12", "2026-07", "2026-07-16", "2026-09-07"]
-keywords: ["kimi", "license", "agent", "agents", "arr", "attention", "benchmark", "benchmarks", "claude", "copilot", "deepseek", "distillation"]
+keywords: ["kimi", "license", "arr", "attention", "benchmark", "benchmarks", "claude", "deepseek", "distillation", "funding", "glm", "mit license"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [2313, 2418]
+source_lines: [2313, 2399]
 section: "§5. Kimi and Moonshot AI"
 delta_of: ai-industry-kb-2026
-sha256: 868da95104e0d0ca32fb57bf46cfb3a8612f7b180b1254e1c7087a09016fd62d
+sha256: a1cb7a0063f803ff47112cd5b3dcfe0d651c20bf8806f5d3f605eeaae67a60f5
 ---
 
 # Kimi K3 — license conflict (recorded, unresolved)
@@ -103,23 +103,4 @@ sha256: 868da95104e0d0ca32fb57bf46cfb3a8612f7b180b1254e1c7087a09016fd62d
 - Price evolution (not contradiction): K2.6 launched April 2026 at $0.60/$2.50 (in/out) [SECONDARY] (Medium/@tentenco); current list $0.95/$4.00 [SECONDARY] (saygm.com). K2.5 launch-era figures $0.44/$2.00 [SECONDARY] (Medium/@endlesslyimprovisng) vs current $0.60/$3.00.
 - Highspeed multiplier: ~5–6× faster output at 2× the token price vs K2.7 Code base [SECONDARY/COMMUNITY] (saygm.com; ccx docs).
 - K3 costs 5× K2.5 input price ($3.00 vs $0.60) — the premium tier step [DIRECTIONAL].
-
-### K2.5 vendor benchmark set (all [VENDOR])
-- SWE-bench Verified **76.8**; MMMU-Pro **78.5**; VideoMMMU **86.6**; HLE Full with tools **50.2**; BrowseComp **74.9** [SECONDARY reporting vendor] (marktechpost.com, 2026-01-27).
-- Agent Swarm: **~4.5× faster on wide research tasks** [VENDOR] (aibase.com).
-- Do not compare K2.5's SWE-bench Verified 76.8 with SWE-bench Pro figures for other models — different benchmark families [DIRECTIONAL].
-
-### K2.6 swarm scale
-- **300 sub-agents / 4,000 coordinated steps** maximum [SECONDARY] (marktechpost.com, 2026-04-20).
-
-### K2.7 Code vendor benchmark table (all [VENDOR])
-- Kimi Code Bench v2 **62.0**; Program Bench **53.6**; MLS Bench Lite **35.1**; Kimi Claw 24/7 Bench **46.9**; MCP Atlas **76.0**; MCP Mark Verified **81.1** [SECONDARY reporting vendor] (byteiota.com).
-- **~30% fewer thinking tokens than K2.6** with mandatory/preserved thinking [VENDOR] (byteiota.com).
-
-### K3 architecture figures
-- 2.8T total / 104B active; 93 layers (69 KDA + 24 Gated MLA, 1 dense); 896 routed experts, 16/token, 2 shared; MoonViT-V2 ~401M; MXFP4/MXFP8; 1,048,576-token context [SECONDARY] (siml1169/kimi-copilot-provider_k3; ai-stack.ai; felloai.com; glows.ai).
-- K3's 16-experts-per-token routing is 2× the K2 family's top-8 [DIRECTIONAL].
-
-### Funding figures
-- $700M @ $10B (early 2026); $18B (March, intermediate report); ~$2B led by Long-Z @ $20B+ (May 2026); $3.9B raised in six months; ARR >$200M (April); $30B = talks, not closed [SECONDARY] (mlq.ai; clay.com; theagenttimes.com; ainvest.com).
 

@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
   "source_lines": 510,
   "source_sha256": "cf4d91091c821fa38498846c079b1358f82deff4a8181c0b28ea22deed8b63c1",
-  "chunk_count": 10,
+  "chunk_count": 12,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -268,7 +268,6 @@
       "actors": [
         "AMD",
         "Broadcom",
-        "Microsoft",
         "United States"
       ],
       "dates": [
@@ -276,41 +275,84 @@
         "2024-04",
         "2025-06",
         "2025-07",
-        "2026-05",
         "2026-06",
         "2026-08",
         "2026-09"
       ],
       "keywords": [
         "acquisition",
-        "agentic",
         "amd",
         "asic",
         "benchmark",
-        "copilot",
         "cpo",
         "dci",
         "gpu",
         "helios",
         "inference",
-        "latency"
+        "license",
+        "merger",
+        "research"
       ],
       "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
       "source_anchor": "",
       "source_lines": [
         273,
-        328
+        308
       ],
       "canonical_for": [],
-      "words": 1399,
-      "bytes": 9772,
-      "sha256": "9c827241c8deb642c0b4db2ddabba1b455d4f087761f6d0ed4e6117fa3fc42aa",
+      "words": 837,
+      "bytes": 5789,
+      "sha256": "f42269df7c1fd0949e3bc8bb11bf313277cedad67c80d16c8fa4f5fc3e8c2e7c",
       "section": "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
     },
     {
-      "id": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/3-ai-networking-revenue-figures-customer-wins-2026",
-      "path": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/3-ai-networking-revenue-figures-customer-wins-2026.md",
-      "title": "3. AI networking revenue figures & customer wins (2026)",
+      "id": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/2-3-mist-ai-campus-branch-hpe-mist",
+      "path": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/2-3-mist-ai-campus-branch-hpe-mist.md",
+      "title": "2.3 Mist AI / campus & branch (HPE Mist)",
+      "domain": "part-2-juniper-networks-post-hpe-acquisition",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft",
+        "Oracle"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-09"
+      ],
+      "keywords": [
+        "acquisition",
+        "agentic",
+        "amd",
+        "backlog",
+        "copilot",
+        "helios",
+        "latency",
+        "licenses",
+        "nand",
+        "neocloud",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        309,
+        355
+      ],
+      "canonical_for": [],
+      "words": 1049,
+      "bytes": 7497,
+      "sha256": "c5646240c738fa044e5cc91f71de3c470e2d89bad569aa8034c4b65f21edc658",
+      "section": "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/5-positioning-vs-cisco-in-ai-data-center-networking-2026",
+      "path": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/5-positioning-vs-cisco-in-ai-data-center-networking-2026.md",
+      "title": "5. Positioning vs Cisco in AI data-center networking (2026)",
       "domain": "part-2-juniper-networks-post-hpe-acquisition",
       "role": "deep-dive",
       "task": "reference",
@@ -319,41 +361,81 @@
         "Broadcom",
         "Huawei",
         "Nvidia",
+        "Oracle"
+      ],
+      "dates": [
+        "2026-03"
+      ],
+      "keywords": [
+        "accelerator",
+        "acquisition",
+        "amd",
+        "blackwell",
+        "coherent optics",
+        "compute",
+        "dci",
+        "ethernet",
+        "gpus",
+        "helios",
+        "nvidia",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
+      "source_anchor": "",
+      "source_lines": [
+        356,
+        384
+      ],
+      "canonical_for": [],
+      "words": 833,
+      "bytes": 5940,
+      "sha256": "2e2fdfff9697136fdf61059a65f15c20c26c46354f26d847af1583b8f0e72c0c",
+      "section": "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
+    },
+    {
+      "id": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/6-optics-and-co-packaged-optics-cpo-2026",
+      "path": "etape6-tracka-cisco-juniper/02-part-2-juniper-networks-post-hpe-acquisition/6-optics-and-co-packaged-optics-cpo-2026.md",
+      "title": "6. Optics and co-packaged optics (CPO), 2026",
+      "domain": "part-2-juniper-networks-post-hpe-acquisition",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Nvidia",
         "Oracle",
         "TSMC",
         "United States"
       ],
       "dates": [
         "2026-03",
-        "2026-04",
         "2026-05",
-        "2026-06",
-        "2026-09"
+        "2026-06"
       ],
       "keywords": [
-        "revenue",
-        "accelerator",
-        "acquisition",
-        "amd",
-        "backlog",
-        "blackwell",
-        "coherent optics",
-        "compute",
         "cpo",
+        "optics",
+        "amd",
+        "coherent optics",
         "dci",
         "ethernet",
-        "gpus"
+        "helios",
+        "nand",
+        "nvidia",
+        "research",
+        "revenue",
+        "rubin"
       ],
       "source": "docs/RAG/etape6_trackA_cisco_juniper.md",
       "source_anchor": "",
       "source_lines": [
-        329,
+        385,
         410
       ],
       "canonical_for": [],
-      "words": 1826,
-      "bytes": 13131,
-      "sha256": "a160aa42e66aab696fb33e4e6282dc0fe0758a92b80f16e224bf9c2dfee57f6a",
+      "words": 506,
+      "bytes": 3677,
+      "sha256": "c86136f28fd76e29e73ac30d466acceaec3f936a9597fddfbd556947ffcd6ec1",
       "section": "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
     },
     {

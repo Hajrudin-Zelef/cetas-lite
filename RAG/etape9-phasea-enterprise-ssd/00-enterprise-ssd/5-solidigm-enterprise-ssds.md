@@ -9,9 +9,9 @@ dates: ["2024-08-06"]
 keywords: ["cost", "datacenter", "dram", "ipo", "memory", "nand", "research", "throughput"]
 source: docs/RAG/etape9_phaseA_enterprise_ssd.md
 source_anchor: ""
-source_lines: [123, 172]
+source_lines: [123, 174]
 section: "Step 9 — Enterprise SSD Hardware (Phase A)"
-sha256: 2e2b42bff6911d92cbbc7df659bcf24caa11041c3edb574b71b6082ce3b143bc
+sha256: 2497e6ed0be7acd367b350d9b2294981a1cf184c674248ad2d17792a4e6d8938
 ---
 
 # 5. Solidigm enterprise SSDs
@@ -65,4 +65,6 @@ sha256: 2e2b42bff6911d92cbbc7df659bcf24caa11041c3edb574b71b6082ce3b143bc
 - Conventional PLC (5 bits/cell, 32 voltage states): not commercial — read reliability too low, endurance too short; would add ~25% die capacity vs QLC [secondary](https://www.trendforce.com/news/2026/01/16/news-sk-hynix-unveils-5-bit-nand-that-splits-cells-delivers-20x-faster-reads/).
 
 ---
+
+## 7. Western Digital Ultrastar DC SN861
 

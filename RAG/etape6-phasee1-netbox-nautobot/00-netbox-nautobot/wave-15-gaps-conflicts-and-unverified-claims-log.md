@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["CoreWeave", "JFrog", "Microsoft"]
 dates: ["2024-07", "2025-04", "2025-07", "2026-02", "2026-07", "2026-09-22", "2026-10", "2026-10-13"]
-keywords: ["acquisition", "agentic", "agents", "apache", "benchmark", "copilot", "funding", "gpu", "lean", "open source", "packaging", "pricing"]
+keywords: ["acquisition", "agentic", "agents", "benchmark", "copilot", "funding", "gpu", "lean", "open source", "packaging", "pricing", "research"]
 source: docs/RAG/etape6_phaseE1_netbox_nautobot.md
 source_anchor: ""
-source_lines: [457, 521]
+source_lines: [457, 512]
 section: "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
-sha256: d8193b653a5c3d7ef9b6c2ebb0219cf90916ca68ac79d99e4492bf9f20680189
+sha256: e378665b72dd145352b58efc2ae62a795fc96555437b2adcb07d24cdfe9b5375
 ---
 
 # Wave 15 — Gaps, conflicts, and unverified claims log
@@ -71,13 +71,4 @@ sha256: d8193b653a5c3d7ef9b6c2ebb0219cf90916ca68ac79d99e4492bf9f20680189
 - To mark the 10th birthday of open source NetBox (first released 2016), NetBox Labs hosts its inaugural community/customer/partner conference **NetBox Evolve on October 13, 2026, at the Kennedy Space Center, Orlando, Florida** (netboxevolve.com) `[vendor-reported]`.
 
 ### 16.4 Design philosophy and application stack (official docs) `[official]`
-
-- Official introduction docs state three design tenets:
-  1. **Replicate the real world** — strict data model (e.g., IP addresses assigned to interfaces, not devices; an interface may hold multiple IPs).
-  2. **Serve as a "Source of Truth"** — NetBox holds the **desired state**, not operational state; automated import of live network state is **strongly discouraged**; all data should be human-vetted before entry so downstream tools can populate with high confidence.
-  3. **Keep it simple** — the 80% solution is favored over a complete but complex one; low learning curve, lean codebase.
-- Official application stack: HTTP service (nginx or Apache) → WSGI (gunicorn or uWSGI) → Django/Python → **PostgreSQL 15+** → task queue **Redis/django-rq**. NetBox does not talk to network nodes directly; it makes data available programmatically to automation, monitoring, and assurance tools (separation of duties; swap tools without changing the data authority) `[official]`. Source: https://github.com/netbox-community/netbox/blob/HEAD/docs/introduction.md
-- README (2026): "successor to legacy IPAM and DCIM applications... central source of truth for the modern network" `[official]`. Source: https://github.com/netbox-community/netbox/blob/HEAD/README.md
-
----
 

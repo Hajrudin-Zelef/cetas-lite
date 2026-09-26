@@ -9,9 +9,9 @@ dates: ["2025-11", "2025-12-04", "2026-05-18", "2026-06-02", "2026-07", "2026-09
 keywords: ["agent", "benchmarks", "embeddings", "guardrails", "mcp", "packaging", "throughput"]
 source: docs/RAG/etape8_phaseC_backend_frameworks.md
 source_anchor: ""
-source_lines: [322, 391]
+source_lines: [322, 383]
 section: "Step 8 — Phase C: Backend Frameworks & APIs"
-sha256: e8a094dce78ca354b1af561d50356755a3339ac3a9af86e301cce3cda6e2d29b
+sha256: df4da9bc045c94c2843b4adf783ca9e9a3e52df77e1d77ae195d403b48ffe995
 ---
 
 # 12. ORMs and data-access layers
@@ -77,12 +77,4 @@ sha256: e8a094dce78ca354b1af561d50356755a3339ac3a9af86e301cce3cda6e2d29b
 - Jakarta Data (the new repository specification) is the 2026 standards-track item to watch for repository-style access beyond Spring Data/Micronaut Data/Panache idioms — status in this wave: mentioned as context, not verified `[unverified]`.
 
 ### 12.6 ORM selection notes
-
-- Python: SQLAlchemy 2.0.x is the default; Django ORM if you're on Django; Tortoise ORM for pure-async niche.
-- TypeScript: Prisma for schema-DSL + guardrails (+ AI-agent skills in 7.9/8); Drizzle for SQL transparency + edge.
-- .NET: EF Core 10 — no serious alternative for relational; Dapper for micro-ORM raw speed.
-- Java: Hibernate ORM 7.x (blocking) / Hibernate Reactive 3.x (non-blocking); Spring Data JPA, Micronaut Data, Quarkus Panache as the repository facades.
-- The 2026 through-line: JSON-column mapping (EF Core 10, SQLAlchemy, Hibernate) and vector-search support (EF Core 10, Prisma extension packs) — ORMs are absorbing the document/AI workload instead of ceding it to ODMs.
-
----
 

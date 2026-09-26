@@ -4,14 +4,14 @@ title: "Figures and metrics (continued)"
 domain: quantization-model-formats
 role: deep-dive
 task: quantization
-actors: ["AWS", "Alibaba", "Apple", "DeepSeek", "Intel", "MiniMax", "Moonshot", "Nvidia", "OpenAI", "Perplexity", "Z.ai", "vLLM"]
+actors: ["AWS", "Alibaba", "Apple", "DeepSeek", "Intel", "MiniMax", "Moonshot", "Nvidia", "OpenAI", "Perplexity", "Z.ai"]
 dates: ["2026-01", "2026-08-18", "2026-09"]
-keywords: ["attention", "awq", "aws", "benchmark", "benchmarks", "blackwell", "compute", "consumer", "cost", "decode", "deepseek", "disaggregated"]
+keywords: ["attention", "aws", "benchmark", "benchmarks", "blackwell", "compute", "consumer", "cost", "decode", "deepseek", "disaggregated", "distribution"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [4346, 4431]
+source_lines: [4346, 4419]
 section: "8. Quantization & Model Formats"
-sha256: 0026eeea7bc836cd8e06443c53fee4f715e1d721cafa09ba09baf7d04c21376c
+sha256: 8fc2696c251a117e56e0b60c940c8fe5bbc8f407ccd3ee1eda06d63ea6c3dc82
 ---
 
 # Figures and metrics (continued)
@@ -89,16 +89,4 @@ sha256: 0026eeea7bc836cd8e06443c53fee4f715e1d721cafa09ba09baf7d04c21376c
 - Verified footprints: **GLM-5.2** (744B total) at **UD-IQ2_M = 239 GB** disk → 256 GB unified-memory Mac; **DeepSeek-V4-Flash** (284B) at **NVFP4 = 172 GB** → B200/B300 native.
 - Caveat: the **KV cache does not shrink with MoE sparsity** — it stays proportional to layer count and context length. A quantized 400B+ MoE still needs its full KV budget at long context, which is why FP8/4-bit KV and disaggregated prefill/decode matter as much as weight formats.
 ### Throughput tables (measured, September 2026)
-
-- Qwen-Coder 32B FP8: RTX 6000 Ada ~100–120 tok/s (1.7–2× vs FP16); RTX 4090 ~60–80 tok/s (emulated, no speedup).
-- Llama 3.3 70B, A100 80GB, batch=1 (estimated): Q4_K_M ~20–30 tok/s at ~42 GB VRAM; Q5_K_M ~28–36 tok/s at ~48 GB; Q8_0 ~20–25 tok/s at ~75 GB; FP16 needs 2× A100 (~30–40 tok/s, 140 GB) — Q4_K_M on one A100 costs roughly half per hour of FP16 on two.
-- DeepSeek-V3.2 NVFP4+TP2 (GB300): **7,360 TGS prefill-only**, 2,816 TGS mixed (ISL=2k/OSL=1k); DeepSeek-R1 NVFP4+EP2 (2× GB300): **22,476 TGS prefill-only**, 3,072 TGS mixed — 8× prefill, 10–20× mixed-context vs Hopper.
-- Nemotron-3.5-Lightning-30B-A3B-NVFP4 on vLLM 0.27.1 (2026-08-18): L40S 1345.4 tok/s @ $0.182/1M out tokens; **RTX PRO 6000 Blackwell 2541.1 tok/s** @ $0.239/1M; A100 2100.8 tok/s @ $0.182/1M [COMMUNITY].
-- RTX PRO 6000 shootout (Qwen3.8-Flash-Next, vLLM 0.17.0rc1, TP4, Sept 2026): AWQ 3519 vs NVFP4 3232/3220 tok/s at C=128 with MTP; 2796 vs 2294/2291 without MTP — AWQ won decode at every concurrency on this rig [COMMUNITY].
-- Qwen3.6-35B-A3B NVFP4 GEMM on consumer Blackwell (s0me1-dev SM120 patches): 175 tok/s [COMMUNITY].
-- 2× RTX 5090, Qwen3-8B NVFP4, concurrency 128–256: **4,400+ TPS at $0.002/MTok**; 380M tokens/day under $800/year electricity [COMMUNITY].
-- Private-Blackwell RAG (vLLM + AIPerf): NVFP4 **1.6× throughput vs BF16**, 41% energy reduction, 2–4% quality loss [COMMUNITY/SECONDARY].
-- INT4 KV + fused flash-attention kernel: **3.9× kernel speedup** to the bandwidth roofline; attention MAE 3e-08 vs FP32; 42/42 GPU tests passing [COMMUNITY].
-- NVIDIA official figures: NVFP4 ≈ 2× FP8 GEMM compute; B200 FP4 ≈ 8× FP16 tensor-core throughput [VENDOR]; FP8 30–50% speedup over FP16 on H100.
-- Hardware sizing rules: **RTX PRO 6000 (Blackwell, 96 GB)** holds 70B+ models in FP4 on a single card; **RTX 5090 (32 GB)** is the budget entry point for 14B–32B FP4 inference; Ornith-1.5-35B-A3B-NVFP4 loads on an 8 GB-class Ada GPU via the Marlin fallback (~4.5 bits/value, W4A16-class speed) vs 21.7 GB for the GGUF Q4_K_M of the same model.
 

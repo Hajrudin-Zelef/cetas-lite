@@ -4,14 +4,14 @@ title: "Additional verification items (supplement, Sep 22, 2026)"
 domain: step-3-labs-hyperscalers-february-1-september-22-2026
 role: deep-dive
 task: reference
-actors: ["AWS", "Anthropic", "Apple", "CISA", "Cerebras", "Cohere", "CoreWeave", "EU", "Fireworks AI", "Google", "Groq", "Hugging Face", "Meta", "Microsoft", "Mistral", "Nebius", "Nvidia", "OpenAI", "Perplexity", "Sakana", "Together AI", "United States", "xAI"]
+actors: ["AWS", "Anthropic", "Apple", "CISA", "Google", "Hugging Face", "Meta", "Microsoft", "Mistral", "OpenAI", "United States", "xAI"]
 dates: ["2026-05", "2026-05-20", "2026-07"]
-keywords: ["acquisition", "agents", "agi", "apache", "attribution", "aws", "bedrock", "benchmark", "benchmarks", "chatgpt", "claude", "cohere"]
+keywords: ["acquisition", "agents", "agi", "apache", "attribution", "aws", "bedrock", "benchmark", "benchmarks", "chatgpt", "claude", "cost"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [2774, 2858]
+source_lines: [2774, 2836]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 2818d57b0a6e677e8c2bf2219873e67fcdb5c7e9ef09f477f32260e7bf7235f3
+sha256: ecefd8c15c62aacfb0b3eaf759858ac6422a120861e9689af215229e733f7376
 ---
 
 # Additional verification items (supplement, Sep 22, 2026)
@@ -78,26 +78,4 @@ sha256: 2818d57b0a6e677e8c2bf2219873e67fcdb5c7e9ef09f477f32260e7bf7235f3
 - **[OPEN]** Mistral robotics chief name — not published in accessible sources (Sifted paywall); departure itself [secondary], name [unverified].
 - **[OPEN]** Emmi acquisition price (~€300M) — [unverified]. Koyeb acquisition (Feb 2026) — leaked timeline only. [unverified]
 - **[OPEN]** Mistral Forge (announced Mar 17, 2026 at GTC) — pending primary-source confirmation. [secondary]
-
-**Independent labs — continued**
-- **[OPEN]** Thinking Machines **$5–6B raise at ≥$40B** (Sep 2026 talks) — unconfirmed (Forkast, Sep 4, 2026). [unverified]
-- **[OPEN]** Inkling "matches Nemotron 3 Ultra at ~1/3 tokens" — vendor claim; no independent eval published. [vendor-reported]
-- **[OPEN]** Inkling pricing — reported free on Tinker at launch; no per-token list pricing located. [secondary]
-- **[OPEN]** Sakana Fugu benchmark leadership claims (6 benchmarks; Pareto frontier 7/10) — self-reported; SWEFish is Sakana's own benchmark. Third-party testers report benchmark/real-world gap. [vendor-reported/secondary]
-- **[OPEN]** Sakana PC-ALM (Sep 14, 2026) — arXiv + open code; independent reproduction not yet published. [secondary]
-- **[OPEN]** Cohere Command A+ benchmarks (Terminal-Bench Hard 3%→25%; AA index 37) — self-reported. [vendor-reported]
-- **[OPEN]** Cohere Reliant AI acquisition (May 2026) — single source. [unverified]
-- **[OPEN]** Perplexity Nvidia round talks ($30B+, Aug 2026) — The Information exclusive via aggregators; unconfirmed. [secondary]
-- **[OPEN]** AI21 Gateway 40% token-cost reduction claim — single-source; vendor-reported. [unverified]
-
-**Inference infrastructure — continued**
-- **[OPEN]** Cerebras IPO figures ($185/share; ~$5.55B raise) — conflicting across secondary sources; verify against filings. [secondary, conflicting]
-- **[OPEN]** Together AI Series C tranche structure (April tranche report vs July close) — conflicting. [secondary, conflicting]
-- **[OPEN]** Fireworks Series D ($1.505B @ $17.5B) and SambaNova Series F ($1B @ $11B) — single-source lineages. [secondary]
-- **[OPEN]** Nebius–Meta order values — thin sourcing. [unverified]
-- **[OPEN]** CoreWeave Sep 17, 2026 convertible terms — thin sourcing. [secondary]
-- **[OPEN]** NIM per-token pricing — no public price list located as of Sep 22, 2026. [gap]
-- **[OPEN]** Groq EU expansion 2026 — thin sourcing. [secondary]
-- **[OPEN]** FreeLLMAPI scale claims (34 providers; 7.4B monthly tokens) — repo self-reported. [secondary]
-- **[OPEN]** "Cabreras" — no AI entity found; treated as likely misspelling of Cerebras. [research finding]
 

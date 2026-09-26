@@ -5,13 +5,13 @@ domain: step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22
 role: deep-dive
 task: reference
 actors: []
-dates: ["2025-06-05", "2026-02-01", "2026-02-05", "2026-02-06", "2026-02-12", "2026-02-27", "2026-03-02", "2026-03-05", "2026-03-06", "2026-03-12", "2026-03-19", "2026-03-27", "2026-04-28", "2026-04-30", "2026-05-27", "2026-05-29", "2026-06", "2026-06-12", "2026-07-28", "2026-08", "2026-08-07", "2026-08-14", "2026-08-26", "2026-09-08", "2026-09-09", "2026-09-18", "2026-09-22", "2026-09-25", "2026-11-19"]
+dates: ["2026-02-01", "2026-02-05", "2026-02-06", "2026-02-12", "2026-02-27", "2026-03-02", "2026-03-05", "2026-03-06", "2026-03-12", "2026-03-19", "2026-03-27", "2026-04-28", "2026-04-30", "2026-05-27", "2026-05-29", "2026-06", "2026-06-12", "2026-07-28", "2026-08", "2026-08-07", "2026-08-14", "2026-08-26", "2026-09-08", "2026-09-09", "2026-09-18", "2026-09-22", "2026-09-25", "2026-11-19"]
 keywords: ["research"]
 source: docs/RAG/etape10_phaseF_news_buzz.md
 source_anchor: ""
-source_lines: [165, 225]
+source_lines: [165, 222]
 section: "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
-sha256: bd642c48c841c94ad1dff828f5c5400390c8d79cb84bb9c52eeb5061e2daa7c4
+sha256: 4f95096c7f4da62bf300a8a708bf5dbc4247f635a3c300798cf6af69d18cb7cf
 ---
 
 # 3. Deep dive — Music
@@ -73,7 +73,4 @@ sha256: bd642c48c841c94ad1dff828f5c5400390c8d79cb84bb9c52eeb5061e2daa7c4
 - **Budget estimates of $1B–$1.5B circulating online are analyst estimates, not official figures** [unverified].
 
 ### 4.3 Platform context
-
-- **Nintendo Switch 2 launched June 5, 2025**, making 2026 its first full calendar year; *Mario Tennis Fever* and *Pokémon Pokopia* were 2026 exclusives [secondary](https://www.nintendo.com/us/whatsnew/detail/mario-tennis-fever-launches-feb-12/).
-- **The 2026 release slate leaned heavily on sequels, remakes, and expansions** (*Nioh 3*, *Resident Evil Requiem*, *Fatal Frame II* remake, *Dragon Quest VII Reimagined*, *Diablo IV* and *WoW* expansions), with new IP led by *Crimson Desert*, *Saros*, *Pragmata* and *Phantom Blade Zero* [secondary].
 

@@ -1,0 +1,42 @@
+---
+id: labs-hyperscalers-2026/00-labs-hyperscalers/part-4
+title: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 4)"
+domain: step-3-labs-hyperscalers-february-1-september-22-2026
+role: deep-dive
+task: reference
+actors: ["AWS", "Anthropic", "Glasswing", "Google", "Microsoft", "OpenAI", "Stripe", "United States"]
+dates: ["2026-06-09", "2026-07-24", "2026-07-26", "2026-09-01", "2026-09-10", "2026-09-22"]
+keywords: ["accelerator", "agentic", "agi", "aws", "bedrock", "benchmarks", "claude", "compute", "cost", "cyber", "cybersecurity", "distillation"]
+source: docs/RAG/Labos  hyperscalersEN.md
+source_anchor: ""
+source_lines: [101, 124]
+section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+sha256: d8cab46ea40c3cf398a8231572e7a5effd17d0bdec377fa1772aef3b0c3f3bd4
+---
+
+# Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 4)
+
+#### Claude Fable 5 + Claude Mythos 5 — June 9, 2026
+- Fable 5: first publicly available "Mythos-class" model, tier above Opus; Mythos 5 is the same underlying weights with cyber safeguards lifted, restricted to Project Glasswing partners (cyberdefense, critical-infrastructure orgs; ~150 organizations in 15+ countries, a US-government collaboration) and limited US government channels. [independent] https://mlq.ai/news/anthropic-ships-claude-fable-5-to-the-public-keeps-mythos-5-gated-for-cyberdefense/ ; [secondary] https://github.com/mateodaza/camus/blob/HEAD/docs/RESEARCH-fable5-advisor.md
+- Availability channels: Claude API, Amazon Bedrock, Google Cloud, Microsoft Foundry. [secondary] https://github.com/pedro-bright/the-ledger/blob/HEAD/content/events/2026/67-anthropic-claude-fable-5-release.md
+- Pricing: $10/M input / $50/M output for both; 90% prompt-cache input discount; most expensive GA Anthropic model (~2× Opus output). In Claude Code, Fable selectable via `/model fable` or `best` alias, requires v2.1.170+; 1M context on API; not available under zero-data-retention; Anthropic requires 30-day data retention on all Mythos-class traffic. [secondary] https://github.com/mateodaza/camus/blob/HEAD/docs/RESEARCH-fable5-advisor.md ; [independent] https://mlq.ai/news/anthropic-ships-claude-fable-5-to-the-public-keeps-mythos-5-gated-for-cyberdefense/
+- Subscription availability: free on Pro/Max/Team/seat Enterprise June 9 → June 22 only; from June 23 requires usage credits; Anthropic said it intended to restore as standard subscription model "as quickly as we can," no date given. [secondary] https://github.com/mateodaza/camus/blob/HEAD/docs/RESEARCH-fable5-advisor.md
+- Anthropic-reported benchmarks (launch): SWE-bench Verified 95.0% (Vals AI independent: 95.0%), SWE-bench Pro 80.3% (leading at launch; contested — produced on Anthropic scaffolding), GPQA Diamond 92.6%, Terminal-Bench 2.1 88.0% (Vals AI independent: 80.52%), τ²-Bench 98.5%, FrontierCode 29.3% (vs 13.4% Opus 4.8, 5.7% GPT-5.5), ExploitBench (Mythos 5) 78%. Artificial Analysis Intelligence Index: #1 across public models, quality score 64.9 at launch. [vendor-reported/secondary] https://github.com/pedro-bright/the-ledger/blob/HEAD/content/events/2026/67-anthropic-claude-fable-5-release.md ; https://mlq.ai/news/anthropic-ships-claude-fable-5-to-the-public-keeps-mythos-5-gated-for-cyberdefense/
+- Safety architecture: classifiers route cyber/bio/distillation flagged requests to Opus 4.8 fallback; triggers in <5% of sessions (Anthropic claim); 319-page system card. [vendor-reported via secondary] https://github.com/pedro-bright/the-ledger/blob/HEAD/content/events/2026/67-anthropic-claude-fable-5-release.md
+- **Covert-degradation controversy (June 10–11, 2026):** Simon Willison published "If Claude Fable Stops Helping You, You'll Never Know" documenting that for "frontier LLM development" queries (pretraining pipelines, distributed training infra, accelerator design), the system card described INVISIBLE safeguards — prompt modification, steering vectors, parameter-efficient fine-tuning — with no user notification. On June 11 Anthropic reversed the policy: "we made the wrong tradeoff," committing to make all capability restrictions visible and explained. [secondary] https://github.com/pedro-bright/the-ledger/blob/HEAD/content/events/2026/68-anthropic-fable-covert-capability-degradation.md
+- Adoption datapoint: Stripe used Fable 5 to migrate a 50M-line Ruby codebase in one day (task estimated at two months for a team). [independent] https://mlq.ai/news/anthropic-ships-claude-fable-5-to-the-public-keeps-mythos-5-gated-for-cyberdefense/
+- Suspension (see §1.5) June 12 → lifted ~June 30. [independent] https://www.rappler.com/technology/united-states-lifts-curbs-anthropic-fable-mythos-ai-models/
+- **Fable 5.1 released September 1, 2026:** `claude-fable-5-1`, 1M context, $10/$50 per Mtok with $0.25/Mtok cache reads; became default Fable model in Claude Code v2.1.257. BenchLM HLE 65.0% (rank #1 as of 2026-09-10); ARC-AGI-2 90.0%. [secondary] https://github.com/florianbruniaux/claude-code-ultimate-guide/blob/HEAD/guide/core/claude-code-releases.md ; https://github.com/leoncuhk/awesome-llm-bench/blob/HEAD/README.md
+
+#### Claude Opus 5 — July 24, 2026
+- Replaces Opus 4.8 at same API price ($5/M input / $25/M output); new default on Claude Max, strongest model on Claude Pro; available on API, AWS, Google Cloud, Microsoft Foundry. Fast mode available at 2.5× speed for 2× base price. [independent] https://www.macrumors.com/2026/07/24/anthropic-opus-5/
+- US-only inference option at 1.1× standard price; prompt caching cuts input costs up to 90%; batch 50% savings. [secondary] https://metrotechs.io/news/anthropic-claude-opus-5-release-enterprise-evaluation?v=2513abcab895229909902a0af92abafb
+- Anthropic-reported benchmarks: Frontier-Bench v0.1 43.3% max effort (44.4% xhigh; vs Opus 4.8 18.7%, Fable 5 33.7%, GPT-5.6 Sol 37.5% — SOTA), CursorBench 3.2 within 0.5% of Fable 5 peak at half cost, ARC-AGI 3 3× next-best model, Zapier AutomationBench ~1.5× next-best pass rate, OSWorld 2.0 surpasses Fable 5 best at ~1/3 cost, ARC-AGI-2 90.4%, Terminal-Bench 2.1 89.1% max, SWE-bench Verified 96% (vendor) / 97.0% (Vals AI independent), SWE-bench Pro 79.2%, BrowseComp 90.8%, FrontierCode 1.1 Main 53.4%, GDPval-AA ~1861 Elo. Artificial Analysis Intelligence Index ~61, narrowly #1 (Opus 5 holds #1 spot Jul–Sep). [vendor-reported/secondary/independent] https://pulse2.com/anthropic-launches-claude-opus-5/ ; https://www.neowin.net/news/anthropic-launches-claude-opus-5-with-near-fable-intelligence-at-half-the-price/ ; https://github.com/alt-f4-llc/dotfiles.vorpal/blob/HEAD/docs/facts/1785618019_claude_v5_models_cost_and_benchmarks.md
+- ⚠️ **CONFLICT:** a second tracking source shows Opus 5 SWE-bench Verified at 74.8% "SOTA" in an Opus architecture table — vs 96% (vendor) / 97.0% (Vals AI). Likely different harnesses/effort configs; marked conflicting/uncertain, not reconciled. [secondary] https://www.narenvadapalli.com/blog/anthropic-claude-opus-5-architectural-guide/
+- Effort toggle: users choose low/medium/high/max effort; automatic model fallbacks for API. [secondary] https://github.com/abdulhadi446/blog-s/blob/HEAD/blogs/ai-daily-roundup-2026-07-26/blog.md
+- BenchLM (as of 2026-09-10): HLE 64.7% (rank #2); BrowseComp 90.8% (rank #4); ARC-AGI-2 90.4% (rank #3). BenchLM composite "BenchAlign" (Jul 31): 82.79, #3 agentic / #4 coding / #1 knowledge. [secondary] https://github.com/leoncuhk/awesome-llm-bench/blob/HEAD/README.md ; https://github.com/alt-f4-llc/dotfiles.vorpal/blob/HEAD/docs/facts/1785618019_claude_v5_models_cost_and_benchmarks.md
+
+#### Claude Opus 5.5 — September 22, 2026 (today)
+- Released Sept 22, 2026; Anthropic says it sets new SOTA in coding and knowledge work, outpaces Fable 5 in many benchmarks; first model released after CEO Dario Amodei embraced "pacing the frontier." Pricing cut: output $20/M (vs $25 predecessor); "other metrics have similar price drops"; faster to run (less compute per token). Sonnet 5.5 and Haiku 5.5 to follow "in the coming weeks." [independent] https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/
+- Safeguards: Opus 5.5 deemed comparable to Mythos on biology/cybersecurity capabilities; released under same safeguards as Fable (limits on exploit discovery, bioweapon-adjacent work). [independent] https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/
+

@@ -5,14 +5,14 @@ domain: licenses-and-open-weight-politics
 role: deep-dive
 task: model-release
 actors: ["Alibaba", "Anthropic", "China", "Cohere", "DeepSeek", "EU", "Google", "Hugging Face", "LongCat", "Meta", "MiniMax", "Moonshot", "Nvidia", "OpenAI", "United States", "Z.ai", "xAI"]
-dates: ["2024-10-28", "2025-01-13", "2025-01-15", "2025-05", "2026-03-31", "2026-04-02", "2026-05-20", "2026-06-12", "2026-07-05", "2026-07-21", "2026-07-24", "2026-07-27", "2026-07-31", "2026-08-02", "2026-08-06", "2026-08-10", "2026-08-14", "2026-08-22", "2026-08-26", "2026-09-20", "2026-09-21"]
+dates: ["2024-10-28", "2025-01-13", "2025-01-15", "2025-05", "2026-03-31", "2026-04-02", "2026-05-20", "2026-06-12", "2026-07-05", "2026-07-21", "2026-07-24", "2026-07-27", "2026-08-02", "2026-08-06", "2026-08-10", "2026-08-14", "2026-08-26", "2026-09-20"]
 keywords: ["agent", "agents", "apache", "attribution", "benchmarks", "claude", "cohere", "compute", "copyright", "cost", "cyberattack", "deepseek"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [10260, 10337]
+source_lines: [10260, 10331]
 section: "§21. Licenses and Open-Weight Politics"
 delta_of: ai-industry-kb-2026
-sha256: 3349e01870d30b88d02c8a3eec260e49298fa8da1be89818ce5629e04ef048fd
+sha256: 7bd2629b4cf08d08a0cfe837198e3395eeefe12abbee6f157348bd1a684789cc
 ---
 
 # Figures and metrics
@@ -88,10 +88,4 @@ sha256: 3349e01870d30b88d02c8a3eec260e49298fa8da1be89818ce5629e04ef048fd
 - 2026-08-14: GLM-5.3 launches closed, weights staged behind safety review [SECONDARY]. Source: https://emergent.sh/learn/what-is-glm-5-3
 - 2026-08-26: GLM-5.3-Flash released MIT [SECONDARY]. Source: https://www.explainx.ai/blog/glm-5-3-flash-ox-alpha-official-launch-august-2026?ref=hackernoon.com
 
-
-- 2025-01-13: BIS interim final rule (4E091) announced [SECONDARY]. Source: https://admin.govexec.com/media/general/2025/1/ai_embargoed_press_release.pdf
-- 2025-07: BIS reporting requirements added for AIA exception users [SECONDARY]. Source: https://theaicounsel.net/wp-content/uploads/2025/06/01_25_bis.pdf
-- 2026-07-31: DeepSeek V4.1 Flash (0731) released, MIT [SECONDARY]. Source: https://kimi-k2.org/blog/56-kimi-k3-vs-deepseek-v4-flash-0731
-- 2026-08-22: MiniMax confirms H3 open weights via X post [SECONDARY]. Source: https://runaihome.com/blog/minimax-h3-open-weights-local-ai-hardware-guide-2026
-- 2026-09-21/22: MiMo V2.6-Pro released, MIT line [SECONDARY]. Source: wave6/03-model-weights-wave3.md
 

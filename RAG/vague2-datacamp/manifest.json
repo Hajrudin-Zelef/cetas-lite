@@ -4,7 +4,7 @@
   "source": "docs/RAG/Collect RAG Vague 2/02_datacamp",
   "source_dir": "docs/RAG/Collect RAG Vague 2/02_datacamp",
   "source_files": 68,
-  "source_sha256": "639aaa2edffa2d13452a5e81e56c72b5c30bb53166c77851235220cd8137f681",
+  "source_sha256": "a862d57406c6c2c7870a652cd5e682e9547c99e2678000d7ff653b55bb9d52b9",
   "chunk_count": 68,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [

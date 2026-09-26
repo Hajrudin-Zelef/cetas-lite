@@ -4,14 +4,14 @@ title: "4. OPEN NETWORKING LANDSCAPE 2026"
 domain: step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-
 role: deep-dive
 task: reference
-actors: ["AMD", "AWS", "Anthropic", "Broadcom", "Huawei", "Intel", "Meta", "Microsoft", "Nvidia", "OpenAI", "TSMC"]
+actors: ["AMD", "Anthropic", "Broadcom", "Huawei", "Intel", "Meta", "Microsoft", "Nvidia", "OpenAI", "TSMC"]
 dates: ["2023-07-19", "2025-06-11", "2026-03-12", "2026-07-16"]
-keywords: ["3nm", "alignment", "amd", "asic", "cpo", "ethernet", "gpu", "inference", "intel", "latency", "lpo", "nvidia"]
+keywords: ["3nm", "alignment", "amd", "asic", "cpo", "ethernet", "gpu", "intel", "latency", "lpo", "nvidia", "optics"]
 source: docs/RAG/etape6_trackB_arista_sonic.md
 source_anchor: ""
-source_lines: [163, 243]
+source_lines: [163, 235]
 section: "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
-sha256: 9ac80d4406d936c7fe5c5340870c01bb2f8d72e10fe8ae2ee5e773a369d8b34a
+sha256: 4c58fae4ce82956385f1f776f45d70d34ccc389fc03f7d1d35142362a7e7a456
 ---
 
 # 4. OPEN NETWORKING LANDSCAPE 2026
@@ -88,12 +88,4 @@ sha256: 9ac80d4406d936c7fe5c5340870c01bb2f8d72e10fe8ae2ee5e773a369d8b34a
 **Comparison sources:** LLM-Systems-Wiki Arista/Etherlink page (secondary, vendor-adjacent technical detail) and StorageReview TH6/Spectrum-Photonic comparison (secondary). Treat table cells as secondary-sourced where marked.
 
 ### 5.3 Analyst framing of the competitive dynamic
-
-- **The bullish-on-Ethernet case**: by early 2026, Ethernet had "largely caught up to NVIDIA's proprietary InfiniBand in terms of latency and congestion management," capturing **>65% of new AI back-end deployments**; Meta, Microsoft, Amazon, Alphabet validated Ethernet (RoCE) as equivalent performance at lower TCO vs InfiniBand **[secondary — Tamar Securities, Jan 2026]**.
-- **The bearish-on-Arista-multiple case**: Arista's stock is priced on the smallest, most contested slice of its revenue (the AI back end), while NVIDIA — which Arista "spent two decades building its identity on" — just became #1 in data-center Ethernet. "Hyperscalers are no longer buying networking as an isolated silo... It is not as good as it looks when the customer stops buying switches and starts buying GPU clusters that happen to include switches." **[secondary — ainvest, Aug 2026]**.
-- **Arista's response**: openness and operational consistency — one EOS binary across DC/AI/routing/campus; mix-and-match accelerators and NICs from multiple suppliers; founding UEC member betting Ethernet becomes the default for AI networking, not just scale-out **[secondary — remio.ai; The CODEW]**.
-- **NVIDIA's advantage**: vertical integration — GPU + switch chip + switch + SuperNIC + cables + software as one pre-optimized, single-support-number AI factory; IDC's read: integrated GPU-plus-networking co-design is winning AI deals **[secondary — ainvest; The Next Platform]**.
-- "AI back-end" market expected to surpass **$15B annually by end of 2026**; trend shifting from inference to large-scale training **[secondary — Tamar Securities]**.
-
----
 

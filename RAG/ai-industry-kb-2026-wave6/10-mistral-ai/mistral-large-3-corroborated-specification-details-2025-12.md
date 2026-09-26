@@ -5,14 +5,14 @@ domain: mistral-ai
 role: deep-dive
 task: actor-profile
 actors: ["Alibaba", "China", "DeepSeek", "Mistral", "Nvidia", "OpenRouter", "SGLang", "Samsung", "Together AI", "vLLM"]
-dates: ["2025-06-30", "2025-07-10", "2025-09", "2025-12", "2025-12-09", "2026-03", "2026-03-16", "2026-04-28", "2026-04-29", "2026-05", "2026-05-22", "2026-07-10", "2026-07-31", "2026-09-08"]
-keywords: ["mistral", "acquisition", "agentic", "apache", "arr", "benchmarks", "blackwell", "compute", "consumer", "datacenter", "deepseek", "fp8"]
+dates: ["2025-06-30", "2025-07-10", "2025-09", "2025-12", "2025-12-09", "2026-03", "2026-03-16", "2026-04-28", "2026-04-29", "2026-05-22", "2026-09-08"]
+keywords: ["mistral", "agentic", "apache", "benchmarks", "compute", "consumer", "deepseek", "fp8", "gpus", "latency", "license", "multimodal"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [4870, 4977]
+source_lines: [4870, 4950]
 section: "§10. Mistral AI"
 delta_of: ai-industry-kb-2026
-sha256: 5f4f13b528dee0eca01055bdb0e3f10b033468ef6fc68fa8fbb4562c21041a48
+sha256: b951b05263ebded7213e168db52c42d0148dd76ae1e9ca418328a4dd1fb37a02
 ---
 
 # Mistral Large 3 corroborated specification details (2025-12)
@@ -97,31 +97,4 @@ sha256: 5f4f13b528dee0eca01055bdb0e3f10b033468ef6fc68fa8fbb4562c21041a48
 
 ### Ministral 3 figures
 - 3B / 8B / 14B; Apache 2.0; 131K–262K context; 14B reasoning variant 85% AIME 2025 (single source). [SECONDARY, S31][SECONDARY, S13]
-
-### Devstral figures
-- Small 1.1: 24B; Apache 2.0; 128K context; SWE-Bench Verified 53.6% vs Small 1.0 46.8%; #1 open model 2026-07-10. [SECONDARY, S21][SECONDARY, S24]
-- Medium 2507: 61.6%+ SWE-Bench Verified (single source). [SECONDARY, S24]
-- API devstral-small-2505: $0.10/$0.30 per 1M. [SECONDARY, S23]
-- Runs on 1× RTX 4090 or Mac 32GB RAM. [SECONDARY, S22]
-
-### Magistral figures
-- Medium: AIME 2024 73.6%, 90% with majority voting @64 (vendor). [VENDOR, S26]
-- Small: 70.7% / 83.3% (vendor). [VENDOR, S27]
-- 8 reasoning languages; Flash Answers 10× throughput claim (vendor). [VENDOR, S26]
-- Pricing: Medium $2/$8; Small $0.50/$1.50; 128K context. [SECONDARY, S19]
-- Magistral Small 1.2 retired from API 2026-07-31. [SECONDARY, S31]
-
-### OCR figures
-- OCR 3: $2/1K pages, 50% batch discount; 74% win rate claim (vendor). [SECONDARY, S32]
-- OCR 4: $4/1K pages, $2 with Batch API; 170 languages / 10 groups; OlmOCRBench 85.20; 72% blind-eval win rate (vendor). [SECONDARY, S35]
-- Anaqua measured ~4× per-page throughput vs prior provider. [SECONDARY, S34]
-
-### Corporate figures
-- Series D: €3B at >€21B post-money (2026-09-08); Series C: €1.7B at €11.7B (Sep 2025); debt: $830M / €723M (Apr 2026). [SECONDARY, S13][SECONDARY, S16]
-- Scale: ~1,000 employees; 20 countries; 125+ enterprise customers. [SECONDARY, S33][VENDOR, S13]
-- Revenue: €200M (2025) → €1B target (2026); ~$400M ARR estimated Jan 2026 (community). [SECONDARY, S33][COMMUNITY, S13]
-- Compute: 18,000 Blackwell GPUs, 44 MW datacenter near Paris (2026). [SECONDARY, S13]
-- Emmi AI acquisition: ~€300M (May 2026). [SECONDARY, S13]
-- Robostral Navigate: 8B params; 76.6% R2R-CE; 400K sim trajectories. [SECONDARY, S13]
-- Vibe pricing: Free / Pro €14.99 / Team €24.99 (€19.99 annual) / Enterprise. [SECONDARY, S17][SECONDARY, S35]
 

@@ -4,14 +4,14 @@ title: "PART A — xAI / GROK"
 domain: part-a-xai-grok
 role: deep-dive
 task: actor-profile
-actors: ["Anthropic", "Google", "Intel", "Nvidia", "OpenAI", "SpaceX", "Xiaomi", "xAI"]
-dates: ["2024-05", "2025-03", "2025-07", "2026-01-30", "2026-02-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-06-08", "2026-09-21"]
-keywords: ["grok", "2nm", "acquisition", "agent", "arr", "astra", "benchmark", "benchmarks", "compute", "context window", "cost", "disclosure"]
+actors: ["Anthropic", "Google", "Nvidia", "OpenAI", "SpaceX", "Xiaomi", "xAI"]
+dates: ["2024-05", "2025-03", "2025-07", "2026-02-02", "2026-05", "2026-06", "2026-09-21"]
+keywords: ["grok", "acquisition", "agent", "arr", "astra", "benchmark", "benchmarks", "compute", "context window", "cost", "fable 5", "gemini"]
 source: docs/RAG/Labos, Grok, outils & plateformes_EN.md
 source_anchor: ""
-source_lines: [216, 325]
+source_lines: [216, 304]
 section: "PART A — xAI / GROK"
-sha256: 1229c5308d6ccebed07a6479a2cb8437cdb085b295ae31a0be4e4dde4c837402
+sha256: 159309b5a49cf32a542bc1dc320ac3ae82994aedf782c054546da23b642ae21e
 ---
 
 # PART A — xAI / GROK
@@ -102,25 +102,4 @@ Context: xAI generated only ~$107M revenue in the September quarter (net loss $1
 - **Security tier: Impact Level 5 (IL5)** — cleared for Controlled Unclassified Information (CUI) in daily workflows (research, writing, analysis, training).
 - **Differentiator: real-time X data feed** — military planners get AI-assisted live social-sentiment and breaking-news intelligence from X, a capability rival models can't offer. Announced Feb 23, 2026 confirmation of Grok supporting rapid geospatial/signals-intelligence analysis for commanders.
 - Alphabet's Gemini was the first model on the platform; Grok joined a multi-vendor roster.
-
-### 3.2 Controversy
-- **Senator Elizabeth Warren** wrote to Secretary Hegseth in September (2025) warning Grok was "generating erroneous outputs and misinformation" and "offensive and antisemitic posts," questioning both reliability and how much sensitive government data Musk's companies could access.
-- A former Pentagon AI adviser: "On paper this is about giving warfighters better tools. In practice, it's about inviting a private billionaire's AI into the command post."
-
-## 4. Orbital data centers — ambitions
-
-### 4.1 The plan
-- **January 30, 2026 FCC filing**: SpaceX proposed the **"SpaceX Orbital Data Center System"** — a constellation of **up to 1 million satellites** as AI compute infrastructure in LEO (500–2,000 km altitude; 30° and sun-synchronous inclinations to maximize solar exposure).
-- Technical sketch: **100 kW of compute per tonne of deployed satellites**; at a 1M-tonnes/year Starship launch cadence → **100 GW of annual AI compute capacity**; passive radiative cooling; high-bandwidth optical inter-satellite links (OISLs) into the Starlink laser mesh for ground-station backhaul.
-- SpaceX requested a **waiver of standard FCC milestones** (50% in 6 years, full deployment in 9) — no firm timeline given.
-- Musk's argument: space solves terrestrial AI's three bottlenecks at once — **power** (unlimited solar, no grid), **cooling** (vacuum as infinite heat sink), **land** (no zoning/permits/water).
-
-### 4.2 Milestones in 2026
-- **Grok-Sats (announced early April 2026)**: autonomous orbital AI data centers. As of May 2026: **zero operational**; engineering targets: first launches 2027–2028, working orbital training/inference cluster in the late 2020s.
-- **AI1 satellite (unveiled June 8, 2026)**: first-generation orbital AI compute satellite — **70-meter wingspan, 150 kW peak AI compute, 110 m² deployable liquid radiator**; interchangeable chip payload; **prototypes targeted for early 2027**.
-- **Terafab (announced March 2026)**: **$20–25B** SpaceX/Tesla/xAI/**Intel** chip factory, Austin TX initially; **AI5/Tesla inference chips + D3 chips custom-designed for orbital AI satellites**; **80% of compute output targeted at orbital applications**; 2nm process, 100,000 wafer starts/month at full scale.
-- **Colossus expansion** (xAI, May 2026): build-out toward **1M+ GPUs** in Memphis.
-- S-1 pre-IPO risk disclosure: orbital initiatives are "in early stages, involve significant technical complexity and unproven technologies, and may not achieve commercial viability."
-
----
 

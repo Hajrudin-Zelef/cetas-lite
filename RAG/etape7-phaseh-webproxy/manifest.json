@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape7_phaseH_webproxy.md",
   "source_lines": 751,
   "source_sha256": "c7493b8b914a193bdd361460006ce47e72042d1c5ea532e5b50c5d182938a4b3",
-  "chunk_count": 13,
+  "chunk_count": 16,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -34,7 +34,6 @@
         "apache",
         "benchmarks",
         "distribution",
-        "memory",
         "packaging",
         "research",
         "training"
@@ -43,12 +42,37 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 962,
+      "bytes": 7765,
+      "sha256": "18b233b57f2d2b0f076c6dabdde14abd9a2b65b6d8d071ed2bd1997a9d01246d",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/part-2",
+      "path": "etape7-phaseh-webproxy/00-webproxy/part-2.md",
+      "title": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways (part 2)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "memory"
+      ],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        50,
         55
       ],
       "canonical_for": [],
-      "words": 1044,
-      "bytes": 8403,
-      "sha256": "9edd3673b3e5178f3950dad6ee0df3322c246c4d2cf4d8d83f1acb84c7ee1839",
+      "words": 82,
+      "bytes": 638,
+      "sha256": "dbb213e40fb3ad9dae61efc315ae3d82ea6f68b867757b9b45ffbb1b0ee62c96",
       "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
     },
     {
@@ -94,12 +118,34 @@
       "source_anchor": "",
       "source_lines": [
         56,
+        112
+      ],
+      "canonical_for": [],
+      "words": 962,
+      "bytes": 7895,
+      "sha256": "710834cdd2744d571f0178033257832daf267fd894b108e4471dbb0c12bde3e0",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/part-4",
+      "path": "etape7-phaseh-webproxy/00-webproxy/part-4.md",
+      "title": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways (part 4)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        113,
         118
       ],
       "canonical_for": [],
-      "words": 1027,
-      "bytes": 8443,
-      "sha256": "971f670515fc1d812a12fe3946a9018bf5ed768e6030497dc5e5b37808c1124f",
+      "words": 65,
+      "bytes": 548,
+      "sha256": "67e8bd9fa06f158898f4d52ba417b7cd34b18d33e747a3deb1ddc3981760a464",
       "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
     },
     {
@@ -450,12 +496,36 @@
       "source_anchor": "",
       "source_lines": [
         662,
+        743
+      ],
+      "canonical_for": [],
+      "words": 1014,
+      "bytes": 7584,
+      "sha256": "f1dd9aa14918f9d5ad8a748818fca9ff65dd3a068b23121e19453aed15f658ae",
+      "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
+    },
+    {
+      "id": "etape7-phaseh-webproxy/00-webproxy/part-16",
+      "path": "etape7-phaseh-webproxy/00-webproxy/part-16.md",
+      "title": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways (part 16)",
+      "domain": "step-7-phase-h-web-servers-reverse-proxies-api-gateways",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape7_phaseH_webproxy.md",
+      "source_anchor": "",
+      "source_lines": [
+        744,
         751
       ],
       "canonical_for": [],
-      "words": 1142,
-      "bytes": 8566,
-      "sha256": "3016d2dfd78cae4d25f1befb61e25caa0dae2c0bc474424beeb0e20e92cae761",
+      "words": 128,
+      "bytes": 982,
+      "sha256": "4b00d0b245baf0fa30d75c96a2bc4521bf38cfadfb254cc139b2206b0da9862a",
       "section": "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
     }
   ]

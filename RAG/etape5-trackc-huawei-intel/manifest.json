@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape5_trackC_huawei_intel.md",
   "source_lines": 214,
   "source_sha256": "06e5f971e1354ad233973e814cf06e4a586f73d6c065804f6bd257cb335f72d0",
-  "chunk_count": 3,
+  "chunk_count": 4,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -119,16 +119,10 @@
       "task": "hardware",
       "actors": [
         "AMD",
-        "AWS",
-        "Apple",
-        "DeepSeek",
         "Falcon",
-        "Google",
-        "Huawei",
         "Intel",
         "Microsoft",
         "Nvidia",
-        "Qualcomm",
         "Samsung",
         "TSMC",
         "United States"
@@ -137,10 +131,8 @@
         "2025-03",
         "2025-08",
         "2026-01-05",
-        "2026-05",
         "2026-06-01",
-        "2026-06-26",
-        "2026-09-22"
+        "2026-06-26"
       ],
       "keywords": [
         "intel",
@@ -152,20 +144,69 @@
         "agi",
         "ai pc",
         "amd",
-        "ascend",
         "clearwater forest",
-        "consumer"
+        "consumer",
+        "copilot"
       ],
       "source": "docs/RAG/etape5_trackC_huawei_intel.md",
       "source_anchor": "",
       "source_lines": [
         104,
+        166
+      ],
+      "canonical_for": [],
+      "words": 1162,
+      "bytes": 7946,
+      "sha256": "c6d8cfb417438c8632c6e1e2b1338b55daaecaf41b0a239ac49cdb254bce994e",
+      "section": "Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)"
+    },
+    {
+      "id": "etape5-trackc-huawei-intel/00-huawei-intel/4-3-other-2026-cpu-server-chip-launches-relevant-to-ai",
+      "path": "etape5-trackc-huawei-intel/00-huawei-intel/4-3-other-2026-cpu-server-chip-launches-relevant-to-ai.md",
+      "title": "4.3 Other 2026 CPU/server-chip launches relevant to AI",
+      "domain": "step-5-track-c-huawei-chinese-hardware-intel-cpus-feb-1-sep-",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Apple",
+        "DeepSeek",
+        "Google",
+        "Huawei",
+        "Intel",
+        "Nvidia",
+        "Qualcomm",
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "18a",
+        "ascend",
+        "clearwater forest",
+        "crescent island",
+        "deepseek",
+        "dram",
+        "fp8",
+        "gpu",
+        "graviton",
+        "inference",
+        "intel",
+        "ipo"
+      ],
+      "source": "docs/RAG/etape5_trackC_huawei_intel.md",
+      "source_anchor": "",
+      "source_lines": [
+        167,
         214
       ],
       "canonical_for": [],
-      "words": 1689,
-      "bytes": 11822,
-      "sha256": "44def0f1286ee2754fd114dcc19943a4dccc6827642e9893e572d799ea8def4f",
+      "words": 527,
+      "bytes": 3876,
+      "sha256": "98a44e8d4e18d4cc156fbed20930943c57b719f9614cb359e958db99fe4fd370",
       "section": "Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)"
     }
   ]

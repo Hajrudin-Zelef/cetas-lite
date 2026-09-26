@@ -5,13 +5,13 @@ domain: step-10-phase-g-science-planet-news-february-september-2026
 role: deep-dive
 task: robotics
 actors: ["China", "Nvidia", "SpaceX"]
-dates: ["2025-05", "2025-10", "2025-12", "2026-01", "2026-02", "2026-02-27", "2026-03", "2026-03-19", "2026-03-30", "2026-04-01", "2026-05-22", "2026-06-09", "2026-06-22", "2026-06-30", "2026-07", "2026-07-15", "2026-07-24", "2026-07-31", "2026-08", "2026-08-20", "2027-11"]
-keywords: ["energy", "revenue", "rubin"]
+dates: ["2025-05", "2025-12", "2026-02", "2026-02-27", "2026-03", "2026-03-19", "2026-03-30", "2026-04-01", "2026-05-22", "2026-06-09", "2026-07", "2026-07-24", "2026-08", "2026-08-20", "2027-11"]
+keywords: ["revenue", "rubin"]
 source: docs/RAG/etape10_phaseG_news_science.md
 source_anchor: ""
-source_lines: [88, 149]
+source_lines: [88, 130]
 section: "Step 10 Phase G — Science & Planet News (February → September 2026)"
-sha256: 8da5bba92f4d8a617b9a6062c8eb8da90f21833e91199ef0ef321d2fc0be2e11
+sha256: 67e8f17c553a195de4c7b97a273a4586d79176bdfbae703ef51da8afe49edcd6
 ---
 
 # 2. Deep dive — Human & robotic spaceflight 2026
@@ -59,22 +59,3 @@ sha256: 8da5bba92f4d8a617b9a6062c8eb8da90f21833e91199ef0ef321d2fc0be2e11
 
 ### 3.1 Vera C. Rubin Observatory: astronomy goes to the movies
 
-- **June 30, 2026**: the 10-year **Legacy Survey of Space and Time (LSST)** officially begins from Cerro Pachón, Chile — the 3.2-gigapixel LSST camera on the 8.4-m Simonyi Survey Telescope images the southern sky every 3–4 nights, producing **~20 TB/night** [secondary] — https://phys.org/news/2026-06-largest-digital-camera-built-decade.pdf
-- **First-light campaign** (summer 2025, reference point): in just **10 hours** of test observations, Rubin discovered **2,104 previously unseen asteroids** (incl. 7 near-Earth objects) and imaged the Trifid/Lagoon nebulas (678 stacked images) and the Virgo Cluster; the "Cosmic Treasure Chest" combined 1,100+ images of ~10 million galaxies [secondary] — https://medium.com/@WorldsObserver/astronomy-enters-a-new-era-with-the-most-detailed-images-of-the-cosmos-ever-recorded-00797571b445
-- **July 31, 2026**: first **LSST-camera science data release** (Early Data Preview 2) — a deep **COSMOS field** image of **500,000+ galaxies and 50,000+ stars**, stacked from hundreds of observations; released with a public SkyViewer [official] — https://www6.slac.stanford.edu/news/2026-07-31-doe-nsf-rubin-observatory-opens-deep-window-famous-cosmic-field
-- **Technical specs**: 3,200 MP (189 CCDs), 10 sq-degree field of view, 30-second exposures to mag 20–24.7, ~1,000 images/night → 2M/year, 15 PB over the survey; real-time transient alerts (up to **10M events/night**) [secondary] — https://www.astronomycast.com/2025/07/761-its-here-the-vera-rubin-observatory/
-- **Expected yields**: ~20 billion galaxies over the survey; asteroid catalog growing to **5 million**; ~4 million supernovae incl. 1 million Type Ia; **5–50 interstellar objects** over the decade [secondary] — https://therockinghorsecompany.com/article/vera-rubin-observatory-hunting-5-50-interstellar-comets-like-3i-atlas-in-the-next-decade ; https://www.astronomycast.com/2025/07/761-its-here-the-vera-rubin-observatory/
-- **Science pillars**: Milky Way mapping, solar-system inventory, dark matter/dark energy, transient sky [secondary] — https://www.astronomycast.com/2025/07/761-its-here-the-vera-rubin-observatory/
-- **Note on 3I/ATLAS**: the third confirmed interstellar object made its close Mars pass and perihelion in **October 2025** — outside this phase's window; it is mentioned only to contextualize Rubin's future interstellar-object hunt. Widely circulated "2026" 3I/ATLAS perihelion articles appear to be mislabeled reposts of the 2025 event — flagged as a **date-verification trap** [secondary] — https://www.sciencealert.com/nasa-reveals-our-closest-look-yet-at-interstellar-comet-3i-atlas
-
-### 3.2 JWST in 2026: early galaxies, exoplanet air, and prebiotic chemistry
-
-- **TGSSJ1530+1049** (June 22, 2026, Leiden + Oxford): at least **six galaxies merging** 12+ billion light-years away around a growing supermassive black hole — a direct look at giant-galaxy assembly 1.5 billion years after the Big Bang [secondary] — https://phys.org/news/2026-06-webb-birth-giant-galaxy-supermassive.html
-- **"Webb Quintet"** (January 2026, Texas A&M): five galaxies colliding just **800 million years** after the Big Bang — earlier violent interactions than standard models expected [secondary] — https://www.lyxplanet.com/james-webb-space-telescope/
-- **IRAS 07251** (February 2026, *Nature Astronomy*; Center for Astrobiology Spain + Oxford): **benzene, methane, acetylene, and the methyl radical detected outside the Milky Way for the first time**, in the dust-buried core of an ultra-luminous infrared galaxy — prebiotic chemistry in an extreme environment [secondary] — https://www.youtube.com/watch?v=zZUhvz-56jw
-- **Beta Pictoris d** (July 15, 2026, *ApJ Letters*): first exoplanet discovered **primarily via the chemical signature of its atmosphere** (CO, methane, water); Beta Pictoris becomes the second system with **three directly imaged planets** [secondary] — https://www.youtube.com/watch?v=8hLgKApvbSU
-- **K2-18b (Hycean candidate)**: 2026 reports claim JWST/MIRI confirmed **dimethyl sulfide (DMS)** at 3-sigma alongside methane and CO₂ — a potential biosignature 124 light-years out. **Caution**: biosignature claims on K2-18b remain highly contested in the literature; treat as intriguing, not settled [secondary] — https://successknocks.com/james-webb-space-telescope-latest-exoplanet/
-- **MoM-z14**: reported as the **most distant galaxy ever observed** — ~280 million years after the Big Bang, ~100x brighter than predicted [secondary] — https://ivy.fm/podcast/james-webb-space-telescope-1202419
-- **Other 2026 JWST notes**: first infrared **progenitor-star identification** for a supernova (dust-veiled red supergiant); hints that ultralight-particle dark matter better explains elongated young galaxies than cold dark matter [secondary] — https://www.lyxplanet.com/james-webb-space-telescope/
-
----

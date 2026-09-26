@@ -4,14 +4,14 @@ title: "2.8 Standards bodies status (Sept 2026)"
 domain: front-matter
 role: reference
 task: reference
-actors: ["China", "Cohere", "Lambda", "Meta", "Nvidia"]
+actors: ["China", "Cohere", "Lambda"]
 dates: ["2024-03", "2024-05", "2024-06", "2026-03", "2026-06", "2026-07", "2026-09-22"]
-keywords: ["asic", "cost", "cpo", "dsp", "energy", "ethernet", "lpo", "npo", "nvidia", "optics", "research", "revenue"]
+keywords: ["asic", "cost", "cpo", "dsp", "energy", "ethernet", "lpo", "npo", "optics", "research", "revenue", "training"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [330, 385]
+source_lines: [330, 367]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 4c92e1bc22477ffbf269c58c21294c8aa0a77b1fdffe98e678f490fa94941700
+sha256: 631e504c7e80efe010a1c1653e0dd22ba0320e66163eca221e8191acbae2b188
 ---
 
 # 2.8 Standards bodies status (Sept 2026)
@@ -53,22 +53,4 @@ sha256: 4c92e1bc22477ffbf269c58c21294c8aa0a77b1fdffe98e678f490fa94941700
 - A conventional high-speed optical module contains a Digital Signal Processor (DSP) ASIC that performs signal equalization, retiming, and compensation (clock-data recovery) to counteract attenuation and distortion in long electrical traces [secondary: https://naddod.medium.com/optical-interconnect-technology-analysis-lpo-npo-cpo-bd9b3488fb10].
 - In fully retimed pluggables, the module DSP "owns" FFE/DFE/CDR on both sides of the optics [secondary: https://github.com/farrox/short-reach-optics/blob/HEAD/docs/ch5-channel-equalization-ctle-ffe-dfe-and-dsp.md]. In a 400G module, the 7nm DSP consumes ~4W, roughly 50% of module power; DSP BOM cost is ~20–40% of a 400G module [secondary: https://www.lemmymorgan.com/what-is-linear-drive-pluggable-optics/]. **Note: this is an older, low-credibility source; treat figures as [unverified] for current generations.**
 - At 800G, each of 8 lanes carries 106.25 Gbps electrical signaling which the module's internal DSP converts to/from the optical domain [secondary: https://roboticsandautomationnews.com/2026/09/22/osfp-modules-the-complete-guide-to-400g-800g-and-1-6t-optical-transceivers-for-ai-and-hyperscale-data-centers/104982/].
-
-#### 3.1.2 Linear-drive Pluggable Optics (LPO)
-- LPO removes digital processing units (DSP and CDR) from the module, creating a purely analog "linear direct-drive" optical link [secondary: https://naddod.medium.com/optical-interconnect-technology-analysis-lpo-npo-cpo-bd9b3488fb10]. Concept first proposed by MACOM and NVIDIA in 2022 [secondary: same].
-- Architecture: TX side uses a high-linearity driver chip driving the optical modulator; RX side uses a high-linearity transimpedance amplifier (TIA) (+ optionally a linear equalizer / CTLE for input equalization). No DSP, no retiming, no clock recovery. Signal equalization and compensation are done by the host switch/xPU SerDes [vendor-reported: https://blog.semtech.com/ai-date-center-basics-what-is-linear-pluggable-optics-lpo; official: https://www.oiforum.com/wp-content/uploads/OIF_PLL_Demo_Eoptolink_OFC2024.pdf].
-- Eoptolink (OFC 2023 launch): "800G LPOs are designed without DSPs or CDRs"; relies on the host ASIC's native 112G PAM4 SerDes equalization [official: https://www.eoptolink.com/news?start=15].
-- LPO is NOT passive: it still contains active analog components (linear driver + TIA). It is also NOT a universal replacement for retimed modules — high-loss electrical channels, strong reflections, or deployments needing maximum TX FIR flexibility may still favor fully retimed or hybrid approaches [vendor-reported: https://blog.semtech.com/ai-date-center-basics-what-is-linear-pluggable-optics-lpo].
-- Related variants:
-  - **LRO (Linear Receive Optics), also "half-retimed"/RTLR**: keeps a (simplified) DSP on the transmit side, linear receive path only. Semtech reports RTLR/LRO at ~16W today (for 200G-class links — see §3.2 ambiguity flag) [vendor-reported: https://blog.semtech.com/ai-date-center-basics-what-is-linear-pluggable-optics-lpo]. AscentOptics puts 800G LRO at ~9–12W, ~25% lower than DSP baseline [secondary: https://ascentoptics.com/blog/800g-power-consumption/].
-  - **ACC-MSA**: Feb 2026, a separate new MSA (MACOM/Semtech co-chaired) for linear active copper cables with integrated linear equalizers — same "linear, no-DSP" philosophy extended to copper [secondary: https://convergedigest.com/new-industry-msa-targets-low-power-copper-interconnect-for-800g-and-1-6t/].
-
-#### 3.1.3 NPO (Near-Packaged Optics) and CPO (Co-Packaged Optics)
-- **CPO**: integrates the optical engine directly onto the same package/substrate as the switch ASIC, shrinking electrical trace length from 10–30 cm (pluggable) to <1 cm, and in NVIDIA's implementation from ~10 cm to <1 cm, cutting signal loss from ~22 dB to ~4 dB [secondary: https://dev.to/lsolink/everything-you-need-to-know-about-800g16t-optical-transceiver-and-co-package-module-1m6o]. Shorter copper trace = less attenuation = less compensation circuitry = less power [secondary: https://momoview.com/blog/en/posts/co-packaged-optics-cpo-silicon-photonics-industry-analysis-ai-interconnect-bottleneck-2026/].
-- **NPO**: optical engine placed next to (but not inside) the ASIC package on the same substrate — a transitional architecture preserving pluggable-like serviceability while improving power efficiency [secondary: https://momoview.com/blog/en/posts/co-packaged-optics-cpo-silicon-photonics-industry-analysis-ai-interconnect-bottleneck-2026/; https://finance.biggo.com/news/uei-yp4BOLsyMWM01Hme].
-- Where the "DSP function" lives in each architecture:
-  - DSP module: in-module DSP does CDR/equalization/retiming (both directions).
-  - LPO/LRO: in-module DSP removed (LPO) or halved (LRO); host SerDes performs equalization/FEC; module is analog-only [official/vendor: OIF demo PDF; Semtech blog].
-  - CPO/NPO: very short electrical channel reduces need for heavy equalization; CPO engines typically use linear or lightly-DSP'd drive adjacent to the switch SerDes; per LightCounting, "removing the DSPs saves power, but more complex SerDes are needed to make direct drive possible" [independent: https://www.lightwaveonline.com/home/article/55141192/lpo-msa-achieves-multi-vendor-interoperability].
-- **Optical Scale-Up Consortium (OFC 2026)**: new MSA defining an open AI scale-up infrastructure spec supporting pluggable, on-board, AND co-packaged optics; OCI GEN1 (4λ × 50G NRZ, 200G/dir), GEN2 (400G/dir BiDi), roadmap to 3.2T/fiber. Meta is a participant [secondary: https://www.lightwaveonline.com/home/article/55365387/ofc-2026-optical-scale-up-consortium-sets-path-for-an-open-ai-infrastructure-specification].
 

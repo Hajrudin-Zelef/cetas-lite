@@ -9,9 +9,9 @@ dates: ["2026-01", "2026-05", "2026-07", "2026-07-09"]
 keywords: ["agent", "agentic", "agents", "agi", "benchmark", "claude", "compute", "cost", "fable 5", "foundry", "gemini", "gpt-5.6"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [328, 406]
+source_lines: [328, 408]
 section: "1. Frontier Closed-Model Releases"
-sha256: 49670f3f361d9cab47e3412d889c657ca6fd1d0d28c88ef479e727cf7cc78298
+sha256: 7b3f3de5909519032503909a5ec6a8ac1ad7e3a89846ef368f167c5fbe61ae2c
 ---
 
 # Figures and metrics
@@ -94,4 +94,6 @@ sha256: 49670f3f361d9cab47e3412d889c657ca6fd1d0d28c88ef479e727cf7cc78298
 | Anthropic | Fable 5 available (restored Jul 1) | all three labs' flagships simultaneously available |
 | Meta | Muse Spark 1.1 (first paid API) | Wave 3.1 lineage record |
 | Press framing | "one of the most competitive single days in the sector's history" (pureai.com, Jul 10); "arguably the busiest single day in the history of AI models" (ailearningguides.com) | [COMMUNITY] editorial framing |
+
+## Main actors
 

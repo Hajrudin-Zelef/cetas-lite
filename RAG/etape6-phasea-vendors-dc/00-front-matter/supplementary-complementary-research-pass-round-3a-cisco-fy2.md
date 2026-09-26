@@ -9,9 +9,9 @@ dates: ["2026-03-22", "2026-07-13", "2026-07-22", "2026-08", "2026-08-12", "2026
 keywords: ["nvlink", "research", "acquisition", "alignment", "asic", "aws", "backlog", "chiplet", "compute", "custom silicon", "ethernet", "fp8"]
 source: docs/RAG/etape6_phaseA_vendors_dc.md
 source_anchor: ""
-source_lines: [691, 740]
+source_lines: [691, 736]
 section: "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
-sha256: 58c04770a39ed8c81ca3982423fd2841f92c0c01cbe5bc877cd32d353e6de910
+sha256: d869157ed105abeb79b1a5b7605bea3261c87c2273b039fc62f1b47b476f4725
 ---
 
 # Supplementary / Complementary Research Pass — round 3a: Cisco FY2026 results, NVLink-6 scale-up, HPE Q3 FY2026, Meraki SKUs/API, Dell N3200 OS matrix (2026-09-22)
@@ -61,8 +61,4 @@ Base §4.1 had the family-level table. Customs product-information sheets (2026-
 | MS355-24X-HW | 16× 1G + 8× mGbE (up to 10G) | 4× 10G SFP+ + 2× 40G QSFP+ | 352 Gbps | UPoE 740W; 2× dedicated 100G QSFP28 stack ports (400 Gbps stacking) |
 | MS355-24X2-HW | 24× mGbE (up to 10G) | 4× 10G SFP+ + 2× 40G QSFP+ | 640 Gbps | UPoE 740W |
 | MS355-48X2-HW | 24× 1G + 24× mGbE (up to 10G) | 4× 10G SFP+ + 2× 40G QSFP+ | 688 Gbps | UPoE 740W (60W/port); 512 Mpps; 32K MAC; dual hot-swap PSU; 3× hot-swap fans; 8-unit physical stacking |
-
-- All: Layer 3 with OSPFv2, VLAN/4094, QoS, ACL, DHCP snooping, 802.1X; 802.3bt UPoE; cloud-managed via Meraki Dashboard (no CLI required); **mandatory Enterprise cloud license** [official — customs sheets; secondary — xsnet.com.au].
-- Refreshed variant **MS355-48X-HW** (2026 reseller listings): 48× RJ45 with 16× mGig (1/2.5/5/10G, PoE++ 802.3bt Type 3) + 32× 1G PoE+; uplinks **4× 10/25GbE SFP+/SFP28** (newer than the 10G-SFP+ variant); jumbo 9K; EEE 802.3az [secondary — xsnet.com.au; caveat: AU reseller, POA pricing].
-- Price evidence (2026): MS355-48X-HW **refurbished $1,979.99** (cablesandkits.com); MS355-24X-HW **refurbished $1,559.30** (gotodirect.com, Sep 2026 reviews). New-unit pricing remains quote-based; treat refurbished figures as secondary-market snapshots only [secondary].
 

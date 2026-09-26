@@ -4,8 +4,8 @@
   "source": "docs/RAG/Collect RAG/05_presse_fr",
   "source_dir": "docs/RAG/Collect RAG/05_presse_fr",
   "source_files": 8,
-  "source_sha256": "c0a4b66df9880ee75f6c32bcb72fb4f39490f807820cdf893794a4199cc44daf",
-  "chunk_count": 8,
+  "source_sha256": "a5e28a386ea87b1cca145d56623df39b2756497777f1b64bbec3955bf16dab2d",
+  "chunk_count": 9,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -134,8 +134,8 @@
       "sha256": "627914f1d3a2afde07d0760fb202ec2ea293dbd3a054c30ad3a1654bbdee246a"
     },
     {
-      "id": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret",
-      "path": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret.md",
+      "id": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret-1",
+      "path": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret-1.md",
       "title": "Aux États-Unis, les data centers se négocient dans le secret",
       "domain": "presse-fr",
       "role": "reference",
@@ -156,19 +156,44 @@
       "keywords": [
         "disclosure",
         "energy",
-        "governance",
         "research"
       ],
       "source": "docs/RAG/Collect RAG/05_presse_fr/etats-unis-data-centers-secret.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1204,
+      "bytes": 7684,
+      "sha256": "8de7d122096dd5af11d5e9baf8e5186aa33a82986650b4aa5a22e02e2aecf733"
+    },
+    {
+      "id": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret-2",
+      "path": "collect-presse-fr/presse-fr/etats-unis-data-centers-secret-2.md",
+      "title": "Aux États-Unis, les data centers se négocient dans le secret",
+      "domain": "presse-fr",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "energy",
+        "governance"
+      ],
+      "source": "docs/RAG/Collect RAG/05_presse_fr/etats-unis-data-centers-secret.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         55
       ],
       "canonical_for": [],
-      "words": 1248,
-      "bytes": 8022,
-      "sha256": "8dea3a7471f927a47fe2762221b987cae4ab9a3e34d0b5c9f0d43071e5ff1dce"
+      "words": 44,
+      "bytes": 338,
+      "sha256": "2f626ea9cc67dff22027cf88222b7cb6dbf76cf0a0f97f3a7a87f9ad61956a35"
     },
     {
       "id": "collect-presse-fr/presse-fr/gpt-6-astra-koul",

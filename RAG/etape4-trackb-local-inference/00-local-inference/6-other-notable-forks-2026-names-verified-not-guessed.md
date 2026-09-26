@@ -4,17 +4,19 @@ title: "6. Other notable forks (2026) — names verified, not guessed"
 domain: step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu
 role: deep-dive
 task: reference
-actors: ["AMD", "Alibaba", "Anthropic", "Apple", "DeepSeek", "Hugging Face", "Moonshot", "Nvidia", "OpenAI"]
-dates: ["2025-06", "2026-01-27", "2026-05", "2026-06-04", "2026-08-01", "2026-08-31", "2026-09", "2026-09-07", "2026-09-14", "2026-09-15"]
-keywords: ["agentic", "amd", "benchmark", "claude", "compute", "deepseek", "embeddings", "gguf", "gpus", "inference", "kimi", "lean"]
+actors: ["AMD", "Alibaba", "Anthropic", "DeepSeek", "Hugging Face", "Moonshot", "Nvidia", "OpenAI"]
+dates: ["2025-06", "2026-01-27", "2026-05", "2026-06-04", "2026-08-01", "2026-08-31", "2026-09", "2026-09-14", "2026-09-15"]
+keywords: ["agentic", "amd", "benchmark", "claude", "consumer", "deepseek", "embeddings", "gguf", "gpu", "gpus", "inference", "kimi"]
 source: docs/RAG/etape4_trackB_local_inference.md
 source_anchor: ""
-source_lines: [181, 228]
+source_lines: [179, 221]
 section: "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
-sha256: 41453bd4a6299a9a248e29694eb74eb766a249e99d3fc56e582ced916a13e44e
+sha256: 2b35a5b65ed97c8872385650b2a0e9fe9a8cf1d9380eba9f19e338cc9deeaa04
 ---
 
 # 6. Other notable forks (2026) — names verified, not guessed
+
+**Why it matters:** the go-to engine for **CPU and hybrid CPU/GPU MoE inference** (DeepSeek-class models on consumer hardware); origin of IQK quants widely considered the best GGUF quality-per-bit; source of several ideas later re-adopted upstream (auto-fit/`--fit` logic). **Scope limits (explicit):** only CPU (AVX2+/NEON+) and CUDA (Turing+) are fully supported backends — ROCm/Vulkan/Metal issues are not handled [secondary] (ik README). Only use `-rtr` (row-interleaved repack) deliberately for k-quants, which lack CUDA row-interleaved implementations [secondary] (ik README).
 
 ## 6. Other notable forks (2026) — names verified, not guessed
 
@@ -56,11 +58,4 @@ Current-master README (tools/server/README.md) lists [official] (https://github.
 
 ### ServeTheHome
 - **No dedicated llama.cpp benchmark article was found on servethehome.com in 2026.** Community coverage lives in the **STH Forums**: ES Xeon Discussion thread (May 2026 posts — dual-Xeon + ik_llama.cpp DeepSeek-R1 numbers cited above), ASUS Pro WS W790E-SAGE / Xeon SPR-SP thread (DeepSeek-R1 on W790 + RTX 4090 via llama.cpp). STH main site adjacent: MLPerf Inference v5.0 results (June 4, 2026) and a Lenovo ThinkPad X1 Carbon Gen 14 review using **MLPerf Client 1.6.1** (OpenVINO path, not llama.cpp) [independent/secondary] (https://forums.servethehome.com/index.php?threads/es-xeon-discussion.5031/page-205; https://www.servethehome.com/lenovo-thinkpad-x1-carbon-gen-14-review/).
-
-### Other press/independent numbers
-- **TechRadar** (gpt-oss launch, Aug 2025 window): NVIDIA RTX AI PCs + llama.cpp — RTX 5090 **282 tok/s** on gpt-oss-20b vs M3 Ultra 116 vs 7900 XTX 102 [independent/vendor-reported] (https://www.techradar.com/ai-platforms-assistants/gpt-oss-20b-performance-faster-pc-rtx-nvidia).
-- **RunAIHome** (2026-09-07): DFlash2 guide with honest 1.8–2.7× guidance [secondary].
-- Community hardware guides (vucense, Medium data-science-collective, mayhemcode) routinely use llama.cpp numbers as the reference engine; key framing: VRAM capacity is the first constraint; Strix Halo is a capacity play (128 GB unified, ~256 GB/s → ~6 t/s ceiling on 70B Q4_K_M) [secondary] (https://vucense.com/tech-reviews/compute-chips/local-llm-hardware-2026-strix-halo-m5-ultra-rtx-5090-70b-models/).
-- arXiv 2601.14277 (Jan 2026): unified GGUF quantization evaluation on Llama-3.1-8B-Instruct (quality table above) [independent] (https://arxiv.org/pdf/2601.14277v1).
-- arXiv 2511.05502 (Nov 2025): Apple Silicon engine comparison incl. llama.cpp ≈150 t/s on M2 Ultra [independent] (https://arxiv.org/pdf/2511.05502v1.pdf).
 

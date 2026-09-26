@@ -4,14 +4,14 @@ title: "§7 — AMAZON"
 domain: step-3-labs-hyperscalers-february-1-september-22-2026
 role: deep-dive
 task: reference
-actors: ["AWS", "Alibaba", "Anthropic", "China", "DeepSeek", "EU", "Google", "Meta", "Microsoft", "MiniMax", "Mistral", "Moonshot", "Nvidia", "OpenAI", "United States", "Z.ai", "xAI"]
-dates: ["2025-03", "2025-12", "2026-04", "2026-04-28", "2026-06", "2026-06-01", "2026-06-09", "2026-06-15", "2026-06-17", "2026-07-28", "2026-07-31", "2026-08-18", "2026-09", "2026-09-14", "2026-09-30"]
+actors: ["AWS", "Anthropic", "EU", "Google", "Meta", "Microsoft", "Mistral", "Nvidia", "OpenAI", "United States"]
+dates: ["2025-03", "2025-12", "2026-04", "2026-04-28", "2026-06", "2026-06-01", "2026-07-28", "2026-07-31", "2026-09", "2026-09-14", "2026-09-30"]
 keywords: ["acquisition", "agent", "agentic", "agents", "agi", "aws", "bedrock", "benchmark", "capex", "claude", "compute", "copilot"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [975, 1036]
+source_lines: [975, 1022]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: f0cd297f734d4ed4a09dd8d6608912bc326baff9bccbdb224e1e78156a523870
+sha256: 5f55af13fa6ec3e01dd246bf8f34082d57b6559b0e98aa19b453fafd1fa13588
 ---
 
 # §7 — AMAZON
@@ -63,18 +63,4 @@ sha256: f0cd297f734d4ed4a09dd8d6608912bc326baff9bccbdb224e1e78156a523870
 - Pricing: GPT-5.5/5.4 at **the same per-token rates as OpenAI direct**, no additional AWS fees; Codex pay-per-token; all inference through Bedrock infrastructure; usage counts toward existing AWS commitments [official].
 - Access via **Responses API**; IAM, VPC/PrivateLink isolation, KMS encryption, CloudTrail audit; prompts/responses not used for training [official].
 - **Bedrock Managed Agents** powered by OpenAI entered **limited preview** (April 28, 2026) [secondary].
-
-**Other models onboarded to Bedrock in 2026:**
-- **xAI Grok 4.3** — GA **June 15, 2026** (first xAI model on Bedrock); via **Bedrock Mantle** (OpenAI-compatible inference engine); 1M-token context; configurable reasoning effort; **$1.25/M input, $2.50/M output** [secondary; AWS launch blog].
-- **xAI Grok 4.6** — launched on Bedrock **August 18, 2026**; 500K-token context; reasoning effort at four levels (low/medium/high/xhigh); available on both bedrock-mantle and bedrock-runtime endpoints; supports Converse API + Chat Completions + Responses [official] https://aws.amazon.com/blogs/machine-learning/xais-grok-4-6-is-now-available-in-amazon-bedrock/.
-- **Anthropic Claude line:** Opus 4.8, Sonnet 5, Haiku 4.5, and "Claude Fable 5" **GA June 9, 2026** on Bedrock [secondary][unverified details].
-- **DeepSeek:** fully managed DeepSeek-R1 serverless option on Bedrock added 2026; DeepSeek V3.2/V3.1 listed serverless (as of June 15, 2026) [secondary].
-- **Chinese open-weight additions (as of June 15, 2026):** Z.AI GLM-5, GLM-4.7, GLM-4.7 Flash; Moonshot Kimi K2.5, K2 Thinking; MiniMax M2.5, M2.1, M2; Alibaba Qwen3 variants [secondary — AWS Summit 2026 slide deck].
-- Bedrock scale: **18+ providers, 110+ model variants** as of mid-2026 [secondary]; **Bedrock used by 125,000+ customers**, with most inference running on Trainium [vendor-reported][secondary].
-
-**AgentCore (2026):**
-- **Bedrock Guardrails GA June 17, 2026**, integrated into AgentCore: content filters, denied topics, sensitive-info filters, contextual grounding checks [secondary].
-- AgentCore runtime compute pricing: **$0.0895 per vCPU-hour + $0.00945 per GB-hour**; session/memory: short-term $0.25/1,000 events; long-term storage $0.75/1,000 (built-in) or $0.25/1,000 (custom); retrieval $0.50/1,000; Gateway routing $0.005/1,000 API invocations, $0.025/1,000 search invocations, $0.02 per 100 tools indexed/month [secondary].
-- AgentCore is model-agnostic (OpenAI, Gemini, Claude, Nova, Llama, Mistral); 15 AWS regions for agent runtime [secondary].
-- No Bedrock-wide pricing *cuts* found in 2026; competitive posture is per-model undercutting (e.g., Nova 2 Pro at $1.25/$10 vs. rivals) [secondary].
 

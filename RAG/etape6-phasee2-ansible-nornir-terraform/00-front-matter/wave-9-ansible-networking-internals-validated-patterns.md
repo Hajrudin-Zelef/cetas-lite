@@ -5,16 +5,33 @@ domain: front-matter
 role: reference
 task: reference
 actors: []
-dates: ["2026-07", "2028-03"]
-keywords: ["embedding", "guardrails", "latency", "lean"]
+dates: ["2026-03", "2026-06", "2026-07", "2026-09-22", "2026-11-30", "2028-03"]
+keywords: ["benchmark", "benchmarks", "guardrails", "research"]
 source: docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md
 source_anchor: ""
-source_lines: [156, 201]
+source_lines: [139, 182]
 section: "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
-sha256: 05c52ffa3f36b2b4542976d5524a5ada3046657aaa3eec12d2df00675368563a
+sha256: e0f4437a01352606801fbb9409e4f8e72ed3986c30203352bdcc6a138aa06295
 ---
 
 # Wave 9 — Ansible networking internals & validated patterns
+
+- **Line count:** to be verified after writing (target ≥750).
+- **Gaps (no 2026 data found):**
+  - cisco.nxos version lineage: field reports show **12.0.0** (mid-2026) while CHANGELOG HEAD documents 9.x — could not confirm the current major line on 2026-09-22. **[unverified]**
+  - pygnmi maintenance status: repo docs stale (~2022); latest version number not confirmed. **[unverified]**
+  - Infoblox Terraform provider: latest found is v2.5/v2.6 (2024); no 2026 release confirmed. **[unverified]**
+  - Terraform 1.9.0 described as "last open-source version under MPL; 2.0+ is BSL" by one Medium source — not confirmed against HashiCorp's own release notes. **[unverified]**
+  - Ansible network automation performance-at-scale benchmarks (playbook runs vs Nornir vs pyATS at 1k+ devices): no head-to-head 2026 benchmark found. **[gap]**
+  - Adoption statistics (NetDevOps survey numbers, Ansible-for-networks market share 2026): no survey located. **[gap]**
+- **Conflicts:**
+  - C1: OpenTofu provider-registry size — 3,900+ providers/23,600+ modules (June 2026 Medium) vs 3,000+ providers (Medium, June 2026) vs 3,200+ providers (March 2026). Treated as indicative, not exact.
+  - C2: ansible-core 2.19 EOL — endoflife.date says EOL 2026-11-30 (still supported at research date); eosl.date agrees. Consistent.
+  - C3: cisco.nxos 9.x vs 12.0.0 — see gap above.
+- **Collection-deprecation risk:** `junipernetworks.junos` deprecated (removal from Ansible 14 if unmaintained) while Juniper redirects users to `juniper.device`; network teams should standardize on `juniper.device` FQCNs [official].
+- **Round-trip:** all URLs used are verbatim from search-result listings; no SKUs/URLs invented. Facts without a confirmable 2026 source are tagged `[unverified]`.
+
+---
 
 ## Wave 9 — Ansible networking internals & validated patterns
 
@@ -42,23 +59,4 @@ sha256: 05c52ffa3f36b2b4542976d5524a5ada3046657aaa3eec12d2df00675368563a
 ---
 
 ## Wave 10 — Nornir architecture & usage patterns
-
-- **Core model:** Nornir = inventory (hosts/groups with data) + tasks (Python functions) + runners (threaded execution) + results (structured per-host). No DSL — plain Python, versioned like software [secondary — Nornir docs/book].
-- **Runners:** `threaded` runner (default) with `num_workers` tuning; `serial` runner for ordered changes (e.g., core switches before leaves) [secondary — Nornir docs].
-- **Processors:** transform/aggregate results across hosts (e.g., build a compliance report dict from all `napalm_get` facts) [secondary — Nornir docs].
-- **Filtering:** `nr.filter(site="dc1", role="spine")` selects subsets; dynamic inventory from NetBox/Infrahub via plugins (`nornir-infrahub`) keeps the filter keys fresh [official — https://github.com/opsmill/nornir-infrahub/blob/HEAD/CHANGELOG.md].
-- **Task pattern (canonical):** define `def backup_config(task): r = task.run(task=napalm_cli, commands=["show running-config"])`; `nr.run(task=backup_config)`; inspect `result.failed_hosts` [secondary — 2026 Cisco Press book].
-- **nornir_napalm tasks:** `napalm_get` (getters: facts, interfaces, bgp_neighbors, lldp_neighbors), `napalm_cli`, `napalm_configure` (merge/replace with diff + commit/rollback), `napalm_install_config` [secondary — book; NAPALM docs].
-- **nornir_netmiko tasks:** `netmiko_send_command`, `netmiko_send_config`, `netmiko_save_config`, `netmiko_commit` (for Junos-style commit) [secondary].
-- **nornir_scrapli tasks:** `send_command`, `send_config`, `send_configs_from_file`; benefits: typed API, fast ssh2 transport, unit tests against virtual devices [official — https://github.com/scrapli/nornir_scrapli].
-- **NornFlow (0.9.0):** layers declarative YAML workflows over Nornir — CLI (`nornflow run`), variable precedence (environment → global → domain → workflow → CLI → runtime), hooks (pre/post task), failure strategies (skip-failed, fail-fast, run-all), Jinja2 filters; aimed at teams wanting Ansible-like UX without leaving Nornir [independent — https://pypi.org/project/nornflow/0.9.0/].
-- **NorFab (via nornir_salt 0.23.3):** Salt-based network automation fabric using Nornir plugins; proxy-minion model for event-driven device interaction [independent — https://pypi.org/project/nornir_salt/0.23.3/].
-- **nornir-srl 0.2.1:** ready-made Nornir tasks for Nokia SR Linux in Containerlab (bgp-peers, bgp-rib, lldp, mac table, sub-interfaces) + `fcli` containerized CLI [independent — https://pypi.org/project/nornir-srl/0.2.1/].
-- **Scaling guidance:** threads are I/O-bound friendly (SSH latency dominates); for 1k+ devices, batch with filters, stagger `num_workers`, and prefer connection reuse (scrapli persistent) over per-task reconnects [secondary].
-- **Credentials pattern:** pull from Vault/Infrahub/NetBox at runtime (never hardcode); nornir-infrahub maps credential stores into inventory data [official — nornir-infrahub changelog].
-- **When Nornir wins:** custom logic (diffing, multi-device transactions, conditional rollbacks), Python-native teams, embedding automation inside larger apps; **when Ansible wins:** declarative playbooks, controller/AAP RBAC/approvals, large operator teams without Python depth [secondary — community comparisons].
-- **Testing Nornir:** pytest tasks against Containerlab topologies; record fixtures of `napalm_get` outputs for unit tests [secondary].
-- **Community health 2026:** core stable (3.6.0), plugin ecosystem maintained separately (nornir-utils, nornir-infrahub, nornir_scrapli active); no bundled plugins since 3.0 keeps core lean [independent — libraries.io; GitHub activity].
-
----
 

@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["Google", "Microsoft"]
 dates: ["2011-11-10", "2017-07", "2024-12", "2026-01", "2026-06-08", "2026-08", "2026-09", "2026-09-04", "2026-09-17", "2026-09-22"]
-keywords: ["apache", "benchmarks", "distribution", "memory", "packaging", "research", "training"]
+keywords: ["apache", "benchmarks", "distribution", "packaging", "research", "training"]
 source: docs/RAG/etape7_phaseH_webproxy.md
 source_anchor: ""
-source_lines: [1, 55]
+source_lines: [1, 49]
 section: "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
-sha256: 9edd3673b3e5178f3950dad6ee0df3322c246c4d2cf4d8d83f1acb84c7ee1839
+sha256: 18b233b57f2d2b0f076c6dabdde14abd9a2b65b6d8d071ed2bd1997a9d01246d
 ---
 
 # Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways
@@ -62,10 +62,4 @@ sha256: 9edd3673b3e5178f3950dad6ee0df3322c246c4d2cf4d8d83f1acb84c7ee1839
 - Hardening checklist (community/OWASP-aligned): disable server tokens (`ServerTokens Prod`, `ServerSignature Off`), disable unused modules, run dedicated user/group, TLS 1.2+ only with strong ciphers, `TraceEnable Off`, limit request sizes (`LimitRequestBody`), use mod_security CRS where applicable, keep 2.4.x patched to latest [secondary].
 
 ### 2.3 Apache vs nginx positioning
-
-- Apache remains default on shared hosting and legacy environments; nginx is the default for reverse proxy, load balancing and high-concurrency serving [secondary — medium.com comparison, 2026-01].
-- Architecture contrast: Apache process/thread-per-connection model is flexible but more memory-hungry under load; nginx event-driven async model handles thousands of connections per worker with low memory [secondary].
-- Apache's modular ecosystem and .htaccess remain advantages in multi-tenant hosting; nginx's static-config + reload model and lower resource use dominate high-traffic, container and edge deployments [secondary].
-
----
 

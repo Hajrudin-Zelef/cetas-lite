@@ -4,15 +4,15 @@ title: "§21. Licenses and Open-Weight Politics"
 domain: licenses-and-open-weight-politics
 role: deep-dive
 task: model-release
-actors: ["Alibaba", "Anthropic", "China", "Cohere", "DeepSeek", "EU", "Google", "Hugging Face", "LongCat", "Meituan", "Meta", "Microsoft", "MiniMax", "Mistral", "Moonshot", "Nvidia", "OpenAI", "Perplexity", "Poolside", "Stability AI", "United States", "Xiaomi", "Z.ai", "xAI"]
-dates: ["2024-10", "2025-01", "2025-10-27", "2026-02-12", "2026-03-31", "2026-04-01", "2026-04-02", "2026-04-12", "2026-04-22", "2026-05-20", "2026-07-05", "2026-07-21", "2026-07-24", "2026-07-27", "2026-08-10", "2026-09", "2026-09-20", "2026-09-21"]
-keywords: ["license", "licenses", "open-weight", "agents", "apache", "attribution", "cohere", "cost", "deepseek", "disclosure", "distillation", "export controls"]
+actors: ["Alibaba", "China", "Cohere", "DeepSeek", "EU", "Google", "Hugging Face", "LongCat", "Meituan", "Meta", "Microsoft", "MiniMax", "Moonshot", "Nvidia", "OpenAI", "Poolside", "Stability AI", "United States", "Xiaomi", "Z.ai"]
+dates: ["2025-01", "2025-10-27", "2026-02-12", "2026-03-31", "2026-04-01", "2026-04-02", "2026-04-12", "2026-04-22", "2026-05-20", "2026-07-05", "2026-07-21", "2026-07-24", "2026-07-27", "2026-08-10", "2026-09-21"]
+keywords: ["license", "licenses", "open-weight", "agents", "apache", "attribution", "cohere", "deepseek", "disclosure", "distillation", "export controls", "glm"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [10059, 10128]
+source_lines: [10059, 10110]
 section: "§21. Licenses and Open-Weight Politics"
 delta_of: ai-industry-kb-2026
-sha256: e2de6774e03df12b86e52fb0e758e49ff198adaa782cf993bf196699fc5cecb7
+sha256: 3230a3e91cb40d4d66e3c2f202b7ba54fbed75b04c1fb85dc7e924d9707b10a8
 ---
 
 # §21. Licenses and Open-Weight Politics
@@ -66,22 +66,4 @@ Keywords: MIT, Apache 2.0, Llama Community License, MiniMax Community License, o
 - "The most capable weights have the most strings attached" — confirmed as a structural 2026 pattern, not a one-off [DIRECTIONAL].
 
 ### The open-washing debate
-
-- "Open-washing" = marketing weights as "open source" while the license or release withholds the substance [SECONDARY].
-- **October 2024**: the Open Source Initiative named **Llama as the reference confusing case** for its Open Source AI Definition work — marketing says "open," the terms (AUP, MAU cap, EU carve-out) are judged incompatible with open-source freedoms [SECONDARY].
-- **September 20, 2026**: "The Open Weights Illusion: Why Your 'Open' AI Model Might Be a Legal Minefield" argues "open weights" is used as a marketing proxy for "open source" even when the two are legally antithetical — downloadable weights plus a black-box training recipe plus restrictive terms [SECONDARY].
-- The MIT-but-incomplete contrast: DeepSeek R1's MIT weights are the recurring contrast case — a permissive license can still accompany a data-less release [COMMUNITY].
-- **FAccT 2024**: "Rethinking open source generative AI: open-washing and the EU AI Act" argued a soft definition lets restricted models claim benefits intended for genuinely open ones [SECONDARY].
-- **EU AI Act open-source exemption**: genuinely open releases (weights, architecture, training details freely accessible) are largely exempt from provider obligations — the distinction is now a **compliance** question, not just marketing [SECONDARY]. "GPAI Code signed" badges on model cards are the 2026 procurement artifact [SECONDARY].
-- Counter-voice: Meta's Zuckerberg published an open-source-AI essay on 2026-08-10 (Glimmer release day) arguing US policy should loosen AI training-data restrictions — i.e., deregulate the *data* side of "open" while keeping Meta's own weights gated [SECONDARY].
-- Neither Llama's nor MiniMax's community licenses are OSI-approved; both fail the OSI's open-source AI bar [SECONDARY].
-
-### July 24, 2026 — "Open Weights and American AI Leadership"
-
-- The open letter was published **2026-07-24** with **25 signatories** per contemporary coverage: NVIDIA, Microsoft, Meta, IBM, Dell Technologies, Hugging Face, Mistral, Mozilla, The Linux Foundation, Palantir, Perplexity, Replit, ServiceNow, CrowdStrike, Box, Black Forest Labs, Arcee AI, Arena, Emergence Capital, Telnyx, Reflection, Mariana Minerals, American Innovators Network, Andreessen Horowitz, Y Combinator [SECONDARY — four independent writeups converge on this list].
-- Four arguments: (1) open weights expand access — right model for the right job at the right cost; (2) they strengthen competition across models, chips, clouds, applications; (3) customer data control, less vendor lock-in; (4) the contested one — openness as a *safety* path: distributed scrutiny finds what single labs miss [SECONDARY].
-- **The real policy fight — distillation**: the letter's penultimate paragraph asks policymakers **not to confuse distillation with misappropriation**. One analysis calls this "the load-bearing part of the document": distillation restrictions would land on the *signatories'* own training pipelines, while Moonshot's engineers sit beyond US jurisdiction — the clause protects the coalition's business model, not just a principle [SECONDARY].
-- Amplification: Jensen Huang's **first-ever X post** circulated the letter; Elon Musk quote-posted "This has my full support" [SECONDARY].
-- **Notably absent at launch: OpenAI, Anthropic, Google** — the three closed-frontier labs [SECONDARY]. Two community sources report **OpenAI and Google signed shortly after publication** while Anthropic stayed out — the later-signature claim is **[SECONDARY], community-sourced only**; the original-25 list is the verified fact.
-- Status: none of the policy asks are law; none adopted by any regulator as of September 2026 [SECONDARY].
 

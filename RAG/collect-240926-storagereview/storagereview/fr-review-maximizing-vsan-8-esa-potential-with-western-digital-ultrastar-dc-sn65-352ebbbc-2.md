@@ -1,0 +1,41 @@
+---
+id: collect-240926-storagereview/storagereview/fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc-2
+title: "fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc"
+domain: storagereview
+role: reference
+task: reference
+actors: ["AMD"]
+dates: []
+keywords: ["amd", "compute", "cost", "ethernet", "latency", "nand", "throughput"]
+source: docs/RAG/clean_en/storagereview/fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc.md
+source_anchor: ""
+source_lines: [3, 26]
+sha256: 8166df14378ff4995bb41fd931b43be703ece2789b4eabac7e6a16fdae910224
+---
+
+# fr-review-maximizing-vsan-8-esa-potential-with-western-digital-ultrastar-dc-sn65-352ebbbc
+
+This report is sponsored by Western Digital. All views and opinions expressed in this report are based on our unbiased view of the product(s) under consideration.
+VMware vSAN 8 announced a massive update to the company's flagship HCI product, improving efficiency, scalability, and performance. Since the initial release, vSAN 8 has had two updates that improve the story. Express Storage Architecture (ESA) is central in vSAN 8, a new alternative to the original storage architecture (OSA), simplifying storage layout and many other improvements.
+With vSAN 8 Update 2 available, many businesses are on the verge of deciding which vSAN deployment to undertake. As such, we wanted to better understand the performance profile of vSAN 8 ESA paired with modern servers, flash, and networking.
+We started with 32 Western Digital Ultrastar DC SN655 NVMe SSDs, four Dell PowerEdge R6625 servers, and a 100GbE fabric. But before we dive into the various RAID and disk configuration results, let's take a brief overview of vSAN 8 ESA and why this architecture change is so important.
+What does vSAN 8 ESA bring?
+VMware's vSAN 8, featuring ESA, marks a significant advancement in storage technology. This new architecture, designed to harness the full potential of modern hardware, delivers unprecedented efficiency, scalability, and performance. Reflecting the evolution of enterprise storage from traditional spinning media to advanced NAND flash, ESA leverages NVMe interfaces for improved capacity and speed at reduced costs. The evolution of hardware technology, the increase in server CPU cores, and advanced network capabilities have been the drivers behind the introduction of ESA, ensuring it meets contemporary business demands for high-performance storage solutions.
+ESA in vSAN 8 stands out for its performance and capability improvements. ESA's adaptive write path adapts to different I/O sizes, optimizing data write processes, which is particularly beneficial for flash devices. This results in lower latency and consistent performance for virtual machines. Additionally, ESA's new log-structured file system and I/O path optimizations significantly reduce write amplification and latency. ESA maximizes device capabilities by eliminating the need for dedicated cache devices, thereby reducing the overall cost per gigabyte. These features underscore ESA's role in providing efficient, high-capacity storage solutions at an affordable price.
+Another key aspect of ESA is resource efficiency, delivering robust performance and space efficiency while consuming fewer CPU resources. This efficiency is essential for cost-effectively managing large volumes of data. Despite its high performance, ESA incurs storage capacity overhead for metadata, file systems, and resilience. However, it efficiently manages this overhead to maximize usable capacity. Additionally, VMware offers flexibility to its customers by allowing them to choose between the original storage architecture and ESA, thus meeting current and future storage needs. This flexibility, combined with ESA's advanced features, positions VMware's vSAN 8 as a forward-looking solution in the storage technology landscape.
+Even with this significant change, the fundamental principles of vSAN and the main use cases do not change much. VMware vSAN continues to serve as a versatile storage solution tightly integrated with VMware vSphere, finding widespread application across various workloads. It excels in virtual desktop infrastructure (VDI) environments, providing scalable, high-performance storage for many virtual desktops. In scenarios such as edge and remote office/branch office (ROBO) deployments, vSAN streamlines infrastructure and operations. vSAN is also evolving significantly, providing the foundation for software-defined data centers.
+vSAN 8 Update 2 Test Platform
+The Ultrastar DC SN655 Enterprise PCIe Gen 4.0 dual-port NVMe SSDs represent a significant advancement in SSD technology, offering high performance, increased capacity, and robust reliability suited to demanding enterprise environments. These drives are particularly well-suited for applications requiring high-throughput data access and transfer, making them an ideal choice for integration with VMware vSAN solutions.
+Performance
+Western Digital Ultrastar DC SN655 SSDs leverage the PCIe Gen 4.0 interface, offering substantial bandwidth improvements over their Gen 3.0 predecessors. This translates to faster data transfer rates, which is crucial for applications that rely on rapid data access and processing. The dual-port NVMe functionality enhances reliability and availability, ensuring uninterrupted data access even in the event of a port failure. This dual-port design is particularly advantageous for critical applications where downtime can have significant implications.
+Capacity and Efficiency
+With their advanced NAND technology, these SSDs offer high-density storage solutions. Increased storage capacity is vital for businesses handling large volumes of data, such as those involved in data analytics, cloud computing, and virtualized environments. The Ultrastar DC SN655 series also offers better power efficiency than previous models, helping to reduce operating costs and carbon footprint, a critical factor for environmentally conscious businesses.
+Integration with VMware vSAN
+VMware vSAN benefits significantly from the integration of Ultrastar DC SN655 SSDs. The high performance and reliability of these SSDs align well with vSAN's requirements for efficient, resilient, and scalable storage. VMware vSAN environments, known for their demanding and unpredictable performance requirements, can leverage the speed and consistency offered by the Ultrastar DC SN655 to ensure smooth operation and high availability.
+Using Ultrastar DC SN655 drives with VMware vSAN also simplifies deployment and management, as these drives are designed to integrate seamlessly into a variety of ecosystems. This ease of integration saves time and reduces potential issues, streamlining the management of virtualized storage resources.
+The Dell PowerEdge R6625 has a lot to offer, making it ideal for our VMware vSAN HCI use case. On the compute side, these are dual-socket servers, supporting enough processing power to handle any workload. In our configuration, we have two 64-core AMD EPYC 9554 processors with 128GB of RAM per node. The R6625 also supports up to ten 2.5-inch NVMe SSDs, giving them good density, although our version focused on four and eight SSDs per node.
+The PowerEdge R6625 supports many options from a networking standpoint, with an OCP 3.0 slot and three PCIe Gen5 slots. This configuration allows us to leverage 100GbE and beyond, with additional slots available for other devices. Speaking of switching, the Dell PowerSwitch S5232F-ON connects this cluster. This is a 1U multilayer switch with 32 100GbE QSFP28 ports and 2 10GbE SFP+ ports.
+It should be noted here that the work we did in this report involves some components that are not yet on VMware vSAN HCI or officially supported by Dell to date. That said, we followed VMware best practices for vSAN throughout these tests and had VMware vSAN engineers review the data.
+vSAN 8 Update 2 Performance
+In our approach to testing VMware vSAN 8 with ESA, we focused on a configuration of four and eight SSDs per node. With four hosts, this represented 16 or 32 SSDs in total.
+We leveraged 100Gb Ethernet in the cluster, which theoretically allowed us to focus on NVMe storage to see where it starts to saturate system resources.

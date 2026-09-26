@@ -9,9 +9,9 @@ dates: []
 keywords: ["incident", "optics"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [2156, 2202]
+source_lines: [2156, 2204]
 section: "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
-sha256: 4fc7b5fe60d32aad3ed0a424a16785b0aa98adc8c49e24fff7b15213a053fb14
+sha256: 7c4e25b0a666085dc7fa7e4062c8fc7b46e7227f90e447045a425c66a1ec1f0b
 ---
 
 # 5. OEM lock-in behavior and support implications
@@ -62,4 +62,6 @@ sha256: 4fc7b5fe60d32aad3ed0a424a16785b0aa98adc8c49e24fff7b15213a053fb14
 - Common pattern: warranty/support is withheld for the *causally implicated* incident, not automatically voided in full — ATGBICS summarizes this industry-wide; Cisco's own warranty policy mirrors it `[vendor-reported]` + `[official]` — ATGBICS blog and Cisco warranty doc.
 - Firmware risk: Aruba officially warns software updates can affect unsupported transceivers and it will not fix resulting issues `[official]` — ArubaOS-Switch guide. Cisco IOS XE 17.9.6 was withdrawn in late 2024 over a regression bug (CSCwm57734, 802.1X/DHCP — not optics-related), illustrating the general class of upgrade-regression risk `[secondary]` — https://network-switch.com/blogs/networking/why-did-my-cisco-iot-vlan-stop-working
 - No single dated, verified incident of a Cisco firmware release *deliberately* breaking third-party optics was found in this pass; do not assert one exists `[unverified]`.
+
+## 6. Representative price gaps (with dates and comparability flags)
 

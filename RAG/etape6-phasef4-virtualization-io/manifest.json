@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
   "source_lines": 751,
   "source_sha256": "9cfd4a3183b25482bc763f93fe744ca25385eef103859f25dfd53b6ba6d37919",
-  "chunk_count": 12,
+  "chunk_count": 16,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -17,7 +17,6 @@
       "actors": [
         "AMD",
         "AWS",
-        "Google",
         "Intel",
         "Nvidia"
       ],
@@ -28,27 +27,58 @@
       "keywords": [
         "amd",
         "aws",
-        "benchmark",
-        "compute",
         "cost",
-        "ethernet",
         "gpu",
         "intel",
-        "latency",
         "memory",
         "nvidia",
-        "research"
+        "research",
+        "throughput"
       ],
       "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 786,
+      "bytes": 6542,
+      "sha256": "aaac209314094a8e7a7186ab4d8e4be94eaf77a7c3e5ef56426e89062e09c6fa",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/1-5-virtio-in-the-public-clouds-aws-gcp-and-the-proprietary-",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/1-5-virtio-in-the-public-clouds-aws-gcp-and-the-proprietary-.md",
+      "title": "1.5 virtio in the public clouds — AWS, GCP, and the proprietary-NIC trend",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Google",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "benchmark",
+        "compute",
+        "ethernet",
+        "gpu",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
         75
       ],
       "canonical_for": [],
-      "words": 1177,
-      "bytes": 9867,
-      "sha256": "d11aff1cacfd6b4afeaab49a773aca3a3a0a2122f9accfd15e0cf2070043af84",
+      "words": 391,
+      "bytes": 3325,
+      "sha256": "1569d06d7e858926974ac65abbb9b54aaddc39c7156d3189bec39b0a10d2cc89",
       "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
     },
     {
@@ -169,7 +199,6 @@
       "actors": [
         "AMD",
         "AWS",
-        "Intel",
         "Nvidia",
         "Samsung"
       ],
@@ -183,26 +212,67 @@
         "agent",
         "amd",
         "blackwell",
-        "claude",
         "compute",
         "gpu",
         "gpus",
-        "inference",
-        "intel",
         "latency",
         "license",
-        "licenses"
+        "licenses",
+        "nvidia",
+        "packaging",
+        "throughput"
       ],
       "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
       "source_anchor": "",
       "source_lines": [
         235,
+        283
+      ],
+      "canonical_for": [],
+      "words": 760,
+      "bytes": 7168,
+      "sha256": "d3af80b4d23b5df1e213af2d4803fac654e177d3003858ac62ac1c6e23c8e84c",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/6-2-amd-mxgpu-and-intel-gpu-virtualization",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/6-2-amd-mxgpu-and-intel-gpu-virtualization.md",
+      "title": "6.2 AMD MxGPU and Intel GPU virtualization",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-01-28"
+      ],
+      "keywords": [
+        "amd",
+        "gpu",
+        "intel",
+        "blackwell",
+        "claude",
+        "compute",
+        "gpus",
+        "inference",
+        "memory",
+        "nvidia",
+        "nvlink",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        284,
         305
       ],
       "canonical_for": [],
-      "words": 1029,
-      "bytes": 9832,
-      "sha256": "0c01c3bae74d24c80a4fba5257ee25ac7ca974079b52d6877f96079d867c5ffa",
+      "words": 269,
+      "bytes": 2664,
+      "sha256": "22c5592ba22a5d0f02f264015afc54a2009be4786ea3c417f65308b9ed265ee5",
       "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
     },
     {
@@ -304,25 +374,51 @@
       ],
       "keywords": [
         "benchmark",
-        "blackwell",
-        "compute",
-        "datacenter",
-        "gpu",
         "intel",
         "latency",
-        "memory",
         "nvidia"
       ],
       "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
       "source_anchor": "",
       "source_lines": [
         429,
+        475
+      ],
+      "canonical_for": [],
+      "words": 707,
+      "bytes": 6618,
+      "sha256": "a653774e4bb1e775d57e86652f640c44550842b9c87f6b44c41c7b556317d767",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/8-2-nvidia-mig-profiles-the-slicing-table",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/8-2-nvidia-mig-profiles-the-slicing-table.md",
+      "title": "8.2 NVIDIA MIG profiles (the slicing table)",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "blackwell",
+        "compute",
+        "datacenter",
+        "gpu",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        476,
         491
       ],
       "canonical_for": [],
-      "words": 901,
-      "bytes": 8378,
-      "sha256": "ee9fa0e943402b31dc687473d81bacc2024b53c95af67d786ccbd55d3adc535b",
+      "words": 194,
+      "bytes": 1760,
+      "sha256": "9e6eb029d3bf467ded6ef72188fa9954a2b3751bc59d69a12c3a763c72ba09c3",
       "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
     },
     {
@@ -423,19 +519,46 @@
         "intel",
         "latency",
         "memory",
-        "research",
         "throughput"
       ],
       "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
       "source_anchor": "",
       "source_lines": [
         622,
+        681
+      ],
+      "canonical_for": [],
+      "words": 772,
+      "bytes": 7640,
+      "sha256": "ad412320ba6c1460e9143b4eabd967ca80e4de266cd5bb74d8e1c3d08658035d",
+      "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
+    },
+    {
+      "id": "etape6-phasef4-virtualization-io/00-virtualization-io/12-2-virtio-net-feature-bits-quick-reference-spec-1-x",
+      "path": "etape6-phasef4-virtualization-io/00-virtualization-io/12-2-virtio-net-feature-bits-quick-reference-spec-1-x.md",
+      "title": "12.2 virtio-net feature bits quick reference (spec 1.x)",
+      "domain": "phase-f4-i-o-virtualization-cpu-acceleration-extensions",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "hyperscaler",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseF4_virtualization_io.md",
+      "source_anchor": "",
+      "source_lines": [
+        682,
         689
       ],
       "canonical_for": [],
-      "words": 883,
-      "bytes": 8729,
-      "sha256": "155ba88b41735dbbf082a36de79d09e7db93474e416f9c64de37b10ae1f0e5e4",
+      "words": 111,
+      "bytes": 1089,
+      "sha256": "6146c7503caf6b0c8c83d66e467f6de766dc241f2124b79f1bff4121b309a111",
       "section": "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
     },
     {

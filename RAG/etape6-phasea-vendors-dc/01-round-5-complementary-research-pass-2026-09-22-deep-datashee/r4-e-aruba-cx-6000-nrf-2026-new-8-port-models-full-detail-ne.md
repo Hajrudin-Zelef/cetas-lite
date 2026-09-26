@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["Huawei", "Intel"]
 dates: ["2026-01-12", "2026-05-20", "2026-05-28", "2026-09-22"]
-keywords: ["asic", "compute", "ethernet", "intel", "latency", "nvidia"]
+keywords: ["asic", "compute", "ethernet", "intel", "latency"]
 source: docs/RAG/etape6_phaseA_vendors_dc.md
 source_anchor: ""
-source_lines: [1993, 2070]
+source_lines: [1993, 2040]
 section: "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
-sha256: 5b069a483aa025ce20d928bdc86ad37ac27722ead7c13387e7c4448ceddc1aaf
+sha256: dc22be8fd6267e6f78d1319631d7db709c773998d2114a4b40d7c33d7a3b1f6b
 ---
 
 # R4-E. Aruba CX 6000 — NRF 2026 new 8-port models, full detail (new)
@@ -63,34 +63,4 @@ Base §U named Arista as a 2026 Gartner MQ Leader for enterprise wired/wireless 
 7. **Accio/naddod prices** are gray-market/AI-generated content risk (accio.com explicitly flags AI-generated FAQ content); treat as street anchors, not list prices.
 
 ### R4 sources (verbatim URLs)
-
-- https://www.dell.com/support/kbdoc/en-ph/000228560/minimum-recommended-and-latest-code-versions-for-networking-products
-- http://infohub.delltechnologies.com/static/media/client/7phukh/DAM_60dba377-fc13-4251-9dd6-c81409b4095d.pdf
-- http://infohub.delltechnologies.com/static/media/client/7phukh/DAM_215fe847-2754-45d2-9f66-b54fe3bfbd6a.pdf
-- https://www.dell.com/en-us/blog/open-ethernet-for-ai-nvidia-spectrum-x-with-dell-sonic/
-- https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy/
-- https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-513/Whats-New/rn/
-- https://github.com/nvidia/product-security/blob/HEAD/2026/5817/5817.md
-- https://blog.ipspace.net/2025/06/cumulus-linux-gone/
-- https://www.shi.com/product/34444595/CISCO-MERAKI-MS210-
-- https://www.publicsector.shidirect.com/Product/34444595/CISCO-MERAKI-MS210-48FP-1G-L2CLD-MNGD-48X-GIGE-740W-POE-SWITCH
-- https://www.cablesandkits.com/networking/switches/meraki-switches/ms210-48fp-hw/pro-27668/
-- https://www.shi.com/product/34444596/CISCO-MERAKI-MS210-
-- https://www.shi.com/product/34444597/CISCO-MERAKI-MS210-48LP-1G-L2CLD-MNGD-48X-GIGE-370W-POE-SWITCH
-- https://networkequipment.net/products/cisco-meraki-ms210-24-hw-new
-- https://www.FS.com/c/nvidia-ethernet-nics-4014
-- https://www.fs.com/uk/c/nvidia-ethernet-nics-4014
-- https://www.naddod.com/collections/nvidia-networking/infiniband-adapters
-- https://www.accio.com/plp/connectx-8-c8240
-- https://nvdam.widen.net/content/8h0owe2dhm/original/connectx-datasheet-connectx-8-supernic-update-a4-web-zhCN-3523588-R3.pdf?u=rubmrs&use=c8xan&download=true
-- https://www.networkworld.com/article/4115610/nrf-2026-hpe-expands-network-server-products-for-retailers.html
-- https://www.networktigers.com/products/r8n85a-hpe-switch-new
-- https://www.hpe.com/emea_europe/en/networking/magic-quadrant-wired-wireless.html
-- https://www.businesswire.com/news/home/20260520437739/en/Arista-Networks-Positioned-as-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Enterprise-Wired-and-Wireless-LAN
-- https://www.webdisclosure.com/press-release/huawei-etr-huawei-named-a-leader-in-the-2026-gartner-magic-quadrant-for-enterprise-wired-and-wireless-lan-infrastructure-for-the-fourth-year-in-a-row-p7AObeR7kp0
-- https://www.grabnpay.in/products/dell-powerswitch-z9864f-on-64-800gbe-osfp112-high-density-open-networking-switch-with-dual-ac-dc-power-supplies-and-hot-swappable-fans
-- https://delltechnologies.com/asset/ko-kr/products/networking/technical-support/dell-powerswitch-z9864f-on-spec-sheet.pdf
-- https://bigfastservers.com/products/dell-powerswitch-z9864f-on-with-102-4-tbps-switch-capacity-64x-800-gbe-osfp112-2x-sfp-ports
-- https://juaraitsolutions.com/dell-powerswitch-z-series-switches/
----
 

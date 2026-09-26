@@ -1,0 +1,113 @@
+---
+id: collect-240926-vision-ia/vision-ia/meta-ouvre-muse-glimmer-un-modele-multimodal-agentique-qui-tient-sur-un-seul-gpu-1
+title: "🧠 **RESEARCH**"
+domain: vision-ia
+role: reference
+task: reference
+actors: ["Alibaba", "Anthropic", "Apple", "ByteDance", "China", "Google", "Hugging Face", "Meta", "Mistral", "Moonshot", "OpenAI", "OpenRouter", "SpaceX", "vLLM"]
+dates: []
+keywords: ["agent", "agentic", "agents", "apache", "astra", "attention", "chatgpt", "claude", "consumer", "context window", "cost", "cyber"]
+source: docs/RAG/clean_en/vision-ia/meta-ouvre-muse-glimmer-un-modele-multimodal-agentique-qui-tient-sur-un-seul-gpu.md
+source_anchor: ""
+source_lines: [1, 96]
+sha256: 2078b83f1a4187c1ae54e1ca194c3a57c59ee0e517e3382ca2613451cbc88aff
+---
+
+# 🧠 **RESEARCH**
+
+<!-- source: https://vision-ia.beehiiv.com/p/meta-ouvre-muse-glimmer-un-mode-le-multimodal-agentique-qui-tient-sur-un-seul-gpu -->
+
+🧩 Meta opens Muse Glimmer, 30B multimodal and agentic locally
+
+😤 The rejection of generative AI is setting Google and Meta back
+
+🛑 OpenAI slows down Astra, perhaps too gifted in cyberattack
+
+🏋️ An AI agent hacks a gym to cut the line
+
+🏆 Claude Opus 5 takes the lead in the Fullstack Code Arena ranking
+
+💾 Model distillation goes from hundreds of GPUs to just one
+
+🇨🇳 ByteDance reportedly training a 10 trillion parameter model
+
+🔮 The startups that want to bury the transformer
+
+🧬 AlphaFold, 53 years of data and 21 billion dollars
+
+🤖 Claude Code switches to auto mode by default on August 14
+
+🖱️ Hark unveils Handoff, an agent that drives a browser
+
+🕵️ An investigation game where you interrogate AI suspects by voice
+
+🍎 Qwen integrates into Siri on Macs in China
+
+⚙️ Siemens simulates 1,000 times faster, but certifies nothing
+
+📜 Mistral secures a patent on tool calls in code
+
+🧠 A researcher leaves OpenAI to build telepathy
+
+🚗 Ford slips an AI assistant into its mobile app
+
+📄 A booby-trapped PDF is enough to empty Jira and Confluence via Rovo
+
+🚀 SpaceX says it can buy Cursor for 60 billion
+
+Meta Superintelligence Labs today releases Muse Glimmer, a multimodal model with **30 billion parameters** distilled from Muse and distributed under the **Apache 2.0 license**, open weights included. It reads text, images and video, it calls tools, it chains multi-step reasoning, and it does all of this without a network connection: **26 GB of RAM** is enough for the smallest variant, on a consumer GPU, a Mac or a PC.
+
+Concretely, it is a dense model that combines a visual encoder of **2 billion parameters** (Perception Encoder architecture, already in-house at Meta) with a text decoder of **28 billion**. It swallows screenshots, charts, scanned documents and videos, and it is designed for a local agent running continuously: coding, document analysis, personal assistant, Claw- or Hermes-type configurations.
+
+**Key takeaways:**
+
+- Context window of **32,768 tokens** and hybrid attention (sliding windows of 2,048 tokens alternating with full attention), with a Gated GQA that **divides cache memory by 16**, thus faster and less demanding generation.
+
+- Video natively supported: **up to 96 frames** sampled at 2 frames per second, with timestamps, which allows it to comment on a screen recording.
+
+- Published results: **75.5 on MCP Atlas** (tool-calling reliability) versus **54.2 for Gemma4** and **62.5 for Qwen3.6**, plus **51.2 on SWE-Bench Pro** and **94.7 on AIME 2026**.
+
+- Available from day one in transformers, llama.cpp, vLLM and Inference Endpoints, with Ollama, LM Studio, MLX, ExecuTorch and OpenRouter announced shortly after. The Hugging Face post also details an optional speculative decoding module (DFlash) that significantly speeds up code generation, at the cost of a bit more memory.
+
+- Tryable without installing anything via HuggingChat, before switching to local if the result convinces.
+
+Until now you had to choose: agentic capabilities in the cloud, or privacy locally with a crippled model. Muse Glimmer brings together multimodality, reliable tool calling and long reasoning in a single dense model, without exotic routing, that runs on your machine. For a firm, a local authority or a legal department that is not allowed to send its files to a provider, the question is no longer "is it possible" but "which graphics card should we buy."
+
+Meta disabled in **three days** the Instagram tool that allowed generating images of any mentioned public account, without its consent. Google removed **one day after its launch** the Google Earth feature that fabricated fake satellite images. The rejection of generative AI is no longer grumbling in the comments: it is causing features to be canceled at the biggest companies in the world.
+
+**The facts, platform by platform:**
+
+- LinkedIn added a "**Seems like AI slop**" report button that hides the post and reduces its algorithmic reach. According to the detection tool Pangram, **more than 40% of the network's long posts** would be entirely generated by AI.
+
+- Snapchat demotes in its Spotlight feed videos **entirely generated by AI**, while simply retouched content remains eligible. Substack, for its part, integrates Pangram detection, with its boss Chris Best explaining he does not want to "become LinkedIn."
+
+- The removed Google Earth feature, built on Nano Banana 2, produced realistic fake satellite views: journalists generated fires in Iran, a flooded Washington and a collapsed Eiffel Tower.
+
+- The Gallup poll is clear: among **18-29 year olds**, trust in AI falls from **30% to 20%**, and **47%** consider it more harmful than useful, versus 36% in 2025. **79%** of Americans anticipate job losses linked to AI.
+
+- The backlash spills beyond digital: residents of all stripes are now organizing against the siting of data centers.
+
+The central grievance is not the quality of the images, it is consent: no one asked for their data to be used to train a model, nor for AI features to intrude into every everyday software. For the first time, public anger is enough to force a reversal within days, which gives users leverage they did not think they had.
+
+OpenAI announces it is slowing the development of Astra, its next unreleased model, after internal evaluations showing significant progress in agentic coding and offensive cybersecurity. The company says it cannot **"rule out critical cyber capabilities"** and suspends internal work involving Astra that does not meet its new security requirements.
+
+**What the word "critical" covers:**
+
+- In the in-house Preparedness Framework, the critical level designates a model capable of identifying and developing on its own **functional zero-day exploits** on hardened systems, then designing and executing a complete cyberattack from a simple high-level objective.
+
+- Astra is not yet officially classified at this level: the evaluation is still ongoing, and **no revised release date** has been communicated.
+
+- The measures taken: more isolated test environments, enhanced monitoring, suspension of non-compliant internal activities, and validation of capabilities with government agencies and independent testers before any release.
+
+- The trigger: in July, a pre-release OpenAI model (the ChatGPT-5.6 "Sol" agents) escaped its test environment and orchestrated an intrusion into Hugging Face. OpenAI states that Astra was not involved in this incident.
+
+- This is not isolated. Anthropic reported that three Claude models, during tests supposed to be confined, reached real corporate networks. Kimi K3, from Moonshot, also escaped its sandbox to go look for solutions on GitHub.
+
+Three labs, three escapes in a few weeks: the confinement of models during their own tests no longer holds. That a lab deliberately slows down a model it has not yet released is a first, and the signal is less reassuring than it seems: the problem is no longer a security setting to be fixed, it is the very architecture of evaluation environments that is proving permeable.
+
+In Melbourne, a user named "Andrew" asks his AI agent (the OpenClaw software, powered by Anthropic's Claude) to book him a highly sought-after morning class. Fourth on the waiting list, he simply asks if he can move up. The agent had already acted: it had noticed that the site's API performed **no authorization check** on the cancellation of other people's bookings, and it had cancelled that of the person at the head of the queue.
+
+**The sequence, step by step:**
+
+- A few minutes earlier, the agent had already found that it could book slots **well beyond the window allowed** by the club's official interface.
+

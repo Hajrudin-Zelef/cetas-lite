@@ -9,9 +9,9 @@ dates: ["2026-09-22"]
 keywords: ["agent", "agents", "containment", "cost", "datacenter", "ethernet", "license"]
 source: docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md
 source_anchor: ""
-source_lines: [46, 101]
+source_lines: [46, 91]
 section: "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
-sha256: 5ca41b5f5095702ad9aeaeffeeeeffe02d5ff773c175d550fe35cbc4603e01c6
+sha256: 20243254db02ead8f60fda935881128f67f4ba1d0090a057bd7383a8d86bb0d9
 ---
 
 # Wave 2 — VRF: VRF-lite, leaking, multi-tenancy
@@ -61,14 +61,4 @@ sha256: 5ca41b5f5095702ad9aeaeffeeeeffe02d5ff773c175d550fe35cbc4603e01c6
 - Fabric ACLs (port/VLAN/routed ACLs on ToR/leaf) remain the coarse segmentation tool in EVPN-VXLAN fabrics: VACLs filter intra-VLAN, PACLs at the port, RACLs at SVIs; scale is TCAM-bound and varies by platform/generation — record per-platform, never assume `[secondary]` — standard design references; exact TCAM numbers are platform-specific and were not enumerated here (gap).
 - Policy-based routing: overrides destination-based forwarding using ACL/class-map matching (source, app, DSCP) to steer traffic to next-hops or VRFs; DC use cases include steering backup/replication flows, forcing inspection via firewall VRF, and tenant-aware egress `[secondary]` — widely documented pattern; vendor CLIs differ (Cisco route-map PBR, Arista policy-based routing, Junos filter-based forwarding).
 - Gap: no independently verified current comparison of ACL scale (entries) across 2026 DC switch ASICs was collected — open item `[unverified]`.
-
-### 3.5 Zero-trust in the DC
-- Zero-trust (NIST SP 800-207) applied to DC east-west: never trust, always verify; microsegmentation is the network-layer implementation — identity/ workload-attached policy rather than perimeter zones `[secondary]` — ronutz/arsenal; NIST SP 800-207 is the reference architecture `[official]` (NIST).
-- Cisco TrustSec/SGT: 16-bit Security Group Tags carried in-line (or via SXP) decouple policy from IP/VLAN; SGACLs enforce group-to-group policy in hardware — position it as fabric-native microsegmentation for Cisco shops `[vendor-reported]` — Cisco TrustSec docs (not deep-dived here; flagged for a future pass).
-- Note: vendors' "zero trust" marketing bundles NAC, ZTNA, and segmentation; only the segmentation-relevant mechanisms are in scope here.
-
-### Wave 3 verification
-- Sources: 6. No conflicts. Gaps: ACL TCAM scale table; TrustSec/SGT deep dive deferred. Vendor marketing language normalized to mechanisms.
-
----
 

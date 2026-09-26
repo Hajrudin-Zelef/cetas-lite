@@ -6,12 +6,12 @@ role: deep-dive
 task: architecture
 actors: ["AMD", "Alibaba", "Anthropic", "DeepSeek", "Google", "Meta", "MiniMax", "Moonshot", "Nvidia", "OpenAI", "SGLang", "TensorRT-LLM", "Z.ai", "vLLM"]
 dates: ["2025-05", "2026-02-19", "2026-03-21", "2026-04-15", "2026-04-24", "2026-05-28", "2026-06", "2026-06-01", "2026-06-13", "2026-08", "2026-08-26", "2026-09-17"]
-keywords: ["accelerator", "agent", "agentic", "amd", "apache", "attention", "benchmarks", "claude", "consumer", "cost", "decode", "deepseek"]
+keywords: ["accelerator", "amd", "apache", "attention", "benchmarks", "claude", "consumer", "cost", "decode", "deepseek", "disaggregated", "foundry"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [3521, 3638]
+source_lines: [3521, 3615]
 section: "7. KV Cache & Long-Context Techniques"
-sha256: 28c415e10bf341ab797bdc102ccc03cb0cec006eaebf3a97e12e73c66e7754da
+sha256: 94d73b32c757c20f1142d9247b6c487e92795a79dc603d32cbed73f05ccef1fa
 ---
 
 # Figures and metrics (continued)
@@ -110,27 +110,4 @@ FP8-KV production benchmarks (vLLM, Apr 2026): **ITL slope 54% of BF16 on H100; 
 Hopper landmine: **128K NIAH 91% → 13%** in early FP8-KV implementations; fix = two-level FP32 accumulation (flash-attention#96/#91).
 
 ### G. Transfer-decision matrix and KV-event plumbing (measured anchors)
-
-| Topology | Transfer choice | Measured anchor |
-|---|---|---|
-| Co-located P/D (same node) | None — keep KV local | N/A (baseline) |
-| Cross-node P/D | NIXL / RDMA transport | llm-d: −55.8%→−88.2% prefill deltas; pull beats push at every length |
-| Remote / cold tiers | CacheGen-compressed bitstreams over object storage | 3.5–4.3× less bandwidth; fallback to text+recompute |
-| Open KV standard (aspirational) | Open KV Cache API (deterministic block identity, tenant/session scoping) | No engines interoperate yet — "a cache index is a convention; an interface is a contract" |
-
-Digest conventions (the interop hazard): requests carry **SHA-256 (or XXH3-128) hashes of canonical KV block digests**; vLLM truncates to the **last 8 bytes big-endian**, SGLang uses the **first 8** — the documented mis-slice produced 0% cache overlap before being fixed. KV events flow over **ZMQ PUB sockets** (one per prefill endpoint in vLLM; one per DP rank in SGLang) with msgpack envelopes.
-
-### H. Prefix-reuse economics — worked example (OpenCode-style /data, June 2026)
-
-Agent loop: 20 calls against a 100K-token repo context. Full prefill once (~100K uncached tokens) + ~1.9M cached tokens; at typical **10:1 cached:uncached pricing → ~9× effective input-cost cut** vs no caching. Multiplicative composition: a 6×-compressed (TurboQuant-class) cache reused across 20 agent turns ≈ **~100× prefill saving** vs naive per-call full prefill. This is why providers price cached input tokens separately and production traces show **95%+ hit ratios** on agentic workloads.
-
-### I. Prefill→decode KV transfer cost math (Wave 1, §7.3)
-
-| Request (Llama 3 70B, BF16) | KV moved P→D | Reading |
-|---|---|---|
-| 4K context | **~13.4 GB** | For short prompts, transfer latency can dominate total TTFT |
-| 128K context | ~430 GB | Long contexts: the price of disaggregation is the transfer itself |
-| Same at FP8 KV | ~215 GB | Compression halves the disaggregation tax — the coupling |
-
-This is why KV *compression* and disaggregation are coupled design problems, not separate ones: a 6×-smaller cache is a 6×-cheaper transfer, and every transfer-cost figure above shrinks multiplicatively with the dtype and compression choices in §B–§D.
 

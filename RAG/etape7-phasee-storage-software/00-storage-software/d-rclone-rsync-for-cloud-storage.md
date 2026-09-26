@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["Google", "Intel", "United States"]
 dates: ["2025-03-06", "2026-04", "2026-06"]
-keywords: ["agent", "compute", "intel", "memory", "pricing", "research"]
+keywords: ["agent", "intel", "memory", "pricing", "research"]
 source: docs/RAG/etape7_phaseE_storage_software.md
 source_anchor: ""
-source_lines: [111, 188]
+source_lines: [111, 183]
 section: "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
-sha256: 06f6b5753ed3c454b53dc6c6ab99cc22f68a64d62ce367f299beae6b53ad30ba
+sha256: 51e537f4af7e61d648a7926523a5456930a77c365f552d2b4f2aa8660d23eaae
 ---
 
 # D. rclone — "rsync for cloud storage"
@@ -88,9 +88,4 @@ sha256: 06f6b5753ed3c454b53dc6c6ab99cc22f68a64d62ce367f299beae6b53ad30ba
 - **TrueNAS Connect** SSO/monitoring add-on: Foundation tier free; Plus at **$60/year for 3 systems** [secondary].
 
 ### E6. Competitive positioning (2026 independent takes)
-
-- TrueNAS CE: free, ZFS-native (data integrity/silent-corruption protection), Docker apps; weaknesses vs Unraid = no mixed-drive single pool (RAIDZ expands one drive at a time), higher RAM floor (~16 GB practical for ZFS), compute is secondary to storage [secondary].
-- Community rule of thumb: **compute-first → Proxmox VE; storage-first → TrueNAS**; a mature pattern is running TrueNAS as a VM inside Proxmox to add ZFS later without a second box [secondary].
-
----
 

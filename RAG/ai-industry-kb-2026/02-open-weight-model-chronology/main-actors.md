@@ -4,14 +4,14 @@ title: "Main actors"
 domain: open-weight-model-chronology
 role: deep-dive
 task: model-release
-actors: ["Alibaba", "Anthropic", "China", "DeepSeek", "EU", "Google", "Huawei", "Hugging Face", "Meta", "Microsoft", "MiniMax", "Mistral", "Moonshot", "Nvidia", "OpenAI", "OpenRouter", "SGLang", "United States", "Unsloth", "Xiaomi", "Z.ai", "vLLM", "xAI"]
+actors: ["Alibaba", "Anthropic", "China", "DeepSeek", "EU", "Google", "Huawei", "Hugging Face", "Meta", "Microsoft", "MiniMax", "Mistral", "Moonshot", "Nvidia", "OpenAI", "OpenRouter", "United States", "Unsloth", "Xiaomi", "Z.ai", "xAI"]
 dates: ["2025-04-05", "2025-04-29", "2025-08-05", "2026-02-10", "2026-02-16", "2026-03-16", "2026-04", "2026-04-02", "2026-04-11", "2026-04-13", "2026-04-16", "2026-04-20", "2026-04-21", "2026-04-24", "2026-04-29", "2026-05-20", "2026-06-03", "2026-06-16", "2026-06-30", "2026-07-16", "2026-07-27", "2026-07-31", "2026-08-10", "2026-08-12", "2026-08-13", "2026-08-14", "2026-08-18", "2026-08-19", "2026-08-20", "2026-08-26", "2026-08-28", "2026-08-31", "2026-09", "2026-09-02", "2026-09-10", "2026-09-14", "2026-09-18", "2026-09-21"]
 keywords: ["agent", "agentic", "apache", "ascend", "attention", "benchmark", "claude", "copilot", "cost", "cyber", "deepseek", "distribution"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [820, 900]
+source_lines: [820, 898]
 section: "2. Open-Weight Model Chronology"
-sha256: 4aaffa997faf76c8bf0599726a1874eee6c869f2a8bf2c99a327e7fc693b211d
+sha256: 10fa2430d62415a1b13c995b1ad725d83f3b701fa68caf490cb64a8c8d46a7fc
 ---
 
 # Main actors
@@ -94,6 +94,4 @@ DeepSeek V4's planned mid-February launch (reported by The Information) failed o
 Z.ai's ~2-week self-imposed hold (announced August 14, 2026) on GLM-5.3 weights because cyber capabilities grew faster than expected is the first open-release delay of its kind in the chronology. It resolved as a delay, not a policy reversal — "the first crack in release-openly-immediately did not escalate." It belongs in any discussion of open-weight governance alongside the AISI finding that distributed weights cannot be recalled and that refusals are retry-strippable.
 
 ### Cross-wave pointers (dedup)
-
-- DeepSeek architecture internals (DSA, V3.2 lineage, V4 sparse stack) → §5. Qwen Gated-DeltaNet hybrid mapping and Kimi-Linear KDA detail → §4 (Qwen) and §5 (Kimi). GLM-5.2/5.3 internals → §3. Inference engines (vLLM/SGLang/TGI/llama.cpp serving these models) → §6. Quantization formats (GGUF/NVFP4/MXFP4/FP8, Unsloth v3.0, K-Quant builds) → §8. Full pricing tables → §14. This section carries only the dated release facts, spec figures, and licensing terms needed for the timeline.
 

@@ -5,13 +5,13 @@ domain: front-matter
 role: reference
 task: reference
 actors: []
-dates: ["2026-05", "2026-07-25", "2026-08-12", "2026-09-22"]
-keywords: ["research", "cost", "hyperscaler", "license", "pricing", "revenue"]
+dates: ["2026-05", "2026-07-25", "2026-08-12", "2026-09-22", "2027-12", "2028-11"]
+keywords: ["research", "cost", "full-duplex", "hyperscaler", "license", "pricing", "revenue"]
 source: docs/RAG/etape6_phaseA_vendors_dc.md
 source_anchor: ""
-source_lines: [1312, 1359]
+source_lines: [1312, 1373]
 section: "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
-sha256: de4808eb206cd13da1da4c3c66fff8d6dd4ee308aed4d4ed20a1fe5720abc43b
+sha256: f8047fa4e3a4571fba2cbb5d3afc0d9f7b10648eeac5e73c2d26d39a51dbcaf8
 ---
 
 # Supplementary / Complementary Research Pass — round 4 (2026-09-22)
@@ -63,4 +63,18 @@ A subscription model detail missing from base §3 — HPE's CX feature-pack stru
 ## Supplementary / Complementary Research Pass #3 — 2026-09-22
 
 **Scope note:** Two additive passes already exist above (Supplementary Pass §§A–M and Supplementary Pass #2 §§N–X, plus a "round 2" §§N–S). This third pass adds only material not present in §§1–8 or any earlier pass. Earlier sections were left untouched. Read the base report and earlier passes first; the provenance legend from the base applies here.
+
+### A. Dell Z9964F-ON / Z9864F-ON software support — closes Supplementary Pass #2 §W item 7
+
+- Dell's **SmartFabric OS10 Hardware Compatibility List (KB 000192674, current 2026)** supports the **400G column** on **Z9264F, Z9332F, Z9432F, Z9664F** (10.6.1.x, EoM November 2028; 10.6.0.x, EoM December 2027). **Neither Z9864F-ON (800G, Tomahawk-5) nor Z9964F-ON (1.6T, Tomahawk-6) appears in the OS10 compatibility list** [official — Dell KB 000192674, 2026].
+- Dell's Secure Connect Gateway support matrix for Enterprise SONiC lists Z9264F/Z9332F/Z9432F/Z9664F (telemetry compatibility), with Z9964F-ON absent from that matrix as well — that matrix only tracks telemetry-collection compatibility, not NOS support itself [official — Dell Secure Connect Gateway 5.x support matrix].
+- Finding: as of 2026-09-22, the **800G/1.6T Tomahawk-5/6 platforms are Enterprise SONiC-only** in Dell's documented matrix; OS10 coverage tops out at 400G (Z9664F-ON). Dell's published Enterprise SONiC spec sheet covers the Z-series (Z9332F/Z9264F/Z9432F/Z9664F/Z9864F) but the Z9964F-ON's exact NOS support document was not located — flagged [unverified].
+
+### B. Dell Z-series street-pricing evidence (secondary market)
+
+- **Z9664F-ON (64× 400G)**: new units remain **quote-only** from Dell (confirmed again on Dell Canada's data-center switch page, Sep 2026 crawl — "Shop Now" leads to quote/configurator) [official]. Secondary market: refurbished/tested Z9664F-ON listed at **$8,495** (expresscomputersystems.com; 1 in stock, RAF airflow, OS10) [secondary].
+- Note: the same reseller listing describes the Z9664F-ON as "51.2 Tbps" — this is **full-duplex** capacity (64× 400G × 2); Dell's official 25.6 Tbps is the simplex switching figure. The discrepancy is labeling, not a spec conflict [secondary — flagged].
+- **Z9864F-ON / Z9964F-ON**: no public list or street prices located; quote-only stands (base §1.7 / §7.1 unchanged) [gap].
+
+### C. Enterprise SONiC bundles + ecosystem (new detail)
 

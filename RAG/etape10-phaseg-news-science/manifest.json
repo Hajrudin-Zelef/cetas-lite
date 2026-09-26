@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape10_phaseG_news_science.md",
   "source_lines": 752,
   "source_sha256": "e13aa10ae364d7dbfc13376b96d89032258b8572aaff4812e400d259ba8f198e",
-  "chunk_count": 12,
+  "chunk_count": 17,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -16,12 +16,9 @@
       "task": "reference",
       "actors": [
         "China",
-        "Nvidia",
         "SpaceX"
       ],
       "dates": [
-        "2023-07",
-        "2025-05",
         "2025-12",
         "2026-01",
         "2026-01-19",
@@ -37,6 +34,42 @@
         "2026-04-01",
         "2026-04-10",
         "2026-05",
+        "2026-09",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "benchmark",
+        "energy",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseG_news_science.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        48
+      ],
+      "canonical_for": [],
+      "words": 790,
+      "bytes": 6753,
+      "sha256": "3e2bcc3252b66de660294c584153e27b57e4869ec03d19cb46ecc952ada28005",
+      "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseg-news-science/00-news-science/june-2026",
+      "path": "etape10-phaseg-news-science/00-news-science/june-2026.md",
+      "title": "June 2026",
+      "domain": "step-10-phase-g-science-planet-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "Nvidia",
+        "SpaceX"
+      ],
+      "dates": [
+        "2023-07",
+        "2025-05",
+        "2026-05",
         "2026-05-18",
         "2026-05-22",
         "2026-06",
@@ -51,7 +84,34 @@
         "2026-08-03",
         "2026-08-06",
         "2026-08-26",
-        "2026-09",
+        "2026-09"
+      ],
+      "keywords": [
+        "research",
+        "rubin",
+        "sol"
+      ],
+      "source": "docs/RAG/etape10_phaseG_news_science.md",
+      "source_anchor": "",
+      "source_lines": [
+        49,
+        79
+      ],
+      "canonical_for": [],
+      "words": 805,
+      "bytes": 7401,
+      "sha256": "94efee24c110e0e2dff1496a053211c565b37566efe6e563a3f0e4ceae0cb766",
+      "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseg-news-science/00-news-science/part-3",
+      "path": "etape10-phaseg-news-science/00-news-science/part-3.md",
+      "title": "Step 10 Phase G — Science & Planet News (February → September 2026) (part 3)",
+      "domain": "step-10-phase-g-science-planet-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
         "2026-09-01",
         "2026-09-14",
         "2026-09-18",
@@ -59,23 +119,19 @@
         "2026-09-22"
       ],
       "keywords": [
-        "benchmark",
         "energy",
-        "research",
-        "revenue",
-        "rubin",
-        "sol"
+        "revenue"
       ],
       "source": "docs/RAG/etape10_phaseG_news_science.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        80,
         87
       ],
       "canonical_for": [],
-      "words": 1858,
-      "bytes": 16510,
-      "sha256": "ea2d67d1561a8b08e6cff7c4c4afd9e5d10bde058a49022371e60077fffba141",
+      "words": 263,
+      "bytes": 2356,
+      "sha256": "f173d6825f095770547ad9cb82601d2ae1d1bad5f4e89083ee2e5504424ade2d",
       "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
     },
     {
@@ -92,9 +148,7 @@
       ],
       "dates": [
         "2025-05",
-        "2025-10",
         "2025-12",
-        "2026-01",
         "2026-02",
         "2026-02-27",
         "2026-03",
@@ -103,18 +157,13 @@
         "2026-04-01",
         "2026-05-22",
         "2026-06-09",
-        "2026-06-22",
-        "2026-06-30",
         "2026-07",
-        "2026-07-15",
         "2026-07-24",
-        "2026-07-31",
         "2026-08",
         "2026-08-20",
         "2027-11"
       ],
       "keywords": [
-        "energy",
         "revenue",
         "rubin"
       ],
@@ -122,24 +171,59 @@
       "source_anchor": "",
       "source_lines": [
         88,
-        149
+        130
       ],
       "canonical_for": [],
-      "words": 1394,
-      "bytes": 12521,
-      "sha256": "8da5bba92f4d8a617b9a6062c8eb8da90f21833e91199ef0ef321d2fc0be2e11",
+      "words": 851,
+      "bytes": 7633,
+      "sha256": "67e8f17c553a195de4c7b97a273a4586d79176bdfbae703ef51da8afe49edcd6",
       "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
     },
     {
-      "id": "etape10-phaseg-news-science/00-news-science/4-deep-dive-climate-extreme-weather-2026",
-      "path": "etape10-phaseg-news-science/00-news-science/4-deep-dive-climate-extreme-weather-2026.md",
-      "title": "4. Deep dive — Climate & extreme weather 2026",
+      "id": "etape10-phaseg-news-science/00-news-science/3-2-jwst-in-2026-early-galaxies-exoplanet-air-and-prebiotic-",
+      "path": "etape10-phaseg-news-science/00-news-science/3-2-jwst-in-2026-early-galaxies-exoplanet-air-and-prebiotic-.md",
+      "title": "3.2 JWST in 2026: early galaxies, exoplanet air, and prebiotic chemistry",
+      "domain": "step-10-phase-g-science-planet-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2023-07",
+        "2025-10",
+        "2026-01",
+        "2026-02",
+        "2026-06-22",
+        "2026-06-30",
+        "2026-07-15",
+        "2026-07-31"
+      ],
+      "keywords": [
+        "energy",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape10_phaseG_news_science.md",
+      "source_anchor": "",
+      "source_lines": [
+        131,
+        165
+      ],
+      "canonical_for": [],
+      "words": 824,
+      "bytes": 7646,
+      "sha256": "58a7d0a34918313ad237ad367fc22918292c6dd5c60dcfe270f7dd1e35698052",
+      "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseg-news-science/00-news-science/4-3-u-s-heat-drought-and-floods-summer-2026",
+      "path": "etape10-phaseg-news-science/00-news-science/4-3-u-s-heat-drought-and-floods-summer-2026.md",
+      "title": "4.3 U.S. heat, drought, and floods (summer 2026)",
       "domain": "step-10-phase-g-science-planet-news-february-september-2026",
       "role": "deep-dive",
       "task": "reference",
       "actors": [],
       "dates": [
-        "2023-07",
         "2024-10",
         "2026-04",
         "2026-05-18",
@@ -154,13 +238,13 @@
       "source": "docs/RAG/etape10_phaseG_news_science.md",
       "source_anchor": "",
       "source_lines": [
-        150,
+        166,
         202
       ],
       "canonical_for": [],
-      "words": 876,
-      "bytes": 8513,
-      "sha256": "be53d720c14d2f3731e8f01b18876bedc88113ccba8bbd3dc31a0b1ca446ebc5",
+      "words": 595,
+      "bytes": 5755,
+      "sha256": "39d6abc6f52c43d94ffc8940cfc5bbb1014fb2254d58ecff640dee7cef6a2ca7",
       "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
     },
     {
@@ -318,8 +402,6 @@
       "dates": [
         "2025-10",
         "2026-03-30",
-        "2026-07-31",
-        "2026-08",
         "2026-12"
       ],
       "keywords": [
@@ -332,12 +414,41 @@
       "source_anchor": "",
       "source_lines": [
         434,
+        496
+      ],
+      "canonical_for": [],
+      "words": 930,
+      "bytes": 7859,
+      "sha256": "ef50d7d881e6ddab7ea8880c13e35e01bd44bf5fb18fd0871ee94799143ddb5e",
+      "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseg-news-science/00-news-science/august-records-and-groundbreakings",
+      "path": "etape10-phaseg-news-science/00-news-science/august-records-and-groundbreakings.md",
+      "title": "August — records and groundbreakings",
+      "domain": "step-10-phase-g-science-planet-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-07-31",
+        "2026-08"
+      ],
+      "keywords": [
+        "rubin"
+      ],
+      "source": "docs/RAG/etape10_phaseG_news_science.md",
+      "source_anchor": "",
+      "source_lines": [
+        497,
         513
       ],
       "canonical_for": [],
-      "words": 1183,
-      "bytes": 10364,
-      "sha256": "9a49f2c19cb46a577260012431dc01f6f020047b8e1b2cc228c41dae0271b30d",
+      "words": 253,
+      "bytes": 2505,
+      "sha256": "6d9fed5bc8a7535eddcc7e1a5e5e5243cea082ccbddeb9207f67194077866e85",
       "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
     },
     {
@@ -363,12 +474,34 @@
       "source_anchor": "",
       "source_lines": [
         514,
+        559
+      ],
+      "canonical_for": [],
+      "words": 749,
+      "bytes": 7383,
+      "sha256": "706ebbe49aedd8b2bc75a42db9d1a0c05b50841ece000fd30be9d840fd1aa541",
+      "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
+    },
+    {
+      "id": "etape10-phaseg-news-science/00-news-science/part-14",
+      "path": "etape10-phaseg-news-science/00-news-science/part-14.md",
+      "title": "Step 10 Phase G — Science & Planet News (February → September 2026) (part 14)",
+      "domain": "step-10-phase-g-science-planet-news-february-september-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseG_news_science.md",
+      "source_anchor": "",
+      "source_lines": [
+        560,
         565
       ],
       "canonical_for": [],
-      "words": 866,
-      "bytes": 8709,
-      "sha256": "64694747ee90d35935632e0f53da11a7a15b4c940ed507a8846f7a5b7bdb9783",
+      "words": 117,
+      "bytes": 1326,
+      "sha256": "39c95e882c3fee2ec7ddfabe45e9fc6b8455cac8f473d12096f6238411d5b66a",
       "section": "Step 10 Phase G — Science & Planet News (February → September 2026)"
     },
     {

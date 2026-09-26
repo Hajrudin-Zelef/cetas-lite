@@ -4,14 +4,14 @@ title: "6. Arista: 2026 AI networking revenue, wins, earnings"
 domain: data-center-networking-for-ai-2026
 role: deep-dive
 task: reference
-actors: ["Meta", "Microsoft", "Nvidia", "xAI"]
-dates: ["2026-05", "2026-07", "2026-08-04"]
-keywords: ["revenue", "ethernet", "gpu", "gpus", "hyperscaler", "memory", "neocloud", "nvidia", "optics"]
+actors: ["Google", "Meta", "Microsoft", "Nvidia", "Oracle", "xAI"]
+dates: ["2026-05", "2026-06", "2026-07", "2026-08-04"]
+keywords: ["revenue", "dci", "ethernet", "gpu", "gpus", "hyperscaler", "memory", "neocloud", "nvidia", "optics"]
 source: docs/RAG/etape5_trackD_servers.md
 source_anchor: ""
-source_lines: [876, 932]
+source_lines: [876, 945]
 section: "Data-Center Networking for AI (2026)"
-sha256: 84fd4da3de8d0f4fbea0b29524ccf49b9f3e8e8c5d43864827cca5f0362984ec
+sha256: 22c1a1e275e4201ed676076c23aed5277277bf1480b86cbfa59f5f3c2e1b3835
 ---
 
 # 6. Arista: 2026 AI networking revenue, wins, earnings
@@ -72,4 +72,17 @@ sha256: 84fd4da3de8d0f4fbea0b29524ccf49b9f3e8e8c5d43864827cca5f0362984ec
 - Margin caution: the AI orders are in a competitive, buyer-leverage-heavy segment; Cisco's operating margin (TTM 25.4%) vs Dell 9.6% noted as the offset. [secondary] (trefis)
 
 ---
+
+## 8. Data center interconnect: 800G adoption, 1.6T timeline
+
+- **800G is the mainstream AI-fabric generation:** "the vast majority of Ethernet switch shipments and revenues in AI backend networks" in Q1 2026 were 800G (Dell'Oro). [independent]
+- **Optical volume:** 800G+ shipments 24M units (2025) → ~63M (2026) (TrendForce). [secondary]
+- **1.6T timeline:** 1600G switches "only beginning to sample," expected to "ramp in the second half of 2026" (Dell'Oro, June 2026). 1.6T optical shipments 2.5M (2025) → 20M+ by end-2026 (OFC-2026 analyst confirmation); "1.6T is shipping now" with NVIDIA and Google integrating, Meta and Oracle slated next (eetimes, Sept 2026). [independent] [secondary]
+- IEEE 802.3dj (200G/lane, covering 200G/400G/800G/1.6T) on track for completion late 2026; early 200G/lane products expected during 2026; 400G/lane project next. [independent] (networkworld)
+- **DCI / scale-across:** emerging as a distinct revenue layer — NVIDIA Spectrum-XGS (available now, SW/FW upgrade), Cisco P200 silicon for scale-across, Arista 1.6T scale-across platforms. [official] [vendor-reported]
+- **3.2T:** development underway around 400G-per-lane designs (Kozlov, eetimes); Spectrum-X3200/Quantum-X3200 on NVIDIA's roadmap (TrendForce). [secondary]
+
+---
+
+## 9. Key uncertainties and explicit flags
 

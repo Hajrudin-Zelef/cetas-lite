@@ -4,14 +4,14 @@ title: "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
 domain: part-2-juniper-networks-post-hpe-acquisition
 role: deep-dive
 task: reference
-actors: ["AMD", "Broadcom", "Microsoft", "United States"]
-dates: ["2024-01", "2024-04", "2025-06", "2025-07", "2026-05", "2026-06", "2026-08", "2026-09"]
-keywords: ["acquisition", "agentic", "amd", "asic", "benchmark", "copilot", "cpo", "dci", "gpu", "helios", "inference", "latency"]
+actors: ["AMD", "Broadcom", "United States"]
+dates: ["2024-01", "2024-04", "2025-06", "2025-07", "2026-06", "2026-08", "2026-09"]
+keywords: ["acquisition", "amd", "asic", "benchmark", "cpo", "dci", "gpu", "helios", "inference", "license", "merger", "research"]
 source: docs/RAG/etape6_trackA_cisco_juniper.md
 source_anchor: ""
-source_lines: [273, 328]
+source_lines: [273, 308]
 section: "PART 2 — JUNIPER NETWORKS (post-HPE acquisition)"
-sha256: 9c827241c8deb642c0b4db2ddabba1b455d4f087761f6d0ed4e6117fa3fc42aa
+sha256: f42269df7c1fd0949e3bc8bb11bf313277cedad67c80d16c8fa4f5fc3e8c2e7c
 ---
 
 # PART 2 — JUNIPER NETWORKS (post-HPE acquisition)
@@ -49,24 +49,4 @@ sha256: 9c827241c8deb642c0b4db2ddabba1b455d4f087761f6d0ed4e6117fa3fc42aa
   - **QFX5140** — inference switch.
 - **QFX5240** (launched 2025, still the flagship 800G AI fabric platform): Broadcom **Tomahawk 5**-based, 64×800GbE OSFP in 2RU, 51.2 Tbps; positioned as the foundation of HPE's AI data-center fabric with Apstra assurance for AI/ML training, "fast job completion time" for GPU utilization. HPE Store lists multiple SKUs (e.g. QFX5240-64OD, QFX5241-32OD/64OD, AC/DC, ORv3 trays). [official — HPE Store]
 - Junos EVO AI-ML fabric software features now documented for the QFX5xxx line: **BGP Global Load Balancing (GLB)** for AI/ML elephant-flow congestion, **Configurable FlowSet table in DLB flowlet mode** (QFX5130/5220/5230/5240/5700), reactive path rebalancing, selective DLB via firewall filters — collectively the **Ops4AI** (Operations for AI) extensions to Junos + Apstra. [official — Juniper docs (24.4 release notes)]
-
-### 2.3 Mist AI / campus & branch (HPE Mist)
-- **HPE Mist** (renamed from Juniper Mist) **now manages HPE Networking CX switches** — the Juniper AIOps engine moved into the Aruba access layer. **Marvis** — the self-driving framework — is **embedded into Aruba Central**. Strategy: "build once, deploy twice," rolling out from **Q1 2026**. [secondary — NAND Research Discover 2026 recap]
-- **Discover Barcelona (Dec 2025):** Juniper's **Large Experience Model** (analyzes data from Zoom/Teams etc.) added to Aruba Central; Aruba's **Agentic Mesh** coming to Mist, improving issue detection, root-cause and remediation. [secondary — SiliconANGLE]
-- **HPE Networking 723H** — first unified Juniper×Aruba product, shipped **6 May 2026**: a three-radio 2×2 **Wi-Fi 7 (802.11be)** wall-plate/hospitality AP that boots into **either Mist or Aruba Central** management (auto-detects at claim; existing licenses honored across platforms). HPE says **all future wireless hardware will follow this dual-platform strategy**. [secondary — The Register; Tech Field Day]
-- **"Self-Driving Networks"** launch (May 2026): autonomous workflows executed without operator approval — dynamic wireless capacity optimization (e.g. re-provisioning capacity for an all-hands gathering), VLAN mismatch/missing-VLAN correction, rogue DHCP server neutralization, RF channel retuning for interference, client roaming refinement, end-to-end latency measurement from client association to cloud, and **automatic avoidance of frequencies reserved for military/priority users** (policy-driven channel allocation beyond standard DFS). Humans can remain in the loop. [secondary — The Register, 8 May 2026]
-- **Market signals:** HPE Q2 FY26 earnings — **Wi-Fi 7 AP sales up 7×**; campus & branch orders hit a record, +20% normalized, with multimillion-dollar deals across verticals. [official — HPE Q2 earnings call]
-- HPE showcased its wireless infrastructure role at the **2026 Winter Olympics** (served over 1 million clients across 5/6 GHz bands); 6 GHz adoption at ~60% of HPE AP shipments; Wi-Fi 7 at 10–15% adoption per HPE. [vendor-reported — Tech Field Day]
-- Older Marvis/Mist capabilities (Minis digital twins, Wired/WAN Assurance) remain current; no discrete 2026 Mist platform re-launch found beyond the HPE Mist rebrand and cross-pollination work.
-
-### 2.4 Security
-- **SRX400 series** firewalls launched at **RSA Conference 2026** (24–26 March, Moscone), available Q2 2026 — carrier-grade security for smaller/space-constrained edge sites, compact form factor, hardware tamper protection, part of the hybrid mesh firewall. HPE credited the launch with security orders +15–19% (normalized) in Q2 FY26. [official — HPE press release; earnings call]
-- At Discover 2026: **quantum-safe SRX4700** (AI Predictive Threat Prevention), **SASE Orchestrator** (unifies SD-WAN and SSE in one console — due later 2026), **SASE Copilot**, **AI Firewall**, Universal ZTNA extended to non-human/agentic identities, Security Director Copilot. [secondary — Futurum]
-
-### 2.5 Apstra / Junos OS
-- **Apstra:** no discrete 2026 Apstra release found in this research. It remains the intent-based networking layer (Apstra Data Center Director) underpinning HPE's AI fabric management alongside Ops4AI; the QFX5240 store page cites Apstra Data Center Director for daily-operation assurance of AI training fabrics. [official — HPE Store; no 2026-dated version found — gap flagged]
-- **Junos OS:** latest documented AI-ML feature set is in Junos EVO 24.4-era release notes (GLB, DLB FlowSet, reactive path rebalancing, rdma-opcode support); no new named Junos release found for 2026. Marketing emphasis is on "AI-optimized Junos software (e.g. AI load balancing)" rather than a versioned release. [official — Juniper docs; gap flagged]
-
-### 2.6 ACX
-- No 2026 ACX hardware announcements found. **Gap flagged** — if ACX launches occurred, they were not surfaced by this search pass.
 

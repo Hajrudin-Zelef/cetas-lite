@@ -4,14 +4,14 @@ title: "Step 6 — Track C: Huawei + MikroTik (Networking Hardware)"
 domain: step-6-track-c-huawei-mikrotik-networking-hardware
 role: deep-dive
 task: hardware
-actors: ["Broadcom", "China", "DeepSeek", "EU", "Huawei", "Nvidia", "United States"]
+actors: ["Broadcom", "China", "DeepSeek", "Huawei", "Nvidia"]
 dates: ["2025-04", "2026-01-01", "2026-03-17", "2026-09-22"]
 keywords: ["accelerator", "agent", "agentic", "ascend", "compute", "cost", "datacenter", "deepseek", "dsp", "energy", "ethernet", "gpu"]
 source: docs/RAG/etape6_trackC_huawei_mikrotik.md
 source_anchor: ""
-source_lines: [1, 71]
+source_lines: [1, 57]
 section: "Step 6 — Track C: Huawei + MikroTik (Networking Hardware)"
-sha256: f0763d3e7641659f07a7e60c50663fbea246241e60f9ba4de510735f70e247b8
+sha256: 1d241983b6106230aa47214b72d8c7f6b2690b31a2455e1ebf539d1dab146279
 ---
 
 # Step 6 — Track C: Huawei + MikroTik (Networking Hardware)
@@ -70,18 +70,4 @@ Huawei's AI cluster networking centers on the **CloudMatrix 384** supernode: 384
 - **Huawei: ~$1.5B Ethernet switch revenue, +28.6% YoY, 8.2% global market share.**
 - **Huawei router revenue: $1.3B, +21.6% YoY, 29.9% global router market share** — "underscoring continued strength in service provider networking, particularly in China and select emerging markets."
 - IDC's three signals: (1) AI cluster construction is a top driver of datacenter network spend; (2) east-west GPU/server traffic makes bandwidth/latency directly affect accelerator utilization; (3) the fabric is becoming part of the AI compute system.
-
-**Dell'Oro — High End Routing and Aggregation, Q2 2026** (reported ~Sep 10, 2026) **[independent — https://www.prnewswire.com/news-releases/high-end-routing-and-aggregation-market-grew-25-percent-in-2q-2026-according-to-delloro-group-302872936.html]**:
-- Segment revenue **+25% YoY**; vendor **direct sales to cloud providers +94% YoY** (hyperscaler AI infrastructure push).
-- Trailing-4-quarter vendor rank: **High End Routing & Aggregation: 1 Cisco, 2 Huawei, 3 Nokia**; **Cloud Provider segment: 1 Cisco, 2 HPE Juniper, 3 Nokia**; **Communication Service Provider segment: 1 Huawei, 2 Cisco, 3 Nokia**.
-
-**Fortune Business Insights (enterprise networking)**: Huawei listed among top vendors with ~18% enterprise networking market share (vs Cisco 22%) **[secondary — https://www.fortunebusinessinsights.com/enterprise-networking-market-105887]**.
-
-### 1.5 International market status
-
-- Huawei's networking growth remains anchored in **China and select emerging markets** (Middle East, Africa, Latin America, Southeast Asia) — per IDC's characterization of its router business **[independent]**.
-- Export-control environment: Huawei continues to operate its networking business under US entity-list restrictions (imposed 2019); no lifting or change in 2026 found in sources fetched — treat current status as **[unverified]** for any specific 2026 regulatory change.
-- No 2026 Huawei telecom/datacom wins in US, EU-5, Japan, Australia, or UK markets were found in fetched sources — consistent with the ongoing restrictions **[secondary]**.
-
----
 

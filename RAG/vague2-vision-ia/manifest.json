@@ -4,7 +4,7 @@
   "source": "docs/RAG/Collect RAG Vague 2/04_vision_ia",
   "source_dir": "docs/RAG/Collect RAG Vague 2/04_vision_ia",
   "source_files": 55,
-  "source_sha256": "69f91354d651d311436b170a9f855f37d26ed2dda326943a0cfc16ed30c93444",
+  "source_sha256": "9c256a6b5ffb6fc1ae5256100ec684c3ef021e46841d89664f5433dff6ece3a9",
   "chunk_count": 55,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [

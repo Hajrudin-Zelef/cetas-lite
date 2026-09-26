@@ -9,9 +9,9 @@ dates: ["2025-02", "2026-04", "2026-04-21", "2026-05", "2026-06", "2026-08-07", 
 keywords: ["acquisition", "agent", "agentic", "agents", "attribution", "aws", "bedrock", "claude", "context window", "copilot", "cost", "deepseek"]
 source: docs/RAG/Outils & plateformes IAEN.md
 source_anchor: ""
-source_lines: [1, 78]
+source_lines: [1, 68]
 section: "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
-sha256: 330ea8d87f81cf480ba1bfe3007840d181782e7bd35593045032eeaa38408526
+sha256: 8d36ef38a8c2c37770cf3e40678a8e5deaddd1e54c4e46c2559c588dd3f4ef78
 ---
 
 # Step 2 — AI Tools & Platforms (Feb–Sep 2026)
@@ -81,14 +81,4 @@ API rates (per MTok, Aug–Sep 2026): Claude Opus 5 $5 in / $25 out / $0.50 cach
 - Available wherever Claude subscriptions/API are sold; GitHub repo `anthropics/claude-code` (public, 52 listed contributors; internal team larger) **[secondary]**.
 - Enterprise deal reported: Allianz making Claude Code available to all employees with custom agents (one of Anthropic's first major enterprise deals of 2026) **[independent — Medium/Cogni Down Under citing Jan 2026 timing — treat as secondary]**.
 - License: not stated in collected sources — **not confirmed as open source; assume proprietary**.
-
-### 1.6 Key sources
-- https://venturebeat.com/orchestration/claude-code-2-1-0-arrives-with-smoother-workflows-and-smarter-agents
-- https://www.macrumors.com/2026/08/08/claude-code-adds-cross-session-messaging/
-- https://www.sitepoint.com/claude-code-june-2026-10-new-features-devs-need-to-know/
-- https://www.morphllm.com/claude-code-pricing
-- https://github.com/anthropics/claude-code (CHANGELOG source)
-- https://devtoolpicks.com/blog/anthropic-claude-code-pro-plan-removed-2026
-
----
 

@@ -9,10 +9,10 @@ dates: ["2026-02-19", "2026-04-23", "2026-06-24", "2026-07-09", "2026-07-16", "2
 keywords: ["benchmark", "pricing", "agent", "astra", "claude", "cohere", "cost", "deepseek", "fable 5", "gemini", "glm", "gpt-5.6"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [10484, 10558]
+source_lines: [10484, 10560]
 section: "§22. Pricing and the Benchmark Landscape"
 delta_of: ai-industry-kb-2026
-sha256: 3afc4c2dbb80fa689bfa67d8f3de993d096a74eed4cd52d14b0e0723f71facf2
+sha256: ff4560b1353938230994092087daacf90ccd6c97fd763a47a59ee26ea38a9b3a
 ---
 
 # §22. Pricing and the Benchmark Landscape
@@ -89,4 +89,6 @@ All rows via published rate cards or vendor-sourced trackers; each row pinned to
 - OpenRouter **:free routes** — InclusionAI Ling 3.0 Flash (rate-limited), the full NVIDIA Nemotron 3 family (Ultra/Super/Nano/3.5) [COMMUNITY].
 - MiMo-V2.5-TTS-Series launched **limited-time free** (2026-04-23) [SECONDARY].
 - Reseller arbitrage: Qubax lists GPT-5.6 Luna at $0.015/$0.09 vs retail $0.20/$1.20 (~91% off) and Gemini 3.7 Flash at ~91% off retail [SECONDARY] — the effective floor for API buyers is often the reseller, not the vendor.
+
+### Artificial Analysis Intelligence Index v4.3
 

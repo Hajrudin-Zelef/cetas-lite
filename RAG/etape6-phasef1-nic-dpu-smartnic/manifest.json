@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
   "source_lines": 756,
   "source_sha256": "438cfd3ac26fa9e539bda4b9bc92c36e77c92742827cf35cffa849e6e25b53be",
-  "chunk_count": 12,
+  "chunk_count": 15,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -24,7 +24,6 @@
         "Nvidia"
       ],
       "dates": [
-        "2025-10",
         "2026-09-22"
       ],
       "keywords": [
@@ -33,24 +32,61 @@
         "nvidia",
         "pricing",
         "accelerator",
-        "blackwell",
         "compute",
         "cybersecurity",
         "ethernet",
-        "gpu",
-        "gpus",
-        "inference"
+        "research"
       ],
       "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        41
+      ],
+      "canonical_for": [],
+      "words": 682,
+      "bytes": 5699,
+      "sha256": "f4fd35fdda44e4a674deeca4c8c69cf47f68c951b459ed11eb0f05dbe8db175f",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/part-2",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/part-2.md",
+      "title": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing) (part 2)",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "nvidia",
+        "pricing",
+        "blackwell",
+        "compute",
+        "ethernet",
+        "gpu",
+        "gpus",
+        "inference",
+        "kv cache",
+        "memory",
+        "rack-scale",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        42,
         55
       ],
       "canonical_for": [],
-      "words": 1029,
-      "bytes": 8439,
-      "sha256": "6761f01781c9a1093b1600f0edb28b558b008d4aa6b752893ce2d2d194f52baa",
+      "words": 347,
+      "bytes": 2740,
+      "sha256": "8153c10cc5f9ef7ed8da412ef2e7696de5e9f9230ba7096521fa6ce110f23c51",
       "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
     },
     {
@@ -109,19 +145,15 @@
         "AMD",
         "AWS",
         "Broadcom",
-        "China",
         "Google",
         "Intel",
-        "Lambda",
         "Meta",
         "Microsoft",
-        "Nvidia",
-        "United States"
+        "Nvidia"
       ],
       "dates": [
         "2021-06",
-        "2023-01-09",
-        "2026-09-15"
+        "2023-01-09"
       ],
       "keywords": [
         "accelerator",
@@ -141,12 +173,44 @@
       "source_anchor": "",
       "source_lines": [
         114,
+        168
+      ],
+      "canonical_for": [],
+      "words": 883,
+      "bytes": 7239,
+      "sha256": "aa100f65cc3f855a8b704285f9ff1df78d0f353a7e0e6780be40b663f44c588b",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/part-5",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/part-5.md",
+      "title": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing) (part 5)",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "China",
+        "Lambda",
+        "United States"
+      ],
+      "dates": [
+        "2026-09-15"
+      ],
+      "keywords": [
+        "nvidia",
+        "pricing",
+        "ethernet"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        169,
         203
       ],
       "canonical_for": [],
-      "words": 1301,
-      "bytes": 10523,
-      "sha256": "66845e7ff3f7f0ceace8d80ae0b427dca839332c52c706e3ceaf26918c02c704",
+      "words": 418,
+      "bytes": 3284,
+      "sha256": "7fb4fa6ea67044d558bce5a982d8f39e1f7d0f43ffafa5d41b87747abd955204",
       "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
     },
     {
@@ -160,7 +224,6 @@
         "AMD",
         "AWS",
         "Baidu",
-        "Broadcom",
         "CoreWeave",
         "Google",
         "Intel",
@@ -187,12 +250,52 @@
       "source_anchor": "",
       "source_lines": [
         204,
+        264
+      ],
+      "canonical_for": [],
+      "words": 824,
+      "bytes": 7161,
+      "sha256": "2e8493aafeded94be4f9697c264c4b40ee3b9176de73968c31431685bd16c11c",
+      "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
+    },
+    {
+      "id": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/part-7",
+      "path": "etape6-phasef1-nic-dpu-smartnic/00-nic-dpu-smartnic/part-7.md",
+      "title": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing) (part 7)",
+      "domain": "phase-f1-nic-dpu-and-smartnic-nvidia-amd-pensando-intel-ipu-",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Broadcom",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel",
+        "nvidia",
+        "aws",
+        "ethernet",
+        "gpu",
+        "research",
+        "revenue",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape6_phaseF1_nic_dpu_smartnic.md",
+      "source_anchor": "",
+      "source_lines": [
+        265,
         271
       ],
       "canonical_for": [],
-      "words": 1033,
-      "bytes": 9039,
-      "sha256": "fd63439bfec4192ba1807f8622948381a82179a1fc965a9d63c82f1ab6d62956",
+      "words": 209,
+      "bytes": 1878,
+      "sha256": "6fdbd31ab34106e2b60fa459d644b06c0b5926430e0b733b1cf1b7e91998012e",
       "section": "Phase F1 — NIC, DPU and SmartNIC (NVIDIA, AMD Pensando, Intel IPU, Marvell, offloads, pricing)"
     },
     {

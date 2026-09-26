@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
   "source_lines": 770,
   "source_sha256": "39cdb8cddf311f1e54d3788a87e921336c19c3140b36862fe144b10abb04ab88",
-  "chunk_count": 14,
+  "chunk_count": 17,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -60,12 +60,34 @@
       "source_anchor": "",
       "source_lines": [
         46,
+        91
+      ],
+      "canonical_for": [],
+      "words": 1001,
+      "bytes": 7922,
+      "sha256": "20243254db02ead8f60fda935881128f67f4ba1d0090a057bd7383a8d86bb0d9",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/3-5-zero-trust-in-the-dc",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/3-5-zero-trust-in-the-dc.md",
+      "title": "3.5 Zero-trust in the DC",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        92,
         101
       ],
       "canonical_for": [],
-      "words": 1133,
-      "bytes": 8885,
-      "sha256": "5ca41b5f5095702ad9aeaeffeeeeffe02d5ff773c175d550fe35cbc4603e01c6",
+      "words": 132,
+      "bytes": 963,
+      "sha256": "c9589823c5489288b201de41f13862f2207380c1dbed508563b7d0f4f227fd7b",
       "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
     },
     {
@@ -91,23 +113,22 @@
       "source_anchor": "",
       "source_lines": [
         102,
-        148
+        150
       ],
       "canonical_for": [],
-      "words": 925,
-      "bytes": 7412,
-      "sha256": "a75fb6d648d21e1874e76543b79f6b40d965a7a3d46667dc479ee0388e082cfd",
+      "words": 936,
+      "bytes": 7474,
+      "sha256": "a93acd6e6988a20d17ca10cbfe28250be417dff482ce685bbd15c4e1f98989b0",
       "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
     },
     {
-      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-6-ecn-rocev2-lossless-tuning-vendor-qos-models",
-      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/wave-6-ecn-rocev2-lossless-tuning-vendor-qos-models.md",
-      "title": "Wave 6 — ECN, RoCEv2 lossless tuning, vendor QoS models",
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/6-1-the-three-layer-lossless-model",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/6-1-the-three-layer-lossless-model.md",
+      "title": "6.1 The three-layer lossless model",
       "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
       "role": "deep-dive",
       "task": "reference",
       "actors": [
-        "Huawei",
         "Meta",
         "Nvidia"
       ],
@@ -127,13 +148,37 @@
       "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
       "source_anchor": "",
       "source_lines": [
-        149,
+        151,
+        191
+      ],
+      "canonical_for": [],
+      "words": 899,
+      "bytes": 7197,
+      "sha256": "fccea25807708793c7c248acd62cb9bf8d0f40ce5783f452588701307d179d51",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/7-3-anycast-rp-rfc-3446",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/7-3-anycast-rp-rfc-3446.md",
+      "title": "7.3 Anycast-RP (RFC 3446)",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Huawei"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        192,
         206
       ],
       "canonical_for": [],
-      "words": 1174,
-      "bytes": 9288,
-      "sha256": "e525f724e92262fb90072f1100602c0c25a58dae1c3c88c197e28dcfb35734cd",
+      "words": 264,
+      "bytes": 2029,
+      "sha256": "4fed08e037c63154f17bac73a7d01c88345ffa4bf572a49986ae1c8b70bca4d2",
       "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
     },
     {
@@ -152,12 +197,34 @@
       "source_anchor": "",
       "source_lines": [
         207,
+        245
+      ],
+      "canonical_for": [],
+      "words": 889,
+      "bytes": 7384,
+      "sha256": "16df8bc27dd4d557731821ff7ae7e44da03dbe733b14f3993d1fbbf9054e51cc",
+      "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
+    },
+    {
+      "id": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/9-3-ntp-ptp-timing",
+      "path": "etape6-phased4-segmentation-qos-multicast/00-segmentation-qos-multicast/9-3-ntp-ptp-timing.md",
+      "title": "9.3 NTP/PTP timing",
+      "domain": "step-6-phase-d4-segmentation-qos-multicast-network-services",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md",
+      "source_anchor": "",
+      "source_lines": [
+        246,
         256
       ],
       "canonical_for": [],
-      "words": 1035,
-      "bytes": 8494,
-      "sha256": "39d60ab92a11501a111d688d170d165e00e279ec3cfec99f735e1d792f06558a",
+      "words": 146,
+      "bytes": 1110,
+      "sha256": "1478c0219be500e7c5399336006e738d123a0bcd3df9ae334cac67489dbf7d36",
       "section": "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
     },
     {

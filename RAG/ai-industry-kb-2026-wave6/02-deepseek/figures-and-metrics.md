@@ -9,10 +9,10 @@ dates: ["2025-05", "2025-09-29", "2025-12-01", "2026-04-24", "2026-05", "2026-06
 keywords: ["agent", "astra", "benchmark", "blackwell", "claude", "compute", "decode", "deepseek", "fable 5", "fp4", "fp8", "gpt-6"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [779, 867]
+source_lines: [779, 869]
 section: "§2. DeepSeek"
 delta_of: ai-industry-kb-2026
-sha256: b19bdd9ffba18b8bd88ba4f41920da6c5e2a4ffa46eb3286b9027fdc03b20dbf
+sha256: 67657e7a07ed80801e68a06bae26063dbd038b39e6674f72abb89b2cfc3fa15b
 ---
 
 # Figures and metrics
@@ -105,4 +105,6 @@ sha256: b19bdd9ffba18b8bd88ba4f41920da6c5e2a4ffa46eb3286b9027fdc03b20dbf
 | V3.2 self-hosting | 685B: ~700 GB VRAM FP8 (8–10× H100); ~386 GB 4-bit (5–6× H100) | 2025-12 | [SECONDARY] |
 
 ---
+
+## Main actors
 

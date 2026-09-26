@@ -4,8 +4,8 @@
   "source": "docs/RAG/clean_en/hardwarecooking",
   "source_dir": "docs/RAG/clean_en/hardwarecooking",
   "source_files": 12,
-  "source_sha256": "ea4a31f171e3e315dff26cd8516a46b13fbeba508db2e6c19492658c5546d04c",
-  "chunk_count": 12,
+  "source_sha256": "38d604a4d940efa6845f24db03cdc9275df4eceb378df6b81ace95c8bc2aec63",
+  "chunk_count": 16,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -58,27 +58,23 @@
       "sha256": "76fad879130b927732fe4eace021ce18be9c61501dae6cb37e05bc0f98d9fe57"
     },
     {
-      "id": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves",
-      "path": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves.md",
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves-1",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves-1.md",
       "title": "build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves",
       "domain": "hardwarecooking",
       "role": "reference",
       "task": "reference",
       "actors": [
-        "AMD",
         "Intel",
         "Lambda",
         "Nvidia"
       ],
       "dates": [],
       "keywords": [
-        "amd",
-        "consumer",
         "energy",
         "ethernet",
         "intel",
         "memory",
-        "nand",
         "nvidia",
         "power delivery",
         "throughput"
@@ -87,16 +83,50 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1360,
+      "bytes": 7938,
+      "sha256": "a34a405963e8603d0e73371202ceaa20cae7cf302b92b21611af207eff9e3a9d"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves-2",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves-2.md",
+      "title": "build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "consumer",
+        "energy",
+        "intel",
+        "memory",
+        "nand",
+        "nvidia",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/build-be-quiet-on-a-monte-le-pc-derniere-generation-de-vos-reves.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
         84
       ],
       "canonical_for": [],
-      "words": 2184,
-      "bytes": 12693,
-      "sha256": "dd87352d10953f5684cbf04d94fc6c518ef38c10cfc6fc714fecf0f5c21f4309"
+      "words": 824,
+      "bytes": 4755,
+      "sha256": "116b42b055d04164a93fbed8c454f218d4c6299e6bd3ba14b815722b6ef9e43d"
     },
     {
-      "id": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070",
-      "path": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070.md",
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070-1",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070-1.md",
       "title": "build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070",
       "domain": "hardwarecooking",
       "role": "reference",
@@ -111,8 +141,34 @@
       "keywords": [
         "amd",
         "energy",
-        "gpu",
         "intel",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1388,
+      "bytes": 7974,
+      "sha256": "cb9cee77aaf188f05bdd9aefe233ec981f6c7dff4cf6c26c6e2b8174819a797f"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070-2",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070-2.md",
+      "title": "build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
         "memory",
         "nand",
         "nvidia"
@@ -120,17 +176,17 @@
       "source": "docs/RAG/clean_en/hardwarecooking/build-deepcool-du-pc-gaming-tout-blanc-et-un-i5-14600k-avec-une-rtx-4070.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        67,
         79
       ],
       "canonical_for": [],
-      "words": 1783,
-      "bytes": 10189,
-      "sha256": "3df0b14b4773fa64af6330e2319f73146021dbcb7af6a6c09dee54cfab0d07ae"
+      "words": 395,
+      "bytes": 2215,
+      "sha256": "403147c6c18f17c3185a26eecf786ce4e25baa99f6971455296c16f8f540e4b6"
     },
     {
-      "id": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg",
-      "path": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg.md",
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg-1",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg-1.md",
       "title": "build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg",
       "domain": "hardwarecooking",
       "role": "reference",
@@ -145,9 +201,6 @@
       "dates": [],
       "keywords": [
         "amd",
-        "benchmarks",
-        "blackwell",
-        "consumer",
         "energy",
         "intel",
         "memory",
@@ -160,12 +213,44 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 1268,
+      "bytes": 7544,
+      "sha256": "2a71783d250aab979162db96db079e4668ed475894c2981b2873871f633dce8b"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg-2",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg-2.md",
+      "title": "build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "blackwell",
+        "consumer",
+        "energy",
+        "intel",
+        "memory",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/hardwarecooking/build-nzxt-une-config-a-4600-euros-avec-rtx-4090-et-i9-14900k-dans-le-h7-flow-rg.md",
+      "source_anchor": "",
+      "source_lines": [
+        61,
         94
       ],
       "canonical_for": [],
-      "words": 2094,
-      "bytes": 12512,
-      "sha256": "a1e7fc439e8d05e592951394cfdd5f11d75c71597393c1e175b1bfbb5fc30249"
+      "words": 826,
+      "bytes": 4968,
+      "sha256": "5b831e5ba5d491855ee7167121e152a089d695bcf07b35e3f6b4c3ce7d92aeda"
     },
     {
       "id": "collect-240926-hardwarecooking/hardwarecooking/le-dlss-5-tourne-sur-une-intel-arc-140v-un-moddeur-reussit-l-improbable-mais-a-q",
@@ -224,8 +309,8 @@
       "sha256": "e46ee8fad2e9220ef8899ed297b753248266a696ca93d723605d3d4cfcf1d3c7"
     },
     {
-      "id": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu",
-      "path": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu.md",
+      "id": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu-1",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu-1.md",
       "title": "test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu",
       "domain": "hardwarecooking",
       "role": "reference",
@@ -244,12 +329,33 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        89
+      ],
+      "canonical_for": [],
+      "words": 1355,
+      "bytes": 7914,
+      "sha256": "90d3e0dd77e453937add54e3331fef64c2b53972f784fdac0afbf88ffcd13adb"
+    },
+    {
+      "id": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu-2",
+      "path": "collect-240926-hardwarecooking/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu-2.md",
+      "title": "test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu",
+      "domain": "hardwarecooking",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/hardwarecooking/test-asus-rog-strix-oled-xg27aqwmg-un-ecran-tandem-woled-pour-le-jeu.md",
+      "source_anchor": "",
+      "source_lines": [
+        90,
         100
       ],
       "canonical_for": [],
-      "words": 1500,
-      "bytes": 8668,
-      "sha256": "39e34b0a7db5f44c0297696b99171e43d33ce9638d50a78dcbe993b8553c3858"
+      "words": 145,
+      "bytes": 754,
+      "sha256": "9ed95d28eb2f149c7adc4b1b1ce9d2500a4dcb26d7e9ba4587d32f673f71da93"
     },
     {
       "id": "collect-240926-hardwarecooking/hardwarecooking/test-be-quiet-dark-power-pro-14-io-la-nouvelle-reference-ultime-hardwarecooking",

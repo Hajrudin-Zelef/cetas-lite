@@ -9,9 +9,9 @@ dates: ["2026-09-22"]
 keywords: ["research", "benchmark", "license", "memory", "pricing", "voice"]
 source: docs/RAG/etape6_phaseB_smb_networking.md
 source_anchor: ""
-source_lines: [1572, 1648]
+source_lines: [1572, 1637]
 section: "Supplementary Research Pass — Addendum (September 22, 2026)"
-sha256: 147c3d4d6c514bc948eff0fdf6dc92a8e530db2729af6108f24ea77fc04d40a4
+sha256: 1727e75e9b753c0f5219bec444ae5bb58d467478fee5dd3116d5313fed2f58ff
 ---
 
 # Supplementary Research Pass — Addendum (September 22, 2026)
@@ -79,15 +79,4 @@ R5 resolved the $2,499 MSRP; these are new:
 - Sources: https://store.ui.com/us/en/products/usw-pro-xg-aggregation ; https://www.adorama.com/ubiquiti-networks-pro-xg-aggregation-32-port-200w-managed-switch/p/ubuswproxgag ; https://shopdoubleradius.com/products/ubiquiti-unifi-pro-xg-aggregation-usw-pro-xg-aggregation
 
 ## B7. Verification log
-
-1. XS1935-12F port mix: retailer listings were inconsistent; per U4's official-datasheet correction the -12F is **10× SFP+ + 2× multi-gig RJ45** — do NOT repeat the "all-fiber" label from the superseded draft [corrected].
-2. USW-Pro-XG-Aggregation surcharge differs by channel ($197 ui.com vs $147 DoubleRadius) [unverified].
-3. ER-X-SFP delisted at one retailer only — not a formal EOL announcement; treat as availability note.
-4. CISA BOD 26-02 is Feb 2026 — do not misdate.
-5. Ax Wireless ITC: pending status inferred from absence of a found ruling, flagged [unverified].
-6. TRENDnet URL typo: trendnet.com product path "TEG-3824WS-v1" vs catalog "TEG-3284WS" [unverified].
-7. Still not researched (open for a future pass): Zyxel XS1935-10 / -12HP street prices; D-Link DAP Wi-Fi 7 street prices; Netgear M4350 2026 refresh pricing; Grandstream GWN7670LR street price; D-Link DAP-E3620/E9560 (covered by another pass — do not duplicate).
-
-
----
 

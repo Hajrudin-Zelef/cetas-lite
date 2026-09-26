@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape10_phaseE_news_world.md",
   "source_lines": 750,
   "source_sha256": "334c7553c07e84013241d5f47ae80cdd322f2072677e7dcbbf1f58c70bf7c37b",
-  "chunk_count": 13,
+  "chunk_count": 24,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -41,18 +41,53 @@
       "source_anchor": "",
       "source_lines": [
         1,
-        47
+        49
       ],
       "canonical_for": [],
-      "words": 665,
-      "bytes": 5375,
-      "sha256": "2956330183511bd0ef1f8bb372c87a6d1a0606cf6c568d5f91605c0cf86f7167",
+      "words": 668,
+      "bytes": 5394,
+      "sha256": "e6648e2d1dd2adf37d4a1c539613dc49182099cb0a1a6d7b32f8e18e1c189ad0",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
-      "id": "etape10-phasee-news-world/00-news-world/february-2026",
-      "path": "etape10-phasee-news-world/00-news-world/february-2026.md",
-      "title": "February 2026",
+      "id": "etape10-phasee-news-world/00-news-world/march-2026",
+      "path": "etape10-phasee-news-world/00-news-world/march-2026.md",
+      "title": "March 2026",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2025-09",
+        "2025-11",
+        "2026-02",
+        "2026-03",
+        "2026-09",
+        "2026-09-10",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "energy"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        50,
+        62
+      ],
+      "canonical_for": [],
+      "words": 402,
+      "bytes": 3535,
+      "sha256": "cd5d8b5afd6208e10213a995e9ec27b7f6b06b37664220d5d8edf6c53c48371b",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/april-2026",
+      "path": "etape10-phasee-news-world/00-news-world/april-2026.md",
+      "title": "April 2026",
       "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
       "role": "deep-dive",
       "task": "finance",
@@ -64,18 +99,9 @@
         "xAI"
       ],
       "dates": [
-        "2025-09",
         "2025-10",
-        "2025-11",
-        "2026-02",
         "2026-03",
         "2026-04",
-        "2026-04-21",
-        "2026-04-30",
-        "2026-05",
-        "2026-09",
-        "2026-09-10",
-        "2026-09-21",
         "2026-09-22"
       ],
       "keywords": [
@@ -85,19 +111,19 @@
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
-        48,
-        101
+        63,
+        79
       ],
       "canonical_for": [],
-      "words": 1636,
-      "bytes": 14885,
-      "sha256": "8fc6c580b1184f0fc7bceb9f97d772a5dcee06ff439f03a40a9a10dd119118e9",
+      "words": 534,
+      "bytes": 5154,
+      "sha256": "49132c650f73b997cbde8b5018bfd6f0c726e9d4290774953da99acc481fba44",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
-      "id": "etape10-phasee-news-world/00-news-world/june-2026",
-      "path": "etape10-phasee-news-world/00-news-world/june-2026.md",
-      "title": "June 2026",
+      "id": "etape10-phasee-news-world/00-news-world/may-2026",
+      "path": "etape10-phasee-news-world/00-news-world/may-2026.md",
+      "title": "May 2026",
       "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
       "role": "deep-dive",
       "task": "finance",
@@ -106,10 +132,76 @@
         "United States"
       ],
       "dates": [
-        "2025-06",
+        "2025-10",
+        "2026-04",
+        "2026-04-21",
+        "2026-04-30",
         "2026-05",
         "2026-06",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "energy"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        80,
+        103
+      ],
+      "canonical_for": [],
+      "words": 700,
+      "bytes": 6192,
+      "sha256": "0e8200b233f1c850d903df0a12e779e0f78ea60919ab12a63230e8e203f40009",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/july-2026",
+      "path": "etape10-phasee-news-world/00-news-world/july-2026.md",
+      "title": "July 2026",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-06",
         "2026-06-22",
+        "2026-07",
+        "2026-09-21"
+      ],
+      "keywords": [
+        "energy",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        104,
+        119
+      ],
+      "canonical_for": [],
+      "words": 554,
+      "bytes": 5462,
+      "sha256": "f4926f9ebb74a64bca0dedeb6c1f4efad0f025b3d2982fd9f86626f8133f806b",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/august-2026",
+      "path": "etape10-phasee-news-world/00-news-world/august-2026.md",
+      "title": "August 2026",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-05",
         "2026-07",
         "2026-07-15",
         "2026-08",
@@ -117,22 +209,20 @@
         "2026-09-21"
       ],
       "keywords": [
-        "energy",
         "incident",
         "lawsuit",
-        "research",
         "voice"
       ],
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
-        102,
-        146
+        120,
+        132
       ],
       "canonical_for": [],
-      "words": 1551,
-      "bytes": 14760,
-      "sha256": "09f55be65d5030360271dea61fa067bb6e38b3520aaaab2599f339651fd8bc78",
+      "words": 414,
+      "bytes": 3982,
+      "sha256": "b6c01309f0e728c2e95c29b348863aa6f7985ad8ad0e15e45be31a0dbbf8b095",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
@@ -143,41 +233,66 @@
       "role": "deep-dive",
       "task": "finance",
       "actors": [
-        "AMD",
-        "Broadcom",
+        "China",
+        "United States"
+      ],
+      "dates": [
+        "2026-08",
+        "2026-09",
+        "2026-09-10"
+      ],
+      "keywords": [
+        "energy",
+        "incident",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        133,
+        148
+      ],
+      "canonical_for": [],
+      "words": 583,
+      "bytes": 5321,
+      "sha256": "4dbb8261c65ba758873d66bfd4d870513e69275bbc14edc14c814b205ef0eed1",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/part-8",
+      "path": "etape10-phasee-news-world/00-news-world/part-8.md",
+      "title": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026) (part 8)",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
         "China",
         "G20",
-        "Nvidia",
         "United States"
       ],
       "dates": [
         "2025-10",
         "2026-01",
         "2026-09",
-        "2026-09-08",
         "2026-09-10",
-        "2026-09-12",
-        "2026-09-21",
         "2026-09-22",
         "2026-12"
       ],
       "keywords": [
-        "amd",
         "benchmark",
         "energy",
-        "governance",
-        "nvidia"
+        "governance"
       ],
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
-        147,
-        191
+        149,
+        174
       ],
       "canonical_for": [],
-      "words": 1309,
-      "bytes": 13296,
-      "sha256": "8a1cda7f9464f2667cc10a90eb7e0db1537cc0975ef00c4dbf0966639b78e058",
+      "words": 814,
+      "bytes": 7953,
+      "sha256": "0b8eb6775f2fc02b3853a1733dd2c25241c7b95f93b2d1b9b782baaab0d98e9b",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
@@ -188,23 +303,57 @@
       "role": "deep-dive",
       "task": "finance",
       "actors": [
+        "AMD",
+        "Broadcom",
+        "China",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2026-09",
+        "2026-09-08",
+        "2026-09-10",
+        "2026-09-12",
+        "2026-09-21",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "energy",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        175,
+        195
+      ],
+      "canonical_for": [],
+      "words": 505,
+      "bytes": 5426,
+      "sha256": "5cfdfc7dacbfd1ea5c956bde229b75b7128af369f6ac0837004612abc77f3522",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/3-2-the-usisraeliran-war-from-late-february-2026",
+      "path": "etape10-phasee-news-world/00-news-world/3-2-the-usisraeliran-war-from-late-february-2026.md",
+      "title": "3.2 The US–Israel–Iran war (from late February 2026)",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
         "United States"
       ],
       "dates": [
         "2025-06",
-        "2025-10",
         "2026-02",
         "2026-03",
-        "2026-04",
-        "2026-04-30",
-        "2026-05",
         "2026-08",
         "2026-09",
         "2026-09-08",
         "2026-09-10",
         "2026-09-12",
-        "2026-09-22",
-        "2026-10"
+        "2026-09-22"
       ],
       "keywords": [
         "energy",
@@ -214,13 +363,44 @@
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
-        192,
+        196,
+        221
+      ],
+      "canonical_for": [],
+      "words": 822,
+      "bytes": 7237,
+      "sha256": "ea715036fcf3f8efaca28f453ad27f11dc0fba52cb2adc26d74b0f91f63306aa",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/3-4-sudan-a-war-in-its-fourth-year-februaryseptember-2026",
+      "path": "etape10-phasee-news-world/00-news-world/3-4-sudan-a-war-in-its-fourth-year-februaryseptember-2026.md",
+      "title": "3.4 Sudan: a war in its fourth year (February–September 2026)",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-04",
+        "2026-04-30",
+        "2026-05",
+        "2026-09",
+        "2026-10"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        222,
         239
       ],
       "canonical_for": [],
-      "words": 1350,
-      "bytes": 11844,
-      "sha256": "a3b3bd4e148ae0bc775db18dc3821d001886071dad5dda885041e7dcd9b09293",
+      "words": 515,
+      "bytes": 4504,
+      "sha256": "25d74b9a31e50ba47bbd36ad0c7ab03472012b1f199eb19f4909f5f7b01a3711",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
@@ -231,17 +411,51 @@
       "role": "deep-dive",
       "task": "finance",
       "actors": [
-        "China",
         "United States"
       ],
       "dates": [
         "2025-01",
+        "2026-03",
+        "2026-04",
+        "2026-07",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "incident",
+        "research",
+        "sovereignty"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        240,
+        263
+      ],
+      "canonical_for": [],
+      "words": 628,
+      "bytes": 5164,
+      "sha256": "20fa08bf2bde498390fd74061b14b04b3e49c417751b1c764122be106d4b44ae",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/3-8-uschina-from-tariff-war-to-reported-truce",
+      "path": "etape10-phasee-news-world/00-news-world/3-8-uschina-from-tariff-war-to-reported-truce.md",
+      "title": "3.8 US–China: from tariff war to reported truce",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "China",
+        "EU",
+        "United States"
+      ],
+      "dates": [
         "2025-09",
         "2025-12",
         "2026-01",
         "2026-02",
         "2026-03",
-        "2026-04",
         "2026-05",
         "2026-07",
         "2026-08",
@@ -251,42 +465,34 @@
         "2026-11"
       ],
       "keywords": [
-        "incident",
         "research",
-        "revenue",
-        "sovereignty"
+        "revenue"
       ],
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
-        240,
-        288
+        264,
+        290
       ],
       "canonical_for": [],
-      "words": 1355,
-      "bytes": 11843,
-      "sha256": "063d600d64e54301b5e769452f264bab8e45bdbc218d019d171505eee4bc1d48",
+      "words": 737,
+      "bytes": 6725,
+      "sha256": "a2b14d89e36fe00e5544a7c10a26fdc9d8a41a31b7bdc041cf34464caf22d1da",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
-      "id": "etape10-phasee-news-world/00-news-world/3-10-europe-the-eu-the-ecb-and-the-g7",
-      "path": "etape10-phasee-news-world/00-news-world/3-10-europe-the-eu-the-ecb-and-the-g7.md",
-      "title": "3.10 Europe: the EU, the ECB, and the G7",
+      "id": "etape10-phasee-news-world/00-news-world/3-11-summits-g7-brics-and-the-road-to-the-g20",
+      "path": "etape10-phasee-news-world/00-news-world/3-11-summits-g7-brics-and-the-road-to-the-g20.md",
+      "title": "3.11 Summits: G7, BRICS, and the road to the G20",
       "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
       "role": "deep-dive",
       "task": "finance",
       "actors": [
-        "AMD",
-        "Broadcom",
-        "China",
         "EU",
         "G20",
-        "Nvidia",
         "United States"
       ],
       "dates": [
-        "2025-10",
-        "2026-01",
         "2026-06",
         "2026-06-22",
         "2026-08",
@@ -298,23 +504,57 @@
         "2026-12"
       ],
       "keywords": [
-        "amd",
         "benchmark",
         "energy",
         "governance",
-        "nvidia",
         "research"
       ],
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
-        289,
+        291,
+        324
+      ],
+      "canonical_for": [],
+      "words": 753,
+      "bytes": 7418,
+      "sha256": "29cb56d22f96e1f931a9d4a672fbee953fbc6ba58b9267310f55772d893b1e5f",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/3-15-crypto-assets",
+      "path": "etape10-phasee-news-world/00-news-world/3-15-crypto-assets.md",
+      "title": "3.15 Crypto assets",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "China",
+        "Nvidia",
+        "United States"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-01",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "amd",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        325,
         337
       ],
       "canonical_for": [],
-      "words": 1095,
-      "bytes": 11110,
-      "sha256": "9a356167aef2f94d8b0fe0089d17a656d33683e1052652d1eda311926f1f6a39",
+      "words": 332,
+      "bytes": 3646,
+      "sha256": "6506fa6d8ad2a86ce72954ba0aad402bf30ed7e020814606753864dd556c5ced",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
@@ -335,82 +575,139 @@
         "xAI"
       ],
       "dates": [
-        "2025-06",
         "2026-03",
-        "2026-04",
-        "2026-05",
-        "2026-07",
-        "2026-07-15",
-        "2026-08",
         "2026-09"
       ],
       "keywords": [
         "energy",
-        "incident",
         "nvidia",
-        "valuation",
-        "voice"
+        "valuation"
       ],
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
         338,
-        386
+        372
       ],
       "canonical_for": [],
-      "words": 1057,
-      "bytes": 11506,
-      "sha256": "ed4d48b266a0a3981c474ed10696e27555bb1082a81bec4709b9934e091127ce",
+      "words": 633,
+      "bytes": 7344,
+      "sha256": "b506df9554b91fdddf24c81572a61212afb19505ffa42696b8fabfc7c416c7ef",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
-      "id": "etape10-phasee-news-world/00-news-world/3-19-other-major-headlines-februaryseptember-2026",
-      "path": "etape10-phasee-news-world/00-news-world/3-19-other-major-headlines-februaryseptember-2026.md",
-      "title": "3.19 Other major headlines (February–September 2026)",
+      "id": "etape10-phasee-news-world/00-news-world/3-18-aviation-the-ai-171-investigation-and-the-ai2379-incide",
+      "path": "etape10-phasee-news-world/00-news-world/3-18-aviation-the-ai-171-investigation-and-the-ai2379-incide.md",
+      "title": "3.18 Aviation: the AI-171 investigation and the AI2379 incident",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "United States"
+      ],
+      "dates": [
+        "2025-06",
+        "2026-01",
+        "2026-02",
+        "2026-04",
+        "2026-04-21",
+        "2026-05",
+        "2026-07",
+        "2026-07-15",
+        "2026-08",
+        "2026-09",
+        "2026-09-22",
+        "2026-10"
+      ],
+      "keywords": [
+        "incident",
+        "voice"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        373,
+        397
+      ],
+      "canonical_for": [],
+      "words": 612,
+      "bytes": 5933,
+      "sha256": "24e4190d135735a65cc3f176fd70fda7855dc6ae4ed40be2e27e2fd94143c0fc",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/4-gaps-conflicts-and-unverified-claims-register",
+      "path": "etape10-phasee-news-world/00-news-world/4-gaps-conflicts-and-unverified-claims-register.md",
+      "title": "4. Gaps, conflicts, and unverified claims register",
       "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
       "role": "deep-dive",
       "task": "finance",
       "actors": [
         "China",
         "EU",
-        "G20",
         "SpaceX",
         "United States",
         "xAI"
       ],
       "dates": [
-        "2025-01",
         "2025-10",
-        "2026-01",
-        "2026-02",
         "2026-03",
         "2026-04",
-        "2026-04-21",
-        "2026-05",
-        "2026-06",
-        "2026-07",
         "2026-08",
         "2026-09",
         "2026-09-10",
-        "2026-09-22",
         "2026-10"
       ],
       "keywords": [
         "attribution",
-        "benchmark",
         "energy",
         "research"
       ],
       "source": "docs/RAG/etape10_phaseE_news_world.md",
       "source_anchor": "",
       "source_lines": [
-        387,
+        398,
+        444
+      ],
+      "canonical_for": [],
+      "words": 982,
+      "bytes": 7754,
+      "sha256": "0a186abe5615db087a356fca8189ff2207b03d83f07ca8b098f0710dee585bc9",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/5-glossary",
+      "path": "etape10-phasee-news-world/00-news-world/5-glossary.md",
+      "title": "5. Glossary",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "China",
+        "G20",
+        "United States"
+      ],
+      "dates": [
+        "2025-01",
+        "2026-03",
+        "2026-05",
+        "2026-06",
+        "2026-09"
+      ],
+      "keywords": [
+        "benchmark",
+        "energy"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        445,
         483
       ],
       "canonical_for": [],
-      "words": 1795,
-      "bytes": 14048,
-      "sha256": "9e162e0b3681957c97f94f556166b1804721cf0376097606623722ab00ccc5a3",
+      "words": 625,
+      "bytes": 4523,
+      "sha256": "e6b0f506ccda91578ec1dd5d50b05aeba5d6429c4c2e94775a7894c02f5f402a",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {
@@ -459,7 +756,6 @@
       "task": "finance",
       "actors": [
         "China",
-        "G20",
         "United States",
         "xAI"
       ],
@@ -470,7 +766,6 @@
         "2026-05",
         "2026-06-22",
         "2026-07-15",
-        "2026-09",
         "2026-09-08",
         "2026-09-10",
         "2026-09-12",
@@ -485,12 +780,43 @@
       "source_anchor": "",
       "source_lines": [
         553,
+        599
+      ],
+      "canonical_for": [],
+      "words": 538,
+      "bytes": 6939,
+      "sha256": "cfecfb18ab92050ef0acef7e98610c77f29bb7c5bd5bd5bf3057adb9f79c9bbf",
+      "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
+    },
+    {
+      "id": "etape10-phasee-news-world/00-news-world/part-22",
+      "path": "etape10-phasee-news-world/00-news-world/part-22.md",
+      "title": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026) (part 22)",
+      "domain": "etape-10e-world-news-wars-geopolitics-elections-economy-fort",
+      "role": "deep-dive",
+      "task": "finance",
+      "actors": [
+        "China",
+        "G20",
+        "United States"
+      ],
+      "dates": [
+        "2026-05",
+        "2026-09"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseE_news_world.md",
+      "source_anchor": "",
+      "source_lines": [
+        600,
         633
       ],
       "canonical_for": [],
-      "words": 853,
-      "bytes": 11882,
-      "sha256": "f7efa7d049d1869009755c49ef7a54462caa27d30695abae2d6bae999849937f",
+      "words": 315,
+      "bytes": 4943,
+      "sha256": "c0bd17e684a4165614e6677414120ddd5072b855c17edac391800430999f15a4",
       "section": "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
     },
     {

@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_trackC_huawei_mikrotik.md",
   "source_lines": 217,
   "source_sha256": "a4f262deeaa6f5f6ebfd1f5b12f960b177df7e551ab0279910fd06658f38da62",
-  "chunk_count": 3,
+  "chunk_count": 5,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -18,10 +18,8 @@
         "Broadcom",
         "China",
         "DeepSeek",
-        "EU",
         "Huawei",
-        "Nvidia",
-        "United States"
+        "Nvidia"
       ],
       "dates": [
         "2025-04",
@@ -47,12 +45,42 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 899,
+      "bytes": 7531,
+      "sha256": "1d241983b6106230aa47214b72d8c7f6b2690b31a2455e1ebf539d1dab146279",
+      "section": "Step 6 — Track C: Huawei + MikroTik (Networking Hardware)"
+    },
+    {
+      "id": "etape6-trackc-huawei-mikrotik/00-huawei-mikrotik/1-5-international-market-status",
+      "path": "etape6-trackc-huawei-mikrotik/00-huawei-mikrotik/1-5-international-market-status.md",
+      "title": "1.5 International market status",
+      "domain": "step-6-track-c-huawei-mikrotik-networking-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "China",
+        "EU",
+        "Huawei",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "hyperscaler",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_trackC_huawei_mikrotik.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
         71
       ],
       "canonical_for": [],
-      "words": 1087,
-      "bytes": 9090,
-      "sha256": "f0763d3e7641659f07a7e60c50663fbea246241e60f9ba4de510735f70e247b8",
+      "words": 188,
+      "bytes": 1559,
+      "sha256": "38103cd29126e435509b17dcfd24bd618a300cfd314b7ef3bd82f3c6cd6ec096",
       "section": "Step 6 — Track C: Huawei + MikroTik (Networking Hardware)"
     },
     {
@@ -109,7 +137,6 @@
       "role": "deep-dive",
       "task": "hardware",
       "actors": [
-        "China",
         "EU",
         "Google",
         "Huawei",
@@ -119,19 +146,51 @@
         "United States"
       ],
       "dates": [
-        "2026-05",
-        "2026-09-22"
+        "2026-05"
       ],
       "keywords": [
         "pricing",
-        "attribution",
-        "cost",
         "datacenter",
         "ethernet",
         "hyperscaler",
-        "latency",
         "nvidia",
         "optics",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_trackC_huawei_mikrotik.md",
+      "source_anchor": "",
+      "source_lines": [
+        143,
+        194
+      ],
+      "canonical_for": [],
+      "words": 683,
+      "bytes": 6028,
+      "sha256": "e04dbcd8145a51b9c3fd93c8a63a9cf196d81259819f946cd7444db605f58eff",
+      "section": "Step 6 — Track C: Huawei + MikroTik (Networking Hardware)"
+    },
+    {
+      "id": "etape6-trackc-huawei-mikrotik/00-huawei-mikrotik/6-collection-metadata",
+      "path": "etape6-trackc-huawei-mikrotik/00-huawei-mikrotik/6-collection-metadata.md",
+      "title": "6. COLLECTION METADATA",
+      "domain": "step-6-track-c-huawei-mikrotik-networking-hardware",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "China",
+        "Huawei",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "attribution",
+        "cost",
+        "latency",
+        "optics",
+        "pricing",
         "research",
         "revenue",
         "scout"
@@ -139,13 +198,13 @@
       "source": "docs/RAG/etape6_trackC_huawei_mikrotik.md",
       "source_anchor": "",
       "source_lines": [
-        143,
+        195,
         217
       ],
       "canonical_for": [],
-      "words": 1070,
-      "bytes": 8967,
-      "sha256": "c8e7fb4fd3b961a92822fbdf1996c11cc5039bd89adcf8f82feea2296264e742",
+      "words": 387,
+      "bytes": 2939,
+      "sha256": "c5dbbd3b06e21cc914ff73c930c3a0360d3d081387c3efc64cd8bac85949ea73",
       "section": "Step 6 — Track C: Huawei + MikroTik (Networking Hardware)"
     }
   ]

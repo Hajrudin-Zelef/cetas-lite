@@ -5,13 +5,13 @@ domain: step-8-phase-c-backend-frameworks-apis
 role: deep-dive
 task: reference
 actors: []
-dates: ["2025-06-30", "2026-02-19", "2026-03-12", "2026-03-17", "2026-05", "2026-05-29", "2026-07-29", "2026-08-21", "2026-09-02", "2026-09-11", "2026-09-15", "2026-09-16", "2026-09-17", "2026-09-21", "2026-09-22", "2026-09-24", "2026-11-10", "2026-12-31", "2027-03-25", "2027-10-10", "2028-11-14"]
-keywords: ["agent", "alignment", "guardrails", "memory", "throughput"]
+dates: ["2025-06-30", "2026-02-19", "2026-03-12", "2026-03-17", "2026-05", "2026-05-29", "2026-07-29", "2026-08-21", "2026-09-02", "2026-09-08", "2026-09-11", "2026-09-15", "2026-09-16", "2026-09-17", "2026-09-21", "2026-09-22", "2026-09-24", "2026-11-10", "2026-12-31", "2027-03-25", "2027-10-10", "2028-11-14"]
+keywords: ["agent", "alignment", "energy", "guardrails", "memory", "research", "throughput"]
 source: docs/RAG/etape8_phaseC_backend_frameworks.md
 source_anchor: ""
-source_lines: [638, 699]
+source_lines: [638, 710]
 section: "Step 8 — Phase C: Backend Frameworks & APIs"
-sha256: 94efff0885ccdef28a2a1fccbdfb29acb005a662517d4221e95e489765ffd7d4
+sha256: d821994c394e9fa7ef839a1576a414a6f1438ec6ae6128ad0a955dfb9ffd109d
 ---
 
 # 23. Version and support quick reference (2026-09-22)
@@ -77,4 +77,15 @@ sha256: 94efff0885ccdef28a2a1fccbdfb29acb005a662517d4221e95e489765ffd7d4
 ---
 
 ---
+
+## 25. Ecosystem and community health signals (2026)
+
+Release cadence and maintenance energy observed during this research wave:
+
+- **Monthly or faster**: Quarkus (monthly point releases; 3.39.4 on 2026-09-17) `[independent]`; Micronaut 5.1.x (five patches Aug–Sep 2026) `[official]`; Hono 4.x (4.11.7 tagged on cutoff day) `[secondary]`; Fastify 5.12.x (weekly patch rhythm) `[secondary]`.
+- **Quarterly-ish**: Litestar 2.x (2.23.0 in May 2026 with active DI-rework prep for v3) `[official]`; Symfony (weekly dev notes, 8.2 targeted Nov 2026) `[official-vendor]`.
+- **Twice yearly**: Spring Boot (May/November; 4.2 targeted Nov 2026) `[secondary]`; .NET (November majors; monthly patches — 10.0.12 on 2026-09-08) `[official]`.
+- **Slow/stable**: Express 5 (5.2.1 since Dec 2025, no new major announced) `[secondary]`; Actix-web 4.x (maintenance mode, security-driven) `[official]`; Rails 8.1.x (security patches, harvest mode) `[secondary]`.
+
+Adoption and mindshare signals (all `[secondary]` unless noted):
 

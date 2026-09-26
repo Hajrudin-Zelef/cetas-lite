@@ -9,9 +9,9 @@ dates: ["2026-02", "2026-05", "2026-07"]
 keywords: ["accelerator", "amd", "benchmark", "compute", "dpo", "fine-tuning", "gpu", "llama", "lora", "memory", "mistral", "moe"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [5529, 5601]
+source_lines: [5529, 5605]
 section: "10. Training & Fine-Tuning"
-sha256: c4d131fc646863fed527a2f19ebd9a54b23e8cf3915e7a6035b39a1c898bfc52
+sha256: 0733bde38efed220a81e2c6e5d2e8aead276ea460862298c8d062a21ac5ef468
 ---
 
 # Figures and metrics
@@ -88,4 +88,8 @@ Reading: **Unsloth is the memory leader at every size** — confirming its VRAM 
 | 30x faster follow-up turns on Mac / 25% faster gated-delta on Apple Silicon / AMD Vulkan gains (Sept 2026) | Vendor release notes; no independent reproduction found | [UNVERIFIED] |
 | AI Engineer World's Fair 2026 appearance + 112-slide deck | No session/schedule evidence; figure has no source | [UNVERIFIED] |
 | Seed ~$40K; YC + Logan Kilpatrick investors | No source; contradicted by a third-party ~$500K (Redpoint scout, Samsung NEXT) figure | [UNVERIFIED], keep both flagged |
+
+## Main actors
+
+### Unsloth (the vendor)
 

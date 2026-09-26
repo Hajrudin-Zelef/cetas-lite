@@ -5,13 +5,13 @@ domain: part-2-sglang
 role: deep-dive
 task: reference
 actors: ["AMD", "Alibaba", "DeepSeek", "Intel", "Moonshot", "Nvidia", "SGLang", "Z.ai"]
-dates: ["2025-12-16", "2026-01-01", "2026-01-16", "2026-01-23", "2026-02-24", "2026-04-04", "2026-04-06", "2026-05-05", "2026-05-16", "2026-05-26", "2026-06-13", "2026-06-26", "2026-07-10", "2026-07-25", "2026-07-28", "2026-08-08", "2026-08-22", "2026-09-05", "2026-09-18"]
+dates: ["2026-04-04", "2026-05-05", "2026-05-16", "2026-05-26", "2026-06-13", "2026-06-26", "2026-07-10", "2026-07-25", "2026-07-28", "2026-08-08", "2026-08-22", "2026-09-05", "2026-09-18"]
 keywords: ["amd", "attention", "awq", "blackwell", "decode", "deepseek", "diffusion", "flash attention", "fp4", "fp8", "glm", "gptq"]
 source: docs/RAG/etape4_trackA_vllm_sglang.md
 source_anchor: ""
-source_lines: [699, 764]
+source_lines: [699, 747]
 section: "PART 2 — SGLang"
-sha256: e7c01179d8750ffaf0a2334cea57cbb0a194e44d0c7ba295fd32b07dd630c6e4
+sha256: ec24f395d71cc6c2cc4789bf2a618263985bdca7d44b709f0c603f31f48a58df
 ---
 
 # Per-release detail
@@ -64,21 +64,4 @@ sha256: e7c01179d8750ffaf0a2334cea57cbb0a194e44d0c7ba295fd32b07dd630c6e4
 **v0.5.12 (2026-05-16)**: **DeepSeek-V4 day-0 support** — full inference path incl. tensor/data/expert parallelism (#23882) [official]; v0.5.12.post1 (2026-05-26) cherry-picks 12 DeepSeek-V4 fixes [official].
 
 **v0.5.11 (2026-05-05)**: default CUDA moves to 13.0 (from 12.x), PyTorch 2.9 → 2.11 across SGLang/sgl-kernel/Docker images [official].
-
-**v0.5.10 (2026-04-06)** [official] (details via releases-page crawl):
-- **Piecewise CUDA Graph enabled by default** (lower memory overhead, better throughput for complex control flow) — #16331.
-- **Elastic EP (NIXL-EP) for partial failure tolerance** for DeepSeek MoE: a failed GPU's expert weights are redistributed, serving continues without full restart.
-- **GPU staging buffer for PD disaggregation**: contiguous RDMA bulk transfer; ~1000× fewer RDMA requests on GQA models; ~5× TPS/GPU at large concurrency (Qwen3.5, prefill TP4 + decode DEP4).
-- **HiSparse sparse-attention backend** for long context.
-- **FlashInfer MXFP8 kernels** (GEMM + MoE) for mixed-precision FP8.
-- **Transformers 4.57.1 → 5.3.0** major upgrade.
-- SGLang-Diffusion updates: LTX-2, Hunyuan3D-2, Helios models; Qwen-Image/Z-Image +1.5×; macOS platform; Cache-DiT integration into diffusers backend.
-
-**v0.5.9 (2026-02-24)**: **LoRA weight loading overlapped with computation** — TTFT −~78% when swapping LoRA adapters (#15363) [official].
-
-**v0.5.8 (2026-01-23)**: diffusion models up to 1.5× faster (ties to lmsys.org/blog/2026-01-16-sglang-diffusion) [official].
-
-**v0.5.7 (2026-01-01)**: day-0 Mimo-V2-Flash (#15207, blog 2025-12-16) and other new models [official].
-
----
 

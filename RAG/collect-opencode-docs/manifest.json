@@ -3,11 +3,333 @@
   "title": "opencode — documentation officielle",
   "source": "docs/RAG/Collect RAG/04_opencode_docs",
   "source_dir": "docs/RAG/Collect RAG/04_opencode_docs",
-  "source_files": 4,
-  "source_sha256": "d050814abcd27b56b3ae06e53d111f0c66a23f9abce3a720d0c99a5d2a6663fb",
-  "chunk_count": 4,
+  "source_files": 6,
+  "source_sha256": "79db6ffd466b70fac1efc7d875591e4e10d6141665691252ef20b35642aa77e1",
+  "chunk_count": 14,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-config-md-5e9aa636-1",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-config-md-5e9aa636-1.md",
+      "title": "docs-fr-config-md-5e9aa636",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "mcp"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-config-md-5e9aa636.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        155
+      ],
+      "canonical_for": [],
+      "words": 998,
+      "bytes": 7956,
+      "sha256": "361a61f2fdc3acaf0216203c7ad216d9e929ee696ca2a116a1f74169afcd5785"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-config-md-5e9aa636-2",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-config-md-5e9aa636-2.md",
+      "title": "docs-fr-config-md-5e9aa636",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "aws",
+        "bedrock",
+        "claude"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-config-md-5e9aa636.md",
+      "source_anchor": "",
+      "source_lines": [
+        156,
+        353
+      ],
+      "canonical_for": [],
+      "words": 935,
+      "bytes": 7887,
+      "sha256": "0149e08278d8fe88469262f5df577805df420ded3effc3cce63f76f3fc2bde50"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-config-md-5e9aa636-3",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-config-md-5e9aa636-3.md",
+      "title": "docs-fr-config-md-5e9aa636",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "gemini",
+        "mcp"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-config-md-5e9aa636.md",
+      "source_anchor": "",
+      "source_lines": [
+        354,
+        483
+      ],
+      "canonical_for": [],
+      "words": 603,
+      "bytes": 5058,
+      "sha256": "4f6a9ad99978264179681ae8b58cf32572d5c855a7511bf9c1730daed02cc02d"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-1",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-1.md",
+      "title": "docs-fr-providers-md-e9e0eae6",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "bedrock",
+        "claude",
+        "inference"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-providers-md-e9e0eae6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        207
+      ],
+      "canonical_for": [],
+      "words": 1017,
+      "bytes": 7991,
+      "sha256": "1c33182b0a39aa92fb1c5037ee59856904905a2d494c7674fd149dd4d33989bb"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-2",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-2.md",
+      "title": "docs-fr-providers-md-e9e0eae6",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Baseten",
+        "Cerebras",
+        "DeepSeek",
+        "Moonshot",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "deepseek",
+        "foundry",
+        "inference",
+        "kimi",
+        "qwen",
+        "sol",
+        "tool calling"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-providers-md-e9e0eae6.md",
+      "source_anchor": "",
+      "source_lines": [
+        208,
+        430
+      ],
+      "canonical_for": [],
+      "words": 1029,
+      "bytes": 7994,
+      "sha256": "c5129b862df435bacb34a1deac99540e1bc84d12d43a27eba3a3555c331873a2"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-3",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-3.md",
+      "title": "docs-fr-providers-md-e9e0eae6",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "DeepSeek",
+        "Fireworks AI",
+        "Google",
+        "Microsoft",
+        "Moonshot"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "copilot",
+        "deepseek",
+        "kimi"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-providers-md-e9e0eae6.md",
+      "source_anchor": "",
+      "source_lines": [
+        431,
+        648
+      ],
+      "canonical_for": [],
+      "words": 925,
+      "bytes": 7781,
+      "sha256": "ee09d2c2c50905eec8254b085001992a0fe84d90758ca0c7324988bc327b6753"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-4",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-4.md",
+      "title": "docs-fr-providers-md-e9e0eae6",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Groq",
+        "Hugging Face",
+        "Moonshot",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "glm",
+        "inference",
+        "kimi",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-providers-md-e9e0eae6.md",
+      "source_anchor": "",
+      "source_lines": [
+        649,
+        843
+      ],
+      "canonical_for": [],
+      "words": 870,
+      "bytes": 7971,
+      "sha256": "ecc194e4301d2289c85238ce9f1f8faef02783b21a9a4cd616f3edbea2d2c5f7"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-5",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-5.md",
+      "title": "docs-fr-providers-md-e9e0eae6",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Meta",
+        "MiniMax",
+        "Mistral",
+        "Moonshot",
+        "Nebius",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [],
+      "keywords": [
+        "chatgpt",
+        "kimi",
+        "llama",
+        "mistral",
+        "pricing",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-providers-md-e9e0eae6.md",
+      "source_anchor": "",
+      "source_lines": [
+        844,
+        1086
+      ],
+      "canonical_for": [],
+      "words": 1043,
+      "bytes": 7923,
+      "sha256": "2b0e054bc811d6de2582bed7002a94305913db639b937315a9730451ee41b4ad"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-6",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-6.md",
+      "title": "docs-fr-providers-md-e9e0eae6",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "Moonshot",
+        "OpenAI",
+        "Together AI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "glm",
+        "grok",
+        "kimi",
+        "llama",
+        "mistral",
+        "qwen"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-providers-md-e9e0eae6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1087,
+        1335
+      ],
+      "canonical_for": [],
+      "words": 1009,
+      "bytes": 7980,
+      "sha256": "cd5ffb5a1151cfc3173f2e65ccce4cc35dcf00ee5932e79e9e75d20860eccd7d"
+    },
+    {
+      "id": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-7",
+      "path": "collect-opencode-docs/opencode-docs/docs-fr-providers-md-e9e0eae6-7.md",
+      "title": "docs-fr-providers-md-e9e0eae6",
+      "domain": "opencode-docs",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Cerebras",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "bedrock"
+      ],
+      "source": "docs/RAG/Collect RAG/04_opencode_docs/docs-fr-providers-md-e9e0eae6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1336,
+        1418
+      ],
+      "canonical_for": [],
+      "words": 454,
+      "bytes": 3755,
+      "sha256": "bf9777df5bc31f159943f4eb61c1ba3023c03dd08cd800607c08b52c2e813086"
+    },
     {
       "id": "collect-opencode-docs/opencode-docs/go",
       "path": "collect-opencode-docs/opencode-docs/go.md",

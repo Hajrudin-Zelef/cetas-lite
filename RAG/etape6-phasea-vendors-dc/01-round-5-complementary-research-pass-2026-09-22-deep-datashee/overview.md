@@ -5,13 +5,13 @@ domain: round-5-complementary-research-pass-2026-09-22-deep-datashee
 role: deep-dive
 task: reference
 actors: ["AMD", "Broadcom", "Nvidia"]
-dates: ["2026-05", "2026-07-13", "2026-07-17", "2026-09-22"]
-keywords: ["research", "amd", "asic", "benchmark", "blackwell", "distribution", "dram", "ethernet", "fp8", "gpu", "gpus", "latency"]
+dates: ["2026-05", "2026-07-17", "2026-09-22"]
+keywords: ["research", "amd", "asic", "blackwell", "distribution", "dram", "ethernet", "fp8", "gpu", "gpus", "latency", "liquid cooling"]
 source: docs/RAG/etape6_phaseA_vendors_dc.md
 source_anchor: ""
-source_lines: [1823, 1895]
+source_lines: [1823, 1868]
 section: "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
-sha256: 063ccf092f0f6c949f6b99e017ecd579b0fa392fce0d12718cd5b974389e076a
+sha256: 4dc51968176b94e28d66fabcf0dd6d9e907ade9434f46a78297cd25d564bb7d1
 ---
 
 # Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail
@@ -59,31 +59,4 @@ Earlier rounds captured MS street prices and the MS150 Enterprise/Advanced tier 
 - **Naming caution:** NVIDIA's official Rubin table reportedly calls the 51.2 Tb/s Grace-Blackwell-generation switch **Spectrum-4**; unofficial references to "Spectrum5" for that generation appear to be a naming discrepancy (Spectrum-6 at 102.4 Tb/s is confirmed; Spectrum-7 is future roadmap; ConnectX-10 is future roadmap; BlueField-5 slated for 2028 with Feynman) [unverified — third-party research memo on GitHub; do not treat as official naming].
 
 ### R5 verification log (2026-09-22)
-
-| # | Check | Result |
-|---|-------|--------|
-| R5.1 | C9550 full official specs | Found (cisco.com data sheet + release notes + HW install guide) — R5-A |
-| R5.2 | Z9964 radix/two-tier engineering detail | Found (official Dell blog) — R5-B |
-| R5.3 | Signal65 independent Z9864F/H200 benchmark | Found — R5-B |
-| R5.4 | Meraki MS subscription SKU matrix + tier definitions | Found (official Cisco subscription data sheet; Stratus guide) — R5-C |
-| R5.5 | Spectrum-X platform composition / naming caution | Found — R5-D |
-| R5.6 | C9550 list/street pricing | **Still not located** — gap remains open (R4 lines 1155/1340) |
-
-### R5 sources (verbatim URLs)
-
-- https://www.cisco.com/c/en/us/products/collateral/networking/switches/c9550-series-smart-switches-ds.html
-- https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/release-notes/c9550-series-smart-switches-release-notes-262x.html
-- https://www.cisco.com/c/en/us/td/docs/switches/lan/ciscoc9550/hardware-install/cisco-c9550-series-smart-switches-hig.pdf
-- https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/licensing/cns-licensing-c9000-smart-switches.pdf
-- https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9000-switches/c9550-series-smart-switches-og.pdf
-- https://www.dell.com/en-us/blog/power-your-ai-future-how-dell-powerswitch-unlocks-next-generation-ai-network-performance-and-scale/
-- https://signal65.com/research/dell-poweredge-xe9680-h200-cluster-with-dell-400gbe-networking/
-- https://www.cisco.com/c/en/us/products/collateral/networking/software/networking-subscription-ds.pdf
-- https://www.stratusinfosystems.com/cisco-meraki-ms-series-comparison-guide/
-- https://www.networkworld.com/article/4200086/nvidia-unveils-spectrum-x-networking-platform-designed-to-connect-millions-of-gpus.html
-- https://github.com/hczhu/stock-research/blob/HEAD/memos/2026-07-13-nvidia-hardware-lineup-ai-factory-ecosystem.md
-
-**Round-5 collection metadata:** read-only web research (browser_search, 2026-09-22); no live-browser visits; nothing sent externally. No identifiers guessed. All new facts carry provenance tags. One gap carried forward (C9550 pricing). Earlier sections were not modified.
-
----
 

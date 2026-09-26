@@ -9,9 +9,9 @@ dates: []
 keywords: ["asic", "ethernet", "nvidia", "parameters", "training", "voice"]
 source: docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md
 source_anchor: ""
-source_lines: [102, 148]
+source_lines: [102, 150]
 section: "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
-sha256: a75fb6d648d21e1874e76543b79f6b40d965a7a3d46667dc479ee0388e082cfd
+sha256: a93acd6e6988a20d17ca10cbfe28250be417dff482ce685bbd15c4e1f98989b0
 ---
 
 # Wave 4 — QoS: classification, marking, queuing
@@ -62,4 +62,6 @@ sha256: a75fb6d648d21e1874e76543b79f6b40d965a7a3d46667dc479ee0388e082cfd
 - Sources: 7. Dell's QCN non-support captured as a per-vendor caveat. PFC-scope limitation (hop-by-hop) emphasized to counter the common "PFC = lossless fabric" oversimplification.
 
 ---
+
+## Wave 6 — ECN, RoCEv2 lossless tuning, vendor QoS models
 

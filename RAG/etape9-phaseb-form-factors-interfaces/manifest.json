@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
   "source_lines": 751,
   "source_sha256": "91f586b7f290675546e65829d4cc393cfb0027879e9468b18b96c8b5ef571909",
-  "chunk_count": 12,
+  "chunk_count": 19,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -15,7 +15,6 @@
       "role": "deep-dive",
       "task": "hardware",
       "actors": [
-        "Broadcom",
         "Intel",
         "Microsoft"
       ],
@@ -40,12 +39,36 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        36
+      ],
+      "canonical_for": [],
+      "words": 680,
+      "bytes": 5809,
+      "sha256": "218a18db423215e3a85cb017f793b9df2f9f78cb728ad3c487a6d04668f45775",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/part-2",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/part-2.md",
+      "title": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle) (part 2)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        37,
         45
       ],
       "canonical_for": [],
-      "words": 943,
-      "bytes": 8563,
-      "sha256": "1719c0835d5952632db66ce8c83498e8322da80e741f8a4c069c4737aad37e6a",
+      "words": 263,
+      "bytes": 2754,
+      "sha256": "0aeee12c2e0f71a7947103ce00c406806280c9b0f95fbd0b4c21ba6bbb6b6d57",
       "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
     },
     {
@@ -138,12 +161,36 @@
       "source_anchor": "",
       "source_lines": [
         141,
+        187
+      ],
+      "canonical_for": [],
+      "words": 902,
+      "bytes": 7836,
+      "sha256": "cc26253397437bd31f791208c550296ae429036b11d538fa1908a5e4c3294dfe",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/8-4-subsystem-local-memory-computational-programs-2-1-newcom",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/8-4-subsystem-local-memory-computational-programs-2-1-newcom.md",
+      "title": "8.4 Subsystem Local Memory & Computational Programs (2.1 newcomers)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "memory"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        188,
         204
       ],
       "canonical_for": [],
-      "words": 1165,
-      "bytes": 11067,
-      "sha256": "1c13dbe26243e092b74aad295ecb1b16ffe95d24184035b1756253f5104b2e5b",
+      "words": 263,
+      "bytes": 3231,
+      "sha256": "a8953c1f3449345e31fc17ed58ced1d83185804d16159c45ae7fe8f169eeecfa",
       "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
     },
     {
@@ -159,9 +206,6 @@
         "2026-01"
       ],
       "keywords": [
-        "accelerator",
-        "compute",
-        "consumer",
         "cost",
         "datacenter",
         "disaggregated",
@@ -170,31 +214,67 @@
         "gpus",
         "inference",
         "latency",
-        "memory"
+        "memory",
+        "throughput",
+        "training"
       ],
       "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
       "source_anchor": "",
       "source_lines": [
         205,
-        276
+        256
       ],
       "canonical_for": [],
-      "words": 1234,
-      "bytes": 11683,
-      "sha256": "bea41c258dc5f329386f22517292b415d36a02c6f590ba59e5ecaf39c80d0a55",
+      "words": 801,
+      "bytes": 7226,
+      "sha256": "32564283c2a41403872de80eb0a69763319d1684022d9fc7cf2c74408587b02c",
       "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
     },
     {
-      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/12-sas-and-sata-in-2026-not-dead-repositioned",
-      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/12-sas-and-sata-in-2026-not-dead-repositioned.md",
-      "title": "12. SAS and SATA in 2026 — not dead, repositioned",
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/11-2-what-gen5-means-for-storage-in-2026",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/11-2-what-gen5-means-for-storage-in-2026.md",
+      "title": "11.2 What Gen5 means for storage in 2026",
       "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
       "role": "deep-dive",
       "task": "hardware",
       "actors": [
         "Broadcom",
-        "Intel",
         "Samsung"
+      ],
+      "dates": [
+        "2025-06-11"
+      ],
+      "keywords": [
+        "accelerator",
+        "compute",
+        "consumer",
+        "gpus",
+        "memory",
+        "research",
+        "serdes"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        257,
+        290
+      ],
+      "canonical_for": [],
+      "words": 663,
+      "bytes": 6822,
+      "sha256": "9a9db3ab872684b7add25e09c8124ea208c769a34d826c6926a9346063a579df",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/13-backplanes-expanders-and-enclosure-management",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/13-backplanes-expanders-and-enclosure-management.md",
+      "title": "13. Backplanes, expanders, and enclosure management",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom",
+        "Intel"
       ],
       "dates": [
         "2024-03"
@@ -203,19 +283,44 @@
         "compute",
         "consumer",
         "intel",
-        "nand",
-        "serdes"
+        "nand"
       ],
       "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
       "source_anchor": "",
       "source_lines": [
-        277,
+        291,
+        314
+      ],
+      "canonical_for": [],
+      "words": 430,
+      "bytes": 4939,
+      "sha256": "71c81ba378eb092932c28b20ec46b7b1ce9cb5bd2356a18772d2dc9351465dff",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/13-4-hot-swap-power-disable-surprise-removal",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/13-4-hot-swap-power-disable-surprise-removal.md",
+      "title": "13.4 Hot-swap, power-disable, surprise removal",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        315,
         326
       ],
       "canonical_for": [],
-      "words": 842,
-      "bytes": 9422,
-      "sha256": "7a52a9901b311f95fb942143354062d75dbc38a5ca251d043a483ef7dcc99cef",
+      "words": 182,
+      "bytes": 2118,
+      "sha256": "81256c75ff857ac4386b9d8a0c01b43f3077bf3d5be3a8cc86e3280b99a8a600",
       "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
     },
     {
@@ -228,12 +333,44 @@
       "actors": [
         "AMD",
         "Broadcom",
-        "Intel",
-        "Nvidia"
+        "Intel"
       ],
       "dates": [
         "2026-04-01"
       ],
+      "keywords": [
+        "amd",
+        "compute",
+        "gpu",
+        "intel",
+        "memory",
+        "optics"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        327,
+        372
+      ],
+      "canonical_for": [],
+      "words": 724,
+      "bytes": 6338,
+      "sha256": "1c7fdf80e8b38d8f2fee6a3cbff6d38bc20f5576b044a92dc030179e06fb9624",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/15-3-supermicro",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/15-3-supermicro.md",
+      "title": "15.3 Supermicro",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
       "keywords": [
         "amd",
         "compute",
@@ -242,19 +379,18 @@
         "intel",
         "memory",
         "nvidia",
-        "optics",
         "research"
       ],
       "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
       "source_anchor": "",
       "source_lines": [
-        327,
+        373,
         402
       ],
       "canonical_for": [],
-      "words": 1176,
-      "bytes": 10544,
-      "sha256": "263800741a9bb79908261011b18b0bc8ba316c092f22dd94aba8db3cfddb2feb",
+      "words": 452,
+      "bytes": 4206,
+      "sha256": "1f0009b2208e2c9466aaf742d29078708ee8807e3dd85e85b33de50141ae0582",
       "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
     },
     {
@@ -305,27 +441,51 @@
         "Broadcom"
       ],
       "dates": [
-        "2026-04-01",
-        "2026-09-22"
+        "2026-04-01"
       ],
       "keywords": [
         "compute",
         "datacenter",
         "intel",
         "memory",
-        "nvidia",
-        "research"
+        "nvidia"
       ],
       "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
       "source_anchor": "",
       "source_lines": [
         487,
+        562
+      ],
+      "canonical_for": [],
+      "words": 152,
+      "bytes": 7996,
+      "sha256": "cac6cccfeacc794a166fbe97cae1d8efef9e816360685b7e13e47f192f8fd663",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/part-15",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/part-15.md",
+      "title": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle) (part 15)",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        563,
         566
       ],
       "canonical_for": [],
-      "words": 181,
-      "bytes": 8188,
-      "sha256": "32b464375a2d7949b77a2673544dc690f0412629131538f9af9055faa71c7db4",
+      "words": 29,
+      "bytes": 192,
+      "sha256": "e935c1528bdb238fc0b0c523ecc71c03e7b8e781ca6212903061ef7bad045048",
       "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
     },
     {
@@ -415,12 +575,40 @@
       "source_anchor": "",
       "source_lines": [
         669,
+        739
+      ],
+      "canonical_for": [],
+      "words": 889,
+      "bytes": 7547,
+      "sha256": "c68ca8318d748ac888f16d87dcabb4da34a2054e76c25d72fbf24f9a26fd3148",
+      "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
+    },
+    {
+      "id": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/32-document-revision-note",
+      "path": "etape9-phaseb-form-factors-interfaces/00-form-factors-interfaces/32-document-revision-note.md",
+      "title": "32. Document revision note",
+      "domain": "step-9-phase-b-storage-form-factors-interfaces-hardware-angl",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape9_phaseB_form_factors_interfaces.md",
+      "source_anchor": "",
+      "source_lines": [
+        740,
         751
       ],
       "canonical_for": [],
-      "words": 1088,
-      "bytes": 9318,
-      "sha256": "9194f499508832537492d072abaa02e283fdd09a4753e97df7d5ca4178daaf48",
+      "words": 199,
+      "bytes": 1771,
+      "sha256": "81c8aea4f50e50101463d5d04baf6f3800e14737a169ee7855cd404279e3612e",
       "section": "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
     }
   ]

@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape7_phaseI_media.md",
   "source_lines": 750,
   "source_sha256": "82c9ab78b79639675115f360711df5ed5f3b85b3fc8d3ee05626aa7fbe34cb5e",
-  "chunk_count": 16,
+  "chunk_count": 18,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -38,8 +38,6 @@
         "2026-09-22"
       ],
       "keywords": [
-        "cost",
-        "license",
         "nvidia",
         "pricing",
         "research"
@@ -48,12 +46,43 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 970,
+      "bytes": 7720,
+      "sha256": "036ac04321a0d6b17324f5e6709eb64b914de072dc1cdf067365d721f82b2263",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/1-3-emby",
+      "path": "etape7-phasei-media/00-front-matter/1-3-emby.md",
+      "title": "1.3 Emby",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "cost",
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         89
       ],
       "canonical_for": [],
-      "words": 1610,
-      "bytes": 12041,
-      "sha256": "daf26c0ca6ce192eda3a229f969fa6a088ace707f069d763400c057482a446da",
+      "words": 640,
+      "bytes": 4321,
+      "sha256": "1eae9f07f82952ab5985222e11ada653ca291ff216942b4e645872ae679793bc",
       "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
     },
     {
@@ -98,12 +127,39 @@
       "source_anchor": "",
       "source_lines": [
         90,
+        137
+      ],
+      "canonical_for": [],
+      "words": 1016,
+      "bytes": 7944,
+      "sha256": "6a086c1c79a27fc26d6c2d2b5e1b3826af83f1a78924b672d6ff37c0a3f7b35a",
+      "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
+    },
+    {
+      "id": "etape7-phasei-media/00-front-matter/part-4",
+      "path": "etape7-phasei-media/00-front-matter/part-4.md",
+      "title": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling (part 4)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "model-release",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "decode",
+        "gpu"
+      ],
+      "source": "docs/RAG/etape7_phaseI_media.md",
+      "source_anchor": "",
+      "source_lines": [
+        138,
         149
       ],
       "canonical_for": [],
-      "words": 1245,
-      "bytes": 9803,
-      "sha256": "b15232a0734c94a91e7d83d3d67a2a07020d4cb64abb6492f8b8c1c1cb8fce04",
+      "words": 229,
+      "bytes": 1859,
+      "sha256": "9ab44ab4ad3c390a6002585fad38b5873b548c4e279c97c9bb720ab5b00c290f",
       "section": "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
     },
     {

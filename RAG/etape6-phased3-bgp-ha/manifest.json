@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
   "source_lines": 755,
   "source_sha256": "ca2b65c93c9761b97022c3d2d82b87158c728dd063a842e9cb7bab06c50db6f0",
-  "chunk_count": 13,
+  "chunk_count": 16,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -57,12 +57,34 @@
       "source_anchor": "",
       "source_lines": [
         19,
+        74
+      ],
+      "canonical_for": [],
+      "words": 1064,
+      "bytes": 7766,
+      "sha256": "e9776e5fe34f980c66a070eef34008eeaabff192ec1c8364ed66f97d294ad9a0",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/1-7-bfd-integration-with-bgp-session-bring-up-order-and-pitf",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/1-7-bfd-integration-with-bgp-session-bring-up-order-and-pitf.md",
+      "title": "1.7 BFD integration with BGP: session bring-up order and pitfalls",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        75,
         96
       ],
       "canonical_for": [],
-      "words": 1377,
-      "bytes": 9962,
-      "sha256": "8d516d97eba750fc9ded2f8c21bfc1c55920bb772f05290803c9b1e1ecd09afd",
+      "words": 313,
+      "bytes": 2196,
+      "sha256": "8db163eb2c72e7c1dddf4bb329b1e9367a53607b9ad5cead0fe7830d2ea686f3",
       "section": "Phase D3 — BGP underlay and high availability in the data center"
     },
     {
@@ -212,7 +234,6 @@
       "actors": [],
       "dates": [],
       "keywords": [
-        "benchmarks",
         "dci",
         "ethernet",
         "preemption"
@@ -221,12 +242,36 @@
       "source_anchor": "",
       "source_lines": [
         342,
+        402
+      ],
+      "canonical_for": [],
+      "words": 1083,
+      "bytes": 7900,
+      "sha256": "c936b47d7d111b18eb76a72d164381bdde9a76333e7faec3174644c8803902b5",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/7-4-layer-3-over-mc-lag-pairs",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/7-4-layer-3-over-mc-lag-pairs.md",
+      "title": "7.4 Layer 3 over MC-LAG pairs",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmarks"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        403,
         426
       ],
       "canonical_for": [],
-      "words": 1360,
-      "bytes": 9792,
-      "sha256": "74b8a217adb2298abdb5e0d129bc363e32ff4282e988ba0ef6e479885a852bce",
+      "words": 277,
+      "bytes": 1892,
+      "sha256": "e9824c2f498b2e9aa54db3e256c214bb78065567a204625b47c9b93f99b14645",
       "section": "Phase D3 — BGP underlay and high availability in the data center"
     },
     {
@@ -249,12 +294,36 @@
       "source_anchor": "",
       "source_lines": [
         427,
+        481
+      ],
+      "canonical_for": [],
+      "words": 941,
+      "bytes": 6850,
+      "sha256": "269ba9be274a70f6280324b6a0cb998a507f93247b029758c7948f08f0e7b3fd",
+      "section": "Phase D3 — BGP underlay and high availability in the data center"
+    },
+    {
+      "id": "etape6-phased3-bgp-ha/00-bgp-ha/9-3-route-reflector-scaling-and-hierarchy",
+      "path": "etape6-phased3-bgp-ha/00-bgp-ha/9-3-route-reflector-scaling-and-hierarchy.md",
+      "title": "9.3 Route reflector scaling and hierarchy",
+      "domain": "phase-d3-bgp-underlay-and-high-availability-in-the-data-cent",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "dci"
+      ],
+      "source": "docs/RAG/etape6_phaseD3_bgp_ha.md",
+      "source_anchor": "",
+      "source_lines": [
+        482,
         511
       ],
       "canonical_for": [],
-      "words": 1408,
-      "bytes": 10127,
-      "sha256": "452bcf4fe982440f4f4ca19eadc1494b09743d0bb8bc054fabe1c19062e4a829",
+      "words": 467,
+      "bytes": 3277,
+      "sha256": "ce52b054d643ef35412b094303bbf6653abaf6ba5945e6f5ab79f7a65f8bed38",
       "section": "Phase D3 — BGP underlay and high availability in the data center"
     },
     {

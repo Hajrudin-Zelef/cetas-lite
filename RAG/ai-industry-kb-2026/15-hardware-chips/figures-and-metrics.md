@@ -4,14 +4,14 @@ title: "Figures and metrics"
 domain: hardware-chips
 role: deep-dive
 task: hardware
-actors: ["AMD", "AWS", "Alibaba", "Anthropic", "Broadcom", "Cerebras", "China", "CoreWeave", "Crusoe", "DeepSeek", "Fireworks AI", "Google", "Groq", "Meta", "Microsoft", "Nebius", "Nvidia", "OpenAI", "Samsung", "TSMC"]
+actors: ["AMD", "AWS", "Alibaba", "Anthropic", "Broadcom", "Cerebras", "CoreWeave", "Crusoe", "DeepSeek", "Google", "Groq", "Meta", "Microsoft", "Nebius", "Nvidia", "OpenAI", "Samsung", "TSMC"]
 dates: ["2026-05-14", "2026-05-22"]
 keywords: ["accelerator", "amd", "asic", "benchmark", "benchmarks", "blackwell", "compute", "consumer", "cost", "datacenter", "deepseek", "dram"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [7558, 7632]
+source_lines: [7558, 7626]
 section: "15. Hardware & Chips"
-sha256: cc2506a0ee5cb84080e008f9cae3c00a0a0a3473b2872a84539802875907e0c4
+sha256: b028fe5ccd65c43744d71e7b25ebf03ea27b1d8f898695bf1e8e49004047ac80
 ---
 
 # Figures and metrics
@@ -84,10 +84,4 @@ sha256: cc2506a0ee5cb84080e008f9cae3c00a0a0a3473b2872a84539802875907e0c4
 - **Strategic read:** the consumer tier is where the inference track's price elasticity is highest. It does not serve the training track at all (no NVLink domains, no InfiniBand).
 
 ### Serverless provider tiering (per-token, 2026)
-
-- **Price leaders:** DeepInfra, Hyperbolic, Novita — cheapest $/1M on identical open weights; floor $0.03/1M input (gpt-oss-20b, DeepInfra). Trade-off: concurrency caps and 429s under spikes.
-- **Latency leaders:** Groq (prior-gen LPU: $0.05/$0.08 for 8B), Cerebras (WSE: $0.10 for 8B, but 1,990+ tok/s on 31B-class). Trade-off: higher $/1M at 70B class vs price leaders.
-- **Enterprise gateways:** Fireworks, Together — higher per-token prices but primary-routing reliability, private endpoints, VPC/on-prem options (documented arbitrage pattern: Fireworks primary + DeepInfra burst-fallback, Apr 2026).
-- **Direct labs:** DeepSeek ($0.07/$0.28 V4), OpenAI ($0.10/$0.50 gpt-oss-20b) — price-setters; third-party gateways undercut or overcut them depending on quantization and batching.
-- **Cost-replication thesis:** Chinese-lab flagships at $0.45–$1.00 input / $2.25–$4.00 output per 1M via third-party gateways undercut Western frontier APIs 3–10×.
 

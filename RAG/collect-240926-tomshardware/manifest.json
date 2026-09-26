@@ -4,8 +4,8 @@
   "source": "docs/RAG/clean_en/tomshardware",
   "source_dir": "docs/RAG/clean_en/tomshardware",
   "source_files": 68,
-  "source_sha256": "daccc456118d9a2d6d3f397256a762603984990e7c429104891fa44ac273a8f3",
-  "chunk_count": 68,
+  "source_sha256": "de395fc0388371ea5cd75cdc8ecf140b4af0cd322d32bf874e1edcc90b37a56b",
+  "chunk_count": 122,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -267,8 +267,8 @@
       "sha256": "add8cc00a8f6fdc92c1aaa56d55ff4cc04e423b0574ad1493c21dc7d13c3c75c"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow",
-      "path": "collect-240926-tomshardware/tomshardware/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-1.md",
       "title": "amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-",
       "domain": "tomshardware",
       "role": "reference",
@@ -295,12 +295,41 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        61
+      ],
+      "canonical_for": [],
+      "words": 1315,
+      "bytes": 7859,
+      "sha256": "a018fab4574049e5823f6005894668cd9a55bd90a6c9811597cc399d1e4462e5"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-2.md",
+      "title": "amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-.md",
+      "source_anchor": "",
+      "source_lines": [
+        62,
         90
       ],
       "canonical_for": [],
-      "words": 1998,
-      "bytes": 11688,
-      "sha256": "6b482f0152d9ef4a7b7c9304672fe770db5fff2b21da00e6bb9ac5fb1ff62a1c"
+      "words": 683,
+      "bytes": 3829,
+      "sha256": "ec16d9cf916d08596b6f964b5e352ff05be01edae6a840625f2ef102f51acb4b"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/amd-exec-was-very-happy-to-see-nvidia-s-vera-performance-results-i-actually-thou",
@@ -444,8 +473,8 @@
       "sha256": "1eca9f317a54dcf2fa764d74c022bd0bc0fb0c3dad208fc6124d26cfd8637b05"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion-1.md",
       "title": "amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion",
       "domain": "tomshardware",
       "role": "reference",
@@ -471,16 +500,47 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 1529,
+      "bytes": 7924,
+      "sha256": "ff13618668c0e659a85e68a83e19f97c5d71f9efb3d64bf68caa263b5a4b6aac"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion-2.md",
+      "title": "amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "compute",
+        "cost",
+        "gpus",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-5-8600g-review-the-new-value-igpu-gaming-champion.md",
+      "source_anchor": "",
+      "source_lines": [
+        76,
         123
       ],
       "canonical_for": [],
-      "words": 2473,
-      "bytes": 13121,
-      "sha256": "a1c80272bde7479f912f1cebbea41885b69dcf58e6ca1c0a960a017010314103"
+      "words": 944,
+      "bytes": 5197,
+      "sha256": "64acc54669319bff889fea240dfd7556af8f0744f4aef38c0fb67da109e764a4"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece-1.md",
       "title": "amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece",
       "domain": "tomshardware",
       "role": "reference",
@@ -496,8 +556,6 @@
         "benchmarks",
         "chiplet",
         "compute",
-        "cost",
-        "gpu",
         "intel",
         "memory",
         "pricing"
@@ -506,16 +564,46 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1399,
+      "bytes": 7820,
+      "sha256": "60135e04dec5337337d714b126a49b09c31b95480ceaaa6b882e55c5c51c6d94"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece-2.md",
+      "title": "amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "cost",
+        "gpu",
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-5700x3d-review-a-value-gaming-masterpiece.md",
+      "source_anchor": "",
+      "source_lines": [
+        77,
         120
       ],
       "canonical_for": [],
-      "words": 2360,
-      "bytes": 13163,
-      "sha256": "b841dd2193a5c8862154a0a0a134fd0afeeef0b78394d597f0f4b1661a863211"
+      "words": 961,
+      "bytes": 5343,
+      "sha256": "cb82f9840b9493c494cf91bd72a23c01adb774e0e5a6c243181094713eaadf87"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential-1.md",
       "title": "amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential",
       "domain": "tomshardware",
       "role": "reference",
@@ -530,30 +618,59 @@
         "amd",
         "attention",
         "benchmark",
-        "benchmarks",
         "compute",
-        "consumer",
         "cost",
-        "gpu",
         "intel",
         "memory",
-        "nvidia",
         "pricing"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1314,
+      "bytes": 7430,
+      "sha256": "a44ad948f89089537704e516a1e61f07e883990b74ade6e79840e1d8d7c8c7f9"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential-2.md",
+      "title": "amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "consumer",
+        "cost",
+        "gpu",
+        "intel",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-5800x3d-re-review-maxing-out-ddr4-s-gaming-potential.md",
+      "source_anchor": "",
+      "source_lines": [
+        71,
         105
       ],
       "canonical_for": [],
-      "words": 2719,
-      "bytes": 15052,
-      "sha256": "e3c703fada7dd77d6be387378f0c6b23355e7385ea5099d0190f545599edbf61"
+      "words": 1405,
+      "bytes": 7622,
+      "sha256": "38f9511fbd517c9556e9b02939e2c0ea8cdcef9c0f6af860c8d1538cb6a62a10"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one-1.md",
       "title": "amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one",
       "domain": "tomshardware",
       "role": "reference",
@@ -567,36 +684,66 @@
         "2022-04",
         "2023-04",
         "2024-01",
-        "2026-07",
+        "2026-07"
+      ],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "intel",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        65
+      ],
+      "canonical_for": [],
+      "words": 1444,
+      "bytes": 7781,
+      "sha256": "44ecedd25414a6a2b3b6f934a25400d2b04cfd6b77b564f5b329585df80e7c67"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one-2.md",
+      "title": "amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel"
+      ],
+      "dates": [
         "2026-07-17"
       ],
       "keywords": [
         "amd",
         "attention",
         "benchmark",
-        "benchmarks",
         "cost",
         "gpu",
         "gpus",
         "intel",
         "memory",
-        "pricing",
         "reasoning"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-7700x3d-review-a-slower-7800x3d-but-not-necessarily-a-cheaper-one.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        66,
         140
       ],
       "canonical_for": [],
-      "words": 2712,
-      "bytes": 14744,
-      "sha256": "1aebb4ad02e87e7f318dca3578aa93a5c30bd7f938a2a9c88cabcc5e5c24a331"
+      "words": 1268,
+      "bytes": 6963,
+      "sha256": "b0775ca9482c6785f214a6758e15b2d38ed34da6b050149663b483c69fc3709e"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics-1.md",
       "title": "amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics",
       "domain": "tomshardware",
       "role": "reference",
@@ -604,7 +751,40 @@
       "actors": [
         "AMD",
         "Intel",
-        "TSMC",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "cost",
+        "gpu",
+        "gpus",
+        "intel",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        63
+      ],
+      "canonical_for": [],
+      "words": 1473,
+      "bytes": 7715,
+      "sha256": "09ae453aa608aa00d5809ed8fe84a7c5ec39b0c69f0fc4e9075a07026b8c2f07"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics-2.md",
+      "title": "amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
         "United States"
       ],
       "dates": [],
@@ -618,23 +798,79 @@
         "gpus",
         "inference",
         "intel",
-        "memory",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics.md",
+      "source_anchor": "",
+      "source_lines": [
+        64,
+        124
+      ],
+      "canonical_for": [],
+      "words": 1340,
+      "bytes": 7900,
+      "sha256": "d634135a76e35e458a66b4e25887f0c3bb9c1e697b43e5edcf5d2c753d30d715"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics-3",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics-3.md",
+      "title": "amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "cost",
         "pricing"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-8700g-review-1080p-capable-gaming-comes-to-integrated-graphics.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        125,
         131
       ],
       "canonical_for": [],
-      "words": 2980,
-      "bytes": 16549,
-      "sha256": "f6a5801f9eef72028740e3cb48636e9f2ac7e4719a12f7d0e1642c8fb683c542"
+      "words": 167,
+      "bytes": 934,
+      "sha256": "781a9324787e6856a51728c57f3a6e9cf2ee1a52a621729ad2bb57bb27989c93"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance-1.md",
+      "title": "amd-ryzen-7-9800x3d-review-devastating-gaming-performance",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "chiplet",
+        "gpu",
+        "intel",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1476,
+      "bytes": 7794,
+      "sha256": "0284a593a0c88d664a2fc95fc9b7eedc79f24976f30b822b9b428486c8c1aec4"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance-2.md",
       "title": "amd-ryzen-7-9800x3d-review-devastating-gaming-performance",
       "domain": "tomshardware",
       "role": "reference",
@@ -650,26 +886,82 @@
         "benchmarks",
         "chiplet",
         "compute",
-        "gpu",
+        "intel",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance.md",
+      "source_anchor": "",
+      "source_lines": [
+        67,
+        150
+      ],
+      "canonical_for": [],
+      "words": 1385,
+      "bytes": 7935,
+      "sha256": "1b1e95c44446156b5e0f2c937376b94fca0f86871f268c065e361c6697d619f7"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance-3",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance-3.md",
+      "title": "amd-ryzen-7-9800x3d-review-devastating-gaming-performance",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance.md",
+      "source_anchor": "",
+      "source_lines": [
+        151,
+        151
+      ],
+      "canonical_for": [],
+      "words": 23,
+      "bytes": 123,
+      "sha256": "6a7bb292fd76a2e9777e9e9332e947b0a91bf835c207382731e6f7589642ffcc"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again-1.md",
+      "title": "amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
         "intel",
         "latency",
         "memory",
         "pricing"
       ],
-      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-9800x3d-review-devastating-gaming-performance.md",
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again.md",
       "source_anchor": "",
       "source_lines": [
         1,
-        151
+        70
       ],
       "canonical_for": [],
-      "words": 2884,
-      "bytes": 15852,
-      "sha256": "a3c43e9b33e0ec41b4d5b410bf8e7c34569a3840f19b34ff0ab1811f9e93ce39"
+      "words": 1537,
+      "bytes": 7852,
+      "sha256": "27faf258f18443dc948d0722ddc66022c7d67a6cd539db5203afdd1365309eb1"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again-2.md",
       "title": "amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again",
       "domain": "tomshardware",
       "role": "reference",
@@ -683,28 +975,55 @@
         "amd",
         "benchmark",
         "benchmarks",
-        "compute",
         "consumer",
         "gpus",
-        "intel",
-        "latency",
-        "memory",
-        "pricing"
+        "intel"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-7-9850x3d-review-the-world-s-fastest-gaming-processor-again.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        71,
         157
       ],
       "canonical_for": [],
-      "words": 2879,
-      "bytes": 15556,
-      "sha256": "e5d65292e23570a0315ec0a25c4915355485f8d4f99e62e13f0826aa8ebb223b"
+      "words": 1342,
+      "bytes": 7704,
+      "sha256": "351d1a2cbefa31be6ad7ce0fb2c7c32e434d4600b7481d29f7c21727382d65b6"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power-1.md",
+      "title": "amd-ryzen-9-9950x-review-zen-5-at-full-power",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "intel",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        72
+      ],
+      "canonical_for": [],
+      "words": 1402,
+      "bytes": 7850,
+      "sha256": "d38d7287e59d098ea555355aaae23b248b0232557bacc17c8f63ad459aa6953d"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power-2.md",
       "title": "amd-ryzen-9-9950x-review-zen-5-at-full-power",
       "domain": "tomshardware",
       "role": "reference",
@@ -725,23 +1044,50 @@
         "compute",
         "intel",
         "latency",
-        "memory",
-        "pricing"
+        "memory"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        73,
+        137
+      ],
+      "canonical_for": [],
+      "words": 1273,
+      "bytes": 7905,
+      "sha256": "1eeb56c2198b87ca90d1c7d6940066f76426e3c058c9fddc9e7e3544e32ea19c"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power-3",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power-3.md",
+      "title": "amd-ryzen-9-9950x-review-zen-5-at-full-power",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-9-9950x-review-zen-5-at-full-power.md",
+      "source_anchor": "",
+      "source_lines": [
+        138,
         155
       ],
       "canonical_for": [],
-      "words": 2854,
-      "bytes": 16827,
-      "sha256": "cbe44c1c0a8e9dc3075e199753cd28ad5f0e5213a1b46fd59a3e5d3068a00359"
+      "words": 179,
+      "bytes": 1072,
+      "sha256": "66978cd6c668cc0bab1d3068d6e0cff35d4aa51db92ac6193cf7ef52a74afbc5"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi-1.md",
       "title": "amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi",
       "domain": "tomshardware",
       "role": "reference",
@@ -757,7 +1103,6 @@
         "chiplet",
         "compute",
         "energy",
-        "gpu",
         "intel",
         "memory",
         "pricing"
@@ -766,16 +1111,82 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1450,
+      "bytes": 7728,
+      "sha256": "4ecf840b93f43615ca6238ee038e681f3436535ef538d490f638735f9f5ae665"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi-2.md",
+      "title": "amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "chiplet",
+        "compute",
+        "gpu",
+        "intel",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-9-9950x3d-review-stunning-gaming-performance-meets-top-tier-productivi.md",
+      "source_anchor": "",
+      "source_lines": [
+        71,
         124
       ],
       "canonical_for": [],
-      "words": 2643,
-      "bytes": 15043,
-      "sha256": "9f18fcf10a2f32c05781c9c0f4d86ff6367ba63a233359067d3386dc52700af0"
+      "words": 1193,
+      "bytes": 7315,
+      "sha256": "80ca575f325f524dd721da10df8dbdc27b31346a3eb3e47e055860892e141b06"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash",
-      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash-1.md",
+      "title": "amd-ryzen-9-9950x3d2-review-more-cache-more-cash",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "gpu",
+        "intel",
+        "latency",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1424,
+      "bytes": 7812,
+      "sha256": "2d232798cac71917236f426b0b5172c029e550bb3245bbcf8ce0dad7b1c7a12c"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash-2.md",
       "title": "amd-ryzen-9-9950x3d2-review-more-cache-more-cash",
       "domain": "tomshardware",
       "role": "reference",
@@ -789,31 +1200,67 @@
       "keywords": [
         "amd",
         "attention",
-        "benchmark",
         "benchmarks",
-        "consumer",
         "cost",
         "gpu",
         "intel",
-        "latency",
         "nvidia",
-        "packaging",
-        "pricing"
+        "voice"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-ryzen-9-9950x3d2-review-more-cache-more-cash.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        71,
         103
       ],
       "canonical_for": [],
-      "words": 2080,
-      "bytes": 11456,
-      "sha256": "36bb661944f289494d3164c47cd084da980de423a5ef98a9486eedc64d5d39d5"
+      "words": 656,
+      "bytes": 3644,
+      "sha256": "028809970cc659942602df6b2cf11ae7d4fe6dd24c6e42f3e5ec7b6a2c88d5d3"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi",
-      "path": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi-1.md",
+      "title": "amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel",
+        "agentic",
+        "agents",
+        "aws",
+        "benchmark",
+        "benchmarks",
+        "clearwater forest",
+        "compute",
+        "consumer",
+        "lpddr5x",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        88
+      ],
+      "canonical_for": [],
+      "words": 1560,
+      "bytes": 7923,
+      "sha256": "3362b58be44b71b9f729ca8e9fedbdcdaa3ee3b4138afb6b73c585ea0c477b8c"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi-2.md",
       "title": "amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi",
       "domain": "tomshardware",
       "role": "reference",
@@ -842,18 +1289,42 @@
         "aws",
         "benchmark",
         "benchmarks",
-        "clearwater forest"
+        "disaggregated"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        89,
+        148
+      ],
+      "canonical_for": [],
+      "words": 1216,
+      "bytes": 7015,
+      "sha256": "1ca8b01395c4c001e72102494cb4a4f420cd034baa287b47e04a3867ac496cb0"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi-3",
+      "path": "collect-240926-tomshardware/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi-3.md",
+      "title": "amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-s-256-core-epyc-9996-venice-claims-up-to-a-3-4x-jump-over-intel-xeon-competi.md",
+      "source_anchor": "",
+      "source_lines": [
+        149,
         157
       ],
       "canonical_for": [],
-      "words": 3099,
-      "bytes": 16670,
-      "sha256": "96686fb0ca055f5acabdf321c8d4044a1f49eb9bb9a51ad9bcbee400c3bd0c1e"
+      "words": 323,
+      "bytes": 1732,
+      "sha256": "1cdf82c3960c4479edb22bf681938c9ce04e0e07dd8ca54810fa6647f5a004cc"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/amd-s-elusive-radeon-ai-pro-r9700-makes-its-first-retail-appearance-for-the-diy",
@@ -923,8 +1394,8 @@
       "sha256": "5f399d45e03b746cc53d614af3e8e1cbf220015fb6d9f66d9d5d7a5d325ee4f1"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga",
-      "path": "collect-240926-tomshardware/tomshardware/amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga-1.md",
       "title": "amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga",
       "domain": "tomshardware",
       "role": "reference",
@@ -946,16 +1417,41 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1258,
+      "bytes": 7639,
+      "sha256": "d4fc2b4fd26699e3c469c7bf6d45039f2fede9c945cb4526530023ccdac74fe8"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga-2.md",
+      "title": "amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-s-upcoming-zen-6-processors-could-fix-microstutters-and-improve-1-lows-in-ga.md",
+      "source_anchor": "",
+      "source_lines": [
+        67,
         73
       ],
       "canonical_for": [],
-      "words": 1524,
-      "bytes": 9124,
-      "sha256": "196b9c5c9fb9f63fee660f381e947851b53d2a2d0f9f450e9c1c2d74f78f17ec"
+      "words": 266,
+      "bytes": 1485,
+      "sha256": "63a57ee69b571f5f6bd1f4dd34d24e4609591855dd0d50b2723b0529b495d3ad"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c",
-      "path": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c-1.md",
       "title": "amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c",
       "domain": "tomshardware",
       "role": "reference",
@@ -965,9 +1461,7 @@
         "AWS",
         "Google",
         "Intel",
-        "Meta",
-        "Nvidia",
-        "OpenAI"
+        "Nvidia"
       ],
       "dates": [],
       "keywords": [
@@ -978,26 +1472,102 @@
         "agent",
         "agentic",
         "aws",
-        "clearwater forest",
-        "compute",
         "consumer",
-        "cost",
-        "dram"
+        "gpu",
+        "gpus",
+        "intel",
+        "memory"
       ],
       "source": "docs/RAG/clean_en/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 1152,
+      "bytes": 7183,
+      "sha256": "ec7e57709ebae94710c0c873b3f5ceeb5905aff0d4939bb8bb22478decc8e068"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c-2.md",
+      "title": "amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "nvidia",
+        "clearwater forest",
+        "compute",
+        "cost",
+        "gpu",
+        "gpus",
+        "graviton",
+        "intel",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c.md",
+      "source_anchor": "",
+      "source_lines": [
+        47,
+        109
+      ],
+      "canonical_for": [],
+      "words": 1332,
+      "bytes": 7984,
+      "sha256": "c62c458f24a794db2ce176ef773b75a0d3b8c6d81de4d6e25b40fc7ff8b8247d"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c-3",
+      "path": "collect-240926-tomshardware/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c-3.md",
+      "title": "amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Meta",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "nvidia",
+        "dram",
+        "gpu",
+        "gpus",
+        "intel",
+        "lpddr5x",
+        "memory",
+        "nvlink"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-targets-nvidia-with-first-official-benchmarks-for-epyc-venice-cpus-company-c.md",
+      "source_anchor": "",
+      "source_lines": [
+        110,
         124
       ],
       "canonical_for": [],
-      "words": 2766,
-      "bytes": 16917,
-      "sha256": "96412e3e9c31b2064c3e84ae9ca6280f5cd5e43be0cb07f9c45607785e18eb20"
+      "words": 282,
+      "bytes": 1750,
+      "sha256": "137bbfa51db47ef8d5a591944229558cdd48226f2da99face9f2981b67d52d84"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu",
-      "path": "collect-240926-tomshardware/tomshardware/amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu.md",
+      "id": "collect-240926-tomshardware/tomshardware/amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu-1",
+      "path": "collect-240926-tomshardware/tomshardware/amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu-1.md",
       "title": "amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu",
       "domain": "tomshardware",
       "role": "reference",
@@ -1030,12 +1600,40 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 1230,
+      "bytes": 7813,
+      "sha256": "c45c4beb212f0b6b8ce95019434c200cf444552c2d5fd33582dc1d6e4860bc51"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu-2",
+      "path": "collect-240926-tomshardware/tomshardware/amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu-2.md",
+      "title": "amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/amd-unveils-rocm-7-new-platform-boosts-ai-performance-up-to-3-5x-adds-radeon-gpu.md",
+      "source_anchor": "",
+      "source_lines": [
+        63,
         71
       ],
       "canonical_for": [],
-      "words": 1399,
-      "bytes": 8720,
-      "sha256": "0b7155fdec3e54bc1261942feb6d55297a0b2f1059949f0209b38b001796e89f"
+      "words": 169,
+      "bytes": 907,
+      "sha256": "6fd3b485c552b1c910159a28727255f21a2fe8054d168231518cc87e430c2d82"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/amd-working-on-new-x3d-v-cache-mobile-chip-for-gaming-laptops-leaker-claims-ryze",
@@ -1065,25 +1663,22 @@
       "sha256": "de2ed4660abe06f738066e7fcf50cfbcdb8e54e9fc8d4b45b06ee1428b04b3f4"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini",
-      "path": "collect-240926-tomshardware/tomshardware/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini.md",
+      "id": "collect-240926-tomshardware/tomshardware/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-1",
+      "path": "collect-240926-tomshardware/tomshardware/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-1.md",
       "title": "apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-",
       "domain": "tomshardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "Apple",
-        "Google",
-        "Intel"
+        "Google"
       ],
       "dates": [],
       "keywords": [
-        "benchmarks",
         "cost",
         "ethernet",
         "gpu",
         "gpus",
-        "intel",
         "lpddr5x",
         "memory",
         "pricing"
@@ -1092,16 +1687,46 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1289,
+      "bytes": 7552,
+      "sha256": "1fe7738fca5c5aafa4c7488c61ef70c46ef35b83fa69f2dab918d8e2e61e26c8"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-2",
+      "path": "collect-240926-tomshardware/tomshardware/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-2.md",
+      "title": "apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "gpu",
+        "intel",
+        "lpddr5x",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-.md",
+      "source_anchor": "",
+      "source_lines": [
+        68,
         94
       ],
       "canonical_for": [],
-      "words": 1867,
-      "bytes": 11027,
-      "sha256": "d0f4f19e3be356488df8906e5e1eb62a997d271a8738de51a720be14bb88e99d"
+      "words": 578,
+      "bytes": 3475,
+      "sha256": "d03820d45595b4f9999996c1a9fc3829be739485b0e5659d46c65e1b8caa5c69"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat",
-      "path": "collect-240926-tomshardware/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat.md",
+      "id": "collect-240926-tomshardware/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat-1",
+      "path": "collect-240926-tomshardware/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat-1.md",
       "title": "avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat",
       "domain": "tomshardware",
       "role": "reference",
@@ -1115,7 +1740,32 @@
       "keywords": [
         "intel",
         "amd",
-        "compute",
+        "compute"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 1230,
+      "bytes": 7790,
+      "sha256": "8deb056e8adebb89d80394d1be09a22d79aa502ffea95cfe19e84730560bfa02"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat-2",
+      "path": "collect-240926-tomshardware/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat-2.md",
+      "title": "avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
         "consumer",
         "cost",
         "research"
@@ -1123,17 +1773,48 @@
       "source": "docs/RAG/clean_en/tomshardware/avx-512-support-is-reportedly-returning-with-intel-s-next-gen-nova-lake-cpus-lat.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        63,
         103
       ],
       "canonical_for": [],
-      "words": 2090,
-      "bytes": 13305,
-      "sha256": "ef1a60c53c078772eddf69a1411d83e4d44c9ad7542a214655f7df42c8072719"
+      "words": 860,
+      "bytes": 5515,
+      "sha256": "c723f8676199a1838138ee5ef962a99e864b245baad1767a9f6dd9b0c2a8bc2f"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more",
-      "path": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more.md",
+      "id": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more-1",
+      "path": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more-1.md",
+      "title": "best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "cost",
+        "dci",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        108
+      ],
+      "canonical_for": [],
+      "words": 1309,
+      "bytes": 7766,
+      "sha256": "fac3f117230db91c934195651c4a6c351ca1d05ffe2e5137331545f0605d991b"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more-2",
+      "path": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more-2.md",
       "title": "best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more",
       "domain": "tomshardware",
       "role": "reference",
@@ -1142,32 +1823,87 @@
         "AMD",
         "Apple",
         "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "cost",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more.md",
+      "source_anchor": "",
+      "source_lines": [
+        109,
+        201
+      ],
+      "canonical_for": [],
+      "words": 1341,
+      "bytes": 7853,
+      "sha256": "5819da048f5aa3ec300dc846a958ed813b0642ab36e21f0d134faf7799557e3e"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more-3",
+      "path": "collect-240926-tomshardware/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more-3.md",
+      "title": "best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia",
         "Samsung",
         "United States"
       ],
       "dates": [],
       "keywords": [
         "amd",
-        "cost",
-        "dci",
         "nvidia",
-        "pricing",
         "training"
       ],
       "source": "docs/RAG/clean_en/tomshardware/best-4k-gaming-monitors-for-pc-2025-144hz-curved-and-more.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        202,
         262
       ],
       "canonical_for": [],
-      "words": 3654,
-      "bytes": 21423,
-      "sha256": "f4d9010a1637f4cc257542fa861719d699dc01792f4d295d46cc53fd19cf0167"
+      "words": 1004,
+      "bytes": 5804,
+      "sha256": "1ceefadf3355c10caa30f8e34cf235e05b4195c03fa4caac65b29c448825d0d8"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors",
-      "path": "collect-240926-tomshardware/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors.md",
+      "id": "collect-240926-tomshardware/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors-1",
+      "path": "collect-240926-tomshardware/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors-1.md",
+      "title": "best-cpu-deals-2026-best-deals-on-amd-and-intel-processors",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel",
+        "benchmarks",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        98
+      ],
+      "canonical_for": [],
+      "words": 1344,
+      "bytes": 7970,
+      "sha256": "522f7f104f4b48601964a3047ca12ce45ded6e3364c6d89b2ff6dab1ab079107"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors-2",
+      "path": "collect-240926-tomshardware/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors-2.md",
       "title": "best-cpu-deals-2026-best-deals-on-amd-and-intel-processors",
       "domain": "tomshardware",
       "role": "reference",
@@ -1182,13 +1918,11 @@
       "keywords": [
         "amd",
         "intel",
-        "benchmarks",
         "blackwell",
         "consumer",
         "cost",
         "cyber",
         "dram",
-        "gpu",
         "gpus",
         "nand",
         "nvidia"
@@ -1196,13 +1930,13 @@
       "source": "docs/RAG/clean_en/tomshardware/best-cpu-deals-2026-best-deals-on-amd-and-intel-processors.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        99,
         137
       ],
       "canonical_for": [],
-      "words": 2180,
-      "bytes": 12912,
-      "sha256": "8fe161cdea73727c8d11db33283936e918317fd613bf60fda38165e6cb498f96"
+      "words": 836,
+      "bytes": 4942,
+      "sha256": "a701e4f2c972ed3fb77fb9b10a3b0add7ad6172e4c012853ca0ffe8cead9dee4"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/big-tech-eyes-glacier-strewn-patagonia-for-building-mega-ai-data-centers-region",
@@ -1238,8 +1972,8 @@
       "sha256": "09e5fe8aa4f67669449962fe423897400c68eff404ce306b9f609dfcd2da66bb"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8",
-      "path": "collect-240926-tomshardware/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8.md",
+      "id": "collect-240926-tomshardware/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8-1",
+      "path": "collect-240926-tomshardware/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8-1.md",
       "title": "china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8",
       "domain": "tomshardware",
       "role": "reference",
@@ -1261,7 +1995,6 @@
         "amd",
         "ascend",
         "compute",
-        "cost",
         "deepseek",
         "foundry",
         "funding",
@@ -1269,18 +2002,45 @@
         "inference",
         "intel",
         "memory",
-        "nvidia"
+        "nvidia",
+        "revenue"
       ],
       "source": "docs/RAG/clean_en/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1241,
+      "bytes": 7440,
+      "sha256": "d5a18a4d16aadfe143ae93f58b91b339dfd3f92ad5af10711284579faa8254cd"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8-2",
+      "path": "collect-240926-tomshardware/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8-2.md",
+      "title": "china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "China"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/china-drafts-295-billion-plan-to-build-national-ai-data-center-grid-running-on-8.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
         64
       ],
       "canonical_for": [],
-      "words": 1560,
-      "bytes": 9271,
-      "sha256": "5cd270338002a181a62c12e5432812d13ad80995b7c2bbd46816daf170309345"
+      "words": 319,
+      "bytes": 1831,
+      "sha256": "0989d36603e28401352ac81d5a43f568617cc6e34a79b7f66ed121bda444a294"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/china-s-bytedance-gained-access-to-over-2-000-nvidia-b200-chips-through-norway-d",
@@ -1356,8 +2116,8 @@
       "sha256": "51e4bfc3372fc863fb27566ab7a0be856ec1d7407e8c0f94220f61ad6b563913"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers",
-      "path": "collect-240926-tomshardware/tomshardware/china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers.md",
+      "id": "collect-240926-tomshardware/tomshardware/china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers-1",
+      "path": "collect-240926-tomshardware/tomshardware/china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers-1.md",
       "title": "china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers-",
       "domain": "tomshardware",
       "role": "reference",
@@ -1385,25 +2145,140 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1253,
+      "bytes": 7880,
+      "sha256": "109ff83bd0bb1f854580ba5ec92491525bb49ff24b6e551c2a53afd23f56e087"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers-2",
+      "path": "collect-240926-tomshardware/tomshardware/china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers-2.md",
+      "title": "china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers-",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/tomshardware/china-unifies-tech-sector-to-build-grid-free-orbiting-satellite-ai-data-centers-.md",
+      "source_anchor": "",
+      "source_lines": [
+        50,
         55
       ],
       "canonical_for": [],
-      "words": 1370,
-      "bytes": 8507,
-      "sha256": "95665b346294ed5eda046d5cbc936f12b8f2e79bc67832c4fae4802fab23cf8a"
+      "words": 117,
+      "bytes": 627,
+      "sha256": "6c6fe4b7581e0ff850f7c71a9dfeffde1b638846a059922aa51ce946e7ae00b9"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings",
-      "path": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings.md",
+      "id": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-1",
+      "path": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-1.md",
       "title": "cpu-benchmarks-and-hierarchy-2026-cpu-rankings",
       "domain": "tomshardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "amd",
+        "compute",
+        "cost",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 1620,
+      "bytes": 7913,
+      "sha256": "5bb3c3b499b99b257ef7483466e051d65879699067591f8fc6627fdd9c5e9e91"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-2",
+      "path": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-2.md",
+      "title": "cpu-benchmarks-and-hierarchy-2026-cpu-rankings",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings.md",
+      "source_anchor": "",
+      "source_lines": [
+        65,
+        139
+      ],
+      "canonical_for": [],
+      "words": 1339,
+      "bytes": 5866,
+      "sha256": "5bbf78806ed91ecae334e3093b0af809ee1ba63f6d6d8d33b7dbacbbd43f1555"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-3",
+      "path": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-3.md",
+      "title": "cpu-benchmarks-and-hierarchy-2026-cpu-rankings",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
         "EU",
         "Intel",
-        "Microsoft",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "compute",
+        "gpu",
+        "intel",
+        "latency",
+        "leaderboard",
+        "license"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings.md",
+      "source_anchor": "",
+      "source_lines": [
+        140,
+        218
+      ],
+      "canonical_for": [],
+      "words": 1664,
+      "bytes": 7988,
+      "sha256": "a1739b5d09bbabdc364bf93243d8c1481a5d2d8a4562458079728dec6d2d3190"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-4",
+      "path": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-4.md",
+      "title": "cpu-benchmarks-and-hierarchy-2026-cpu-rankings",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
         "Nvidia"
       ],
       "dates": [
@@ -1413,30 +2288,52 @@
         "benchmark",
         "benchmarks",
         "amd",
-        "compute",
-        "cost",
         "gpu",
         "intel",
-        "latency",
-        "leaderboard",
         "license",
-        "memory",
         "nvidia"
       ],
       "source": "docs/RAG/clean_en/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        219,
+        294
+      ],
+      "canonical_for": [],
+      "words": 953,
+      "bytes": 5567,
+      "sha256": "a0a0b3240f9f469e4d2e49e4bd58c668f504ecf30f2e771fb910e4301e42626a"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-5",
+      "path": "collect-240926-tomshardware/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings-5.md",
+      "title": "cpu-benchmarks-and-hierarchy-2026-cpu-rankings",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/cpu-benchmarks-and-hierarchy-2026-cpu-rankings.md",
+      "source_anchor": "",
+      "source_lines": [
+        295,
         337
       ],
       "canonical_for": [],
-      "words": 5877,
-      "bytes": 33506,
-      "sha256": "0f9c9ebead346ecb89d66b2086cd9a9d85d5377cd8285ee26b76ed2f40568234"
+      "words": 301,
+      "bytes": 6172,
+      "sha256": "1592d76539c7203b84ee174654894028f8eb32d7e4e17a1ffaa9db20df5ed265"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as",
-      "path": "collect-240926-tomshardware/tomshardware/elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as.md",
+      "id": "collect-240926-tomshardware/tomshardware/elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as-1",
+      "path": "collect-240926-tomshardware/tomshardware/elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as-1.md",
       "title": "elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as",
       "domain": "tomshardware",
       "role": "reference",
@@ -1467,12 +2364,35 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 870,
+      "bytes": 7828,
+      "sha256": "5bb5321f100017204191c24a008a85d799ec31f9b88aecf9fd94f095dff16198"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as-2",
+      "path": "collect-240926-tomshardware/tomshardware/elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as-2.md",
+      "title": "elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Cohere"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/tomshardware/elon-musk-receives-ftc-greenlight-to-buy-mesh-optical-as-interconnects-emerge-as.md",
+      "source_anchor": "",
+      "source_lines": [
+        43,
         47
       ],
       "canonical_for": [],
-      "words": 878,
-      "bytes": 8785,
-      "sha256": "c5685b49fbfa30b61a84d2482a13f569d874b5695e83e97bd65fbaffae17d9c3"
+      "words": 8,
+      "bytes": 957,
+      "sha256": "e12ad7e23d3c7e1bd9aca8cf75d4ef734d547a0b7be1d9c0110c4e1e5a52668e"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/hot-chips-2026-ibm-s-first-dual-isa-core-natively-executes-arm-and-z-architectur",
@@ -1506,8 +2426,44 @@
       "sha256": "667a0040a2b22e070f92165284df4c30d6b44a09f172982d10ac50b9ef3c9243"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb",
-      "path": "collect-240926-tomshardware/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb.md",
+      "id": "collect-240926-tomshardware/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-1",
+      "path": "collect-240926-tomshardware/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-1.md",
+      "title": "hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "18a",
+        "accelerator",
+        "agentic",
+        "amd",
+        "chiplet",
+        "clearwater forest",
+        "compute",
+        "latency",
+        "memory",
+        "packaging"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 1249,
+      "bytes": 7747,
+      "sha256": "a49951552ccd06d481b7fe0d5fdb0e7c770ec5a7c26f98660a197dbef9e839fe"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-2",
+      "path": "collect-240926-tomshardware/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-2.md",
       "title": "hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-",
       "domain": "tomshardware",
       "role": "reference",
@@ -1521,27 +2477,25 @@
       "keywords": [
         "intel",
         "18a",
-        "accelerator",
-        "agentic",
         "amd",
         "benchmarks",
-        "chiplet",
-        "clearwater forest",
-        "compute",
         "dram",
         "latency",
-        "memory"
+        "memory",
+        "nvlink",
+        "packaging",
+        "panther lake"
       ],
       "source": "docs/RAG/clean_en/tomshardware/hot-chips-2026-intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        59,
         103
       ],
       "canonical_for": [],
-      "words": 2152,
-      "bytes": 13736,
-      "sha256": "f0108991d86f698495642105b8af1af7ee24fb8bd516afdaa8b283d25406c2e9"
+      "words": 903,
+      "bytes": 5989,
+      "sha256": "55c4f87777b31bd9f21cfca5d563ec916d60bb796ecb6f801f5557afcfae10e0"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/hot-chips-2026-nvidia-breaks-down-vera-cpu-spatial-multithreading-benchmarked-ag",
@@ -1584,8 +2538,8 @@
       "sha256": "9887dc45254fd6e47ab7e6bf6de40b47b587e9721cdb944438b0c0acb4bf686e"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd",
-      "path": "collect-240926-tomshardware/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd-1.md",
       "title": "intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd",
       "domain": "tomshardware",
       "role": "reference",
@@ -1601,8 +2555,38 @@
         "intel",
         "agent",
         "benchmark",
-        "benchmarks",
         "cost",
+        "gpu",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        65
+      ],
+      "canonical_for": [],
+      "words": 1405,
+      "bytes": 7936,
+      "sha256": "b75c0396b4c70ade17c4ec58cfa221e824572a109759ac165d9111714c174909"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd-2.md",
+      "title": "intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel",
+        "benchmarks",
         "gpu",
         "memory",
         "pricing",
@@ -1611,17 +2595,17 @@
       "source": "docs/RAG/clean_en/tomshardware/intel-core-i5-14400-review-intel-s-value-gaming-chip-falls-behind-amd.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        66,
         107
       ],
       "canonical_for": [],
-      "words": 2030,
-      "bytes": 12060,
-      "sha256": "f5d46f811d926f1c4ffb9e5ccd964cb065e2f409e2fa278cbd62fc8915ec017b"
+      "words": 625,
+      "bytes": 4124,
+      "sha256": "a5a57502d51d378648eb09876d08aa6a65923bc18453d1a28f554780464e325f"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut",
-      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut-1.md",
       "title": "intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut",
       "domain": "tomshardware",
       "role": "reference",
@@ -1637,23 +2621,45 @@
         "attention",
         "benchmark",
         "cost",
-        "decode",
         "pricing"
       ],
       "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        71
+      ],
+      "canonical_for": [],
+      "words": 1393,
+      "bytes": 7574,
+      "sha256": "c3151257d16857cbae38ef3b5bdecafaf3df24bfc832dd6389903c68409ef42b"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut-2.md",
+      "title": "intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "decode"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-5-225-review-arrow-lake-s-forgotten-cpu-needs-a-price-cut.md",
+      "source_anchor": "",
+      "source_lines": [
+        72,
         82
       ],
       "canonical_for": [],
-      "words": 1608,
-      "bytes": 8728,
-      "sha256": "98bb52675503adf6ae1e71901b79ae269d40edbeabd5aad1ba78f01a60b3ffe6"
+      "words": 215,
+      "bytes": 1154,
+      "sha256": "f345b89664d98aed88bd0002c6cb0cad501287ce187966dadedf1c78d3b9c6e7"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu",
-      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu-1.md",
       "title": "intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu",
       "domain": "tomshardware",
       "role": "reference",
@@ -1674,25 +2680,88 @@
         "compute",
         "consumer",
         "cost",
-        "gpu",
         "latency",
+        "memory",
+        "pricing",
+        "wafer"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        72
+      ],
+      "canonical_for": [],
+      "words": 1420,
+      "bytes": 7916,
+      "sha256": "4e71842615f9278ab3d27a4b3aa39d33bffd49e0723167ccfc52916d02e16f20"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu-2.md",
+      "title": "intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "gpu",
         "memory",
         "pricing"
       ],
       "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-5-250k-plus-review-the-new-best-200-cpu.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        73,
         115
       ],
       "canonical_for": [],
-      "words": 2322,
-      "bytes": 12837,
-      "sha256": "66e0f21c4da84e99d88f6e1c89eabf3e693f3059896b65d2e868de07ae8d4a7c"
+      "words": 902,
+      "bytes": 4921,
+      "sha256": "671249420d123a232058522c62d8233142fdd21a5f79f2c7e9ff4b41d00e8a1a"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink",
-      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink-1.md",
+      "title": "intel-core-ultra-7-270k-plus-review-back-from-the-brink",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "compute",
+        "memory",
+        "pricing",
+        "wafer"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        59
+      ],
+      "canonical_for": [],
+      "words": 1381,
+      "bytes": 7770,
+      "sha256": "d567d9a66c3148b12aaa36e19e204c50d0214edb6a368b5d953e8ab86effb88f"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink-2.md",
       "title": "intel-core-ultra-7-270k-plus-review-back-from-the-brink",
       "domain": "tomshardware",
       "role": "reference",
@@ -1708,32 +2777,60 @@
         "amd",
         "benchmark",
         "benchmarks",
-        "compute",
-        "consumer",
-        "memory",
-        "pricing",
-        "wafer"
+        "consumer"
       ],
       "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-7-270k-plus-review-back-from-the-brink.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        60,
         109
       ],
       "canonical_for": [],
-      "words": 2517,
-      "bytes": 14545,
-      "sha256": "ab1fa727295737e4c07082f39c03e8313ddf16dc11bfd8a3c28cd52d8c005f3f"
+      "words": 1136,
+      "bytes": 6775,
+      "sha256": "808827643b6386a9953eee85f23b6d79910ef28354c278243594346375031aba"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow",
-      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow-1.md",
       "title": "intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow",
       "domain": "tomshardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "benchmarks",
+        "chiplet",
+        "memory",
+        "packaging",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1458,
+      "bytes": 7970,
+      "sha256": "50a974da8cf32bfa31ddf6545bcd32807b8f20cb169b8980922bf7097b8fdaf4"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow-2.md",
+      "title": "intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
         "Intel",
         "Microsoft",
         "Nvidia",
@@ -1743,7 +2840,6 @@
       "keywords": [
         "intel",
         "3nm",
-        "amd",
         "attention",
         "benchmarks",
         "chiplet",
@@ -1752,22 +2848,56 @@
         "copilot",
         "cost",
         "disaggregated",
-        "dram"
+        "dram",
+        "energy"
       ],
       "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        68,
+        114
+      ],
+      "canonical_for": [],
+      "words": 1349,
+      "bytes": 7831,
+      "sha256": "1473aee57d0ea0cb7be0a05c2151a521f3165a5be6006a16ed2e618f25e460bb"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow-3",
+      "path": "collect-240926-tomshardware/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow-3.md",
+      "title": "intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "benchmarks",
+        "chiplet",
+        "latency",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-core-ultra-9-285k-and-core-5-245k-review-intel-throws-a-lateral-with-arrow.md",
+      "source_anchor": "",
+      "source_lines": [
+        115,
         164
       ],
       "canonical_for": [],
-      "words": 3571,
-      "bytes": 20168,
-      "sha256": "d1f2d27560e0c25a00829e1dff5e36a294d0db19b1060118a0ce48d3173af7b5"
+      "words": 764,
+      "bytes": 4367,
+      "sha256": "0b3e0e9d6c4a94b3be6a57068230e989e8b6e8e92df4e8d7b9943c7caf0468c8"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level",
-      "path": "collect-240926-tomshardware/tomshardware/intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level-1.md",
       "title": "intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level",
       "domain": "tomshardware",
       "role": "reference",
@@ -1791,12 +2921,36 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 1193,
+      "bytes": 7907,
+      "sha256": "67f201492ac21303c3f7a4c945e8bef4a76767a94cdb4a212e56fb564acd06a5"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level-2.md",
+      "title": "intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "wafer"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-preps-28-core-nova-lake-s-cpus-for-dunlow-workstation-platform-entry-level.md",
+      "source_anchor": "",
+      "source_lines": [
+        76,
         98
       ],
       "canonical_for": [],
-      "words": 1548,
-      "bytes": 9626,
-      "sha256": "880bf9108402fe84d38a82df1971c53078954a05cf9487f42c9edeeaada522f6"
+      "words": 355,
+      "bytes": 1719,
+      "sha256": "291b2cb9c5dee491372a4cd57c4bf5a5353f621771b057d58f0737cbc4cd6df2"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/intel-s-next-gen-52-core-nova-lake-cpu-could-pull-up-to-474w-high-end-lga1954-mo",
@@ -1831,8 +2985,8 @@
       "sha256": "b901a473cb4ab285f222b46dbb64e5a3d41e6298a41d1b75409f7169a2054165"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel",
-      "path": "collect-240926-tomshardware/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel-1.md",
       "title": "intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel",
       "domain": "tomshardware",
       "role": "reference",
@@ -1862,16 +3016,42 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        40
+      ],
+      "canonical_for": [],
+      "words": 1102,
+      "bytes": 7580,
+      "sha256": "a26539eed9516347dd32e7870e803686f15d68f8ec61efd18a7ab56842c63a87"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel-2.md",
+      "title": "intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "SpaceX"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "latency"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-s-proposed-orbital-data-centers-would-manage-thousands-of-simple-leo-satel.md",
+      "source_anchor": "",
+      "source_lines": [
+        41,
         53
       ],
       "canonical_for": [],
-      "words": 1491,
-      "bytes": 9848,
-      "sha256": "58e9ed7cdd7c7eb9e82ecbbebf65614710cf183ae35deb70c73cf8018aae351e"
+      "words": 389,
+      "bytes": 2268,
+      "sha256": "4121a43e1469893e4992d9d938edb9f9e401d86d432ba7cc4192b91c6ac82286"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery",
-      "path": "collect-240926-tomshardware/tomshardware/intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery.md",
+      "id": "collect-240926-tomshardware/tomshardware/intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery-1",
+      "path": "collect-240926-tomshardware/tomshardware/intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery-1.md",
       "title": "intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery",
       "domain": "tomshardware",
       "role": "reference",
@@ -1879,8 +3059,7 @@
       "actors": [
         "AMD",
         "Google",
-        "Intel",
-        "Nvidia"
+        "Intel"
       ],
       "dates": [],
       "keywords": [
@@ -1890,7 +3069,6 @@
         "gpu",
         "gpus",
         "memory",
-        "nvidia",
         "panther lake",
         "power delivery"
       ],
@@ -1898,16 +3076,42 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 1266,
+      "bytes": 7423,
+      "sha256": "bebf7c475fe46877540c729eb2b590b3494527cba25a25b7770c4ed2e39c1273"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery-2",
+      "path": "collect-240926-tomshardware/tomshardware/intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery-2.md",
+      "title": "intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/intel-s-upcoming-nova-lake-desktop-sku-to-require-65w-of-separate-power-delivery.md",
+      "source_anchor": "",
+      "source_lines": [
+        57,
         89
       ],
       "canonical_for": [],
-      "words": 1912,
-      "bytes": 10962,
-      "sha256": "55ef728055a86471d71b4408205c5a4b612244c22805553a56e12a1dc8d9ddb6"
+      "words": 646,
+      "bytes": 3539,
+      "sha256": "93cead968a191ad57d0a99b72214dc64acf76f62e2fa8f02bdbb51d784436643"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he",
-      "path": "collect-240926-tomshardware/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he.md",
+      "id": "collect-240926-tomshardware/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he-1",
+      "path": "collect-240926-tomshardware/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he-1.md",
       "title": "kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he",
       "domain": "tomshardware",
       "role": "reference",
@@ -1919,19 +3123,41 @@
         "2026-08-19"
       ],
       "keywords": [
-        "incident",
-        "research"
+        "incident"
       ],
       "source": "docs/RAG/clean_en/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1208,
+      "bytes": 7279,
+      "sha256": "d9756ffb6ec5318bbdd6e0a28d577f3f430f195b9cd0561c0ea3143806ae88e8"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he-2",
+      "path": "collect-240926-tomshardware/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he-2.md",
+      "title": "kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/kansas-town-drops-charges-against-teacher-arrested-for-clapping-during-public-he.md",
+      "source_anchor": "",
+      "source_lines": [
+        54,
         67
       ],
       "canonical_for": [],
-      "words": 1492,
-      "bytes": 8898,
-      "sha256": "52caa64193587cc9df5d5f87bd1f757988d9e63fd3732a81e9cf676b0204f3a1"
+      "words": 284,
+      "bytes": 1619,
+      "sha256": "82b49205e3675d4b737e1900c39920d41a524493a52552d4aa0bb8dd34d0f443"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/meta-data-center-water-discharges-suspended-after-contaminating-the-city-s-recla",
@@ -1965,8 +3191,8 @@
       "sha256": "9c03443ed7e8e113a06b9f005b84e5a62269ce9d3ce849af110ce47511f6104b"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb",
-      "path": "collect-240926-tomshardware/tomshardware/microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb.md",
+      "id": "collect-240926-tomshardware/tomshardware/microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb-1",
+      "path": "collect-240926-tomshardware/tomshardware/microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb-1.md",
       "title": "microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb",
       "domain": "tomshardware",
       "role": "reference",
@@ -1995,12 +3221,35 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 1264,
+      "bytes": 7970,
+      "sha256": "d887a035896be92a08b33fb1b127b73aa5abd71220ad94b5cde241ebc8737cbe"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb-2",
+      "path": "collect-240926-tomshardware/tomshardware/microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb-2.md",
+      "title": "microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/tomshardware/microsoft-backed-ai-data-center-faces-backlash-over-alleged-unpermitted-gas-turb.md",
+      "source_anchor": "",
+      "source_lines": [
+        48,
         74
       ],
       "canonical_for": [],
-      "words": 1580,
-      "bytes": 9964,
-      "sha256": "fa6b1159770c2d5aa5e0cdade07edc1fd2f33812eaec83111b17171e67dddd80"
+      "words": 316,
+      "bytes": 1994,
+      "sha256": "3ceb498cd73b037a41bde3cf732e24b4625e92b447883e22337393e0e66a4ded"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/nova-lake-cpus-with-cut-down-e-core-clusters-may-still-retain-full-cache-pool-sa",
@@ -2032,16 +3281,14 @@
       "sha256": "1469c49b11db50263b5fe537ec994f92ad639a415a516183341e74af651958db"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed",
-      "path": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed.md",
+      "id": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed-1",
+      "path": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed-1.md",
       "title": "nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed",
       "domain": "tomshardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
-        "AWS",
-        "Cohere",
         "Google",
         "Intel",
         "Meta",
@@ -2055,27 +3302,100 @@
         "agent",
         "agentic",
         "amd",
-        "aws",
-        "chiplet",
-        "decode",
-        "gpu",
-        "gpus",
-        "graviton"
+        "intel",
+        "latency",
+        "memory",
+        "throughput"
       ],
       "source": "docs/RAG/clean_en/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1246,
+      "bytes": 7714,
+      "sha256": "48a73776c44cdfe9777c705aaea16fce3c7a486e6a6e20ccc0c06d1f8b4cf84e"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed-2",
+      "path": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed-2.md",
+      "title": "nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "decode",
+        "gpu",
+        "intel",
+        "lpddr5x",
+        "memory",
+        "research",
+        "rubin"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        100
+      ],
+      "canonical_for": [],
+      "words": 1242,
+      "bytes": 7694,
+      "sha256": "f3e07be84750fc0a3e2e5522b890079d92011d4e9af76d86805a40cd99e675ea"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed-3",
+      "path": "collect-240926-tomshardware/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed-3.md",
+      "title": "nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Cohere",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "nvidia",
+        "amd",
+        "aws",
+        "chiplet",
+        "decode",
+        "gpu",
+        "gpus",
+        "graviton",
+        "intel",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/nvidia-deep-dives-vera-cpu-for-ai-data-centers-spec-cpu-2026-benchmarks-revealed.md",
+      "source_anchor": "",
+      "source_lines": [
+        101,
         152
       ],
       "canonical_for": [],
-      "words": 3654,
-      "bytes": 22666,
-      "sha256": "60a43d75afde5ccd51d38613f4fe7b6494c92c3b870012528484fea9ee105723"
+      "words": 1166,
+      "bytes": 7258,
+      "sha256": "40e9869442bc68208e42036728acba37a5b5660ed558cfc7d72891919d1b40f9"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects",
-      "path": "collect-240926-tomshardware/tomshardware/officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects.md",
+      "id": "collect-240926-tomshardware/tomshardware/officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects-1",
+      "path": "collect-240926-tomshardware/tomshardware/officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects-1.md",
       "title": "officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects",
       "domain": "tomshardware",
       "role": "reference",
@@ -2102,16 +3422,72 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1243,
+      "bytes": 7816,
+      "sha256": "91772135a496c2d5cb725569249794a4cdaf374cc3f649406258de93648986b0"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects-2",
+      "path": "collect-240926-tomshardware/tomshardware/officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects-2.md",
+      "title": "officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/tomshardware/officials-nationwide-face-death-threats-and-gunfire-over-ai-data-center-projects.md",
+      "source_anchor": "",
+      "source_lines": [
+        54,
         54
       ],
       "canonical_for": [],
-      "words": 1277,
-      "bytes": 8005,
-      "sha256": "b81fc2e682fcc171ab12c506bfc19275c802a959b7b927ee81076b656e7e0cda"
+      "words": 34,
+      "bytes": 189,
+      "sha256": "8ddd901addf5f3214902be583140b172aa66df5035e19244ea082c9d1363dd15"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024",
-      "path": "collect-240926-tomshardware/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024.md",
+      "id": "collect-240926-tomshardware/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-1",
+      "path": "collect-240926-tomshardware/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-1.md",
+      "title": "optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "China"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "compute",
+        "cpo",
+        "dsp",
+        "foundry",
+        "gpu",
+        "gpus",
+        "ipo",
+        "optics",
+        "revenue",
+        "wafer"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        30
+      ],
+      "canonical_for": [],
+      "words": 1179,
+      "bytes": 7805,
+      "sha256": "fb8c970442dee804ca70ffc65bea0617f2932a64db7aca6ab0149fe330886b64"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-2",
+      "path": "collect-240926-tomshardware/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-2.md",
       "title": "optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-",
       "domain": "tomshardware",
       "role": "reference",
@@ -2119,7 +3495,6 @@
       "actors": [
         "AMD",
         "Broadcom",
-        "China",
         "Cohere",
         "Meta",
         "Microsoft",
@@ -2130,29 +3505,25 @@
       ],
       "dates": [],
       "keywords": [
-        "accelerator",
         "acquisition",
         "amd",
         "compute",
         "cpo",
-        "dsp",
-        "foundry",
-        "gpu",
-        "gpus",
-        "ipo",
         "nvidia",
-        "optics"
+        "optics",
+        "robotics",
+        "valuation"
       ],
       "source": "docs/RAG/clean_en/tomshardware/optical-interconnect-market-to-hit-144-billion-by-2030-a-10x-increase-from-2024-.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        31,
         37
       ],
       "canonical_for": [],
-      "words": 1540,
-      "bytes": 10227,
-      "sha256": "d75f0a45da352d74e3b3383dbb52a880d0d09aeedaaeca0652e08f53358c2a9c"
+      "words": 361,
+      "bytes": 2422,
+      "sha256": "8209358ddc31f516e2e4281a2ce067cb285843d56d62675ca7b967b830d29e3a"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/radeon-pro-w9000-gpus-said-to-use-the-navi-48-xtw-die-32gb-vram-computex-reveal",
@@ -2189,34 +3560,58 @@
       "sha256": "64a854dbabd435f04bce957c054f5635921847a17820ce6421e0889f0d60db13"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player",
-      "path": "collect-240926-tomshardware/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player.md",
+      "id": "collect-240926-tomshardware/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player-1",
+      "path": "collect-240926-tomshardware/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player-1.md",
       "title": "sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player",
       "domain": "tomshardware",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AMD",
-        "Nvidia",
-        "United States"
+        "Nvidia"
       ],
       "dates": [],
       "keywords": [
         "amd",
         "dci",
-        "nvidia",
-        "training"
+        "nvidia"
       ],
       "source": "docs/RAG/clean_en/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        84
+      ],
+      "canonical_for": [],
+      "words": 1381,
+      "bytes": 7792,
+      "sha256": "66d54fa18414ba56cb991f751c32bacfa484a4d10fa8c0c00786d362974a3ab3"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player-2",
+      "path": "collect-240926-tomshardware/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player-2.md",
+      "title": "sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "dci",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/sony-inzone-m10s-ii-27-inch-540-hz-qhd-oled-gaming-monitor-review-a-major-player.md",
+      "source_anchor": "",
+      "source_lines": [
+        85,
         135
       ],
       "canonical_for": [],
-      "words": 2505,
-      "bytes": 14310,
-      "sha256": "cfebcdd6d94a5c5d41ff97dd8c6625021e71998354f66fd4f4449d2eb5ac84c3"
+      "words": 1124,
+      "bytes": 6518,
+      "sha256": "1d84d3eeb6f16433ea643fc73e75bf6adeecb5b8aeaa4eb0352c440120060577"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/supermicro-fires-several-employees-following-investigation-into-2-5-billion-chin",
@@ -2248,8 +3643,8 @@
       "sha256": "f911703e3168e7be22a03afdae845a0cc943b4b4415c554be01d530a7f0dc430"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and",
-      "path": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and.md",
+      "id": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-1",
+      "path": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-1.md",
       "title": "the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and",
       "domain": "tomshardware",
       "role": "reference",
@@ -2261,7 +3656,6 @@
         "Nvidia"
       ],
       "dates": [
-        "2026-06",
         "2026-07"
       ],
       "keywords": [
@@ -2270,8 +3664,109 @@
         "gpu",
         "amd",
         "blackwell",
-        "compute",
         "cost",
+        "gpus",
+        "intel",
+        "nvidia",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1262,
+      "bytes": 7801,
+      "sha256": "b350c36c335b101f772e24346edce0a8147f2e0f03472abfe455d1460b9a17a2"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-2",
+      "path": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-2.md",
+      "title": "the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "benchmarks",
+        "gpu",
+        "amd",
+        "blackwell",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and.md",
+      "source_anchor": "",
+      "source_lines": [
+        80,
+        160
+      ],
+      "canonical_for": [],
+      "words": 1444,
+      "bytes": 7730,
+      "sha256": "08e92357ad76c974929b55ad877e94e3da0cfa86a988f88ac4d5027074eb4287"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-3",
+      "path": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-3.md",
+      "title": "the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "gpu",
+        "amd",
+        "compute",
+        "gpus",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and.md",
+      "source_anchor": "",
+      "source_lines": [
+        161,
+        247
+      ],
+      "canonical_for": [],
+      "words": 1527,
+      "bytes": 7909,
+      "sha256": "5200e05ba2c22af666db87298efced77d86d1854522548826b006d71be3b2818"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-4",
+      "path": "collect-240926-tomshardware/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and-4.md",
+      "title": "the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "gpu",
+        "amd",
+        "blackwell",
         "gpus",
         "intel",
         "liability",
@@ -2281,17 +3776,17 @@
       "source": "docs/RAG/clean_en/tomshardware/the-gpu-benchmarks-hierarchy-2026-ten-years-of-graphics-card-hardware-tested-and.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        248,
         310
       ],
       "canonical_for": [],
-      "words": 5435,
-      "bytes": 30312,
-      "sha256": "c3c6c8e3420dbd89007701e2c5605f36c75d69164923c0cb11a1ba40bb9dab65"
+      "words": 1202,
+      "bytes": 6872,
+      "sha256": "6bcafa591d43055160f74d2616db55676f1f655aa3b41bba5d5cdf52738a157f"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b",
-      "path": "collect-240926-tomshardware/tomshardware/the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b.md",
+      "id": "collect-240926-tomshardware/tomshardware/the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b-1",
+      "path": "collect-240926-tomshardware/tomshardware/the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b-1.md",
       "title": "the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b",
       "domain": "tomshardware",
       "role": "reference",
@@ -2317,16 +3812,76 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        78
+      ],
+      "canonical_for": [],
+      "words": 1300,
+      "bytes": 7832,
+      "sha256": "84c659c892ed85e9cf6b61e51d7e56391c910e19ba18052a1d1efec4ebc14ca2"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b-2",
+      "path": "collect-240926-tomshardware/tomshardware/the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b-2.md",
+      "title": "the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/the-pc-age-began-45-years-ago-with-the-breakthrough-intel-8088-processor-8-bit-b.md",
+      "source_anchor": "",
+      "source_lines": [
+        79,
         92
       ],
       "canonical_for": [],
-      "words": 1796,
-      "bytes": 10573,
-      "sha256": "b3a03077a114c10f6966f24d9a3de302bcc16b5e40a933906647d07ad388c221"
+      "words": 496,
+      "bytes": 2741,
+      "sha256": "83c0fa1639ff688a44cadc2adddae217b68a80cdd1913b2be9f7a8a959e71d48"
     },
     {
-      "id": "collect-240926-tomshardware/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn",
-      "path": "collect-240926-tomshardware/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn.md",
+      "id": "collect-240926-tomshardware/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn-1",
+      "path": "collect-240926-tomshardware/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn-1.md",
+      "title": "the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn",
+      "domain": "tomshardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "chiplet",
+        "compute",
+        "cost",
+        "energy",
+        "intel",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 1449,
+      "bytes": 7743,
+      "sha256": "b5afc1237faff4bbb65375c07cc4439cfd6c1b5714e01e888d89c413b377c251"
+    },
+    {
+      "id": "collect-240926-tomshardware/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn-2",
+      "path": "collect-240926-tomshardware/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn-2.md",
       "title": "the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn",
       "domain": "tomshardware",
       "role": "reference",
@@ -2341,25 +3896,20 @@
         "amd",
         "benchmark",
         "benchmarks",
-        "chiplet",
-        "compute",
-        "cost",
-        "energy",
         "intel",
         "latency",
-        "memory",
-        "pricing"
+        "memory"
       ],
       "source": "docs/RAG/clean_en/tomshardware/the-ryzen-9-9900x3d-is-the-fastest-12-core-gaming-cpu-but-here-s-why-you-shouldn.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        70,
         127
       ],
       "canonical_for": [],
-      "words": 2580,
-      "bytes": 14370,
-      "sha256": "febd0a8e5be85d2cfa86c81423c5c8ff812cad61eb86a779e729a58b82c7cf5d"
+      "words": 1131,
+      "bytes": 6627,
+      "sha256": "ba5c6e3660fee035faefba233bff4ef0719bede3cb731e86f82b5380d4324c4f"
     },
     {
       "id": "collect-240926-tomshardware/tomshardware/two-intel-chips-break-amazon-s-top-10-cpus-for-the-first-time-in-months-core-ult",

@@ -1,0 +1,25 @@
+---
+id: collect-260926-rattrapage/rattrapage/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9-2
+title: "fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9"
+domain: rattrapage
+role: reference
+task: reference
+actors: ["Nvidia"]
+dates: []
+keywords: ["gpu", "nvidia"]
+source: docs/RAG/lot-rattrapage/servers-reviews/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9.md
+source_anchor: ""
+source_lines: [30, 37]
+sha256: ad5ade3d290bca1b78d1f1bfcc02ccf8cb67b2bc43137d80ae13237a839b45c5
+---
+
+# fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9
+
+À partir du RTX 8000, nous avons constaté des performances correctes. Avec cette configuration, la formation de notre modèle d'IA sur un ensemble de données d'images de 6.36 Go a pris environ 45 minutes par époque. Cependant, les limites du RTX 8000 étaient évidentes en termes de taille de lot et de complexité des tâches qu'il pouvait gérer. Nous étions limités à des lots plus petits et limités dans la complexité des modèles de réseaux neuronaux que nous pouvions entraîner efficacement.
+Le passage à quatre GPU RTX A6000 a marqué un bond significatif en termes de performances. La bande passante mémoire supérieure de l'A6000 et la mémoire GDDR6 plus grande nous ont permis de quadrupler la taille du lot tout en conservant la même durée d'époque et la même complexité de modèle. Cette amélioration a amélioré le processus de formation et nous a permis d'expérimenter des modèles plus sophistiqués sans prolonger le temps de formation.
+Cependant, l'avancée la plus frappante est venue avec l'introduction de quatre cartes NVIDIA H100 PCIe. Tirant parti des capacités d'IA améliorées de l'architecture Hopper, ces cartes nous ont permis de doubler à nouveau la taille du lot. Plus impressionnant encore, nous pourrions augmenter considérablement la complexité de nos modèles d’IA sans aucun changement notable dans la durée des époques. Cette capacité témoigne des fonctionnalités avancées spécifiques à l'IA du H100, telles que le Transformer Engine et les Tensor Cores de 4e génération, qui sont optimisés pour gérer efficacement les opérations d'IA complexes.
+Tout au long de ces tests, l'ensemble de données d'image de 6.36 Go et les paramètres du modèle ont servi de référence cohérente, nous permettant de comparer directement les performances de différentes configurations GPU. La progression du RTX 8000 vers les A6000, puis vers les H100, a mis en évidence les améliorations de la puissance de traitement brute et la capacité des GPU à gérer des charges de travail d'IA plus importantes et plus complexes sans compromettre la vitesse ou l'efficacité. Cela rend ces GPU particulièrement adaptés à la recherche de pointe sur l’IA et aux applications d’apprentissage profond à grande échelle.
+Le serveur Supermicro utilisé lors de nos tests dispose d'une connexion PCIe directe aux processeurs, évitant ainsi le besoin d'un commutateur PCIe. Cette connexion directe garantit que chaque GPU dispose d'un chemin dédié vers le CPU, facilitant un transfert de données rapide et efficace. Cette architecture est cruciale dans certaines charges de travail en IA et HPC pour minimiser la latence et maximiser l'utilisation de la bande passante, particulièrement utile lorsqu'il s'agit de tâches à haut débit telles que la formation de modèles d'IA ou d'environnements VDI complexes lorsque tout le travail est local sur le serveur.
+Conclusion
+L'évolutivité et la flexibilité du serveur Supermicro GPU A+ Server AS-4125GS-TNRT sont les fonctionnalités phares ici. Il est particulièrement avantageux pour les clients qui doivent s'adapter à l'évolution des demandes de charge de travail, que ce soit en matière d'IA, de VDI ou d'autres tâches hautes performances. En commençant par une configuration modeste, les utilisateurs peuvent gérer efficacement les tâches d'IA ou de VDI d'entrée de gamme, offrant ainsi une solution rentable pour les charges de travail plus petites ou pour ceux qui commencent tout juste à s'aventurer dans l'IA et l'infrastructure de bureau virtuel. Cette configuration initiale fournit une base solide et évolutive, permettant aux utilisateurs d'interagir avec des applications d'IA et VDI basiques mais essentielles.
+De plus, même si nous savons que de nombreuses entreprises souhaitent profiter des GPU H100 sur socket, les temps d'attente pour ces plates-formes sont excessifs. De nombreuses sources nous ont dit que l'attente était de près d'un an. La logistique de la chaîne d’approvisionnement souligne l’avantage de ce serveur : il peut tout gérer. Les GPU L40S sont disponibles « maintenant » afin que les clients puissent au moins faire avancer leurs charges de travail d'IA le plus tôt possible avec cette combinaison. Et à mesure que les besoins évoluent, les clients peuvent facilement échanger leurs cartes. Cela garantit que le serveur Supermicro GPU A+ Server AS-4125GS-TNRT n'est pas seulement destiné aux besoins immédiats, mais qu'il est évolutif, répondant à l'évolution du paysage technologique.

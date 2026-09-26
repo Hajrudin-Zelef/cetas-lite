@@ -4,7 +4,7 @@
   "source": "docs/RAG/Outils & plateformes IAEN.md",
   "source_lines": 660,
   "source_sha256": "73fd6826396de91379ccbd770141501eeb3c7984950c11ba41ea03047c8fd43a",
-  "chunk_count": 8,
+  "chunk_count": 14,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -60,12 +60,38 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 1087,
+      "bytes": 7945,
+      "sha256": "8d36ef38a8c2c37770cf3e40678a8e5deaddd1e54c4e46c2559c588dd3f4ef78",
+      "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
+    },
+    {
+      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/1-6-key-sources",
+      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/1-6-key-sources.md",
+      "title": "1.6 Key sources",
+      "domain": "step-2-ai-tools-platforms-febsep-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "claude",
+        "pricing"
+      ],
+      "source": "docs/RAG/Outils & plateformes IAEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        69,
         78
       ],
       "canonical_for": [],
-      "words": 1106,
-      "bytes": 8432,
-      "sha256": "330ea8d87f81cf480ba1bfe3007840d181782e7bd35593045032eeaa38408526",
+      "words": 19,
+      "bytes": 487,
+      "sha256": "667e0a5cf1bb15918adc773b70a42247ed1858c36bad93fb2ecf6f2a0b6557a3",
       "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
     },
     {
@@ -77,15 +103,12 @@
       "task": "reference",
       "actors": [
         "Anthropic",
-        "Apple",
         "DeepSeek",
         "EU",
-        "Google",
         "Microsoft",
         "MiniMax",
         "Moonshot",
         "OpenAI",
-        "OpenRouter",
         "United States",
         "Z.ai",
         "xAI"
@@ -114,19 +137,56 @@
         "deepseek",
         "glm",
         "grok",
-        "inference",
-        "kimi"
+        "kimi",
+        "license"
       ],
       "source": "docs/RAG/Outils & plateformes IAEN.md",
       "source_anchor": "",
       "source_lines": [
         79,
+        132
+      ],
+      "canonical_for": [],
+      "words": 818,
+      "bytes": 6611,
+      "sha256": "c323d3775d3863b88eef6ede6aa8ad0525ae85aabb992ab472488b9adc183241",
+      "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
+    },
+    {
+      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/3-3-architecture",
+      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/3-3-architecture.md",
+      "title": "3.3 Architecture",
+      "domain": "step-2-ai-tools-platforms-febsep-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "cost",
+        "inference",
+        "license",
+        "memory",
+        "pricing"
+      ],
+      "source": "docs/RAG/Outils & plateformes IAEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        133,
         159
       ],
       "canonical_for": [],
-      "words": 1195,
-      "bytes": 9994,
-      "sha256": "570caf47f1e10c0023a759d8cc603a1e6581d3ee17a603275c0961730e9e4b94",
+      "words": 377,
+      "bytes": 3383,
+      "sha256": "cfc98c2bc3192223e36b5289e4f233c1257600936199af42fcf23768f284ac58",
       "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
     },
     {
@@ -190,7 +250,10 @@
         "Google",
         "Microsoft",
         "OpenAI",
-        "Z.ai"
+        "SpaceX",
+        "United States",
+        "Z.ai",
+        "xAI"
       ],
       "dates": [
         "2026-03",
@@ -214,40 +277,36 @@
         "cloud agent",
         "gemini",
         "glm",
+        "grok",
         "inference",
         "pricing",
-        "research",
-        "revenue"
+        "research"
       ],
       "source": "docs/RAG/Outils & plateformes IAEN.md",
       "source_anchor": "",
       "source_lines": [
         212,
-        278
+        283
       ],
       "canonical_for": [],
-      "words": 889,
-      "bytes": 7344,
-      "sha256": "4106efd631b0da98e9095ddf420478ccffa310ec000344b0d199feaeae327683",
+      "words": 978,
+      "bytes": 7930,
+      "sha256": "c0c7f1234b74d2b0442e580a6e50492eb183475f8b4dca770c62b697e9072f09",
       "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
     },
     {
-      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/7-grok-build-xai-developer-tooling-spacexai",
-      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/7-grok-build-xai-developer-tooling-spacexai.md",
-      "title": "7. Grok Build / xAI developer tooling (SpaceXAI)",
+      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/7-2-grok-4-x-release-timeline-developer-relevant",
+      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/7-2-grok-4-x-release-timeline-developer-relevant.md",
+      "title": "7.2 Grok 4.x release timeline (developer-relevant)",
       "domain": "step-2-ai-tools-platforms-febsep-2026",
       "role": "deep-dive",
-      "task": "actor-profile",
+      "task": "reference",
       "actors": [
-        "AWS",
         "Anthropic",
-        "DeepSeek",
-        "Google",
         "Microsoft",
         "OpenAI",
         "OpenRouter",
         "SpaceX",
-        "United States",
         "xAI"
       ],
       "dates": [
@@ -263,33 +322,77 @@
         "2026-07-09",
         "2026-08",
         "2026-08-12",
-        "2026-08-13",
         "2026-09-21"
       ],
       "keywords": [
         "grok",
+        "grok 4",
         "agent",
         "agentic",
         "agents",
         "astra",
-        "attribution",
-        "bedrock",
         "benchmark",
         "benchmarks",
         "claude",
         "copilot",
-        "cost"
+        "cost",
+        "cybersecurity"
       ],
       "source": "docs/RAG/Outils & plateformes IAEN.md",
       "source_anchor": "",
       "source_lines": [
-        279,
+        284,
+        326
+      ],
+      "canonical_for": [],
+      "words": 1007,
+      "bytes": 7192,
+      "sha256": "15bee3fce75df6e5754e193f262f4211af7dc7d13c36dac68ad8f0e32653e963",
+      "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
+    },
+    {
+      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/7-6-subscriptions-and-access-tiers",
+      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/7-6-subscriptions-and-access-tiers.md",
+      "title": "7.6 Subscriptions and access tiers",
+      "domain": "step-2-ai-tools-platforms-febsep-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "OpenAI",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-08-13"
+      ],
+      "keywords": [
+        "agent",
+        "attribution",
+        "bedrock",
+        "benchmarks",
+        "claude",
+        "copilot",
+        "cost",
+        "deepseek",
+        "governance",
+        "gpt-6",
+        "grok",
+        "grok 4"
+      ],
+      "source": "docs/RAG/Outils & plateformes IAEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        327,
         398
       ],
       "canonical_for": [],
-      "words": 1807,
-      "bytes": 14407,
-      "sha256": "85c9b5dc8f24022860651fc8505a3acfcce5c2e8c78ece002a7cb49165aed7d5",
+      "words": 711,
+      "bytes": 6629,
+      "sha256": "ed61fcfdeb7d03c9aa945314efe27cf1d1874fa4493103e2aad34405bc5dd05b",
       "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
     },
     {
@@ -302,7 +405,6 @@
       "actors": [
         "Alibaba",
         "Anthropic",
-        "China",
         "Google",
         "Microsoft",
         "MiniMax",
@@ -310,13 +412,11 @@
         "OpenAI",
         "OpenRouter",
         "Stripe",
-        "United States",
         "xAI"
       ],
       "dates": [
         "2025-06",
         "2026-03",
-        "2026-05",
         "2026-05-26",
         "2026-06-30",
         "2026-07",
@@ -327,9 +427,7 @@
       ],
       "keywords": [
         "acquisition",
-        "agent",
         "agentic",
-        "agents",
         "attribution",
         "aws",
         "benchmarks",
@@ -337,18 +435,59 @@
         "cost",
         "deepseek",
         "disclosure",
-        "embeddings"
+        "embeddings",
+        "funding",
+        "gemini"
       ],
       "source": "docs/RAG/Outils & plateformes IAEN.md",
       "source_anchor": "",
       "source_lines": [
         399,
+        460
+      ],
+      "canonical_for": [],
+      "words": 928,
+      "bytes": 7147,
+      "sha256": "4ba9589226a93716e0736c95647fae6aa8e76291464fe849e29636484d26808b",
+      "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
+    },
+    {
+      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/9-6-usage-trends-2026",
+      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/9-6-usage-trends-2026.md",
+      "title": "9.6 Usage trends (2026)",
+      "domain": "step-2-ai-tools-platforms-febsep-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Google",
+        "OpenAI",
+        "OpenRouter",
+        "Stripe",
+        "United States"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "inference",
+        "series b",
+        "throughput",
+        "valuation"
+      ],
+      "source": "docs/RAG/Outils & plateformes IAEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        461,
         476
       ],
       "canonical_for": [],
-      "words": 1103,
-      "bytes": 8741,
-      "sha256": "3cbff4c2be32f1dc8924f8a80a8f2654ac32a4f3f9f8408d7d4fa5c3e3f01ff9",
+      "words": 175,
+      "bytes": 1594,
+      "sha256": "0b385164a2162bcdcb4821a984e5a8291d760f21d0e6fa29c6d086395406ff48",
       "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
     },
     {
@@ -393,23 +532,70 @@
         "agentic",
         "agents",
         "apache",
-        "attribution",
         "benchmark",
         "benchmarks",
         "blackwell",
         "claude",
-        "compute"
+        "compute",
+        "deepseek"
       ],
       "source": "docs/RAG/Outils & plateformes IAEN.md",
       "source_anchor": "",
       "source_lines": [
         477,
+        526
+      ],
+      "canonical_for": [],
+      "words": 980,
+      "bytes": 7276,
+      "sha256": "00fa148a0c56519c30483f224d4bb6592158f09304a9289efe4575671b0da577",
+      "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
+    },
+    {
+      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/10-4-security-incident-july-2026",
+      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/10-4-security-incident-july-2026.md",
+      "title": "10.4 Security incident — July 2026",
+      "domain": "step-2-ai-tools-platforms-febsep-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Baseten",
+        "China",
+        "DeepSeek",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [
+        "2026-07",
+        "2026-09-03"
+      ],
+      "keywords": [
+        "incident",
+        "accelerator",
+        "acquisition",
+        "agent",
+        "apache",
+        "attribution",
+        "cost",
+        "deepseek",
+        "glm",
+        "guardrails",
+        "inference",
+        "kimi"
+      ],
+      "source": "docs/RAG/Outils & plateformes IAEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        527,
         561
       ],
       "canonical_for": [],
-      "words": 1406,
-      "bytes": 10857,
-      "sha256": "2aee160b7c1a5ec177eb5010692b08b5023e080550d303c576a96718ce460f4f",
+      "words": 426,
+      "bytes": 3581,
+      "sha256": "af8bb23f9f966bfc3f6886c1c09646e13aa8347cdecf398b7d91622fe7cd3cde",
       "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
     },
     {
@@ -422,8 +608,6 @@
       "actors": [
         "AWS",
         "Anthropic",
-        "Baseten",
-        "Cerebras",
         "China",
         "DeepSeek",
         "Google",
@@ -433,15 +617,12 @@
         "Nvidia",
         "OpenAI",
         "OpenRouter",
-        "SpaceX",
         "Stripe",
-        "Together AI",
         "United States",
         "Z.ai",
         "xAI"
       ],
       "dates": [
-        "2026-01",
         "2026-02",
         "2026-05",
         "2026-05-19",
@@ -459,25 +640,78 @@
         "agent",
         "agentic",
         "agents",
-        "attribution",
         "aws",
         "bedrock",
-        "benchmark",
         "claude",
         "consumer",
         "copilot",
-        "cost"
+        "cost",
+        "deepseek",
+        "gemini"
       ],
       "source": "docs/RAG/Outils & plateformes IAEN.md",
       "source_anchor": "",
       "source_lines": [
         562,
+        622
+      ],
+      "canonical_for": [],
+      "words": 905,
+      "bytes": 7016,
+      "sha256": "5b5c10d49afe98971af014130a7f2458a77ce379666e9fc4b77bb503f40c212f",
+      "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
+    },
+    {
+      "id": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/coding-agents-ides",
+      "path": "tools-platforms-2026/00-step-2-ai-tools-platforms-febsep-2026/coding-agents-ides.md",
+      "title": "Coding agents & IDEs",
+      "domain": "step-2-ai-tools-platforms-febsep-2026",
+      "role": "deep-dive",
+      "task": "agents",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Baseten",
+        "Cerebras",
+        "DeepSeek",
+        "Google",
+        "Hugging Face",
+        "Microsoft",
+        "Nvidia",
+        "OpenRouter",
+        "SpaceX",
+        "Stripe",
+        "Together AI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-01"
+      ],
+      "keywords": [
+        "agents",
+        "acquisition",
+        "attribution",
+        "aws",
+        "benchmark",
+        "claude",
+        "consumer",
+        "copilot",
+        "deepseek",
+        "disclosure",
+        "funding",
+        "glm"
+      ],
+      "source": "docs/RAG/Outils & plateformes IAEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        623,
         660
       ],
       "canonical_for": [],
-      "words": 1405,
-      "bytes": 10734,
-      "sha256": "6946bb1fdca07ef4c36c5366506fce2ecc6d1f397011b72595b3dd9a5799f3c8",
+      "words": 500,
+      "bytes": 3718,
+      "sha256": "5421d3e1e3a42b569f43e844e109563c8516a489ec638ac07b585262558f7653",
       "section": "Step 2 — AI Tools & Platforms (Feb–Sep 2026)"
     }
   ]

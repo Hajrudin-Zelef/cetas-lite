@@ -4,15 +4,15 @@ title: "§2. DeepSeek"
 domain: deepseek
 role: deep-dive
 task: actor-profile
-actors: ["Anthropic", "China", "DeepSeek", "Google", "Huawei", "OpenAI", "OpenRouter", "SGLang", "Xiaomi", "vLLM", "xAI"]
-dates: ["2025-09-29", "2025-11", "2025-12", "2025-12-01", "2026-01", "2026-01-21", "2026-03", "2026-03-11", "2026-04", "2026-07-24", "2026-08-13", "2026-09", "2026-09-09", "2026-09-10", "2026-09-22"]
-keywords: ["deepseek", "agentic", "alignment", "ascend", "attention", "attribution", "benchmark", "benchmarks", "claude", "compute", "context window", "cost"]
+actors: ["China", "DeepSeek", "Huawei", "Xiaomi"]
+dates: ["2025-12", "2025-12-01", "2026-01", "2026-01-21", "2026-03", "2026-03-11", "2026-04", "2026-07-24", "2026-08-13", "2026-09", "2026-09-09", "2026-09-10", "2026-09-22"]
+keywords: ["deepseek", "agentic", "ascend", "attention", "attribution", "benchmarks", "compute", "cost", "cybersecurity", "decode", "inference", "license"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [565, 636]
+source_lines: [565, 624]
 section: "§2. DeepSeek"
 delta_of: ai-industry-kb-2026
-sha256: 7033f88ff9f42546e3370323649c3194104617f3876fae04f4b7178fe0505d28
+sha256: 4bd1b8a52af790b3ed42070dd7595f54b24afe5107f59ce3b49b911591e9137e
 ---
 
 # §2. DeepSeek
@@ -74,16 +74,4 @@ V4.1-Flash is also the corpus's cost-per-intelligence anchor: at **$0.27 per AA 
 - DSA economics: near-linear **O(kL)** attention; **~50% lower long-context API cost** at V3.1-Terminus-level quality. [SECONDARY]
 - V3.2-Exp training recipe: lightning indexer learned from **2.1B tokens**; all parameters fine-tuned on **~100B tokens**; **five specialists distilled** (reasoning, math, coding, agentic coding, agentic search). Inputs >7K tokens: **2–3× faster**. API **$0.28/$0.028/$0.42**; 128K in / 8K out. [SECONDARY]
 - The V3.2-Exp code **supports Huawei AI chips** (other Chinese designers adapting) — the domestic-silicon hedge predates the R2 Ascend saga by months. [SECONDARY]
-
-### V3.2-Exp — 2025-09-29, the sparse-attention experiment [SECONDARY]
-- **2025-09-29** — DeepSeek released **V3.2-Exp** (TechCrunch): an experimental model whose single architectural change was **DeepSeek Sparse Attention** — a "lightning indexer" that prioritizes excerpts from the context window plus a "fine-grained token selection system" that picks specific tokens from those excerpts into a limited attention window. [SECONDARY]
-- The research framing matters: one researcher called it "a controlled experiment release — the kind we need more of in AI," because DeepSeek **swapped one component (attention) and held everything else constant**, letting the community study sparsity's effect on large-scale training as a testbed. [SECONDARY]
-- Pricing: **$0.028 per million input tokens** — a 50% cut from V3.1-Terminus — "even when approaching the context limit of 128,000 tokens." Community reaction: "half the cost for the same results," with developers reporting low latency and high throughput via OpenRouter, crediting the sparse kernels. [SECONDARY]
-- The official **V3.2** followed on **2025-12-01** alongside a specialized variant **DeepSeek-V3.2-Speciale**; one syndicated launch write-up cites official V3.2 input pricing **as low as $0.07/M** — consistent with the $0.14/$0.28 vs $0.27/$0.40 dispute above being a tier/cache artifact, not a single number. [SECONDARY]
-- Benchmark deltas vs V3.1-Terminus (independent review): **+0.9 on AIME 2025**, **+75 points on Codeforces** — the consolidated RL fine-tuning (merging reasoning, tool-use, alignment) gave V3.2-Exp a more balanced skillset. [SECONDARY]
-- Open tooling at launch: **TileLang** kernels (readability), **DeepGEMM** (indexer logit kernels), **FlashMLA** (sparse attention CUDA kernels), plus **vLLM and SGLang support on day one** — cited as evidence DeepSeek was "cultivating broad community integration rather than locking down distribution." [SECONDARY]
-- Self-hosting economics: the 685B model needs **~700 GB VRAM at FP8** (8–10× H100 80GB); 4-bit quantization brings it to **~386 GB** (5–6× H100). API price comparisons at launch: GPT-5 Standard $1.25/$10, Claude Opus 4.1 $15/$75, DeepSeek V3.2-Exp $0.028 input — a 45×–500× gap. [SECONDARY]
-- Competitive context: V3.2-Exp shipped two months before a packed November 2025 window (GPT-5.1, Grok 4.1, Gemini 3 Pro, Claude Opus 4.5 within six days) — DeepSeek's December official release was read as proof Chinese labs could match frontier pace despite hardware restrictions. [SECONDARY]
-- Vendor-chart results reported for **V3.2-Exp** (label as vendor claims, not independent): MMLU-Pro **85.0**, AIME 2025 **89.3**, GPQA-Diamond **79.9** (vs **80.7** for V3.1-Terminus), Codeforces **2121**, BrowseComp **40.1**. Note the inverted V3.2 < V3.1-Terminus GPQA result — one secondary read is that V3.1-Terminus was the stronger release on that axis, which tempers the "successor always wins" reading. [SECONDARY]
-- **Pricing contradiction**: vendor/third-party listings conflict between **$0.14 input / $0.28 output** and **$0.27 input / $0.40 output** per million tokens. Likely explanations are first-party-vs-third-party pricing, cache-hit accounting, or date/cache mismatches — resolve only against DeepSeek's own pricing page or changelog. [SECONDARY]
 

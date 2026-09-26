@@ -4,17 +4,34 @@ title: "10.11 Source list (verbatim URLs)"
 domain: front-matter
 role: reference
 task: reference
-actors: ["Broadcom", "CoreWeave", "Intel", "Microsoft", "Nvidia", "Oracle", "United States", "xAI"]
-dates: ["2023-01-09", "2023-04-27", "2024-10-16", "2024-10-28", "2025-05-20", "2025-06", "2025-06-04", "2025-06-10", "2025-10", "2025-10-08", "2025-10-14", "2025-10-29", "2026-02-20", "2026-09", "2026-09-16", "2026-09-22"]
-keywords: ["acquisition", "compute", "cpo", "ethernet", "gpu", "intel", "latency", "lpo", "nvidia", "nvlink", "optics", "pricing"]
+actors: ["Broadcom", "CoreWeave", "Google", "Huawei", "Intel", "Lambda", "Meta", "Microsoft", "Nvidia", "Oracle", "xAI"]
+dates: ["2023-01-09", "2023-04-27", "2024-10-16", "2024-10-28", "2025-06-04", "2025-10-08", "2025-10-14", "2025-10-29", "2026-02-20", "2026-09", "2026-09-16", "2026-09-22"]
+keywords: ["acquisition", "asic", "compute", "cpo", "ethernet", "full-duplex", "intel", "latency", "lpo", "nvidia", "nvlink", "optics"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [1622, 1672]
+source_lines: [1605, 1645]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 4789e789cbdb24d92125b6b7f9b4829efd6e277c494cb7f056326c8a5d9abfc1
+sha256: 5c63a3e9fb5fec89ef348f76f02803deba1ecd7dcd9d56f8ebaa44c38305754f
 ---
 
 # 10.11 Source list (verbatim URLs)
+
+- **SN5800**: no evidence of a real announced NVIDIA system by 2026-09-22 [unverified].
+- **Juniper Express5 / Trio 800G data-center ASIC**: no fresh primary source captured; Juniper's documented 800G systems use merchant silicon (Tomahawk 5/6, Trident 5) [unverified].
+- **Arista "7388X5"** as an 800G fixed system: not found [unverified].
+- **Celestica 800G model** (e.g., DS-series 800G SKU with ASIC mapping): not found [unverified].
+- **ZTE native 800G data-center switch**: not found [unverified].
+- **Ruijie RG-S6990-64OC2XS**: reseller-only, no official datasheet; claimed 102.4T figure is full-duplex-implied and non-comparable [unverified].
+- **Huawei 16800-X 288 × 800GE**: secondary claim only; official datasheet dual capacity figures (179/387 etc.) need accounting clarification; exact 800G line card unverified [unverified].
+- **Cisco N9364F-SG3** details (cages, buffer, power, form factor, ship date): announced Feb 2026, awaiting official datasheet [unverified].
+- **Edgecore per-cage optic budget**: 24 W vs 30 W across sources — unresolved [unverified].
+- **Cisco N9364E-SG2 max power**: 2,270 W vs 2,779 W across official pages — unresolved [unverified].
+- **Q3200-RA aggregate bandwidth**: 57.6 Tbps vs 2 × 28.8 Tbps across mirrored datasheets — inconsistent aggregation [unverified].
+- **Tomahawk 6 production ramp scale** through 2026 (volumes, lead customers beyond announced OEM systems): not quantified in captured sources [unverified].
+- **Arista 7800R4 line-card ASIC** (Jericho3-AI vs merchant deep-buffer silicon): datasheet excerpt lists SKUs but not the ASIC — do not assert a mapping [unverified].
+- **Dell SN6800-LD ASIC identity**: sheet states 102.4 Tb/s modules without naming silicon — do not label "Spectrum-X successor" as fact [unverified].
+- **Adtran LiteWave800 0.8W** and **Micas 30% CPO power saving**: vendor claims, not independently measured [unverified].
+- **Meta/Microsoft/Google/Lambda/xAI (beyond Colossus) named 800G deployments** with models and quantities: not verified [unverified].
 
 ### 10.11 Source list (verbatim URLs)
 
@@ -39,31 +56,4 @@ nasdaq.com Broadcom Tomahawk 5 shipment; stocktitan.com AVGO Tomahawk 5; telecom
 - Vendor performance claims (throughput, efficiency, latency) are presented as vendor claims, not independent measurements, unless otherwise noted [independent].
 
 ### 11.1 NVIDIA ConnectX-8 SuperNIC (800G, shipping)
-
-- NVIDIA ConnectX-8 is an 800 Gb/s network adapter available in InfiniBand and Ethernet/VPI variants [official].
-- ConnectX-8 uses a PCIe Gen6 x16 host interface [official].
-- Firmware release notes for ConnectX-8 v40.45.1200 were dated May 20, 2025, indicating pre-GA hardware in the field by mid-2025 [official]. A June 2025 firmware revision (40.45.1202) followed, documentation page updated June 10, 2025 [official].
-- Form factors in NVIDIA documentation: CEM PCIe x16, OCP 3.0, and Socket Direct auxiliary-card configurations [official].
-- Connector variants: single-port OSFP224 and dual-port 112G-class connector variants [official].
-- Documented variant C8180: 800 Gb/s XDR InfiniBand default mode, also configurable to 2×400GbE, single OSFP, PCIe 6.0 x16, multi-host and Socket Direct capable; part number 900-9X85E-00EX-MC0 [official].
-- Documented variant C8240: dual QSFP112, aggregate 800G as 2×400G [secondary].
-- ConnectX-8 supports in-network computing (SHARP), MPI_Alltoall acceleration, QoS, and congestion-control functions per NVIDIA firmware release notes [official].
-- ConnectX-8 supports RoCEv2, InfiniBand (XDR/NIC generations), and GPUDirect RDMA across compute fabrics [official].
-- Official firmware release notes: docs.nvidia.com ConnectX-8 SuperNIC firmware release notes v40.45.1200 [official]. Official OCP user manual: docs.nvidia.com ConnectX-8 SuperNIC for OCP 3.0 user manual [official].
-- As of September 22, 2026, ConnectX-8 cards are listed as in-stock items by third-party distributors, consistent with commercial availability through channels; NVIDIA has not published a single global GA date in the documents reviewed [secondary].
-- FS.com listed, as of September 22, 2026: ConnectX-8 VPI one-port 800G OSFP PCIe 6.0 x16 at US$2,519; ConnectX-8 VPI dual-port 400G QSFP112 at US$2,519 [secondary] (fs.com NVIDIA Ethernet NICs category).
-- NADDOD listed, as of September 22, 2026: C8240 dual QSFP112 at US$1,779 and C8180 single OSFP XDR 800G at US$1,779 [secondary].
-- A private resale listing observed September 22, 2026 asked US$2,000 each for new single-port 800G cards; anecdotal, not representative pricing [secondary] (forums.servethehome.com).
-- No official NVIDIA list price for ConnectX-8 was found in public documentation; all prices above are channel/retail [unverified].
-
-### 11.2 NVIDIA ConnectX-9 SuperNIC (1.6T, next generation)
-
-- NVIDIA introduced the ConnectX-9 SuperNIC at GTC DC in Washington, D.C. in October 2025, as part of the Vera Rubin platform [independent].
-- ConnectX-9 is positioned as a 1.6 Tb/s-per-GPU next-generation network interface card with advanced RDMA capabilities [vendor-reported].
-- ConnectX-9 supports PCIe Gen6 [vendor-reported].
-- NVIDIA claims ConnectX-9 enables four-times-larger clusters than BlueField-3-era hardware; treat as vendor projection [vendor-reported].
-- ConnectX-9 incorporates the BlueField-4 architecture path: BlueField-4 combines Arm-based CPUs with the ConnectX-9 SuperNIC [vendor-reported].
-- Launch coverage: networkworld.com (NVIDIA looks to power AI factory networks) [independent]; sdxcentral.com (NVIDIA next-gen DPU) [independent].
-- A four-way ConnectX-9 IO card designed for the NVIDIA Vera Rubin NVL144 system was described in secondary coverage; treat integration details as vendor-reported [secondary].
-- ConnectX-9 ships in the Rubin timeframe (2026), which is also NVIDIA's stated 1.6T adoption window; no standalone retail price was found [unverified].
 

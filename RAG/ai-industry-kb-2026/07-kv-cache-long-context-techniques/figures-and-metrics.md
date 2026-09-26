@@ -4,17 +4,22 @@ title: "Figures and metrics"
 domain: kv-cache-long-context-techniques
 role: deep-dive
 task: architecture
-actors: ["Alibaba", "DeepSeek", "Google", "Meta", "MiniMax", "Oracle", "SGLang", "Z.ai", "vLLM"]
-dates: ["2024-05", "2026-09-08"]
-keywords: ["attention", "benchmark", "benchmarks", "compute", "consumer", "cost", "decode", "deepseek", "fine-tuning", "fp8", "glm", "gpu"]
+actors: ["AMD", "Alibaba", "DeepSeek", "Google", "MiniMax", "Nvidia", "Oracle", "SGLang", "Z.ai", "vLLM"]
+dates: ["2024-05", "2026-07-24", "2026-08-13", "2026-09-08"]
+keywords: ["amd", "attention", "benchmark", "benchmarks", "compute", "cost", "decode", "deepseek", "fine-tuning", "fp8", "glm", "gpu"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [3080, 3151]
+source_lines: [3075, 3130]
 section: "7. KV Cache & Long-Context Techniques"
-sha256: 0ee45767f1661534c9e1f8df11dc5337d3d54fe5e196c9fd7160572c5012dffc
+sha256: 25487e0398918776d2d9f35ed3a9adb6a4356646b6d8cc66b75c04cae6fac796
 ---
 
 # Figures and metrics
+
+- **2026 (vLLM v0.26.0) — DeepSeek-V4 performance push + KV offloading maturation:** the 411-commit / 212-contributor release paired specialized V4 routing and sparse decode/prefill optimizations with object-store secondary KV tiers and DP-replica-aware tiering. Full release-notes detail is part 06's territory; the relevance here is that V4-era MLA serving standardized on fp8_e4m3 KV with MLA attention backends (see §"Quantized KV in production").
+- **Apr 2026 — SGLang day-zero support for DeepSeek-V4.** Native V4 serving (CSA/HCA lineage) at release — evidence of how fast MLA-derived sparse architectures reach the two live engines.
+- **~Mar 2026 — SGLang FP8 KV for MHA via the aiter backend (AMD).** The quantized-KV story is not NVIDIA-only; the AMD path matured in parallel in 2026.
+- **2026-08-13 — DeepSeek V4-Pro GA checkpoint (V4-Pro-0813) reported** [UNVERIFIED, secondary-sourced]; legacy `deepseek-chat`/`deepseek-reasoner` aliases retired 2026-07-24 (routed to V4-Flash during grace period). Keep as secondary-sourced; do not use for pricing-critical claims.
 
 ## Figures and metrics
 
@@ -66,25 +71,4 @@ sha256: 0ee45767f1661534c9e1f8df11dc5337d3d54fe5e196c9fd7160572c5012dffc
 - **GLM-5.2 IndexShare (Jun 2026):** single sparse-attention indexer shared across every four sparse-attention layers — **2.9× reduction in per-token FLOPs at 1M context**, up to **20% improved MTP speculative-decoding acceptance length** [VENDOR]; 1M input / 65K output context.
 
 ### Hybrid O(1)-state figures
-
-- Jamba-1.5 (1:7 attention:Mamba): **4 GB (Mini) / 9 GB (Large) KV at 256K** vs 32 GB Mixtral / 80 GB Llama-3.1-70B (~10× lower); 256K effective on RULER.
-- Worked 64-layer hybrid math: KV ~67 GB → ~8.3 GB (8 attention layers retained); compressor state 14.7 MB/user (Mamba) or ~117 MB/user (linear-attention fast-weight grids); total ≈ 39.3 GB on one H100 vs two GPUs for the pure transformer.
-- Zamba2-VL: ~10× lower TTFT vs closest transformer baseline on 32K prefill (fixed-size recurrent state).
-- Nemotron community benchmark (2× RTX 3060): 250K context on consumer GPUs; TG 34 tok/s @250K vs 18 tok/s Qwen3.5-35B (**89% faster**); crossover beyond 64K.
-- Qwen3-Next GDN recurrent state: ~0.02 GiB (Sep 2026 FP8-KV analysis).
-- Terminology correction: O(n²) = attention *compute* (prefill); KV *memory* = O(n); recurrent layers = O(1) state per layer.
-
-### The 2026 quantization ladder (one user, Llama 3 70B-class @ 128K context)
-
-- BF16 **~42 GB** → FP8 **~21 GB** (2×, "free") → INT4 **~10.5 GB** (4×) → TurboQuant 3-bit **~8 GB** (5.3×).
-- SNIA SDC25 capacity anchors: Qwen3-8B **150 KB/token** FP16 (147 GB at 1M); LLaMA-3.3-70B **330 KB/token** (327 GB at 1M); LLaMA-3.1-405B **516 KB/token** (516 GB at 1M).
-- 70B-class worked sizing table (batch 1):
-
-| Context | FP16/BF16 KV | + FP8 KV | + TurboQuant 3-bit | + MLA (arch.) |
-|---|---|---|---|---|
-| 4K | ~1.3 GB | ~0.7 GB | ~0.2 GB | ~0.09 GB |
-| 128K | ~42 GB | ~21 GB | ~7 GB | ~2.8 GB |
-| 1M | ~336 GB | ~168 GB | ~56 GB | ~22 GB |
-
-(Base: 2 × 80 × 8 × 128 × seq_len × 2 bytes. MLA ≈ 6.7% of MHA-cache per the 93.3% figure.) At 1M tokens no single lever fits one 80GB GPU — the 2026 answer is stacking (GQA + FP8 + prefix reuse + disaggregation → sibling 07b) or architectural choices made at training time (MLA/MSA/shared-KV). TurboQuant-class 3-bit is what moves 128K-class workloads onto consumer hardware (~32K → ~180K usable context on 2× RTX 5060 Ti / M-series Macs per community reports).
 

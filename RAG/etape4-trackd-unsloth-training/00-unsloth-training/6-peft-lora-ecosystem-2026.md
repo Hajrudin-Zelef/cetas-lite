@@ -6,12 +6,12 @@ role: deep-dive
 task: training
 actors: ["AMD", "Alibaba", "Apple", "China", "DeepSeek", "Google", "Meta", "Microsoft", "Mistral", "Moonshot", "Nvidia", "OpenAI", "Samsung", "TensorRT-LLM", "Unsloth", "Z.ai"]
 dates: ["2026-04-20", "2026-07-14", "2026-08-31", "2026-09-07"]
-keywords: ["lora", "agentic", "attention", "awq", "benchmark", "benchmarks", "blackwell", "consumer", "decode", "deepseek", "disaggregated", "disaggregated serving"]
+keywords: ["lora", "attention", "awq", "benchmark", "blackwell", "consumer", "decode", "deepseek", "disaggregated", "disaggregated serving", "fine-tuning", "foundry"]
 source: docs/RAG/etape4_trackD_unsloth_training.md
 source_anchor: ""
-source_lines: [120, 201]
+source_lines: [120, 196]
 section: "Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)"
-sha256: 02390b56a9e5f2b6cdf30dde8bc91fc2f6ebd98d525838ee53432e74dcd7506f
+sha256: d0f07207616fe8b70d8b86bbb515d1045689676ca4c2797d50f4b2a979267971
 ---
 
 # 6. PEFT / LoRA ECOSYSTEM (2026)
@@ -93,8 +93,3 @@ sha256: 02390b56a9e5f2b6cdf30dde8bc91fc2f6ebd98d525838ee53432e74dcd7506f
 11. LLaMA-Factory specifics — sourced from auto-generated AI China News posts only. [secondary]
 12. Unsloth Desktop feature list (MCP, Deep Research Mode, etc.) — community skill cards; not independently confirmed. [secondary]
 
-## 11. COLLECTION METADATA
-- Method: web search (browser.search), 8 query batches, Sep 22, 2026.
-- Priority sources hit: official GitHub release pages (Axolotl v0.19.0, DeepSpeed v0.19.4, TensorRT-LLM v1.2.0), official docs (TRL CLI, torchtune PyPI, Unsloth docs), HF blog (Aug 2026 agentic RL), community benchmarks (ExLlamaV3/TabbyAPI Sep 2026).
-- No SiliconANGLE piece specific to this tooling niche was located in-window; inference-tooling coverage came from GitHub/primary sources instead.
-- Nothing was sent externally; read-only research + local file write.

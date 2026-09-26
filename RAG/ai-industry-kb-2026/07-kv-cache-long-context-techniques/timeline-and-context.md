@@ -5,16 +5,35 @@ domain: kv-cache-long-context-techniques
 role: deep-dive
 task: architecture
 actors: ["Alibaba", "DeepSeek", "Google", "Hugging Face", "MiniMax", "Mistral", "Moonshot", "Nvidia", "SGLang", "TensorRT-LLM", "United States", "Z.ai", "vLLM"]
-dates: ["2024-05", "2025-03-16", "2025-10-29", "2026-01-22", "2026-03-21", "2026-03-25", "2026-03-31", "2026-04-02", "2026-04-04", "2026-04-07", "2026-04-24", "2026-05-07", "2026-05-11", "2026-05-12", "2026-06-01", "2026-06-12", "2026-06-16", "2026-08-12", "2026-08-26", "2026-08-29", "2026-09-08", "2026-09-17", "2026-09-22"]
-keywords: ["agentic", "alignment", "attention", "benchmark", "benchmarks", "blackwell", "compute", "cost", "decode", "deepseek", "disaggregated", "fp4"]
+dates: ["2024-05", "2025-03-16", "2025-05", "2025-10-29", "2026-01-22", "2026-03-21", "2026-03-25", "2026-03-31", "2026-04-02", "2026-04-04", "2026-04-07", "2026-04-15", "2026-04-24", "2026-05-07", "2026-05-11", "2026-06-01", "2026-06-12", "2026-07", "2026-08-14", "2026-08-26", "2026-08-29", "2026-09-08", "2026-09-17", "2026-09-22"]
+keywords: ["apache", "attention", "benchmark", "benchmarks", "compute", "deepseek", "fp4", "fp8", "glm", "gpu", "gqa", "inference"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [3305, 3407]
+source_lines: [3286, 3347]
 section: "7. KV Cache & Long-Context Techniques"
-sha256: dc32d9211c93676123d5af536eca5aea95d528853be4739d524b217b0e66ba4b
+sha256: 9a5382970edbcea4cbb61f2729c9ded6ba78c0b596754c037a1d3c1301c35e36
 ---
 
 # Timeline and context
+
+| Actor | Role in this part | Key dated signal |
+|---|---|---|
+| **DeepSeek** | MLA origin; sparse-attention lineage (DSA→CSA/HCA); FP8-KV origin (FlashMLA) | May 2024 V2 paper (93.3%); Feb 2025 FlashMLA (656 B/token); Dec 2025 V3.2 DSA; Apr 2026 V4 (27% FLOPs / 10% KV vs V3.2) |
+| **Google Research** | **TurboQuant inventor** (NOT Red Hat); PolarQuant (AISTATS 2026); Gemma 4 shared KV | 2026-03-25 TurboQuant announcement (ICLR 2026); 2026-04-02 Gemma 4 |
+| **Red Hat** | Independent vLLM evaluation of TurboQuant (llmkube#308, 6×/8× figures) — evaluator, not inventor | 2026-05-11 independent evaluation |
+| **Moonshot AI (MiniMax lineage / Kimi)** | MiniMax M3 + MSA; Kimi K2 MLA adopters; K2.7 Code 256K independent benchmark | 2026-06-01 M3 launch (arXiv:2606.13392); Kimi K3 Intelligence Index 60 (tied best open weight, July 2026) |
+| **Zhipu (Z.AI)** | GLM-5 / GLM-5.3 MLA adopters; GLM-5.2 IndexShare | GLM-5.3 announced 2026-08-14, weights 2026-08-29 (safety hold); GLM-5.3-Flash 2026-08-26 (MIT, 1M); IndexShare Jun 2026 |
+| **NVIDIA** | TensorRT-LLM MLA; Nemotron-3-Ultra-550B-A55B (Mamba-2+MoE+Attention "LatentMoE"); TRTLLM-gen kernel fed back into vLLM v0.23.0; NVFP4 KV path | Jun 2026 Nemotron-3-Ultra (arXiv:2606.15007); OpenMDW-1.1 license |
+| **Alibaba (Qwen)** | Gated DeltaNet hybrids: Qwen3-Next (zero-KV recurrent layers), Qwen3.6-35B-A3B, Qwen3.5-MoE | Qwen3.5-MoE Feb 2026; Qwen3.6-35B-A3B ~2026-04-15 (Apache-2.0) |
+| **IBM** | Granite-4.0-H-Small: hybrid Mamba-2 / Transformer MoE (32B / 9B active) | 2026 |
+| **AI21** | Jamba-1.5 (1:7 attention:Mamba hybrid; 4–9 GB KV at 256K) | 2026 |
+| **Zyphra** | Zamba2-VL (Mamba2–Transformer hybrid VLM, ~10× TTFT cut) | Jun 2026 |
+| **vLLM project / community** | MLA backends (`FLASHMLA`, `FLASHINFER_MLA` + sparse, `TRITON_ATTN`, `CUTLASS_MLA`, `XLA`); fp8_e4m3 production recipes; sparse MLA end-to-end in v0.28.0 | v0.6.x late 2024 (MLA, [UNVERIFIED] exact minor); v0.23.0 2026; v0.28.0 tagged 2026-08-26 |
+| **SGLang project / community** | Earliest MLA serving (v0.3, Sep 2024); FlashMLA+FP8-KV+MTP (PR #6109, May 2025); broadest 2026 KV-dtype matrix incl. experimental FP4 (v0.5.6, Dec 2025) | 2026-09 SGLang quantized-KV docs |
+| **Zhejiang University / Hangzhou institutes** | HybridKV (VERIFIED, ACL 2026): 7.9× multimodal KV reduction | arXiv:2604.05887 (2026-04-07); ACL 2026 long paper 2026.acl-long.594 |
+| **Sebastian Raschka (2026 architecture review)** | Re-summarized (Aug 2026): MLA modeling quality matches/slightly beats MHA, unlike GQA which measurably underperforms MHA head-to-head | Aug 2026 re-summary |
+| **SemiAnalysis (InferenceX)** | Measured NVFP4 on B200: DeepSeek-R1 907 tok/s/GPU via SGLang 0.5.6 | Dec 2025–Jan 2026 |
+| **Hugging Face (TGI)** | Counter-case: MLA never reached mainline CUDA; archived 2026-03-21 | TGI v3.3.x Gaudi-branch only (late 2025); archived 2026-03-21 |
 
 ## Timeline and context
 
@@ -58,64 +77,4 @@ sha256: dc32d9211c93676123d5af536eca5aea95d528853be4739d524b217b0e66ba4b
 | 2026-09-22 | Consolidation cutoff | FP8 E4M3 = production KV dtype; MLA census ≥8 families; FP4 KV experimental |
 
 ## Implications
-
-1. **KV-cache is the 2026 inference battleground.** Weight quantization (FP8/INT4) is commoditized; the frontier moved to the cache: MLA-style architectural compression, 3-bit online quantization (TurboQuant), cross-layer sharing (Gemma 4), sparse attention (MSA/DSA/IndexShare), and hybrid O(1)-state layers.
-2. **Pretraining locks in your cache economics.** MLA, shared KV, MSA, Gated DeltaNet must be chosen before training — one-way doors. Serving teams inherit these decisions; model selection *is* infrastructure selection. The consolation for the installed base: post-hoc low-rank retrofits ("Thin Keys, Full Values," 75% key savings, <1% pretraining data) give MLA-class savings without the pretraining door.
-3. **Default to FP8 E4M3 KV in production serving — with a validation gate.** ~2× capacity, 54% ITL slope on H100, break-even ~7K tokens, <0.3% accuracy cost. But: verify FlashAttention-3 two-level FP32 accumulation (`flash-attention#96`, `#91`) is present on Hopper *before* routing traffic, and run a 128K NIAH probe after every KV-dtype change — the 2026 91%→13% collapse was silent. Pin `fp8_e4m3`, not bare `fp8`, in DeepSeek-class serving recipes.
-4. **Do not overclaim FP4/NVFP4.** They remain Blackwell/SM100-native or experimental (SGLang v0.5.6 experimental flag; SGLang FP4 ≈ 1.78× tokens vs FP8, 3.56× vs BF16 on paper). INT4 KV quality is method- and setup-dependent. The production ladder reads: BF16 → FP8 (free) → INT4 (4×) → TurboQuant 3-bit (5.3×).
-5. **Do not equate sparse attention with KV-cache reduction.** DSA/MSA/IndexShare reduce attention *compute*; unless paired with explicit compression (V4's CSA/HCA), the cache must retain full-fidelity KVs for future indexer selection. Audit vendor claims on which quantity shrank.
-6. **For retrieval-critical long context, prefer architectures that keep KV uncompressed — or validate yourself.** MiniMax's MSA argument (uncompressed blocks → NIH fidelity) vs MLA's latent compression is an unresolved fidelity tradeoff; independent NIH-at-1M validation remains rare across vendors. For agentic/legal/medical workloads, token-eviction methods permanently discard context — prefer *lossless* compression (TurboQuant-class) where compliance demands it.
-7. **Reasoning traces are the new KV growth vector.** ThinKV (<5% cache, 5.8× throughput) and R-KV (10% cache, 6.6× throughput) show the 2026 frontier moving from prompt-cache compression to *thought*-cache compression — directly relevant as agentic workloads push reasoning traces past 100K tokens.
-8. **Cite mechanisms, not slogans.** "Dynamic drift correction" names no documented technique — the real mechanisms are GEAR's X ≈ D̂ + L + S, MiKV's runtime Dynamic Outlier Awareness, ResQ's PCA-gated splits, WKVQuant's 2D alignment, and TurboQuant's QJL unbiased residual correction. Name one of them.
-9. **Hybrids are the capacity answer; attention remains the recall answer.** 8–10× KV cuts are measured (Jamba-1.5; worked hybrid arithmetic), but exact-recall quality is the documented cost; the converged 2026 design is hybrid-by-ratio, not SSM-purist. Pure-SSM retrieval parity stays [UNVERIFIED] until needle-style evaluations.
-10. **Cross-refs to sibling coverage (one line each).** → **Part 06 (inference engines):** full per-release MLA kernel matrices (vLLM backend-priority rules, SGLang PR-level KV-dtype history, TensorRT-LLM pinning). → **Part 07b:** disaggregated/tiered KV storage (LMCache 7.43×, Mooncake, CacheGen), prefill/decode disaggregation, RDMA-shared KV (Lightbits, llm-d −88.2%), prefix caching (RadixAttention, vLLM), and 1M-context product status.
-
-## Sources and URLs
-
-- [COMMUNITY] https://temperature2.com/p/2026-09-08-did-you-know-multi-head-latent-attention/
-- [COMMUNITY] https://vizuara.medium.com/what-exactly-is-multi-head-latent-attention-mla-da06e42f997f
-- [COMMUNITY] https://github.com/ccomkhj/ccomkhj.github.io/blob/HEAD/_posts/2026-08-12-VariationOfMHA.md
-- [COMMUNITY] https://medium.com/@htasoftware/inside-deepseeks-secret-weapon-multi-head-latent-attention-mla-explained-f359af04d38a
-- [VENDOR] https://arxiv.org/abs/2604.05887
-- https://aclanthology.org/2026.acl-long.594/
-- https://arxiv.org/pdf/2604.05887v1.pdf
-- [VENDOR] https://github.com/defilantech/llmkube/issues/308
-- [COMMUNITY] https://github.com/captainbotgit/turboquant-mlx
-- [COMMUNITY] https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/
-- [DIRECTIONAL] https://cdn.prod.website-files.com/61a74a0b89162dfadb5acf21/69c6588d7694de16d5e965dd_TurboQuant%20%26%20The%20Memory%20Trade%20%E2%80%94%20Lighthouse%20Canton.pdf
-- [COMMUNITY] https://github.com/xp-py/llm-prep-2026/blob/HEAD/docs/Model_Zoo/Vision_Language_Models/Gemma_4.md
-- [COMMUNITY] https://github.com/kostadis/dgx-fun/blob/HEAD/gemma4-31b-dense-spec.md
-- [COMMUNITY] https://github.com/elizaos/eliza/issues/9033
-- [VENDOR] https://huggingface.co/unsloth/MiniMax-M3-GGUF
-- [VENDOR] https://the-decoder.com/minimax-m3-open-weight-model-with-a-million-token-context-challenges-proprietary-leaders/
-- [VENDOR] https://www.techtimes.com/articles/318622/20260618/minimax-m3-takes-open-weight-ai-lead-sparse-attention-architecture-now-verified.htm
-- [VENDOR] https://sambanova.ai/blog/minimax-m3-running-fastest-on-sambacloud
-- https://github.com/sgl-project/sglang/blob/HEAD/docs/docs/advanced_features/quantized_kv_cache.mdx
-- https://github.com/futuremls-lab/oscar/blob/HEAD/sglang-research/docs/advanced_features/quantized_kv_cache.md
-- https://github.com/sgl-project/sglang/pull/21253
-- https://github.com/sgl-project/sglang/pull/6109
-- https://github.com/sgl-project/sglang/pull/30514
-- [VENDOR] https://inferencex.semianalysis.com/blog/sglang-0-5-6-b200-deepseek-r1-fp4-up-to-1-8x
-- https://github.com/vllm-project/vllm/pull/48250
-- https://github.com/vllm-project/vllm/releases/
-- [VENDOR] https://alphasignal.ai/news/vllm-v0-23-0-ships-deepseek-v4-production-hardening-and-56-throughput-boost
-- [COMMUNITY] https://github.com/intel/containers/blob/HEAD/dockerfiles/vllm/release_notes/0.21.0-xpu.md
-- [COMMUNITY] https://github.com/smart-lty/my-skills/blob/HEAD/model-pr-optimization-history/sglang/deepseek-v3-r1/README.en.md
-- https://github.com/huggingface/text-generation-inference/releases
-- https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat
-- [COMMUNITY] https://github.com/iopsystems/llm-calc/blob/HEAD/docs/superpowers/specs/2026-05-12-dsa-design.md
-- [COMMUNITY] https://github.com/yusanxy/llm_flops/blob/HEAD/operators/references/deepseek_v32_dsa_sparse_attention/README.md
-- [COMMUNITY] https://github.com/suzeai/transformers/blob/HEAD/docs/source/en/model_doc/glm_moe_dsa.md
-- [COMMUNITY] https://earlyterms.com/term/indexshare
-- [VENDOR] https://felloai.com/it/deepseek-v4/
-- [COMMUNITY] https://github.com/neetx/ai-research-radar/blob/HEAD/reports/2026-06-16.md
-- [COMMUNITY] https://github.com/pestopoppa/epyc-root/blob/HEAD/wiki/ssm-hybrid.md
-- [COMMUNITY] https://github.com/mtgibbs/pi-cluster/blob/HEAD/docs/model-eval-2026-05.md
-- [COMMUNITY] https://github.com/flexinfer/flexinfer/commit/39941ba27bc269ee7e2a7091abf82031477908b2
-- [COMMUNITY] https://github.com/chtho-like/rosellm/blob/HEAD/docs/multimodal/kimi-k3.md
-- [COMMUNITY] https://github.com/smfworks/smfworks-site/blob/HEAD/content/drj/kimi-k2-7-code-vs-minimax-m3-coding-benchmark.md
-- [COMMUNITY] https://github.com/pinggy-io/pinggy_website/blob/HEAD/content/blog/best_open_source_self_hosted_llms_for_coding.md
-- [COMMUNITY] https://github.com/maximiliankhan/openbeast/blob/HEAD/research/lowrank/prior-art/arxiv-kv-holistic.md
-- [COMMUNITY] https://github.com/alkinun/speck/blob/HEAD/research/literature/16_deepseek_v2_mla.md
-- [COMMUNITY] https://github.com/maraja/llm-evolution/blob/HEAD/09-the-cost-revolution-and-global-competition/01-deepseek_v2_and_mla.md
 

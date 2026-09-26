@@ -5,16 +5,33 @@ domain: part-2-sglang
 role: deep-dive
 task: reference
 actors: ["AMD", "Alibaba", "DeepSeek", "Moonshot", "Nvidia", "SGLang", "Z.ai", "vLLM"]
-dates: ["2024-01-17", "2025-05", "2025-05-05", "2025-06-16", "2025-09-25", "2025-11-07", "2026-02-19", "2026-09-05", "2026-09-18"]
-keywords: ["agent", "amd", "attention", "copilot", "decode", "deepseek", "disaggregated", "glm", "gpu", "gpus", "gqa", "inference"]
+dates: ["2024-01-17", "2025-05", "2025-05-05", "2025-06-16", "2025-09-25", "2025-11-07", "2025-12-16", "2026-01-01", "2026-01-16", "2026-01-23", "2026-02-19", "2026-02-24", "2026-04-06", "2026-09-05", "2026-09-18"]
+keywords: ["agent", "amd", "attention", "decode", "deepseek", "diffusion", "disaggregated", "fp8", "glm", "gpu", "gpus", "gqa"]
 source: docs/RAG/etape4_trackA_vllm_sglang.md
 source_anchor: ""
-source_lines: [765, 813]
+source_lines: [748, 792]
 section: "PART 2 — SGLang"
-sha256: 742e83a2869033197db897db9b10fa21f96afa1677aae0b21cfd9bc2041f6ab3
+sha256: bac1754db1953be0b909db7ffa68b1bb8295968d522a83451332bec54d963564
 ---
 
 # 3. Architecture
+
+**v0.5.10 (2026-04-06)** [official] (details via releases-page crawl):
+- **Piecewise CUDA Graph enabled by default** (lower memory overhead, better throughput for complex control flow) — #16331.
+- **Elastic EP (NIXL-EP) for partial failure tolerance** for DeepSeek MoE: a failed GPU's expert weights are redistributed, serving continues without full restart.
+- **GPU staging buffer for PD disaggregation**: contiguous RDMA bulk transfer; ~1000× fewer RDMA requests on GQA models; ~5× TPS/GPU at large concurrency (Qwen3.5, prefill TP4 + decode DEP4).
+- **HiSparse sparse-attention backend** for long context.
+- **FlashInfer MXFP8 kernels** (GEMM + MoE) for mixed-precision FP8.
+- **Transformers 4.57.1 → 5.3.0** major upgrade.
+- SGLang-Diffusion updates: LTX-2, Hunyuan3D-2, Helios models; Qwen-Image/Z-Image +1.5×; macOS platform; Cache-DiT integration into diffusers backend.
+
+**v0.5.9 (2026-02-24)**: **LoRA weight loading overlapped with computation** — TTFT −~78% when swapping LoRA adapters (#15363) [official].
+
+**v0.5.8 (2026-01-23)**: diffusion models up to 1.5× faster (ties to lmsys.org/blog/2026-01-16-sglang-diffusion) [official].
+
+**v0.5.7 (2026-01-01)**: day-0 Mimo-V2-Flash (#15207, blog 2025-12-16) and other new models [official].
+
+---
 
 ## 3. Architecture
 
@@ -43,25 +60,4 @@ sha256: 742e83a2869033197db897db9b10fa21f96afa1677aae0b21cfd9bc2041f6ab3
 - v0.5.20: DCP1→DCP-N relayouts transfer **DSpark draft KV** (DSpark under PD with decode context parallelism, verified 8×B300 over NIXL and Mooncake to 256K input); new EPD refactor [official].
 - **Mooncake:** dependency `mooncake==0.3.13` (v0.5.19) [official]; MooncakeStore as L3/external storage tier for HiCache; Mooncake MoE A2A backend; Mooncake backend for the unified-cache external linker (v0.5.20) [official]. A downstream doc describes HiCache's third tier as "HF3FS, Mooncake" [secondary].
 - GB200 NVL72 blogs (official, lmsys.org): Part I (2025-06-16) 2.7× higher decoding throughput; Part II (2025-09-25) 3.8× prefill / 4.8× decode throughput with PD + large-scale EP [official]. GB300 NVL72 blog (2026-02-19): "Unlocking 25x Inference Performance with SGLang on NVIDIA GB300 NVL72" [official]. GB300 long-context work continued into 2026.
-
-### 3.5 Speculative decoding
-- Algorithms supported: **EAGLE** (incl. EAGLE3-generation work), **DFlash / DFlash2** ("next generation of speculative decoding", blog 2026-06), **DSpark** (confidence-driven, new in v0.5.16), **KDA**, **NEXTN**, **NGRAM**, **MTP** (multi-token prediction), **Standalone** draft models, adaptive speculative decoding [official].
-- Reported wins: DeepSeek models via EAGLE MTP — 1.8× decode speedup at batch 1, 1.5× at batch 32 on H200 [secondary](https://particula.tech/blog/sglang-vs-vllm-inference-engine-comparison); DFlash2 3.43× over no-spec at batch 1, +24% over DFlash at concurrency 64 (v0.5.19) [official]; NEXTN 1.35–1.76× over no-spec on AMD after GQA packing fix (v0.5.19) [official]; LFM2/LFM2-MoE DSpark 1.05–2.42× faster decoding (1×H100) [official]; FR-Spec on Flash-Next (community, Sept 2026): 65,536-token draft vocabulary [secondary](https://github.com/jpezzulli/sglang-rtxpro6000/blob/HEAD/RESULTS.md).
-- **Beam search** added v0.5.19 (`beam_width`) — distinct from speculative decoding, does not yet compose with it [official].
-- Compatibility caveats [secondary, LocalAI docs 2026]: DFLASH and NGRAM incompatible with `enable_dp_attention`; DFLASH requires `pp_size == 1`; STANDALONE incompatible with `enable_dp_attention`; NGRAM is CUDA-only and disables the overlap scheduler.
-
-### 3.6 CUDA graphs
-- **Piecewise & breakable CUDA graphs** are the default execution mode since v0.5.10 [official]; v0.5.19 adds PP prefill CUDA graphs (up to 2.48× at 2K-token forwards on Qwen3.5-397B, GB300), DP-attention coordination, −18.9% median TTFT / +12.9% QPS from reduced idle DP work [official]; v0.5.20 sizes the graph pool from warmup measurements and reuses output storage across full prefill graphs [official].
-
-### 3.7 Attention backends
-- FlashAttention-3, **FlashInfer** (0.6.18 required since v0.5.19; CuTe DSL; `flashinfer_trtllm` mxfp8 GEMM), FlashMLA / CutlassMLA / Tokenspeed MLA, Triton, **HiSparse** (sparse attention, v0.5.10), **fmha_v2** for SM90/120 (~15% faster than FA3 at kernel level, v0.5.19), TRT-LLM MLA/MHA decode, DeepGEMM, AITER (AMD), TileLang-backed MLA path [official].
-- MLA optimization and DP attention were in place before v0.4.1; SGLang claims 3.1× faster DeepSeek-V3 inference vs vLLM via optimized MLA backends [secondary](https://particula.tech/blog/sglang-vs-vllm-inference-engine-comparison) / [official v0.4.1 notes](https://github.com/sgl-project/sglang/releases/tag/v0.4.1).
-- **DeepSeek Sparse Attention (DSA)**: first-class; DSA prefill top-k v2 kernel 1.3–1.8× on B200 (v0.5.19); Q8KV8 sparse MLA prefill runtime for DeepSeek-V4 (+4.4–7.5% prefill throughput, H20) [official].
-
-### 3.8 Scheduler & runtime
-- Zero-overhead batch scheduler (v0.4, Dec 2024) [official]; continuous batching, chunked prefill (mixed chunk prefill base, v0.5.19), paged attention, overlap scheduling, per-scheduler load published on a dedicated socket for load-aware routers (v0.5.19) [official].
-- Rust server (`SGLANG_RUST_SERVER=1`): process-local in-memory KV indexer + Router integration, e2e latency metadata, configurable HTTP/2 window (v0.5.19) [official].
-- Default serving port **30000** (vLLM: 8000); Prometheus metrics under `sglang:*` prefix (requires `--enable-metrics`) [secondary](https://github.com/fuzzifikation/vllm-copilot/blob/HEAD/docs/sglang-compat-plan.md).
-
----
 

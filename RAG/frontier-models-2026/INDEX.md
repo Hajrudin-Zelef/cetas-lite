@@ -1,6 +1,6 @@
 # INDEX — Frontier AI Models 2026 — Vague 1 (EN)
 
-Corpus `frontier-models-2026` · **12 fichiers** · 510 lignes source · ~7220 mots · partition exacte de `docs/RAG/Grands titres IA modèlesEN.md`.
+Corpus `frontier-models-2026` · **13 fichiers** · 510 lignes source · ~7220 mots · partition exacte de `docs/RAG/Grands titres IA modèlesEN.md`.
 
 ## Mode d'emploi
 
@@ -20,8 +20,9 @@ Corpus `frontier-models-2026` · **12 fichiers** · 510 lignes source · ~7220 m
 
 | # | fichier | lignes source | rôle | tâche |
 |---|---|---|---|---|
-| 01 | [VOLET 1 — Wave 1 Research Fiche (EN)](01-volet-1-wave-1-research-fiche-en/overview.md) | 7–95 | deep-dive | reference |
-| 02 | [3. Gemini 3.1 Pro (Google DeepMind)](01-volet-1-wave-1-research-fiche-en/3-gemini-3-1-pro-google-deepmind.md) | 96–146 | deep-dive | actor-profile |
+| 01 | [VOLET 1 — Wave 1 Research Fiche (EN)](01-volet-1-wave-1-research-fiche-en/overview.md) | 7–90 | deep-dive | reference |
+| 02 | [What distinguished it in 2026](01-volet-1-wave-1-research-fiche-en/what-distinguished-it-in-2026.md) | 91–95 | deep-dive | reference |
+| 03 | [3. Gemini 3.1 Pro (Google DeepMind)](01-volet-1-wave-1-research-fiche-en/3-gemini-3-1-pro-google-deepmind.md) | 96–146 | deep-dive | actor-profile |
 
 ### `02-volet-1-vague-1-frontier-ai-models-february-september-2026/`
 
@@ -76,7 +77,7 @@ Corpus `frontier-models-2026` · **12 fichiers** · 510 lignes source · ~7220 m
 
 - **actor-profile** — [3. Gemini 3.1 Pro (Google DeepMind)](01-volet-1-wave-1-research-fiche-en/3-gemini-3-1-pro-google-deepmind.md), [1. Grok 4.20 (xAI)](03-grok-4-20-xai/overview.md), [2. DeepSeek V4 & DeepSeek V4.1 Flash](04-deepseek-v4-deepseek-v4-1-flash/overview.md), [3. GLM-5.2 / GLM-5.3 / GLM-5.3-Flash (Zhipu AI / Z.ai)](05-glm-5-2-glm-5-3-glm-5-3-flash-zhipu-ai-z-ai/overview.md), [3. QWEN3.8 MAX (Alibaba) + Qwen3.x family](09-rag-research-brief-volet1-wave-1-part-3-3/3-qwen3-8-max-alibaba-qwen3-x-family.md)
 - **model-release** — [VOLET 1 — Vague 1: Frontier AI Models (February → September 2026)](02-volet-1-vague-1-frontier-ai-models-february-september-2026/overview.md)
-- **reference** — [VOLET 1 — Vague 1 (EN)](00-front-matter/overview.md), [VOLET 1 — Wave 1 Research Fiche (EN)](01-volet-1-wave-1-research-fiche-en/overview.md), [4. Cross-cutting comparison (vague 1 models)](06-cross-cutting-comparison-vague-1-models/overview.md), [5. Global trend (Feb–Sep 2026)](07-global-trend-febsep-2026/overview.md), [6. Caveats & methodology notes](08-caveats-methodology-notes/overview.md), [RAG Research Brief — VOLET1 / Wave 1 (Part 3/3)](09-rag-research-brief-volet1-wave-1-part-3-3/overview.md)
+- **reference** — [VOLET 1 — Vague 1 (EN)](00-front-matter/overview.md), [VOLET 1 — Wave 1 Research Fiche (EN)](01-volet-1-wave-1-research-fiche-en/overview.md), [What distinguished it in 2026](01-volet-1-wave-1-research-fiche-en/what-distinguished-it-in-2026.md), [4. Cross-cutting comparison (vague 1 models)](06-cross-cutting-comparison-vague-1-models/overview.md), [5. Global trend (Feb–Sep 2026)](07-global-trend-febsep-2026/overview.md), [6. Caveats & methodology notes](08-caveats-methodology-notes/overview.md), [RAG Research Brief — VOLET1 / Wave 1 (Part 3/3)](09-rag-research-brief-volet1-wave-1-part-3-3/overview.md)
 
 ## Par acteur
 
@@ -137,7 +138,8 @@ Corpus `frontier-models-2026` · **12 fichiers** · 510 lignes source · ~7220 m
 | plage | fichier |
 |---|---|
 | 1–6 | frontier-models-2026/00-front-matter/overview.md |
-| 7–95 | frontier-models-2026/01-volet-1-wave-1-research-fiche-en/overview.md |
+| 7–90 | frontier-models-2026/01-volet-1-wave-1-research-fiche-en/overview.md |
+| 91–95 | frontier-models-2026/01-volet-1-wave-1-research-fiche-en/what-distinguished-it-in-2026.md |
 | 96–146 | frontier-models-2026/01-volet-1-wave-1-research-fiche-en/3-gemini-3-1-pro-google-deepmind.md |
 | 147–153 | frontier-models-2026/02-volet-1-vague-1-frontier-ai-models-february-september-2026/overview.md |
 | 154–196 | frontier-models-2026/03-grok-4-20-xai/overview.md |

@@ -9,9 +9,9 @@ dates: ["2021-10", "2026-07", "2026-08", "2026-09", "2026-09-22"]
 keywords: ["capex", "cost", "dsp", "gpu", "hyperscaler", "latency", "memory", "nvidia", "pricing", "research"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [994, 1046]
+source_lines: [994, 1038]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 66378e67e8b62721c464e39f3d7dadc22323199ec7270d43e5ed458feccbba49
+sha256: 8c3579b2b85131af655bec9d30e6d895db63d18b5be751c02ee1fc5359bae7b1
 ---
 
 # Wave 6 — DAC vs AOC vs AEC: Direct-Attach Cable Technologies
@@ -60,12 +60,4 @@ An independent test (AICPlight, Medium, ~August 2026) of a 1 m 200G QSFP56 passi
 ### 6.2 Active copper DAC / ACC (Active Copper Cable)
 
 **Where the chips sit / what they do.** ACC adds active signal-conditioning electronics to the copper assembly. Dominant architecture: a linear redriver chip (continuous-time linear equalizer, CTLE — an analog amplifier/equalizer) that boosts and equalizes the signal [secondary]. **Conflict:** Fibermall states the linear redriver sits "at the Rx end of the cable" [secondary]; VEEX states ACC adds "signal equalization and amplification electronics at both ends" [secondary]; FS.com's AEC article says redrivers "amplify the signal" but "do not recondition it… they amplify the noise as well," contrasting redriver (analog) with retimer (clock restore + resample) [vendor-reported] (FS.com AEC blog). Treat exact placement as vendor-dependent. Because a redriver has no clock-data recovery, jitter and noise accumulate and are amplified — ACC reach gain over passive is modest [secondary].
-
-**Extended reach vs passive.** FS.com: 400G ACC reach is "relatively longer by 2–3 meters compared to 400G DAC" (i.e., up to ~5–6 m total at 400G) [vendor-reported] (FS.com 400G DAC/AOC/ACC/AEC guide). FS.com QSFP-DD datasheet order table lists active copper (AC) cables: QDD-400G-AC01/02/03/05/07 = 1/2/3/5/7 m; QSFP112 active 1–5 m; while passive (PC) tops out at 3 m [vendor-reported] (FS datasheet 20240403150013b786tc.pdf). Network-switch.com comparison: active DAC 7–15 m, power <1W (speed-dependent; likely lower-speed generations) [secondary].
-
-**Power.** 400G QSFP-DD active copper (FS P/N QDD-400G-AC03, 3 m, Arista-compatible, SKU 177377): "Built-in Macom Chip, Max. power consumption 2.5W" [vendor-reported] (fs.com/sg product 177377). Generic comparison tables quote ACC <1W at lower speeds; at 400G with retimer-class chips power is higher — FS's own blog notes retimer-based active chips carry "higher prices and power consumption" than redrivers [vendor-reported] (FS.com 400G guide).
-
-**Vendors (chips + cable assemblers).** Chip side (sourced): MACOM (redriver/linear chips inside FS.com 400G active DAC) [vendor-reported]. Credo and Astera Labs are retimer/DSP vendors whose chips are used in AEC assemblies (see §6.4); no source names them as ACC redriver suppliers — do not conflate [unverified for ACC]. Cable/assembler side (sourced): FS.com (QDD-400G-ACxx series), Optcore, Amphenol, Molex, TE Connectivity (general DAC/AEC assembler market; no per-SKU evidence pulled for TE/Molex ACC — flagged [unverified] at SKU level). QSFPTEK sells "active breakout DAC" 800G products (e.g., 800G OSFP→2×400G QSFP112 active 3 m, ≤1.5W/≤0.6W, US$1,136) [vendor-reported] (fs.com 800g-dac-aoc category).
-
-**Price premium over passive.** "The cost of 400G ACC is higher than that of 400G passive DAC due to the presence of active chips internally" [vendor-reported] (FS.com 400G guide). Non-comparable datapoints (flag): FS.com Singapore 400G QSFP-DD active 3 m (QDD-400G-AC03) = SGD 683.43 GST incl. [vendor-reported]; Optcore Cisco-compatible 400G QSFP-DD passive 3 m (26AWG) = US$209 excl. VAT [vendor-reported] (optcore.net QDD-400G-DAC-P3M). Different vendors, currencies, and OEM-coding — directional only: active costs a multiple of passive.
 

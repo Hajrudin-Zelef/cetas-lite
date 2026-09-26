@@ -4,7 +4,7 @@
   "source": "docs/RAG/Modèles IA open  locauxEN.md",
   "source_lines": 1064,
   "source_sha256": "b7677884f9955c40255e388cb12f38e37026a830a5fec06e4c96a7ad54286e81",
-  "chunk_count": 26,
+  "chunk_count": 31,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -133,11 +133,7 @@
         "2026-06-16",
         "2026-07-16",
         "2026-07-24",
-        "2026-08-14",
-        "2026-08-26",
-        "2026-08-28",
-        "2026-09-10",
-        "2026-09-18"
+        "2026-09-10"
       ],
       "keywords": [
         "deepseek",
@@ -149,26 +145,26 @@
         "attribution",
         "benchmarks",
         "claude",
-        "compute",
         "cost",
-        "cyber"
+        "export controls",
+        "fable 5"
       ],
       "source": "docs/RAG/Modèles IA open  locauxEN.md",
       "source_anchor": "",
       "source_lines": [
         64,
-        136
+        117
       ],
       "canonical_for": [],
-      "words": 1363,
-      "bytes": 9718,
-      "sha256": "5cb52b3bfa6afe38a65e928d63e26e1b8223fb1a244fb317f1e29080638a3ddf",
+      "words": 990,
+      "bytes": 7016,
+      "sha256": "6467ed925aba015f7746c2e10042269a5d4ad8ea30ebe9669f22a29abed2aed2",
       "section": "STEP 1 — Open / Local AI Models (Chinese track) — Research Fiche"
     },
     {
-      "id": "open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek",
-      "path": "open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/part-e-mimo-xiaomi-mimo-ai-team-led-by-luo-fuli-ex-deepseek.md",
-      "title": "PART E — MIMO (Xiaomi; MiMo AI team led by Luo Fuli, ex-DeepSeek)",
+      "id": "open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/glm-5-3-api-august-14-2026-open-weights-august-28-2026",
+      "path": "open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/glm-5-3-api-august-14-2026-open-weights-august-28-2026.md",
+      "title": "GLM-5.3 — API August 14, 2026; open weights August 28, 2026",
       "domain": "step-1-open-local-ai-models-chinese-track-research-fiche",
       "role": "deep-dive",
       "task": "actor-profile",
@@ -178,15 +174,17 @@
         "Anthropic",
         "China",
         "DeepSeek",
-        "EU",
         "Google",
+        "Huawei",
         "MiniMax",
         "Moonshot",
         "Nvidia",
         "OpenAI",
         "OpenRouter",
-        "United States",
+        "SGLang",
         "Xiaomi",
+        "Z.ai",
+        "vLLM",
         "xAI"
       ],
       "dates": [
@@ -195,35 +193,84 @@
         "2026-03-18",
         "2026-04-22",
         "2026-06",
-        "2026-06-01",
-        "2026-07-31",
-        "2026-09-15",
+        "2026-08-14",
+        "2026-08-26",
+        "2026-08-28",
+        "2026-09-18",
         "2026-09-21"
       ],
       "keywords": [
-        "deepseek",
+        "glm",
+        "open weights",
         "agent",
         "agentic",
         "attention",
         "aws",
         "bedrock",
         "benchmarks",
-        "chatgpt",
         "compute",
         "cost",
-        "decode",
-        "distribution"
+        "cyber",
+        "deepseek"
       ],
       "source": "docs/RAG/Modèles IA open  locauxEN.md",
       "source_anchor": "",
       "source_lines": [
-        137,
+        118,
+        170
+      ],
+      "canonical_for": [],
+      "words": 1105,
+      "bytes": 7857,
+      "sha256": "7748c9817b27b6b9d2a60a29db8bcdade7d18b84871766f1343bc1822b6d1148",
+      "section": "STEP 1 — Open / Local AI Models (Chinese track) — Research Fiche"
+    },
+    {
+      "id": "open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/minimax-m3-june-1-2026",
+      "path": "open-local-models-2026/01-step-1-open-local-ai-models-chinese-track-research-fiche/minimax-m3-june-1-2026.md",
+      "title": "MiniMax M3 — June 1, 2026",
+      "domain": "step-1-open-local-ai-models-chinese-track-research-fiche",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Anthropic",
+        "China",
+        "EU",
+        "MiniMax",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "United States"
+      ],
+      "dates": [
+        "2026-06-01",
+        "2026-07-31",
+        "2026-09-15"
+      ],
+      "keywords": [
+        "attention",
+        "benchmarks",
+        "chatgpt",
+        "compute",
+        "decode",
+        "distribution",
+        "gpu",
+        "gqa",
+        "latency",
+        "license",
+        "moe",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Modèles IA open  locauxEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        171,
         197
       ],
       "canonical_for": [],
-      "words": 1247,
-      "bytes": 9018,
-      "sha256": "667acf0761d85970c2a33b6b84318cdc21bcc8893cb984308ebabaf8aa5ecfdb",
+      "words": 515,
+      "bytes": 3863,
+      "sha256": "d5a23a537c1952b661f60043cbcc58a2847b2526b6ca9b5ed08808a74b8a79fa",
       "section": "STEP 1 — Open / Local AI Models (Chinese track) — Research Fiche"
     },
     {
@@ -324,7 +371,6 @@
       "role": "deep-dive",
       "task": "actor-profile",
       "actors": [
-        "AMD",
         "AWS",
         "Alibaba",
         "Anthropic",
@@ -338,16 +384,13 @@
         "Moonshot",
         "Nvidia",
         "OpenAI",
-        "OpenRouter",
-        "United States"
+        "OpenRouter"
       ],
       "dates": [
         "2025-04",
         "2025-04-05",
         "2026-01",
-        "2026-04",
         "2026-04-08",
-        "2026-07",
         "2026-07-09",
         "2026-07-31",
         "2026-08",
@@ -360,7 +403,6 @@
       "keywords": [
         "llama",
         "agent",
-        "amd",
         "apache",
         "attention",
         "attribution",
@@ -368,19 +410,60 @@
         "bedrock",
         "benchmark",
         "benchmarks",
-        "capex",
-        "claude"
+        "claude",
+        "consumer",
+        "context window"
       ],
       "source": "docs/RAG/Modèles IA open  locauxEN.md",
       "source_anchor": "",
       "source_lines": [
         287,
+        360
+      ],
+      "canonical_for": [],
+      "words": 1087,
+      "bytes": 7484,
+      "sha256": "209532ffbc83e10a94ca4b8c99f2c0c4430baee1f545c35c0a2c2bd0eb00f20c",
+      "section": "PART 1 — META LLAMA FAMILY"
+    },
+    {
+      "id": "open-local-models-2026/03-part-1-meta-llama-family/part-2",
+      "path": "open-local-models-2026/03-part-1-meta-llama-family/part-2.md",
+      "title": "PART 1 — META LLAMA FAMILY (part 2)",
+      "domain": "part-1-meta-llama-family",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AMD",
+        "Meta",
+        "United States"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-07",
+        "2026-08-10"
+      ],
+      "keywords": [
+        "llama",
+        "amd",
+        "apache",
+        "capex",
+        "muse",
+        "muse spark",
+        "open weights",
+        "revenue",
+        "training"
+      ],
+      "source": "docs/RAG/Modèles IA open  locauxEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        361,
         367
       ],
       "canonical_for": [],
-      "words": 1242,
-      "bytes": 8572,
-      "sha256": "4dbf38e29709b814a7d75928a3cc7bb649570e5fe1fe725105711aa923e2e0f3",
+      "words": 155,
+      "bytes": 1088,
+      "sha256": "b81943019bd295d3f318da9622ed56b62677916ce4cc81be5f86f53a443016dc",
       "section": "PART 1 — META LLAMA FAMILY"
     },
     {
@@ -391,9 +474,7 @@
       "role": "deep-dive",
       "task": "actor-profile",
       "actors": [
-        "Alibaba",
         "Anthropic",
-        "Apple",
         "Google",
         "Hugging Face",
         "Meta",
@@ -420,23 +501,64 @@
         "agentic",
         "agi",
         "apache",
-        "benchmark",
         "benchmarks",
         "claude",
         "consumer",
         "context window",
-        "cost"
+        "cost",
+        "fable 5"
       ],
       "source": "docs/RAG/Modèles IA open  locauxEN.md",
       "source_anchor": "",
       "source_lines": [
         368,
+        435
+      ],
+      "canonical_for": [],
+      "words": 1096,
+      "bytes": 7509,
+      "sha256": "bda0a41c3a50eb4f3a84f74a300ac9de6ed413a4a67ede37ffd4af7844c43bb2",
+      "section": "PART 2 — META MUSE SPARK FAMILY"
+    },
+    {
+      "id": "open-local-models-2026/04-part-2-meta-muse-spark-family/2-8-relationship-to-llama",
+      "path": "open-local-models-2026/04-part-2-meta-muse-spark-family/2-8-relationship-to-llama.md",
+      "title": "2.8 Relationship to Llama",
+      "domain": "part-2-meta-muse-spark-family",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Apple",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "llama",
+        "agent",
+        "agentic",
+        "agi",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "context window",
+        "distillation",
+        "gguf",
+        "gpu"
+      ],
+      "source": "docs/RAG/Modèles IA open  locauxEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        436,
         460
       ],
       "canonical_for": [],
-      "words": 1448,
-      "bytes": 9985,
-      "sha256": "b905a1ec1763c63c1a96990330b7ee00603e9614e689f6de8d8c0b16b88b2f0d",
+      "words": 352,
+      "bytes": 2476,
+      "sha256": "026307022fc0e5837149e6569f6d0775e847f07f60bfb08f20055c37241a4b2b",
       "section": "PART 2 — META MUSE SPARK FAMILY"
     },
     {
@@ -888,8 +1010,29 @@
       "domain": "part-12-key-sources",
       "role": "deep-dive",
       "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/Modèles IA open  locauxEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        754,
+        755
+      ],
+      "canonical_for": [],
+      "words": 6,
+      "bytes": 27,
+      "sha256": "e6a83345cff25d3119f36565ac50ca79d5e0935434e2b6896979d100a2ef411f",
+      "section": "PART 12 — KEY SOURCES"
+    },
+    {
+      "id": "open-local-models-2026/14-part-12-key-sources/part-2",
+      "path": "open-local-models-2026/14-part-12-key-sources/part-2.md",
+      "title": "PART 12 — KEY SOURCES (part 2)",
+      "domain": "part-12-key-sources",
+      "role": "deep-dive",
+      "task": "reference",
       "actors": [
-        "Google",
         "Hugging Face",
         "Meta",
         "Microsoft",
@@ -909,26 +1052,66 @@
         "agent",
         "agentic",
         "agents",
-        "apache",
         "astra",
         "benchmarks",
-        "chatgpt",
         "claude",
         "consumer",
-        "cost",
-        "deepseek",
-        "gpt-6"
+        "gpt-6",
+        "gpu",
+        "kimi",
+        "leaderboard",
+        "license"
       ],
       "source": "docs/RAG/Modèles IA open  locauxEN.md",
       "source_anchor": "",
       "source_lines": [
-        754,
+        756,
+        763
+      ],
+      "canonical_for": [],
+      "words": 285,
+      "bytes": 7069,
+      "sha256": "fa2e4603b29d79b7072414d95e253f56509ba87ed1c9de5ea9ccd592d4f38af7",
+      "section": "PART 12 — KEY SOURCES"
+    },
+    {
+      "id": "open-local-models-2026/14-part-12-key-sources/part-3",
+      "path": "open-local-models-2026/14-part-12-key-sources/part-3.md",
+      "title": "PART 12 — KEY SOURCES (part 3)",
+      "domain": "part-12-key-sources",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft",
+        "Mistral",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "apache",
+        "chatgpt",
+        "cost",
+        "deepseek",
+        "inference",
+        "intel",
+        "llama",
+        "mistral",
+        "moe",
+        "muse"
+      ],
+      "source": "docs/RAG/Modèles IA open  locauxEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        764,
         772
       ],
       "canonical_for": [],
-      "words": 542,
-      "bytes": 12926,
-      "sha256": "8156ad35380c716d0d0dbd931b53890ebbd7bca6182d314952f926367e78214f",
+      "words": 251,
+      "bytes": 5830,
+      "sha256": "cb19bc0dcadccf66c177341981d686f20ab9ea38a30b0bfbbc0a2619374ed210",
       "section": "PART 12 — KEY SOURCES"
     },
     {

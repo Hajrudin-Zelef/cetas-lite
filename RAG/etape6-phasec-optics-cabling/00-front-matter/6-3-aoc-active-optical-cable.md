@@ -4,17 +4,25 @@ title: "6.3 AOC (Active Optical Cable)"
 domain: front-matter
 role: reference
 task: reference
-actors: ["Broadcom", "EU", "United States", "xAI"]
-dates: ["2021-09", "2022-03", "2022-10", "2023-10", "2023-11", "2024-03", "2024-10", "2024-10-10", "2026-01", "2026-08", "2026-09"]
-keywords: ["cost", "disaggregated", "dsp", "ethernet", "gpu", "hyperscaler", "latency", "optics", "packaging", "pricing", "serdes"]
+actors: ["Broadcom", "United States"]
+dates: ["2023-11"]
+keywords: ["cost", "dsp", "latency", "packaging", "serdes"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [1047, 1098]
+source_lines: [1039, 1070]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 07c359672a1aca0568637f450415cce3db367668e5025543506b588b4fd291f0
+sha256: fcc69e26701acd1c3eb51784449f6c0750fb7959285c6b2e8053ab29ad5986a3
 ---
 
 # 6.3 AOC (Active Optical Cable)
+
+**Extended reach vs passive.** FS.com: 400G ACC reach is "relatively longer by 2–3 meters compared to 400G DAC" (i.e., up to ~5–6 m total at 400G) [vendor-reported] (FS.com 400G DAC/AOC/ACC/AEC guide). FS.com QSFP-DD datasheet order table lists active copper (AC) cables: QDD-400G-AC01/02/03/05/07 = 1/2/3/5/7 m; QSFP112 active 1–5 m; while passive (PC) tops out at 3 m [vendor-reported] (FS datasheet 20240403150013b786tc.pdf). Network-switch.com comparison: active DAC 7–15 m, power <1W (speed-dependent; likely lower-speed generations) [secondary].
+
+**Power.** 400G QSFP-DD active copper (FS P/N QDD-400G-AC03, 3 m, Arista-compatible, SKU 177377): "Built-in Macom Chip, Max. power consumption 2.5W" [vendor-reported] (fs.com/sg product 177377). Generic comparison tables quote ACC <1W at lower speeds; at 400G with retimer-class chips power is higher — FS's own blog notes retimer-based active chips carry "higher prices and power consumption" than redrivers [vendor-reported] (FS.com 400G guide).
+
+**Vendors (chips + cable assemblers).** Chip side (sourced): MACOM (redriver/linear chips inside FS.com 400G active DAC) [vendor-reported]. Credo and Astera Labs are retimer/DSP vendors whose chips are used in AEC assemblies (see §6.4); no source names them as ACC redriver suppliers — do not conflate [unverified for ACC]. Cable/assembler side (sourced): FS.com (QDD-400G-ACxx series), Optcore, Amphenol, Molex, TE Connectivity (general DAC/AEC assembler market; no per-SKU evidence pulled for TE/Molex ACC — flagged [unverified] at SKU level). QSFPTEK sells "active breakout DAC" 800G products (e.g., 800G OSFP→2×400G QSFP112 active 3 m, ≤1.5W/≤0.6W, US$1,136) [vendor-reported] (fs.com 800g-dac-aoc category).
+
+**Price premium over passive.** "The cost of 400G ACC is higher than that of 400G passive DAC due to the presence of active chips internally" [vendor-reported] (FS.com 400G guide). Non-comparable datapoints (flag): FS.com Singapore 400G QSFP-DD active 3 m (QDD-400G-AC03) = SGD 683.43 GST incl. [vendor-reported]; Optcore Cisco-compatible 400G QSFP-DD passive 3 m (26AWG) = US$209 excl. VAT [vendor-reported] (optcore.net QDD-400G-DAC-P3M). Different vendors, currencies, and OEM-coding — directional only: active costs a multiple of passive.
 
 ### 6.3 AOC (Active Optical Cable)
 
@@ -39,32 +47,4 @@ sha256: 07c359672a1aca0568637f450415cce3db367668e5025543506b588b4fd291f0
 **How it works.** Copper twinax like a DAC, but with **retimer chips with CDR at both ends** of the cable (plus a small MCU for CMIS/I2C management). The retimer fully recovers clock and data, equalizes (DSP-based: FFE/DFE), and re-transmits a clean signal — resetting both the loss and jitter budgets at each end [vendor-reported] (FS.com AEC blog: "retimers… recondition the data signal… reducing noise and amplifying the signal"). [official] Microchip press release for META-DX2C: "high-performance, long-reach 112G SerDes that can support up to 40 dB reach" (globenewswire.com, November 2023). This enables thin-gauge copper (32–34AWG at 800G) at lengths passive DAC cannot achieve.
 
 **How AEC differs from ACC.** ACC = linear redriver (analog CTLE), no CDR; amplifies signal *and* noise, jitter accumulates; modest reach gain (~+2–3 m at 400G), lower power/cost [vendor-reported/secondary]. AEC = DSP retimer with CDR at both ends; recovers clock, re-times, re-drives; blocks jitter propagation; longer reach (up to 7 m at 400G/800G) at higher power and cost [vendor-reported] (FS.com guide; Fibermall; FS.com AEC blog). FS.com: "AEC with re-timers provides a superior solution for maintaining data integrity… compared to ACC which uses linear amplifiers" [vendor-reported].
-
-**Key chip vendors.**
-- **Credo (HiWire AECs)** — vertically integrated: own DSP/SerDes retimer silicon inside HiWire cable assemblies [official] (BusinessWire press releases). Chip-family naming: "HiWire" = Credo's AEC cable brand (purple jacket), verified [official]. "Seagull" = Credo's PAM4 DSP family (Seagull 110 2×50G, Seagull XR8 8×50G) — but sourced as **optical DSPs with integrated VCSEL/EML drivers** for AOC/transceiver use, *not* documented as AEC cable retimers in the sources found [official] (BusinessWire, March 2022; September 2021). "Dove" = [unverified] — no source found for a Credo "Dove" retimer/AEC chip; do not use without verification. Verified Credo retimer families: **Screaming Eagle 112G** (3rd-gen 112G retimer DSP, up to 1.6T capacity, sampling ~2022) [official] (lightwaveonline.com coverage).
-- **Astera Labs** — **Taurus Ethernet Smart Cable Modules**: purpose-built modules for cable vendors to build 200/400/800G Ethernet AECs; demonstrated at OCP Global Summit (October 2023) [official] (BusinessWire, October 2023). Note: Astera's **Aries** family = PCIe/CXL retimers and Smart Cable Modules for PCIe AECs (Aries 6 SCM: up to 7 m PCIe 6.x, January 2026 product brief) — PCIe fabric, not Ethernet; do not conflate [official] (asteralabs.com Aries PCIe/CXL SCM product brief).
-- **Microchip** — META-DX2C (part #PM6254) 112G retimer for 800G AECs, 40 dB reach, CMIS 5.2 SDK, available since November 2023 [official].
-- **Broadcom** — DSP-based AEC models referenced (64-tap FFE/12-tap DFE) in a Fibermall analysis [secondary] (medium.com/@fibermall.com 400G NDR splitter / OSFP 800G analysis) — [unverified] at product level; Broadcom DSPs are documented inside FS.com 400G AOCs, not AECs, in the sources found.
-- **Cable assemblers selling AECs:** Amphenol (800G OSFP AEC via Cables on Demand), FS.com, QSFPTEK, Vchung-style white-label vendors; TE Connectivity and Molex are major high-speed cable assemblers generally but no per-SKU AEC evidence was pulled for them — [unverified] at SKU level.
-
-**Max lengths (sourced).**
-- **400G AEC:** up to 7 m — Credo LP SPAN Gen 2: 3/5/7 m options at 4.5 W/end (400G PAM4 8×56G); Gen 1: 3/5 m at 8.5 W/end [official] (BusinessWire, September 2021).
-- **800G AEC:** Credo LP CLOS: up to 2.5 m (32AWG, 2021) [official]; Credo **ZeroFlap (ZF)** 800G AEC: up to **7 m**, launched October 10, 2024, for AI backend networks; four variants: 800G OSFP↔OSFP, OSFP↔OSFP-RHS, OSFP↔2×OSFP-RHS, OSFP↔2×Q112 (QSFP112) [official] (venturebeat.com, Credo ZeroFlap launch).
-- Third-party 800G AEC products (in production/retail as of September 2026): Amphenol 800G OSFP (finned) → 2×400G OSFP (flat) AEC in 3 m (32AWG), 5 m (30AWG), 7 m (28AWG) — in stock at Cables on Demand [vendor-reported] (cablesondemand.com QSFP-DD/OSFP cables page); QSFPTEK generic 800G OSFP→2×400G OSFP AEC 1 m, copper link up to 7 m max, 26–34AWG [vendor-reported] (qsfptek.com product 103796); FS.com EU 800G OSFP→2×400G OSFP AEC 4 m (P/N OSFP-800G-2OFLAE04, SKU 312079) [vendor-reported] (fs.com/eu-en product 312079).
-
-**Power per cable (sourced).** 200G AEC: 2.5 W/end (Credo LP SPAN Gen 2) / 4.5 W/end (Gen 1) [official]. 400G AEC: 4.5 W/end (Gen 2) / 8.5 W/end (Gen 1) [official]. 800G AEC: QSFPTEK generic breakout <9 W max [vendor-reported]; FS.com EU 800G AEC 4 m: 12 W (800G end) / 10 W per 400G end [vendor-reported]; FS.com MX 800G OSFP AEC 1 m: ≤12 W [vendor-reported]; 1.6T OSFP-XD AEC: <20 W/end [official] (Credo, October 2022). Relative claims: Credo LP CLOS AEC = "half the power of optical cabling solutions" [vendor-reported]; ZeroFlap = "power savings of up to 14W per link" vs legacy optics [vendor-reported]; Credo CLOS AEC brief claims 75% less power than optical solutions [vendor-reported] — vendor marketing ratios, treat as [vendor-reported/unverified-independently].
-
-**Latency added by retimers.** **No AEC-cable-specific retimer latency figure was sourced.** Closest verified numbers: Credo Bluebird 1.6T **optical** DSP: "latency below 40ns in each direction" [official-via-press] (stocktitan.net, Credo Bluebird 1.6T optical DSP). Industry rule-of-thumb for a PAM4 DSP retimer hop is on the order of ~100 ns — **[unverified]**; do not quote as fact. FS.com EU lists "ultra-low latency" for its 800G AEC without a number [vendor-reported].
-
-**Use cases.** Rack-to-rack and intra-rack where passive DAC is too short/rigid but AOC is overkill: Distributed Disaggregated Chassis (DDC) CLOS fabrics [official] (Credo CLOS AEC brief); GPU/AI backend lossless RDMA networks — Credo ZeroFlap "zero soft link flaps" for AI backend, endorsed by xAI network engineering for 100,000+ GPU builds [official] (VentureBeat/BusinessWire, October 2024); in-cable **speed-shifting** AECs bridging 112G-lane NICs to legacy 56G-lane 12.8T/25.6T/51.2T ToRs (Credo 400G AI/ML backend family, sampling March 2024, production Q3 2024 — e.g., 400G OSFP-RHS 4×112 ↔ QSFP-DD 8×56; 800G 2×(4×112) ↔ 8×112) [official] (nasdaq.com press release, March 2024).
-
-**Pricing (sourced, single-unit web list, September 2026 unless noted).**
-- Amphenol 800G OSFP→2×400G OSFP AEC (OEM P/N NND1JA-0303 etc.), Cables on Demand, in stock ~August 2026: 3 m $1,869.93; 5 m $2,131.02; 7 m $2,503.51 (1–50 qty) [vendor-reported] (cablesondemand.com).
-- QSFPTEK generic 800G OSFP→2×400G OSFP AEC 1 m (Product No. 103796): US$1,664.10, stock dated 16 September 2026 [vendor-reported] (qsfptek.com product 103796).
-- FS.com EU 800G OSFP→2×400G OSFP AEC 4 m (OSFP-800G-2OFLAE04, SKU 312079): €1,568.00 VAT excl. (€1,865.92 incl.) [vendor-reported] (fs.com/eu-en product 312079).
-- FS.com MX 800G OSFP AEC 1 m: MXN$21,151 [vendor-reported]; 800G OSFP AOC 1 m: MXN$48,135 (same page — AEC ≈44% of AOC list price in that storefront; currencies identical, but different cable types/lengths — directional only) [vendor-reported] (fs.com/mx 800g category).
-- Credo claim (October 2024): "cost savings of up to $1,000 per GPU" vs legacy optics in AI clusters [vendor-reported] — hyperscaler-context marketing figure, [unverified] independently.
-- FS.com US 800G active breakout DAC (not full AEC): 800G OSFP→2×400G QSFP112 active 3 m, US$1,136; 800G OSFP→4×200G QSFP112 active 5 m, US$1,536 [vendor-reported] (fs.com 800g-dac-aoc category).
-
-**800G AEC status as of September 2026.** **In production and broadly available:** Credo ZeroFlap 800G (7 m) shipping since late 2024 with "millions of HiWire AECs deployed at tier-one hyperscalers" [vendor-reported]; Amphenol and white-label (QSFPTEK, FS.com) 800G AECs in retail stock [vendor-reported]; 650 Group (Alan Weckel) quoted 2022: "AECs will quickly replace direct attached copper" as hyperscalers scale [independent-analyst-via-vendor-PR]. AEC is an established, growing category at 800G — not sampling-only.
 

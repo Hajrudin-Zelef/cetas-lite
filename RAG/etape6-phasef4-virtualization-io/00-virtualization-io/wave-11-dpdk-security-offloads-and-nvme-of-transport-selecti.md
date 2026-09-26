@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["AWS", "Intel", "United States"]
 dates: ["2025-06", "2026-05", "2026-07"]
-keywords: ["accelerator", "aws", "cost", "ethernet", "hyperscaler", "intel", "latency", "memory", "research", "throughput"]
+keywords: ["accelerator", "aws", "cost", "ethernet", "hyperscaler", "intel", "latency", "memory", "throughput"]
 source: docs/RAG/etape6_phaseF4_virtualization_io.md
 source_anchor: ""
-source_lines: [622, 689]
+source_lines: [622, 681]
 section: "Phase F4 — I/O Virtualization & CPU Acceleration Extensions"
-sha256: 155ba88b41735dbbf082a36de79d09e7db93474e416f9c64de37b10ae1f0e5e4
+sha256: ad412320ba6c1460e9143b4eabd967ca80e4de266cd5bb74d8e1c3d08658035d
 ---
 
 # Wave 11 — DPDK security offloads and NVMe-oF transport selection
@@ -75,12 +75,4 @@ sha256: 155ba88b41735dbbf082a36de79d09e7db93474e416f9c64de37b10ae1f0e5e4
   Source: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ena-express.html
 - DPDK-side tie-in: DPDK 25.07's ENA PMD gained fragment-bypass mode for egress (bypassing EC2's per-ENI PPS cap on fragmented packets) — the PMD tracks Nitro behavior closely [official].
   Source: https://github.com/dpdk/dpdk/blob/HEAD/doc/guides/rel_notes/release_25_07.rst
-
-### 12.2 virtio-net feature bits quick reference (spec 1.x)
-- Core negotiated features: `VIRTIO_NET_F_CSUM` (partial checksum offload), `VIRTIO_NET_F_GUEST_CSUM/TSO/ECN/UFO`, `VIRTIO_NET_F_MAC`, `VIRTIO_NET_F_GUEST_ANNOUNCE`, `VIRTIO_NET_F_MQ` (multiqueue, queue pairs = 2N), `VIRTIO_NET_F_CTRL_VQ` (the third control queue for MAC/VLAN/RX-mode programming), `VIRTIO_NET_F_CTRL_RX/VLAN/MAC_ADDR`, `VIRTIO_NET_F_MRG_RXBUF` (mergeable buffers), `VIRTIO_NET_F_STATUS`, `VIRTIO_NET_F_SPEED_DUPLEX`, `VIRTIO_NET_F_RSS`, `VIRTIO_NET_F_HASH_REPORT`, `VIRTIO_NET_F_NOTIF_COAL` [official].
-  Source: https://docs.oasis-open.org/virtio/virtio/v1.4/virtio-v1.4.pdf
-- vDPA/virtio-pmd implication: a DPDK virtio PMD or hardware vDPA NIC negotiates the same feature bits — feature parity between the paravirtual guest driver and the backend is what keeps live migration safe across hypervisor upgrades [secondary].
-- [unverified] Azure MANA specifics were not captured in this research round — treat the hyperscaler-NIC comparison as AWS+GCP-weighted; a MANA pass belongs in a future refresh.
-
----
 

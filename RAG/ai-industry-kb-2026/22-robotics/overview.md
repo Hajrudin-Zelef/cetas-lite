@@ -5,13 +5,13 @@ domain: robotics
 role: deep-dive
 task: robotics
 actors: ["AWS", "China", "Google", "Hugging Face", "Nvidia", "United States", "xAI"]
-dates: ["2025-09", "2025-09-25", "2025-10", "2025-11", "2026-01", "2026-01-14", "2026-03-27", "2026-06", "2026-06-01", "2026-06-24", "2026-07-26", "2026-08", "2026-08-19", "2026-09", "2026-09-01", "2026-09-18", "2026-12"]
+dates: ["2025-09", "2025-09-25", "2025-10", "2025-11", "2026-01", "2026-01-14", "2026-03-27", "2026-06", "2026-06-01", "2026-06-24", "2026-07-26", "2026-08", "2026-08-19", "2026-09", "2026-09-01", "2026-09-18"]
 keywords: ["robotics", "acquisition", "consumer", "funding", "gemini", "humanoid", "ipo", "liability", "market cap", "merger", "nvidia", "research"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [10565, 10583]
+source_lines: [10565, 10581]
 section: "22. Robotics"
-sha256: 6852f27edbc77c79e8c58136124b84dc593be35c66f46a3f751bf19cbc2b025e
+sha256: 47352cefcd80e22654744d2ef1df1a784f8ce72257fa6d37267bd8462ba1a7c9
 ---
 
 # 22. Robotics
@@ -30,6 +30,4 @@ The "robot brain" thesis dominated venture funding: Skild AI raised **$1.4B at $
 **Robotics funding rounds are consolidated in §20**; only one-line cross-references appear here. Hugging Face robotics (HopeJR and the Reachy Mini refresh unveiled 2026-09-01) is covered in **§16** — cross-referenced only, not duplicated. Apptronik, Sanctuary AI, Boston Dynamics, Amazon warehouse robotics, and Covariant/Dexterity yielded no material 2026 findings in this pass and are flagged as thin-coverage gaps, not findings.
 
 The year's commercial shape can be summarized in one sentence per actor: Figure proved a humanoid can be manufactured at robot-per-hour pace and paid for in logistics; Agility proved robots-as-a-service can bill real totes and is being capitalized as a public company; 1X proved a consumer will take a humanoid into a home; Unitree proved the capital markets will pay $51B for the story; and EngineAI proved a teleoperated robot can knock a man down on television. What none of them proved in 2026 is unsupervised, at-scale, economically decisive humanoid labor — the productive deployments of the entire industry fit inside a single warehouse. The BMW Spartanburg whistleblower suit (filed November 2025, outcome unknown) is the liability instrument through which that claim will eventually be tested: if a safety failure in a humanoid pilot produces a regulator's judgment rather than a press release, the industry's deployment timelines reprice. Until then, the discipline stands: classify every claim, trust filings over keynotes, and read "deployed" as "shipped to a pilot" unless the invoice says otherwise.
-
-The 2026 record also constrains 2027 expectations in a falsifiable way. December 2026 carries four named checkpoints — Digit v5 early customers, the URKL finals, UBTech's year-end capacity, and the Optimus year-end run rate — and one standing admission: Musk's January 2026 statement that Optimus was "not in usage in our factories in a material way." A 2027 pass should score those five before recording a single new promise. The companies that convert December claims into customer evidence — paid hours, commercial terms, safety certification — will own the 2027 narrative; the rest will roll their guidance forward, as the industry has done every year since the Figure 02 pilot began.
 

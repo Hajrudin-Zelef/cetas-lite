@@ -9,9 +9,9 @@ dates: ["2024-03", "2026-03", "2026-10"]
 keywords: ["cost", "dsp", "ethernet", "lpo", "optics", "parameters", "training", "wavelength"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [238, 283]
+source_lines: [238, 285]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: b102eaf835e984884c1a29194dfdcdbf3851beee7a0dbd689666e9692db7c472
+sha256: 7551dfef0b0d45549ad0e8ad2bccfe546974509bcb1a7f43b99505723fd3bf50
 ---
 
 # 2.2 400G module types
@@ -61,4 +61,6 @@ All electrical: **8 × 100G PAM4 (800GAUI-8, 106.25 Gb/s per lane)** [vendor-rep
 - **IEEE 802.3df-2024** [official — IEEE SA]: "Amendment 9: Media Access Control Parameters for 800 Gb/s and Physical Layers and Management Parameters for 400 Gb/s and 800 Gb/s Operation"; adds Clauses 169–173, Annexes 172A/173A to IEEE Std 802.3-2022; **published 15 March 2024**, 278 pages, ISBN 979-8-8557-0541-6; free via IEEE GET program. Sources: https://standards.ieee.org/ieee/802.3.1/11244/ ; https://www.en-standard.eu/ieee-802.3df-2024-ieee-standard-for-ethernet-amendment-9-media-access-control-parameters-for-800-gb-s-and-physical-layers-and-management-parameters-for-400-gb-s-and-800-gb-s-operation/
 - Pre-standard interim: **Ethernet Technology Consortium (ETC) 800G Specification r1.1 (Oct 2021)** served as industry template; 802.3df is "very similar, with relatively minor modifications" — differences include PCS-to-PMA lane-mapping restrictions and link-training lane independence to reduce crosstalk [independent — Spirent/EEWorld, Steve Rumsby]. Sources: https://www.eeworldonline.com/how-ieee-802-3df-brings-800g-ethernet-to-life/ ; https://ethernettechnologyconsortium.org/wp-content/uploads/2021/10/Ethernet-Technology-Consortium_800G-Specification_r1.1.pdf (URL given in source text)
 - **IEEE P802.3dj** (200/400/800G + 1.6T on 200G/lane): project title "Amendment: MAC Parameters for 1.6 Tb/s and Physical Layers and Management Parameters for 200/400/800 Gb/s and 1.6 Tb/s Operation" [official — IEEE PAR]. PAR originally projected RevCom submission **March 2026** [official]; Nokia/Nordunet deck (2025) stated "standard to be ratified in October 2026" [vendor-reported — https://nordu.net/ncw2025/static/presentations/ncw2025/11/lightning-talks-2/16-terabit-ethernet-paving-the-road-for-next-gen-ai-datacenters.pdf]; as of Sept 2026, Ethernet Alliance is running 1.6T multi-vendor interoperability showcases at ECOC 2026 (Sept 20–24, Málaga) "alongside IEEE P802.3dj, which is developing specifications extending Ethernet through 1.6 Tb/s using 200 Gb/s-per-lane signaling" — **i.e., not yet ratified as of 22 Sept 2026**; ECOC Sept 23 2026 Market Focus panel to examine "networking beyond 1.6T and industry work toward 400 Gb/s electrical and optical signaling" [secondary — Converge Digest]. Source: https://convergedigest.com/ethernet-alliance-1-6t-ethernet-ecoc-2026/
+
+### 2.4 1.6T early status (as of 22 Sept 2026)
 

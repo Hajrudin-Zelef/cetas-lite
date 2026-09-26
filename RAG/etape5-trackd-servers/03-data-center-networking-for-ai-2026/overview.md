@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["Broadcom", "Meta", "Nvidia", "TSMC"]
 dates: ["2025-06-11", "2025-09", "2025-10-14", "2026-03-12", "2026-06-02", "2026-07", "2026-07-16", "2026-09", "2026-09-22"]
-keywords: ["3nm", "asic", "blackwell", "cpo", "dci", "ethernet", "gpu", "hyperscaler", "inference", "latency", "llama", "lpo"]
+keywords: ["3nm", "blackwell", "cpo", "dci", "ethernet", "gpu", "inference", "latency", "llama", "lpo", "nvidia", "optics"]
 source: docs/RAG/etape5_trackD_servers.md
 source_anchor: ""
-source_lines: [677, 744]
+source_lines: [677, 727]
 section: "Data-Center Networking for AI (2026)"
-sha256: 63288f9d206e79a6df79357d60ed9065c19b5b31fe460773047732c64634c3fb
+sha256: adb0ee71097af70a8c56c8af70c12f43105739caf26164c6fc673f53ab71541f
 ---
 
 # Data-Center Networking for AI (2026)
@@ -64,21 +64,4 @@ sha256: 63288f9d206e79a6df79357d60ed9065c19b5b31fe460773047732c64634c3fb
 - **Uncertainty flag:** I did not independently confirm per-SKU shipment volumes for the 7060X6/7800R4/7700R4; the task's "shipments" granularity is not disclosed at SKU level in the sources found. Do not fabricate SKU shipment numbers.
 
 ### 1.4 Cisco Nexus 9000 800G / Silicon One
-
-- Cisco introduced **Silicon One G300** — its own 102.4 Tbps networking silicon — debuting in **liquid-cooled N9000 and 8000 series switches**, aimed at competing with Broadcom and NVIDIA switching chips. [secondary] (ainvest)
-- Simultaneously, Cisco ships **N9100 series switches explicitly powered by NVIDIA Spectrum-X Ethernet silicon**, running Cisco NX-OS on NVIDIA hardware. [secondary] (ainvest)
-- Cisco FY2026 hyperscaler AI design wins: three new wins in Q4 alone — one **Silicon One P200 scale-across** deployment, one **G200 scale-out** project, and one optical line-system deployment; management flagged line-of-sight to more wins over the next six months across G300, G200, P200 and A100 platforms. [vendor-reported] (infotechlead)
-- TrendForce platform table (2025 vintage, cited 2026): Cisco Silicon One G200 series at 51.2 Tbps (2023) alongside Marvell Teralynx 10; CPO prototypes. [secondary]
-
-### 1.5 NVIDIA Spectrum-X switches (SN5000-class / SN5600 / Spectrum-X800)
-
-- **Spectrum-X800 Ethernet switch** (SN5600-class): 800 Gb/s per port, 51.2 Tb/s switching capacity (per temperature2.com / TrendForce table). Based on the **Spectrum-4 switch ASIC**; SN5600 = 64-port 800GbE. [secondary]
-- **Spectrum-6** (announced July 2026): 102.4 Tbps Ethernet switch system, 2× previous-generation capacity, integrated into the Rubin-architecture stack (Vera CPU, Rubin GPU, NVLink 6, ConnectX-9 SuperNICs, BlueField-4 DPUs, Spectrum-6). [vendor-reported] (cxotoday citing NVIDIA)
-- TrendForce roadmap table: Spectrum-X800 (800G/port, 51.2 Tbps) → Spectrum-X1600 (1.6T/port, 102.4 Tbps, paired with Rubin) → Spectrum-X3200 (3.2T/port, 204.8 Tbps). ConnectX-8 (800G, PCIe 6.0) → ConnectX-9 (1.6T, PCIe 7.0) → ConnectX-10 (3.2T, PCIe 8.0). [secondary]
-
-### 1.6 Celestica's position
-
-- Celestica regained #1 in Ethernet AI backend networks in Q1 2026 per Dell'Oro (above). Celestica is NVIDIA's primary Ethernet-switch manufacturing partner for Spectrum-X systems; its ranking reflects white-box/OEM volume into AI fabrics. [independent] [secondary]
-
----
 

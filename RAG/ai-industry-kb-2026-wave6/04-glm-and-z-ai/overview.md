@@ -4,15 +4,15 @@ title: "§4. GLM and Z.ai"
 domain: glm-and-z-ai
 role: deep-dive
 task: actor-profile
-actors: ["Alibaba", "Anthropic", "China", "Huawei", "Hugging Face", "LongCat", "Meituan", "MiniMax", "OpenAI", "United States", "Xiaomi", "Z.ai", "vLLM", "xAI"]
+actors: ["Alibaba", "Anthropic", "China", "Huawei", "Hugging Face", "LongCat", "OpenAI", "United States", "Z.ai", "vLLM", "xAI"]
 dates: ["2026-01", "2026-01-08", "2026-04-01", "2026-04-07", "2026-06", "2026-06-13", "2026-06-16", "2026-07", "2026-07-21", "2026-08-18", "2026-08-26", "2026-09-01"]
 keywords: ["glm", "agent", "ascend", "attention", "benchmark", "benchmarks", "claude", "consumer", "containment", "fable 5", "gpt-5.6", "grok"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [1609, 1684]
+source_lines: [1609, 1672]
 section: "§4. GLM and Z.ai"
 delta_of: ai-industry-kb-2026
-sha256: 3da060cad24aa3da15c455be81dd1017a672584435b0e681a9499ebe254877dd
+sha256: a58a92bc4e93ef862077e3cc7c2fa86e378be145368ee301d71f4f0fe818f44f
 ---
 
 # §4. GLM and Z.ai
@@ -78,16 +78,4 @@ Z.ai's commercial surface is fully dated here too: the GLM Coding Plan from $18/
 
 
 ### New verified facts — expansion (continued — Z.ai capital story (IPO, follow-on, valuation arc))
-
-### IPO: January 8, 2026, Hong Kong
-- **Zhipu AI (Z.ai) went public on the Hong Kong Stock Exchange on January 8, 2026** — the **first of China's "six tigers"/"AI tigers"** to list, a day before rival **MiniMax's own market debut** (January 9) [SECONDARY] (business.inquirer.net; techxplore.com; techinasia.com).
-- Oversubscribed IPO raised **HK$4.35 billion (US$558 million)**; shares rallied **~11.8–12%** in early trade on debut [SECONDARY] (business.inquirer.net; techxplore.com).
-- Offering price **HK$116.2**, day-1 close **HK$131.5 (+13.1%)**, implying roughly **$7.4 billion market value** [SECONDARY] (caproasia.com).
-- Company chairman: **Liu Debing**; founded **2019** (Tsinghua University professors **Tang Jie & Li Juanzi** per caproasia); key controlling shareholders Tang Jie & Liu Debing [SECONDARY] (techxplore.com; caproasia.com).
-- Investor roster per caproasia: **Alibaba, Ant Group, Tencent, Meituan, Xiaomi, HongShan, Saudi Aramco & Prosperity7 Ventures** [SECONDARY] (caproasia.com).
-- IPO proceeds earmarked for **developing general-purpose large AI models, including key algorithms and system infrastructure** [SECONDARY] (techxplore.com).
-- Prospectus showed **2024 revenue of 312.4 million yuan (~US$46 million)** [SECONDARY] (techinasia.com).
-- Liu Debing at the listing: "Zhipu is honored to stand at this historic juncture as a representative of China's large model sector"; told Bloomberg TV the company sees a trend of **computing costs for AI development "gradually decreasing"** [SECONDARY] (techxplore.com).
-- Analyst read: Hello China Tech's **Poe Zhao** told AFP the two IPOs "demonstrate both the revenue potential and the fundamental challenges facing this new generation of LLM companies" [SECONDARY] (techxplore.com).
-- Market context: China's LLM market estimated at **101.1 billion yuan (US$14.5 billion) by 2030** (Frost & Sullivan) [SECONDARY] (techxplore.com).
 

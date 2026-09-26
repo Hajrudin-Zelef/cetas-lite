@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
   "source_lines": 1171,
   "source_sha256": "647338be63f027d796d64a4f177acb40fb6e994e83ffd58551a5713d8bde8181",
-  "chunk_count": 20,
+  "chunk_count": 22,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -683,13 +683,7 @@
         "Z.ai"
       ],
       "dates": [
-        "2025-12-16",
-        "2026-01-01",
-        "2026-01-16",
-        "2026-01-23",
-        "2026-02-24",
         "2026-04-04",
-        "2026-04-06",
         "2026-05-05",
         "2026-05-16",
         "2026-05-26",
@@ -721,12 +715,12 @@
       "source_anchor": "",
       "source_lines": [
         699,
-        764
+        747
       ],
       "canonical_for": [],
-      "words": 1082,
-      "bytes": 8659,
-      "sha256": "e7c01179d8750ffaf0a2334cea57cbb0a194e44d0c7ba295fd32b07dd630c6e4",
+      "words": 923,
+      "bytes": 7392,
+      "sha256": "ec24f395d71cc6c2cc4789bf2a618263985bdca7d44b709f0c603f31f48a58df",
       "section": "PART 2 — SGLang"
     },
     {
@@ -753,7 +747,13 @@
         "2025-06-16",
         "2025-09-25",
         "2025-11-07",
+        "2025-12-16",
+        "2026-01-01",
+        "2026-01-16",
+        "2026-01-23",
         "2026-02-19",
+        "2026-02-24",
+        "2026-04-06",
         "2026-09-05",
         "2026-09-18"
       ],
@@ -761,26 +761,67 @@
         "agent",
         "amd",
         "attention",
-        "copilot",
         "decode",
         "deepseek",
+        "diffusion",
         "disaggregated",
+        "fp8",
         "glm",
         "gpu",
         "gpus",
-        "gqa",
-        "inference"
+        "gqa"
       ],
       "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
       "source_anchor": "",
       "source_lines": [
-        765,
+        748,
+        792
+      ],
+      "canonical_for": [],
+      "words": 816,
+      "bytes": 6813,
+      "sha256": "bac1754db1953be0b909db7ffa68b1bb8295968d522a83451332bec54d963564",
+      "section": "PART 2 — SGLang"
+    },
+    {
+      "id": "etape4-tracka-vllm-sglang/02-part-2-sglang/3-5-speculative-decoding",
+      "path": "etape4-tracka-vllm-sglang/02-part-2-sglang/3-5-speculative-decoding.md",
+      "title": "3.5 Speculative decoding",
+      "domain": "part-2-sglang",
+      "role": "deep-dive",
+      "task": "model-release",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "DeepSeek",
+        "SGLang",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "speculative decoding",
+        "amd",
+        "attention",
+        "copilot",
+        "decode",
+        "deepseek",
+        "gqa",
+        "inference",
+        "latency",
+        "memory",
+        "moe",
+        "paged attention"
+      ],
+      "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
+      "source_anchor": "",
+      "source_lines": [
+        793,
         813
       ],
       "canonical_for": [],
-      "words": 1050,
-      "bytes": 8928,
-      "sha256": "742e83a2869033197db897db9b10fa21f96afa1677aae0b21cfd9bc2041f6ab3",
+      "words": 393,
+      "bytes": 3382,
+      "sha256": "6fde27e0da8e98bdef39d10bbe5994c665f1152a324b33ef21b3ba3e73e46916",
       "section": "PART 2 — SGLang"
     },
     {
@@ -823,38 +864,39 @@
         "quantization",
         "agent",
         "agentic",
-        "agents",
         "attention",
         "awq",
         "benchmark",
         "benchmarks",
         "blackwell",
         "cohere",
-        "consumer",
-        "cost"
+        "cost",
+        "decode",
+        "deepseek"
       ],
       "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
       "source_anchor": "",
       "source_lines": [
         814,
-        871
+        855
       ],
       "canonical_for": [],
-      "words": 1130,
-      "bytes": 10112,
-      "sha256": "38deb92d0b4eb0f8007925ac8e024cc235027c70aa2fcb7ca46c35d29fbf97cf",
+      "words": 840,
+      "bytes": 7355,
+      "sha256": "e64000ba57cb06e3378c3bb3385431048a3b85600fe100fc8ce2fe35e7e17519",
       "section": "PART 2 — SGLang"
     },
     {
-      "id": "etape4-tracka-vllm-sglang/02-part-2-sglang/7-deployment",
-      "path": "etape4-tracka-vllm-sglang/02-part-2-sglang/7-deployment.md",
-      "title": "7. Deployment",
+      "id": "etape4-tracka-vllm-sglang/02-part-2-sglang/6-3-vllm-vs-sglang-comparisons-all-secondary-independent-met",
+      "path": "etape4-tracka-vllm-sglang/02-part-2-sglang/6-3-vllm-vs-sglang-comparisons-all-secondary-independent-met.md",
+      "title": "6.3 vLLM vs SGLang comparisons (all secondary/independent — methodology varies)",
       "domain": "part-2-sglang",
       "role": "deep-dive",
       "task": "reference",
       "actors": [
         "AMD",
         "AWS",
+        "Alibaba",
         "Anthropic",
         "Apple",
         "Baseten",
@@ -870,6 +912,48 @@
         "OpenAI",
         "Oracle",
         "SGLang",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "sglang",
+        "vllm",
+        "agents",
+        "amd",
+        "ascend",
+        "attention",
+        "awq",
+        "aws",
+        "benchmark",
+        "blackwell",
+        "consumer",
+        "deepseek"
+      ],
+      "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
+      "source_anchor": "",
+      "source_lines": [
+        856,
+        893
+      ],
+      "canonical_for": [],
+      "words": 688,
+      "bytes": 6132,
+      "sha256": "04365714a39ecd1c264ec7e1ceeef979f1e90d8fb7ac5d708812a714bbcf7877",
+      "section": "PART 2 — SGLang"
+    },
+    {
+      "id": "etape4-tracka-vllm-sglang/02-part-2-sglang/9-enterprise-support-commercial-backers",
+      "path": "etape4-tracka-vllm-sglang/02-part-2-sglang/9-enterprise-support-commercial-backers.md",
+      "title": "9. Enterprise support & commercial backers",
+      "domain": "part-2-sglang",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Google",
+        "Intel",
+        "Nvidia",
+        "SGLang",
         "vLLM",
         "xAI"
       ],
@@ -882,28 +966,28 @@
       ],
       "keywords": [
         "amd",
-        "ascend",
-        "attention",
-        "awq",
-        "aws",
         "copilot",
-        "deepseek",
         "diffusion",
-        "disaggregated",
         "disclosure",
-        "embeddings",
-        "governance"
+        "governance",
+        "gpu",
+        "inference",
+        "inference engine",
+        "intel",
+        "mcp",
+        "nvidia",
+        "omni"
       ],
       "source": "docs/RAG/etape4_trackA_vllm_sglang.md",
       "source_anchor": "",
       "source_lines": [
-        872,
+        894,
         918
       ],
       "canonical_for": [],
-      "words": 915,
-      "bytes": 8707,
-      "sha256": "a88ab00d46b10ac340991e371eaa61428cda6fe88ccd195fe186eafea5b97bdb",
+      "words": 517,
+      "bytes": 5332,
+      "sha256": "a45bc0cf17964259be0608b4a650152b9e5f14a69f64a1bac57ffaedc1ee99fd",
       "section": "PART 2 — SGLang"
     },
     {

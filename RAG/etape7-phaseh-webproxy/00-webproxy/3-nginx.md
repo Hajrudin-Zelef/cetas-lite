@@ -9,9 +9,9 @@ dates: ["2025-04-23", "2025-06-24", "2026-03", "2026-03-24", "2026-04", "2026-04
 keywords: ["advisory", "apache", "benchmark", "packaging", "pricing", "research"]
 source: docs/RAG/etape7_phaseH_webproxy.md
 source_anchor: ""
-source_lines: [56, 118]
+source_lines: [56, 112]
 section: "Step 7 — Phase H: Web Servers, Reverse Proxies & API Gateways"
-sha256: 971f670515fc1d812a12fe3946a9018bf5ed768e6030497dc5e5b37808c1124f
+sha256: 710834cdd2744d571f0178033257832daf267fd894b108e4471dbb0c12bde3e0
 ---
 
 # 3. nginx
@@ -72,10 +72,4 @@ sha256: 971f670515fc1d812a12fe3946a9018bf5ed768e6030497dc5e5b37808c1124f
 - caddy-proxy-manager v1.11.3 (2026-09-15) — third-party management UI project [secondary].
 
 ### 5.2 Caddyfile reverse-proxy essentials
-
-- Minimal reverse proxy: `reverse_proxy localhost:8080` inside a site block; automatic HTTPS on public domains with no TLS config [official — Caddy docs].
-- Common directives: `reverse_proxy` (load balancing policies: random, least_conn, round_robin, ip_hash, uri_hash, header), `handle`/`handle_path` routing, `header` manipulation, `basicauth`, `rate_limit` (third-party module), `tls` (internal CA, on_demand, dns), `encode` (gzip/zstd) [official].
-- Layer-4 proxying available via caddy-l4 third-party module (not in core) [secondary].
-
----
 

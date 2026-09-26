@@ -4,15 +4,15 @@ title: "Main actors"
 domain: meta-llama-muse-spark-and-muse-glimmer
 role: deep-dive
 task: actor-profile
-actors: ["AWS", "China", "Cohere", "EU", "Google", "Hugging Face", "Meta", "Microsoft", "OpenAI", "United States", "xAI"]
-dates: ["2024-04-18", "2024-07-23", "2024-09-25", "2024-10-28", "2024-12-06", "2024-12-07", "2025-04-05", "2025-04-29", "2026-01", "2026-01-26", "2026-02", "2026-02-05", "2026-03-31", "2026-05-20", "2026-07-24", "2026-08-05", "2026-08-07", "2026-08-10", "2026-09", "2026-09-02", "2026-09-07", "2026-09-20", "2026-09-22"]
-keywords: ["agent", "agents", "apache", "aws", "bedrock", "benchmark", "benchmarks", "cohere", "disclosure", "distribution", "gpus", "grok"]
+actors: ["AWS", "China", "Cohere", "EU", "Google", "Hugging Face", "Meta", "Microsoft", "OpenAI", "United States"]
+dates: ["2024-04-18", "2024-07-23", "2024-09-25", "2024-10-28", "2024-12-06", "2025-04-05", "2025-04-29", "2026-01", "2026-01-26", "2026-02-05", "2026-03-31", "2026-05-20", "2026-07-24", "2026-08-05", "2026-08-07", "2026-08-10", "2026-09", "2026-09-02", "2026-09-07", "2026-09-20", "2026-09-22"]
+keywords: ["agent", "apache", "aws", "bedrock", "benchmark", "cohere", "distribution", "inference", "leaderboard", "license", "licenses", "llama"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [4442, 4513]
+source_lines: [4442, 4498]
 section: "§9. Meta: Llama, Muse Spark, and Muse Glimmer"
 delta_of: ai-industry-kb-2026
-sha256: a7c8fd431d890a16696368d5299689fb9a9f7207f7ecf3cf3938f6bec6d82dd3
+sha256: c807408515a4d3db6416746c406f5ed768549d6ceebeb15dd3347b39fb4e0816
 ---
 
 # Main actors
@@ -73,19 +73,4 @@ sha256: a7c8fd431d890a16696368d5299689fb9a9f7207f7ecf3cf3938f6bec6d82dd3
 - Meta's 1.2B cumulative Llama download figure (LlamaCon 2025) remains the largest disclosed open-model distribution footprint in the industry, and it underwrites Meta's platform strategy: the models are loss leaders for the Meta AI app, Vibes, and the contributor-data flywheel. [VENDOR, S26][SECONDARY, S29]
 - The Vibes standalone test (Brazil/Mexico first, freemium unpriced) and the January 2026 premium-subscription tests indicate Meta is still searching for a direct-monetization layer on top of its AI distribution rather than relying solely on ads. [SECONDARY, S30][SECONDARY, S32]
 
-
-- The Muse line's three releases in 28 days (Spark 1.2 on 2026-08-05, Glimmer on 2026-08-10, Spark 1.3 on 2026-09-02) show Meta shipping agent products at a cadence closer to a startup's than a platform incumbent's — consistent with the pressure narrative around open-weight competitors in the same window. [SECONDARY, S13][SECONDARY, S17][SECONDARY, S22]
-- Glimmer's local-first positioning (quantized <20GB, 24–32GB GPUs) is Meta's answer to the local-agent wave; its Apache 2.0 weights make it the most permissively licensed agent model in Meta's portfolio, in contrast to the Llama Community License terms on the flagship models. [SECONDARY, S17][SECONDARY, S18]
-- Spark 1.3's output-to-context ratio (~90%) is a quiet differentiator for long-horizon coding agents that need to emit large diffs and plans, not just read large contexts. [SECONDARY, S22]
-- Meta's January–February 2026 monetization tests (premium subscriptions across three apps, Vibes freemium) suggest the company expects AI features to carry direct revenue, not just engagement — a strategic shift worth tracking against the contributor-pricing data flywheel. [SECONDARY, S30][SECONDARY, S32]
-
-- Meta's 2026 agent releases cluster in August–September, immediately after the July–August open-weights wave (Grok 4.5/4.6, MiMo V2.5, GPT-5.x class) — the timing is consistent with competitive response, though no source states this causally.
-- The 1.2B download figure predates the Llama 4 generation; cumulative downloads as of late 2026 were not disclosed in any source found. [DIRECTIONAL — absence of disclosure, not a sourced fact]
-### Contradictions documented (not silently resolved)
-- Scout training provenance: some summaries say Scout and Maverick were both partially distilled from Behemoth; another says Maverick was co-distilled while Scout trained from scratch. Both retained; neither is independently confirmed. [SECONDARY, S5][SECONDARY, S6]
-- Llama 3.3 release date: 2024-12-06 vs 2024-12-07 depending on timezone/source; retained as a range. [SECONDARY, S2][SECONDARY, S4]
-- Spark 1.3 Artificial Analysis scores: the base §9 records 48 (AA v4.3); newer coverage reports 61/62 without a safely matching methodology version. The two are not combined; the 48 stands as the v4.3-pinned figure. [methodology-version rule]
-- Behemoth status: confirmed delayed/unreleased; "shelved in favor of Llama 5" is speculation and is not stated as fact. [SECONDARY, S9][UNVERIFIED]
-- Spark 1.2's vendor benchmarks (TB 2.1 82.9%, DeepSWE v1.1 59.3%) had no public-board entries two days post-launch; carried as vendor-only claims. [VENDOR, S13][SECONDARY, S12]
-- The existing §9 treats Spark 1.2 as a model launch; the expansion corrects this to a coding-focused update of the Spark line, per multiple secondary sources. [SECONDARY, S13][SECONDARY, S15]
 

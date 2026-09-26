@@ -9,9 +9,9 @@ dates: ["2025-09", "2026-07", "2026-07-23"]
 keywords: ["ethernet", "nvidia", "asic", "blackwell", "cpo", "energy", "gpu", "gpus", "inference", "latency", "llama", "nvlink"]
 source: docs/RAG/etape5_trackD_servers.md
 source_anchor: ""
-source_lines: [745, 806]
+source_lines: [745, 802]
 section: "Data-Center Networking for AI (2026)"
-sha256: 433fc9c1ad4c5f17f6beafa3a2d17c4659a18d0b2a14f97759208e8a1ad0f2a7
+sha256: 0229f27792d9e1f362772d4ac07f3bf9e3e438565c4947c84b9d831d71f2a5c4
 ---
 
 # 2. NVIDIA Spectrum-X / Spectrum-XGS Ethernet Networking Platform
@@ -73,8 +73,4 @@ sha256: 433fc9c1ad4c5f17f6beafa3a2d17c4659a18d0b2a14f97759208e8a1ad0f2a7
 - **Uncertainty flags:** (a) No Quantum-3 shipping announcement was found in the sources retrieved; the platform table lists Quantum-2 → Quantum-X800 → Quantum-X1600, so "Quantum-3" may be a skipped/renamed generation — do not assert its existence. (b) Quantum-X800 CPO/silicon-photonics variant shipping dates were described as "early 2026" roadmap (per the github silicon-photonics research note) but no dated production shipment was confirmed. (c) The `<100 ns` latency figure in the ascentoptics table vs "sub-1 µs" elsewhere is inconsistent — do not quote either as settled fact.
 
 ### 3.3 Broadcom vs NVIDIA "scale-out tech war"
-
-- TrendForce (2025, still cited 2026): frames the AI fabric contest as Broadcom (Tomahawk/Thor/UEC) vs NVIDIA (Spectrum-X/Quantum-X) camps; Marvell Teralynx 10 and Cisco Silicon One G200 (both 51.2T, 2023) also compete; Cisco has CPO prototypes. [secondary]
-
----
 

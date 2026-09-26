@@ -4,7 +4,7 @@
   "source": "docs/RAG/clean_en/korben",
   "source_dir": "docs/RAG/clean_en/korben",
   "source_files": 18,
-  "source_sha256": "765a194a97b31e0dd4c8cdcb09c9da257e2edae5d87ead7dbecd8a106bcc6d87",
+  "source_sha256": "b14fa3d1b2bd71d49f5cb2c24e758d7f73d854e891aaf2fd7399bcdc6cf9cb3f",
   "chunk_count": 18,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [

@@ -4,17 +4,29 @@ title: "Main actors (continued)"
 domain: quantization-model-formats
 role: deep-dive
 task: quantization
-actors: ["AMD", "AWS", "Alibaba", "Apple", "DeepSeek", "Falcon", "Google", "Hugging Face", "Intel", "Meta", "Microsoft", "Moonshot", "Nvidia", "OpenAI", "Qualcomm", "SGLang", "TII", "Unsloth", "Z.ai", "vLLM"]
-dates: ["2023-09", "2025-05", "2026-02-13", "2026-02-20", "2026-03-04", "2026-03-17", "2026-05", "2026-05-11", "2026-05-13", "2026-05-28", "2026-07", "2026-07-15", "2026-07-26", "2026-08-15", "2026-08-18", "2026-08-19", "2026-08-27", "2026-09", "2026-09-18", "2026-09-22"]
-keywords: ["accelerator", "agentic", "amd", "apache", "attention", "attribution", "awq", "aws", "benchmark", "benchmarks", "bitnet", "blackwell"]
+actors: ["AMD", "AWS", "Alibaba", "Apple", "DeepSeek", "Falcon", "Google", "Hugging Face", "Intel", "Meta", "Microsoft", "Moonshot", "Nvidia", "OpenAI", "Qualcomm", "SGLang", "TII", "Unsloth", "vLLM"]
+dates: ["2023-09", "2026-02-13", "2026-02-20", "2026-05", "2026-05-11", "2026-05-13", "2026-05-28", "2026-07", "2026-07-15", "2026-08-15", "2026-08-18", "2026-08-27", "2026-09-22"]
+keywords: ["amd", "apache", "attention", "attribution", "awq", "aws", "benchmarks", "bitnet", "blackwell", "compute", "consumer", "cost"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [4432, 4577]
+source_lines: [4420, 4461]
 section: "8. Quantization & Model Formats"
-sha256: c8de6ae5f59ef5b8869d3508a2a0a2b1c176fd98a1d8fe7ecfe2276209569878
+sha256: 96d2533582a7f5e3d0577a4981016961f3268a52cd7fc78f84bb6de6fdade2fb
 ---
 
 # Main actors (continued)
+
+- Qwen-Coder 32B FP8: RTX 6000 Ada ~100–120 tok/s (1.7–2× vs FP16); RTX 4090 ~60–80 tok/s (emulated, no speedup).
+- Llama 3.3 70B, A100 80GB, batch=1 (estimated): Q4_K_M ~20–30 tok/s at ~42 GB VRAM; Q5_K_M ~28–36 tok/s at ~48 GB; Q8_0 ~20–25 tok/s at ~75 GB; FP16 needs 2× A100 (~30–40 tok/s, 140 GB) — Q4_K_M on one A100 costs roughly half per hour of FP16 on two.
+- DeepSeek-V3.2 NVFP4+TP2 (GB300): **7,360 TGS prefill-only**, 2,816 TGS mixed (ISL=2k/OSL=1k); DeepSeek-R1 NVFP4+EP2 (2× GB300): **22,476 TGS prefill-only**, 3,072 TGS mixed — 8× prefill, 10–20× mixed-context vs Hopper.
+- Nemotron-3.5-Lightning-30B-A3B-NVFP4 on vLLM 0.27.1 (2026-08-18): L40S 1345.4 tok/s @ $0.182/1M out tokens; **RTX PRO 6000 Blackwell 2541.1 tok/s** @ $0.239/1M; A100 2100.8 tok/s @ $0.182/1M [COMMUNITY].
+- RTX PRO 6000 shootout (Qwen3.8-Flash-Next, vLLM 0.17.0rc1, TP4, Sept 2026): AWQ 3519 vs NVFP4 3232/3220 tok/s at C=128 with MTP; 2796 vs 2294/2291 without MTP — AWQ won decode at every concurrency on this rig [COMMUNITY].
+- Qwen3.6-35B-A3B NVFP4 GEMM on consumer Blackwell (s0me1-dev SM120 patches): 175 tok/s [COMMUNITY].
+- 2× RTX 5090, Qwen3-8B NVFP4, concurrency 128–256: **4,400+ TPS at $0.002/MTok**; 380M tokens/day under $800/year electricity [COMMUNITY].
+- Private-Blackwell RAG (vLLM + AIPerf): NVFP4 **1.6× throughput vs BF16**, 41% energy reduction, 2–4% quality loss [COMMUNITY/SECONDARY].
+- INT4 KV + fused flash-attention kernel: **3.9× kernel speedup** to the bandwidth roofline; attention MAE 3e-08 vs FP32; 42/42 GPU tests passing [COMMUNITY].
+- NVIDIA official figures: NVFP4 ≈ 2× FP8 GEMM compute; B200 FP4 ≈ 8× FP16 tensor-core throughput [VENDOR]; FP8 30–50% speedup over FP16 on H100.
+- Hardware sizing rules: **RTX PRO 6000 (Blackwell, 96 GB)** holds 70B+ models in FP4 on a single card; **RTX 5090 (32 GB)** is the budget entry point for 14B–32B FP4 inference; Ornith-1.5-35B-A3B-NVFP4 loads on an 8 GB-class Ada GPU via the Marlin fallback (~4.5 bits/value, W4A16-class speed) vs 21.7 GB for the GGUF Q4_K_M of the same model.
 
 ## Main actors (continued)
 
@@ -45,120 +57,4 @@ sha256: c8de6ae5f59ef5b8869d3508a2a0a2b1c176fd98a1d8fe7ecfe2276209569878
 - **NextPlatform** — AWS Blackwell rental economics analysis: FP8 halves cost-per-teraflop vs FP16; FP4 halves it again [ANALYST].
 
 ## Timeline and context (continued)
-
-| Date | Event |
-|---|---|
-| 2023-05 | QLoRA / NF4 (Dettmers et al.) — 4-bit index into a normal-distribution codebook; fine-tuning standard |
-| 2023-09 | **OCP MX specification v1.0** (AMD, Arm, Intel, Meta, Microsoft, NVIDIA, Qualcomm) |
-| 2024 | BitNet b1.58 paper (Ma et al., Microsoft Research + UCAS): ternary training from scratch |
-| 2025-04 | **BitNet b1.58 2B4T** released (2B params, 4T tokens, MIT) |
-| 2025-05 | AutoAWQ archived (May 2025) — never got Qwen3.5 support; the AWQ workflow migrates to llm-compressor |
-| 2025-08 | **OpenAI GPT-OSS** ships natively in **MXFP4** (120B on single H100) |
-| 2026-01 | BitNet CPU-optimization update (+1.15–2.1×); arXiv 2601.09527: NVFP4 consumer-Blackwell economics (2× RTX 5090, Qwen3-8B at $0.002/MTok) |
-| 2026-02-13 | vLLM project blog: DeepSeek-V3.2/R1 NVFP4 on GB300 (R1: 22,476 TGS prefill-only) |
-| 2026-02-20 | **ggml.ai joins Hugging Face** announced (Discussion ggml-org/llama.cpp #19759; MIT preserved, team autonomy) |
-| Feb 2026 | DeltaKV (arXiv:2602.08005): 3.4× KV compression, near-lossless; ARKV (arXiv:2603.08727): 4× KV at ~97% accuracy |
-| 2026-03-04 | KVQuant pre-RoPE quantization paper finalized (arXiv:2401.18079) |
-| 2026-04 | SAW-INT4 (arXiv:2604.19157): system-aware token-wise INT4 KV, no calibration |
-| 2026-05-11 | **Red Hat AI's vLLM TurboQuant evaluation published**; PR #38479 opens the vLLM integration path; FP8 confirmed best KV default |
-| 2026-05-13 | NVIDIA posts **Kimi-K2.6-NVFP4** on Hugging Face (1T params, 32B active; ModelOpt 0.44.0; vLLM on B200) |
-| 2026-05-28 | canada-quant measurements: NVFP4→Marlin fallback on consumer Blackwell forfeits FP4 FLOPS |
-| Jul 2026 | **Unsloth starts NVFP4 export** ("Dynamic Unsloth NVFP4 Quants" + NVFP4-GGUF hybrids) |
-| 2026-07-15 | **PrismML Bonsai-27B** announced (Apache 2.0): 27B at 3.9 GB (1-bit), 11 tok/s on iPhone 17 Pro |
-| 2026-07-26 | Community FP4 KV route (FA2 prefill + XQA decode) validated on RTX 5090 at 1.6× fp8 KV pool |
-| 2026-08-18 | massed-compute publishes Nemotron-3.5-Lightning-30B-A3B-NVFP4 benchmarks (L40S/A100/PRO 6000) |
-| 2026-08-27 | srmiles publishes first independent Dynamic v3.0-vs-v2.0 test (KLD vs Q8_0 referee; 9.5% slower decode; UD-Q3_K_XL llama-server bug) |
-| Sep 2026 | rtx6kpro NVFP4-vs-AWQ decode shootout on 4× RTX PRO 6000: AWQ wins at every concurrency; OpenVINO 2026.2 ships INT4 KV on Intel GPU |
-| 2026-09-18 | MarkTechPost overview: **AutoAWQ officially deprecated**; llm-compressor is the AWQ path |
-| 2026-06 | blokz survey documents DeltaKV/ARKV/INT4 KV field state |
-| 2026-08-15 | **Qwen3.8-27B launch** (8.3M downloads first week) — Dynamic v3.0 launch vehicle |
-| 2026-08-19 | **Unsloth Dynamic v3.0** official release (>10% top-1 accuracy claim; 5.1M quant downloads in 5 days) |
-| Sep 2026 | Independent AutoRound-vs-GPTQ logprob-parity test (91.4% vs 90.5% top-1 agreement); FP4-vs-AWQ decode shootouts on Blackwell rigs |
-| 2026-09-22 | Hugging Face confirms optimum-quanto is in **maintenance mode** (redirects to bitsandbytes/torchAO) |
-
-Context framing: by September 2026 the precision stack has split cleanly by hardware — **FP8 the default on Hopper/Ada/Blackwell, INT4 (AWQ/GPTQ/Marlin) the pre-Hopper and memory-constrained standard, FP4 the Blackwell-native frontier** with the two-level-scaling anatomy (NVFP4) or the open spec (MXFP4). FP4 is the production norm on Blackwell and experimental/limited elsewhere — weights via the Marlin fallback, KV cache only on datacenter Blackwell in stock stacks.
-
-## Implications (continued)
-
-1. **Format choice is now a hardware decision, not a quality debate.** FP8 is the default where Hopper/Ada/Blackwell tensor cores exist; INT4 (AWQ best quality, GPTQ widest compat, Marlin kernels) owns pre-Hopper and single-GPU-constrained serving; NVFP4/MXFP4 are the Blackwell-native future.
-2. **The 4-bit quality war is over at the top end**: AWQ holds best-PTQ quality historically, AutoRound is the strongest measured 4-bit PTQ method in 2026, QAT (Kimi K2.6, DeepSeek-V4) pushes INT4/FP4 under 1% loss, and microscaling FP4 formats structurally beat INT4 at equal bit-width.
-3. **FP4's bottleneck is no longer math but deployment surface**: the formulas are verified (−0.1 MMLU at 671B scale; ~4.5 bits/element), while kernel coverage (SM100/103 native, SM120 software dequant, Marlin fallback elsewhere), KV-cache gating, and checkout-time W4A16-vs-W4A4 confusion are the practical limits.
-4. **Local-first AI crossed a threshold in 2026**: 27B-class models on phones (Bonsai) and 70B on laptops (Q4_K_M) mean serious agentic/coding workloads run privately, offline, with zero per-token cost — quantization moved the break-even of self-hosting far below cloud pricing.
-5. **Watch the KV cache, not just the weights**: at long context, KV dominates memory — 4-bit KV (Bonsai, OpenVINO 2026.2, SAW-INT4/DeltaKV/ARKV), FP8 KV (production default), and emerging FP4 KV paths decide what context lengths are actually deployable; the 8B KV-vs-weights crossover moved from 128K to ~512K at INT4.
-6. **MoE + quantization is the combination that wins at scale**: compressing inactive experts is nearly free in quality-per-FLOP (GLM-5.2 744B at 239 GB disk, DeepSeek-V4-Flash 284B at 172 GB), but the KV cache does not shrink with sparsity — a 400B+ MoE's KV budget is the remaining constraint.
-7. **Standardization tension**: FP8 and MXFP4 are open or cross-vendor (OCP spec, AMD/Intel coverage); NVFP4 is NVIDIA-proprietary and Blackwell-gated. At scale, quantization labor costs (calibration, QAT retraining, per-hardware kernel validation) push buyers toward the standardized formats — FP8 now, MXFP4 as the open 4-bit candidate.
-8. **Measure what matters**: perplexity deltas are the first check, KL divergence the stricter distribution test, per-task benchmark retention the reliable signal — aggregate scores can lie; QAT vs PTQ is the largest single quality lever at 4-bit.
-
-9. **Per-format precision is not the whole story**: per-layer allocation (Unsloth Dynamic schedules, KVQuant's non-uniform per-layer bits) matters as much as the nominal bit-width — the same nominal "4-bit" can sit ±0.1 perplexity apart on schedule alone; Dynamic v3.0's 9.5% decode slowdown is the cost of that heterogeneity.
-10. **FP8 became the unit of currency**: benchmark deltas are quoted against FP8 (DeepSeek-R1-FP4's −0.1 MMLU is vs the FP8 base), making FP8 the 2026 reference point the way FP16 was in 2024 — every finer format must justify itself against it.
-11. **The NVFP4/MXFP4 split is a bet on openness**: MXFP4's OCP standard plus AMD/Intel coverage versus NVFP4's tcgen05 moat; whoever wins the cross-vendor 4-bit default decides whether Blackwell-era checkpoints are portable or NVIDIA-locked. MXFP4's llm-compressor path (no calibration needed) is its sharpest adoption edge.
-
-Watchlist carried into the final document:
-
-- **Dynamic v3.0 independence**: partially addressed by the 2026-08-27 community test (KLD corroborated, 9.5% decode-speed regression measured, one UD variant shipped a llama-server bug) — Divergence-300 specifically and benchmark-score replication still open.
-- **FP4 KV on consumer Blackwell**: stock vLLM path datacenter-only; community FA2+XQA route (1.6× fp8 KV pool, July 2026) needs wider validation before production use.
-- **BitNet at scale**: the 100B-on-a-single-CPU claim is theoretical; whether natively-trained ternary models scale past 3B without quality collapse is unanswered (Bonsai's converted 1-bit at 27B is the parallel bet).
-- **MXFP4 beyond NVIDIA**: Dell's 6.1× datapoint on AMD MI355X suggests the OCP standard could become the cross-vendor 4-bit default; AMD next-gen and Intel accelerator coverage is the thing to track.
-- **Sub-2-bit training economics**: Bonsai proved conversion-to-1-bit at 27B with >90% retention; native 1-bit training (BitNet-style) at 27B+ has not been demonstrated publicly.
-- **NVFP4 W4A16 vs W4A4 confusion at download time**: checkpoint naming and model-card flags remain the failure point — always check the card before downloading.
-- **AWQ's tooling tail**: the format remains the dominant compat INT4 path, but new-model coverage (Qwen3.5+), llm-compressor pinning, and calibration-OOM workarounds show where the "standard" frays.
-
-- **NVFP4 W4A16 vs W4A4 confusion at download time**: checkpoint naming and model-card flags remain the failure point — always check the card before downloading; the industry needs machine-readable dtype flags.
-- **AutoRound vs llm-compressor adoption split**: AutoRound is the strongest measured 4-bit PTQ, but Marlin rejects its symmetric `uint4`/`zero_point=false` form on Ampere — adoption hinges on compressed-tensors export paths.
-- **INT4 KV in vLLM/SGLang mainline**: OpenVINO 2026.2 shipped it on Intel GPU; whether vLLM/SGLang mainline adopt INT4 KV (vs the FP8 default) decides long-context economics on Hopper hardware.
-- **MXFP4 kernel coverage on AMD next-gen and Intel accelerators** beyond the single MI355X datapoint — the open-standard bet's progress metric.
-- **Consumer-Blackwell W4A4 maturity**: GB10 production-ready and RTX 5090 software-dequant routes exist, but the stock vLLM NVFP4 KV/attention path remains datacenter-only — watch whether SM120 gets first-class FP4 KV in 2027.
-- **Quantization labor vs format lock-in**: QAT's <1%-loss promise commits a model to one quantization target; the retraining cost means PTQ-plus-good-kernels (FP8, MXFP4 via llm-compressor) keeps winning on economics unless the deployment is pinned to one format for years.
-
-## Sources and URLs (continued)
-
-- https://github.com/open-hadis/rvllm/blob/HEAD/docs/boost/07-fp8-quantization.md [OPEN-SOURCE]
-- https://github.com/mithudso/skills/blob/HEAD/llm-quantization-strategies/SKILL.md [COMMUNITY]
-- https://github.com/s-samarth/datasciencepreparation/blob/HEAD/LLM/docs/inference-arch/frontier-techniques.md [COMMUNITY]
-- https://github.com/harshuljain13/llm-inference-at-scale/blob/HEAD/content/05_optimization/04.1_quantization/quantization.md [COMMUNITY]
-- https://github.com/xinhaoc/ferret/blob/HEAD/docs/architecture/blackwell-b200.md [COMMUNITY]
-- https://github.com/allanschramm/local-model-autotuning/blob/HEAD/docs/discovery/nvfp4-quantization.md [COMMUNITY]
-- https://github.com/noonghunna/club-3090/blob/HEAD/docs/DTYPE_MATRIX.md [COMMUNITY]
-- https://www.gpuyard.com/tutorials/howto/deploy-llm-blackwell-fp4/ [COMMUNITY]
-- https://github.com/canada-quant/dsv4-flash-nvfp4-fp8-mtp [COMMUNITY]
-- https://www.opencompute.org/documents/ocpmx-v1-0-spec-final.pdf [STANDARDS]
-- https://github.com/jino-rohit/llm-compressor/blob/HEAD/docs/guides/compression_schemes.md [OPEN-SOURCE]
-- https://huggingface.co/blog/RakshitAralimatti/learn-ai-with-me [COMMUNITY]
-- https://www.redpacketsecurity.com/how-openai-used-a-new-data-type-to-cut-inference-costs-by-75/ [COMMUNITY]
-- https://infohub.delltechnologies.com/static/media/client/7phukh/DAM_49b1e26b-f10f-418c-9697-02a9c31fb7d7.pdf [VENDOR]
-- https://github.com/avifenesh/memra/blob/HEAD/research/fp4-act-scoping-20260806/BRIEF.md [COMMUNITY]
-- https://startupfortune.com/nvidia-puts-kimi-k26-on-a-faster-path-to-blackwell-inference/ [COMMUNITY]
-- https://github.com/0xsero/blackwell-gpu-wiki/blob/HEAD/docs/fundamentals/number-formats.md [COMMUNITY]
-- https://blog.avarok.net/nvfp4-w4a4-moe-inference-on-nvidia-blackwell-gb10-1a83e85d0f9e?gi=b51174f3e648 [COMMUNITY]
-- https://arxiv.org/pdf/2601.09527v1 [ACADEMIC]
-- https://github.com/0xsero/blackwell-gpu-wiki/blob/HEAD/docs/case-studies/generic-moe-on-consumer-blackwell.md [COMMUNITY]
-- http://build.nvidia.com/spark/nvfp4-quantization [VENDOR]
-- http://quantumzeitgeist.com/faster-blackwell-gpus-rag-inference-private/ [COMMUNITY]
-- https://www.pulse.bot/ai/news/nvidia-ai-brings-nemotron-3-nano-30b-to-nvfp4-with-quantization-aware-distillation-qad-for-efficient-5bb90468-5981-4007-bd25-0fb90468-5981-4007-bd25022/ [VENDOR]
-- https://www.nextplatform.com/cloud/2025/07/10/sizing-up-aws-blackwell-gpu-systems-against-prior-gpus-and-trainiums/1651108 [ANALYST]
-- https://github.com/vllm-project/vllm-project.github.io/blob/HEAD/_posts/2026-02-13-gb300-deepseek.md [VENDOR]
-- https://github.com/massed-compute/gpu-benchmark/blob/HEAD/nemotron-3.5-lightning-30b/nemotron-3.5-lightning-30b.md [COMMUNITY]
-- https://github.com/kubesimplify/website/blob/HEAD/content/blog/day-4-quantization-demystified-bf16-fp8-nvfp4-mxfp4-int4-gguf-and-why-it-all-matters.md [COMMUNITY]
-- https://github.com/local-inference-lab/rtx6kpro/blob/HEAD/benchmarks/nvfp4-quantization-comparison.md [COMMUNITY]
-- https://github.com/wanshuiyin/aris-in-ai-offer/blob/HEAD/docs/tutorials/quantization_tutorial_en.md [COMMUNITY]
-- https://github.com/0-co/company/blob/HEAD/research/bitnet-deep-dive-2026-03-17.md [COMMUNITY]
-- https://www.freshlab.es/blog/microsoft-bitnet-local-llm-cpu-no-gpu [COMMUNITY]
-- https://emelia.io/hub/bitnet-1bit-llm-cpu-inference [COMMUNITY]
-- https://medium.com/@kkhushi/the-era-of-1-bit-llms-all-large-language-models-are-in-1-58-bits-2f113032a9fe [COMMUNITY]
-- https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf [VENDOR]
-- https://dev.to/pneumetron/prism-ml-introduces-bonsai-27b-a-1-bit-llm-for-on-device-inference-2hhj [COMMUNITY]
-- https://www.manilatimes.net/2026/07/15/tmt-newswire/plentisoft/prismml-announces-1-bit-bonsai-27b-the-first-27b-model-to-run-on-a-phone/2384502 [COMMUNITY]
-- https://medium.com/macoclock/bonsai-27b-runs-on-a-16-gb-m4-mac-mini-with-4-2-gb-of-ram-1-bit-quantization-with-mlx-662a30587822 [COMMUNITY]
-- https://medium.com/openvino-toolkit/int4-kv-cache-compression-for-llm-inference-on-intel-gpu-new-in-openvino-2026-2-d71d03c27897 [VENDOR]
-- https://github.com/dragonshadows1978/ai-atlasforge/blob/HEAD/KV_CACHE_QUANTIZATION_TECHNICAL_REFERENCE.md [COMMUNITY]
-- https://github.com/blokzdev/blokz/blob/HEAD/content/articles/2026/06/the-memory-wall-kv-cache-and-why-long-context-ai-cant-decentralize/index.mdx [COMMUNITY]
-- https://arxiv.org/pdf/2604.19157v1 [ACADEMIC]
-- https://ayinedjimi-consultants.fr/static/pdf/quantization-llm-2026-gguf-gptq.pdf [COMMUNITY]
-- https://huggingface.co/docs/transformers/v4.49.0/quantization/overview [VENDOR]
-- https://medium.com/intel-analytics-software/autoround-sota-weight-only-quantization-algorithm-for-llms-across-hardware-platforms-99fe6eac2861 [VENDOR]
-- https://github.com/sergiiob/intel-arc-pro-b70-inference-cookbook/blob/HEAD/docs/ornith15-35a3/AUTOROUND-VS-GPTQ.md [COMMUNITY]
-- https://github.com/nvidia/model-optimizer/blob/HEAD/CHANGELOG.rst [VENDOR]
-- https://github.com/vllm-project/vllm-project.github.io/blob/HEAD/_posts/2026-05-11-turboquant.md [COMMUNITY]
-- https://github.com/vllm-project/vllm/pull/38479 [OPEN-SOURCE]
-- https://www.marktechpost.com/2026/09/18/gguf-vs-gptq-vs-awq-vs-exl2-llm-model-formats-explained-2026/ [COMMUNITY]
 

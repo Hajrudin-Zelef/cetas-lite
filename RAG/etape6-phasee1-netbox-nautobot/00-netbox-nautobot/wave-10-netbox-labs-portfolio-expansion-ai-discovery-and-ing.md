@@ -9,9 +9,9 @@ dates: ["2025-04", "2025-07", "2026-02", "2026-02-10", "2026-05-24"]
 keywords: ["agent", "agentic", "agents", "claude", "copilot", "funding", "governance"]
 source: docs/RAG/etape6_phaseE1_netbox_nautobot.md
 source_anchor: ""
-source_lines: [321, 379]
+source_lines: [321, 368]
 section: "Phase E1 — NetBox & Nautobot: Network Source of Truth (Research File)"
-sha256: 38219fc6cbd4eb65bffd382e1f1818c0742a36029e1adeafde3b61d1e1f13269
+sha256: 29bba4c55995697b737154712325b75504588d84769e520c45f1a8f5af628964
 ---
 
 # Wave 10 — NetBox Labs portfolio expansion: AI, discovery, and ingestion
@@ -63,15 +63,4 @@ Source: https://www.globenewswire.com/news-release/2026/02/10/3235154/0/en/NetBo
 - Python/dependency floor moves in 2026: v4.5 dropped Python 3.10/3.11 (requires 3.12–3.14); v4.7 dropped PostgreSQL 14 and Redis 5.x; SSO deployments should re-test auth (social-auth major upgrades) `[official]`.
 
 ### 11.3 Nautobot deployment notes `[official][secondary]`
-
-- Reference deployment: Docker Compose and Kubernetes (Helm); documented K8s workflow with Flux, custom image layering apps (Golden Config + Nornir plugin via `requirements.txt`), and `nautobot_config.py` management. Nautobot 2.4 added a Kubernetes Job Execution and Job Queue data model `[official]`. Source: https://networktocode.com/blog/deploying-nautobot-to-kubernetes-03/
-- **Nautobot 3.1 upgrade notes:** requires PostgreSQL ≥ 14 (drops 12.x/13.x); Django 5.2 unified `STORAGES` setting replaces `DEFAULT_FILE_STORAGE`/`STATICFILES_STORAGE` and Nautobot's `STORAGE_BACKEND`/`STORAGE_CONFIG`/`JOB_FILE_IO_STORAGE`; Python 3.14 supported in the app cookiecutter `[official]`.
-- Jobs run on workers with scheduling, approval workflows (3.0), console logging (3.1), and cancel (3.2) — the operational surface for automation is the Jobs UI/API rather than shell scripts `[official]`.
-
-### 11.4 Auth & enterprise integration `[official][secondary]`
-
-- NetBox: SSO via python-social-auth (OIDC/SAML; v6.0/v5.1 in v4.7 — retest before upgrading), LDAP, remote-auth headers; object-level permissions with constraints; `render_config` permission (v4.5+) `[official]`.
-- Nautobot: SSO, approval workflows for jobs/changes (3.0), Data Validation Engine in core (3.0), secrets groups for credential management `[official]`.
-
----
 

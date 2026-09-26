@@ -5,13 +5,13 @@ domain: step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22
 role: deep-dive
 task: reference
 actors: []
-dates: ["2025-11", "2026-02", "2026-02-01", "2026-03-03", "2026-06", "2026-08", "2026-08-28", "2026-09-14", "2026-14-09", "2027-04"]
-keywords: ["attention", "research"]
+dates: ["2025-11", "2026-02-01", "2026-03-03", "2026-06", "2026-08", "2026-08-28", "2026-09-14", "2026-14-09", "2027-04"]
+keywords: ["research"]
 source: docs/RAG/etape10_phaseF_news_buzz.md
 source_anchor: ""
-source_lines: [226, 283]
+source_lines: [226, 273]
 section: "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
-sha256: e27893d0f28dc0ff64199c7157650e0888988843165fbfa0cc248c7dbfbba1df
+sha256: 6d3c634d37381f773bbd167b7d9af3fc81ecf55b58498850ababbd457330af5b
 ---
 
 # 5. Deep dive — Streaming & television
@@ -63,14 +63,4 @@ sha256: e27893d0f28dc0ff64199c7157650e0888988843165fbfa0cc248c7dbfbba1df
 > This section is thinner than the entertainment sections: the research pass prioritized verifiable cultural events. Gaps are marked honestly in §8 rather than filled with speculation.
 
 ### 7.1 What is documented
-
-- **2026-02-01 — Grammy-night anti-ICE speeches**: remarks by Bad Bunny, Billie Eilish and other winners criticizing immigration enforcement became a national political flashpoint and the most consequential celebrity-politics moment of the period [secondary](https://www.khsu.org/2026-02-01/bad-bunny-wins-grammy-for-album-of-the-year).
-- **February 2026 — immigration-enforcement (ICE) discourse formed the broader social backdrop** for both the Grammys and the Super Bowl halftime conversation; a full movement-level mapping of 2026 protests was not completed in this pass (research gap).
-- **The 76th Berlinale (Feb 2026) was an explicitly political cultural event**: jury president Wim Wenders and winners used the ceremony to address authoritarianism and the global political climate, with the Golden Bear going to the politically charged *Yellow Letters* [secondary](https://www.tbsnews.net/splash/yellow-letters-triumphs-76th-berlinale-concludes-amid-political-fervour-1368791).
-- **2026-09-14 — Emmy recognition for the *Sean Combs* docuseries**: entertainment press noted Emmy attention for the Sean Combs documentary project during the 2026 awards cycle; the underlying legal proceedings predate this coverage window [secondary].
-
-### 7.2 Lifestyle and social-media trends
-
-- **TikTok/Shorts-driven phenomena documented in 2026**: the *KPop Demon Hunters* soundtrack chart run (cosplay, dance and singalong content), the *Heated Rivalry* fandom explosion, and the Harry Styles "put a bell on your bicycle" in-joke [secondary].
-- **A systematic mapping of 2026 lifestyle trends (fashion, food, travel, wellness) was not completed in this research pass** (research gap).
 

@@ -4,14 +4,14 @@ title: "G. Meraki MS355 / MS450 / MS150 — delta addendum to round-3b §R3b-A (
 domain: front-matter
 role: reference
 task: reference
-actors: ["EU", "Nvidia"]
-dates: ["2026-07-10", "2026-09-22"]
-keywords: ["benchmark", "cpo", "ethernet", "inference", "license", "nvidia", "pricing", "research"]
+actors: ["EU"]
+dates: ["2026-07-10"]
+keywords: ["benchmark", "cpo", "ethernet", "inference", "license", "pricing"]
 source: docs/RAG/etape6_phaseA_vendors_dc.md
 source_anchor: ""
-source_lines: [1407, 1483]
+source_lines: [1407, 1451]
 section: "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
-sha256: 665e45cb194961d7fc151ae48fc8bc72699be02a9f396660dbc644c1465cd3c3
+sha256: f063572e23d093b8b37d5ad81973e1c15fb1999c33e7d5b638e90d3065c8a03f
 ---
 
 # G. Meraki MS355 / MS450 / MS150 — delta addendum to round-3b §R3b-A (new listings only)
@@ -60,36 +60,4 @@ Round-3b §R3b-A already captured MS450-12-HW (MSRP $20,439.21 / street $17,938.
 7. Spectrum-X vs Etherlink head-to-head independent benchmark — not located; only vendor blogs and community analysis [gap].
 
 ### M. Supplementary Pass #3 sources (verbatim URLs)
-
-- https://www.dell.com/support/kbdoc/en-ca/000192674/smartfabric-os10-hardware-compatibility-list
-- https://www.dell.com/support/manuals/en-us/secure-connect-gateway-ve/scg_5.x_ve_sm/powerswitch-switches-with-enterprise-sonic-operating-system?guid=guid-e9fa4676-f185-4f30-920b-9934ad2f545f&lang=en-us
-- https://www.dell.com/support/kbdoc/en-us/000220710/dell-emc-networking-sonic-os-platform-and-package-support
-- https://www.businesswire.com/news/home/20251209613448/en/Aviz-Networks-Unveils-Turnkey-Enterprise-Grade-SONiC-As-Open-Network-Adoption-Accelerates
-- https://expresscomputersystems.com/collections/all/products/dell-emc-powerswitch-z9664f-on-64-port-400gbe-qsfp56-dd-switch
-- https://www.delltechnologies.com/asset/no-no/products/networking/technical-support/dell-powerswitch-z9664f-on-spec-sheet.pdf
-- https://lenovopress.lenovo.com/lp2451.pdf
-- https://content.etilize.com/Additional-pdf1/1076533848.pdf
-- https://resource.fs.com/mall/doc/20221205184410kkyxaf.pdf
-- https://www.lightoptics.co.uk/blogs/news/nvidias-new-ethernet-networking-platform-for-hpc-ai-and-data-center
-- https://docs.nvidia.com/networking/display/ufmenterpriseumv6231/gnmi-telemetry-plugin
-- https://docs.nvidia.com/networking/display/ufmenterpriseumv6175/release+notes
-- https://developer.nvidia.com/blog/benchmarking-nvidia-spectrum-x-for-ai-network-performance-now-available-from-supermicro/
-- https://cryptobriefing.com/nvidia-spectrum-x-ethernet-ai-networking/
-- http://gpusmith.com/articles/en/pdfs/infiniband-vs-spectrum-x-vs-roce-vs-ethernet-ai-clusters.pdf
-- https://github.com/abuabdurahman82/llm-systems-wiki/blob/HEAD/AI-Factory-Networking/26-arista-etherlink.md
-- http://gpusmith.com/datasheets/nvidia-connectx-7-datasheet.pdf
-- https://www.fastswan.org/Nvidia-ConnectX-7-Benchmark/
-- https://www.galaxus.de/en/s1/product/nvidia-connectx-7-vpi-200gbehdr-ib-dual-port-network-cards-58022449
-- https://4tekgear.com/meraki-ms450-12-hw-layer-3-switch-hardware-only.html
-- https://www.networkgenetics.net/cisco-meraki-ms355-48x2-hw-24x-10gb-rj-45-24x-rj-45-2x-qsfp-unclaimed-switch/
-- https://www.networktigers.com/products/ms355-48x2-hw-cisco-switch
-- https://networkequipment.net/products/cisco-meraki-ms355-48x2-hw-ref?_pos=20&_fid=2515010fc&_ss=c
-- https://www.hummingbirdnetworks.com/cisco-meraki-lic-ms355-48x2-7yr/
-- https://www.hummingbirdnetworks.com/cisco-meraki-lic-ms355-48x2-3yr/
-- https://github.com/ciscodevnet/meraki-portal-what-s-new-changelog/blob/HEAD/documents/2026.md
-- https://telecom4good.org/product/cisco-meraki-switch-ms130-8-compact/
-- https://www.dell.com/support/manuals/en-us/poweredge-mx840c/pemx7000_ism_pub/Next-Generation-Modular-overview?guid=guid-00a96ee7-973e-4fc4-b710-89361324e0ba&lang=en-us
-- https://infohub.delltechnologies.com/en-us/l/dell-poweredge-mx-networking-deployment-guide-1/scenario-6-connect-mx9116n-fse-to-fibre-channel-storage-fc-direct-attach-6/
-
-**Supplementary Pass #3 collection metadata:** read-only web research (browser_search + one page fetch, 2026-09-22); no live-browser visits; nothing sent externally. No identifiers guessed. All new facts carry provenance tags; new open items are listed in §L. Existing sections §§1–8, §§A–M, §§N–X (Pass #2) and §§N–S (round 2) were not modified.
 

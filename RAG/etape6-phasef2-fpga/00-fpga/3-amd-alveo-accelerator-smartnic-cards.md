@@ -5,13 +5,13 @@ domain: phase-f2-fpga-field-programmable-gate-arrays
 role: deep-dive
 task: reference
 actors: ["AMD", "TSMC", "United States"]
-dates: ["2026-01-14", "2026-05-19", "2026-09", "2026-09-22"]
-keywords: ["accelerator", "amd", "acquisition", "asic", "datacenter", "dsp", "inference", "latency", "memory", "pricing"]
+dates: ["2026-01-14", "2026-05-19", "2026-08-11", "2026-09", "2026-09-22"]
+keywords: ["accelerator", "amd", "acquisition", "asic", "benchmarks", "compute", "datacenter", "dsp", "ethernet", "inference", "latency", "memory"]
 source: docs/RAG/etape6_phaseF2_fpga.md
 source_anchor: ""
-source_lines: [79, 127]
+source_lines: [79, 144]
 section: "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
-sha256: 5d76022a45d167336c57c746bde9b30d08ab434e905e30a5de96a8c54ad3fe5b
+sha256: f2ffbdf43988cbc1551ecbf4054775bbcaeceb99c6d0efb37f16ab6d7ab2bf30
 ---
 
 # 3. AMD Alveo accelerator/SmartNIC cards
@@ -64,4 +64,21 @@ sha256: 5d76022a45d167336c57c746bde9b30d08ab434e905e30a5de96a8c54ad3fe5b
 - VectorPath S7t-VG6 accelerator card (BittWare): Speedster7t device, GDDR6, **1× QSFP-DD** for 400G or multiple 100G links `[secondary]` — source: https://www.zerif.co.uk/fpga-main-board-accelerators/achronix/bittware-s7t-vg6-achronix-speedster7t `[secondary]`
 - Achronix positions Speedster7t for high-bandwidth workloads: AI/ML inference, networking/security offload, 5G/ORAN, computational storage `[vendor-reported]`
 - Achronix Speedcore embedded-FPGA IP also offered for ASIC integration (separate product line from standalone Speedster7t) `[official]`
+
+## 5. Lattice Semiconductor — Nexus and Avant
+
+- **Avant** is a 16 nm midrange platform: broadly **200K–500K logic cells**, up to **25G SerDes**, PCIe Gen4, external DDR support, targeting midrange edge processing `[vendor-reported]` — sources: https://www.cnx-software.com/news/lattice/ and https://www.eetimes.com/lattice-expands-into-mid-range-fpgas/ `[secondary]`
+- Avant-E parts target midrange FPGA edge-processing tasks (video, industrial automation, robotics) `[secondary]` — source: https://www.hackster.io/news/lattice-launches-avant-fpga-platform-avant-e-parts-for-mid-range-fpga-edge-processing-tasks-3d67e117b47e.amp `[secondary]`
+- **Nexus** platform targets small, low-power devices; **Nexus 2 / Certus-N2** material reports **16G SerDes**, PCIe Gen4, enhanced security features, sampling status `[vendor-reported]` — (vendor product pages; tag as vendor-reported)
+- Lattice vendor comparisons (e.g., ~2.5× lower power, ~2× performance vs unnamed competitor baselines) must be treated as **[vendor-reported]** with unnamed baselines — do not present as independent benchmarks `[unverified]`
+- Lattice's historical strength: low-power small-form-factor FPGAs (iCE40, ECP5, MachXO) for control-plane, sensor aggregation, and bridging — relevant to data-center board-management and SmartNIC sidecar roles `[secondary]`
+
+## 6. Microchip PolarFire
+
+- PolarFire family: up to **500K logic elements**, **12.7 Gb/s SerDes**, nonvolatile **28 nm** SONOS fabric, hardened security (cryptoprocessor, DPA countermeasures), PCIe Gen2, DDR3/4 `[vendor-reported]` — sources: https://embeddedcomputing.com/technology/analog-and-power/pcbs-components/mouser-product-of-the-week-microchip-technology-polarfire-fpgas and https://ww1.microchip.com/downloads/en/DeviceDoc/Polarfire_SOC_Product_Overview.pdf `[vendor-reported]`
+- **PolarFire SoC** adds a 5-core RISC-V (SiFive) subsystem: 4× RV64GC application cores + 1× RV64IMAC monitor core for embedded/edge compute `[official]`
+- **PolarFire Ethernet Sensor Bridge rev 2.0** announced **2026-08-11**: reported **60% smaller** than prior revision, supports **4 cameras** and **10GbE-based sensor transport** for edge-AI sensor connectivity `[vendor-reported]` — source: https://www.stocktitan.net/news/MCHP/microchip-advances-edge-ai-sensor-connectivity-with-rev-2-0-polar-becysa7ddxek.html `[secondary]`
+- PolarFire positioning: lowest-power midrange FPGA with superior thermal/power profile and supply-chain longevity (defense, industrial, space) `[vendor-reported]`; independent power comparisons vs Agilex/Versal were not found in this research — gap `[unverified]`
+
+## 7. FPGA SmartNIC vendors
 

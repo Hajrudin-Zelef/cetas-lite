@@ -6,12 +6,12 @@ role: deep-dive
 task: regulation
 actors: ["Anthropic", "EU", "Google", "OpenAI", "SpaceX", "xAI"]
 dates: ["2026-02-19", "2026-03", "2026-05-19", "2026-06", "2026-07", "2026-07-21"]
-keywords: ["agent", "agentic", "agi", "antitrust", "benchmark", "benchmarks", "claude", "cyber", "distribution", "gemini", "gpt-5.6", "grok"]
+keywords: ["agent", "agentic", "agi", "antitrust", "benchmark", "benchmarks", "claude", "consumer", "cyber", "distribution", "gemini", "gpt-5.6"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [544, 596]
+source_lines: [544, 598]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 0d35ecadf2206ca7d879c5f3dc60a6b5b8048637f95ba1d0bbb8dcb242ea497b
+sha256: ae408e98c188f42f0a2ec913846d8d7e88664ed4a21832cfd9cf4f564d80bf36
 ---
 
 # 3.4 Controversies & regulatory
@@ -68,4 +68,6 @@ sha256: 0d35ecadf2206ca7d879c5f3dc60a6b5b8048637f95ba1d0bbb8dcb242ea497b
 | GDM-MRCR v2 1M pointwise | 54.0% | 26.6% | 26.3% |
 
 Per Google's own table, 3.6 Flash led OSWorld-Verified and CharXiv among all models; trailed GPT-5.6 Luna / Grok 4.5 / Claude Sonnet 5 on SWE-Bench Pro, DeepSWE, Terminal-Bench 2.1, MLE-Bench, and GDPVal-AA — cross-vendor cells are Google's evaluations [official].
+
+### 3.7 Consumer Gemini / Workspace / Search (2026)
 

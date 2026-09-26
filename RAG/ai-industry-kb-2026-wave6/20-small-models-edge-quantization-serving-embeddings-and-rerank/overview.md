@@ -4,15 +4,15 @@ title: "§20. Small Models, Edge, Quantization, Serving, Embeddings, and Reranke
 domain: small-models-edge-quantization-serving-embeddings-and-rerank
 role: deep-dive
 task: quantization
-actors: ["Alibaba", "Apple", "Cohere", "DeepSeek", "Google", "MiniMax", "Moonshot", "Nvidia", "OpenAI", "SGLang", "TensorRT-LLM", "Unsloth", "Z.ai", "vLLM", "xAI"]
-dates: ["2024-10", "2025-04", "2025-06", "2025-08", "2026-01-15", "2026-02", "2026-02-18", "2026-02-23", "2026-03", "2026-03-02", "2026-03-31", "2026-04", "2026-04-03", "2026-04-07", "2026-04-16", "2026-04-29", "2026-05-07", "2026-05-12", "2026-05-16", "2026-05-28", "2026-06-08", "2026-06-27", "2026-07-11", "2026-07-25", "2026-08", "2026-08-13", "2026-08-26", "2026-09"]
-keywords: ["embedding", "embeddings", "quantization", "agentic", "apache", "attention", "benchmark", "blackwell", "cohere", "decode", "deepseek", "fp4"]
+actors: ["Alibaba", "Apple", "Cohere", "DeepSeek", "Google", "MiniMax", "Moonshot", "Nvidia", "SGLang", "TensorRT-LLM", "Unsloth", "Z.ai", "vLLM", "xAI"]
+dates: ["2024-10", "2025-06", "2025-08", "2026-01-15", "2026-03-02", "2026-03-31", "2026-04", "2026-04-03", "2026-04-07", "2026-04-16", "2026-04-29", "2026-05-12", "2026-05-16", "2026-05-28", "2026-06-08", "2026-06-27", "2026-07-11", "2026-07-25", "2026-08", "2026-08-26", "2026-09"]
+keywords: ["embedding", "embeddings", "quantization", "apache", "attention", "blackwell", "cohere", "decode", "deepseek", "fp4", "fp8", "gguf"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [9639, 9689]
+source_lines: [9639, 9679]
 section: "§20. Small Models, Edge, Quantization, Serving, Embeddings, and Rerankers"
 delta_of: ai-industry-kb-2026
-sha256: 04f3027dadbcaffab68c4f40879db42edfe9b13704e89a2b30c4605186394263
+sha256: 0bdd7fdf2cb6274430fad97982541a1d4886f9204e2826b132258969b0c35980
 ---
 
 # §20. Small Models, Edge, Quantization, Serving, Embeddings, and Rerankers
@@ -55,14 +55,4 @@ Keywords: small language models, edge AI, quantization, vLLM, SGLang, Ollama, ll
 - SGLang: **2026-04-07** — v0.5.10 (GLM-5 NVFP4+MTP stable on Blackwell) [SECONDARY]; **2026-05-16** — v0.5.12 (benchmarked config) [SECONDARY]; **2026-07-25** — v0.5.16 (cutlass NVFP4 MoE backend removed; triton/flashinfer_cutlass remain; flag renames) [COMMUNITY]; day-zero Qwen3.8 hybrid support **2026-08-26** (PRs #36497/#36585) [COMMUNITY].
 - **2026-03-31** — Ollama 0.19.0: Apple Silicon switches to the MLX framework; +57% prefill (1,154→1,810) and +93% decode (57.8→112) measured on M5 Max with **Qwen3.5-35B-A3B (~3B active) — do not generalize to dense 35B-class models** [SECONDARY]; >32GB unified memory; Linux/Windows keep llama.cpp; 0.20/0.21 broaden MLX to Gemma 4 + mixed-precision [SECONDARY].
 - **~2026-07** — TensorRT-LLM v1.3.0rc21: DeepSeek V4, MiniMax M3 (MXFP8+NVFP4), Gemma 4 12B Unified, Qwen3.5-VL MoE/Dense, Qwen3.6 NVFP4; /v1/embeddings dynamic batching; **breaking**: legacy TRT Python modules removed; SM120 W4A16 NVFP4 Marlin [SECONDARY].
-
-### Embeddings
-- **2026-01-15** — Voyage-4 launched: voyage-4 / -large / -lite / -nano plus voyage-multimodal-3.5; first production MoE embedding model; shared embedding space; Matryoshka dims 256/512/1024/2048; MongoDB Atlas GA the same day [SECONDARY]; voyage-4-nano open-weight Apache 2.0 (~600M params, Qwen-based, 32K context) [SECONDARY]; **2026-08-13** — voyage-code-4: trained on issue-fixing PRs; +27.5% on an agentic code-retrieval benchmark, +14.0% across 28 datasets vs voyage-code-3, third of the price [COMMUNITY single-source].
-- **2026-02-23** — jina-embeddings-v5 announced (HF org listing 2026-02-18): **small = 677M, nano = 239M — the press copy inverted these** [SECONDARY]; best-in-class among comparable sizes on MMTEB; open weights on HF; self-host via vLLM/llama.cpp/MLX; Elastic Inference Service; license **CC BY-NC 4.0** [SECONDARY]; **2026-05-07** — v5-omni (v5-omni-small/nano, multimodal text+image) [SECONDARY].
-- Qwen3-Embedding-8B (June 2025 model): the 2026 delta is **continued MTEB Multilingual lead at 70.58**; 4096-dim MRL; 32K context; Apache 2.0; 100+ languages; 0.6B/4B siblings via Ollama; MTEB-Code 80.68 [SECONDARY].
-- MTEB 2026 state: Gemini Embedding 001 English 68.32; gemini-embedding-2 preview March 2026 (multimodal); Voyage family high 60s; EmbeddingGemma-300M on-device; OpenAI text-embedding-3-large 64.6% English [SECONDARY].
-- NVIDIA llama-nemotron-embed-1b-v2: February 2026, NVIDIA Open Model License [SECONDARY]; NV-Embed-v2 72.31 (March-2026 MTEB snapshot) [SECONDARY]; Llama-Embed-Nemotron-8B multilingual #1 provisional [SECONDARY].
-- Cohere Embed 4 (April 2025) / Rerank 4 (late 2025, 32K context, Fast/Pro tiers): 2025 models; the 2026 event is FedRAMP High on **2026-05-12** [SECONDARY]; Rerank 4 context 32K [SECONDARY] vs 4K [COMMUNITY] — logged, unresolved [DIRECTIONAL].
-- No verified 2026 ColBERT successor (jina-colbert-v2, 2024, latest found); no BGE-M3 successor (the GTE line continues via Qwen3-Embedding) [DIRECTIONAL].
-
 

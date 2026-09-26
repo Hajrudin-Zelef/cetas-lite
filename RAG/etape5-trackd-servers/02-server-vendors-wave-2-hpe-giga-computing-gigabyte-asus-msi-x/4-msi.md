@@ -9,9 +9,9 @@ dates: ["2019-05-16", "2026-03", "2026-06"]
 keywords: ["agentic", "alignment", "amd", "ascend", "blackwell", "compute", "diffusion", "ethernet", "gpu", "gpus", "inference", "intel"]
 source: docs/RAG/etape5_trackD_servers.md
 source_anchor: ""
-source_lines: [615, 676]
+source_lines: [615, 662]
 section: "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
-sha256: e6556f77870d1651c8c806a561e875dece09126556e92862ab6da3d9727a4aa5
+sha256: e434cf22a1c7e89a5acb7fa42c61f4d05dbd7face673436180b14826607fddaa
 ---
 
 # 4. MSI
@@ -63,18 +63,4 @@ sha256: e6556f77870d1651c8c806a561e875dece09126556e92862ab6da3d9727a4aa5
 ---
 
 ## 6. Cross-vendor notes & uncertainties
-
-1. **HPE vs branded-OEM share shift**: IDC Q2 2026 — branded OEMs are capturing a growing share of AI infrastructure (ODM Direct share 60.6% → 53.9% YoY); HPE +46.0% YoY to $5.87B [independent — IDC]. This validates the OEM AI-server wave these vendors ride.
-2. **GB300/Vera Rubin timing**: Wccftech (Dec 2025-era report) noted GB300 mass-production concerns and CSP preference for mature HGX 8-GPU systems; GB300 shipments projected +129% YoY in 2026 [secondary — https://wccftech.com/nvidia-blackwell-ultra-ai-servers-to-lead-the-ai-infrastructure-race-moving-into-2026/]. Rubin rack-scale platforms (Giga, ASUS) are staged for **H2 2026** [secondary].
-3. **Prices**: no public list pricing was found for any AI server in this wave (all enterprise quote-based) — systematic gap.
-4. **Model-number uncertainty**: "ESC N8A-E12" (ASUS) and "Cray XD675" (HPE) appear in the task brief but were not corroborated in 2026 sources; do not use them as confirmed current SKUs.
-5. **xFusion product detail**: the weakest area; needs Chinese-language source work (company site, WeChat, CSRC filings) — recommended follow-up by a follow-on research task.
-6. **MSI customer/financial detail**: also a gap — MSI's AI-server business scale and 2026 design wins were not found publicly.
-
-**Report written to**: `~/workspace/rag_collect/_draft_etape5_hpe_others.md` (this file)
-
-
----
-
-## §3 Data-center networking
 

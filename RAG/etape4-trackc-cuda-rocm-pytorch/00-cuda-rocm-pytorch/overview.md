@@ -5,13 +5,13 @@ domain: step-4-track-c-cuda-rocm-pytorch-gpu-compute-stack
 role: deep-dive
 task: funding-deals
 actors: ["AMD", "DeepSeek", "Nvidia"]
-dates: ["2026-02-01", "2026-03-09", "2026-05-26", "2026-06", "2026-07", "2026-07-19", "2026-07-20", "2026-09-10", "2026-09-13", "2026-09-22", "2026-10"]
-keywords: ["compute", "gpu", "amd", "attention", "aws", "benchmarks", "blackwell", "deepseek", "fp8", "gpus", "inference", "llama"]
+dates: ["2026-02-01", "2026-03-09", "2026-07", "2026-07-19", "2026-09-10", "2026-09-13", "2026-09-22", "2026-10"]
+keywords: ["compute", "gpu", "amd", "attention", "benchmarks", "blackwell", "deepseek", "fp8", "gpus", "inference", "memory", "nvidia"]
 source: docs/RAG/etape4_trackC_cuda_rocm_pytorch.md
 source_anchor: ""
-source_lines: [1, 90]
+source_lines: [1, 77]
 section: "Step 4 — Track C: CUDA + ROCm + PyTorch (GPU compute stack)"
-sha256: 9e38cfc1ef390232bc2324707fa081ef945cb1355c4c01bcfc7c9b2811fe6a79
+sha256: b072149037d9db2682425dfc110e214d1eadffff2fe4c8a3503aba396adc1ca9
 ---
 
 # Step 4 — Track C: CUDA + ROCm + PyTorch (GPU compute stack)
@@ -90,17 +90,4 @@ Driver-branch mapping **[official — https://docs.nvidia.com/cuda/cuda-toolkit-
 | CUDA 13.2 | R595 |
 | CUDA 13.1 | R590 (Windows minimum 581.15) |
 | CUDA 13.0 | R580 |
-
-- Minor-version compatibility: existing CUDA 13.x applications run on drivers **≥ 580**; CUDA 13.4 new features/newly enabled platforms require an **R615+ driver** (Windows driver for RTX Spark devices: **616.41 or later**). The driver is **no longer bundled** with the toolkit (Windows since CUDA 13.1, Linux since CUDA 13.4) **[official — https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html]**.
-- Community corroboration: llama.cpp CUDA 13 builds require the documented 581.15 minimum driver for CUDA 13.1 **[secondary — https://github.com/atomicbot-ai/atomic-chat/blob/HEAD/docs/decisions/2026-05-26-correct-cuda-13-1-driver-gate-to-nvidia-documented-581-15-and.md]**.
-
-### 1.5 Deprecations and 2026 housekeeping (official)
-
-- **Python 3.10 deprecated** across CUDA Python 13.4 packages **[official — https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html]**.
-- Legacy **Nsight Eclipse Edition** plugins no longer delivered in toolkit packages beginning with CUDA 13.3 **[official — https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html]**.
-- **CUDA 14.0** will move to **Armv8.2-A** as the minimum supported architecture for ARM64-SBSA **[official — https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html]**.
-
-⚠️ **Verification gap:** exact release dates for CUDA 13.0, 13.1, 13.2, and 13.3 were not confirmed from official notes in this research. Bundling evidence: PyTorch 2.12 wheels (July 2026) shipped CUDA 13.0.2, and PyTorch 2.13 wheels (July 20, 2026) shipped CUDA 13.3.0, so CUDA 13.0 GA'd by ~June 2026 and 13.3 by mid-July 2026 **[secondary — https://github.com/aws/deep-learning-containers/blob/HEAD/docs/pytorch/changelog/index.md]**.
-
----
 

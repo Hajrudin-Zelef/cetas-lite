@@ -4,7 +4,7 @@
   "source": "docs/RAG/Collect RAG/06_benchmarks",
   "source_dir": "docs/RAG/Collect RAG/06_benchmarks",
   "source_files": 5,
-  "source_sha256": "fd72334f056ac80855fcdaaa2dcfe5c2eadda434464546c9be984f4249df84eb",
+  "source_sha256": "8423cf53db4e138ecb3262caa80b0bcd5c203dbf412ed20ce3a9759b2b86c5ae",
   "chunk_count": 5,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [

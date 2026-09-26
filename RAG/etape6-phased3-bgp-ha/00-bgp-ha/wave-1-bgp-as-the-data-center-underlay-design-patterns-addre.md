@@ -9,9 +9,9 @@ dates: []
 keywords: ["cost", "ethernet", "nvidia"]
 source: docs/RAG/etape6_phaseD3_bgp_ha.md
 source_anchor: ""
-source_lines: [19, 96]
+source_lines: [19, 74]
 section: "Phase D3 — BGP underlay and high availability in the data center"
-sha256: 8d516d97eba750fc9ded2f8c21bfc1c55920bb772f05290803c9b1e1ecd09afd
+sha256: e9776e5fe34f980c66a070eef34008eeaabff192ec1c8364ed66f97d294ad9a0
 ---
 
 # Wave 1 — BGP as the data-center underlay: design patterns, addressing, and tuning
@@ -71,26 +71,4 @@ sha256: 8d516d97eba750fc9ded2f8c21bfc1c55920bb772f05290803c9b1e1ecd09afd
 - **Gap:** no published cross-vendor study of BFD scale (sessions per switch) at aggressive timers in production DC fabrics; vendor maximums are datasheet values.
 
 ### 1.6 Graceful restart / NSF for BGP in the DC
-
-- BGP graceful restart (RFC 4724) lets a restarting speaker ask peers to preserve forwarding state across a control-plane restart; **NSF/NSR** are the platform mechanisms that keep the data plane up during supervisor failover or process restart [official].
-- In DC fabrics, graceful restart is commonly enabled on the **EVPN overlay (iBGP)** sessions; on the eBGP underlay its value is debated because ECMP reconvergence around a failed node is often as fast as GR procedures [independent].
-- Platform notes: Cisco NX-OS supports BGP graceful restart and NSF/SSO on modular platforms; Nexus 3000's BFD explicitly lacks stateless-restart support (see §1.5) [official]. Arista EOS supports BGP GR; Juniper Junos supports GR and NSR per routing-instance [official][secondary].
-- **Unverified:** claims that GR measurably improves user-visible convergence in 3-stage Clos fabrics — lab evidence is mixed; treat vendor GR convergence claims as [vendor-reported].
-
-### 1.7 BFD integration with BGP: session bring-up order and pitfalls
-
-- BFD sessions for BGP are typically **single-hop** on fabric links; multihop BFD is used for iBGP overlay sessions via loopbacks [official][independent].
-- Pitfalls documented [official][independent]:
-  - BFD must be configured consistently on both peers (IOS-XR notes behavior depends on identical config) [official].
-  - Configuring timers below the platform minimum causes "undesirable behavior" — Cisco explicitly warns against 3 ms when the floor is 4 ms [official].
-  - On NX-OS, topology changes affecting SVIs can flap BFD sessions; Cisco recommends disabling BFD or raising timers during topology changes [official].
-  - BFD and graceful restart interact: aggressive BFD can tear down sessions that GR is trying to preserve — coordinate the two [independent].
-
-### 1.8 Wave-1 verification notes and open items
-
-- **Verified:** RFC 5549 mechanism and multi-vendor support statements; Cisco BFD timer tables; NX-OS BFD limitations; Cumulus extended-nexthop behavior; Dell OS10 `link-local-only-nexthop`.
-- **Open:** ASN scheme production survey; BFD scale-at-aggressive-timers data; GR benefit quantification in Clos fabrics.
-- *End of Wave 1.*
-
----
 

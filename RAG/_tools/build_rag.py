@@ -22,6 +22,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 RAG_ROOT = ROOT / "RAG"
 
+# Borne des chunks en mode `files` : au-dela, une fiche est decoupee sur des
+# frontieres de paragraphes. Garde-fou contre les chunks trop gros (l'embed
+# cote Go tronque a 20000 caracteres). Surchargeable par corpus via
+# `max_chars`. Voir `_char_split_lines`.
+FILES_MAX_CHARS = 8000
+# Idem en mode `auto` : `max_lines` borne les lignes, pas les caracteres.
+AUTO_MAX_CHARS = 8000
+
 # --------------------------------------------------------------------------
 # corpus: briefing-ia-2026  (do not touch: committed, must stay byte-identical)
 # --------------------------------------------------------------------------
@@ -772,6 +780,16 @@ def auto_items(cfg, lines, n):
         for j in range(len(bounds) - 1):
             pieces.extend(_split_piece(lines, bounds[j], bounds[j + 1] - 1, heads, maxl))
         merged = _merge_small(pieces, minl, maxl)
+        # Garde-fou char : `max_lines` borne les lignes, pas les caracteres ;
+        # des lignes longues (tableaux markdown) peuvent depasser la borne.
+        maxc = cfg.get("max_chars", AUTO_MAX_CHARS)
+        bounded = []
+        for (a, b) in merged:
+            if len("".join(lines[a - 1:b]).encode("utf-8")) <= maxc:
+                bounded.append((a, b))
+            else:
+                bounded.extend(_char_split_lines(lines[a - 1:b], maxc, base=a - 1))
+        merged = bounded
         cleaned = []
         for (a, b) in merged:
             if cleaned and (b - a + 1) < minl and (b - cleaned[-1][0] + 1) <= maxl + 30:
@@ -779,6 +797,15 @@ def auto_items(cfg, lines, n):
             else:
                 cleaned.append((a, b))
         merged = cleaned
+        # Re-application finale : le re-merge `cleaned` peut reunir des
+        # morceaux au-dela de la borne char. Filet de securite.
+        bounded = []
+        for (a, b) in merged:
+            if len("".join(lines[a - 1:b]).encode("utf-8")) <= maxc:
+                bounded.append((a, b))
+            else:
+                bounded.extend(_char_split_lines(lines[a - 1:b], maxc, base=a - 1))
+        merged = bounded
         front = idx == 0 and not cfg.get("first_is_content")
         if front:
             fbase = "00-front-matter"
@@ -1027,6 +1054,36 @@ def _domain_from_source(body):
     return h.split(".")[0].lower()
 
 
+def _char_split_lines(lines, maxc, base=0):
+    """Decoupe une liste de lignes en tranches contigues <= maxc caracteres,
+    en coupant sur des lignes vides (frontieres de paragraphes). Coupe dure
+    en repli si un paragraphe seul depasse. `base` est l'offset (0-based) de
+    `lines` dans le fichier complet : les bornes renvoyees sont absolues
+    (1-based sur le fichier complet) quand base>0, sinon locales."""
+    n = len(lines)
+    blanks = [i for i in range(1, n + 1) if lines[i - 1].strip() == ""]
+    out, cur = [], 1
+    while cur <= n:
+        size = 0
+        end = cur
+        while end <= n:
+            size += len(lines[end - 1].encode("utf-8"))
+            if size > maxc:
+                break
+            end += 1
+        if end > n:
+            out.append((cur, n))
+            break
+        if end - 1 > cur:
+            cand = [p for p in blanks if cur < p <= end - 1]
+            cut = cand[-1] if cand else end - 1
+        else:
+            cut = end
+        out.append((cur, cut))
+        cur = cut + 1
+    return [(a + base, b + base) for (a, b) in out]
+
+
 def files_items(cfg):
     base = ROOT / cfg["source_dir"]
     if not base.is_dir():
@@ -1035,22 +1092,31 @@ def files_items(cfg):
     if not files:
         sys.exit(f"[{cfg['slug']}] no .md file in {base}")
     folder = cfg.get("folder", slugify(base.name))
+    maxc = cfg.get("max_chars", FILES_MAX_CHARS)
     items, seen = [], {}
     for p in files:
         body = p.read_text(encoding="utf-8")
         title = _first_heading(body) or p.stem
-        slug = slugify(p.stem, 90)
-        seen[slug] = seen.get(slug, 0) + 1
-        if seen[slug] > 1:
-            slug = f"{slug}-{seen[slug]}"
-        items.append({
-            "folder": folder, "slug": slug, "title": title, "body": body,
-            "src": str(p.relative_to(ROOT)),
-            "start": 1, "end": len(body.splitlines()),
-            "domain": cfg.get("domain") or _domain_from_source(body) or folder,
-            "role": "reference",
-            "task": _type_task(body) or cfg.get("task", "reference"),
-        })
+        base_slug = slugify(p.stem, 90)
+        lines = body.splitlines(keepends=True)
+        n = len(lines)
+        spans = [(1, n)]
+        if len(body.encode("utf-8")) > maxc:
+            spans = _char_split_lines(lines, maxc)
+        for k, (start, end) in enumerate(spans):
+            chunk_body = "".join(lines[start - 1:end])
+            slug = base_slug if len(spans) == 1 else f"{base_slug}-{k + 1}"
+            seen[slug] = seen.get(slug, 0) + 1
+            if seen[slug] > 1:
+                slug = f"{slug}-{seen[slug]}"
+            items.append({
+                "folder": folder, "slug": slug, "title": title, "body": chunk_body,
+                "src": str(p.relative_to(ROOT)),
+                "start": start, "end": end,
+                "domain": cfg.get("domain") or _domain_from_source(body) or folder,
+                "role": "reference",
+                "task": _type_task(body) or cfg.get("task", "reference"),
+            })
     return items
 
 
@@ -1224,12 +1290,15 @@ def build_corpus(cfg, lines, n):
     (out / "INDEX.md").write_text("\n".join(lines_out) + "\n", encoding="utf-8")
 
     if files_mode:
+        n_srcs = len({c["source"] for c in manifest})
         corpus_manifest = {
             "corpus": cfg["slug"], "title": cfg["title"],
             "source": cfg["source_dir"], "source_dir": cfg["source_dir"],
-            "source_files": len(items),
+            "source_files": n_srcs,
             "source_sha256": hashlib.sha256("".join(
-                f"{c['source']}\0{c['sha256']}\n" for c in manifest).encode("utf-8")).hexdigest(),
+                f"{c['source']}\0{c['source_lines'][0]}\0{c['sha256']}\n"
+                for c in sorted(manifest, key=lambda c: (c["source"], c["source_lines"][0]))
+            ).encode("utf-8")).hexdigest(),
             "chunk_count": len(manifest), "generated_by": "RAG/_tools/build_rag.py",
         }
     else:
@@ -1256,11 +1325,22 @@ def verify_corpus(cfg, lines, n, man):
         want = {str(p.relative_to(ROOT)) for p in srcs}
         got = {c["source"] for c in man["chunks"]}
         assert got == want, "files: source set mismatch"
-        assert len(man["chunks"]) == len(want), "files: one chunk per file expected"
+        by_src = {}
         for c in man["chunks"]:
-            body = (ROOT / c["source"]).read_text(encoding="utf-8")
-            assert hashlib.sha256(body.encode("utf-8")).hexdigest() == c["sha256"], \
-                f"files: sha mismatch {c['path']}"
+            by_src.setdefault(c["source"], []).append(c)
+        for src, cs in by_src.items():
+            slines = (ROOT / src).read_text(encoding="utf-8").splitlines(keepends=True)
+            sn = len(slines)
+            ordered = sorted(cs, key=lambda c: c["source_lines"][0])
+            cursor = 1
+            for c in ordered:
+                a, b = c["source_lines"]
+                assert a == cursor and b >= a, f"files: gap/overlap at {c['path']}"
+                cursor = b + 1
+                slice_text = "".join(slines[a - 1:b])
+                assert hashlib.sha256(slice_text.encode("utf-8")).hexdigest() == c["sha256"], \
+                    f"files: sha mismatch {c['path']}"
+            assert cursor == sn + 1, f"files: {src} not fully covered"
         return 0
     ordered = sorted(man["chunks"], key=lambda c: c["source_lines"][0])
     assert ordered[0]["source_lines"][0] == 1, "cover must start at 1"
@@ -1890,6 +1970,20 @@ CORPORA = [
         "title": "Clean 4 — serveurs, GPU & stockage 2026",
         "source_dir": "docs/RAG/clean4",
         "mode": "files", "folder": "servers-hardware",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-260926-mikrotik",
+        "title": "MikroTik — RouterOS, forums, CHR/Proxmox (2026)",
+        "source_dir": "docs/RAG/lot-mikrotik",
+        "mode": "files", "folder": "mikrotik",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-260926-rattrapage",
+        "title": "Rattrapage — IA, fine-tuning, reviews serveurs (2026)",
+        "source_dir": "docs/RAG/lot-rattrapage",
+        "mode": "files", "folder": "rattrapage",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },
 ]

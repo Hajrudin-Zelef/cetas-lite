@@ -4,7 +4,7 @@
   "source": "docs/RAG/Collect RAG Vague 2/01_briefia",
   "source_dir": "docs/RAG/Collect RAG Vague 2/01_briefia",
   "source_files": 1,
-  "source_sha256": "de2dfca61fafacc79b888654cc7716dce9e001a21d5110c81ca966f53afc6ce2",
+  "source_sha256": "20e0af76b9117aa5e39ec82069f15947eb6078f43479e583d176edd48be1f925",
   "chunk_count": 1,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [

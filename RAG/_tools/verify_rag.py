@@ -31,36 +31,55 @@ def check(cond, msg):
 
 
 def verify_files(corpus: dict, man: dict, chunks: list):
-    """Corpus `files` : une source = un dossier de fiches, une fiche = un chunk."""
+    """Corpus `files` : une source = un dossier de fiches. Une fiche courte
+    fait un chunk verbatim ; une fiche longue (> borne) est decoupee en
+    tranches contigues couvrant exactement son fichier source."""
     slug = corpus["corpus"]
     base = ROOT / man["source_dir"]
     srcs = sorted(p for p in base.rglob("*.md") if not p.name.startswith("_"))
     print(f"\n=== {slug} === ({len(srcs)} fiches, {len(chunks)} chunks)")
 
-    print("1) une fiche = un chunk")
-    check(len(srcs) == len(chunks), f"{len(srcs)} fiches == {len(chunks)} chunks")
-    want = {str(p.relative_to(ROOT)) for p in srcs}
-    got = {c["source"] for c in chunks}
-    check(got == want, "chaque fiche a exactement un chunk")
-
-    print("2) contenu verbatim + sha256")
-    ok_sha, ok_verbatim = True, True
+    by_src = {}
     for c in chunks:
-        body = (ROOT / c["source"]).read_text(encoding="utf-8")
-        if hashlib.sha256(body.encode("utf-8")).hexdigest() != c["sha256"]:
-            ok_sha = False
-            check(False, f"{c['path']} sha256 mismatch")
-        if body not in (RAG_ROOT / c["path"]).read_text(encoding="utf-8"):
-            ok_verbatim = False
-            check(False, f"{c['path']} ne contient pas la fiche verbatim")
-    check(ok_sha, "sha256 de chaque fiche == chunk")
-    check(ok_verbatim, "corps de chaque fiche présent verbatim dans son chunk")
+        by_src.setdefault(c["source"], []).append(c)
+
+    print("1) chaque fiche source a au moins un chunk, aucun chunk orphelin")
+    want = {str(p.relative_to(ROOT)) for p in srcs}
+    check(set(by_src) == want, "chaque fiche a au moins un chunk")
+
+    print("2) contenu verbatim + sha256 (par tranche)")
+    all_ok = True
+    for src, cs in by_src.items():
+        lines = (ROOT / src).read_text(encoding="utf-8").splitlines(keepends=True)
+        n = len(lines)
+        ordered = sorted(cs, key=lambda c: c["source_lines"][0])
+        cursor = 1
+        for c in ordered:
+            a, b = c["source_lines"]
+            if a != cursor or b < a or b > n:
+                all_ok = False
+                check(False, f"{c['path']} range [{a},{b}] non contigu (attendu {cursor})")
+            cursor = b + 1
+            slice_text = "".join(lines[a - 1:b])
+            content = (RAG_ROOT / c["path"]).read_text(encoding="utf-8")
+            if content.count(slice_text) != 1:
+                all_ok = False
+                check(False, f"{c['path']} ne contient pas sa tranche verbatim")
+            if hashlib.sha256(slice_text.encode("utf-8")).hexdigest() != c["sha256"]:
+                all_ok = False
+                check(False, f"{c['path']} sha256 mismatch")
+        if cursor != n + 1:
+            all_ok = False
+            check(False, f"{src} non couvert jusqu'a la ligne {n} (cursor={cursor})")
+    check(all_ok, "chaque fiche source couverte exactement par ses tranches")
 
     print("3) manifest <-> fichiers")
     check(man["chunk_count"] == len(chunks), "chunk_count consistent")
     check(man.get("source_files") == len(srcs), "source_files consistent")
     expect = hashlib.sha256("".join(
-        f"{c['source']}\0{c['sha256']}\n" for c in chunks).encode("utf-8")).hexdigest()
+        f"{c['source']}\0{c['source_lines'][0]}\0{c['sha256']}\n"
+        for c in sorted(chunks, key=lambda c: (c["source"], c["source_lines"][0]))
+    ).encode("utf-8")).hexdigest()
     check(man["source_sha256"] == expect, "global source sha256 matches")
     check(all((RAG_ROOT / c["path"]).exists() for c in chunks), "every path exists")
 

@@ -5,13 +5,13 @@ domain: front-matter
 role: reference
 task: reference
 actors: []
-dates: ["2026-03", "2026-03-12", "2026-04-16", "2026-06", "2026-06-13", "2026-07-03", "2026-09-22", "2026-11-30"]
-keywords: ["apache", "benchmark", "benchmarks", "mcp", "research"]
+dates: ["2026-03-12", "2026-04-16", "2026-06-13", "2026-07-03"]
+keywords: ["apache", "mcp"]
 source: docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md
 source_anchor: ""
-source_lines: [108, 155]
+source_lines: [108, 138]
 section: "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
-sha256: 8653b8667b394e72d88e7100db235a97ccefdd75c68d99a0176bb39bb5e1b554
+sha256: 1eda0a9d88c67882c6fe54b5a84ad0ac57b674c1afbfb4352dfe972c8099bbec
 ---
 
 # Wave 6 — Python network libraries
@@ -46,21 +46,4 @@ sha256: 8653b8667b394e72d88e7100db235a97ccefdd75c68d99a0176bb39bb5e1b554
 ---
 
 ## Wave 8 — Verification log, gaps & conflicts
-
-- **Line count:** to be verified after writing (target ≥750).
-- **Gaps (no 2026 data found):**
-  - cisco.nxos version lineage: field reports show **12.0.0** (mid-2026) while CHANGELOG HEAD documents 9.x — could not confirm the current major line on 2026-09-22. **[unverified]**
-  - pygnmi maintenance status: repo docs stale (~2022); latest version number not confirmed. **[unverified]**
-  - Infoblox Terraform provider: latest found is v2.5/v2.6 (2024); no 2026 release confirmed. **[unverified]**
-  - Terraform 1.9.0 described as "last open-source version under MPL; 2.0+ is BSL" by one Medium source — not confirmed against HashiCorp's own release notes. **[unverified]**
-  - Ansible network automation performance-at-scale benchmarks (playbook runs vs Nornir vs pyATS at 1k+ devices): no head-to-head 2026 benchmark found. **[gap]**
-  - Adoption statistics (NetDevOps survey numbers, Ansible-for-networks market share 2026): no survey located. **[gap]**
-- **Conflicts:**
-  - C1: OpenTofu provider-registry size — 3,900+ providers/23,600+ modules (June 2026 Medium) vs 3,000+ providers (Medium, June 2026) vs 3,200+ providers (March 2026). Treated as indicative, not exact.
-  - C2: ansible-core 2.19 EOL — endoflife.date says EOL 2026-11-30 (still supported at research date); eosl.date agrees. Consistent.
-  - C3: cisco.nxos 9.x vs 12.0.0 — see gap above.
-- **Collection-deprecation risk:** `junipernetworks.junos` deprecated (removal from Ansible 14 if unmaintained) while Juniper redirects users to `juniper.device`; network teams should standardize on `juniper.device` FQCNs [official].
-- **Round-trip:** all URLs used are verbatim from search-result listings; no SKUs/URLs invented. Facts without a confirmable 2026 source are tagged `[unverified]`.
-
----
 

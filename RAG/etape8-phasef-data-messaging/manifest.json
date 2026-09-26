@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape8_phaseF_data_messaging.md",
   "source_lines": 757,
   "source_sha256": "c923fc5201b3ec716c2727b6bfdca0cce7b74f77271f08bb6db7c87ff136ea9e",
-  "chunk_count": 15,
+  "chunk_count": 17,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -104,13 +104,7 @@
       "task": "reference",
       "actors": [],
       "dates": [
-        "2024-10-21",
-        "2026-04",
-        "2026-04-30",
-        "2026-07-06",
-        "2026-09-24",
-        "2026-10-21",
-        "2027-10-21"
+        "2026-04-30"
       ],
       "keywords": [
         "agentic",
@@ -125,12 +119,46 @@
       "source_anchor": "",
       "source_lines": [
         150,
+        212
+      ],
+      "canonical_for": [],
+      "words": 982,
+      "bytes": 7447,
+      "sha256": "5470722c9a109add640cc025b33b9e5d7e20fcc2b2d086cdad93c7d640cc3c3f",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/7-5-apache-pulsar",
+      "path": "etape8-phasef-data-messaging/00-front-matter/7-5-apache-pulsar.md",
+      "title": "7.5 Apache Pulsar",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-10-21",
+        "2026-04",
+        "2026-04-30",
+        "2026-07-06",
+        "2026-09-24",
+        "2026-10-21",
+        "2027-10-21"
+      ],
+      "keywords": [
+        "apache",
+        "consumer",
+        "latency"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        213,
         232
       ],
       "canonical_for": [],
-      "words": 1322,
-      "bytes": 10120,
-      "sha256": "ba05611f055ef8b4ac0288fce7123b3adfcb11ae68dd07cd0571706ca3601653",
+      "words": 340,
+      "bytes": 2673,
+      "sha256": "57142b59a47ef416812bff27ed57f4af5e30b4158e60a715b9a743590ecf389d",
       "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
     },
     {
@@ -178,19 +206,16 @@
       ],
       "dates": [
         "2025-04",
-        "2025-05",
         "2026-03",
         "2026-05-13",
         "2026-05-14",
         "2026-06",
-        "2026-07-14",
         "2026-08-20"
       ],
       "keywords": [
         "agentic",
         "apache",
         "aws",
-        "compute",
         "cost",
         "inference",
         "lean",
@@ -200,12 +225,40 @@
       "source_anchor": "",
       "source_lines": [
         291,
+        353
+      ],
+      "canonical_for": [],
+      "words": 962,
+      "bytes": 7516,
+      "sha256": "392401ee0b5cd740a11859c625d389371365a5862815d65ccb1e08c0355ecbe7",
+      "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
+    },
+    {
+      "id": "etape8-phasef-data-messaging/00-front-matter/12-4-apache-spark-4-x",
+      "path": "etape8-phasef-data-messaging/00-front-matter/12-4-apache-spark-4-x.md",
+      "title": "12.4 Apache Spark 4.x",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-05",
+        "2026-07-14"
+      ],
+      "keywords": [
+        "apache",
+        "compute"
+      ],
+      "source": "docs/RAG/etape8_phaseF_data_messaging.md",
+      "source_anchor": "",
+      "source_lines": [
+        354,
         373
       ],
       "canonical_for": [],
-      "words": 1344,
-      "bytes": 10438,
-      "sha256": "92fbc7b35440fe2c28a4437e967e2bb101f247fbf389ef4ac792c66be6ee61a5",
+      "words": 382,
+      "bytes": 2922,
+      "sha256": "25f36e578d1fcc2c01d76e23104337b20d16b60d8aa249f092972a67b4e43381",
       "section": "Step 8 Phase F — Data & Messaging: Developer Angle"
     },
     {

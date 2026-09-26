@@ -4,8 +4,8 @@
   "source": "docs/RAG/clean_en/frandroid",
   "source_dir": "docs/RAG/clean_en/frandroid",
   "source_files": 14,
-  "source_sha256": "8718044ac889e30762d27f3450cc08f259c4344caface31888bb1d7866285aa8",
-  "chunk_count": 14,
+  "source_sha256": "817a6ea270f362f8511c497756c173d75f14d00c8cfdd77d2f1acb635b767222",
+  "chunk_count": 37,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -74,8 +74,8 @@
       "sha256": "ad7666b510225d962cf1f5799d6d2969b416fa1591b1d5dc2e47819fe35017ef"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid",
-      "path": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid.md",
+      "id": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid-1",
+      "path": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid-1.md",
       "title": "comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid",
       "domain": "frandroid",
       "role": "reference",
@@ -89,11 +89,8 @@
       "dates": [],
       "keywords": [
         "amd",
-        "distribution",
         "ethernet",
-        "gpu",
         "gpus",
-        "humanoid",
         "intel",
         "nvidia"
       ],
@@ -101,12 +98,40 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        78
+      ],
+      "canonical_for": [],
+      "words": 1254,
+      "bytes": 7515,
+      "sha256": "0c38bda75254e8fec50460ce4fc5bf73acb42b81804fb1ddea247ccec7eb603d"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid-2",
+      "path": "collect-240926-frandroid/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid-2.md",
+      "title": "comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "gpu",
+        "humanoid",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/comment-installer-steamos-sur-son-pc-le-guide-complet-atape-par-atape-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        79,
         105
       ],
       "canonical_for": [],
-      "words": 1631,
-      "bytes": 9834,
-      "sha256": "af0ddefd367addd1b619884d2d1f197b101048b8e0d8f6265c88733d3574e506"
+      "words": 377,
+      "bytes": 2319,
+      "sha256": "39c0d5f312634404f198f6d7adbf7657a438bdef2ab0e95f468273419c5f2e4f"
     },
     {
       "id": "collect-240926-frandroid/frandroid/de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphon",
@@ -136,8 +161,8 @@
       "sha256": "e90d49ee9acd45f3d71a742a9c19324a7e31b010763bb3c46210cf45bc5eaddf"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026",
-      "path": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026.md",
+      "id": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-1",
+      "path": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-1.md",
       "title": "du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026",
       "domain": "frandroid",
       "role": "reference",
@@ -152,23 +177,76 @@
         "2024-09"
       ],
       "keywords": [
-        "gpu",
-        "humanoid"
+        "gpu"
       ],
       "source": "docs/RAG/clean_en/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        102
+      ],
+      "canonical_for": [],
+      "words": 1344,
+      "bytes": 7956,
+      "sha256": "f3aba137ab72f1a124de0938fbd5efc1d7192cfbe2b0d7c2c9f00f88de51bf5c"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-2",
+      "path": "collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-2.md",
+      "title": "du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "humanoid"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        103,
         145
       ],
       "canonical_for": [],
-      "words": 2203,
-      "bytes": 13134,
-      "sha256": "f6a89f4fcc4308aede2409b3cc0ac6d9d25cf907ecfbd16d4216c7a14dd4b653"
+      "words": 859,
+      "bytes": 5178,
+      "sha256": "4b65a312295df69602462b191dfec88ed8169d5f587bb50af6442b0ad75dfc62"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
-      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-1",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-1.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Apple",
+        "Google",
+        "Qualcomm",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "exploit"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        116
+      ],
+      "canonical_for": [],
+      "words": 1333,
+      "bytes": 7938,
+      "sha256": "d9977b5429716f61064b94f8179d14e98046b348435850b0c7561fdf4d17a5fd"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-2",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-2.md",
       "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
       "domain": "frandroid",
       "role": "reference",
@@ -177,34 +255,209 @@
         "AWS",
         "Apple",
         "China",
-        "Google",
-        "Huawei",
-        "Qualcomm",
-        "Samsung",
-        "Xiaomi"
+        "Samsung"
       ],
       "dates": [],
       "keywords": [
-        "attention",
-        "cost",
-        "exploit",
-        "gpu",
-        "humanoid",
-        "lawsuit",
-        "license",
-        "memory",
         "packaging"
       ],
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        117,
+        256
+      ],
+      "canonical_for": [],
+      "words": 1361,
+      "bytes": 7859,
+      "sha256": "be6c0a4908f4bb6fb02f7fbc14d111615dad3084d4b3f39ccf513e5d6c04f22a"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-3",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-3.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        257,
+        328
+      ],
+      "canonical_for": [],
+      "words": 1469,
+      "bytes": 7962,
+      "sha256": "a850a3a7e60a8ff9a93bb03e240186dc0ac3409f3facb0701d872995b1b6dd18"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-4",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-4.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        329,
+        412
+      ],
+      "canonical_for": [],
+      "words": 1173,
+      "bytes": 6499,
+      "sha256": "79da69a1b984844fde73ec56b48871dc0da0af2408ff2e296a1e0c432a26ab0d"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-5",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-5.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "Google",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        413,
+        413
+      ],
+      "canonical_for": [],
+      "words": 1435,
+      "bytes": 8054,
+      "sha256": "5b73d4c646e5eadd6efec295fe55ce1d75dc9b1f9af2d3971c67b8efb6e8ccc8"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-6",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-6.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Huawei",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "lawsuit",
+        "license"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        414,
+        502
+      ],
+      "canonical_for": [],
+      "words": 1220,
+      "bytes": 6712,
+      "sha256": "0297ab38e526a4aa70056833805d1e4149705f00886821105c4be1b6d7721289"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-7",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-7.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "China",
+        "Google",
+        "Huawei",
+        "Qualcomm",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        503,
+        548
+      ],
+      "canonical_for": [],
+      "words": 1436,
+      "bytes": 7778,
+      "sha256": "566b7511bd787658db8e79e894262595bf492368007fdb2b1718a7e5176756f9"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-8",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-8.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Huawei",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        549,
+        618
+      ],
+      "canonical_for": [],
+      "words": 1369,
+      "bytes": 7563,
+      "sha256": "7e39df58494fd6b7135c7d3709dd29a55b9c920d90c7fa32366d21a086610806"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-9",
+      "path": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-9.md",
+      "title": "faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Huawei",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "humanoid"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
+      "source_anchor": "",
+      "source_lines": [
+        619,
         639
       ],
       "canonical_for": [],
-      "words": 11196,
-      "bytes": 63000,
-      "sha256": "0002ccab949226ea63db34337c1d5bbb3d19529e946decb8a92a9a42dcee792c"
+      "words": 400,
+      "bytes": 2635,
+      "sha256": "17ff8c6ac805c1a0ee52703b431375379f853d1f78b8df6f8cf55be998691e0d"
     },
     {
       "id": "collect-240926-frandroid/frandroid/google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes",
@@ -269,8 +522,8 @@
       "sha256": "0abe7802256c2297e27e334357d4ba8d2b20507fb7fcbb651cc3555c69dc148e"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix",
-      "path": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix.md",
+      "id": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix-1",
+      "path": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix-1.md",
       "title": "j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix",
       "domain": "frandroid",
       "role": "reference",
@@ -292,26 +545,86 @@
         "cost",
         "exploit",
         "gpu",
-        "humanoid",
         "inference",
         "latency",
         "memory",
-        "nand"
+        "nand",
+        "panther lake"
       ],
       "source": "docs/RAG/clean_en/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        87
+      ],
+      "canonical_for": [],
+      "words": 1409,
+      "bytes": 7986,
+      "sha256": "25120fdb1d8afa86c4cddbeb4baac20e29fe20b00c2d6cc99c39bf0496771e9e"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix-2",
+      "path": "collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix-2.md",
+      "title": "j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "humanoid",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix.md",
+      "source_anchor": "",
+      "source_lines": [
+        88,
         112
       ],
       "canonical_for": [],
-      "words": 1912,
-      "bytes": 10824,
-      "sha256": "ce6b5004d2d4cd525ea425cfd47346841f5f9ff556d92cb17731ce00d8cba479"
+      "words": 503,
+      "bytes": 2838,
+      "sha256": "e638537fb0468e6475b33b4909ffbfe8828ad6d8df1a49c5f2c2219b3d7610d4"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui",
-      "path": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui.md",
+      "id": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-1",
+      "path": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-1.md",
+      "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "gpu",
+        "memory",
+        "power delivery"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 1390,
+      "bytes": 7741,
+      "sha256": "0874295d39a67c097838d8de12c2270cbadf647b1fa7557870e2cc175bf2129d"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-2",
+      "path": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-2.md",
       "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
       "domain": "frandroid",
       "role": "reference",
@@ -320,34 +633,61 @@
         "AMD",
         "China",
         "Microsoft",
-        "Mistral",
         "Nvidia"
       ],
       "dates": [],
       "keywords": [
         "amd",
         "benchmark",
-        "benchmarks",
         "compute",
-        "diffusion",
         "gpu",
-        "humanoid",
         "license",
-        "llama",
-        "memory",
-        "mistral",
-        "nvidia"
+        "nvidia",
+        "throughput"
       ],
       "source": "docs/RAG/clean_en/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        61,
+        106
+      ],
+      "canonical_for": [],
+      "words": 1391,
+      "bytes": 7974,
+      "sha256": "1a52967efa9ca80f84eed91869023b3779c0dd0f0cfd894ee0141a84d91f03f7"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-3",
+      "path": "collect-240926-frandroid/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-3.md",
+      "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "Mistral"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "diffusion",
+        "gpu",
+        "humanoid",
+        "llama",
+        "mistral"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
+      "source_anchor": "",
+      "source_lines": [
+        107,
         139
       ],
       "canonical_for": [],
-      "words": 3682,
-      "bytes": 20842,
-      "sha256": "73a287e493c0c743ed5d1c49b73b030e628b63b1fdd828a671ffd22b5a3525ed"
+      "words": 901,
+      "bytes": 5127,
+      "sha256": "2f89d9e6421aaed3aaff52a3a2a22c1c8d492567a4283969f7c0e9bf47d87b9a"
     },
     {
       "id": "collect-240926-frandroid/frandroid/ps6-et-xbox-helix-les-puces-seraient-finalisaes-40-contre-56-tflops-annoncas-frandroid",
@@ -380,15 +720,39 @@
       "sha256": "238c2ceaa9b7b98dd205a803013bf00ef8be6110a66fb460b7bd3528f7af3409"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026",
-      "path": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026.md",
+      "id": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026-1",
+      "path": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026-1.md",
       "title": "quels-sont-les-meilleurs-tv-55-pouces-en-2026",
       "domain": "frandroid",
       "role": "reference",
       "task": "reference",
       "actors": [
         "AWS",
-        "Apple",
+        "Google",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean_en/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        84
+      ],
+      "canonical_for": [],
+      "words": 1321,
+      "bytes": 7909,
+      "sha256": "fde848fa47655be5d29217653cff61cfb938faafd7d358608f39de21e2027e22"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026-2",
+      "path": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026-2.md",
+      "title": "quels-sont-les-meilleurs-tv-55-pouces-en-2026",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
         "Google",
         "Samsung",
         "Xiaomi"
@@ -396,23 +760,78 @@
       "dates": [],
       "keywords": [
         "attention",
-        "humanoid",
         "latency"
       ],
       "source": "docs/RAG/clean_en/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        85,
+        178
+      ],
+      "canonical_for": [],
+      "words": 1365,
+      "bytes": 7992,
+      "sha256": "79a6ce9082cc9ea40d2c620419820cfb06419ef1ccbec632cc219bff2a3a8f28"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026-3",
+      "path": "collect-240926-frandroid/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026-3.md",
+      "title": "quels-sont-les-meilleurs-tv-55-pouces-en-2026",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Google",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "humanoid"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/quels-sont-les-meilleurs-tv-55-pouces-en-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        179,
         253
       ],
       "canonical_for": [],
-      "words": 3612,
-      "bytes": 21238,
-      "sha256": "7d7321af3c1d579dafaffe4dcca37639dc932b7c04f95496dc93d8d8bb1f1472"
+      "words": 926,
+      "bytes": 5337,
+      "sha256": "fa2562bd070163700aee7f06fdb603b11ecfb1375a2e67ac193cd85edbb76cfc"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
-      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-1",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-1.md",
+      "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "EU"
+      ],
+      "dates": [
+        "2026-09-18"
+      ],
+      "keywords": [
+        "energy",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 1410,
+      "bytes": 7707,
+      "sha256": "653faf2ca194e9c18135bcfc296886ab7b99d78c98c4fea378ea75dea6bf7659"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-2",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-2.md",
       "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
       "domain": "frandroid",
       "role": "reference",
@@ -420,10 +839,134 @@
       "actors": [
         "Alibaba",
         "Apple",
-        "China",
-        "DeepSeek",
-        "EU",
         "Google",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "dci",
+        "gemini",
+        "gpu",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "tokens per second"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        69,
+        114
+      ],
+      "canonical_for": [],
+      "words": 1389,
+      "bytes": 7830,
+      "sha256": "348c800477291bdf20acdd72ded6865ee52137546fbaf7c6304608af664ffdbd"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-3",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-3.md",
+      "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "DeepSeek",
+        "EU"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "deepseek",
+        "gpu",
+        "latency",
+        "memory",
+        "parameters",
+        "tokens per second",
+        "transcription",
+        "voice"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        115,
+        167
+      ],
+      "canonical_for": [],
+      "words": 1369,
+      "bytes": 7998,
+      "sha256": "b93eee8fc95a07032bb40be4ec5cf6ad0eb74137d68b41e9fa12124a5d73d2b6"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-4",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-4.md",
+      "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Huawei",
+        "Samsung",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "lean"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        168,
+        217
+      ],
+      "canonical_for": [],
+      "words": 1347,
+      "bytes": 7884,
+      "sha256": "4cc6fc10f92c5be391a77c6b9931cda865d6976de2b61056076ec56986cd129c"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-5",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-5.md",
+      "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
+        "Huawei",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "optics",
+        "parameters"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        218,
+        271
+      ],
+      "canonical_for": [],
+      "words": 1373,
+      "bytes": 7908,
+      "sha256": "f00e465b84c68fac48ca5dff074a76b1d183d163dfd146751eca6f1e093ed0d1"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-6",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-6.md",
+      "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "China",
         "Huawei",
         "Qualcomm",
         "Samsung",
@@ -431,37 +974,55 @@
         "Xiaomi"
       ],
       "dates": [
-        "2026-09-18",
         "2027-03"
       ],
       "keywords": [
         "acquisition",
-        "agent",
-        "benchmark",
-        "dci",
-        "deepseek",
         "energy",
-        "gemini",
-        "gpu",
-        "humanoid",
-        "latency",
-        "lean",
-        "llama"
+        "power delivery",
+        "throughput"
       ],
       "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        272,
+        325
+      ],
+      "canonical_for": [],
+      "words": 1413,
+      "bytes": 7904,
+      "sha256": "2903b81d2210737d5a0903860d226647fbb03da80129589ead6fa1a77d86fee9"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-7",
+      "path": "collect-240926-frandroid/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid-7.md",
+      "title": "test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "humanoid",
+        "memory"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-de-l-iphone-18-pro-le-meilleur-iphone-est-aussi-le-plus-prudent-frandroid.md",
+      "source_anchor": "",
+      "source_lines": [
+        326,
         344
       ],
       "canonical_for": [],
-      "words": 8638,
-      "bytes": 49150,
-      "sha256": "f481e50b4f8ef75ec64e5e136bf48953584929a298a66a43ea3bada9c6201224"
+      "words": 337,
+      "bytes": 1919,
+      "sha256": "4e82584e213c15c0e1bafc80d5317551ecbe15cdfb2a3b81031c5df2dec9d5ad"
     },
     {
-      "id": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide",
-      "path": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide.md",
+      "id": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide-1",
+      "path": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide-1.md",
       "title": "test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide",
       "domain": "frandroid",
       "role": "reference",
@@ -471,6 +1032,33 @@
         "China",
         "Google",
         "Qualcomm",
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "gpu",
+        "hbm"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        90
+      ],
+      "canonical_for": [],
+      "words": 1383,
+      "bytes": 7946,
+      "sha256": "68a1ed734b1ca5bd5d2b7e3ec5cc7ca9ab5acd685f64e709b2e7e8f06197f58e"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide-2",
+      "path": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide-2.md",
+      "title": "test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
         "Samsung",
         "Xiaomi"
       ],
@@ -479,24 +1067,43 @@
         "2027-01-03"
       ],
       "keywords": [
-        "benchmarks",
         "cost",
         "exploit",
-        "gpu",
-        "hbm",
-        "humanoid",
         "memory"
       ],
       "source": "docs/RAG/clean_en/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        91,
+        187
+      ],
+      "canonical_for": [],
+      "words": 1400,
+      "bytes": 7991,
+      "sha256": "38eccdf52297e746a3bb0a675d476e562cb7f04f85c470ceb2c0cf739788b22e"
+    },
+    {
+      "id": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide-3",
+      "path": "collect-240926-frandroid/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide-3.md",
+      "title": "test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide",
+      "domain": "frandroid",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "humanoid"
+      ],
+      "source": "docs/RAG/clean_en/frandroid/test-du-xiaomi-redmi-note-17-5g-plus-cher-moins-bien-la-douche-froide.md",
+      "source_anchor": "",
+      "source_lines": [
+        188,
         194
       ],
       "canonical_for": [],
-      "words": 2929,
-      "bytes": 16844,
-      "sha256": "cc408aa2396742a8694799d86bcef06e27b46a46b0f77ab58297af23d64f5a47"
+      "words": 146,
+      "bytes": 907,
+      "sha256": "fdea0e76ad823501c3f237f074c137709e15b1ab35644e803a8c58616d740b7a"
     }
   ]
 }

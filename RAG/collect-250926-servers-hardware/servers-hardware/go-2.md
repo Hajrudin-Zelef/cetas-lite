@@ -4,121 +4,18 @@ title: "Go"
 domain: servers-hardware
 role: reference
 task: reference
-actors: ["Alibaba", "Anthropic", "DeepSeek", "LongCat", "Meta", "Microsoft", "MiniMax", "Moonshot", "Z.ai", "xAI"]
-dates: ["2026-09-30"]
-keywords: ["agent", "agents", "claude", "copilot", "cost", "deepseek", "glm", "gpt-5.6", "gpt-6", "gpu", "grok", "grok 4"]
-source: docs/RAG/clean4/go-2.md
+actors: ["Alibaba", "DeepSeek", "LongCat", "Meta", "MiniMax", "Moonshot", "Z.ai", "xAI"]
+dates: []
+keywords: ["deepseek", "glm", "grok", "grok 4", "kimi", "luna", "muse", "muse spark"]
+source: docs/RAG/clean4/go.md
 source_anchor: ""
-source_lines: [1, 359]
-sha256: a6e26f3305bd62af7fb89e8cc423bb98a1e8dfcd17e65841f84ff864dba8930b
+source_lines: [109, 229]
+sha256: 0577e2f3a8740b5c68ac64160e4798e2257efa607e6c558320f7f5d2d4aff67b
 ---
 
 # Go
 
-OpenCode Go is a low cost **$10/month subscription** that gives you reliable access to popular open coding models.
-
-Go works like any other provider in OpenCode. You subscribe to OpenCode Go and get your API key. Itâs **completely optional** and you donât need it to use OpenCode.
-
-It is designed primarily for international users and provides stable global access.
-
-## How it works
-
-1. 
-Sign in to the OpenCode console, subscribe to Go, add your billing details, and copy your API key.
-2. 
-Run `/connect` in the TUI, select**OpenCode Go** , and paste your API key.`/connect`
-3. 
-Run `/models` to select a model available through Go.`/models`
-
-The current list of models includes:
-
-- **Grok 4.7**
-- **Grok 4.6**
-- **GLM-5.3-Flash**
-- **GLM-5.3**
-- **GLM-5.2**
-- **GLM-5.1**
-- **GPT 6 Luna**
-- **GPT 5.6 Luna**
-- **Kimi K3**
-- **Kimi K2.7 Code**
-- **Kimi K2.6**
-- **LongCat-2.0**
-- **MiMo-V2.6-Flash**
-- **MiMo-V2.6-Pro**
-- **MiMo-V2.5**
-- **MiMo-V2.5-Pro**
-- **MiniMax M3**
-- **MiniMax M2.7**
-- **Muse Spark 1.3 Contributor** (limited regions)
-- **Muse Spark 1.2 Contributor** (limited regions)
-- **Qwen3.8 Max**
-- **Qwen3.8 Flash**
-- **Qwen3.7 Max**
-- **Qwen3.7 Plus**
-- **Qwen3.6 Plus**
-- **DeepSeek V4.1 Flash**
-- **DeepSeek V4 Pro**
-- **DeepSeek V4 Flash**
-- **DeepSeek V4 Flash Vision Exp**
-- **Hy4 preview**
-- **Hy3**
-- **Space Bunny Free** (limited time)
-
-The list of models may change as we test and add new ones.
-
-## Where can I use it?
-
-OpenCode Go is designed for OpenCode and other coding agents that produce similar types of requests. Traffic is monitored for abuse that degrades the experience for other users.
-
-Your client should:
-
-1. Send typical coding agent traffic
-2. Identify itself with its own user agent, such as `my-coding-agent/1.0` , rather
-than a generic SDK or HTTP-library name.
-3. Send a stable session ID in `x-opencode-session` for each conversation so we can optimize routing and
-prompt caching.
-
-### Validated clients
-
-Besides OpenCode, the following clients have been validated to work properly with OpenCode Go. Although we do not guarantee that they will continue to work in the future.
-
-| Client | Session support | 
-|---|---|
-| **Hermes** | Builds containing PR #101864 send the header on main and auxiliary OpenCode requests. The fix was merged after v0.21.0; that release alone does not include it. | 
-| **Claude Code** | Go recognizes its native session header. No custom-header wrapper is needed. | 
-| **Codex** | Go recognizes its native session header. Some versions and proxy setups still omit it; preserve the session header when forwarding requests. | 
-| **ZCode** | Go recognizes its native session header. Our request for `x-opencode-session` remains open, but it is no longer necessary to send that specific header. | 
-| **Pi** | Current builds send session information for OpenCode. Update older installations. | 
-| **jcode** | Update to **v0.81.6 or later** , which includes the session-header fix. | 
-| **Kilo Code CLI** | Builds containing PR #13752 restore OpenCode session headers. This fix covers the CLI, not the VS Code extension. See issue #13723. | 
-
-### Known problematic clients
-
-These clients have missing or incomplete session support in the versions we investigated. The linked reports track fixes and workarounds.
-
-| Client | Status and tracking | 
-|---|---|
-| **DeepSeek Harness** | Session information arrives on some model paths, but is missing on others. We recognize its native header; the remaining work is to send it across all adapters. Discussion #5495. | 
-| **GitHub Copilot Chat** | Automatic session-header support is requested in VS Code issue #334186. | 
-| **Kimi Code** | Automatic session-header support is requested in issue #3506. | 
-| **MiMo Code** | Issue #2317 has a proposed fix in PR #2327, which has not yet merged. | 
-
-## Usage limits
-
-Usage limits are defined as monthly dollar amounts. The table below shows the monthly limit and token costs for each model.
-
-Each model has the following usage limits: 5-hour â 20% of the monthly limit; weekly â 50%; and monthly â 100%.
-
-For example, if a model has a $60 monthly limit, you can spend up to:
-
-- **5-hour limit** â $12 of usage
-- **Weekly limit** â $30 of usage
-- **Monthly limit** â $60 of usage
-
-Token prices are per 1M tokens.
-
-| Model | Input | Output | Cached Read | Cached Write | Monthly limit | 
+| ModÃ¨le | Input | Output | Cached Read | Cached Write | Limite mensuelle | 
 |---|---|---|---|---|---|
 | GLM-5.3-Flash | $0.15 | $0.50 | $0.03 | - | **$60** | 
 | GLM-5.3 | $1.40 | $4.40 | $0.26 | - | **$15** | 
@@ -144,8 +41,8 @@ Token prices are per 1M tokens.
 | Qwen3.7 Plus (> 256K tokens) | $1.20 | $4.80 | $0.12 | $1.50 | **$60** | 
 | Qwen3.6 Plus (â¤ 256K tokens) | $0.50 | $3.00 | $0.05 | $0.625 | **$60** | 
 | Qwen3.6 Plus (> 256K tokens) | $2.00 | $6.00 | $0.20 | $2.50 | **$60** | 
-| DeepSeek V4.1 Flash (Off-Peak) | $0.15 | $0.60 | $0.003 | - | ~~$15~~**$60**4x Â· Ends Sep 27 | 
-| DeepSeek V4.1 Flash (Peak) | $0.30 | $1.20 | $0.006 | - | ~~$15~~**$60**4x Â· Ends Sep 27 | 
+| DeepSeek V4.1 Flash (Off-Peak) | $0.15 | $0.60 | $0.003 | - | ~~$15~~**$60**4x Â· Fin le 27 sept. | 
+| DeepSeek V4.1 Flash (Peak) | $0.30 | $1.20 | $0.006 | - | ~~$15~~**$60**4x Â· Fin le 27 sept. | 
 | DeepSeek V4 Pro (Off-Peak) | $0.66 | $1.98 | $0.022 | - | **$15** | 
 | DeepSeek V4 Pro (Peak) | $1.32 | $3.96 | $0.044 | - | **$15** | 
 | DeepSeek V4 Flash (Off-Peak) | $0.15 | $0.60 | $0.003 | - | **$30** | 
@@ -154,7 +51,7 @@ Token prices are per 1M tokens.
 | DeepSeek V4 Flash Vision Exp (Peak) | $0.30 | $1.20 | $0.006 | - | **$15** | 
 | Hy4 preview | $0.834 | $2.501 | $0.042 | - | **$30** | 
 | Hy3 | $0.14 | $0.58 | $0.035 | - | **$60** | 
-| Space Bunny Free | Free | Free | Free | - | **Unlimited**limited time | 
+| Space Bunny Free | Free | Free | Free | - | **IllimitÃ©**pour une durÃ©e limitÃ©e | 
 | Grok 4.7 (â¤ 200K tokens) | $2.00 | $6.00 | $0.50 | - | **$15** | 
 | Grok 4.7 (> 200K tokens) | $4.00 | $12.00 | $1.00 | - | **$15** | 
 | Grok 4.6 (â¤ 200K tokens) | $2.00 | $6.00 | $0.50 | - | **$15** | 
@@ -164,17 +61,15 @@ Token prices are per 1M tokens.
 | GPT 5.6 Luna (â¤ 272K tokens) | $0.20 | $1.20 | $0.02 | $0.25 | **$15** | 
 | GPT 5.6 Luna (> 272K tokens) | $0.40 | $1.80 | $0.04 | $0.50 | **$15** | 
 
-**Space Bunny Free:** Free for a limited time.
+**Space Bunny Free:** Gratuit pour une durÃ©e limitÃ©e.
 
-**DeepSeek V4.1 Flash / V4 Pro / V4 Flash Vision Exp:** Peak hours are 01:00-04:00 and 06:00-10:00 UTC, Monday through Friday; all other hours, including weekends, are Off-Peak. Learn more.
+**DeepSeek V4.1 Flash / V4 Pro / V4 Flash / V4 Flash Vision Exp:** Les heures Peak sont 01:00-04:00 et 06:00-10:00 UTC, du lundi au vendredi ; toutes les autres heures, y compris le week-end, sont Off-Peak. En savoir plus.
 
-**DeepSeek V4 Flash Vision Exp:** Images are converted into tokens based on their dimensions and billed as input tokens alongside text tokens. Learn more.
+**DeepSeek V4 Flash Vision Exp:** Les images sont converties en tokens selon leurs dimensions et facturÃ©es comme tokens dâentrÃ©e avec les tokens de texte. En savoir plus.
 
-### Estimated requests
+Le tableau ci-dessous fournit une estimation du nombre de requÃªtes basÃ©e sur les habitudes dâutilisation typiques de Go :
 
-The table below provides an estimated request count based on typical Go usage patterns:
-
-| Model | requests per 5 hour | requests per week | requests per month | 
+| Model | requÃªtes par 5 heures | requÃªtes par semaine | requÃªtes par mois | 
 |---|---|---|---|
 | GLM-5.3-Flash | 6,320 | 15,790 | 31,580 | 
 | GLM-5.3 | 220 | 540 | 1,080 | 
@@ -197,178 +92,47 @@ The table below provides an estimated request count based on typical Go usage pa
 | Qwen3.7 Max | 170 | 420 | 840 | 
 | Qwen3.7 Plus | 4,300 | 10,800 | 21,600 | 
 | Qwen3.6 Plus | 3,300 | 8,200 | 16,300 | 
-| DeepSeek V4.1 Flash 4x Â· Ends Sep 27 | ~~6,500~~**26,000** | ~~16,250~~**65,000** | ~~32,500~~**130,000** | 
+| DeepSeek V4.1 Flash 4x Â· Fin le 27 sept. | ~~6,500~~**26,000** | ~~16,250~~**65,000** | ~~32,500~~**130,000** | 
 | DeepSeek V4 Pro | 1,050 | 2,600 | 5,200 | 
 | DeepSeek V4 Flash | 13,000 | 32,500 | 65,000 | 
 | DeepSeek V4 Flash Vision Exp | 6,500 | 16,250 | 32,500 | 
 | Hy4 preview | 1,350 | 3,380 | 6,770 | 
 | Hy3 | 4,300 | 10,750 | 21,500 | 
-| Space Bunny Free | Unlimited | Unlimited | Unlimited | 
+| Space Bunny Free | IllimitÃ© | IllimitÃ© | IllimitÃ© | 
 | Grok 4.7 | 169 | 423 | 845 | 
 | Grok 4.6 | 169 | 423 | 845 | 
 | GPT 6 Luna | 4,230 | 10,560 | 21,130 | 
 | GPT 5.6 Luna | 2,050 | 5,100 | 10,250 | 
 
-The estimates use the following token counts per request; actual usage varies.
+Les estimations utilisent les nombres de tokens suivants par requÃªte ; lâutilisation rÃ©elle varie.
 
-- Grok 4.7/4.6 â 390 input, 32,500 cached, 120 output tokens per request
-- GLM-5.3-Flash â 1,000 input, 55,000 cached, 200 output tokens per request
-- GLM-5.3/5.2/5.1 â 700 input, 52,000 cached, 150 output tokens per request
-- GPT 6 Luna â 1,000 input, 50,000 cached, 220 output tokens per request
-- GPT 5.6 Luna â 1,000 input, 50,000 cached, 220 output tokens per request
-- Kimi K3 â 1,050 input, 76,500 cached, 300 output tokens per request
-- Kimi K2.7/K2.6 â 870 input, 55,000 cached, 200 output tokens per request
-- LongCat-2.0 â 920 input, 88,900 cached, 200 output tokens per request
-- DeepSeek V4.1 Flash â 410 input, 71,300 cached, 310 output tokens per request
-- DeepSeek V4 Pro â 750 input, 82,000 cached, 290 output tokens per request
-- DeepSeek V4 Flash â 410 input, 71,300 cached, 310 output tokens per request
-- DeepSeek V4 Flash Vision Exp â 410 input, 71,300 cached, 310 output tokens per request
-- MiniMax M3 â 510 input, 56,000 cached, 190 output tokens per request
-- MiniMax M2.7 â 300 input, 55,000 cached, 125 output tokens per request
-- Muse Spark 1.3 Contributor â 620 input, 71,400 cached, 300 output tokens per request
-- Muse Spark 1.2 Contributor â 620 input, 71,400 cached, 300 output tokens per request
-- MiMo-V2.6-Flash â 830 input, 71,500 cached, 295 output tokens per request
-- MiMo-V2.6-Pro â 790 input, 86,000 cached, 305 output tokens per request
-- MiMo-V2.5 â 830 input, 71,500 cached, 295 output tokens per request
-- MiMo-V2.5-Pro â 790 input, 86,000 cached, 305 output tokens per request
-- Qwen3.8 Max â 420 input, 66,000 cached, 200 output tokens per request
-- Qwen3.8 Flash â 600 input, 58,000 cached, 200 output tokens per request
-- Qwen3.7 Max â 420 input, 66,000 cached, 200 output tokens per request
-- Qwen3.7 Plus â 500 input, 57,000 cached, 190 output tokens per request
-- Qwen3.6 Plus â 500 input, 57,000 cached, 190 output tokens per request
-- Hy4 preview â 830 input, 71,500 cached, 295 output tokens per request
-- Hy3 â 830 input, 71,500 cached, 295 output tokens per request
+- Grok 4.7/4.6 â 390 tokens en entrÃ©e, 32,500 en cache, 120 tokens en sortie par requÃªte
+- GLM-5.3-Flash â 1,000 tokens en entrÃ©e, 55,000 en cache, 200 tokens en sortie par requÃªte
+- GLM-5.3/5.2/5.1 â 700 tokens en entrÃ©e, 52,000 en cache, 150 tokens en sortie par requÃªte
+- GPT 6 Luna â 1,000 tokens en entrÃ©e, 50,000 en cache, 220 tokens en sortie par requÃªte
+- GPT 5.6 Luna â 1,000 tokens en entrÃ©e, 50,000 en cache, 220 tokens en sortie par requÃªte
+- Kimi K3 â 1,050 tokens en entrÃ©e, 76,500 en cache, 300 tokens en sortie par requÃªte
+- Kimi K2.7/K2.6 â 870 tokens en entrÃ©e, 55,000 en cache, 200 tokens en sortie par requÃªte
+- LongCat-2.0 â 920 tokens en entrÃ©e, 88,900 en cache, 200 tokens en sortie par requÃªte
+- DeepSeek V4.1 Flash â 410 tokens en entrÃ©e, 71,300 en cache, 310 tokens en sortie par requÃªte
+- DeepSeek V4 Pro â 750 tokens en entrÃ©e, 82,000 en cache, 290 tokens en sortie par requÃªte
+- DeepSeek V4 Flash â 410 tokens en entrÃ©e, 71,300 en cache, 310 tokens en sortie par requÃªte
+- DeepSeek V4 Flash Vision Exp â 410 tokens en entrÃ©e, 71,300 en cache, 310 tokens en sortie par requÃªte
+- MiniMax M3 â 510 tokens en entrÃ©e, 56,000 en cache, 190 tokens en sortie par requÃªte
+- MiniMax M2.7 â 300 tokens en entrÃ©e, 55,000 en cache, 125 tokens en sortie par requÃªte
+- Muse Spark 1.3 Contributor â 620 tokens en entrÃ©e, 71,400 en cache, 300 tokens en sortie par requÃªte
+- Muse Spark 1.2 Contributor â 620 tokens en entrÃ©e, 71,400 en cache, 300 tokens en sortie par requÃªte
+- Qwen3.8 Max â 420 tokens en entrÃ©e, 66,000 en cache, 200 tokens en sortie par requÃªte
+- Qwen3.8 Flash â 600 tokens en entrÃ©e, 58,000 en cache, 200 tokens en sortie par requÃªte
+- Qwen3.7 Max â 420 tokens en entrÃ©e, 66,000 en cache, 200 tokens en sortie par requÃªte
+- Qwen3.7 Plus â 500 tokens en entrÃ©e, 57,000 en cache, 190 tokens en sortie par requÃªte
+- Qwen3.6 Plus â 500 tokens en entrÃ©e, 57,000 en cache, 190 tokens en sortie par requÃªte
+- Hy4 preview â 830 tokens en entrÃ©e, 71,500 en cache, 295 tokens en sortie par requÃªte
+- Hy3 â 830 tokens en entrÃ©e, 71,500 en cache, 295 tokens en sortie par requÃªte
+- MiMo-V2.6-Flash â 830 tokens en entrÃ©e, 71,500 en cache, 295 tokens en sortie par requÃªte
+- MiMo-V2.6-Pro â 790 tokens en entrÃ©e, 86,000 en cache, 305 tokens en sortie par requÃªte
+- MiMo-V2.5 â 830 tokens en entrÃ©e, 71,500 en cache, 295 tokens en sortie par requÃªte
+- MiMo-V2.5-Pro â 790 tokens en entrÃ©e, 86,000 en cache, 305 tokens en sortie par requÃªte
 
-You can track your current usage in the console.
+Vous pouvez suivre votre utilisation actuelle dans la **console**.
 
-Usage limits may change as we learn from early usage and feedback.
-
-### Usage beyond limits
-
-If you also have credits in your Console balance, you can enable the **Use balance**
-option in the console. When enabled, Go will fall back to your pay-as-you-go balance
-after youâve reached your usage limits instead of blocking requests.
-
-### Why some models have lower usage
-
-With Go, you pay $10/month, and the included monthly usage varies by model.
-
-For most models, we make this work through bulk discounts and reserved GPU capacity. We then pass those savings on to you as higher monthly usage.
-
-For some models, we havenât had the opportunity to negotiate a discount or host them at a lower cost, either because the model is new or because their public pricing is already discounted.
-
-For these models, you still get a little more than if you paid the model providers directly; this is why their included monthly usage is lower.
-
-## Endpoints
-
-You can also access Go models through the following API endpoints.
-
-| Model | Model ID | Endpoint | AI SDK Package | 
-|---|---|---|---|
-| Grok 4.7 | grok-4.7 | `https://opencode.ai/zen/go/v1/responses` | `@ai-sdk/openai` | 
-| Grok 4.6 | grok-4.6 | `https://opencode.ai/zen/go/v1/responses` | `@ai-sdk/openai` | 
-| GPT 6 Luna | gpt-6-luna | `https://opencode.ai/zen/go/v1/responses` | `@ai-sdk/openai` | 
-| GPT 5.6 Luna | gpt-5.6-luna | `https://opencode.ai/zen/go/v1/responses` | `@ai-sdk/openai` | 
-| GLM-5.3-Flash | glm-5.3-flash | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| GLM-5.3 | glm-5.3 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| GLM-5.2 | glm-5.2 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| GLM-5.1 | glm-5.1 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| Kimi K3 | kimi-k3 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| Kimi K2.7 Code | kimi-k2.7-code | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| Kimi K2.6 | kimi-k2.6 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| LongCat-2.0 | longcat-2.0 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| DeepSeek V4.1 Flash | deepseek-v4.1-flash | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| DeepSeek V4 Pro | deepseek-v4-pro | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| DeepSeek V4 Flash | deepseek-v4-flash | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| DeepSeek V4 Flash Vision Exp | deepseek-v4-flash-vision-exp | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| MiMo-V2.6-Flash | mimo-v2.6-flash | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| MiMo-V2.6-Pro | mimo-v2.6-pro | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| MiMo-V2.5 | mimo-v2.5 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| MiMo-V2.5-Pro | mimo-v2.5-pro | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| MiniMax M3 | minimax-m3 | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| MiniMax M2.7 | minimax-m2.7 | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| MiniMax M2.5 | minimax-m2.5 | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| Muse Spark 1.3 Contributor | muse-spark-1.3-contributor | `https://opencode.ai/zen/go/v1/responses` | `@ai-sdk/openai` | 
-| Muse Spark 1.2 Contributor | muse-spark-1.2-contributor | `https://opencode.ai/zen/go/v1/responses` | `@ai-sdk/openai` | 
-| Qwen3.8 Max | qwen3.8-max | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| Qwen3.8 Flash | qwen3.8-flash | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| Qwen3.7 Max | qwen3.7-max | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| Qwen3.7 Plus | qwen3.7-plus | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| Qwen3.6 Plus | qwen3.6-plus | `https://opencode.ai/zen/go/v1/messages` | `@ai-sdk/anthropic` | 
-| Hy4 preview | hy4-preview | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| Hy3 | hy3 | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-| Space Bunny Free | space-bunny-free | `https://opencode.ai/zen/go/v1/chat/completions` | `@ai-sdk/openai-compatible` | 
-
-These AI SDK packages are for applications calling Go directly. To use Go in OpenCode, connect with `/connect` and set
-the model using the format `opencode-go/<model-id>`:
-
-### Models
-
-Fetch the full list of available models and their metadata from the models endpoint:
-
-`curl https://opencode.ai/zen/go/v1/models`
-## Privacy
-
-| Model | Model training | Data retention | 
-|---|---|---|
-| Grok 4.7 | Not used | 30 days | 
-| Grok 4.6 | Not used | 30 days | 
-| GPT 6 Luna | Not used | 30 days | 
-| GPT 5.6 Luna | Not used | 30 days | 
-| GLM-5.3-Flash | Not used | 0 days | 
-| GLM-5.3 | Not used | 0 days | 
-| GLM-5.2 | Not used | 0 days | 
-| GLM-5.1 | Not used | 0 days | 
-| Kimi K3 | Not used | 0 days | 
-| Kimi K2.7 Code | Not used | 0 days | 
-| Kimi K2.6 | Not used | 0 days | 
-| LongCat-2.0 | Not used | 0 days | 
-| MiMo-V2.6-Pro | Not used | 0 days | 
-| MiMo-V2.6-Flash | Not used | 0 days | 
-| MiMo-V2.5-Pro | Not used | 0 days | 
-| MiMo-V2.5 | Not used | 0 days | 
-| Qwen3.8 Max | Not used | 0 days | 
-| Qwen3.8 Flash | Not used | 0 days | 
-| Qwen3.7 Max | Not used | 0 days | 
-| Qwen3.7 Plus | Not used | 0 days | 
-| Qwen3.6 Plus | Not used | 0 days | 
-| MiniMax M3 | Not used | 0 days | 
-| MiniMax M2.7 | Not used | 0 days | 
-| Muse Spark 1.3 Contributor | Yes | Not ZDR | 
-| Muse Spark 1.2 Contributor | Yes | Not ZDR | 
-| DeepSeek V4.1 Flash | Not used | 0 days* | 
-| DeepSeek V4 Pro | Not used | 0 days* | 
-| DeepSeek V4 Flash | Not used | 0 days* | 
-| DeepSeek V4 Flash Vision Exp | Not used | 0 days* | 
-| Hy4 preview | Not used | 0 days | 
-| Hy3 | Not used | 0 days | 
-| Space Bunny Free | Not used | 0 days | 
-
-- **Grok 4.7/4.6:** ZDR disables important API features that depend on stored data, including the stateful Responses API, Files and Collections, and the Batch API. Learn more.
-- **GPT 6 Luna / GPT 5.6 Luna:** Abuse monitoring logs are generated for all API feature usage and retained for up to 30 days. Learn more.
-- **Muse Spark 1.3 Contributor:** Heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models. Availability is limited to regions permitted by Metaâs Geographic Use Policy. Learn more.
-- **Muse Spark 1.2 Contributor:** Heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models. Availability is limited to regions permitted by Metaâs Geographic Use Policy. Learn more.
-- **DeepSeek:** ZDR agreement is renewed monthly. The current agreement is valid through September 30, 2026.
-
-## Background
-
-Open models have gotten really good. They now reach performance close to proprietary models for coding tasks. Because many providers can serve them competitively, they are usually far cheaper.
-
-However, getting reliable, low latency access to them can be difficult. Providers vary in quality and availability.
-
-To fix this, we did a couple of things:
-
-1. We tested a select group of open models and talked to their teams about how to best run them.
-2. We worked with a few providers to make sure these were being served correctly.
-3. We benchmarked the combination of the model/provider and came up with a list that we feel good recommending.
-
-OpenCode Go gives you access to these models for **$10/month**.
-
-## Goals
-
-We created OpenCode Go to:
-
-1. Make AI coding **accessible** to more people with a low cost subscription.
-2. Provide **reliable** access to the best open coding models.
-3. Curate models that are **tested and benchmarked** for coding agent use.
-4. Have **no lock-in** by allowing you to use any other provider with OpenCode as well.

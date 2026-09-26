@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape5_trackB_amd.md",
   "source_lines": 260,
   "source_sha256": "fffe424bcad405c316cff29eafce12b08ea1cc46e36ad493b713b37ce5f15a3f",
-  "chunk_count": 4,
+  "chunk_count": 7,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -93,24 +93,23 @@
       "source_anchor": "",
       "source_lines": [
         52,
-        98
+        100
       ],
       "canonical_for": [],
-      "words": 706,
-      "bytes": 7596,
-      "sha256": "719900cbc9b2c1c43306d9360d9bc5b7101a11b7d4d78e43ace0337f65b6314e",
+      "words": 717,
+      "bytes": 7671,
+      "sha256": "38a04268093389de2e16a9440ef6a1856534ed2cb1685efca9740da8071d054b",
       "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
     },
     {
-      "id": "etape5-trackb-amd/00-amd/3-instinct-mi400-series-roadmap-status-announced-specs-timel",
-      "path": "etape5-trackb-amd/00-amd/3-instinct-mi400-series-roadmap-status-announced-specs-timel.md",
-      "title": "3. INSTINCT MI400 SERIES — roadmap status, announced specs, timeline",
+      "id": "etape5-trackb-amd/00-amd/3-1-naming-and-positioning",
+      "path": "etape5-trackb-amd/00-amd/3-1-naming-and-positioning.md",
+      "title": "3.1 Naming and positioning",
       "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
       "role": "deep-dive",
       "task": "hardware",
       "actors": [
         "AMD",
-        "Google",
         "Meta",
         "Nvidia",
         "OpenAI",
@@ -118,7 +117,6 @@
       ],
       "dates": [],
       "keywords": [
-        "mi400",
         "2nm",
         "accelerator",
         "amd",
@@ -129,18 +127,51 @@
         "gpus",
         "hbm4",
         "helios",
-        "inference"
+        "inference",
+        "intel"
       ],
       "source": "docs/RAG/etape5_trackB_amd.md",
       "source_anchor": "",
       "source_lines": [
-        99,
+        101,
+        136
+      ],
+      "canonical_for": [],
+      "words": 665,
+      "bytes": 7997,
+      "sha256": "e94c6db75c834062ded7cf897d183729bcc7c0d338bf4d95a141e1a05b6d70c0",
+      "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
+    },
+    {
+      "id": "etape5-trackb-amd/00-amd/5-epyc-turin-9005-5th-gen-2026-adoption-and-news",
+      "path": "etape5-trackb-amd/00-amd/5-epyc-turin-9005-5th-gen-2026-adoption-and-news.md",
+      "title": "5. EPYC TURIN 9005 (5th Gen) — 2026 adoption and news",
+      "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Google",
+        "Meta"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "memory",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        137,
         151
       ],
       "canonical_for": [],
-      "words": 911,
-      "bytes": 10071,
-      "sha256": "31af16e2b78f3e98e9e366b855a63f9dbcc8d7777d76881cd5b9085b9c43bcb7",
+      "words": 235,
+      "bytes": 1999,
+      "sha256": "23c244685613820189ea749aed27f743a837d63d76179b3dd5064487b7faaa00",
       "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
     },
     {
@@ -152,46 +183,128 @@
       "task": "hardware",
       "actors": [
         "AMD",
-        "China",
-        "Google",
         "Intel",
-        "Meta",
         "Microsoft",
-        "Moonshot",
         "Nvidia",
-        "OpenAI",
-        "Oracle",
-        "TSMC",
-        "vLLM"
+        "TSMC"
       ],
       "dates": [
-        "2026-07",
-        "2026-09-22"
+        "2026-07"
       ],
       "keywords": [
         "2nm",
         "agentic",
         "amd",
-        "benchmark",
-        "benchmarks",
         "chiplet",
-        "compute",
         "copilot",
         "datacenter",
-        "fp4",
         "gpu",
-        "gpus"
+        "helios",
+        "inference",
+        "intel",
+        "lpddr5x",
+        "mi455x"
       ],
       "source": "docs/RAG/etape5_trackB_amd.md",
       "source_anchor": "",
       "source_lines": [
         152,
+        180
+      ],
+      "canonical_for": [],
+      "words": 718,
+      "bytes": 7176,
+      "sha256": "5932d3caa5027a79fa2c2f02a1303aaa6e003d6bb06ee1770436ee2fc46bb13b",
+      "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
+    },
+    {
+      "id": "etape5-trackb-amd/00-amd/7-2-strix-halo-ryzen-ai-max-300-2026-adoption-and-new-skus",
+      "path": "etape5-trackb-amd/00-amd/7-2-strix-halo-ryzen-ai-max-300-2026-adoption-and-new-skus.md",
+      "title": "7.2 Strix Halo (Ryzen AI Max 300) — 2026 adoption and new SKUs",
+      "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "China",
+        "Meta",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "gpu",
+        "gpus",
+        "helios",
+        "inference",
+        "intel",
+        "kimi",
+        "latency",
+        "llama",
+        "llama.cpp",
+        "lpddr5x"
+      ],
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        181,
+        219
+      ],
+      "canonical_for": [],
+      "words": 784,
+      "bytes": 7395,
+      "sha256": "6c11ae4be0dbaa020c6988756feb34146b5337d2f3fecd6500fb093fab9f469b",
+      "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
+    },
+    {
+      "id": "etape5-trackb-amd/00-amd/10-open-verification-items",
+      "path": "etape5-trackb-amd/00-amd/10-open-verification-items.md",
+      "title": "10. OPEN VERIFICATION ITEMS",
+      "domain": "step-5-track-b-amd-hardware-instinct-gpus-epyc-ryzen-cpus",
+      "role": "deep-dive",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "Oracle",
+        "TSMC"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "2nm",
+        "amd",
+        "benchmarks",
+        "compute",
+        "copilot",
+        "fp4",
+        "gpu",
+        "hbm3",
+        "hbm4",
+        "helios",
+        "lpddr5x",
+        "memory"
+      ],
+      "source": "docs/RAG/etape5_trackB_amd.md",
+      "source_anchor": "",
+      "source_lines": [
+        220,
         260
       ],
       "canonical_for": [],
-      "words": 2122,
-      "bytes": 18322,
-      "sha256": "1a863a776814b9b51680e6ce445d938d0c81459290123331ce06ba887629374c",
+      "words": 620,
+      "bytes": 3751,
+      "sha256": "ca61ed8ec387d9a5fff59869e4dc6eeae5492fc3461e275b5c32ed3742bef2b8",
       "section": "Step 5 — Track B: AMD Hardware (Instinct GPUs + EPYC/Ryzen CPUs)"
     }
   ]

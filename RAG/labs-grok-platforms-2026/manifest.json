@@ -4,7 +4,7 @@
   "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
   "source_lines": 527,
   "source_sha256": "ade8833d120931cf8141717dbadd34c5abd1b3f85ba69f5f1574e356c435907a",
-  "chunk_count": 17,
+  "chunk_count": 18,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -429,7 +429,6 @@
       "actors": [
         "Anthropic",
         "Google",
-        "Intel",
         "Nvidia",
         "OpenAI",
         "SpaceX",
@@ -440,18 +439,13 @@
         "2024-05",
         "2025-03",
         "2025-07",
-        "2026-01-30",
         "2026-02-02",
-        "2026-03",
-        "2026-04",
         "2026-05",
         "2026-06",
-        "2026-06-08",
         "2026-09-21"
       ],
       "keywords": [
         "grok",
-        "2nm",
         "acquisition",
         "agent",
         "arr",
@@ -461,18 +455,62 @@
         "compute",
         "context window",
         "cost",
-        "disclosure"
+        "fable 5",
+        "gemini"
       ],
       "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
       "source_anchor": "",
       "source_lines": [
         216,
+        304
+      ],
+      "canonical_for": [],
+      "words": 1232,
+      "bytes": 7656,
+      "sha256": "159309b5a49cf32a542bc1dc320ac3ae82994aedf782c054546da23b642ae21e",
+      "section": "PART A — xAI / GROK"
+    },
+    {
+      "id": "labs-grok-platforms-2026/11-part-a-xai-grok/3-2-controversy",
+      "path": "labs-grok-platforms-2026/11-part-a-xai-grok/3-2-controversy.md",
+      "title": "3.2 Controversy",
+      "domain": "part-a-xai-grok",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "Intel",
+        "SpaceX",
+        "xAI"
+      ],
+      "dates": [
+        "2026-01-30",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06-08"
+      ],
+      "keywords": [
+        "2nm",
+        "compute",
+        "disclosure",
+        "gpus",
+        "grok",
+        "inference",
+        "intel",
+        "ipo",
+        "training",
+        "wafer"
+      ],
+      "source": "docs/RAG/Labos, Grok, outils & plateformes_EN.md",
+      "source_anchor": "",
+      "source_lines": [
+        305,
         325
       ],
       "canonical_for": [],
-      "words": 1585,
-      "bytes": 10191,
-      "sha256": "1229c5308d6ccebed07a6479a2cb8437cdb085b295ae31a0be4e4dde4c837402",
+      "words": 353,
+      "bytes": 2535,
+      "sha256": "d4317d98ef6dc99f508bf4eadaba97f71e2cde0e5430648c25ca4216dae01e9d",
       "section": "PART A — xAI / GROK"
     },
     {

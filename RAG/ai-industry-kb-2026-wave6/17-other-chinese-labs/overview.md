@@ -4,15 +4,15 @@ title: "§17. Other Chinese Labs"
 domain: other-chinese-labs
 role: deep-dive
 task: actor-profile
-actors: ["Alibaba", "Baidu", "ByteDance", "China", "DeepSeek", "Falcon", "LongCat", "MiniMax", "Moonshot", "Nvidia", "OpenRouter", "Perplexity", "Poolside", "StepFun", "TII", "Z.ai"]
+actors: ["Alibaba", "Baidu", "ByteDance", "China", "DeepSeek", "Falcon", "Hugging Face", "LongCat", "MiniMax", "Moonshot", "Nvidia", "OpenRouter", "Perplexity", "Poolside", "StepFun", "TII", "Z.ai"]
 dates: ["2025-06", "2026-01-05", "2026-01-22", "2026-03", "2026-04", "2026-05-08", "2026-06", "2026-06-12", "2026-06-23", "2026-06-24", "2026-06-30", "2026-07", "2026-07-21", "2026-07-23", "2026-07-31", "2026-08", "2026-08-13", "2026-08-28", "2026-09", "2026-09-18", "2026-09-20", "2026-09-22", "2026-09-27", "2026-10-15"]
 keywords: ["acquisition", "agent", "apache", "benchmark", "cost", "deepseek", "glm", "kimi", "license", "licenses", "llama", "nvidia"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [8248, 8319]
+source_lines: [8248, 8325]
 section: "§17. Other Chinese Labs"
 delta_of: ai-industry-kb-2026
-sha256: c74a66582efe3265dd2a222554b16b7bfe47b43a1862e99e6e4dfe998b82ed05
+sha256: 291180a14751e475722af7ab8847d71f211b45a21108caa078a56ff368f58ffe
 ---
 
 # §17. Other Chinese Labs
@@ -86,4 +86,10 @@ Keywords: StepFun, Step 5 Preview, Baidu, ERNIE 5.0, ERNIE 5.1, ByteDance, Seed 
 - **Agent API launched March 2026** [SECONDARY].
 - **Sonar chat-completions endpoints are scheduled for retirement 2026-09-27** [SECONDARY].
 - **No verified new-from-scratch 2026 Perplexity model** exists in the corpus.
+
+### DeepSeek R2 — one line (owned by §2)
+- **DeepSeek R2 is NOT released** — the "April 2026 32B MIT release" claims (community guides, fabricated specificity) are contradicted by felloai/kr-asia/FT reporting: R2 is withheld, with no API and no Hugging Face checkpoint [SECONDARY]; §2 owns the full treatment.
+
+
+### New verified facts — expansion
 

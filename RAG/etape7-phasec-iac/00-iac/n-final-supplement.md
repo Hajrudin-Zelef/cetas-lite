@@ -9,9 +9,9 @@ dates: ["2026-03-12", "2026-03-31", "2026-06-18", "2026-07-28", "2026-08-19", "2
 keywords: ["apache", "aws", "compute", "packaging", "pricing", "research"]
 source: docs/RAG/etape7_phaseC_iac.md
 source_anchor: ""
-source_lines: [664, 750]
+source_lines: [664, 740]
 section: "Step 7 Phase C — IaC & Platform Automation"
-sha256: 31cd046cfa9ab99353c60b4e8f45501dca17fb31893cf88d13e8da6884dfea87
+sha256: 0402411565ef2cedc805ebaedda55d738112e912cf4cae244a179891d3d8cca1
 ---
 
 # N. Final supplement
@@ -93,13 +93,3 @@ Using third-party rule-of-thumb figures (Standard $0.47/res/mo) [secondary](http
 
 ## P. Cross-references and usage notes
 
-- **Step 6 Phase E2** covered Ansible/Terraform/OpenTofu for *network-device* automation (network resource modules, NAPALM/Nornir, Batfish network validation, NetBox-as-source-of-truth for networks). This file covers the *platform/compute* angle; treat the two as companions, not duplicates.
-- **Step 7 Phase A** (OS: Debian/Ubuntu/RHEL/Rocky) covers the operating systems these tools manage; **Phase B** (containers/Kubernetes) covers the clusters Argo CD/Flux deploy to; **Phase D** (Proxmox/backup) covers the virtualization layer Terraform/OpenTofu and cloud-init commonly provision.
-- For RAG ingestion: the highest-signal tables are M1 (timeline), M2 (HCP Terraform tiers), M8 (Argo CD vs Flux), O (version pins), and B6 (IaC decision matrix). The conflicts list (Section I) should be indexed as caveat metadata, not facts.
-- Prices in this file are point-in-time (2026-09-22 cutoff) and vendor packaging changes frequently — especially HCP Terraform (restructured 2026-03-31), Pulumi Cloud, and the TACO vendors.
-- Suggested v2 follow-ups: named enterprise IaC case studies; 2026 market-share figures; verification of the gap list G1–G11 against primary sources.
-- Methodology note: all web research was read-only; no logins, purchases, or form submissions were performed.
-- File stats: 16 top-level sections (A–P), 17 H2 headings, one H1, zero fenced code blocks (indented blocks used for examples).
-- Line-count target: ≥750 lines met at final verification (2026-09-22).
-
-*Final end of Step 7 Phase C file. Total sections A–P. Research cutoff 2026-09-22. Single writer; no other workspace files modified.*

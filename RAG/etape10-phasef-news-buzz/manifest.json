@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape10_phaseF_news_buzz.md",
   "source_lines": 754,
   "source_sha256": "ba5f6ed504c6e12e4ea86c40117b1386c6e540768043e9ba8c69c19db569a4fe",
-  "chunk_count": 11,
+  "chunk_count": 17,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -27,6 +27,32 @@
         "2026-02-22",
         "2026-02-27",
         "2026-03",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseF_news_buzz.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 535,
+      "bytes": 5371,
+      "sha256": "d92a2c60fcd7fba4f9f096924dd6ed18d96780aa2a23ea484a2e502a7368a155",
+      "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
+    },
+    {
+      "id": "etape10-phasef-news-buzz/00-news-buzz/part-2",
+      "path": "etape10-phasef-news-buzz/00-news-buzz/part-2.md",
+      "title": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22) (part 2)",
+      "domain": "step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
         "2026-03-02",
         "2026-03-03",
         "2026-03-05",
@@ -37,22 +63,19 @@
         "2026-03-20",
         "2026-03-27",
         "2026-08",
-        "2026-09-22",
         "2027-04"
       ],
-      "keywords": [
-        "research"
-      ],
+      "keywords": [],
       "source": "docs/RAG/etape10_phaseF_news_buzz.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        40,
         56
       ],
       "canonical_for": [],
-      "words": 758,
-      "bytes": 8226,
-      "sha256": "fc6b594d8568a6b2652ce49bdc3ae8113e33316a6a327482051eaf6aa3716b0c",
+      "words": 223,
+      "bytes": 2855,
+      "sha256": "7a32d50b7f5946a5b8fcadd3d900587a7d8acec2eadb73637f54073800247804",
       "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
     },
     {
@@ -116,11 +139,8 @@
       "task": "reference",
       "actors": [],
       "dates": [
-        "2025-06-20",
-        "2026-01",
         "2026-02-13",
         "2026-02-27",
-        "2026-03-15",
         "2026-03-20",
         "2026-04-03",
         "2026-04-24",
@@ -131,8 +151,6 @@
         "2026-07-17",
         "2026-07-28",
         "2026-07-31",
-        "2026-08",
-        "2026-08-28",
         "2026-09",
         "2026-09-01",
         "2026-09-02",
@@ -152,12 +170,40 @@
       "source_anchor": "",
       "source_lines": [
         105,
+        156
+      ],
+      "canonical_for": [],
+      "words": 680,
+      "bytes": 6557,
+      "sha256": "0ae6eadee9756a0336f0c1f66bfa0608c061752e6c0ac1bcbe3e4a2b40438529",
+      "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
+    },
+    {
+      "id": "etape10-phasef-news-buzz/00-news-buzz/part-5",
+      "path": "etape10-phasef-news-buzz/00-news-buzz/part-5.md",
+      "title": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22) (part 5)",
+      "domain": "step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-06-20",
+        "2026-01",
+        "2026-03-15",
+        "2026-08",
+        "2026-08-28"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseF_news_buzz.md",
+      "source_anchor": "",
+      "source_lines": [
+        157,
         164
       ],
       "canonical_for": [],
-      "words": 838,
-      "bytes": 8158,
-      "sha256": "66cb81d143140ed99df7adf115eb6e22f777cc0237cd7bf490539321eb044c70",
+      "words": 158,
+      "bytes": 1601,
+      "sha256": "29ea1dfbc3c1527b20a2e0d00eda1861f9b579ef5808a2adfeefcd4fe55375e6",
       "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
     },
     {
@@ -169,7 +215,6 @@
       "task": "reference",
       "actors": [],
       "dates": [
-        "2025-06-05",
         "2026-02-01",
         "2026-02-05",
         "2026-02-06",
@@ -206,12 +251,36 @@
       "source_anchor": "",
       "source_lines": [
         165,
+        222
+      ],
+      "canonical_for": [],
+      "words": 729,
+      "bytes": 7594,
+      "sha256": "4f95096c7f4da62bf300a8a708bf5dbc4247f635a3c300798cf6af69d18cb7cf",
+      "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
+    },
+    {
+      "id": "etape10-phasef-news-buzz/00-news-buzz/part-7",
+      "path": "etape10-phasef-news-buzz/00-news-buzz/part-7.md",
+      "title": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22) (part 7)",
+      "domain": "step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2025-06-05"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseF_news_buzz.md",
+      "source_anchor": "",
+      "source_lines": [
+        223,
         225
       ],
       "canonical_for": [],
-      "words": 798,
-      "bytes": 8145,
-      "sha256": "bd642c48c841c94ad1dff828f5c5400390c8d79cb84bb9c52eeb5061e2daa7c4",
+      "words": 69,
+      "bytes": 551,
+      "sha256": "b20d88a10bfee50f29096d68605f72ed74967b5de537b22bad4c12825e82471a",
       "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
     },
     {
@@ -224,7 +293,6 @@
       "actors": [],
       "dates": [
         "2025-11",
-        "2026-02",
         "2026-02-01",
         "2026-03-03",
         "2026-06",
@@ -235,19 +303,47 @@
         "2027-04"
       ],
       "keywords": [
-        "attention",
         "research"
       ],
       "source": "docs/RAG/etape10_phaseF_news_buzz.md",
       "source_anchor": "",
       "source_lines": [
         226,
+        273
+      ],
+      "canonical_for": [],
+      "words": 721,
+      "bytes": 6831,
+      "sha256": "6d3c634d37381f773bbd167b7d9af3fc81ecf55b58498850ababbd457330af5b",
+      "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
+    },
+    {
+      "id": "etape10-phasef-news-buzz/00-news-buzz/7-2-lifestyle-and-social-media-trends",
+      "path": "etape10-phasef-news-buzz/00-news-buzz/7-2-lifestyle-and-social-media-trends.md",
+      "title": "7.2 Lifestyle and social-media trends",
+      "domain": "step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-02",
+        "2026-02-01",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "attention",
+        "research"
+      ],
+      "source": "docs/RAG/etape10_phaseF_news_buzz.md",
+      "source_anchor": "",
+      "source_lines": [
+        274,
         283
       ],
       "canonical_for": [],
-      "words": 929,
-      "bytes": 8517,
-      "sha256": "e27893d0f28dc0ff64199c7157650e0888988843165fbfa0cc248c7dbfbba1df",
+      "words": 208,
+      "bytes": 1686,
+      "sha256": "78d7db86fbbf53ebdbf7f17353f927ef3819d8d9e140c1185452df8b8092efb6",
       "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
     },
     {
@@ -410,18 +506,43 @@
       "source_anchor": "",
       "source_lines": [
         509,
-        592
+        596
       ],
       "canonical_for": [],
-      "words": 1024,
-      "bytes": 5794,
-      "sha256": "6227a9cb7344fe97608edf936bc8a35f6f0bf2dfaf97f61c19913d4bd6ba9eec",
+      "words": 1049,
+      "bytes": 5947,
+      "sha256": "20c38c227c3c1c9d13a61e4b05f6323eae7019f0f82ab4c30919cc8441fa301d",
       "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
     },
     {
-      "id": "etape10-phasef-news-buzz/00-news-buzz/15-people-of-the-period-feb-sep-2026",
-      "path": "etape10-phasef-news-buzz/00-news-buzz/15-people-of-the-period-feb-sep-2026.md",
-      "title": "15. People of the period (Feb → Sep 2026)",
+      "id": "etape10-phasef-news-buzz/00-news-buzz/16-annotated-source-notes",
+      "path": "etape10-phasef-news-buzz/00-news-buzz/16-annotated-source-notes.md",
+      "title": "16. Annotated source notes",
+      "domain": "step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05-23",
+        "2026-14-09"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseF_news_buzz.md",
+      "source_anchor": "",
+      "source_lines": [
+        597,
+        626
+      ],
+      "canonical_for": [],
+      "words": 532,
+      "bytes": 5681,
+      "sha256": "cf6bad6070e8d3f0b9be93f72f70bb36c6390e8d355625b5110ece2dc883ac24",
+      "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
+    },
+    {
+      "id": "etape10-phasef-news-buzz/00-news-buzz/part-15",
+      "path": "etape10-phasef-news-buzz/00-news-buzz/part-15.md",
+      "title": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22) (part 15)",
       "domain": "step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22",
       "role": "deep-dive",
       "task": "reference",
@@ -433,27 +554,25 @@
         "2026-03-03",
         "2026-03-15",
         "2026-04-30",
-        "2026-05-23",
         "2026-06-13",
         "2026-07-28",
         "2026-08",
         "2026-08-27",
         "2026-09-12",
         "2026-09-14",
-        "2026-11-19",
-        "2026-14-09"
+        "2026-11-19"
       ],
       "keywords": [],
       "source": "docs/RAG/etape10_phaseF_news_buzz.md",
       "source_anchor": "",
       "source_lines": [
-        593,
+        627,
         654
       ],
       "canonical_for": [],
-      "words": 920,
-      "bytes": 8909,
-      "sha256": "f2edb81bddcd77cc511e68c6368d8a7e1e39671c31f0709133995b4e1eb0554a",
+      "words": 363,
+      "bytes": 3075,
+      "sha256": "197169933bf662d4b5670752a61e2df1e5bb04fdbd076dd4449995bc41b4a48c",
       "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
     },
     {
@@ -469,17 +588,9 @@
         "2026-02-12",
         "2026-02-21",
         "2026-03-15",
-        "2026-04-30",
-        "2026-07-28",
-        "2026-08",
         "2026-08-26",
         "2026-09-14",
-        "2026-09-15",
-        "2026-09-18",
-        "2026-09-22",
-        "2026-09-25",
-        "2026-11-19",
-        "2027-04"
+        "2026-09-15"
       ],
       "keywords": [
         "benchmark"
@@ -488,12 +599,43 @@
       "source_anchor": "",
       "source_lines": [
         655,
+        715
+      ],
+      "canonical_for": [],
+      "words": 982,
+      "bytes": 7760,
+      "sha256": "a6df2534ff2a1d29011557c30388985ff2012f6e3e75191f1eefc626bef5158d",
+      "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
+    },
+    {
+      "id": "etape10-phasef-news-buzz/00-news-buzz/19-post-cutoff-watchlist-excluded-from-coverage-for-a-future",
+      "path": "etape10-phasef-news-buzz/00-news-buzz/19-post-cutoff-watchlist-excluded-from-coverage-for-a-future.md",
+      "title": "19. Post-cutoff watchlist (excluded from coverage; for a future update)",
+      "domain": "step-10-phase-f-news-buzz-society-2026-02-01-2026-09-22",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-04-30",
+        "2026-07-28",
+        "2026-08",
+        "2026-09-18",
+        "2026-09-22",
+        "2026-09-25",
+        "2026-11-19",
+        "2027-04"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/etape10_phaseF_news_buzz.md",
+      "source_anchor": "",
+      "source_lines": [
+        716,
         754
       ],
       "canonical_for": [],
-      "words": 1545,
-      "bytes": 12377,
-      "sha256": "0cf18173a31ec8551265569510c6d3f27157da1bdaeba2c3960a3045aa5b2c8e",
+      "words": 563,
+      "bytes": 4617,
+      "sha256": "036ffc07361c003659a1881c408a8dbb74cd55a725d6b566259c98ef1f712dc9",
       "section": "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
     }
   ]

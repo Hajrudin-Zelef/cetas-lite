@@ -9,9 +9,9 @@ dates: []
 keywords: ["backlog", "compute", "consumer", "cost", "datacenter", "dram", "latency", "memory", "nand"]
 source: docs/RAG/etape7_phaseE_storage_software.md
 source_anchor: ""
-source_lines: [46, 110]
+source_lines: [46, 102]
 section: "Step 7 — Phase E: Software-Defined & NAS Storage (Ceph, rclone, TrueNAS, OpenMediaVault, Unraid, QNAP/Synology/Asustor, ZFS)"
-sha256: ff469c374076e03013fa748cc5cfeb90323a15441e6a3cd7faaf84b85c8ec83a
+sha256: 15d5739d342607c7e395bd41669cc855dc0fdf844264bb1f9431ae3fffb98a71
 ---
 
 # B. Ceph — architecture and core concepts
@@ -72,12 +72,4 @@ sha256: ff469c374076e03013fa748cc5cfeb90323a15441e6a3cd7faaf84b85c8ec83a
 - OS-level tuning bundled with Ceph NVMe guides: 256 MB socket buffers (`net.core.rmem_max/wmem_max`), `netdev_max_backlog=30000`, `vm.swappiness=1`, NVMe queue `nr_requests=1024`, I/O scheduler `none` for NVMe [secondary].
 
 ### C4. NVMe-oF gateway, dashboard, Rook, adoption
-
-- The **NVMe-oF gateway** (introduced in Squid, hardened in Tentacle 20.2.1 with fast-failover rework and `nvme-gw listeners` command) exports RBD as NVMe/TCP targets so VMware/bare-metal clients consume Ceph block without a Ceph client; the Dashboard manages gateway groups, namespaces, and IO statistics [official][secondary].
-- **Ceph Dashboard** (MGR module): multi-cluster management, OAuth 2.0, NVMe-oF group management, RGW/SMB lifecycle features; 20.2.x backports added hardware monitoring via node-proxy metrics and CSV host import [official].
-- **Rook** (Kubernetes operator): v1.19.x current in mid-2026 homelab/enterprise guides; typical pattern = operator Helm chart + `CephCluster` CR + StorageClasses via CSI (`rook-ceph.rbd.csi.ceph.com`); Ceph Squid→Tentacle upgrades under Rook documented with pre-upgrade backup runbooks (ceph status, osd tree/df, pool detail, CRUSH dump, config dump, versions) [secondary]. Rook v1.19 supports Ceph Tentacle targets (v19.2.x → v20.2.x) [secondary].
-- **Adoption signals**: CERN operates one of the world's largest Ceph deployments (multi-petabyte, referenced as a canonical large-scale adopter) [secondary]; Proxmox VE ships integrated Ceph management and documents Reef→Squid→Tentacle upgrade runbooks [secondary]; OpenStack Cinder/Glance/Manilla integrate RBD/CephFS/RGW [secondary]; commercial support from Red Hat/IBM (Red Hat Ceph Storage 8 hardware guide current), Canonical, SUSE, plus specialists Croit, 42on, SoftIron [secondary].
-- **TCO notes**: 10–25 GbE minimum with separate public/cluster networks; EC pools cut raw cost ~40% vs 3x replication at the price of CPU and recovery I/O; operational expertise is the dominant cost driver [secondary].
-
----
 

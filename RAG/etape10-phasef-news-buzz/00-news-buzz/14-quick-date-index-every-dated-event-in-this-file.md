@@ -9,9 +9,9 @@ dates: ["2026-02-01", "2026-02-05", "2026-02-06", "2026-02-08", "2026-02-12", "2
 keywords: []
 source: docs/RAG/etape10_phaseF_news_buzz.md
 source_anchor: ""
-source_lines: [509, 592]
+source_lines: [509, 596]
 section: "STEP 10 — Phase F: News, Buzz & Society (2026-02-01 → 2026-09-22)"
-sha256: 6227a9cb7344fe97608edf936bc8a35f6f0bf2dfaf97f61c19913d4bd6ba9eec
+sha256: 20c38c227c3c1c9d13a61e4b05f6323eae7019f0f82ab4c30919cc8441fa301d
 ---
 
 # 14. Quick date index (every dated event in this file)
@@ -99,4 +99,8 @@ sha256: 6227a9cb7344fe97608edf936bc8a35f6f0bf2dfaf97f61c19913d4bd6ba9eec
 | 2026-09-14 | Matthew Rhys historic double lead-actor win | §1.8, §6.1 |
 | 2026-09-18 | Miley Cyrus — *Bass Persuades* (scheduled; status unverified at cutoff) | §1.8, §3.1 |
 | 2026-09-22 | Coverage cutoff | §1.8 |
+
+## 15. People of the period (Feb → Sep 2026)
+
+> One-paragraph recaps synthesizing only the dated, tagged facts already recorded above. No new claims.
 

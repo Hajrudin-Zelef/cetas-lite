@@ -5,13 +5,13 @@ domain: etape-10e-world-news-wars-geopolitics-elections-economy-fort
 role: deep-dive
 task: finance
 actors: ["China", "Meta", "Microsoft", "Nvidia", "Oracle", "SpaceX", "United States", "xAI"]
-dates: ["2025-06", "2026-03", "2026-04", "2026-05", "2026-07", "2026-07-15", "2026-08", "2026-09"]
-keywords: ["energy", "incident", "nvidia", "valuation", "voice"]
+dates: ["2026-03", "2026-09"]
+keywords: ["energy", "nvidia", "valuation"]
 source: docs/RAG/etape10_phaseE_news_world.md
 source_anchor: ""
-source_lines: [338, 386]
+source_lines: [338, 372]
 section: "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
-sha256: ed4d48b266a0a3981c474ed10696e27555bb1082a81bec4709b9934e091127ce
+sha256: b506df9554b91fdddf24c81572a61212afb19505ffa42696b8fabfc7c416c7ef
 ---
 
 # 3.16 Fortunes: Forbes vs. Hurun, March 2026
@@ -50,18 +50,4 @@ sha256: ed4d48b266a0a3981c474ed10696e27555bb1082a81bec4709b9934e091127ce
 ---
 
 ### 3.17 Natural catastrophes (February–September 2026)
-
-- First-half 2026 global natural-catastrophe losses: Aon estimated about $111 billion in economic losses with at least 16,200 deaths; Munich Re estimated about $112 billion for the same period — the loss figures align closely but the mortality counts differ, a vendor-methodology conflict flagged in Section 4 [vendor-reported] (https://www.aon.com/getmedia/87b942cd-2658-456c-9269-f441b5ed4ddd/Global-Catastrophe-Report-2026_H1.pdf; https://www.tiempodeseguros.com/storage/app/media/uploaded-files/MunichRe-NatCat-HY-2026-Factsheet.pdf).
-- Colombia earthquake, 10 August 2026: 335 deaths and 486,917 people affected as of 17 September, per OCHA's 18 September regional situation update; figures provisional [official] (https://reliefweb.int/report/el-salvador/latin-america-caribbean-weekly-situation-update-18-september-2026).
-- Hurricane Lowell, early September 2026: battered Hawaii's western islands and was linked to at least two deaths, per AP/Scripps reporting [independent] (https://www.tmj4.com/science-and-tech/natural-disasters/hurricane-lowell-battered-hawaiis-western-islands-and-is-linked-to-at-least-2-deaths).
-- Wildfire cooperation remained on the multilateral agenda via the Kananaskis Wildfire Charter endorsed at the June 2025 G7 summit; 2026 wildfire-season outcomes were not researched for this phase — a gap [independent, contextual] (https://www.g7.utoronto.ca/summit/2025kananaskis/250617-summary.html).
-- Other 2026 disasters (typhoons, floods, European heat, earthquakes elsewhere) were not systematically researched; dramatic casualty claims from YouTube videos or weather blogs were excluded for lack of corroboration — see Section 4.
-
-### 3.18 Aviation: the AI-171 investigation and the AI2379 incident
-
-- Air India Flight AI-171 (Boeing 787, VT-ANB) crashed shortly after takeoff from Ahmedabad on 12 June 2025, killing 260 people (241 aboard plus 19 on the ground), with a single surviving passenger; the investigation ran through 2026 [independent/secondary] (https://www.reuters.com/world/india/indian-investigators-have-conducted-psychological-autopsy-air-india-crash-probe-2026-07-15/; https://www.gg2.net/air-india-crash-report-still-pending/).
-- By July 2026 the AAIB probe was in its final analysis phase: CVR transcript prepared, psychological autopsy conducted, engine-monitoring-unit data (retrieved late May 2026) still being analyzed, and completion expected in about six weeks subject to external dependencies [independent] (https://www.reuters.com/world/india/indian-investigators-have-conducted-psychological-autopsy-air-india-crash-probe-2026-07-15/).
-- Transparency disputes persisted: victims' families demanded release of flight-data and cockpit-voice-recorder data (including an April 2026 letter to Prime Minister Modi from relatives of 30 Gujarat victims), and on 27 August 2026 the Foundation for Aviation Safety alleged the AAIB had omitted hundreds of technical documents on the aircraft's systems from public reports — allegations the AAIB had not publicly answered in the sources consulted [independent/secondary] (https://www.gg2.net/air-india-crash-report-still-pending/; https://www.latestly.com/india/news/air-india-ai-171-probe-us-aviation-safety-group-alleges-aaib-ignored-hundreds-of-documents-on-system-failures-in-reports-7608295.html).
-- Air India flight AI2379 (A320neo, VT-EXO), Phuket–Delhi, 4 August 2026: USA Today reported a sudden loss of altitude during cruise with 13 passengers and four crew hospitalized and the aircraft landing safely in Delhi [independent] (https://www.usatoday.com/story/travel/airline-news/2026/08/05/air-india-flight-sudden-drop-injuring-passengers/91184231007/); a specialist outlet citing the AAIB preliminary investigation described a simultaneous triple hydraulic failure at 36,000 feet injuring 24 — a direct conflict on both the injury count (17 vs. 24) and the technical cause, flagged in Section 4 [secondary] (https://aviationnews.eu/news/2026/09/air-india-a320neo-suffers-rare-triple-hydraulic-failure-at-36000-feet-injuring-24/).
-- Other 2026 commercial-aviation accidents were not researched for this phase — a gap (see Section 4).
 

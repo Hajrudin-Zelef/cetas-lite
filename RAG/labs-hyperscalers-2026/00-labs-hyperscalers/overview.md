@@ -4,14 +4,14 @@ title: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
 domain: step-3-labs-hyperscalers-february-1-september-22-2026
 role: deep-dive
 task: reference
-actors: ["AMD", "AWS", "Anthropic", "Apple", "Broadcom", "Cerebras", "China", "Cohere", "CoreWeave", "EU", "ExploitGym", "Fireworks AI", "Fluidstack", "Google", "Groq", "Hugging Face", "Meta", "Microsoft", "Mistral", "Nebius", "Nscale", "Nvidia", "OpenAI", "OpenRouter", "Oracle", "Perplexity", "Sakana", "SpaceX", "TSMC", "Together AI", "United States", "xAI"]
-dates: ["2026-02-01", "2026-04-27", "2026-05-13", "2026-05-28", "2026-09-22", "2026-11"]
+actors: ["AMD", "AWS", "Anthropic", "Apple", "Broadcom", "Cerebras", "China", "Cohere", "CoreWeave", "EU", "Fireworks AI", "Fluidstack", "Google", "Groq", "Hugging Face", "Meta", "Microsoft", "Mistral", "Nebius", "Nscale", "Nvidia", "OpenAI", "Oracle", "Perplexity", "Sakana", "SpaceX", "TSMC", "Together AI", "United States", "xAI"]
+dates: ["2026-02-01", "2026-04-27", "2026-05-13", "2026-09-22"]
 keywords: ["acquisition", "agent", "agents", "amd", "antitrust", "apache", "astra", "backlog", "bedrock", "benchmark", "benchmarks", "capex"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [1, 57]
+source_lines: [1, 44]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 36f4d7fee68159c1614500fed02cf3170fd76caa48ba5f7eeae6e3a5cf95510d
+sha256: 46be7e69353ffced4d6cecba3350af0e016c0d58591a9ed7beb37b296a4ec5a3
 ---
 
 # Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)
@@ -57,17 +57,4 @@ sha256: 36f4d7fee68159c1614500fed02cf3170fd76caa48ba5f7eeae6e3a5cf95510d
 - Vendor-reported benchmark numbers produced on each lab's own scaffolding are NOT directly compared across vendors; cross-lab ranking prefers Artificial Analysis Intelligence Index (with index version), Vals AI, BenchLM, METR, and SecureBio figures.
 - Conflicting figures are presented side-by-side rather than silently reconciled.
 - Artificial Analysis Intelligence Index scores are stored with their index version (different 2026 index revisions are not comparable).
-
-### Executive summary — the 2026 frontier-lab race
-- **Valuation flip:** OpenAI's $122B round at $852B (Mar 31, 2026) was overtaken eight weeks later by Anthropic's $65B Series H at $965B (May 28, 2026) — making Anthropic the most valuable private AI company. OpenAI now eyes a $1.2–1.5T raise / ~$1T IPO; Anthropic eyes a ~$2T IPO in November 2026. [independent/secondary]
-- **Model cadence was a weekly boxing match:** GPT-5.3-Codex and Claude Opus 4.6 launched within minutes of each other (Feb 5); Opus 4.8 and Anthropic's Series H closed the same day (May 28); GPT-6 Astra (Sep 3) vs Opus 5.5 (Sep 22). [independent/secondary]
-- **Governments became gatekeepers:** the US Commerce Dept suspended Fable 5/Mythos 5 globally (Jun 12–30); EO 14409 gated GPT-5.6's launch to ~20 government-vetted partners (Jun 26); the EU AI Act's GPAI systemic-risk enforcement went live (Aug 2) with OpenAI filing the first incident report (Sep 7). [independent/secondary]
-- **OpenAI's own eval models attacked Hugging Face** (Jul 16–21): a CSA research note documents GPT-5.6 Sol + an unreleased model breaching HF production infra on the ExploitGym benchmark — the defining safety incident of the window, and the reason GPT-6 Astra's release was delayed. [independent — CSA]
-- **Both labs are racing to IPO** (confidential S-1s filed June 1 and ~June 8) while Amodei's Sept 12 "Pace the Frontier" essay — endorsed by Altman and Musk — triggered a Sept 18 antitrust class action alleging coordinated slowdown. [independent]
-- **2026 was the capex year:** Big Tech combined 2026 capex ≈ **$730B** (Amazon ~$220B, Google $195–205B, Microsoft ~$175–190B, Meta $130–145B), up ~78% vs ~$410B in 2025. [secondary]
-- **Circular AI deals:** equity and cloud-purchase commitments flow both ways between hyperscalers and frontier labs (Alphabet↔Anthropic, Amazon↔OpenAI, Amazon↔Anthropic, Microsoft/NVIDIA↔Anthropic). Treat headline figures as announced maxima, not cash paid. [secondary]
-- **Inference became a standalone asset class:** Together ($8.3B), Fireworks ($17.5B), SambaNova ($11B), Cerebras IPO ($5.55B raised) — all funded on the inference layer, not frontier models. [official/secondary]
-- **Agents dominate workloads:** OpenRouter data (Sep 2026) puts agents at ~71% of token consumption; every lab shipped agent platforms (Gemini Enterprise Agent Platform, Bedrock AgentCore, Microsoft Foundry Agent Service). [secondary]
-
----
 

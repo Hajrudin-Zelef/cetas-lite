@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_trackB_arista_sonic.md",
   "source_lines": 326,
   "source_sha256": "cf7b5f7875c448670d1064fdeb44c286e61ddae84be4d12adf2e7ce30d51640e",
-  "chunk_count": 5,
+  "chunk_count": 8,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -48,14 +48,12 @@
       "task": "reference",
       "actors": [
         "AMD",
-        "AWS",
         "Broadcom",
         "Meta",
         "Microsoft",
         "Oracle"
       ],
       "dates": [
-        "2025-12",
         "2026-05",
         "2026-06",
         "2026-06-04",
@@ -64,9 +62,7 @@
       ],
       "keywords": [
         "accelerator",
-        "agentic",
         "amd",
-        "aws",
         "capex",
         "compute",
         "ethernet",
@@ -74,18 +70,55 @@
         "latency",
         "lpo",
         "maia",
-        "optics"
+        "optics",
+        "rack-scale",
+        "revenue"
       ],
       "source": "docs/RAG/etape6_trackB_arista_sonic.md",
       "source_anchor": "",
       "source_lines": [
         19,
+        77
+      ],
+      "canonical_for": [],
+      "words": 1038,
+      "bytes": 7465,
+      "sha256": "7dac70ed38fca4e0f7d0b7d6aaed7ab1ff364bbbb0c448c3a49a92b5ed42c3e2",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    },
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/1-4-customer-concentration-and-risks-analyst-framing",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/1-4-customer-concentration-and-risks-analyst-framing.md",
+      "title": "1.4 Customer concentration and risks (analyst framing)",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Meta",
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-12"
+      ],
+      "keywords": [
+        "agentic",
+        "aws",
+        "optics",
+        "research",
+        "revenue",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        78,
         95
       ],
       "canonical_for": [],
-      "words": 1390,
-      "bytes": 10111,
-      "sha256": "2689a9b8f41afaade560cd4dd12ef9d61d30d132ecf4e130526fc553c35a7ab5",
+      "words": 352,
+      "bytes": 2646,
+      "sha256": "4897618eb9048b96dc63871d35e1872266a2e5afe7942c19aa4d7c2c8d4c9371",
       "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
     },
     {
@@ -140,7 +173,6 @@
       "task": "reference",
       "actors": [
         "AMD",
-        "AWS",
         "Anthropic",
         "Broadcom",
         "Huawei",
@@ -165,22 +197,57 @@
         "cpo",
         "ethernet",
         "gpu",
-        "inference",
         "intel",
         "latency",
         "lpo",
-        "nvidia"
+        "nvidia",
+        "optics"
       ],
       "source": "docs/RAG/etape6_trackB_arista_sonic.md",
       "source_anchor": "",
       "source_lines": [
         163,
+        235
+      ],
+      "canonical_for": [],
+      "words": 1063,
+      "bytes": 7771,
+      "sha256": "4c58fae4ce82956385f1f776f45d70d34ccc389fc03f7d1d35142362a7e7a456",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    },
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/part-6",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/part-6.md",
+      "title": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking) (part 6)",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Meta",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "ethernet",
+        "gpu",
+        "inference",
+        "latency",
+        "nvidia",
+        "revenue",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        236,
         243
       ],
       "canonical_for": [],
-      "words": 1296,
-      "bytes": 9419,
-      "sha256": "9ac80d4406d936c7fe5c5340870c01bb2f8d72e10fe8ae2ee5e773a369d8b34a",
+      "words": 233,
+      "bytes": 1648,
+      "sha256": "c515d0eb3d58e4f8946951e73481b3569818c4cb492df5da042f0379b09d2433",
       "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
     },
     {
@@ -213,7 +280,6 @@
         "2027-11"
       ],
       "keywords": [
-        "accelerator",
         "asic",
         "datacenter",
         "distribution",
@@ -223,19 +289,50 @@
         "hyperscaler",
         "latency",
         "nvidia",
-        "nvlink",
-        "research"
+        "research",
+        "revenue"
       ],
       "source": "docs/RAG/etape6_trackB_arista_sonic.md",
       "source_anchor": "",
       "source_lines": [
         244,
+        319
+      ],
+      "canonical_for": [],
+      "words": 1078,
+      "bytes": 7854,
+      "sha256": "f61aecf7b2f7e1af267ccd2718f93eeec2c0c91e2186f374e87e93e94fac26e8",
+      "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
+    },
+    {
+      "id": "etape6-trackb-arista-sonic/00-arista-sonic/part-8",
+      "path": "etape6-trackb-arista-sonic/00-arista-sonic/part-8.md",
+      "title": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking) (part 8)",
+      "domain": "step-6-track-b-arista-sonic-cumulus-data-center-fabric-open-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Meta",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "accelerator",
+        "nvidia",
+        "nvlink",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_trackB_arista_sonic.md",
+      "source_anchor": "",
+      "source_lines": [
+        320,
         326
       ],
       "canonical_for": [],
-      "words": 1198,
-      "bytes": 8884,
-      "sha256": "88551885ab6e3e004b388458a146e007d3d884ba1faccbe694b6416f16e84ae3",
+      "words": 120,
+      "bytes": 1030,
+      "sha256": "a40a8a2fce12b35f8cc39df33fb0ec3a680abf04ad6c7fddbb71fd8d8f445efd",
       "section": "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
     }
   ]

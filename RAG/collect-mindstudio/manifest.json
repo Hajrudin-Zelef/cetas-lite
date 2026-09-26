@@ -4,8 +4,8 @@
   "source": "docs/RAG/Collect RAG/02_mindstudio",
   "source_dir": "docs/RAG/Collect RAG/02_mindstudio",
   "source_files": 170,
-  "source_sha256": "8a8638011592bf2a2ad4250ab0e02a574706841cc069c3c80258bc5d67622705",
-  "chunk_count": 170,
+  "source_sha256": "d1c1df55b4523a9e4d516d40da1864f64415bfbe17d84dd896c28fc7695eedec",
+  "chunk_count": 198,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -205,8 +205,8 @@
       "sha256": "8ab239f77c5dd3a5e8139928e50506c79748409be4dd30649b6195c82267a483"
     },
     {
-      "id": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules",
-      "path": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules.md",
+      "id": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules-1",
+      "path": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules-1.md",
       "title": "What Is the Agentic Context Management System? Folder Structures, Rules, and Injection",
       "domain": "mindstudio",
       "role": "reference",
@@ -219,7 +219,6 @@
         "agent",
         "agentic",
         "agents",
-        "claude",
         "context window",
         "cost",
         "latency",
@@ -230,16 +229,41 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 1075,
+      "bytes": 7971,
+      "sha256": "e9343b4b74d70eceb4c868c2615d64f2a8f971bd6b15e78a3a747d37e33811cd"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules-2",
+      "path": "collect-mindstudio/mindstudio/agentic-context-management-system-folder-structures-rules-2.md",
+      "title": "What Is the Agentic Context Management System? Folder Structures, Rules, and Injection",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/agentic-context-management-system-folder-structures-rules.md",
+      "source_anchor": "",
+      "source_lines": [
+        59,
         81
       ],
       "canonical_for": [],
-      "words": 1280,
-      "bytes": 9387,
-      "sha256": "bf654400c0fa450888bd03af7a8cc94d943d70cd6178c9aa9f9f4ca21d876f16"
+      "words": 205,
+      "bytes": 1416,
+      "sha256": "23fc76b15a7454b7582104d677e931de4f290dfb05f7823e8eb2087fe5967cce"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern",
-      "path": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern.md",
+      "id": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern-1",
+      "path": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern-1.md",
       "title": "How to Build an AI Agent That Catches Its Own Hallucinations: The Checker Agent Pattern",
       "domain": "mindstudio",
       "role": "reference",
@@ -248,7 +272,6 @@
         "Google"
       ],
       "dates": [
-        "2026-07",
         "2026-09-23"
       ],
       "keywords": [
@@ -265,23 +288,47 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1093,
+      "bytes": 7946,
+      "sha256": "1a19d7c546772080fba53fe8645635737ca03c789df38d3637b9df0f4cbad748"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern-2",
+      "path": "collect-mindstudio/mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern-2.md",
+      "title": "How to Build an AI Agent That Catches Its Own Hallucinations: The Checker Agent Pattern",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agent-catches-hallucinations-checker-agent-pattern.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
         56
       ],
       "canonical_for": [],
-      "words": 1148,
-      "bytes": 8357,
-      "sha256": "4d6fda0d8e209ab394ba2194ac0f0f06e92fadf5812f38e4126cfee4d6ffd86f"
+      "words": 55,
+      "bytes": 411,
+      "sha256": "aff95e68a5a9b598fb3d62f42317c5a122eeeb8e1a522152179669425fd71db3"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers",
-      "path": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers.md",
+      "id": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers-1",
+      "path": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers-1.md",
       "title": "AI Agent Infrastructure: The 5 Control Layers That Decide If Your Agent Ships",
       "domain": "mindstudio",
       "role": "reference",
       "task": "article",
       "actors": [],
       "dates": [
-        "2026-05",
         "2026-09-23"
       ],
       "keywords": [
@@ -300,16 +347,45 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 1029,
+      "bytes": 7666,
+      "sha256": "6491564c204d7926c24c14df58d5ecf3055a25b0975c108c57374507f907f5d0"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers-2",
+      "path": "collect-mindstudio/mindstudio/ai-agent-infrastructure-5-control-layers-2.md",
+      "title": "AI Agent Infrastructure: The 5 Control Layers That Decide If Your Agent Ships",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "cost",
+        "guardrails",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agent-infrastructure-5-control-layers.md",
+      "source_anchor": "",
+      "source_lines": [
+        45,
         56
       ],
       "canonical_for": [],
-      "words": 1196,
-      "bytes": 8963,
-      "sha256": "bf6a29fae0ce3ae0d7732f7d7067270bde567fdb2534e691890a16ea319e5445"
+      "words": 167,
+      "bytes": 1297,
+      "sha256": "a67a17b9ab655402dcb0b014ab87d4514e1930c75bb1529e195c80acf81509da"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security",
-      "path": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security.md",
+      "id": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security-1",
+      "path": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security-1.md",
       "title": "Why Prompt Rules Can't Stop Your AI Agent From Going Rogue",
       "domain": "mindstudio",
       "role": "reference",
@@ -329,16 +405,40 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 1303,
+      "bytes": 7668,
+      "sha256": "4a7a339dbed98955262a9495245e67efb1dacaf1ba965229b7f7ed54f1cf0797"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security-2",
+      "path": "collect-mindstudio/mindstudio/ai-agent-tool-permissioning-security-2.md",
+      "title": "Why Prompt Rules Can't Stop Your AI Agent From Going Rogue",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "incident"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agent-tool-permissioning-security.md",
+      "source_anchor": "",
+      "source_lines": [
+        38,
         49
       ],
       "canonical_for": [],
-      "words": 1466,
-      "bytes": 8933,
-      "sha256": "d8906d998b26890a3950cf49a6dcf746570be635a2edb67b314859ce87b438c6"
+      "words": 163,
+      "bytes": 1265,
+      "sha256": "af592931bd2019d617bf26121e15544bc7a270cf7058b1de2da5e2a017909e83"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering",
-      "path": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering.md",
+      "id": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering-1",
+      "path": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering-1.md",
       "title": "How AI Agents Learned to Spoof Tool Calls and Tamper With Logs",
       "domain": "mindstudio",
       "role": "reference",
@@ -354,12 +454,42 @@
       "keywords": [
         "agent",
         "agents",
-        "agentic",
-        "containment",
         "cybersecurity",
         "exploit",
         "incident",
         "jailbreak",
+        "reasoning",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agents-reward-hacking-transcript-tampering.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        27
+      ],
+      "canonical_for": [],
+      "words": 1097,
+      "bytes": 6919,
+      "sha256": "eea42b958fd9aab82f59749084a5e29be52055c1b3b862f219fcc96e12216b40"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering-2",
+      "path": "collect-mindstudio/mindstudio/ai-agents-reward-hacking-transcript-tampering-2.md",
+      "title": "How AI Agents Learned to Spoof Tool Calls and Tamper With Logs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "agentic",
+        "containment",
+        "incident",
         "reasoning",
         "research",
         "sandbox"
@@ -367,24 +497,23 @@
       "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agents-reward-hacking-transcript-tampering.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        28,
         55
       ],
       "canonical_for": [],
-      "words": 1629,
-      "bytes": 10585,
-      "sha256": "6f47998b2105b8f96b9cfdc105a5e67188c98e7e86bae9efe28091c9cf7e7fb7"
+      "words": 532,
+      "bytes": 3666,
+      "sha256": "004f5ec2df142a29441ada5c6ec09ea7545e97e217527601fcd5874fdf7a4e42"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics",
-      "path": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics.md",
+      "id": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics-1",
+      "path": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics-1.md",
       "title": "AI Agents Built a Cheating Ring and Sabotaged Themselves for It",
       "domain": "mindstudio",
       "role": "reference",
       "task": "article",
       "actors": [
         "ExploitGym",
-        "Hugging Face",
         "JFrog",
         "OpenAI"
       ],
@@ -407,12 +536,46 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        25
+      ],
+      "canonical_for": [],
+      "words": 1096,
+      "bytes": 7266,
+      "sha256": "c607a0e26e70876cd64c6cf711b61a3092ee0fa35c95834c3681da1378350b89"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics-2",
+      "path": "collect-mindstudio/mindstudio/ai-agents-scorer-tripwire-cheating-tactics-2.md",
+      "title": "AI Agents Built a Cheating Ring and Sabotaged Themselves for It",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "ExploitGym",
+        "Hugging Face",
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "exploit",
+        "reasoning",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-agents-scorer-tripwire-cheating-tactics.md",
+      "source_anchor": "",
+      "source_lines": [
+        26,
         53
       ],
       "canonical_for": [],
-      "words": 1587,
-      "bytes": 10786,
-      "sha256": "77fcd5cae7c84a494303c6c7144709ab3eee05df23e21f9cf0a7f82e282839d2"
+      "words": 491,
+      "bytes": 3520,
+      "sha256": "ff99248ce0be71db077ad160f551de2002988be3ad6927e498a01a103304095f"
     },
     {
       "id": "collect-mindstudio/mindstudio/ai-coding-agent-project-cost-breakdown",
@@ -604,8 +767,8 @@
       "sha256": "5989af956894bbd53cc625dbc44e32ae0c1cf78dd36ea80cb02b4c9e9eeef808"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion",
-      "path": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion.md",
+      "id": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion-1",
+      "path": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion-1.md",
       "title": "GPT-5.6 Codex \"Soul\" Deleted a Live Database. What Does That Mean?",
       "domain": "mindstudio",
       "role": "reference",
@@ -635,12 +798,44 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 1204,
+      "bytes": 7790,
+      "sha256": "6e7d83a8ba19ee2d9fcc98450ac38bbcb10959194f792c39cd3fdc95ba0e9a1c"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion-2",
+      "path": "collect-mindstudio/mindstudio/ai-model-misalignment-soul-database-deletion-2.md",
+      "title": "GPT-5.6 Codex \"Soul\" Deleted a Live Database. What Does That Mean?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpt-5.6",
+        "agent",
+        "agentic",
+        "containment",
+        "cybersecurity",
+        "gpt-6",
+        "incident",
+        "preparedness framework"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-misalignment-soul-database-deletion.md",
+      "source_anchor": "",
+      "source_lines": [
+        40,
         51
       ],
       "canonical_for": [],
-      "words": 1379,
-      "bytes": 9091,
-      "sha256": "9a44fa1ff0d5fde6cdff27e3a04af2ed5ab90d25a8c68acc335bb436858a4d9a"
+      "words": 175,
+      "bytes": 1301,
+      "sha256": "12423efcf149f07548367bad57d4459583704d0af24ab275931a3abffaab1ad6"
     },
     {
       "id": "collect-mindstudio/mindstudio/ai-model-pricing-2026-gpt-5-6-grok-4-5-muse-spark-fable-5",
@@ -684,8 +879,8 @@
       "sha256": "84cad8981ad6ff8d1ff968dc9fb9cb83aa8a2b1042ca276067adad25e27ab348"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution",
-      "path": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution.md",
+      "id": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution-1",
+      "path": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution-1.md",
       "title": "AI Model Routing: How to Cut Costs 60% by Matching Tasks to the Right Model",
       "domain": "mindstudio",
       "role": "reference",
@@ -717,16 +912,49 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 1129,
+      "bytes": 7935,
+      "sha256": "cea3e1fbe912d5fc8b07dd8e173acd074d40ad8c2e855773eb22575979968d36"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution-2",
+      "path": "collect-mindstudio/mindstudio/ai-model-routing-cut-costs-planning-execution-2.md",
+      "title": "AI Model Routing: How to Cut Costs 60% by Matching Tasks to the Right Model",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Mistral",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "claude",
+        "gemini",
+        "llama",
+        "mistral",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-routing-cut-costs-planning-execution.md",
+      "source_anchor": "",
+      "source_lines": [
+        44,
         54
       ],
       "canonical_for": [],
-      "words": 1257,
-      "bytes": 8906,
-      "sha256": "d86203ca0bd55f962451438d998ca1199c008b63459c11e85df9e0888705a986"
+      "words": 128,
+      "bytes": 971,
+      "sha256": "fb82313f4fca1ce4565200e083f8212cb98694077a46cd59808a1631eb436cd0"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack",
-      "path": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack.md",
+      "id": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack-1",
+      "path": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack-1.md",
       "title": "AI Model Routing: When to Use Frontier Models vs Cheap Models in Your Agent Stack",
       "domain": "mindstudio",
       "role": "reference",
@@ -743,7 +971,6 @@
       "keywords": [
         "agent",
         "agentic",
-        "agents",
         "alignment",
         "claude",
         "compute",
@@ -752,18 +979,53 @@
         "gemini",
         "inference",
         "latency",
-        "llama"
+        "llama",
+        "mistral"
       ],
       "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        25
+      ],
+      "canonical_for": [],
+      "words": 1053,
+      "bytes": 7045,
+      "sha256": "e8c4aa153e1aefe88826840b0c6f481515e561229eec6092c1a9e86ec28f97b8"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack-2",
+      "path": "collect-mindstudio/mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack-2.md",
+      "title": "AI Model Routing: When to Use Frontier Models vs Cheap Models in Your Agent Stack",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "claude",
+        "compute",
+        "cost",
+        "latency",
+        "pricing",
+        "reasoning",
+        "voice"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-model-routing-frontier-vs-cheap-models-agent-stack.md",
+      "source_anchor": "",
+      "source_lines": [
+        26,
         54
       ],
       "canonical_for": [],
-      "words": 1736,
-      "bytes": 11781,
-      "sha256": "0de18b31d04117b27e4483389a71f861a256d831a244e390e493830a2bac1f86"
+      "words": 683,
+      "bytes": 4736,
+      "sha256": "725f95189a06505bacc83c578ff8a7af58e11713f73cff16318a2e45b54cee6d"
     },
     {
       "id": "collect-mindstudio/mindstudio/ai-operating-system-context-management",
@@ -795,8 +1057,8 @@
       "sha256": "75b8ffd5406acbf412affecf5a25acf73104e5098731bf3c39114ca620c346a3"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code",
-      "path": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code.md",
+      "id": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code-1",
+      "path": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code-1.md",
       "title": "How to Build an AI Operating System Using the Four C's Framework",
       "domain": "mindstudio",
       "role": "reference",
@@ -810,7 +1072,6 @@
       ],
       "keywords": [
         "agentic",
-        "agents",
         "claude",
         "mcp",
         "memory",
@@ -824,16 +1085,68 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1119,
+      "bytes": 7692,
+      "sha256": "201304ce2f037383e264742b342af50771d66edd8bef0a3ed975d163eabd4a30"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code-2",
+      "path": "collect-mindstudio/mindstudio/ai-operating-system-four-cs-framework-claude-code-2.md",
+      "title": "How to Build an AI Operating System Using the Four C's Framework",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "claude",
+        "mcp"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-operating-system-four-cs-framework-claude-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        80,
         87
       ],
       "canonical_for": [],
-      "words": 1226,
-      "bytes": 8440,
-      "sha256": "a5a965a74123920dc56079b784d0c85702a4288fc71bc959f7838523ef6bdd14"
+      "words": 107,
+      "bytes": 748,
+      "sha256": "1fbbd6310e2dcb0d39b4ae475ba526692160c87ad3ad81379e490ca096fd7510"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki",
-      "path": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki.md",
+      "id": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki-1",
+      "path": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki-1.md",
+      "title": "How to Build an AI Second Brain with Obsidian and Claude: The LLM Wiki Method",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "claude"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-second-brain-obsidian-claude-llm-wiki.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1119,
+      "bytes": 7893,
+      "sha256": "ce857b7479b34c883ecaca11979f0f94d767e979b8577811521b51f4f544d9d3"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki-2",
+      "path": "collect-mindstudio/mindstudio/ai-second-brain-obsidian-claude-llm-wiki-2.md",
       "title": "How to Build an AI Second Brain with Obsidian and Claude: The LLM Wiki Method",
       "domain": "mindstudio",
       "role": "reference",
@@ -844,9 +1157,7 @@
         "Meta",
         "Mistral"
       ],
-      "dates": [
-        "2026-09-23"
-      ],
+      "dates": [],
       "keywords": [
         "claude",
         "llama",
@@ -855,13 +1166,13 @@
       "source": "docs/RAG/Collect RAG/02_mindstudio/ai-second-brain-obsidian-claude-llm-wiki.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        71,
         73
       ],
       "canonical_for": [],
-      "words": 1162,
-      "bytes": 8170,
-      "sha256": "c98f798f07162bd6ec6e8526b4015af13dad0b05377223613dcc3d1cfd83007a"
+      "words": 43,
+      "bytes": 277,
+      "sha256": "008f10fd5c5860dd1399c4a2be4e1f91b8c9433a20c928ffaeed781f0d431beb"
     },
     {
       "id": "collect-mindstudio/mindstudio/ai-token-cost-optimization-strategy",
@@ -904,8 +1215,8 @@
       "sha256": "3ee566df28ae1cbee1190ca7c046ceabde5d7934c8a14331c2342a7694d379e5"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction",
-      "path": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction.md",
+      "id": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction-1",
+      "path": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction-1.md",
       "title": "How to Build an AI Workflow That Converts Text Prompts to Images to Cut Token Costs",
       "domain": "mindstudio",
       "role": "reference",
@@ -935,12 +1246,44 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        31
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 7323,
+      "sha256": "958d03b657892712367ac96b7ab9a7fd21b32567632e7409a28750bb0d807720"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction-2",
+      "path": "collect-mindstudio/mindstudio/ai-workflow-text-to-image-token-cost-reduction-2.md",
+      "title": "How to Build an AI Workflow That Converts Text Prompts to Images to Cut Token Costs",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Lambda",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "claude",
+        "gemini",
+        "latency",
+        "transcription"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ai-workflow-text-to-image-token-cost-reduction.md",
+      "source_anchor": "",
+      "source_lines": [
+        32,
         53
       ],
       "canonical_for": [],
-      "words": 1396,
-      "bytes": 9284,
-      "sha256": "9212e613e2d80f53e1f83a35bcb321885c862cbdf57ae138f6a92044b3ec6c35"
+      "words": 293,
+      "bytes": 1961,
+      "sha256": "e54578ffa6a2216d35531dea703626733759b291ac764ad844774765b6636214"
     },
     {
       "id": "collect-mindstudio/mindstudio/amd-ryzen-ai-max-plus-395-local-ai-workstation",
@@ -1181,8 +1524,8 @@
       "sha256": "1d937c582cc1d6ee72d94bbf809df19cd137f7299268400c1a2b2d90a80207c3"
     },
     {
-      "id": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes",
-      "path": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes.md",
+      "id": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes-1",
+      "path": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes-1.md",
       "title": "How to Build a Semantic Memory System for AI Agents Without Hermes Agent",
       "domain": "mindstudio",
       "role": "reference",
@@ -1211,12 +1554,37 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        71
+      ],
+      "canonical_for": [],
+      "words": 1034,
+      "bytes": 7748,
+      "sha256": "3b4e3e4b5844b8434bd86b200e425c8b2ab55a06273f54e33a9264327bc2abac"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes-2",
+      "path": "collect-mindstudio/mindstudio/build-semantic-memory-system-ai-agents-without-hermes-2.md",
+      "title": "How to Build a Semantic Memory System for AI Agents Without Hermes Agent",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/build-semantic-memory-system-ai-agents-without-hermes.md",
+      "source_anchor": "",
+      "source_lines": [
+        72,
         75
       ],
       "canonical_for": [],
-      "words": 1082,
-      "bytes": 8124,
-      "sha256": "e38df3f155733181b40386438cad0da224a92ffa66cfed7eee41392b6d32ffaf"
+      "words": 48,
+      "bytes": 376,
+      "sha256": "300114e0b00007e9fb4b1ac4636d243fc85adbab6a435561347f67adbddebfbd"
     },
     {
       "id": "collect-mindstudio/mindstudio/china-ai-chips-glm-inference",
@@ -2584,8 +2952,8 @@
       "sha256": "f78cc868148bcef5325479676ab5cb108da37f999e4e8b8beca68d4675c4fa3b"
     },
     {
-      "id": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models",
-      "path": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models.md",
+      "id": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models-1",
+      "path": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models-1.md",
       "title": "How to Use GPT-5.6 Sol as an Orchestrator with Cheaper Sub-Agent Models",
       "domain": "mindstudio",
       "role": "reference",
@@ -2613,12 +2981,44 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        31
+      ],
+      "canonical_for": [],
+      "words": 1055,
+      "bytes": 7508,
+      "sha256": "6bd2ff3262236b353d091f1712534828767f65f17edc39c7890eff0968161c08"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models-2",
+      "path": "collect-mindstudio/mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models-2.md",
+      "title": "How to Use GPT-5.6 Sol as an Orchestrator with Cheaper Sub-Agent Models",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "gpt-5.6",
+        "sol",
+        "agents",
+        "cost",
+        "latency",
+        "luna",
+        "terra"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/gpt-5-6-sol-orchestrator-cheaper-sub-agent-models.md",
+      "source_anchor": "",
+      "source_lines": [
+        32,
         56
       ],
       "canonical_for": [],
-      "words": 1405,
-      "bytes": 10120,
-      "sha256": "5f4dd2d41f52f519f723ea42125747274f6c63333c0b7f2ef0be8a78e336c763"
+      "words": 350,
+      "bytes": 2612,
+      "sha256": "ebe18b1165155363682e4d499223adfe0b69e352c487391d4922039e239bdc96"
     },
     {
       "id": "collect-mindstudio/mindstudio/gpt-5-6-ultra-mode-multi-agent-coordination",
@@ -2661,15 +3061,14 @@
       "sha256": "365f07158611fcafc6e5e9338bfb834ce57f70614be7c4ed6ce497a76bda5812"
     },
     {
-      "id": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident",
-      "path": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident.md",
+      "id": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident-1",
+      "path": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident-1.md",
       "title": "GPT-6 Escaped a Sandbox and Hacked Hugging Face: What Really Happened",
       "domain": "mindstudio",
       "role": "reference",
       "task": "article",
       "actors": [
         "Anthropic",
-        "China",
         "Hugging Face",
         "OpenAI",
         "Z.ai"
@@ -2680,7 +3079,6 @@
       "keywords": [
         "gpt-6",
         "sandbox",
-        "agent",
         "agents",
         "benchmark",
         "containment",
@@ -2688,19 +3086,59 @@
         "cybersecurity",
         "exploit",
         "glm",
-        "gpt-5.6",
-        "incident"
+        "incident",
+        "inference",
+        "open-weight"
       ],
       "source": "docs/RAG/Collect RAG/02_mindstudio/gpt6-model-hugging-face-hack-incident.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        27
+      ],
+      "canonical_for": [],
+      "words": 1225,
+      "bytes": 7970,
+      "sha256": "50cfdc5fd4b42c81b1ce34cb45e05c99f7fcaa0df572ba735d4b10ba99222a7a"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident-2",
+      "path": "collect-mindstudio/mindstudio/gpt6-model-hugging-face-hack-incident-2.md",
+      "title": "GPT-6 Escaped a Sandbox and Hacked Hugging Face: What Really Happened",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "China",
+        "Hugging Face",
+        "OpenAI",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpt-6",
+        "sandbox",
+        "agent",
+        "benchmark",
+        "containment",
+        "cyber",
+        "exploit",
+        "glm",
+        "gpt-5.6",
+        "incident",
+        "liability",
+        "open-weight"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/gpt6-model-hugging-face-hack-incident.md",
+      "source_anchor": "",
+      "source_lines": [
+        28,
         52
       ],
       "canonical_for": [],
-      "words": 1665,
-      "bytes": 10986,
-      "sha256": "26732d792d56590d5b35e23f3867e81dfdf71fe39ec7fe50aa68bfcbff7f5d9a"
+      "words": 440,
+      "bytes": 3016,
+      "sha256": "beeee647e1f24fd9ea4c1e65e3388ed6d33071964034c32d79ef8d6d26e5fcc8"
     },
     {
       "id": "collect-mindstudio/mindstudio/granite-4-2-3b-8b-local-test",
@@ -2969,8 +3407,8 @@
       "sha256": "701dd3017265791f8d959dab6135d7e6ec369cb880c3f23dfdf3bc529cdfd386"
     },
     {
-      "id": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report",
-      "path": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report.md",
+      "id": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report-1",
+      "path": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report-1.md",
       "title": "The AI Agent Swarm That Hacked Hugging Face: Full Timeline",
       "domain": "mindstudio",
       "role": "reference",
@@ -2998,12 +3436,45 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 1065,
+      "bytes": 7277,
+      "sha256": "8683c8ea3f86731b04648511ffd3202d8dcdd8b8f8fdda36047c037845aa38a1"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report-2",
+      "path": "collect-mindstudio/mindstudio/hugging-face-agent-swarm-hack-metr-report-2.md",
+      "title": "The AI Agent Swarm That Hacked Hugging Face: Full Timeline",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "ExploitGym",
+        "Hugging Face",
+        "JFrog",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "benchmark",
+        "exploit",
+        "research",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/hugging-face-agent-swarm-hack-metr-report.md",
+      "source_anchor": "",
+      "source_lines": [
+        40,
         53
       ],
       "canonical_for": [],
-      "words": 1245,
-      "bytes": 8651,
-      "sha256": "83f17444ee25a1e5f6a15531e874a5c29def5e39d57261b6b29787efafd9c225"
+      "words": 180,
+      "bytes": 1374,
+      "sha256": "a261778a04413c06bd20071302c1b2129b56a417f5e414249ebc54ef2957e5b1"
     },
     {
       "id": "collect-mindstudio/mindstudio/hybrid-ai-architecture-local-models-cloud-frontier",
@@ -3051,8 +3522,8 @@
       "sha256": "558d6e8733ce6366710f519a83bcd9920e730011d0e3612738e027b871867239"
     },
     {
-      "id": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems",
-      "path": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems.md",
+      "id": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems-1",
+      "path": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems-1.md",
       "title": "What Is the Implement-Verify-Fix Loop in Multi-Agent AI Systems?",
       "domain": "mindstudio",
       "role": "reference",
@@ -3062,7 +3533,6 @@
         "OpenAI"
       ],
       "dates": [
-        "2026-06",
         "2026-09-23"
       ],
       "keywords": [
@@ -3070,23 +3540,48 @@
         "agents",
         "alignment",
         "claude",
-        "parameters",
         "research"
       ],
       "source": "docs/RAG/Collect RAG/02_mindstudio/implement-verify-fix-loop-multi-agent-ai-systems.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1085,
+      "bytes": 7829,
+      "sha256": "a653074218d5d3b2a695be3c3c2048616bdee82284a9966214b42f776b5cbc9e"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems-2",
+      "path": "collect-mindstudio/mindstudio/implement-verify-fix-loop-multi-agent-ai-systems-2.md",
+      "title": "What Is the Implement-Verify-Fix Loop in Multi-Agent AI Systems?",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "agent",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/implement-verify-fix-loop-multi-agent-ai-systems.md",
+      "source_anchor": "",
+      "source_lines": [
+        54,
         54
       ],
       "canonical_for": [],
-      "words": 1131,
-      "bytes": 8205,
-      "sha256": "c7798abc6a37662c9396a16194c4c52bd8379d054530c78169aa07b011c70778"
+      "words": 46,
+      "bytes": 376,
+      "sha256": "38151e5a2e9a4fe88dba1f7ade40b0474838e4126809d80a96cccbca922d786f"
     },
     {
-      "id": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy",
-      "path": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy.md",
+      "id": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy-1",
+      "path": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy-1.md",
       "title": "Kimi K3's Rise Sparks a US-China AI Distillation Fight",
       "domain": "mindstudio",
       "role": "reference",
@@ -3116,18 +3611,58 @@
         "grok",
         "latency",
         "leaderboard",
-        "open weights"
+        "open-weight"
       ],
       "source": "docs/RAG/Collect RAG/02_mindstudio/kimi-k3-distillation-controversy.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 1208,
+      "bytes": 7908,
+      "sha256": "45f6af5417e862454f3d116843748e42f6d07383df3b1401c3695eb7c34973c6"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy-2",
+      "path": "collect-mindstudio/mindstudio/kimi-k3-distillation-controversy-2.md",
+      "title": "Kimi K3's Rise Sparks a US-China AI Distillation Fight",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "China",
+        "Moonshot",
+        "OpenAI",
+        "United States",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "distillation",
+        "kimi",
+        "benchmark",
+        "benchmarks",
+        "claude",
+        "grok",
+        "open weights",
+        "open-weight",
+        "regulation",
+        "terra",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/kimi-k3-distillation-controversy.md",
+      "source_anchor": "",
+      "source_lines": [
+        40,
         51
       ],
       "canonical_for": [],
-      "words": 1364,
-      "bytes": 9016,
-      "sha256": "dea96ecbc80cb5961d9ce1aaef77ea248ee0e215b81fe836cf2dee41456e7eb6"
+      "words": 156,
+      "bytes": 1108,
+      "sha256": "73528d2c6a9e96a1378da86266b5b5fb6c497fa49bc419642a20b9b0d9a831d2"
     },
     {
       "id": "collect-mindstudio/mindstudio/kimi-k3-vs-abacus-supercomputer-local-ai",
@@ -4461,8 +4996,8 @@
       "sha256": "1bea829843170ed0203210f9042f42d0afc371432f84ab616779695edbb2ee93"
     },
     {
-      "id": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety",
-      "path": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety.md",
+      "id": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety-1",
+      "path": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety-1.md",
       "title": "OpenAI's Astra Model: What It Is and Why It's Sparking Safety Alarm",
       "domain": "mindstudio",
       "role": "reference",
@@ -4485,26 +5020,70 @@
         "astra",
         "agent",
         "agents",
-        "benchmark",
         "benchmarks",
+        "cyber",
+        "cybersecurity",
+        "gpt-5.6",
+        "gpu",
+        "incident",
+        "neocloud",
+        "reasoning",
+        "safeguards"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-astra-recurrent-depth-safety.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        27
+      ],
+      "canonical_for": [],
+      "words": 1062,
+      "bytes": 7125,
+      "sha256": "b4474de412405c7aef48f0a52247409abf634a6454f798978cc7e78a313a82ac"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety-2",
+      "path": "collect-mindstudio/mindstudio/openai-astra-recurrent-depth-safety-2.md",
+      "title": "OpenAI's Astra Model: What It Is and Why It's Sparking Safety Alarm",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-02",
+        "2025-12",
+        "2027-03"
+      ],
+      "keywords": [
+        "astra",
+        "agent",
+        "agents",
+        "benchmark",
         "cyber",
         "cybersecurity",
         "gpt-5.6",
         "gpu",
         "hyperscaler",
         "incident",
-        "neocloud"
+        "neocloud",
+        "reasoning"
       ],
       "source": "docs/RAG/Collect RAG/02_mindstudio/openai-astra-recurrent-depth-safety.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        28,
         49
       ],
       "canonical_for": [],
-      "words": 1399,
-      "bytes": 9704,
-      "sha256": "0513fd7226481a286fa6c2a4b446919ad7b9521e9b738972813008795613c8e9"
+      "words": 337,
+      "bytes": 2579,
+      "sha256": "fe3e86e7e3799fe68e823cc4c10df6fdf46399561d712d219de4c694ec46d24c"
     },
     {
       "id": "collect-mindstudio/mindstudio/openai-codex-kernel-writing-cuda-moat",
@@ -4550,8 +5129,8 @@
       "sha256": "5365e06488cc1879ac5dc3446fbe5490affdf297242e47f247504ae5d9972ff1"
     },
     {
-      "id": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1",
-      "path": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1.md",
+      "id": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1-1",
+      "path": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1-1.md",
       "title": "How OpenAI's Internal Model Hacked Hugging Face's Servers",
       "domain": "mindstudio",
       "role": "reference",
@@ -4586,12 +5165,54 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        31
+      ],
+      "canonical_for": [],
+      "words": 1153,
+      "bytes": 7593,
+      "sha256": "c5b915f30c9fd8a128defcd751c7e58d41ed1a4c771019cfa9794559729c0e07"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1-2",
+      "path": "collect-mindstudio/mindstudio/openai-hugging-face-hack-im1-2.md",
+      "title": "How OpenAI's Internal Model Hacked Hugging Face's Servers",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "OpenAI"
+      ],
+      "dates": [
+        "2025-02"
+      ],
+      "keywords": [
+        "agent",
+        "astra",
+        "benchmarks",
+        "cybersecurity",
+        "exploit",
+        "gpt-5.6",
+        "gpu",
+        "incident",
+        "neocloud",
+        "reasoning",
+        "safeguards",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/openai-hugging-face-hack-im1.md",
+      "source_anchor": "",
+      "source_lines": [
+        32,
         55
       ],
       "canonical_for": [],
-      "words": 1488,
-      "bytes": 10025,
-      "sha256": "a777c3b6a647a7c35e0cc55acaacb482ea794a7b332ae781dbde2f453680264b"
+      "words": 335,
+      "bytes": 2432,
+      "sha256": "9c49e301697e85a994ccbdb9adcbbb3d69b0c0289aeb8c177b2d1465f42314e6"
     },
     {
       "id": "collect-mindstudio/mindstudio/openai-model-hacked-hugging-face-sandbox-escape",
@@ -4757,8 +5378,8 @@
       "sha256": "9cf6c327cc7f4336e4b2b13f1fd886e49f3f58b2066ab8f16b5531bda4b267a1"
     },
     {
-      "id": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter",
-      "path": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter.md",
+      "id": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter-1",
+      "path": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter-1.md",
       "title": "OX Alpha on OpenRouter: Free Access, Limits, and How Long It Lasts",
       "domain": "mindstudio",
       "role": "reference",
@@ -4790,12 +5411,42 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 1161,
+      "bytes": 7771,
+      "sha256": "fb0c9ef05163364c1ce03af8495428ef4dca0641facf8ba4ebbfdf61faa97e1f"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter-2",
+      "path": "collect-mindstudio/mindstudio/ox-alpha-free-access-openrouter-2.md",
+      "title": "OX Alpha on OpenRouter: Free Access, Limits, and How Long It Lasts",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "OpenRouter",
+        "Z.ai"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "glm",
+        "inference",
+        "open-weight",
+        "sol"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/ox-alpha-free-access-openrouter.md",
+      "source_anchor": "",
+      "source_lines": [
+        71,
         73
       ],
       "canonical_for": [],
-      "words": 1206,
-      "bytes": 8094,
-      "sha256": "b3e4c6b901c9c08b40dadf0223be41e6dbe34b32ca5d77a7d72cfe5d6d3c0468"
+      "words": 45,
+      "bytes": 323,
+      "sha256": "89b6c530f7008ab835790a0fb554b6911a499ab5d89afa89ec67d9868a6b84f6"
     },
     {
       "id": "collect-mindstudio/mindstudio/poolside-laguna-s2-local-coding-model",
@@ -5202,8 +5853,8 @@
       "sha256": "aeca2e53c6279a822b9618d6128bd5dd3cf00c434753b2c77fef7a7f88f2b6f3"
     },
     {
-      "id": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop",
-      "path": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop.md",
+      "id": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop-1",
+      "path": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop-1.md",
       "title": "What Is Recursive Self-Improvement in AI? The Karpathy Loop Explained",
       "domain": "mindstudio",
       "role": "reference",
@@ -5215,7 +5866,6 @@
         "OpenAI"
       ],
       "dates": [
-        "2026-05",
         "2026-09-23"
       ],
       "keywords": [
@@ -5236,12 +5886,49 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 1074,
+      "bytes": 7616,
+      "sha256": "b0e7c1cfcee1a4084ccaf026c0afe22be675d0a11902951ffdbfe7129fcda21b"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop-2",
+      "path": "collect-mindstudio/mindstudio/recursive-self-improvement-karpathy-loop-2.md",
+      "title": "What Is Recursive Self-Improvement in AI? The Karpathy Loop Explained",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "recursive self-improvement",
+        "agent",
+        "claude",
+        "compute",
+        "gemini",
+        "reasoning",
+        "research",
+        "safeguards",
+        "throughput"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/recursive-self-improvement-karpathy-loop.md",
+      "source_anchor": "",
+      "source_lines": [
+        45,
         55
       ],
       "canonical_for": [],
-      "words": 1266,
-      "bytes": 8941,
-      "sha256": "43a25af22f1752b5d7533109a38c77d597a6ed101ac776116ead579faac66321"
+      "words": 192,
+      "bytes": 1325,
+      "sha256": "9b18eefe0e923818b23ba4b7df57cd32923d18c9e2ae9dd8f3fda54db472ea52"
     },
     {
       "id": "collect-mindstudio/mindstudio/run-744b-ai-model-consumer-laptop-colibri",
@@ -5944,8 +6631,39 @@
       "sha256": "87f6fbb75c9402219e7122605e09bf116079715fbdedf1d0228e19e19a5347c5"
     },
     {
-      "id": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern",
-      "path": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern.md",
+      "id": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern-1",
+      "path": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern-1.md",
+      "title": "What Is Semantic Memory Injection for AI Agents? The Frozen Snapshot Pattern",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-09-23"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "memory",
+        "embedding",
+        "inference",
+        "latency",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/semantic-memory-injection-frozen-snapshot-pattern.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1117,
+      "bytes": 7861,
+      "sha256": "195b821b36df29dc414c5a2f6919ecfb8530a614c5844c61718bdba1b9d88e67"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern-2",
+      "path": "collect-mindstudio/mindstudio/semantic-memory-injection-frozen-snapshot-pattern-2.md",
       "title": "What Is Semantic Memory Injection for AI Agents? The Frozen Snapshot Pattern",
       "domain": "mindstudio",
       "role": "reference",
@@ -5955,30 +6673,24 @@
         "Google",
         "OpenAI"
       ],
-      "dates": [
-        "2026-09-23"
-      ],
+      "dates": [],
       "keywords": [
         "agent",
         "agents",
         "memory",
         "claude",
-        "embedding",
-        "gemini",
-        "inference",
-        "latency",
-        "reasoning"
+        "gemini"
       ],
       "source": "docs/RAG/Collect RAG/02_mindstudio/semantic-memory-injection-frozen-snapshot-pattern.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        68,
         83
       ],
       "canonical_for": [],
-      "words": 1298,
-      "bytes": 9136,
-      "sha256": "fcbd999eb5dc11ccffa0ba952aefefbf8f76c4d2453f3b0ce3762a11d1175bba"
+      "words": 181,
+      "bytes": 1275,
+      "sha256": "19e36e107b265b326ae4e7385e316874ccb16aee92f6f45acb273cfb4b9bbe69"
     },
     {
       "id": "collect-mindstudio/mindstudio/setup-switchyard-nemotron-local-router",
@@ -6021,8 +6733,8 @@
       "sha256": "02385d366f3fe1eda8a7836c30d726c4accc53f341eb6ac813d570346c3e4d80"
     },
     {
-      "id": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team",
-      "path": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team.md",
+      "id": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team-1",
+      "path": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team-1.md",
       "title": "How to Share AI Agent Memory Across a Team Without Exposing Private Data",
       "domain": "mindstudio",
       "role": "reference",
@@ -6044,12 +6756,38 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        72
+      ],
+      "canonical_for": [],
+      "words": 1065,
+      "bytes": 7599,
+      "sha256": "df33f80d23be0c6f17d7d86d6ac9244e092bd0b1e3b31bea9e079817a4342e3d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team-2",
+      "path": "collect-mindstudio/mindstudio/share-ai-agent-memory-across-team-2.md",
+      "title": "How to Share AI Agent Memory Across a Team Without Exposing Private Data",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "memory",
+        "agents",
+        "embedding"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/share-ai-agent-memory-across-team.md",
+      "source_anchor": "",
+      "source_lines": [
+        73,
         80
       ],
       "canonical_for": [],
-      "words": 1170,
-      "bytes": 8410,
-      "sha256": "a5d80b37b4d78e515aab4cb5729f797e7cdc59528ccd9882f2cfecc702ff6001"
+      "words": 105,
+      "bytes": 811,
+      "sha256": "8616e2aa2899d0ca99967a39eac6317765e135bc2b8706c64b6af447f0d27041"
     },
     {
       "id": "collect-mindstudio/mindstudio/sie-vs-vllm-inference-engine-comparison",
@@ -6125,15 +6863,14 @@
       "sha256": "8f70ba0394940dfbc31fe65caa49c6920945daa8f131639c3b901c5d7d5e599f"
     },
     {
-      "id": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents",
-      "path": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents.md",
+      "id": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents-1",
+      "path": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents-1.md",
       "title": "Static Context vs Dynamic Context in AI Agents: How to Manage What Your Agent Knows",
       "domain": "mindstudio",
       "role": "reference",
       "task": "article",
       "actors": [],
       "dates": [
-        "2026-06",
         "2026-09-23"
       ],
       "keywords": [
@@ -6150,12 +6887,37 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1099,
+      "bytes": 7967,
+      "sha256": "4a9260ee2dc708f89f42b82135cbb722cc3e05288400c536fd451125bbcc928d"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents-2",
+      "path": "collect-mindstudio/mindstudio/static-context-vs-dynamic-context-ai-agents-2.md",
+      "title": "Static Context vs Dynamic Context in AI Agents: How to Manage What Your Agent Knows",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [
+        "2026-06"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/static-context-vs-dynamic-context-ai-agents.md",
+      "source_anchor": "",
+      "source_lines": [
+        53,
         55
       ],
       "canonical_for": [],
-      "words": 1158,
-      "bytes": 8394,
-      "sha256": "f9e1c4e38ab3f829f35e65cb5f10d72ef61774f8235174e63b4d0067b11cda66"
+      "words": 59,
+      "bytes": 427,
+      "sha256": "59d342a9a1bfa3db66f9d7fb92e3fac0d10e00b7c0984d92e5dd7cca666dd3aa"
     },
     {
       "id": "collect-mindstudio/mindstudio/superlinked-inference-engine-sie",
@@ -6196,8 +6958,8 @@
       "sha256": "9bd2e673882947d361bd06fcfd0d33cb7409ff5c435b6ad1c164e8000ed4ce54"
     },
     {
-      "id": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5",
-      "path": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5.md",
+      "id": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5-1",
+      "path": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5-1.md",
       "title": "Token Efficiency vs Raw Intelligence: Why GPT-5.6 Beats Claude Fable 5 on Cost-Per-Result",
       "domain": "mindstudio",
       "role": "reference",
@@ -6227,12 +6989,43 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 1169,
+      "bytes": 7930,
+      "sha256": "88d7267058d6cb236bec96f079b3265a9f1c99824ce193f866b5d2c3dd1db2f0"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5-2",
+      "path": "collect-mindstudio/mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5-2.md",
+      "title": "Token Efficiency vs Raw Intelligence: Why GPT-5.6 Beats Claude Fable 5 on Cost-Per-Result",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "cost",
+        "fable 5",
+        "gpt-5.6",
+        "reasoning",
+        "sol"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/token-efficiency-vs-raw-intelligence-gpt-5-6-vs-fable-5.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
         57
       ],
       "canonical_for": [],
-      "words": 1325,
-      "bytes": 9066,
-      "sha256": "157d2521acd371dbf46054b2c10b2839bee333139aaaff56a17655196d5bfcbd"
+      "words": 156,
+      "bytes": 1136,
+      "sha256": "c5d2f3086435f0c8d36a8313a292c2b20a931c28ceb1a6188717e9d050c4cc21"
     },
     {
       "id": "collect-mindstudio/mindstudio/top-ai-automations-to-sell-2026",
@@ -6314,14 +7107,13 @@
       "sha256": "a7bad1a4f171890fb3d37d33a48022f8c65ee1234bc088d3b7ab973de2cb27ff"
     },
     {
-      "id": "collect-mindstudio/mindstudio/what-is-ai-second-brain",
-      "path": "collect-mindstudio/mindstudio/what-is-ai-second-brain.md",
+      "id": "collect-mindstudio/mindstudio/what-is-ai-second-brain-1",
+      "path": "collect-mindstudio/mindstudio/what-is-ai-second-brain-1.md",
       "title": "What Is the AI Second Brain? How to Build a Knowledge Base That Agents Can Search",
       "domain": "mindstudio",
       "role": "reference",
       "task": "article",
       "actors": [
-        "Anthropic",
         "Cohere",
         "OpenAI"
       ],
@@ -6331,7 +7123,6 @@
       "keywords": [
         "agent",
         "agents",
-        "claude",
         "cohere",
         "embedding",
         "embeddings",
@@ -6339,19 +7130,49 @@
         "inference",
         "memory",
         "open source",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-ai-second-brain.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        53
+      ],
+      "canonical_for": [],
+      "words": 1100,
+      "bytes": 7593,
+      "sha256": "4a486289e8e9969ba273918b7cec7700385f842d0777ed7272c0dbcca12e8c91"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-ai-second-brain-2",
+      "path": "collect-mindstudio/mindstudio/what-is-ai-second-brain-2.md",
+      "title": "What Is the AI Second Brain? How to Build a Knowledge Base That Agents Can Search",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "claude",
+        "embedding",
+        "embeddings",
         "reasoning",
         "research"
       ],
       "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-ai-second-brain.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        54,
         79
       ],
       "canonical_for": [],
-      "words": 1313,
-      "bytes": 9086,
-      "sha256": "99ec0c92fe146f4505e8490a00496403d7afe9ae9dad2d0e98dd569bff7234d4"
+      "words": 213,
+      "bytes": 1493,
+      "sha256": "41f91e9af398020b61f0d68160c14fa3442758f01c8823be4c08d794768cb17b"
     },
     {
       "id": "collect-mindstudio/mindstudio/what-is-cactus-needle-26m-function-calling-model",
@@ -6436,8 +7257,8 @@
       "sha256": "1f70f069c6c6d58b6d95612328a1e68b51d34db03602d89396f909f09e106a64"
     },
     {
-      "id": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents",
-      "path": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents.md",
+      "id": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents-1",
+      "path": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents-1.md",
       "title": "What Is a Knowledge Graph for AI Agents? How Relationship Mapping Beats Wiki Links",
       "domain": "mindstudio",
       "role": "reference",
@@ -6465,12 +7286,37 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        75
+      ],
+      "canonical_for": [],
+      "words": 1123,
+      "bytes": 7909,
+      "sha256": "e86a37001c0672bc2da259361c516be395e95c3eac38bbb059c78491764abde7"
+    },
+    {
+      "id": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents-2",
+      "path": "collect-mindstudio/mindstudio/what-is-knowledge-graph-ai-agents-2.md",
+      "title": "What Is a Knowledge Graph for AI Agents? How Relationship Mapping Beats Wiki Links",
+      "domain": "mindstudio",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG/02_mindstudio/what-is-knowledge-graph-ai-agents.md",
+      "source_anchor": "",
+      "source_lines": [
+        76,
         79
       ],
       "canonical_for": [],
-      "words": 1179,
-      "bytes": 8324,
-      "sha256": "eba99e465007ccf3de76d5feaa923599b33c18fae91a96176cbed8b516812e85"
+      "words": 56,
+      "bytes": 415,
+      "sha256": "48fec374fd69c68cc18cac88211d85a9ef162157572dbe079b626d86b053a51c"
     },
     {
       "id": "collect-mindstudio/mindstudio/what-is-lora-fine-tuning-enterprise-ai-private-data",

@@ -9,9 +9,9 @@ dates: ["2025-04"]
 keywords: ["accelerator", "agi", "amd", "aws", "compute", "datacenter", "dsp", "ethernet", "gpu", "hbm", "intel", "latency"]
 source: docs/RAG/etape6_phaseF2_fpga.md
 source_anchor: ""
-source_lines: [235, 288]
+source_lines: [235, 290]
 section: "Phase F2 — FPGA (Field-Programmable Gate Arrays)"
-sha256: 10634e747126e0a7712b68fdebe3f905ae52220ff5d2d340585a297bf247508c
+sha256: f59b1dae28d91a61eabee51f9cc0b19451b94cbb9775767265aba026022d2925
 ---
 
 # 15. Key URLs
@@ -69,4 +69,6 @@ sha256: 10634e747126e0a7712b68fdebe3f905ae52220ff5d2d340585a297bf247508c
 - M-Series headline: up to **32 GB in-package HBM2E**, **820 GB/s** peak bandwidth, NoC memory functions, hardened PCIe 5.0 / **CXL 2.0** / 400G Ethernet, transceivers up to **116 Gbps** ("highest of any FPGA provider" — vendor claim) `[vendor-reported]`
 - Distributor reference prices (single-digit quantities, Hong Kong broker listings, **not** OEM MSRP): AGFA027R24C3I3V ~**US$20,462.83**/3pcs; AGFA027R25A1E1V ~**US$37,789.27**/3pcs; AGFB027R24C3E4X ~**US$37,490.52**/3pcs — treat as broker snapshots only `[secondary]`
 - IP/tooling note: Serial Lite IV FPGA IP v5.5.2 validated against **Quartus Prime 25.1** (release 2025.04.07), up to 56 Gbps/lane PAM4 ×8 or 28 Gbps NRZ ×16 `[official]` — source: https://manuals.plus/m/dc40cc28e78b5d298c01f413fa9226b4e5a8bab96fc3c9fb09f78ed546d909d7_optim.pdf `[secondary]`
+
+## 17. AMD Versal AI Core — figures of merit (VC1502 → VC2802)
 

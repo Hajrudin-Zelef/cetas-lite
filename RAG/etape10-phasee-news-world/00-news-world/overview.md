@@ -9,9 +9,9 @@ dates: ["2025-01", "2025-09", "2025-10", "2026-01", "2026-02", "2026-03", "2026-
 keywords: ["energy", "research"]
 source: docs/RAG/etape10_phaseE_news_world.md
 source_anchor: ""
-source_lines: [1, 47]
+source_lines: [1, 49]
 section: "Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)"
-sha256: 2956330183511bd0ef1f8bb372c87a6d1a0606cf6c568d5f91605c0cf86f7167
+sha256: e6648e2d1dd2adf37d4a1c539613dc49182099cb0a1a6d7b32f8e18e1c189ad0
 ---
 
 # Etape 10E — World News: Wars, Geopolitics, Elections, Economy, Fortunes (February 2026 – 22 September 2026)
@@ -60,4 +60,6 @@ sha256: 2956330183511bd0ef1f8bb372c87a6d1a0606cf6c568d5f91605c0cf86f7167
 - The AES states' withdrawal from ECOWAS had been completed in January 2025, setting the institutional backdrop for the Sahel's 2026 security architecture [secondary] (https://conflictalert.news/the-sahel-in-mid-2026-one-conflict-across-many-fronts/).
 - The US anti-cartel boat-strike campaign was already months old entering 2026, having begun in early September 2025 [independent] (https://www.cnn.com/2025/11/02/politics/us-strikes-drug-boat-caribbean-intl-hnk?cid=external-feeds_iluminar_meta).
 - The October 2025 Gaza truce was the standing framework entering February 2026, with its second phase already stalling [independent] (https://www.reuters.com/world/middle-east/israeli-strikes-kill-four-gaza-medics-say-amid-new-ceasefire-push-2026-04-30/).
+
+### February 2026
 

@@ -4,14 +4,14 @@ title: "15. Hardware & Chips"
 domain: hardware-chips
 role: deep-dive
 task: hardware
-actors: ["AMD", "AWS", "Anthropic", "Broadcom", "Cerebras", "China", "CoreWeave", "DeepSeek", "Google", "Groq", "Lambda", "Meta", "Microsoft", "Nebius", "Nscale", "Nvidia", "OpenAI", "SGLang", "Samsung", "TSMC", "United States", "vLLM"]
-dates: ["2025-03", "2025-04", "2025-06", "2025-12-24", "2026-01-05", "2026-03", "2026-03-16", "2026-03-19", "2026-04-09", "2026-04-27", "2026-05-14", "2026-05-22", "2026-06-30", "2026-07", "2026-07-21", "2026-08-18", "2026-08-24", "2026-09", "2026-09-22", "2026-10"]
-keywords: ["accelerator", "acquisition", "agentic", "amd", "asic", "benchmarks", "blackwell", "compute", "consumer", "cost", "cpo", "custom silicon"]
+actors: ["AMD", "AWS", "Anthropic", "Broadcom", "Cerebras", "CoreWeave", "DeepSeek", "Google", "Groq", "Meta", "Microsoft", "Nebius", "Nvidia", "OpenAI", "Samsung", "TSMC"]
+dates: ["2025-03", "2025-04", "2025-06", "2025-12-24", "2026-01-05", "2026-03", "2026-03-16", "2026-05-14", "2026-06-30", "2026-07", "2026-07-21", "2026-08-18", "2026-08-24", "2026-09", "2026-09-22", "2026-10"]
+keywords: ["accelerator", "acquisition", "amd", "asic", "benchmarks", "blackwell", "compute", "custom silicon", "decode", "deepseek", "ethernet", "fp4"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [7389, 7470]
+source_lines: [7389, 7440]
 section: "15. Hardware & Chips"
-sha256: 5d8e7537895a8609262c3b647cefea022702a00e319adda89dfb4b60a0e02168
+sha256: b59d7dc7edc71e335415c8a8ca4eb8a5937f466ae10738647426825173d0f4ac
 ---
 
 # 15. Hardware & Chips
@@ -65,34 +65,4 @@ Keywords: Vera Rubin NVL72, NVL144 rename, Rubin full production CES 2026, Rubin
 - Meta MTIA 500 (3 nm roadmap) is internal-only with no external availability.
 
 ### The bifurcation thesis frames the whole market
-
-- Inference became the dominant workload: **half of all AI compute in 2025 → two-thirds in 2026** (Deloitte, Nov 2025 report); Lenovo's CEO forecasts the historical ~80/20 training/inference spend split inverting to ~20/80.
-- Two hardware regimes, two economics: training = raw FLOPs, NVLink domains, $10+/GPU-hr multi-year contracts, NVIDIA-dominated; inference = $/token, latency, tokens-per-dollar-per-watt, served increasingly by LPUs, wafer-scale chips, and custom ASICs.
-- Jon Peddie Research Q2 2026: **151 companies, 290+ AI processor products** — disaggregation reduces the odds any single architecture dominates all segments.
-- The shortage did not ease: Blackwell-class lead times **3–7 months** (Q1 2026); H100 wait times 2–3 months; **B200 residual value at 158% of launch price** (Sep 16, 2026); binding constraints at HBM, foundry capacity, and power.
-
-### Networking and the long tail
-
-- **Scale-up (inside the rack):** NVLink 5 → NVLink 6 (3.6 TB/s per GPU, 260 TB/s per Rubin rack); 5,000-copper-cable NVLink spine; 6th-gen NVLink switch as a first-class Rubin component.
-- **Scale-out (between racks):** ConnectX-9 SuperNICs (1.6 Tb/s backend per GPU at CoreWeave), BlueField-4 DPUs, Spectrum-X 102.4T CPO Ethernet; NIXL as the default KV-block transport for disaggregated serving.
-- **Consumer-GPU ultra-low-cost tier:** RTX 4090 at a median **$0.52/hr**; RTX PRO 6000 (Blackwell workstation) ~$2.09–$2.28/hr — the bottom rung of the inference track, for fault-tolerant batch, not production serving.
-- Broker/new-entrant layer: GPUaaS.com (~30% under hyperscale, wholesale model), Bitdeer, WhiteFiber, Thunder Compute (H100 $1.38/hr), Hyperbolic/Hyperstack (B200 floor $5.99/hr; H100 $1.90/hr).
-
-### Geopolitical hardware events (cross-refs)
-
-- **DOJ / Super Micro (March 19, 2026)** — indictment of three individuals for diverting ≥$2.5B of AI servers (A100/H100) to China, 2024–2025. Super Micro itself is not a defendant. Full treatment in §18.
-- **NDRC / Meta–Manus (April 27, 2026)** — China blocked Meta's ~$2B acquisition of Manus/Butterfly Effect (Index No. 000013039-2026-00026), ordered unwinding: first AI-sector use of China's foreign-investment security review; "Singapore-washing" doctrine defeated. Full treatment in §18.
-- **Geopolitical hardware events (cross-refs)**
-- **DOJ / Super Micro (March 19, 2026)** — indictment of three individuals for diverting ≥$2.5B of AI servers (A100/H100) to China, 2024–2025. Super Micro itself is not a defendant. Full treatment in §18.
-- **NDRC / Meta–Manus (April 27, 2026)** — China blocked Meta's ~$2B acquisition of Manus/Butterfly Effect (Index No. 000013039-2026-00026), ordered unwinding: first AI-sector use of China's foreign-investment security review; "Singapore-washing" doctrine defeated. Full treatment in §18.
-- **Capacity megadeals** (CoreWeave–Meta ~$21B, April 9, 2026; Nebius–Meta up to $27B, March 16, 2026; OpenAI deploying Rubin at scale Q3 2026) are detailed in §14 — this section covers hardware milestones only.
-
-### Competitive and economic framing
-
-- **Prefill/decode is the 2026 serving pattern and now the hardware pattern:** vLLM/SGLang fleets disaggregate prefill, decode, and encoder pools with KV blocks moved by NIXL; NVIDIA productizes it as silicon — Rubin NVL72 for prefill/context, Groq 3 LPX for decode. NVIDIA claims 35× tokens-per-watt for the pairing.
-- The bifurcation has a price signature: **training $/GPU-hr is flat-to-rising; inference $/token is collapsing.** The same weights cost ~40× more per token through a managed gateway at low concurrency ($1.68/1M) than on contracted NVL72 iron at hyperscale batching ($0.04/1M) — the spread is the business model of the inference track and the reason "inference arbitrage" routing exists.
-- Agentic workloads consume **100×–1,000× more tokens per task** than a single chat turn (iterative reasoning, tool calls, re-querying); enterprise adoption is still in "early innings" (legal, finance, healthcare) — demand growth is not flattening even as unit shipments rise (sourcebyspec.com, Sep 20, 2026).
-- **Power is the third constraint:** if scaling trends persist, a single location hosting a major training run could need up to **8 gigawatts by 2030** — "the output of eight nuclear reactors." The physical basis of the dual-track problem: a vast network of efficient inference chips alongside a shrinking number of hyper-powerful, hyper-expensive training centers.
-- **First Rubin deployments are contracted to neoclouds** (CoreWeave, Nebius, Lambda, Nscale), not hyperscalers — a shift in NVIDIA's go-to-market (→ §14).
-- **Measured inference economics on NVL72 (SemiAnalysis InferenceX, May 22, 2026):** GB200 NVL72 at $2.21/GPU-hr TCO reaches $0.04–$0.08/1M tokens at high concurrency (DeepSeek R1 FP4, disaggregated prefill/decode, Dynamo TRT-LLM).
 

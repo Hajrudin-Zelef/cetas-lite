@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape8_phaseA_system_languages.md",
   "source_lines": 752,
   "source_sha256": "16b08134862878742d547e583d0ca6514ce46a4eb1d24e52ed43e412db4f872e",
-  "chunk_count": 12,
+  "chunk_count": 14,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -355,7 +355,6 @@
       "role": "deep-dive",
       "task": "reference",
       "actors": [
-        "Microsoft",
         "Qualcomm"
       ],
       "dates": [
@@ -364,13 +363,11 @@
         "2025-12",
         "2026-03-28",
         "2026-09",
-        "2026-09-18",
         "2026-09-22"
       ],
       "keywords": [
         "acquisition",
         "benchmark",
-        "cost",
         "gpu",
         "latency",
         "memory",
@@ -381,12 +378,41 @@
       "source_anchor": "",
       "source_lines": [
         507,
+        577
+      ],
+      "canonical_for": [],
+      "words": 896,
+      "bytes": 6733,
+      "sha256": "6704af762bd94cccb38f6e33394b0c0dd06501a0f28709af1fa6254a936f0c77",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/part-11",
+      "path": "etape8-phasea-system-languages/00-system-languages/part-11.md",
+      "title": "Step 8 — Phase A: Systems Languages (part 11)",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-09-18"
+      ],
+      "keywords": [
+        "acquisition",
+        "cost"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        578,
         596
       ],
       "canonical_for": [],
-      "words": 1153,
-      "bytes": 8742,
-      "sha256": "642d44e64d9d140357ca04f37ef98d7d4aafc841a83393fbd318f27c487fd458",
+      "words": 257,
+      "bytes": 2009,
+      "sha256": "f38ee771a2ea7be77c2c10f23e21d2b25ba8017c4d0ab7dd2f136973a72b3cfb",
       "section": "Step 8 — Phase A: Systems Languages"
     },
     {
@@ -398,30 +424,55 @@
       "task": "reference",
       "actors": [
         "CISA",
-        "Microsoft",
-        "Qualcomm"
+        "Microsoft"
       ],
       "dates": [
-        "2025-10-24",
-        "2026-02-23",
         "2026-08-11",
         "2026-09-22"
       ],
       "keywords": [
-        "claude",
-        "memory",
-        "research"
+        "memory"
       ],
       "source": "docs/RAG/etape8_phaseA_system_languages.md",
       "source_anchor": "",
       "source_lines": [
         597,
+        635
+      ],
+      "canonical_for": [],
+      "words": 290,
+      "bytes": 3918,
+      "sha256": "981a6ecdc179ac942268a11da0f6d83d483a8d1775f7a808bd22a5018973e6de",
+      "section": "Step 8 — Phase A: Systems Languages"
+    },
+    {
+      "id": "etape8-phasea-system-languages/00-system-languages/community-secondary",
+      "path": "etape8-phasea-system-languages/00-system-languages/community-secondary.md",
+      "title": "Community / secondary",
+      "domain": "step-8-phase-a-systems-languages",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Qualcomm"
+      ],
+      "dates": [
+        "2025-10-24",
+        "2026-02-23"
+      ],
+      "keywords": [
+        "claude",
+        "research"
+      ],
+      "source": "docs/RAG/etape8_phaseA_system_languages.md",
+      "source_anchor": "",
+      "source_lines": [
+        636,
         673
       ],
       "canonical_for": [],
-      "words": 542,
-      "bytes": 8094,
-      "sha256": "87d15dae61eca26b1e099563c4accf7e834aab367b2ecf06a06832865cc56758",
+      "words": 252,
+      "bytes": 4176,
+      "sha256": "985ad3dc1d4762c32aa64cdb66038397f9eb6593de55ea758afa8b0c037c8234",
       "section": "Step 8 — Phase A: Systems Languages"
     },
     {

@@ -4,15 +4,15 @@ title: "§9. Meta: Llama, Muse Spark, and Muse Glimmer"
 domain: meta-llama-muse-spark-and-muse-glimmer
 role: deep-dive
 task: actor-profile
-actors: ["AWS", "China", "DeepSeek", "EU", "Hugging Face", "Meta", "Microsoft", "United States", "Xiaomi", "Z.ai"]
-dates: ["2024-09-25", "2024-12-06", "2024-12-07", "2025-04-05", "2026-07-24", "2026-08-05", "2026-08-10", "2026-09", "2026-09-02"]
-keywords: ["llama", "muse", "muse spark", "agent", "apache", "attention", "attribution", "aws", "bedrock", "benchmarks", "context window", "cost"]
+actors: ["China", "DeepSeek", "EU", "Meta", "Microsoft", "United States", "Xiaomi", "Z.ai"]
+dates: ["2024-09-25", "2024-12-06", "2024-12-07", "2026-07-24", "2026-08-05", "2026-08-10", "2026-09", "2026-09-02"]
+keywords: ["llama", "muse", "muse spark", "agent", "apache", "attention", "attribution", "benchmarks", "context window", "cost", "deepseek", "gqa"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [4088, 4168]
+source_lines: [4088, 4154]
 section: "§9. Meta: Llama, Muse Spark, and Muse Glimmer"
 delta_of: ai-industry-kb-2026
-sha256: 1b3b17bb318c84db4ccdb35ea962a43f4e028e6c4c2bafd591fa113abe15e7f5
+sha256: bb661971e32580f2548ae57bdc3dfe6911161955d0450f0918c16044733166e7
 ---
 
 # §9. Meta: Llama, Muse Spark, and Muse Glimmer
@@ -81,18 +81,4 @@ Keywords: Meta, Llama, Llama 4, Llama Community License, Muse Spark, Muse Spark 
 - Llama 3.3 uses grouped-query attention (GQA) for inference scalability. [SECONDARY, S4][SECONDARY, S33]
 - Vendor-reported Llama 3.3 benchmarks: MMLU 86.0 and HumanEval 88.4, corroborated by the official model card and HF README tables. [VENDOR, S2][VENDOR, S34][VENDOR, S35]
 - The comparable vendor figures for Llama 3.1 405B are MMLU 88.6 and HumanEval 89.0 — the 70B 3.3 model was positioned as matching the 405B model at a fraction of inference cost. [VENDOR, S2][VENDOR, S34][VENDOR, S35]
-
-### Llama 4 Scout / Maverick specification deltas (released 2025-04-05)
-- Llama 4 Scout and Maverick were released 2025-04-05 as natively multimodal, early-fusion mixture-of-experts models. [SECONDARY, S5][SECONDARY, S8]
-- Llama 4 Scout: 109B total parameters with 17B active, 16 experts. [SECONDARY, S5][SECONDARY, S7]
-- Llama 4 Maverick: approximately 400B total parameters with 17B active, 128 experts. [SECONDARY, S5][SECONDARY, S7]
-- Scout's context window is 10M tokens. [SECONDARY, S5][SECONDARY, S8]
-- Maverick's context window is 1M tokens. [SECONDARY, S5][SECONDARY, S8]
-- Scout can fit on a single H100 GPU using INT4 quantization, per Meta's launch materials. [SECONDARY, S5][SECONDARY, S40]
-- BF16 and FP8 checkpoints of the Llama 4 models were also reported. [SECONDARY, S5 — single source]
-- Same-day availability covered Hugging Face, AWS Bedrock, and Azure. [SECONDARY, S6][SECONDARY, S7]
-- Scout and Maverick were integrated into Meta AI on WhatsApp, Messenger, and Instagram across 40 countries at launch (free downloads via Llama.com/Hugging Face; EU companies excluded by license). [SECONDARY, S6][SECONDARY, S63][SECONDARY, S64][SECONDARY, S65]
-- The multimodal rollout was initially limited to US English. [SECONDARY, S6][SECONDARY, S63][SECONDARY, S64]
-- The LMArena submission that generated controversy was the experimental checkpoint `Llama-4-Maverick-03-26-Experimental`, not the public release checkpoint; it scored Elo 1417 and ranked 2nd, while the unmodified Maverick later ranked below months-old rivals. [SECONDARY, S8][SECONDARY, S36][SECONDARY, S38]
-- Scout's training provenance is disputed: some summaries report both Scout and Maverick partially distilled from Behemoth, while another reports Maverick was co-distilled and Scout trained from scratch. [SECONDARY, S5 vs S6 — documented contradiction]
 

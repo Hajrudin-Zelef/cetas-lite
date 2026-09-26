@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape7_phaseC_iac.md",
   "source_lines": 750,
   "source_sha256": "253aa351d753bc1b8e1e038c286a3842935b725a4a1c71f6ac56ee94238e36a5",
-  "chunk_count": 12,
+  "chunk_count": 15,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -14,9 +14,7 @@
       "domain": "step-7-phase-c-iac-platform-automation",
       "role": "deep-dive",
       "task": "reference",
-      "actors": [
-        "Microsoft"
-      ],
+      "actors": [],
       "dates": [
         "2023-08-10",
         "2024-04",
@@ -54,12 +52,38 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        62
+      ],
+      "canonical_for": [],
+      "words": 901,
+      "bytes": 7986,
+      "sha256": "a0f884070ce5468b2bb663de879e701732a0bcf2f53ddc520454e09108f90e78",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/a5-event-driven-ansible-eda",
+      "path": "etape7-phasec-iac/00-iac/a5-event-driven-ansible-eda.md",
+      "title": "A5. Event-Driven Ansible (EDA)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        63,
         77
       ],
       "canonical_for": [],
-      "words": 1079,
-      "bytes": 9553,
-      "sha256": "664b39ef02913a483699da3170fb21e64ec5070cbcff66b5ee8bc7104faa6912",
+      "words": 178,
+      "bytes": 1567,
+      "sha256": "b70c0da66ddf5b951efd50b89ae6c6e520caf250a23e7b37ae4c0a8c3a7dd16d",
       "section": "Step 7 Phase C — IaC & Platform Automation"
     },
     {
@@ -91,26 +115,57 @@
       ],
       "keywords": [
         "acquisition",
+        "aws",
+        "governance",
+        "license",
+        "memory",
+        "open source",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        78,
+        130
+      ],
+      "canonical_for": [],
+      "words": 701,
+      "bytes": 6692,
+      "sha256": "50f3cb2dfb3baa5514dda024b7e0c1b8a312ea0825d5ce3bc6798fb3c35c108d",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/b5-crossplane",
+      "path": "etape7-phasec-iac/00-iac/b5-crossplane.md",
+      "title": "B5. Crossplane",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [
+        "2026-09"
+      ],
+      "keywords": [
         "apache",
         "aws",
         "cost",
         "governance",
         "license",
-        "memory",
-        "open source",
         "pricing",
         "research"
       ],
       "source": "docs/RAG/etape7_phaseC_iac.md",
       "source_anchor": "",
       "source_lines": [
-        78,
+        131,
         162
       ],
       "canonical_for": [],
-      "words": 1094,
-      "bytes": 10400,
-      "sha256": "c2bfc662e43c2b9633f135392ee978aa291d3930c7ad12c653b5b09372846dbb",
+      "words": 393,
+      "bytes": 3708,
+      "sha256": "6f0aea54decb68630b6e859eea2d60198b84027be74eb8dd805733196a888fbd",
       "section": "Step 7 Phase C — IaC & Platform Automation"
     },
     {
@@ -481,12 +536,41 @@
       "source_anchor": "",
       "source_lines": [
         664,
+        740
+      ],
+      "canonical_for": [],
+      "words": 830,
+      "bytes": 6832,
+      "sha256": "0402411565ef2cedc805ebaedda55d738112e912cf4cae244a179891d3d8cca1",
+      "section": "Step 7 Phase C — IaC & Platform Automation"
+    },
+    {
+      "id": "etape7-phasec-iac/00-iac/part-15",
+      "path": "etape7-phasec-iac/00-iac/part-15.md",
+      "title": "Step 7 Phase C — IaC & Platform Automation (part 15)",
+      "domain": "step-7-phase-c-iac-platform-automation",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-03-31",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "compute",
+        "packaging",
+        "research"
+      ],
+      "source": "docs/RAG/etape7_phaseC_iac.md",
+      "source_anchor": "",
+      "source_lines": [
+        741,
         750
       ],
       "canonical_for": [],
-      "words": 1054,
-      "bytes": 8457,
-      "sha256": "31cd046cfa9ab99353c60b4e8f45501dca17fb31893cf88d13e8da6884dfea87",
+      "words": 224,
+      "bytes": 1625,
+      "sha256": "7deaf610419da833ea2eaabccec2c76d71b2de70b1ed359171f2561e3e226f6a",
       "section": "Step 7 Phase C — IaC & Platform Automation"
     }
   ]

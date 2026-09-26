@@ -9,9 +9,9 @@ dates: ["2026-09-22"]
 keywords: ["optics", "cpo", "dsp", "lpo", "npo", "nvidia", "pricing", "research"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [1, 68]
+source_lines: [1, 66]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 9fbd7fab803e86757c50e796b0167d93247fbcd7a8f1389f491558dcf21c485b
+sha256: d7b717bfed5081ca84009f34c01332a9d5799b19f251ca573909eb0b2a54b760
 ---
 
 # Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure
@@ -79,6 +79,4 @@ Category page [official] (https://www.fs.com/uk/c/400g-osfp-qsfp112-qsfpdd-3652;
 - QDD-400G-SR4.2-BD (Cisco), 850nm, 100m, MPO-12/UPC: **£1,296.00 / £1,080.00 excl.** [official].
 - 400G OSFP SR4 MMA4Z00-NS400 (NVIDIA ETH), 850nm, 50m, MPO-12/APC, flat top: **US$769.00** [official]; UK £708.00 [official].
 - InfiniBand NDR prices [official] (https://www.fs.com/c/800g-ndr-infiniband-3801): 400G OSFP DR4 (NVIDIA IB), 1310nm, 500m: **US$1,124.00**; 400G OSFP DR4L (100m): **US$869.00**; 400G QSFP112 DR4 MMS1X00-NS400: **US$1,119.00**; 400G QSFP112 SR4 MMA1Z00-NS400: **US$1,119.00**; 400G QSFP112 FR4 2km: **US$1,619.00**.
-
-**Compatibility coding (all form factors):** FS transceivers are sold per "Compatible Brands" — product pages carry dropdowns for OEM brand/model (e.g., Cisco, Arista, Juniper, Dell, HPE, NVIDIA), and each OEM-coded variant has its own SKU under one P/N (e.g., QSFP-SR4-40G: SKU 17931 generic, 36848 HPE, 36439 Juniper, 75298 Gigamon). FS states transceivers use "the same software codes as the original vendor" for major brands and FS's own standard codes for niche/generic brands [official] (https://www.fs.com/blog/all-about-compatibility-thirdparty-vs-brand-optics-5999.html). The **FS BOX** (SKU 96657, "FS BOX V4.0") supports real-time configuration/re-coding of transceivers, DAC and AOC [official]. "Free Product Trial" and "Product Custom Request" options appear on many product pages [official].
 

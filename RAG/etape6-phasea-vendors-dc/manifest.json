@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
   "source_lines": 2313,
   "source_sha256": "502df55fee0367d03a98967e1c7a0282cdb086db0b3651039d60d8f33629aad0",
-  "chunk_count": 38,
+  "chunk_count": 51,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -16,9 +16,7 @@
       "task": "reference",
       "actors": [
         "Broadcom",
-        "Malaysia",
-        "Nvidia",
-        "xAI"
+        "Nvidia"
       ],
       "dates": [
         "2025-11",
@@ -46,12 +44,42 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1036,
+      "bytes": 7131,
+      "sha256": "9feda1c0fa2ee3c06d975c1d6567044e417cfd5b99ce3f54c94cb0b557b75868",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/1-7-pricing-snapshots-official-dell-stores-2026",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/1-7-pricing-snapshots-official-dell-stores-2026.md",
+      "title": "1.7 Pricing snapshots (official Dell stores, 2026)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "pricing",
+      "actors": [
+        "Malaysia",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "pricing",
+        "gpus",
+        "neocloud",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        77,
         90
       ],
       "canonical_for": [],
-      "words": 1272,
-      "bytes": 8761,
-      "sha256": "9b8ed328f4e30c4aabfd0d76d26b825081a48c12a023a50be362858b24978152",
+      "words": 236,
+      "bytes": 1630,
+      "sha256": "036d0e93c871e4c56b65ace2133a0d4a36f5061608852a5da85d18632530d5a0",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -420,33 +448,67 @@
       "dates": [
         "2026-05",
         "2026-09",
-        "2026-09-08",
-        "2026-09-22"
+        "2026-09-08"
       ],
       "keywords": [
         "acquisition",
-        "compute",
         "cpo",
-        "datacenter",
-        "distribution",
         "ethernet",
         "full-duplex",
         "gpu",
-        "gpus",
-        "hyperscaler",
         "latency",
-        "memory"
+        "memory",
+        "nvidia",
+        "optics",
+        "pricing",
+        "revenue",
+        "ualink"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
         542,
+        591
+      ],
+      "canonical_for": [],
+      "words": 960,
+      "bytes": 6727,
+      "sha256": "203834f64837a31648e3c0574c9a617a9234a83901dc838230aad6d4333fcf93",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/part-12",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/part-12.md",
+      "title": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors (part 12)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "compute",
+        "datacenter",
+        "distribution",
+        "ethernet",
+        "gpus",
+        "hyperscaler",
+        "nvidia",
+        "pricing",
+        "research",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        592,
         628
       ],
       "canonical_for": [],
-      "words": 1061,
-      "bytes": 10543,
-      "sha256": "42a7f01f27786cd5d1138e62bff183fb0f8dfaae12811e880fecc07950a8c49b",
+      "words": 101,
+      "bytes": 3816,
+      "sha256": "808c5cd6db6faa854888b5ca19ebfe23c4e676b22274f55277d71a1293599de0",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -533,12 +595,37 @@
       "source_anchor": "",
       "source_lines": [
         691,
+        736
+      ],
+      "canonical_for": [],
+      "words": 1065,
+      "bytes": 7585,
+      "sha256": "d869157ed105abeb79b1a5b7605bea3261c87c2273b039fc62f1b47b476f4725",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/part-15",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/part-15.md",
+      "title": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors (part 15)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "license",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        737,
         740
       ],
       "canonical_for": [],
-      "words": 1166,
-      "bytes": 8393,
-      "sha256": "58c04770a39ed8c81ca3982423fd2841f92c0c01cbe5bc877cd32d353e6de910",
+      "words": 101,
+      "bytes": 808,
+      "sha256": "f63fcb5d1a5f33f1df62fbfe2110b885e9ba0a4f16e2555ec94dc97a9830998a",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -754,7 +841,6 @@
       "dates": [
         "2025-10",
         "2026-09",
-        "2026-09-22",
         "2026-11",
         "2027-04",
         "2027-07",
@@ -779,12 +865,41 @@
       "source_anchor": "",
       "source_lines": [
         1019,
+        1070
+      ],
+      "canonical_for": [],
+      "words": 899,
+      "bytes": 6354,
+      "sha256": "42f7ce94a3da3fc83c9e9cc3aa40ccc185512cebfa261c13239d7865c610bf57",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/part-22",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/part-22.md",
+      "title": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors (part 22)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ethernet",
+        "nvidia",
+        "research",
+        "training"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1071,
         1097
       ],
       "canonical_for": [],
-      "words": 984,
-      "bytes": 8853,
-      "sha256": "a5f84273b21092d0a5d0d1fed65eb4baf17031bccd02976681190afcea7dc1d1",
+      "words": 85,
+      "bytes": 2499,
+      "sha256": "ffc26568fd1df7f0b4b6585a3b995e37467bf7491ac8c81d7dd5866bee4bb062",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -815,21 +930,58 @@
         "distribution",
         "dsp",
         "ethernet",
-        "gpus",
         "intel",
         "latency",
-        "nvidia"
+        "nvidia",
+        "optics"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
         1098,
+        1151
+      ],
+      "canonical_for": [],
+      "words": 1078,
+      "bytes": 7670,
+      "sha256": "186511a608ff4a3360317a3340c6ef7da6efeb29622ee9502ee340326671f0c8",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/r4-i-round-4-sources-verbatim-urls",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/r4-i-round-4-sources-verbatim-urls.md",
+      "title": "R4-I. Round-4 sources (verbatim URLs)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "agentic",
+        "attribution",
+        "cpo",
+        "gpus",
+        "nvidia",
+        "optics",
+        "pricing",
+        "research",
+        "revenue",
+        "rubin"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1152,
         1177
       ],
       "canonical_for": [],
-      "words": 1251,
-      "bytes": 9847,
-      "sha256": "72fe0273bd900a4901b9e069041935f865164acb506c7db472eced7dac955a67",
+      "words": 173,
+      "bytes": 2177,
+      "sha256": "cc500c1d6d2d99d940c087ee5ee3d20e110a6c8a9e8e4609549624e82d6c35b3",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -934,11 +1086,14 @@
         "2026-05",
         "2026-07-25",
         "2026-08-12",
-        "2026-09-22"
+        "2026-09-22",
+        "2027-12",
+        "2028-11"
       ],
       "keywords": [
         "research",
         "cost",
+        "full-duplex",
         "hyperscaler",
         "license",
         "pricing",
@@ -948,56 +1103,53 @@
       "source_anchor": "",
       "source_lines": [
         1312,
-        1359
+        1373
       ],
       "canonical_for": [],
-      "words": 657,
-      "bytes": 5083,
-      "sha256": "de4808eb206cd13da1da4c3c66fff8d6dd4ee308aed4d4ed20a1fe5720abc43b",
+      "words": 929,
+      "bytes": 7086,
+      "sha256": "f8047fa4e3a4571fba2cbb5d3afc0d9f7b10648eeac5e73c2d26d39a51dbcaf8",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
-      "id": "etape6-phasea-vendors-dc/00-front-matter/a-dell-z9964f-on-z9864f-on-software-support-closes-supplemen",
-      "path": "etape6-phasea-vendors-dc/00-front-matter/a-dell-z9964f-on-z9864f-on-software-support-closes-supplemen.md",
-      "title": "A. Dell Z9964F-ON / Z9864F-ON software support — closes Supplementary Pass #2 §W item 7",
+      "id": "etape6-phasea-vendors-dc/00-front-matter/d-nvidia-spectrum-family-completion-mellanox-heritage-new-de",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/d-nvidia-spectrum-family-completion-mellanox-heritage-new-de.md",
+      "title": "D. NVIDIA Spectrum family completion (Mellanox heritage — new detail)",
       "domain": "front-matter",
       "role": "reference",
-      "task": "reference",
+      "task": "actor-profile",
       "actors": [
         "Intel",
         "Nvidia"
       ],
       "dates": [
         "2025-12-09",
-        "2026-07",
-        "2026-09-22",
-        "2027-12",
-        "2028-11"
+        "2026-07"
       ],
       "keywords": [
+        "nvidia",
         "asic",
         "benchmark",
         "cpo",
         "distribution",
         "dsp",
         "ethernet",
-        "full-duplex",
         "gpu",
         "intel",
         "latency",
-        "nvidia",
-        "optics"
+        "optics",
+        "throughput"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
-        1360,
+        1374,
         1406
       ],
       "canonical_for": [],
-      "words": 1118,
-      "bytes": 8121,
-      "sha256": "5bd1bd7cfeef53a9765f29dda72f42713e9541f65fc56f168e8f8216e40cf39d",
+      "words": 846,
+      "bytes": 6118,
+      "sha256": "ad6b8bb7e229c9e4cb20611af90208f59d668700e29b1f038f05b125804c0edf",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -1008,12 +1160,10 @@
       "role": "reference",
       "task": "reference",
       "actors": [
-        "EU",
-        "Nvidia"
+        "EU"
       ],
       "dates": [
-        "2026-07-10",
-        "2026-09-22"
+        "2026-07-10"
       ],
       "keywords": [
         "benchmark",
@@ -1021,20 +1171,18 @@
         "ethernet",
         "inference",
         "license",
-        "nvidia",
-        "pricing",
-        "research"
+        "pricing"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
         1407,
-        1483
+        1451
       ],
       "canonical_for": [],
-      "words": 869,
-      "bytes": 8958,
-      "sha256": "665e45cb194961d7fc151ae48fc8bc72699be02a9f396660dbc644c1465cd3c3",
+      "words": 761,
+      "bytes": 5695,
+      "sha256": "f063572e23d093b8b37d5ad81973e1c15fb1999c33e7d5b638e90d3065c8a03f",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -1046,7 +1194,6 @@
       "task": "reference",
       "actors": [
         "Broadcom",
-        "China",
         "Huawei",
         "Meta",
         "Microsoft",
@@ -1054,41 +1201,109 @@
         "xAI"
       ],
       "dates": [
+        "2026-08-04",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "research",
+        "attribution",
+        "benchmark",
+        "cpo",
+        "distribution",
+        "ethernet",
+        "lpo",
+        "market cap",
+        "memory",
+        "nvidia",
+        "optics",
+        "revenue"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1452,
+        1505
+      ],
+      "canonical_for": [],
+      "words": 673,
+      "bytes": 7647,
+      "sha256": "0a4817c75331801347b3ae302ea07f8fb6b057e73464e0228ed0773124b51d1c",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/r4-d-quantum-x-photonics-2026-ship-status-the-june-2026-cpo-",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/r4-d-quantum-x-photonics-2026-ship-status-the-june-2026-cpo-.md",
+      "title": "R4-D. Quantum-X Photonics 2026 ship status + the June 2026 CPO controversy (new; partially closes §7 item 5)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "China",
+        "Huawei",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03-05",
+        "2026-06"
+      ],
+      "keywords": [
+        "cpo",
+        "liquid cooling",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1506,
+        1514
+      ],
+      "canonical_for": [],
+      "words": 263,
+      "bytes": 2405,
+      "sha256": "ba73d6756daf9b5f2e796e5365d8ce88b427452e6b64a55019a3601a472dfd38",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/r4-e-spectrum-x-photonics-ship-status-2026-finding-partially",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/r4-e-spectrum-x-photonics-ship-status-2026-finding-partially.md",
+      "title": "R4-E. Spectrum-X Photonics ship status — 2026 finding (partially addresses §7 item 4)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia",
+        "xAI"
+      ],
+      "dates": [
         "2025-03",
         "2025-12",
-        "2026-03-05",
-        "2026-06",
         "2026-06-09",
         "2026-07-02",
-        "2026-08-04",
         "2026-09",
         "2026-09-15",
         "2026-09-22"
       ],
       "keywords": [
-        "research",
         "asic",
-        "attribution",
         "compute",
         "cpo",
-        "distribution",
         "ethernet",
         "gpu",
-        "liquid cooling",
-        "lpo",
-        "market cap",
-        "memory"
+        "nvidia",
+        "packaging",
+        "research",
+        "serdes"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
-        1484,
+        1515,
         1533
       ],
       "canonical_for": [],
-      "words": 1266,
-      "bytes": 10532,
-      "sha256": "09fb908408d7c56dccb36f35e0ba83182c2abd6d78bbf69792e3efa217d75f23",
+      "words": 438,
+      "bytes": 3743,
+      "sha256": "61febfed6d9d50518510ee1f259a55e4d8f2075cb518fdc966c91ca54d8f51e2",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -1293,9 +1508,7 @@
       ],
       "keywords": [
         "acquisition",
-        "agentic",
         "amd",
-        "compute",
         "ethernet",
         "gpu",
         "gpus",
@@ -1303,18 +1516,60 @@
         "inference",
         "license",
         "licenses",
-        "mi455x"
+        "mi455x",
+        "nvidia",
+        "pricing"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
         1722,
+        1790
+      ],
+      "canonical_for": [],
+      "words": 743,
+      "bytes": 7401,
+      "sha256": "ba92e557ecc46a864b4fd33a72cfcc0dfeb16753d9140d2c8a39faa832c26525",
+      "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/00-front-matter/add-2-hpe-helios-rack-scale-ethernet-fabric-for-scale-up-gpu",
+      "path": "etape6-phasea-vendors-dc/00-front-matter/add-2-hpe-helios-rack-scale-ethernet-fabric-for-scale-up-gpu.md",
+      "title": "ADD-2. HPE \"Helios\" rack-scale Ethernet fabric for scale-up GPU (distinct from AMD Helios) [secondary]",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "hardware",
+      "actors": [
+        "AMD",
+        "Broadcom"
+      ],
+      "dates": [
+        "2026-09-22"
+      ],
+      "keywords": [
+        "amd",
+        "ethernet",
+        "gpu",
+        "helios",
+        "rack-scale",
+        "acquisition",
+        "agentic",
+        "compute",
+        "gpus",
+        "inference",
+        "mi455x",
+        "optics"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1791,
         1822
       ],
       "canonical_for": [],
-      "words": 1496,
-      "bytes": 13148,
-      "sha256": "e867ec987a1d1821e29e22d2bfaad7fbe29e85edc7004776a88db7e890c5ef47",
+      "words": 753,
+      "bytes": 5747,
+      "sha256": "af26fd62725b7e66189e7d711741dd9792c2caf46db20ee8247f0ce84cf36b25",
       "section": "Step 6 — Phase A: Enterprise Data-Center Switching Vendors"
     },
     {
@@ -1331,7 +1586,6 @@
       ],
       "dates": [
         "2026-05",
-        "2026-07-13",
         "2026-07-17",
         "2026-09-22"
       ],
@@ -1339,7 +1593,6 @@
         "research",
         "amd",
         "asic",
-        "benchmark",
         "blackwell",
         "distribution",
         "dram",
@@ -1347,29 +1600,29 @@
         "fp8",
         "gpu",
         "gpus",
-        "latency"
+        "latency",
+        "liquid cooling"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
         1823,
-        1895
+        1868
       ],
       "canonical_for": [],
-      "words": 1206,
-      "bytes": 9596,
-      "sha256": "063ccf092f0f6c949f6b99e017ecd579b0fa392fce0d12718cd5b974389e076a",
+      "words": 1032,
+      "bytes": 7403,
+      "sha256": "4dc51968176b94e28d66fabcf0dd6d9e907ade9434f46a78297cd25d564bb7d1",
       "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
     },
     {
-      "id": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/15-addendum-nvidia-networking-at-xai-colossus-connectx-bluef",
-      "path": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/15-addendum-nvidia-networking-at-xai-colossus-connectx-bluef.md",
-      "title": "15. Addendum — NVIDIA networking at xAI Colossus, ConnectX/BlueField roadmap, Meraki price points (September 22, 2026)",
+      "id": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/r5-sources-verbatim-urls",
+      "path": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/r5-sources-verbatim-urls.md",
+      "title": "R5 sources (verbatim URLs)",
       "domain": "round-5-complementary-research-pass-2026-09-22-deep-datashee",
       "role": "deep-dive",
-      "task": "actor-profile",
+      "task": "reference",
       "actors": [
-        "Broadcom",
         "Nvidia",
         "xAI"
       ],
@@ -1377,20 +1630,20 @@
         "2024-10-28",
         "2025-08",
         "2025-10",
-        "2026-03",
+        "2026-07-13",
         "2026-09",
         "2026-09-22"
       ],
       "keywords": [
-        "nvidia",
+        "benchmark",
         "compute",
         "cost",
         "cpo",
-        "distribution",
         "ethernet",
         "gpu",
         "gpus",
         "license",
+        "nvidia",
         "pricing",
         "research",
         "rubin"
@@ -1398,13 +1651,71 @@
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
-        1896,
+        1869,
+        1932
+      ],
+      "canonical_for": [],
+      "words": 708,
+      "bytes": 7867,
+      "sha256": "9fa454f61c4508554b3dba36224db3b5ac9f5b5bc2024209840a3c3737f6b005",
+      "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/r4-a-dell-enterprise-sonic-4-6-0-remains-the-latest-no-4-7-0",
+      "path": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/r4-a-dell-enterprise-sonic-4-6-0-remains-the-latest-no-4-7-0.md",
+      "title": "R4-A. Dell Enterprise SONiC — 4.6.0 remains the latest; no 4.7.0 found",
+      "domain": "round-5-complementary-research-pass-2026-09-22-deep-datashee",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1933,
+        1936
+      ],
+      "canonical_for": [],
+      "words": 71,
+      "bytes": 499,
+      "sha256": "2fa161cf67b01bf9f6047c6b510638bccfdc61a27f6b37292a9ec663bcd3de08",
+      "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/part-4",
+      "path": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/part-4.md",
+      "title": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail (part 4)",
+      "domain": "round-5-complementary-research-pass-2026-09-22-deep-datashee",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "compute",
+        "distribution",
+        "ethernet",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        1937,
         1945
       ],
       "canonical_for": [],
-      "words": 827,
-      "bytes": 8258,
-      "sha256": "e3f590206516b6eab67576abf426daec7b0f5b5524d5a8df121e0abfa1c8fcf0",
+      "words": 222,
+      "bytes": 2085,
+      "sha256": "9c3b05eae1e1382289c89c207da218c7b7485858eeabe489e8655638dfd866a8",
       "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
     },
     {
@@ -1471,19 +1782,18 @@
         "compute",
         "ethernet",
         "intel",
-        "latency",
-        "nvidia"
+        "latency"
       ],
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
         1993,
-        2070
+        2040
       ],
       "canonical_for": [],
-      "words": 770,
-      "bytes": 8794,
-      "sha256": "5b069a483aa025ce20d928bdc86ad37ac27722ead7c13387e7c4448ceddc1aaf",
+      "words": 713,
+      "bytes": 5983,
+      "sha256": "dc22be8fd6267e6f78d1319631d7db709c773998d2114a4b40d7c33d7a3b1f6b",
       "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
     },
     {
@@ -1494,11 +1804,9 @@
       "role": "deep-dive",
       "task": "pricing",
       "actors": [
-        "Broadcom",
-        "United States"
+        "Broadcom"
       ],
       "dates": [
-        "2023-11-30",
         "2025-12",
         "2026-07",
         "2026-09-22"
@@ -1507,11 +1815,71 @@
         "pricing",
         "distribution",
         "ethernet",
+        "license",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        2041,
+        2094
+      ],
+      "canonical_for": [],
+      "words": 612,
+      "bytes": 7106,
+      "sha256": "8d463dc2197fceb1e8e114746b760198b6882de1a43743495c06143a68d30596",
+      "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/16-3-broadcom-trident5-x12-strataxgs-bcm78800-new-merchant-s",
+      "path": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/16-3-broadcom-trident5-x12-strataxgs-bcm78800-new-merchant-s.md",
+      "title": "16.3 Broadcom Trident5-X12 (StrataXGS BCM78800) — new merchant-silicon context for leaf/ToR class",
+      "domain": "round-5-complementary-research-pass-2026-09-22-deep-datashee",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "license",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        2095,
+        2106
+      ],
+      "canonical_for": [],
+      "words": 209,
+      "bytes": 2100,
+      "sha256": "35971499616b5b9a3b0b7ea3dac5ab4b398db3c336a79b30c03542bf014a24a8",
+      "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/16-4-dell-smartfabric-manager-for-sonic-official-solution-br",
+      "path": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/16-4-dell-smartfabric-manager-for-sonic-official-solution-br.md",
+      "title": "16.4 Dell SmartFabric Manager for SONiC — official solution-brief and spec-sheet detail (extends §1.4 and §P; narrows the GA-vs-roadmap gap)",
+      "domain": "round-5-complementary-research-pass-2026-09-22-deep-datashee",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Broadcom"
+      ],
+      "dates": [
+        "2023-11-30",
+        "2026-09-22"
+      ],
+      "keywords": [
+        "ethernet",
         "gpu",
         "inference",
         "inference engine",
         "latency",
-        "license",
+        "pricing",
         "research",
         "serdes",
         "throughput"
@@ -1519,13 +1887,13 @@
       "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
       "source_anchor": "",
       "source_lines": [
-        2071,
+        2107,
         2139
       ],
       "canonical_for": [],
-      "words": 1456,
-      "bytes": 11983,
-      "sha256": "8a4e7a617dc658cb4f487c9e2847c02ba398b8191004f3a110b85db56ae582fc",
+      "words": 692,
+      "bytes": 5588,
+      "sha256": "ad27bbee5db239aa285c9784ea4dc65445331484845e49347580891d64779561",
       "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
     },
     {
@@ -1537,10 +1905,7 @@
       "task": "reference",
       "actors": [
         "Broadcom",
-        "China",
-        "EU",
-        "Nvidia",
-        "United States"
+        "Nvidia"
       ],
       "dates": [
         "2026-01-22",
@@ -1557,7 +1922,6 @@
         "distribution",
         "latency",
         "license",
-        "licenses",
         "nvidia",
         "nvlink",
         "pricing"
@@ -1566,12 +1930,43 @@
       "source_anchor": "",
       "source_lines": [
         2140,
+        2185
+      ],
+      "canonical_for": [],
+      "words": 1059,
+      "bytes": 7595,
+      "sha256": "a9394359ba4fe6a8682b6d07c53aae3c2bb9e8a41d52375e0ac2d643a120179f",
+      "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
+    },
+    {
+      "id": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/part-11",
+      "path": "etape6-phasea-vendors-dc/01-round-5-complementary-research-pass-2026-09-22-deep-datashee/part-11.md",
+      "title": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail (part 11)",
+      "domain": "round-5-complementary-research-pass-2026-09-22-deep-datashee",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "China",
+        "EU",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "asic",
+        "license",
+        "licenses",
+        "pricing"
+      ],
+      "source": "docs/RAG/etape6_phaseA_vendors_dc.md",
+      "source_anchor": "",
+      "source_lines": [
+        2186,
         2191
       ],
       "canonical_for": [],
-      "words": 1307,
-      "bytes": 9551,
-      "sha256": "ea9eab82f2d7b81be5a9457cb949ff6da98e3eccae699582b7fe825416ee8063",
+      "words": 248,
+      "bytes": 1956,
+      "sha256": "a9aa7ab6aca32caa03b108b3a6decf263c01a90d8d1916efff7213a7c04619e9",
       "section": "Round-5 complementary research pass (2026-09-22) — deep datasheet and radix detail"
     },
     {

@@ -5,13 +5,13 @@ domain: step-3-labs-hyperscalers-february-1-september-22-2026
 role: deep-dive
 task: reference
 actors: ["AMD", "AWS", "Anthropic", "Apple", "Cerebras", "Cohere", "CoreWeave", "EU", "Fireworks AI", "Google", "Hugging Face", "Meta", "Microsoft", "Mistral", "Nvidia", "OpenAI", "OpenRouter", "Sakana", "Samsung", "SpaceX", "Stripe", "Together AI", "xAI"]
-dates: ["2026-04", "2026-05", "2026-08", "2026-09"]
-keywords: ["acquisition", "agents", "amd", "antitrust", "apache", "arr", "astra", "aws", "bedrock", "benchmark", "chatgpt", "claude"]
+dates: ["2026-05", "2026-08", "2026-09"]
+keywords: ["acquisition", "agents", "amd", "antitrust", "apache", "astra", "aws", "bedrock", "benchmark", "chatgpt", "claude", "cohere"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [2001, 2082]
+source_lines: [2001, 2076]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 3c7d3bd0738da47fd7ab58fce52235c36ace57afd7695b7a5d0022c6fedef921
+sha256: 5201cdadda0367c7e05409fa3b796b30d1118f0f4d4072edf4160cbca6d0ead3
 ---
 
 # August 2026
@@ -91,10 +91,4 @@ sha256: 3c7d3bd0738da47fd7ab58fce52235c36ace57afd7695b7a5d0022c6fedef921
 1. **Anthropic $1.26T** (Series I, 20 Aug 2026) — #1 all-time private valuation. [independent]
 2. **OpenAI $852B** (31 Mar 2026) → reportedly fielding ~$1.2T bids (Sep 2026). [independent/secondary]
 3. **SpaceXAI (post-merger)** — **$1.25T combined at merger** (2 Feb 2026); **~$2.1T market cap at SPCX IPO close day 1** (12 Jun 2026); ~$1.49T late Jul 2026. [secondary]
-
-**Revenue run-rate race (annualized, company-stated unless noted):**
-- Anthropic: **$25B** (Aug 2026); enterprise 80%; Claude Code $2.5B of it. [independent]
-- OpenAI: **$25B** (Feb 2026, CFO-confirmed) → **>$40B** (Aug 2026, Bloomberg). [independent]
-- One source claimed Anthropic overtook OpenAI in ARR in April 2026 ($47B vs $25B) — **conflicts with Bloomberg's $40B; treat as [unverified/conflicting]**. (See §18.)
-- Both target IPOs: Anthropic Nov 2026 (~$1.5T); OpenAI timing slipping to 2027 (~$1T target per single source).
 

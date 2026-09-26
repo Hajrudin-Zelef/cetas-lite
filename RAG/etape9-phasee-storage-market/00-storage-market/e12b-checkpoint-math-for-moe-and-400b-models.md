@@ -9,9 +9,9 @@ dates: []
 keywords: ["moe", "agents", "consumer", "cost", "datacenter", "deepseek", "dram", "fine-tuning", "fp8", "gpu", "gpus", "hbm"]
 source: docs/RAG/etape9_phaseE_storage_market.md
 source_anchor: ""
-source_lines: [354, 419]
+source_lines: [354, 401]
 section: "Step 9 Phase E — Storage & Memory Market 2026"
-sha256: f21103bd66cdcfa90bf7a5151818b1ed58c78487b5bd540c7f17106c0ed321b2
+sha256: ef9741141b505fdeb7d332514e27892bd7b8d0b861dcb4cd0a29f5b315283348
 ---
 
 # E12b — Checkpoint math for MoE and 400B+ models
@@ -63,22 +63,4 @@ sha256: f21103bd66cdcfa90bf7a5151818b1ed58c78487b5bd540c7f17106c0ed321b2
 ## E21 — Decision matrices
 
 **Drive choice matrix (homelab/small-business, 2026):**
-
-| Workload | Buy | NAND | Form | Why |
-|---|---|---|---|---|
-| Proxmox VM datastore | Used enterprise SATA/SAS 3.84 TB | TLC, 1 DWPD RI | 2.5" | $78–127/TB, endurance verified via SMART |
-| ZFS SLOG / DB WAL | New enterprise NVMe (or Optane-class if found used) | TLC, high DWPD | U.2/M.2 | Write-heavy tier = buy new (E9) |
-| Media library (Jellyfin/Plex) | Used HDD 8–16 TB | n/a | 3.5" | $19–41/TB; SSD premium wasted on sequential reads |
-| Boot / OS | Small used enterprise SATA or new consumer NVMe | Any | 2.5"/M.2 | Don't pay $/TB premiums at 240–500 GB |
-| Laptop/desktop | New Gen4 TLC NVMe 1–2 TB | TLC + HMB/DRAM | M.2 | $65–140/TB, warranty, no adapter friction |
-| AI dataset staging (warm) | New QLC NVMe or used enterprise TLC | QLC acceptable | U.2/M.2 | Read-heavy, capacity-first |
-
-**Memory choice matrix (2026):**
-
-| Need | Buy | $/GB anchor | Caveat |
-|---|---|---|---|
-| Homelab server RAM | Used DDR4 ECC RDIMM | ~$1.5–3/GB (eBay-class) | Match rank/voltage to platform |
-| New workstation | DDR5 retail kits | ~$18.44/GB (Sept 2026) | The most inflated component; buy only what the board needs |
-| GPU inference memory | More VRAM, not faster VRAM | Embedded in GPU street price | VRAM >80% of high-end GPU BOM in 2026 |
-| Future expansion | Wait for CXL (datacenter) | n/a | No consumer CXL memory market at cutoff |
 

@@ -4,14 +4,14 @@ title: "Figures and metrics"
 domain: ai-economy-agi-predictions
 role: deep-dive
 task: finance
-actors: ["Anthropic", "ByteDance", "Google", "Meta", "Microsoft", "Nvidia", "OpenAI", "United States", "xAI"]
+actors: ["Anthropic", "Google", "Meta", "Nvidia", "OpenAI", "United States", "xAI"]
 dates: ["2026-01-29", "2026-04", "2026-04-26", "2026-05", "2026-05-21", "2026-05-24", "2026-05-31", "2026-06-16", "2026-06-30", "2026-09-24", "2028-03"]
-keywords: ["acquisition", "agent", "agentic", "agents", "agi", "arr", "capex", "compute", "consumer", "cost", "datacenter", "gemini"]
+keywords: ["acquisition", "agent", "agentic", "agents", "agi", "arr", "capex", "compute", "consumer", "cost", "gemini", "inference"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [9540, 9626]
+source_lines: [9540, 9610]
 section: "19. AI Economy & AGI Predictions"
-sha256: d7992df941b492682fcdfd12e395eb410cbce4f2f668f37c215dc788db24f585
+sha256: ab5fd5b08c194b056e7e96dabff4bc492755baa2dbd9bb7cb104ced47007d8de
 ---
 
 # Figures and metrics
@@ -86,20 +86,4 @@ The surviving video businesses all converged on per-second API or subscription m
 - Coding-agent revenue run-rates (vendor-reported, unaudited): Devin $492M (May) → ~$900M (Sep); Cursor ~$4B annualized (Jun). [VENDOR]
 
 ## Main actors
-
-- **Sam Altman (OpenAI)** — the 2026–2028 AGI forecast holder; automated-AI-researcher-by-March-2028 claim; "delighted to be wrong" on the jobs apocalypse (May 2026); made the Sora shutdown call (compute reallocation to higher-priority products).
-- **Dario Amodei (Anthropic)** — "powerful AI" late 2026–2027 ("a country of geniuses in a datacenter"); Jevons Paradox invocation at the JPMorgan/Dimon briefing (May 2026); "AI won't destroy jobs, it'll help companies grow."
-- **Demis Hassabis (Google DeepMind)** — the elastic 2026 forecaster: 2029 (I/O), 2031–2034 (tracker), 3–10 years (Sept interview); "foothills of the singularity."
-- **Elon Musk (xAI)** — the loudest 2026 doom-accelerationist pole: end-2026 individual-parity forecast (Davos); 2030–2031 collective superintelligence; "3 years of AGI+ leaves a 10–20% chance we all die" (Feb 2026, Forbes).
-- **Yann LeCun (Meta)** — the standing dissent: scaling/LLM approaches insufficient; breakthroughs in world models, mental reasoning, and planning required.
-- **Fidji Simo (OpenAI applications CEO)** — "side quests" memo behind the Sora shutdown; embodiment of the 2026 shift from prestige products to economically viable ones.
-- **Marc Benioff (Salesforce)** — "agentic enterprise" as enterprise architecture, not a feature; EVA agentic concierge at Davos.
-- **Satya Nadella (Microsoft)** — Davos theme: "production value over prototypes"; AI changing outcomes for people and communities.
-- **Yuanqing Yang (Lenovo)** — CES 2026 inference-spend-inversion forecast; the hardware-side capex marker.
-- **Market researchers (Gartner, Grand View, IDC, McKinsey, KPMG, Wolters Kluwer)** — authors of the agent-economy forecast layer; methodology caveats apply, primary reports not accessed.
-- **Kuaishou (Kling), ByteDance (Seedance), Google (Veo/Genie)** — the commercial video leaders left standing after Sora's exit; the economic (not capability) winners of 2026.
-- **Cognition (Devin), Anysphere (Cursor)** — coding-agent companies carrying the agentic-AI revenue evidence layer (vendor-reported run-rates, unaudited).
-- **Syndicated PR machinery (ABNewswire, commercial integration blogs)** — not a lab, but an actor in the narrative audit: Kuaishou's Sept 11–12 "AI Director" wave turned a February model into a September "launch" in press coverage. The event-narrative loop in miniature — company positioning laundered into "industry trend."
-- **Community trackers (skynetcountdown.com, 2agi.me, heyuan110 / awesome-aitools READMEs, baditaflorin deep-research compilation)** [COMMUNITY] — the de facto primary sources for several §19 figures (Seedance timelines, Hassabis tracker ranges). They carry the audit's loosest provenance but are often the *only* source; the RAG keeps them labeled rather than dropping the claims.
-- **Enterprise IT buyers (unnamed, collective)** — the audience the whole forecast layer is priced for: the 44% finance-teams figure, the 78% MCP-in-production figure, and the index.dev 4.3× ROI figure are executive-belief instruments whose function is procurement justification, not scientific measurement. Reading them as belief instruments rather than facts is the audit's recommended stance.
 

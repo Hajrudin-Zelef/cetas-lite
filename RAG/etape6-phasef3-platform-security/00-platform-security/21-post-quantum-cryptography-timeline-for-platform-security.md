@@ -9,9 +9,9 @@ dates: ["2023-05", "2026-06", "2026-08", "2026-10"]
 keywords: ["amd", "aws", "intel", "luna", "memory", "research"]
 source: docs/RAG/etape6_phaseF3_platform_security.md
 source_anchor: ""
-source_lines: [248, 300]
+source_lines: [248, 302]
 section: "Step 6 Phase F3 — Platform Firmware & Hardware Root of Trust"
-sha256: 091d04e363e2f352d08b9337f1208f0679b398c4026a7b2b561e87c549abcd80
+sha256: c302424d068264a68a9e4b697fbe0575660c6ff299e65db22dbabb432939eed3
 ---
 
 # 21. Post-quantum cryptography timeline for platform security
@@ -68,4 +68,6 @@ sha256: 091d04e363e2f352d08b9337f1208f0679b398c4026a7b2b561e87c549abcd80
 - Secure Boot bypass classes: stale dbx entries (revocation not applied), vulnerable-but-signed bootloaders, NVRAM/db manipulation via SMM or variable-service flaws, and Option ROM abuse [secondary](https://www.makeuseof.com/why-windows-secure-boot-can-be-bypassed-so-easily/).
 - Microsoft's 2011 certificate expiry (June/October 2026 — conflict C1) forced the industry-wide 2023-certificate migration; systems that never received the 2023 trust store cannot boot post-revocation binaries [secondary](https://blog.thomasmarcussen.com/secure-boot-certificate-expiry-2026-blacklotus/).
 - Windows Server lacked an automatic rollout path for the migration — manual admin action required, creating enterprise exposure [secondary](https://github.com/fleetdm/fleet/issues/45514).
+
+## 25. Firmware threat landscape 2024–2026
 

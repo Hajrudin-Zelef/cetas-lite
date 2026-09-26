@@ -5,13 +5,13 @@ domain: step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu
 role: deep-dive
 task: reference
 actors: ["AMD", "Alibaba", "Apple", "DeepSeek", "Nvidia", "OpenAI", "Z.ai"]
-dates: ["2026-01-01", "2026-02-13", "2026-08", "2026-08-18", "2026-08-21", "2026-08-25", "2026-08-31", "2026-09", "2026-09-04", "2026-09-16", "2026-09-22"]
+dates: ["2026-01-01", "2026-08", "2026-08-18", "2026-08-21", "2026-08-25", "2026-09", "2026-09-04", "2026-09-16", "2026-09-22"]
 keywords: ["inference", "llama", "llama.cpp", "attention", "benchmarks", "deepseek", "distribution", "flash attention", "gguf", "glm", "gpu", "kv cache"]
 source: docs/RAG/etape4_trackB_local_inference.md
 source_anchor: ""
-source_lines: [1, 81]
+source_lines: [1, 74]
 section: "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
-sha256: 548497f3c67e69c59e3a70a2f38dc7b8570d203555ed93705a7eeca4cdebc50b
+sha256: 20f5e185582b12be10ed22d2b6dc0cf5dd732278dd62723ca5e2221df40174aa
 ---
 
 # Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)
@@ -88,10 +88,3 @@ ggml companion releases: ggml **v0.20.2** (ggml/1589, via v0.1.2 changelog), **v
 ### v0.1.2 (2026-08-18, pre-release) — headline [official] (API)
 - Notable: CUDA MMVQ `nwarps=8` for bs=1 dense models on **DGX Spark** (#26843) — early GB10 tuning; docs for **MCP stdio servers** and CORS defaults (#26847); vocab support for **integer tokenizer scores** (#27260); ggml v0.20.2.
 
-### Earlier 2026 (Feb–Aug, from `b` tags) — selected milestones [secondary]/[official]
-- **b7964** (Feb 2026): Step3.5-Flash support (#19283). **b7973**: Qwen3.5 dense and MoE support (community-driven, PR #19435; author notes "Llama.cpp missing all the zero-day releases", built on the common-delta-net PR #19125) [secondary] (https://pypi.org/project/llama-cpp-pydist/0.31.0/).
-- **b8018** (2026-02-13): pydist sync point with 44 upstream commits [secondary] (same).
-- Community build records (Apr 2026, Strix Halo): b8119 (kyuz0 custom), b8299 official (+40% prompt speed over b8119), b8461 (kyuz0 Vulkan RADV) [secondary] (https://github.com/valentijnvenus/strix-halo-setup).
-- llama-cpp-python fork (JamePeng) synced to upstream commit `9723942` on 2026-08-31 with `load_mode` + Qwen3.8-Flash-Next + DFlash2 NVFP4 fix [secondary] (https://github.com/tao71-ai/llama-cpp-python-jamepeng/blob/HEAD/CHANGELOG.md).
-
----

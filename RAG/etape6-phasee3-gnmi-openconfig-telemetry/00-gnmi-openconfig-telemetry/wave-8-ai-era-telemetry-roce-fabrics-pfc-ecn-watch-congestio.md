@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["Broadcom", "Huawei", "Nvidia"]
 dates: ["2026-01-14", "2026-08-03", "2026-09-01"]
-keywords: ["decode", "ethernet", "nvidia", "optics", "training"]
+keywords: ["decode", "ethernet", "nvidia", "training"]
 source: docs/RAG/etape6_phaseE3_gnmi_openconfig_telemetry.md
 source_anchor: ""
-source_lines: [194, 254]
+source_lines: [194, 249]
 section: "Step 6 — Phase E3: gNMI / OpenConfig / Model-Driven Telemetry & Programmability"
-sha256: 7e405ba623b93ffa035048d1ba918e113aaa6a08ba210e937773a5dbfd4064da
+sha256: 6fd38e6785c0f4fb6050b5cf1eed15eeb56e8690eca276c8ce5b55b972e68a6b
 ---
 
 # Wave 8 — AI-era telemetry: RoCE fabrics, PFC/ECN watch, congestion visibility
@@ -71,9 +71,4 @@ sha256: 7e405ba623b93ffa035048d1ba918e113aaa6a08ba210e937773a5dbfd4064da
 - Arista maintains a fork `aristanetworks/openconfig-featureprofiles` with QoS OTG tests (egress classification/rewrite, queue counters) — evidence vendors run featureprofiles against their own code [secondary](https://github.com/openconfig/gnmic/issues/451).
 
 ### 10.3 Gaps vs vendor YANG (persistent 2026 themes)
-
-- **Version skew:** devices in the field expose OpenConfig models years behind HEAD (e.g. Junos support-portal table lists BGP 2.0.1/2.1.1-era models for 16.1R/17.1R; the gnmic issue dump shows interfaces 2.3.0 while 2026 revisions exist) — multi-version fleets are the norm [official](https://supportportal.juniper.net/sfc/servlet.shepherd/document/download/0693c00000LXblkAAD/?operationContext=S1) [secondary](https://github.com/openconfig/gnmic/issues/451).
-- **Deviations:** vendors publish deviation modules (e.g. Arista `arista-bfd-deviations`, `arista-exp-eos-*`) where OpenConfig doesn't fit the implementation [secondary](https://files.botwerks.net/presentations/20220922-mnnug-openconfig.pdf).
-- **Coverage holes:** platform pipeline counters, MACsec, terminal-device optics, and power-state are 2025–2026 additions — recent enough that not all vendors implement them [official — dated revisions in Waves 1–2].
-- **gNMI `Capabilities` as the discovery mechanism:** clients must query supported models/encodings per device rather than assuming a uniform OpenConfig surface [secondary](https://files.botwerks.net/presentations/20220922-mnnug-openconfig.pdf).
 

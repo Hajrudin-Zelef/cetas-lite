@@ -4,7 +4,7 @@
   "source": "docs/RAG/Labos  hyperscalersEN.md",
   "source_lines": 3006,
   "source_sha256": "8dc30f974e1ddfc1b4329eb3ddd39058fe1bed7bc87004989dafc3b6594d1d3d",
-  "chunk_count": 47,
+  "chunk_count": 68,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -25,7 +25,6 @@
         "Cohere",
         "CoreWeave",
         "EU",
-        "ExploitGym",
         "Fireworks AI",
         "Fluidstack",
         "Google",
@@ -38,7 +37,6 @@
         "Nscale",
         "Nvidia",
         "OpenAI",
-        "OpenRouter",
         "Oracle",
         "Perplexity",
         "Sakana",
@@ -52,9 +50,7 @@
         "2026-02-01",
         "2026-04-27",
         "2026-05-13",
-        "2026-05-28",
-        "2026-09-22",
-        "2026-11"
+        "2026-09-22"
       ],
       "keywords": [
         "acquisition",
@@ -74,21 +70,120 @@
       "source_anchor": "",
       "source_lines": [
         1,
-        57
+        44
       ],
       "canonical_for": [],
-      "words": 1336,
-      "bytes": 9418,
-      "sha256": "36f4d7fee68159c1614500fed02cf3170fd76caa48ba5f7eeae6e3a5cf95510d",
+      "words": 978,
+      "bytes": 6961,
+      "sha256": "46be7e69353ffced4d6cecba3350af0e016c0d58591a9ed7beb37b296a4ec5a3",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/1-anthropic",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/1-anthropic.md",
-      "title": "§1 — ANTHROPIC",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/executive-summary-the-2026-frontier-lab-race",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/executive-summary-the-2026-frontier-lab-race.md",
+      "title": "Executive summary — the 2026 frontier-lab race",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
-      "task": "actor-profile",
+      "task": "model-release",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Cerebras",
+        "EU",
+        "ExploitGym",
+        "Fireworks AI",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2025-05",
+        "2026-02",
+        "2026-02-05",
+        "2026-04",
+        "2026-04-16",
+        "2026-05-28",
+        "2026-08-10",
+        "2026-09-10",
+        "2026-11"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "agents",
+        "antitrust",
+        "astra",
+        "bedrock",
+        "benchmark",
+        "benchmarks",
+        "capex",
+        "claude",
+        "compute",
+        "context window"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        45,
+        90
+      ],
+      "canonical_for": [],
+      "words": 811,
+      "bytes": 6701,
+      "sha256": "88a05b39d32226ff44148e990f7d430c4237c7769932c040771fc33f534246ce",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-3",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-3.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 3)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-06-30",
+        "2026-07-31",
+        "2026-08-10",
+        "2026-09-10"
+      ],
+      "keywords": [
+        "agentic",
+        "benchmarks",
+        "claude",
+        "cost",
+        "opus 4",
+        "parameters",
+        "pricing",
+        "sonnet 5"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        91,
+        100
+      ],
+      "canonical_for": [],
+      "words": 209,
+      "bytes": 2504,
+      "sha256": "3b4ceeec3f3054c000142ded09c4ea82911cfbb7f4ca1377f308daff010cb215",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-4",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-4.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 4)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
       "actors": [
         "AWS",
         "Anthropic",
@@ -100,46 +195,37 @@
         "United States"
       ],
       "dates": [
-        "2025-05",
-        "2026-02",
-        "2026-02-05",
-        "2026-04",
-        "2026-04-16",
-        "2026-05-28",
         "2026-06-09",
-        "2026-06-30",
         "2026-07-24",
         "2026-07-26",
-        "2026-07-31",
-        "2026-08-10",
         "2026-09-01",
         "2026-09-10",
         "2026-09-22"
       ],
       "keywords": [
         "accelerator",
-        "agent",
         "agentic",
-        "agents",
         "agi",
         "aws",
         "bedrock",
-        "benchmark",
         "benchmarks",
         "claude",
         "compute",
-        "context window"
+        "cost",
+        "cyber",
+        "cybersecurity",
+        "distillation"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        58,
-        131
+        101,
+        124
       ],
       "canonical_for": [],
-      "words": 1537,
-      "bytes": 15449,
-      "sha256": "caef6414caf4036b5acca67a2a6a653f78d0035884288c50c5fe413ff0a9021b",
+      "words": 766,
+      "bytes": 7598,
+      "sha256": "d8cab46ea40c3cf398a8231572e7a5effd17d0bdec377fa1772aef3b0c3f3bd4",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -157,25 +243,16 @@
         "Nvidia",
         "OpenAI",
         "Samsung",
-        "SpaceX",
-        "United States"
+        "SpaceX"
       ],
       "dates": [
-        "2025-10",
-        "2026-01",
         "2026-02-12",
-        "2026-03",
         "2026-03-31",
         "2026-04",
-        "2026-04-09",
-        "2026-04-17",
         "2026-05",
-        "2026-05-15",
         "2026-05-28",
         "2026-06",
         "2026-06-01",
-        "2026-06-24",
-        "2026-07-23",
         "2026-08-10",
         "2026-10",
         "2026-11"
@@ -184,39 +261,175 @@
         "funding",
         "revenue",
         "valuation",
-        "acquisition",
-        "agent",
         "agentic",
         "agents",
         "alignment",
-        "arr",
         "aws",
         "claude",
-        "compute"
+        "compute",
+        "funding round",
+        "hyperscaler",
+        "ipo"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        132,
-        215
+        125,
+        160
       ],
       "canonical_for": [],
-      "words": 1406,
-      "bytes": 14746,
-      "sha256": "daddda421312b478bb57486b832fe3b96d750827018016fcd56adcc0c268dd2e",
+      "words": 691,
+      "bytes": 7270,
+      "sha256": "de0a7622b1011cb3907ffcadcac6cd0f14640d97840d6147634958e33ef2a781",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/1-4-personnel-partnerships-controversies",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/1-4-personnel-partnerships-controversies.md",
-      "title": "1.4 Personnel, partnerships, controversies",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-6",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-6.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 6)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-04"
+      ],
+      "keywords": [
+        "alignment",
+        "arr",
+        "claude",
+        "compute",
+        "funding",
+        "ipo",
+        "revenue",
+        "run-rate",
+        "valuation"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        161,
+        169
+      ],
+      "canonical_for": [],
+      "words": 117,
+      "bytes": 1623,
+      "sha256": "e653e73411b7fe80aad5da190c5bcb8b001035c5be2ec4f75099e33b5e36e3cf",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/1-3-product-launches-api-features-pricing-enterprise",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/1-3-product-launches-api-features-pricing-enterprise.md",
+      "title": "1.3 Product launches, API features, pricing, enterprise",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "pricing",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "SpaceX",
+        "United States"
+      ],
+      "dates": [
+        "2025-10",
+        "2026-01",
+        "2026-03",
+        "2026-04",
+        "2026-04-09",
+        "2026-04-17",
+        "2026-05-15",
+        "2026-06",
+        "2026-06-24",
+        "2026-07-23",
+        "2026-08-10"
+      ],
+      "keywords": [
+        "pricing",
+        "acquisition",
+        "agent",
+        "agents",
+        "claude",
+        "containment",
+        "fable 5",
+        "funding",
+        "inference",
+        "ipo",
+        "memory",
+        "mythos 5"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        170,
+        217
+      ],
+      "canonical_for": [],
+      "words": 712,
+      "bytes": 7004,
+      "sha256": "87d9c31097204b24a75bcd1a75913fae3c85e3750e31f9cd585dbc6579878aeb",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-8",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-8.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 8)",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
       "task": "reference",
       "actors": [
         "AWS",
         "Anthropic",
-        "Broadcom",
+        "Glasswing",
+        "OpenAI",
+        "Sakana",
+        "United States"
+      ],
+      "dates": [
+        "2026-03",
+        "2026-06-12",
+        "2026-06-15",
+        "2026-06-30",
+        "2026-07-20"
+      ],
+      "keywords": [
+        "alignment",
+        "claude",
+        "copyright",
+        "cyberattack",
+        "export controls",
+        "fable 5",
+        "fugu",
+        "ipo",
+        "lawsuit",
+        "mythos 5",
+        "opus 4",
+        "pretraining"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        218,
+        235
+      ],
+      "canonical_for": [],
+      "words": 558,
+      "bytes": 5416,
+      "sha256": "7eafe52f6b83089358210d4a2018fba56fd30835f67688e125d815e95bcc1bc6",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/1-5-infrastructure-compute",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/1-5-infrastructure-compute.md",
+      "title": "1.5 Infrastructure / compute",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AWS",
+        "Anthropic",
         "California",
         "EU",
         "Fluidstack",
@@ -228,7 +441,6 @@
         "Nscale",
         "Nvidia",
         "OpenAI",
-        "Sakana",
         "Samsung",
         "SpaceX",
         "United States",
@@ -237,61 +449,93 @@
       "dates": [
         "2025-11",
         "2026-01",
-        "2026-03",
         "2026-04",
         "2026-05-07",
-        "2026-06-12",
-        "2026-06-15",
         "2026-06-19",
         "2026-06-24",
-        "2026-06-30",
-        "2026-07",
-        "2026-07-20",
-        "2026-08-27",
-        "2026-09-10"
+        "2026-08-27"
       ],
       "keywords": [
+        "compute",
         "agent",
         "agentic",
-        "agi",
         "alignment",
         "antitrust",
-        "astra",
         "aws",
         "bedrock",
-        "benchmark",
-        "benchmarks",
         "claude",
-        "compute"
+        "cpo",
+        "cyber",
+        "disclosure",
+        "fable 5"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        216,
-        303
+        236,
+        267
       ],
       "canonical_for": [],
-      "words": 1774,
-      "bytes": 16903,
-      "sha256": "4f5ca6455aaab6fad801547578e36bda42ca28500d36baf14a400407af08f0db",
+      "words": 735,
+      "bytes": 7831,
+      "sha256": "46f0c8abe8851cee6d481455451a68f6ce0586a1f9555c301b18d830bddf50ea",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/2-1-model-releases-feb-sep-2026",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/2-1-model-releases-feb-sep-2026.md",
-      "title": "2.1 Model releases (Feb → Sep 2026)",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-10",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-10.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 10)",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
       "task": "reference",
       "actors": [
         "AWS",
         "Anthropic",
-        "ExploitGym",
+        "Broadcom",
         "Google",
-        "Meta",
+        "Microsoft"
+      ],
+      "dates": [
+        "2026-07"
+      ],
+      "keywords": [
+        "aws",
+        "bedrock",
+        "claude",
+        "compute",
+        "fable 5",
+        "foundry",
+        "funding",
+        "ipo",
+        "moratorium",
+        "opus 5",
+        "tpu"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        268,
+        275
+      ],
+      "canonical_for": [],
+      "words": 144,
+      "bytes": 1467,
+      "sha256": "c22039efbbcb87ae3a5d16ba204934fd8f7137906aceae55449e75022e541b49",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/1-6-anthropic-benchmark-snapshot-as-reported-do-not-mix-vend",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/1-6-anthropic-benchmark-snapshot-as-reported-do-not-mix-vend.md",
+      "title": "1.6 Anthropic benchmark snapshot (as reported — do not mix vendors' scaffolds)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "benchmark",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Hugging Face",
         "Microsoft",
-        "OpenAI",
-        "United States"
+        "OpenAI"
       ],
       "dates": [
         "2025-08-31",
@@ -301,42 +545,171 @@
         "2026-03",
         "2026-03-05",
         "2026-03-06",
+        "2026-09-10"
+      ],
+      "keywords": [
+        "benchmark",
+        "agentic",
+        "agents",
+        "agi",
+        "astra",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "context window",
+        "cost",
+        "cyber",
+        "cybersecurity"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        276,
+        323
+      ],
+      "canonical_for": [],
+      "words": 789,
+      "bytes": 6614,
+      "sha256": "78ac389cffaa2a638b2fe3fdc1e320e1f01f049b4b734fd642d7232573b0fdb3",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-12",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-12.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 12)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "ExploitGym",
+        "Microsoft",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
         "2026-04",
         "2026-04-16",
         "2026-04-22",
-        "2026-06",
-        "2026-06-26",
-        "2026-07",
-        "2026-07-09",
-        "2026-08",
-        "2026-08-06",
-        "2026-09",
-        "2026-09-03"
+        "2026-07"
       ],
       "keywords": [
         "agent",
         "agentic",
+        "agents",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "gpt-5.6",
+        "incident",
+        "latency",
+        "pricing",
+        "protein"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        324,
+        340
+      ],
+      "canonical_for": [],
+      "words": 330,
+      "bytes": 3787,
+      "sha256": "04e56e9766dfd70be78f48a441cb03ac886be2a031b63ec57e08c6405029901b",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-13",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-13.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 13)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-26",
+        "2026-07",
+        "2026-07-09",
+        "2026-08-06"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "astra",
+        "benchmark",
+        "benchmarks",
+        "chatgpt",
+        "claude",
+        "context window",
+        "copilot",
+        "cost",
+        "cyber",
+        "fable 5"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        341,
+        354
+      ],
+      "canonical_for": [],
+      "words": 491,
+      "bytes": 4616,
+      "sha256": "c98dd7d99837f582a74e95994c49f098f92261d5b75d9680a4fcb594d0ae0bb9",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-14",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-14.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 14)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Meta",
+        "OpenAI",
+        "United States"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-09-03"
+      ],
+      "keywords": [
         "agents",
         "agi",
         "alignment",
         "apache",
         "astra",
         "aws",
-        "benchmark",
         "benchmarks",
         "chatgpt",
-        "claude"
+        "claude",
+        "consumer",
+        "context window",
+        "cyber"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        304,
+        355,
         370
       ],
       "canonical_for": [],
-      "words": 1760,
-      "bytes": 17700,
-      "sha256": "5305f1024b61260dcecdcbc0f613149ffcaaf84c0663838f8f6f97860d1828aa",
+      "words": 482,
+      "bytes": 4824,
+      "sha256": "9b7b1519ccdadb67a463233d7f9ee6c8bb246c2e6d603862cc5f7b1982117044",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -354,16 +727,64 @@
         "Microsoft",
         "Nvidia",
         "OpenAI",
-        "Oracle",
-        "United States",
         "xAI"
       ],
       "dates": [
         "2025-05",
-        "2026-01",
         "2026-02",
         "2026-03",
         "2026-03-31",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-08",
+        "2026-09"
+      ],
+      "keywords": [
+        "acquisition",
+        "funding",
+        "revenue",
+        "valuation",
+        "agi",
+        "arr",
+        "chatgpt",
+        "claude",
+        "funding round",
+        "gemini",
+        "inference",
+        "ipo"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        371,
+        398
+      ],
+      "canonical_for": [],
+      "words": 712,
+      "bytes": 7438,
+      "sha256": "8c2abd7e33d10f234b26f95bf92521a92c8b282ee3721d9590a73b840a89b39e",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/2-4-personnel-partnerships-controversies",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/2-4-personnel-partnerships-controversies.md",
+      "title": "2.4 Personnel, partnerships, controversies",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "OpenAI",
+        "Oracle",
+        "United States"
+      ],
+      "dates": [
+        "2026-01",
+        "2026-02",
+        "2026-03",
         "2026-04",
         "2026-04-10",
         "2026-05",
@@ -375,35 +796,35 @@
         "2027-06"
       ],
       "keywords": [
-        "acquisition",
-        "funding",
-        "revenue",
-        "valuation",
         "agent",
         "agentic",
         "agents",
-        "agi",
-        "arr",
         "astra",
         "aws",
-        "bedrock"
+        "bedrock",
+        "chatgpt",
+        "claude",
+        "compute",
+        "consumer",
+        "copilot",
+        "cost"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        371,
-        433
+        399,
+        435
       ],
       "canonical_for": [],
-      "words": 1434,
-      "bytes": 14875,
-      "sha256": "31e72b5782e7e751b1535d0f4bc2bc9a19d3f4453641b1bb00a61e2052f6324c",
+      "words": 727,
+      "bytes": 7485,
+      "sha256": "fce38321d384536c082a4dea7bb45bde3af67724d74b7863ea0bf8085d758620",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/2-4-personnel-partnerships-controversies",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/2-4-personnel-partnerships-controversies.md",
-      "title": "2.4 Personnel, partnerships, controversies",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-17",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-17.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 17)",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
       "task": "reference",
@@ -411,16 +832,65 @@
         "AMD",
         "AWS",
         "Anthropic",
-        "Broadcom",
-        "CISA",
-        "California",
-        "Crusoe",
-        "EU",
         "ExploitGym",
         "Google",
         "Hugging Face",
         "JFrog",
         "Microsoft",
+        "OpenAI",
+        "Oracle",
+        "United States"
+      ],
+      "dates": [
+        "2026-04",
+        "2026-05",
+        "2026-05-02",
+        "2026-06",
+        "2026-07",
+        "2026-08"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "agi",
+        "amd",
+        "astra",
+        "aws",
+        "bedrock",
+        "benchmark",
+        "capex",
+        "compute",
+        "containment",
+        "cyber"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        436,
+        456
+      ],
+      "canonical_for": [],
+      "words": 644,
+      "bytes": 6452,
+      "sha256": "fbc8e492193340ed309a08f872c75c7bcd1d57f02873f51dbc7855b9d8ccf7a2",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/2-5-infrastructure-compute-stargate",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/2-5-infrastructure-compute-stargate.md",
+      "title": "2.5 Infrastructure & compute (Stargate)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Broadcom",
+        "CISA",
+        "California",
+        "Crusoe",
+        "EU",
+        "Google",
         "Nvidia",
         "OpenAI",
         "Oracle",
@@ -432,13 +902,12 @@
         "2026-03",
         "2026-03-05",
         "2026-04",
-        "2026-05",
-        "2026-05-02",
         "2026-06",
         "2026-07",
         "2026-08"
       ],
       "keywords": [
+        "compute",
         "accelerator",
         "agent",
         "agents",
@@ -446,22 +915,21 @@
         "amd",
         "antitrust",
         "astra",
-        "aws",
-        "bedrock",
         "benchmark",
         "blackwell",
-        "capex"
+        "capex",
+        "chatgpt"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        434,
+        457,
         493
       ],
       "canonical_for": [],
-      "words": 1350,
-      "bytes": 12602,
-      "sha256": "5b4dc1f05cba27556d29b3d9fbf0f58b7e49de0792c96816672f85c50a6ec690",
+      "words": 701,
+      "bytes": 6102,
+      "sha256": "790d6cde692d8e1201905e464884065049c612273d4ac70c964fbb5ec82593c0",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -545,35 +1013,33 @@
         "benchmark",
         "benchmarks",
         "claude",
+        "consumer",
         "cyber",
         "distribution",
         "gemini",
-        "gpt-5.6",
-        "grok"
+        "gpt-5.6"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
         544,
-        596
+        598
       ],
       "canonical_for": [],
-      "words": 902,
-      "bytes": 6120,
-      "sha256": "0d35ecadf2206ca7d879c5f3dc60a6b5b8048637f95ba1d0bbb8dcb242ea497b",
+      "words": 911,
+      "bytes": 6173,
+      "sha256": "ae408e98c188f42f0a2ec913846d8d7e88664ed4a21832cfd9cf4f564d80bf36",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/3-7-consumer-gemini-workspace-search-2026",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/3-7-consumer-gemini-workspace-search-2026.md",
-      "title": "3.7 Consumer Gemini / Workspace / Search (2026)",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/3-8-tpus-ironwood-7th-gen-ga-tpu-8t-8i-8th-gen",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/3-8-tpus-ironwood-7th-gen-ga-tpu-8t-8i-8th-gen.md",
+      "title": "3.8 TPUs: Ironwood (7th gen) GA; TPU 8t/8i (8th gen)",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
       "task": "reference",
       "actors": [
-        "AWS",
         "Anthropic",
-        "Broadcom",
         "Google",
         "Microsoft",
         "Nvidia",
@@ -583,17 +1049,58 @@
       "dates": [
         "2025-05",
         "2026-03-31",
+        "2026-05-19",
+        "2026-06-18",
+        "2026-07"
+      ],
+      "keywords": [
+        "tpu",
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "compute",
+        "diffusion",
+        "fp4",
+        "gemini",
+        "hbm",
+        "inference",
+        "mcp"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        599,
+        622
+      ],
+      "canonical_for": [],
+      "words": 852,
+      "bytes": 6483,
+      "sha256": "f38a838480e6d16da7bc621e0f3143edf4fd79b75e1aafd12bc043a43387e867",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/3-11-alphabet-anthropic-the-defining-deal-of-the-window",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/3-11-alphabet-anthropic-the-defining-deal-of-the-window.md",
+      "title": "3.11 Alphabet × Anthropic: the defining deal of the window",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Broadcom",
+        "Google",
+        "United States"
+      ],
+      "dates": [
         "2026-05",
         "2026-05-12",
         "2026-05-19",
         "2026-06",
-        "2026-06-18",
-        "2026-07",
         "2026-07-30"
       ],
       "keywords": [
-        "consumer",
-        "gemini",
         "acquisition",
         "agent",
         "agentic",
@@ -602,19 +1109,21 @@
         "benchmark",
         "benchmarks",
         "capex",
-        "claude",
-        "compute"
+        "compute",
+        "energy",
+        "gemini",
+        "humanoid"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        597,
+        623,
         647
       ],
       "canonical_for": [],
-      "words": 1599,
-      "bytes": 12036,
-      "sha256": "544a657767fd3a53ab27f71a77d4845f99b75d1de6bad4d94c4cb4aa21c42e01",
+      "words": 738,
+      "bytes": 5500,
+      "sha256": "8f97a87a50ba7a2c88125c3df37740e2342632cd827e5cfa6fa93304f0e4bbeb",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -680,67 +1189,113 @@
         "AMD",
         "Alibaba",
         "Anthropic",
-        "Broadcom",
-        "China",
         "EU",
         "Fireworks AI",
         "Google",
         "Hugging Face",
         "Intel",
         "Meta",
-        "Microsoft",
         "Nebius",
         "Nvidia",
         "OpenAI",
         "SGLang",
-        "TSMC",
         "Together AI",
         "United States",
         "vLLM",
         "xAI"
       ],
       "dates": [
-        "2025-04",
         "2025-06",
-        "2025-07",
-        "2026-03",
         "2026-04-08",
-        "2026-04-29",
         "2026-07",
         "2026-07-07",
         "2026-07-09",
         "2026-07-12",
-        "2026-07-28",
         "2026-08-05",
         "2026-08-10",
-        "2026-09",
-        "2026-09-02",
-        "2026-09-18"
+        "2026-09-02"
       ],
       "keywords": [
         "apache",
         "muse",
         "open weights",
-        "accelerator",
         "agent",
         "agentic",
         "amd",
         "astra",
         "benchmark",
         "benchmarks",
-        "blackwell",
-        "capex"
+        "capex",
+        "claude",
+        "compute"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
         694,
+        741
+      ],
+      "canonical_for": [],
+      "words": 1010,
+      "bytes": 7327,
+      "sha256": "53021f3063fc1041f8f834f83d7f38ab399a138f6ecf0036bf74de72ba0bd6e4",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/4-10-fair-meta-ai-research-milestones-2026",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/4-10-fair-meta-ai-research-milestones-2026.md",
+      "title": "4.10 FAIR / Meta AI research milestones 2026",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "actor-profile",
+      "actors": [
+        "AMD",
+        "Alibaba",
+        "Broadcom",
+        "China",
+        "Google",
+        "Hugging Face",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "TSMC",
+        "United States"
+      ],
+      "dates": [
+        "2025-04",
+        "2025-07",
+        "2026-03",
+        "2026-04-08",
+        "2026-04-29",
+        "2026-07-09",
+        "2026-07-28",
+        "2026-09",
+        "2026-09-18"
+      ],
+      "keywords": [
+        "research",
+        "accelerator",
+        "agent",
+        "amd",
+        "benchmark",
+        "blackwell",
+        "capex",
+        "compute",
+        "cost",
+        "distillation",
+        "embeddings",
+        "energy"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        742,
         777
       ],
       "canonical_for": [],
-      "words": 1965,
-      "bytes": 14154,
-      "sha256": "ee2d43d4c3b4805f755f6bdc6e6b6f7f6abfecef15c1eee66307c28dbd0acf7a",
+      "words": 955,
+      "bytes": 6827,
+      "sha256": "43e341f9ff573a355d5a28cb8c16e21984b6979ad1a183c683db8330fae56ee8",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -751,13 +1306,57 @@
       "role": "deep-dive",
       "task": "reference",
       "actors": [
-        "Anthropic",
         "Apple",
-        "Broadcom",
         "China",
         "EU",
         "Google",
         "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-06",
+        "2026-06-08",
+        "2026-09-14"
+      ],
+      "keywords": [
+        "chatgpt",
+        "compute",
+        "distillation",
+        "dram",
+        "gemini",
+        "gpu",
+        "gpus",
+        "inference",
+        "lora",
+        "memory",
+        "multimodal",
+        "nvidia"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        778,
+        837
+      ],
+      "canonical_for": [],
+      "words": 1090,
+      "bytes": 7755,
+      "sha256": "3ccb335e8e44251dc452c35164d4edb6ae983cba074c996a9682abdc31927e37",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/5-10-ai-server-chips-private-cloud-compute-expansion",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/5-10-ai-server-chips-private-cloud-compute-expansion.md",
+      "title": "5.10 AI server chips & Private Cloud Compute expansion",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "funding-deals",
+      "actors": [
+        "Anthropic",
+        "Apple",
+        "Broadcom",
+        "EU",
+        "Google",
         "OpenAI",
         "TSMC",
         "United States"
@@ -765,36 +1364,34 @@
       "dates": [
         "2025-10",
         "2026-01-12",
-        "2026-06",
         "2026-06-08",
         "2026-07-06",
-        "2026-08",
-        "2026-09-14"
+        "2026-08"
       ],
       "keywords": [
+        "compute",
         "3nm",
         "capex",
         "chatgpt",
-        "compute",
         "cost",
-        "distillation",
         "distribution",
-        "dram",
         "gemini",
-        "gpu",
-        "gpus",
-        "inference"
+        "inference",
+        "nvidia",
+        "nvlink",
+        "parameters",
+        "reasoning"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        778,
+        838,
         867
       ],
       "canonical_for": [],
-      "words": 1762,
-      "bytes": 12725,
-      "sha256": "87c8c0e0a3d9ea2ff823b7074666d3d97d5e4215000160624138b9146ee2306a",
+      "words": 672,
+      "bytes": 4970,
+      "sha256": "99e77777c8c770746d1e03a4f8728c970b2a8e9e532c20ce5d80b61f853ad284",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -842,18 +1439,18 @@
       "source_anchor": "",
       "source_lines": [
         868,
-        913
+        915
       ],
       "canonical_for": [],
-      "words": 882,
-      "bytes": 7200,
-      "sha256": "791493bd9f342595429c3834345940af898ed2ef9f5d5119fe562637b41272d1",
+      "words": 895,
+      "bytes": 7279,
+      "sha256": "b976bacdc1ef4f16d292ded237a6af4fdc85cbad43f6bae61003c0fbff627a3e",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/6-7-on-device-models-microsoft-aion-1-0-copilot-pc-pivot-bui",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/6-7-on-device-models-microsoft-aion-1-0-copilot-pc-pivot-bui.md",
-      "title": "6.7 On-device models: Microsoft Aion 1.0 / Copilot+ PC pivot (Build 2026)",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/6-8-microsoft-foundry-azure-ai-2026",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/6-8-microsoft-foundry-azure-ai-2026.md",
+      "title": "6.8 Microsoft Foundry / Azure AI (2026)",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
       "task": "reference",
@@ -861,57 +1458,101 @@
         "AMD",
         "AWS",
         "Anthropic",
-        "Baseten",
         "Fireworks AI",
         "Google",
         "Hugging Face",
         "Intel",
         "Microsoft",
-        "Mistral",
         "Nvidia",
         "OpenAI",
-        "OpenRouter",
         "Oracle",
-        "Qualcomm",
-        "TSMC",
-        "United States",
-        "xAI"
+        "Qualcomm"
       ],
       "dates": [
         "2025-10",
-        "2026-03-17",
-        "2026-04",
         "2026-04-27",
-        "2026-05",
         "2026-06-02",
         "2026-07",
-        "2026-07-29",
-        "2026-09"
+        "2026-07-29"
       ],
       "keywords": [
-        "copilot",
-        "3nm",
+        "foundry",
         "agent",
         "agentic",
         "agents",
         "agi",
         "amd",
-        "astra",
         "aws",
         "bedrock",
-        "blackwell",
-        "capex"
+        "chatgpt",
+        "claude",
+        "copilot",
+        "funding"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        914,
+        916,
+        945
+      ],
+      "canonical_for": [],
+      "words": 698,
+      "bytes": 5127,
+      "sha256": "e17002fd233e0644256489e96a38d8afa1309f0fad0e7676000e4cff217a40fb",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/6-7-microsoft-foundry-model-roster-2026",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/6-7-microsoft-foundry-model-roster-2026.md",
+      "title": "6.7 Microsoft Foundry — model roster (2026)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "Baseten",
+        "Fireworks AI",
+        "Hugging Face",
+        "Microsoft",
+        "Mistral",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter",
+        "TSMC",
+        "United States",
+        "xAI"
+      ],
+      "dates": [
+        "2026-03-17",
+        "2026-04",
+        "2026-05",
+        "2026-09"
+      ],
+      "keywords": [
+        "foundry",
+        "3nm",
+        "amd",
+        "astra",
+        "blackwell",
+        "capex",
+        "claude",
+        "compute",
+        "copilot",
+        "custom silicon",
+        "cyber",
+        "distribution"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        946,
         974
       ],
       "canonical_for": [],
-      "words": 1306,
-      "bytes": 9371,
-      "sha256": "d9311dad13dd733b8e0ec677c1637e028b640d1fb8b006c4ed3444acbbc30431",
+      "words": 595,
+      "bytes": 4165,
+      "sha256": "31472e14e47088c35973923dadf1779f55fd8ae0d3de578a3ade43363318abc3",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -923,22 +1564,15 @@
       "task": "reference",
       "actors": [
         "AWS",
-        "Alibaba",
         "Anthropic",
-        "China",
-        "DeepSeek",
         "EU",
         "Google",
         "Meta",
         "Microsoft",
-        "MiniMax",
         "Mistral",
-        "Moonshot",
         "Nvidia",
         "OpenAI",
-        "United States",
-        "Z.ai",
-        "xAI"
+        "United States"
       ],
       "dates": [
         "2025-03",
@@ -947,12 +1581,8 @@
         "2026-04-28",
         "2026-06",
         "2026-06-01",
-        "2026-06-09",
-        "2026-06-15",
-        "2026-06-17",
         "2026-07-28",
         "2026-07-31",
-        "2026-08-18",
         "2026-09",
         "2026-09-14",
         "2026-09-30"
@@ -975,12 +1605,65 @@
       "source_anchor": "",
       "source_lines": [
         975,
+        1022
+      ],
+      "canonical_for": [],
+      "words": 934,
+      "bytes": 7279,
+      "sha256": "5f55af13fa6ec3e01dd246bf8f34082d57b6559b0e98aa19b453fafd1fa13588",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-32",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-32.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 32)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "DeepSeek",
+        "Google",
+        "MiniMax",
+        "Mistral",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-06-09",
+        "2026-06-15",
+        "2026-06-17",
+        "2026-08-18"
+      ],
+      "keywords": [
+        "agent",
+        "aws",
+        "bedrock",
+        "claude",
+        "compute",
+        "deepseek",
+        "fable 5",
+        "gemini",
+        "glm",
+        "grok",
+        "grok 4",
+        "guardrails"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        1023,
         1036
       ],
       "canonical_for": [],
-      "words": 1210,
-      "bytes": 9467,
-      "sha256": "f0cd297f734d4ed4a09dd8d6608912bc326baff9bccbdb224e1e78156a523870",
+      "words": 276,
+      "bytes": 2188,
+      "sha256": "8b621e34f407c3ab645e257a0254c900d877764518dbb89e3b1f1ec31dcb2647",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -994,11 +1677,9 @@
         "AWS",
         "Anthropic",
         "Google",
-        "Meta",
         "Microsoft",
         "Nvidia",
         "OpenAI",
-        "OpenRouter",
         "TSMC",
         "United States"
       ],
@@ -1031,12 +1712,54 @@
       "source_anchor": "",
       "source_lines": [
         1037,
+        1082
+      ],
+      "canonical_for": [],
+      "words": 1041,
+      "bytes": 7975,
+      "sha256": "6abefc1eff764a0dcc89254e1cdecb0ce4b5b8cf7f8cc2d4654bd38832f16542",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-34",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-34.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 34)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Nvidia",
+        "OpenAI",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2025-12"
+      ],
+      "keywords": [
+        "agent",
+        "agents",
+        "bedrock",
+        "capex",
+        "foundry",
+        "gemini",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        1083,
         1089
       ],
       "canonical_for": [],
-      "words": 1174,
-      "bytes": 8987,
-      "sha256": "e5cb201189e5379002dca0b14e964b4544f2e912eeb1b815cb3c68c47e29c689",
+      "words": 133,
+      "bytes": 1012,
+      "sha256": "4ec90ea6191de1e994c94d509a26186e847889d2567ad4b50148d21b3a34087c",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -1058,41 +1781,42 @@
       ],
       "dates": [
         "2025-07",
-        "2026-05"
+        "2026-05",
+        "2026-05-15"
       ],
       "keywords": [
         "agent",
         "aws",
         "bedrock",
         "agents",
+        "agi",
         "antitrust",
         "benchmark",
+        "benchmarks",
+        "claude",
         "compute",
-        "copilot",
-        "distribution",
-        "foundry",
-        "gemini",
-        "gpu"
+        "consumer",
+        "copilot"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
         1090,
-        1138
+        1163
       ],
       "canonical_for": [],
-      "words": 567,
-      "bytes": 3993,
-      "sha256": "9da369c831a489b88f21d7d5599e140e395323413b64181a3f809f54c72b2ac2",
+      "words": 1146,
+      "bytes": 7643,
+      "sha256": "c4af654846f0f462704ba4b52c1799f92f136ae05c3e90bc6ab8cded29bb8c65",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/8-7-grok-4-x-full-release-table-from-track-c-all-verified-as",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/8-7-grok-4-x-full-release-table-from-track-c-all-verified-as.md",
-      "title": "8.7 Grok 4.x — full release table (from Track C; all verified as shipped)",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/8-9-xaispacex-merger-detailed-record",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/8-9-xaispacex-merger-detailed-record.md",
+      "title": "8.9 xAI–SpaceX merger — detailed record",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
-      "task": "reference",
+      "task": "actor-profile",
       "actors": [
         "AWS",
         "Anthropic",
@@ -1105,34 +1829,32 @@
       ],
       "dates": [
         "2026-02-02",
-        "2026-05",
-        "2026-05-15",
         "2026-06-12"
       ],
       "keywords": [
-        "grok",
-        "grok 4",
+        "merger",
         "agent",
         "agentic",
         "agents",
-        "agi",
         "astra",
         "bedrock",
-        "benchmark",
         "benchmarks",
         "claude",
-        "compute"
+        "compute",
+        "copilot",
+        "cost",
+        "distribution"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        1139,
+        1164,
         1191
       ],
       "canonical_for": [],
-      "words": 1608,
-      "bytes": 11203,
-      "sha256": "0db87efd1878243d7ef678fd66c164d6b88217d0ce63a168e686414997e66ea0",
+      "words": 1029,
+      "bytes": 7553,
+      "sha256": "cca114b66febaae37a524bf5dbc7c28adf2c55ea6ab0e85d3c9531f11c54ef37",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -1200,10 +1922,13 @@
         "EU",
         "Microsoft",
         "Mistral",
-        "OpenAI"
+        "Nvidia",
+        "OpenAI",
+        "Samsung"
       ],
       "dates": [
-        "2026-06"
+        "2026-06",
+        "2026-09-08"
       ],
       "keywords": [
         "mistral",
@@ -1223,39 +1948,35 @@
       "source_anchor": "",
       "source_lines": [
         1250,
-        1298
+        1307
       ],
       "canonical_for": [],
-      "words": 826,
-      "bytes": 6409,
-      "sha256": "8ae4b6011204acf72000e39851bb886ceaa784daa081475961b1fb214de6a205",
+      "words": 984,
+      "bytes": 7690,
+      "sha256": "1191eb8fe2668ba7d29a1c40cf7dc5e05be7c25b2d3307eb48520f2503b1ac52",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
-      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/9-7-mistral-funding-detailed",
-      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/9-7-mistral-funding-detailed.md",
-      "title": "9.7 Mistral funding — detailed",
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/9-8-mistral-products-detailed",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/9-8-mistral-products-detailed.md",
+      "title": "9.8 Mistral products — detailed",
       "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
       "role": "deep-dive",
-      "task": "funding-deals",
+      "task": "actor-profile",
       "actors": [
         "Apple",
-        "EU",
         "Google",
         "Microsoft",
         "Mistral",
-        "Nvidia",
-        "Samsung"
+        "Nvidia"
       ],
       "dates": [
         "2026-05",
         "2026-05-22",
         "2026-05-28",
-        "2026-06",
-        "2026-09-08"
+        "2026-06"
       ],
       "keywords": [
-        "funding",
         "mistral",
         "agent",
         "agentic",
@@ -1266,18 +1987,19 @@
         "cyber",
         "cybersecurity",
         "fine-tuning",
-        "foundry"
+        "foundry",
+        "gpus"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
-        1299,
+        1308,
         1346
       ],
       "canonical_for": [],
-      "words": 1068,
-      "bytes": 8732,
-      "sha256": "27692038016ff027b510b56aa2204bc4dab1a71fb074a15bdc57cce7b15d0690",
+      "words": 910,
+      "bytes": 7451,
+      "sha256": "c4c72030454f1a2ce39ea4cd3171132ec2b7eafa5ed9bcd6e4856f1ec423d6af",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -1540,24 +2262,64 @@
         "apache",
         "benchmarks",
         "blackwell",
-        "capex",
         "cohere",
         "cost",
         "cyber",
         "distribution",
         "fugu",
-        "funding"
+        "funding",
+        "funding round"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
         1554,
+        1633
+      ],
+      "canonical_for": [],
+      "words": 1046,
+      "bytes": 7471,
+      "sha256": "23cf4f7c1dbff7e60bdd0eae1e6557a03cd4a21bc3a9b518a6ade61f4859f7cf",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-45",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-45.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 45)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Hugging Face",
+        "Nvidia"
+      ],
+      "dates": [
+        "2026-03"
+      ],
+      "keywords": [
+        "blackwell",
+        "capex",
+        "cost",
+        "distribution",
+        "gpu",
+        "inference",
+        "nvidia",
+        "open weights",
+        "research",
+        "rubin",
+        "training",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        1634,
         1638
       ],
       "canonical_for": [],
-      "words": 1160,
-      "bytes": 8283,
-      "sha256": "997cfa19b9c2dfdf909dbcccdc59578f58620bdcbafcf1073022b971a53381ae",
+      "words": 114,
+      "bytes": 812,
+      "sha256": "6917578c9e95e94884a11cca29696e8ce5fe1ce10e955f75b6f1253d58f020f0",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -1660,12 +2422,51 @@
       "source_anchor": "",
       "source_lines": [
         1692,
+        1799
+      ],
+      "canonical_for": [],
+      "words": 1114,
+      "bytes": 7802,
+      "sha256": "0ec10f9fb8bb5af887a9ee8a6e0ff90cc94b6b60a552cdc1bb9f8fb6f46cb3b9",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-48",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-48.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 48)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Microsoft",
+        "Mistral",
+        "OpenRouter",
+        "Sakana",
+        "Stripe"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "aws",
+        "bedrock",
+        "foundry",
+        "fugu",
+        "inference",
+        "mistral",
+        "research",
+        "sakana"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        1800,
         1801
       ],
       "canonical_for": [],
-      "words": 1154,
-      "bytes": 8129,
-      "sha256": "3e0cd06cd6017677b57288ec0146670194bd96d0e8a3e225237bc74c3ceddc0f",
+      "words": 40,
+      "bytes": 327,
+      "sha256": "5a0478d288145b2e800b349e308906f14aba7330e2c392eaab1b73fbbe6d2ce2",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -1882,7 +2683,6 @@
         "xAI"
       ],
       "dates": [
-        "2026-04",
         "2026-05",
         "2026-08",
         "2026-09"
@@ -1893,24 +2693,56 @@
         "amd",
         "antitrust",
         "apache",
-        "arr",
         "astra",
         "aws",
         "bedrock",
         "benchmark",
         "chatgpt",
-        "claude"
+        "claude",
+        "cohere"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
         2001,
+        2076
+      ],
+      "canonical_for": [],
+      "words": 1221,
+      "bytes": 7715,
+      "sha256": "5201cdadda0367c7e05409fa3b796b30d1118f0f4d4072edf4160cbca6d0ead3",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-53",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-53.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 53)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-04"
+      ],
+      "keywords": [
+        "arr",
+        "claude",
+        "revenue",
+        "run-rate"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        2077,
         2082
       ],
       "canonical_for": [],
-      "words": 1296,
-      "bytes": 8254,
-      "sha256": "3c7d3bd0738da47fd7ab58fce52235c36ace57afd7695b7a5d0022c6fedef921",
+      "words": 75,
+      "bytes": 539,
+      "sha256": "39b661ca12b371ccac86f65f7aa5fbbd625d65ffdd44eadb4e5d7e0225c9e6b1",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {
@@ -2496,23 +3328,12 @@
         "Anthropic",
         "Apple",
         "CISA",
-        "Cerebras",
-        "Cohere",
-        "CoreWeave",
-        "EU",
-        "Fireworks AI",
         "Google",
-        "Groq",
         "Hugging Face",
         "Meta",
         "Microsoft",
         "Mistral",
-        "Nebius",
-        "Nvidia",
         "OpenAI",
-        "Perplexity",
-        "Sakana",
-        "Together AI",
         "United States",
         "xAI"
       ],
@@ -2533,18 +3354,68 @@
         "benchmarks",
         "chatgpt",
         "claude",
-        "cohere"
+        "cost"
       ],
       "source": "docs/RAG/Labos  hyperscalersEN.md",
       "source_anchor": "",
       "source_lines": [
         2774,
+        2836
+      ],
+      "canonical_for": [],
+      "words": 971,
+      "bytes": 7394,
+      "sha256": "ecefd8c15c62aacfb0b3eaf759858ac6422a120861e9689af215229e733f7376",
+      "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
+    },
+    {
+      "id": "labs-hyperscalers-2026/00-labs-hyperscalers/part-66",
+      "path": "labs-hyperscalers-2026/00-labs-hyperscalers/part-66.md",
+      "title": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026) (part 66)",
+      "domain": "step-3-labs-hyperscalers-february-1-september-22-2026",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Cerebras",
+        "Cohere",
+        "CoreWeave",
+        "EU",
+        "Fireworks AI",
+        "Groq",
+        "Meta",
+        "Nebius",
+        "Nvidia",
+        "Perplexity",
+        "Sakana",
+        "Together AI"
+      ],
+      "dates": [
+        "2026-05"
+      ],
+      "keywords": [
+        "acquisition",
+        "benchmark",
+        "benchmarks",
+        "cohere",
+        "cost",
+        "fugu",
+        "inference",
+        "ipo",
+        "nvidia",
+        "perplexity",
+        "pricing",
+        "research"
+      ],
+      "source": "docs/RAG/Labos  hyperscalersEN.md",
+      "source_anchor": "",
+      "source_lines": [
+        2837,
         2858
       ],
       "canonical_for": [],
-      "words": 1264,
-      "bytes": 9591,
-      "sha256": "2818d57b0a6e677e8c2bf2219873e67fcdb5c7e9ef09f477f32260e7bf7235f3",
+      "words": 293,
+      "bytes": 2197,
+      "sha256": "d82de939f18135e291a9f2280b65824fa308bc6932e74a8f8eda504241fe0f28",
       "section": "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
     },
     {

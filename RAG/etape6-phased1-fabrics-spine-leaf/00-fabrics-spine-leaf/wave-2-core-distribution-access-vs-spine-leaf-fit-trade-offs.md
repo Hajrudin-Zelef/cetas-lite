@@ -4,14 +4,14 @@ title: "Wave 2 — Core/distribution/access vs spine-leaf: fit, trade-offs, migr
 domain: step-6-phase-d1-data-center-fabric-architectures-spine-leaf-
 role: deep-dive
 task: reference
-actors: ["Meta", "Microsoft", "Nvidia", "xAI"]
+actors: ["Meta", "Nvidia", "xAI"]
 dates: ["2020-04"]
-keywords: ["distribution", "acquisition", "alignment", "benchmarks", "cost", "dci", "ethernet", "gpu", "latency", "nvidia", "pricing", "research"]
+keywords: ["distribution", "acquisition", "alignment", "benchmarks", "cost", "ethernet", "gpu", "latency", "nvidia", "pricing", "research", "training"]
 source: docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md
 source_anchor: ""
-source_lines: [69, 157]
+source_lines: [69, 141]
 section: "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
-sha256: 27d5bcea8303fc3432e61f2f73897e2a8085cc68f50aaf3d827f79d08754f1ed
+sha256: 95719f1973581710bab6bb9081604f19d179f92b5bc52a4b960beaec28d7a25b
 ---
 
 # Wave 2 — Core/distribution/access vs spine-leaf: fit, trade-offs, migration
@@ -88,20 +88,4 @@ Positioning: OS10/SFS for automated "hands-off" fabrics; Enterprise SONiC for sh
 ### 3.5 HPE Aruba: CX switching for data center
 
 Aruba CX (CX 10000, 9300, 8325/8360 series) with AOS-CX supports data-center leaf-spine with EVPN-VXLAN overlays and VSX (Virtual Switching Extension) for multi-chassis LAG at the leaf/aggregation layer [official]. Aruba's data-center design guides document 2-tier fabrics with VSX pairs as "distributed" leaves and EVPN for multi-tenancy [official].
-
-HPE's acquisition of Juniper (completed mid-2025, ~$14B) [secondary] reshapes this portfolio: Juniper Apstra + QFX and Aruba CX/Fabric Composer now sit under one roof; integration roadmaps were still being published through 2026 [secondary]. **[unverified]** — long-term NOS consolidation outcomes (AOS-CX vs Junos vs Apstra-managed) remain officially uncommitted as of this writing.
-
-### 3.6 Juniper: Apstra and QFX
-
-Juniper's data-center story is intent-based: **Apstra** (acquired 2021) manages QFX/PTX fabrics from declared intent, with built-in validation, telemetry, and support for SONiC as well as Junos devices [official]. Reference blueprints cover 2-stage and 5-stage Clos (collapsed, 3-stage, 5-stage templates are Apstra's standard vocabulary) with EVPN-VXLAN overlays [official].
-
-Hardware: QFX5120/5130/5220/5230/5240/5210 lines span leaf to spine; PTX for super-spine/DCI roles [official]. Juniper publishes "data center fabric" validated designs with eBGP underlays and documented oversubscription options per blueprint [official].
-
-### 3.7 Whitebox / community SONiC designs
-
-Community SONiC (Software for Open Networking in the Cloud, originally Microsoft) runs on whitebox/brite-box switches (Accton/EdgeCore, Celestica, etc.) and on vendor platforms (Dell, NVIDIA, Arista via AVD-adjacent tooling) [secondary]. Reference fabric designs are community-maintained: the classic Microsoft Azure SONiC deployment (tens of thousands of switches, multi-tier Clos) is the existence proof at hyperscale [secondary].
-
-Design tooling: SONiC fabrics are typically provisioned with Ansible/Nornir + Jinja2 templates or vendor wrappers; Batfish/SuzieQ-style validation (see Phase E) is common in the community [secondary]. Trade-off vs vendor NOS: maximum openness and cost leverage against self-supported integration burden [independent].
-
----
 

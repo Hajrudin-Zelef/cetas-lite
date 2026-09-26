@@ -9,9 +9,9 @@ dates: ["2026-02-09", "2026-03-10", "2026-05", "2026-06-08", "2026-06-12", "2026
 keywords: ["research", "advisory", "agent", "benchmark", "compute", "consumer", "cybersecurity", "fable 5", "guardrails", "incident", "ipo", "kill switch"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [8487, 8580]
+source_lines: [8487, 8582]
 section: "17. AI Safety Incidents"
-sha256: f59d2c8866204cc310b2339ba617f3713d68bda09d28a0e7daf384dd302610eb
+sha256: b6f61c007651c8430596c3f224bca84c564912e41c66014ac7e888dfb38595d2
 ---
 
 # What the 2026 defense research concluded
@@ -109,4 +109,6 @@ sha256: f59d2c8866204cc310b2339ba617f3713d68bda09d28a0e7daf384dd302610eb
 - The AG subpoena's 4-day gap from the confidential IPO filing (June 8 → June 12) makes it one of the fastest major legal actions timed to a financing event in the AI sector.
 - The agent-safety numbers quantify a maturing attack economy: 21 documented incidents in two years, 7/21 on coding assistants; 1,088 prompts → 5,317 executed commands in one campaign; 10+ distinct payloads in one vendor's telemetry; +32% growth in malicious injection detections in four months.
 - The defense numbers quantify the gap honestly: 0% ASR in a constrained harness vs 78.6% on a real GUI surface (same model); 12/12 published defenses bypassed at >90% ASR. The field's own measurements say the problem is unsolved at the model layer.
+
+## Main actors
 

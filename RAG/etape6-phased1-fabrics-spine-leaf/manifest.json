@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
   "source_lines": 750,
   "source_sha256": "5c700620dd3472d1d97eac9559ec7ed2429cf119bf9c42386ecdbbc0660d9cad",
-  "chunk_count": 13,
+  "chunk_count": 14,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -55,7 +55,6 @@
       "task": "reference",
       "actors": [
         "Meta",
-        "Microsoft",
         "Nvidia",
         "xAI"
       ],
@@ -68,24 +67,54 @@
         "alignment",
         "benchmarks",
         "cost",
-        "dci",
         "ethernet",
         "gpu",
         "latency",
         "nvidia",
         "pricing",
-        "research"
+        "research",
+        "training"
       ],
       "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
       "source_anchor": "",
       "source_lines": [
         69,
+        141
+      ],
+      "canonical_for": [],
+      "words": 996,
+      "bytes": 7686,
+      "sha256": "95719f1973581710bab6bb9081604f19d179f92b5bc52a4b960beaec28d7a25b",
+      "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
+    },
+    {
+      "id": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/3-6-juniper-apstra-and-qfx",
+      "path": "etape6-phased1-fabrics-spine-leaf/00-fabrics-spine-leaf/3-6-juniper-apstra-and-qfx.md",
+      "title": "3.6 Juniper: Apstra and QFX",
+      "domain": "step-6-phase-d1-data-center-fabric-architectures-spine-leaf-",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "cost",
+        "dci",
+        "nvidia"
+      ],
+      "source": "docs/RAG/etape6_phaseD1_fabrics_spine_leaf.md",
+      "source_anchor": "",
+      "source_lines": [
+        142,
         157
       ],
       "canonical_for": [],
-      "words": 1231,
-      "bytes": 9540,
-      "sha256": "27d5bcea8303fc3432e61f2f73897e2a8085cc68f50aaf3d827f79d08754f1ed",
+      "words": 235,
+      "bytes": 1854,
+      "sha256": "cfd84cfb91702a92b98181f2a1387298ac93d1d464be8b54bac0c7b9d793cbde",
       "section": "Step 6 Phase D1 — Data-Center Fabric Architectures: Spine/Leaf, Clos, Vendor Reference Designs"
     },
     {

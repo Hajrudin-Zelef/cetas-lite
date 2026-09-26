@@ -5,13 +5,13 @@ domain: step-3-labs-hyperscalers-february-1-september-22-2026
 role: deep-dive
 task: agents
 actors: ["AWS", "Anthropic", "Google", "Microsoft", "OpenAI", "Oracle", "SpaceX", "xAI"]
-dates: ["2025-07", "2026-05"]
-keywords: ["agent", "aws", "bedrock", "agents", "antitrust", "benchmark", "compute", "copilot", "distribution", "foundry", "gemini", "gpu"]
+dates: ["2025-07", "2026-05", "2026-05-15"]
+keywords: ["agent", "aws", "bedrock", "agents", "agi", "antitrust", "benchmark", "benchmarks", "claude", "compute", "consumer", "copilot"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [1090, 1138]
+source_lines: [1090, 1163]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: 9da369c831a489b88f21d7d5599e140e395323413b64181a3f809f54c72b2ac2
+sha256: c4af654846f0f462704ba4b52c1799f92f136ae05c3e90bc6ab8cded29bb8c65
 ---
 
 # 7.7 AWS Bedrock + AgentCore (2026)
@@ -64,4 +64,29 @@ sha256: 9da369c831a489b88f21d7d5599e140e395323413b64181a3f809f54c72b2ac2
 | Grok 4.7 | 46 [independent] | Different index revision from 4.6 — NOT comparable |
 
 ---
+
+### 8.7 Grok 4.x — full release table (from Track C; all verified as shipped)
+
+| Model | Release date | Context | API price (in/out per 1M) | Notes |
+|---|---|---|---|---|
+| Grok 4 / Grok 4 Heavy | Jul 9–10, 2025 | 256k | $3 / $15 | Single-agent + multi-agent (Heavy) tiers; SuperGrok Heavy $300/mo introduced [secondary] |
+| Grok 4.1 / 4.1 Thinking | Nov 17, 2025 | n/a | $0.20 / $0.50 ($0.05 cached) | Silent rollout Nov 1–14, 2025; focus on EQ, creative writing, ~3× hallucination cut [secondary] |
+| Grok 4.20 (= "Grok 4.2") | Feb 17, 2026 | 256k | $1.25 / $2.50 | Public beta; "rapid-learning" architecture, 4-agent parallel reasoning, medical-document feature. Branding "4.2" vs "4.20" used inconsistently across sources [secondary] |
+| Grok 4.3 | Beta Apr 17, 2026 (SuperGrok Heavy); API Apr 30, 2026 | 1M | $1.25 / $2.50 ($0.20 cached) | Video input (up to 5 min), native PDF/XLSX/PPTX output, reasoning always-on; 8 legacy models retired May 15, 2026 [secondary] |
+| Grok 4.5 | Jul 8, 2026 | 500k | $2 / $6 | 1.5T-param MoE "V9" architecture; co-trained with Cursor session data [vendor-reported] |
+| Grok 4.6 | Aug 12, 2026 | 500k | $2 / $6 | Long-running agents focus; distributed to Copilot, Bedrock, Foundry, Gemini Enterprise Agent Platform later in August [secondary] |
+| Grok 4.7 | **Sep 21, 2026** | 500k | $2 / $6 | 2.1T params; supplemental SpaceX engineering-data training; released by post-merger "SpaceXAI" [secondary] |
+| Grok 5 | Not released | n/a | n/a | Training on full SpaceX historical corpus targeted before year-end [unverified — ByteVyte, single source] |
+
+**Version check:** Grok 4, 4.1, 4.2/4.20, 4.3, 4.5, 4.6, 4.7 are all real shipped versions. Numbering skips 4.4 (no public release under that name found — likely internal). "4.20" and "4.2" refer to the same Feb 2026 release.
+
+### 8.8 Grok benchmarks by model (vendor-reported vs independent)
+
+**Grok 4 (Jul 2025):** Vendor-reported (xAI livestream) [vendor-reported]: HLE 25.4% (Grok 4, no tools), 44.4% (Grok 4 Heavy, multi-agent + tools); GPQA 87.5–88.9%; AIME Heavy 100%; ARC-AGI-2 16.2% (Heavy) / 15.9%. Independent [independent]: Artificial Analysis Intelligence Index 73, ahead of OpenAI o3 (70), Gemini 2.5 Pro (70), Claude Opus 4 (64) at the time.
+
+**Grok 4.1 (Nov 2025):** Vendor claims [vendor-reported]: LMArena Text Arena #1 at 1,483 Elo (31 pts ahead of nearest rival); EQ-Bench3 1,586 (vs 1,206 for Grok 4); hallucination rate ~12.09% → ~4.22% on real-world queries; FActScore errors 9.89% → <3%. One day after the consumer launch, xAI added API access at $0.20/1M input ($0.05 cached) / $0.50/1M output — notably cheap, likely an enticement/price-cut play [secondary].
+
+**Grok 4.20/4.2 (Feb 2026):** 4-agent parallel architecture ("adversarial consensus"; up to 16 agents in Heavy mode), claimed 65% hallucination reduction (12% → 4.2%), medical-document analysis via photo upload [secondary]. Medical feature had no published clinical validation as of Feb 2026 [secondary]. Early independent estimate of LMArena Elo 1505–1535 (provisional, never confirmed) [unverified].
+
+**Grok 4.3 (Apr–May 2026):** Pricing cut at launch: output $15.00 → $2.50 (−83%), input $3.00 → $1.25 (−58%) vs the 4.20 era [vendor-reported]. Independent [independent]: Artificial Analysis Intelligence Index 53 (some reports cite 38 for "Grok 4.3 (high)" — apparent index-version/config discrepancy); ranked #37 of 154, behind GPT-5.5 (60) and Claude Opus 4.7 (57) [secondary]. AA put it on the Pareto frontier of cost-per-intelligence; benchmark-suite run cost $395, ~20% below Grok 4.20 despite 44% more output tokens [secondary].
 

@@ -4,14 +4,14 @@ title: "Figures and metrics"
 domain: quantization-model-formats
 role: deep-dive
 task: quantization
-actors: ["AMD", "AWS", "Alibaba", "DeepSeek", "Moonshot", "Nvidia", "OpenAI", "Perplexity", "SGLang", "TensorRT-LLM", "Z.ai", "vLLM"]
-dates: []
-keywords: ["amd", "awq", "aws", "blackwell", "consumer", "cost", "datacenter", "decode", "deepseek", "fp4", "fp8", "gguf"]
+actors: ["AMD", "AWS", "Alibaba", "DeepSeek", "Hugging Face", "Intel", "Microsoft", "Moonshot", "Nvidia", "OpenAI", "Perplexity", "SGLang", "TensorRT-LLM", "Unsloth", "Z.ai", "vLLM"]
+dates: ["2026-02-20", "2026-05", "2026-09"]
+keywords: ["amd", "awq", "aws", "bitnet", "blackwell", "compute", "consumer", "cost", "datacenter", "decode", "deepseek", "fp4"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [4013, 4088]
+source_lines: [4013, 4113]
 section: "8. Quantization & Model Formats"
-sha256: d193d6176bb04fb61953e29f45e21b29d9c26d3cc96db68f9f9329e0a7ccaff5
+sha256: fd9fcea1f8271e8d4ec1534d38e7a7b208899570abe0478228ec65b80dbbfe0a
 ---
 
 # Figures and metrics
@@ -91,4 +91,29 @@ sha256: d193d6176bb04fb61953e29f45e21b29d9c26d3cc96db68f9f9329e0a7ccaff5
 | 27B (Qwen3.8) | UD-Q4_K_XL | 16.69 GiB | ~96% top-1 BF16 agreement [DIRECTIONAL] |
 | 671B (DeepSeek-V3.1) | UD-TQ1_0 | ~192 GB | 1-bit extreme compression |
 | 30B-class (Nemotron-3-Nano) | ModelOpt FP8 | 2.6× throughput + 2.6× memory (with Minitron pruning) | vLLM |
+
+## Main actors
+
+| Actor | Role in the 2026 format/tooling story |
+|---|---|
+| **Hugging Face** | Absorbed ggml.ai (2026-02-20); hosts tens of thousands of GGUF checkpoints with metadata viewer and JS parser; redirects optimum-quanto users to bitsandbytes/torchAO |
+| **ggml.ai / Georgi Gerganov** | llama.cpp and GGUF creator; team now HF employees with full technical leadership and MIT licensing preserved; 126,000+ GitHub stars by 2026 |
+| **Unsloth** | Dynamic v3.0 selective-layer GGUF quants (UD- prefix, 1,374-model catalog, pure PTQ); proprietary `unsloth_zo` schedule; NVFP4-GGUF hybrid containers |
+| **NVIDIA** | NVFP4 format; ModelOpt 0.46.0 Blackwell-native toolchain; DeepSeek-R1-FP4 and Kimi-K2.6-NVFP4 production proofs; builds FP4 Tensor-Core hardware (SM100/103/120) |
+| **turboderp (ExLlamaV3)** | Active successor to archived ExLlamaV2; EXL3/QTIP format; v1.4.6–v1.4.9 September 2026 patch cadence; vLLM-EXL3 third-party serving plugin |
+| **vLLM project** | Datacenter inference stack; llm-compressor (FP8/AWQ/NVFP4/MXFP4); kernel gates (Marlin SM75, Machete SM90, NVFP4→flashinfer_cutedsl); `--linear-backend` replaces `VLLM_NVFP4_GEMM_BACKEND` |
+| **SGLang** | Parallel datacenter stack: awq, awq_marlin, gptq_marlin, modelopt_fp4, mxfp4, fp8; `--load-format gguf` (NVIDIA-only) |
+| **Intel** | AutoRound — strongest measured 4-bit PTQ (91.4% logprob top-1 agreement vs BF16); Neural Compressor; OpenVINO 2026.2 INT4 KV on Intel GPU; vLLM-XPU validation |
+| **mobiusml** | HQQ (data-free/fast 1/2/3/4/8-bit) and gemlite (Triton kernels incl. MXFP4/NVFP4 dynamic); HQQ+ low-rank adapters |
+| **ModelCloud** | GPTQModel — AutoGPTQ successor, 5,000+ HF repos reference it |
+| **Red Hat AI** | May 2026 vLLM evaluation of TurboQuant KV-cache variants (see 08b); publishes quantized checkpoints (e.g. Qwen3.5-122B-A10B-NVFP4) |
+| **Microsoft Research** | BitNet natively-trained 1.58-bit ternary models (see 08b); contributes to OCP MX spec |
+| **PrismML** | Bonsai-27B 1-bit/ternary GGUFs (see 08b); `prism-ternary` experimental vLLM-GGUF plugin branch |
+| **mradermacher** (community) | i1- imatrix GGUF cards documenting the per-type ladder across DeepSeek-V2.5, QwQ-32B, Qwen2.5-14B, Gemma-2-9B; ARM edge variants Q4_0_4_4 / Q4_0_4_8 / Q4_0_8_8 |
+| **Artefact2** (community) | Reference per-type KL/PPL table used as the GGUF accuracy standard |
+| **MarcoPizeta** (community) | Reproducible vLLM-vs-EXL3 shootout on RTX PRO 6000 (Sept 2026) |
+| **AMD** | ROCm path (ROCm 6.4.4 beats 7.0.1 3.47× on llama.cpp); MI355X + MXFP4 6.1× measured (Dell); AMD Quark on ROCm |
+| **Open Compute Project** | MX specification v1.0 (Sept 2023) — the open microscaling standard behind MXFP4 |
+
+## Timeline and context
 

@@ -5,13 +5,13 @@ domain: chinese-ai-labs-deep-file-deepseek
 role: deep-dive
 task: actor-profile
 actors: ["China", "DeepSeek", "Moonshot", "SGLang", "vLLM"]
-dates: ["2024-12-26", "2025-01-20", "2025-03-25", "2025-05-28", "2025-08-21", "2025-09-22", "2025-09-29", "2025-12-01", "2026-02-11", "2026-02-15", "2026-03", "2026-03-09", "2026-04-24", "2026-06-01", "2026-06-02", "2026-07-24", "2026-07-31", "2026-08-12", "2026-08-13", "2026-08-16", "2026-08-21", "2026-09-08", "2026-09-09", "2026-09-10", "2026-09-14", "2026-09-22"]
-keywords: ["deepseek", "agent", "apache", "attention", "compute", "cost", "decode", "fp4", "kimi", "kv cache", "license", "memory"]
+dates: ["2026-02-15", "2026-03", "2026-03-09", "2026-04-24", "2026-06-01", "2026-06-02", "2026-07-24", "2026-08-12", "2026-08-13", "2026-08-16", "2026-09-08", "2026-09-10"]
+keywords: ["deepseek", "apache", "attention", "compute", "cost", "decode", "fp4", "kimi", "kv cache", "license", "memory", "mit license"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [1766, 1811]
+source_lines: [1766, 1793]
 section: "5. Chinese AI Labs — Deep File: DeepSeek"
-sha256: aa1b8c56f8aef772fa3af3a9b5ba734c9801e40676f22d7d73891bf70fb561a0
+sha256: 4d3aecc1667af789292a616d03b04e2884da90b547d69daa9650abb18b16c27f
 ---
 
 # 5. Chinese AI Labs — Deep File: DeepSeek
@@ -41,22 +41,4 @@ Keywords: DeepSeek V4, DeepSeek-V4-Lite, DeepSeek V4-Pro-0813, DeepSeek V4.1-Fla
 - Claim 5 — 2026-08-12 V4 Pro "0813" evaluated, +10.6 pts vs initial V4 on Vals Index: **VERIFIED WITH CORRECTION — +9.48 pts, not +10.6**.
 
 ## Key dated facts
-
-- 2024-12-26 — DeepSeek-V3 GA (prior lineage anchor). 2025-01-20 — DeepSeek-R1 GA. 2025-03-25 — V3-0324 checkpoint. 2025-05-28 — R1-0528 checkpoint. 2025-08-21 — V3.1 GA. 2025-09-22 — V3.1-Terminus checkpoint. 2025-09-29 — V3.2-Exp. 2025-12-01 — V3.2 GA.
-- 2026-02-11 — Silent production upgrade: V3.2-class model context 128K → 1M tokens (community-detected) [COMMUNITY]. See Timeline for the quiet-rollout pattern.
-- ~2026-02-15 — **First V4 mentions/rumors circulate**; pre-reporting/rumor phase — **explicitly NOT a release**, no model, no weights, no pricing. Multiple release windows (mid-February, Lunar New Year, early March) pass with no launch (nxcode FAQ).
-- 2026-03-09 — **DeepSeek-V4-Lite ("Sealion-Lite" / "Healer Alpha" / "0302")** surfaces on DeepSeek's website as leak/soft-preview under NDA framing; ~200B params **reported by 36kr only, unconfirmed** [UNVERIFIED figure; secondary]. 36kr's report also says V4 Lite does NOT use the Engram conditional memory system.
-- 2026-04-24 — **DeepSeek-V4 Preview (official)**: V4-Pro (1.6T total / 49B active) + V4-Flash (284B / 13B active); true 1M context; 384K max output; **MIT** open weights on HF/ModelScope; DeepSeek API changelog entry also announces `deepseek-chat`/`deepseek-reasoner` retirement in 3 months. Early speculation had expected Apache 2.0 — the shipped license is MIT.
-- 2026-06-01 — **Permanent 75% flagship API price cut** announced (Digitimes, June 2, 2026); promo pricing ran through May 31; **NOT a V4.1 announcement**. V4-Pro list becomes $0.435/$0.87 (roninforge backfill).
-- 2026-07-24 15:59 UTC — **`deepseek-chat` / `deepseek-reasoner` routing aliases retired** (aliases of `deepseek-v4-flash` non-thinking/thinking modes, resolved under the hood since April 24); no engine change. No grace alias or soft redirect announced.
-- 2026-07-31 — **V4-Flash-0731**: re-post-trained checkpoint, same architecture (DeepSeek changelog).
-- 2026-08-12 — Vals.ai evaluates pre-release **V4-Pro-0813**: Vals Index 52.37% (#18), **+9.48 pts vs V4 (42.89%)** — the brief's "+10.6" is contradicted. AA Intelligence Index 53 (+8 over April preview, v4.1-era scale).
-- 2026-08-13 — **V4-Pro-0813 GA checkpoint (stealth)**: brief website statement on "significantly enhanced agent capabilities," removed by Thursday afternoon; no tech blog. **A V4-line revision, NOT V4.1.**
-- 2026-08-16 — Peak/off-peak API pricing takes effect (wave2.1/06, techtimes): V4-Pro output $3.96 peak / $1.98 off-peak (355%/128% above the old $0.87 flat); V4-Flash output $1.32/$0.66; cache-hit input up to +1,100%.
-- 2026-08-21 — **V4-Flash-Vision-Exp** image-input preview (secondary date dispute: Aug 21 vs Aug 31; immaterial, attribute per-source).
-- 2026-09-08 — **V4.1-Flash two-day public beta**: <100-word notice in DeepSeek's official user group with model id `deepseek-v4.1-flash-expires-on-0910` (~12:00 PM); probe endpoint, not product.
-- 2026-09-10 12:00 Beijing / 04:00 UTC — **V4.1-Flash GA**: 552B MoE, **Causal Encoder-Decoder (CED)**, CSA2, 890 B/token KV, native vision, MIT weights, model id `deepseek-flash`; pricing $0.15/$0.60 off-peak live immediately [VENDOR].
-- 2026-09-14 (planned, conflicted) — DeepSeek's Sept-10 notice: all `deepseek-v4-pro` requests route to V4.1-Flash at Flash billing from 12:00 Beijing; **APIMaster's revised coverage reports V4 Pro API service continues unchanged after Sept 14, no routing** — both kept, conflict flagged.
-- 2026-09-09 — vLLM ships a dedicated V4.1-Flash preview container — one day *ahead* of GA (orcarouter.ai). SGLang + Miles joint day-0 post September 10; Ollama lists `deepseek-v4.1-flash` within a day. Day-0 "support" = preview image + integration work, not stable pip releases.
-- 2026-09-22 — Consolidation cutoff: no newer DeepSeek model release found in sources consulted; next milestone per the Sept-10 notice is V4.1-Pro (not yet shipped).
 

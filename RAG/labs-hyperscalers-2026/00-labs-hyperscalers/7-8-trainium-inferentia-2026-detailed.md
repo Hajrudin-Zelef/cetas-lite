@@ -4,14 +4,14 @@ title: "7.8 Trainium / Inferentia (2026) — detailed"
 domain: step-3-labs-hyperscalers-february-1-september-22-2026
 role: deep-dive
 task: reference
-actors: ["AWS", "Anthropic", "Google", "Meta", "Microsoft", "Nvidia", "OpenAI", "OpenRouter", "TSMC", "United States"]
+actors: ["AWS", "Anthropic", "Google", "Microsoft", "Nvidia", "OpenAI", "TSMC", "United States"]
 dates: ["2025-03", "2025-12", "2026-02-04", "2026-03", "2026-03-19", "2026-07", "2026-07-27", "2026-07-30", "2026-07-31"]
 keywords: ["trainium", "3nm", "accelerator", "agent", "agentic", "agents", "agi", "aws", "bedrock", "benchmark", "blackwell", "capex"]
 source: docs/RAG/Labos  hyperscalersEN.md
 source_anchor: ""
-source_lines: [1037, 1089]
+source_lines: [1037, 1082]
 section: "Step 3 — Labs & Hyperscalers (February 1 → September 22, 2026)"
-sha256: e5cb201189e5379002dca0b14e964b4544f2e912eeb1b815cb3c68c47e29c689
+sha256: 6abefc1eff764a0dcc89254e1cdecb0ce4b5b8cf7f8cc2d4654bd38832f16542
 ---
 
 # 7.8 Trainium / Inferentia (2026) — detailed
@@ -61,11 +61,4 @@ sha256: e5cb201189e5379002dca0b14e964b4544f2e912eeb1b815cb3c68c47e29c689
 - **Capacity:** Amazon added **3.8–3.9 GW** of data-center capacity in the past year (outpacing competitors, per Jassy); aims to **double capacity by 2027** [vendor-reported][secondary].
 - **$50B federal AI data-center investment** (announced Nov 24, 2025 — context; construction begins 2026): up to $50B for AI/supercomputing across AWS Top Secret, Secret, and GovCloud regions; **+1.3 GW** of compute; 11,000+ US government agencies served [secondary via Reuters].
 - **India:** Jassy committed **$48B to India 2026–2030** (custom AI accelerators, AWS infra in Mumbai and Hyderabad) [secondary]; separate reporting cites an **$8.3B** AI/cloud infrastructure investment in India [secondary] — figures may overlap; do not sum.
-
-**Personnel:**
-- **Rohit Prasad** (former AI chief) departed end of 2025; **Peter DeSantis** took over the consolidated AI group in December 2025 [secondary].
-- **David Luan** left Amazon (~mid-2026) [secondary].
-- **Pieter Abbeel** leads Frontier Model Research (FMR) — the new top AI priority for 2026 [secondary].
-
-**Cross-cutting notes (2026 = the capex year):** Big Tech combined 2026 capex ≈ **$730B** (Amazon ~$220B, Google $195–205B, Microsoft ~$175B, Meta $130–145B), up ~78% vs ~$410B in 2025 [secondary]. **Circular AI deals:** equity and cloud-purchase commitments flow both ways between hyperscalers and frontier labs (Alphabet↔Anthropic, Amazon↔OpenAI, Amazon↔Anthropic, Microsoft/NVIDIA↔Anthropic). Treat headline figures as announced maxima, not cash paid. **Agents dominate workloads:** OpenRouter data (Sep 2026) puts agents at ~71% of token consumption; every lab shipped agent platforms (Gemini Enterprise Agent Platform, Bedrock AgentCore, Microsoft Foundry Agent Service).
 

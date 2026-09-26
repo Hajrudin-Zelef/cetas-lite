@@ -1,0 +1,69 @@
+---
+id: collect-260926-mikrotik/mikrotik/load-balancing-lb-pcc-5-line-isp-failover-mikrotik-script-routeros
+title: "Load Balancing LB PCC 5 Line ISP Failover - Mikrotik Script RouterOS"
+domain: mikrotik
+role: reference
+task: reference
+actors: []
+dates: ["2021-13-02"]
+keywords: ["throughput"]
+source: docs/RAG/lot-mikrotik/RouterOS/load-balancing-lb-pcc-5-line-isp-failover-mikrotik-script-routeros.md
+source_anchor: ""
+source_lines: [1, 54]
+sha256: e53d38d86acfbec9c5f0b7bc8ce3817fb00df406186067207d61f638f95c78bc
+---
+
+# Load Balancing LB PCC 5 Line ISP Failover - Mikrotik Script RouterOS
+
+Load balance PCC 5 ISP on mikrotik is a technique for distributing traffic load on two or more connection lines in a balanced way, so that traffic can run optimally, maximize throughput, reduce response time and avoid overloading one of the connection lines.
+```
+################################################
+# LOAD BALANCING (LB) PCC SCRIPT GENERATOR
+# Date/Time: 2/13/2021, 9:19:38 PM
+# https://fb.me/buananet.pbun
+# Load Balancing Metode -> PCC
+################################################
+/ip firewall address-list
+add address=192.168.0.0/16 list=LOCAL-IP
+add address=172.16.0.0/12 list=LOCAL-IP
+add address=10.0.0.0/8 list=LOCAL-IP
+/ip firewall nat
+add chain=srcnat out-interface="ether1" action=masquerade
+add chain=srcnat out-interface="ether2" action=masquerade
+add chain=srcnat out-interface="ether3" action=masquerade
+add chain=srcnat out-interface="ether4" action=masquerade
+add chain=srcnat out-interface="ether5" action=masquerade
+/ip route
+add check-gateway=ping distance=1 gateway="192.168.1.1" routing-mark="to-ether1"
+add check-gateway=ping distance=1 gateway="192.168.2.1" routing-mark="to-ether2"
+add check-gateway=ping distance=1 gateway="192.168.3.1" routing-mark="to-ether3"
+add check-gateway=ping distance=1 gateway="192.168.4.1" routing-mark="to-ether4"
+add check-gateway=ping distance=1 gateway="192.168.5.1" routing-mark="to-ether5"
+add check-gateway=ping distance=1 gateway="192.168.1.1"
+add check-gateway=ping distance=2 gateway="192.168.2.1"
+add check-gateway=ping distance=3 gateway="192.168.3.1"
+add check-gateway=ping distance=4 gateway="192.168.4.1"
+add check-gateway=ping distance=5 gateway="192.168.5.1"
+/ip firewall mangle
+add action=mark-connection chain=input in-interface="ether1" new-connection-mark="cm-ether1" passthrough=yes
+add action=mark-connection chain=input in-interface="ether2" new-connection-mark="cm-ether2" passthrough=yes
+add action=mark-connection chain=input in-interface="ether3" new-connection-mark="cm-ether3" passthrough=yes
+add action=mark-connection chain=input in-interface="ether4" new-connection-mark="cm-ether4" passthrough=yes
+add action=mark-connection chain=input in-interface="ether5" new-connection-mark="cm-ether5" passthrough=yes
+add action=mark-routing chain=output connection-mark="cm-ether1" new-routing-mark="to-ether1" passthrough=yes
+add action=mark-routing chain=output connection-mark="cm-ether2" new-routing-mark="to-ether2" passthrough=yes
+add action=mark-routing chain=output connection-mark="cm-ether3" new-routing-mark="to-ether3" passthrough=yes
+add action=mark-routing chain=output connection-mark="cm-ether4" new-routing-mark="to-ether4" passthrough=yes
+add action=mark-routing chain=output connection-mark="cm-ether5" new-routing-mark="to-ether5" passthrough=yes
+add action=mark-connection chain=prerouting dst-address-list=!LOCAL-IP dst-address-type=!local new-connection-mark="cm-ether1" passthrough=yes per-connection-classifier=both-addresses-and-ports:5/0 src-address-list=LOCAL-IP
+add action=mark-connection chain=prerouting dst-address-list=!LOCAL-IP dst-address-type=!local new-connection-mark="cm-ether2" passthrough=yes per-connection-classifier=both-addresses-and-ports:5/1 src-address-list=LOCAL-IP
+add action=mark-connection chain=prerouting dst-address-list=!LOCAL-IP dst-address-type=!local new-connection-mark="cm-ether3" passthrough=yes per-connection-classifier=both-addresses-and-ports:5/2 src-address-list=LOCAL-IP
+add action=mark-connection chain=prerouting dst-address-list=!LOCAL-IP dst-address-type=!local new-connection-mark="cm-ether4" passthrough=yes per-connection-classifier=both-addresses-and-ports:5/3 src-address-list=LOCAL-IP
+add action=mark-connection chain=prerouting dst-address-list=!LOCAL-IP dst-address-type=!local new-connection-mark="cm-ether5" passthrough=yes per-connection-classifier=both-addresses-and-ports:5/4 src-address-list=LOCAL-IP
+add action=mark-routing chain=prerouting connection-mark="cm-ether1" dst-address-list=!LOCAL-IP new-routing-mark="to-ether1" passthrough=yes src-address-list=LOCAL-IP
+add action=mark-routing chain=prerouting connection-mark="cm-ether2" dst-address-list=!LOCAL-IP new-routing-mark="to-ether2" passthrough=yes src-address-list=LOCAL-IP
+add action=mark-routing chain=prerouting connection-mark="cm-ether3" dst-address-list=!LOCAL-IP new-routing-mark="to-ether3" passthrough=yes src-address-list=LOCAL-IP
+add action=mark-routing chain=prerouting connection-mark="cm-ether4" dst-address-list=!LOCAL-IP new-routing-mark="to-ether4" passthrough=yes src-address-list=LOCAL-IP
+add action=mark-routing chain=prerouting connection-mark="cm-ether5" dst-address-list=!LOCAL-IP new-routing-mark="to-ether5" passthrough=yes src-address-list=LOCAL-IP
+```
+Credit: https://www.o-om.com/2020/12/load-balancing-pcc-script-generator-for.html

@@ -9,9 +9,9 @@ dates: ["2024-10-28", "2025-02-18", "2025-07-24", "2026-01-13", "2026-03", "2026
 keywords: ["accelerator", "amd", "compute", "consumer", "decode", "distribution", "gpu", "intel", "nvidia", "research"]
 source: docs/RAG/etape7_phaseI_media.md
 source_anchor: ""
-source_lines: [90, 149]
+source_lines: [90, 137]
 section: "Step 7 — Phase I: Media Servers, Transcoding and Upscaling"
-sha256: b15232a0734c94a91e7d83d3d67a2a07020d4cb64abb6492f8b8c1c1cb8fce04
+sha256: 6a086c1c79a27fc26d6c2d2b5e1b3826af83f1a78924b672d6ff37c0a3f7b35a
 ---
 
 # 2. FFmpeg and the hardware-encoder landscape
@@ -63,16 +63,4 @@ sha256: b15232a0734c94a91e7d83d3d67a2a07020d4cb64abb6492f8b8c1c1cb8fce04
 ## 3. HDR and tone mapping
 
 HDR-to-SDR tone mapping is the most expensive common real-time filter stage: it forces a software filter (`tonemap`, `libplacebo`) into the chain and is the usual reason 4K HDR transcodes stutter while SDR ones fly `[independent]`.
-
-**FFmpeg `tonemap` filter** (`-vf tonemap=...`) `[official]`:
-
-- Algorithms: `clip`, `linear`, `gamma`, **`reinhard`** (classic photographic curve, fast, desaturates highlights), **`hable`** (filmic curve approximating filmic response, the community default for HDR→SDR), `mobius`, `bt2390` `[official]`.
-- Typical usage: `tonemap=hable:desat=0` (desaturation control matters for neon/LED-heavy content) `[independent]`; for OpenCL-accelerated mapping: `tonemap_opencl=hable` after `hwupload` to the OpenCL device `[official]`.
-- Jellyfin 10.10.0 added **software HDR tone mapping** as a headline feature `[official]`; community 12.1 validation checklists still include explicit "forced VA-API transcoding + HDR tone mapping" verification `[independent]`.
-- Filter ordering: decode → `tonemap` (software pixel format) → format conversion → `hwupload` → hardware encode `[independent]`; doing tone mapping after `hwupload` without an OpenCL/Vulkan-capable filter fails or falls back `[independent]`.
-- `libplacebo` filter offers higher-quality, GPU-shader tone mapping (needs Vulkan device) and is the quality ceiling for offline HDR→SDR conversion `[official]`/`[independent]`.
-
-**Dolby Vision:** Jellyfin 10.10.0 improved Dolby Vision handling `[official]`; on Apple TV, Infuse provides full Dolby Vision profile support, which is why it remains the recommended Apple TV 4K HDR client over Swiftfin `[secondary]`.
-
-**Practical rules:** (1) avoid transcoding HDR whenever direct play is possible — client capability (Infuse/Kodi) beats server tone mapping; (2) if tone mapping is unavoidable, prefer hardware decode + software `tonemap=hable` + hardware encode over full-software; (3) for archival, consider keeping a separate SDR 1080p version (multi-version support exists in Jellyfin 12) rather than tone-mapping on the fly `[independent]`.
 

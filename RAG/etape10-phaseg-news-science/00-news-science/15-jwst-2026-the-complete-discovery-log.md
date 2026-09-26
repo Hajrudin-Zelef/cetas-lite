@@ -9,9 +9,9 @@ dates: ["2024-05", "2025-04", "2026-05"]
 keywords: ["benchmark", "energy"]
 source: docs/RAG/etape10_phaseG_news_science.md
 source_anchor: ""
-source_lines: [514, 565]
+source_lines: [514, 559]
 section: "Step 10 Phase G — Science & Planet News (February → September 2026)"
-sha256: 64694747ee90d35935632e0f53da11a7a15b4c940ed507a8846f7a5b7bdb9783
+sha256: 706ebbe49aedd8b2bc75a42db9d1a0c05b50841ece000fd30be9d840fd1aa541
 ---
 
 # 15. JWST 2026: the complete discovery log
@@ -61,10 +61,4 @@ Companion to Section 3.2 — every 2026 JWST result captured, with source-grade 
 ---
 
 ## 18. Health: the 2026 Alzheimer's pipeline
-
-- **Three converging 2026 studies** reframe Alzheimer's as an immune/genomic disease: (1) *Cell* (April) — cancer-driver mutations in microglia; (2) *Nature* (July) — routine blood-to-brain immune migration in aging; (3) the repurposed-cancer-drug program (letrozole + irinotecan) moving toward human trials [secondary] — https://medicalxpress.com/news/2026-04-unexpected-cancer-mutations-brain-immune.html ; https://www.medscape.com/viewarticle/puzzling-cancer-mutation-may-lower-alzheimers-disease-risk-2026a1000szy ; https://www.psypost.org/repurposed-cancer-drugs-show-promise-as-combination-therapy-for-alzheimers-disease/
-- **Monoclonal antibodies**: 2026 Phase III readouts for anti-amyloid antibodies showed significant slowing of cognitive decline vs placebo — the amyloid-targeting strategy continues to accumulate (contested) evidence [secondary] — https://podscan.fm/podcasts/pharma-and-biotech-daily/episodes/gene-therapy-breakthroughs-and-fda-accelerations-transforming-pharma
-- **The testing blind spot**: for both mpox and H5N1, the lack of rapid, scalable diagnostics means "we don't know the true number of infections, don't catch dangerous mutations early, and can't identify hotspots fast enough" [independent] — https://www.statnews.com/2024/11/12/mpox-h5n1-bird-flu-triple-rapid-tests/
-
----
 

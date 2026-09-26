@@ -5,13 +5,13 @@ domain: step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu
 role: deep-dive
 task: pricing
 actors: ["AMD", "DeepSeek", "Nvidia", "OpenAI", "vLLM"]
-dates: ["2025-07", "2026-09-22"]
-keywords: ["pricing", "agent", "amd", "benchmark", "claude", "copilot", "cost", "deepseek", "funding", "gguf", "gpu", "inference"]
+dates: ["2025-07"]
+keywords: ["pricing", "agent", "amd", "claude", "copilot", "cost", "deepseek", "funding", "gguf", "gpu", "inference", "llama"]
 source: docs/RAG/etape4_trackB_local_inference.md
 source_anchor: ""
-source_lines: [603, 687]
+source_lines: [603, 681]
 section: "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
-sha256: 5e7c90cd70fa7a64bf429dcd82583b00c7278bbdc4693ce00f92c0ff5730e6c0
+sha256: 16fbb3260937ab236ad10786e748d3506a1c51b1466d630062df11653624f30f
 ---
 
 # 10. Pricing — consolidated
@@ -94,10 +94,4 @@ sha256: 5e7c90cd70fa7a64bf429dcd82583b00c7278bbdc4693ce00f92c0ff5730e6c0
 ---
 
 ## Part C — LM Studio + local inference hardware + GGUF quantization
-
-**Research date:** September 22, 2026 (cutoff)
-**All deliverables in English per project rule.** Provenance tags used throughout:
-`[official]` = the vendor/project's own site, docs, blog, changelog · `[vendor-reported]` = numbers stated by the vendor about its own product · `[independent]` = independent review/benchmark/guide · `[secondary]` = aggregator, blog, or derived summary · `[unverified]` = could not be cross-confirmed; do not treat as fact.
-
----
 

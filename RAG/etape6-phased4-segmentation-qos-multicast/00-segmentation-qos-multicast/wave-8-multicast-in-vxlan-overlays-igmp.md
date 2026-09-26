@@ -9,9 +9,9 @@ dates: []
 keywords: ["ethernet"]
 source: docs/RAG/etape6_phaseD4_segmentation_qos_multicast.md
 source_anchor: ""
-source_lines: [207, 256]
+source_lines: [207, 245]
 section: "Step 6 — Phase D4: Segmentation, QoS, Multicast & Network Services"
-sha256: 39d60ab92a11501a111d688d170d165e00e279ec3cfec99f735e1d792f06558a
+sha256: 16df8bc27dd4d557731821ff7ae7e44da03dbe733b14f3993d1fbbf9054e51cc
 ---
 
 # Wave 8 — Multicast in VXLAN overlays + IGMP
@@ -54,15 +54,4 @@ sha256: 39d60ab92a11501a111d688d170d165e00e279ec3cfec99f735e1d792f06558a
 - Shared-services pattern: DNS (like DHCP/AD/SIEM) lives in a shared-services VRF/tenant, reached from tenant VRFs via selective route leaking or ACI "shared subnet" constructs `[official]/[secondary]` — Cisco Press ACI; NetPilot pattern (Waves 1–2).
 - Design points: anycast DNS (same IP on multiple servers, routed to nearest) for resilience; DNS64/NAT64 only in v6-transition designs; keep DNS in the underlay-independent services block so fabric re-convergence does not orphan name resolution `[secondary]` — standard practice; no single authoritative vendor doc found — recorded as practice, not spec.
 - Gap: no current public data on DNS-anycast deployment prevalence in enterprise DCs — `[unverified]`.
-
-### 9.3 NTP/PTP timing
-- NTP: hierarchical stratum model, ms-level accuracy — sufficient for logging/correlation; every fabric device + hypervisor should sync to redundant stratum-1/2 sources `[secondary]` — standard practice.
-- PTP (IEEE 1588): sub-microsecond sync via boundary clocks / transparent clocks on switches; required for financial trading (MiFID II timestamping), 5G fronthaul, and some AI-collective telemetry `[secondary]` — widely documented; Arista EOS and NX-OS both document PTP boundary/transparent clock modes `[official]` (per-vendor docs, not deep-linked here).
-- DC relevance: PTP in the underlay for telemetry correlation; NTP everywhere as baseline; never mix unauthenticated NTP across security zones without NTS/authentication where required `[secondary]`.
-- Gap: per-platform PTP profile support (G.8275.1 vs default E2E/P2P) matrix not compiled — open item `[unverified]`.
-
-### Wave 9 verification
-- Sources: 5. Cisco 17.5.1/17.6.1 DHCP-relay version boundary captured verbatim. DNS/PTP sections are practice-level; flagged where no authoritative doc was consulted.
-
----
 

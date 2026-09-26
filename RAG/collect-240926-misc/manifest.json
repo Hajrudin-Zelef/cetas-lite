@@ -4,8 +4,8 @@
   "source": "docs/RAG/clean_en/misc",
   "source_dir": "docs/RAG/clean_en/misc",
   "source_files": 29,
-  "source_sha256": "ef4734eeb04ccbfb0058514a0f4c7cceea54f79328c83f78191b3936a8c3ca38",
-  "chunk_count": 29,
+  "source_sha256": "888f806daa9087b2a916a6751d0dd70a43a445af556969c20d217566feb3c5cd",
+  "chunk_count": 48,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -45,16 +45,14 @@
       "sha256": "88fef4f5760f41ada6ddfdbe13346f5674d01a406778e08274449caee9dd69fe"
     },
     {
-      "id": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret",
-      "path": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret.md",
+      "id": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret-1",
+      "path": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret-1.md",
       "title": "aux-etats-unis-les-data-centers-se-negocient-dans-le-secret",
       "domain": "blogdumoderateur",
       "role": "reference",
       "task": "reference",
       "actors": [
-        "AWS",
         "Applied Digital",
-        "California",
         "Meta",
         "United States"
       ],
@@ -73,12 +71,40 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1045,
+      "bytes": 6622,
+      "sha256": "d6d4b91cc31a4cbf5017dcde9497699e4521982f0813a5994f111a6843e9d118"
+    },
+    {
+      "id": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret-2",
+      "path": "collect-240926-misc/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret-2.md",
+      "title": "aux-etats-unis-les-data-centers-se-negocient-dans-le-secret",
+      "domain": "blogdumoderateur",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Applied Digital",
+        "California",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "disclosure"
+      ],
+      "source": "docs/RAG/clean_en/misc/aux-etats-unis-les-data-centers-se-negocient-dans-le-secret.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
         79
       ],
       "canonical_for": [],
-      "words": 1693,
-      "bytes": 10759,
-      "sha256": "3a73ebd62d4597f3beb89bd5b66a6043fcbea997c1b367d092950cc08a3eba83"
+      "words": 648,
+      "bytes": 4137,
+      "sha256": "27a6cd4cfc678a433f81523365cd6bb671638210c97c035846bb1e819e6dbcf5"
     },
     {
       "id": "collect-240926-misc/misc/benchmarking-gpt-6-astra",
@@ -205,8 +231,45 @@
       "sha256": "c328b70a4aeae11ef74dbfc0428935c37710ca86cafd02c686fe770a7c217fd9"
     },
     {
-      "id": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores",
-      "path": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores.md",
+      "id": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores-1",
+      "path": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores-1.md",
+      "title": "claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores",
+      "domain": "orcarouter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "claude",
+        "gpt-6",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "cybersecurity",
+        "fable 5",
+        "gpt-5.6",
+        "leaderboard",
+        "opus 4",
+        "opus 5"
+      ],
+      "source": "docs/RAG/clean_en/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        56
+      ],
+      "canonical_for": [],
+      "words": 1235,
+      "bytes": 7553,
+      "sha256": "b2f7b7fc652ae0310de301af07e3b9f589f8f41cfcc27d9796717a9df108233b"
+    },
+    {
+      "id": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores-2",
+      "path": "collect-240926-misc/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores-2.md",
       "title": "claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores",
       "domain": "orcarouter",
       "role": "reference",
@@ -225,25 +288,25 @@
         "benchmarks",
         "context window",
         "cost",
-        "cybersecurity",
         "fable 5",
-        "gpt-5.6",
-        "incident"
+        "incident",
+        "opus 4",
+        "opus 5"
       ],
       "source": "docs/RAG/clean_en/misc/claude-opus-5-5-vs-gpt-6-astra-le-gout-qui-a-depasse-les-scores.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        57,
         87
       ],
       "canonical_for": [],
-      "words": 2028,
-      "bytes": 12408,
-      "sha256": "15fd5eaffba14d5376ea4f4fe3937ed38176a8e47b5664d338db24e50307771e"
+      "words": 793,
+      "bytes": 4855,
+      "sha256": "4931c472803e6379bdec7be0fdb74177415f7716ba7fe19b9480ca13cc9d81b4"
     },
     {
-      "id": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation",
-      "path": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation.md",
+      "id": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation-1",
+      "path": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation-1.md",
       "title": "deepseek-v4-how-to-run-locally-unsloth-documentation",
       "domain": "unsloth",
       "role": "reference",
@@ -252,14 +315,12 @@
         "Anthropic",
         "Apple",
         "DeepSeek",
-        "Perplexity",
         "Unsloth"
       ],
       "dates": [],
       "keywords": [
         "deepseek",
         "agentic",
-        "agents",
         "benchmark",
         "benchmarks",
         "claude",
@@ -268,18 +329,57 @@
         "gguf",
         "gpu",
         "inference",
-        "kv cache"
+        "kv cache",
+        "llama"
       ],
       "source": "docs/RAG/clean_en/misc/deepseek-v4-how-to-run-locally-unsloth-documentation.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        105
+      ],
+      "canonical_for": [],
+      "words": 1153,
+      "bytes": 7627,
+      "sha256": "58904eaacd625e5e80c95d7535561c60d17644c9a84ed41d41ff2d364b04eafa"
+    },
+    {
+      "id": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation-2",
+      "path": "collect-240926-misc/misc/deepseek-v4-how-to-run-locally-unsloth-documentation-2.md",
+      "title": "deepseek-v4-how-to-run-locally-unsloth-documentation",
+      "domain": "unsloth",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "DeepSeek",
+        "Perplexity",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "agents",
+        "benchmarks",
+        "gguf",
+        "gpu",
+        "inference",
+        "llama",
+        "llama.cpp",
+        "memory",
+        "mxfp4",
+        "parameters",
+        "perplexity"
+      ],
+      "source": "docs/RAG/clean_en/misc/deepseek-v4-how-to-run-locally-unsloth-documentation.md",
+      "source_anchor": "",
+      "source_lines": [
+        106,
         356
       ],
       "canonical_for": [],
-      "words": 1495,
-      "bytes": 10012,
-      "sha256": "72ffb93d4986ddeb167281a9b432f09fe8ffa97006540cec0622eb60e465a59a"
+      "words": 342,
+      "bytes": 2385,
+      "sha256": "d5b1e15ebcf63051ab29832d78240aa0bb860a56547b0de7153af7e5efcff4c8"
     },
     {
       "id": "collect-240926-misc/misc/glm-5-3-flash-how-to-run-locally-unsloth-documentation",
@@ -371,8 +471,8 @@
       "sha256": "e86de6f05f56b3ccbfd95c4e1993f09098114ab8533c061f22c765e6fa36e586"
     },
     {
-      "id": "collect-240926-misc/misc/go",
-      "path": "collect-240926-misc/misc/go.md",
+      "id": "collect-240926-misc/misc/go-1",
+      "path": "collect-240926-misc/misc/go-1.md",
       "title": "Go",
       "domain": "opencode",
       "role": "reference",
@@ -389,9 +489,7 @@
         "Z.ai",
         "xAI"
       ],
-      "dates": [
-        "2026-09-30"
-      ],
+      "dates": [],
       "keywords": [
         "agent",
         "agents",
@@ -400,26 +498,111 @@
         "cost",
         "deepseek",
         "glm",
-        "gpt-5.6",
-        "gpt-6",
-        "gpu",
         "grok",
-        "grok 4"
+        "grok 4",
+        "kimi",
+        "latency",
+        "luna"
       ],
       "source": "docs/RAG/clean_en/misc/go.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        110
+      ],
+      "canonical_for": [],
+      "words": 854,
+      "bytes": 5176,
+      "sha256": "f0deac98b4a421ac67c7c27c8713418e0179b3b7f6d77601ceb23bcf88e93ea6"
+    },
+    {
+      "id": "collect-240926-misc/misc/go-2",
+      "path": "collect-240926-misc/misc/go-2.md",
+      "title": "Go",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "LongCat",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "glm",
+        "gpu",
+        "grok",
+        "grok 4",
+        "kimi",
+        "luna",
+        "muse",
+        "muse spark"
+      ],
+      "source": "docs/RAG/clean_en/misc/go.md",
+      "source_anchor": "",
+      "source_lines": [
+        111,
+        239
+      ],
+      "canonical_for": [],
+      "words": 1611,
+      "bytes": 7977,
+      "sha256": "e91ac98afffedcac702936b17565889401b4bc16cc1b0536c9e58aa729d93234"
+    },
+    {
+      "id": "collect-240926-misc/misc/go-3",
+      "path": "collect-240926-misc/misc/go-3.md",
+      "title": "Go",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "LongCat",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [
+        "2026-09-30"
+      ],
+      "keywords": [
+        "agent",
+        "cost",
+        "deepseek",
+        "glm",
+        "gpt-5.6",
+        "gpt-6",
+        "grok",
+        "grok 4",
+        "kimi",
+        "luna",
+        "muse",
+        "muse spark"
+      ],
+      "source": "docs/RAG/clean_en/misc/go.md",
+      "source_anchor": "",
+      "source_lines": [
+        240,
         332
       ],
       "canonical_for": [],
-      "words": 3454,
-      "bytes": 19935,
-      "sha256": "795137dd96bf457f91b0720a88a163d267093583323ccf8e6c63bba4b64f78c6"
+      "words": 989,
+      "bytes": 6782,
+      "sha256": "86409c29f253c5179621a451a24e9a57170ce05ad99764a0f48bd6182c525361"
     },
     {
-      "id": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul",
-      "path": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul.md",
+      "id": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul-1",
+      "path": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul-1.md",
       "title": "GPT-6 Astra: the most intelligent and best-aligned model in the world",
       "domain": "koul",
       "role": "reference",
@@ -437,7 +620,6 @@
       "keywords": [
         "astra",
         "gpt-6",
-        "agentic",
         "agents",
         "agi",
         "alignment",
@@ -446,18 +628,54 @@
         "benchmark",
         "benchmarks",
         "chatgpt",
-        "claude"
+        "claude",
+        "context window"
       ],
       "source": "docs/RAG/clean_en/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1222,
+      "bytes": 7976,
+      "sha256": "a25037d8fffd33f90ceb434627a7fa3a9d63199c4f60330eb2ff3f74b0e694a3"
+    },
+    {
+      "id": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul-2",
+      "path": "collect-240926-misc/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul-2.md",
+      "title": "GPT-6 Astra: the most intelligent and best-aligned model in the world",
+      "domain": "koul",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "gpt-6",
+        "agentic",
+        "alignment",
+        "benchmark",
+        "claude",
+        "cost",
+        "fable 5",
+        "latency",
+        "pricing"
+      ],
+      "source": "docs/RAG/clean_en/misc/gpt-6-astra-le-modele-le-plus-intelligent-et-le-mieux-aligne-au-monde-koul.md",
+      "source_anchor": "",
+      "source_lines": [
+        67,
         77
       ],
       "canonical_for": [],
-      "words": 1529,
-      "bytes": 9785,
-      "sha256": "9dd2e7222cafc8d29b204963b975f10721b4eb317e25f75e5b60343c92ec0f8c"
+      "words": 307,
+      "bytes": 1809,
+      "sha256": "853861dc4c9725bf4561ddba6e282168e6656300dd78225529816357874c7cd7"
     },
     {
       "id": "collect-240926-misc/misc/introduction",
@@ -485,8 +703,41 @@
       "sha256": "5b78878ce208e0fefd69f710895c6a957f920964c082a98ec3454f4f09733885"
     },
     {
-      "id": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation",
-      "path": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation.md",
+      "id": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation-1",
+      "path": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation-1.md",
+      "title": "kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation",
+      "domain": "poyo",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Moonshot"
+      ],
+      "dates": [
+        "2026-07-21"
+      ],
+      "keywords": [
+        "agent",
+        "kimi",
+        "cost",
+        "reasoning",
+        "research",
+        "tool use",
+        "transcription"
+      ],
+      "source": "docs/RAG/clean_en/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        236
+      ],
+      "canonical_for": [],
+      "words": 1198,
+      "bytes": 7737,
+      "sha256": "69de693832ff30bbf72aef16a7a8114a70aeb0f4b24c56d598a809727256eab4"
+    },
+    {
+      "id": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation-2",
+      "path": "collect-240926-misc/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation-2.md",
       "title": "kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation",
       "domain": "poyo",
       "role": "reference",
@@ -495,9 +746,7 @@
         "Moonshot",
         "OpenAI"
       ],
-      "dates": [
-        "2026-07-21"
-      ],
+      "dates": [],
       "keywords": [
         "agent",
         "kimi",
@@ -509,19 +758,18 @@
         "pricing",
         "reasoning",
         "research",
-        "sol",
-        "tool use"
+        "sol"
       ],
       "source": "docs/RAG/clean_en/misc/kimi-k3-coding-test-a-reproducible-repository-and-agent-evaluation.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        237,
         314
       ],
       "canonical_for": [],
-      "words": 1795,
-      "bytes": 11307,
-      "sha256": "5a97cbde93e23d05040abceac2cc83b0dff5fc76ab8e15ab0f6ea9f4fd6364d7"
+      "words": 597,
+      "bytes": 3570,
+      "sha256": "988466c9880f735ce3fc580276083e78c116bea63f6402b9078592fc09c84924"
     },
     {
       "id": "collect-240926-misc/misc/kimi-k3-how-to-run-locally-unsloth-documentation",
@@ -643,8 +891,8 @@
       "sha256": "05b1baf4b4deda2950693301f6e3a05f0c2d0d0bbf1923cd42211e500e528489"
     },
     {
-      "id": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege",
-      "path": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege.md",
+      "id": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege-1",
+      "path": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege-1.md",
       "title": "mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege",
       "domain": "orcarouter",
       "role": "reference",
@@ -679,12 +927,40 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1263,
+      "bytes": 7812,
+      "sha256": "7cdf6e0f8ae7c18b358c06f7da10f6e84bca585d4abd0fa0186fee30ea94c869"
+    },
+    {
+      "id": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege-2",
+      "path": "collect-240926-misc/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege-2.md",
+      "title": "mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege",
+      "domain": "orcarouter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "pricing",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/misc/mimo-2-6-vs-mimo-v2-6-meme-version-avec-en-plus-un-nom-piege.md",
+      "source_anchor": "",
+      "source_lines": [
+        53,
         71
       ],
       "canonical_for": [],
-      "words": 1791,
-      "bytes": 11055,
-      "sha256": "e06676d348953248264ef27d738a1713e51d07ad354f82c2386f0415c17ac2de"
+      "words": 528,
+      "bytes": 3243,
+      "sha256": "5a478e10fd32cb39e68f61bb8a615da79d5d44ce27f3b7aee757b89bd995ab30"
     },
     {
       "id": "collect-240926-misc/misc/mimo-v2-6-flash-a-pricing-benchmarks-speed-command-code",
@@ -721,8 +997,8 @@
       "sha256": "2b9d6088576539ca05e0d855eee81c7512bf169c4c26805378687e4557e6693d"
     },
     {
-      "id": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026",
-      "path": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026.md",
+      "id": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026-1",
+      "path": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026-1.md",
       "title": "mimo-v2-6-pro-benchmarks-pricing-speed-september-2026",
       "domain": "benchlm",
       "role": "reference",
@@ -743,27 +1019,62 @@
       "keywords": [
         "benchmark",
         "benchmarks",
-        "pricing",
         "agentic",
         "agents",
         "astra",
         "claude",
         "context window",
-        "cost",
         "cyber",
         "deepseek",
-        "gpt-6"
+        "gpt-6",
+        "latency",
+        "leaderboard"
       ],
       "source": "docs/RAG/clean_en/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        157
+      ],
+      "canonical_for": [],
+      "words": 1249,
+      "bytes": 7917,
+      "sha256": "001c6087cf9527030e032be22fe82a56edd49f39fb341053a427fb7374d5ac2b"
+    },
+    {
+      "id": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026-2",
+      "path": "collect-240926-misc/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026-2.md",
+      "title": "mimo-v2-6-pro-benchmarks-pricing-speed-september-2026",
+      "domain": "benchlm",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Xiaomi"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "pricing",
+        "agentic",
+        "context window",
+        "cost",
+        "license",
+        "open source",
+        "open-weight",
+        "tool use",
+        "training"
+      ],
+      "source": "docs/RAG/clean_en/misc/mimo-v2-6-pro-benchmarks-pricing-speed-september-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        158,
         190
       ],
       "canonical_for": [],
-      "words": 1681,
-      "bytes": 10886,
-      "sha256": "b22023047291d690f434bcebe8c2d44d0977df099f090cc8fbbe49fae913a518"
+      "words": 432,
+      "bytes": 2969,
+      "sha256": "b6133169e56e2ab439df42fd02c23e2d857c3226dcf358c7e788fe038a09be97"
     },
     {
       "id": "collect-240926-misc/misc/muse-spark-1-2-benchmarks-and-analysis",
@@ -884,8 +1195,38 @@
       "sha256": "e52d1399b16c14e7e7e0a6de18d9249eefb4af7cbc8c44e00debf3c280593058"
     },
     {
-      "id": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
-      "path": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
+      "id": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-1",
+      "path": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-1.md",
+      "title": "processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
+      "domain": "amd",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "cost",
+        "energy",
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 609,
+      "bytes": 4253,
+      "sha256": "d3d88558374e7605bf20a5ce763ed8c5e797d17c99e91913e237561fb012324d"
+    },
+    {
+      "id": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-2",
+      "path": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-2.md",
       "title": "processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
       "domain": "amd",
       "role": "reference",
@@ -895,37 +1236,160 @@
         "Intel"
       ],
       "dates": [
-        "2022-03-11",
         "2022-10-11",
-        "2022-11-03",
         "2022-11-10",
         "2022-19-09"
       ],
       "keywords": [
         "amd",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
+      "source_anchor": "",
+      "source_lines": [
+        48,
+        52
+      ],
+      "canonical_for": [],
+      "words": 414,
+      "bytes": 3675,
+      "sha256": "da739358c532ddd882f836c8211809803f5c36d9c436be15364cc997bc00eb2b"
+    },
+    {
+      "id": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-3",
+      "path": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-3.md",
+      "title": "processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
+      "domain": "amd",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [
+        "2022-10-11",
+        "2022-11-03"
+      ],
+      "keywords": [
+        "amd",
         "benchmark",
         "benchmarks",
-        "compute",
-        "cost",
         "energy",
-        "intel",
-        "memory",
         "throughput"
       ],
       "source": "docs/RAG/clean_en/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        53,
+        56
+      ],
+      "canonical_for": [],
+      "words": 716,
+      "bytes": 7178,
+      "sha256": "979ed32b67355e38a5e687fa18da401e88309d6193bbed37ed420f3d9b466f13"
+    },
+    {
+      "id": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-4",
+      "path": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-4.md",
+      "title": "processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
+      "domain": "amd",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [
+        "2022-11-10",
+        "2022-19-09"
+      ],
+      "keywords": [
+        "amd",
+        "intel"
+      ],
+      "source": "docs/RAG/clean_en/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
+      "source_anchor": "",
+      "source_lines": [
+        57,
+        61
+      ],
+      "canonical_for": [],
+      "words": 405,
+      "bytes": 3633,
+      "sha256": "b6547ba611111b2c153edf7711d7855938f2744365eb706406a4dd106a224da2"
+    },
+    {
+      "id": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-5",
+      "path": "collect-240926-misc/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu-5.md",
+      "title": "processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu",
+      "domain": "amd",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [
+        "2022-03-11",
+        "2022-11-10"
+      ],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "energy",
+        "throughput"
+      ],
+      "source": "docs/RAG/clean_en/misc/processeurs-amda-epyca-a-pra-sentation-de-la-prochaine-ga-na-ration-de-processeu.md",
+      "source_anchor": "",
+      "source_lines": [
+        62,
         64
       ],
       "canonical_for": [],
-      "words": 2857,
-      "bytes": 25859,
-      "sha256": "0d8a8308e19b79ccba1d9605890d4c4f56269bfd6576dbeced6b908068b09aee"
+      "words": 713,
+      "bytes": 7120,
+      "sha256": "726f7e829a24d18e614b2d56fef8416732846e8eb13e6e5aac86da393cf09695"
     },
     {
-      "id": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things",
-      "path": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things.md",
+      "id": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things-1",
+      "path": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things-1.md",
+      "title": "qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things",
+      "domain": "simonwillison",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Nvidia",
+        "OpenRouter"
+      ],
+      "dates": [
+        "2026-08"
+      ],
+      "keywords": [
+        "qwen",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "consumer",
+        "cost",
+        "gguf",
+        "llama",
+        "nvidia",
+        "reasoning",
+        "research"
+      ],
+      "source": "docs/RAG/clean_en/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        114
+      ],
+      "canonical_for": [],
+      "words": 1301,
+      "bytes": 7888,
+      "sha256": "4242ae09acb9083c8c8886c423ba58a6b489010f2c0770d6325bc38195e29ae9"
+    },
+    {
+      "id": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things-2",
+      "path": "collect-240926-misc/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things-2.md",
       "title": "qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things",
       "domain": "simonwillison",
       "role": "reference",
@@ -933,42 +1397,39 @@
       "actors": [
         "Alibaba",
         "Anthropic",
-        "Nvidia",
-        "OpenAI",
-        "OpenRouter"
+        "OpenAI"
       ],
       "dates": [
-        "2026-08",
         "2026-09"
       ],
       "keywords": [
         "qwen",
         "agent",
         "agents",
-        "apache",
         "astra",
         "benchmark",
-        "benchmarks",
         "chatgpt",
         "claude",
         "consumer",
-        "cost",
-        "datacenter"
+        "datacenter",
+        "gguf",
+        "gpt-5.6",
+        "gpt-6"
       ],
       "source": "docs/RAG/clean_en/misc/qwen-3-8-27b-is-excellent-but-it-defaults-to-wildly-overthinking-things.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        115,
         196
       ],
       "canonical_for": [],
-      "words": 2130,
-      "bytes": 13007,
-      "sha256": "a3bcbd7c22ca5a2f93ab483af0d26eedc1248ced4f3aa4cbb702fee14b728e42"
+      "words": 829,
+      "bytes": 5119,
+      "sha256": "c31ffcfe92c1f66cebd968bd331e15e0e5ef25b864cac5b601197f0f41df02c5"
     },
     {
-      "id": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running",
-      "path": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running.md",
+      "id": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running-1",
+      "path": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running-1.md",
       "title": "qwen3-8-27b-review-the-open-weight-27b-worth-running",
       "domain": "orcarouter",
       "role": "reference",
@@ -1002,16 +1463,52 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        72
+      ],
+      "canonical_for": [],
+      "words": 1296,
+      "bytes": 7892,
+      "sha256": "e8e1d7eae2eab8fd7ba7066b67b429d6a50ee11f2e36abdfc96a38b2117538ea"
+    },
+    {
+      "id": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running-2",
+      "path": "collect-240926-misc/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running-2.md",
+      "title": "qwen3-8-27b-review-the-open-weight-27b-worth-running",
+      "domain": "orcarouter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba"
+      ],
+      "dates": [],
+      "keywords": [
+        "qwen",
+        "agentic",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "cost",
+        "gguf",
+        "gpu",
+        "inference",
+        "latency",
+        "llama",
+        "llama.cpp"
+      ],
+      "source": "docs/RAG/clean_en/misc/qwen3-8-27b-review-the-open-weight-27b-worth-running.md",
+      "source_anchor": "",
+      "source_lines": [
+        73,
         97
       ],
       "canonical_for": [],
-      "words": 1721,
-      "bytes": 10412,
-      "sha256": "1282024efa7b34d0c1fe8827f138125be77649ee5aa540455187d476d027148f"
+      "words": 425,
+      "bytes": 2520,
+      "sha256": "316d92f50c9d35b28c3132df1f8aa48581a991eadb43cc54a782344a2fc51e85"
     },
     {
-      "id": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026",
-      "path": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026.md",
+      "id": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026-1",
+      "path": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026-1.md",
       "title": "qwen3-8-flash-next-benchmarks-speed-september-2026",
       "domain": "benchlm",
       "role": "reference",
@@ -1021,12 +1518,49 @@
         "Anthropic",
         "DeepSeek",
         "Google",
-        "Hugging Face",
         "Meta",
-        "Microsoft",
         "Moonshot",
         "OpenAI",
         "Sakana"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "agentic",
+        "agents",
+        "astra",
+        "claude",
+        "cost",
+        "deepseek",
+        "fable 5",
+        "fugu",
+        "gemini",
+        "gemini 3.8"
+      ],
+      "source": "docs/RAG/clean_en/misc/qwen3-8-flash-next-benchmarks-speed-september-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        159
+      ],
+      "canonical_for": [],
+      "words": 1252,
+      "bytes": 7924,
+      "sha256": "0a02014ba497c63a2beb40b6325299a3b1a2ed35fac3e8e9da3307ff36929ea8"
+    },
+    {
+      "id": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026-2",
+      "path": "collect-240926-misc/misc/qwen3-8-flash-next-benchmarks-speed-september-2026-2.md",
+      "title": "qwen3-8-flash-next-benchmarks-speed-september-2026",
+      "domain": "benchlm",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Hugging Face",
+        "Microsoft"
       ],
       "dates": [
         "2026-08-26",
@@ -1038,24 +1572,24 @@
         "qwen",
         "agent",
         "agentic",
-        "agents",
-        "astra",
         "claude",
         "context window",
         "cost",
-        "deepseek",
-        "fable 5"
+        "latency",
+        "leaderboard",
+        "license",
+        "mai"
       ],
       "source": "docs/RAG/clean_en/misc/qwen3-8-flash-next-benchmarks-speed-september-2026.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        160,
         258
       ],
       "canonical_for": [],
-      "words": 2360,
-      "bytes": 15513,
-      "sha256": "01bd8e7e64c6eb3e1ad5efcfa2f5b39df16c408ef6f95dcc4bc7f575eabb9302"
+      "words": 1108,
+      "bytes": 7589,
+      "sha256": "916a04e2abdc4e6bf33b21a23a5487d11609a03a1bcc11fe0407ae297e516ce6"
     },
     {
       "id": "collect-240926-misc/misc/qwen3-8-flash-next-how-to-run-locally-unsloth-documentation",
@@ -1121,8 +1655,33 @@
       "sha256": "6ccab2291d9b3669d6158005452cae87ea5bfb18e4512e474186259c18f8c943"
     },
     {
-      "id": "collect-240926-misc/misc/zen",
-      "path": "collect-240926-misc/misc/zen.md",
+      "id": "collect-240926-misc/misc/zen-1",
+      "path": "collect-240926-misc/misc/zen-1.md",
+      "title": "Zen",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "OpenRouter"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents"
+      ],
+      "source": "docs/RAG/clean_en/misc/zen.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        32
+      ],
+      "canonical_for": [],
+      "words": 267,
+      "bytes": 1526,
+      "sha256": "b6c72ec608a0252f275e16528dc42d135d67521e6f3694efac9a86ba66fd36f4"
+    },
+    {
+      "id": "collect-240926-misc/misc/zen-2",
+      "path": "collect-240926-misc/misc/zen-2.md",
       "title": "Zen",
       "domain": "opencode",
       "role": "reference",
@@ -1135,12 +1694,99 @@
         "Meta",
         "MiniMax",
         "Moonshot",
-        "Nvidia",
         "OpenAI",
-        "OpenRouter",
-        "United States",
         "Z.ai",
         "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "claude",
+        "deepseek",
+        "fable 5",
+        "gemini",
+        "gemini 3.8",
+        "glm",
+        "gpt-5.6",
+        "gpt-6",
+        "grok",
+        "grok 4",
+        "kimi"
+      ],
+      "source": "docs/RAG/clean_en/misc/zen.md",
+      "source_anchor": "",
+      "source_lines": [
+        33,
+        112
+      ],
+      "canonical_for": [],
+      "words": 854,
+      "bytes": 7940,
+      "sha256": "4fed4f4e68b76aed7b680dc599ba0aa32afd88195329e9bff57cc4b808615e4c"
+    },
+    {
+      "id": "collect-240926-misc/misc/zen-3",
+      "path": "collect-240926-misc/misc/zen-3.md",
+      "title": "Zen",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "DeepSeek",
+        "Google",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "OpenAI",
+        "Z.ai",
+        "xAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "astra",
+        "claude",
+        "cost",
+        "deepseek",
+        "fable 5",
+        "gemini",
+        "gemini 3.8",
+        "glm",
+        "grok",
+        "grok 4",
+        "kimi",
+        "luna"
+      ],
+      "source": "docs/RAG/clean_en/misc/zen.md",
+      "source_anchor": "",
+      "source_lines": [
+        113,
+        245
+      ],
+      "canonical_for": [],
+      "words": 1760,
+      "bytes": 7914,
+      "sha256": "fe401b015235f166a958c6751761fc898ebdb053870412bf2c89b52e9bbcd24b"
+    },
+    {
+      "id": "collect-240926-misc/misc/zen-4",
+      "path": "collect-240926-misc/misc/zen-4.md",
+      "title": "Zen",
+      "domain": "opencode",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "Google",
+        "Meta",
+        "MiniMax",
+        "Moonshot",
+        "Nvidia",
+        "OpenAI",
+        "United States",
+        "Z.ai"
       ],
       "dates": [
         "2026-02-06",
@@ -1156,27 +1802,27 @@
       "keywords": [
         "agent",
         "agents",
-        "astra",
         "benchmark",
         "claude",
         "cost",
-        "deepseek",
-        "fable 5",
         "gemini",
-        "gemini 3.8",
         "glm",
-        "gpt-5.6"
+        "kimi",
+        "muse",
+        "muse spark",
+        "nvidia",
+        "opus 4"
       ],
       "source": "docs/RAG/clean_en/misc/zen.md",
       "source_anchor": "",
       "source_lines": [
-        1,
+        246,
         309
       ],
       "canonical_for": [],
-      "words": 3693,
-      "bytes": 21857,
-      "sha256": "02fa0a5ae1edc280191d2d7013858033aa8e1528764d8e8cf53dc972681b9c39"
+      "words": 812,
+      "bytes": 4477,
+      "sha256": "e75a5e56627a7d041794b944f78c801c8128dadf2816c32a32457207fe84e08b"
     }
   ]
 }

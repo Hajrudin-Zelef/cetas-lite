@@ -9,9 +9,9 @@ dates: ["2026-07", "2026-09-22"]
 keywords: []
 source: docs/RAG/etape7_phaseG_linuxnet_vpn.md
 source_anchor: ""
-source_lines: [63, 118]
+source_lines: [63, 122]
 section: "Step 7G — Linux Networking and Access: NAT, Firewalls, SSH, VPNs, and Security Monitoring"
-sha256: d384570ddf1e084e88b4a77f8098414f8b020ea6b0f82047da4415a040392881
+sha256: b36412632b57341c549f9ff7799cab1859cf404ead23082ce72c7cfba069472c
 ---
 
 # 2. iptables migration and nftables
@@ -71,4 +71,8 @@ nft monitor trace                # packet tracing for debugging drops
 - On cloud servers, the host firewall is only one layer: cloud security groups act as an outer filter, and practitioners commonly run a default-deny host firewall even behind security groups for defense in depth [secondary: https://blog.hofstede.it/linux-firewalls-how-to-actually-secure-a-cloud-server-iptables-nftables-firewalld-ufw/ retrieved 2026-09-22].
 
 ---
+
+## 4. OpenSSH: 2026 versions, hardening, certificates, bastions
+
+### 4.1 2026 release line
 

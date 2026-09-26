@@ -5,13 +5,13 @@ domain: step-9-phase-b-storage-form-factors-interfaces-hardware-angl
 role: deep-dive
 task: hardware
 actors: ["Broadcom"]
-dates: ["2026-04-01", "2026-09-22"]
-keywords: ["compute", "datacenter", "intel", "memory", "nvidia", "research"]
+dates: ["2026-04-01"]
+keywords: ["compute", "datacenter", "intel", "memory", "nvidia"]
 source: docs/RAG/etape9_phaseB_form_factors_interfaces.md
 source_anchor: ""
-source_lines: [487, 566]
+source_lines: [487, 562]
 section: "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
-sha256: 32b464375a2d7949b77a2673544dc690f0412629131538f9af9055faa71c7db4
+sha256: cac6cccfeacc794a166fbe97cae1d8efef9e816360685b7e13e47f192f8fd663
 ---
 
 # 19. Source index (verbatim URLs)
@@ -91,8 +91,4 @@ sha256: 32b464375a2d7949b77a2673544dc690f0412629131538f9af9055faa71c7db4
 - https://www.networkworld.com/article/4121569/reports-of-satas-demise-are-overblown-but-the-technology-is-aging-fast.html
 - https://www.techradar.com/pro/large-external-ssds-are-now-cheaper-than-internal-ones-as-4tb-sata-ssd-face-extinction-due-to-negligible-price-difference
 - https://pcserverandparts.com/news/enterprise-ssd-prices-2026-server-storage-buying-guide/
-
----
-
-*End of Step 9 Phase B file. Research cutoff 2026-09-22. Single writer; no other workspace files modified. All URLs copied verbatim from search-tool output; none invented or shortened.*
 

@@ -9,9 +9,9 @@ dates: ["2021-01-28", "2021-10-20", "2025-05-28", "2026-01-09"]
 keywords: ["acquisition", "attribution", "datacenter", "nvidia", "optics", "pricing"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [2101, 2155]
+source_lines: [2101, 2151]
 section: "Wave 12 — Third-party coded optics: EEPROM/MSA mechanics, programmers, vendor ecosystem, lock-in, warranty, legal"
-sha256: 8720ad5f5290530a0a8770086a42a3134386488fa69944046679ed495384abb9
+sha256: ee5b38e2a486230611a47e69a99ac9278671e5568c782a30c482642c0f52e699
 ---
 
 # 3.10 FluxLight
@@ -66,8 +66,4 @@ sha256: 8720ad5f5290530a0a8770086a42a3134386488fa69944046679ed495384abb9
 - **StarTech.com** (Cisco SFP-10G-SR compatible on SHI): $55.00 / MSRP $60.46, limited lifetime warranty `[secondary]` — https://www.shi.com/Product/26893618/StarTech.com-Cisco-SFP-10G-SR-Compatible-SFP-Module
 
 ### 4.2 OEM warranty context (optics)
-
-- Cisco optical products carry a limited 5-year hardware warranty under Cisco's product warranty terms `[official]` — Cisco warranty doc (audentia-gestion mirror): http://www.audentia-gestion.fr/cisco/pdf/prod_warranty0900aecd801b44cd.pdf
-- Cisco policy: if a defect is traced to a third-party repair/component, Cisco may withhold warranty/SMARTnet support or charge time-and-materials; if the fault is not attributable to it, Cisco continues support — therefore "third-party optics automatically void SmartNet" is **incorrect** `[official]` — same warranty doc.
-- No comparable consolidated MTBF dataset was collected; do not substitute ambiguous slide-deck failure-rate claims for MTBF `[unverified]`.
 

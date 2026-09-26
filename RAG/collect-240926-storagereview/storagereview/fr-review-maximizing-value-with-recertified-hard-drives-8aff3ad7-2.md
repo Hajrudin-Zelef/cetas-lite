@@ -1,0 +1,42 @@
+---
+id: collect-240926-storagereview/storagereview/fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7-2
+title: "fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7"
+domain: storagereview
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["cost", "memory", "packaging"]
+source: docs/RAG/clean_en/storagereview/fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7.md
+source_anchor: ""
+source_lines: [3, 27]
+sha256: d31e02ede41a18f9bb62bb142585ac4e5f432f328b86d6fedbd94fc590b7b54d
+---
+
+# fr-review-maximizing-value-with-recertified-hard-drives-8aff3ad7
+
+ServerPartDeals.com is a specialized online retailer that supplies and sells a wide range of professional-grade server components, including hard drives and SSDs, including high-capacity models that are hard to find. In addition to their vast storage catalog, they also offer processors, memory modules, RAID controllers, and other essential server components. What sets them apart is their dedication to recertified hardware, thoroughly tested to ensure quality and performance. This approach allows businesses and enthusiasts to access cost-effective, high-quality parts that can be extremely expensive or unavailable elsewhere.
+What is recertified hardware?
+Recertified hardware refers to previously warranted products and parts that were purchased but never shipped due to order cancellations. It can also refer to returned products that have undergone a comprehensive inspection and testing process by the manufacturer to meet its specifications for new hardware. Manufacturers like Seagate, Western Digital, and other major brands often perform this process, ensuring that products function like new. To ensure optimal performance, functional issues must be checked, defective components repaired or replaced, and all SMART (Self-Monitoring, Analysis, and Reporting Technology) data reset. ServerPartDeals focuses on testing recertified and used/refurbished drives.
+Recertified products are an excellent option for saving money. They offer the same reliability as new components at a lower price, making them particularly attractive for businesses with budget constraints. ServerPartDeals specializes in providing recertified server-quality parts (including hard drives and SSDs), ensuring they meet rigorous standards before resale.
+What is refurbished hardware and how is it different?
+There is an important distinction between recertified and refurbished computer equipment. Refurbished equipment generally refers to products returned to the manufacturer due to defects, damage, or customer dissatisfaction. Products that have been retired from lease and returned to the manufacturer are also likely to be refurbished.
+Refurbished items undergo additional inspections, testing, repairs, and restoration to make them like new, but they cannot be offered as new. Refurbished items may have a 90-day warranty but are not eligible for the usual warranty of new products. They may also come from unknown sources and have an uncertain history, higher mileage, or be end-of-lease items, resulting in uncertainty about their condition and reliability.
+Refurbishing sometimes, but not always, involves repairing, replacing, or cleaning components to restore their functionality. However, they may also have minor cosmetic imperfections or signs of previous use.
+While ServerPartDeals primarily offers recertified hardware, it also offers new and refurbished alternatives. New or recertified hardware meets the original manufacturer's specifications and is ideal for professional use. In contrast, refurbished hardware offers a cost-effective alternative with varying levels of restoration.
+How does ServerPartDeals ensure quality?
+ServerPartDeals ensures the highest quality by prioritizing transparency and thorough testing in its recertification and refurbishment process. Recertified and refurbished drives undergo comprehensive reliability testing to ensure optimal performance. These tests include analyzing critical SMART data points such as reallocated sectors and error rates, performing in-depth read/write speed tests, and running a selective sector scan to verify that every sector can be reliably read and written. Additionally, they perform batch testing to identify failure trends, assess failure rates, and test CRC errors to ensure long-term reliability.
+Once the drives have passed all these tests, they are marked "Tested Good" and offered with a 2-year manufacturer recertified warranty on many drives. This process ensures that the drives are restored like new, giving customers the assurance that their purchase will work as expected. With ongoing support available for any issues, ServerPartDeals demonstrates its commitment to providing quality recertified components, making it a reliable and cost-effective choice for budget-conscious buyers.
+Shipping and Packaging Quality Assurance
+Most mechanical drive failures occur during shipping and handling, and ServerPartDeals takes this very seriously. To mitigate these risks, drives are shipped in well-padded and secure packaging, which includes 225 psi boxes designed to protect them from impacts during transit. This ensures that customers receive their drives in reliable working condition. ServerPartDeals offers same-day shipping with free 2-day UPS shipping within the 48 contiguous states, free 3-7 day ground shipping to other territories, and additional handling methods for international orders, demonstrating its commitment to quality and service. Below are some examples of this exceptional packaging for the drives they sent us.
+Warranty and Customer Support Policies
+ServerPartDeals demonstrates its commitment to quality by providing an FAQ page on its website that addresses common issues and their solutions. If the FAQ does not resolve your issue, ServerPartDeals encourages customers to contact its support team during business hours, Monday through Friday, 9 AM to 6 PM EST.
+ServerPartDeals offers a special order quote service for bulk orders, which allows for additional discounts. Additionally, it offers businesses and companies the opportunity to resell their old enterprise storage or networking products.
+Regarding warranty support, ServerPartDeals ensures a simple process. Customers need an RMA number and proof of purchase to initiate a return. The support team will then provide detailed instructions for returning the drives for replacement. This process is well documented in the FAQ section of their website, ensuring transparency and simplicity for customers.
+ServerPartDeals also offers a satisfaction guarantee, allowing customers to return their purchase for a full refund within 30 days of the package receipt date.
+Post-Delivery Evaluation and Testing
+ServerPartDeals sent us several of their recertified high-capacity helium hard drives, including the WD HC570 22 TB, Seagate Exos 24 TB, and Seagate Exos X24 24 TB models, for us to present.
+Before moving on to testing, we will first compare the prices of recertified and new drives. The recertified Seagate Exos X24 24 TB is listed at $449.99, while the new unit costs $479.99, offering a savings of $30. Similarly, the Western Digital DC HC570 22 TB goes from $304.99 for the recertified model to $489.00 for the new one, offering a significant savings of $184. Meanwhile, the recertified Seagate Exos 24 TB is sold at $339.99, versus $348.99 for a new unit, showing a modest difference of $9. While new drives come with full manufacturer warranties and potentially longer lifespans, recertified options offer substantial savings, a reliable 2-year warranty, and comparable annualized failure rates (AFR). This makes them a compelling choice for budget-conscious enterprise storage, especially for bulk purchases.
+For testing, we will use CrystalDiskInfo 9.5.0 to display SMART data and overall drive status, as well as CrystalDiskMark 8.0.6 to perform a basic read/write speed test. This will allow us to evaluate the overall performance of the drive, verify its condition after shipping, and ensure that the recertified drives meet expectations for reliability and speed.
+CrystalDiskInfo 9.5.0 Results
+First, we have the CrystalDiskInfo results for the Seagate Exos 24 TB drive. The health status is indicated as "Good" and no notable issues are identified in the SMART data. This drive shows a power-on count of 5 and a power-on hours count of 7, indicating minimal use.

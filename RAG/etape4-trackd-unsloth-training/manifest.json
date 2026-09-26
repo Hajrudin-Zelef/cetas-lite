@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape4_trackD_unsloth_training.md",
   "source_lines": 201,
   "source_sha256": "495af752133000e9a9b8e97cd7cf5688e92fa2ccfde8fd23d2ac4140a0ad6167",
-  "chunk_count": 3,
+  "chunk_count": 4,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -155,28 +155,60 @@
       ],
       "keywords": [
         "lora",
-        "agentic",
         "attention",
         "awq",
         "benchmark",
-        "benchmarks",
         "blackwell",
         "consumer",
         "decode",
         "deepseek",
         "disaggregated",
-        "disaggregated serving"
+        "disaggregated serving",
+        "fine-tuning",
+        "foundry"
       ],
       "source": "docs/RAG/etape4_trackD_unsloth_training.md",
       "source_anchor": "",
       "source_lines": [
         120,
+        196
+      ],
+      "canonical_for": [],
+      "words": 980,
+      "bytes": 7547,
+      "sha256": "d0f07207616fe8b70d8b86bbb515d1045689676ca4c2797d50f4b2a979267971",
+      "section": "Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)"
+    },
+    {
+      "id": "etape4-trackd-unsloth-training/00-unsloth-training/11-collection-metadata",
+      "path": "etape4-trackd-unsloth-training/00-unsloth-training/11-collection-metadata.md",
+      "title": "11. COLLECTION METADATA",
+      "domain": "step-4-track-d-unsloth-training-fine-tuning-tooling-2026",
+      "role": "deep-dive",
+      "task": "training",
+      "actors": [
+        "TensorRT-LLM",
+        "Unsloth"
+      ],
+      "dates": [],
+      "keywords": [
+        "agentic",
+        "benchmarks",
+        "inference",
+        "research",
+        "tensorrt",
+        "tensorrt-llm"
+      ],
+      "source": "docs/RAG/etape4_trackD_unsloth_training.md",
+      "source_anchor": "",
+      "source_lines": [
+        197,
         201
       ],
       "canonical_for": [],
-      "words": 1058,
-      "bytes": 8112,
-      "sha256": "02390b56a9e5f2b6cdf30dde8bc91fc2f6ebd98d525838ee53432e74dcd7506f",
+      "words": 78,
+      "bytes": 565,
+      "sha256": "db4a73d86245a864ac26030259aa51ecd1ea00eafbde8e5b2a84889bf81b2e9d",
       "section": "Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)"
     }
   ]

@@ -1,6 +1,6 @@
 # INDEX — Step 10D — Sports News (February 2026 → 22 September 2026)
 
-Corpus `etape10-phased-news-sport` · **13 fichiers** · 935 lignes source · ~8045 mots · partition exacte de `docs/RAG/etape10_phaseD_news_sport.md`.
+Corpus `etape10-phased-news-sport` · **14 fichiers** · 935 lignes source · ~8045 mots · partition exacte de `docs/RAG/etape10_phaseD_news_sport.md`.
 
 ## Mode d'emploi
 
@@ -26,11 +26,12 @@ Corpus `etape10-phased-news-sport` · **13 fichiers** · 935 lignes source · ~8
 | 10 | [12. Deep dive — Winter Olympics Milano Cortina 2026](00-news-sport/12-deep-dive-winter-olympics-milano-cortina-2026.md) | 633–704 | deep-dive | reference |
 | 11 | [14. Formula 1, cycling, athletics and other sports](00-news-sport/14-formula-1-cycling-athletics-and-other-sports.md) | 705–754 | deep-dive | reference |
 | 12 | [15. Sports games and product releases](00-news-sport/15-sports-games-and-product-releases.md) | 755–831 | deep-dive | reference |
-| 13 | [18. Source index (verbatim URLs)](00-news-sport/18-source-index-verbatim-urls.md) | 832–935 | deep-dive | reference |
+| 13 | [18. Source index (verbatim URLs)](00-news-sport/18-source-index-verbatim-urls.md) | 832–933 | deep-dive | reference |
+| 14 | [Step 10D — Sports News (February 2026 → 22 September 2026) (part 14)](00-news-sport/part-14.md) | 934–935 | deep-dive | reference |
 
 ## Par tâche
 
-- **reference** — [Step 10D — Sports News (February 2026 → 22 September 2026)](00-news-sport/overview.md), [1. February 2026](00-news-sport/1-february-2026.md), [4. May 2026](00-news-sport/4-may-2026.md), [5. June 2026](00-news-sport/5-june-2026.md), [6. July 2026](00-news-sport/6-july-2026.md), [7. August 2026](00-news-sport/7-august-2026.md), [9. Deep dive — FIFA World Cup 2026](00-news-sport/9-deep-dive-fifa-world-cup-2026.md), [10. Deep dive — European club football 2025-26 and the summer window](00-news-sport/10-deep-dive-european-club-football-2025-26-and-the-summer-w.md), [11. Deep dive — NBA 2025-26](00-news-sport/11-deep-dive-nba-2025-26.md), [12. Deep dive — Winter Olympics Milano Cortina 2026](00-news-sport/12-deep-dive-winter-olympics-milano-cortina-2026.md), [14. Formula 1, cycling, athletics and other sports](00-news-sport/14-formula-1-cycling-athletics-and-other-sports.md), [15. Sports games and product releases](00-news-sport/15-sports-games-and-product-releases.md), [18. Source index (verbatim URLs)](00-news-sport/18-source-index-verbatim-urls.md)
+- **reference** — [Step 10D — Sports News (February 2026 → 22 September 2026)](00-news-sport/overview.md), [1. February 2026](00-news-sport/1-february-2026.md), [4. May 2026](00-news-sport/4-may-2026.md), [5. June 2026](00-news-sport/5-june-2026.md), [6. July 2026](00-news-sport/6-july-2026.md), [7. August 2026](00-news-sport/7-august-2026.md), [9. Deep dive — FIFA World Cup 2026](00-news-sport/9-deep-dive-fifa-world-cup-2026.md), [10. Deep dive — European club football 2025-26 and the summer window](00-news-sport/10-deep-dive-european-club-football-2025-26-and-the-summer-w.md), [11. Deep dive — NBA 2025-26](00-news-sport/11-deep-dive-nba-2025-26.md), [12. Deep dive — Winter Olympics Milano Cortina 2026](00-news-sport/12-deep-dive-winter-olympics-milano-cortina-2026.md), [14. Formula 1, cycling, athletics and other sports](00-news-sport/14-formula-1-cycling-athletics-and-other-sports.md), [15. Sports games and product releases](00-news-sport/15-sports-games-and-product-releases.md), [18. Source index (verbatim URLs)](00-news-sport/18-source-index-verbatim-urls.md), [Step 10D — Sports News (February 2026 → 22 September 2026) (part 14)](00-news-sport/part-14.md)
 
 ## Par acteur
 
@@ -45,7 +46,7 @@ Corpus `etape10-phased-news-sport` · **13 fichiers** · 935 lignes source · ~8
 - **2025-09** — [00-news-sport/11-deep-dive-nba-2025-26.md](00-news-sport/11-deep-dive-nba-2025-26.md), [00-news-sport/15-sports-games-and-product-releases.md](00-news-sport/15-sports-games-and-product-releases.md)
 - **2025-09-26** — [00-news-sport/15-sports-games-and-product-releases.md](00-news-sport/15-sports-games-and-product-releases.md)
 - **2026-02** — [00-news-sport/overview.md](00-news-sport/overview.md), [00-news-sport/1-february-2026.md](00-news-sport/1-february-2026.md)
-- **2026-02-01** — [00-news-sport/overview.md](00-news-sport/overview.md), [00-news-sport/1-february-2026.md](00-news-sport/1-february-2026.md), [00-news-sport/18-source-index-verbatim-urls.md](00-news-sport/18-source-index-verbatim-urls.md)
+- **2026-02-01** — [00-news-sport/overview.md](00-news-sport/overview.md), [00-news-sport/1-february-2026.md](00-news-sport/1-february-2026.md), [00-news-sport/part-14.md](00-news-sport/part-14.md)
 - **2026-02-05** — [00-news-sport/1-february-2026.md](00-news-sport/1-february-2026.md)
 - **2026-02-06** — [00-news-sport/1-february-2026.md](00-news-sport/1-february-2026.md)
 - **2026-02-08** — [00-news-sport/1-february-2026.md](00-news-sport/1-february-2026.md)
@@ -80,7 +81,7 @@ Corpus `etape10-phased-news-sport` · **13 fichiers** · 935 lignes source · ~8
 - **2026-09-01** — [00-news-sport/10-deep-dive-european-club-football-2025-26-and-the-summer-w.md](00-news-sport/10-deep-dive-european-club-football-2025-26-and-the-summer-w.md), [00-news-sport/15-sports-games-and-product-releases.md](00-news-sport/15-sports-games-and-product-releases.md)
 - **2026-09-13** — [00-news-sport/7-august-2026.md](00-news-sport/7-august-2026.md)
 - **2026-09-16** — [00-news-sport/overview.md](00-news-sport/overview.md), [00-news-sport/1-february-2026.md](00-news-sport/1-february-2026.md), [00-news-sport/7-august-2026.md](00-news-sport/7-august-2026.md), [00-news-sport/14-formula-1-cycling-athletics-and-other-sports.md](00-news-sport/14-formula-1-cycling-athletics-and-other-sports.md)
-- **2026-09-22** — [00-news-sport/overview.md](00-news-sport/overview.md), [00-news-sport/18-source-index-verbatim-urls.md](00-news-sport/18-source-index-verbatim-urls.md)
+- **2026-09-22** — [00-news-sport/overview.md](00-news-sport/overview.md), [00-news-sport/part-14.md](00-news-sport/part-14.md)
 
 ## Carte de couverture (lignes source)
 
@@ -98,5 +99,6 @@ Corpus `etape10-phased-news-sport` · **13 fichiers** · 935 lignes source · ~8
 | 633–704 | etape10-phased-news-sport/00-news-sport/12-deep-dive-winter-olympics-milano-cortina-2026.md |
 | 705–754 | etape10-phased-news-sport/00-news-sport/14-formula-1-cycling-athletics-and-other-sports.md |
 | 755–831 | etape10-phased-news-sport/00-news-sport/15-sports-games-and-product-releases.md |
-| 832–935 | etape10-phased-news-sport/00-news-sport/18-source-index-verbatim-urls.md |
+| 832–933 | etape10-phased-news-sport/00-news-sport/18-source-index-verbatim-urls.md |
+| 934–935 | etape10-phased-news-sport/00-news-sport/part-14.md |
 

@@ -4,8 +4,8 @@
   "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings",
   "source_dir": "docs/RAG/Collect RAG Vague 2/03_nerdykings",
   "source_files": 34,
-  "source_sha256": "60518a3de07952c1d86edf2afb800852ba0f440d07e34f13b0cae264742e6bfc",
-  "chunk_count": 34,
+  "source_sha256": "a98e9d391dee518eb3a8196b7822b1fc8824f5439d005c9b02b7bc9e193105f6",
+  "chunk_count": 44,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -148,8 +148,8 @@
       "sha256": "e0494a92eef7c7b56bc75ff57514866b5e7972c235b9d64bcbe7f92119656c8b"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs",
-      "path": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs.md",
+      "id": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs-1",
+      "path": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs-1.md",
       "title": "650 Échecs Plus Tard, Claude Fait Une Découverte Sur Riemann",
       "domain": "nerdykings",
       "role": "reference",
@@ -175,16 +175,43 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        65
+      ],
+      "canonical_for": [],
+      "words": 1225,
+      "bytes": 7979,
+      "sha256": "f78ae1063cc4a6ed9f1f36cdd4906da976629d56d8fc945f77532d7da67536bf"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs-2",
+      "path": "vague2-nerdykings/nerdykings/claude-riemann-hypothese-650-echecs-2.md",
+      "title": "650 Échecs Plus Tard, Claude Fait Une Découverte Sur Riemann",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "agent",
+        "agents",
+        "lean",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/claude-riemann-hypothese-650-echecs.md",
+      "source_anchor": "",
+      "source_lines": [
+        66,
         70
       ],
       "canonical_for": [],
-      "words": 1274,
-      "bytes": 8399,
-      "sha256": "624b363f399d22a86a6385384e637e75a56cd20dfaa5adf92e6465f4f6e7fbec"
+      "words": 49,
+      "bytes": 420,
+      "sha256": "c1596dae2667595ec2a9e4cf3808dd6ddb29cc5da2279ba828b0403fb378f778"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3",
-      "path": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3.md",
+      "id": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3-1",
+      "path": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3-1.md",
       "title": "Code World Model : Le Vrai Rival De Genie 3 ?",
       "domain": "nerdykings",
       "role": "reference",
@@ -200,21 +227,44 @@
       ],
       "keywords": [
         "agent",
-        "agentic",
         "memory",
-        "reasoning",
-        "video generation"
+        "reasoning"
       ],
       "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/code-world-model-rival-genie-3.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1226,
+      "bytes": 7894,
+      "sha256": "39d165565bb68cb114165c54237315e23510ef04ddf533f02113a593a44e18f6"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3-2",
+      "path": "vague2-nerdykings/nerdykings/code-world-model-rival-genie-3-2.md",
+      "title": "Code World Model : Le Vrai Rival De Genie 3 ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agentic",
+        "video generation"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/code-world-model-rival-genie-3.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         64
       ],
       "canonical_for": [],
-      "words": 1309,
-      "bytes": 8551,
-      "sha256": "fbf51ed9d05e254c34162e187ecd519f90cdca3a93248c5056f89bd0a387c06a"
+      "words": 83,
+      "bytes": 657,
+      "sha256": "5427f5a8915ecc3949ce52f25a5e1c379e45ab59ff7b9cdbbd4582788b1e7b9d"
     },
     {
       "id": "vague2-nerdykings/nerdykings/codex-5-3-spark",
@@ -297,8 +347,8 @@
       "sha256": "bb04f7e72d4e8636a23f244d51f4bd4da9960ae09c21c3ad5b1d8f7eb67c300f"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code",
-      "path": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code.md",
+      "id": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code-1",
+      "path": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code-1.md",
       "title": "DeepSeek Harness : La Fin De Claude Code ?",
       "domain": "nerdykings",
       "role": "reference",
@@ -328,12 +378,44 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        40
+      ],
+      "canonical_for": [],
+      "words": 1189,
+      "bytes": 7740,
+      "sha256": "8186d8ca999070ebea5210a5a6b34291eb36f4856a59041344182797e0fee55d"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code-2",
+      "path": "vague2-nerdykings/nerdykings/deepseek-harness-fin-claude-code-2.md",
+      "title": "DeepSeek Harness : La Fin De Claude Code ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Anthropic",
+        "DeepSeek"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "deepseek",
+        "agent",
+        "agents",
+        "license",
+        "open source",
+        "sandbox"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-harness-fin-claude-code.md",
+      "source_anchor": "",
+      "source_lines": [
+        41,
         62
       ],
       "canonical_for": [],
-      "words": 1350,
-      "bytes": 8803,
-      "sha256": "29969224b75ef80991a2a64762bec85bfa05b986aabdc829c7472c801436350f"
+      "words": 161,
+      "bytes": 1063,
+      "sha256": "d7d4a923f436e6bd8d0cbe916e80ce1e3caca42cd0bc49ef05d45fc3cc6b3a83"
     },
     {
       "id": "vague2-nerdykings/nerdykings/deepseek-thinking-visual-primitive",
@@ -449,8 +531,8 @@
       "sha256": "a967cfb884531a2ad36bbcd8aaf905ba5ffff51964f38c5eee18df04241a4ed4"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7",
-      "path": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7.md",
+      "id": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7-1",
+      "path": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7-1.md",
       "title": "DeepSeek V4 Flash : x7 De Performance Grâce Au Post-Entraînement",
       "domain": "nerdykings",
       "role": "reference",
@@ -479,12 +561,48 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1169,
+      "bytes": 7614,
+      "sha256": "b2d3b0c3659b45598c731122566372f6b9da8f05372528db09c8789bfef34613"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7-2",
+      "path": "vague2-nerdykings/nerdykings/deepseek-v4-flash-post-entrainement-x7-2.md",
+      "title": "DeepSeek V4 Flash : x7 De Performance Grâce Au Post-Entraînement",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "agent",
+        "agentic",
+        "benchmark",
+        "benchmarks",
+        "distillation",
+        "inference",
+        "license",
+        "mixture of experts",
+        "open-weight",
+        "parameters",
+        "pricing"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/deepseek-v4-flash-post-entrainement-x7.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         76
       ],
       "canonical_for": [],
-      "words": 1324,
-      "bytes": 8690,
-      "sha256": "e16ec23540067919b7bd0cf8c6616c911b6fd868da39508254857115ac83e092"
+      "words": 155,
+      "bytes": 1076,
+      "sha256": "fd30ad0ae1c53629cccac6539aa8201a9c5d949cd44a87a59990daacdca6f23a"
     },
     {
       "id": "vague2-nerdykings/nerdykings/deepswe-benchmark-ia-trichent",
@@ -561,8 +679,8 @@
       "sha256": "5630abadc3c08503ff13f0b71dfb68b28e6455f8225faf77ba35dac44987d011"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio",
-      "path": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio.md",
+      "id": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio-1",
+      "path": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio-1.md",
       "title": "Gemma 4 12B : Un Seul Transformer Pour Voir, Entendre Et Raisonner",
       "domain": "nerdykings",
       "role": "reference",
@@ -590,12 +708,38 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1275,
+      "bytes": 7944,
+      "sha256": "b53ed5f27a577aaa26e3cc951d4fbf61763c7d19f63be459b8c2a7e5168cef88"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio-2",
+      "path": "vague2-nerdykings/nerdykings/gemma-4-transformer-unique-vision-audio-2.md",
+      "title": "Gemma 4 12B : Un Seul Transformer Pour Voir, Entendre Et Raisonner",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek"
+      ],
+      "dates": [],
+      "keywords": [
+        "deepseek",
+        "multimodal"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/gemma-4-transformer-unique-vision-audio.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
         67
       ],
       "canonical_for": [],
-      "words": 1345,
-      "bytes": 8537,
-      "sha256": "24be5a317b83219ff17cae018d00c5f9b934bfb153b7b1dc829fe7fba511e136"
+      "words": 70,
+      "bytes": 593,
+      "sha256": "64999dfc052745950fcbd0cd7438f91e0c1a429dcb988198aab5ae211702a052"
     },
     {
       "id": "vague2-nerdykings/nerdykings/gpt-5-5-instant-faille-securite",
@@ -814,8 +958,8 @@
       "sha256": "7216532b2c1630071dc9bbe8d3cac6d7ecc20d341c666dc6558714d6e5a21ee5"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia",
-      "path": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia.md",
+      "id": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia-1",
+      "path": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia-1.md",
       "title": "La Faille Qui Vole Le Raisonnement Des IA",
       "domain": "nerdykings",
       "role": "reference",
@@ -846,12 +990,37 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1249,
+      "bytes": 7938,
+      "sha256": "8ac60e06ca766722e91bab8b895249e5075d21b84a2223fb62b41cdf105d1582"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia-2",
+      "path": "vague2-nerdykings/nerdykings/la-faille-qui-vole-raisonnement-ia-2.md",
+      "title": "La Faille Qui Vole Le Raisonnement Des IA",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "distillation",
+        "reasoning"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/la-faille-qui-vole-raisonnement-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
         67
       ],
       "canonical_for": [],
-      "words": 1326,
-      "bytes": 8553,
-      "sha256": "4ef3feee336b05a6c826d50e179ac8ecb1828a4bb2623333f5860c88d0260236"
+      "words": 77,
+      "bytes": 615,
+      "sha256": "69881cfd0e36f593eb7f506b8d9e418ceb2f196444b16b0657d0e648401059a5"
     },
     {
       "id": "vague2-nerdykings/nerdykings/longcat-2-0-chine-sans-nvidia",
@@ -975,8 +1144,8 @@
       "sha256": "68d40b6a7ece42ff3bd6ed4f8a11ff6c3558984308efb12d367fa7f08cc975f8"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide",
-      "path": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide.md",
+      "id": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide-1",
+      "path": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide-1.md",
       "title": "Nvidia Nemotron Two Tower : 2,4x Plus Rapide, Mais À Quel Prix ?",
       "domain": "nerdykings",
       "role": "reference",
@@ -995,24 +1164,50 @@
         "agents",
         "attention",
         "compute",
-        "cost",
         "deepseek",
         "gpus",
         "inference",
         "latency",
         "memory",
-        "mixture of experts"
+        "mixture of experts",
+        "moe"
       ],
       "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        69
+      ],
+      "canonical_for": [],
+      "words": 1263,
+      "bytes": 7948,
+      "sha256": "b5493f169657bcb77de1e91632704f5260ffb667a803aa39a4b3e49c6ba02be6"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide-2",
+      "path": "vague2-nerdykings/nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide-2.md",
+      "title": "Nvidia Nemotron Two Tower : 2,4x Plus Rapide, Mais À Quel Prix ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "cost",
+        "inference",
+        "memory"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/nvidia-nemotron-two-tower-llm-plus-rapide.md",
+      "source_anchor": "",
+      "source_lines": [
+        70,
         74
       ],
       "canonical_for": [],
-      "words": 1307,
-      "bytes": 8344,
-      "sha256": "8793326dfa8abcd477c3b206f9a24a72afefa237928df9746779623c4b7ba524"
+      "words": 44,
+      "bytes": 396,
+      "sha256": "ab7f2376e0fce3c7f1deb4b44effada7e17cf5c1055ed525507eb17c51440c75"
     },
     {
       "id": "vague2-nerdykings/nerdykings/openai-agent-pirate-hugging-face",
@@ -1061,8 +1256,8 @@
       "sha256": "9c86113d2e8057c334ad75f79955cd9f0816f6596e2856f32e5c13d7927a1e62"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures",
-      "path": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures.md",
+      "id": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures-1",
+      "path": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures-1.md",
       "title": "OpenAI Aurait Résolu Navier-Stokes En 88 Heures Avec 10 000 Agents",
       "domain": "nerdykings",
       "role": "reference",
@@ -1077,13 +1272,11 @@
         "2026-09-23"
       ],
       "keywords": [
-        "agent",
         "agents",
         "astra",
         "claude",
         "compute",
         "energy",
-        "governance",
         "gpt-6",
         "lean",
         "reasoning",
@@ -1094,12 +1287,39 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1206,
+      "bytes": 7803,
+      "sha256": "1e063466acd1e791a9579fae50ff83fc0c33bcfa9ac7c53356279d9efbf3f501"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures-2",
+      "path": "vague2-nerdykings/nerdykings/openai-navier-stokes-88-heures-2.md",
+      "title": "OpenAI Aurait Résolu Navier-Stokes En 88 Heures Avec 10 000 Agents",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents",
+        "governance",
+        "lean",
+        "research"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/openai-navier-stokes-88-heures.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
         67
       ],
       "canonical_for": [],
-      "words": 1292,
-      "bytes": 8509,
-      "sha256": "38b4845f588a9bc00900305b5c45d80ea28968d9b216a51b702323ac924cbd50"
+      "words": 86,
+      "bytes": 706,
+      "sha256": "d5ad3d038160c6de3f216886c9a2f817ff68379cc21f571c7bfc6e3605b5a609"
     },
     {
       "id": "vague2-nerdykings/nerdykings/persona-drift-anthropic",
@@ -1133,8 +1353,8 @@
       "sha256": "e16a7eb4bdfcab62ef4e49e6b915b96f8feeef3e3db622a644dc23db6e52bbae"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude",
-      "path": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude.md",
+      "id": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude-1",
+      "path": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude-1.md",
       "title": "Qwen 3.8 Max : Alibaba Vient-Il Vraiment De Rattraper Claude ?",
       "domain": "nerdykings",
       "role": "reference",
@@ -1144,8 +1364,7 @@
         "Anthropic",
         "China",
         "DeepSeek",
-        "Moonshot",
-        "United States"
+        "Moonshot"
       ],
       "dates": [
         "2026-09-23"
@@ -1168,12 +1387,52 @@
       "source_anchor": "",
       "source_lines": [
         1,
+        31
+      ],
+      "canonical_for": [],
+      "words": 1113,
+      "bytes": 7272,
+      "sha256": "bc0a85e7f0599dd94fd74ba4857949565e8492205c6e11e7ac8fb0dcad101e80"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude-2",
+      "path": "vague2-nerdykings/nerdykings/qwen-3-8-max-alibaba-claude-2.md",
+      "title": "Qwen 3.8 Max : Alibaba Vient-Il Vraiment De Rattraper Claude ?",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "Alibaba",
+        "Anthropic",
+        "China",
+        "Moonshot",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [
+        "claude",
+        "qwen",
+        "attention",
+        "benchmark",
+        "fable 5",
+        "gpus",
+        "kimi",
+        "mixture of experts",
+        "moe",
+        "multimodal",
+        "open-weight",
+        "parameters"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/qwen-3-8-max-alibaba-claude.md",
+      "source_anchor": "",
+      "source_lines": [
+        32,
         69
       ],
       "canonical_for": [],
-      "words": 1458,
-      "bytes": 9494,
-      "sha256": "8b800ab9ce515823f3831392f63ff0822d6b718c90673331258e3c7dc73d49b5"
+      "words": 345,
+      "bytes": 2222,
+      "sha256": "96c731348d83acfe822728b70ff6212368cd36d7b7b6620e1a0913667267f25d"
     },
     {
       "id": "vague2-nerdykings/nerdykings/recursive-mass-agents-ia-pensees-latentes",
@@ -1212,8 +1471,8 @@
       "sha256": "9c11046466b937240c8ed29212b2a3f3610ec761eb34d62a10e1b35008bdcd16"
     },
     {
-      "id": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia",
-      "path": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia.md",
+      "id": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia-1",
+      "path": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia-1.md",
       "title": "DiffusionBlocks : Sakana AI Divise La Mémoire D'Entraînement Par 4",
       "domain": "nerdykings",
       "role": "reference",
@@ -1231,7 +1490,6 @@
       "keywords": [
         "diffusion",
         "sakana",
-        "benchmark",
         "chatgpt",
         "claude",
         "deepseek",
@@ -1240,18 +1498,54 @@
         "llama",
         "memory",
         "nvlink",
-        "research"
+        "research",
+        "training"
       ],
       "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/sakana-diffusionblocks-vram-entrainement-ia.md",
       "source_anchor": "",
       "source_lines": [
         1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 1227,
+      "bytes": 7813,
+      "sha256": "6c379f06105c10ca6cc309c563d8be405afebd84e46efc1ef2ba97f2ef15b659"
+    },
+    {
+      "id": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia-2",
+      "path": "vague2-nerdykings/nerdykings/sakana-diffusionblocks-vram-entrainement-ia-2.md",
+      "title": "DiffusionBlocks : Sakana AI Divise La Mémoire D'Entraînement Par 4",
+      "domain": "nerdykings",
+      "role": "reference",
+      "task": "article",
+      "actors": [
+        "DeepSeek",
+        "Nvidia",
+        "Sakana"
+      ],
+      "dates": [],
+      "keywords": [
+        "diffusion",
+        "sakana",
+        "benchmark",
+        "deepseek",
+        "gpu",
+        "llama",
+        "memory",
+        "nvlink",
+        "training"
+      ],
+      "source": "docs/RAG/Collect RAG Vague 2/03_nerdykings/sakana-diffusionblocks-vram-entrainement-ia.md",
+      "source_anchor": "",
+      "source_lines": [
+        55,
         66
       ],
       "canonical_for": [],
-      "words": 1315,
-      "bytes": 8560,
-      "sha256": "36ea5c014a8ca1dc692851a7e2f992cd4c238965c9013e8f0e5152f6853ae81d"
+      "words": 88,
+      "bytes": 747,
+      "sha256": "b0096f078543c0e13136b2784d7d494cb3c4bbcd72f7ffff2600f3f8178e044b"
     },
     {
       "id": "vague2-nerdykings/nerdykings/tribe-v2-meta-simule-cerveau",

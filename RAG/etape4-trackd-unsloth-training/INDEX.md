@@ -1,6 +1,6 @@
 # INDEX — Step 4 — Track D : Unsloth & outillage d'entraînement/fine-tuning 2026
 
-Corpus `etape4-trackd-unsloth-training` · **3 fichiers** · 201 lignes source · ~2845 mots · partition exacte de `docs/RAG/etape4_trackD_unsloth_training.md`.
+Corpus `etape4-trackd-unsloth-training` · **4 fichiers** · 201 lignes source · ~2845 mots · partition exacte de `docs/RAG/etape4_trackD_unsloth_training.md`.
 
 ## Mode d'emploi
 
@@ -16,11 +16,12 @@ Corpus `etape4-trackd-unsloth-training` · **3 fichiers** · 201 lignes source �
 |---|---|---|---|---|
 | 01 | [Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)](00-unsloth-training/overview.md) | 1–65 | deep-dive | training |
 | 02 | [2. AXOLOTL](00-unsloth-training/2-axolotl.md) | 66–119 | deep-dive | training |
-| 03 | [6. PEFT / LoRA ECOSYSTEM (2026)](00-unsloth-training/6-peft-lora-ecosystem-2026.md) | 120–201 | deep-dive | training |
+| 03 | [6. PEFT / LoRA ECOSYSTEM (2026)](00-unsloth-training/6-peft-lora-ecosystem-2026.md) | 120–196 | deep-dive | training |
+| 04 | [11. COLLECTION METADATA](00-unsloth-training/11-collection-metadata.md) | 197–201 | deep-dive | training |
 
 ## Par tâche
 
-- **training** — [Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)](00-unsloth-training/overview.md), [2. AXOLOTL](00-unsloth-training/2-axolotl.md), [6. PEFT / LoRA ECOSYSTEM (2026)](00-unsloth-training/6-peft-lora-ecosystem-2026.md)
+- **training** — [Step 4 — Track D: Unsloth + Training / Fine-Tuning Tooling (2026)](00-unsloth-training/overview.md), [2. AXOLOTL](00-unsloth-training/2-axolotl.md), [6. PEFT / LoRA ECOSYSTEM (2026)](00-unsloth-training/6-peft-lora-ecosystem-2026.md), [11. COLLECTION METADATA](00-unsloth-training/11-collection-metadata.md)
 
 ## Par acteur
 
@@ -43,8 +44,8 @@ Corpus `etape4-trackd-unsloth-training` · **3 fichiers** · 201 lignes source �
 - **Nvidia** (2) — [00-unsloth-training/overview.md](00-unsloth-training/overview.md), [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md)
 - **OpenAI** (2) — [00-unsloth-training/overview.md](00-unsloth-training/overview.md), [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md)
 - **Samsung** (2) — [00-unsloth-training/overview.md](00-unsloth-training/overview.md), [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md)
-- **TensorRT-LLM** (1) — [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md)
-- **Unsloth** (3) — [00-unsloth-training/overview.md](00-unsloth-training/overview.md), [00-unsloth-training/2-axolotl.md](00-unsloth-training/2-axolotl.md), [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md)
+- **TensorRT-LLM** (2) — [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md), [00-unsloth-training/11-collection-metadata.md](00-unsloth-training/11-collection-metadata.md)
+- **Unsloth** (4) — [00-unsloth-training/overview.md](00-unsloth-training/overview.md), [00-unsloth-training/2-axolotl.md](00-unsloth-training/2-axolotl.md), [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md), [00-unsloth-training/11-collection-metadata.md](00-unsloth-training/11-collection-metadata.md)
 - **Z.ai** (3) — [00-unsloth-training/overview.md](00-unsloth-training/overview.md), [00-unsloth-training/2-axolotl.md](00-unsloth-training/2-axolotl.md), [00-unsloth-training/6-peft-lora-ecosystem-2026.md](00-unsloth-training/6-peft-lora-ecosystem-2026.md)
 - **vLLM** (1) — [00-unsloth-training/2-axolotl.md](00-unsloth-training/2-axolotl.md)
 
@@ -69,5 +70,6 @@ Corpus `etape4-trackd-unsloth-training` · **3 fichiers** · 201 lignes source �
 |---|---|
 | 1–65 | etape4-trackd-unsloth-training/00-unsloth-training/overview.md |
 | 66–119 | etape4-trackd-unsloth-training/00-unsloth-training/2-axolotl.md |
-| 120–201 | etape4-trackd-unsloth-training/00-unsloth-training/6-peft-lora-ecosystem-2026.md |
+| 120–196 | etape4-trackd-unsloth-training/00-unsloth-training/6-peft-lora-ecosystem-2026.md |
+| 197–201 | etape4-trackd-unsloth-training/00-unsloth-training/11-collection-metadata.md |
 

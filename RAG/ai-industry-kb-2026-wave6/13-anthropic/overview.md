@@ -5,14 +5,14 @@ domain: anthropic
 role: deep-dive
 task: actor-profile
 actors: ["AWS", "Alibaba", "Anthropic", "Glasswing", "OpenAI"]
-dates: ["2025-05", "2026-02-05", "2026-02-17", "2026-04-07", "2026-04-16", "2026-05-28", "2026-06-09", "2026-06-12", "2026-06-15", "2026-06-30", "2026-07-24", "2026-08-05", "2026-08-11", "2026-09-01"]
-keywords: ["agent", "agentic", "agi", "astra", "aws", "bedrock", "benchmark", "benchmarks", "claude", "cost", "distribution", "fable 5"]
+dates: ["2026-02-05", "2026-02-17", "2026-04-07", "2026-04-16", "2026-05-28", "2026-06-09", "2026-06-12", "2026-06-15", "2026-06-30", "2026-07-24", "2026-08-05", "2026-08-11", "2026-09-01"]
+keywords: ["agent", "agentic", "astra", "aws", "bedrock", "benchmark", "benchmarks", "claude", "cost", "distribution", "fable 5", "gpt-6"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [6252, 6348]
+source_lines: [6252, 6320]
 section: "§13. Anthropic"
 delta_of: ai-industry-kb-2026
-sha256: fbb8d2a931096fdc28c0b64ef507b9520ff0b887ff40c994fe61c89ecffda8fb
+sha256: 03f0928f5c30e31ee5f71958ec931bb18221b36905223368c90a6429bcf2d2c7
 ---
 
 # §13. Anthropic
@@ -83,32 +83,4 @@ Keywords: Anthropic, Claude, Claude Opus 4.6, Claude Sonnet 4.6, Claude Mythos P
 
 
 ### New verified facts — expansion
-
-### Claude Opus 4.6 — full spec sheet
-- Released 2026-02-05 [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29)
-- Model ID `claude-opus-4-6` [SECONDARY](https://tech-insider.org/claude-opus-vs-sonnet-vs-haiku-2026/)
-- Context 1M tokens (initially beta, reportedly GA in March) [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29) [SECONDARY](https://www.humai.blog/claude-opus-4-6-vs-gpt-5-2-vs-gemini-3-pro-which-ai-model-should-you-actually-use-in-2026/)
-- Max output 128K [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29)
-- Knowledge cutoff May 2025 [SECONDARY](https://tech-insider.org/claude-opus-vs-sonnet-vs-haiku-2026/)
-- Input pricing: $5/M [SECONDARY](https://github.com/mikahniehaus/claudeboost/blob/HEAD/.claudeboost/knowledge/batch-api-cost-about-claude-pricing.md)
-- Output pricing: $25/M [SECONDARY](https://github.com/mikahniehaus/claudeboost/blob/HEAD/.claudeboost/knowledge/batch-api-cost-about-claude-pricing.md)
-- 5-min cache write: $6.25/M [SECONDARY](https://github.com/mikahniehaus/claudeboost/blob/HEAD/.claudeboost/knowledge/batch-api-cost-about-claude-pricing.md)
-- 1-hr cache write: $10/M [SECONDARY](https://github.com/mikahniehaus/claudeboost/blob/HEAD/.claudeboost/knowledge/batch-api-cost-about-claude-pricing.md)
-- Cache read: $0.50/M (−90%) [SECONDARY](https://github.com/mikahniehaus/claudeboost/blob/HEAD/.claudeboost/knowledge/batch-api-cost-about-claude-pricing.md)
-- LONG-CONTEXT SURCHARGE CONTRADICTION: sources report either $10/$37.50 or $7.50/$37.50 above 200K input — unresolved; date every figure [UNVERIFIED](https://aithinkerlab.com/claude-opus-4-6-vs-opus-4-5-benchmarks-pricing-adaptive-thinking/)
-- Available on Claude.ai [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29)
-- Available on the Anthropic API [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29)
-- Available on AWS Bedrock [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29)
-- Available on Vertex AI [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29)
-- Available on Azure Foundry [SECONDARY](https://dev.to/bokaai/claude-opus-46-a-first-person-review-from-an-ai-agent-actually-running-on-it-1l29)
-- Features: Agent Teams [SECONDARY](https://github.com/gofinkle/pilot-shell/blob/HEAD/docs/site/src/content/blog/claude-opus-4-6.md)
-- Features: context compaction [SECONDARY](https://github.com/gofinkle/pilot-shell/blob/HEAD/docs/site/src/content/blog/claude-opus-4-6.md)
-- Features: adaptive thinking [SECONDARY](https://github.com/gofinkle/pilot-shell/blob/HEAD/docs/site/src/content/blog/claude-opus-4-6.md)
-- Vendor benchmarks (vendor claims, not independent): Terminal-Bench 2.0 65.4% [SECONDARY](https://www.humai.blog/claude-opus-4-6-vs-gpt-5-2-vs-gemini-3-pro-which-ai-model-should-you-actually-use-in-2026/)
-- Vendor: ARC-AGI-2 68.8% [SECONDARY](https://www.humai.blog/claude-opus-4-6-vs-gpt-5-2-vs-gemini-3-pro-which-ai-model-should-you-actually-use-in-2026/)
-- Vendor: OSWorld 72.7% [SECONDARY](https://www.humai.blog/claude-opus-4-6-vs-gpt-5-2-vs-gemini-3-pro-which-ai-model-should-you-actually-use-in-2026/)
-- Vendor: MRCR v2 76% [SECONDARY](https://www.humai.blog/claude-opus-4-6-vs-gpt-5-2-vs-gemini-3-pro-which-ai-model-should-you-actually-use-in-2026/)
-- Vendor: GDPval-AA 1606 Elo [SECONDARY](https://www.humai.blog/claude-opus-4-6-vs-gpt-5-2-vs-gemini-3-pro-which-ai-model-should-you-actually-use-in-2026/)
-- CACHING ANECDOTE: one community report claims `claude-opus-4-6` did not support prompt caching on their account (cache_write=0 in direct API tests) — single anecdotal account, contradicts the documented cache pricing table; treat as [COMMUNITY] only [COMMUNITY](https://github.com/guru-labs-ai/ai-sponsor/commit/383a64c8a28ebf9de3b1ca1ce3fa8e26b07b7bdc)
-- OUTLIER PRICE: one outlier secondary source lists Opus 4.6 at ~$15/$75 — contradicts the documented $5/$25 table; treat the $15/$75 figure as erroneous [UNVERIFIED](https://www.sostav.ru/blogs/278670/84700)
 

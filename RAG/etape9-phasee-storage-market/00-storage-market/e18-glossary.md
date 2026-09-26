@@ -4,14 +4,14 @@ title: "E18 — Glossary"
 domain: step-9-phase-e-storage-memory-market-2026
 role: deep-dive
 task: reference
-actors: []
+actors: ["China"]
 dates: ["2025-01-02", "2026-09-22"]
 keywords: ["amd", "attention", "aws", "benchmark", "cost", "dram", "gpu", "gpus", "gqa", "hbm", "hbm4", "inference"]
 source: docs/RAG/etape9_phaseE_storage_market.md
 source_anchor: ""
-source_lines: [238, 307]
+source_lines: [238, 309]
 section: "Step 9 Phase E — Storage & Memory Market 2026"
-sha256: b2f12e03a9cddc6619f92472edd59d58017b9fef08fe16a8ad4ffb8f5502689d
+sha256: acb097266f8333c4f2905de7ee9cd413e273744e94f2bcad468eaf6bf8dd8588
 ---
 
 # E18 — Glossary
@@ -85,4 +85,6 @@ sha256: b2f12e03a9cddc6619f92472edd59d58017b9fef08fe16a8ad4ffb8f5502689d
 ---
 
 *End of Step 9 Phase E — Storage & Memory Market 2026. Research cutoff 2026-09-22. Single writer; no other workspace files modified.*
+
+## E3b — NAND technology race 2026: layers, density, and the China factor
 

@@ -6,13 +6,13 @@ role: deep-dive
 task: actor-profile
 actors: ["AWS", "Alibaba", "China", "DeepSeek", "Fireworks AI", "Moonshot", "OpenAI", "Z.ai"]
 dates: ["2025-07", "2026-01-27", "2026-04", "2026-04-20", "2026-05-20", "2026-06-12", "2026-07-16", "2026-07-27", "2026-09"]
-keywords: ["kimi", "agent", "agents", "apache", "attribution", "aws", "bedrock", "benchmark", "benchmarks", "consumer", "context window", "cybersecurity"]
+keywords: ["kimi", "agent", "agents", "attribution", "aws", "bedrock", "benchmark", "benchmarks", "context window", "cybersecurity", "deepseek", "glm"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [2098, 2168]
+source_lines: [2098, 2161]
 section: "§5. Kimi and Moonshot AI"
 delta_of: ai-industry-kb-2026
-sha256: bec004c7e81412d418645a9d991a2f274b6d88fee18a0adbe750be794c521a0d
+sha256: b4e231457ed58b3fe27a20e43be33da64b5ebe1475caeb08e17941aa3d810259
 ---
 
 # §5. Kimi and Moonshot AI
@@ -78,11 +78,4 @@ This section also records 01.AI's exit from foundation-model development: Kai-Fu
 
 
 ### New verified facts — expansion (continued — K3 license resolution, weights, day-0 ecosystem, K3-vs-Flash economics)
-
-### K3 license — evidence now resolves the §5 conflict
-- The **mattrobenolt pi-configs research note** (updated ~5 days before this writing) inspects the primary text and reports: weights use the **bespoke Kimi K3 License, not MIT or Apache**. Terms: ordinary use, modification, distribution, fine-tuning, and commercial products allowed; a **MaaS business whose group revenue exceeds $20M over any consecutive 12 months needs a separate Moonshot agreement**; products exceeding **100M MAU or $20M monthly revenue must display "Kimi K3" prominently**; conditions **do not apply to internal use or access through Moonshot/certified inference partners**. Primary text: `https://raw.githubusercontent.com/MoonshotAI/Kimi-K3/main/LICENSE` [SECONDARY] (github.com/mattrobenolt/pi-configs).
-- Corroborated by three more sources: **analyticsindiamag** ("custom Kimi K3 License ... blends open access with targeted commercial restrictions"); **felloai** ("custom Kimi K3 License rather than MIT"); **techtimes** ("Kimi K3 License") [SECONDARY].
-- The "Modified MIT" label persists in two sources (**orcarouter.ai**, **zeronoise.ai**) — but orcarouter's description ("adds branding terms above 100M monthly users or $20M monthly revenue") matches the bespoke license's substance, so this is a **naming difference, not a substance difference** [SECONDARY].
-- K2-line context (techtimes): the **K2 line used a Modified MIT license** with the same 100M-MAU/$20M-revenue display term — K3 appears to have moved from Modified MIT (K2) to the bespoke Kimi K3 License (K3). Treat the §5 license conflict as **largely resolved in favor of the bespoke custom license** [DIRECTIONAL].
-- analyticsindiamag's comparison framing: unlike **DeepSeek's fully permissive MIT** and unlike **Qwen's commercial paywalls at high traffic**, K3 lets consumer services over 100M MAU/$20M monthly revenue use the model freely **provided they prominently display "Kimi K3" branding**; **internal enterprise deployments remain completely free and exempt from revenue caps regardless of company size**, as long as outputs are not resold as an external API [SECONDARY].
 

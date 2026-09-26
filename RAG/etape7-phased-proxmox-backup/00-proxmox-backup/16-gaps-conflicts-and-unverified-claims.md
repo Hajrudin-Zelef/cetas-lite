@@ -9,9 +9,9 @@ dates: ["2026-09-22"]
 keywords: ["cost", "cyber", "datacenter", "distribution", "license", "pricing", "research"]
 source: docs/RAG/etape7_phaseD_proxmox_backup.md
 source_anchor: ""
-source_lines: [285, 369]
+source_lines: [285, 371]
 section: "Step 7 — Phase D: Proxmox VE, Virtualization Platforms & Backup — Research"
-sha256: d6f16531c6449b4be6994c1f8238beaa5feefc313d2f2f2a9b4c07587587c776
+sha256: c217cb74c9249b04b5ad932b1097ccfbb28135bf27252b7edec88ca5004dfe15
 ---
 
 # 16. Gaps, conflicts and unverified claims
@@ -100,4 +100,6 @@ sha256: d6f16531c6449b4be6994c1f8238beaa5feefc313d2f2f2a9b4c07587587c776
 - https://documentation.commvault.com/2024e/expert/mysql_backup_using_percona_xtrabackup.html
 
 *End of Step 7 Phase D. Single writer; no other workspace files modified. Research cutoff 2026-09-22. File written append-only in 5 waves.*
+
+## 19. Proxmox VE operations deep-dive (supplement)
 

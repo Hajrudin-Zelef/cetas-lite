@@ -1,6 +1,6 @@
 # INDEX — Phase E4 — Network Validation, Observability & CI/CD
 
-Corpus `etape6-phasee4-validation-cicd` · **14 fichiers** · 782 lignes source · ~8121 mots · partition exacte de `docs/RAG/etape6_phaseE4_validation_cicd.md`.
+Corpus `etape6-phasee4-validation-cicd` · **16 fichiers** · 782 lignes source · ~8121 mots · partition exacte de `docs/RAG/etape6_phaseE4_validation_cicd.md`.
 
 ## Mode d'emploi
 
@@ -18,13 +18,15 @@ Corpus `etape6-phasee4-validation-cicd` · **14 fichiers** · 782 lignes source 
 | 02 | [E4.2 — SuzieQ: multi-vendor network observability](00-front-matter/e4-2-suzieq-multi-vendor-network-observability.md) | 63–132 | reference | reference |
 | 03 | [E4.4 — Forward (formerly Forward Networks): network digital twin](00-front-matter/e4-4-forward-formerly-forward-networks-network-digital-twin.md) | 133–188 | reference | reference |
 | 04 | [E4.6 — Lab and emulation environments](00-front-matter/e4-6-lab-and-emulation-environments.md) | 189–244 | reference | reference |
-| 05 | [E4.7 — Testing frameworks](00-front-matter/e4-7-testing-frameworks.md) | 245–310 | reference | reference |
-| 06 | [E4.9 — Event-driven automation](00-front-matter/e4-9-event-driven-automation.md) | 311–375 | reference | reference |
-| 07 | [E4.11 — Open items and gaps log](00-front-matter/e4-11-open-items-and-gaps-log.md) | 376–464 | reference | reference |
-| 08 | [E4.13 — Deep-dive expansions](00-front-matter/e4-13-deep-dive-expansions.md) | 465–542 | reference | reference |
-| 09 | [E4.14 — Verification](00-front-matter/e4-14-verification.md) | 543–595 | reference | reference |
-| 10 | [E4.15.3 Lab platform edition/pricing snapshot (Sept 2026)](00-front-matter/e4-15-3-lab-platform-edition-pricing-snapshot-sept-2026.md) | 596–646 | reference | pricing |
-| 11 | [E4.15.7 StackStorm pack examples (network-relevant)](00-front-matter/e4-15-7-stackstorm-pack-examples-network-relevant.md) | 647–721 | reference | reference |
+| 05 | [E4.7 — Testing frameworks](00-front-matter/e4-7-testing-frameworks.md) | 245–302 | reference | reference |
+| 06 | [E4.8.4 Config diff testing](00-front-matter/e4-8-4-config-diff-testing.md) | 303–310 | reference | reference |
+| 07 | [E4.9 — Event-driven automation](00-front-matter/e4-9-event-driven-automation.md) | 311–375 | reference | reference |
+| 08 | [E4.11 — Open items and gaps log](00-front-matter/e4-11-open-items-and-gaps-log.md) | 376–464 | reference | reference |
+| 09 | [E4.13 — Deep-dive expansions](00-front-matter/e4-13-deep-dive-expansions.md) | 465–520 | reference | reference |
+| 10 | [E4.13.8 Glossary](00-front-matter/e4-13-8-glossary.md) | 521–542 | reference | reference |
+| 11 | [E4.14 — Verification](00-front-matter/e4-14-verification.md) | 543–595 | reference | reference |
+| 12 | [E4.15.3 Lab platform edition/pricing snapshot (Sept 2026)](00-front-matter/e4-15-3-lab-platform-edition-pricing-snapshot-sept-2026.md) | 596–646 | reference | pricing |
+| 13 | [E4.15.7 StackStorm pack examples (network-relevant)](00-front-matter/e4-15-7-stackstorm-pack-examples-network-relevant.md) | 647–721 | reference | reference |
 
 ### `01-github-workflows-network-validate-yml-illustrative/`
 
@@ -47,7 +49,7 @@ Corpus `etape6-phasee4-validation-cicd` · **14 fichiers** · 782 lignes source 
 ## Par tâche
 
 - **pricing** — [E4.15.3 Lab platform edition/pricing snapshot (Sept 2026)](00-front-matter/e4-15-3-lab-platform-edition-pricing-snapshot-sept-2026.md)
-- **reference** — [Phase E4 — Network Validation, Observability & CI/CD](00-front-matter/overview.md), [E4.2 — SuzieQ: multi-vendor network observability](00-front-matter/e4-2-suzieq-multi-vendor-network-observability.md), [E4.4 — Forward (formerly Forward Networks): network digital twin](00-front-matter/e4-4-forward-formerly-forward-networks-network-digital-twin.md), [E4.6 — Lab and emulation environments](00-front-matter/e4-6-lab-and-emulation-environments.md), [E4.7 — Testing frameworks](00-front-matter/e4-7-testing-frameworks.md), [E4.9 — Event-driven automation](00-front-matter/e4-9-event-driven-automation.md), [E4.11 — Open items and gaps log](00-front-matter/e4-11-open-items-and-gaps-log.md), [E4.13 — Deep-dive expansions](00-front-matter/e4-13-deep-dive-expansions.md), [E4.14 — Verification](00-front-matter/e4-14-verification.md), [E4.15.7 StackStorm pack examples (network-relevant)](00-front-matter/e4-15-7-stackstorm-pack-examples-network-relevant.md), [.github/workflows/network-validate.yml (illustrative)](01-github-workflows-network-validate-yml-illustrative/overview.md), [rulebooks/bgp_flap_remediate.yml (illustrative)](02-rulebooks-bgp-flap-remediate-yml-illustrative/overview.md), [ci/batfish_questions.py (illustrative)](03-ci-batfish-questions-py-illustrative/overview.md)
+- **reference** — [Phase E4 — Network Validation, Observability & CI/CD](00-front-matter/overview.md), [E4.2 — SuzieQ: multi-vendor network observability](00-front-matter/e4-2-suzieq-multi-vendor-network-observability.md), [E4.4 — Forward (formerly Forward Networks): network digital twin](00-front-matter/e4-4-forward-formerly-forward-networks-network-digital-twin.md), [E4.6 — Lab and emulation environments](00-front-matter/e4-6-lab-and-emulation-environments.md), [E4.7 — Testing frameworks](00-front-matter/e4-7-testing-frameworks.md), [E4.8.4 Config diff testing](00-front-matter/e4-8-4-config-diff-testing.md), [E4.9 — Event-driven automation](00-front-matter/e4-9-event-driven-automation.md), [E4.11 — Open items and gaps log](00-front-matter/e4-11-open-items-and-gaps-log.md), [E4.13 — Deep-dive expansions](00-front-matter/e4-13-deep-dive-expansions.md), [E4.13.8 Glossary](00-front-matter/e4-13-8-glossary.md), [E4.14 — Verification](00-front-matter/e4-14-verification.md), [E4.15.7 StackStorm pack examples (network-relevant)](00-front-matter/e4-15-7-stackstorm-pack-examples-network-relevant.md), [.github/workflows/network-validate.yml (illustrative)](01-github-workflows-network-validate-yml-illustrative/overview.md), [rulebooks/bgp_flap_remediate.yml (illustrative)](02-rulebooks-bgp-flap-remediate-yml-illustrative/overview.md), [ci/batfish_questions.py (illustrative)](03-ci-batfish-questions-py-illustrative/overview.md)
 
 ## Par acteur
 
@@ -90,10 +92,12 @@ Corpus `etape6-phasee4-validation-cicd` · **14 fichiers** · 782 lignes source 
 | 63–132 | etape6-phasee4-validation-cicd/00-front-matter/e4-2-suzieq-multi-vendor-network-observability.md |
 | 133–188 | etape6-phasee4-validation-cicd/00-front-matter/e4-4-forward-formerly-forward-networks-network-digital-twin.md |
 | 189–244 | etape6-phasee4-validation-cicd/00-front-matter/e4-6-lab-and-emulation-environments.md |
-| 245–310 | etape6-phasee4-validation-cicd/00-front-matter/e4-7-testing-frameworks.md |
+| 245–302 | etape6-phasee4-validation-cicd/00-front-matter/e4-7-testing-frameworks.md |
+| 303–310 | etape6-phasee4-validation-cicd/00-front-matter/e4-8-4-config-diff-testing.md |
 | 311–375 | etape6-phasee4-validation-cicd/00-front-matter/e4-9-event-driven-automation.md |
 | 376–464 | etape6-phasee4-validation-cicd/00-front-matter/e4-11-open-items-and-gaps-log.md |
-| 465–542 | etape6-phasee4-validation-cicd/00-front-matter/e4-13-deep-dive-expansions.md |
+| 465–520 | etape6-phasee4-validation-cicd/00-front-matter/e4-13-deep-dive-expansions.md |
+| 521–542 | etape6-phasee4-validation-cicd/00-front-matter/e4-13-8-glossary.md |
 | 543–595 | etape6-phasee4-validation-cicd/00-front-matter/e4-14-verification.md |
 | 596–646 | etape6-phasee4-validation-cicd/00-front-matter/e4-15-3-lab-platform-edition-pricing-snapshot-sept-2026.md |
 | 647–721 | etape6-phasee4-validation-cicd/00-front-matter/e4-15-7-stackstorm-pack-examples-network-relevant.md |

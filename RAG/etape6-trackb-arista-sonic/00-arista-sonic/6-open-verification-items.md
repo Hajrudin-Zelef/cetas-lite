@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["Broadcom", "Meta", "Microsoft", "Nvidia"]
 dates: ["2025-12", "2026-02", "2026-03-12", "2026-05", "2026-05-27", "2026-06", "2026-07", "2026-07-16", "2026-09-22", "2026-11", "2027-04", "2027-07", "2027-08", "2027-11"]
-keywords: ["accelerator", "asic", "datacenter", "distribution", "ethernet", "gpu", "gpus", "hyperscaler", "latency", "nvidia", "nvlink", "research"]
+keywords: ["asic", "datacenter", "distribution", "ethernet", "gpu", "gpus", "hyperscaler", "latency", "nvidia", "research", "revenue"]
 source: docs/RAG/etape6_trackB_arista_sonic.md
 source_anchor: ""
-source_lines: [244, 326]
+source_lines: [244, 319]
 section: "Step 6 — Track B: Arista + SONiC + Cumulus (Data-Center Fabric & Open Networking)"
-sha256: 88551885ab6e3e004b388458a146e007d3d884ba1faccbe694b6416f16e84ae3
+sha256: f61aecf7b2f7e1af267ccd2718f93eeec2c0c91e2186f374e87e93e94fac26e8
 ---
 
 # 6. OPEN VERIFICATION ITEMS
@@ -92,10 +92,3 @@ Additive findings from a second research pass, all provenance-tagged. Nothing ab
 
 ### 8.5 Arista Q2 2026 — additional color (remio.ai analysis, secondary)
 
-- Etherlink: **>100 customers** vs "four or five" in 2024 — broadening beyond hyperscalers to specialty AI clouds, enterprises, and custom-accelerator operators `[vendor-reported]` (management via remio.ai).
-- **Scale-across** target: **~$1.2B in 2026**; management estimates the scale-across market could reach **$15B–$20B by 2030** `[vendor-reported]`.
-- **Microsoft and Meta have each represented at least 10% of annual revenue** in recent reporting periods `[secondary]`.
-- Arista management acknowledged **meaningful scale-up revenue is unlikely before 2027** (NVLink territory) `[secondary]`.
-- Purchase commitments **~$9.7B** at Q2-end (vs ~$3.6B a year earlier); inventory ~$2.5B; deferred revenue ~$6.9B; supply pressures expected **into 2028** `[secondary]`.
-- 7060XE7 air-cooled systems: Q4 2026; liquid-cooled + additional configurations: early 2027 `[official]` (Arista press release, cited in §1.2 above).
-- Source: https://www.remio.ai/post/arista-networks-outlook-jumps-as-ai-demand-meets-an-nvidia-challenge

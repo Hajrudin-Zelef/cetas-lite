@@ -4,14 +4,14 @@ title: "E8 — Firmware lock-in and platform friction (Dell/HPE)"
 domain: step-9-phase-e-storage-memory-market-2026
 role: deep-dive
 task: reference
-actors: ["AWS"]
+actors: []
 dates: []
-keywords: ["aws", "benchmark", "consumer", "cost", "dram", "embedding", "gpu", "gpus", "license", "licenses", "llama", "memory"]
+keywords: ["consumer", "cost", "dram", "license", "licenses", "memory", "nand"]
 source: docs/RAG/etape9_phaseE_storage_market.md
 source_anchor: ""
-source_lines: [114, 170]
+source_lines: [114, 146]
 section: "Step 9 Phase E — Storage & Memory Market 2026"
-sha256: 9e999007d3e3258ba0a33474af6c1815a6e6fbe796ddedcfb3e190ccd058a83c
+sha256: ded873732e45727e0f74f4acaab5761272c4f998b0a2a2624c3872254614e054
 ---
 
 # E8 — Firmware lock-in and platform friction (Dell/HPE)
@@ -48,28 +48,4 @@ sha256: 9e999007d3e3258ba0a33474af6c1815a6e6fbe796ddedcfb3e190ccd058a83c
 - **PCIe generation guidance (2026):** Gen5 drives are worth it only if the platform supports PCIe 5.0 and the bandwidth is needed; **Gen4 remains the price/performance balance** for most users [secondary].
 
 ## E11 — Counterfeit and misrepresented-drive detection
-
-- **Why 2026 is high-risk:** with 1 TB retail SSDs at 2×+ their historical prices, the incentive to sell relabeled, used-as-new, or capacity-spoofed drives rises; community guidance converges on a verification routine [secondary].
-- **Detection routine:**
-  1. **Verify capacity with a full-surface write test** (f3/h2testw class tools) — spoofed-capacity drives report fake sizes until written past real NAND [secondary].
-  2. **Read SMART/NVMe identify data** — check model string, firmware version, and serial against the vendor's format; mismatched or generic strings are a flag [secondary].
-  3. **Check TBW/percentage-used on "new" drives** — any nonzero wear on a sealed-new unit indicates a used drive [secondary].
-  4. **Weigh and inspect** — counterfeits often use lighter PCBs and fewer NAND packages than genuine units; compare against teardown photos [secondary].
-  5. **Buy from traceable channels** — marketplace sellers with SMART reports beat anonymous bulk lots; Amazon Renewed is convenient but pricier, eBay offers selection with buyer protection [secondary].
-- **Enterprise-drive-specific traps:** Dell/HP-branded pulls sold without sleds (see E8); drives with **vendor-locked firmware that cannot be updated outside the OEM ecosystem**; and "refurbished" drives that are actually failed-stock returns rather than proactive-refresh pulls — ask for origin explicitly [secondary].
-- **Firmware-health check on receipt:** update to the latest vendor/OEM firmware where entitled, then re-run SMART — a drive that cannot complete a firmware update or shows reallocated sectors climbing in the first 48 hours goes back under RMA [secondary].
-
-## E12 — AI storage sizing I: training checkpoints
-
-- **The core formula (mixed-precision training, BF16/FP16 weights + FP32 optimizer states): a full checkpoint needs ~8–12 bytes of storage per parameter** — 2 bytes for weights plus ~8 bytes for Adam optimizer states (momentum + variance in FP32), plus gradients and metadata [secondary]. Source: https://www.cudocompute.com/blog/storage-requirements-for-ai-clusters
-- **Worked sizes (8–12 B/param rule):**
-  - 7B → weights ~14 GB, **full checkpoint ~70 GB** [secondary].
-  - 70B → weights ~140 GB, **full checkpoint ~700 GB** [secondary].
-  - 175B → weights ~350 GB, **full checkpoint ~1.75 TB** [secondary].
-- **Independent benchmark anchor (Argonne DLIO):** Llama 70B (80 layers, 8192 hidden, 128k vocab) measured **checkpoint 1.1 TB**; Llama 405B **6 TB**; Llama 1T **17 TB** — consistent with the 8–12 B/param band once vocab/embedding overhead is included [secondary]. Source: https://github.com/argonne-lcf/dlio_benchmark/wiki/How-to-run-LLM-benchmark
-- **AWS's reference decomposition (100B model):** BF16 weights 200 GB + optimizer 800 GB (8 B/param) = **1 TB single checkpoint per model replica**; with data-parallel synchronization, **only one replica's state needs saving** — checkpoint size does not scale with job size [secondary]. Source: https://aws.amazon.com/blogs/storage/architecting-scalable-checkpoint-storage-for-large-scale-ml-training-on-aws/
-- **The key scaling insight (Hammerspace/Blocks&Files):** checkpoint size is a function of *model* size, not *cluster* size — the 405B Llama-3 checkpoint trained on 16,000 GPUs is the same size as on 3 nodes; only "under a hundred terabytes for state-of-the-art LLMs" needs saving per checkpoint [secondary]. Source: https://www.blocksandfiles.com/ai-ml/2025/02/04/very-large-ai-model-training-uses-object-storage/1602990
-- **Checkpoint count math:** keep N retained checkpoints → N × checkpoint size of *fast* storage. With failures every ~2.8 hours observed on the Llama-3 405B run, checkpointing is frequent; async/lazy snapshot techniques (DataStates-LLM, 2026 research) decouple state abstraction from data movement to avoid stalling training [secondary]. Source: http://quantumzeitgeist.com/transformer-models-datastates-llm-achieves-scalable-checkpointing/
-- **Tiering guidance:** checkpoints land on **node-local NVMe ("Tier 0")** first (scales linearly with GPU count, no cross-node reads needed for tokens — 60 TB of tokens for the entire 405B run, i.e., 3.75 GB per GPU over 54 days), then flush to parallel file/object storage (Lustre, S3-class) for retention [secondary].
-- **Procurement takeaway:** size the *write bandwidth* of the checkpoint tier (GB/s aggregate across nodes), not just capacity — DLIO measured **~132 GB/s mean checkpoint I/O** on 1,024 accelerators for a ~1 TB checkpoint (~8 s per checkpoint) [secondary].
 

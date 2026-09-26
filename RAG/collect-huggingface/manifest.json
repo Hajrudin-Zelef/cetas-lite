@@ -4,7 +4,7 @@
   "source": "docs/RAG/Collect RAG/03_huggingface",
   "source_dir": "docs/RAG/Collect RAG/03_huggingface",
   "source_files": 125,
-  "source_sha256": "8959e8183e4a214a67ca7f1a128281aa0dfb45fd3a40b2b209846da51d546524",
+  "source_sha256": "3058811db28867fbb9f8e122f7c53719b53f6d7f9452be6e2a16548736d3cf05",
   "chunk_count": 125,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [

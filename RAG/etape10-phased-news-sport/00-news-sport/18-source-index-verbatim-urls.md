@@ -5,13 +5,13 @@ domain: step-10d-sports-news-february-2026-22-september-2026
 role: deep-dive
 task: reference
 actors: []
-dates: ["2026-02-01", "2026-05-13", "2026-09-22"]
+dates: ["2026-05-13"]
 keywords: []
 source: docs/RAG/etape10_phaseD_news_sport.md
 source_anchor: ""
-source_lines: [832, 935]
+source_lines: [832, 933]
 section: "Step 10D — Sports News (February 2026 → 22 September 2026)"
-sha256: 45eb9923bc121864136d910dc455ca35df514c28c8a63de39856f4f653fbdce7
+sha256: 0991ca00f4f48ccc1aba6f735ad6ba9c5bdf32785fd2a3d7ac9a34d0cfd27ce0
 ---
 
 # 18. Source index (verbatim URLs)
@@ -118,5 +118,3 @@ sha256: 45eb9923bc121864136d910dc455ca35df514c28c8a63de39856f4f653fbdce7
 
 ## 19. End of file
 
-Step 10D complete. Coverage: 2026-02-01 → 2026-09-22. Next phases (10E world/geopolitics,
-10F buzz/culture, 10G science/planet) are separate tracks and were not touched.

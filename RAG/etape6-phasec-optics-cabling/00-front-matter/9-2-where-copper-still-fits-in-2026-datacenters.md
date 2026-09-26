@@ -9,9 +9,9 @@ dates: []
 keywords: ["cost", "dsp", "energy", "ethernet", "latency", "optics", "power delivery", "pricing"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [1407, 1454]
+source_lines: [1407, 1456]
 section: "Step 6 — Phase C: Optics, Cabling & Interconnect Infrastructure"
-sha256: 04405d6ebab694d1f69f225ad1bbdb21b304091e2f6ea806ffeafd240db7d533
+sha256: 537d3e9f8cc8b0925c087bb56d5583fd686a7102f00a52d5cea5d885cce10d1c
 ---
 
 # 9.2 Where copper still fits in 2026 datacenters
@@ -63,4 +63,6 @@ sha256: 04405d6ebab694d1f69f225ad1bbdb21b304091e2f6ea806ffeafd240db7d533
 - **TIA TSB-184-A** (Guidelines for Supporting Power Delivery Over Balanced Twisted-Pair Cabling): caps temperature rise at **15 °C** in the center of a cable bundle; provides modeled rise tables by category, bundle size, current, and open-air vs conduit [official — via Panduit technical bulletin and DOE Connected Lighting study, secondary]. Example modeled values (PoE Type 4, 24-cable bundle): Cat5e 7.91 °C (air) / 11.29 °C (duct); Cat6 6.00/8.67; Cat6A 5.13/7.11; Cat8 2.90/4.74 [secondary — Lightera bulletin reproducing TSB-184-A Table 2]. Practical rule: bundles ≤24 cables stay under 15 °C for Type 4 [secondary — Lightera]. **Cat6A is TIA's recommended cable for new PoE installations**; shielded (metallic elements) recommended to mitigate rise [secondary — DOE report; Panduit; FS.com].
 - **Addendum TSB-184-A-1** covers 28 AWG patch cords: TIA-568.2-D permits 22–28 AWG cords, but 28 AWG cords are limited to 15 m in a channel with length derating per Annex G for their higher insertion loss [official — via Quabbin/electronics360 secondary].
 - NEC 725.144 (2017) sets bundle-size/current limits by AWG [secondary — DOE report].
+
+### 9.6 Twinax DAC vs structured twisted-pair
 

@@ -4,15 +4,15 @@ title: "§8. MiMo and Xiaomi"
 domain: mimo-and-xiaomi
 role: deep-dive
 task: actor-profile
-actors: ["China", "DeepSeek", "Hugging Face", "Xiaomi"]
+actors: ["DeepSeek", "Hugging Face", "Xiaomi"]
 dates: ["2025-04-30", "2025-05-30", "2026-03", "2026-03-18", "2026-04", "2026-04-22", "2026-04-23", "2026-09", "2026-09-21"]
-keywords: ["agent", "agents", "alignment", "apache", "attention", "context window", "cost", "deepseek", "fine-tuning", "licenses", "multimodal", "omni"]
+keywords: ["agents", "alignment", "apache", "attention", "context window", "cost", "deepseek", "fine-tuning", "licenses", "multimodal", "omni", "open weights"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [3564, 3647]
+source_lines: [3564, 3624]
 section: "§8. MiMo and Xiaomi"
 delta_of: ai-industry-kb-2026
-sha256: d82b4da346223ade9f621ff1075661feb0b27db44245b268318d8b341bf7a645
+sha256: 09bb20585ddac6357d2f6c2b33f26a2b444fe8bdb54f020b394005e058ddda84
 ---
 
 # §8. MiMo and Xiaomi
@@ -75,27 +75,4 @@ Keywords: MiMo, Xiaomi, MiMo-7B, MiMo-V2-Pro, MiMo-V2-Omni, MiMo-V2.5, MiMo-V2.5
 - The RL stage consumed approximately 130,000 curated math and code problems. [SECONDARY, S2][SECONDARY, S4]
 - MiMo-VL-7B, the vision-language variant, was trained on approximately 2.4T tokens across four distinct training stages (projector warmup, vision-language alignment, general multimodal pretraining, long-context SFT). [VENDOR, S35][SECONDARY, S36][SECONDARY, S2]
 - A MiMo-Audio-7B audio-language variant also exists, built for voice conversion, style transfer, and speech editing. [SECONDARY, S2][SECONDARY, S4]
-
-### V2-Pro / V2-Omni / V2-TTS specifications (released 2026-03-18; details beyond base section)
-- V2-Pro is a mixture-of-experts model with approximately 1T total parameters and approximately 42B active parameters per token. [SECONDARY, S5][SECONDARY, S7]
-- V2-Pro uses a hybrid/mixed attention architecture rather than uniform attention; one secondary reports a 7:1 hybrid ratio for V2-Pro specifically (see tension note). [SECONDARY, S5][SECONDARY, S26]
-- V2-Pro supports a 1,048,576-token context window with a maximum output length of approximately 32K tokens. [SECONDARY, S7][SECONDARY, S5]
-- V2-Pro's launch API pricing was $1 per million input tokens and $3 per million output tokens for prompts up to 256K tokens. [SECONDARY, S5][SECONDARY, S26][SECONDARY, S27][SECONDARY, S28]
-- V2-Pro's launch pricing rose to $2 input / $6 output per million tokens for prompts from 256K to 1M tokens. [SECONDARY, S5][SECONDARY, S26][SECONDARY, S27]
-- V2-Omni accepts text, image, video, and audio input modalities in a single model. [SECONDARY, S6][SECONDARY, S7]
-- V2-Omni's context window is 256K tokens (one secondary reports 262K — preserved as a catalog discrepancy). [SECONDARY, S6][SECONDARY, S37][SECONDARY, S38][SECONDARY, S40]
-- V2-Omni's reported API pricing is $0.40 per million input tokens and $2 per million output tokens, with $0.08/M cache reads. [SECONDARY, S6][SECONDARY, S37][SECONDARY, S8][SECONDARY, S39]
-- V2-Omni supports long-audio understanding beyond 10 hours of continuous audio (claimed industry-leading duration). [SECONDARY, S6][SECONDARY, S8][SECONDARY, S38][SECONDARY, S40]
-- V2-TTS performs joint speech-text modeling in a single architecture rather than cascading separate models. [SECONDARY, S6][SECONDARY, S7]
-- V2-TTS uses a proprietary (non-open) audio tokenizer. [SECONDARY, S6 — single source]
-- V2-TTS uses a multi-codebook acoustic model design. [SECONDARY, S6 — single source]
-- V2-TTS speech pretraining consumed over 100 million hours of speech data, per vendor claims reported at launch (one secondary reports "hundreds of millions of hours"). [VENDOR, S6][SECONDARY, S8][SECONDARY, S38]
-- The "Hunter" stealth codename was publicly tied to the V2 trio after community detection of anonymous "Hunter Alpha" checkpoints. [SECONDARY, S8][SECONDARY, S7]
-- Hunter Alpha processed more than 1T tokens of community testing traffic in earlier reports, later revised above 1.5T tokens as the stealth period extended. [SECONDARY, S8 — range across report dates]
-- V2-Pro is integrated into MiMo Studio, Xiaomi's model development and deployment workbench. [SECONDARY, S5][SECONDARY, S7]
-- V2-Pro is integrated into the Xiaomi Browser AI assistant surface (native integrations targeted at the Chinese market; core API globally accessible). [SECONDARY, S5][SECONDARY, S37]
-- V2-Pro is integrated into WPS / Kingsoft Office AI features (Word, Excel, PPT, PDF generation). [SECONDARY, S7][SECONDARY, S8][SECONDARY, S37]
-- V2-Pro/V2.5-Pro are supported in the OpenClaw agent harness; a limited-time one-week free testing period ran through OpenClaw, OpenCode, KiloCode, Blackbox, and Cline at launch. [SECONDARY, S5][SECONDARY, S37][SECONDARY, S39]
-- V2-Pro/V2.5-Pro are supported in the OpenCode agent harness. [SECONDARY, S5][SECONDARY, S37][SECONDARY, S39]
-- V2-Pro/V2.5-Pro are supported in the Cline coding agent. [SECONDARY, S5][SECONDARY, S37][SECONDARY, S39]
 

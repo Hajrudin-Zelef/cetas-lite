@@ -4,15 +4,15 @@ title: "Figures and metrics"
 domain: cohere
 role: deep-dive
 task: actor-profile
-actors: ["AWS", "Anthropic", "Cohere", "CoreWeave", "DeepSeek", "Microsoft", "Mistral", "OpenAI"]
-dates: ["2025-01-09", "2025-04-01", "2025-04-15", "2025-07", "2025-08-06", "2026-04-04", "2026-05", "2026-05-12", "2026-05-20", "2026-06-09", "2026-06-25", "2026-07-27", "2026-08-06", "2026-08-27"]
-keywords: ["agent", "agentic", "apache", "arr", "attention", "bedrock", "cohere", "context window", "copilot", "cost", "deepseek", "distillation"]
+actors: ["AWS", "Anthropic", "Cohere", "CoreWeave", "DeepSeek", "Microsoft", "OpenAI"]
+dates: ["2025-01-09", "2025-04-01", "2025-04-15", "2025-07", "2025-08-06", "2026-04-04", "2026-05", "2026-05-12", "2026-05-20"]
+keywords: ["apache", "arr", "attention", "bedrock", "cohere", "context window", "copilot", "cost", "deepseek", "embedding", "license", "merger"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [7972, 8090]
+source_lines: [7972, 8064]
 section: "§16. Cohere"
 delta_of: ai-industry-kb-2026
-sha256: d4fed22db1eaad454b983d6408eed099b37d694609e61cb3a862764cb99bf4d9
+sha256: f4700e9bd9272e1c7165124b0407a5b683eb87df8188f080d4b3ca091b383427
 ---
 
 # Figures and metrics
@@ -109,30 +109,4 @@ sha256: d4fed22db1eaad454b983d6408eed099b37d694609e61cb3a862764cb99bf4d9
 | Command A+ vs Command A (2025) params | 218B/25B vs 111B dense | S32 (single source) | [COMMUNITY] |
 | Manufacturing-showcase claimed downtime cut | −50–65% (community demo) | S38 (single source) | [COMMUNITY] |
 | Manufacturing-showcase defect escape | 35% → <8% (community demo) | S38 (single source) | [COMMUNITY] |
-
-| North Mini Code | Released 2026-06-09; 30B total / 3B active MoE, 256K context (64K max gen), Apache 2.0, 1xH100 FP8 min | S39, S47 | [SECONDARY] |
-| Three-model Apache 2.0 cadence | Transcribe (Mar), A+ (May), Mini Code (Jun) | S39 (single source) | [SECONDARY] |
-| North Automations | GA 2026-07-27, orchestration + governance layer | S40 (single source) | [SECONDARY] |
-| North Automations governance | roles/permissions, human checkpoints, audit path, usage dashboards | S40 (single source) | [SECONDARY] |
-| Cohere Parse 5 (parse-v5.0) | Launched 2026-08-27; 2.3B VLM, PDF/PPT/JPEG->Markdown, $1.50/1k pages, Model Vault from $2,500/mo, ParseBench 79.2 (vendor-reported) | S46, S48 | [SECONDARY] |
-| Waterloo certificate partnership | Announced 2026-08-06 | S40 (single source) | [SECONDARY] |
-| Wiz security-agent case study | Published 2026-06-25 | S40 (single source) | [SECONDARY] |
-| Gartner market-opportunity figure (via Cohere) | $550B | S40 (single source) | [SECONDARY] |
-| Command A+ τ²-Bench Telecom | 85% (vs 37% Command A Reasoning) | S41, S42 | [VENDOR] |
-| Command A+ Terminal-Bench Hard | 25% (vs 3% Command A Reasoning) | S41, S42 | [VENDOR] |
-| Command A+ North agentic Q&A | +20% accuracy vs A Reasoning | S41, S42 | [VENDOR] |
-| Command A+ North spreadsheet analysis | +32% quality vs A Reasoning | S41, S42 | [VENDOR] |
-| Command A+ Memory Usage Quality | 54% vs 39% (A Reasoning) | S41, S42 | [VENDOR] |
-| Command A+ MMMU / MMMU Pro | 75.1% / 63% | S41, S42 | [VENDOR] |
-| Command A+ MathVista | 80.6% (vs 73.5%) | S41, S42 | [VENDOR] |
-| Command A+ CharXiv reasoning | 52.7% (vs 46.9%) | S41, S42 | [VENDOR] |
-| Command A+ GPQA Diamond / AIME 2025 / HLE | 76% / 90% / ~11% | S43 (single source) | [SECONDARY] |
-| Command A+ AA Intelligence Index | 37 (Mistral Medium 3.5: 39; GPT-5.5: 60) | S43 (single source) | [SECONDARY] |
-| Command A+ TOPS vs A Reasoning | +63% higher output tok/s | S41, S42 | [VENDOR] |
-| Command A+ TTFT vs A Reasoning | −17% | S41, S42 | [VENDOR] |
-| Command A+ W4A4 incremental | +47% speed, −13% latency | S41, S42 | [VENDOR] |
-| Command A+ speculative decoding | +1.5–1.6× speedup (text + multimodal) | S41, S42 | [VENDOR] |
-| Command A+ quantization method | Quantization-Aware Distillation (QAD) | S42 (single source) | [SECONDARY] |
-| Command A+ languages | 48 (vs 23 on Command A) | S41 (single source) | [VENDOR] |
-| Cohere cumulative fundraising (vendor-reported) | ~$1.6B | S44 (single source) | [VENDOR] |
 

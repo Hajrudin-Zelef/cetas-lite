@@ -6,12 +6,12 @@ role: deep-dive
 task: hardware
 actors: []
 dates: ["2025-06-11", "2026-01"]
-keywords: ["accelerator", "compute", "consumer", "cost", "datacenter", "disaggregated", "dram", "ethernet", "gpus", "inference", "latency", "memory"]
+keywords: ["cost", "datacenter", "disaggregated", "dram", "ethernet", "gpus", "inference", "latency", "memory", "throughput", "training"]
 source: docs/RAG/etape9_phaseB_form_factors_interfaces.md
 source_anchor: ""
-source_lines: [205, 276]
+source_lines: [205, 256]
 section: "Step 9 — Phase B: Storage Form Factors & Interfaces (Hardware Angle)"
-sha256: bea41c258dc5f329386f22517292b415d36a02c6f590ba59e5ecaf39c80d0a55
+sha256: 32564283c2a41403872de80eb0a69763319d1684022d9fc7cf2c74408587b02c
 ---
 
 # 9. NVMe over Fabrics — transports in 2026
@@ -67,24 +67,4 @@ sha256: bea41c258dc5f329386f22517292b415d36a02c6f590ba59e5ecaf39c80d0a55
 | PCIe 6.0 | 2022 | PAM4 + FEC, Flit | 64 GT/s | ~256 GB/s bidir (x16) | Early silicon, not widespread |
 | PCIe 7.0 | 2025-06-11 | PAM4, Flit | 128 GT/s | 512 GB/s bidir (x16) | Spec ratified; products ~2028 |
 | PCIe 8.0 | 2028 (planned) | — | 256 GT/s | ~1 TB/s (x16) | Pathfinding |
-
-- PCIe 6.0 was "introduced in 2022 but has not yet seen widespread implementation in consumer products"; 7.0 products are "unlikely… before 2028" — spec ratification runs ~3 years ahead of volume [secondary](https://themunicheye.com/pci-express-7-0-finalized-data-transfer-speeds-23001).
-- PCIe 7.0 official facts: 128.0 GT/s raw, "up to 512.0 GB/s bi-directional bandwidth via a sixteen lane (x16) configuration", PAM4 signaling, Flit-based encoding, improved power efficiency, full backward compatibility [official](https://pcisig.com/faq?field_category_value%5B%5D=pci_express_7.0&keys=).
-- PAM4 arrived with 6.0 ("allows each transfer to convey two bits of data using four voltage levels, necessitating more sophisticated controller designs"); 7.0 keeps PAM4 + Flit [secondary](https://themunicheye.com/pci-express-7-0-finalized-data-transfer-speeds-23001)[secondary](https://www.eetimes.com/pcie-7-0-keeps-pace-with-ai-demands/).
-- PCIe 7.0 was released to members on June 11, 2025; PCI-SIG president Al Yanes: "It takes three years to develop a specification. It takes three years for innovation. It takes three years for feedback on the previous technology" [secondary](https://convergedigest.com/pci-sig-finalizes-pcie-7-0-specification-at-128-0-gt-s/)[secondary](https://www.eetimes.com/pcie-7-0-keeps-pace-with-ai-demands/).
-- **Optical Aware Retimer ECN**: alongside 7.0, PCI-SIG updated PCIe 6.4 and 7.0 "to enable standardized PCIe operation over optical fiber using retimer-based solutions" — "a pivotal step toward mainstream adoption of optical links in data center and AI accelerator topologies" [secondary](https://convergedigest.com/pci-sig-finalizes-pcie-7-0-specification-at-128-0-gt-s/).
-- PCIe underpins CXL ("PCIe serves as the foundation for Compute Express Link, enabling the connection of additional memory modules") — storage and memory expansion ride the same SerDes [secondary](https://themunicheye.com/pci-express-7-0-finalized-data-transfer-speeds-23001).
-
-### 11.2 What Gen5 means for storage in 2026
-
-- PCIe 5.0 x4 ≈ 16 GB/s raw per drive link — the reason flagship Gen5 SSDs (KIOXIA CM9: 14.8 GB/s seq read) finally saturate what Gen4 x4 (8 GB/s) could not [vendor-reported](http://www.techpowerup.com/336800/kioxia-announces-first-enterprise-nvme-ssd-with-8th-gen-bics-flash-technology)[independent].
-- All 2026 server platforms in this research are PCIe Gen5 native: Dell 17G, HPE Gen12, Supermicro Petascale, MSI DC-MHS [secondary].
-- Gen5 signal integrity forces retimers/redrivers on longer traces and cables: Icy Dock's PCIe 5.0 x8 MCIO adapter integrates a "PCIe Redriver" plus 100 MHz clock buffer "for stable enterprise timing" [vendor-reported](https://datasheet.itscope.com/2.1/t/Hc4xNMicnBB3UhUhPI7m5PtNPzD0l5IEpv3OCf9-3DLS6QFmBJ1X4enr1g6nayNaxVVAqsib773xL6nayNaxVVAqsib773xL6rAddIgK0ysFp4G5BB-pHMRZdELYWY76YkdU7i2THKwwJYzCHH9wzfwyQ9eeDukqo7AP5WTJh8fSFx7-2rfftuzR-I0fP8Q_HPlvGNMEFdCTcgRsloU).
-- Note: the datasheet URL above is a long vendor CDN link — cited verbatim as returned; treat link rot risk as [unverified] for long-term retrieval.
-
-### 11.3 Bifurcation, switches, retimers
-
-- PCIe bifurcation (splitting x16 into x4/x4/x4/x4 etc.) is how motherboards feed multiple M.2/U.2 NVMe drives from one slot; bifurcation is a **motherboard** capability — adapter cards like the Icy Dock MB409A5 "itself does not perform bifurcation" [vendor-reported](https://datasheet.itscope.com/2.1/t/Hc4xNMicnBB3UhUhPI7m5PtNPzD0l5IEpv3OCf9-3DLS6QFmBJ1X4enr1g6nayNaxVVAqsib773xL6nayNaxVVAqsib773xL6rAddIgK0ysFp4G5BB-pHMRZdELYWY76YkdU7i2THKwwJYzCHH9wzfwyQ9eeDukqo7AP5WTJh8fSFx7-2rfftuzR-I0fP8Q_HPlvGNMEFdCTcgRsloU).
-- PCIe switch adapters multiply NVMe density: HighPoint Rocket 1624A — PCIe Gen5 x16 host, dual MCIO 8i ports, "supports up to 16 NVMe SSDs" per adapter, configurable downstream 1x16 down to 16x1, hot-plug/hot-swap, direct P2P between GPUs/NICs/SSDs bypassing the CPU [vendor-reported](https://www.scan.co.uk/products/highpoint-rocket-1624a-hba-adapter-2x-mcio-gen5-x8-pcie-50-x16-32-gb-s-hot-swap-broadcom-pex89048-sw)[vendor-reported](https://electronicsbuzz.in/highpoint-unveils-comprehensive-pcie-gen-5-mcio-expansion-ecosystem/).
-- Native OS support (Linux/Windows, x86 and ARM) with no proprietary driver overhead is the selling point of switch-based NVMe expansion [vendor-reported](https://electronicsbuzz.in/highpoint-unveils-comprehensive-pcie-gen-5-mcio-expansion-ecosystem/).
 

@@ -9,10 +9,10 @@ dates: ["2025-10-06", "2025-11", "2025-11-18", "2026-01-06", "2026-01-07", "2026
 keywords: ["acquisition", "amd", "aws", "backlog", "blackwell", "claude", "compute", "deepseek", "funding", "funding round", "governance", "gpu"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [326, 396]
+source_lines: [326, 398]
 section: "§1. Compute and Capital Deals"
 delta_of: ai-industry-kb-2026
-sha256: e66163e25545604f2ebf17e5a4853ad2df0409d83a1e1334db2e5458b88dc274
+sha256: 2be048c66de5c21ab5231708cb4dd6b8e8bc3bc77d63944d16555e9f52123a43
 ---
 
 # Main actors
@@ -87,4 +87,6 @@ sha256: e66163e25545604f2ebf17e5a4853ad2df0409d83a1e1334db2e5458b88dc274
 - **2026-09-17** — Crusoe announces $3.9B Series F at $30.9B; CoreWeave announces $3B convertible + $2.92B ATM. [SECONDARY]
 
 ---
+
+## Implications
 

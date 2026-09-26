@@ -4,7 +4,7 @@
   "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
   "source_lines": 755,
   "source_sha256": "9260f450986110a202992321a36f75570bfc6ef119dbcd05b6a90b5e7701d457",
-  "chunk_count": 16,
+  "chunk_count": 22,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -14,14 +14,11 @@
       "domain": "front-matter",
       "role": "reference",
       "task": "reference",
-      "actors": [
-        "Meta"
-      ],
+      "actors": [],
       "dates": [
         "2025-11-03",
         "2026-01-08",
         "2026-03-12",
-        "2026-05",
         "2026-05-31",
         "2026-06-01",
         "2026-06-22",
@@ -34,12 +31,9 @@
         "2027-05",
         "2027-05-31",
         "2027-11-30",
-        "2028-03",
-        "2028-04-01",
         "2028-05"
       ],
       "keywords": [
-        "aws",
         "benchmarks",
         "compute",
         "gpu",
@@ -49,18 +43,53 @@
       "source_anchor": "",
       "source_lines": [
         1,
-        52
+        38
       ],
       "canonical_for": [],
-      "words": 955,
-      "bytes": 9849,
-      "sha256": "62efb361d55f7945017608ff4135e8cfe4b7a2838877e940a2df571a3ac4771e",
+      "words": 704,
+      "bytes": 7333,
+      "sha256": "ba87eea400665651ecfc0ca28423f42eddcb99bdeb173ed2622aeae3e2aca786",
       "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
     },
     {
-      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-3-awx-ansible-automation-platform-event-driven-ansible",
-      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-3-awx-ansible-automation-platform-event-driven-ansible.md",
-      "title": "Wave 3 — AWX, Ansible Automation Platform & Event-Driven Ansible",
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/meta-utility-collections",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/meta-utility-collections.md",
+      "title": "Meta/utility collections",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "actor-profile",
+      "actors": [
+        "Meta"
+      ],
+      "dates": [
+        "2024-07",
+        "2026-03",
+        "2026-03-25",
+        "2026-05",
+        "2028-03",
+        "2028-04-01"
+      ],
+      "keywords": [
+        "aws",
+        "guardrails",
+        "memory"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        39,
+        69
+      ],
+      "canonical_for": [],
+      "words": 592,
+      "bytes": 5815,
+      "sha256": "6e37092dcfa809867f854dc111c1329505976803660f90ae19fe4e8638fc5d7a",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-5-terraform-opentofu-for-networks",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-5-terraform-opentofu-for-networks.md",
+      "title": "Wave 5 — Terraform / OpenTofu for networks",
       "domain": "front-matter",
       "role": "reference",
       "task": "reference",
@@ -68,10 +97,7 @@
         "AWS"
       ],
       "dates": [
-        "2024-07",
         "2025-04",
-        "2026-03",
-        "2026-03-25",
         "2026-05",
         "2026-06",
         "2026-06-12",
@@ -85,20 +111,40 @@
       "keywords": [
         "aws",
         "benchmark",
-        "guardrails",
-        "memory",
         "sandbox"
       ],
       "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
       "source_anchor": "",
       "source_lines": [
-        53,
+        70,
+        95
+      ],
+      "canonical_for": [],
+      "words": 602,
+      "bytes": 5476,
+      "sha256": "a1532b630ba6272817c5ebacd6ba02826cde4ab30decbfe579f3f39d068c5761",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/part-4",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/part-4.md",
+      "title": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries (part 4)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        96,
         107
       ],
       "canonical_for": [],
-      "words": 1238,
-      "bytes": 12042,
-      "sha256": "1281ee9873a12294a60c370ab2c535986af74a10185ce94e7cb0a6775d75ca82",
+      "words": 295,
+      "bytes": 3267,
+      "sha256": "f2d59a8cfbb9adf738d3aaa22d9290f7c234e3aeae553e943f5ad77ad2ac4e89",
       "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
     },
     {
@@ -110,32 +156,25 @@
       "task": "reference",
       "actors": [],
       "dates": [
-        "2026-03",
         "2026-03-12",
         "2026-04-16",
-        "2026-06",
         "2026-06-13",
-        "2026-07-03",
-        "2026-09-22",
-        "2026-11-30"
+        "2026-07-03"
       ],
       "keywords": [
         "apache",
-        "benchmark",
-        "benchmarks",
-        "mcp",
-        "research"
+        "mcp"
       ],
       "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
       "source_anchor": "",
       "source_lines": [
         108,
-        155
+        138
       ],
       "canonical_for": [],
-      "words": 946,
-      "bytes": 8185,
-      "sha256": "8653b8667b394e72d88e7100db235a97ccefdd75c68d99a0176bb39bb5e1b554",
+      "words": 710,
+      "bytes": 6409,
+      "sha256": "1eda0a9d88c67882c6fe54b5a84ad0ac57b674c1afbfb4352dfe972c8099bbec",
       "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
     },
     {
@@ -147,25 +186,55 @@
       "task": "reference",
       "actors": [],
       "dates": [
+        "2026-03",
+        "2026-06",
         "2026-07",
+        "2026-09-22",
+        "2026-11-30",
         "2028-03"
       ],
       "keywords": [
-        "embedding",
+        "benchmark",
+        "benchmarks",
         "guardrails",
+        "research"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        139,
+        182
+      ],
+      "canonical_for": [],
+      "words": 846,
+      "bytes": 7132,
+      "sha256": "e0f4437a01352606801fbb9409e4f8e72ed3986c30203352bdcc6a138aa06295",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/part-7",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/part-7.md",
+      "title": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries (part 7)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "embedding",
         "latency",
         "lean"
       ],
       "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
       "source_anchor": "",
       "source_lines": [
-        156,
+        183,
         201
       ],
       "canonical_for": [],
-      "words": 1004,
-      "bytes": 8971,
-      "sha256": "05c52ffa3f36b2b4542976d5524a5ada3046657aaa3eec12d2df00675368563a",
+      "words": 394,
+      "bytes": 3615,
+      "sha256": "0a69f32b8d48e0c521dbf1c231bae3288904f460258b2d94d07f51231bc21e8c",
       "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
     },
     {
@@ -180,24 +249,72 @@
       ],
       "dates": [],
       "keywords": [
-        "apache",
         "aws",
         "benchmark",
-        "embedding",
-        "license",
+        "license"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        202,
+        229
+      ],
+      "canonical_for": [],
+      "words": 584,
+      "bytes": 4770,
+      "sha256": "2f4447c981cb62b665d9d7765c2ba6801bf5bfd966ec8ab7f8d1d032715ce517",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-13-operational-patterns-ci-cd",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-13-operational-patterns-ci-cd.md",
+      "title": "Wave 13 — Operational patterns & CI/CD",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
         "mcp",
         "model context protocol"
       ],
       "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
       "source_anchor": "",
       "source_lines": [
-        202,
+        230,
+        269
+      ],
+      "canonical_for": [],
+      "words": 841,
+      "bytes": 7258,
+      "sha256": "7d4087cac9a4f2f132b7e2ac33624cea819993d17c62b5e7e3579f22d7129678",
+      "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-15-example-workflows-placeholders-only-no-real-secrets",
+      "path": "etape6-phasee2-ansible-nornir-terraform/00-front-matter/wave-15-example-workflows-placeholders-only-no-real-secrets.md",
+      "title": "Wave 15 — Example workflows (placeholders only, no real secrets)",
+      "domain": "front-matter",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "embedding",
+        "license"
+      ],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        270,
         287
       ],
       "canonical_for": [],
-      "words": 1726,
-      "bytes": 14451,
-      "sha256": "40974c62cd0ebb7d28e601599e2bd550ef9b703397fbf1083f75aefd0afb060c",
+      "words": 301,
+      "bytes": 2423,
+      "sha256": "2ed27c718c2178eadb4988689135ef906f18c988be2ceb3ece701d561c579e1e",
       "section": "Phase E2 — Ansible, Nornir, Terraform/OpenTofu & Python network automation libraries"
     },
     {
@@ -482,12 +599,34 @@
       "source_anchor": "",
       "source_lines": [
         676,
+        731
+      ],
+      "canonical_for": [],
+      "words": 802,
+      "bytes": 6151,
+      "sha256": "42410a70edb8acc0d6582f425480102bdc61c898439cd64afd0cde8bdfd91180",
+      "section": ".github/workflows/network-ci.yml (sketch)"
+    },
+    {
+      "id": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/part-6",
+      "path": "etape6-phasee2-ansible-nornir-terraform/07-github-workflows-network-ci-yml-sketch/part-6.md",
+      "title": ".github/workflows/network-ci.yml (sketch) (part 6)",
+      "domain": "github-workflows-network-ci-yml-sketch",
+      "role": "deep-dive",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/etape6_phaseE2_ansible_nornir_terraform.md",
+      "source_anchor": "",
+      "source_lines": [
+        732,
         755
       ],
       "canonical_for": [],
-      "words": 1070,
-      "bytes": 8073,
-      "sha256": "cab82f884cffc4398afa4cac20903f8e18cd50ec66716217686a7b5cc0ddf523",
+      "words": 268,
+      "bytes": 1922,
+      "sha256": "5ca2d75d7f81e9c96e58a949d0eddd40496956f6262fea3245c58b983d0b5a05",
       "section": ".github/workflows/network-ci.yml (sketch)"
     }
   ]

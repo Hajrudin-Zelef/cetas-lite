@@ -6,12 +6,12 @@ role: deep-dive
 task: reference
 actors: ["AMD", "DeepSeek", "Intel", "Nvidia"]
 dates: ["2026-03", "2026-06-16", "2026-07", "2026-11", "2027-03"]
-keywords: ["agentic", "amd", "benchmarks", "blackwell", "compute", "deepseek", "disclosure", "energy", "ethernet", "gpu", "gpus", "hyperscaler"]
+keywords: ["agentic", "amd", "benchmarks", "blackwell", "compute", "deepseek", "disclosure", "ethernet", "gpu", "gpus", "hyperscaler", "inference"]
 source: docs/RAG/etape5_trackD_servers.md
 source_anchor: ""
-source_lines: [543, 614]
+source_lines: [543, 596]
 section: "Server Vendors — Wave 2: HPE + Giga Computing (Gigabyte) + ASUS + MSI + xFusion"
-sha256: 9316501d3054c441194f45bda1be84658179e09ac8e5b8dddde55bfc8b5cc675
+sha256: f7b1e4f173876e6fb23e57c6b712baa80e82a4d5dd19c565ed4aa04fcdb10688
 ---
 
 # 2. Giga Computing (GIGABYTE subsidiary)
@@ -69,22 +69,4 @@ sha256: 9316501d3054c441194f45bda1be84658179e09ac8e5b8dddde55bfc8b5cc675
 **ASUS AI POD with NVIDIA Vera Rubin NVL72 (Ai4 2026, Aug 2026)**
 - 100% liquid-cooled rack, **densities up to 227 kW per rack**; **XA NR1I-E12L**: 8-GPU **NVIDIA HGX Rubin NVL8** server, hybrid-cooled, as the deskside/entry point to the Rubin architecture [secondary — https://www.businesswire.com/news/home/20260805966459/en/ASUS-Brings-Full-Stack-AI-Infrastructure-From-Data-Center-to-Deskside-to-Ai4-2026].
 - Shown at **ASUS AI Tech 2026, Seoul** (Sept 2026): enterprise AI server platforms, HGX training systems, rack-scale AI POD on Vera Rubin NVL72 under the "AI factories" theme [official — https://press.asus.com/blog/asus-ai-tech-2026-seoul-ai-factory-infrastructure/].
-
-**ESC NM2N721-E1 — GB200 NVL72 (customer deployment)**
-- NVIDIA GB200 NVL72 architecture (36 Grace CPUs + 72 Blackwell GPUs per rack); deployed in Taiwan's **NCHC "Nano4" AI supercomputer** — Taiwan's first fully liquid-cooled GB200 NVL72 system, in operation [secondary — https://www.techpowerup.com/343414/asus-hardware-powers-taiwans-nchc-ai-supercomputer-ranked-29-on-top500].
-- The Nano4 system's NVIDIA **HGX H200** partition (with Direct-to-Chip liquid cooling, 81.55 PFLOPS) ranked **#29 on TOP500** [secondary — same]. Also in the build: ESC8000-E12 servers with **NVIDIA MGX H200** + NVLink Bridge [secondary — same].
-
-**Legacy/in-market lines (carried into 2026)**:
-- **ESC8000A-E13P** (MGX, up to 8× NVIDIA H200 NVL dual-slot 600 W, BlueField-3) — shown SC24 [secondary — https://www.techedt.com/asus-unveils-next-generation-infrastructure-solutions-at-sc24-with-advanced-cooling].
-- **ESC N8-E11V** (NVIDIA HGX H200) and **ESC N8A-E13** (Blackwell platform) — SC24 2024 showcase [secondary — same]. ⚠️ The task references **ESC N8A-E12**; sources surfaced ESC N8A-E13 (Blackwell) and the earlier ESC N8A-E12 (HGX H100, per press.asus.com CloudFest 2024: 7U dual AMD EPYC 9004 + 8× H100) [official — https://press.asus.com/news/press-releases/asus-mgx-powered-server-cloudfest-2024-showcase/]. Confirming a 2026-spec "ESC N8A-E12" B200/B300 variant was not possible — flagged as a gap.
-
-### 3.2 Customer wins
-- **Taiwan NCHC Nano4 AI supercomputer** (national HPC center, academia + industry workloads) — ESC NM2N721-E1 (GB200 NVL72) + HGX H200 systems; #29 TOP500 [secondary — TechPowerUp above].
-- **Ubilink** (via ASUS partnership): 45.82 PFLOPS green-energy AI data center [secondary — https://www.tweaktown.com/news/101772/asus-unveils-its-new-ai-pod-complete-rack-of-liquid-cooled-nvidia-gb200-nvl72-servers/index.html].
-- ⚠️ No 2026 enterprise/CSP customer deal values found publicly — gap.
-
-### 3.3 Revenue/market context
-- ASUS server/AI financials for 2026 were not isolated in this research — gap. (ASUS reports server business within its broader segments; AI POD momentum is the stated growth engine.)
-
----
 

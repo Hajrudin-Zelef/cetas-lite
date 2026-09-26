@@ -6,15 +6,30 @@ role: deep-dive
 task: hardware
 actors: ["EU", "Samsung"]
 dates: []
-keywords: ["cost", "datacenter", "inference", "ipo", "liquid cooling", "memory", "nand", "training"]
+keywords: ["datacenter", "nand"]
 source: docs/RAG/etape9_phaseA_enterprise_ssd.md
 source_anchor: ""
-source_lines: [477, 525]
+source_lines: [462, 497]
 section: "Step 9 — Enterprise SSD Hardware (Phase A)"
-sha256: d20930fa269f779d350f53f24be4fd466498fc0212155a6928d86da9a10cbc81
+sha256: 87a52010af18eb6a59a4dbf732060237add0a80bda9f5b8e556726e54e728675
 ---
 
 # 21. Vendor detail expansions
+
+- Samsung PM9A3 7.68 TB, 1 DWPD: 7.68 × 1 × 365 × 5 = 14,016 TBW ≈ 14.0 PBW (published 14.02 PBW) [secondary](https://www.superstorage.pl/pdf_datasheet.php?products_id=5921&osCsid=639b917cb1adac10beac4c137376fb04).
+- Samsung PM9A3 1.92 TB, 1 DWPD: 1.92 × 365 × 5 = 3,504 TBW ≈ 3.50 PBW (published) [secondary](https://www.superstorage.pl/pdf_datasheet.php?products_id=5921&osCsid=639b917cb1adac10beac4c137376fb04).
+- Samsung PM1743 15.36 TB, 1 DWPD: 15.36 × 365 × 5 = 28,032 TBW (published 28,032 TBW — exact match) [secondary](https://www.shidirect.com/product/45832454/THINKSYSTEM-2.5IN-U.3-PM1743-15.36TB-READ-INTENSIVE-NVME-PCIE-5.0).
+- Samsung PM1743 1.92 TB, 1 DWPD: 1.92 × 365 × 5 = 3,504 TBW (published) [secondary](https://www.shi.com/product/45962451/Samsung-PM1743-SSD).
+- Solidigm D7-PS1010 7.68 TB, 1 DWPD: 14,016 TBW (published; matches formula) [secondary](https://www.techpowerup.com/ssd-specs/solidigm-d7-ps1010-7-5-tb.d2146).
+- Micron 9550 PRO 30.72 TB, 1 DWPD: 30.72 × 365 × 5 = 56,064 TBW random (published 56,064 — exact) [official](https://www.mouser.se/pdfDocs/9550-nvme-ssd-product-brief.pdf).
+- Micron 9550 MAX 25.6 TB, 3 DWPD: 25.6 × 3 × 365 × 5 = 140,160 TBW random (published 140,160 — exact) [official](https://www.mouser.se/pdfDocs/9550-nvme-ssd-product-brief.pdf).
+- Micron 7450 PRO, 1 DWPD: up to 28,000 TBW (15.36 TB: formula gives 28,032 — vendor rounds to 28,000) [official](https://www.micron.com/content/dam/micron/global/public/documents/products/technical-marketing-brief/7450-nvme-ssd-tech-prod-spec.pdf).
+- Micron 7450 MAX, 3 DWPD: up to 70,000 TBW (12.8 TB: formula gives 70,080 — vendor rounds) [official](https://www.micron.com/content/dam/micron/global/public/documents/products/technical-marketing-brief/7450-nvme-ssd-tech-prod-spec.pdf).
+- Phison X200E 6.4 TB, 3 DWPD: 6.4 × 3 × 365 × 5 = 35,040 TBW (published) [independent](https://www.techpowerup.com:443/review/phison-pascari-x200e/single-page.html).
+- Phison X200Z 1.6 TB, 60 DWPD: 1.6 × 60 × 365 × 5 = 175,200 TBW — pSLC endurance at ~27x the X200E's per-TB rate [secondary](https://www.thessdreview.com/our-reviews/enterprise/phison-pascari-x200z-gen5-800gb-1-6tb-enterprise-ssd-review-slc-gold-commands-a-lightning-fast-60-dwpd-data-center-ssd/).
+- Rule of thumb: remaining life ≈ (1 − percentage_used/100) × rated TBW; at 10 TB/day host writes with WAF 2.0 on NAND, a 14,016-TBW drive lasts ~1,918 days ≈ 5.25 years — right at warranty, which is by design [independent guidance].
+
+---
 
 ## 21. Vendor detail expansions
 
@@ -36,32 +51,4 @@ sha256: d20930fa269f779d350f53f24be4fd466498fc0212155a6928d86da9a10cbc81
 ---
 
 ## 22. Homelab buyer's checklist (expanded)
-
-- Endurance remaining: `nvme smart-log` → `percentage_used` (100 = worn out); compare `data_units_written` × 512,000 bytes to rated TBW; <70% used is the usual comfort zone for TLC [independent guidance].
-- Error counters: any non-zero `media_errors` or `num_err_log_entries` growth is a reject; `available_spare` must be well above `available_spare_threshold` [independent guidance].
-- Power-on hours vs wear: high POH with low `data_units_written` = lightly used (good); low POH with high writes = hammered (bad) — never use POH alone [independent guidance].
-- Critical warnings byte: bit 0 (available spare), bit 1 (temperature), bit 2 (device reliability), bit 3 (read-only), bit 4 (volatile memory backup failed = PLP capacitor issue) — reject on bits 3/4 [independent guidance].
-- Unsafe shutdowns: high counts suggest missing/failed PLP protection in prior deployment or dirty power — acceptable if SMART is otherwise clean [independent guidance].
-- Firmware: check vendor firmware revision against current; Samsung/Kioxia/Micron OEM-branded drives may need OEM update ISOs (Dell/HPE/Lenovo) — plain-channel drives update via vendor tools [independent guidance].
-- Sector format: enterprise drives may ship 520/528-byte or 4096-byte sectors — `nvme format --lbaf` to 512/4096 as needed (destroys data) [independent guidance].
-- Namespace/SED state: `sedutil-cli` or `nvme` security commands to verify no TCG lock remains; locked drives are bricks without the PSID (printed on the label — photograph it) [independent guidance].
-- Physical: U.2 drives need SFF-8643/SFF-8654 (SlimSAS) cables or U.2 backplanes; M.2→U.2 adapters exist but verify PCIe bifurcation support on the motherboard; 7 mm vs 15 mm z-height must match the bay/caddy [independent guidance].
-- Thermal: Gen4 U.2 (8–14 W) runs on passive chassis airflow; Gen5 U.2 (19–29 W) wants direct airflow or heatsink kits — throttling starts ~70–75 °C NAND temp [independent guidance].
-- Warranty/returns: used enterprise drives are usually sold as-is; factor one spare drive per RAID set into the budget [independent guidance].
-- Price sanity: compare $/TB against the 2026 used band ($78–$127/TB for 3.84 TB SATA/SAS enterprise) and new NVMe band ($300–$1,172/TB) — anything far outside needs an explanation (OEM markup, scarcity, or a scam) [secondary](https://pcserverandparts.com/news/enterprise-ssd-prices-2026-server-storage-buying-guide/).
-
----
-
-## 23. AI workloads and QLC economics
-
-- AI storage tiers show read-to-write ratios up to 20:1+, which matches QLC's asymmetric profile (fast sequential reads, weak random writes) — the core reason hyperscalers absorb QLC despite ~1,000 P/E cycles [secondary](http://www.techtimes.com/articles/326561/20260903/wall-street-files-solidigm-etf-sk-hynix-faces-september-4-ipo-deadline.htm).
-- Solidigm D5-P5336 (122.88 TB): up to 9:1 rack-space reduction and ~90% lower storage power vs hybrid HDD/TLC NAS configs; ~25 W peak per drive; optimized for mid-sized I/O patterns in object storage and AI data pipelines [secondary](http://www.techtimes.com/articles/326561/20260903/wall-street-files-solidigm-etf-sk-hynix-faces-september-4-ipo-deadline.htm).
-- Kioxia AI angle: CM9 teased explicitly "aimed at AI workloads" with up to 65% random-write and 95% sequential-write gains over CM7 [vendor-reported](https://www.blocksandfiles.com/container-storage/2025/05/16/kioxia-teases-high-speed-ssd-aimed-at-ai-workloads/1601142).
-- SK hynix AIN-D family: high-capacity, low-cost, low-power eSSD intended to replace HDDs in AI datacenters; capacity undisclosed; JEDEC NL-SSD standard implied [secondary](https://www.blocksandfiles.com/ai-ml/2025/10/28/sk-hynix-aims-for-ai-flash-glory-with-ain-trifecta/1605493).
-- Samsung PM9D3a positioning: "built for AI, hyperscale, and cloud" with OCP 2.5 compliance — hyperscale qualification (OCP) is the gating factor for AI-cluster SSD selection [official](https://semiconductor.samsung.com/ssd/datacenter-ssd/).
-- Liquid cooling arrives in storage: Solidigm's liquid-cooled D7-PS1010 E1 variant with wrap-around cold plate targets AI datacenters where air-cooling dense Gen5 E1.S is marginal [secondary](https://www.tomshardware.com/pc-components/ssds/solidigm-touts-industrys-first-liquid-cooled-enterprise-ssd-d7-ps1010-is-an-e-1-pcie-5-0-drive-with-a-wrap-around-cold-plate).
-- Checkpointing workloads (LLM training): bursty sequential writes favor high sustained-write TLC (Micron 9550 MAX 10 GB/s-class, Phison X200) over QLC [independent guidance].
-- Inference/serving (model weights, KV caches): read-heavy sequential/random-read — QLC sweet spot; 256 TB-class QLC drives (Sandisk SN670, Kioxia LC9 announced) target exactly this [secondary](https://www.blocksandfiles.com/ai-ml/2025/10/28/sk-hynix-aims-for-ai-flash-glory-with-ain-trifecta/1605493).
-
----
 

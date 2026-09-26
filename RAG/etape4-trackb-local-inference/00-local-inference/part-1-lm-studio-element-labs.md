@@ -4,14 +4,14 @@ title: "PART 1 — LM STUDIO (Element Labs)"
 domain: step-4-track-b-local-inference-stack-llama-cpp-ollama-lm-stu
 role: deep-dive
 task: reference
-actors: ["AMD", "Alibaba", "Anthropic", "Apple", "Google", "Hugging Face", "Intel", "Meta", "Mistral", "Moonshot", "Nvidia", "OpenAI", "United States", "Z.ai"]
-dates: ["2023-05", "2025-07", "2026-06-04", "2026-07", "2026-07-16", "2026-08-28", "2026-09-09", "2026-09-19"]
-keywords: ["acquisition", "agent", "agentic", "amd", "embeddings", "gguf", "glm", "gpu", "inference", "inference engine", "intel", "kimi"]
+actors: ["Alibaba", "Anthropic", "Apple", "Google", "Hugging Face", "Meta", "Mistral", "Moonshot", "Nvidia", "OpenAI", "United States", "Z.ai"]
+dates: ["2023-05", "2025-07", "2026-06-04", "2026-07-16", "2026-08-28", "2026-09-09", "2026-09-19"]
+keywords: ["agent", "agentic", "embeddings", "gguf", "glm", "gpu", "inference", "inference engine", "kimi", "license", "llama", "llama.cpp"]
 source: docs/RAG/etape4_trackB_local_inference.md
 source_anchor: ""
-source_lines: [688, 745]
+source_lines: [688, 732]
 section: "Step 4 — Track B: Local Inference Stack (llama.cpp + Ollama + LM Studio)"
-sha256: bf170034425c605338bc786d6d74f8a1c1ee7edcc258acec0f5d677eca090ce2
+sha256: 889d989a9ca0bae1351bb4d5fad40d8b048f31d13f205e6bd565c655f7905612
 ---
 
 # PART 1 — LM STUDIO (Element Labs)
@@ -60,17 +60,4 @@ sha256: bf170034425c605338bc786d6d74f8a1c1ee7edcc258acec0f5d677eca090ce2
 - One secondary source reports "LM Studio crossed millions of downloads worldwide" as of 2026 [secondary — no vendor-published user count found at cutoff; flag as unverified for exact figures]: (https://medium.com/@nishilbhave/lm-studio-in-2026-download-models-run-local-llms-vs-ollama-b30567df17f8)
 
 ### 1.5 Hardware acceleration
-
-- Inference engines: **llama.cpp** (primary, CPU/GPU, all platforms) and **Apple MLX** (Apple Silicon M1–M5); both are independently downloadable runtimes — engine updates ship separately from app updates (`lms runtime update`). [secondary cross-checked with official 0.4.0 install docs] (https://github.com/aterrylu/autonomos/blob/HEAD/docs/research/desktop-shells/lm-studio.md)
-- Backend coverage on desktop: CUDA (NVIDIA), Metal (Apple), Vulkan (cross-vendor, incl. AMD/Intel); changelog entries also reference ROCm builds and multi-GPU selection bugs on CUDA 12 / ROCm / Vulkan. [official] (https://lmstudio.ai/changelog/lmstudio/lmstudio-v0.4.22)
-- NPU: LM Studio runs on the user's GPU or NPU per third-party coverage; NPU-specific offload reported in community NPU laptop tests (see §2.4). Flag: exact NPU backends in LM Studio are not enumerated in official docs found at cutoff [secondary/unverified]. [secondary] (http://www.howtogeek.com/you-can-make-a-self-hosted-ai-server-with-lm-studio-040/)
-
-### 1.6 Pricing
-
-- **Desktop app and local use: free** (home and work). [secondary — widely reported, incl. LM Studio comparison coverage] (https://www.aixploria.com/en/lm-studio-ai/), (https://www.kunalganglani.com/blog/lm-studio-vs-ollama)
-- One comparison site reports an **Enterprise tier** for teams needing LM Link multi-device workload routing and priority support — but this is not confirmed on LM Studio's public pricing pages at cutoff; treat as [unverified]. (https://www.kunalganglani.com/blog/lm-studio-vs-ollama)
-- **LM Studio Secure Cloud**: pay-as-you-go via Cloud Credits; exact pricing "not published" as of July 2026 per a Bionic developer guide; "Bionic Pass" subscription announced as "coming soon". LM Link free tier covers up to 5 devices. [secondary] (https://learning.christiandrapatz.de/lmstudio-en.pdf)
-- LM Studio acquisition of Locally AI (mobile, Adrien Grondin) — strategic push to iPhone/iPad on-device AI; iOS local models realistically 1B–3B at practical speeds. [secondary] (https://evermx.com/case/lm-studio-acquires-locally-ai-mobile-on-device-ai)
-
----
 

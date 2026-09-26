@@ -9,9 +9,9 @@ dates: ["2026-05", "2026-09"]
 keywords: ["apache", "license", "throughput"]
 source: docs/RAG/etape6_phaseE4_validation_cicd.md
 source_anchor: ""
-source_lines: [245, 310]
+source_lines: [245, 302]
 section: "Phase E4 — Network Validation, Observability & CI/CD"
-sha256: 35668bdd8a216bd480e70d002d7681916665bcc383da7d6d6ae98e0d77814c6e
+sha256: 618a489243444b51eba426dafacc425a82ee6dcb2893aa29789411351daf5e58
 ---
 
 # E4.7 — Testing frameworks
@@ -73,12 +73,4 @@ sha256: 35668bdd8a216bd480e70d002d7681916665bcc383da7d6d6ae98e0d77814c6e
 - Pre-change validation gates: Batfish differential analysis (reachability identical current vs planned; ACL changes provably collateral-free) `[official]` (Batfish README); Forward Predict deterministic pre-change verification `[vendor-reported]` (Computer Weekly, May 2026).
 - Post-change verification: SuzieQ 90-second polling for drift `[vendor-reported]`; IP Fabric intent checks `[vendor-reported]`; pyATS/Genie Learn snapshots diffed for change validation `[secondary]`.
 - Approval/audit: plan artifacts retained for forensics; signed pipelines (cosign/SLSA) in mature shops `[secondary]` (AUTOM-07).
-
-### E4.8.4 Config diff testing
-
-- Genie Learn snapshots + diff: operational-state capture before/after, diffed for drift/change validation `[secondary]` (pyats-web-app).
-- Batfish change analysis questions: end-to-end reachability identical across configs; planned ACL/firewall changes provably correct `[official]` (Batfish README).
-- `netlab` validation tests with `wait` parameter and color-coded output (ipspace netlab 1.7.1) show the lab-as-CI pattern maturing `[secondary]` — https://github.com/ipspace/netlab/blob/HEAD/docs/release/1.7.md.
-
----
 

@@ -9,9 +9,9 @@ dates: ["2026-09-22"]
 keywords: ["datacenter", "ipo", "nand", "research"]
 source: docs/RAG/etape9_phaseA_enterprise_ssd.md
 source_anchor: ""
-source_lines: [356, 421]
+source_lines: [356, 423]
 section: "Step 9 — Enterprise SSD Hardware (Phase A)"
-sha256: 060b45cb5740227c106d17a809029dcfa1eca94f373efbd9023b7d1595548e2a
+sha256: 6b193dd052cbe6db2beb732cac9b4ad52c3e4b3956ea28e1b2f03f4267a443f0
 ---
 
 # 16. Source index (verbatim URLs)
@@ -81,4 +81,6 @@ sha256: 060b45cb5740227c106d17a809029dcfa1eca94f373efbd9023b7d1595548e2a
 *End of Step 9 Phase A — Enterprise SSD hardware. Research cutoff 2026-09-22. Single writer; no other workspace files modified.*
 
 ---
+
+## 17. Workload decision guide
 

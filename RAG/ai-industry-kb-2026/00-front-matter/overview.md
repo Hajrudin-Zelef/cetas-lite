@@ -9,9 +9,9 @@ dates: ["2026-09-22"]
 keywords: ["attribution", "disclosure", "inference"]
 source: docs/RAG/ai-industry-knowledge-base-2026.md
 source_anchor: ""
-source_lines: [1, 20]
+source_lines: [1, 22]
 section: "AI Industry Knowledge Base 2026"
-sha256: 2d88db80500ee569b67f3913433f929a472d450abd627bec7c659cac18227247
+sha256: 25157b36beef826290114a195a27eed5cd71899fcec1825175555b52ff796fcf
 ---
 
 # AI Industry Knowledge Base 2026
@@ -33,4 +33,6 @@ sha256: 2d88db80500ee569b67f3913433f929a472d450abd627bec7c659cac18227247
 - `[EDITORIAL]` — consolidator synthesis or instruction; not a source claim.
 
 Minor inline tags (`[ANALYSIS]`, `[POLICY]`, `[CONTRADICTED]`, `[VENDOR-REPORTED]`, etc.) appear ad hoc where a claim needed a narrower flag; they carry their plain-English meaning.
+
+## Table of Contents
 

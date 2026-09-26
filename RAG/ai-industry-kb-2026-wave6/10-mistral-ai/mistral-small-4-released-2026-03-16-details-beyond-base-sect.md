@@ -4,15 +4,15 @@ title: "Mistral Small 4 (released 2026-03-16; details beyond base section)"
 domain: mistral-ai
 role: deep-dive
 task: actor-profile
-actors: ["AWS", "Anthropic", "China", "DeepSeek", "Google", "Hugging Face", "Microsoft", "Mistral", "Moonshot", "Nvidia", "OpenAI", "OpenRouter", "Unsloth", "Z.ai", "vLLM"]
-dates: ["2025-03-30", "2025-06-10", "2025-07-10", "2025-08", "2025-09", "2025-12", "2025-12-02", "2025-12-09", "2026-03-16", "2026-06-23", "2026-07-07", "2026-07-10", "2026-07-31", "2026-09-21"]
-keywords: ["mistral", "agentic", "alignment", "apache", "benchmark", "benchmarks", "blackwell", "claude", "context window", "cost", "deepseek", "distribution"]
+actors: ["AWS", "Anthropic", "China", "DeepSeek", "Google", "Hugging Face", "Mistral", "Moonshot", "Nvidia", "OpenAI", "OpenRouter", "Unsloth", "Z.ai", "vLLM"]
+dates: ["2025-06-10", "2025-07-10", "2025-09", "2025-12-02", "2025-12-09", "2026-03-16", "2026-07-10", "2026-07-31"]
+keywords: ["mistral", "agentic", "alignment", "apache", "benchmarks", "blackwell", "claude", "context window", "cost", "deepseek", "distribution", "fine-tuning"]
 source: docs/RAG/ai-industry-knowledge-base-2026-wave6.md
 source_anchor: ""
-source_lines: [4719, 4795]
+source_lines: [4719, 4771]
 section: "§10. Mistral AI"
 delta_of: ai-industry-kb-2026
-sha256: 7dcad33284408fc522a3e88f6c186fd97a3698b9b44391a32974fbddfbee08f6
+sha256: 8b781dfa1795d4076d66124bdcbe8d04b42f1166e05c469ad95e1b1f82e50250
 ---
 
 # Mistral Small 4 (released 2026-03-16; details beyond base section)
@@ -69,28 +69,4 @@ sha256: 7dcad33284408fc522a3e88f6c186fd97a3698b9b44391a32974fbddfbee08f6
 - Per current catalog guidance, Magistral-style reasoning now lives in Small 4 and Medium 3.5 rather than the standalone Magistral line (reasoning via a `reasoning_effort` "high"/"none" toggle; HF config notes a long-context entry fix in commit c4be198050fb). [SECONDARY, S31][SECONDARY, S39][COMMUNITY, S46]
 - Catalog pricing: Magistral Medium $2/M input, $8/M output; Magistral Small $0.50/M input, $1.50/M output; both 128K context. [SECONDARY, S19 — single source]
 - TechCrunch's launch assessment noted Magistral Medium underperformed Gemini 2.5 Pro and Claude Opus 4 on GPQA Diamond/AIME and trailed Gemini 2.5 Pro on LiveCodeBench. [SECONDARY, S30][SECONDARY, S51]
-
-### Mistral OCR generations (new to this section)
-- Mistral OCR 3 launched in December 2025, unveiled as a Tuesday release during Mistral's December product offensive. [SECONDARY, S32][SECONDARY, S33]
-- OCR 3 pricing: $2 per 1,000 pages, with a 50% discount for batch processing. [SECONDARY, S32][SECONDARY, S35]
-- OCR 3 vendor claim: 74% win rate against competing products on forms, scanned documents, complex tables, and handwritten content. [VENDOR, S32 — single source]
-- Mistral OCR 4 launched 2026-06-23. [SECONDARY, S35][SECONDARY, S34]
-- OCR 4 pricing: $4 per 1,000 pages, dropping to $2 per 1,000 pages with the Batch API. [SECONDARY, S35][SECONDARY, S34]
-- OCR 4 returns bounding boxes, typed-block classification (titles, tables, equations, signatures), and per-page and per-word confidence scores alongside extracted text. [SECONDARY, S35][SECONDARY, S34]
-- OCR 4 covers 170 languages across 10 language groups. [SECONDARY, S35][SECONDARY, S34]
-- OCR 4 ships as a single container for fully air-gapped on-premise deployment. [SECONDARY, S35][SECONDARY, S34]
-- OCR 4 vendor claims: 72% average win rate in blind human evaluations against leading systems; top score on OlmOCRBench (85.20). [VENDOR, S35 — single source]
-- Mistral itself notes the OCR benchmark figures are directional rather than definitive. [VENDOR, S35 — single source]
-- OCR 4 distribution: Mistral API and Studio, Amazon SageMaker, Microsoft Foundry. [SECONDARY, S34 — single source]
-- Mistral OCR 4.1 exists as a proprietary document-parsing model with bounding boxes, block labels, block-level confidence, 170 languages, at $4/1K pages. [SECONDARY, S31 — single source]
-- Mistral held an OCR 4 production webinar on 2026-07-07 at 18:00 CET. [SECONDARY, S33 — single source]
-- Anaqua, a legal software firm, measured roughly 4× faster throughput per page with OCR 4 versus its prior provider. [SECONDARY, S34 — single source]
-
-### Codestral and model catalog pricing (new to this section)
-- Codestral catalog pricing: $0.30 per million input tokens, $0.90 per million output tokens, 256K context. [SECONDARY, S19 — single source]
-- A second provider listing shows Codestral-latest at $0.33/$0.99 with 131K context, updated 2026-09-21, added August 2025, 80+ languages supported. [SECONDARY, S18 — single source]
-- Devstral Medium catalog pricing: approximately $0.50/$1.50. [SECONDARY, S19 — single source]
-- Shieldstral 1.0 exists in Mistral's model catalog as a content-moderation model entry. [VENDOR, S2 — single source]
-- Retired legacy entries: Magistral Small 1.2 and Mistral Small 3.2 (24B, v3.2, repo 2506) both carry published API retirement 2026-07-31. [SECONDARY, S31 — single source]
-- Mixtral 8x22B (141B total / 39B active) carries published API retirement 2025-03-30. [SECONDARY, S31 — single source]
 

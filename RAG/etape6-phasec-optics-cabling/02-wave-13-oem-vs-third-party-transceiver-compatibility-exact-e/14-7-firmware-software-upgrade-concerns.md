@@ -4,17 +4,30 @@ title: "14.7 Firmware / software upgrade concerns"
 domain: wave-13-oem-vs-third-party-transceiver-compatibility-exact-e
 role: deep-dive
 task: regulation
-actors: ["Broadcom", "Nvidia", "United States"]
-dates: ["2024-09", "2025-06", "2025-10", "2026-07", "2026-09-22"]
-keywords: ["asic", "cpo", "dsp", "ethernet", "inference", "license", "lpo", "nvidia", "optics", "research"]
+actors: ["Nvidia", "United States"]
+dates: ["2026-09-22"]
+keywords: ["nvidia", "optics", "pricing"]
 source: docs/RAG/etape6_phaseC_optics_cabling.md
 source_anchor: ""
-source_lines: [2598, 2653]
+source_lines: [2585, 2608]
 section: "Wave 13 — OEM vs third-party transceiver compatibility: exact error messages, TAC/warranty policy, FEC, failure behavior"
-sha256: 2b3e10ff591252b62ada1e40136d7ffd9a5705215203b0a2e373edebc63a80df
+sha256: dd041927a1cabca1efd8a9c3a76af16ab3430e52b879e5cce04b133c3d490bb6
 ---
 
 # 14.7 Firmware / software upgrade concerns
+
+- **Standing warning (repeated from Waves 1/7/13):** the only Cisco figure available is a reseller-stated MSRP, not a verified Cisco GPL/list price. All ratios below are indicative snapshots as of 2026-09-22; street/refurbished prices can be far below nominal MSRP.
+- **100G QSFP28 SR4:**
+  - Genuine Cisco QSFP-100G-SR4-S: reseller-stated MSRP **US$2,440.10**, street price US$1,936.61 [vendor-reported] (https://techstore.friendsoffice.com/cisco-qsfp-100g-sr4-s-network-transceiver-module-fiber-optic-100000-mbit-s). Another reseller listed factory-sealed units at US$311.99 [secondary] (https://www.cablesandkits.com/mc/transceivers/qsfp-100g-sr4-s/fam-246/fp-17700/) — illustrating how far street/refurbished pricing can fall below nominal MSRP.
+  - Third-party Cisco-coded equivalents: AddOn via SHI MSRP $1,200 / $787 [vendor-reported] (https://www.shi.com/product/31696350/); Eaton/Tripp Lite MSRP $1,722.14 [vendor-reported] (https://www.shi.com/product/46750415/); Axiom MSRP $1,096 / $364 [vendor-reported] (https://www.directdial.com/us/item/axiom-100gbase-sr4-qsfp28-transceiver-for-cisco/axg96475); Fleet Network "MSRP" $406.63 / $80 [vendor-reported] (https://fleetnetwork.ca/cisco-compatible-qsfp28-...).
+  - Retail third-party: FS.com compatible at US$99.00 [vendor-reported] (https://www.fs.com/c/qsfp28-100g-transceivers-1159); QSFPTEK Cisco/Arista/Juniper/Ciena-compatible at **US$39.90** [vendor-reported] (https://store.qsfptek.com/products/qsfp-100g-sr4-ai); FlexOptix Q.851HG.02 as low as **EUR 73.18** [official] (https://www.flexoptix.net/en/transceiver).
+  - Indicative ratio (genuine reseller-stated MSRP vs. lowest third-party retail): ~30:1 (2,440.10 ÷ ~80); vs. mid-range branded compatibles (AddOn/Eaton MSRP): ~1.4–2x. **Do not quote "30:1" without the MSRP caveat.**
+- **400G QSFP-DD DR4:**
+  - Genuine Cisco QDD-400G-DR4-S: reseller "list" US$5,195.85 vs street US$1,558.87 [vendor-reported] (https://www.hummingbirdnetworks.com/cisco-qsfp-dd-transceiver-module-...qdd-400g-dr4-s); Zones US$1,784.99 [vendor-reported] (https://www.zones.com/site/product/index.html?id=109098466&page_name=product_alert); ESPHERE €1,370 [vendor-reported]. None is a verified Cisco list price.
+  - Third-party Cisco-coded: FS.com QDD-DR4-400G-Si US$749 [vendor-reported] (https://www.fs.com/products/128242.html); LINK-PP US$368.94–$429 [vendor-reported] (https://www.l-p.com/store-26044-100-200-400-800g-transceiver-modules.htm); Legrand via SHI MSRP $1,192.66/$1,156 [vendor-reported] (https://www.shi.com/product/47010742/).
+  - Retail third-party: QSFPTEK Arista-compatible US$449.90 [vendor-reported] (https://www.qsfptek.com/product/102618.html); PRO-OPTICS generic SiPh US$699.00 [vendor-reported] (https://www.pro-optics.com/store/product/400g-qsfp-dd-dr4); LightOptics (UK) US$519.50 [vendor-reported] (https://www.lightoptics.co.uk/collections/400g-transceiver); FlexOptix D.134HG.05 as low as EUR 490.60 [official] (https://www.flexoptix.net/en/transceiver).
+  - Indicative ratio vs. reseller-stated list: ~7x (5,195.85 ÷ 749); vs. street ~US$1.6k: ~2x. **Indicative only.**
+- **Reference anchors:** Ubiquiti's own post-cut pricing — SFP+ ~US$9, QSFP28 100G ~US$39 [independent] (https://www.notebookcheck.net/Unifi-Ubiquiti-unlocks-SFP-and-QSFP-modules-with-new-SFP-Wizard.1149839.0.html) — shows how an OEM can undercut third-party retail when it chooses. FS.com generic (non-coded) 400G QSFP-DD DR4 also US$749 [vendor-reported] (https://www.fs.com/products/128245.html).
 
 ### 14.7 Firmware / software upgrade concerns
 
@@ -26,49 +39,4 @@ sha256: 2b3e10ff591252b62ada1e40136d7ffd9a5705215203b0a2e373edebc63a80df
 - **Juniper, Dell, NVIDIA:** no documented firmware-upgrade breakage cases found — not found.
 
 ### 14.8 Counterfeit optics — risks, Cisco guidance, and how legitimate third parties distinguish themselves
-
-- **Cisco definition and alleged risks:** Cisco treats counterfeit transceivers as non-Cisco products bearing Cisco branding passed off as genuine; alleged risks include network disruption, privacy/security breaches, data loss, unsafe/unpredictable malfunction [independent/legal filing] (https://regmedia.co.uk/2020/07/22/cisco.pdf — old court filing, not 400G/800G-specific; do not overgeneralize).
-- **Cisco Brand Protection guidance (official):** buy from authorized Cisco channels; check labels (carton/PCBA/module-security holograms — optical transceivers use holographic module-security labels: tilt to see padlock, "BP", check marks); use the "Report Counterfeit Products" form to escalate to Cisco Brand Protection (reviewed daily); ask whether equipment is new, genuine, and not second-hand/pre-owned; be suspicious of too-good-to-be-true prices [official] (https://sec.cloudapps.cisco.com/security/center/resources/anticounterfeit and https://blogs.cisco.com/networking/3-key-steps-to-protect-your-network-from-counterfeit-cisco-products). Cisco also pursues investigations with law enforcement globally [official].
-- **Cisco "Buy Right" flyer (official):** warns that purchases from unauthorized resellers may carry **no Cisco support, no Cisco warranty, and no valid end-user software license**, citing risks including counterfeit, modified/upgraded, diverted, gray, stolen, and obsolete products [official] (http://cisco.com/c/dam/en_us/about/legal/brand-protection/buy-right-flyer.pdf).
-- **Independent warning:** Computer Weekly quotes Cisco warning that counterfeit products pose risks to network quality, performance, safety, and reliability, recommending Cisco or authorized partners [independent] (https://www.computerweekly.com/news/252486166/Warning-over-security-holes-in-fake-Cisco-kit).
-- **Official 2026 vendor statements specifically targeting counterfeit 400G/800G optics: not found.** Do not overgeneralize the above to 800G-specific enforcement.
-- **How legitimate third parties distinguish themselves (synthesis — [secondary]/analysis, not a vendor quotation):** all four profiled vendors sell openly **as their own brand** (10Gtek/ProLabs/Approved/FLEXOPTIX), list *equivalent* OEM part numbers only as compatibility references, carry their own warranties and serial/asset tracking, and do not label modules as genuine Cisco. Counterfeits, by contrast, carry unauthorized Cisco trademarks/holograms to pass as genuine. Approved Networks explicitly frames itself as "OEM alternative optical networking connectivity" [official] (https://approvednetworks.com/about-us/).
-
-### 14.9 Wave 14 conflicts, anomalies, and gaps register
-
-1. **Identity:** task label "Approved Optics" is an unofficial variant; official name is Approved Networks. Reconciled in §14.2.1 — both names recorded.
-2. **Approved Networks founding year:** conflicting secondary sources (1992 vs 2009); official page silent. Unresolved.
-3. **ProLabs founding year:** 2004/carved out 2013 [independent] vs 1995 [secondary]. Unresolved.
-4. **ProLabs negative regional stock** (−158, −557, −1): site display/data-feed artifact, not real inventory.
-5. **10Gtek US$259 price page** appears stale (search metadata suggests several years old); "price displayed", not recently maintained. 10Gtek 400G/800G optical prices: not found. 10Gtek 400G/800G warranty length: not specified officially.
-6. **10Gtek warranty conflict:** retailer "3-year warranty" claims vs official 12-month 40G/100G term — unverified.
-7. **Cisco EEPROM check fields:** secondary only; no official source.
-8. **Aruba authentication claim:** third-party-vendor mirror only; unverified.
-9. **Ubiquiti no-restriction quote:** verbatim from UniFi help article but retrieved via distributor mirror, not help.ui.com directly — [official-mirrored].
-10. **Cisco Nexus leniency vs Catalyst:** community consensus only; unverified.
-11. **Dell SONiC acceptance:** community consensus only; official docs cover OS9 tiered policy only.
-12. **Juniper no-lock:** inference from official JTAC wording + absence of lock documentation; flagged as such.
-13. **NVIDIA Cumulus codes 1025/1027/1028:** mirrored NVIDIA docs [secondary]; not verified at docs.nvidia.com.
-14. **NVIDIA official third-party policy statement:** not found. NVIDIA official ConnectX-8 announcement/GA page: not found (FS.com catalog shows retail availability only).
-15. **All OEM price ratios:** indicative snapshots; the only Cisco figure is a reseller-stated MSRP (US$2,440.10 for QSFP-100G-SR4-S), not a verified Cisco GPL. Do not present ratios as verified OEM-vs-third-party differentials.
-16. **Approved Networks & ProLabs public prices:** quote-only; not found. ProLabs 800G product: not found. FlexOptix detailed QA claims: not found. Official per-OEM lists for Ubiquiti/MikroTik (Approved), NVIDIA/Mellanox (10Gtek), FlexOptix target brands: not found.
-
----
-
-## Wave 15 — 800G ecosystem readiness, silicon photonics, 1.6T signals, availability, alternatives & consolidated gaps (research date 2026-09-22)
-
-**Method:** read-only web research (browser_search / browser_open), public pages only. Complements Waves 2–3 (which covered 800G module types, 1.6T early status, DSP/LPO/CPO) with: shipping 800G switch systems, 800G NICs, named AI deployments, retail price snapshots from FS.com alternatives, silicon photonics shipment status, 1.6T demo evidence, regional availability/lead times, and a consolidated open-items log.
-
-### 15.1 800G switches — shipping systems (as of Sept 2026)
-
-- **Arista 7800R4** — official Arista release dated **29 October 2025**: up to **576×800GbE** with 36-port 800G linecards; **7280R4** variants include **32×800GbE** and **10×800GbE + 64×100GbE**, all shipping [official] (https://investors.arista.com/Communications/Press-Releases-and-Events/Press-Release-Detail/2025/Arista-Networks-Unveils-Next-Generation-Data-and-AI-Centers/default.aspx).
-- **Arista 7060X6** — secondary reporting identifies it as **64×800G on Broadcom Tomahawk 5**; the 7800R4 is described as using **Broadcom Jericho3-AI** [secondary] (https://www.demandtalk.com/news/it-infra-news/arista-launches-the-etherlink-ai-platforms-for-ai-workloads/).
-- **Cisco 8122-64EH/EHF** — **64×800G**, 2RU, built on **Cisco Silicon One G200**, with QSFP-DD800 or OSFP optics options [independent] (https://www.networkworld.com/article/3564900/cisco-pumps-up-data-center-networking-with-ai-large-workloads-in-mind.html). **Cisco Silicon One G200 datasheet** [official] supports configurations from **64×800GE to 512×100GE** (https://www.cisco.com/c/en/us/solutions/collateral/silicon-one/silicon-one-g200-ds.pdf).
-- **Cisco 8122X-64EF-O** — **64×800G SONiC** switch from the G200 family with Cisco 800G LPO support [independent] (https://www.networkworld.com/article/4130263/cisco-amps-up-silicon-one-line-delivers-new-systems-and-optics-for-ai-networking.html).
-- **FS 800G TH5 switch** — FS says its Tomahawk-5 system offers **64×800G OSFP** (BCM78900), listed "available now" (announcement circa September 2024) [vendor-reported] (https://www.fs.com/sg/blog/fs-unveils-512t-400g-and-800g-ethernet-switches-powered-by-broadcom-tomahawk-5-10112.html).
-- **Broadcom Tomahawk 5 (BCM78900)** — press-release copy: **64×800GbE**, 51.2 Tb/s aggregate, "ships" status [vendor-reported — hosted press release, not Broadcom's own page] (https://www.nasdaq.com/press-release/broadcom-ships-tomahawk-5-industrys-highest-bandwidth-switch-chip-to-accelerate-ai-ml).
-- **Broadcom Tomahawk 6** — secondary report dated **4 June 2025**: Broadcom shipping the 102.4 Tb/s chip with 1.6T-port support [secondary] (https://www.storagenewsletter.com/2025/06/04/broadcom-ships-tomahawk-6-first-102-4tb-s-switch). **TH6-based shipping switch systems with model numbers and GA dates: not found.**
-- **Marvell Teralynx 10 (ASIC)** — official product brief: **64×800G / 128×400G / 32×1.6T**, 51.2 Tb/s [official] (https://cn.marvell.com/content/dam/marvell/en/public-collateral/switching/marvell-teralynx-10-data-center-ethernet-switch-product-brief.pdf). A July 2026 secondary report says Teralynx 10 had begun production/customer deployment [secondary] (https://convergedigest.com/marvell-ships-51-2-tbps-ethernet-switch-for-ai-data-centers/) — **specific shipping switch-system models based on Teralynx 10: not found.**
-- **NVIDIA Spectrum-4 / Spectrum-X800 800G systems** (model numbers, port counts, GA dates): **not found** in the evidence gathered — do not treat catalog presence as GA.
-- White-box / ODM 800G systems (Edgecore, Celestica, etc.): not systematically covered in this wave — gap.
 
