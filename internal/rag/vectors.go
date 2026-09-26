@@ -33,7 +33,7 @@ const vectorFileMagic = "CVEC0002"
 // build_rag.py change la maniere de produire les chunks (meme source, chunks
 // differents). Le serveur desktop rejoue le meme build_rag.py : un mismatch
 // declare les vecteurs obsoletes plutot que de les melanger a l'index courant.
-const ChunkerVersion = "build_rag_v1"
+const ChunkerVersion = "build_rag_v2"
 
 // VectorsDir : sous-dossier des vecteurs dans la racine RAG.
 const VectorsDir = ".vectors"
