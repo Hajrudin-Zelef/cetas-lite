@@ -1,0 +1,150 @@
+---
+id: collect-261001-huawei/huawei/cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration-2352000e-232
+title: "cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration--2352000e"
+domain: huawei
+role: reference
+task: reference
+actors: ["Huawei"]
+dates: ["2008-07-24", "2025-03-03"]
+keywords: ["copyright"]
+source: docs/RAG/collect-261001-huawei/cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration--2352000e.md
+source_anchor: ""
+source_lines: [34153, 34287]
+sha256: 06dc71296ce26659240e90d2e8f37ee555f39a9480b584b2d48714a5be2bf792
+---
+
+# cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration--2352000e
+
+                    Run the display mpls l2vc interface command on PEs to check L2VPN connection
+                    information. The command outputs show that PWs have been established and are
+                    in the active state, and that BFD for PWs is not configured for the primary and
+                    secondary PWs.
+                    The following example uses the command output on PE1.
+                    <PE1> display mpls l2vc interface 10ge 1/0/1
+                    *client interface        : 10GE1/0/1 is up
+                      session state           : up
+                      AC status                : up
+                      VC state              : up
+                      VC ID                : 100
+                      VC type               : PPP
+                      destination             : 4.4.4.4
+                      local group ID            :0             remote group ID     :0
+                      local VC label           : 21504           remote VC label    : 21504
+                      local AC OAM State              : up
+                      local PSN State            : up
+                      local forwarding state : forwarding
+                      local status code          : 0x0
+                      remote AC OAM state : up
+                      remote PSN state              : up
+                      remote forwarding state: forwarding
+                      remote statuscode              : 0x0
+                      BFD for PW                : unavailable
+                      manual fault              : not set
+                      active state           : active
+                      forwarding entry             : exist
+                      link state           : up
+                      local VC MTU                : 4470          remote VC MTU        : 4470
+                      Local VCCV         : cw alert lsp-ping bfd
+                      Remote VCCV           : cw alert lsp-ping bfd
+                      local control word           : enable        remote control word : enable
+                      tunnel policy name             : --
+                      traffic behavior name : --
+                      PW template name                  : 1to2
+                      primary or secondary : primary
+                      VC tunnel/token info : 1 tunnels/tokens
+                        NO.0 TNL type : lsp , TNL ID : 0x1002004
+                      create time             : 0 days, 1 hours, 22 minutes, 22 seconds
+                      up time               : 0 days, 1 hours, 21 minutes, 14 seconds
+                      last change time            : 0 days, 1 hours, 21 minutes, 14 seconds
+                      VC last up time : 2008-07-24 12:31:31
+                      VC total up time: 0 days, 2 hours, 12 minutes, 51 seconds
+                      CKey              : 16
+                      NKey               : 15
+                     *client interface         : 10GE1/0/1 is up
+                      session state           : up
+                      AC status                : up
+
+
+Issue 01 (2025-03-03)                 Copyright © Huawei Technologies Co., Ltd.                                   544
+VPN Configuration
+VPN Configuration                                                                               5 VPWS Configuration
+
+                     VC state             : up
+                     VC ID               : 200
+                     VC type              : PPP
+                     destination            : 5.5.5.5
+                     local group ID           :0             remote group ID     :0
+                     local VC label          : 21505           remote VC label    : 21504
+                     local AC OAM state             : up
+                     local PSN state          : up
+                     local forwarding state : forwarding
+                     local status code         : 0x0
+                     remote AC OAM state : up
+                     remote PSN state             : up
+                     remote forwarding state: forwarding
+                     remote statuscode             : 0x0
+                     BFD for PW               : unavailable
+                     manual fault             : not set
+                     active state          : inactive
+                     forwarding entry            : existent
+                     link state          : up
+                     local VC MTU               : 4470          remote VC MTU        : 4470
+                     Local VCCV        : cw alert lsp-ping bfd
+                     Remote VCCV          : cw alert lsp-ping bfd
+                     local control word          : enable        remote control word : enable
+                     tunnel policy           : --
+                     traffic behavior        : --
+                     PW template name                 : 1to3
+                     primary or secondary : secondary
+                     VC tunnel/token info : 1 tunnels/tokens
+                       NO.0 TNL type : lsp , TNL ID : 0x1002006
+                     create time            : 0 days, 1 hours, 22 minutes, 9 seconds
+                     up time              : 0 days, 1 hours, 20 minutes, 22 seconds
+                     last change time           : 0 days, 1 hours, 20 minutes, 22 seconds
+                     VC last up time : 2008-07-24 12:31:31
+                     VC total up time: 0 days, 2 hours, 12 minutes, 51 seconds
+                     CKey             : 17
+                     NKey              : 18
+                    reroute policy           : delay 30 s, resume 10 s
+                    reason of last reroute : --
+                    time of last reroute : -- days, -- hours, -- minutes, -- seconds
+                    delay timer ID            : --           residual time :--
+                    resume timer ID              : --         residual time :--
+
+         Step 6 Configure static BFD for PWs on PEs.
+                    # Configure PE1.
+                    [PE1] bfd
+                    [PE1-bfd] quit
+                    [PE1] bfd 1to2 bind pw interface 10ge 1/0/1
+                    [PE1-bfd-lsp-session-1to2] discriminator local 12
+                    [PE1-bfd-lsp-session-1to2] discriminator remote 21
+                    [PE1-bfd-lsp-session-1to2] quit
+                    [PE1] bfd 1to3 bind pw interface 10ge 1/0/1 secondary
+                    [PE1-bfd-lsp-session-1to3] discriminator local 13
+                    [PE1-bfd-lsp-session-1to3] discriminator remote 31
+                    [PE1-bfd-lsp-session-1to3] quit
+
+                    # Configure PE2.
+                    [PE2] bfd
+                    [PE2-bfd] quit
+                    [PE2] bfd 2to1 bind pw interface 10ge 1/0/1
+                    [PE2-bfd-lsp-session-2to1] discriminator local 21
+                    [PE2-bfd-lsp-session-2to1] discriminator remote 12
+                    [PE2-bfd-lsp-session-2to1] quit
+
+                    # Configure PE3.
+                    [PE3] bfd
+                    [PE3-bfd] quit
+
+
+Issue 01 (2025-03-03)                Copyright © Huawei Technologies Co., Ltd.                                  545
+VPN Configuration
+VPN Configuration                                                                                       5 VPWS Configuration
+
+                    [PE3] bfd 3to1 bind pw interface 10ge 1/0/2
+                    [PE3-bfd-lsp-session-3to1] discriminator local 31
+                    [PE3-bfd-lsp-session-3to1] discriminator remote 13
+                    [PE3-bfd-lsp-session-3to1] quit
+
+                    ----End
+

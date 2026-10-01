@@ -1,0 +1,111 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-55
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [7276, 7369]
+sha256: 2e89bc4afe2a5ed350cd01b5411f4726dc14f37b7322552ba26ae089bd5ed9fb
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Operatingclustersandvirtualclusters ViewingclusterstatusfromtheCLI
+Master: FGT6HD3916806098, operating cluster index = 0
+Slave : FGT6HD3916806070, operating cluster index = 1
+Inthisexample,theclusterunitwithserialnumberFGT6HD3916806098hasthehighestserialnumberandso
+hasaclusterindexandanoperatingclusterindexof0andtheclusterunitwithserialnumber
+FGT6HD3916806070hasaclusterindexandanoperatingclusterindexof1.FromtheCLIoftheprimaryunitof
+thisclusteryoucanconnecttotheCLIofthesubordinateunitusingthefollowing command:
+execute ha manage 1
+ThisworksbecausetheclusterunitwithserialnumberFGT6HD3916806070hasaclusterindexof1.
+Thelastthreelinesofthecommandoutput displaythestatusofvcluster1.Inaclusterconsistingoftwocluster
+unitsoperatingwithout virtualdomainsenabled,allclusteringactuallytakesplaceinvirtualcluster1.HAis
+designedtoworkthiswaytosupportvirtualclustering.If thisclusterwasoperatingwithvirtualdomainsenabled,
+addingvirtualcluster2issimilartoaddinganewcopyofvirtualcluster1.Virtualcluster2isvisibleintheget
+system ha status commandoutput whenyouaddvirtualdomainstovirtualcluster2.
+TheHAheartbeatIPaddressdisplayedbythecommandistheHAheartbeatIPaddressoftheclusterunitthat is
+actuallyoperatingastheprimaryunit. Foradefault configuration, thisIPaddresswillalwaysbe169.254.0.1
+becausetheclusterunitwiththehighestserialnumberwillbetheprimaryunit. ThisIPaddresschangesifthe
+operatingprimaryunitisnottheprimaryunitwiththehighestserialnumber.
+Example where the cluster index and operating cluster index do not match
+Thisexampleshowsget system ha status commandoutput forthesamecluster.However,inthis
+examplethedevicepriorityoftheclusterunitwiththeserialnumberFGT6HD3916806098isincreasedto250.As
+aresulttheclusterunitwiththelowestserialnumberbecomestheprimaryunit. Thismeanstheclusterindexand
+theoperatingclusterindexoftheclusterunitsdonotmatch.
+get system ha status
+.
+.
+.
+Master: Edge2-Primary , FGT6HD3916806098, cluster index = 1
+Slave : Edge2-Backup , FGT6HD3916806070, cluster index = 0
+number of vcluster: 1
+vcluster 1: work 169.254.0.2
+Master: FGT6HD3916806098, operating cluster index = 0
+Slave : FGT6HD3916806070, operating cluster index = 1
+Theactualclusterindexeshavenotchangedbuttheoperatingclusterindexeshave.Also,theHAheartbeatIP
+addressdisplayedforvcluster1haschangedto169.254.0.2.
+Virtual clustering example output
+Theget system ha status commandoutput isthesameifaclusterisoperatingwithvirtualclustering
+turnedonbutwithallvirtualdomainsinvirtualcluster1.Thefollowingget system ha status command
+output exampleshowsthesameclusteroperatingasavirtualclusterwithvirtualdomainsinvirtualcluster1and
+addedtovirtualcluster2.InthisexampletheclusterunitwithserialnumberFG50012204400045istheprimary
+unitforvirtualcluster1andtheclusterunitwithserialnumberFG50012205400050istheprimaryunitforvirtual
+cluster2.
+get system ha status
+.
+.
+.
+number of vcluster: 2
+HighAvailability
+Fortinet TechnologiesInc.
+199
+
+Managingindividualclusterunits Operatingclustersandvirtualclusters
+vcluster 1: work 169.254.0.2
+Master: FG50012205400050, operating cluster index = 1
+Slave : FG50012204400045, operating cluster index = 0
+vcluster 2: standby 169.254.0.1
+Master: FG50012205400050, operating cluster index = 0
+Slave : FG50012204400045, operating cluster index = 1
+Thisexampleshowsthreesetsofindexes.Theindexesinlinessixandsevenarestill usedbytheexecute ha
+manage command. Theindexesonlinestenandelevenarefortheprimaryandsubordinateunitsinvirtual
+cluster1andtheindexesonthelasttwolinesareforvirtualcluster2.
+Managing individual cluster units
+Thefollowing proceduredescribeshowtouseSSHtologintotheprimaryunitCLIandfromtheretousethe
+execute ha manage commandtoconnecttotheCLIofanyotherunitinthecluster.Theprocedureisvery
+similarifyouusetelnet, ortheGUIdashboardCLIconsole.
+Youcanusetheexecute ha manage commandfromtheCLIofanyclusterunittologintotheCLIofanother
+theclusterunit. UsuallyyouwouldusethiscommandfromtheCLIoftheprimaryunittologintotheCLIofa
+subordinateunit. However,ifyouhaveloggedintoasubordinateunitCLI, youcanusethiscommandtologinto
+theprimaryunitCLI, ortheCLIofanothersubordinateunit.
+UsingSSHortelnet ortheGUICLIconsoleyoucanonlylogintotheprimaryunitCLI. Usingadirectconsole
+connectionyoucanlogintoanyclusterunit. Inbothcasesyoucanuseexecute ha manage toconnecttothe
+CLIofotherclusterunits.
+1. LogintotheprimaryunitCLI.
+ConnecttoanyclusterinterfaceconfiguredforSSHadministrative accesstologintothecluster.
+2. Enterthefollowing commandfollowedbyaspaceandtypeaquestionmark(?):
+execute ha manage
+TheCLIdisplaysalistoftheserialnumbersofallofthesubordinateunitsinthecluster.Eachcluster
+unitisnumbered.Thenumberistheoperatingclusterindex.
+3. Complete thecommandwiththeoperatingclusterindexnumberofthesubordinateunittologinto. Forexample,
+tologintosubordinateunit1,enterthefollowing command:
+execute ha manage 1
+4. LogintotheCLIoftheselectedsubordinateunit.
+TheCLIpromptchangestothehostnameofthesubordinateunit. YoucanuseCLIcommandsto
+managethissubordinateunit. If youmakechangestotheconfigurationofanyclusterunit(primaryor
+subordinateunit)thesechangesaresynchronizedtoallclusterunits.
+5. Youcannowusetheexecute ha manage commandtoconnecttoanyotherclusterunit(includingtheprimary
+unit). Youcanalsousetheexit commandtoreturntotheprimaryunitCLI.
+Disconnectinga cluster unit from a cluster
+Usethefollowing procedurestodisconnectaclusterunitfromafunctioning clusterwithout disruptingthe
+operationofthecluster.YoucandisconnectaclusterunitifyouneedtousethedisconnectedFortiGate for
+anotherpurpose,suchastoactasastandalonefirewall.
+200 HighAvailability
+Fortinet TechnologiesInc.
+

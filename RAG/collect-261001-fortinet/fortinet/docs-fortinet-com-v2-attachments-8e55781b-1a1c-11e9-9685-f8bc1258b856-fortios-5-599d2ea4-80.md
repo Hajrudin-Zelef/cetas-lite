@@ -1,0 +1,161 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-80
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["memory"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [9943, 10086]
+sha256: 39e988b2165cabb8419d49ed0820c8ee3748f42f14f2c04591b82ebab02572b7
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Dynamicallyoptimizing weightedloadbalancingaccordingtohowbusyclusterunitsare HAandloadbalancing
+Foreachoption, theweightrangeis0to255andthedefault weightis5.Thelowandhighwatermarksarea
+percent(0to100).Thedefault lowandhighwatermarksare0whichmeanstheyaredisabled.Thedefault
+configurationwhenweightedloadbalancingisenabledlookslikethefollowing:
+config system ha
+set mode a-a
+set schedule weight-round-robin
+set cpu-threshold 5 0 0
+set memory-threshold 5 0 0
+set http-proxy-threshold 5 0 0
+set ftp-proxy-threshold 5 0 0
+set imap-proxy-threshold 5 0 0
+set nntp-proxy-threshold 5 0 0
+set pop3-proxy-threshold 5 0 0
+set smtp-proxy-threshold 5 0 0
+end
+WhenyoufirstenableHAweightedloadbalancing,theweightedloadbalancing
+configurationissynchronizedtoallclusterunitsandeachclusterunithasthedefault
+configurationshownabove.ChangestotheCPU,memory, HTTP,FTP,IMAP,NNTP,
+POP3,andSMTPproxythresholdsandlowandhighwatermarksmustbemadefor
+eachclusterunitandarenotsynchronizedtotheotherclusterunits.
+Whenyouconfigurethem, thehighwatermarksmustbegreaterthantheircorrespondinglowwatermarks.
+ForCPUandmemoryusagethelowandhighwatermarksarecomparedwiththepercentageCPUandmemory
+useoftheclusterunit. Foreachoftheproxiesthehighandlowwatermarksarecomparedtoanumberthat
+representspercentofthemaxnumberofproxysessionsbeingusedbyaproxy.Thisnumberiscalculatedusing
+theformula:
+proxy usage = (current sessions * 100) / max sessions
+where:
+current sessions isthenumberofactivesessionsfortheproxytype.
+max sessions isthesessionlimit fortheproxytype.Thesessionlimit dependsontheFortiGate andits
+configuration.
+Youcanusethefollowing commandtodisplaythemaximum andcurrentnumberofsessionsforaproxy:
+get test {ftpd | http | imap | nntp | pop3 | smtp} 4
+Youcanusethefollowing commandtodisplaythemaximum numberofsessionsandtheandcurrentnumberof
+sessionsforalloftheproxies:
+get test proxyworker 4
+Thecommandoutput includeslinessimilartothefollowing:
+get test http 4
+HTTP Common
+Current Connections             5000/8032
+Intheexample,5000 isthecurrentnumberofproxyconnectionsbeingusedbyHTTPand8032isthemaximum
+numberofproxysessionsallowed.Forthisexampletheproxyusagewouldbe:
+proxy usage = (5000 * 100) / 8032
+proxy usage = 62%
+266 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandloadbalancing Exampleweightedloadbalancingconfiguration
+Example weighted load balancing configuration
+ConsideraclusterofthreeFortiGates withhostnamesFGT_ha_1,FGT_ha_2,andFGT_ha_3asshownbelow.
+ThisexampledescribeshowtoconfigureweightedloadbalancingsettingsforCPUandmemoryusageforthe
+clusterandthentoconfigureHTTPandPOP3proxyweightstosendmostHTTPandPOP3proxysessionsto
+different clusterunits.
+Example HA weighted load balancing configuration
+ConnecttotheclusterCLIandusethefollowing commandtosettheCPUusagethresholdweightto30,low
+watermarkto60,andhighwatermarkto80.Thiscommandalsosetsthememoryusagethresholdweightto10,
+lowwatermarkto60,andhighwatermarkto90.
+config system ha
+set mode a-a
+set schedule weight-round-robin
+set cpu-threshold 30 60 80
+set memory-threshold 10 60 90
+end
+Thestaticweightsfortheclusterunitsremainatthedefault valuesof40.Sincethiscommandchangesthemode
+toa-aandthescheduletoweight-round-robin forthefirsttime, theweightsettingsaresynchronizedtoall
+clusterunits.
+Asaresultofthisconfiguration, iftheCPUusageofanyclusterunit(forexample,FGT_ha_1)reaches80%the
+staticweightforthat clusterunitisreducedfrom40to10andonly10ofevery120newsessionsareload
+HighAvailability
+Fortinet TechnologiesInc.
+267
+
+NATmodeactive-activeclusterpacketflow HAandloadbalancing
+balancedtothisclusterunit. If thememoryusageofFGT_ha_1alsoreaches90%thestaticweightfurther
+reducesto0andnonewsessionsareloadbalancedtoFGT_ha_1.Also,ifthememoryusageof620_ha_2
+reaches90%thestaticweightofFGT_ha_2reducesto30and30ofevery120newsessionsareloadbalancedto
+FGT_ha_2.
+Nowthat youhaveestablishedtheweightloadbalancingconfigurationfortheentireclusteryoucanmonitor the
+clustertoverifythat processinggetsdistributedevenlytoallclusterunits. FromtheGUIyoucangodo System >
+HA > View HA StatisticsandseetheCPUusage,activesessions,memoryusageandotherstatisticsforallof
+theclusterunits. If younoticethat oneclusterunitismoreorlessbusythanothersyoucanadjustthedynamic
+weightsseparatelyforeachclusterunit.
+Forexample,insomeactive-activeclusterstheprimaryunitmaytendtobebusierthanotherclusterunits
+becauseinadditiontoprocessingsessionstheprimaryunitalsoreceivesallpacketssenttotheclusterand
+performsloadbalancingtodistributethesessionstootherclusterunits. Toreducetheloadontheprimaryunit
+youcouldreducetheCPUandmemoryusagehighwatermarkthresholdsfortheprimaryunitsothat fewer
+sessionsaredistributedtotheprimaryunit. Youcouldalsoreducetheprimaryunit’shighwatermarksetting for
+theproxiestodistributemoreproxysessionstootherclusterunits.
+Thiswouldonlybeusefulifyouareusingdeviceprioritiesandoverride
+settingstomakesurethesameunitalwaysbecomestheprimaryunit. See
+Controllingprimaryunitselectionusingdevicepriorityandoverrideonpage
+46.
+If theexampleclusterisconfiguredforFGT_ha_2tobetheprimaryunit, connecttotheFGT_ha_2’sCLIand
+enterthefollowing commandtosetCPUusage,memoryusage,andproxyusagehighwatermarkthresholds
+lower.
+config system ha
+set cpu-threshold 30 60 70
+set memory-threshold 30 60 70
+set http-proxy-threshold 30 60 70
+set ftp-proxy-threshold 30 60 70
+set imap-proxy-threshold 30 60 70
+set nntp-proxy-threshold 30 60 70
+set pop3-proxy-threshold 30 60 70
+set smtp-proxy-threshold 30 60 70
+end
+Asaresult,whenanyofthesefactorsreaches70%ontheprimaryunit, fewersessionswillbeprocessedbythe
+primaryunit, preventingthenumberofsessionsbeingprocessedfromrising.
+NAT mode active-active cluster packet flow
+Thissectiondescribesanexampleofhowpacketsareloadbalancedandhowfailoveroccursinanactive-active
+HAclusterrunninginNATmode. Intheexample,theNATmodeclusteractsastheinternet firewallforaclient
+computer’sinternalnetwork.Theclientcomputer’sdefault routepointsattheIPaddressoftheclusterinternal
+interface. TheclientconnectstoawebserverontheInternet. Internet routingroutespacketsfromthecluster
+externalinterfacetothewebserver,andfromthewebservertotheclusterexternalinterface.
+InNATmode, eightMACaddressesareinvolvedinactive-activecommunication betweentheclientandtheweb
+serverwhentheprimaryunitloadbalancespacketstothesubordinateunit:
+268 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandloadbalancing NATmodeactive-activeclusterpacketflow
+l Internal virtualMACaddress(MAC_V_int)assignedtotheprimaryunitinternalinterface,
+l ExternalvirtualMACaddress(MAC_V_ext)assignedtotheprimaryunitexternalinterface,
+l ClientMACaddress(MAC_Client),
+l ServerMACaddress(MAC_Server),
+l PrimaryunitoriginalinternalMACaddress(MAC_P_int),
+l PrimaryunitoriginalexternalMACaddress(MAC_P_ext),
+l SubordinateunitinternalMACaddress(MAC_S_int),
+l SubordinateunitexternalMACaddress(MAC_S_ext).
+InNATmode, theHAclusterworksasagatewaywhenitrespondstoARPrequests.Therefore,theclientand
+serveronlyknowthegatewayMACaddresses.TheclientonlyknowstheclusterinternalvirtualMACaddress
+(MAC_V_int)andtheserveronlyknowstheclusterexternalvirtualMACaddress(MAC_V_ext).
+NAT mode active-active packet flow
+Packet flow from client to web server
+1. Theclientcomputerrequestsaconnectionfrom10.11.101.10 to172.20.120.130.
+2. Thedefault routeontheclientcomputerrecognizes10.11.101.100 (theclusterIPaddress)asthegatewaytothe
+externalnetworkwherethewebserverislocated.
+3. TheclientcomputerissuesanARPrequestto10.11.101.100.
+4. TheprimaryunitinterceptstheARPrequest,andrespondswiththeinternalvirtualMACaddress(MAC_V_int)
+whichcorrespondstoitsIPaddressof10.11.101.100.
+5. Theclient’srequestpacketreachestheprimaryunitinternalinterface.
+IP address MAC address
+HighAvailability
+Fortinet TechnologiesInc.
+269
+

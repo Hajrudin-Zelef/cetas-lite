@@ -9,11 +9,9 @@ dates: []
 keywords: ["packaging"]
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [117, 256]
+source_lines: [0, 0]
 sha256: be6c0a4908f4bb6fb02f7fbc14d111615dad3084d4b3f39ccf513e5d6c04f22a
 ---
-
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
 
 Sony is a Japanese multinational, a historic giant in many fields, including electronics, computing, photography, video games, as well as music and cinema. The company was created in 1946 and was at the origin of major innovations, such as the color video cassette, the Walkman, or even the CD and Blu-Ray.
 

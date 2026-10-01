@@ -1,0 +1,27 @@
+---
+id: collect-261001-general-networking/general-networking/fr-review-synology-e10m20-t1-review-a0ab7b39-2
+title: "fr-review-synology-e10m20-t1-review-a0ab7b39"
+domain: general-networking
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-general-networking/fr-review-synology-e10m20-t1-review-a0ab7b39.md
+source_anchor: ""
+source_lines: [52, 61]
+sha256: 6b1bc60410d09f9bec79263b3219eefa360913bfd872deb579929736383dc72f
+---
+
+# fr-review-synology-e10m20-t1-review-a0ab7b39
+
+Par rapport à la charge de travail fixe à 16 threads et 16 files d'attente maximales que nous avons effectuée lors du test d'écriture 100 % 4K, nos profils de charge de travail mixtes adaptent les performances à une large gamme de combinaisons thread/file d'attente. Dans ces tests, nous couvrons l'intensité de la charge de travail de 2 threads et 2 files d'attente jusqu'à 16 threads et 16 files d'attente. Dans le CIFS non mis en cache, nous avons vu le débit commencer à 221 IOPS et se terminer à 219 IOPS, assez stable tout au long. Avec l'activation de la mise en cache, nous avons vu CIFS commencer à 4,597 4,844 IOPS et se terminer à 519 1,751 IOPS. Pour iSCSI, le non-cache a commencé à 8,308 IOPS et s'est terminé à 1,340 XNUMX IOPS. Avec le cache activé, nous avons vu iSCSI commencer à XNUMX XNUMX IOPS et se terminer à XNUMX XNUMX IOPS.
+En examinant les temps de réponse moyens 8K 70/30, la configuration CIFS a commencé à 18 ms et s'est terminée à 1,161 860 ms sans cache, et avec la carte active, elle est tombée à 53 µs au début et s'est terminée à 7.7 ms. Pour iSCSI, nous avons vu 146 ms au début et 470 ms à la fin sans la carte, avec la carte c'était 191 µs au début et XNUMX ms à la fin.
+Avec une latence maximale de 8K 70/30, la configuration CIFS a commencé autour de 1,009 4,799 ms et est montée jusqu'à 523 260 ms. Avec le cache activé, les chiffres sont passés de 1,436 ms à 5,614 ms. Avec iSCSI, nous avons vu la latence passer de 640 13,588 ms à XNUMX XNUMX ms sans le cache et de XNUMX ms à XNUMX XNUMX ms avec le cache.
+Pour l'écart type 8K 70/30, la configuration CIFS a commencé à 26 ms et a fonctionné à 477 ms sans le cache, avec la carte réseau, elle est passée de 1.3 ms à 10.1 ms. Pour iSCSI, nous disons 17 ms à 299 ms sans cache, et 920 µs à 1,155 XNUMX ms avec.
+La dernière référence de charge de travail synthétique d'entreprise est notre test 128K, qui est un test séquentiel à grands blocs qui montre la vitesse de transfert séquentielle la plus élevée pour un appareil. Dans ce scénario de charge de travail, CIFS avait 1.09 Go/s en lecture et 464 Mo/s en écriture sans le cache et 1.14 Go/s en lecture et 484 Mo/s avec. Pour iSCSI, nous avons vu 1.15 Go/s en lecture et 443 Mo/s sans cache et 1.15 Go/s en lecture et 615 Mo/s en écriture avec.
+Conclusion
+Synology a mis au point un moyen simple d'ajouter une connectivité 10GbE et un cache NVMe à une quantité sélectionnée de leurs périphériques NAS via le Synology E10M20-T1 AIC. La carte s'intègre parfaitement à la gamme SSD de l'entreprise et dispose d'emplacements pour s'adapter à deux facteurs de forme 2280 ou 22110 M.2. Cela permet aux utilisateurs de charger le NAS avec des disques durs haute capacité, puis d'utiliser la carte pour améliorer les performances d'E/S. Et, bien sûr, le port 10GbE augmente la vitesse du réseau par rapport aux ports GbE intégrés.
+Pour les tests de performance, nous avons de nouveau utilisé le Synology DS1819+ avec des disques durs WD Red de 14 To , auxquels nous avons ajouté cette fois le contrôleur d'interface E10M20-T1 et deux SSD Synology SNV3400-400G . Dans la plupart des cas, mais pas tous, nous avons constaté une amélioration des performances. Plutôt que de détailler à nouveau les performances, examinons d'abord les différences avec la configuration CIFS. En débit CIFS 4K, nous avons observé une augmentation de 3 905 IOPS en lecture et de 9 489 IOPS en écriture. La latence moyenne 4K a diminué de 1 434 ms en lecture et de 153 ms en écriture. La latence maximale 4K a baissé de 4 137 ms en lecture et de 3 315 ms en écriture. L'écart type 4K a diminué de 220.7 ms en lecture et de 286 ms en écriture. En mode 100 % 8K, nous avons constaté une baisse de 934 IOPS en lecture et une hausse de 673 IOPS en écriture. En mode séquentiel par blocs de grande taille, le débit a augmenté de 50 Mo/s en lecture et de 20 Mo/s en écriture.
+Avec les performances iSCSI, nous avons constaté des points forts du débit 4K avec une augmentation de 17,124 20,937 IOPS en lecture et de 4 75.2 IOPS en écriture. En latence moyenne de 158.6K, nous avons constaté une baisse de 4 ms en lecture et de 10,900 ms en écriture. En latence 15,960K max, nous avons constaté une augmentation de 4 127 ms en lecture et une diminution de 266 100 ms en écriture. L'écart type 8K a vu un pic de latence augmenter à nouveau de 1,200 ms en lecture et une baisse des écritures de 2,977 ms. En 1.15 % 172K, nous avons constaté une augmentation de XNUMX XNUMX IOPS en lecture et de XNUMX XNUMX IOPS en écriture. La lecture séquentielle des gros blocs se maintient à XNUMX Go/s avec ou sans cache et augmente les écritures de XNUMX Mo/s.
+Le Synology E10M20-T1 AIC est un moyen facile d'ajouter une connectivité 10GbE et un cache SSD pour certains modèles de Synology NAS. Bien qu'il n'ait pas amélioré toutes les performances dans tous les domaines, il a vu des améliorations significatives dans plusieurs de nos références.

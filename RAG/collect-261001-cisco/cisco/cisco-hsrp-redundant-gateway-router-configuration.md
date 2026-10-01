@@ -1,0 +1,60 @@
+---
+id: collect-261001-cisco/cisco/cisco-hsrp-redundant-gateway-router-configuration
+title: "cisco-hsrp-redundant-gateway-router-configuration"
+domain: cisco
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-cisco/cisco-hsrp-redundant-gateway-router-configuration.md
+source_anchor: ""
+source_lines: [1, 43]
+sha256: 922cd0874841e8889771cc9f84c98eac06598691912eb43a0c0e0862d1388cae
+---
+
+# cisco-hsrp-redundant-gateway-router-configuration
+
+HSRP stands for Hot Standby Router Protocol, and what it does is create a virtual IP address (which hosts will use as the gateway address). This virtual address is free to move between configured routers as needed.
+
+Some background for this config:
+
+Local Subnet: 192.168.2.0/24
+
+Desired gateway address: 192.168.2.1
+
+Both routers and their hosts must be on the same layer 2 network.
+
+On Router A:
+
+ip address 192.168.2.2 255.255.255.0
+
+standby 1 ip 192.168.2.1
+
+standby 1 preempt
+
+standby 1 priority 110
+
+standby 1 authentication myrouter
+
+standby 1 track serial 0/0
+
+The priority number determines which router will normally have the virtual IP address, higher numbers win.
+
+The track statement tells the router to give up the virtual address if the serial 0/0 interface goes down.
+
+Router B:
+
+ip address 192.168.2.3 255.255.255.0
+
+standby 1 ip 192.168.2.1
+
+standby 1 preempt
+
+standby 1 priority 100
+
+standby 1 authentication myrouter
+
+standby 1 track serial 0/1
+
+That’s all there is to it! Router A will host the virtual IP address, and if the router or it’s serial port goes down, Router B will assume control of the virtual address, and traffic will flow over it’s serial link.

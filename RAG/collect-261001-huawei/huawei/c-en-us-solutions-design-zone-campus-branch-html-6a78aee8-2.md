@@ -1,0 +1,42 @@
+---
+id: collect-261001-huawei/huawei/c-en-us-solutions-design-zone-campus-branch-html-6a78aee8-2
+title: "c-en-us-solutions-design-zone-campus-branch-html-6a78aee8"
+domain: huawei
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["cost"]
+source: docs/RAG/collect-261001-huawei/c-en-us-solutions-design-zone-campus-branch-html-6a78aee8.md
+source_anchor: ""
+source_lines: [22, 46]
+sha256: 7a043269ce1261fac4e1194d07cb62629da4cd2087c39d202314f6cac247fc3f
+---
+
+# c-en-us-solutions-design-zone-campus-branch-html-6a78aee8
+
+| Cloud Fabric Cisco Validated Case Study | Cloud/IaaS, Cloud Fabric | Cloud, Hybrid | An overview of the case study used to validate the Campus Cloud Fabric solutions. It discusses the architecture and components of the solution, including the routed underlay, VXLAN-based fabric overlays, BGP EVPN control plane, and VRF-based segmentation. | 
+| Modernization of Mission-Critical Networks | Mission-Critical Infrastructure | On-Prem | The modernization of mission-critical networks is crucial for resilient operations, with Cisco’s future-proof architecture—featuring post-quantum cryptography, Software-Defined Networking principles, and the Cisco 8000 Series Secure Router platform—providing a unified, scalable solution. | 
+| Cisco Unified Edge and Canonical Ubuntu for Edge Deployments Design Guide | Unified Edge | Unified Edge | Integrated Cisco Unified Edge and Canonical Ubuntu solution delivering a modular, AI-ready platform for edge deployments. Supports bare-metal, virtual, and Kubernetes workloads with centralized cloud management, zero-touch provisioning, and multi-layered security for scalable, consistent edge infrastructure operations. | 
+| Cisco Unified Edge for Red Hat Edge Design Guide | Unified Edge | Unified Edge | Modular Cisco Unified Edge system integrated with Red Hat Enterprise Linux and OpenShift, delivering a scalable, secure platform for edge deployments. Features high availability networking, cloud-based management with Cisco Intersight, and web-based container management for simplified edge operations. | 
+| Cisco Unified Branch Solution Overview | Unified Branch | Cloud | High-level overview and strategic vision for the Cisco Unified Branch solution, highlighting how a single, integrated platform can modernize branch networks by providing a full stack solution for LAN, WAN, and wireless to simplify operations, enhance security, and reduce total cost of ownership. | 
+| Cisco Spaces OS Runbook (foundational) | Smart Spaces | Hybrid, Cloud, On-Prem | Overview for setting up Spaces OS, ensuring a robust infrastructure that underpins any Cisco Spaces deployments. Foundational reading for all Cisco Spaces runbooks. | 
+| Cisco Spaces Asset Tracking Runbook | Smart Spaces | Hybrid, Cloud, On-Prem | Overview of Cisco Spaces asset tracking capabilities functioning on both Catalyst and Meraki systems. The Spaces OS Runbook is foundational to this runbook. | 
+| Cisco Spaces Captive Portal Runbook | Smart Spaces | Hybrid, Cloud, On-Prem | A step-by-step guide for configuring Cisco Spaces Captive Portals, covering setup requirements, wireless infrastructure integration, portal creation, and security settings to enable guest Wi-Fi access. | 
+| Cisco Spaces Indoor Navigation Runbook | Smart Spaces | Hybrid, Cloud, On-Prem | A comprehensive guide for deploying Cisco Spaces Indoor Wayfinding, outlining system requirements and detailed instructions for on site preparation, configuration, and deployment processes to ensure an efficient and accurate indoor navigation experience. The Spaces OS Runbook is foundational to this runbook. | 
+| Cisco Spaces Occupancy Runbook | Smart Spaces | Hybrid, Cloud, On-Prem | A comprehensive guide for implementing occupancy monitoring solutions across various spatial levels—from campuses to individual desks—using Cisco’s infrastructure. The Spaces OS Runbook is foundational to this runbook. | 
+| Cisco Spaces OpenRoaming Runbook | Smart Spaces | Hybrid, Cloud, On-Prem | A step-by-step guide for deploying OpenRoaming, enabling seamless and secure Wi-Fi onboarding by eliminating the need for manual logins or captive portals. The Spaces OS Runbook is foundational to this runbook. | 
+| Cisco Spaces Smart Rooms Runbook | Smart Spaces | Hybrid, Cloud, On-Prem | A guide for integrating Cisco Collaboration devices with building management systems to enable demand-controlled ventilation. The Spaces OS Runbook is foundational to this runbook. | 
+| Cisco Spaces Smart Workspaces Runbook | Smart Spaces | Hybrid, Cloud, On-Prem | Setup and configuration of Cisco Smart Workspaces, providing real-time insights into workspace occupancy, usage patterns, and environmental conditions, empowering businesses to make informed decisions on space planning and resource allocation. The Spaces OS Runbook is foundational to this runbook. | 
+| Cisco Common Policy Integration Guide | Common Policy | On-Prem | Covers a common policy architecture where Cisco Identity Services Engine acts as a central hub, normalizing user, device, and workload context from Catalyst Center, SD-WAN, ACI, Secure Firewall, and cloud connectors to deliver consistent, domain-spanning security enforcement across campus, data-center, WAN, and cloud networks. | 
+| Cisco Cloud Campus LAN Design Guide (CVD) | Traditional LAN, LAN/WLAN | Hybrid | Design guide for hybrid/cloud campus LAN, offering detailed design principles, best practices, and implementation steps for creating a cloud-managed hybrid campus network infrastructure. | 
+| IPv6 - Traditional Campus (Cisco SD-WAN and Cisco Firepower) Integration Guide | Traditional LAN, LAN/WAN, SD-WAN | On-Prem | IPv6 deployment for traditional campus networks using a three-tier Cisco architecture, Cisco SD-WAN, and Cisco Firepower, to support IPv6-only clients while maintaining dual-stack infrastructure for IPv4 client transition. | 
+| Cisco Catalyst Center on ESXi (CVD) | Traditional LAN, LAN/WLAN | On-Prem | Provides guidelines and best practices with Cisco Catalyst Center on ESXi, which is a new form factor that supports the Catalyst Center application in a virtual environment. | 
+| Campus Software Image Management Using Cisco Catalyst Center Deployment Guide | Traditional LAN, LAN/WLAN | On-Prem | Comprehensive instructions for deploying and managing software images within a Cisco campus network using Cisco Catalyst Center (formerly Cisco DNA Center). | 
+| Cisco SD-Access Solution Design Guide | Fabric LAN, LAN/WLAN | On-Prem | Detailed guidelines and best practices for designing and implementing SDA, focusing on simplifying network management and enhancing security through automation and segmentation. | 
+| Software-Defined Access Macro Segmentation Deployment Guide | Fabric LAN, LAN/WLAN | On-Prem | Comprehensive instructions and best practices for implementing macro-segmentation within a Cisco Software-Defined Access (SDA) environment to effectively segment and manage network traffic, enhance security and performance in campus networks. | 
+| Cisco Software-Defined Access Design Guide | Fabric LAN, LAN/WLAN | On-Prem | Comprehensive guidance on designing Software-Defined Access (SDA) solutions for campus networks, covering key concepts, architecture, best practices, and design considerations to help implement a scalable, secure, and efficient SDA environment. | 
+| Network Device Onboarding Using Cisco Catalyst Center Deployment Guide | Traditional LAN, LAN/WLAN | On-Prem | How to use Cisco Catalyst Center to automate Day-0 onboarding of a single switch at a branch or campus, utilizing built-in PnP functionality and an onboarding template to reduce cost and time. | 
+| Campus LAN and Wireless LAN Design Guide | Traditional LAN, LAN/WLAN | On-Prem | Designing Campus LAN and Wireless LAN for high-density, medium-density, and small sites. Covers design fundamentals and best practices for each campus layer for wired networks and WLAN design fundamentals. | 
+| Wireless Automation with Cisco Catalyst Center (CVD) | Traditional LAN, LAN/WLAN | On-Prem | Outlines best practices and guidelines for deploying wireless automation with Cisco Catalyst Center, focusing on enhancing network efficiency and performance. | 
+| Cisco DNA Application Assurance Deployment Guide | Traditional LAN, LAN/WLAN | On-Prem | How to deploy Cisco Catalyst Center (DNA) Application Assurance in an enterprise network and how to monitor and troubleshoot application performance across the WAN using Cisco Catalyst Center (DNA) Application Assurance. | 

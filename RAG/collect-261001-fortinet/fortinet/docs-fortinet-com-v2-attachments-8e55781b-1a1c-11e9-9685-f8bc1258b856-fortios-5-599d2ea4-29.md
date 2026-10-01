@@ -1,0 +1,173 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-29
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [3809, 3964]
+sha256: 6bd6cfd6fb959bc5184bdd6cd93f82bb52891b140d19db2bd8acf5e679636eb8
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FGCPconfigurationexamplesandtroubleshooting 4.ConfiguringthebackupFortiGate forHA
+ConnectthebackupFortiGate tothe
+primaryFortiGate andthenetwork,
+asshowninthenetworkdiagramat
+thetopoftherecipe.Makingthese
+networkconnectionswilldisrupt
+traffic soyoushoulddothiswhen
+thenetworkisnotprocessingmuch
+traffic.
+If possible,makedirectEthernetconnectionsbetweentheheartbeatinterfacesofthetwoFortiGate units.
+ThisexampleusestwoFortiGate-600Dsandthedefault heartbeatinterfacesareused(port3andport4).
+YoucanuseanyinterfacesforHAheartbeatinterfaces.Abestpracticeistouseinterfacesthat donot
+processtraffic, butthisisnotarequirement.
+SwitchesmustbeusedbetweentheclusterandtheInternet, andbetweentheclusterandtheinternal
+networks,asshowninthenetworkdiagram. Youcanuseanygoodqualityswitchestomakethese
+connections.Youcanalsouseoneswitchforalloftheseconnections,aslongasyouconfiguretheswitchto
+separatetraffic fromthedifferent networks.
+4. Configuringthe backup FortiGate for HA
+ConnecttothebackupFortiGate
+GUIandgoto System> Settings
+andchangethe Host nameto
+identify thisasthebackup
+FortiGate.
+Goto System> HA andduplicatetheHAconfigurationoftheprimaryFortiGate (exceptforthe Device
+priority):set Modeto Active-Passive,andsetthe Device Prioritytoalowervaluethanthedefault to
+makesurethisFortiGate willalwaysbethebackupFortiGate. Also,setthesame Group nameand
+PasswordastheprimaryFortiGate.
+Makesurethat thesametwo Heartbeat interfaces(port3andport4)areselectedandthe Heartbeat
+Interface Priorityforeachissetto50.
+HighAvailability
+Fortinet TechnologiesInc.
+109
+
+5.ViewingthestatusoftheHAcluster FGCPconfigurationexamplesandtroubleshooting
+If youchangedtheclustergroupid
+oftheprimaryFortiGate, changethe
+clustergroupIDforthebackup
+FortiGate tomatch, usingthisCLI
+command.
+config system ha
+set group-id 25
+end
+WhenyousavetheHAconfigurationofthebackupFortiGate, iftheheartbeatinterfacesareconnected,the
+FortiGates willfindeachotherandformanHAcluster.Networktraffic maybedisruptedforafewseconds
+whiletheclusterisnegotiating. If thesestepsdon'tstartHAmode, makesurethat noneoftheFortiGate's
+interfacesuseDHCPorPPPoEaddressing.
+5. Viewing the status of the HA cluster
+110 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting 5.ViewingthestatusoftheHAcluster
+ConnecttotheGUIoftheprimary
+FortiGate. The HA Statuswidget
+showstheclustermode(Mode)and
+groupname(Group).It alsoshows
+thehostnameoftheprimary
+FortiGate (Master),whichyoucan
+hoverovertoverifythat theclusteris
+synchronizedandoperating
+normally.Youcanclickonthe
+widgettochangetheHA
+configurationorviewalistof
+recentlyrecordedclusterevents,
+suchasmembersjoiningorleaving
+thecluster.
+Clickonthe HA Statuswidgetandselect Configure settings in System> HA (orgoto System> HA)
+toviewtheclusterstatus.
+If theclusterispartofaSecurityFabric,theFortiViewPhysicalandLogicalTopologyviewsshow
+information abouttheclusterstatus.
+HighAvailability
+Fortinet TechnologiesInc.
+111
+
+6.Results FGCPconfigurationexamplesandtroubleshooting
+6. Results
+Traffic isnowpassingthroughtheprimaryFortiGate. However,iftheprimaryFortiGate becomes
+unavailable,traffic shouldfail overandthebackupFortiGate willprocesstraffic.
+AfailoveralsocausestheprimaryandbackupFortiGate toreverseroles,evenwhenbothFortiGates are
+availableagain.
+TotestHAfailover,fromaPCon
+theinternalnetwork,pinganIP
+addressontheInternet (inthe
+example,8.8.8.8). Afteramoment,
+poweroff theprimaryFortiGate. If
+youareusingportmonitoring, you
+canalsounplugtheprimary
+FortiGate'sInternet-facinginterface
+totestfailover.Youwillseea
+momentarypauseintheping
+results,until traffic failsovertothe
+backupFortiGate, allowingtheping
+traffic tocontinue.
+112 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting 7.(Optional)UpgradingthefirmwarefortheHAcluster
+7. (Optional) Upgradingthe firmware for the HA cluster
+UpgradingthefirmwareontheprimaryFortiGate automatically upgradesthefirmwareonthebackup
+FortiGate. BothFortiGates areupdatedwithminimal traffic disruption.
+Clickthe System Information
+widgetandselect Update firmware
+in System > Firmware.Backup
+theconfigurationandupdatethe
+firmwarefromFortiGuardorby
+uploadingafirmwareimagefile.
+Thefirmwareinstallsontoboththe
+primaryandbackupFortiGates.
+Aftertheupgradeiscomplete, verify
+that the System Information
+widgetshowsthenewfirmware
+version.
+HighAvailability
+Fortinet TechnologiesInc.
+113
+
+Replacingafailed clusterunit FGCPconfigurationexamplesandtroubleshooting
+Replacing a failed cluster unit
+Thisproceduredescribeshowtoremoveafailed clusterunitfromaclusterandaddanewonetoreplaceit. You
+canalsousethisproceduretoremoveafailed unitfromacluster,repairitandadditbacktothecluster.
+Replacingafailed doesnotinterrupttheoperationoftheclusterunlessyouhavetochangehowtheclusteris
+connectedtothenetworktoaccommodatethereplacementunit.
+Youcanusethisproceduretoreplacemorethanoneclusterunit.
+To replace a failed cluster unit
+1. Disconnectthefailed unitfromtheclusterandthenetwork.
+If youmaintain otherconnectionsbetweenthenetworkandthestill functioning clusterunitorunits
+andbetweenremainingclusterunitsnetworktraffic willcontinuetobeprocessed.
+2. Repairthefailed clusterunit, orobtainareplacementunitwiththeexactsamehardwareconfigurationasthe
+failed clusterunit.
+3. Install thesamefirmwarebuildontherepairedorreplacementunitasisrunningonthecluster.
+4. RegisterandapplylicensestotheFortiGate. Thisincludes FortiCloud activationand FortiClientlicensing,and
+enteringalicensekeyifyoupurchasedmorethan10 Virtual Domains(VDOMS).AlloftheFortiGates ina
+clustermusthavethesameleveloflicensing.
+114 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting Replacingafailed clusterunit
+5. Youcanalsoinstallanythird-partycertificatesontheprimaryFortiGate beforeforming thecluster.Oncethe
+clusterisformedthird-partycertificatesaresynchronizedtothebackupFortiGate.
+Werecommendthat youaddFortiTokenlicensesandFortiTokenstotheprimaryunitaftertheclusterhasformed.
+6. ConfiguretherepairedorreplacementunitforHAoperationwiththesameHAconfigurationasthecluster.
+7. If theclusterisrunningintransparentmode, changetheoperatingmodeoftherepairedorreplacementunitto
+transparentmode.
+8. Connecttherepairedorreplacementclusterunittothecluster.
+ForanexampleseeHowtosetupFGCPclustering(recommendedsteps)onpage64.
+9. Powerontherepairedorreplacementclusterunit.
+Whentheunitstartsitnegotiatestojointhecluster.Afteritjoinsthecluster,theclustersynchronizes
+therepairedorreplacementunitconfigurationwiththeconfigurationoftheprimaryunit.
+Youcanaddarepairedorreplacementunittoafunctioning clusteratanytime. Therepairedorreplacement
+clusterunitmust:
+l Havethesamehardwareconfigurationastheclusterunits. Includingthesameharddiskconfigurationandthe
+sameAMCcardsinstalledinthesameslots.
+l Havethesamefirmwarebuildasthecluster.
+HighAvailability
+Fortinet TechnologiesInc.
+115
+

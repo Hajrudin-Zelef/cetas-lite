@@ -1,0 +1,179 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-85
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [10559, 10720]
+sha256: fd72533b015538caab69d2319bfee59197e20279f1a04a10bec08b1308dc2974
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+VRRPhighavailability UsingVRRPvirtualMACaddresses
+Using VRRP virtual MAC addresses
+TheVRRPvirtualMACaddress(orvirtualrouterMACaddress)isasharedMACaddressadoptedbytheprimary
+router.If theprimaryrouterfails, thesamevirtualMACaddressispickedupbythenewprimaryrouterallowingall
+devicesonthenetworktotransparentlyconnecttothedefault routeusingthesamevirtualMACaddress.You
+mustenabletheVRRPvirtualMACaddressfeatureonallmembersofaVRRPdomain.
+EachVRRProuterisassociatedwithitsownvirtualMACaddress.ThelastpartofthevirtualMACdependsonthe
+VRRPvirtualrouterIDusingthefollowing format:
+00-00-5E-00-01-<VRID_hex>
+Where<VRID_hex> istheVRRPvirtualrouterIDinhexadecimalformat inInternet standardbit-order.Formore
+information abouttheformat ofthevirtualMACseeRFC3768.
+Someexamples:
+l If theVRRPvirtualrouterIDis10thevirtualMACwouldbe00-00-5E-00-01-0a.
+l If theVRRPvirtualrouterIDis200thevirtualMACwouldbe00-00-5E-00-01-c8.
+TheVRRPvirtualMACaddressfeatureisdisabledbydefault. WhenyouenablethefeatureonaFortiGate
+interface, alloftheVRRProutersaddedtothat interfaceusetheirownVRRPvirtualMACaddress.Eachvirtual
+MACaddresswillbedifferent becauseeachvirtualrouterhasitsownID.
+Usethefollowing commandtoenabletheVRRPvirtualMACaddressforanIPv4VRRPconfigurationonthe
+port2interface:
+config system interface
+edit port2
+set vrrp-virtual-mac enable
+end
+end
+Theport2interfacewillnowacceptpacketssenttotheMACaddressesoftheIPv4VRRPvirtualroutersaddedto
+thisinterface.
+SincedevicesontheLANdonothavetolearnanewMACaddressforanewVRRProuterintheeventofa
+failover,thisfeaturecanimprovenetworkefficiency, especiallyonlargeandcomplexnetworks.
+If theVRRPvirtualMACaddressfeatureisdisabled,theVRRPdomainusestheMACaddressofthemaster. In
+thecaseofaFortiGate VRRPvirtualrouterthisistheMACaddressoftheFortiGate interfacethat theVRRP
+virtualroutersareaddedto. If amasterfails, whenthenewmastertakesoveritsendsgratuitousARPsto
+associatetheVRRPvirtualrouterIPaddresswiththeMACaddressofthenewmaster(ortheinterfaceofthe
+FortiGate that hasbecomethenewmaster).If theVRRPvirtualMACaddressisenabledthenewmasteruses
+thesameMACaddressastheoldmaster.
+HighAvailability
+Fortinet TechnologiesInc.
+283
+
+ExampleVRRPconfiguration: twoFortiGates inaVRRPdomain VRRPhighavailability
+Example VRRP configuration:two FortiGates in a VRRP domain
+ThisexampleincludesaVRRPdomainconsistingoftwoFortiGates that connectaninternalnetworktothe
+Internet. Asshownbelow,theinternalnetwork’sdefault routeis10.31.101.120.
+TheFortiGate port2interfacesconnecttotheinternalnetwork.AVRRPvirtualrouterisaddedtoeachFortiGate’s
+port2interface. ThevirtualrouterIPaddressis10.31.101.120 (theinternalnetwork’sdefault route)andthevirtual
+router’sIDis5.TheVRRPpriorityoftheprimaryrouterissetto255andtheVRRPpriorityofthebackuprouteris
+50.Theport2interfaceofeachFortiGate shouldhaveanIPaddressthat isdifferent fromthevirtualrouterIP
+addressandtheport2interfaceIPaddressesshouldbedifferent fromeachother.
+ThisexamplealsoincludesenablingtheVRRPvirtualMACaddressonbothFortiGate port2interfacessothat the
+VRRPdomainusestheVRRPvirtualMACaddress.
+Example VRRP configuration with two FortiGates
+To configure the FortiGates for VRRP
+1. SelectoneoftheFortiGates tobetheprimaryVRRProuterandtheothertobethebackuprouter.
+2. FromtheprimaryrouterCLI, enterthefollowing commandtoenabletheVRRPvirtualMACaddressontheport2
+interfaceandaddtheVRRPvirtualroutertotheport2interface:
+config system interface
+edit port2
+set vrrp-virtual-mac enable
+config vrrp
+edit 5
+set vrip 10.31.101.120
+set priority 255
+284 HighAvailability
+Fortinet TechnologiesInc.
+
+VRRPhighavailability ExampleVRRPconfiguration: VRRPloadbalancingtwoFortiGates andtwoVRRPgroups
+end
+end
+3. FromthebackuprouterCLI, enterthefollowing commandtoenabletheVRRPvirtualMACaddressontheport2
+interfaceandaddtheVRRPvirtualroutertotheport2interface:
+config system interface
+edit port2
+set vrrp-virtual-mac enable
+config vrrp
+edit 5
+set vrip 10.31.101.120
+set priority 50
+end
+end
+Example VRRP configuration:VRRP load balancing two FortiGates and two
+VRRP groups
+InthisconfigurationtwoVRRPgroupsareinvolved.EachFortiGate participatesinbothofthem. OneFortiGate is
+theprimaryrouterofonegroupandtheotherFortiGate istheprimaryrouteroftheothergroup.Thenetwork
+distributestraffic betweentwodifferent default routes(10.31.101.120 and10.31.101.130). OneVRRPgroupis
+configuredwithoneofthedefault routeIPaddressesandtheotherVRRPgroupgetstheotherdefault routeIP
+address.Duringnormaloperation,bothFortiGates areprocessingtraffic andtheVRRPgroupsareusedtoload
+balancethetraffic betweenthetwoFortiGates.
+If oneoftheFortiGates fails, theremainingFortiGate becomestheprimaryrouterofbothVRRPgroups.The
+networksendsalltraffic forbothdefault routestothisFortiGate. Theresultisaconfigurationthat, undernormal
+operationload,balancestraffic betweentwoFortiGates, butifoneoftheFortiGates fails, alltraffic failsoverto
+theFortiGate that isstill operating.
+ThisexamplealsoincludesenablingtheVRRPvirtualMACaddressonbothFortiGate port2interfacessothat the
+VRRPgroupsusetheirVRRPvirtualMACaddresses.
+HighAvailability
+Fortinet TechnologiesInc.
+285
+
+ExampleVRRPconfiguration: VRRPloadbalancingtwoFortiGates andtwoVRRPgroups VRRPhighavailability
+Example VRRP configuration with two FortiGates and two VRRP groups
+To configure the FortiGates
+1. LogintotheCLIofFortiGate A.
+2. Enterthefollowing toenabletheVRRPvirtualMACaddressfeatureandaddtheVRRPgroupstotheport2
+interfaceofFortiGate A:
+config system interface
+edit port2
+set vrrp-virtual-mac enable
+config vrrp
+edit 50 (32)
+set vrip 10.31.101.120
+set priority 255
+next
+edit 100 (64)
+set vrip 10.31.101.130
+set priority 50
+end
+end
+3. LogintotheCLIofFortiGate B.
+4. Enterthefollowing commandtoenabletheVRRPvirtualMACaddressfeatureandaddtheVRRPgroupstothe
+port2interfaceofFortiGate B:
+config system interface
+edit port2
+set vrrp-virtual-mac enable
+config vrrp
+edit 50
+set vrip 10.31.101.120
+set priority 50
+286 HighAvailability
+Fortinet TechnologiesInc.
+
+VRRPhighavailability Optional VRRPconfigurationsettings
+next
+edit 100
+set vrip 10.31.101.130
+set priority 255
+end
+end
+Optional VRRP configurationsettings
+Inadditiontothebasicconfigurationsettings, youcanchangetotheVRRPconfigurationinthefollowing ways.
+AlloftheseoptionsapplytobothIPv4andIPv6VRRPunlessnoted.
+l Enableordisableindividualvirtualrouterconfigurationsusingthestatus option. Normallyvirtualrouter
+configurationsareenabledbutyoucantemporarilydisableoneifitisnotrequired.
+l Enableordisablepreemptmodeusingthepreempt option. Inpreemptmode, ahigherprioritybackuproutercan
+preemptalowerpriorityprimaryrouter.Thiscanhappeniftheprimaryrouterhasfailed, abackuprouterhas
+becometheprimaryrouter,andthefailed primaryrouterrestarts.Sincetherestartedrouterhasahigherpriority,if
+preemptmodeisenabledtherestartedrouterreplacesthecurrentprimaryrouterbecomingthenewprimaryrouter.
+Preemptmodeisenabledbydefault.
+l Youcanaddoneortwodestination addresses(vrdst)toaVRRPconfiguration. Tobemosteffective, these
+destination addressesshouldberemoteaddresses.
+FortiGate-6000 and FortiController-5000 support for VRRP HA
+FortiGate-6000devicesandFortiController-5000SessionAwareLoadBalancingClustering(SLBC)bothsupport
+theVirtualRouterRedundancyProtocol(VRRP).YoucanaddFortiGate-6000devicesandFortiController-5000
+SLBCconfigurationstoVRRPclusters.TheseVRRPclusterscanincluderedundantsimilarhardwareplatforms or
+avarietyofroutersaslongastheyallsupportVRRP..
+ConfigureVRRPonaFortiGate-6000devicesoraFortiController-5000bycreatingaVRRPdomainandadding
+oneormoreFortiGate-6000orFortiController frontpanelinterfacestothedomain.
+JustlikeanyVRRPdomain, duringnormaloperation,theprimaryroutersendsoutgoingVRRProuting
+advertisements.BoththeprimaryandbackuprouterslistenforincomingVRRPadvertisementsfromotherrouters
+intheVRRPdomain. If theprimaryrouterfails, thenewprimaryroutertakesovertheroleofbothsendingand
+receivingVRRPadvertisements.
+HighAvailability
+Fortinet TechnologiesInc.
+287
+

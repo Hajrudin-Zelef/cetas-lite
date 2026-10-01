@@ -1,0 +1,40 @@
+---
+id: collect-261001-cisco/cisco/fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2-3
+title: "fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2"
+domain: cisco
+role: reference
+task: reference
+actors: ["Intel", "SGLang", "TSMC", "vLLM"]
+dates: []
+keywords: ["cyber", "ethernet", "fp8", "gpu", "hbm", "intel", "open source", "sglang", "vllm"]
+source: docs/RAG/collect-261001-cisco/fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2.md
+source_anchor: ""
+source_lines: [56, 78]
+sha256: 56ed0d88c6f81e50641c9daa947b73a580d8fa506719133183a6d13d42ea6dbb
+---
+
+# fr-review-dell-poweredge-xe7740-inside-the-architecture-of-enterprise-ai-inferen-a8c6e9c2
+
+Le serveur XE7740 est livré avec l'iDRAC 10 de nouvelle génération de Dell, une refonte majeure de l'iDRAC 9, déjà performant et utilisé depuis des années par les clients Dell. Intégré en tant que module de contrôle sécurisé pour centre de données (DC-SCM) conforme à la norme OCP DC-MHS, l'iDRAC 10 ne se limite pas à une simple mise à jour du firmware ; il s'agit d'un nouveau matériel. Le contrôleur intègre quatre cœurs cadencés à 1 GHz avec une architecture 64 bits et 2 Go de mémoire DDR4 (soit le double de la génération précédente), offrant ainsi des performances et une réactivité nettement supérieures pour les opérations de gestion.
+En matière de sécurité, l'iDRAC 10 introduit plusieurs améliorations notables. La plateforme offre une prise en charge cryptographique renforcée à tous les niveaux, notamment l'authentification SHA-384 et SHA-512 et le chiffrement AES-256 résistant aux attaques quantiques, alors que le secteur se prépare aux menaces cryptographiques post-quantiques. Une enclave de sécurité intégrée dédiée au sein de la puce iDRAC 10 gère les fonctions de cyber-résilience, telles que l'attestation au niveau du périphérique et la racine de confiance personnalisée de Dell. Cette racine de confiance matérielle garantit que tous les microprogrammes (BIOS, iDRAC et microprogrammes des composants) sont vérifiés cryptographiquement avant leur exécution, protégeant ainsi contre les attaques de la chaîne d'approvisionnement et la falsification des microprogrammes.
+La vérification sécurisée des composants garantit que les systèmes livrés par Dell sont conformes aux spécifications du client en termes de composants et de configurations, assurant ainsi leur intégrité de la fabrication au déploiement. La dernière mise à jour du firmware iDRAC 10 offre également une interface utilisateur modulaire et repensée, simplifiant l'administration au quotidien.
+OpenManage Entreprise
+Pour la gestion de parcs informatiques à grande échelle, Dell OpenManage Enterprise centralise la surveillance, les mises à jour du firmware et la gestion de la configuration pour l'ensemble des déploiements PowerEdge. Parmi les nouveautés importantes pour les déploiements dédiés à l'IA, OME offre désormais une visibilité directe sur les statistiques des GPU et des accélérateurs : consommation d'énergie, température, utilisation, nombre d'erreurs, etc., sans nécessiter d'outils spécifiques au fournisseur. Pour les entreprises gérant des dizaines, voire des centaines, de nœuds XE7740 dans un cluster d'inférence, cette plateforme de gestion unifiée représente une simplification opérationnelle significative.
+Intel Xeon 6
+Au cœur du XE7740 se trouvent deux processeurs Intel Xeon 6 6787P, fleuron de la série Xeon 6700P. Basé sur l'architecture Granite Rapids et utilisant la technologie Intel 3 nm, le 6787P offre 86 cœurs de traitement (172 threads) par socket pour un TDP de 350 W, avec une fréquence de base de 2.0 GHz et une fréquence turbo de 3.8 GHz.
+Ce qui rend Granite Rapids particulièrement pertinent pour les infrastructures d'IA, c'est la combinaison d'un grand nombre de cœurs et de son sous-système mémoire. Chaque processeur 6787P offre huit canaux de mémoire DDR5 jusqu'à 6 400 MT/s. Avec un serveur XE7740 à deux sockets équipé de 32 modules DIMM, le système peut être configuré pour une capacité totale de mémoire allant jusqu'à 4 To.
+La capacité mémoire et la bande passante sont essentielles pour les charges de travail d'IA, notamment lors de l'utilisation du déchargement du cache clé-valeur. À mesure que les modèles de langage complexes augmentent la longueur du contexte, le cache clé-valeur évolue proportionnellement et peut consommer une quantité importante de mémoire de l'accélérateur. Le déchargement d'une partie du cache clé-valeur vers la mémoire système ou un stockage rapide permet une utilisation plus efficace de la mémoire HBM de l'accélérateur pour le calcul actif, réduisant ainsi le temps d'affichage du premier jeton (TTFT) pour les conversations à plusieurs tours.
+Il convient également de mentionner les unités de tenseurs AMX du Xeon 6, qui prennent en charge une part importante du travail côté processeur. Celles-ci incluent le prétraitement, la tokenisation et les tâches d'inférence hybride impliquant des opérations matricielles. Ceci s'avère particulièrement utile avec des frameworks d'inférence comme SGLang, qui utilisent le processeur pour la gestion du cache KV par arbre radix et l'ordonnancement sans surcharge.
+Cartes d'extension Intel Gaudi 3 : Inférence compétitive à grande échelle
+Le Gaudi 3 d'Intel est l'accélérateur d'IA phare de la société, lancé au quatrième trimestre 2024. Intel positionne ces accélérateurs de manière très agressive, plutôt que de concurrencer frontalement les accélérateurs d'entraînement pour centres de données haut de gamme. Le Gaudi 3 vise clairement le segment de l'inférence.
+L'inférence de modèles basés sur les transformeurs, dans tous les LLM populaires actuels, est fondamentalement limitée par la mémoire. Lors de la phase de décodage de la génération autorégressive, le modèle génère des jetons un par un, en lisant les poids du modèle et les entrées du cache KV pour chaque jeton produit. Le goulot d'étranglement ne réside pas dans la puissance de calcul, mais dans la bande passante mémoire, c'est-à-dire la vitesse à laquelle l'accélérateur peut transférer les données de la mémoire HBM vers les moteurs de calcul.
+Le Gaudi 3 embarque 128 Go de mémoire HBM2e offrant une bande passante de 3.7 To/s. Son architecture repose sur le procédé 5 nm de TSMC et utilise une conception à double puce : deux puces de silicium identiques reliées par une interconnexion à large bande passante, se présentant ainsi comme un seul et même dispositif pour le logiciel. La puissance de calcul est organisée en quatre cœurs d'apprentissage profond (DCORE), chacun comprenant 2 unités de mémoire multiprocesseur (MME), 16 unités de calcul transactionnelles (TPC) et 24 Mo de cache SRAM local. Les 96 Mo de SRAM intégrée offrent une bande passante interne totale de 12.8 To/s. L'accélérateur intègre également 14 décodeurs multimédias dédiés (H.265, H.264, JPEG, VP9), permettant un prétraitement rapide des images pour les charges de travail multimodales.
+Une grande partie des modèles d'IA open source de pointe publiés aujourd'hui sont soit des modèles entraînés nativement en FP8, soit des modèles hybrides combinant des pondérations FP8 (E4M3) et BF16. Le Gaudi 3 offre une accélération FP8 native pour ces modèles grâce à ses 8 moteurs de multiplication matricielle et ses 64 cœurs de traitement tensoriel, fournissant une puissance de calcul FP8 de 1.8 PFlops.
+Le Gaudi 3 intègre également la technologie RDMA sur Ethernet convergé (RoCEv2) avec 24 ports 200 GbE sur la version OAM, directement intégrés à la puce. Bien que la carte d'extension PCIe utilisée dans le XE7740 n'expose pas tous ces ports de la même manière, les différentes versions de cartes d'extension permettent de connecter jusqu'à quatre cartes pour une communication plus rapide.
+Performances et repères
+Détails de configuration du XE7740 :
+- 2 processeurs Intel Xeon 6787P (86 cœurs, 2.00 GHz)
+- 2 To DDR5 (32 x 64 Go DDR5 à 5 200 MT/s)
+- 4 accélérateurs IA Intel Gaudi 3 PCIe avec 128 Go de mémoire HBM
+- Serveur Ubuntu 24.04.5
+Performances de service en ligne vLLM

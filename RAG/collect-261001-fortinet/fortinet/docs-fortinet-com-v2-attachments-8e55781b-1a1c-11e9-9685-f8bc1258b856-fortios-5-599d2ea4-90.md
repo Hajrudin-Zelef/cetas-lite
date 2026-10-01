@@ -1,0 +1,80 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-90
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["copyright"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [11239, 11301]
+sha256: 3daa810c42a28247b25d934aa96b179d4952c9c4f83c755a2b55b719e36a8073
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FortiGate SessionLifeSupportProtocol(FGSP) Synchronizingtheconfiguration
+FortiGates. Changesthat youmakeontheprimaryFortiGate aresynchronizedtothebackupFortiGates. Fortinet
+recommendsmakingallconfigurationchangesontheprimaryFortiGate.
+Config sync primary FortiGate selection
+NormallytheFortiGate withthehighestserialnumberwouldbecometheprimaryFortiGate.
+YoucanusedeviceprioritytoselectoneoftheFortiGates tobecometheprimaryFortiGate. Forexample,the
+following commandenablesconfigurationsynchronizationonaFortiGate andsetsahigherdeviceprioritythan
+thedefault of128tomakesurethat thisFortiGate becomestheprimaryFortiGate:
+config system ha
+set standalone-config-sync enable
+set priority 250
+end
+Settings that are not synchronized
+Standaloneconfigurationsynchronizationdoesnotsynchronizesettingsthat identify theFortiGate tothe
+network.Thefollowing settingsarenotsynchronized:
+l Transparentmodemanagement IPv4andIPv6IPaddressesanddefault gateways.
+l Allconfig system cluster-sync settings.
+l Allconfig system interface settingsexceptvdom,vlanid,type,andinterface.
+l Allconfig firewall sniffer settings.
+l AllrouterBFDandBFD6settings.
+l Thefollowing BGPsettings: as,router-id,aggregate- address,aggregate- address6,neighbor-
+group,neighbor,network,andnetwork6.
+l Thefollowing OSPFsettings: router-id,area,ospf-interface,network,neighbor,andsummary-
+address.
+l Thefollowing OSPF6settings: router-id,area,andospf6-interface.
+l AllRIPsettings.
+l Allpolicyroutingsettings.
+l Allstaticroutingsettings.
+Limitations
+Whenstandaloneconfigurationsynchronizationisenabled,therearesomelimitations, includingbutnotlimited
+tothefollowing:
+l Networkinterruptionsoccurduringfirmwareupgrades:whenupgradingthefirmware, allmembersinthe
+standalone- config-sync groupareupgradedsimultaneously. Thiscreatesdowntime iftheFortiGates are
+theonlyoutgoinggatewayinthenetwork.Werecommenddisablingtheoptionbeforeupgradingfirmware.
+l Someunwantedconfigurationsmight besynced:thecurrentdesignandimplementation ofstandalone-
+config-sync isbasedonrequirementsfromspecificcustomers.Thus,someusersmayfindthat unwantedparts
+oftheconfigurationsaresynced.Shouldthisoccur,werecommenddisablingtheoptionandmodifying those
+configurationsmanually.
+l Thewrongprimarydevicemight bepickedaccidentally:standalone- config-sync isderivedfromtheHA
+primaryunitselectionmechanism. Allmembersinthegroupwilljointheselectionprocessinthesamewayasathe
+HighAvailability
+Fortinet TechnologiesInc.
+301
+
+Synchronizingtheconfiguration FortiGate SessionLifeSupportProtocol(FGSP)
+HAclusterselectionprocess.It isimportant toselectthecorrectdeviceasthemaster, otherwisethewrongdevice
+couldbeselectedandexistingconfigurationscouldbeoverwritten.
+l Layer2heartbeatconnectionsmustbepresent:similartoHAheartbeatrequirements,oneormorelayer2
+heartbeatconnectionsareneededtosyncconfigurationsbetweentheprimaryandbackupdevices.
+302 HighAvailability
+Fortinet TechnologiesInc.
+
+Copyright©2020Fortinet, Inc. Allrightsreserved.Fortinet®, FortiGate®,FortiCare®andFortiGuard®,andcertainothermarksareregisteredtrademarksofFortinet,
+Inc., intheU.S. andotherjurisdictions,andotherFortinetnameshereinmayalsoberegisteredand/orcommonlawtrademarksofFortinet. Allotherproductorcompany
+namesmaybetrademarksoftheirrespectiveowners.Performanceandothermetrics containedhereinwereattainedininternallabtests underidealconditions,and
+actualperformanceandotherresultsmayvary. Network variables,differentnetworkenvironmentsandotherconditionsmayaffect performanceresults. Nothingherein
+representsanybindingcommitment byFortinet, andFortinetdisclaimsallwarranties,whetherexpressorimplied,excepttotheextentFortinetentersabindingwritten
+contract, signedbyFortinet’sGeneralCounsel,withapurchaserthatexpresslywarrantsthattheidentifiedproductwillperformaccordingtocertainexpressly-identified
+performancemetrics and,insuchevent,onlythespecific performancemetrics expresslyidentifiedinsuchbindingwrittencontract shallbebindingonFortinet. For
+absoluteclarity, anysuchwarrantywillbelimitedtoperformanceinthesameidealconditionsasinFortinet’sinternallabtests. InnoeventdoesFortinetmakeany
+commitment relatedtofuturedeliverables,features, ordevelopment,andcircumstances maychangesuchthatanyforward-lookingstatements hereinarenotaccurate.
+Fortinetdisclaimsinfullanycovenants, representations,andguaranteespursuanthereto,whetherexpressorimplied.Fortinetreservestherighttochange,modify,
+transfer, orotherwiserevisethispublicationwithoutnotice,andthemost currentversionofthepublicationshallbeapplicable.

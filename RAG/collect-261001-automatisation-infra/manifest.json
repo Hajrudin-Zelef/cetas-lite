@@ -1,0 +1,2365 @@
+{
+  "corpus": "collect-261001-automatisation-infra",
+  "title": "Automatisation infra — Ansible, Netmiko, netops (2026)",
+  "source": "docs/RAG/collect-261001-automatisation-infra",
+  "source_dir": "docs/RAG/collect-261001-automatisation-infra",
+  "source_files": 42,
+  "source_sha256": "d69ceb215b5702a8da26efa0f94387284ed5218efc77b51a70a0f74cda77a556",
+  "chunk_count": 94,
+  "generated_by": "RAG/_tools/build_rag.py",
+  "chunks": [
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/abderrezzakyahi-ansible-for-network-e847e153",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/abderrezzakyahi-ansible-for-network-e847e153.md",
+      "title": "abderrezzakyahi-ansible-for-network-e847e153",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Huawei"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/abderrezzakyahi-ansible-for-network-e847e153.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        21
+      ],
+      "canonical_for": [],
+      "words": 113,
+      "bytes": 929,
+      "sha256": "50ac89472dc66ec17b5a6392437c092e2a1edbe5ab518b93b895d565baa44961"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/adding-mcp-tools-to-reachy-mini-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/adding-mcp-tools-to-reachy-mini-1.md",
+      "title": "profiles/default/tools.txt",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "latency",
+        "mcp",
+        "robotics",
+        "voice"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/adding-mcp-tools-to-reachy-mini.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        148
+      ],
+      "canonical_for": [],
+      "words": 1031,
+      "bytes": 7025,
+      "sha256": "40aab8f8420599cd7a9967df12bbdba593dc1263aed9cea5dde1cee17f8cf43b"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/adding-mcp-tools-to-reachy-mini-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/adding-mcp-tools-to-reachy-mini-2.md",
+      "title": "profiles/default/tools.txt",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Hugging Face",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "gemini",
+        "mcp",
+        "robotics",
+        "voice"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/adding-mcp-tools-to-reachy-mini.md",
+      "source_anchor": "",
+      "source_lines": [
+        149,
+        206
+      ],
+      "canonical_for": [],
+      "words": 939,
+      "bytes": 5637,
+      "sha256": "a57257e202aeb2c2a68f557d3fbc755e0829fc4046c7cf53f886cd2fa457c1ad"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8-1.md",
+      "title": "api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "ethernet"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        93
+      ],
+      "canonical_for": [],
+      "words": 1020,
+      "bytes": 6396,
+      "sha256": "522ca4c88b94e02da59baabb2fa6d3d378759405f1b87d567df77d682e7f2969"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8-2.md",
+      "title": "api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/api-deki-pages-1268-pdf-troubleshooting-2blocal-2bconnection-2bissues-2busing-2b-080d2af8.md",
+      "source_anchor": "",
+      "source_lines": [
+        94,
+        150
+      ],
+      "canonical_for": [],
+      "words": 557,
+      "bytes": 3611,
+      "sha256": "e3ecd53818458900ded885bd0039b126d810841d54474d338e8beae8cd3c96b3"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-13107-pdf-design-2band-2bconfigure-pdf-4dc5fa94",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-13107-pdf-design-2band-2bconfigure-pdf-4dc5fa94.md",
+      "title": "api-deki-pages-13107-pdf-design-2band-2bconfigure-pdf-4dc5fa94",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/api-deki-pages-13107-pdf-design-2band-2bconfigure-pdf-4dc5fa94.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        18
+      ],
+      "canonical_for": [],
+      "words": 84,
+      "bytes": 540,
+      "sha256": "93944b44ef7e1a0534afc912d5dff1bdf994150b1bc6b14029155dfc4c976169"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0-1.md",
+      "title": "api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        81
+      ],
+      "canonical_for": [],
+      "words": 1007,
+      "bytes": 6521,
+      "sha256": "4ffdc079f8e5d7e4afa766fc29ff386ae56a0f23d9ec63fac4561ef9f5693a9b"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0-2.md",
+      "title": "api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "United States"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/api-deki-pages-540-pdf-how-2bto-2bconfigure-2band-2bmanage-2btwo-factor-2bauthen-b552e4f0.md",
+      "source_anchor": "",
+      "source_lines": [
+        82,
+        120
+      ],
+      "canonical_for": [],
+      "words": 470,
+      "bytes": 2994,
+      "sha256": "059b89ea4a3788d60c8817e297563cf094fd64b8659b5b3489f60e38d3ff25c2"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-577-pdf-link-2baggregation-2band-2bload-2bbalancing-pdf-0a7349b8",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/api-deki-pages-577-pdf-link-2baggregation-2band-2bload-2bbalancing-pdf-0a7349b8.md",
+      "title": "api-deki-pages-577-pdf-link-2baggregation-2band-2bload-2bbalancing-pdf-0a7349b8",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "distribution",
+        "throughput"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/api-deki-pages-577-pdf-link-2baggregation-2band-2bload-2bbalancing-pdf-0a7349b8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        60
+      ],
+      "canonical_for": [],
+      "words": 914,
+      "bytes": 5739,
+      "sha256": "819abf348e98da52c6e9b7717ae97673c37160fc5b9e7ee4779fcdaed2885274"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/api-enable-standard-servicesi",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/api-enable-standard-servicesi.md",
+      "title": "API enable standard servicesï",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "parameters"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/api-enable-standard-servicesi.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        104
+      ],
+      "canonical_for": [],
+      "words": 467,
+      "bytes": 3677,
+      "sha256": "7324b0066bb5f1635844dd61674bd28e59acab87fa3d20fcce93b4ee81116cf9"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/dashboard-api-ansible-v2-16-15-plugins-devices-cellular-sims-module-html-19dbba56",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/dashboard-api-ansible-v2-16-15-plugins-devices-cellular-sims-module-html-19dbba56.md",
+      "title": "dashboard-api-ansible-v2-16-15-plugins-devices-cellular-sims-module-html-19dbba56",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "parameters"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/dashboard-api-ansible-v2-16-15-plugins-devices-cellular-sims-module-html-19dbba56.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        106
+      ],
+      "canonical_for": [],
+      "words": 775,
+      "bytes": 6481,
+      "sha256": "fccc6f5c535c93749e7ae7eb4f35cf5e9d06bbdd9d92ebdfc465cf31dd023f85"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684-1.md",
+      "title": "dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "parameters"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        152
+      ],
+      "canonical_for": [],
+      "words": 994,
+      "bytes": 7978,
+      "sha256": "d87453c3416627f19d1bb2a9004158ee8fd070816f778c5961d9b86ed967b4d2"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684-2.md",
+      "title": "dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/dashboard-api-ansible-v2-16-16-plugins-networks-firmware-upgrades-module-html-e85e5684.md",
+      "source_anchor": "",
+      "source_lines": [
+        153,
+        164
+      ],
+      "canonical_for": [],
+      "words": 37,
+      "bytes": 365,
+      "sha256": "796b41466727e74a223d646367ea6fb1d17cfb91af922cc5f0a41ff8b860e961"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/development-how-tos-api-html-2d78e67a",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/development-how-tos-api-html-2d78e67a.md",
+      "title": "import libraries",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/development-how-tos-api-html-2d78e67a.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        118
+      ],
+      "canonical_for": [],
+      "words": 865,
+      "bytes": 6245,
+      "sha256": "699af5ffb655dfb6b1cb6d9f2a9e2a332c0b90bae18364e8c72179e18ad94b56"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/devinbarry-opn-api-4720ef72",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/devinbarry-opn-api-4720ef72.md",
+      "title": "Configure API client",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google"
+      ],
+      "dates": [],
+      "keywords": [
+        "license"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/devinbarry-opn-api-4720ef72.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        101
+      ],
+      "canonical_for": [],
+      "words": 363,
+      "bytes": 3065,
+      "sha256": "af3389c71dd6161724b18b24994f986459d3f4fa558aca716aa0fa028dbdb1b6"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85-1.md",
+      "title": "apply logging configuration using jinja2 template",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        253
+      ],
+      "canonical_for": [],
+      "words": 650,
+      "bytes": 7993,
+      "sha256": "ebfa98f5473a404bea1f510d4b7c99bf26bcc774506f86eed60c39bd46d74d41"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85-2.md",
+      "title": "apply logging configuration using jinja2 template",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85.md",
+      "source_anchor": "",
+      "source_lines": [
+        254,
+        436
+      ],
+      "canonical_for": [],
+      "words": 824,
+      "bytes": 7967,
+      "sha256": "f829cc830b57c8d837b648c2abb7486ace8e381073b89c0c245970fd3f365974"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85-3.md",
+      "title": "apply logging configuration using jinja2 template",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "memory",
+        "throughput"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/dmulyalin-salt-nornir-blob-head-docs-source-examples-rst-4c793d85.md",
+      "source_anchor": "",
+      "source_lines": [
+        437,
+        517
+      ],
+      "canonical_for": [],
+      "words": 340,
+      "bytes": 3960,
+      "sha256": "5be16af4ec01a806e469ed2e849d59508759e6d89ca88d28e351a35aa7407275"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/ericorain-python-scripts-blob-head-netmiko-readme-md-f41b9d5c",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/ericorain-python-scripts-blob-head-netmiko-readme-md-f41b9d5c.md",
+      "title": "Import Python library",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "parameters"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/ericorain-python-scripts-blob-head-netmiko-readme-md-f41b9d5c.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 277,
+      "bytes": 2717,
+      "sha256": "5d303ffcf440017f5c85f8cb8f4ca8ccba357b073d856395f51b123b4fb03e01"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-1.md",
+      "title": "etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        101
+      ],
+      "canonical_for": [],
+      "words": 1245,
+      "bytes": 7971,
+      "sha256": "93f72bb5f5ab5ec0b4215ee83431a44db05369c197cc7a9babf130e19f9c7808"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-2.md",
+      "title": "etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "ethernet"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead.md",
+      "source_anchor": "",
+      "source_lines": [
+        102,
+        199
+      ],
+      "canonical_for": [],
+      "words": 1263,
+      "bytes": 7977,
+      "sha256": "f213262656c96ab1ec4065c9eaf5f292818fdb6a1e5a064a9610ac0bb37100d3"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-3.md",
+      "title": "etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead.md",
+      "source_anchor": "",
+      "source_lines": [
+        200,
+        311
+      ],
+      "canonical_for": [],
+      "words": 1143,
+      "bytes": 7946,
+      "sha256": "604a781092a7717f4596d7412205e50ed65d5204b115fb959705e36e3783f46a"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-4",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead-4.md",
+      "title": "etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/etherne1-obsidian-vault-blob-head-post-20encor-post-encor-labs-eve-ng-md-562ebead.md",
+      "source_anchor": "",
+      "source_lines": [
+        312,
+        341
+      ],
+      "canonical_for": [],
+      "words": 364,
+      "bytes": 2144,
+      "sha256": "daca65f956c8ef4da61975783e253abfe0d77fe3b382f743d2bb698bf7bb906e"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-1.md",
+      "title": "Description: This script generates a testbed file based on the Netbox data",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-04"
+      ],
+      "keywords": [
+        "ethernet"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-baltah666-netbox-pyats.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        184
+      ],
+      "canonical_for": [],
+      "words": 959,
+      "bytes": 7707,
+      "sha256": "49799ce4d1cba7950b26805dc5220cbb7b7f2b672a6d5eea06a398aa98035ba2"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-2.md",
+      "title": "Description: This script generates a testbed file based on the Netbox data",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-baltah666-netbox-pyats.md",
+      "source_anchor": "",
+      "source_lines": [
+        185,
+        297
+      ],
+      "canonical_for": [],
+      "words": 566,
+      "bytes": 7110,
+      "sha256": "e8135bdfb57af2b2424a0e6b23673870212e5d1610ea1898e34300571d13acd4"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-3.md",
+      "title": "Description: This script generates a testbed file based on the Netbox data",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-baltah666-netbox-pyats.md",
+      "source_anchor": "",
+      "source_lines": [
+        298,
+        444
+      ],
+      "canonical_for": [],
+      "words": 557,
+      "bytes": 7507,
+      "sha256": "43cf92774daf3f36248b41dd19ff7de077c31aa323738c08f3aae9cdb825c982"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-4",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-baltah666-netbox-pyats-4.md",
+      "title": "Description: This script generates a testbed file based on the Netbox data",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-baltah666-netbox-pyats.md",
+      "source_anchor": "",
+      "source_lines": [
+        445,
+        503
+      ],
+      "canonical_for": [],
+      "words": 430,
+      "bytes": 5468,
+      "sha256": "737202fd8bff9a6db1155624134c1bc77978027af0d04884d9e02a85606ff20a"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-dushyantkinha-cu-ansible-jinja2-automation",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-dushyantkinha-cu-ansible-jinja2-automation.md",
+      "title": "github-dushyantkinha-cu-ansible-jinja2-automation",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-dushyantkinha-cu-ansible-jinja2-automation.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 328,
+      "bytes": 2657,
+      "sha256": "f8c93abe16aa4b862b00f77a1984f0a70310a333a4229ece5fec13f67abdb7fb"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-compre-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-compre-1.md",
+      "title": "github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-comprehensive-co",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "ethernet"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-comprehensive-co.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        181
+      ],
+      "canonical_for": [],
+      "words": 1164,
+      "bytes": 7753,
+      "sha256": "6ef767578822f32e3cb36ea42c398590d869c7fd89fe097797a9d13d299d39f6"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-compre-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-compre-2.md",
+      "title": "github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-comprehensive-co",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "distribution",
+        "latency",
+        "throughput"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-comprehensive-co.md",
+      "source_anchor": "",
+      "source_lines": [
+        182,
+        317
+      ],
+      "canonical_for": [],
+      "words": 1128,
+      "bytes": 7742,
+      "sha256": "16e6a5675724fd3a2dab6f44d1fa2225cc99808f9177f960a45da14858ccc92c"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-compre-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-compre-3.md",
+      "title": "github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-comprehensive-co",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "license",
+        "mit license"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-georgybi-eve-ng-labs-welcome-to-the-eve-ng-labs-catalog-this-repository-is-a-comprehensive-co.md",
+      "source_anchor": "",
+      "source_lines": [
+        318,
+        464
+      ],
+      "canonical_for": [],
+      "words": 1084,
+      "bytes": 7289,
+      "sha256": "0711a63a006d7c6e9fbc9529d7aa10332822c107f640f040e2f6a9f8fced40b9"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-niromuru-jabelk-nornir-demo",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-niromuru-jabelk-nornir-demo.md",
+      "title": "github-niromuru-jabelk-nornir-demo",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "sandbox"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-niromuru-jabelk-nornir-demo.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        51
+      ],
+      "canonical_for": [],
+      "words": 237,
+      "bytes": 1645,
+      "sha256": "6b5c1d90aa56a968dc2ae5e817588c80a556462a73e870bfcd0740c34a7d92ab"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university--1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university--1.md",
+      "title": "github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university-of-applied",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "parameters"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university-of-applied.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        158
+      ],
+      "canonical_for": [],
+      "words": 863,
+      "bytes": 7890,
+      "sha256": "0434d1be45067fecec048a72dfaf3201b762bcc4895e7ba133475abbb0b13f79"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university--2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university--2.md",
+      "title": "github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university-of-applied",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-04"
+      ],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/github-ramobis-nornir-l3-vpn-service-deployment-at-the-ost-eastern-switzerland-university-of-applied.md",
+      "source_anchor": "",
+      "source_lines": [
+        159,
+        191
+      ],
+      "canonical_for": [],
+      "words": 110,
+      "bytes": 953,
+      "sha256": "42f845ae4b32db5cb3db5fb065cd28a589ae2e088f0dfba610f5a4da5e9384f2"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/gns3vault-ccna-r-s-labs-list-in-order",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/gns3vault-ccna-r-s-labs-list-in-order.md",
+      "title": "gns3vault-ccna-r-s-labs-list-in-order",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/gns3vault-ccna-r-s-labs-list-in-order.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        78
+      ],
+      "canonical_for": [],
+      "words": 331,
+      "bytes": 2083,
+      "sha256": "19c24b3462ee5fea44a11788f270eefc8ffc135afd3697d69b2b700402bf299f"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934-1.md",
+      "title": "hegdepavankumar-eve-ng-labs-3a58a934",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "ethernet"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        149
+      ],
+      "canonical_for": [],
+      "words": 1206,
+      "bytes": 7891,
+      "sha256": "3a64afc261df8c011b36f30c80feda9f2ff8d865a9ec0daa8b9a025deb2e7340"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934-2.md",
+      "title": "hegdepavankumar-eve-ng-labs-3a58a934",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "distribution",
+        "latency",
+        "throughput"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934.md",
+      "source_anchor": "",
+      "source_lines": [
+        150,
+        262
+      ],
+      "canonical_for": [],
+      "words": 1196,
+      "bytes": 8000,
+      "sha256": "15729050908e462c194013718050b403ec314333b6b9146402e0dc8eb323ae1d"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934-3.md",
+      "title": "hegdepavankumar-eve-ng-labs-3a58a934",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "license",
+        "mit license"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/hegdepavankumar-eve-ng-labs-3a58a934.md",
+      "source_anchor": "",
+      "source_lines": [
+        263,
+        383
+      ],
+      "canonical_for": [],
+      "words": 1060,
+      "bytes": 6998,
+      "sha256": "2436042cc387f12a4605332ba74b6729b3e626a8321809c7d6746c8726dfe5d8"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/jmvigueras-ansible-foobar-dac126da",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/jmvigueras-ansible-foobar-dac126da.md",
+      "title": "jmvigueras-ansible-foobar-dac126da",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "license"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/jmvigueras-ansible-foobar-dac126da.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        83
+      ],
+      "canonical_for": [],
+      "words": 532,
+      "bytes": 4038,
+      "sha256": "19cbbaa1e3a6f984a5d394135b94ebe158d51045e3bc6e8b037acee6155c70b9"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/kg4real-eve-ng-network-security-lab-blob-head-readme-md-97260568-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/kg4real-eve-ng-network-security-lab-blob-head-readme-md-97260568-1.md",
+      "title": "From Kali (GUEST VLAN)",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "exploit",
+        "incident"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/kg4real-eve-ng-network-security-lab-blob-head-readme-md-97260568.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        151
+      ],
+      "canonical_for": [],
+      "words": 1103,
+      "bytes": 7942,
+      "sha256": "88c39ce6877d31e77287ae200d124317654f716001ba1a263db86ff2860b3560"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/kg4real-eve-ng-network-security-lab-blob-head-readme-md-97260568-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/kg4real-eve-ng-network-security-lab-blob-head-readme-md-97260568-2.md",
+      "title": "From Kali (GUEST VLAN)",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-05-17"
+      ],
+      "keywords": [
+        "cyber"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/kg4real-eve-ng-network-security-lab-blob-head-readme-md-97260568.md",
+      "source_anchor": "",
+      "source_lines": [
+        152,
+        157
+      ],
+      "canonical_for": [],
+      "words": 40,
+      "bytes": 267,
+      "sha256": "d500d9db1d2b4b9b6e4c825529b1e0a172a53a02aeca80c68a0e40562554eb6b"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/labs-gns3vault-archive-security-basic-zone-based-firewall-basic-zone-based-firewall-md-at-",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/labs-gns3vault-archive-security-basic-zone-based-firewall-basic-zone-based-firewall-md-at-.md",
+      "title": "labs-gns3vault-archive-security-basic-zone-based-firewall-basic-zone-based-firewall-md-at-df570a5af9",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/labs-gns3vault-archive-security-basic-zone-based-firewall-basic-zone-based-firewall-md-at-df570a5af9.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        38
+      ],
+      "canonical_for": [],
+      "words": 295,
+      "bytes": 1790,
+      "sha256": "9cdd6750450f844e96998e3b7d7dbc0ce22e6b50d9340f8d43879bd5a5e4be07"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/manual-shaping-html-887e59cf",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/manual-shaping-html-887e59cf.md",
+      "title": "manual-shaping-html-887e59cf",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "latency",
+        "parameters",
+        "regulation"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/manual-shaping-html-887e59cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        32
+      ],
+      "canonical_for": [],
+      "words": 716,
+      "bytes": 4358,
+      "sha256": "7f8ebdde46a4165d315ad0cd79489fa0e13aa4845125870ea1e582343b32e18c"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-1.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google"
+      ],
+      "dates": [
+        "2025-11-25",
+        "2026-07-28"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "gemini"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        135
+      ],
+      "canonical_for": [],
+      "words": 1078,
+      "bytes": 7907,
+      "sha256": "52f951f430863b12e907c3ae73b2f854825808abc8245d32a4b5cda04f2ce873"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-2.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-07-28"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "claude"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        136,
+        318
+      ],
+      "canonical_for": [],
+      "words": 1030,
+      "bytes": 7476,
+      "sha256": "3e0a86f6033bdc37fdd9e0573af6856e52aed6fc85260b15d366e4ef395b11f4"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-3.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2024-11-05",
+        "2025-03-26",
+        "2026-07-28"
+      ],
+      "keywords": [
+        "mcp"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        319,
+        474
+      ],
+      "canonical_for": [],
+      "words": 1178,
+      "bytes": 7913,
+      "sha256": "cdf993e78556ac197e0ac5cf827f6354793986584324a8bcb369bdf1fb21b213"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-4",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-4.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2026-07-28"
+      ],
+      "keywords": [
+        "mcp"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        475,
+        662
+      ],
+      "canonical_for": [],
+      "words": 1048,
+      "bytes": 7606,
+      "sha256": "13a31377933d47c138db809d93abca3aaf57d28916dabfb3ce2b2abba0712c91"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-5",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-5.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp",
+        "agent",
+        "claude",
+        "memory"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        663,
+        878
+      ],
+      "canonical_for": [],
+      "words": 1007,
+      "bytes": 7531,
+      "sha256": "b83d17521a708f0650a5d4befa3f0cf8a5b98276bc62562a238dd1709351f2f8"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-6",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-6.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-07-28"
+      ],
+      "keywords": [
+        "mcp",
+        "claude",
+        "memory"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        879,
+        1076
+      ],
+      "canonical_for": [],
+      "words": 882,
+      "bytes": 7175,
+      "sha256": "28707a29bc1539f3d349d5075008bc3e363399ef0ff1dcfb88ef35f968dc13ac"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-7",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-7.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "claude",
+        "memory"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        1077,
+        1229
+      ],
+      "canonical_for": [],
+      "words": 1094,
+      "bytes": 7738,
+      "sha256": "fa6952048e6dfca99e550a163ef9c24d76ca92fc14cb5272242ec33d21fcb093"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-8",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-8.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "arr",
+        "aws",
+        "memory"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        1230,
+        1383
+      ],
+      "canonical_for": [],
+      "words": 1204,
+      "bytes": 7773,
+      "sha256": "fec0372b7df0f882c8c6a4c7a7fce43aba899d72292ec29a4003104dde31d76e"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-9",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-9.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Microsoft"
+      ],
+      "dates": [
+        "2025-11-25"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agentic",
+        "aws",
+        "benchmark",
+        "claude",
+        "disclosure",
+        "incident",
+        "sandbox"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        1384,
+        1536
+      ],
+      "canonical_for": [],
+      "words": 1107,
+      "bytes": 7633,
+      "sha256": "f4efb91ea3aba549709ce837d93f995009484c51e5bc3edb43d9fa6e1c2fb8f8"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-10",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-10.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "agents"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        1537,
+        1720
+      ],
+      "canonical_for": [],
+      "words": 1153,
+      "bytes": 7884,
+      "sha256": "910ff4c775dc874301361129a43e3960001ec27188398dd5f161ded57a302078"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-11",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-11.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "claude",
+        "open source"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        1721,
+        1920
+      ],
+      "canonical_for": [],
+      "words": 1149,
+      "bytes": 7882,
+      "sha256": "ecdf2547de001bfa0ade462740e131a2076742af74af0266e0e55c771818cfcd"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-12",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-12.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Baidu",
+        "Google",
+        "Microsoft",
+        "Perplexity"
+      ],
+      "dates": [],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "claude",
+        "embeddings",
+        "perplexity"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        1921,
+        2072
+      ],
+      "canonical_for": [],
+      "words": 1251,
+      "bytes": 7679,
+      "sha256": "304ab5dfc39b3da463c3a5f92d091d5f998e2443a6cd65efe7f283379bf577b9"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-13",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-13.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Google",
+        "Perplexity"
+      ],
+      "dates": [
+        "2025-08-11",
+        "2027-01-01"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "arr",
+        "open source",
+        "perplexity"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        2073,
+        2228
+      ],
+      "canonical_for": [],
+      "words": 997,
+      "bytes": 6793,
+      "sha256": "6efe4876444232cde7e8dbbe484398f22fa667c4e37c17d0c7c588d88e1dcc7e"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-14",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-14.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic"
+      ],
+      "dates": [
+        "2026-07-28"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "claude",
+        "model context protocol"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        2229,
+        2350
+      ],
+      "canonical_for": [],
+      "words": 1080,
+      "bytes": 7120,
+      "sha256": "5929609de8c42e233b2abf98331bf0b31ae47d0f266a9bfd3c391b913382c7e1"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-15",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-15.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Perplexity"
+      ],
+      "dates": [
+        "2026-07-28",
+        "2026-09-27"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agentic",
+        "agents",
+        "benchmark",
+        "claude",
+        "perplexity"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        2351,
+        2490
+      ],
+      "canonical_for": [],
+      "words": 997,
+      "bytes": 7816,
+      "sha256": "a2081d3e5e17b7166f9cb3a4bce995a385330fa72deca51f18bda572cc9cba6c"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-16",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-16.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Microsoft",
+        "OpenAI",
+        "SpaceX"
+      ],
+      "dates": [
+        "2025-11-25",
+        "2026-07-28",
+        "2026-08-22",
+        "2026-09-02",
+        "2026-09-14",
+        "2026-09-19",
+        "2026-09-22",
+        "2026-09-25",
+        "2026-09-27",
+        "2026-09-29"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agentic",
+        "agents",
+        "claude",
+        "lean",
+        "research"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        2491,
+        2638
+      ],
+      "canonical_for": [],
+      "words": 1121,
+      "bytes": 7881,
+      "sha256": "e6c72f06677e642d1bdf4e976b4415bb080ae705b6702bedc9eb206480e1e203"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-17",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/mcp-lsp-protocoles-17.md",
+      "title": "MCP, LSP, code-server, websearch — Guide pratique",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "dates": [
+        "2026-07-28",
+        "2026-08-22",
+        "2026-09-02",
+        "2026-09-19",
+        "2026-09-25",
+        "2026-09-29"
+      ],
+      "keywords": [
+        "mcp",
+        "agent",
+        "agents",
+        "chatgpt",
+        "claude",
+        "copilot",
+        "research"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/mcp_lsp_protocoles.md",
+      "source_anchor": "",
+      "source_lines": [
+        2639,
+        2680
+      ],
+      "canonical_for": [],
+      "words": 405,
+      "bytes": 2643,
+      "sha256": "590188bb4f849f6e00440802ffff9ae52c1c8895358785ca83e1afbaccb76526"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/napalm-docs-index-rst-at-820a06b2069eb1d7b0cbe8943ee2dea6e2949d1a-napalm-automation-napalm",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/napalm-docs-index-rst-at-820a06b2069eb1d7b0cbe8943ee2dea6e2949d1a-napalm-automation-napalm.md",
+      "title": "napalm-docs-index-rst-at-820a06b2069eb1d7b0cbe8943ee2dea6e2949d1a-napalm-automation-napalm",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/napalm-docs-index-rst-at-820a06b2069eb1d7b0cbe8943ee2dea6e2949d1a-napalm-automation-napalm.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 154,
+      "bytes": 1421,
+      "sha256": "17d72b6fae6f2fc82b31a99fd4cd2704dcc25c7c51f4bd3f239f1bbc68e7fbea"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/netops-toolkit-scripts-netmiko-quickstart-scripts-output-examples-md-at-5c988d242f2613e2d4",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/netops-toolkit-scripts-netmiko-quickstart-scripts-output-examples-md-at-5c988d242f2613e2d4.md",
+      "title": "netops-toolkit-scripts-netmiko-quickstart-scripts-output-examples-md-at-5c988d242f2613e2d4e48ae4556d",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/netops-toolkit-scripts-netmiko-quickstart-scripts-output-examples-md-at-5c988d242f2613e2d4e48ae4556d.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        54
+      ],
+      "canonical_for": [],
+      "words": 266,
+      "bytes": 2796,
+      "sha256": "c19740c126e4b124e3030e83781d2225416fb5fc4bb65a1599bae85ba917d5dc"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/networklessons-labs-blob-head-gns3vault-archive-eigrp-eigrp-authentication-rotat-fee2546f",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/networklessons-labs-blob-head-gns3vault-archive-eigrp-eigrp-authentication-rotat-fee2546f.md",
+      "title": "networklessons-labs-blob-head-gns3vault-archive-eigrp-eigrp-authentication-rotat-fee2546f",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [
+        "2020-02",
+        "2021-02"
+      ],
+      "keywords": [
+        "parameters"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/networklessons-labs-blob-head-gns3vault-archive-eigrp-eigrp-authentication-rotat-fee2546f.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        11
+      ],
+      "canonical_for": [],
+      "words": 193,
+      "bytes": 1169,
+      "sha256": "0d811771369394617f17f86074c5d34d051d6c836457caa7922f9835a7cdbfe7"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/proxmox-gns3-lab-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/proxmox-gns3-lab-1.md",
+      "title": "Reference Material",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "license"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/proxmox-gns3-lab-1.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        46
+      ],
+      "canonical_for": [],
+      "words": 477,
+      "bytes": 2834,
+      "sha256": "7ac99543e3c8a13d38d3e2a02c7abd7c884b239c1b3fe5092ce1ce28800ce468"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61-1.md",
+      "title": "pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        83
+      ],
+      "canonical_for": [],
+      "words": 747,
+      "bytes": 5013,
+      "sha256": "9aac5bd278c6949eee7b64058a38a1ccb3bc208f8a9a9457cf51bdcc0a556fc0"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61-2.md",
+      "title": "pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61.md",
+      "source_anchor": "",
+      "source_lines": [
+        84,
+        165
+      ],
+      "canonical_for": [],
+      "words": 572,
+      "bytes": 3849,
+      "sha256": "ddbfc2eec080d1d8358385625ab9d608b5d2299d201de888d010ab33c3b3148f"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61-3.md",
+      "title": "pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "cost",
+        "nvidia"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/pt-br-blog-edge-automation-with-netgitops-on-red-hat-ansible-automation-platform-0c27ec61.md",
+      "source_anchor": "",
+      "source_lines": [
+        166,
+        218
+      ],
+      "canonical_for": [],
+      "words": 663,
+      "bytes": 4272,
+      "sha256": "74795860ce20d3663de79e02a7fef8e1e44dcca699c3414a761db4f8a6b54645"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/silexdatateam-dashboard-api-ansible-9970bdb6",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/silexdatateam-dashboard-api-ansible-9970bdb6.md",
+      "title": "silexdatateam-dashboard-api-ansible-9970bdb6",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "license",
+        "sandbox"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/silexdatateam-dashboard-api-ansible-9970bdb6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        88
+      ],
+      "canonical_for": [],
+      "words": 837,
+      "bytes": 5868,
+      "sha256": "e354b0885ea371e75cfa9a240bff841129abebfe8e08d525ebad4eb2383fa5f5"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-1.md",
+      "title": "skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS",
+        "Anthropic",
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "apache",
+        "aws",
+        "claude",
+        "license"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        70
+      ],
+      "canonical_for": [],
+      "words": 907,
+      "bytes": 6939,
+      "sha256": "d0ea7422ba05b385064278f53537befc74b3f194042434183511a8b4a35a8c77"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-2.md",
+      "title": "skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "memory"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-.md",
+      "source_anchor": "",
+      "source_lines": [
+        71,
+        152
+      ],
+      "canonical_for": [],
+      "words": 795,
+      "bytes": 6203,
+      "sha256": "5ebdfd0f3b97efae641756b203655a82c1fe68b7f538d25d58db218e15f5f8f2"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-3.md",
+      "title": "skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-.md",
+      "source_anchor": "",
+      "source_lines": [
+        153,
+        225
+      ],
+      "canonical_for": [],
+      "words": 953,
+      "bytes": 7186,
+      "sha256": "d73700ed808b6f805fe778e6a67dfb0b0cae45b7dc39c6657bcb0cb04dbc2b44"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-4",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid-4.md",
+      "title": "skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/skills-vault-napalm-netmiko-skill-md-at-049c65dff33479e1c3931497e28305300d1dafaf-geekazoid80-skills-.md",
+      "source_anchor": "",
+      "source_lines": [
+        226,
+        237
+      ],
+      "canonical_for": [],
+      "words": 287,
+      "bytes": 1942,
+      "sha256": "12caf21c317053572be850c5f6d38dd7f05b0f726abca96a9481c680ad0dcf2c"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-dashboard-api-python-library-v1-36-0-1-ef-b8-8f-e2-83-a3-ef-b-f85a7929",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-dashboard-api-python-library-v1-36-0-1-ef-b8-8f-e2-83-a3-ef-b-f85a7929.md",
+      "title": "t5-developers-apis-dashboard-api-python-library-v1-36-0-1-ef-b8-8f-e2-83-a3-ef-b-f85a7929",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/t5-developers-apis-dashboard-api-python-library-v1-36-0-1-ef-b8-8f-e2-83-a3-ef-b-f85a7929.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        98
+      ],
+      "canonical_for": [],
+      "words": 770,
+      "bytes": 4296,
+      "sha256": "8505036f7cdf781e2af01bbf38f8676fa7e81a12a090142836ac5c9c479e72ee"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-dashboard-webhooks-to-splunk-m-p-199506-ba8fa513",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-dashboard-webhooks-to-splunk-m-p-199506-ba8fa513.md",
+      "title": "t5-developers-apis-dashboard-webhooks-to-splunk-m-p-199506-ba8fa513",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "open source"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/t5-developers-apis-dashboard-webhooks-to-splunk-m-p-199506-ba8fa513.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        177
+      ],
+      "canonical_for": [],
+      "words": 849,
+      "bytes": 5980,
+      "sha256": "f995e22718c932b41c7543adefa0041b39648e94a634d7abe2537cb11ced7743"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-integrate-api-with-ansible-m-p-219157-e1d1839e",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-integrate-api-with-ansible-m-p-219157-e1d1839e.md",
+      "title": "t5-developers-apis-integrate-api-with-ansible-m-p-219157-e1d1839e",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/t5-developers-apis-integrate-api-with-ansible-m-p-219157-e1d1839e.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        72
+      ],
+      "canonical_for": [],
+      "words": 395,
+      "bytes": 2576,
+      "sha256": "e0ba9d7bcddc82dd77eb601b58d08cd08e528515e96e22a64c0ad1bde4529817"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-python-import-csv-api-m-p-230951-highlight-true-b28f8337",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/t5-developers-apis-python-import-csv-api-m-p-230951-highlight-true-b28f8337.md",
+      "title": "Access data",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/t5-developers-apis-python-import-csv-api-m-p-230951-highlight-true-b28f8337.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        159
+      ],
+      "canonical_for": [],
+      "words": 640,
+      "bytes": 4337,
+      "sha256": "0a3191d75f10b443cb969ed923278d1bdc65e563413dc4780ec82a0a8e1d5518"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/t5-network-access-control-user-restrictions-via-tac-td-p-906223-8516386e",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/t5-network-access-control-user-restrictions-via-tac-td-p-906223-8516386e.md",
+      "title": "t5-network-access-control-user-restrictions-via-tac-td-p-906223-8516386e",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/t5-network-access-control-user-restrictions-via-tac-td-p-906223-8516386e.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        116
+      ],
+      "canonical_for": [],
+      "words": 613,
+      "bytes": 3619,
+      "sha256": "03de3c3edd3068c01ca3cd6a31b764cb9748ea3e514f4688a2f394e5225b24e1"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/t5-support-forum-rest-api-usage-m-p-64260-3be87623",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/t5-support-forum-rest-api-usage-m-p-64260-3be87623.md",
+      "title": "t5-support-forum-rest-api-usage-m-p-64260-3be87623",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/t5-support-forum-rest-api-usage-m-p-64260-3be87623.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        9
+      ],
+      "canonical_for": [],
+      "words": 158,
+      "bytes": 971,
+      "sha256": "4bd39575c48e1369b52c5a7aaccb312717be9635d422e2de1fca2c246fb31c66"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-1.md",
+      "title": "Mise à jour des paquets et installation de pipx",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "arr",
+        "aws",
+        "distribution",
+        "mai"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        32
+      ],
+      "canonical_for": [],
+      "words": 1150,
+      "bytes": 7577,
+      "sha256": "9ee4f50512d502bd0a0db0ddecc73a1d64e343ed7cf69264e927e9f793b030c5"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-2.md",
+      "title": "Mise à jour des paquets et installation de pipx",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "aws"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        33,
+        181
+      ],
+      "canonical_for": [],
+      "words": 842,
+      "bytes": 6969,
+      "sha256": "3f7dae519f06f04eca14e751a2918d86e7fc4682ce11c9b9b23148e102cc0053"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-3.md",
+      "title": "Mise à jour des paquets et installation de pipx",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmark"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        182,
+        332
+      ],
+      "canonical_for": [],
+      "words": 929,
+      "bytes": 7015,
+      "sha256": "88abe345a83b37e5f34fb9a7a5d5af67b1d605a04e8475989b1a2c0e40116adc"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-4",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-4.md",
+      "title": "Mise à jour des paquets et installation de pipx",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        333,
+        487
+      ],
+      "canonical_for": [],
+      "words": 1042,
+      "bytes": 7999,
+      "sha256": "6d3cf73700e0ad26d2eaaeac02cd42e18f67e3aa9261da4961053c76df8187b1"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-5",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-5.md",
+      "title": "Mise à jour des paquets et installation de pipx",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "distribution"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        488,
+        638
+      ],
+      "canonical_for": [],
+      "words": 910,
+      "bytes": 7067,
+      "sha256": "1f8c6c6084f8abe0e90f9012bfc4ef65f7f299c04f5e51e317d60e93631f1d08"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-6",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-6.md",
+      "title": "Mise à jour des paquets et installation de pipx",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "arr",
+        "aws",
+        "distribution",
+        "incident",
+        "mai"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        639,
+        703
+      ],
+      "canonical_for": [],
+      "words": 1125,
+      "bytes": 7722,
+      "sha256": "5fded18bbf28b66de581eabc82016c8df8f80922dde5cfad9fb19c89e9eec4a0"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-7",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026-7.md",
+      "title": "Mise à jour des paquets et installation de pipx",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "mai"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-13-playbooks-en-13-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        704,
+        712
+      ],
+      "canonical_for": [],
+      "words": 334,
+      "bytes": 2275,
+      "sha256": "6ce429b9e3ce87bfe80a92658f60e7e103e1d58c67041f638ef2b0929ee8e811"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-1",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-1.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "distribution"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 922,
+      "bytes": 6259,
+      "sha256": "aba55e36cdfaa777384805a6a82fe69b2fae9e2fe32c24a49f9b0193909edd43"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-2",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-2.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
+        247
+      ],
+      "canonical_for": [],
+      "words": 902,
+      "bytes": 7699,
+      "sha256": "cacc7ccaeadd4e9bceeffccc3f64563a538ae680641bdb8331352db0acc5ae27"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-3",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-3.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "memory"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        248,
+        407
+      ],
+      "canonical_for": [],
+      "words": 999,
+      "bytes": 7793,
+      "sha256": "c8a6b21f4541a127a3eeaf4095649082bb7404952591ee094bf77f9074e7dcc7"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-4",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-4.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "apache"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        408,
+        629
+      ],
+      "canonical_for": [],
+      "words": 888,
+      "bytes": 7664,
+      "sha256": "ecac6929bec8b67a84fa12dcd2dae2750c2857ebbe16efd9016d9985c62cf162"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-5",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-5.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "arr",
+        "distribution"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        630,
+        796
+      ],
+      "canonical_for": [],
+      "words": 760,
+      "bytes": 7248,
+      "sha256": "5c9c4c1025c6ae0a7db028adfa216b32333954c3ba310a19872bb7e1274b201d"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-6",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-6.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        797,
+        965
+      ],
+      "canonical_for": [],
+      "words": 1007,
+      "bytes": 7813,
+      "sha256": "a5622f2a999aa76a64f412b82dcc3a485d46535158f1428f688160448cbdb1f2"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-7",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-7.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "open source"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        966,
+        1050
+      ],
+      "canonical_for": [],
+      "words": 1005,
+      "bytes": 7967,
+      "sha256": "783d3d363156425d56206853e95eb971d0ff375114b05d5d8ff7dd87a3a9c08f"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-8",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule-8.md",
+      "title": "Créer un environnement virtuel Python dédié",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AWS"
+      ],
+      "dates": [],
+      "keywords": [
+        "aws",
+        "open source"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/tutoriel-ansible-2026-automatisation-en-12-etapes-vault-molecule.md",
+      "source_anchor": "",
+      "source_lines": [
+        1051,
+        1081
+      ],
+      "canonical_for": [],
+      "words": 723,
+      "bytes": 5280,
+      "sha256": "5b3eacb58fd1a1c47adc8f8c8512745684a8433e4f8b6e41c6e92ae00f712d29"
+    },
+    {
+      "id": "collect-261001-automatisation-infra/automatisation-infra/valkyrianlabs-forti-api-72b7d358",
+      "path": "collect-261001-automatisation-infra/automatisation-infra/valkyrianlabs-forti-api-72b7d358.md",
+      "title": "valkyrianlabs-forti-api-72b7d358",
+      "domain": "automatisation-infra",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple"
+      ],
+      "dates": [],
+      "keywords": [
+        "packaging"
+      ],
+      "source": "docs/RAG/collect-261001-automatisation-infra/valkyrianlabs-forti-api-72b7d358.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        37
+      ],
+      "canonical_for": [],
+      "words": 255,
+      "bytes": 1934,
+      "sha256": "8f222e64548abef78c5920de1bd11439daaa5b4325f268d88811b295c11a6470"
+    }
+  ]
+}

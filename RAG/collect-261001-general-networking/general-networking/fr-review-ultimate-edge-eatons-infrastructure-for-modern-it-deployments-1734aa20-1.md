@@ -1,0 +1,42 @@
+---
+id: collect-261001-general-networking/general-networking/fr-review-ultimate-edge-eatons-infrastructure-for-modern-it-deployments-1734aa20-1
+title: "fr-review-ultimate-edge-eatons-infrastructure-for-modern-it-deployments-1734aa20"
+domain: general-networking
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["acquisition", "distribution", "sol"]
+source: docs/RAG/collect-261001-general-networking/fr-review-ultimate-edge-eatons-infrastructure-for-modern-it-deployments-1734aa20.md
+source_anchor: ""
+source_lines: [1, 25]
+sha256: 7d5318b3a1cd2af918ae7e4770151f1bb71c29300bc06cf0f27914528cc0c694
+---
+
+# fr-review-ultimate-edge-eatons-infrastructure-for-modern-it-deployments-1734aa20
+
+Nous travaillons depuis longtemps avec Eaton dans notre laboratoire, et tous nos racks, PDU et UPS proviennent de l'entreprise. L'héritage d'Eaton réside peut-être dans le centre de données, mais ils proposent également une grande variété de solutions plus petites, en partie grâce à l'acquisition de Tripp Lite il y a environ trois ans. Avec davantage de collecte de données et même d'analyses d'IA en périphérie, nous avons pensé que c'était le bon moment pour explorer les dernières solutions d'Eaton afin d'assembler la pile d'infrastructure ultime pour les déploiements en périphérie.
+Le catalogue d'Eaton est très vaste, compte tenu de la diversité des marchés qu'ils couvrent. Face à la multitude de configurations, aux différentes tailles de racks, aux dispositifs de conditionnement et de distribution d'énergie proposés, et bien plus encore, il est facile de s'y perdre. C'est pourquoi nous avons confié cette tâche à nos membres les plus experts sur Discord .
+L'instruction était simple : « Convenez du meilleur rack, PDU et UPS Eaton pour les besoins de l'infrastructure de pointe d'aujourd'hui. » En quelques jours, les spécifications ont été définies et nous les avons envoyées à Eaton pour qu'elles soient respectées.
+Infrastructure informatique de pointe ultime
+Le support – Eaton Tripp Lite SR25UB
+Le rack que nous avons sélectionné est le Eaton Tripp Lite SR25UB . Le SR25UB est un rack 25U pré-assemblé de profondeur standard (37 pouces) avec portes, panneaux latéraux amovibles et dessus amovible. Ce rack est également équipé de roulettes supportant une charge roulante maximale de 1 020,6 kg (2 250 lb) ou une charge statique maximale de 1 360,8 kg (3 000 lb).
+La flexibilité de déploiement est conçue dans le SR25UB, essentielle pour la périphérie où l'emplacement du rack peut être à peu près n'importe où. Les portes à l'arrière du SR25UB sont demi-largeurs, vous avez donc besoin de moins d'espace arrière pour le placement du rack. La porte d'entrée est amovible et réversible, de sorte que l'informaticien ne se retrouve pas coincé contre un mur lorsqu'il travaille sur l'équipement. Les portes et les panneaux latéraux sont également verrouillables. Le verrou n'est pas une mesure de sécurité solide, mais plutôt un moyen de dissuasion pour le profane qui pourrait toucher des choses qu'il n'est pas censé toucher. Le panneau supérieur ne se verrouille pas, mais l'avant, l'arrière et les côtés sont pour la plupart inaccessibles.
+Ce rack comprend également des pieds de nivellement et un support pour le fixer au sol afin d'éviter tout basculement, bien que le risque de basculement ne soit pas aussi grand avec un demi-rack qu'avec un rack pleine hauteur. À l'arrière du rack, des trous de serrure de chaque côté permettent de fixer des PDU verticales ou des gestionnaires de câbles verticaux.
+Bien que le catalogue de baies Eaton Tripp Lite soit assez fourni, nous estimons que ce modèle est particulièrement adapté aux cas particuliers grâce à sa taille, qui facilite l'extension et le transport. Nous avons testé différents modèles de baies Eaton Tripp Lite, notamment nos baies principales de la série S (42U) , la baie RS RSV4261B (42U) , la baie SR14UBDP (14U) et même la baie insonorisée SRQ18U. Malgré cette variété de modèles, nous avons constaté que la baie 25U était la plus pertinente pour une configuration générale en périphérie, de par sa taille et sa flexibilité.
+Au-delà des configurations de portes que nous avons notées, ce rack n'est pas très haut, il peut être roulé à travers des portes de largeur normale sur ses roulettes pour un déploiement ou un déplacement. Avec un poids nominal de 2200 XNUMX lb, le rack peut être préparé hors site ou dans une autre pièce avant d'être placé à son emplacement permanent.
+Dans le centre de données, 25U peuvent sembler un peu insuffisants, mais pour des scénarios de pointe comme la fabrication ou la vente au détail, il y aura probablement de la place en réserve. Si la configuration dépasse les 25U, le SR25UB dispose d'un modèle d'extension (SR25UBEXP) qui est expédié sans panneaux latéraux et peut être fixé au rack initial pour plus d'évolutivité.
+Il y a eu un petit débat dans Discord sur l'utilisation de quelque chose de plus grand que 25U pour offrir plus de marge d'expansion. Cependant, le groupe a admis que les utilisateurs périphériques préféreraient peut-être un rack 25U à quelque chose d'un peu plus grand, comme un rack 33U, en raison de la flexibilité de déploiement. Si vous devez déposer un rack entièrement chargé sur un site, le transport d'un serveur 33U chargé constitue davantage un défi logistique compte tenu de la taille et du poids du rack équipé.
+L'onduleur – Eaton 5PX2000RTNG2
+L'onduleur sélectionné est l'Eaton 5PX2000RTNG2 . Il s'agit d'un onduleur 2U de 1950 VA fonctionnant sous 120 V. Cet onduleur nécessite une alimentation de 20 A sous 120 V sur une prise 5-20P. Si votre équipement requiert une intensité plus élevée, voire une tension de 200-240 V, ou si votre environnement exige une alimentation de 15 A ou 30 A sous 120 V, Eaton propose des solutions adaptées. Nous avons choisi ce modèle précis car l'alimentation de 20 A est généralement plus facile à trouver que celle de 240 V, tout en offrant une capacité tout à fait satisfaisante.
+L'arrière de cet UPS dispose d'une bonne connectivité, avec 6 connexions 5-20R ainsi qu'une connexion L5-20R, ce qui est utile pour la PDU que nous avons choisie. Au-delà des prises, cet UPS dispose également d'une connexion batterie pour les EBM, d'une carte de gestion réseau Gigabit, d'une série RS232, d'un connecteur USB B, de bornes à contacts secs, de bornes RPO et ROO et d'un port de communication pour les EBM. Pour les EBM, le 5PX2000RTNG2 prend en charge jusqu'à 4 EBM pour une durée d'exécution supplémentaire.
+L'interface Web de l'onduleur permet à l'utilisateur de visualiser facilement les statistiques d'alimentation, les statistiques de batterie, les alarmes et les données environnementales (si une sonde environnementale est connectée). La gestion à distance permet aux administrateurs de vérifier la batterie de secours sans être présents localement.
+Les prises de cet UPS peuvent être activées et désactivées, mais en groupe et non individuellement. Cet UPS possède le L5-20R et deux des prises 5-20R sans groupe, et ils ne peuvent pas être gérés. Les quatre prises 5-20R restantes sont divisées en groupe 1 et groupe 2 et peuvent être alimentées ou redémarrées par paires. Pour permettre la gestion de ports individuels, une organisation peut évoluer vers une PDU gérée. Comme la plupart des onduleurs modernes, les utilisateurs peuvent configurer des alertes par e-mail pour les messages de santé et d'état de l'alimentation, vous permettant ainsi de rester informé et de vous préparer à la suite.
+Ce n'est pas la première fois que nous testons les onduleurs Eaton G2 en laboratoire ; nous avions déjà testé le modèle 5PX1000RTG2. Ce dernier est une version légèrement plus compacte du 5PX2000RTNG2, avec une intensité nominale de 15 A et une puissance apparente de seulement 1 kVA. Pour le reste, leurs caractéristiques sont extrêmement similaires. Pour une analyse plus approfondie des modèles 5PX G2, consultez notre test du 5PX1000RTG2 . Le tableau ci-dessous présente l'ensemble de la gamme 5PX G2 et leurs caractéristiques.
+| Numéro de catalogue | Puissance nominale (VA/Watts) | Connexion d'entrée | Prises de sortie | 
+|---|---|---|---|
+| Sortie 120 V, 50/60 Hz |  |  |  | 
+| 5PX1000RTG2 | 1000/1000 | 5-15P, 10 pieds | (8) 5-15R | 
+| 5PX1500RTG2 | 1440/1440 | 5-15P, 10 pieds | (8) 5-15R | 
+| 5PX2000RTG2 | 1950/1950 | 5-20P, 10 pieds | (6) 5-20R, (1) L5-20R | 
+| 5PX3000RTG2 | 3000/3000 | 5-20P, 10 pieds | (6) 5-20R, (1) L5-20R | 

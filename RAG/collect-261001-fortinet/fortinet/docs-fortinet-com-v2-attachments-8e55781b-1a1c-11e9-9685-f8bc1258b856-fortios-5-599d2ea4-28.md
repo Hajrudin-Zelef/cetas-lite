@@ -1,0 +1,197 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-28
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: ["license", "licenses"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [3629, 3808]
+sha256: 2683afa3efbd66840c4993e81c1b0ac1e18369beefd80f253b3ea81fbc5bb808
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FortiGate-5000active-activeHAclusterwithFortiClient licenses FGCPconfigurationexamplesandtroubleshooting
+SettheFortiGate-5001Dunitinchassisslot5hostnameto:
+config system global
+set hostname 5001D-Slot-5
+end
+AsyouconfigureeachFortiGate, theywillnegotiate andjointhecluster.
+To view cluster status
+AsyouaddunitstotheclusteryoucanlogintotheCLIofoneoftheclusterunitsusingitsreservedmanagement
+interfacetoviewthestatusofthecluster.Thestatuswillshoweachunitasitisaddedtothecluster.
+Forexample,thefollowing commandoutput showsthestatusoftheclusterwhenallthreeclusterunitshave
+beenadded:
+get system ha status
+HA Health Status: OK
+Model: FortiGate- XXXX
+Mode: HA A-P
+Group: 0
+Debug: 0
+Cluster Uptime: 7 days 00:30:26
+.
+.
+.
+Slave : 5001d-slot4 , FG-5KD3914800284, operating cluster index = 2
+Master: 5001d-slot5 , FG-5KD3914800353, operating cluster index = 0
+Slave : 5001d-slot3 , FG-5KD3914800344, operating cluster index = 1
+Youcanusethiscommandtoconfirmthat theclusterishealthyandoperatingnormally,someinformation about
+theclusterconfiguration, andinformation abouthowlongtheclusterhasbeenoperating.Information notshown
+inthisexampleincludeshowtheprimaryunitwasselected,configurationsynchronizationstatus, usagestatsfor
+eachclusterunit, heartbeatstatus, andtherelativeprioritiesoftheclusterunits.
+To troubleshoot the cluster
+SeeTroubleshootingHAclustersonpage138.
+To manage each cluster unit
+Becauseyouhaveconfiguredareservedmanagement interface, youcanmanageeachclusterunitseparatelyby
+connectingtotheIPaddressyouconfiguredforeachunit’smgmt1 interface. Youcanviewthestatusofeach
+clusterunitandmakechangestoeachunit’sconfiguration. Forexample,asdescribedbelow,eachclusterunit
+musthaveitsownFortiClient license.Youcanusethereservedmanagement IPaddressestoconnecttoeach
+clusterunittoinstalltheFortiClient licenseforthat unit.
+Usuallyyouwouldmakeconfigurationchangesbyconnectingtotheprimaryunitandchangingitsconfiguration.
+Theclusterthensynchronizestheconfigurationchangestoallclusterunits. If youconnecttoindividualcluster
+unitsandchangetheirconfiguration, thoseconfigurationchangesarealsosynchronizedtoeachclusterunit. The
+exceptiontothisisconfigurationobjectsthat arenotsynchronized,suchasthehostname, FortiClient license
+andsoon.
+YoucanalsomanageeachclusterunitbyloggingintotheprimaryunitCLIandusingthefollowing commandto
+connecttootherclusterunits:
+execute ha manage <cluster-index>
+104 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting FortiGate-5000active-activeHAclusterwithFortiClient licenses
+To add a password for the admin administrative account
+1. Addapasswordfortheadminadministrative account.
+config system admin
+edit admin
+set password <psswrd>
+end
+To add basic configuration settings to the cluster
+Usethefollowing stepstoconfigurethecluster.
+1. LogintotheclusterCLI.
+Youcanlogintotheprimaryunitoranyoneoftheclusterunitsusingtheappropriatemgmt1 IP
+address.
+2. Addapasswordfortheadminadministrative account.
+config system admin
+edit admin
+set password <psswrd>
+end
+3. Settheport1interfaceIPaddresstotheaddressrequiredtoconnecttotheinterfacetotheInternet.
+config system interface
+edit port1
+set ip 10.10.10.10/24
+end
+4. Settheport2interfaceIPaddresstotheaddressrequiredtoconnecttotheinterfacetotheinternalnetwork.
+config system interface
+edit port2
+set ip 172.20.120.12/24
+end
+To add a FortiClient license to each cluster unit
+NormallyyouwouldaddFortiClient licensestotheFortiGates beforeforming thecluster.However,youcanuse
+thefollowing stepstoaddFortiClient licensestoanoperatingcluster.
+ContactyourresellertopurchaseFortiClient licensesforyourclusterunits. Eachclusterunitmusthaveitsown
+FortiClient license.
+Whenyoureceivethelicensekeysyoucanlogintohttps://support.fortinet.com andaddaFortiClient licensekey
+toeachlicensedFortiGate. Then,aslongastheclustercanconnecttotheInternet thelicensekeysare
+downloadedfromtheFortiGuardnetworktoalloftheFortiGates inthecluster.
+Youcanalsousethefollowing stepstomanuallyaddthelicensekeystoyourclusterunitsfromtheCLI. Your
+clustermustbeconnectedtotheInternet.
+1. LogintotheCLIofeachclusterunitusingitsreservedmanagement interfaceIPaddress.
+2. Enterthefollowing commandtotheunit’sserialnumber:
+get system status
+3. Enterthefollowing commandtoaddthelicensekeyforthat serialnumber:
+execute FortiClient-NAC update-registration-license <license-key>
+HighAvailability
+Fortinet TechnologiesInc.
+105
+
+ConvertingastandaloneFortiGate toacluster FGCPconfigurationexamplesandtroubleshooting
+4. Confirmthat thelicensehasbeeninstalledandthecorrectnumberofFortiClients arelicensed.
+execute forticlient info
+Maximum FortiClient connections: unlimited.
+Licensed connections: 114
+NAC: 114
+WANOPT: 0
+Test: 0
+Other connections:
+IPsec: 0
+SSLVPN: 0
+5. Repeatforalloftheclusterunits.
+YoucanalsologintotheprimaryunitCLIandusetheexecute ha manage commandtoconnecttoeach
+clusterunitCLI.
+Convertinga standaloneFortiGate to a cluster
+Inthisexample,abackupFortiGate willbeinstalledandconnectedtoaFortiGate that haspreviouslybeen
+installedtoprovideredundancyiftheprimaryFortiGate fails.
+Inthisrecipe,abackupFortiGate unitisinstalledandconnectedtoapreviouslyinstalledFortiGate toformahigh
+availability(HA)clusterthat improvesnetworkreliability.
+Beforeyoubegin,theFortiGates shouldberunningthesameFortiOSfirmwareversionandinterfacesshouldnot
+beconfiguredtogettheiraddressesfromDHCPorPPPoE.Also,youcannotuseaswitchportasanHAheartbeat
+interface. If necessary,converttheswitchporttoindividualinterfaces.
+106 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting 1.Settingupregistrationandlicensing
+ThisexampleusestheFortiGate ClusteringProtocol(FGCP)forHA.ThepreviouslyinstalledFortiGate will
+continuetooperateastheprimaryunitandthenewFortiGate willoperateasthebackupFortiGate.
+1. Setting up registrationand licensing
+MakesurebothFortiGates are
+runningthesameFortiOSfirmware
+version.Registerandapplylicenses
+tothenewFortiGate unitbefore
+addingittotheHAcluster.This
+includeslicensingfor FortiCare
+Support, IPS, AntiVirus, Web
+Filtering, Mobile Malware,
+FortiClient, FortiCloud,and
+additional virtual domains
+(VDOMs).AllFortiGates inthe
+clustermusthavethesamelevelof
+licensingforFortiGuard, FortiCloud,
+FortiClient, andVDOMs.
+FortiTokenlicensescanbeadded
+atanytime becausetheyare
+synchronizedtoallclustermembers.
+If theFortiGates intheclusterwill
+berunningFortiOSCarrier,apply
+theFortiOSCarrierlicensebefore
+configuringthecluster(andbefore
+applyingotherlicenses).Applying
+theFortiOSCarrierlicensesetsthe
+configurationtofactorydefaults,
+requiringyoutorepeatsteps
+performedbeforeapplyingthe
+license.
+Youcanalsoinstallanythird-partycertificatesontheprimaryFortiGate beforeforming thecluster.Oncethe
+clusterisformed, third-partycertificatesaresynchronizedtothebackupFortiGate.
+2. Configuringthe primary FortiGate for HA
+OntheprimaryFortiGate, goto
+System> Settingsandchangethe
+Host nametoidentify thisasthe
+primaryFortiGate intheHAcluster.
+HighAvailability
+Fortinet TechnologiesInc.
+107
+
+3.ConnectingthebackupFortiGate FGCPconfigurationexamplesandtroubleshooting
+Goto System> HA andsetthe Modeto Active-Passive.Setthe Device prioritytoahighervaluethan
+thedefault (intheexample,250)tomakesurethisFortiGate willalwaysbetheprimaryFortiGate. Also,set
+a Group nameand Password.
+Makesurethat two Heartbeat interfaces(intheexample,port3andport4)areselectedandthe Heartbeat
+Interface Priorityforeachissetto50.
+SincethebackupFortiGate isnotavailable,whenyousavetheHAconfiguration, theprimaryFortiGate will
+formaclusterofoneFortiGate butwillkeepoperatingnormally.If thesestepsdon'tstartHAmode, make
+surethat noneoftheFortiGate'sinterfacesuseDHCPorPPPoEaddressing.
+If thereareotherFortiOSHA
+clustersonyournetwork,youmay
+needtochangetheclustergroupID
+usingthisCLIcommand.
+config system ha
+set group-id 25
+end
+3. Connectingthe backup FortiGate
+108 HighAvailability
+Fortinet TechnologiesInc.
+

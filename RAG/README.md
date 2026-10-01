@@ -59,14 +59,25 @@ RAG/
 ├── collect-240926-misc/           # corpus n°85 — longue traîne (29 fichiers, 14 sites)
 ├── collect-250926-servers-hardware/ # corpus n°86 — Clean 4 : serveurs, GPU, Ollama/Unsloth (196 fichiers)
 ├── collect-260926-mikrotik/        # corpus n°87 — MikroTik : RouterOS, forums, CHR/Proxmox (691 fichiers)
-└── collect-260926-rattrapage/      # corpus n°88 — Rattrapage : IA, fine-tuning, reviews serveurs (118 fichiers)
+├── collect-260926-rattrapage/      # corpus n°88 — Rattrapage : IA, fine-tuning, reviews serveurs (118 fichiers)
+├── collect-261001-cisco/           # corpus n°89 — Cisco : config, routing, sécurité (413 fiches)
+├── collect-261001-fortinet/        # corpus n°90 — Fortinet (403 fiches)
+├── collect-261001-huawei/          # corpus n°91 — Huawei réseau (471 fiches)
+├── collect-261001-meraki/          # corpus n°92 — Meraki (229 fiches)
+├── collect-261001-opnsense-pfsense/# corpus n°93 — OPNsense/pfSense (191 fiches)
+├── collect-261001-unifi-ubiquiti/  # corpus n°94 — UniFi/Ubiquiti (446 fiches)
+├── collect-261001-general-networking/# corpus n°95 — réseau général (880 fiches)
+├── collect-261001-automatisation-infra/# corpus n°96 — automatisation (42 fiches)
+├── collect-261001-mikrotik/        # corpus n°97 — MikroTik Collect 5 (487 fiches)
+├── collect-261001-ia-llm/          # corpus n°98 — IA & LLM (495 fiches)
+└── collect-261001-rattrapage/      # corpus n°99 — guides dev & datacenter (109 fiches)
 ```
 
 Détail par étape (séries `etape*`) : chaque source de `docs/RAG/` donne **un corpus**
 autonome. Liste complète et à jour : `INDEX.md` (racine) et `manifest.json`.
 Séries `collect-*` / `vague2-*` / `collect-240926-*` / `collect-250926-*` : dossiers de
 fichiers individuels, **un fichier = un chunk** (mode `files`, voir plus bas). Total
-**88 corpus / 5 459 chunks** (chunker v2, garde-fou 8000 car.).
+**99 corpus / 16 526 chunks** (chunker v2, garde-fou 8000 car.).
 
 La vague `collect-240926` (668 articles scrapés, `docs/RAG/clean_en/`) est découpée
 **par site** — un dossier par site ≥ 10 fichiers, le reste regroupé en `misc` (14 sites).

@@ -1,0 +1,40 @@
+---
+id: collect-261001-meraki/meraki/meraki-api-v1-api-index-21d30cd4-34
+title: "meraki-api-v1-api-index-21d30cd4"
+domain: meraki
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-meraki/meraki-api-v1-api-index-21d30cd4.md
+source_anchor: ""
+source_lines: [703, 725]
+sha256: 0abff554a23134ecaa2792b0ddde091811f8de31166cf02162b193260efa3e27
+---
+
+# meraki-api-v1-api-index-21d30cd4
+
+|  | GET /organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice Returns port configurations for appliances in a given organization  >  getOrganizationApplianceDevicesInterfacesPortsByDevice | organizationId, serials, interfaces, numbers | `` | access, allowedVlans, downlink, enabled, id, interface, isFlexible, items, layer, mode, name, nativeVlan, number, personality, policy, ports, primary, profile, serial, sgt, slot, subslot, trunk, type, uplink, vlan | `` | 
+|  | GET /organizations/{organizationId}/appliance/devices/interfaces/ports/profiles/assignments Returns MX port profile assignments  >  getOrganizationApplianceDevicesInterfacesPortsProfilesAssignments | organizationId, serials, perPage, startingAfter, endingBefore | `` | counts, device, id, interface, items, mac, meta, name, number, port, profile, remaining, serial, slot, subslot, total | sdwan:config:read | 
+|  | GET /organizations/{organizationId}/appliance/devices/ports/transceivers/readings/history/byDevice Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled Catalyst appliance in an organization.  >  getOrganizationApplianceDevicesPortsTransceiversReadingsHistoryByDevice | organizationId, perPage, startingAfter, endingBefore, t0, t1, timespan, interval, networkIds, serials, portIds | `` | byMetric, celsius, counts, draw, endTs, fahrenheit, id, indices, interfaceName, items, laserBiasCurrent, level, maximum, median, meta, minimum, name, network, port, portId, ports, power, readings, receive, remaining, serial, sfpProductId, slot, startTs, subslot, supplyVoltage, symbol, temperature, total, transmit, units | sdwan:telemetry:read | 
+|  | GET /organizations/{organizationId}/appliance/devices/redundancy/byNetwork Return MX warm spare settings  >  getOrganizationApplianceDevicesRedundancyByNetwork | organizationId, perPage, startingAfter, endingBefore | `` | address, addresses, byInterface, designations, enabled, interfaces, mode, name, networkId, parent, priority, serial, sharing, subnet, uplink, vlanId | sdwan:config:read | 
+|  | GET /organizations/{organizationId}/appliance/devices/system/utilization/byInterval Return the appliance utilization history for devices in the organization (BETA)  >  getOrganizationApplianceDevicesSystemUtilizationByInterval | organizationId, perPage, startingAfter, endingBefore, t0, t1, timespan, interval, networkIds, serials | `` | average, counts, endTs, id, intervals, items, mac, meta, model, name, network, percentage, remaining, serial, startTs, tags, total, utilization | `` | 
+|  | GET /organizations/{organizationId}/appliance/dns/local/profiles Fetch the local DNS profiles used in the organization  >  getOrganizationApplianceDnsLocalProfiles | organizationId, profileIds | `` | name, profileId | sdwan:config:read | 
+|  | POST /organizations/{organizationId}/appliance/dns/local/profiles Create a new local DNS profile  >  createOrganizationApplianceDnsLocalProfile | organizationId | name | name, profileId | sdwan:config:write | 
+|  | GET /organizations/{organizationId}/appliance/dns/local/profiles/assignments Fetch the local DNS profile assignments in the organization  >  getOrganizationApplianceDnsLocalProfilesAssignments | organizationId, profileIds, networkIds | `` | assignmentId, counts, id, items, meta, network, profile, remaining, total | sdwan:config:read | 
+|  | POST /organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkCreate Assign the local DNS profile to networks in the organization  >  bulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate | organizationId | id, items, network, profile | assignmentId, id, items, network, profile | sdwan:config:write | 
+|  | POST /organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkDelete Unassign the local DNS profile to networks in the organization  >  createOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete | organizationId | assignmentId, items | assignmentId, id, items, network, profile | sdwan:config:write | 
+|  | PUT /organizations/{organizationId}/appliance/dns/local/profiles/{profileId} Update a local DNS profile  >  updateOrganizationApplianceDnsLocalProfile | organizationId, profileId | name | name, profileId | sdwan:config:write | 
+|  | DELETE /organizations/{organizationId}/appliance/dns/local/profiles/{profileId} Deletes a local DNS profile  >  deleteOrganizationApplianceDnsLocalProfile | organizationId, profileId | `` | `` | sdwan:config:write | 
+|  | GET /organizations/{organizationId}/appliance/dns/local/records Fetch the DNS records used in local DNS profiles  >  getOrganizationApplianceDnsLocalRecords | organizationId, profileIds | `` | address, hostname, id, profile, recordId | sdwan:config:read | 
+|  | POST /organizations/{organizationId}/appliance/dns/local/records Create a new local DNS record  >  createOrganizationApplianceDnsLocalRecord | organizationId | address, hostname, id, profile | address, hostname, id, profile, recordId | sdwan:config:write | 
+|  | PUT /organizations/{organizationId}/appliance/dns/local/records/{recordId} Updates a local DNS record  >  updateOrganizationApplianceDnsLocalRecord | organizationId, recordId | address, hostname, id, profile | address, hostname, id, profile, recordId | sdwan:config:write | 
+|  | DELETE /organizations/{organizationId}/appliance/dns/local/records/{recordId} Deletes a local DNS record  >  deleteOrganizationApplianceDnsLocalRecord | organizationId, recordId | `` | `` | sdwan:config:write | 
+|  | GET /organizations/{organizationId}/appliance/dns/split/profiles Fetch the split DNS profiles used in the organization  >  getOrganizationApplianceDnsSplitProfiles | organizationId, profileIds | `` | addresses, hostnames, name, nameservers, profileId | sdwan:config:read | 
+|  | POST /organizations/{organizationId}/appliance/dns/split/profiles Create a new split DNS profile  >  createOrganizationApplianceDnsSplitProfile | organizationId | addresses, hostnames, name, nameservers | addresses, hostnames, name, nameservers, profileId | sdwan:config:write | 
+|  | GET /organizations/{organizationId}/appliance/dns/split/profiles/assignments Fetch the split DNS profile assignments in the organization  >  getOrganizationApplianceDnsSplitProfilesAssignments | organizationId, profileIds, networkIds | `` | assignmentId, counts, id, items, meta, network, profile, remaining, total | sdwan:config:read | 
+|  | POST /organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkCreate Assign the split DNS profile to networks in the organization  >  createOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate | organizationId | id, items, network, profile | assignmentId, id, items, network, profile | sdwan:config:write | 
+|  | POST /organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkDelete Unassign the split DNS profile to networks in the organization  >  createOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete | organizationId | assignmentId, items | assignmentId, id, items, network, profile | sdwan:config:write | 
+|  | PUT /organizations/{organizationId}/appliance/dns/split/profiles/{profileId} Update a split DNS profile  >  updateOrganizationApplianceDnsSplitProfile | organizationId, profileId | addresses, hostnames, name, nameservers | addresses, hostnames, name, nameservers, profileId | sdwan:config:write | 
+|  | DELETE /organizations/{organizationId}/appliance/dns/split/profiles/{profileId} Deletes a split DNS profile  >  deleteOrganizationApplianceDnsSplitProfile | organizationId, profileId | `` | `` | sdwan:config:write | 

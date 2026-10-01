@@ -1,0 +1,42 @@
+---
+id: collect-261001-ia-llm/ia-llm/fr-review-solidigm-122-88tb-d5-p5336-review-high-capacity-storage-meets-operatio-16f82faf-4
+title: "fr-review-solidigm-122-88tb-d5-p5336-review-high-capacity-storage-meets-operatio-16f82faf"
+domain: ia-llm
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["arr", "benchmark", "benchmarks", "gpu", "llama"]
+source: docs/RAG/collect-261001-ia-llm/fr-review-solidigm-122-88tb-d5-p5336-review-high-capacity-storage-meets-operatio-16f82faf.md
+source_anchor: ""
+source_lines: [100, 124]
+sha256: 2714e5abd18c99e3d21583bb45b9eaa855a6fd2814fe1b4e5c23db69654cfd63
+---
+
+# fr-review-solidigm-122-88tb-d5-p5336-review-high-capacity-storage-meets-operatio-16f82faf
+
+Pour évaluer les performances réelles des SSD dans les environnements d'entraînement d'IA, nous avons utilisé l'outil de référence DLIO (Data and Learning Input/Output). Développé par l'Argonne National Laboratory, DLIO est spécialement conçu pour tester les schémas d'E/S dans les charges de travail d'apprentissage profond. Il fournit des informations sur la façon dont les systèmes de stockage gèrent les défis tels que les points de contrôle, l'ingestion de données et l'entraînement des modèles. Le graphique ci-dessous illustre la façon dont les deux disques gèrent le processus sur 99 points de contrôle (198 pour le 122 To). Lors de l'entraînement des modèles d'apprentissage automatique, les points de contrôle sont essentiels pour sauvegarder périodiquement l'état du modèle et éviter ainsi la perte de progression en cas d'interruption ou de panne de courant. Cette demande de stockage exige des performances robustes, notamment sous des charges de travail soutenues ou intensives. Nous avons utilisé la version 2.0 du benchmark DLIO du 13 août 2024.
+Afin de garantir que notre benchmark reflète des scénarios réels, nous avons basé nos tests sur l'architecture du modèle LLAMA 3.1 405B. Nous avons implémenté des points de contrôle à l'aide de torch.save() pour capturer les paramètres du modèle, les états de l'optimiseur et les états des couches. Notre configuration simulait un système à huit GPU, mettant en œuvre une stratégie de parallélisme hybride avec un traitement parallèle de tenseur à 4 voies et un traitement parallèle de pipeline à 2 voies réparti sur les huit GPU. Cette configuration a permis d'obtenir des points de contrôle de 1,636 XNUMX Go, représentatifs des besoins d'entraînement des modèles de langage modernes à grande échelle.
+En comparant les performances des SSD Solidigm P61 de 122 To et de 5336 To aux points de contrôle, le SSD de 122 To affiche des temps de contrôle plus longs une fois le disque plein. Lors du premier passage, l'écart entre les deux SSD est d'environ 20 % plus rapide pour la version 122 To que pour la version 61 To, tandis qu'aux deuxième et troisième passages, il est respectivement de 16.4 % et 18.4 % plus lent. Le Micron 61 de 6550 To affiche un temps de contrôle moyen de 585 secondes lors du troisième passage, contre 640 secondes pour le P61 de 5336 To et 757 secondes pour le P122 de 5336 To.
+Le Solidigm P122 de 5336 To présente un avantage unique dès le départ en termes de points de contrôle : il peut en accueillir un grand nombre. Alors que les SSD de 61 To atteignent un maximum de 33 points de contrôle par passage, le modèle de 122 To peut en accueillir 66 avant d'atteindre sa capacité maximale. Si le graphique ci-dessus, qui présente le temps moyen par passage, masque quelque peu les chiffres, la vue du temps par point de contrôle illustre l'avantage de capacité. Les deux SSD Solidigm se stabilisent après le premier passage de points de contrôle, tandis que le Micron 6550 reste relativement stable tout au long du test, avec une tendance plus rapide.
+Benchmark de performance FIO
+Pour mesurer les performances de stockage de chaque SSD selon les indicateurs courants du secteur, nous utilisons FIO. Chaque disque est soumis au même processus de test, qui comprend une étape de préconditionnement avec deux remplissages complets du disque avec une charge de travail d'écriture séquentielle, suivie d'une mesure des performances à l'état stable. À chaque changement de type de charge de travail mesuré, nous effectuons un nouveau remplissage de préconditionnement avec cette nouvelle taille de transfert.
+Dans cette section, nous nous concentrons sur les benchmarks FIO suivants :
+- Séquentiel 128K
+- 64K Aléatoire
+- 16K Aléatoire
+- 4K Aléatoire
+Avec les SSD QLC haute capacité conçus pour les transferts importants, nos tests de vitesse d'écriture s'arrêtent à 16 Ko aléatoires. Pour 4 Ko, nous utilisons l'état prérempli de la charge de travail 16 Ko pour mesurer uniquement les performances de lecture aléatoire 4 Ko.
+Précondition séquentielle de 128 K (IODepth 256 / NumJobs 1)
+Lors de ce test de préconditionnement avec une profondeur de file d'attente importante, le Solidigm P5336 122.88 To atteint 3,134 5336 Mo/s, tandis que le P61.44 2,500.9 To atteint 25.3 6550 Mo/s. Cela représente une amélioration de 10,455.3 % de la bande passante d'écriture pour le modèle de plus grande capacité. Le Micron 122 arrive en tête du classement avec 61 5336 Mo/s. Bien que les deux modèles Solidigm soient moins performants que le Micron en termes de débit brut, l'écart de performances entre les modèles 6550 To et XNUMX To met en évidence une optimisation à grande échelle au sein de la même plateforme PXNUMX, le disque plus grand affichant des gains évidents en termes de gestion des écritures séquentielles soutenues. Bien que le Micron XNUMX semble avoir une étape de préconditionnement beaucoup plus courte, sa vitesse d'écriture plus élevée lui a permis d'effectuer le premier remplissage beaucoup plus rapidement.
+Latence de précondition séquentielle de 128 K (IODepth 256 / NumJobs 1)
+En termes de latence lors de l'écriture séquentielle préconditionnée de 128 Ko, le Micron 6550 enregistre la valeur la plus faible, soit 3.06 ms. Le Solidigm P5336 122.88 To suit avec 10.21 ms, tandis que le P5336 61.44 To atteint 12.80 ms. Cela représente une réduction de latence de 20.2 % pour le modèle 122.88 To par rapport au modèle 61.44 To, ce qui reflète une latence plus efficace et plus stable, et démontre les améliorations apportées à la série Solidigm P5336.
+Écriture séquentielle de 128 K (IODepth 16 / NumJobs 1)
+Lors de ce test d'écriture séquentielle utilisant une profondeur de file d'attente de 16 et une seule tâche, le Solidigm P5336 122.88 To atteint 3,152.5 25,220 Mo/s avec 5336 61.44 IOPS. Le modèle P2,503.5 20,030 To est à la traîne avec 25.9 122 Mo/s et 6550 10,456.4 IOPS, soit une amélioration de 83,650 % du débit par rapport au modèle XNUMX To. Le Micron XNUMX atteint les performances globales les plus élevées avec XNUMX XNUMX Mo/s et XNUMX XNUMX IOPS, surpassant ainsi les deux disques Solidigm.
+Latence d'écriture séquentielle de 128 K (IODepth 16 / NumJobs 1)
+En termes de latence, le Micron 6550 enregistre la latence la plus faible, soit 0.191 ms. Le Solidigm P5336 122.88 To suit avec 0.634 ms, affichant une meilleure réactivité que le P5336 61.44 To, qui affiche 0.798 ms. Cela reflète une réduction de 20.5 % de la latence pour le modèle Solidigm de plus grande capacité, indiquant une efficacité accrue des opérations d'écriture séquentielle.
+Lecture séquentielle de 128 K (IODepth 64 / NumJobs 1)
+Lors de ce test de lecture séquentielle avec une profondeur de 64 files d'attente, le Solidigm P5336 61.44 To atteint 7,132.3 57,060 Mo/s et 122.88 7,121.6 IOPS, suivi de près par le modèle 56,970 To avec 0.2 6550 Mo/s et 13,979.7 111,840 IOPS. La différence entre les deux est inférieure à 96 %, ce qui ne montre aucun avantage mesurable en termes de débit grâce à cette capacité accrue. Le Micron XNUMX atteint XNUMX XNUMX Mo/s et XNUMX XNUMX IOPS, offrant une bande passante de lecture supérieure de près de XNUMX % à celle des deux modèles Solidigm lors de ce test.
+Latence de lecture séquentielle de 128 K (IODepth 64 / NumJobs 1)
+Lors de ce test de latence de lecture séquentielle, le Micron 6550 atteint la latence la plus faible, soit 0.572 ms. Le Solidigm P5336 122.88 To atteint 1.123 ms, un résultat quasiment identique à celui du P5336 61.44 To, qui atteint 1.121 ms. Les résultats ne montrent aucun avantage réel en termes de latence lié à la capacité accrue, les deux disques Solidigm offrant des performances équivalentes en termes de réactivité de lecture séquentielle.
+Écriture aléatoire 64K

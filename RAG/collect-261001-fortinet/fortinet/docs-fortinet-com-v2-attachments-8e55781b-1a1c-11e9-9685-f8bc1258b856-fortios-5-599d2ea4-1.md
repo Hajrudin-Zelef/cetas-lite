@@ -1,0 +1,210 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-1
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: ["license", "training"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [1, 193]
+sha256: bf936b514a363edddcc75b1e9a59b87603a9a5b7bfd7e5419230f038ed7e7705
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FortiOS™Handbook-HighAvailability
+VERSION5.6.10
+
+FORTINET DOCUMENT LIBRARY
+https://docs.fortinet.com
+FORTINET VIDEO GUIDE
+https://video.fortinet.com
+FORTINET KNOWLEDGE BASE
+http://kb.fortinet.com
+FORTINET BLOG
+https://blog.fortinet.com
+CUSTOMER SERVICE & SUPPORT
+https://support.fortinet.com 
+FORTINET NSE INSTITUTE (TRAINING)
+https://training.fortinet.com/
+FORTIGUARD CENTER
+https://fortiguard.com
+FORTICAST
+http://forticast.fortinet.com
+END USER LICENSE AGREEMENT AND PRIVACY POLICY
+https://www.fortinet.com/doc/legal/EULA.pdf
+https://www.fortinet.com/corporate/about- us/privacy.html
+FEEDBACK
+Email: techdoc@fortinet.com
+July29,2019
+FortiOS™ Handbook-HighAvailability
+01-563-99686-20180124
+
+TABLE OF CONTENTS
+Change log 13
+High availability 14
+Beforeyoubegin 14
+Beforeyousetupacluster 14
+Howthisguideisorganized 15
+FortiOS5.6HAnewfeatures 15
+HAclusterUptimeonHAStatusdashboardwidget(412089) 16
+FGSPwithstatic(non-dialup)IPsecVPNtunnelsandcontrollingIKErouting
+advertisement(402295) 16
+VRRPsupportforsynchronizingfirewallVIPsandIPPools(0397824) 17
+Solving the high availability problem 18
+FortiGateClusterProtocol(FGCP) 18
+FortiGateSessionLifeSupportProtocol(FGSP) 19
+VRRPhighavailability 20
+Session-AwareLoadBalancingClustering(SLBC) 21
+EnhancedLoadBalancingClustering(ELBC) 22
+Contentclustering 22
+An introduction to the FGCP 24
+AbouttheFGCP 24
+FGCPfailoverprotection 26
+Sessionfailover 26
+Loadbalancing 26
+Virtualclustering 26
+FullmeshHA 26
+Clustermanagement 27
+Synchronizingtheconfiguration(andsettingsthatarenotsynchronized) 27
+PreparingtheFortiGatesbeforesettingupanFGCPcluster 28
+DHCP andPPPoE 28
+Firmwareversion 28
+AboutHAandlicensing 28
+FortiOSCarrierlicense 28
+SupportcontractsandFortiGuard,FortiCloud,FortiClient,VDOMslicensing 29
+FortiTokenlicenses 29
+Certificates 29
+
+ConfiguringFortiGatesforFGCPHAoperation 29
+ConnectingaFortiGateHAcluster 31
+VerifyingtheclusterstatusfromtheHAStatusdashboardwidget 33
+Active-passiveandactive-activeHA 34
+Active-passiveHA(failoverprotection) 34
+Active-activeHA(loadbalancingandfailoverprotection) 35
+Identifyingtheclusterandclusterunits 35
+Groupname 35
+Password 36
+GroupID 36
+Devicefailover,linkfailover,andsessionfailover 36
+Primaryunitselectionwithoverridedisabled(default) 37
+Pointstorememberaboutprimaryunitselection 38
+Viewinghowtheprimaryunitwasselected 38
+Primaryunitselectionandmonitoredinterfaces 39
+Primaryunitselectionandage 40
+Primaryunitselectionanddevicepriority 43
+PrimaryunitselectionandtheFortiGateserialnumber 44
+Primaryunitselectionwithoverrideenabled 45
+Overrideandprimaryunitselection 45
+Controllingprimaryunitselectionusingdevicepriorityandoverride 46
+Pointstorememberaboutprimaryunitselectionwhenoverrideisenabled 47
+Configurationchangescanbelostifoverrideisenabled 47
+Overrideanddisconnectingaunitfromacluster 48
+Delayinghowquicklytheprimaryunitrejoinstheclusterwhenoverrideisenabled 48
+FortiGateHAcompatibilitywithDHCP andPPPoE 48
+HAanddistributedclustering 49
+ClustersofthreeorfourFortiGates 50
+ConnectingaclusterofthreeFortiGates 51
+DiskstorageconfigurationandHA 54
+FGCPhighavailabilitybestpractices 55
+Heartbeatinterfaces 55
+Interfacemonitoring(portmonitoring) 56
+FGCPHAterminology 57
+HAGUIoptions 60
+Mode 61
+DevicePriority 61
+SynchronizeManagementVDOM 61
+Groupname 61
+Password 62
+Sessionpickup 62
+Monitorinterfaces 62
+
+Heartbeatinterfaces 62
+ManagementInterfaceReservation 63
+VDOMpartitioning 63
+SecondaryClusterSettings 63
+FGCP configuration examples and troubleshooting 64
+Abouttheexamplesinthischapter 64
+HowtosetupFGCPclustering(recommendedsteps) 64
+1.ConfiguringtheprimaryFortiGate 65
+2.ConfiguringthebackupFortiGate 67
+3.Connectingthecluster 69
+4.Checkingclusteroperationanddisablingoverride 69
+5.Results 71
+SettinguptwonewFortiGatesasanFGCPcluster 72
+ExampleNATmodeHAnetworktopology 72
+Generalconfigurationsteps 73
+ConfiguringaNATmodeactive-passiveclusteroftwoFortiGates-GUI 73
+ConfiguringaNATmodeactive-passiveclusteroftwoFortiGates-CLI 77
+AddinganewFortiGatetoanoperatingcluster 83
+Active-activeHAclusterintransparentmode 84
+ExampletransparentmodeHAnetworktopology 84
+Generalconfigurationsteps 84
+Configuringatransparentmodeactive-activeclusteroftwoFortiGates-GUI 85
+Configuringatransparentmodeactive-activeclusteroftwoFortiGates-CLI 90
+FortiGate-5000active-activeHAclusterwithFortiClientlicenses 95
+Examplenetworktopology 96
+ConfiguringtheFortiGate-5000active-activecluster-GUI 97
+ConfiguringtheFortiGate-5000active-activecluster-CLI 102
+ConvertingastandaloneFortiGatetoacluster 106
+1.Settingupregistrationandlicensing 107
+2.ConfiguringtheprimaryFortiGateforHA 107
+3.ConnectingthebackupFortiGate 108
+4.ConfiguringthebackupFortiGateforHA 109
+5.ViewingthestatusoftheHAcluster 110
+6.Results 112
+7.(Optional)UpgradingthefirmwarefortheHAcluster 113
+Replacingafailedclusterunit 114
+FGCPHAwith802.3adaggregatedinterfaces 116
+HAinterfacemonitoring,linkfailover,and802.3adaggregation 116
+HAMACaddressesand802.3adaggregation 117
+Linkaggregation,HAfailoverperformance,andHAmode 117
+Generalconfigurationsteps 118
+Configuringactive-passiveHAclusterthatincludesaggregatedinterfaces-GUI 118
+
+Configuringactive-passiveHAclusterthatincludesaggregateinterfaces-CLI 123
+ExampleHAandredundantinterfaces 127
+HAinterfacemonitoring,linkfailover,andredundantinterfaces 128
+HAMACaddressesandredundantinterfaces 128
+Connectingmultipleredundantinterfacestooneswitchwhileoperatinginactive-
+passiveHAmode 128
+Connectingmultipleredundantinterfacestooneswitchwhileoperatinginactive-
+activeHAmode 129
+Generalconfigurationsteps 129
+Configuringactive-passiveHAclusterthatincludesredundantinterfaces-GUI 129
+Configuringactive-passiveHAclusterthatincludesredundantinterfaces-CLI 134
+TroubleshootingHAclusters 138
+Ignoringhardwarerevisions 138
+Beforeyousetupacluster 139
+Troubleshootingtheinitialclusterconfiguration 139
+Moretroubleshootinginformation 141
+Virtual clusters 144
+Virtualclusteringoverview 144
+SeparationofVDOMtraffic 145
+Virtualclusteringandheartbeatinterfaces 145
+Virtualclusteringandloadbalancing 146
+Configuringvirtualclustering 146
+Virtualclusteringandtheoverridesetting 147
+Examplevirtualclusteringconfiguration 147
+AddingathirdFortiGatetothevirtualcluster 148
+AddingafourthFortiGatetothevirtualcluster 148
+VirtualclusteringwithfourFortiGatesrecommendedconfiguration 149
+VirtualclusteringGUIconfiguration 149
+Virtualclusteringconfigurationexamples 150
+Exampleinter-VDOMlinksinavirtualclusteringconfiguration 151
+Configuringinter-VDOMlinksinavirtualclusteringconfiguration 152
+Troubleshootingvirtualclustering 153
+Full mesh HA 154
+FullmeshHAoverview 154
+FullmeshHAandredundantheartbeatinterfaces 155
+FullmeshHA,redundantinterfacesand802.3adaggregateinterfaces 155
+ExamplefullmeshHAconfiguration 156
+FullmeshHAconfiguration 157
+Fullmeshswitchconfiguration 157
+Fullmeshnetworkconnections 157
+Howpacketstravelfromtheinternalnetworkthroughthefullmeshclusterandtothe
+Internet 157
+

@@ -1,0 +1,41 @@
+---
+id: collect-261001-general-networking/general-networking/fr-review-kingston-dc3000me-review-built-for-system-integrators-and-mainstream-e-ebcbb957-5
+title: "fr-review-kingston-dc3000me-review-built-for-system-integrators-and-mainstream-e-ebcbb957"
+domain: general-networking
+role: reference
+task: reference
+actors: ["Nvidia"]
+dates: []
+keywords: ["diffusion", "gpu", "nvidia"]
+source: docs/RAG/collect-261001-general-networking/fr-review-kingston-dc3000me-review-built-for-system-integrators-and-mainstream-e-ebcbb957.md
+source_anchor: ""
+source_lines: [116, 139]
+sha256: 9ab49812e1e26f7bf86b6a5dafc9a811e3248619f38d17aba7fe45d9aad4a370
+---
+
+# fr-review-kingston-dc3000me-review-built-for-system-integrators-and-mainstream-e-ebcbb957
+
+Au débit maximal (QD8/8), la latence du Kingston DC3000ME n'était que de 99 µs, restant dans une bande étroite et faible sur la plupart des configurations jusqu'à environ 16/8, où elle a commencé à faiblir. La meilleure latence a été observée à QD1/4 (74 µs), avec plusieurs autres résultats inférieurs à 80 µs à des profondeurs de file d'attente faibles à modérées. À des charges plus importantes, comme à QD32/16, le Kingston DC3000ME a affiché une latence de 826 µs, un niveau nettement supérieur à celui des autres disques testés (à l'exception du SanDisk).
+Lecture aléatoire 4K
+Lors du test de lecture aléatoire 4K, le Kingston DC3000ME a affiché une excellente évolutivité sur toute la plage de test, atteignant un pic de 1,957.92 16 K IOPS en configuration 16/1,923.42. Il a maintenu un débit élevé de 32 8 K IOPS en 1,361.32/8, 16 1326.03 K IOPS en 16/8 et XNUMX XNUMX K IOPS en XNUMX/XNUMX, se classant systématiquement en tête du classement aux côtés de Solidigm et Micron.
+Latence de lecture aléatoire de 4 K
+Le Kingston DC3000ME a maintenu une faible latence tout au long du test de lecture aléatoire 4K, commençant à 60 µs en configuration 1/1. À 1/4, elle s'est légèrement améliorée à 61 µs, et à 1/8, elle est restée stable à 63 µs. Avec l'augmentation de la concurrence, la latence a évolué de manière prévisible avec le Kingston DC3000ME : 66 µs à 2/4, 67 µs à 2/16, 71 µs à 4/4 et 80 µs à 8/4. Les configurations plus lourdes ont enregistré des augmentations modestes : 94 µs à 16/4, 99 µs à 16/8, 135 µs à 32/8, et un pic à 266 µs à 32/16.
+Écriture aléatoire 4K
+En écriture aléatoire 4K, le Kingston DC3000ME a réalisé de bonnes performances avec un maximum de 979,636 32 IOPS à 16/979.173 et 32 8 IOPS à 200/1.6, ce qui le place loin derrière le plus performant, le Pascari X3000P, qui a dépassé 879 million d'IOPS au maximum. Cela dit, le Kingston DC8ME a affiché des performances correctes en charge moyenne, avec 16 944 IOPS à 16/16, 745 16 IOPS à 4/XNUMX et XNUMX XNUMX IOPS à XNUMX/XNUMX.
+Latence d'écriture aléatoire de 4 K
+En termes de latence d'écriture aléatoire, le Kingston DC3000ME a démarré à 11 µs sous 1/1, s'est maintenu autour de 20 à 50 µs jusqu'à atteindre la profondeur 8/8, puis a atteint 261 µs à 32/8 et 522 µs à 32/16. Bien que sa latence ne soit pas la plus faible, le Kingston DC3000ME a maintenu une mise à l'échelle prévisible et modérée, sans les pics observés sur des disques comme le Solidigm et le Pasarci, qui présentaient une volatilité plus importante au-delà de 16 threads.
+Stockage direct du GPU
+L'un des tests que nous avons menés sur ce banc d'essai était le test Magnum IO GPU Direct Storage (GDS). GDS est une fonctionnalité développée par NVIDIA qui permet aux GPU de contourner le CPU lors de l'accès aux données stockées sur des disques NVMe ou d'autres périphériques de stockage haute vitesse. Au lieu de faire transiter les données par le CPU et la mémoire système, GDS permet une communication directe entre le GPU et le périphérique de stockage, réduisant ainsi considérablement la latence et améliorant le débit.
+Comment fonctionne le stockage direct GPU
+Traditionnellement, lorsqu'un GPU traite des données stockées sur un disque NVMe, les données doivent d'abord transiter par le processeur et la mémoire système avant d'atteindre le GPU. Ce processus introduit des goulots d'étranglement, car le processeur devient un intermédiaire, ce qui ajoute de la latence et consomme de précieuses ressources système. Le stockage direct GPU élimine cette inefficacité en permettant au GPU d'accéder directement aux données depuis le périphérique de stockage via le bus PCIe. Ce chemin direct réduit la surcharge associée au déplacement des données, permettant des transferts de données plus rapides et plus efficaces.
+Les charges de travail de l’IA, en particulier celles impliquant l’apprentissage profond, sont très gourmandes en données. La formation de grands réseaux neuronaux nécessite le traitement de téraoctets de données, et tout retard dans le transfert de données peut entraîner une sous-utilisation des GPU et des temps de formation plus longs. Le stockage direct GPU relève ce défi en garantissant que les données sont transmises au GPU le plus rapidement possible, en minimisant les temps d’inactivité et en maximisant l’efficacité de calcul.
+En outre, GDS est particulièrement utile pour les charges de travail impliquant la diffusion de grands ensembles de données, comme le traitement vidéo, le traitement du langage naturel ou l'inférence en temps réel. En réduisant la dépendance au processeur, GDS accélère le déplacement des données et libère les ressources du processeur pour d'autres tâches, améliorant ainsi encore les performances globales du système.
+Débit de lecture
+Lors de nos tests de lecture séquentielle GDSIO, le Kingston DC3000ME a démontré une évolutivité du débit constante et efficace pour les blocs de 16 Ko, 128 Ko et 1 Mo, bien que les tendances de performances varient légèrement selon la taille du transfert. Avec des blocs de 16 Ko, le débit a augmenté régulièrement avec le nombre de threads, le Kingston DC3000ME atteignant un pic à 3.70 Gio/s à 32 threads avant de diminuer progressivement à 3.41 Gio/s à 128 threads. Pour les transferts de 128 Ko, le disque a atteint son meilleur résultat à 5.88 Gio/s à 16 threads et s'est maintenu à ce niveau à 32 threads avant de chuter à environ 5.35 Gio/s à 128 threads. Avec une taille de 1 Mo, le débit du Kingston DC3000ME a atteint un plateau plus tôt, atteignant 6.54 Gio/s à 16 threads et diminuant modestement à 5.91 Gio/s à 128 threads.
+Lire la latence
+En termes de latence, le DC3000ME a affiché une évolutivité prévisible (ce qui était le cas pour tous les disques testés) : un nombre de threads plus faible a entraîné des temps de réponse plus courts quelle que soit la taille des blocs, la latence augmentant avec l'augmentation du nombre de threads. À 16 Ko, la latence a commencé à 504 µs et a progressivement augmenté jusqu'à 582 µs à partir de 128 threads. À 128 Ko, la latence du Kingston DC3000ME a commencé à 2,60 µs et a augmenté jusqu'à 3,228 1 µs au nombre de threads le plus élevé. Avec des blocs de 2,609 Mo, la latence a connu une augmentation plus importante en raison de la charge utile plus importante, commençant à 2,703 128 µs avec un thread et augmentant jusqu'à XNUMX XNUMX µs à XNUMX threads.
+Débit d'écriture
+Pour les opérations de lecture, la latence moyenne avec des blocs de 16 2,247 bits a commencé à 504 128 µs avec un seul thread et a diminué à 128 µs avec 4,035 threads, démontrant une mise à l'échelle efficace en simultanéité. Pour la taille de bloc de 2,601 128 bits, la latence a commencé à 1 3000 µs et a progressivement diminué jusqu'à 2,609 2,500 µs avec 2,700 threads. Avec 128 M de blocs, le Kingston DCXNUMXME a présenté la latence globale la plus faible, commençant à XNUMX XNUMX µs avec un seul thread et se maintenant entre XNUMX XNUMX et XNUMX XNUMX µs avec XNUMX threads, démontrant une réactivité constante pour les lectures séquentielles volumineuses.
+Latence d'écriture
+La latence moyenne est restée relativement stable pour tous les threads, de 1 à 16, oscillant entre 12,234 14,247 et 32 15,559 µs. À 20,944 threads, la latence a légèrement augmenté, atteignant 64 128 µs, puis 3000 28,725 µs à XNUMX threads. Un pic notable a été observé à XNUMX threads, où la latence du Kingston DCXNUMXME a atteint XNUMX XNUMX µs, soit plus du double du niveau précédent.
+Conclusion

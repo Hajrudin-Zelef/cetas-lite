@@ -1,0 +1,58 @@
+---
+id: collect-261001-ia-llm/ia-llm/introducing-deepseek-v4-1-flash-smarter-faster-more-efficient
+title: "introducing-deepseek-v4-1-flash-smarter-faster-more-efficient"
+domain: ia-llm
+role: reference
+task: reference
+actors: ["DeepSeek"]
+dates: []
+keywords: ["deepseek", "agent", "benchmark", "cost", "gpus", "hbm", "inference", "kv cache", "moe", "multimodal", "open source", "parameters"]
+source: docs/RAG/collect-261001-ia-llm/introducing-deepseek-v4-1-flash-smarter-faster-more-efficient.md
+source_anchor: ""
+source_lines: [1, 41]
+sha256: 9180b3a686f63853629a847bf9ab51513e9ddad5986185c884aabc947dd0d3f2
+---
+
+# introducing-deepseek-v4-1-flash-smarter-faster-more-efficient
+
+- Introducing the smallest model in our new architecture family, with native visual understanding.
+- Designed for greater capability, faster inference, higher throughput, and scaling to larger models.
+
+## Asymmetric architecture. More intelligence, less cost.
+
+- 552B-parameter MoE.
+- New Causal EncoderâDecoder architecture: just 8B active parameters for input, 16B for output.
+- New pretraining methods + larger-scale RL post-training deliver benchmark results ahead of flagship models, including DeepSeek-V4-Pro.
+
+## Smaller KV cache. Bigger savings.
+
+Compared with the previous generation, V4.1-Flashâs KV cache needs just:
+
+- 1/4 the HBM
+- 1/8 the SSD storage
+
+Cache-hit charges often account for a large share of agent costs. Compressing the cache cuts those costs significantly.
+
+## V4.1-Flash is now live on the DeepSeek API with native multimodal support.
+
+Set your model to deepseek-flash.
+
+- V4-Flash & V4-Flash-Vision-Exp are retired. For compatibility, deepseek-v4-flash and deepseek-v4-flash-vision-exp temporarily route to V4.1-Flash.
+- Tests by multiple parties put V4.1-Flash ahead of V4-Pro on performance, cost, speed & total runtime. Weâre phasing out V4-Pro.
+- Starting at 04:00 UTC on Sept 14, 2026, all deepseek-v4-pro requests will route to V4.1-Flash at V4.1-Flash rates. This will continue until V4.1-Pro launches.
+
+Official partners WorkBuddy (including CodeBuddy) & OpenCode now fully support V4.1-Flash. Try it today!
+
+## More efficient architecture. Lower API prices.
+
+V4.1-Flash lets us serve more users at a lower cost. Weâre passing the savings on to you.
+
+- Peak/off-peak pricing continues to balance demand.
+- Off-peak rates are 50% of peak rates. Schedule flexible workloads off-peak to save.
+- New pricing takes effect at 04:00 UTC on Sept 10, 2026.
+
+## Supporting open source. Expanding deployment options.
+
+Weâll work closely with the open-source community on V4.1-Flash inference support and explore more deployment options.
+
+Planning a large-scale deployment with 2,000 GPUs + a storage cluster? Letâs talk.

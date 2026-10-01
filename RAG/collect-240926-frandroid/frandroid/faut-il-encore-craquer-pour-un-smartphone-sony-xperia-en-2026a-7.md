@@ -9,11 +9,9 @@ dates: []
 keywords: ["cost", "gpu"]
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [503, 548]
+source_lines: [0, 0]
 sha256: 566b7511bd787658db8e79e894262595bf492368007fdb2b1718a7e5176756f9
 ---
-
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
 
 And not a word about the software support up to that point almost irreproachable from Sony on its X range to which software additions are grafted on top of Android updates. The Xperia X was too expensive yes, that's no longer the case today where you can find it under 300€ with a performant processor and a camera not found at that price. If we look only at the current real range X, Xc, XZ, XZP, XA1, XA1 Ultra, L1 Sony seems to me to be the only major manufacturer to still have a coherent and complete offering although often ~50€ too expensive. Real mid-range, a real choice of dimensions, a unity of design (although it doesn't please as much as the Z line). There is criticism to be made about Sony's policy, but the bashing that this brand receives seems too great to me and often ignores the fact that it doesn't content itself with only making good high-end products. If I look for manufacturers offering roughly as much as Sony: Lenovo Moto (much uglier and a range above all 5.5"), Samsung (3 different ranges with a reasonable choice but support only on the S/Note and not always at the top). Huawei/Honor also covers the market but at the cost of an incomprehensible range and I don't consider the other Chinese manufacturers who don't officially sell the majority of their products on European territory.
 

@@ -1,0 +1,137 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-64
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [8213, 8332]
+sha256: 01f0fcf6dbdb730db34f9ed290430b40bc6b74513223cc819acde65e1820acdf
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Synchronizingtheconfiguration HAandfailoverprotection
+set sync-config disable
+end
+Whenthisoptionisdisabledtheclusternolongersynchronizesconfigurationchanges.If adevicefailureoccurs,
+thenewprimaryunitmaynothavethesameconfigurationasthefailed primaryunit. Asaresult,thenewprimary
+unitmayprocesssessionsdifferently ormaynotfunctiononthenetworkinthesameway.
+Inmostcasesyoushouldnotdisableautomatic configurationsynchronization.However,ifyouhavedisabledthis
+featureyoucanusetheexecute ha synchronize commandtomanuallysynchronizeasubordinateunit’s
+configurationtothat oftheprimaryunit.
+Youmustenterexecute ha synchronize commandsfromthesubordinateunitthat youwantto
+synchronizewiththeprimaryunit. Usetheexecute ha manage commandtoaccessasubordinateunitCLI.
+Forexample,toaccessthefirstsubordinateunitandforceasynchronizationatanytime, evenifautomatic
+synchronizationisdisabledenter:
+execute ha manage 0
+execute ha synchronize start
+Youcanusethefollowing commandtostopasynchronizationthat isinprogress.
+execute ha synchronize stop
+Incremental synchronization
+WhenyoulogintotheclusterGUIorCLItomakeconfigurationchanges,youareactuallyloggingintotheprimary
+unit. Allofyourconfigurationchangesarefirstmadetotheprimaryunit. Incremental synchronizationthen
+immediately synchronizesthesechangestoallofthesubordinateunits.
+WhenyoulogintoasubordinateunitCLI(forexampleusingexecute ha manage)alloftheconfiguration
+changesthat youmaketothesubordinateunitarealsoimmediately synchronizedtoallclusterunits, including
+theprimaryunit, usingthesameprocess.
+Incremental synchronizationalsosynchronizesotherdynamicconfigurationinformation suchastheDHCPserver
+addressleasedatabase,routingtableupdates,IPsecSAs,MACaddresstables, andsoon.SeeFortiGate HA
+compatibility withDHCPandPPPoEonpage48formoreinformation aboutDHCPserveraddresslease
+synchronizationandSynchronizingkernelroutingtablesonpage229forinformation aboutroutingtableupdates.
+Wheneverachangeismadetoaclusterunitconfiguration, incrementalsynchronizationsendsthesame
+configurationchangetoallotherclusterunitsovertheHAheartbeatlink.AnHAsynchronizationprocessrunning
+ontheeachclusterunitreceivestheconfigurationchangeandappliesittotheclusterunit. TheHA
+synchronizationprocessmakestheconfigurationchangebyenteringaCLIcommandthat appearstobeentered
+bytheadministrator whomadetheconfigurationchangeinthefirstplace.
+Synchronizationtakesplacesilently, andnologmessagesarerecordedaboutthesynchronizationactivity.
+However,logmessagescanberecordedbytheclusterunitswhenthesynchronizationprocessentersCLI
+commands.Youcanseetheselogmessagesonthesubordinateunitsifyouenableeventloggingandsetthe
+minimum severitylevelto Informationandthenchecktheeventlogmessageswritten bytheclusterunitswhen
+youmakeaconfigurationchange.
+Youcanalsoseetheselogmessagesontheprimaryunitifyoumakeconfigurationchangesfromasubordinate
+unit.
+222 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection Synchronizingtheconfiguration
+Periodic synchronization
+Incremental synchronizationmakessurethat asanadministrator makesconfigurationchanges,the
+configurationsofallclusterunitsremainthesame.However,anumberoffactorscouldcauseoneormorecluster
+unitstogooutofsyncwiththeprimaryunit. Forexample,ifyouaddanewunittoafunctioning cluster,the
+configurationofthisnewunitwillnotmatchtheconfigurationoftheotherclusterunits. Itsnotpracticaltouse
+incrementalsynchronizationtochangetheconfigurationofthenewunit.
+Periodicsynchronizationisamechanismthat looksforsynchronizationproblemsandfixesthem. Everyminute
+theclustercomparestheconfigurationfile checksumoftheprimaryunitwiththeconfigurationfile checksumsof
+eachofthesubordinateunits. If allsubordinateunitchecksumsarethesameastheprimaryunitchecksum,all
+clusterunitsareconsideredsynchronized.
+If oneormoreofthesubordinateunitchecksumsisnotthesameastheprimaryunitchecksum,thesubordinate
+unitconfigurationisconsideredoutofsyncwiththeprimaryunit. Thechecksumoftheoutofsyncsubordinate
+unitischeckedagainevery15seconds.Thisre-checkingoccursincasetheconfigurationsareoutofsync
+becauseanincrementalconfigurationsequencehasnotcompleted. If the checksumsdonotmatchafter5
+checksthesubordinateunitthat isoutofsyncretrievestheconfigurationfromtheprimaryunit. Thesubordinate
+unitthenreloadsitsconfigurationandresumesoperatingasasubordinateunitwiththesameconfigurationas
+theprimaryunit.
+Theconfigurationofthesubordinateunitisresetinthiswaybecausewhenasubordinateunitconfigurationgets
+outofsyncwiththeprimaryunitconfigurationthereisnoefficient waytodeterminewhattheconfiguration
+differencesareandtocorrectthem. Resettingthesubordinateunitconfigurationbecomesthemostefficient way
+toresynchronizethesubordinateunit.
+Synchronizationrequiresthat allclusterunitsrunthesameFortiOSfirmwarebuild. If someclusterunitsare
+runningdifferent firmwarebuilds,thenunstableclusteroperationmayoccurandtheclusterunitsmaynotbeable
+tosynchronizecorrectly.
+Re-installing thefirmwarebuildrunningontheprimaryunitforcestheprimaryunitto
+upgradeallclusterunitstothesamefirmwarebuild.
+Console messages when configuration synchronization succeeds
+Whenaclusterfirstforms, orwhenanewunitisaddedtoaclusterasasubordinateunit, thefollowing messages
+appearontheCLIconsoletoindicatethat theunitjoinedtheclusterandhaditsconfiguringsynchronizedwiththe
+primaryunit.
+slave's configuration is not in sync with master's, sequence:0
+slave's configuration is not in sync with master's, sequence:1
+slave's configuration is not in sync with master's, sequence:2
+slave's configuration is not in sync with master's, sequence:3
+slave's configuration is not in sync with master's, sequence:4
+slave starts to sync with master
+logout all admin users
+slave succeeded to sync with master
+HighAvailability
+Fortinet TechnologiesInc.
+223
+
+Synchronizingtheconfiguration HAandfailoverprotection
+Console messages when configuration synchronization fails
+If youconnecttotheconsoleofasubordinateunitthat isoutofsynchronizationwiththeprimaryunit, messages
+similartothefollowing aredisplayed.
+slave is not in sync with master, sequence:0. (type 0x3)
+slave is not in sync with master, sequence:1. (type 0x3)
+slave is not in sync with master, sequence:2. (type 0x3)
+slave is not in sync with master, sequence:3. (type 0x3)
+slave is not in sync with master, sequence:4. (type 0x3)
+global compared not matched
+If synchronizationproblemsoccurtheconsolemessagesequencemayberepeatedoverandoveragain.The
+messagesallincludeatypevalue(intheexampletype 0x3).ThetypevaluecanhelpFortinet Support
+diagnosethesynchronizationproblem.
+HA out of sync object messages and the configuration objects that they reference
+Out of Sync Message Configuration Object
+HA_SYNC_SETTING_CONFIGURATION = 0x03 /data/config
+HA_SYNC_SETTING_AV = 0x10
+HA_SYNC_SETTING_VIR_DB = 0x11 /etc/vir
+HA_SYNC_SETTING_SHARED_LIB = 0x12 /data/lib/libav.so
+HA_SYNC_SETTING_SCAN_UNIT = 0x13 /bin/scanunitd
+HA_SYNC_SETTING_IMAP_PRXY = 0x14 /bin/imapd
+HA_SYNC_SETTING_SMTP_PRXY = 0x15 /bin/smtp
+HA_SYNC_SETTING_POP3_PRXY = 0x16 /bin/pop3
+HA_SYNC_SETTING_HTTP_PRXY = 0x17 /bin/thttp
+HA_SYNC_SETTING_FTP_PRXY = 0x18 /bin/ftpd
+HA_SYNC_SETTING_FCNI = 0x19 /etc/fcni.dat
+HA_SYNC_SETTING_FDNI = 0x1a /etc/fdnservers.dat
+HA_SYNC_SETTING_FSCI = 0x1b /etc/sci.dat
+HA_SYNC_SETTING_FSAE = 0x1c /etc/fsae_ adgrp.cache
+HA_SYNC_SETTING_IDS = 0x20 /etc/ids.rules
+HA_SYNC_SETTING_IDSUSER_RULES = 0x21 /etc/idsuser.rules
+224 HighAvailability
+Fortinet TechnologiesInc.
+

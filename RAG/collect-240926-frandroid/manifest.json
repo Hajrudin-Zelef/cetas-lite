@@ -4,7 +4,7 @@
   "source": "docs/RAG/clean_en/frandroid",
   "source_dir": "docs/RAG/clean_en/frandroid",
   "source_files": 14,
-  "source_sha256": "817a6ea270f362f8511c497756c173d75f14d00c8cfdd77d2f1acb635b767222",
+  "source_sha256": "6854cb80cdda39736a8327e27a4b332fac6238e4efc2cf281f6f80e2bf44c29b",
   "chunk_count": 37,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
@@ -236,13 +236,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        1,
-        116
+        0,
+        0
       ],
       "canonical_for": [],
       "words": 1333,
       "bytes": 7938,
-      "sha256": "d9977b5429716f61064b94f8179d14e98046b348435850b0c7561fdf4d17a5fd"
+      "sha256": "d9977b5429716f61064b94f8179d14e98046b348435850b0c7561fdf4d17a5fd",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-2",
@@ -264,13 +265,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        117,
-        256
+        0,
+        0
       ],
       "canonical_for": [],
       "words": 1361,
       "bytes": 7859,
-      "sha256": "be6c0a4908f4bb6fb02f7fbc14d111615dad3084d4b3f39ccf513e5d6c04f22a"
+      "sha256": "be6c0a4908f4bb6fb02f7fbc14d111615dad3084d4b3f39ccf513e5d6c04f22a",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-3",
@@ -288,13 +290,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        257,
-        328
+        0,
+        0
       ],
       "canonical_for": [],
       "words": 1469,
       "bytes": 7962,
-      "sha256": "a850a3a7e60a8ff9a93bb03e240186dc0ac3409f3facb0701d872995b1b6dd18"
+      "sha256": "a850a3a7e60a8ff9a93bb03e240186dc0ac3409f3facb0701d872995b1b6dd18",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-4",
@@ -312,13 +315,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        329,
-        412
+        0,
+        0
       ],
       "canonical_for": [],
       "words": 1173,
       "bytes": 6499,
-      "sha256": "79da69a1b984844fde73ec56b48871dc0da0af2408ff2e296a1e0c432a26ab0d"
+      "sha256": "79da69a1b984844fde73ec56b48871dc0da0af2408ff2e296a1e0c432a26ab0d",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-5",
@@ -341,13 +345,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        413,
-        413
+        0,
+        0
       ],
       "canonical_for": [],
-      "words": 1435,
-      "bytes": 8054,
-      "sha256": "5b73d4c646e5eadd6efec295fe55ce1d75dc9b1f9af2d3971c67b8efb6e8ccc8"
+      "words": 1426,
+      "bytes": 8000,
+      "sha256": "e175d6484b29822416d39c341e0d5b4dc241f04d52a218a0319210cff5e81cb6",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-6",
@@ -370,13 +375,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        414,
-        502
+        0,
+        0
       ],
       "canonical_for": [],
-      "words": 1220,
-      "bytes": 6712,
-      "sha256": "0297ab38e526a4aa70056833805d1e4149705f00886821105c4be1b6d7721289"
+      "words": 1229,
+      "bytes": 6766,
+      "sha256": "22d3ddd7af2d3ddf9c01115d4478cf4d0f3fe4d613eb46ff18f7be3790ad6064",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-7",
@@ -400,13 +406,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        503,
-        548
+        0,
+        0
       ],
       "canonical_for": [],
       "words": 1436,
       "bytes": 7778,
-      "sha256": "566b7511bd787658db8e79e894262595bf492368007fdb2b1718a7e5176756f9"
+      "sha256": "566b7511bd787658db8e79e894262595bf492368007fdb2b1718a7e5176756f9",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-8",
@@ -425,13 +432,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        549,
-        618
+        0,
+        0
       ],
       "canonical_for": [],
       "words": 1369,
       "bytes": 7563,
-      "sha256": "7e39df58494fd6b7135c7d3709dd29a55b9c920d90c7fa32366d21a086610806"
+      "sha256": "7e39df58494fd6b7135c7d3709dd29a55b9c920d90c7fa32366d21a086610806",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-9",
@@ -451,13 +459,14 @@
       "source": "docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md",
       "source_anchor": "",
       "source_lines": [
-        619,
-        639
+        0,
+        0
       ],
       "canonical_for": [],
       "words": 400,
       "bytes": 2635,
-      "sha256": "17ff8c6ac805c1a0ee52703b431375379f853d1f78b8df6f8cf55be998691e0d"
+      "sha256": "42075ddc720ece05d2140197eb4804a4d9c0e3ae4c0aa05933f3237e9a56f194",
+      "split_body": true
     },
     {
       "id": "collect-240926-frandroid/frandroid/google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes",

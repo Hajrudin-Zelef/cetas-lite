@@ -1,0 +1,166 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-26
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: ["license", "licenses"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [3340, 3488]
+sha256: d71866e339e052e511f6503ff6fae02c296f1cfe67a50377617bacf5a15e44b6
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FGCPconfigurationexamplesandtroubleshooting FortiGate-5000active-activeHAclusterwithFortiClient licenses
+GUIbeforeturningonHA.
+Thisexamplealsoincludesusingthemgmt2 interfaceforheartbeatcommunication foradditional heartbeat
+redundancy.
+To connect the cluster
+1. ConnecttheFortiGate-5001Dport1interfacestoaswitchandconnectthat switchtotheInternet.
+2. ConnecttheFortiGate-5001Dport2interfacestoaswitchandconnectthat switchtotheinternalnetwork.
+3. ConnecttheFortiGate-5001Dmgmt1 interfacestoaswitchthat connectstotheengineeringnetwork.
+4. ConnecttheFortiGate-5001Dmgmt2 interfacestoaswitchforheartbeatcommunication betweenthem.
+Configuring the FortiGate-5000 active-active cluster - GUI
+TheseproceduresassumeyouarestartingwiththreeFortiGate-5001DboardsandtwoFortiSwitch-5003Bboards
+installedinacompatible FortiGate-5000serieschassis.TheFortiSwitch-5003Bboardsareinchassisslots1and
+2andtheFortiGate-5001Dboardsareinchassisslots3,4,and5andthechassisispoweredon.Alldevicesare
+intheirfactorydefault configuration. NoconfigurationchangestotheFortiSwitch-5003Bboardsarerequired.
+To configure the FortiGate-5001D units
+1. Fromtheinternalnetwork,logintotheGUIoftheFortiGate-5001Dunitinchassisslot3byconnectingtothe
+mgmt1 interface.
+Bydefault themgmt1 interfaceofeachFortiGate-5001DunithasthesameIP
+address.TologintoeachFortiGate-5001Dunitseparatelyyoucouldeitherdisconnect
+themgmt1 interfacesoftheunitsthat youdon’twanttologintoorchangethemgmt1
+interfaceIPaddressesforeachunitbyconnectingtoeachunit’sCLIfromtheirconsole
+port.
+2. RegisterandapplylicensestotheFortiGate beforeconfiguringitforHAoperation.Thisincludeslicensingfor
+FortiCare Support, IPS, AntiVirus, Web Filtering, Mobile Malware, FortiCloud,andadditional virtual
+domains(VDOMs).AllFortiGates intheclustermusthavethesameleveloflicensingforFortiGuard, FortiCloud,
+FortiClient, andVDOMs. FortiTokenlicensescanbeaddedatanytime becausetheyaresynchronizedtoall
+clustermembers. FortiClient licenseswillbeaddedinafollowing step.
+If theFortiGates intheclusterwillberunningFortiOSCarrier,applytheFortiOSCarrierlicensebeforeconfiguring
+thecluster(andbeforeapplyingotherlicenses).ApplyingtheFortiOSCarrierlicensesetstheconfigurationto
+factorydefaults, requiringyoutorepeatstepsperformedbeforeapplyingthelicense.
+Youcanalsoinstallanythird-partycertificatesontheprimaryFortiGate beforeforming thecluster.Oncethe
+clusterisformed, third-partycertificatesaresynchronizedtothebackupFortiGate.
+HighAvailability
+Fortinet TechnologiesInc.
+97
+
+FortiGate-5000active-activeHAclusterwithFortiClient licenses FGCPconfigurationexamplesandtroubleshooting
+3. ClickontheSystemInformation dashboardwidgetandselect Configure settingsin System > Settings.
+4. EnteranewHostNameforthisFortiGate, forexample:
+New Name 5001D-Slot-3
+5. ConnecttotheCLIandenterthefollowing commandtodisplaybackplaneinterfacesontheGUI:
+config system global
+set show-backplane-intf enable
+end
+6. SettheAdministrativeStatusofthebase1andbase2interfacesto Up.
+YoucandothisfromtheGUIbygoingto Network > Interfaces,editingeachinterfaceandsetting
+Administrative Statusto Up.
+YoucanalsodothisfromtheCLIusingthefollowing command:
+config system interface
+edit base1
+set status up
+next
+edit base2
+set status up
+end
+7. Goto Network > InterfacesandconfiguretheIPaddressofthemgmt1 interface.
+Becausemgmt1 willbecomethereservedmanagement interfacefortheclusteruniteachFortiGate-
+5001Dshouldhaveadifferent mgmt1 interfaceIPaddress.Givethemgmt1 interfaceanaddressthat
+isvalidfortheinternalnetwork.OnceHAwiththereservedManagement interfaceisenabledtheIP
+addressofthemgmt1 interfacecanbeonthesamesubnetastheport2interface(whichwillalsobe
+connectedtotheInternal network).
+AftertheFortiGate isoperatinginHAmodethemgmt1 interfacewillretainitsoriginalMACaddress
+insteadofbeingassignedavirtualMACaddress.
+98 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting FortiGate-5000active-activeHAclusterwithFortiClient licenses
+8. Goto System > HA andchangethefollowing settings:
+Setthe Modeto Active-Active.
+Select Reserve Management Port for Cluster Memberandselect mgmt1.
+Setthegroupnameandpassword:
+Group Name example3.com
+Password HA_pass_3
+SettheHeartbeatinterfaceconfigurationtousebase1,base2andmgmt2 forheartbeat
+communication. Setthepriorityofeachheartbeatinterfaceto50:
+Heartbeat Interface
+Enable Priority
+base1 Select 50
+base2 Select 50
+mgmt2 Select 50
+9. Select OK.
+TheFortiGate negotiatestoestablishanHAcluster.WhenyouselectOKyoumaytemporarilylose
+connectivitywiththeFortiGate astheHAclusternegotiatesandtheFGCPchangestheMACaddress
+oftheFortiGate interfaces.TheMACaddressesoftheFortiGate-5001D interfaceschangetothe
+following virtualMACaddresses:
+l base1interfacevirtualMAC:00-09-0f-09-00-00
+l base2interfacevirtualMAC:00-09-0f-09-00-01
+l fabric1interfacevirtualMAC:00-09-0f-09-00-02
+l fabric2interfacevirtualMAC:00-09-0f-09-00-03
+l fabric3interfacevirtualMAC:00-09-0f-09-00-04
+l fabric4interfacevirtualMAC:00-09-0f-09-00-05
+l fabric5interfacevirtualMAC:00-09-0f-09-00-06
+l mgmt1 keepsitsoriginalMACaddress
+l mgmt2 interfacevirtualMAC:00-09-0f-09-00-08
+l port1interfacevirtualMAC:00-09-0f-09-00-09
+l port2interfacevirtualMAC:00-09-0f-09-00-0a
+Toreconnectsooner,youcanupdatetheARPtableofyourmanagement PCbydeletingtheARP
+tableentryfortheFortiGate (orjustdeletingallarptableentries).Youmaybeabletodeletethearp
+tableofyourmanagement PCfromacommandpromptusingacommandsimilartoarp -d.
+Youcanusetheget hardware nic (ordiagnose hardware deviceinfo nic)CLI
+commandtoviewthevirtualMACaddressofanyFortiGate interface. Forexample,usethefollowing
+commandtoviewtheport1interfacevirtualMACaddress(Current_HWaddr)andtheport1
+permanentMACaddress(Permanent_ HWaddr):
+get hardware nic base1
+HighAvailability
+Fortinet TechnologiesInc.
+99
+
+FortiGate-5000active-activeHAclusterwithFortiClient licenses FGCPconfigurationexamplesandtroubleshooting
+.
+.
+.
+Current_HWaddr 00:09:0f:09:00:00
+Permanent_HWaddr 00:09:0f:71:0a:dc
+.
+.
+.
+9. RepeatthesestepsfortheFortiGate-5001Dunitsinchassisslots4and5,withthefollowing differences.
+Setthemgmt1 interfaceIPaddressofeachFortiGate-5001Dunittoadifferent IPaddress.
+SettheFortiGate-5001Dunitinchassisslot4hostnameto:
+New Name 5001D-Slot-4
+SettheFortiGate-5001Dunitinchassisslot5hostnameto:
+New Name 5001D-Slot-5
+AsyouconfigureeachFortiGate, theywillnegotiate andjointhecluster.
+To view cluster status
+AsyouaddunitstotheclusteryoucanlogintotheGUIofoneoftheclusterunitstoviewthestatusofthecluster.
+Thestatusdisplayswillshoweachunitasitisaddedtothecluster.
+1. Logintotheprimaryunitoranyclusterunitandviewthesystemdashboard.
+TheHAStatusdashboardwidgetdisplayshowlongtheclusterhasbeenoperating(Uptime)andthe
+time sincethelastfailoveroccurred(StateChanged)YoucanhoverovertheStateChangedtime to
+seetheeventthat causedthestatechange.YoucanalsoclickontheHAStatusdashboardwidgetto
+configureHAsettingsortogetalistingofthemostrecentHAeventsrecordedbythecluster.
+2. Goto System > HA toviewtheclustermemberslist.
+Thelistshowsbothclusterunits, theirhostnames,theirrolesinthecluster,andtheirdevicepriorities.
+Youcanusethislisttoconfirmthat theclusterisoperatingnormally.Forexample,ifthelistshows
+onlyoneclusterunitthentheotherunithasleft theclusterforsomereason.
+To troubleshoot the cluster
+SeeTroubleshootingHAclustersonpage138.
+To manage each cluster unit
+Becauseyouhaveconfiguredareservedmanagement interface, youcanmanageeachclusterunitseparatelyby
+connectingtotheIPaddressyouconfiguredforeachunit’smgmt1 interface. Youcanviewthestatusofeach
+clusterunitandmakechangestoeachunit’sconfiguration. Forexample,asdescribedbelow,eachclusterunit
+musthaveitsownFortiClient license.Youcanusethereservedmanagement IPaddressestoconnecttoeach
+clusterunittoinstalltheFortiClient licenseforthat unit.
+Usuallyyouwouldmakeconfigurationchangesbyconnectingtotheprimaryunitandchangingitsconfiguration.
+Theclusterthensynchronizestheconfigurationchangestoallclusterunits. If youconnecttoindividualcluster
+100 HighAvailability
+Fortinet TechnologiesInc.
+

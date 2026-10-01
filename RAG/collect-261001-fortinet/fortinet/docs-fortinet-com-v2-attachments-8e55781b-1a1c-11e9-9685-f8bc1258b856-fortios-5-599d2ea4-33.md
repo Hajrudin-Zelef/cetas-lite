@@ -1,0 +1,155 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-33
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [4441, 4578]
+sha256: 0dae69d20c4ee64a6564a9d44f010db0a17ca6243549dbe1264b1610cdc75427
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+ExampleHAandredundantinterfaces FGCPconfigurationexamplesandtroubleshooting
+Example cluster with a redundant interfaces
+ThisexampledescribeshowtoconfigureanHAclusterconsistingoftwoFortiGates witharedundantinterface
+connectiontotheInternet andtoaninternalnetwork.TheconnectiontotheInternet usesport1andport2.The
+connectiontotheinternalnetworkusesport3andport4.TheHAheartbeatusesport5andport6.
+TheredundantinterfacesarealsoconfiguredasHAmonitoredinterfaces.
+HA interface monitoring, link failover, and redundant interfaces
+HAinterfacemonitoring monitorstheredundantinterfaceasasingleinterfaceanddoesnotmonitor the
+individualphysicalinterfacesintheredundantinterface. HAinterfacemonitoring registerstheredundantinterface
+tohavefailed onlyifallthephysicalinterfacesintheredundantinterfacehavefailed. If onlysomeofthephysical
+interfacesintheredundantinterfacefail orbecomedisconnected,HAconsiderstheredundantinterfacetobe
+operatingnormally.
+HA MAC addresses and redundant interfaces
+ForastandaloneFortiGate aredundantinterfacehastheMACaddressofthefirstphysicalinterfaceaddedtothe
+redundantinterfaceconfiguration. Aredundantinterfaceconsistingofport1andport2wouldhavetheMAC
+addressofport1.
+InanHAcluster,HAchangestheMACaddressesoftheclusterinterfacestovirtualMACaddresses.Aredundant
+interfaceinaclusteracquiresthevirtualMACaddressthat wouldhavebeenacquiredbythefirstphysical
+interfaceaddedtotheredundantinterfaceconfiguration.
+Connecting multiple redundant interfaces to one switch while operating in active-passive
+HA mode
+HAassignsthesamevirtualMACaddressestothesubordinateunitinterfacesasareassignedtothe
+correspondingprimaryunitinterfaces.ConsideraclusteroftwoFortiGates operatinginactive-passivemodewith
+128 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting ExampleHAandredundantinterfaces
+aredundantinterfaceconsistingofport1andport2.Youcanconnectmultiple redundantinterfacestothesame
+switchifyouconfiguretheswitchsothat itdefinesmultiple separateredundantinterfacesandputstheredundant
+interfacesofeachclusterunitintoseparateredundantinterfaces.Inthisconfiguration, eachclusterunitformsa
+separateredundantinterfacewiththeswitch.
+However,iftheswitchisconfiguredwithasinglefour-portredundantinterfaceconfiguration, becausethesame
+MACaddressesarebeingusedbybothclusterunits, theswitchaddsallfourinterfaces(port1andport2fromthe
+primaryunitandport1andport2fromthesubordinateunit)tothesameredundantinterface.
+Toavoidunpredictableresults,whenyouconnectaswitchtomultiple redundantinterfacesinanactive-passive
+clusteryoushouldconfigureseparateredundantinterfacesontheswitch;oneforeachclusterunit.
+Connecting multiple redundant interfaces to one switch while operating in active-active
+HA mode
+Inanactive-activecluster,allclusterunitssendandreceivepackets.Tooperateaclusterwithredundant
+interfacesinactive-activemode, withmultiple redundantinterfacesconnectedtothesameswitch,youmust
+separatetheredundantinterfacesofeachclusterunitintodifferent redundantinterfacesontheconnecting
+switch.
+General configuration steps
+ThesectionincludesGUIandCLIprocedures.Theseproceduresassumethat theFortiGates arerunningthe
+sameFortiOSfirmwarebuildandaresettothefactorydefault configuration.
+General configuration steps
+1. ApplylicensestotheFortiGates tobecomethecluster.
+2. ConfiguretheFortiGates forHAoperation.
+l Changeeachunit’shostname.
+l ConfigureHA.
+2. Connecttheclustertothenetwork.
+3. Viewclusterstatus.
+4. Addbasicconfigurationsettingsandconfiguretheredundantinterfaces.
+l Addapasswordfortheadminadministrative account.
+l Addtheredundantinterfaces.
+l Addadefault route.
+YoucouldalsoconfigureredundantinterfacesineachFortiGate beforetheyformacluster.
+5. ConfigureHAportmonitoring fortheredundantinterfaces.
+Configuring active-passive HA cluster that includes redundant interfaces - GUI
+TheseproceduresassumeyouarestartingwithtwoFortiGates withfactorydefault settings.
+To configure the FortiGates for HA operation
+1. RegisterandapplylicensestotheFortiGate.
+HighAvailability
+Fortinet TechnologiesInc.
+129
+
+ExampleHAandredundantinterfaces FGCPconfigurationexamplesandtroubleshooting
+2. Onthe System Informationdashboardwidget, beside Host Nameselect Change.
+3. EnteranewHostNameforthisFortiGate.
+New Name FGT_ha_1
+4. Select OK.
+5. Goto System > HA andchangethefollowing settings.
+Mode Active-Passive
+Group Name example6.com
+Password HA_pass_6
+Heartbeat Interface
+Enable Priority
+port5 Select 50
+port6 Select 50
+Sinceport3andport4willbeusedforaredundantinterface, youmustchangetheHAheartbeat
+configuration.
+6. Select OK.
+TheFortiGate negotiatestoestablishanHAcluster.WhenyouselectOKyoumaytemporarilylose
+connectivitywiththeFortiGate astheHAclusternegotiatesandtheFGCPchangestheMACaddress
+oftheFortiGate interfaces.TheMACaddressesoftheFortiGate interfaceschangetothefollowing
+virtualMACaddresses:
+l port1interfacevirtualMAC:00-09-0f-09-00-00
+l port10interfacevirtualMAC:00-09-0f-09-00-01
+130 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting ExampleHAandredundantinterfaces
+l port11interfacevirtualMAC:00-09-0f-09-00-02
+l port12interfacevirtualMAC:00-09-0f-09-00-03
+l port13interfacevirtualMAC:00-09-0f-09-00-04
+l port14interfacevirtualMAC:00-09-0f-09-00-05
+l port15interfacevirtualMAC:00-09-0f-09-00-06
+l port16interfacevirtualMAC:00-09-0f-09-00-07
+l port17interfacevirtualMAC:00-09-0f-09-00-08
+l port18interfacevirtualMAC:00-09-0f-09-00-09
+l port19interfacevirtualMAC:00-09-0f-09-00-0a
+l port2interfacevirtualMAC:00-09-0f-09-00-0b
+l port20interfacevirtualMAC:00-09-0f-09-00-0c
+l port3interfacevirtualMAC:00-09-0f-09-00-0d
+l port4interfacevirtualMAC:00-09-0f-09-00-0e
+l port5interfacevirtualMAC:00-09-0f-09-00-0f
+l port6interfacevirtualMAC:00-09-0f-09-00-10
+l port7interfacevirtualMAC:00-09-0f-09-00-11
+l port8interfacevirtualMAC:00-09-0f-09-00-12
+l port9interfacevirtualMAC:00-09-0f-09-00-13
+Toreconnectsooner,youcanupdatetheARPtableofyourmanagement PCbydeletingtheARP
+tableentryfortheFortiGate (orjustdeletingallarptableentries).Youmaybeabletodeletethearp
+tableofyourmanagement PCfromacommandpromptusingacommandsimilartoarp -d.
+Youcanusetheget hardware nic (ordiagnose hardware deviceinfo nic)CLI
+commandtoviewthevirtualMACaddressofanyFortiGate interface. Forexample,usethefollowing
+commandtoviewtheport1interfacevirtualMACaddress(Current_HWaddr)andtheport1
+permanentMACaddress(Permanent_ HWaddr):
+get hardware nic port1
+.
+.
+.
+MAC: 00:09:0f:09:00:00
+Permanent_HWaddr: 02:09:0f:78:18:c9
+.
+.
+.
+7. Poweroff thefirstFortiGate.
+8. RepeatthesestepsforthesecondFortiGate.
+SetthesecondFortiGate hostnameto:
+New Name FGT_ha_2
+To connect the cluster to the network
+1. Connecttheport1andport2interfacesofFGT_ha_1andFGT_ha_2toaswitchconnectedtotheInternet.
+Configuretheswitchsothat theport1andport2ofFGT_ha_1makeuparedundantinterfaceand
+port1andport2ofFGT_ha_2makeupanotherredundantinterface.
+HighAvailability
+Fortinet TechnologiesInc.
+131
+

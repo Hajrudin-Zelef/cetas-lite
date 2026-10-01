@@ -1,0 +1,110 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-60
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [7726, 7818]
+sha256: c08a0a1a13f685b1d88a90e01aefb8de7da3c42c6d44d2681ca7848f77230c43
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+HAheartbeatandcommunication betweenclusterunits HAandfailoverprotection
+If afailoveroccurs,theprimaryunitheartbeatinterfacecouldbesomethingotherthan169.254.0.1. If for
+example,thefirstsubordinateunitisnowtheprimaryunit, theprimaryunitheartbeatinterfaceIPaddresswould
+be169.254.0.2.
+Theoutput fromtheget system ha status CLIcommandshowstheHAheartbeatinterfaceIPaddressof
+theprimaryunit.
+get system ha status
+.
+.
+.
+vcluster 1: work 169.254.0.2
+.
+.
+.
+Youcanalsousetheexecute traceroute commandfromthesubordinateunitCLItodisplayHAheartbeat
+IPaddressesandtheHAinter-VDOMlinkIPaddresses.Forexample,useexecute ha manage 1toconnect
+tothesubordinateunitCLIandthenenterthefollowing commandtotracetheroutetoanIPaddressonyour
+network:
+execute traceroute 172.20.20.10
+traceroute to 172.20.20.10 (172.20.20.10), 32 hops max, 72 byte packets
+1 169.254.0.1 0 ms 0 ms 0 ms
+2 169.254.0.66 0 ms 0 ms 0 ms
+3 172.20.20.10 0 ms 0 ms 0 ms
+BothHAheartbeatanddatatraffic aresupportedonthesameFortiGate interface. Allheartbeatcommunication
+takesplaceonaseparateVDOMcalledvsys_ha.Heartbeattraffic usesavirtualinterfacecalledport_hainthe
+vsys_haVDOM.Dataandheartbeattraffic usethesamephysicalinterface, butthey’relogicallyseparatedinto
+separateVDOMs.
+Heartbeat packet Ethertypes
+NormalIPpacketsare802.3packetsthat haveanEthernettype(Ethertype)field valueof0x0800.Ethertype
+valuesotherthan0x0800areunderstoodaslevel2framesratherthanIPpackets.
+Bydefault, HAheartbeatpacketsusethefollowing Ethertypes:
+l HAheartbeatpacketsforNATmodeclustersuseEthertype0x8890.Thesepacketsareusedbyclusterunitstofind
+otherclusterunitsandtoverifythestatusofotherclusterunitswhiletheclusterisoperating.Youcanchangethe
+Ethertypeofthesepacketsusingtheha-eth-type optionoftheconfig system ha command.
+l HAheartbeatpacketsfortransparentmodeclustersuseEthertype0x8891.Thesepacketsareusedbyclusterunits
+tofindotherclusterunitsandtoverifythestatusofotherclusterunitswhiletheclusterisoperating.Youcanchange
+theEthertypeofthesepacketsusingthehc-eth-type optionoftheconfig system ha command.
+l HAtelnet sessionsbetweenclusterunitsoverHAheartbeatlinksuseEthertype0x8893.Thetelnet sessionsallow
+anadministrator toconnectbetweenFortiGates intheclusterusingtheexecute ha manage command. You
+canchangetheEthertypeofthesepacketsusingthel2ep-eth-type optionoftheconfig system ha
+command.
+Becauseheartbeatpacketsarerecognizedaslevel2frames, theswitchesandroutersonyourheartbeatnetwork
+that connecttoheartbeatinterfacesmustbeconfiguredtoallowthem. If level2framesaredroppedbythese
+networkdevices,heartbeattraffic willnotbeallowedbetweentheclusterunits.
+210 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection HAheartbeatandcommunication betweenclusterunits
+Somethird-partynetworkequipment mayusepacketswiththeseEthertypesforotherpurposes.Forexample,
+CiscoN5K/NexusswitchesuseEthertype0x8890forsomefunctions. Whenoneoftheseswitchesreceives
+Ethertype0x8890packetsfromanattachedclusterunit, theswitchgeneratesCRCerrorsandthepacketsarenot
+forwarded.Asaresult,FortiGates connectedwiththeseswitchescannotformacluster.
+Insomecases,iftheheartbeatinterfacesareconnectedandconfiguredsoregulartraffic flowsbutheartbeat
+traffic isnotforwarded,youcanchangetheconfigurationoftheswitchthat connectstheHAheartbeatinterfaces
+toallowlevel2frameswithEthertypes0x8890,0x8891,and0x8893topass.
+Alternatively,youcanusethefollowing CLIoptionstochangetheEthertypesoftheHAheartbeatpackets:
+config system ha
+set ha-eth-type <ha_ethertype_4-digit_hex
+set hc-eth-type <hc_ethertype_4-digit_ex>
+set l2ep-eth-type <l2ep_ethertype_4-digit_hex>
+end
+Forexample,usethefollowing commandtochangetheEthertypeoftheHAheartbeatpacketsfrom0x8890to
+0x8895andtochangetheEthertypeofHATelnet sessionpacketsfrom0x8891to0x889f:
+config system ha
+set ha-eth-type 8895
+set l2ep-eth-type 889f
+end
+Modifying heartbeat timing
+InanHAcluster,ifaclusterunitCPUbecomesverybusy,theclusterunitmaynotbeabletosendheartbeat
+packetsontime. If heartbeatpacketsarenotsentontime otherunitsintheclustermaythinkthat theclusterunit
+hasfailed andtheclusterwillexperienceafailover.
+AclusterunitCPUmaybecomeverybusyiftheclusterissubjecttoasynfloodattack, ifnetworktraffic isvery
+heavy,orforothersimilarreasons.Youcanusethefollowing CLIcommandstoconfigurehowtheclustertimes
+HAheartbeatpackets:
+config system ha
+set hb-interval <interval_integer>
+set hb-lost-threshold <threshold_integer>
+set hello-holddown <holddown_integer>
+end
+Changing the lost heartbeat threshold
+Thelostheartbeatthresholdisthenumberofconsecutiveheartbeatpacketsthat arenotreceivedfromanother
+clusterunitbeforeassumingthat theclusterunithasfailed. Thedefault valueis6,meaningthat ifthe6
+heartbeatpacketsarenotreceivedfromaclusterunitthenthat clusterunitisconsideredtohavefailed. The
+rangeis1to60packets.
+If theprimaryunitdoesnotreceiveaheartbeatpacketfromasubordinateunitbeforetheheartbeatthreshold
+expires,theprimaryunitassumesthat thesubordinateunithasfailed.
+If asubordinateunitdoesnotreceiveaheartbeatpacketfromtheprimaryunitbeforetheheartbeatthreshold
+expires,thesubordinateunitassumesthat theprimaryunithasfailed. Thesubordinateunitthenbegins
+negotiating tobecomethenewprimaryunit.
+HighAvailability
+Fortinet TechnologiesInc.
+211
+

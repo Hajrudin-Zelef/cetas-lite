@@ -1,0 +1,40 @@
+---
+id: collect-261001-general-networking/general-networking/fr-review-asus-ascent-qn10-review-550f5c4b-2
+title: "fr-review-asus-ascent-qn10-review-550f5c4b"
+domain: general-networking
+role: reference
+task: reference
+actors: ["AMD", "Intel", "Nvidia"]
+dates: []
+keywords: ["amd", "arr", "benchmarks", "gpu", "lpddr5x", "nvidia", "panther lake"]
+source: docs/RAG/collect-261001-general-networking/fr-review-asus-ascent-qn10-review-550f5c4b.md
+source_anchor: ""
+source_lines: [32, 54]
+sha256: d6016c587a37554aa0fe2757d7c7792d12caaa51b1d08ac2673ef9cd7d0de29c
+---
+
+# fr-review-asus-ascent-qn10-review-550f5c4b
+
+Le côté droit du châssis est une entrée d'air alimentant un système de refroidissement surdimensionné pour sa catégorie : un ventilateur de processeur placé au-dessus d'une chambre à vapeur, ainsi qu'un second ventilateur dédié au SSD PCIe Gen5. ASUS annonce un niveau sonore maximal de 53 dBA à pleine vitesse de ventilation, et les ventilateurs s'arrêtent complètement à 0 tr/min au repos.
+L'ouverture du boîtier révèle la répartition du refroidissement et les possibilités de modification pour l'acheteur. En effet, la coque intègre des pads thermiques en cuivre en contact avec les disques M.2, un emplacement PCIe Gen5 (étiqueté G5, vide sur notre modèle) et un emplacement Gen4 accueillant le disque SanDisk, extensible jusqu'à 4 To (l'utilisateur pouvant toutefois installer une capacité supérieure). La carte mère, quant à elle, intègre le processeur Snapdragon sous la chambre à vapeur, avec 32 Go de mémoire LPDDR5x soudés à côté. Seul le stockage est remplaçable sur site ; la mémoire est fixée à 32 Go (capacité maximale) lors de l'achat.
+Une fois le ventilateur retiré, la chambre à vapeur recouvre le SoC et alimente un unique circuit de caloducs : une solution digne d'un ordinateur portable, mais adaptée à un ordinateur de bureau où la charge soutenue, et non l'autonomie, est le facteur limitant. Les tests de performance qui suivent confirment son efficacité, et notre propre expérience le confirme également : du repos à une charge importante et soutenue, le QN10 reste extrêmement silencieux, les ventilateurs étant à peine audibles à un mètre de distance. Lors de nos tests, nous ne les avons entendus qu'en cas de forte sollicitation du système, par exemple lors d'une mise à jour du BIOS.
+Performances de l'ASUS Ascent QN10
+Notre modèle de test est équipé d'un processeur Snapdragon X2 Elite X2E-88-100, de 32 Go de mémoire LPDDR5x et d'un SSD de 512 Go, sous Windows 11 Pro. Tous les tests de performance ont été exécutés en mode de gestion de l'alimentation « Performances élevées ». L'architecture Windows on Arm impose des contraintes au tableau des performances : les tests ci-dessous ont été exécutés nativement sur ARM64 lorsqu'une version native était disponible. Les charges de travail d'IA précisent le moteur d'inférence et le périphérique de calcul utilisés pour chaque exécution, car le choix du moteur influe autant sur ces résultats que le processeur lui-même. PCMark 10 est absent car son principal test de productivité n'est pas disponible pour ARM ; seuls ses tests de stockage et d'autonomie sont exécutés nativement, et aucun ne reflète fidèlement les performances réelles de cet ordinateur de bureau.
+Les comparaisons sont simples mais imparfaites, car aucun autre appareil du laboratoire n'offre simultanément l'architecture et la qualité de cette machine. L' ASUS NUC 14 Pro (Core Ultra 7 165H) sert de référence pour les mini PC x86, car c'est celui que nous avons sous la main : ASUS a depuis lancé l'Arrow Lake NUC 15 Pro, que nous n'avons pas testé. Le Meteor Lake NUC 14 représente donc une génération précédente pour les configurations x86. Ses performances sont meilleures que ce que son âge laisse présager, comme le montrent les résultats ci-dessous, et son prix rend la comparaison intéressante, contrairement au calendrier des sorties. Notre configuration NUC 14, le Core Ultra 7 165H avec 16 Go de RAM et 512 Go de stockage, affichée à 1 522,61 $ chez Best Buy, n'est plus disponible à l'état neuf. La configuration équivalente du QN10 (16 Go/512 Go) se vend à 1 349,99 $. Ainsi, à configuration égale, le NUC 14 se positionne en dessous du prix de vente réel de cette catégorie de mini-PC x86. À l'inverse, le prix plancher pour les configurations à monter soi-même est très attractif : un kit NUC 15 Pro de base coûte environ 700 $ au moment de la rédaction de cet article et descend sous les 850 $ avec l'ajout de mémoire et de stockage, une option que le QN10, scellé et soudé, ne peut égaler. La limite de mémoire de 16 Go du NUC 14 restreint les performances des tests les plus exigeants, et certains tests ayant échoué ou n'ayant pas pu être effectués sur cette plateforme sont signalés. Le Lenovo ThinkCentre Neo 50q QC est le modèle Arm le plus proche que nous ayons testé, basé sur le Snapdragon X de génération précédente. Cet appareil ayant quitté le laboratoire, les comparaisons se limitent aux benchmarks publiés à l'époque. Nous avons par ailleurs relancé plusieurs tests plus anciens sur le QN10 afin de le comparer directement à celui-ci. Les tests plus récents, comme Geekbench 7, ne comportent pas de colonne Lenovo pour cette raison et sont présentés à titre indicatif.
+Geekbench 7
+Geekbench 7 rejoint la suite de tests aux côtés de Geekbench 6, à mesure que les données de comparaison s'accumulent. Ses scores CPU sont calibrés par rapport à une valeur de référence de 2 500, établie par l'AMD Ryzen 7700, tandis que ses scores GPU sont calibrés par rapport à une valeur de référence de 100 000, établie par la NVIDIA GeForce RTX 4060. Plus le score est élevé, meilleures sont les performances ; un score deux fois supérieur indique des performances deux fois supérieures. Geekbench 7 utilisant de nouvelles charges de travail et de nouvelles valeurs de référence, ses scores ne sont pas comparables à ceux de Geekbench 6. Il a été commercialisé après le Neo 50q, qui a quitté le laboratoire ; la colonne Lenovo reste donc vide et ces comparaisons sont effectuées avec le NUC 14 Pro, récemment testé. Le QN10 a exécuté la version native AArch64.
+| Geekbench 7 (plus c'est élevé, mieux c'est) | ASUS Ascent QN10 | ASUS NUC 14 Pro (Core Ultra 7 165H) | Lenovo ThinkCentre Neo 50q QC | 
+|---|---|---|---|
+| Processeur monocœur | 3,272 | 2,291 | N/D | 
+| Processeur multicœur | 24,049 | 13,911 | N/D | 
+| GPU OpenCL | 30,982 | 27,790 | N/D | 
+| GPU Vulkan | 40,042 | 25,088 | N/D | 
+Les chiffres clés : 3 272 en monocœur et 24 049 en multicœur, soit respectivement 43 % et 73 % de plus que le Core Ultra 7 165H du NUC 14 Pro sur la même suite de tests. À titre de comparaison avec nos ordinateurs portables, ce score multicœur surpasse également tous les systèmes Panther Lake que nous avons testés cette année, des machines trois à quatre fois plus chères. L’Adreno X2-90 atteint 40 042 en Vulkan, soit 60 % de plus que l’Arc du NUC, et 30 982 en OpenCL, des performances comparables à celles des ordinateurs portables Arc B390 à 12 cœurs Xe, plutôt qu’à celles des cartes graphiques intégrées de base.
+Geekbench 6
+Geekbench 6 mesure les performances du processeur à l'aide d'une série de tâches courantes, avec des scores distincts pour les charges de travail monocœur et multicœur, ainsi que des scores de calcul GPU via OpenCL et Vulkan. Plus le score est élevé, meilleures sont les performances. Il est antérieur d'une génération à Geekbench 7, et c'est précisément pour cette raison qu'il figure ici : il s'agit de la suite de tests que nous avons publiée pour les deux systèmes de comparaison, et nous l'avons réexécutée sur le QN10 via la version native Arm afin de la comparer aux deux.
+| Geekbench 6 (plus c'est élevé, mieux c'est) | ASUS Ascent QN10 | ASUS NUC 14 Pro (Core Ultra 7 165H) | Lenovo ThinkCentre Neo 50q QC | 
+|---|---|---|---|
+| Processeur monocœur | 3,667 | 2,517 | 2,148 | 
+| Processeur multicœur | 19,884 | 12,477 | 8,565 | 
+| GPU OpenCL | 39,761 | 35,449 | 9,634 | 
+| GPU Vulkan | 43,942 | 36,089 | N/D | 

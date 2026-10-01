@@ -9,11 +9,9 @@ dates: []
 keywords: []
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [549, 618]
+source_lines: [0, 0]
 sha256: 7e39df58494fd6b7135c7d3709dd29a55b9c920d90c7fa32366d21a086610806
 ---
-
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
 
 I actually hesitated between the Galaxy A3 2016 and the X Compact... Having had an Xperia J then M2 my choice logically went to the X Compact, which, in the end, only costs me 50â¬ more at Orange (yes, over 2 years, calculating the base price of the smartphone + the plan supplement compared to the plan I would have without taking a phone with it, so 350â¬ whereas the A3 2016, at the cheapest would have been 300â¬) Moreover I've never had a problem with Sony for 4 years, the J and the M2 still work very well, except that the 1st was clearly very slow and well filled up, for the 2nd I always regretted the Compact format... I was a bit afraid of the SAR too but ultimately it's lower than the Huawei P9 Lite or even the latest ones from Apple, for example... Furthermore the A3 2016 seemed a bit light on the configuration side (especially for a total difference of 50â¬ personally) After nearly 1 month of use no regrets, the X Compact works very well, is very smooth, has great battery life and takes very beautiful photos :) But completely agree with you, there's a missing mid-range Compact model, even if what allowed me to get it was already the small drop in range which allowed the price to drop... if it had been like the Z5 Compact at 600â¬ at its release it wouldn't have worked.
 

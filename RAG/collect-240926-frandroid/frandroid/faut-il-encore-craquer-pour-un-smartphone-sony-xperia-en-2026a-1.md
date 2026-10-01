@@ -9,11 +9,9 @@ dates: []
 keywords: ["cost", "exploit"]
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [1, 116]
+source_lines: [0, 0]
 sha256: d9977b5429716f61064b94f8179d14e98046b348435850b0c7561fdf4d17a5fd
 ---
-
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
 
 <!-- source: https://www.frandroid.com/guide-dachat/smartphones/389641_quel-smartphone-sony-xperia-choisir -->
 

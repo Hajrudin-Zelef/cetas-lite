@@ -1,0 +1,40 @@
+---
+id: collect-261001-general-networking/general-networking/fr-review-kioxia-cd9p-r-review-read-intensive-gen5-up-to-61-44tb-48b666c8-3
+title: "fr-review-kioxia-cd9p-r-review-read-intensive-gen5-up-to-61-44tb-48b666c8"
+domain: general-networking
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-general-networking/fr-review-kioxia-cd9p-r-review-read-intensive-gen5-up-to-61-44tb-48b666c8.md
+source_anchor: ""
+source_lines: [89, 111]
+sha256: 01eb07a4dc0e46b3a18e76055177200293307d1f1f61c323ce7a01c2d2f74a06
+---
+
+# fr-review-kioxia-cd9p-r-review-read-intensive-gen5-up-to-61-44tb-48b666c8
+
+Sur l'ensemble du test d'écriture aléatoire 64K, le KIOXIA CD9P-R (7.68 To) a affiché une bande passante constamment satisfaisante, avec une moyenne de 3 à 6 Go/s et un pic à 6 906 Mo/s pour les profondeurs de file d'attente les plus élevées testées (E/S : 32 / Nombre de tâches : 8). Le CD9P-R se situe ainsi en milieu de classement pour le débit d'écriture 64K, nettement derrière le Micron 9550 Max (12.8 To), qui a atteint des pics supérieurs à 10 Go/s, mais devant le Solidigm PS1010 (7.68 To) et le SanDisk DC SN861 (7.68 To), qui se situent dans la seconde moitié du classement. Le Micron 7600 Max (6.4 To) a suivi de près, atteignant un plafond similaire et se classant juste au-dessus du CD9P-R.
+Latence d'écriture aléatoire de 64 K
+Le test de latence d'écriture aléatoire 64K du KIOXIA CD9P-R (7.68 To) a révélé un comportement relativement équilibré. À faible profondeur de file d'attente, la latence était bien maîtrisée, inférieure à 100 µs pour une profondeur d'E/S et un nombre de tâches de 1. À mesure que la concurrence augmentait, la latence s'élevait progressivement entre 300 et 700 µs pendant la majeure partie du test à profondeur de file d'attente moyenne, puis grimpait davantage aux pics de profondeur, atteignant près de 2 000 µs. Le CD9P-R se situait ainsi en milieu de classement pendant la majeure partie du test, avec des performances plus prévisibles que celles du Solidigm PS1010 (7.68 To) et du Pascari X200P (7.68 To), qui présentaient des pics plus marqués entre 4 000 et 6 000 µs à forte concurrence.
+Le Micron 9550 Max (12.8 To) a maintenu la latence la plus constante sur l'ensemble du balayage, dépassant rarement 1 700 µs même aux profondeurs maximales, tandis que le Micron 7600 Max (6.4 To) et le Micron 9550 Pro (7.68 To) ont suivi de près.
+Lecture aléatoire 64K
+Le test de lecture aléatoire 64K a révélé l'un des atouts majeurs du KIOXIA CD9P-R (7.68 To) : des performances exceptionnelles à faible profondeur de file d'attente. Dès les premières étapes du test (profondeur d'E/S 1 / nombre de tâches 1), le CD9P-R a atteint environ 1 334 Mo/s, dominant largement le marché grâce à sa latence de lecture par E/S extrêmement faible. Cet avantage s'est maintenu pour les faibles profondeurs de file d'attente, le CD9P-R se classant systématiquement parmi les meilleurs.
+Lorsque la profondeur de la file d'attente a atteint 8/4 à 32/4, d'autres disques ont rattrapé et dépassé le CD9P-R. Aux niveaux de concurrence les plus élevés, le CD9P-R s'est stabilisé autour de 11.0 à 12.0 Go/s, le plaçant derrière le Pascari X200P (7.68 To), le Micron 9550 Pro (7.68 To) et le Micron 9550 Max (12.8 To), qui ont atteint 13.5 à 14.2 Go/s.
+Latence de lecture aléatoire de 64 K
+Le test de latence en lecture aléatoire 64K a confirmé l'avantage du KIOXIA CD9P-R (7.68 To) en termes de latence de lecture pour les faibles profondeurs de file d'attente. De 1 IODepth / NumJobs 1 jusqu'à une faible concurrence, le CD9P-R a constamment affiché les latences les plus faibles du groupe, se classant nettement en dessous de la plupart de ses concurrents et restant dans une fourchette étroite pour les profondeurs de file d'attente moyennes.
+Lorsque la profondeur de la file d'attente a augmenté au-delà de la plage 32/1 à 16/4, le groupe a convergé et, à la fin du balayage, tous les disques durs étaient passés dans la plage de 600 µs à 1 400 µs.
+Écriture aléatoire 16K
+Sur un test d'IOPS en écriture aléatoire de 16 000 requêtes, le KIOXIA CD9P-R (7.68 To) a affiché des performances constantes en milieu de plage. Le Micron 9550 Max (12.8 To) a de nouveau dominé, maintenant une trajectoire d'IOPS très élevée, nettement supérieure à celle des autres modèles, atteignant souvent 600 000 à 690 000 IOPS à des profondeurs de file d'attente importantes, tandis que le Micron 7600 Max (6.4 To) a conservé un débit élevé entre 400 000 et 450 000 IOPS.
+Le CD9P-R a affiché des performances similaires à celles du Kingston DC3000ME (7.68 To), du Micron 9550 Pro (7.68 To) et du SanDisk DC SN861 (7.68 To) sur la majeure partie du test, oscillant généralement entre 200 000 et 250 000 IOPS à des profondeurs d'écriture modérées et atteignant 365 000 à 440 000 IOPS à la plus forte concurrence testée (profondeur d'écriture : 32 ; nombre de tâches : 16). Le Solidigm PS1010 (7.68 To) a enregistré les performances les plus faibles en écriture aléatoire 16 Ko, se classant fréquemment dernier par rapport aux autres disques.
+Latence d'écriture aléatoire de 16 K
+Lors du test de latence d'écriture aléatoire 16K, le KIOXIA CD9P-R (7.68 To) s'est constamment classé dans la partie basse à moyenne de la plage de latence d'écriture, et ce, pour la majeure partie de la profondeur de file d'attente. À faible profondeur de file d'attente, le disque a démarré sous les 50 µs et a maintenu une latence stable et bien maîtrisée pendant la partie moyenne du test. Lorsque la profondeur de file d'attente a augmenté pour atteindre la plage 8/8-32/8, la latence a grimpé plus rapidement pour tous les disques, et le CD9P-R a oscillé entre 500 et 750 µs avant d'atteindre un pic d'environ 1 165 µs.
+Le Micron 9550 Max (12.8 To) a affiché la latence la plus stable sur l'ensemble de la plage de tests, restant inférieure à la moyenne pour la plupart des points de mesure. Les Solidigm PS1010 (7.68 To) et Pascari X200P (7.68 To) ont présenté les pics de latence les plus marqués à des profondeurs de file d'attente élevées, atteignant respectivement 3 300 µs et 2 050 µs. En revanche, les CD9P-R, Micron 7600 Max (6.4 To) et Kingston DC3000ME (7.68 To) ont affiché un comportement plus prévisible dans la plage de concurrence élevée. La latence d'écriture de 16 Ko du CD9P-R est l'une des plus constantes du groupe sous des charges de parallélisme mixte importantes.
+Lecture aléatoire 16K
+Lors du test d'IOPS en lecture aléatoire à 16 000 itérations, les SSD Pascari X200P (7.68 To) et Micron 9550 Max (12.8 To) ont enregistré les IOPS en lecture soutenue les plus élevées, approchant les 900 000 itérations à saturation. Le Micron 9550 Pro (7.68 To) a suivi de près avec une progression similaire, tandis que le Solidigm PS1010 (7.68 To) a complété le haut du classement.
+Le KIOXIA CD9P-R (7.68 To) a délivré 734.3 K IOPS à son point de mesure maximal (IODepth 32 / NumJobs 8), le plaçant dans le milieu supérieur, devant le Micron 7600 Max (6.4 To) à 719.3 K, le Kingston DC3000ME (7.68 To) à 665.6 K et le SanDisk DC SN861 (7.68 To) à 661.1 K IOPS.
+Latence de lecture aléatoire de 16 K
+Lors du test de latence de lecture aléatoire 16K, le KIOXIA CD9P-R (7.68 To) a affiché une excellente latence de lecture sur la majeure partie de la plage de profondeur de file d'attente testée. Dès les premières étapes du test, le CD9P-R a atteint environ 33 µs pour une profondeur d'E/S et un nombre de tâches de 1. Il est resté parmi les meilleurs jusqu'à la limite de concurrence modérée, se maintenant généralement sous la barre des 100 µs.
+Lorsque la profondeur de la file d'attente atteignait les niveaux de concurrence les plus élevés, la latence de tous les disques augmentait fortement. Le CD9P-R atteignait environ 713 µs au pic, se classant derrière le SanDisk DC SN861 (7.68 To) et le Kingston DC3000ME (7.68 To), qui dépassaient les 820-845 µs, tandis que le Micron 9550 Max (12.8 To) et le Micron 9550 Pro (7.68 To) conservaient une latence maximale inférieure.
+Écriture aléatoire 4K

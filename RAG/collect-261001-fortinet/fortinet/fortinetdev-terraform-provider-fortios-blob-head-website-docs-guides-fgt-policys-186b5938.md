@@ -1,0 +1,290 @@
+---
+id: collect-261001-fortinet/fortinet/fortinetdev-terraform-provider-fortios-blob-head-website-docs-guides-fgt-policys-186b5938
+title: "cd main/"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/fortinetdev-terraform-provider-fortios-blob-head-website-docs-guides-fgt-policys-186b5938.md
+source_anchor: ""
+source_lines: [1, 273]
+sha256: cf98a5acc1e1f10c55c7ff392e3acbaa78740c93f4c97e6469bb1157d7ba8770
+---
+
+# cd main/
+
+| subcategory |  | 
+|---|---|
+| layout | fortios | 
+| page_title | To sort policies | 
+| description | Methods used to sort policies. | 
+Methods used to sort policies.
+Sort resources will with the surfix of '_sort'. e.g. fortios_firewall_policy_sort.
+You can specify sort the resources by which argument. Check each resource's argument sortby about the supported sort variable.
+By default, the sort resource is one-time run. Specify argument force_recreate to run it multiple times. If set to 'True', then the value on state file will always be set to False to trigger the re-create operation for every terraform plan/apply. Otherwise, the state file will set to the given value, which means you can set it to depend on other resource changes.
+Terraform is a parallel system, that means when Terraform walks the dependency tree, it will create as many resources in parallel as it can, so terraform can figure out the most efficient way to make it happen. We can make resources be submitted to the device in order with the help of terraform's depends_on feature, which includes 'depends_on for resource' and 'depends_on for modules' (supported in terraform0.13). For example, let's suppose there are the following modules:
+[directory]
+  ├── m1
+  │   └── m1.tf
+  ├── m2
+  │   └── m2.tf
+  ├── m3
+  │   └── m3.tf
+  └── main
+      └── root.tf
+Module m1 will create policies with policyid 1,2,3, m2 will create policies 4,5,6, and m3 will create policies 7,8,9. If we want them to be submitted to the device in the order of 1, 2, 3, 4, 5, 6, 7, 8, 9, the configuration is as follows:
+# cd main/
+# cat ../m1/m1.tf
+resource "fortios_firewall_policy" "trname1" {
+  action   = "accept"
+  name     = "policy1"
+  policyid = 1
+  status   = "enable"
+  dstaddr {
+    name = "all"
+  }
+  dstintf {
+    name = "port4"
+  }
+  service {
+    name = "HTTP"
+  }
+  srcaddr {
+    name = "all"
+  }
+  srcintf {
+    name = "port3"
+  }
+}
+resource "fortios_firewall_policy" "trname2" {
+  action   = "accept"
+  name     = "policy2"
+  policyid = 2
+  status   = "enable"
+  dstaddr {
+    name = "swscan.apple.com"
+  }
+  dstintf {
+    name = "port2"
+  }
+  service {
+    name = "AFS3"
+  }
+  srcaddr {
+    name = "myaddress"
+  }
+  srcintf {
+    name = "port1"
+  }
+  depends_on = [
+    fortios_firewall_policy.trname1
+  ]
+}
+resource "fortios_firewall_policy" "trname3" {
+  action   = "accept"
+  name     = "policy3"
+  policyid = 3
+  status   = "enable"
+  dstaddr {
+    name = "all"
+  }
+  dstintf {
+    name = "port2"
+  }
+  service {
+    name = "ALL_TCP"
+  }
+  srcaddr {
+    name = "myaddress"
+  }
+  srcintf {
+    name = "port1"
+  }
+  depends_on = [
+    fortios_firewall_policy.trname2
+  ]
+}
+output "m1output" {
+  value = "m1 output"
+  depends_on = [
+    fortios_firewall_policy.trname3
+  ]
+}
+# cat ../m2/m2.tf
+resource "fortios_firewall_policy" "trname4" {
+  action   = "accept"
+  name     = "policy4"
+  policyid = 4
+  status   = "enable"
+  dstaddr {
+    name = "swscan.apple.com"
+  }
+  dstintf {
+    name = "port2"
+  }
+  service {
+    name = "ALL_ICMP"
+  }
+  srcaddr {
+    name = "google-play"
+  }
+  srcintf {
+    name = "port1"
+  }
+}
+resource "fortios_firewall_policy" "trname5" {
+  action   = "accept"
+  name     = "policy5"
+  policyid = 5
+  status   = "enable"
+  dstaddr {
+    name = "autoupdate.opera.com"
+  }
+  dstintf {
+    name = "port3"
+  }
+  service {
+    name = "ALL_TCP"
+  }
+  srcaddr {
+    name = "myaddress"
+  }
+  srcintf {
+    name = "port1"
+  }
+  depends_on = [
+    fortios_firewall_policy.trname4
+  ]
+}
+resource "fortios_firewall_policy" "trname6" {
+  action   = "accept"
+  name     = "policy6"
+  policyid = 6
+  status   = "enable"
+  dstaddr {
+    name = "all"
+  }
+  dstintf {
+    name = "port2"
+  }
+  service {
+    name = "ALL_TCP"
+  }
+  srcaddr {
+    name = "autoupdate.opera.com"
+  }
+  srcintf {
+    name = "port2"
+  }
+  depends_on = [
+    fortios_firewall_policy.trname5
+  ]
+}
+output "m2output" {
+  value = "m2 output"
+  depends_on = [
+    fortios_firewall_policy.trname5
+  ]
+}
+# cat ../m3/m3.tf
+resource "fortios_firewall_policy" "trname7" {
+  action   = "accept"
+  name     = "policy7"
+  policyid = 7
+  status   = "enable"
+  dstaddr {
+    name = "swscan.apple.com"
+  }
+  dstintf {
+    name = "port2"
+  }
+  service {
+    name = "ALL_TCP"
+  }
+  srcaddr {
+    name = "google-play"
+  }
+  srcintf {
+    name = "port1"
+  }
+}
+resource "fortios_firewall_policy" "trname8" {
+  action   = "accept"
+  name     = "policy8"
+  policyid = 8
+  status   = "enable"
+  dstaddr {
+    name = "autoupdate.opera.com"
+  }
+  dstintf {
+    name = "port3"
+  }
+  service {
+    name = "ALL_ICMP"
+  }
+  srcaddr {
+    name = "myaddress"
+  }
+  srcintf {
+    name = "port1"
+  }
+  depends_on = [
+    fortios_firewall_policy.trname7
+  ]
+}
+resource "fortios_firewall_policy" "trname9" {
+  action   = "accept"
+  name     = "policy9"
+  policyid = 9
+  status   = "enable"
+  dstaddr {
+    name = "all"
+  }
+  dstintf {
+    name = "port2"
+  }
+  service {
+    name = "ALL_ICMP"
+  }
+  srcaddr {
+    name = "autoupdate.opera.com"
+  }
+  srcintf {
+    name = "port2"
+  }
+  depends_on = [
+    fortios_firewall_policy.trname8
+  ]
+}
+output "m3output" {
+  value = "m3 output"
+  depends_on = [
+    fortios_firewall_policy.trname9
+  ]
+}
+Note the depends_on in the resource configuration.
+# cat root.tf
+provider "fortios" {
+  hostname = "192.168.52.177"
+  token = "rGqsgj9Qmh3dwfQdc8hd3t3G6xG3N5" # 6.2.0
+  insecure = "true"
+}
+module "m1" {
+  source = "../m1"
+}
+module "m2" {
+  source = "../m2"
+  depends_on = [
+    module.m1
+  ]
+}
+module "m3" {
+  source = "../m3"
+  depends_on = [
+    module.m2
+  ]
+}
+Note the depends_on in the module configuration.
+We will find that these policies have been submitted to the device in the order of 1, 2, 3, 4, 5, 6, 7, 8, 9 after executing terraform apply.

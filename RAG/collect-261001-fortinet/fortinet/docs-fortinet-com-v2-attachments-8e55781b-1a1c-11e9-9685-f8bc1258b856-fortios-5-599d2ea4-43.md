@@ -1,0 +1,157 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-43
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [5840, 5979]
+sha256: e1c2c0dca9b1a930b9259af8ac46659dc3031e60aedb6a45e4dd0bca34d1ab6c
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FullmeshHA Examplefull meshHAconfiguration
+Youcanusethiscommandtoconfirmthat theclusterishealthyandoperatingnormally,some
+information abouttheclusterconfiguration, andinformation abouthowlongtheclusterhasbeen
+operating.Information notshowninthisexampleincludeshowtheprimaryunitwasselected,
+configurationsynchronizationstatus, usagestatsforeachclusterunit, heartbeatstatus, andthe
+relativeprioritiesoftheclusterunits.
+4. Usetheexecute ha manage commandtoconnecttotheotherclusterunit’sCLIandusethesecommandsto
+verifyclusterstatus.
+To troubleshoot the cluster configuration
+If theclustermemberslistandthedashboarddoesnotdisplayinformation forbothclusterunitstheFortiGates
+arenotfunctioning asacluster.SeeExamplefull meshHAconfigurationonpage156totroubleshootthecluster.
+To add basic configuration settings and the redundant interfaces
+Usethefollowing stepstoaddafewbasicconfigurationsettings. SomestepsusetheCLIandsometheGUI.
+1. LogintotheclusterCLI.
+2. Addapasswordfortheadminadministrative account.
+config system admin
+edit admin
+set password <password_str>
+end
+3. Temporarilydeletethedefault route.
+Youcannotaddaninterfacetoaredundantinterfaceifanysettings(suchasthedefault route)are
+configuredforit.
+config router static
+delete 1
+end
+4. Goto System > Network > Interfaceandselect Create Newtoaddtheredundantinterfacetoconnecttothe
+Internet.
+5. AddtheredundantinterfacetoconnecttotheInternet.
+config system interface
+edit Port1_Port2
+set type redundant
+set member port1 port2
+end
+6. Addtheredundantinterfacetoconnecttotheinternalnetwork.
+config system interface
+edit Port3_Port4
+set type redundant
+set member port3 port4
+end
+ThevirtualMACaddressesoftheFortiGate interfaceschangetothefollowing. Notethat port1and
+port2bothhavetheport1virtualMACaddressandport3andport4bothhavetheport3virtualMAC
+address:
+HighAvailability
+Fortinet TechnologiesInc.
+165
+
+Troubleshootingfull meshHA FullmeshHA
+l port1interfacevirtualMAC:00-09-0f-09-00-00
+l port10interfacevirtualMAC:00-09-0f-09-00-01
+l port11interfacevirtualMAC:00-09-0f-09-00-02
+l port12interfacevirtualMAC:00-09-0f-09-00-03
+l port13interfacevirtualMAC:00-09-0f-09-00-04
+l port14interfacevirtualMAC:00-09-0f-09-00-05
+l port15interfacevirtualMAC:00-09-0f-09-00-06
+l port16interfacevirtualMAC:00-09-0f-09-00-07
+l port17interfacevirtualMAC:00-09-0f-09-00-08
+l port18interfacevirtualMAC:00-09-0f-09-00-09
+l port19interfacevirtualMAC:00-09-0f-09-00-0a
+l port2interfacevirtualMAC:00-09-0f-09-00-00 (sameasport1)
+l port20interfacevirtualMAC:00-09-0f-09-00-0c
+l port3interfacevirtualMAC:00-09-0f-09-00-0d
+l port4interfacevirtualMAC:00-09-0f-09-00-0d (sameasport3)
+l port5interfacevirtualMAC:00-09-0f-09-00-0f
+l port6interfacevirtualMAC:00-09-0f-09-00-10
+l port7interfacevirtualMAC:00-09-0f-09-00-11
+l port8interfacevirtualMAC:00-09-0f-09-00-12
+l port9interfacevirtualMAC:00-09-0f-09-00-13
+7. Goto Router > Static > Static Routes.
+8. Addthedefault route.
+config router static
+edit 1
+set dst 0.0.0.0 0.0.0.0
+set gateway 172.20.120.2
+set device Port1_Port2
+end
+To configure HA port monitoring for the redundant interfaces
+1. Enterthefollowing commandtoconfigureportmonitoring fortheredundantinterfaces:
+config system ha
+set monitor Port1_Port2 Port3_Port4
+end
+Troubleshootingfull mesh HA
+Troubleshootingfull meshHAclustersissimilartotroubleshootinganycluster(seeFGCPconfigurationexamples
+andtroubleshootingonpage64orVirtualclustersonpage144).Theconfigurationandoperationofafull mesh
+HAclusterisverysimilartotheconfigurationandoperationofastandardcluster.Theonlydifferencesrelateto
+theconfiguration, connection,andoperationoftheredundantinterfacesandredundantswitches.
+l Makesuretheredundantinterfacesandswitchesareconnectedcorrectly.Withsomanyconnectionsitispossible
+tomakemistakesorforcablestobecomedisconnected.
+166 HighAvailability
+Fortinet TechnologiesInc.
+
+FullmeshHA Troubleshootingfull meshHA
+l Confirmthat theconfigurationoftheclusterunit802.3adAggregateorRedundantinterfacesiscorrectaccordingto
+theconfigurationproceduresinthischapter.
+l Insomeconfigurationswithsomeswitchhardware,MAC-learningdelaysontheinter-switchlinksonthe
+surroundingtopologiesmayoccur.ThedelaysoccurifthegratuitousARPpacketssentbytheclusterafterafailover
+aredelayedbytheswitchesbeforebeingsentacrosstheinter-switchlink.If thishappensthesurrounding
+topologiesmaybedelayedinrecognizingthefailoverandwillkeepsendingpacketstotheMACaddressofthe
+failed primaryunitresultinginlosttraffic. Resolvingthisproblemmayrequirechangingtheconfigurationofthe
+switchorreplacingthem withswitchhardwarethat doesnotdelaythegratuitousARPpackets.
+HighAvailability
+Fortinet TechnologiesInc.
+167
+
+Operatingclustersandvirtualclusters
+Withsomeexceptions,youcanoperateaclusterinmuchthesamewayasyouoperateastandaloneFortiGate.
+Thischapterdescribesthoseexceptionsandalsothesimilarities involvedinoperatingaclusterinsteadofa
+standaloneFortiGate.
+Operating a cluster
+TheconfigurationsofalloftheFortiGates inaclusteraresynchronizedsothat theclusterunitscansimulate a
+singleFortiGate. Becauseofthissynchronization,youmanagetheHAclusterinsteadofmanagingtheindividual
+clusterunits. YoumanagetheclusterbyconnectingtotheGUIusinganyclusterinterfaceconfiguredforHTTPS
+orHTTPadministrative access.YoucanalsomanagetheclusterbyconnectingtotheCLIusinganycluster
+interfaceconfiguredforSSHortelnet administrative access.
+TheclusterGUIdashboarddisplaystheclustername, thehostnameandserialnumberofeachclustermember,
+andalsoshowstheroleofeachunitinthecluster.Therolescanbemaster(primaryunit)andslave(subordinate
+units).Thedashboardalsodisplaysaclusterunitfrontpanelillustration.
+Youcanalsogoto System > HA toviewtheclustermemberslist. Thisincludesstatusinformation foreach
+clusterunit. Youcanalsousetheclustermemberslistforanumberofclustermanagement functionsincluding
+changingtheHAconfigurationofanoperatingcluster,changingthehostnameanddevicepriorityofa
+subordinateunit, anddisconnectingaclusterunitfromacluster.SeeClustermemberslistonpage186.
+Youcanuselogmessagestoviewinformation aboutthestatusofthecluster.SeeClustersandloggingonpage
+178.
+YoucanuseSNMPtomanagetheclusterbyconfiguringaclusterinterfaceforSNMPadministrative access.
+UsinganSNMPmanageryoucangetclusterconfigurationinformation andreceivetraps.SeeClustersand
+SNMPonpage181.
+Youcanconfigureareservedmanagement interfacetomanageindividualclusterunits. Youcanusethis
+interfacetoaccesstheGUIorCLIandtoconfigureSNMPmanagement forindividualclusterunits. See
+Managingindividualclusterunitsusingareservedout-of-bandmanagement interfaceonpage169.
+YoucanmanageindividualclusterunitsbyusingSSH,telnet, ortheCLIconsoleontheGUIdashboardto
+connecttotheCLIofthecluster.FromtheCLIyoucanusetheexecute ha manage commandtoconnectto
+theCLIofanyunitinthecluster.
+Youcanalsomanageindividualclusterunitsbyusinganull-modem cabletoconnecttoanyclusterunitCLI.
+Fromthereyoucanusetheexecute ha manage commandtoconnecttotheCLIofeachunitinthecluster.
+Operating a virtual cluster
+Managingavirtualclusterisverysimilartomanagingaclusterthat doesnotcontainmultiple virtualdomains.
+Mostoftheinformation inthischapterappliestomanagingbothkindsofclusters.Thissectiondescribeswhatis
+different whenmanagingavirtualcluster.
+168 HighAvailability
+Fortinet TechnologiesInc.
+

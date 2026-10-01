@@ -1,0 +1,173 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-22
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [2710, 2865]
+sha256: f4772ca7a270ad549422065d57b0b2971a5fbf2d06b175a9f867d74fda0bf6f0
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FGCPconfigurationexamplesandtroubleshooting SettinguptwonewFortiGates asanFGCPcluster
+uninterruptible-upgrade: enable
+ha-mgmt-status : disable
+ha-eth-type : 8890
+hc-eth-type : 8891
+l2ep-eth-type : 8893
+ha-uptime-diff-margin: 300
+vcluster2 : disable
+vcluster-id : 1
+override : disable
+priority : 128
+slave-switch-standby: disable
+minimum-worker-threshold: 1
+monitor :
+pingserver-monitor-interface:
+pingserver-failover-threshold: 0
+pingserver-slave-force-reset: enable
+pingserver-flip-timeout: 60
+vdom : "root"
+13. Poweroff theFortiGate.
+To connect the cluster to the network
+1. Connecttheport1interfacesofFGT_ha_1andFGT_ha_2toaswitchconnectedtotheInternet.
+2. Connecttheport2interfacesofFGT_ha_1andFGT_ha_2toaswitchconnectedtotheinternalnetwork.
+3. Connecttheport3interfacesofFGT_ha_1andFGT_ha_2together. YoucanuseacrossoverEthernetcableor
+regularEthernetcablesandaswitch.
+4. Connecttheport4interfacesoftheclusterunitstogether. YoucanuseacrossoverEthernetcableorregular
+Ethernetcablesandaswitch.
+5. Powerontheclusterunits.
+Theunitsstartandnegotiate tochoosetheprimaryunitandthesubordinateunit. Thisnegotiation
+occurswithnouserinterventionandnormallytakeslessthanaminute.
+Whennegotiation iscompletetheclusterisreadytobeconfiguredforyournetwork.
+To view cluster status
+Usethefollowing stepstoviewclusterstatusfromtheCLI.
+1. Determinewhichclusterunitistheprimaryunit.
+l Usethenull-modem cableandserialconnectiontore-connecttotheCLIofoneoftheclusterunits.
+l Enterthecommandget system status.
+l If thecommandoutput includesCurrent HA mode: a-p, master,theclusterunitsareoperatingasa
+clusterandyouhaveconnectedtotheprimaryunit. ContinuewithStep"SettinguptwonewFortiGates asan
+FGCPcluster"onpage72.
+l If thecommandoutput includesCurrent HA mode: a-p, backup,youhaveconnectedtoasubordinate
+unit. Connectthenull-modem cabletotheotherclusterunit, whichshouldbetheprimaryunitandcontinue
+withStep2.
+If thecommandoutput includesCurrent HA mode: standalone ,thecluster
+unitisnotoperatinginHAmodeandyoushouldreviewyourHAconfiguration.
+HighAvailability
+Fortinet TechnologiesInc.
+81
+
+SettinguptwonewFortiGates asanFGCPcluster FGCPconfigurationexamplesandtroubleshooting
+2. Enterthefollowing commandtoconfirmtheHAconfigurationofthecluster:
+get system ha status
+HA Health Status: OK
+Model: FortiGate- XXXX
+Mode: HA A-P
+Group: 0
+Debug: 0
+Cluster Uptime: 7 days 00:30:26
+.
+.
+.
+Youcanusethiscommandtoconfirmthat theclusterishealthyandoperatingnormally,some
+information abouttheclusterconfiguration, andinformation abouthowlongtheclusterhasbeen
+operating.Information notshowninthisexampleincludeshowtheprimaryunitwasselected,
+configurationsynchronizationstatus, usagestatsforeachclusterunit, heartbeatstatus, andthe
+relativeprioritiesoftheclusterunits.
+.
+3. Checktheclustersynchronizationstatustomakesuretheprimaryandbackupunitshavethesameconfiguration. Log
+intotheprimaryunitCLIandenterthiscommand:
+diagnose sys ha checksum show
+TheCLIlistsallmembers'checksums.If bothclusterunitshaveidenticalchecksumsyoucanbesurethat their
+configurationsaresynchronized.If thechecksumsaredifferent waitashortwhileandenterthecommandagain.
+Repeatuntil thechecksumsareidentical. It maytakeawhileforsomepartsoftheconfigurationtobesynchronized.If
+thechecksumsneverbecomeidenticalvisittheFortinet Supportwebsitetofindhelptroubleshootingtheproblem.
+To troubleshoot the cluster configuration
+If theclustermemberslistandthedashboarddonotdisplayinformation forbothclusterunitstheFortiGates are
+notfunctioning asacluster.SeeTroubleshootingHAclustersonpage138totroubleshootthecluster.
+To add basic configuration settings to the cluster
+Usethefollowing stepstoaddsomebasicsettingstotheclustersothat itcanconnecttothenetwork.
+1. LogintotheprimaryunitCLI.
+2. Addapasswordfortheadminadministrative account.
+config system admin
+edit admin
+set password <password_str>
+end
+3. Configuretheport1andport2interfaces.
+config system interface
+edit port1
+set ip 172.20.120.141/24
+next
+edit port2
+set ip 10.11.101.100/24
+end
+82 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting AddinganewFortiGate toanoperatingcluster
+4. Addadefault route.
+config router static
+edit 1
+set dst 0.0.0.0 0.0.0.0
+set gateway 172.20.120.2
+set device port1
+end
+Adding a new FortiGate to an operating cluster
+ThisproceduredescribeshowtoaddanewFortiGate toafunctioning cluster.Addinganewunittoaclusterdoes
+notinterrupttheoperationoftheclusterunlessyouhavetochangehowtheclusterisconnectedtothenetworkto
+accommodatethenewclusterunit.
+Youcanusethisproceduretoaddasmanyunitsasrequiredtothecluster.
+To add a new unit to a functioning cluster
+1. Install thesamefirmwarebuildonthenewclusterunitasisrunningonthecluster.
+2. RegisterandapplylicensestotheprimaryFortiGate beforeconfiguringitforHAoperation.Thisincludeslicensing
+for FortiCare Support, IPS, AntiVirus, Web Filtering, Mobile Malware, FortiClient, FortiCloud,and
+additional virtual domains(VDOMs).AllFortiGates intheclustermusthavethesameleveloflicensingfor
+FortiGuard, FortiCloud, FortiClient, andVDOMs. FortiTokenlicensescanbeaddedatanytime becausetheyare
+synchronizedtoallclustermembers.
+If theFortiGates intheclusterwillberunningFortiOSCarrier,applytheFortiOSCarrierlicensebeforeconfiguring
+thecluster(andbeforeapplyingotherlicenses).ApplyingtheFortiOSCarrierlicensesetstheconfigurationto
+factorydefaults, requiringyoutorepeatstepsperformedbeforeapplyingthelicense.
+Youcanalsoinstallanythird-partycertificatesontheprimaryFortiGate beforeforming thecluster.Oncethe
+clusterisformed, third-partycertificatesaresynchronizedtothebackupFortiGate.
+3. ConfigurethenewclusterunitforHAoperationwiththesameHAconfigurationastheotherunitsinthecluster.
+4. If theclusterisrunningintransparentmode, changetheoperatingmodeofthenewclusterunittotransparent
+mode.
+5. Poweroff thenewclusterunit.
+6. Connectthenewclusterunittothecluster.
+7. Forexample,seeHowtosetupFGCPclustering(recommendedsteps)onpage64.
+8. Poweronthenewclusterunit.
+Whentheunitstartsitnegotiatestojointhecluster.Afteritjoinsthecluster,theclustersynchronizes
+thenewunitconfigurationwiththeconfigurationoftheprimaryunit.
+Youcanaddanewunittoafunctioning clusteratanytime. Forbestresultsthenewclusterunitshould:
+l Havethesamehardwareversionastheclusterunits.
+l Havethesamefirmwarebuildasthecluster.
+l Besettothesameoperatingmode(NATortransparent)asthecluster.
+l BeoperatinginsingleVDOMmode.
+HighAvailability
+Fortinet TechnologiesInc.
+83
+
+Active-activeHAclusterintransparentmode FGCPconfigurationexamplesandtroubleshooting
+Active-active HA cluster in transparentmode
+ThissectiondescribesasimpleHAnetworktopologythat includesanHAclusteroftwogenericFortiGates
+installedbetweenaninternalnetworkandtheInternet andrunningintransparentmode.
+Example transparent mode HA network topology
+ThefigurebelowshowsatransparentmodeFortiGate HAclusterconsistingoftwoFortiGates (FGT_ha_1and
+FGT_ha_2)installedbetweentheInternet andinternalnetwork.Thetopologyincludesarouterthat performs
+NATbetweentheinternalnetworkandtheInternet. Theclustermanagement IPaddressis10.11.101.100.
+Transparentmode HA network topology
+Port3andport4areusedastheheartbeatinterfaces.BecausetheclusterconsistsoftwoFortiGates, youcan
+maketheconnectionsbetweentheheartbeatinterfacesusingcrossovercables.Youcouldalsouseswitchesand
+regularEthernetcables.
+General configuration steps
+ThissectionincludesGUIandCLIprocedures.Theseproceduresassumethat theFortiGates arerunningthe
+sameFortiOSfirmwarebuildandaresettothefactorydefault configuration.
+84 HighAvailability
+Fortinet TechnologiesInc.
+

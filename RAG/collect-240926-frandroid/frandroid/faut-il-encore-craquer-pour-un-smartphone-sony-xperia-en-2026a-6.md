@@ -9,12 +9,11 @@ dates: []
 keywords: ["attention", "lawsuit", "license"]
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [414, 502]
-sha256: 0297ab38e526a4aa70056833805d1e4149705f00886821105c4be1b6d7721289
+source_lines: [0, 0]
+sha256: 22d3ddd7af2d3ddf9c01115d4478cf4d0f3fe4d613eb46ff18f7be3790ad6064
 ---
 
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
-
+ XZ1, which however on paper is not super exciting...
 
 Right now the Sony Xperia XZ is cheaper and it's great at all tasks.
 

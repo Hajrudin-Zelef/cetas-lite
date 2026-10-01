@@ -1,0 +1,113 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-70
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [8898, 8993]
+sha256: fcb7cf7a0fad33b613b187b238f3d260a7b52c34b7eb342e0b608fdeea0fd759
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+HAandfailoverprotection Remotelinkfailover(remoteIPmonitoring)
+Sub-secondfailovercanaccelerateHAfailovertoreducethelinkfailovertime tolessthanonesecondunderideal
+conditions.Actualfailoverperformancemaybevarydependingontraffic patternsandnetworkconfiguration. For
+example,somenetworkdevicesmayrespondslowlytoanHAfailover.
+Noconfigurationchangesarerequiredtosupportsub-secondfailover.However,forbestsub-secondfailover
+results,therecommendedheartbeatintervalis100msandtherecommendedlostheartbeatthresholdis5(see
+Modifying heartbeattiming onpage211).
+config system ha
+set hb-lost-threshold 5
+set hb-interval 1
+end
+Forinformation abouthowtoreducefailovertimes, seeFailoverperformanceonpage248.
+Remote link failover (remote IP monitoring)
+RemotelinkfailoveruseslinkhealthmonitorsontheprimaryFortiGate totestconnectivitywithIPaddressesof
+remotenetworkdevices,forexample,adownstreamrouter.Remotelinkfailovercausesafailoverifoneormore
+oftheseremoteIPaddressesdoesnotrespondtolinkhealthchecking.
+Bybeingabletodetectfailuresinnetworkequipment notdirectlyconnectedtothecluster,remotelinkfailover
+canbeusefulinanumberofwaysdependingonyournetworkconfiguration. Forexample,inafull meshHA
+configuration, withremoteIPmonitoring, theclustercandetectfailuresinnetworkequipment that isnotdirectly
+connectedtotheclusterbutthat wouldinterrupttraffic processedbytheclusteriftheequipment failed.
+HighAvailability
+Fortinet TechnologiesInc.
+239
+
+Remotelinkfailover(remoteIPmonitoring) HAandfailoverprotection
+Example HA remote IP monitoring topology
+Inthesimplified exampletopologyshownabove,theswitchconnecteddirectlytotheprimaryunitisoperating
+normallybutthelinkontheothersideoftheswitchfails. Afterthefailure, traffic cannolongerflowbetweenthe
+primaryunitandtheinternet.
+Todetectthisfailureyoucanenableremotelinkfailoverandcreatealinkhealthmonitor forport2that causesthe
+primaryunittotestconnectivityto192.168.20.20. If thelinkhealthmonitor can'tconnectto192.268.20.20, the
+clustertofailsoverandthesubordinateunitbecomesthenewprimaryunit. Afterthefailover,thehealthcheck
+monitor onthenewprimaryunitcanconnectto192.168.20.20, sothefailovermaintains connectivitybetween
+theinternalnetworkandtheinternet throughthecluster.
+Remotelinkfailoverisactiveonlyontheprimaryunitandonlytheprimaryunitcandetectaremotelinkfailure. If
+theprimaryunitdetectsaremotelinkfailureandcausesafailover,thenewprimaryunitmayalsodetectthis
+failureandcauseanotherfailover.
+Toreducethepotential numberoffailovers,remoteIPmonitoring includesaflip timer, settoarelativelyhigh
+default valueof60minutes. Theflip timeout stopsHAremotelinkfailoverfromcausingafailoveruntil the
+primaryunithasbeenoperatingforthedurationoftheflip timeout.
+If yousettheflip timeout toarelativelyhighnumberofminutes, youcanfindandrepairthenetworkproblemthat
+preventedtheclusterfromconnectingtotheremoteIPaddresswithout theclusterexperiencingverymany
+failovers.Evenifittakesawhiletodetecttheproblem, repeatedfailoversatrelativelylongtime intervalsdonot
+usuallydisruptnetworktraffic.
+240 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection Remotelinkfailover(remoteIPmonitoring)
+Example remote link failover configuration
+Inmostcasesyoushouldacceptthedefault remotelinkfailoverconfiguration. Thedefault configurationconsists
+of:
+l EnablingHAremotelinkfailoverforoneormoreFortiGate interfaces.
+l Enablinglinkmonitoring forthoseinterfaces.
+Forexample,thefollowing configurationenablesHAremoteIPmonitoring fortheport2interface:
+config system ha
+set pingserver-monitor-interface port2
+set pingserver-failover-threshold 0
+set pingserver-slave-force-reset enable
+set pingserver-flip-timeout 60
+end
+Thepingserver- failover-threshold,pingserver- slave-force-reset,andpingserver-
+flip-timeout optionsremainsettotheirdefault values.
+AfterenablingHAremotelinkfailover,youmustconfigurealinkmonitor fortheinterface. Thelinkmonitor also
+includestheremoteIPaddresstomonitor. Allotheroptions,includingtheha-priority remainsettodefaults:
+config system link-monitor
+edit ha-link-monitor
+set server 192.168.20.20
+set srcintf port2
+set ha-priority 1
+set interval 1
+set failtime 5
+end
+Thisconfigurationcausestheprimaryunittocheckthe192.168.20.20 IPaddressfromtheport2interfaceandto
+causeafailoverifthelinkmonitor doesn'tgetaresponsefromthisIP addressafter5failed attempts. Aftera
+failoveroccurs,HAremotelinkfailovercan'tcauseanotherfailoverforatleast60minutes. After60minutes, the
+clusterusesthenormalprimaryunitselectionprocesstoselectaprimaryunit. Afterthenewprimaryunitis
+selected,linkmonitoring resumesoperatingasbefore.
+Youcanadjustthisconfigurationinfollowing ways:
+l Enablingremotelinkfailoverformoreinterfacesbyaddingmoreinterfacestothepingserver- monitor-
+interface.Youmustalsoaddalinkmonitor foreachinterface.
+l If youhaveenabledoverride,youcandisablepingserver- slave-force-reset toreducethenumberof
+failovers.If overrideisenabledandaremotelinkfailoverhasoccured,aftertheflip timeout, evenifthecurrent
+primaryunitisnotexperiencingaremotelinkfailure, ifpingserver- slave-force-reset isenabled,override
+causestheclustertonegotiate andselecttheFortiGate withthehighestprioritytobecometheprimaryunit. Then,
+iftheremotelinkhasnotbeenrestoredfortheFortiGate withthehighestpriority,remotelinkfailovermaycause
+anotherfailover.Butwithoverrideenabled,ifpingsever- slave-force-reset isdisabled,aslongasthe
+currentprimaryunitisnotexperiencingaremotelinkfailure, theclusterwillnotrenegotiate. Inbrief, disabling
+pingserver- slave-force-reset preventsrepeatedfailoversiftheremotelinkisnotrestoredforboth
+FortiGates whenthecurrentprimaryunitexperiencesaremotelinkfailure.
+l Increasetheinterval orfailtime toreducehowoften aremotelinkfailureisdetected.
+Changing the link monitor failover threshold
+If youhavemultiple linkmonitors, youmaywantafailovertooccuronlyifmorethanoneofthem fails.
+HighAvailability
+Fortinet TechnologiesInc.
+241
+

@@ -1,0 +1,151 @@
+---
+id: collect-261001-huawei/huawei/kaiyrkhan-huawei-datacom-ensp-blob-head-lab10-tftp-md-2b1ac679
+title: "Download file from TFTP server"
+domain: huawei
+role: reference
+task: reference
+actors: ["Huawei", "Microsoft"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-huawei/kaiyrkhan-huawei-datacom-ensp-blob-head-lab10-tftp-md-2b1ac679.md
+source_anchor: ""
+source_lines: [1, 134]
+sha256: 26e0880d916daab80fdd13f84d3b302580810ce55913de5a091ecf0e360dc2fa
+---
+
+# Download file from TFTP server
+
+TFTP – Trivial File Transfer Protocol
+| Device | Role | interface | IP Address / Prefix | Operating System | 
+|---|---|---|---|---|
+| Ubuntu | TFTP Server | ens34 | 172.16.128.10 /24 | Ubuntu Server | 
+|  |  | ens32 | DHCP Assigned |  | 
+| R1 | TFTP Client | g0/0/0 | 172.16.128.11 /24 | Huawei VRP | 
+| Debian | TFTP Client | ens34 | 172.16.128.12 /24 | Debian Linux | 
+|  |  | ens32 | DHCP Assigned |  | 
+| Host Machine | Bridge | Loopback1 | 172.16.128.254 /24 | Microsoft Windows | 
+- installation of TFTP Server;
+- Configure the TFTP Server;
+- Configure the Firewall;
+- Testing the TFTP Server.
+Step1: installation of TFTP Server
+System Information
+$ uname -rs
+Linux 6.8.0-101-generic x86_64 GNU/Linux
+$ lsb_release -a
+Ubuntu 24.04.4 LTS
+Codename: noble
+Package атауы: tftpd-hpa
+Daemon/Service атауы: tftpd-hpa
+$ sudo apt update
+$ sudo apt install -y tftpd-hpa tftp-hpa
+tftpd-hpa – HPA's TFTP Server
+tftp-hpa – HPA's TFTP Client
+Status the tftpd-hpa Service/Daemon
+$ sudo systemctl status tftpd-hpa
+active (running)
+$ sudo systemctl is-enabled tftpd-hpa
+enabled$ sudo journalctl -u tftpd-hpa -f
+Step2: Configure the TFTP Server
+Edit tftpd-hpa Configuration File
+$ sudo nano /etc/default/tftpd-hpa
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/srv/tftp"
+TFTP_ADDRESS="172.16.128.10:69"
+TFTP_OPTIONS="--secure --create --listen --verbose"
+CTRL+O, ENTER, CTRL+X
+Restart the tftpd-hpa Service/Daemon
+$ sudo systemctl restart tftpd-hpa
+Modify Permission/Ownership on TFTP Root Directory
+$ ls -ld /srv/tftp
+drwxr-xr-x 2 root nogroup /srv/tftp
+TFTP Root Directory: /srv/tftp немесе /var/lib/tftpboot
+Best practice (үздік тәжірибе) бойынша және Production ортасында ең дұрыс таңдау:
+- Linux дистрибутив RHEL/Rocky болса, онда "/var/lib/tftpboot" дұрыс.
+- Linux дистрибутив Debian/Ubuntu болса, онда "/srv/tftp" дұрыс.
+Modify Ownership
+$ sudo chown -R tftp /srv/tftp
+Modify Permission
+$ sudo chmod -R 755 /srv/tftp
+$ ls -ld /srv/tftp
+drwxr-xr-x 2 tftp nogroup /srv/tftp
+Қосымша ақпарат
+$ getent passwd | grep tftp
+$ getent group | grep tftp
+$ getent passwd | grep nobody
+$ getent group | grep nogroup
+Step3: Configure the Firewall
+$ sudo ufw enable
+$ sudo ufw allow from 172.16.128.0/24 to any port 69 proto udp
+$ sudo ufw deny 69/udp
+$ sudo ufw reload
+$ sudo ufw status$ ss -tulpna
+немесе
+$ netstat -tulpna
+Step4: Testing the TFTP Server
+Download and Upload files
+get - Download file from TFTP server
+put - Upload file from TFTP server
+student@tftp-server:~$ sudo touch /srv/tftp/f1.conf
+student@tftp-server:~$ tftp 172.16.128.10 -c get f1.conf
+student@tftp-server:~$ ls -l
+-rw-rw-r-- 1 student student f1.conf
+Example: TFTP Client - Debian Linux
+student@tftp-client:~$  sudo apt update
+student@tftp-client:~$  sudo apt install -y tftp-hpa
+student@tftp-client:~$ touch f2.conf
+student@tftp-client:~$ tftp 172.16.128.10
+tftp> ?
+tftp> verbose
+tftp> get f1.conf
+tftp> put f2.conf
+tftp> quit
+Example: TFTP Client - Huawei VRP Router/Switch
+# Download file from TFTP server
+tftp <tftp-server-ip> get <remote-file>
+<Huawei> tftp 172.16.128.10 get f1.conf
+TFTP: Downloading the file successfully
+<Huawei> dir
+  Idx  Attr     Size(Byte)  Date        Time(LMT)  FileName 
+    0  -rw-              0  May 03 2026 11:37:46   f1.conf
+tftp 172.16.128.10 get f1.conf
+tftp 172.16.128.10 get f1.conf f11.cfg
+<Huawei> save
+Are you sure to continue? (y/n)[n]: y
+<Huawei> dir
+  Idx  Attr     Size(Byte)  Date        Time(LMT)  FileName 
+   10  -rw-            864  May 03 2026 03:58:19   vrpcfg.zip
+# Upload file from TFTP server
+tftp <tftp-server-ip> put <local-file>
+<Huawei> tftp 172.16.128.10 put vrpcfg.zip
+TFTP: Uploading the file successfully
+student@tftp-server:~$ ls -lh /srv/tftp/
+-rw-rw-rw- 1 tftp tftp vrpcfg.zip
+Example: Cisco IOS
+R1(config)# ip tftp source-interface g0/0/1
+R1# dir ?
+R1# dir system:
+R1# copy running-config tftp:
+Address or name of remote host []? 172.16.128.10
+Destination filename [running-config]? R1-run-config
+R1# dir nvram:
+R1# copy startup-config tftp:
+Address or name of remote host []? 172.16.128.10
+Destination filename [startup-config]? R1-start-config
+R1# dir flash:
+R1# copy flash tftp:
+Source filename []? firmware-file-name.bin
+Address or name of remote host []? 172.16.128.10
+Destination filename [firmware-file-name.bin]? Enter
+student@tftp-server:~$ ls -lh /srv/tftp/
+Configure iptables
+-A INPUT -s 172.16.128.0/24 -m tcp -p tcp --dport 69 -j ACCEPT
+-A INPUT -s 172.16.128.0/24 -m tcp -p udp  --dport 69 -j ACCEPT
+DHCP option 150 and DHCP option 66
+DHCP Option 150 is Cisco proprietary. Option 66 is an IEEE standard. Like option 150, option 66 is used to specify the Name of the TFTP server.
+Option 66 is an open standard juniper supports it. RFC 2132 defines option 66.
+For Cisco phones IP addresses can be assigned manually or by using DHCP. Devices also require access to a TFTP server that contains device configuration name files (.cnf file format), which enables the device to communicate with Cisco Call Manager.
+Cisco IP Phones download their configuration from a TFTP server. When a Cisco IP Phone starts, if it does not have both the IP address and TFTP server IP address pre configured, it sends a request with option 150 to the DHCP server to obtain this information.
+Difference between option 150 and option 66:
+- DHCP option 150 supports a list of TFTP servers (Multiple Server IPs);
+- DHCP option 66 only supports the IP address or the hostname of a single TFTP server.

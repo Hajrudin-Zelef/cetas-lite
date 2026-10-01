@@ -1,0 +1,35 @@
+---
+id: collect-261001-huawei/huawei/fr-case-studies-solutions-campus-202509-hong-kong-kai-tak-sports-park-2f7d4c56
+title: "fr-case-studies-solutions-campus-202509-hong-kong-kai-tak-sports-park-2f7d4c56"
+domain: huawei
+role: reference
+task: reference
+actors: ["China", "Huawei"]
+dates: ["2025-03-01"]
+keywords: ["energy", "incident"]
+source: docs/RAG/collect-261001-huawei/fr-case-studies-solutions-campus-202509-hong-kong-kai-tak-sports-park-2f7d4c56.md
+source_anchor: ""
+source_lines: [1, 18]
+sha256: bd0fc842d995caa93606e390ac8b7b9cbfff1e52663f1c4101df362525cfaf8d
+---
+
+# fr-case-studies-solutions-campus-202509-hong-kong-kai-tak-sports-park-2f7d4c56
+
+Kai Tak Sports Park Redefines the Intelligent Campus Experience
+Produits, solutions et services pour les entreprises
+Cloud products, solutions & services
+Produits, solutions et services pour les opérateurs
+Smartphones, PC, tablettes, montres et plus
+A propos de Huawei, presse, événements et plus
+Nestled in Kowloon City, Hong Kong, Kai Tak Sports Park (KTSP) stands as a vibrant tribute to the region's history and culture, built on the iconic grounds of the Kai Tak Airport. Now, it has become a new vibrant landmark for sports. Seamlessly bridging the past and present, KTSP celebrates its heritage while embracing innovation, embodying the modern spirit of Hong Kong. Renowned as a premier destination for global sports and entertainment, it stages top-tier international competitions while delivering unparalleled spectator experiences and diverse attractions for visitors.
+As a key venue for the 15th National Games of China, KTSP opened its doors on March 1, 2025, demonstrating Hong Kong's unwavering commitment to sports development and marking a major milestone for the region and the Greater Bay Area in hosting world-class events. Through carefully curated events and activities, KTSP will use its excellent facilities and services to bolster Hong Kong's global sports reputation.
+KTSP is committed to building a modern intelligent campus. Since adopting Huawei's intelligent campus solution, KTSP has applied next-generation ICTs such as AI, big data, cloud computing, and 5G. This has helped to achieve efficient operations management, superior intelligent wireless experience, robust intelligent security, and low-carbon green sports, delivering a safer and more convenient intelligent campus experience for the spectators.
+Traditional stadiums face operational inefficiencies and high costs due to reactive management practices. To address these issues, KTSP adopts a proactive and innovative management approach. It establishes an Intelligent Operation Center (IOC) based on Huawei's digital campus platform, which removes information silos, connects different systems, and aggregates key performance indicators across domains. Through data analysis and mining, it visualizes the campus status and makes services manageable and events controllable. This boosts operational efficiency while reducing operational costs.
+By seamlessly integrating cross-platform data, Huawei's digital campus platform allows stadium operators to proactively identify and mitigate risks so that service and operation interruptions can be minimized. It also enables real-time resource allocation and proactive issue resolution. The system provides crowd management, public security information management (PSIM), parking lot management, asset management, zone-based management, energy management, and facility management. On top of this, it optimizes user interface and experience design, data processing, business processes, and future-oriented functions to improve stadium operational efficiency.
+The IOC uses Huawei IdeaPresence 138-inch LED displays, seamlessly combining multiple units into a borderless screen for dynamic data visualization, with support for 4K/8K parallel projection across multiple systems. Huawei IdeaPresence supports a 12-screen display, enabling real-time visibility into multiple KTSP systems, including the IOC, retractable roof, PSIM, stadium management system, and central communication management system. This delivers a unified view that enhances operational efficiency and management performance.
+KTSP offers free Wi-Fi services throughout indoor and outdoor areas with over 3400 wireless access points (APs), including AirEngine 8700 and 5700 series. Visitors can quickly and easily connect to the network in three steps.
+The main stadium is equipped with innovative high-density Wi-Fi coverage technology. More than 800 antenna panels that adopt the 15-degree narrow beam design are connected to the outdoor AirEngine 8700 APs, providing precise coverage for spectator seats and venues. Each AirEngine 8700 AP supports 16 spatial streams, features IP68-rated protection, and provides 6 kV/kA surge protection. They are designed for high-density stadium environments to ensure robust bandwidth and stable connectivity for 50,000 spectators.
+Notably, Wi-Fi coverage in the main stadium extends to the entire venue area, ensuring seamless connectivity for all concertgoers. This highlights the stadium's commitment to delivering exceptional digital services and user experiences.
+Security is the top priority in campus operations of KTSP. By deploying Huawei's integrated campus security solution, KTSP uses video AI algorithms to improve personnel management. The solution can identify more than 10 types of behavior and incidents to support functions like crowd counting and crowd heatmap management. Alarms can be reported in seconds for anomalies, boosting incident response and handling efficiency. The video-based patrol function of the solution uses intelligent cameras to replace security personnel, improving patrol frequency and efficiency while dynamically protecting the entire campus. In addition, Huawei's software-defined cameras support algorithm software upgrades, protecting customers' existing investments.
+To save energy, KTSP uses an AI energy model to monitor and analyze water, electricity, and other energy consumption data in real time to visualize, diagnose, and control energy consumption. Meanwhile, the model offers energy efficiency recommendations by analyzing crowd numbers and temperature variations in different zones. This helps save energy, building an eco-friendly and low-carbon event space and marking a new era in Hong Kong's green sports initiatives.
+Empowering sports with technology, KTSP has been working with Huawei to drive intelligent upgrades. With its world-class facilities and services, KTSP delivers an exceptional sports-viewing experience for spectators and vibrant attractions for visitors. This reinforces Hong Kong's reputation as Asia's premier hub for global events. KTSP stands as both a landmark for sports and a showcase of cultural fusion, embodying Hong Kong's trailblazing creativity and dynamism. Seamlessly bridging the past and the future, the landmark masterpiece perfectly integrates innovative technologies with sports, transforming Hong Kong into a hub of boundless energy and limitless potential.

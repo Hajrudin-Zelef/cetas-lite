@@ -1,0 +1,105 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-66
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [8458, 8545]
+sha256: 1b202be230b76232ac075b88933d9d95fcc675cd8c774571804e113dbd02b0c7
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Synchronizingtheconfiguration HAandfailoverprotection
+If yourclusterconsistsoftwoclusterunits, usethisproceduretocapturetheconfigurationchecksumsforeach
+unit. If yourclusterconsistsofmorethat twoclusterunits, repeatthisprocedureforallclusterunitsthat returned
+messagesthat include0x30syncobjectmessages.
+1. ConnecttoeachclusterunitCLIbyconnectedtotheconsoleport.
+2. Enterthefollowing commandtoturnonterminal capture
+diagnose debug enable
+3. Enterthefollowing commandtostopHAsynchronization.
+execute ha sync stop
+4. Enterthefollowing commandtodisplayconfigurationchecksums.
+diagnose sys ha checksum show global
+5. Copytheoutput toatextfile.
+6. Repeatforallaffected units.
+7. Comparethetextfile fromtheprimaryunitwiththetextfile fromeachclusterunittofindthechecksumsthat do
+notmatch.
+Youcanuseadiff functiontocomparetextfiles.
+8. RepeatfortherootVDOM:
+diagnose sys ha checksum show root
+9. RepeatforallVDOMS(ifmultiple VDOMconfigurationisenabled):
+diagnose sys ha checksum show <vdom-name>
+10. Youcanalsousethegrep optiontojustdisplaychecksumsforpartsoftheconfiguration.
+ForexampletodisplaysystemrelatedconfigurationchecksumsintherootVDOM orlog-related
+checksumsintheglobalconfiguration:
+diagnose sys ha checksum root | grep system
+diagnose sys ha chechsum global | grep log
+Generallyitisthefirstnon-matchingchecksumthat isthecauseofthesynchronizationproblem.
+11. Attempt toremove/changethepartoftheconfigurationthat iscausingtheproblem. Youcandothisbymaking
+configurationchangesfromtheprimaryunitorsubordinateunitCLI.
+12. Enterthefollowing commandstostartHAconfigurationandstopdebugging:
+execute ha sync start
+diagnose debug disable
+diagnose debug reset
+Recalculating the checksums to resolve out of sync messages
+Sometimesanerrorcanoccurwhenchecksumsarebeingcalculatedbythecluster.Asaresultofthiscalculation
+errortheCLIconsolecoulddisplayoutofsyncerrormessageseventhoughtheclusterisotherwiseoperating
+normally.Youcanalsosometimes seechecksumcalculationerrorsindiagnose sys ha checksum
+commandoutput whenthechecksumslistedinthedebugzone output don’tmatchthechecksumsinthe
+checksum partoftheoutput.
+Onesolutiontothisproblemcouldbetore-calculatethechecksums.There-calculatedchecksumsshouldmatch
+andtheoutofsyncerrormessagesshouldstopappearing.
+Youcanusethefollowing commandtore-calculateHAchecksums:
+228 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection Synchronizingkernelroutingtables
+diagnose sys ha checksum recalculate [<vdom-name> | global]
+Justenteringthecommandwithout optionsrecalculatesallchecksums.YoucanspecifyaVDOMnametojust
+recalculatethechecksumsforthat VDOM.Youcanalsoenterglobal torecalculatetheglobalchecksum.
+Synchronizingkernel routing tables
+Inafunctioning cluster,theprimaryunitkeepsallsubordinateunitkernelroutingtables(alsocalledthe
+forwardinginformation baseFIB)uptodateandsynchronizedwiththeprimaryunit. Allsynchronizationactivity
+takesplaceovertheHAheartbeatlinkusingTCP/703andUDP/703packets.Afterafailover,becauseofthese
+routingtableupdatesthenewprimaryunitdoesnothavetopopulateitskernelroutingtablebeforebeingableto
+routetraffic. Thisgivesthenewprimaryunittime torebuilditsregularroutingtableafterafailover.
+Usethefollowing commandtoviewtheregularroutingtable. Thistablecontainsalloftheconfiguredroutesand
+routesacquiredfromdynamicroutingprotocolsandsoon.Thisroutingtableisnotsynchronized.Onsubordinate
+unitsthiscommandwillnotproducethesameoutput asontheprimaryunit.
+get router info routing-table
+Usethefollowing commandtoviewthekernelroutingtable(FIB).Thisisthelistofresolvedroutesactuallybeing
+usedbytheFortiOSkernel.Theoutput ofthiscommandshouldbethesameontheprimaryunitandthe
+subordinateunits.
+get router info kernel
+ThissectiondescribeshowclustershandledynamicroutingfailoverandalsodescribeshowtouseCLI
+commandstocontrolthetiming ofroutingtableupdatesofthesubordinateunitroutingtablesfromtheprimary
+unit.
+Controlling how the FGCP synchronizes kernel routing table updates
+Youcanusethefollowing commandstocontrolsomeofthetiming settingsthat theFGCPuseswhen
+synchronizingroutingupdatesfromtheprimaryunittosubordinateunitsandmaintaining routesontheprimary
+unitafterafailover.
+config system ha
+set route-hold <hold_integer>
+set route-ttl <ttl_integer>
+set route-wait <wait_integer>
+end
+Change how long routes stay in a cluster unit routing table
+Changetheroute-ttl time tocontrolhowlongroutesremaininaclusterunitroutingtable. Thetime tolive
+rangeis5to3600seconds.Thedefault time toliveis10seconds.
+Thetime tolivecontrolshowlongroutesremainactiveinaclusterunitroutingtableaftertheclusterunit
+becomesaprimaryunit. Tomaintain communication sessionsafteraclusterunitbecomesaprimaryunit, routes
+remainactiveintheroutingtablefortheroutetime tolivewhilethenewprimaryunitacquiresnewroutes.
+Bydefault, route-ttl issetto10whichmaymeanthat onlyafewrouteswillremainintheroutingtableaftera
+failover.Normallykeepingroute-ttl to10orreducingthevalueto5isacceptablebecauseacquiringnew
+routesusuallyoccursveryquickly,especiallyifgracefulrestartisenabled,soonlyaminordelayiscausedby
+acquiringnewroutes.
+HighAvailability
+Fortinet TechnologiesInc.
+229
+

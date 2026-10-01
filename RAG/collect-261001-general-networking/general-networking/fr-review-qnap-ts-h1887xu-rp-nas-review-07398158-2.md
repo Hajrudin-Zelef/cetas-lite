@@ -1,0 +1,33 @@
+---
+id: collect-261001-general-networking/general-networking/fr-review-qnap-ts-h1887xu-rp-nas-review-07398158-2
+title: "fr-review-qnap-ts-h1887xu-rp-nas-review-07398158"
+domain: general-networking
+role: reference
+task: reference
+actors: ["Intel"]
+dates: []
+keywords: ["benchmark", "intel"]
+source: docs/RAG/collect-261001-general-networking/fr-review-qnap-ts-h1887xu-rp-nas-review-07398158.md
+source_anchor: ""
+source_lines: [51, 66]
+sha256: 1600b8262198bea7d83a0d29606a24a52b1c596fc9aff0e8f90569c4be3a4aa4
+---
+
+# fr-review-qnap-ts-h1887xu-rp-nas-review-07398158
+
+Passant à la latence maximale, le TS-h1887XU-RP a commencé à afficher de meilleures performances en utilisant SMB, puisqu'il affichait 239.30 ms en lecture et 376.51 ms en écriture (SSD) et 404 ms en lecture et 894 ms en écriture (HDD).
+Pour l'écart type, le TS-h1887XU-RP a enregistré 40 ms en lecture et 1,075.1 44.86 ms en écriture en SMB, et 203.95 ms en lecture et 6 ms en écriture en iSCSI avec notre configuration SSD RAID404. En regardant la configuration du disque dur, il a affiché 894 ms en lecture et 707.8 ms en écriture (SMB) et 1,603.4 ms en lecture et XNUMX XNUMX ms en écriture (iSCSI).
+Notre prochain benchmark soumet les disques à une activité de lecture et d'écriture de 100 % à un débit séquentiel de 8K. En utilisant les WD Red Pro de 22 To à l'intérieur du QNAP TS-h1887XU-RP, les performances ont montré 161334 147,766 IOPS en lecture et 19,1740 217,042 IOPS en écriture en SMB, tout en atteignant 84,186 154,793 IOPS en lecture et 111,386 195,198 IOPS en écriture en iSCSI. En regardant la configuration du disque dur, il a enregistré XNUMX XNUMX IOPS en lecture et XNUMX XNUMX IOPS en écriture (SMB) et XNUMX XNUMX IOPS en lecture et XNUMX XNUMX IOPS en écriture (iSCSI).
+Notre prochain test passe d'un scénario de lecture/écriture séquentielle 8K pure à 100 % à une charge de travail mixte 8K 70/30, qui démontrera comment les performances évoluent dans un environnement allant de 2T/2Q à 16T/16Q.
+Le premier est le débit, où le QNAP TS-h1887XU-RP avait une plage de 8,828 32,801 IOPS à 8,133 33,209 IOPS en SMB et de 500 1,778 IOPS à 442 2,264 IOPS en iSCSI pour notre configuration SSD. Pour notre configuration de disque dur, il a enregistré une plage de XNUMX IOPS à XNUMX XNUMX IOPS (SMB) et de XNUMX IOPS à XNUMX XNUMX IOPS (iSCSI).
+Avec une latence moyenne de 8K 70/30, le QNAP TS-h1887XU-RP a montré des performances très similaires entre les configurations SSD SMB et iSCSI affichant une plage de 0.45 ms et 7.8 ms, et de 0.48 ms à 7.7 ms, respectivement.
+En latence maximale, le QNAP TS-h1887XU-RP a montré ses meilleures performances avec SMB, où il a montré une plage de 43.15 ms et 185.13 ms (SSD) et 7.97 ms et 143.8 ms (HDD).
+Pour la latence de l'écart type, les résultats étaient un peu plus proches, affichant une plage de 0.57 ms à 10.21 ms (SMB) et de 0.66 à 12.48 ms (iSCSI) pour notre configuration SSD. En ce qui concerne les disques durs, le TS-h1887XU-RP a enregistré des plages de 7.31 ms à 86.97 ms (SMB) et de 7.95 ms à 116.63 ms (iSCSI).
+Notre dernier test est le benchmark 128K, un test séquentiel à gros blocs montrant la vitesse de transfert séquentielle la plus élevée. Pour notre configuration SSD, le QNAP TS-h1887XU-RP a affiché 2.31 Go/s en lecture et 2.23 Go/s en écriture en SMB, tandis que l'iSCSI a enregistré 1.84 Go/s en lecture et 1.51 Go/s en écriture. Avec les disques durs, le TS-h1887XU-RP affichait 2.32 Go/s en lecture et 2.14 Go/s en écriture, tandis que l'iSCSI enregistrait 1.88 Go/s en lecture et 1.73 Go/s en écriture.
+Réflexions finales
+Le QNAP TS-hx87XU-RP fait partie d'une gamme polyvalente de solutions NAS qui intègre des processeurs Intel Xeon E-2300, une connectivité Multi-Gig 10GbE et 2.5GbE et une architecture de stockage hybride HDD/SSD. Couplée à sa gamme de différentes tailles disponibles, y compris les modèles à 9, 18, 22 et 30 baies, cette gamme de NAS QNAP est une excellente solution qui peut équilibrer les performances, la capacité et le coût en fonction de vos besoins.
+Nous avons examiné le modèle 2U à 18 baies pour cet examen, qui comprend 12 baies HDD 3.5″ à l'avant et 6 baies SATA 2.5″ à l'arrière. Alimenté et géré par les systèmes d'exploitation QTS ou QuTS hero, le TS-hx87XU-RP est une solution de stockage idéale pour les entreprises, avec des applications dans les serveurs de fichiers, les serveurs de virtualisation, VDI et la sauvegarde/restauration.
+Notre modèle spécifique est le TS-h1887XU-RP-E2334-16G, équipé d'un processeur Intel Xeon E-2334 (4C/8T 3.4 GHz, jusqu'à 4.8 GHz) et de 16 Go ECC de RAM DDR4 (1 x 16 Go). Pour voir ce qu'il peut faire en termes de performances, nous avons examiné les configurations de disque dur (12 x 22 To WD Rep Pro en RAID6) et de mise en cache SSD (6 x 4 To WD Red SSD en RAID6) utilisant à la fois la connectivité SMB et iSCSI. Lors de notre test de performances 100K aléatoire en lecture/écriture à 4 %, nous avons constaté 45,543 17,735 IOPS en lecture et 44,448 17,891 IOPS en écriture (SMB) et 1887 1,878 IOPS en lecture et 1,882 2,831 IOPS en écriture (iSCSI) avec le cache SSD activé. En performances HDD uniquement, le TS-h2,350XU-RP a enregistré XNUMX XNUMX IOPS en lecture et XNUMX XNUMX IOPS en écriture (SMB) et XNUMX XNUMX lectures et XNUMX XNUMX IOPS en écriture (iSCSI).
+Au cours de nos tests de débit séquentiel de 8 161, nous avons constaté 148 192 IOPS en lecture et 217 87 IOPS en écriture dans SMB, tout en atteignant 84 155 IOPS en lecture et 111 195 IOPS en écriture en iSCSI avec le cache SSD activé. En regardant la configuration du disque dur uniquement, le TS-hxXNUMXXU-RP a pu atteindre XNUMXK IOPS en lecture et XNUMXK IOPS en écriture (SMB) et XNUMXK IOPS en lecture et XNUMXK IOPS en écriture (iSCSI).
+Dans notre test séquentiel à grands blocs, le TS-hx87XU-RP a affiché 2.31 Go/s en lecture et 2.23 Go/s en écriture en SMB, tandis que iSCSI a enregistré 1.84 Go/s en lecture et 1.51 Go/s en écriture avec le cache SSD activé. Dans notre configuration HDD uniquement, nous avons vu 2.32 Go/s en lecture et 2.14 Go/s en écriture, tandis que iSCSI a enregistré 1.88 Go/s en lecture et 1.73 Go/s en écriture.
+En ce qui concerne les solutions NAS complètes, QNAP est depuis longtemps l'un de nos favoris en raison de ses décisions matérielles. Donner aux clients 2.5 GbE, 10 GbE. plusieurs emplacements PCIe et six baies SATA à l'arrière en font une plate-forme extrêmement flexible pour les PME. La plate-forme matérielle associée à ZFS en dessous (QuTS hero) devrait également offrir une tranquillité d'esprit en matière d'intégrité des données et de services de données.

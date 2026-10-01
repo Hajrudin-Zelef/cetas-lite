@@ -1,0 +1,184 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-39
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [5239, 5405]
+sha256: b94cd7e599932a8050f9b0ddd4915ac125d1e9cb72e9132c0121b4c0c4fa0378
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Configuringvirtualclustering Virtualclusters
+end
+SincetheprimaryFortiGate hasthehighestdevicepriority,theprimaryunitprocesses
+alltraffic fortheVDOMsinvirtualcluster1.SincethebackupFortiGate hasthe
+highestvirtualcluster2devicepriority,thebackupFortiGate processesalltraffic for
+theVDOMsinvirtualcluster2.TheprimaryFortiGate configurationaddstheVDOMs
+tovirtualcluster2.AllyouhavetoconfigureonthebackupFortiGate forvirtualcluster
+2isthevirtualcluster2(orsecondary-vcluster)devicepriority.
+Adding a third FortiGate to the virtual cluster
+YoucanaddathirdFortiGate tothevirtualclusterandconfigureitsothat iftheprimaryFortiGate fails, thethird
+FortiGate becomesthenewprimaryFortiGate orifthebackupFortiGate fails, thethirdFortiGate becomesthe
+newbackupFortiGate.
+OnthethirdFortiGate:
+l Setthedevicepriorityto150(lowerthantheprimaryFortiGate buthigherthanthebackupFortiGate)
+l Enablevirtualcluster2(vcluster2)
+l Setthevirtualcluster2devicepriority(secondary-vcluster)to100(higherthantheprimaryFortiGate butlowerthan
+thebackupFortiGate)
+config global
+config system ha
+set mode a-p
+set group-name mygroup
+set password <password>
+set priority 150
+set vcluster2 enable
+config secondary-vcluster
+set priority 100
+end
+end
+Adding a fourth FortiGate to the virtual cluster
+YoucanaddafourthFortiGate tothevirtualclusterandconfigureitsothat:
+l If theprimaryFortiGate fails, thethirdFortiGate becomesthenewprimaryFortiGate, thebackupFortiGate
+continuestooperateasthebackupFortiGate.
+l If thebackupFortiGate fails, thefourthFortiGate becomesthenewbackupFortiGate.
+l If boththeprimaryandbackupFortiGates fail, thethirdFortiGate becomestheprimaryFortiGate andthefourth
+FortiGate becomesthebackupFortiGate.
+OnthefourthFortiGate:
+l Setthedevicepriorityto100(lowerthantheprimaryandthirdFortiGate buthigherthanthebackupFortiGate)
+l Enablevirtualcluster2(vcluster2)
+l Setthevirtualcluster2devicepriority(secondary-vcluster)to150(higherthantheprimaryFortiGate andthethird
+FortiGate butlowerthanthebackupFortiGate)
+config global
+config system ha
+set mode a-p
+148 HighAvailability
+Fortinet TechnologiesInc.
+
+Virtualclusters Configuringvirtualclustering
+set group-name mygroup
+set password <password>
+set priority 100
+set vcluster2 enable
+config secondary-vcluster
+set priority 150
+end
+end
+Virtual clustering with four FortiGates recommended configuration
+Asdescribedintheprevioussections,hereisarecommendeddevicepriorityconfigurationforavirtualcluster
+consistingoffourFortiGates. Otherconfigurationsarealsosupporteddependingonhowyouwantthevirtual
+clustertorespondtoafailure.
+FortiGate Device Priority Virtual Cluster 2 Device Priority
+Primary 200 50
+Backup 50 100
+Third 150 200
+Fourth 100 150
+Virtual clustering GUI configuration
+FromtheGUI, youconfigurevirtualclusteringfromtheGlobalmenubygoingto System > HA setting the Mode
+to Active-Passiveandenabling VDOM Partitioning.
+HighAvailability
+Fortinet TechnologiesInc.
+149
+
+Virtualclusteringconfigurationexamples Virtualclusters
+Example primary FortiGate virtual clustering configuration
+Virtual clustering configurationexamples
+Seethefollowing cookbookrecipesforavirtualclusteringconfigurationexample.Thisexampleshowshowtoset
+upavirtualclusteroftwoFortiGates andthenhowtoaddathirdandfourthFortiGate tothevirtualcluster
+150 HighAvailability
+Fortinet TechnologiesInc.
+
+Virtualclusters Exampleinter-VDOMlinksinavirtualclusteringconfiguration
+configuration.
+l FGCPvirtualclusteringwithtwoFortiGates
+l FGCPvirtualclusteringwithfourFortiGates
+Example inter-VDOM links in a virtual clustering configuration
+Inavirtualdomainconfigurationyoucanuseinter-VDOMlinkstoroutetraffic betweentwovirtualdomains
+operatinginasingleFortiGate without usingphysicalinterfaces.Addinganinter-VDOMlinkhastheaffect of
+addingtwointerfacestotheFortiGate androutingtraffic betweenthevirtualdomainsusingtheinter-VDOMlink
+interfaces.
+Inavirtualclusteringconfigurationinter-VDOMlinkscanonlybemadebetweenvirtualdomainsthat areinthe
+samevirtualcluster.So,ifyouareplanningonconfiguringinter-VDOMlinksinavirtualclusteringconfiguration,
+youshouldmakesurethevirtualdomainsthat youwanttolinkareinthesamevirtualcluster.
+Forexample,thefollowing tablesshowanexamplevirtualclusteringconfigurationwhereeachvirtualcluster
+containsfourvirtualdomains.Inthisconfigurationyoucanconfigureinter-VDOMlinksbetweenrootandvdom_1
+andbetweenvdom_2andvdom_3.But,youcannotconfigureinter-VDOMlinksbetweenrootandvdom_2or
+betweenvdom_1andvdom_3(andsoon).
+Virtual Domains
+Hostname
+FortiGate_A FortiGate_B
+root Priority
+200
+Priority
+100
+vdom_1
+Role
+Primary
+Role
+Subordinate
+Virtual Domains
+Hostname
+FortiGate_A FortiGate_B
+vdom_2 Priority
+100
+Priority
+200
+vdom_3
+Role
+Subordinate
+Role
+Primary
+HighAvailability
+Fortinet TechnologiesInc.
+151
+
+Exampleinter-VDOMlinksinavirtualclusteringconfiguration Virtualclusters
+Configuring inter-VDOM links in a virtual clustering configuration
+Configuringinter-VDOMlinksinavirtualclusteringconfigurationisverysimilartoconfiguringinter-VDOMlinks
+forastandaloneFortiGate. Themaindifferencetheconfig system vdom-link commandincludesthe
+vcluster keyword.Thedefault setting forvcluster isvcluster1.Soyouonlyhavetousethevcluster
+keywordifyouareaddedaninter-VDOMlinktovirtualcluster2.
+To add an inter-VDOM link to virtual cluster 1
+Thisproceduredescribeshowtocreateaninter-VDOMlinktovirtualcluster1that resultsinalinkbetweenthe
+rootandvdom_1virtualdomains.
+Inter-VDOMlinksarealsocalledinternalpoint-to-pointinterfaces.
+1. Addaninter-VDOMlinkcalledvc1link.
+config global
+config system vdom-link
+edit vc1link
+end
+Addingtheinter-VDOMlinkalsoaddstwointerfaces.Inthisexample,theseinterfacesarecalled
+vc1link0 andvc1link1.TheseinterfacesappearinallCLIandGUIinterfacelists.These
+interfacescanonlybeaddedtovirtualdomainsinvirtualcluster1.
+2. Bindthevc1link0 interfacetotherootvirtualdomainandbindthevc1link1 interfacetothevdom_1virtual
+domain.
+config system interface
+edit vc1link0
+set vdom root
+next
+edit vc1link1
+set vdom vdom_1
+end
+To add an inter-VDOM link to virtual cluster 2
+Thisproceduredescribeshowtocreateaninter-VDOMlinktovirtualcluster2that resultsinalinkbetweenthe
+vdom_2andvdom_3virtualdomains.
+1. Addaninter-VDOMlinkcalledvc2link.
+config global
+config system vdom-link
+edit vc2link
+set vcluster vcluster2
+end
+Addingtheinter-VDOMlinkalsoaddstwointerfaces.Inthisexample,theseinterfacesarecalled
+vc2link0 andvc2link1.TheseinterfacesappearinallCLIandGUIinterfacelists.These
+interfacescanonlybeaddedtovirtualdomainsinvirtualcluster2.
+2. Bindthevc2link0 interfacetothevdom_2virtualdomainandbindthevc2link1 interfacetothevdom_3
+virtualdomain.
+152 HighAvailability
+Fortinet TechnologiesInc.
+

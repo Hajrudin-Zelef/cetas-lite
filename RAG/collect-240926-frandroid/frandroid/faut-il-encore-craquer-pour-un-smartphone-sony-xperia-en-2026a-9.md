@@ -9,11 +9,9 @@ dates: []
 keywords: ["humanoid"]
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [619, 639]
+source_lines: [0, 0]
 sha256: 17ff8c6ac805c1a0ee52703b431375379f853d1f78b8df6f8cf55be998691e0d
 ---
-
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
 
 Sony's Xperia products remain very good hardware, but the PB is that they all look alike...Sony innovates very little in terms of design...at least make the effort like Huawei and ZTE and make the edges very thin because each time we're dealing with very wide bands!!! Apart from the Sony premium, the screen itself hasn't evolved <i>-------<a href="https://play.google.com/store/apps/details?id=com.frandroid.app">Sent from the FrAndroid smartphone app</a></i>
 

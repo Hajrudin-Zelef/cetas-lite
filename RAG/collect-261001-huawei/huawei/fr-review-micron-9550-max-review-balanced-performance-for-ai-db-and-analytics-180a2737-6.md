@@ -1,0 +1,30 @@
+---
+id: collect-261001-huawei/huawei/fr-review-micron-9550-max-review-balanced-performance-for-ai-db-and-analytics-180a2737-6
+title: "fr-review-micron-9550-max-review-balanced-performance-for-ai-db-and-analytics-180a2737"
+domain: huawei
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["gpu"]
+source: docs/RAG/collect-261001-huawei/fr-review-micron-9550-max-review-balanced-performance-for-ai-db-and-analytics-180a2737.md
+source_anchor: ""
+source_lines: [138, 150]
+sha256: c5e2563f71705e8371fcaef824720bdf9eefd6eab19bcd5e95a6f709d7d0ffd9
+---
+
+# fr-review-micron-9550-max-review-balanced-performance-for-ai-db-and-analytics-180a2737
+
+Lors des tests d'écriture séquentielle GDSIO, le Micron 9550 Max a affiché un débit élevé et constant pour toutes les charges de travail. Avec des blocs de 16 Ko, les performances ont débuté autour de 0.5 Gio/s et ont atteint environ 1.5 Gio/s à une profondeur de file d'attente (QD) de 32, avant de légèrement diminuer à la profondeur de file d'attente maximale. Avec des blocs de 128 Ko, le débit s'est considérablement amélioré, passant de 2.3 Gio/s à QD 1 à un pic de 5.3 Gio/s autour de QD 32-64. Les résultats obtenus avec des blocs de 1 Mo sont restés dans la même plage de hautes performances, démarrant aux alentours de 4.7 Gio/s et se maintenant entre 5.0 Gio/s et 5.4 Gio/s pour des profondeurs de file d'attente modérées, avant de baisser légèrement à QD 128.
+Le Micron 7600 Max a suivi une courbe quasiment identique, commençant à 0.5 Gio/s à 16 Ko et culminant à 1.5 Gio/s pour les transferts plus petits. À 128 Ko, il a enregistré une progression constante de 2.2 Gio/s à 5.2 Gio/s, tandis que les charges de travail par bloc de 1 Mo maintenaient un débit compris entre 4.1 Gio/s et 5.4 Gio/s avec des profondeurs de file d'attente moyennes. Les deux disques ont affiché une excellente constance, avec des variations de performances minimales même avec des profondeurs de file d'attente croissantes, ce qui souligne l'efficacité du réglage du firmware par Micron sous les charges de travail utilisant directement le GPU.
+En examinant l'ensemble des données, le débit global de tous les disques d'entreprise testés convergeait dans une fourchette étroite de 4.0 à 5.4 Gio/s en charge maximale. Des disques comme le Pascari X200P et le Micron 7600 Max se situaient près de la limite supérieure, tandis que d'autres, comme le Kingston DC3000ME, le Solidigm PS1010 et le SanDisk DC SN861, suivaient de près.
+Latence d'écriture séquentielle GDSIO
+Lors des tests de latence d'écriture séquentielle, les deux lecteurs Micron ont affiché des temps de réponse stables et prévisibles, évoluant linéairement avec la profondeur de la file d'attente et la taille des blocs. Le Micron 9550 Max a présenté des performances de faible latence quasiment identiques à celles du 7600 Max pour les transferts plus faibles, affichant 30 µs au premier jour pour 16 000 blocs et passant à 2.7 ms au premier jour. À 128 000 blocs, la latence a progressivement augmenté, passant de 52 µs à 3.2 ms, tandis que les charges de travail de 1 M de blocs ont atteint 207 µs au premier jour et environ 40 ms pour la profondeur de file d'attente la plus importante.
+Le Micron 7600 Max a affiché le même comportement, avec seulement quelques variations mineures. Il a enregistré 30 µs à QD1 pour des blocs de 16 000 et a atteint un maximum de 1.5 ms à QD128. À 128 000, la latence variait entre 54 µs et 3.0 ms, et pour des transferts de 1 M, elle passait de 237 µs à QD1 à 40.7 ms à QD128.
+Dans l'ensemble du groupe, tous les disques ont présenté un comportement cohérent avec l'augmentation de la profondeur de la file d'attente, conservant des profils d'évolution similaires. Les disques Micron se sont alignés de manière très proche sur les Pascari X200P et Kingston DC3000ME sur la majeure partie de la plage de valeurs, et tous deux ont affiché d'excellentes caractéristiques de faible latence pour les petites tailles de blocs, tout en maintenant des augmentations prévisibles dans des conditions d'écriture séquentielle plus intensives.
+Conclusion
+Le Micron 9550 Max poursuit la solide trajectoire de Micron dans le secteur des SSD d'entreprise, offrant un équilibre parfait entre endurance, débit et efficacité pour les charges de travail actuelles gourmandes en données. Conçu pour les environnements à usage mixte, il a démontré sa capacité à maintenir des performances élevées lors d'opérations séquentielles et aléatoires, avec une latence stable et une endurance en écriture allant jusqu'à 3 DWPD.
+Lors de nos tests, le 9550 Max a démontré sa capacité à gérer facilement les pipelines d'entreprise et d'IA/ML, offrant une évolutivité prévisible dans les environnements de stockage direct GPU, FIO et DLIO. Son profil de performances reste constant quelles que soient les charges de travail et la profondeur des files d'attente, ce qui témoigne de la maturité de la plateforme Gen5 de Micron et de l'optimisation du firmware. Comparé au 7600 Max, le 9550 Max offre une amélioration légère mais mesurable du débit et de la réactivité, notamment à des profondeurs plus élevées, tout en conservant les mêmes caractéristiques de faible latence qui font des deux modèles de sérieux concurrents dans leurs catégories respectives.
+Du point de vue du déploiement, la flexibilité des formats U.2 et E3.S garantit une adoption fluide sur les infrastructures existantes et de nouvelle génération. L'efficacité énergétique et la conformité OCP renforcent encore leur compatibilité avec les déploiements de centres de données denses.
+Globalement, le Micron 9550 Max se distingue comme un SSD d'entreprise complet, alliant performances soutenues en charge mixte, efficacité opérationnelle et fiabilité. Il représente une avancée majeure pour les organisations souhaitant bénéficier de la norme PCIe Gen5 sans compromis sur la stabilité ni la durée de vie, ce qui en fait l'une des solutions NVMe à usage mixte les plus performantes actuellement disponibles.
+Classement général : Le Micron 9550 MAX est notre meilleur SSD d’entreprise toutes catégories confondues dans le classement des meilleurs SSD d’entreprise.

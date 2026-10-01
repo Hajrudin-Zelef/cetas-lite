@@ -1,0 +1,41 @@
+---
+id: collect-261001-meraki/meraki/meraki-api-v1-api-index-21d30cd4-27
+title: "meraki-api-v1-api-index-21d30cd4"
+domain: meraki
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["ethernet", "latency"]
+source: docs/RAG/collect-261001-meraki/meraki-api-v1-api-index-21d30cd4.md
+source_anchor: ""
+source_lines: [567, 590]
+sha256: 29e78fcf604d1aa7d23dd1d5aebc209a3c2a1159b0a17e3600635bca197decc8
+---
+
+# meraki-api-v1-api-index-21d30cd4
+
+|  | GET /networks/{networkId}/wireless/clientCountHistory Return wireless client counts over time for a network, device, or network client  >  getNetworkWirelessClientCountHistory | networkId, t0, t1, timespan, resolution, autoResolution, clientId, deviceSerial, apTag, band, ssid | `` | clientCount, endTs, startTs | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/connectionStats Aggregated connectivity info for this network, grouped by clients  >  getNetworkWirelessClientsConnectionStats | networkId, t0, t1, timespan, band, ssid, apTag | `` | assoc, auth, connectionStats, dhcp, dns, mac, success | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/healthScores Fetch the health scores for all clients on this network (BETA)  >  getNetworkWirelessClientsHealthScores | networkId | `` | clientId, currentConnection, latest, mac, onboarding, performance | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/latencyStats Aggregated latency info for this network, grouped by clients  >  getNetworkWirelessClientsLatencyStats | networkId, t0, t1, timespan, band, ssid, apTag, vlan, fields | `` | avg, backgroundTraffic, bestEffortTraffic, latencyStats, mac, rawDistribution, videoTraffic, voiceTraffic | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/onboardingHistory Return counts of distinct wireless clients connecting to a network over time (BETA)  >  getNetworkWirelessClientsOnboardingHistory | networkId, t0, t1, timespan, resolution, band, ssid | `` | association, authentication, clientCounts, connectionSteps, dhcp, dns, endTs, failed, prospective, startTs, successful, summary | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/{clientId}/connectionStats Aggregated connectivity info for a given client on this network  >  getNetworkWirelessClientConnectionStats | networkId, clientId, t0, t1, timespan, band, ssid, apTag | `` | assoc, auth, connectionStats, dhcp, mac, success | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/{clientId}/connectivityEvents List the wireless connectivity events for a client within a network in the timespan.  >  getNetworkWirelessClientConnectivityEvents | networkId, clientId, perPage, startingAfter, endingBefore, sortOrder, t0, t1, timespan, types, band, ssidNumber, includedSeverities, deviceSerial | `` | band, captureId, channel, deviceSerial, durationMs, eventData, occurredAt, rssi, severity, ssidNumber, subtype, type | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/{clientId}/healthScores Fetch the health scores for a given client on this network (BETA)  >  getNetworkWirelessClientHealthScores | networkId, clientId | `` | clientId, currentConnection, latest, mac, onboarding, performance | `` | 
+|  | GET /networks/{networkId}/wireless/clients/{clientId}/latencyHistory Return the latency history for a client  >  getNetworkWirelessClientLatencyHistory | networkId, clientId, t0, t1, timespan, resolution | `` | 0.5, 1.0, 1024.0, 128.0, 16.0, 2.0, 2048.0, 256.0, 32.0, 4.0, 512.0, 64.0, 8.0, backgroundTraffic, bestEffortTraffic, latencyBinsByCategory, t0, t1, videoTraffic, voiceTraffic | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/{clientId}/latencyStats Aggregated latency info for a given client on this network  >  getNetworkWirelessClientLatencyStats | networkId, clientId, t0, t1, timespan, band, ssid, apTag, vlan, fields | `` | avg, backgroundTraffic, bestEffortTraffic, latencyStats, mac, rawDistribution, videoTraffic, voiceTraffic | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/clients/{clientId}/roaming/history Get client roam events within the specified timespan. (BETA)  >  getNetworkWirelessClientRoamingHistory | networkId, clientId, perPage, startingAfter, endingBefore, t0, t1, timespan | `` | band, current, details, device, disconnectReason, duration, mac, name, previous, roamProtocol, rssi, serial, signalQuality, snr, status, ts | `` | 
+|  | GET /networks/{networkId}/wireless/connectionStats Aggregated connectivity info for this network  >  getNetworkWirelessConnectionStats | networkId, t0, t1, timespan, band, ssid, apTag | `` | assoc, auth, dhcp, dns, success | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/dataRateHistory Return PHY data rates over time for a network, device, or network client  >  getNetworkWirelessDataRateHistory | networkId, t0, t1, timespan, resolution, autoResolution, clientId, deviceSerial, apTag, band, ssid | `` | averageKbps, downloadKbps, endTs, startTs, uploadKbps | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/devices/connectionStats Aggregated connectivity info for this network, grouped by node  >  getNetworkWirelessDevicesConnectionStats | networkId, t0, t1, timespan, band, ssid, apTag | `` | assoc, auth, connectionStats, dhcp, dns, serial, success | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/devices/healthScores Fetch the health scores of all APs on this network (BETA)  >  getNetworkWirelessDevicesHealthScores | networkId | `` | device, latest, onboarding, performance, serial | `` | 
+|  | GET /networks/{networkId}/wireless/devices/latencyStats Aggregated latency info for this network, grouped by node  >  getNetworkWirelessDevicesLatencyStats | networkId, t0, t1, timespan, band, ssid, apTag, vlan, fields | `` | avg, backgroundTraffic, bestEffortTraffic, latencyStats, rawDistribution, serial, videoTraffic, voiceTraffic | wireless:telemetry:read | 
+|  | GET /networks/{networkId}/wireless/electronicShelfLabel Return the ESL settings of a wireless network  >  getNetworkWirelessElectronicShelfLabel | networkId | `` | enabled, hostname, mode, sepioo | `` | 
+|  | PUT /networks/{networkId}/wireless/electronicShelfLabel Update the ESL settings of a wireless network  >  updateNetworkWirelessElectronicShelfLabel | networkId | enabled, hostname, mode | enabled, hostname, mode, sepioo | `` | 
+|  | GET /networks/{networkId}/wireless/electronicShelfLabel/configuredDevices Get a list of all ESL eligible devices of a network  >  getNetworkWirelessElectronicShelfLabelConfiguredDevices | networkId | `` | enabled, hostname, mode, sepioo | `` | 
+|  | GET /networks/{networkId}/wireless/ethernet/ports/profiles List the AP port profiles for this network  >  getNetworkWirelessEthernetPortsProfiles | networkId | `` | enabled, isDefault, macsec, mode, name, number, ports, profileId, psk, pskGroupId, replayWindow, security, ssid, usbPorts, value | wireless:config:read | 
+|  | POST /networks/{networkId}/wireless/ethernet/ports/profiles Create an AP port profile  >  createNetworkWirelessEthernetPortsProfile | networkId | enabled, macsec, mode, name, ports, psk, pskGroupId, replayWindow, security, ssid, usbPorts, value | enabled, isDefault, macsec, mode, name, number, ports, profileId, psk, pskGroupId, replayWindow, security, ssid, usbPorts, value | wireless:config:write | 
+|  | POST /networks/{networkId}/wireless/ethernet/ports/profiles/assign Assign AP port profile to list of APs  >  assignNetworkWirelessEthernetPortsProfiles | networkId | profileId, serials | profileId, serials | wireless:config:write | 
+|  | POST /networks/{networkId}/wireless/ethernet/ports/profiles/setDefault Set the AP port profile to be default for this network  >  setNetworkWirelessEthernetPortsProfilesDefault | networkId | profileId | profileId | wireless:config:write | 
+|  | GET /networks/{networkId}/wireless/ethernet/ports/profiles/{profileId} Show the AP port profile by ID for this network  >  getNetworkWirelessEthernetPortsProfile | networkId, profileId | `` | enabled, isDefault, macsec, mode, name, number, ports, profileId, psk, pskGroupId, replayWindow, security, ssid, usbPorts, value | wireless:config:read | 

@@ -1,0 +1,43 @@
+---
+id: collect-261001-unifi-ubiquiti/unifi-ubiquiti/c-en-us-td-docs-unified-computing-ucs-ucs-cvds-flexpod-x-series-sap-hana-tdi-des-963ef259-6
+title: "c-en-us-td-docs-unified-computing-ucs-ucs-cvds-flexpod-x-series-sap-hana-tdi-des-963ef259"
+domain: unifi-ubiquiti
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["datacenter", "zero-day"]
+source: docs/RAG/collect-261001-unifi-ubiquiti/c-en-us-td-docs-unified-computing-ucs-ucs-cvds-flexpod-x-series-sap-hana-tdi-des-963ef259.md
+source_anchor: ""
+source_lines: [163, 188]
+sha256: b36881a51e1cf84e186afcdf7214b49ee9f16e234fe6d392402e8521683f2997
+---
+
+# c-en-us-td-docs-unified-computing-ucs-ucs-cvds-flexpod-x-series-sap-hana-tdi-des-963ef259
+
+Compaction, which was introduced in ONTAP 9, is the latest patented storage efficiency technology released by NetApp. In the NetApp WAFL file system, all I/O takes up 4KB of space, even if it does not actually require 4KB of data. Compaction combines multiple blocks that are not using their full 4KB of space together into one block. This single block can be more efficiently stored on the disk to save space. These storage efficiencies improve the ability of ONTAP to store more data in less space, reducing storage costs and maximizing the effective capacity of your storage system.
+NetApp Volume Encryption(NVE) and NetApp Aggregate Encryption (NAE)
+NetApp Volume Encryption is a software-based, data-at-rest encryption solution that is FIPS 140-2 compliant. NVE allows ONTAP to encrypt data for each volume for granularity. NAE, is an outgrowth of NVE; it allows ONTAP to encrypt data for each volume, and the volumes can share keys across the aggregate. NVE and NAE enable you to use storage efficiency features that would be lost with encryption at the application layer. For greater storage efficiency, you can use aggregate deduplication with NAE.
+Here’s how the process works: The data leaves the disk encrypted, is sent to RAID, is decrypted by the CryptoMod, and is then sent up the rest of the stack. This process is illustrated in Figure 17.
+To view the latest security features for ONTAP 9, go to: Security Features in ONTAP 9 | NetApp.
+ONTAP Rest API
+ONTAP Rest API enables you to automate the deployment and administration of your ONTAP storage systems using one of several available options. The ONTAP REST API provides the foundation for all the various ONTAP automation technologies.
+Beginning with ONTAP 9.6, ONTAP includes an expansive workflow-driven REST API that you can use to automate deployment and management of your storage. In addition, NetApp provides a Python client library, which makes it easier to write robust code, as well as support for ONTAP automation based on Ansible.
+FlexClone
+NetApp FlexClone technology enables instantaneous point-in-time copies of a FlexVol volume without consuming any additional storage until the cloned data changes from the original. FlexClone volumes add extra agility and efficiency to storage operations. They take only a few seconds to create and do not interrupt access to the parent FlexVol volume. FlexClone volumes use space efficiently, applying the ONTAP architecture to store only data that changes between the parent and clone. FlexClone volumes are suitable for testing or development environments, or any environment where progress is made by locking-in incremental improvements. FlexClone volumes also benefit any business process where you must distribute data in a changeable form without endangering the integrity of the original.
+SnapMirror (Data Replication)
+NetApp SnapMirror is an asynchronous replication technology for data replication across different sites, within the same data center, on-premises datacenter to cloud, or cloud to on-premises datacenter. SnapMirror Synchronous (SM-S) offers volume granular, zero data loss protection. It extends traditional SnapMirror volume replication to synchronous mode meeting zero recovery point objective (RPO) disaster recovery and compliance objectives. ONTAP 9.7 extends support for SnapMirror Synchronous to application policy-based replication providing a simple and familiar configuration interface that is managed with the same tools as traditional SnapMirror. This includes ONTAP CLI, NetApp ONTAP System Manager, NetApp Active IQ Unified Manager, and NetApp Manageability SDK.
+NetApp’s Solutions to Ransomware
+It is important for ransomware detection to occur as early as possible so that you can prevent its spread and avoid costly downtime. NetApp offers a layered defense approach with ONTAP software and its native detection and recovery tools. This section summarizes various features and tools that NetApp offers to detect, alert, and recover from ransomware attacks.
+● NetApp Active IQ (AIQ) checks NetApp ONTAP systems for adherence to NetApp configuration best practices such as enabling FPolicy.
+● NetApp Active IQ Unified Manager (AIQUM) generates alerts for abnormal growth of NetApp Snapshot copies or storage efficiency loss, which can indicate potential ransomware attacks.
+● ONTAP System Manager enables to look at Snapshot percent change or storage efficiency savings in real time.
+● Autonomous Ransome ware Protection. NetApp ONTAP 9.10.1 and later comes with anti-ransomware feature that leverages built-in on-box machine learning (ML) that looks at volume workload activity and data entropy to automatically detect ransomware. In ONTAP 9.11.1, this feature has been enhanced with an enhanced analytics engine that catches newer variations of ransomware that manipulates data entropy and file extensions. This feature can be integrated with Cloud Secure to track the status of on-box protection in Cloud Insight dashboard. This feature is supported on FSx and CVO as well. In ONTAP 9.12.1, ARP screening profile is transferred as part of the NetApp SnapMirror replication, resulting in ransomware protection on secondary storage.
+● NetApp Native FPolicy is a file-access notification framework that is used to monitor and to manage file access over the NFS or SMB/CIFS protocol. This Zero trust engine is built around the concept of "not to trust and always verify". FPolicy helps you block unwanted files from being stored on the NetApp storage device. This feature can be leveraged to block known ransomware file extensions. With ONTAP 9.12.1, FPolicy can now be activated with a simple one-click in System Manager or NetApp BlueXP. This feature protects against thousands of known, common ransomware extensions that are used for typical ransomware attacks.
+● FPolicy external mode in ONTAP uses UBA (sometimes referred to as User and Entity Behavior Analytics, or UEBA) as the key to stopping a zero-day ransomware attack. UBA tracks user's and group's data access patterns and report any deviation in pattern. UBA can also deny access to files when users do something outside their usual pattern. UBA requires an external mode FPolicy server.
+Note: Cloud Insights with Cloud Secure is NetApp's own external mode FPolicy server.
+● NetApp SnapShot copies. Snapshot is a read-only image of a volume that captures the state of a file system at a point in time. These copies help protect data with no effect on system performance and, at the same time, do not occupy a lot of storage space. Scheduled Snapshots taken would come in handy when you need to restore the data after an attack.
+● NetApp SnapLock is a key component for enterprise data protection and data resiliency against ransomware. It provides a special immutable volume in which the data can be stored and committed to a non-erasable, non-rewritable state for a specific retention period. User’s production data residing in FlexGroups can also be created as SnapLock volumes, enabling higher performance and massive scale for indelible worm-protected data.
+NetApp Cloud Secure
+NetApp Cloud Secure is a feature of NetApp Cloud Insights, an offering from NetApp Blue-XP. It provides centralized visibility and control of all corporate data access across premises and cloud environments to ensure security and compliance goals are met. It reports access activity from insiders, outsiders, ransomware attacks, and rogue users. It profiles users and groups for normal data access patterns and if a risky behavior is detected, it alerts you and automatically takes a Snapshot copy which can be used to recover quickly.
+Unlike perimeter security tools, which assume that insiders are trusted, NetApp Cloud Secure assumes zero trust for everyone. All activities on the supervised shares are monitored in real time, and the data is used to automatically identify the working communities of all users.

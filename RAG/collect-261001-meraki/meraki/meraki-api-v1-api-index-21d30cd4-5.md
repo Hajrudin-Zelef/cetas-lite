@@ -1,0 +1,41 @@
+---
+id: collect-261001-meraki/meraki/meraki-api-v1-api-index-21d30cd4-5
+title: "meraki-api-v1-api-index-21d30cd4"
+domain: meraki
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["latency", "preemption", "throughput"]
+source: docs/RAG/collect-261001-meraki/meraki-api-v1-api-index-21d30cd4.md
+source_anchor: ""
+source_lines: [102, 125]
+sha256: c8dc3d12388e737fa53d91101dc817dc99978c6df766a386cc14729f666b576e
+---
+
+# meraki-api-v1-api-index-21d30cd4
+
+|  | GET /devices/{serial}/liveTools/routingTable/{id} Return an routing table live tool job. (BETA)  >  getDeviceLiveToolsRoutingTable | serial, id | `` | cidr, destination, entries, error, ipVersion, request, routingTableId, serial, staticGateway, status, subnet, type, url | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/speedTest Enqueue a job to execute a speed test from a device (BETA)  >  createDeviceLiveToolsSpeedTest | serial | interface | average, interface, request, results, serial, speedTestId, speeds, status, url | dashboard:general:config:write | 
+|  | GET /devices/{serial}/liveTools/speedTest/{id} Returns a speed test result in megabits per second (BETA)  >  getDeviceLiveToolsSpeedTest | serial, id | `` | average, interface, request, results, serial, speedTestId, speeds, status, url | dashboard:general:config:read | 
+|  | POST /devices/{serial}/liveTools/throughputTest Enqueue a job to test a device throughput, the test will run for 10 secs to test throughput  >  createDeviceLiveToolsThroughputTest | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, downstream, error, id, request, result, serial, speeds, status, throughputTestId, url | dashboard:general:config:write | 
+|  | GET /devices/{serial}/liveTools/throughputTest/{throughputTestId} Return a throughput test job  >  getDeviceLiveToolsThroughputTest | serial, throughputTestId | `` | downstream, error, request, result, serial, speeds, status, throughputTestId, url | dashboard:general:config:read | 
+|  | POST /devices/{serial}/liveTools/traceRoute Enqueue a job to run trace route in the device (BETA)  >  createDeviceLiveToolsTraceRoute | serial | callback, httpServer, id, payloadTemplate, sharedSecret, sourceInterface, target, url | callback, id, request, serial, sourceInterface, status, target, traceRouteId, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/traceRoute/{traceRouteId} Return a trace route job (BETA)  >  getDeviceLiveToolsTraceRoute | serial, traceRouteId | `` | count, error, hop, ip, request, results, rttAvg, serial, sourceInterface, status, target, traceRouteId, url | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/vrrpTable Enqueue a job to perform a VRRP table request for the device (BETA)  >  createDeviceLiveToolsVrrpTable | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, id, request, serial, status, url, vrrpTableId | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/vrrpTable/{vrrpTableId} Return an VRRP table live tool job. (BETA)  >  getDeviceLiveToolsVrrpTable | serial, vrrpTableId | `` | addresses, description, enabled, entries, error, group, lastChange, preemption, primary, primaryReason, priority, protocol, reason, request, serial, status, ts, url, value, virtual, vlanId, vrrpTableId | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/wakeOnLan Enqueue a job to send a Wake-on-LAN packet from the device  >  createDeviceLiveToolsWakeOnLan | serial | callback, httpServer, id, mac, payloadTemplate, sharedSecret, url, vlanId | callback, error, id, mac, request, serial, status, url, vlanId, wakeOnLanId | dashboard:general:config:write | 
+|  | GET /devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId} Return a Wake-on-LAN job  >  getDeviceLiveToolsWakeOnLan | serial, wakeOnLanId | `` | error, mac, request, serial, status, url, vlanId, wakeOnLanId | dashboard:general:config:read | 
+|  | GET /devices/{serial}/lldpCdp List LLDP and CDP information for a device  >  getDeviceLldpCdp | serial | `` | ports, sourceMac | dashboard:general:telemetry:read | 
+|  | GET /devices/{serial}/lossAndLatencyHistory Get the uplink loss percentage and latency in milliseconds, and goodput in kilobits per second for MX, MG and Z devices.  >  getDeviceLossAndLatencyHistory | serial, t0, t1, timespan, resolution, uplink, ip | `` | endTime, goodput, jitter, latencyMs, lossPercent, startTime | dashboard:general:telemetry:read | 
+|  | GET /devices/{serial}/managementInterface Return the management interface settings for a device  >  getDeviceManagementInterface | serial | `` | activeDdnsHostname, ddnsHostnameWan1, ddnsHostnameWan2, ddnsHostnames, name, staticDns, staticGatewayIp, staticIp, staticSubnetMask, usingStaticIp, vlan, vrf, wan1, wan2, wanEnabled | dashboard:general:config:read | 
+|  | PUT /devices/{serial}/managementInterface Update the management interface settings for a device  >  updateDeviceManagementInterface | serial | staticDns, staticGatewayIp, staticIp, staticSubnetMask, usingStaticIp, vlan, wan1, wan2, wanEnabled | activeDdnsHostname, ddnsHostnameWan1, ddnsHostnameWan2, ddnsHostnames, name, staticDns, staticGatewayIp, staticIp, staticSubnetMask, usingStaticIp, vlan, vrf, wan1, wan2, wanEnabled | dashboard:general:config:write | 
+|  | POST /devices/{serial}/reboot Reboot a device  >  rebootDevice | serial | `` | success | dashboard:general:config:write | 
+|  | GET /devices/{serial}/sensor/commands Returns a historical log of all commands  >  getDeviceSensorCommands | serial, operations, perPage, startingAfter, endingBefore, sortOrder, t0, t1, timespan | `` | adminId, commandId, completedAt, createdAt, createdBy, email, errors, name, operation, status | sensor:config:read | 
+|  | POST /devices/{serial}/sensor/commands Sends a command to a sensor  >  createDeviceSensorCommand | serial | arguments, name, operation, value | adminId, commandId, completedAt, createdAt, createdBy, email, errors, name, operation, status | sensor:config:write | 
+|  | GET /devices/{serial}/sensor/commands/{commandId} Returns information about the command's execution, including the status  >  getDeviceSensorCommand | serial, commandId | `` | adminId, commandId, completedAt, createdAt, createdBy, email, errors, name, operation, status | sensor:config:read | 
+|  | GET /devices/{serial}/sensor/relationships List the sensor roles for a given sensor or camera device.  >  getDeviceSensorRelationships | serial | `` | livestream, productType, relatedDevices, serial | sensor:config:read | 
+|  | PUT /devices/{serial}/sensor/relationships Assign one or more sensor roles to a given sensor or camera device.  >  updateDeviceSensorRelationships | serial | livestream, relatedDevices, serial | livestream, productType, relatedDevices, serial | sensor:config:write | 
+|  | GET /devices/{serial}/switch/ports List the switch ports for a switch  >  getDeviceSwitchPorts | serial, hideDefaultPorts | `` | accessPolicyNumber, accessPolicyType, adaptivePolicyGroup, adaptivePolicyGroupId, allowedVlans, daiTrusted, dot3az, enabled, fastPoe, flexibleStackingEnabled, highSpeed, id, iname, isolationEnabled, linkNegotiation, linkNegotiationCapabilities, macAllowList, macWhitelistLimit, mirror, mode, model, module, name, peerSgtCapable, perpetualPoe, poeEnabled, portId, portScheduleId, profile, rstpEnabled, schedule, serial, slot, stickyMacAllowList, stickyMacAllowListLimit, stormControlEnabled, stpGuard, stpPortFastTrunk, tags, type, udld, vlan, voiceVlan | switch:config:read | 
+|  | POST /devices/{serial}/switch/ports/cycle Cycle a set of switch ports on non-Catalyst MS devices (DEPRECATED)  >  cycleDeviceSwitchPorts | serial | ports | ports | switch:config:write | 
+|  | PUT /devices/{serial}/switch/ports/mirror Update a port mirror (BETA)  >  updateDeviceSwitchPortsMirror | serial | comment, destination, filter, hasTransitVlan, module, number, port, ports, role, serial, slot, source, tags, type, vlan, vlans | comment, destination, filter, hasTransitVlan, id, mirror, module, name, network, number, port, ports, role, serial, slot, source, tags, type, vlan, vlans, warnings | switch:config:write | 

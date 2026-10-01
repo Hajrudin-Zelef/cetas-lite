@@ -1,0 +1,40 @@
+---
+id: collect-261001-meraki/meraki/meraki-api-v1-api-index-21d30cd4-22
+title: "meraki-api-v1-api-index-21d30cd4"
+domain: meraki
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["ethernet"]
+source: docs/RAG/collect-261001-meraki/meraki-api-v1-api-index-21d30cd4.md
+source_anchor: ""
+source_lines: [456, 478]
+sha256: 867e102a13cfa220ad78bccc3db5ac8ccf068e0d48e2540a4be90c8bf3888bb4
+---
+
+# meraki-api-v1-api-index-21d30cd4
+
+|  | GET /networks/{networkId}/switch/alternateManagementInterface Return the switch alternate management interface for the network  >  getNetworkSwitchAlternateManagementInterface | networkId | `` | alternateManagementIp, enabled, gateway, protocols, serial, subnetMask, switches, useOobMgmt, vlanId | switch:config:read | 
+|  | PUT /networks/{networkId}/switch/alternateManagementInterface Update the switch alternate management interface for the network  >  updateNetworkSwitchAlternateManagementInterface | networkId | alternateManagementIp, enabled, gateway, protocols, serial, subnetMask, switches, useOobMgmt, vlanId | alternateManagementIp, enabled, gateway, protocols, serial, subnetMask, switches, useOobMgmt, vlanId | switch:config:write | 
+|  | GET /networks/{networkId}/switch/dhcp/v4/servers/seen Return the network's DHCPv4 servers seen within the selected timeframe (default 1 day)  >  getNetworkSwitchDhcpV4ServersSeen | networkId, t0, timespan, perPage, startingAfter, endingBefore | `` | address, chaddr, checksum, ciaddr, clientId, destination, device, dscp, ecn, ethernet, fields, flags, gateway, giaddr, headerLength, hlen, hops, htype, id, interface, ip, ipv4, isAllowed, isConfigured, lastAck, lastPacket, lastSeenAt, length, mac, magicCookie, name, op, options, port, protocol, secs, seenBy, serial, siaddr, sname, source, subnet, tag, ts, ttl, type, udp, url, value, version, vlan, xid, yiaddr | switch:telemetry:read | 
+|  | GET /networks/{networkId}/switch/dhcpServerPolicy Return the DHCP server settings  >  getNetworkSwitchDhcpServerPolicy | networkId | `` | alerts, allowedServers, alwaysAllowedServers, arpInspection, blockedServers, defaultPolicy, email, enabled, unsupportedModels | switch:config:read | 
+|  | PUT /networks/{networkId}/switch/dhcpServerPolicy Update the DHCP server settings  >  updateNetworkSwitchDhcpServerPolicy | networkId | alerts, allowedServers, arpInspection, blockedServers, defaultPolicy, email, enabled | alerts, allowedServers, alwaysAllowedServers, arpInspection, blockedServers, defaultPolicy, email, enabled, unsupportedModels | switch:config:write | 
+|  | GET /networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers Return the list of servers trusted by Dynamic ARP Inspection on this network  >  getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers | networkId, perPage, startingAfter, endingBefore | `` | address, ipv4, mac, trustedServerId, vlan | switch:config:read | 
+|  | POST /networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers Add a server to be trusted by Dynamic ARP Inspection on this network  >  createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer | networkId | address, ipv4, mac, vlan | address, ipv4, mac, trustedServerId, vlan | switch:config:write | 
+|  | PUT /networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers/{trustedServerId} Update a server that is trusted by Dynamic ARP Inspection on this network  >  updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer | networkId, trustedServerId | address, ipv4, mac, vlan | address, ipv4, mac, trustedServerId, vlan | switch:config:write | 
+|  | DELETE /networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers/{trustedServerId} Remove a server from being trusted by Dynamic ARP Inspection on this network  >  deleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer | networkId, trustedServerId | `` | `` | switch:config:write | 
+|  | GET /networks/{networkId}/switch/dhcpServerPolicy/arpInspection/warnings/byDevice Return the devices that have a Dynamic ARP Inspection warning and their warnings  >  getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice | networkId, perPage, startingAfter, endingBefore | `` | hasTrustedPort, name, serial, supportsInspection, url | switch:config:read | 
+|  | GET /networks/{networkId}/switch/dscpToCosMappings Return the DSCP to CoS mappings  >  getNetworkSwitchDscpToCosMappings | networkId | `` | cos, dscp, mappings, title | switch:config:read | 
+|  | PUT /networks/{networkId}/switch/dscpToCosMappings Update the DSCP to CoS mappings  >  updateNetworkSwitchDscpToCosMappings | networkId | cos, dscp, mappings, title | cos, dscp, mappings, title | switch:config:write | 
+|  | GET /networks/{networkId}/switch/linkAggregations List link aggregation groups  >  getNetworkSwitchLinkAggregations | networkId, serials | `` | id, portId, serial, switchPorts | switch:config:read | 
+|  | POST /networks/{networkId}/switch/linkAggregations Create a link aggregation group  >  createNetworkSwitchLinkAggregation | networkId | esiMhPairId, portId, profile, serial, switchPorts, switchProfilePorts | id, portId, serial, switchPorts | switch:config:write | 
+|  | PUT /networks/{networkId}/switch/linkAggregations/{linkAggregationId} Update a link aggregation group  >  updateNetworkSwitchLinkAggregation | networkId, linkAggregationId | portId, profile, serial, switchPorts, switchProfilePorts | id, portId, serial, switchPorts | switch:config:write | 
+|  | DELETE /networks/{networkId}/switch/linkAggregations/{linkAggregationId} Split a link aggregation group into separate ports  >  deleteNetworkSwitchLinkAggregation | networkId, linkAggregationId | `` | `` | switch:config:write | 
+|  | GET /networks/{networkId}/switch/mtu Return the MTU configuration  >  getNetworkSwitchMtu | networkId | `` | defaultMtuSize, mtuSize, overrides, switchProfiles, switches | switch:config:read | 
+|  | PUT /networks/{networkId}/switch/mtu Update the MTU configuration  >  updateNetworkSwitchMtu | networkId | defaultMtuSize, mtuSize, overrides, switchProfiles, switches | defaultMtuSize, mtuSize, overrides, switchProfiles, switches | switch:config:write | 
+|  | GET /networks/{networkId}/switch/portSchedules List switch port schedules  >  getNetworkSwitchPortSchedules | networkId | `` | active, friday, from, id, monday, name, networkId, portSchedule, saturday, sunday, thursday, to, tuesday, wednesday | switch:config:read | 
+|  | POST /networks/{networkId}/switch/portSchedules Add a switch port schedule  >  createNetworkSwitchPortSchedule | networkId | active, friday, from, monday, name, portSchedule, saturday, sunday, thursday, to, tuesday, wednesday | active, friday, from, id, monday, name, networkId, portSchedule, saturday, sunday, thursday, to, tuesday, wednesday | switch:config:write | 
+|  | DELETE /networks/{networkId}/switch/portSchedules/{portScheduleId} Delete a switch port schedule  >  deleteNetworkSwitchPortSchedule | networkId, portScheduleId | `` | `` | switch:config:write | 
+|  | PUT /networks/{networkId}/switch/portSchedules/{portScheduleId} Update a switch port schedule  >  updateNetworkSwitchPortSchedule | networkId, portScheduleId | active, friday, from, monday, name, portSchedule, saturday, sunday, thursday, to, tuesday, wednesday | active, friday, from, id, monday, name, networkId, portSchedule, saturday, sunday, thursday, to, tuesday, wednesday | switch:config:write | 
+|  | GET /networks/{networkId}/switch/ports/profiles List the port profiles in a network (BETA)  >  getNetworkSwitchPortsProfiles | networkId | `` | access, accessPolicyNumber, accessPolicyType, adaptivePolicyGroupId, allowedVlans, authentication, automations, createdAt, daiTrusted, description, fastPoeEnabled, host, id, isOrganizationWide, isolationEnabled, macAllowList, mode, name, networkId, networks, peerSgtCapable, perpetualPoeEnabled, poeEnabled, port, profileId, rstpEnabled, stickyMacAllowList, stickyMacAllowListLimit, stormControlEnabled, stpGuard, tags, type, udld, updatedAt, values, vlan, voiceVlan | switch:config:read | 

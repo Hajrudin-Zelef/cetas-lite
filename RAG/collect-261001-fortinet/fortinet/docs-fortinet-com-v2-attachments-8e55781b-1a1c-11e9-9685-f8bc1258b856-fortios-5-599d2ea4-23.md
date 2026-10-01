@@ -1,0 +1,146 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-23
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [2866, 2994]
+sha256: 31a22ee362e96f10f003cbcd97d1742b0f1e8c2402d329243ae5f71e5fe4897e
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FGCPconfigurationexamplesandtroubleshooting Active-activeHAclusterintransparentmode
+Inthisexample,theconfigurationstepsareidenticaltotheNATmodeconfigurationstepsuntil theclusteris
+operating.Whentheclusterisoperating,youcanswitchtotransparentmodeandaddbasicconfiguration
+settingstocluster.
+General configuration steps
+1. ApplylicensestotheFortiGates tobecomethecluster.
+2. ConfiguretheFortiGates forHAoperation.
+l Optionally changeeachunit’shostname.
+l ConfigureHA.
+2. Connecttheclustertothenetwork.
+3. Confirmthat theclusterunitsareoperatingasacluster.
+4. Switchtheclustertotransparentmodeandaddbasicconfigurationsettingstothecluster.
+l Switchtotransparentmode, addthemanagement IPaddressandadefault route.
+l Addapasswordfortheadminadministrative account.
+l ViewclusterstatusfromtheGUIorCLI.
+Configuring a transparent mode active-active cluster of two FortiGates - GUI
+Usethefollowing procedurestoconfiguretheFortiGates forHAoperationusingtheFortiGate GUI. These
+proceduresassumeyouarestartingwithtwoFortiGates withfactorydefault settings.
+Waiting until youhaveestablishedtheclustertoswitchtotransparentmodemeans
+fewerconfigurationstepsbecauseyoucanswitchthemodeoftheclusterinonestep.
+To configure the first FortiGate (host name FGT_ha_1)
+1. RegisterandapplylicensestotheFortiGate beforeconfiguringitforHAoperation.Thisincludeslicensingfor
+FortiCare Support, IPS, AntiVirus, Web Filtering, Mobile Malware, FortiClient, FortiCloud,and
+additional virtual domains(VDOMs).AllFortiGates intheclustermusthavethesameleveloflicensingfor
+FortiGuard, FortiCloud, FortiClient, andVDOMs. FortiTokenlicensescanbeaddedatanytime becausetheyare
+synchronizedtoallclustermembers.
+If theFortiGates intheclusterwillberunningFortiOSCarrier,applytheFortiOSCarrierlicensebeforeconfiguring
+thecluster(andbeforeapplyingotherlicenses).ApplyingtheFortiOSCarrierlicensesetstheconfigurationto
+factorydefaults, requiringyoutorepeatstepsperformedbeforeapplyingthelicense.
+Youcanalsoinstallanythird-partycertificatesontheprimaryFortiGate beforeforming thecluster.Oncethe
+clusterisformed, third-partycertificatesaresynchronizedtothebackupFortiGate.
+HighAvailability
+Fortinet TechnologiesInc.
+85
+
+Active-activeHAclusterintransparentmode FGCPconfigurationexamplesandtroubleshooting
+2. ClickontheSystemInformation dashboardwidgetandselect Configure settingsin System > Settings.
+3. EnteranewHostNameforthisFortiGate.
+New Name FGT_ha_1
+4. Select OK.
+5. Goto System > HA andchangethefollowing settings:
+Mode Active-Active
+Group Name example2.com
+Password HA_pass_2
+Thisistheminimum recommendedconfigurationforanactive-activeHAcluster.You
+canconfigureotherHAoptionsatthispoint, butifyouwaituntil theclusterisoperating
+youwillonlyhavetoconfiguretheseoptionsoncefortheclusterinsteadofseparately
+foreachclusterunit.
+6. Select OK.
+TheFortiGate negotiatestoestablishanHAcluster.Whenyouselect OKyoumaytemporarilylose
+connectivitywiththeFortiGate astheHAclusternegotiatesandtheFGCPchangestheMACaddress
+oftheFortiGate interfaces.TheMACaddressesoftheFortiGate interfaceschangetothefollowing
+virtualMACaddresses:
+l port1interfacevirtualMAC:00-09-0f-09-00-00
+l port2interfacevirtualMAC:00-09-0f-09-00-01
+l port3interfacevirtualMAC:00-09-0f-09-00-02
+l port4interfacevirtualMAC:00-09-0f-09-00-03
+86 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting Active-activeHAclusterintransparentmode
+Toreconnectsooner,youcanupdatetheARPtableofyourmanagement PCbydeletingtheARP
+tableentryfortheFortiGate (orjustdeletingallarptableentries).Youmaybeabletodeletethearp
+tableofyourmanagement PCfromacommandpromptusingacommandsimilartoarp -d.
+ToconfirmtheseMACaddresschanges,youcanusetheget hardware nic (ordiagnose
+hardware deviceinfo nic)CLIcommandtoviewthevirtualMACaddressofanyFortiGate
+interface. Forexample,usethefollowing commandtoviewtheport1interfacevirtualMACaddress
+(MAC)andtheport1permanentMACaddress(Permanent_HWaddr):
+get hardware nic port1
+.
+.
+.
+Current_HAaddr 00:09:0f:09:00:00
+Permanent_HWaddr  02:09:0f:78:18:c9
+.
+.
+.
+10. Poweroff thefirstFortiGate.
+To configure the second FortiGate (host name FGT_ha_2)
+1. RegisterandapplylicensestotheFortiGate beforeconfiguringitforHAoperation.
+2. ClickontheSystemInformation dashboardwidgetandselect Configure settingsin System > Settings.
+3. EnteranewHostNameforthisFortiGate.
+New Name FGT_ha_2
+4. Select OK.
+5. Goto System > HA andchangethefollowing settings:
+HighAvailability
+Fortinet TechnologiesInc.
+87
+
+Active-activeHAclusterintransparentmode FGCPconfigurationexamplesandtroubleshooting
+Mode Active-Active
+Group Name example2.com
+Password HA_pass_2
+6. Select OK.
+TheFortiGate negotiatestoestablishanHAcluster.WhenyouselectOKyoumaytemporarilylose
+connectivitywiththeFortiGate astheHAclusternegotiatesandbecausetheFGCPchangestheMAC
+addressoftheFortiGate interfaces.
+Toreconnectsooner,youcanupdatetheARPtableofyourmanagement PCbydeletingtheARP
+tableentryfortheFortiGate (orjustdeletingallarptableentries).Youmaybeabletodeletethearp
+tableofyourmanagement PCfromacommandpromptusingacommandsimilartoarp -d.
+7. Poweroff thesecondFortiGate.
+To connect the cluster to the network
+1. Connecttheport1interfacesofFGT_ha_1andFGT_ha_2toaswitchconnectedtotheInternet.
+2. Connecttheport2interfacesofFGT_ha_1andFGT_ha_2toaswitchconnectedtotheinternalnetwork.
+3. Connecttheport3interfacesofFGT_ha_1andFGT_ha_2together. YoucanuseacrossoverEthernetcableor
+regularEthernetcablesandaswitch.
+4. Connecttheport4interfacesoftheclusterunitstogether. YoucanuseacrossoverEthernetcableorregular
+Ethernetcablesandaswitch.
+5. Powerontheclusterunits.
+Theunitsstartandnegotiate tochoosetheprimaryunitandthesubordinateunit. Thisnegotiation
+occurswithnouserinterventionandnormallytakeslessthanaminute.
+Whennegotiation iscompletetheclusterisreadytobeconfiguredforyournetwork.
+To switch the cluster to transparentmode
+SwitchingfromNATtotransparentmodeinvolvesaddingthetransparentmodemanagement IPaddressand
+default route.
+Thisistheminimum recommendedconfigurationforanactive-activeHAcluster.You
+canconfigureotherHAoptionsatthispoint, butifyouwaituntil theclusterisoperating
+youwillonlyhavetoconfiguretheseoptionsoncefortheclusterinsteadofseparately
+foreachclusterunit.
+1. Startawebbrowserandbrowsetotheaddresshttps://192.168.1.99 (remembertoincludethe“s”in
+https://).
+TheFortiGate Loginisdisplayed.
+2. TypeadminintheNamefield andselectLogin.
+3. UnderSystemInformation, beside Operation Modeselect Change.
+4. SetOperationModetotransparent.
+5. Configurebasictransparentmodesettings.
+88 HighAvailability
+Fortinet TechnologiesInc.
+

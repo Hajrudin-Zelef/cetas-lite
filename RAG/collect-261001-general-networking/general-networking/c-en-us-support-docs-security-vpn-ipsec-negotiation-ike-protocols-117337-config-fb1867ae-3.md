@@ -1,0 +1,233 @@
+---
+id: collect-261001-general-networking/general-networking/c-en-us-support-docs-security-vpn-ipsec-negotiation-ike-protocols-117337-config-fb1867ae-3
+title: "c-en-us-support-docs-security-vpn-ipsec-negotiation-ike-protocols-117337-config--fb1867ae"
+domain: general-networking
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-general-networking/c-en-us-support-docs-security-vpn-ipsec-negotiation-ike-protocols-117337-config--fb1867ae.md
+source_anchor: ""
+source_lines: [205, 420]
+sha256: daf2d92d86589a703962771111b2ac08eb49531545b8f7afba21527be787a899
+---
+
+# c-en-us-support-docs-security-vpn-ipsec-negotiation-ike-protocols-117337-config--fb1867ae
+
+de3081db 30310603 551d2504 2a302806 082b0601 05050703 0106082b 06010505
+07030506 082b0601 05050703 0606082b 06010505 07030730 3c060355 1d1f0435
+30333031 a02fa02d 862b6874 74703a2f 2f313932 2e313638 2e323534 2e323534
+2f696f73 2d636163 64702e69 6f732d63 612e6372 6c301806 03551d11 0411300f
+820d6173 612e6369 73636f2e 636f6d30 0e060355 1d0f0101 ff040403 0205a030
+1f060355 1d230418 30168014 082896b9 f4af2075 514321d0 72f161d0 9d2ec8aa
+301d0603 551d0e04 1604145b 76de9ef0 d3255efe f4bc551b 69cd8398 d1596c30
+0d06092a 864886f7 0d010104 05000381 81003fb0 ec7719cd 4f6162b2 90727db4
+da5606f2 61441dc6 094fb3a6 defe62ef 5ff8f140 3bc3448c e0b42d26 07647607
+fd7518cb 034139d3 e3648fd2 9d93b5e4 db3b828b 16d50dd5 3e18cdd6 74855de4
+88a159d6 6ef51718 cf6cc4e4 53c2aca3 36442ff0 bb4b8493 22f0e632 a8b32b36
+f287801f 8d47637f e4e9ee6a b4555094 c092
+quit
+!
+! manually select the ISAKMP identity to use address on the ASA
+crypto isakmp identity address
+crypto ikev2 policy 1
+encryption aes-256
+integrity sha
+group 14 5 2
+prf sha
+lifetime seconds 86400
+crypto ikev2 policy 10
+encryption aes-192
+integrity sha256 sha
+group 14 5 2
+prf sha
+lifetime seconds 86400
+crypto ikev2 policy 30
+encryption 3des
+integrity sha
+group 5 2
+prf sha
+lifetime seconds 86400
+crypto ikev2 enable outside
+!
+! to allow pings from the CA interface that will bring up the tunnel during
+testing.
+!
+management-access CA
+!
+group-policy GroupPolicy2 internal
+group-policy GroupPolicy2 attributes
+vpn-idle-timeout 30
+vpn-tunnel-protocol ikev1 ikev2
+tunnel-group 172.16.1.1 type ipsec-l2l
+tunnel-group 172.16.1.1 general-attributes
+default-group-policy GroupPolicy2
+tunnel-group 172.16.1.1 ipsec-attributes
+!
+! disable peer-id validation
+!
+peer-id-validate nocheck
+ikev2 remote-authentication certificate
+ikev2 local-authentication certificate ios-ca
+: end
+! NTP configuration
+ntp trusted-key 1
+ntp server 192.168.254.254
+ip domain name cisco.com
+!
+crypto pki trustpoint tp_ikev2
+enrollment url http://192.168.254.254:80
+usage ike
+fqdn R1.cisco.com
+!
+! necessary only in this example as no crl has been configured on the IOS CA.
+On the ASA this is enabled by default. When using proper 3rd party
+certificates this is not necessary.
+!
+revocation-check none
+rsakeypair ikev2_cert
+eku request server-auth
+!
+crypto pki certificate chain tp_ikev2
+certificate 0B
+308202F4 3082025D A0030201 0202010B 300D0609 2A864886 F70D0101 05050030
+1B311930 17060355 04031310 696F732D 63612E63 6973636F 2E636F6D 301E170D
+31333131 32353233 35363537 5A170D31 33313230 35323335 3635375A 301D311B
+30190609 2A864886 F70D0109 02160C52 312E6369 73636F2E 636F6D30 82012230
+0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 82010100 A1032A61
+A3F14539 87816C22 8C66A170 3A9661EA 4AF6F063 3FC305B8 E525B84D AA74A9CE
+666B1BF5 3C7DF025 31FEB161 CE49845F 3EC2DE7B D3FCC685 D6F80C8C 0AA12772
+1B4AB15C 90C04446 068A0DBA 7BFA4E40 E978364F A2B07F7C 02C691A8 921A5481
+A4AF07B4 BA0C9DBA D35F4566 6CB70553 DAF09A45 F2948C5A 1621E5D2 98508D49
+A2EF61D3 AAF3A9DB 87F2D763 89AD0BBE 916A6CF8 1B59C426 7960013B 061AA0A5
+F6870319 87A35ABA 8C1B5CF5 42976739 B8C936D3 24276E56 F59E3CFD 9B9B4A0D
+2E5294AB C4470376 5D96915F 275CBC78 586D6755 F45C7592 62DCA916 CEC1A450
+3FF090A9 15088CD2 13B90391 B0795263 071C7002 8CBF98F2 89788A0B 02030100
+01A381C1 3081BE30 3C060355 1D1F0435 30333031 A02FA02D 862B6874 74703A2F
+2F313932 2E313638 2E323534 2E323534 2F696F73 2D636163 64702E69 6F732D63
+612E6372 6C303106 03551D25 042A3028 06082B06 01050507 03010608 2B060105
+05070305 06082B06 01050507 03060608 2B060105 05070307 300B0603 551D0F04
+04030205 A0301F06 03551D23 04183016 80140828 96B9F4AF 20755143 21D072F1
+61D09D2E C8AA301D 0603551D 0E041604 14C63949 4CA10DBB 2BBB6F98 BAFF0EE2
+B3716CEE 3B300D06 092A8648 86F70D01 01050500 03818100 3080FEF6 9160357B
+6F28ED60 428BA6CE 203706F6 F91DA273 AF6E81D3 46539E13 B4C89A9A 19E1F0BC
+A631A418 C30DFC8E 0585039D EB07D35D E719F5FE A4EE47B5 CED31B12 745C9EE8
+5B6B0F17 67C3B965 C927B379 C674933F 84E7A1F7 851A6CF0 8775B1C5 3A033D90
+75965DCA 86E4A842 E2C35AC0 6BFA8144 699B1582 C094BF35
+quit
+certificate ca 01
+3082020F 30820178 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+1B311930 17060355 04031310 696F732D 63612E63 6973636F 2E636F6D 301E170D
+31333131 31353231 33353533 5A170D31 33313231 35323133 3535335A 301B3119
+30170603 55040313 10696F73 2D63612E 63697363 6F2E636F 6D30819F 300D0609
+2A864886 F70D0101 01050003 818D0030 81890281 81009EBB 48957C44 C940236F
+A1CDA758 AA930E8C 91390734 B8EF814D 0BF7AEC9 7EC40379 7749D3C6 154F6A32
+00738655 33B20207 037A9E15 3229FA72 478424FB 409F518D B13D328D E761BE08
+8023B4FF F410054B 4423156D 66C99788 69AB5956 966D5E1B 4D1C1120 A05AD08C
+F036A134 3B2FC425 E4A2524F 36E0A129 2C8F6CEE 971D0203 010001A3 63306130
+0F060355 1D130101 FF040530 030101FF 300E0603 551D0F01 01FF0404 03020186
+301F0603 551D2304 18301680 14082896 B9F4AF20 75514321 D072F161 D09D2EC8
+AA301D06 03551D0E 04160414 082896B9 F4AF2075 514321D0 72F161D0 9D2EC8AA
+300D0609 2A864886 F70D0101 04050003 81810087 A06D354A F7423E0E 64A7C5EC
+6006FBDE 914D7BFD F86ADA50 B1A00D17 0BF06EC1 5423D514 FBEB0A76 986EB63F
+F7FCE99A 81C4B112 61FD69CE A2CE750E B1B3A6F9 84E92490 8F213613 451DD9A8
+3FC3406A 854B20ED 27E4DDD8 62F6DEA5 DD8B4396 1879B3E7 651CB9D1 3DD46B8B
+32796963 9F6854F1 389F0060 AA0D1B8D F83E09
+quit
+!
+crypto ikev2 proposal aes-cbc-256-proposal
+encryption aes-cbc-256
+integrity sha1
+group 5 2 14
+!
+crypto ikev2 policy policy1
+match address local 172.16.1.1
+proposal aes-cbc-256-proposal
+!
+crypto ikev2 profile profile1
+description IKEv2 profile
+!
+! router configured to use address as the remote identity. By default local
+identity is address
+!
+match address local 172.16.1.1
+match identity remote address 172.16.1.2 255.255.255.255
+authentication remote rsa-sig
+authentication local rsa-sig
+pki trustpoint tp_ikev2
+!
+! disable http-url based cert lookup
+!
+no crypto ikev2 http-url cert
+!
+crypto ipsec transform-set ESP-AES-SHA esp-aes 256 esp-sha-hmac
+mode tunnel
+!
+crypto map SDM_CMAP_1 1 ipsec-isakmp
+set peer 172.16.1.2
+set transform-set ESP-AES-SHA
+set pfs group2
+set ikev2-profile profile1
+match address 103
+!
+interface Loopback0
+ip address 172.16.2.1 255.255.255.255
+!
+interface GigabitEthernet0/0
+ip address 172.16.1.1 255.255.255.0
+duplex auto
+speed auto
+crypto map SDM_CMAP_1
+!
+interface GigabitEthernet0/1
+ip address 192.168.1.1 255.255.255.0
+duplex auto
+speed auto
+!
+ip route 192.168.0.0 255.255.255.0 172.16.1.2
+ip route 192.168.254.254 255.255.255.255 192.168.1.254
+!
+! access list that defines crypto domains, must be mirror images on both peers.
+!
+access-list 103 permit ip 172.16.2.0 0.0.0.255 192.168.0.0 0.0.0.255
+!
+! ntp configuration
+!
+ntp trusted-key 1
+ntp server 192.168.254.254
+!
+end
+ip domain name cisco.com
+!
+! CA server configuration
+!
+crypto pki server ios-ca
+database archive pkcs12 password 7 02050D4808095E731F
+issuer-name CN=ios-ca.cisco.com
+grant auto
+lifetime certificate 10
+lifetime ca-certificate 30
+cdp-url http://192.168.254.254/ios-cacdp.ios-ca.crl
+eku server-auth ipsec-end-system ipsec-tunnel ipsec-user
+!
+! this trustpoint is generated automatically when the CA server is enabled.
+!
+crypto pki trustpoint ios-ca
+revocation-check crl
+rsakeypair ios-ca
+!
+!
+crypto pki certificate chain ios-ca
+certificate ca 01
+3082020F 30820178 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+1B311930 17060355 04031310 696F732D 63612E63 6973636F 2E636F6D 301E170D
+31333131 31353231 33353533 5A170D31 33313231 35323133 3535335A 301B3119
+30170603 55040313 10696F73 2D63612E 63697363 6F2E636F 6D30819F 300D0609
+2A864886 F70D0101 01050003 818D0030 81890281 81009EBB 48957C44 C940236F
+A1CDA758 AA930E8C 91390734 B8EF814D 0BF7AEC9 7EC40379 7749D3C6 154F6A32
+00738655 33B20207 037A9E15 3229FA72 478424FB 409F518D B13D328D E761BE08
+8023B4FF F410054B 4423156D 66C99788 69AB5956 966D5E1B 4D1C1120 A05AD08C
+F036A134 3B2FC425 E4A2524F 36E0A129 2C8F6CEE 971D0203 010001A3 63306130
+0F060355 1D130101 FF040530 030101FF 300E0603 551D0F01 01FF0404 03020186
+301F0603 551D2304 18301680 14082896 B9F4AF20 75514321 D072F161 D09D2EC8

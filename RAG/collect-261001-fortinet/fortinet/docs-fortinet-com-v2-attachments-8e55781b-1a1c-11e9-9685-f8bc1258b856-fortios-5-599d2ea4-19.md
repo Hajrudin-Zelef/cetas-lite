@@ -1,0 +1,198 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-19
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: ["license"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [2189, 2369]
+sha256: 86eea78dfaa842237b0c5bd2d9b82796702530ffe32be75aadb290ac38bb5ad0
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FGCPconfigurationexamplesandtroubleshooting HowtosetupFGCPclustering(recommendedsteps)
+YoucanalsousetheGUI(System
+> HA)toconfiguremostofthese
+settings.
+Overrideandthegroupidcanonly
+beconfiguredfromtheCLI.
+config system ha
+set group-id 25
+  set override enable
+end
+TheFortiGate unitnegotiatestoestablishanHAcluster.Youmaytemporarilyloseconnectivitywiththe
+FortiGate unitasFGCPnegotiation takesplaceandtheMACaddressesoftheFortiGate interfacesare
+changedtoHAvirtualMACaddresses.ThesevirtualMACaddressesareusedforfailover.Theactualvirtual
+MACaddressassignedtoeachFortiGate interfacedependsontheHAgroupID. Sincethisexampledoes
+notinvolvechangingtheHAgroupID, theFortiGate unit'sinterfaceswillhavethefollowing MACaddresses:
+00:09:0f:09:00:00, 00:09:0f:09:00:01, 00:09:0f:09:00:02 andsoon.
+If thesestepsdon'tstartHAmode, makesurethat noneoftheFortiGate'sinterfacesuseDHCPorPPPoE
+addressing.
+Toreconnectsooner,youcanupdatetheARPtableofyourmanagement PCbydeletingtheARPtable
+entryfortheFortiGate unit(orjustdeletingallARPtableentries).YoucanusuallydeletetheARPtablefrom
+acommandpromptusingacommandsimilartoarp -d.To confirmtheseMACaddresschanges,youcan
+usetheget hardware nic (ordiagnose hardware deviceinfo nic)commandtoviewthe
+virtualMACaddressofanyFortiGate unitinterface. DependingontheFortiGate model, theoutput from
+thiscommandcouldincludelinessimilartothefollowing:
+Current_HWaddr: 00:09:0f:09:00:00
+Permanent_ HWaddr 02:09:0f:78:18:c9
+2. Configuring the backup FortiGate
+HighAvailability
+Fortinet TechnologiesInc.
+67
+
+HowtosetupFGCPclustering(recommendedsteps) FGCPconfigurationexamplesandtroubleshooting
+EnterthiscommandtoresetthenewFortiGate that willbecomethebackupFortiGate tofactorydefault
+settings.
+execute factoryreset
+YoucanskipthisstepifthenewFortiGate isfreshfromthefactory.Butifitsconfigurationhasbeen
+changedatallitisrecommendedtosetitbacktofactorydefaultstoreducethechanceofsynchronization
+problems.
+If required,changethefirmwarerunningonthenewFortiGate tobethesameversionasisrunningonthe
+primaryunit.
+Registerandapplylicensestothe
+newFortiGate unitbeforeaddingit
+totheHAcluster.Thisincludes
+licensingfor FortiCare Support,
+IPS, AntiVirus, Web Filtering,
+Mobile Malware, FortiClient,
+FortiCloud,andadditional virtual
+domains(VDOMs).AllFortiGates
+intheclustermusthavethesame
+leveloflicensingforFortiGuard,
+FortiCloud, FortiClient, and
+VDOMs. FortiTokenlicensescan
+beaddedatanytime becausethey
+aresynchronizedtoallcluster
+members.
+If theFortiGates intheclusterwill
+berunningFortiOSCarrier,apply
+theFortiOSCarrierlicensebefore
+configuringthecluster(andbefore
+applyingotherlicenses).Applying
+theFortiOSCarrierlicensesetsthe
+configurationtofactorydefaults,
+requiringyoutorepeatsteps
+performedbeforeapplyingthe
+license.
+ClickontheSystemInformation
+dashboardwidgetandselect
+Configure settings in System >
+Settings.ChangetheFortiGate's
+Host nametoidentify itasthe
+backupFortiGate.
+YoucanalsoenterthisCLI
+command:
+config system global
+set hostname External-Backup
+end
+68 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting HowtosetupFGCPclustering(recommendedsteps)
+DuplicatetheprimaryunitHA
+settings, exceptsetthe Device
+Prioritytoalowervalue(for
+example,50)anddonotenable
+override.
+If thesestepsdon'tstartHAmode,
+makesurethat noneofthe
+FortiGate'sinterfacesuseDHCPor
+PPPoEaddressing,
+config system ha
+set mode a-p
+ set group-id 25
+set group-name External-HA-Cluster
+set password
+set priority 50
+set hbdev port3 200 port4 100
+end
+3. Connecting the cluster
+ConnecttheHAclusterasshowninthenetworkdiagram. Makingtheseconnectionswilldisruptnetwork
+traffic asyoudisconnectandre-connectcables.
+If possible,makedirectEthernetconnectionsbetweentheheartbeatinterfacesofthetwoFortiGate units.
+Thisexampleusestwoport3andport4,butyoucanuseanyinterfacesforHAheartbeatinterfaces.Abest
+practiceistouseinterfacesthat donotprocesstraffic, butthisisnotarequirement.
+SwitchesmustbeusedbetweentheclusterandtheInternet andbetweentheclusterandtheinternal
+networksasshowninthenetworkdiagram. Youcanuseanygoodqualityswitchestomakethese
+connections.Youcanalsouseoneswitchforalloftheseconnectionsaslongasyouconfiguretheswitchto
+separatetraffic fromthedifferent networks.
+Whenconnected,theprimaryandbackupFortiGates findeachotherandnegotiate toformanHAcluster.
+ThePrimaryunitsynchronizesitsconfigurationwiththebackupFortiGate. Formingtheclusterhappens
+automatically withminimal ornodisruptiontonetworktraffic.
+4. Checking cluster operation and disabling override
+Checktheclustersynchronizationstatustomakesuretheprimaryandbackupunitshavethesame
+configuration. LogintotheprimaryunitCLIandenterthiscommand:
+diagnose sys ha checksum cluster
+Thecommandoutput listsallclustermembers'configurationchecksums.If bothclusterunitshaveidentical
+checksumsyoucanbesurethat theirconfigurationsaresynchronized.If thechecksumsaredifferent, waita
+shortwhileandenterthecommandagain.Repeatuntil thechecksumsareidentical. It maytakeawhilefor
+somepartsoftheconfigurationtobesynchronized.If thechecksumsneverbecomeidenticalvisitthe
+Fortinet Supportwebsitetofindhelpwithtroubleshootingtheproblem.
+HighAvailability
+Fortinet TechnologiesInc.
+69
+
+HowtosetupFGCPclustering(recommendedsteps) FGCPconfigurationexamplesandtroubleshooting
+TheHAStatusDashboardwidget
+alsoshowsiftheclusterunitsare
+synchronized.Mouseovereach
+FortiGate intheclustertoverifythat
+theybothhavethesamechecksum.
+Whenthechecksumsareidentical, disableoverrideontheprimaryunit(recommended).
+config system ha
+ set override disable
+end
+TheHAclusterdynamicallyrespondstonetworkconditions.If youkeepoverrideenabled,thesame
+FortiGate willalwaysbetheprimaryFortiGate. Becauseofthis, however;theclustermaynegotiate more
+often potentially increasingtraffic disruptions.
+If youdisableoverrideitismorelikelythat thenewFortiGate unitcouldbecometheprimaryunit. Disabling
+overrideisrecommendedunlessitsimportant that thesameFortiGate remainstheprimaryunit.
+Fromthe HA Statuswidget, select Configure Settings in System > HA (orgoto System > HA)to
+viewtheclusterstatus.
+Fromthe HA Statuswidgetyoucanalsoselect Show HA Historical EventstoseethemostrecentHA
+systemstatusmessages.
+70 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting HowtosetupFGCPclustering(recommendedsteps)
+5. Results
+Normally,traffic shouldnowbeflowingthroughtheprimaryFortiGate. If theprimaryFortiGate is
+unavailabletraffic failsovertothebackupFortiGate. Failoveralsocausestheprimaryandbackup
+FortiGates toreverseroles,evenwhenbothFortiGates areavailableagain.
+Totestthis, pingtheIPaddress
+8.8.8.8 usingaPContheinternal
+network.Afteramoment, poweroff
+theprimaryFortiGate.
+If youareusingportmonitoring, you
+canalsounplugtheprimary
+FortiGate'sInternet-facinginterface
+totestfailover.
+Youwillseeamomentarypausein
+thepingresults,until traffic diverts
+tothebackupFortiGate, allowing
+thepingtraffic tocontinue.
+HighAvailability
+Fortinet TechnologiesInc.
+71
+
+SettinguptwonewFortiGates asanFGCPcluster FGCPconfigurationexamplesandtroubleshooting
+Setting up two new FortiGates as an FGCP cluster
+ThissectiondescribesasimpleHAnetworktopologythat includesanHAclusteroftwoFortiGates inNATmode
+installedbetweenaninternalnetworkandtheInternet. TheexampleusesagenericFortiGate withfourinterfaces
+namedport1,port2,port3andport4.
+Example NAT mode HA network topology
+ThefigurebelowshowsatypicalFortiGate HAclusterconsistingoftwoFortiGates (FGT_ha_1andFGT_ha_2)
+connectedtothesameinternal(port2)andexternal(port1)networks.
+Example NAT mode HA network topology
+Port3andport4areusedastheheartbeatinterfaces.BecausetheclusterconsistsoftwoFortiGates, youcan
+maketheconnectionsbetweentheheartbeatinterfacesusingcrossovercables.Youcouldalsouseswitchesand
+regularEthernetcables.
+72 HighAvailability
+Fortinet TechnologiesInc.
+

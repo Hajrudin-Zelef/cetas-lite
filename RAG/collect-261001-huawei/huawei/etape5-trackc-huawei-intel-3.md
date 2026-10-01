@@ -1,0 +1,78 @@
+---
+id: collect-261001-huawei/huawei/etape5-trackc-huawei-intel-3
+title: "Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)"
+domain: huawei
+role: reference
+task: reference
+actors: ["AMD", "AWS", "Apple", "Falcon", "Google", "Intel", "Microsoft", "Nvidia", "Qualcomm", "Samsung", "TSMC", "United States"]
+dates: ["2026-01-05", "2026-06-01"]
+keywords: ["intel", "18a", "3nm", "accelerator", "agentic", "agents", "agi", "ai pc", "amd", "clearwater forest", "consumer", "copilot"]
+source: docs/RAG/collect-261001-huawei/etape5_trackC_huawei_intel.md
+source_anchor: ""
+source_lines: [116, 176]
+sha256: ef26c324910c9e4f39e0841a91c7de00c6f3da1789fc5a2803900df221ffb23f
+---
+
+# Step 5 — Track C: Huawei + Chinese Hardware + Intel CPUs (Feb 1 → Sep 22, 2026)
+
+- **Granite Rapids (Xeon 6900P):** launched **Sep 24, 2024**; up to **128 Redwood Cove P-cores**; 504 MB L3; up to **500 W TDP**; 12 channels DDR5-6400; **MRDIMM up to 8800 MT/s** (market debut of the standard); 136 PCIe 5.0 lanes; CXL 2.0; AMX with MXFP4 support **[secondary — Wikipedia/techpowerup/dlcompare]**.
+- **Sierra Forest (Xeon 6700E):** launched **Jun 4, 2024**; up to **288 Crestmont E-cores**; Intel 3; 8/12 DDR5 channels; 88 PCIe 5.0; CXL 2.0 **[secondary — Wikipedia]**.
+- In-window 2026 news for the base Xeon 6 lineup is thin — the action moved to the successor (Clearwater Forest).
+
+### 3.3 Clearwater Forest — Xeon 6+, launched June 1, 2026
+
+- **Launched June 1, 2026 at Computex**; **first data-center processor on Intel 18A** **[secondary — Wikipedia]**.
+- Up to **288 Darkmont E-cores** per socket; 2-socket configs; **12 channels DDR5-8000**; **96 PCIe 5.0 lanes**; **64 CXL 2.0 lanes**; up to 6 UPI links; 576 MB max L3; built-in accelerators (QAT, DSA, DLB, IAA); SGX/TDX **[secondary — Wikipedia]**.
+- Succeeds Sierra Forest; shares I/O tiles with Granite Rapids; successor line points to **Diamond Rapids (2027)** — no 2026 Diamond Rapids/Panther Cove news located **[gap]**.
+
+### 3.4 Gaudi 3 / Falcon Shores / Jaguar Shores — AI accelerator strategy
+
+- **Gaudi 3** (launched fall 2024, Habana Labs): 64 TPCs + 8 MMEs; **128 GB HBM2e**; 24×200Gb Ethernet scale-out; SynapseAI stack. **Commercial miss:** Intel admitted (Nov 2024) it would miss its **$500M Gaudi 3 sales target** on software issues; beyond IBM, few major providers committed **[independent — TechCrunch]**.
+- **Falcon Shores CANCELLED as a product (Jan 30, 2025):** interim co-CEO Michelle Johnston Holthaus announced Falcon Shores — the TSMC-3nm, ~1500W programmable GPU meant to succeed Gaudi 3 in late 2025 — would be an **internal test chip only**, not brought to market **[independent — CRN; TechCrunch; TweakTown]**.
+- **Jaguar Shores:** the successor is now framed as a **rack-scale system-level solution**, not a standalone chip — Intel's lesson from Gaudi being "it's not enough to just deliver the silicon" **[independent — CRN]**.
+- **2026 status:** no verified Jaguar Shores silicon/launch news in-window **[gap]**.
+- **Crescent Island:** next-gen **inference-focused datacenter GPU (Xe3P)**, reported with 160 GB LPDDR5X, air-cooled, **sampling H2 2026** — sourced only from a Red Hat ecosystem GitHub repo; **treat as [unverified]**.
+
+### 3.5 Panther Lake — Core Ultra Series 3 (client AI PC, Jan 2026)
+
+- **Launched January 5, 2026 at CES**; **first consumer chip on Intel 18A**, designed and manufactured entirely in the US; RibbonFET + PowerVia **[independent — KitGuru; Micro Center]**.
+- Up to **16 cores** (4 Cougar Cove P + 8 Darkmont E + 4 LP E-cores); **Xe3 "Celestial" iGPU** up to 12 Xe cores (Arc B390), matching a laptop RTX 4050 per Intel; XeSS 3 with multi-frame generation **[independent — KitGuru]**.
+- **NPU 5: 50 TOPS** (Copilot+ compliant); **180 platform TOPS** total (CPU+GPU+NPU); 4.3× faster LLM inference than AMD XDNA2 (Intel claim — **[vendor-reported]**) **[independent — KitGuru; secondary — GitHub research note]**.
+- Memory: **LPDDR5X-9600**, DDR5-7200; 25W base / 80W turbo TDP; Thunderbolt 4, Wi-Fi 7, PCIe 5.0 (12/20 lanes) **[secondary]**.
+- Intel claims +50–60% multithreaded perf gen-on-gen at 25W; "battery life king" Core Ultra X9 388H with up to 27h Netflix streaming **[vendor-reported]**.
+- **200+ system designs** planned (ASUS Zenbook, MSI Prestige/Titan/Stealth, Samsung Galaxy Book6, Lenovo Yoga Slim 7i) **[secondary]**.
+- CES demo: **70B-parameter LLM running locally** with 32K context on a thin-and-light reference design via unified memory (up to 128 GB allocatable to AI tasks) **[vendor-reported — financialcontent]**.
+- Intel positioning: "Agentic AI PCs" running autonomous agents on-device **[secondary]**.
+
+---
+
+## 4. CPU LANDSCAPE 2026 — EPYC vs XEON, MEMORY
+
+### 4.1 Market share (Mercury Research)
+
+- **Q1 2026:** AMD hit **32.6% of the x86 CPU market** (units, all segments) — all-time high, up from 27.1% a year earlier; Intel 67.4% (down from 72.9%) **[secondary — TweakTown citing Mercury Research]**. AMD **server unit share 33.2%** (up from 27.2%); **EPYC 46.2% of server CPU revenue** — record, up from 41.3% in Q4 2025 — while Intel held 53.8% of x86 server revenue and 54.9% of server units; **Arm servers at 17.7%** **[secondary — TweakTown; theoutpost; walaw/UBS]**.
+- **Q2 2026:** AMD server unit share **34.5%** (from 27.3% a year earlier); in a head-to-head **EPYC vs Xeon SP** view, AMD approaches **46.4%** **[secondary — webpronews citing Mercury]**.
+- ⚠️ Segment-definition conflicts exist between outlets (e.g., Q2 "overall x86 share 30.7%" vs Q1's 32.6%) — figures above are quoted as reported per outlet; treat cross-outlet comparisons cautiously **[secondary]**.
+- **Economics:** server CPU shipments +10–20% YoY driven "almost entirely by AI data center demand"; Intel server shipments flat; **AMD Q1 data-center revenue $5.8B of $10.3B total (55.9%), +57% YoY** — surpassing Intel's DCAI segment ($5.1B) in the same quarter, a structural inflection **[secondary — TweakTown; walaw]**.
+- Lisa Su's framing: moving toward a **1:1 CPU:GPU ratio** in AI infrastructure as agentic workloads grow **[secondary — TweakTown]**.
+- **Arm:** server shipments nearly doubled; 17.7% share with growth expected after **Arm AGI** launch — details thin **[secondary]**.
+- **EPYC generation:** no new EPYC generation launch (9006/Venice) verified in-window — **gap**; the installed story remains EPYC 9005 (Turin).
+
+### 4.2 Memory: DDR5, MRDIMM, CXL, and the DRAM crunch
+
+- **MRDIMM** debuted with Granite Rapids — up to **8800 MT/s** on Xeon 6900P, targeting memory-bandwidth-bound AI workloads **[secondary — dlcompare]**.
+- **Clearwater Forest** pushes to **DDR5-8000** across 12 channels **[secondary — Wikipedia]**.
+- **CXL 2.0** is standard on Xeon 6 and Clearwater Forest (64 lanes on the latter) for memory expansion/pooling; no verified CXL 3.0 deployment news in-window — **gap**.
+- **The 2026 DRAM crunch:** chipmakers funneled production toward **HBM for AI accelerators**, leaving consumer-grade DRAM scarce and expensive; Mercury Research: "higher PC prices and limited GPU supplies are having a significant impact on end demand for desktop PCs" **[secondary — webpronews citing Mercury/The Register]**.
+- Server DRAM pricing specifics for 2026 were not verified in this pass — **gap**; re-verify against DRAMeXchange/TrendForce contract-price series.
+
+### 4.3 Other 2026 CPU/server-chip launches relevant to AI
+
+- **Qualcomm Snapdragon X2 Plus** (client): up to 80 platform TOPS — cited as Panther Lake's competitor at CES 2026 **[secondary — Micro Center]**.
+- **Apple M5-class silicon** referenced in local-inference contexts (Step 4 track B); no server CPU play.
+- No verified **NVIDIA Grace CPU** refresh, **Amazon Graviton 5**, or **Google Axion** next-gen launch news was collected in this pass — **gaps**; worth a dedicated sweep if server-CPU completeness is required.
+
+---
+
+## 5. MASTER TIMELINE (Feb 1 → Sep 22, 2026)
+

@@ -1,6 +1,6 @@
 # INDEX — FrAndroid — mobile & tech (Collect 240926)
 
-Corpus `collect-240926-frandroid` · **37 fiches** · 2166 lignes · ~40133 mots · **une fiche = un chunk**, copiée verbatim de `docs/RAG/clean_en/frandroid`.
+Corpus `collect-240926-frandroid` · **37 fiches** · 1536 lignes · ~40133 mots · **une fiche = un chunk**, copiée verbatim de `docs/RAG/clean_en/frandroid`.
 
 ## Mode d'emploi
 
@@ -21,15 +21,15 @@ Corpus `collect-240926-frandroid` · **37 fiches** · 2166 lignes · ~40133 mots
 | 05 | [de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphone-18](frandroid/de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphon.md) | 1–67 | reference | reference |
 | 06 | [du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026](frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-1.md) | 1–102 | reference | reference |
 | 07 | [du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026](frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-2.md) | 103–145 | reference | reference |
-| 08 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-1.md) | 1–116 | reference | reference |
-| 09 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-2.md) | 117–256 | reference | reference |
-| 10 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-3.md) | 257–328 | reference | reference |
-| 11 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-4.md) | 329–412 | reference | reference |
-| 12 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-5.md) | 413–413 | reference | reference |
-| 13 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-6.md) | 414–502 | reference | reference |
-| 14 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-7.md) | 503–548 | reference | reference |
-| 15 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-8.md) | 549–618 | reference | reference |
-| 16 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-9.md) | 619–639 | reference | reference |
+| 08 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-1.md) | 0–0 | reference | reference |
+| 09 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-2.md) | 0–0 | reference | reference |
+| 10 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-3.md) | 0–0 | reference | reference |
+| 11 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-4.md) | 0–0 | reference | reference |
+| 12 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-5.md) | 0–0 | reference | reference |
+| 13 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-6.md) | 0–0 | reference | reference |
+| 14 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-7.md) | 0–0 | reference | reference |
+| 15 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-8.md) | 0–0 | reference | reference |
+| 16 | [faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a](frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-9.md) | 0–0 | reference | reference |
 | 17 | [google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes](frandroid/google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes.md) | 1–39 | reference | reference |
 | 18 | [intel-core-ultra-7-rtx-5070-et-acran-oled-ce-monstre-de-puissance-coate-200-a-de-moins-chez-boulange](frandroid/intel-core-ultra-7-rtx-5070-et-acran-oled-ce-monstre-de-puissance-coate-200-a-de-moins-che.md) | 1–37 | reference | reference |
 | 19 | [j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix](frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix-1.md) | 1–87 | reference | reference |
@@ -98,15 +98,15 @@ Corpus `collect-240926-frandroid` · **37 fiches** · 2166 lignes · ~40133 mots
 | 1–67 | collect-240926-frandroid/frandroid/de-la-protection-au-confort-mains-libres-pourquoi-spigen-est-le-compagnon-idaal-de-l-iphon.md |
 | 1–102 | collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-1.md |
 | 103–145 | collect-240926-frandroid/frandroid/du-phone-4a-au-cmf-notre-salection-des-meilleurs-smartphones-nothing-en-2026-2.md |
-| 1–116 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-1.md |
-| 117–256 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-2.md |
-| 257–328 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-3.md |
-| 329–412 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-4.md |
-| 413–413 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-5.md |
-| 414–502 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-6.md |
-| 503–548 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-7.md |
-| 549–618 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-8.md |
-| 619–639 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-9.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-1.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-2.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-3.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-4.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-5.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-6.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-7.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-8.md |
+| 0–0 | collect-240926-frandroid/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a-9.md |
 | 1–39 | collect-240926-frandroid/frandroid/google-lance-gemini-3-8-flash-tts-une-ia-capable-de-cloner-une-voix-en-30-secondes.md |
 | 1–37 | collect-240926-frandroid/frandroid/intel-core-ultra-7-rtx-5070-et-acran-oled-ce-monstre-de-puissance-coate-200-a-de-moins-che.md |
 | 1–87 | collect-240926-frandroid/frandroid/j-ai-testa-le-mac-mini-m6-toujours-une-raussite-malgra-son-prix-1.md |

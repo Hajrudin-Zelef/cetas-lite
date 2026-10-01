@@ -1,0 +1,40 @@
+---
+id: collect-261001-meraki/meraki/meraki-api-v1-api-index-21d30cd4-14
+title: "meraki-api-v1-api-index-21d30cd4"
+domain: meraki
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-meraki/meraki-api-v1-api-index-21d30cd4.md
+source_anchor: ""
+source_lines: [295, 317]
+sha256: a44a3ab98c1ea30e3ca46bda4de870ba7c95a2827a6cc78671a354f80a91ca77
+---
+
+# meraki-api-v1-api-index-21d30cd4
+
+|  | PUT /networks/{networkId}/campusGateway/clusters/{clusterId} Update a cluster and add/remove campus gateways to/from it  >  updateNetworkCampusGatewayCluster | networkId, clusterId | address, addresses, allowedVlans, assignmentMode, devices, gateway, interface, name, nameservers, notes, portChannels, protocol, serial, subnetMask, tunnels, uplink, uplinks, vlan | address, addresses, allowedVlans, assignmentMode, clusterId, devices, gateway, id, interface, memberId, name, nameservers, notes, portChannels, protocol, serial, subnetMask, tunnels, uplink, uplinks, url, vlan | `` | 
+|  | DELETE /networks/{networkId}/campusGateway/clusters/{clusterId} Delete a cluster  >  deleteNetworkCampusGatewayCluster | networkId, clusterId | `` | `` | `` | 
+|  | GET /networks/{networkId}/campusGateway/ssids/{number}/mdns List the currently configured mDNS settings for the SSID (BETA)  >  getNetworkCampusGatewaySsidMdns | networkId, number | `` | enabled, rules, services | `` | 
+|  | PUT /networks/{networkId}/campusGateway/ssids/{number}/mdns Update the mDNS gateway settings and rules for a SSID and cluster  >  updateNetworkCampusGatewaySsidMdns | networkId, number | enabled, rules, services | enabled, rules, services | `` | 
+|  | GET /networks/{networkId}/cellularGateway/connectivityMonitoringDestinations Return the connectivity testing destinations for an MG network  >  getNetworkCellularGatewayConnectivityMonitoringDestinations | networkId | `` | default, description, destinations, ip | sdwan:telemetry:read | 
+|  | PUT /networks/{networkId}/cellularGateway/connectivityMonitoringDestinations Update the connectivity testing destinations for an MG network  >  updateNetworkCellularGatewayConnectivityMonitoringDestinations | networkId | default, description, destinations, ip | default, description, destinations, ip | sdwan:telemetry:write | 
+|  | GET /networks/{networkId}/cellularGateway/dhcp List common DHCP settings of MGs  >  getNetworkCellularGatewayDhcp | networkId | `` | dhcpLeaseTime, dnsCustomNameservers, dnsNameservers | sdwan:config:read | 
+|  | PUT /networks/{networkId}/cellularGateway/dhcp Update common DHCP settings of MGs  >  updateNetworkCellularGatewayDhcp | networkId | dhcpLeaseTime, dnsCustomNameservers, dnsNameservers | dhcpLeaseTime, dnsCustomNameservers, dnsNameservers | sdwan:config:write | 
+|  | GET /networks/{networkId}/cellularGateway/subnetPool Return the subnet pool and mask configured for MGs in the network.  >  getNetworkCellularGatewaySubnetPool | networkId | `` | applianceIp, cidr, deploymentMode, mask, name, serial, subnet, subnets | sdwan:config:read | 
+|  | PUT /networks/{networkId}/cellularGateway/subnetPool Update the subnet pool and mask configuration for MGs in the network.  >  updateNetworkCellularGatewaySubnetPool | networkId | cidr, mask | applianceIp, cidr, deploymentMode, mask, name, serial, subnet, subnets | sdwan:config:write | 
+|  | GET /networks/{networkId}/cellularGateway/uplink Returns the uplink settings for your MG network.  >  getNetworkCellularGatewayUplink | networkId | `` | bandwidthLimits, limitDown, limitUp | sdwan:config:read | 
+|  | PUT /networks/{networkId}/cellularGateway/uplink Updates the uplink settings for your MG network.  >  updateNetworkCellularGatewayUplink | networkId | bandwidthLimits, limitDown, limitUp | bandwidthLimits, limitDown, limitUp | sdwan:config:write | 
+|  | GET /networks/{networkId}/clients List the clients that have used this network in the timespan  >  getNetworkClients | networkId, t0, timespan, perPage, startingAfter, endingBefore, statuses, ip, ip6, ip6Local, mac, os, pskGroup, description, vlan, namedVlan, recentDeviceConnections | `` | adaptivePolicyGroup, description, deviceTypePrediction, firstSeen, groupPolicy8021x, id, ip, ip6, ip6Local, lastSeen, mac, manufacturer, namedVlan, notes, os, pskGroup, recentDeviceConnection, recentDeviceMac, recentDeviceName, recentDeviceSerial, recv, sent, smInstalled, ssid, status, switchport, usage, user, vlan, wirelessCapabilities | dashboard:general:telemetry:read | 
+|  | GET /networks/{networkId}/clients/applicationUsage Return the application usage data for clients  >  getNetworkClientsApplicationUsage | networkId, clients, ssidNumber, perPage, startingAfter, endingBefore, t0, t1, timespan | `` | application, applicationUsage, clientId, clientIp, clientMac, received, sent | dashboard:general:telemetry:read | 
+|  | GET /networks/{networkId}/clients/bandwidthUsageHistory Returns a timeseries of total traffic consumption rates for all clients on a network within a given timespan, in megabits per second.  >  getNetworkClientsBandwidthUsageHistory | networkId, t0, t1, timespan, perPage, startingAfter, endingBefore | `` | downstream, total, ts, upstream | dashboard:general:telemetry:read | 
+|  | GET /networks/{networkId}/clients/overview Return overview statistics for network clients  >  getNetworkClientsOverview | networkId, t0, t1, timespan, resolution | `` | average, counts, total, usages, withHeavyUsage, withHeavyUsageAverage | dashboard:general:telemetry:read | 
+|  | POST /networks/{networkId}/clients/provision Provisions a client with a name and policy  >  provisionNetworkClients | networkId | 0, 1, 10, 11, 12, 13, 14, 2, 3, 4, 5, 6, 7, 8, 9, clients, devicePolicy, groupPolicyId, mac, name, policiesBySecurityAppliance, policiesBySsid | clientId, clients, devicePolicy, groupPolicyId, mac, message, name | dashboard:general:config:write | 
+|  | GET /networks/{networkId}/clients/usageHistories Return the usage histories for clients  >  getNetworkClientsUsageHistories | networkId, clients, ssidNumber, perPage, startingAfter, endingBefore, t0, t1, timespan | `` | clientId, clientIp, clientMac, received, sent, ts, usageHistory | dashboard:general:telemetry:read | 
+|  | GET /networks/{networkId}/clients/{clientId} Return the client associated with the given identifier  >  getNetworkClient | networkId, clientId | `` | cdp, clientVpnConnections, connectedAt, description, deviceTypePrediction, disconnectedAt, firstSeen, id, ip, ip6, ip6Local, is320MhzCapable, isEmlmrCapable, isEmlsrCapable, isMloCapable, lastSeen, lldp, mac, manufacturer, mloMaxSimultaneousLinks, model, namedVlan, notes, os, recentDeviceConnection, recentDeviceId, recentDeviceMac, recentDeviceName, recentDeviceSerial, remoteIp, smInstalled, ssid, status, switchport, user, vlan, wirelessCapabilities, wirelessChannelWidthMhz, wirelessStandard | dashboard:general:telemetry:read | 
+|  | GET /networks/{networkId}/clients/{clientId}/policy Return the policy assigned to a client on the network  >  getNetworkClientPolicy | networkId, clientId | `` | devicePolicy, groupPolicyId, mac, policiesBySsid, ssidNumber | dashboard:general:config:read | 
+|  | PUT /networks/{networkId}/clients/{clientId}/policy Update the policy assigned to a client on the network  >  updateNetworkClientPolicy | networkId, clientId | devicePolicy, groupPolicyId | devicePolicy, groupPolicyId, mac, policiesBySsid, ssidNumber | dashboard:general:config:write | 
+|  | GET /networks/{networkId}/clients/{clientId}/splashAuthorizationStatus Return the splash authorization for a client, for each SSID they've associated with through splash  >  getNetworkClientSplashAuthorizationStatus | networkId, clientId | `` | 0, authorizedAt, expiresAt, isAuthorized, ssids | dashboard:general:config:read | 
+|  | PUT /networks/{networkId}/clients/{clientId}/splashAuthorizationStatus Update a client's splash authorization  >  updateNetworkClientSplashAuthorizationStatus | networkId, clientId | 0, 1, 10, 11, 12, 13, 14, 2, 3, 4, 5, 6, 7, 8, 9, isAuthorized, ssids | 0, authorizedAt, expiresAt, isAuthorized, ssids | dashboard:general:config:write | 

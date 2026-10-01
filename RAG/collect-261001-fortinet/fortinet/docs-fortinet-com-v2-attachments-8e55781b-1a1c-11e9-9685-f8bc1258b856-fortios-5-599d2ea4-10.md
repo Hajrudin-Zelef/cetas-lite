@@ -1,0 +1,112 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-10
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [1155, 1249]
+sha256: cb8aa74b0b63cff3a99b39014e21648293450832226d9b8558649ad0b88e335f
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Primaryunitselectionwithoverridedisabled(default) AnintroductiontotheFGCP
+FormanybasicHAconfigurationsprimaryunitselectionsimplyselectstheclusterunitwiththehighestserial
+numbertobecometheprimaryunit. AbasicHAconfigurationinvolvessetting theHAmodetoactive-passiveor
+active-activeandconfiguringtheclustergroupnameandpassword.Usingthisconfiguration, theclusterunitwith
+thehighestserialnumberbecomestheprimaryunitbecauseprimaryunitselectiondisregardsconnected
+monitoredinterfaces(becauseinterfacemonitoring isnotconfigured),theageoftheclusterunitswouldusually
+alwaysbethesame,andallunitswouldhavethesamedevicepriority.
+Usingtheserialnumberisaconvenientwaytodifferentiate clusterunits; sobasingprimaryunitselectiononthe
+serialnumberispredictableandeasytounderstandandinterpret. Alsotheclusterunitwiththehighestserial
+numberwouldusuallybethenewestFortiGate withthemostrecenthardwareversion.Inmanycasesyoumay
+notneedactivecontroloverprimaryunitselection,sobasicprimaryunitselectionbasedonserialnumberis
+sufficient.
+Insomesituationsyoumaywanthavecontroloverwhichclusterunitbecomestheprimaryunit. Youcancontrol
+primaryunitselectionbysetting thedevicepriorityofoneclusterunittobehigherthanthedevicepriorityofall
+otherclusterunits. If youchangeoneormoredevicepriorities,duringnegotiation, theclusterunitwiththe
+highestdeviceprioritybecomestheprimaryunit. Asshownabove,theFGCPselectstheprimaryunitbasedon
+deviceprioritybeforeserialnumber.Formoreinformation abouthowtousedevicepriorities,seePrimaryunit
+selectionanddevicepriorityonpage43.
+Theonlyotherwaythat youcaninfluenceprimaryunitselectionisbyconfiguringinterfacemonitoring (alsocalled
+portmonitoring). Usinginterfacemonitoring youcanmakesurethat clusterunitswithfailed ordisconnected
+monitoredinterfacescannotbecometheprimaryunit. SeePrimaryunitselectionandmonitoredinterfaceson
+page39.
+Finally, theageofaclusterunitisdeterminedbyanumberofoperatingfactors.Normallytheageofallcluster
+unitsisthesamesonormallyagehasnoeffect onprimaryunitselection.Agedoesaffect primaryunitselection
+afteramonitoredinterfacefailure. Formoreinformation aboutage,seePrimaryunitselectionandageonpage
+40.
+Points to remember about primary unit selection
+Somepointstorememberaboutprimaryunitselection:
+l TheFGCPcomparesprimaryunitselectioncriteriainthefollowing order:FailedMonitoredinterfaces>Age>
+DevicePriority>Serialnumber.Theselectionprocessstopsatthefirstcriteriathat selectsoneclusterunit.
+l Negotiation andprimaryunitselectionistriggeredifaclusterunitfailsorifamonitoredinterfacefails.
+l If theHAagedifferenceismorethan5minutes(300seconds),theclusterunitthat isoperatinglongerbecomesthe
+primaryunit.
+l If HAagedifferenceislessthan5minutes(300seconds),thedevicepriorityandFortiGate serialnumberselects
+theclusterunittobecometheprimaryunit.
+l Everytime amonitoredinterfacefailstheHAageoftheclusterunitisresetto 0.
+l Everytime aclusterunitrestartstheHAageoftheclusterunitisresetto0.
+Viewing how the primary unit was selected
+Youcanusetheget system ha status commandtoseehowtheprimaryunitwasselected.Theoutput of
+thiscommandcontainsasectioncalledMaster selected using that showsahistoryofhowtheprimary
+unitwasselected.Forexample,whenaclusterfirstformsthispartofthecommandoutput couldhaveoneline
+showingthat theprimaryunitistheclusterunitwiththehighestuptime.
+38 HighAvailability
+Fortinet TechnologiesInc.
+
+AnintroductiontotheFGCP Primaryunitselectionwithoverridedisabled(default)
+get system ha status
+.
+.
+.
+Master selected using:
+<2016/10/12 11:13:23> FG-5KD3914800344 is selected as the master because it
+has the largest value of uptime.
+.
+.
+.
+Overtime moremessagescouldbeaddedastheclusternegotiatestochooseanewprimaryunitondifferent
+occasions.Thecommandoutput belowshowstheclusternegotiated fourtimes overafewdays.
+get system ha status
+.
+.
+.
+Master selected using:
+<2016/10/16 11:36:07> FG-5KD3914800344 is selected as the master because it
+has the largest value of uptime.
+<2016/10/15 11:24:11> FG-5KD3914800284 is selected as the master because it
+has the largest value of override priority.
+<2016/10/13 11:15:13> FG-5KD3914800344 is selected as the master because it
+has the largest value of uptime.
+<2016/10/11 11:13:23> FG-5KD3914800344 is selected as the master because it
+has the largest value of uptime.
+.
+.
+.
+Primary unit selection and monitored interfaces
+If youhaveconfiguredinterfacemonitoring, theunitwiththefewestfailed ordisconnectedmonitoredinterfaces
+becomestheprimaryunit.
+If youareaddingadevicethat hasnomonitoredinterfacestoaclusterwithnofailed ordisconnectedmonitored
+interfaces,theelectionconsidersthem equalandmovestothenextstepintheprimaryunitselection.
+Normally,whenaclusterstartsup,allmonitoredinterfacesofallclusterunitsareconnectedandfunctioning
+normally.Somonitoredinterfacesdonotusuallyaffect primaryunitselectionwhentheclusterfirststarts.
+Aclusteralwaysrenegotiateswhenamonitoredinterfacefailsorisdisconnected(calledlinkfailover).Acluster
+alsoalwaysrenegotiateswhenafailed ordisconnectedmonitoredinterfaceisrestored.
+If aprimaryunitmonitoredinterfacefailsorisdisconnected,theclusterrenegotiatesandifthisistheonlyfailed
+ordisconnectedmonitoredinterfacetheclusterselectsanewprimaryunit.
+If asubordinateunitmonitoredinterfacefailsorisdisconnected,theclusteralsorenegotiatesbutwillnot
+necessarilyselectanewprimaryunit. However,thesubordinateunitwiththefailed ordisconnectedmonitored
+interfacecannotbecometheprimaryunit.
+Multiple monitoredinterfacescanfail orbecomedisconnectedonmorethanoneclusterunit. Eachtime a
+monitoredinterfaceisdisconnectedorfails, theclusternegotiatestoselecttheclusterunitwiththemost
+connectedandoperatingmonitoredinterfacestobecometheprimaryunit. Infact, theintent ofthelinkfailover
+HighAvailability
+Fortinet TechnologiesInc.
+39
+

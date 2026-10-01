@@ -1,0 +1,42 @@
+---
+id: collect-261001-ia-llm/ia-llm/fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176-2
+title: "fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176"
+domain: ia-llm
+role: reference
+task: reference
+actors: ["Anthropic", "MiniMax", "Nvidia", "OpenRouter", "vLLM"]
+dates: []
+keywords: ["agents", "blackwell", "claude", "dram", "gpu", "nvidia", "opus 4", "vllm"]
+source: docs/RAG/collect-261001-ia-llm/fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176.md
+source_anchor: ""
+source_lines: [18, 42]
+sha256: de35b1faa8970a9efcbfdfcfaca5ba1eba8e4b28e1b7c8a44d5160121c993ba5
+---
+
+# fr-review-the-token-efficient-path-for-long-context-inference-kv-cache-offload-t-bd60c176
+
+On décrit souvent l'inférence comme étant limitée par la bande passante mémoire, car le décodage prédomine dans la partie visible de la réponse pour l'utilisateur. L'équilibre réel entre les deux phases dépend de la charge de travail. Une courte requête demandant un long texte sollicite fortement le décodage ; une longue requête interactive demandant une petite modification JSON sollicite fortement le préremplissage. La phase dominante détermine ce qui est mis à rude épreuve en cas de mauvaise gestion du cache.
+La forme du problème de recalcul découle de cet équilibre, et le terme « agentique » recouvre un large éventail de modèles d'utilisation. La programmation agentique est actuellement l'un des modèles les plus populaires et représente une part importante des jetons utilisés dans les classements OpenRouter . Pour quantifier un cas représentatif, nous avons instrumenté Claude Code avec la journalisation OpenTelemetry (OTEL) et exporté une semaine de traces vers Grafana. La répartition de ce trafic de jetons par type est présentée ci-dessous. Remarque : cette utilisation de Claude Code se fait sur le modèle Claude Opus 4.8 avec une longueur de contexte de 1 million de mots, et plusieurs projets de programmation sont exécutés simultanément.
+Les lectures du cache ont représenté 98.16 % du trafic total de jetons. La création de cache (un préfixe déjà vu étant prérempli suite à l'expiration de son entrée) a représenté 1.52 %. Les jetons de sortie ont représenté 0.30 %. Les jetons d'entrée réellement froids ont représenté 0.02 %.
+Dans une charge de travail où 98 % du trafic est constitué de lectures de cache, l'éviction sans déchargement implique le préremplissage de la majeure partie du travail que le système s'apprêtait à effectuer. Le goulot d'étranglement se déplace de la bande passante de décodage, phase généralement optimisée, vers le calcul de préremplissage, déjà réalisé par le GPU lors d'itérations précédentes. De fait, il est fréquent d'observer, dans les architectures de service désagrégées, un plus grand nombre de processus de préremplissage que de processus de décodage à grande échelle, pour la même raison : le préremplissage constitue la phase de contrôle.
+Le chiffre de 98 % représente le trafic d'un seul utilisateur. Une charge de travail de chat courte générerait davantage de trafic froid. Il en serait de même pour un système de récupération augmentée qui réinjecte différents documents à chaque échange. Cette tendance générale se vérifie lorsque les conversations sont longues, les préfixes stables et que les utilisateurs reviennent régulièrement au même contexte.
+Où se trouve la cache et que se passe-t-il lorsqu'elle est pleine ?
+Où se trouve concrètement ce cache, et que se passe-t-il lorsqu'il est plein ? Une fois les poids du modèle chargés, la VRAM restante est convertie en espace de cache KV, partitionné en blocs de taille fixe. Au démarrage, le moteur indique le nombre de jetons qu'il peut contenir. Ce pool est le seul emplacement possible pour le cache dans une configuration standard sans déchargement KV.
+Les serveurs GPU sont coûteux et les jetons constituent le produit, l'objectif est donc de les alimenter en continu. Cela implique de maintenir le GPU chargé avec une petite file d'attente de requêtes à traiter afin d'éviter l'inactivité des ressources de calcul, tout en équilibrant cette file pour que la latence de réponse reste conforme aux objectifs de niveau de service (SLO). Toutes les requêtes n'utilisent pas la totalité de leur fenêtre de contexte ; de nombreuses paires clé-valeur (KV) terminées restent donc en cache dans la VRAM. Cependant, en cas de charge soutenue, ce cache se remplit et, une fois saturé, les entrées les plus anciennes sont supprimées pour libérer de l'espace.
+Dans un monde idéal, chaque réponse serait traitée en une seule fois. Mais les modèles ne sont pas encore assez performants ; nous utilisons donc des boucles inter-agents, avec des échanges avec un utilisateur ou entre agents. À l'arrivée du tour suivant, si son identifiant clé-valeur n'est pas encore en cache, le moteur retraite l'intégralité de la conversation, y compris les nouveaux jetons. Le contexte de chaque tour précédent est à nouveau traité par le modèle, et le calcul déjà effectué par le GPU sur ces jetons est payé une deuxième, une troisième fois, et ainsi de suite, pour chaque tour suivant. Cette partie du processus représente un gaspillage de ressources.
+Quels changements apporte le déchargement du cache KV ?
+Au lieu d'évincer les données dès que la VRAM est pleine, le déchargement répartit progressivement les caches selon une hiérarchie : de la VRAM à la mémoire système, puis au SSD. Les données fréquemment utilisées restent en VRAM ; celles qui ne tiennent plus sont transférées vers la mémoire système, et si celle-ci est pleine, elles sont à leur tour transférées vers le SSD ou un stockage réseau. L'éviction réelle des données devient rare, car elle est pilotée par une durée de vie (TTL) définie par l'utilisateur plutôt que par la pression sur la mémoire.
+Au tour suivant, au lieu de recalculer des dizaines de milliers de jetons de contexte, nous récupérons la paire clé-valeur depuis la RAM ou le stockage flash. Le rechargement depuis la mémoire système induit une légère latence, mais est bien plus rapide et économique que de recalculer le préremplissage. Le rechargement depuis un SSD NVMe est un peu plus lent qu'une lecture en DRAM, mais reste beaucoup plus rapide que le recalcul qu'il remplace. La capacité de stockage est relativement peu coûteuse ; la puissance de calcul du GPU, en revanche, ne l'est pas. Par conséquent, accepter une légère latence de rechargement en début de tour pour éviter un recalcul de plusieurs secondes est globalement avantageux.
+Comment nous avons testé
+Nous avons testé cette hypothèse dans notre laboratoire. La configuration du système était la suivante :
+- Serveur : Dell PowerEdge XE7740
+- GPU : 4x NVIDIA RTX PRO 6000 Blackwell Server Edition (96 Go)
+- Mémoire système : 1 To DDR5 (16 x 64 Go DDR5 5200 MT/s)
+- Stockage : 8 disques Solidigm PS1030 12.8 To E3.S (RAID 10)
+- Pile de serveurs : vLLM 0.22.0 avec LMCache 0.5.0
+- Modèle : MiniMax-M2.7
+La plateforme de test est parfaitement adaptée à cette charge de travail. Le serveur Dell PowerEdge XE7740 est conçu spécifiquement pour l'inférence IA en entreprise. Ce châssis PCIe Gen5 prend en charge jusqu'à huit GPU double largeur. La configuration à quatre GPU que nous avons testée est l'une des plus populaires. Elle offre une capacité d'accélération suffisante pour un large éventail de déploiements d'inférence, tout en permettant une extension à huit GPU en fonction de la demande. Chaque carte NVIDIA RTX PRO 6000 Blackwell Server Edition dispose de 96 Go de mémoire GDDR7 ; ainsi, quatre cartes constituent un important pool de VRAM avant même que le cache ne soit sollicité. En interne, la couche de déchargement repose sur huit disques Solidigm D7-PS1030 de 12.8 To en RAID 10. Ces disques flash haute endurance Gen5 sont parfaitement adaptés aux écritures soutenues générées par une couche de cache KV. Enfin, le choix du modèle, MiniMax-M2.7, était, au moment du test, l'un des meilleurs modèles de codage ouverts qui s'intégraient à notre configuration à quatre GPU.
+Nous avons testé trois configurations :
+- Une configuration VRAM de base, vLLM standard sans déchargement, où tout ce qui tient dans la VRAM est mis en cache, et tout le reste est expulsé.
+- Déchargement de LMCache vers la mémoire système, avec 512 Go alloués au déchargement.
+- Déchargement LMCache vers la mémoire flash, avec la matrice RAID10 NVMe locale comme niveau de déchargement, précédée d'une mémoire tampon de transit de 64 Go de RAM.

@@ -1,0 +1,41 @@
+---
+id: collect-261001-meraki/meraki/meraki-api-v1-api-index-21d30cd4-4
+title: "meraki-api-v1-api-index-21d30cd4"
+domain: meraki
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["latency"]
+source: docs/RAG/collect-261001-meraki/meraki-api-v1-api-index-21d30cd4.md
+source_anchor: ""
+source_lines: [78, 101]
+sha256: 692f8d98d16e88a92f199f3bc19b0dad62c02a35b8dd1d67b9c28005afb7bcbf
+---
+
+# meraki-api-v1-api-index-21d30cd4
+
+|  | GET /devices/{serial}/liveTools/leds/blink/{ledsBlinkId} Return a blink LEDs job  >  getDeviceLiveToolsLedsBlink | serial, ledsBlinkId | `` | duration, error, ledsBlinkId, request, serial, status, url | dashboard:general:config:read | 
+|  | POST /devices/{serial}/liveTools/macTable Enqueue a job to request the MAC table from the device  >  createDeviceLiveToolsMacTable | serial | callback, httpServer, id, mac, payloadTemplate, sharedSecret, url | callback, id, mac, macTableId, request, serial, status, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/macTable/{macTableId} Return a MAC table live tool job.  >  getDeviceLiveToolsMacTable | serial, macTableId | `` | entries, error, mac, macTableId, port, request, serial, status, url, vlanId | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/multicastRouting Enqueue a job to perform a Multicast routing request for the device  >  createDeviceLiveToolsMulticastRouting | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, id, multicastRoutingId, request, serial, status, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/multicastRouting/{multicastRoutingId} Return a Multicast routing live tool job.  >  getDeviceLiveToolsMulticastRouting | serial, multicastRoutingId | `` | error, flags, group, incomingInterfaceName, interfaces, ip, ipVersion, multicastRoutingId, name, neighbors, outgoingInterfaceNames, rendezvousPoint, request, routes, serial, source, status, subnet, url, vrf, vrfType | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/ospfNeighbors Enqueue a job to perform a OSPF neighbors request for the device (BETA)  >  createDeviceLiveToolsOspfNeighbor | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, id, ospfNeighborsId, request, serial, status, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId} Return an OSPF neighbors live tool job. (BETA)  >  getDeviceLiveToolsOspfNeighbor | serial, ospfNeighborsId | `` | error, id, interfaceName, ip, name, ospfNeighborsId, position, request, routers, serial, state, status, url, vlanId | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/ping Enqueue a job to ping a target host from the device  >  createDeviceLiveToolsPing | serial | callback, count, httpServer, id, payloadTemplate, sharedSecret, target, url | callback, count, id, pingId, request, serial, status, target, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/ping/{id} Return a ping job  >  getDeviceLiveToolsPing | serial, id | `` | average, count, latencies, latency, loss, maximum, minimum, percentage, pingId, received, replies, request, results, sent, sequenceId, serial, size, status, target, url | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/pingDevice Enqueue a job to check connectivity status to the device  >  createDeviceLiveToolsPingDevice | serial | callback, count, httpServer, id, payloadTemplate, sharedSecret, url | callback, count, id, pingId, request, serial, status, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/pingDevice/{id} Return a ping device job  >  getDeviceLiveToolsPingDevice | serial, id | `` | average, callback, count, id, latencies, latency, loss, maximum, minimum, percentage, pingId, received, replies, request, results, sent, sequenceId, serial, size, status, url | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/ports/cycle Enqueue a job to perform a cycle port for the device on the specified ports  >  createDeviceLiveToolsPortsCycle | serial | callback, httpServer, id, payloadTemplate, ports, sharedSecret, url | callback, cyclePortId, id, ports, request, serial, status, url | dashboard:general:config:write | 
+|  | GET /devices/{serial}/liveTools/ports/cycle/{id} Return a cycle port live tool job.  >  getDeviceLiveToolsPortsCycle | serial, id | `` | cyclePortId, error, ports, request, serial, status, url | dashboard:general:config:read | 
+|  | POST /devices/{serial}/liveTools/ports/status Enqueue a job to retrieve port status for a device  >  createDeviceLiveToolsPortsStatus | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, id, jobId, request, serial, status, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/ports/status/{jobId} Return a port status live tool job.  >  getDeviceLiveToolsPortsStatus | serial, jobId | `` | duplex, enabled, errors, interface, isDrawing, jobId, name, number, portId, power, request, results, serial, slot, speed, status, subslot, url | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/power/usage Enqueues a live tool job that retrieves details about a device's overall power usage  >  createDeviceLiveToolsPowerUsage | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, id, jobId, request, serial, status, url | dashboard:general:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/power/usage/{jobId} Retrieve the status and results of a previously created live tool job fetching details about a device's overall power usage.  >  getDeviceLiveToolsPowerUsage | serial, jobId | `` | budget, errors, instant, jobId, peak, request, results, serial, status, url | dashboard:general:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/reboot Enqueue a job to reboot a device (BETA)  >  createDeviceLiveToolsReboot | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, error, id, rebootId, request, serial, status, url | dashboard:general:config:write | 
+|  | GET /devices/{serial}/liveTools/reboot/{rebootId} Return a reboot job (BETA)  >  getDeviceLiveToolsReboot | serial, rebootId | `` | error, rebootId, request, serial, status, url | dashboard:general:config:read | 
+|  | POST /devices/{serial}/liveTools/routingTable Enqueue a job to perform a routing table request for the device (BETA)  >  createDeviceLiveToolsRoutingTable | serial | callback, cidr, destination, httpServer, id, payloadTemplate, sharedSecret, url | callback, cidr, destination, id, request, routingTableId, serial, status, url | dashboard:general:telemetry:write | 
+|  | POST /devices/{serial}/liveTools/routingTable/lookups Enqueue a job to perform a routing table lookup request for a device  >  createDeviceLiveToolsRoutingTableLookup | serial | address, callback, destination, httpServer, id, names, nextHop, payloadTemplate, peer, sharedSecret, subnet, type, url, vpn, vrf | address, callback, destination, id, lookupId, names, nextHop, peer, request, serial, status, subnet, type, url, vpn, vrf | sdwan:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/routingTable/lookups/{id} Return a routing table live tool lookup job for a device  >  getDeviceLiveToolsRoutingTableLookup | serial, id | `` | address, destination, entries, errors, id, ipVersion, lookupId, name, names, nextHop, nextHops, number, peer, request, serial, status, subnet, type, url, vlan, vpn, vrf | sdwan:telemetry:read | 
+|  | POST /devices/{serial}/liveTools/routingTable/summaries Enqueue a routing table summary job for a device  >  createDeviceLiveToolsRoutingTableSummary | serial | callback, httpServer, id, payloadTemplate, sharedSecret, url | callback, id, status, summaryId, url | sdwan:telemetry:write | 
+|  | GET /devices/{serial}/liveTools/routingTable/summaries/{id} Return the status and result of a routing table summary job  >  getDeviceLiveToolsRoutingTableSummary | serial, id | `` | byProtocol, byVrf, counts, errors, ipv4, ipv6, name, status, summaryId, total, url | sdwan:telemetry:read | 

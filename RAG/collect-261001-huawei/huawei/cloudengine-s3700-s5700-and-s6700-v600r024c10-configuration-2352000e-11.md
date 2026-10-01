@@ -1,0 +1,137 @@
+---
+id: collect-261001-huawei/huawei/cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration-2352000e-11
+title: "cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration--2352000e"
+domain: huawei
+role: reference
+task: reference
+actors: ["Huawei"]
+dates: ["2025-03-03"]
+keywords: ["copyright", "disclosure"]
+source: docs/RAG/collect-261001-huawei/cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration--2352000e.md
+source_anchor: ""
+source_lines: [612, 734]
+sha256: 101afd6d588f3493bc85cebf6663b7bb22cdc8214e43a6fa07a50d5355f47658
+---
+
+# cloudengine-s3700-s5700-and-s6700-v600r024c10-configuration--2352000e
+
+Security Conventions
+                    ●     Password setting
+                          –     Configuring a ciphertext password is recommended. For security
+                                purposes, do not disable password complexity check, and change the
+                                password periodically.
+
+Issue 01 (2025-03-03)                  Copyright © Huawei Technologies Co., Ltd.                              2
+VPN Configuration
+VPN Configuration                                                               1 About This Document
+
+
+                        –   When configuring a cleartext password, do not start and end the
+                            password with %+%# or %@%# because this will allow the password to
+                            be considered as a valid ciphertext that can be decrypted by the device
+                            and make it visible in the configuration file.
+                        –   Multiple features cannot use the same ciphertext password. For example,
+                            the ciphertext password set for the AAA feature cannot be used for other
+                            features.
+                    ●   Encryption algorithms
+                        Currently, the device supports the following encryption algorithms: DES, 3DES,
+                        AES, DSA, RSA, DH, ECDH, HMAC, SHA1, SHA2, and MD5. Select an
+                        encryption algorithm according to the application scenario. Use the
+                        recommended encryption algorithm; otherwise, security protection
+                        requirements may not be met.
+                        –   Recommended symmetric encryption algorithm: AES (with a 128-bit or
+                            longer key).
+                        –   Recommended asymmetric encryption algorithm: RSA (with a 3072-bit or
+                            longer key). Use different key pairs for encryption and signature.
+                        –   Recommended encryption algorithm for the digital signature: RSA (with a
+                            3072-bit or longer key).
+                        –   Recommended encryption algorithm for key negotiation: DH (with a
+                            3072-bit or longer key) or ECDH (with a 256-bit or longer key).
+                        –   Recommended hash algorithm: SHA2 (256-bit or higher).
+                        –   Recommended hash-based message authentication code (HMAC)
+                            algorithm: HMAC-SHA2.
+                        –   The SHA1, SHA2, and MD5 encryption algorithms are irreversible, and the
+                            DES, 3DES, RSA, and AES encryption algorithms are reversible.
+                        –   In SSH2.0, when the symmetric encryption algorithm in CBC mode is
+                            used, data may be subject to a plaintext-recovery attack, causing
+                            disclosure of encrypted data. Therefore, you are not advised to use the
+                            CBC mode for data encryption in SSH2.0.
+                        –   SSL provides a handshake mechanism that allows a client and a server to
+                            establish a session, authenticate each other's identity, and negotiate the
+                            key and cipher suite. It is recommended that a cipher suite of TLS 1.2 or a
+                            later version be used during communication. In TLS versions, when the
+                            symmetric encryption algorithm in CBC mode is used, data may be
+                            subject to a plaintext-recovery attack, causing disclosure of encrypted
+                            data. Therefore, you are not advised to use the CBC mode for data
+                            encryption in TLS versions.
+                    ●   Personal data
+                        Some personal data (such as MAC or IP addresses of terminals) may be
+                        obtained or used during operation or fault locating of your purchased
+                        products, services, or features, so you have an obligation to make privacy
+                        policies and take proper measures according to applicable laws of the country
+                        to fully protect personal data.
+                    ●   The terms mirrored port, port mirroring, flow mirroring, and mirroring in this
+                        document are mentioned only to describe the purpose of detecting faults and
+                        errors in communication transmission. They do not involve collection or
+                        processing of any personal information or communication data of users.
+
+Issue 01 (2025-03-03)          Copyright © Huawei Technologies Co., Ltd.                              3
+VPN Configuration
+VPN Configuration                                                               1 About This Document
+
+
+                    ●   Reliability design declaration
+                        Network planning and site design must comply with reliability design
+                        principles and provide device- and solution-level protection. Device-level
+                        protection includes planning principles of dual-network and inter-card dual-
+                        link to avoid single point or single link of failure. Solution-level protection
+                        refers to fast convergence protection mechanisms such as FRR and VRRP. If
+                        solution-level protection is used, ensure that the primary and backup paths do
+                        not share links or transmission devices. Otherwise, solution-level protection
+                        may fail to take effect.
+
+Reference Standards and Protocols
+                    To obtain reference standards and protocols, log in to Huawei official website,
+                    search for "standard and protocol compliance list", and download the Huawei S-
+                    Series Switch Standard and Protocol Compliance List. If you have not obtained the
+                    access permission of the document, see Help on the website to find out how to
+                    obtain it.
+
+
+
+
+Issue 01 (2025-03-03)           Copyright © Huawei Technologies Co., Ltd.                            4
+VPN Configuration
+VPN Configuration                                                                  2 GRE Configuration
+
+
+
+
+                                                    2         GRE Configuration
+
+
+                    2.1 Overview of GRE
+                    2.2 Understanding GRE
+                    2.3 Configuration Precautions for GRE
+                    2.4 Configuring a GRE Tunnel
+                    2.5 Maintaining GRE
+
+
+2.1 Overview of GRE
+Definition
+                    Generic Routing Encapsulation (GRE) is a tunneling protocol that encapsulates the
+                    packets of a wide variety of network layer protocols, such as Internetwork Packet
+                    Exchange (IPX) and AppleTalk, inside IP tunneling packets. These packets can then
+                    be transmitted over an IPv4 network.
+                    GRE provides a mechanism for transporting the packets of one protocol over
+                    another protocol by means of encapsulation, enabling packets to be transmitted
+                    over heterogeneous networks. The channel used for transmitting these packets is
+                    called a tunnel.
+
+Purpose
+                    GRE was introduced to enable data transmission over heterogeneous networks,
+                    and achieves this by transmitting the packets of a wide variety of network layer
+                    protocols, such as IPX and AppleTalk, over an IPv4 network.
+                    GRE also serves as a Layer 3 tunneling protocol of Virtual Private Networks
+                    (VPNs), and provides a tunnel for transparently transmitting VPN packets.
+

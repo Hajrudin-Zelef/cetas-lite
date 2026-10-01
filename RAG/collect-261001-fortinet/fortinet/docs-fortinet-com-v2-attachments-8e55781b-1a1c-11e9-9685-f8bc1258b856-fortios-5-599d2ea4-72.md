@@ -1,0 +1,148 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-72
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [9134, 9264]
+sha256: 9b4e305f2c030cd7c02733871d1d2313ac84795a0c628c52ea01ddb82f1d23b1
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Transparentmodeactive-passiveclusterpacketflow HAandfailoverprotection
+Inanactive-passiveclusteroperatingintransparentmode, twoMACaddressesareinvolvedinthe
+communication betweenaclientandaserverwhentheprimaryunitprocessesaconnection:
+l ClientMACaddress(MAC_Client)
+l ServerMACaddress(MAC_Server)
+TheHAvirtualMACaddressesarenotdirectlyinvolvedincommunication betweentheclientandtheserver.The
+clientcomputersendspacketstothemail serverandthemail serversendsresponses.Inbothcasesthepackets
+areinterceptedandprocessedbythecluster.
+Thecluster’spresenceonthenetworkistransparenttotheclientandservercomputers.Theprimaryunitsends
+gratuitousARPpacketstoSwitch 1that associateallMACaddressesonthenetworksegmentconnectedtothe
+clusterexternalinterfacewiththeHAvirtualMACaddress.TheprimaryunitalsosendsgratuitousARPpacketsto
+Switch2that associateallMACaddressesonthenetworksegmentconnectedtotheclusterinternalinterface
+withtheHAvirtualMACaddress.Inbothcases,thisresultsintheswitchessendingpacketstotheprimaryunit
+interfaces.
+Transparentmode active-passive packet flow
+Packet flow from client to mail server
+1. Theclientcomputerrequestsaconnectionfrom10.11.101.10 to110.11.101.200.
+2. TheclientcomputerissuesanARPrequestto10.11.101.200.
+3. TheprimaryunitforwardstheARPrequesttothemail server.
+4. Themail serverrespondswithitsMACaddress(MAC_Server)whichcorrespondstoitsIPaddressof
+10.11.101.200. TheprimaryunitreturnstheARPresponsetotheclientcomputer.
+5. Theclient’srequestpacketreachestheprimaryunitinternalinterface.
+246 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection Transparentmodeactive-passiveclusterpacketflow
+IP address MAC address
+Source 10.11.101.10 MAC_Client
+Destination 10.11.101.200 MAC_Server
+6. Theprimaryunitprocessesthepacket.
+7. Theprimaryunitforwardsthepacketfromitsexternalinterfacetothemail server.
+IP address MAC address
+Source 10.11.101.10 MAC_Client
+Destination 10.11.101.200 MAC_Server
+8. Theprimaryunitcontinuestoprocesspacketsinthiswayunlessafailoveroccurs.
+Packet flow from mail server to client
+1. Torespondtotheclientcomputer, themail serverissuesanARPrequestto10.11.101.10.
+2. TheprimaryunitforwardstheARPrequesttotheclientcomputer.
+3. TheclientcomputerrespondswithitsMACaddress(MAC_Client)whichcorrespondstoitsIPaddressof
+10.11.101.10. TheprimaryunitreturnstheARPresponsetothemail server.
+4. Themail server’sresponsepacketreachestheprimaryunitexternalinterface.
+IP address MAC address
+Source 10.11.101.200 MAC_Server
+Destination 10.11.101.10 MAC_Client
+5. Theprimaryunitprocessesthepacket.
+6. Theprimaryunitforwardsthepacketfromitsinternalinterfacetotheclient.
+IP address MAC address
+Source 10.11.101.200 MAC_Server
+Destination 10.11.101.10 MAC_Client
+7. Theprimaryunitcontinuestoprocesspacketsinthiswayunlessafailoveroccurs.
+When a failover occurs
+Thefollowing stepsarefollowedafteradeviceorlinkfailureoftheprimaryunitcausesafailover.
+1. If theprimaryunitfails, thesubordinateunitnegotiatestobecometheprimaryunit.
+2. ThenewprimaryunitchangestheMACaddressesofallofitsinterfacestotheHAvirtualMACaddress.
+3. ThenewprimaryunitssendsgratuitousARPpacketstoswitch1toassociateitsMACaddresswiththeMAC
+addressesonthenetworksegmentconnectedtotheexternalinterface.
+HighAvailability
+Fortinet TechnologiesInc.
+247
+
+Failoverperformance HAandfailoverprotection
+4. ThenewprimaryunitssendsgratuitousARPpacketstoswitch2toassociateitsMACaddresswiththeMAC
+addressesonthenetworksegmentconnectedtotheinternalinterface.
+5. Traffic senttotheclusterisnowreceivedandprocessedbythenewprimaryunit.
+If thereweremorethantwoclusterunitsintheoriginalcluster,theseremainingunitswouldbecome
+subordinateunits.
+Failover performance
+Thissectiondescribesthedesigneddeviceandlinkfailovertimes foraFortiGate clusterandalsoshowsresultsof
+afailoverperformancetest.
+Device failover performance
+BydesignFGCPdevicefailovertime is2secondsforatwo-memberclusterwithidealnetworkandtraffic
+conditions.If sub-secondfailoverisenabledthefailovertime candropbelow1second.
+AllclusterunitsregularlyreceiveHAheartbeatpacketsfromallotherclusterunitsovertheHAheartbeatlink.If
+anyclusterunitdoesnotreceiveaheartbeatpacketfromanyotherclusterunitfor2seconds,theclusterunitthat
+hasnotsentheartbeatpacketsisconsideredtohavefailed.
+It maytakeanotherfewsecondsfortheclustertonegotiate andre-distributecommunication sessions.Typically
+ifsub-secondfailoverisnotenabledyoucanexpectafailovertime of9to15secondsdependingonthecluster
+andnetworkconfiguration. Thefailovertime canalsobeincreasedbymorecomplexconfigurationsandor
+configurationswithnetworkequipment that isslowtorespond.
+Youcanchangethehb-lost-thresholdtoincreaseordecreasethedevicefailovertime. SeeModifying
+heartbeattiming onpage211forinformation aboutusinghb-lost-threshold,andotherheartbeattiming
+settings.
+Link failover performance
+Linkfailovertime iscontrolledbyhowlongittakesforaclustertosynchronizetheclusterlinkdatabase.Whena
+linkfailureoccurs,theclusterunitthat experiencedthelinkfailureusesHAheartbeatpacketstobroadcastthe
+updatedlinkdatabasetoallclusterunits. Whenallclusterunitshavereceivedtheupdateddatabasethefailover
+iscomplete.
+It maytakeanotherfewsecondsfortheclustertonegotiate andre-distributecommunication sessions.
+Reducing failover times
+l Keepthenetworkconfigurationassimpleaspossiblewithasfewaspossiblenetworkconnectionstothecluster.
+l If possibleoperatetheclusterintransparentmode.
+l Usehigh-performanceswitchestothat theswitchesfailovertointerfacesconnectedtothenewprimaryunitas
+quicklyaspossible.
+l UseacceleratedFortiGate interfaces.Insomecasesacceleratedinterfaceswillreducefailovertimes.
+l MakesuretheFortiGate sendsmultiple gratuitousarppacketsafterafailover.Insomecases,sendingmore
+gratuitousarppacketswillcauseconnectednetworkequipment torecognizethefailoversooner.Tosend10
+gratuitousarppackets:
+config system ha
+248 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection Failoverperformance
+set arps 10
+end
+l Reducethetime betweengratuitousarppackets.Thismayalsocausedconnectednetworkequipment torecognize
+thefailoversooner.Tosend50gratuitousarppacketswith1secondbetweeneachpacket:
+config system ha
+set arps 50
+set arps-interval 1
+end
+l Reducethenumberoflostheartbeatpacketsandreducetheheartbeatintervaltimerstobeabletomorequickly
+detectadevicefailure. Tosetthelostheartbeatthresholdto3packetsandtheheartbeatintervalto100
+milliseconds:
+config system ha
+set hb-interval 1
+set hb-lost-threshold 3
+end
+l Reducethehellostateholddowntime toreducetheamount ofthetime theclusterwaitsbeforetransitioning from
+thehellototheworkstate. Tosetthehellostateholddowntime to5seconds:
+config system ha
+set hello-holddown 5
+end
+l Enablesendingalinkfailed signalafteralinkfailovertomakesurethat attachednetworkequipment respondsa
+quicklyaspossibletoalinkfailure. Toenablethelinkfailed signal:
+config system ha
+set link-failed-signal enable
+end
+HighAvailability
+Fortinet TechnologiesInc.
+249
+

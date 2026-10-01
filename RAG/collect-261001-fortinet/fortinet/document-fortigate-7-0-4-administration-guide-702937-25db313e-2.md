@@ -1,0 +1,40 @@
+---
+id: collect-261001-fortinet/fortinet/document-fortigate-7-0-4-administration-guide-702937-25db313e-2
+title: "Execute a CLI script based on CPU and memory thresholds"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: ["2019-08-08", "2019-08-23", "2019-11-21", "2019-21-11"]
+keywords: ["memory", "license"]
+source: docs/RAG/collect-261001-fortinet/document-fortigate-7-0-4-administration-guide-702937-25db313e.md
+source_anchor: ""
+source_lines: [204, 226]
+sha256: fb4b950b74b46766a7c5fc991f8b51e76cd425b5b6f63ed47e32624ab8392d1a
+---
+
+# Execute a CLI script based on CPU and memory thresholds
+
+When the FortiGate enters conserve mode due to the `memory-use-threshold-red` being exceeded, the GUI displays a notice, and the *auto_high_memory* automation stitch is triggered. This causes the CLI script to run and the script results are emailed to the specified address.
+
+
+Here is sample text from the email message:
+
+CSF stitch alert: high_memory
+noreply@notification.fortinet.net
+Thu 11/21/2019 11:06 AM
+John Doe
+FGT[FGVM16TM19000000] Automation Stitch:auto_high_memory is triggered.
+########## script name: autod.47 ##########
+========== #1, 2019-11-21 11:07:24 ==========
+FGVM16TM19000000 $  diag deb cli 8
+Debug messages will be on for 25 minutes.
+FGVM16TM19000000 $  diag deb console timestamp enable
+FGVM16TM19000000 $  diag deb enable
+FGVM16TM19000000 $  diag deb crashlog read
+1: 2019-08-08 11:35:25 the killed daemon is /bin/dhcpcd: status=0x0
+2: 2019-08-08 17:52:47 the killed daemon is /bin/pyfcgid: status=0x0
+3: 2019-08-23 11:32:31 from=license status=INVALID
+4: 2019-08-23 11:32:32 from=license status=INVALID
+5: 2019-11-21 09:53:31 from=license status=VALID
+...

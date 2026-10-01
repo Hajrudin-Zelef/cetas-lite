@@ -1,0 +1,41 @@
+---
+id: collect-261001-ia-llm/ia-llm/ia-agentique-2026-claude-fable-5-1-vs-chatgpt-agent-1
+title: "ia-agentique-2026-claude-fable-5-1-vs-chatgpt-agent"
+domain: ia-llm
+role: reference
+task: reference
+actors: ["AWS", "Anthropic", "Glasswing", "Google", "OpenAI"]
+dates: []
+keywords: ["agent", "chatgpt", "claude", "agents", "aws", "bedrock", "fable 5", "gemini", "gpt-5.6", "mai", "mcp", "model context protocol"]
+source: docs/RAG/collect-261001-ia-llm/ia-agentique-2026-claude-fable-5-1-vs-chatgpt-agent.md
+source_anchor: ""
+source_lines: [1, 24]
+sha256: 6b3144c3621807f350d01fc05e292ab586faeb612814539a64b3419dd25c5a2c
+---
+
+# ia-agentique-2026-claude-fable-5-1-vs-chatgpt-agent
+
+Le 1er septembre 2026, Anthropic a mis en ligne Claude Fable 5.1 et sa variante restreinte Claude Mythos 5.1, deux modèles pensés pour des sessions d’agents longues, capables d’enchaîner des dizaines d’appels d’outils sans perdre le fil. La veille de la publication de cet article, ce lancement a rebattu les cartes d’un marché déjà disputé par ChatGPT Agent chez OpenAI et Google Antigravity chez DeepMind. Ces trois plateformes ne vendent plus seulement un chatbot qui répond à des questions : elles vendent un agent capable d’ouvrir un navigateur, de manipuler des fichiers, d’écrire du code et de l’exécuter, puis de rendre compte du résultat sans supervision constante. Pour une direction informatique française qui doit encore composer avec le RGPD et l’AI Act, la question n’est plus “quel chatbot choisir” mais “quel agent laisser opérer sans surveillance, et à quel prix”.
+
+Ce comparatif détaille les trois offres d’IA agentique les plus citées en France et en Europe au 2 septembre 2026 : Claude Fable 5.1 associé à la plateforme d’agents d’Anthropic, ChatGPT Agent d’OpenAI, et Google Antigravity construit autour de Gemini 3.5 Flash et Gemini 3.1 Pro. Le marché mondial de l’IA agentique, évalué à 7,29 milliards de dollars en 2025, est désormais attendu à 9,14 milliards de dollars sur l’ensemble de 2026, selon les données publiées en juillet 2026 par Hostinger, ce qui donne la mesure de la vitesse à laquelle ces trois plateformes se disputent des budgets d’entreprise encore en pleine expansion. Nous nous appuyons uniquement sur des données publiées par les éditeurs eux-mêmes ou par des bancs d’essai indépendants documentés (Terminal-Bench, Agents’ Last Exam, SWE-bench Verified, tau-bench), avec la source citée à chaque fois qu’un chiffre est avancé.
+
+## Qu’est-ce que l’IA agentique, et pourquoi ce comparatif maintenant
+
+L’IA agentique désigne un modèle de langage qui ne se contente plus de répondre en un tour de conversation, mais qui planifie une suite d’actions, appelle des outils (navigateur, terminal, éditeur de code, API), observe le résultat de chaque étape, corrige sa trajectoire si nécessaire, et poursuit jusqu’à ce que la tâche soit terminée ou qu’elle échoue. La requête “ia agentique” dépasse aujourd’hui 5 400 recherches mensuelles en France, un niveau comparable à des requêtes établies comme “chatbot IA professionnel”. Le terme s’est imposé après la vague de lancements de l’été 2026 : ChatGPT Agent a été généralisé en 2025 puis considérablement enrichi courant 2026, Google a ouvert Antigravity au grand public en 2026, et Anthropic vient d’y répondre avec Fable 5.1, présenté par la firme comme son modèle le plus avancé pour le travail de code long et la recherche autonome. L’adoption en entreprise suit la même trajectoire : Gmelius rapportait dès août 2025 qu’environ 25 % des entreprises spécialisées en IA générative avaient déployé de l’IA agentique, une proportion que les prévisions de type Gartner situent désormais à 50 % d’ici 2027, tandis que DigitalApplied chiffre, dans son rapport de mai 2026, la part des moyennes entreprises ayant adopté des flux de travail agentiques à 49 % au premier trimestre 2026 contre 28 % au troisième trimestre 2025, dont 31 % désormais pleinement en production au deuxième trimestre 2026.
+
+Ce virage change la manière dont une entreprise doit évaluer un fournisseur d’IA. Un chatbot classique se juge sur la qualité de sa réponse. Un agent se juge sur sa capacité à terminer une tâche multi-étapes sans intervention humaine, sur le coût réel de cette tâche (et pas seulement le prix du token), et sur les garde-fous qui empêchent une dérive lorsqu’il a accès à un navigateur ou à un ordinateur virtuel. C’est cet ensemble de critères que nous détaillons ci-dessous, produit par produit.
+
+## Claude Fable 5.1 et la plateforme d’agents d’Anthropic
+
+Claude Fable 5.1 (identifiant API `claude-fable-5-1`) a été mis en service le 1er septembre 2026 comme successeur direct de Claude Fable 5, avec un positionnement explicite sur le codage agentique de longue durée, le travail de connaissance et la recherche, selon la documentation officielle de la plateforme Claude. Le modèle conserve une fenêtre de contexte de 1 million de tokens par défaut et une sortie maximale de 128 000 tokens, avec le mode de réflexion adaptative (“adaptive thinking”) activé en permanence. Anthropic publie en parallèle Claude Mythos 5.1, réservé aux participants du programme interne Project Glasswing, ce qui en fait pour l’instant un modèle de recherche plutôt qu’un produit grand public.
+
+Sur le plan tarifaire, Claude Fable 5.1 est facturé 10 dollars par million de tokens en entrée et 50 dollars par million de tokens en sortie, un tarif identique à celui de Fable 5. La vraie nouveauté porte sur la mise en cache : la lecture d’un préfixe en cache tombe à 0,25 dollar par million de tokens, contre 1 dollar auparavant, soit une baisse de 75 %. Anthropic avance que cette baisse réduit d’environ 25 % le coût des charges de travail habituelles, et jusqu’à environ 45 % pour les charges fortement agentiques qui relisent sans cesse le même contexte, un scénario typique d’un agent qui boucle sur un dépôt de code. Sur les bancs d’essai internes d’Anthropic, Fable 5.1 obtient 52,6 % sur Terminal-Bench-Science 0.1, plus du double du score de Fable 5, et 55,8 % sur Terminal-Bench 4.0 contre 42,0 % pour son prédécesseur, selon les notes officielles d’Anthropic.
+
+Anthropic ne vend pas ses agents sous une marque grand public unique comme “ChatGPT Agent” : l’entreprise expose un Claude Agent SDK et une fonctionnalité de sous-agents gérés sur sa plateforme, qui permet de définir une configuration réutilisable combinant modèle, prompt système, outils et serveurs MCP (Model Context Protocol). Claude Fable 5.1 est disponible en accès général sur l’API Claude, sur Amazon Bedrock, sur Google Cloud et via Claude Code, avec une disponibilité confirmée sur AWS dès le jour du lancement, comme le détaillent les notes de version de la plateforme Claude.
+
+## ChatGPT Agent : le produit agentique d’OpenAI
+
+ChatGPT Agent regroupe dans un seul mode ce qu’OpenAI proposait auparavant sous deux noms distincts, Operator pour la navigation web autonome et Deep Research pour la recherche multi-sources. Le produit donne à ChatGPT l’accès à un ordinateur virtuel qui lui permet de naviguer sur le web, de remplir des formulaires, de télécharger et créer des fichiers, et de synthétiser des résultats de recherche sans que l’utilisateur ait à cliquer lui-même. À son lancement, ChatGPT Agent a établi un record sur Humanity’s Last Exam avec 41,6 % en une passe et jusqu’à 44,4 % avec un raisonnement en parallèle, et a pris la tête du banc d’essai de navigation BrowseComp avec 68,9 %.
+
+L’accès à ChatGPT Agent est réparti sur plusieurs paliers d’abonnement. Le forfait Plus à 20 dollars par mois inclut le mode agent avec un quota mensuel de messages, le forfait Pro à 200 dollars par mois offre des plafonds nettement plus élevés et un accès prioritaire au calcul, et le forfait Business (l’ancien Team) à 25 ou 30 dollars par utilisateur et par mois ajoute une administration d’équipe et un espace de travail partagé. Le modèle sous-jacent le plus récent, GPT-5.6 Sol, affiche 88,8 % sur Terminal-Bench 2.1 et jusqu’à 91,9 % avec le mode “ultra”, ainsi que 52,7 % sur le banc d’essai Agents’ Last Exam selon un comparatif indépendant publié en 2026, à comparer aux 40,5 % relevés pour Claude Fable 5 sur ce même test. Cette dernière comparaison ne concerne pas encore Fable 5.1, dont les scores sur ce protocole précis n’ont pas été publiés au moment de la rédaction.
+

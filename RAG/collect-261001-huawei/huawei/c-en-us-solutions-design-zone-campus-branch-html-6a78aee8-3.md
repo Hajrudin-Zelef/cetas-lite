@@ -1,0 +1,41 @@
+---
+id: collect-261001-huawei/huawei/c-en-us-solutions-design-zone-campus-branch-html-6a78aee8-3
+title: "c-en-us-solutions-design-zone-campus-branch-html-6a78aee8"
+domain: huawei
+role: reference
+task: reference
+actors: ["Google", "Microsoft"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-huawei/c-en-us-solutions-design-zone-campus-branch-html-6a78aee8.md
+source_anchor: ""
+source_lines: [47, 70]
+sha256: bfcc3aeeb9f27c147d5881094293ceca9056e3eeeb8a3eaac45888584d73a406
+---
+
+# c-en-us-solutions-design-zone-campus-branch-html-6a78aee8
+
+| Software-Defined Access Medium and Large Site Fabric Provisioning Deployment Guide | Fabric LAN, LAN/WLAN | On-Prem | How to deploy medium and large fabric sites consisting of a multi-tier hierarchical network model with dedicated shared services block and physical WLCs. | 
+| Software-Defined Access Management Infrastructure Deployment Guide | Fabric LAN, LAN/WLAN | On-Prem | Provides comprehensive instructions and best practices for deploying Software-Defined Access (SDA) infrastructure in campus networks. Covers various aspects (e.g. architecture, configuration, and implementation steps to create a scalable, secure, and efficient SDA environment) | 
+| Catalyst 9800 Non-Fabric FlexConnect Deployment using Cisco Catalyst Center (Design Guide) | Traditional LAN, LAN/WLAN | On-Prem | How to deploy a wireless local area network within a branch network, using Catalyst 9800 Series WLAN controllers with access points in FlexConnect mode operation, using Cisco Catalyst Center. | 
+| Enabling Cisco DNA Assurance on Existing Network Deployment Guide | Traditional LAN, LAN/WLAN | On-Prem | How to leverage Cisco Catalyst Center to deploy Assurance in an existing brownfield network. Covers both network and clients assurance. | 
+| Catalyst 9800 Non-Fabric Deployment using Cisco Catalyst Center Deployment Guide | Traditional LAN, LAN/WLAN | On-Prem | How to deploy a wireless local area network within a campus network, using Catalyst 9800 Series WLAN controllers with access points in centralized (local mode) operation, using Cisco Catalyst Center | 
+| Software-Defined Access for Distributed Campus Deployment Guide | Fabric LAN, LAN/WLAN | On-Prem | How to deploy unified and consistent policies across a metro area Software-Defined Access (SDA) deployment with multiple independent fabric sites. Covers IP-based transits with fusion routers, SDA transits, and methods for providing Internet access. | 
+| Cisco Software-Defined Access Segmentation Design Guide | Fabric LAN, LAN/WLAN | On-Prem | Explains the need for network segmentation to reduce the attack surface. Covers the history of segmentation and provides guidance on using macro-segmentation (VRFs/VNs) and micro-segmentation (SGTs), helping determine the best strategy for different scenarios. | 
+| Cisco Prime Infrastructure to Cisco Catalyst Center Migration Guide | Traditional LAN, LAN/WLAN | On-Prem | Guidelines and best practices for migrating from Cisco Prime Infrastructure to Cisco Catalyst Center, focusing on planning, execution, and optimization to ensure a seamless transition. | 
+| SD-Routing Migration Guide | SD-Routing | Hybrid | Offers a structured approach to migrating from traditional routing solutions (like DMVPN) to SD-Routing using Catalyst SD-WAN Manager. It includes planning considerations, deployment models, and step-by-step procedures for both greenfield and brownfield environments to ensure a smooth and efficient transition. | 
+| Cisco Catalyst SD-WAN Design Guide | SD-WAN | On-Prem, Cloud | Comprehensive design guide for Cisco Catalyst SD-WAN (Viptela), detailing architectural principles, best practices, and configuration guidelines for deploying an effective SD-WAN network. | 
+| Cisco Catalyst SD-WAN Design Case Studies | SD-WAN | On-Prem, Cloud | Introduction to multiple case studies on the implementation and benefits of Cisco's Catalyst SD-WAN (Viptela) solution, showcasing real-world applications and outcomes. | 
+| Cisco Catalyst SD-WAN Small Branch Design Case Study | SD-WAN | On-Prem, Cloud | Case study on the deployment of Cisco Catalyst SD-WAN solution in small branch offices, detailing the design considerations, implementation process, and resulting benefits. | 
+| Cisco Catalyst SD-WAN Large Global WAN Design Case Study | SD-WAN | On-Prem, Cloud | Case study on the deployment of Cisco Catalyst SD-WAN in a large global WAN, highlighting the design considerations, implementation process, and benefits achieved. | 
+| Cisco Catalyst SD-WAN Security Sensitive Branch Design Case Study | SD-WAN | On-Prem, Cloud | Case study on the deployment of Cisco Catalyst SD-WAN solution in a security-sensitive environment, highlighting considerations, implementation process, and benefits achieved. | 
+| Cisco Cloud First Case Study - 4Dachs Consulting | SD-WAN | On-Prem, Cloud | Case study on how 4Dachs Consulting successfully implemented Cisco Catalyst SD-WAN solution to support their cloud-first strategy, detailing challenges, deployment process, and benefits achieved (improved network performance, enhanced security, and greater operational efficiency). Covers SDCI and cloud-to-cloud connectivity. | 
+| Cisco Cloud First Case Study - 4Dachs2 Consulting | SD-WAN | On-Prem, Cloud | Case study on 4Dachs2 Consulting's successful implementation of Cisco Catalyst SD-WAN solution to enhance their cloud-first strategy, highlighting challenges, deployment, and benefits. Covers SDCI and site-to-cloud connectivity and Multi-region fabric (MRF) with SDCI as a backbone. | 
+| Cisco Catalyst SD-WAN Remote Access Design Case Study | SD-WAN | On-Prem, Cloud | Case study on implementation of Cisco Catalyst SD-WAN solution by SDRA, highlighting considerations, deployment process, and benefits achieved. | 
+| Zscaler Internet Access (ZIA) and Cisco Catalyst SD-WAN (Auto Tunnels) | SD-WAN, SASE/SSE | On-Prem, Cloud | Comprehensive instructions for deploying Cisco Catalyst SD-WAN (Viptela) in conjunction with Zscaler. Includes detailed steps for integrating the two technologies to enhance network security and performance. Covers Zscaler automatic tunnels starting from 20.5/17.5 Manager/Edge software versions. | 
+| Zscaler Internet Access (ZIA) and Cisco SD-WAN Deployment Guide (Manual Tunnels) | SD-WAN, SASE/SSE | On-Prem, Cloud | Provides configuration instructions for integrating Zscaler Internet Access with Cisco Catalyst SD-WAN (Viptela) using GRE or IPsec tunnels. Includes examples for provisioning new services and shows configurations using vManage feature templates and CLI. Covers Zscaler manual tunnels in pre-20.3/17.3 Manager/Edge software versions. | 
+| Cisco Catalyst SD-WAN Control Components Certificates and Authorized Serial Number File Prescriptive Deployment Guide | SD-WAN | On-Prem, Cloud | Deployment guide for configuring certificates on Cisco Catalyst SD-WAN (Viptela) controllers, detailing the steps, best practices, and considerations for secure implementation. | 
+| Cisco Catalyst SD-WAN: Administrator-Triggered Cluster Failover Deployment Guide | SD-WAN | On-Prem, Cloud | Detailed instructions and best practices for setting up and managing failover mechanisms within a Cisco Catalyst SD-WAN (Viptela) environment. Includes steps for configuring the system, ensuring high availability, and troubleshooting potential issues related to cluster failover. | 
+| Extending the Cisco SD-WAN Fabric into Azure with Cisco Cloud onRamp for Multi-Cloud | SD-WAN | On-Prem, Cloud | Guide for deploying Cisco's Cloud OnRamp for Multi-Cloud with Microsoft Azure, detailing configuration steps, best practices, and architectural considerations. | 
+| Cisco SD-WAN: Cloud onRamp for IAAS using Azure Deployment Guide | SD-WAN | On-Prem, Cloud | Detailed instructions for deploying and integrating Cisco Catalyst SD-WAN (Viptela) with Azure's cloud infrastructure, covering configuration steps, best practices, and troubleshooting tips to ensure seamless connectivity and optimized performance. | 
+| Cisco SD-WAN: Cloud onRamp for Multicloud using Google Cloud Platform | SD-WAN | On-Prem, Cloud | Guide for deploying Cisco Catalyst SD-WAN (Viptela) with GCP, detailing configuration steps, best practices, and architectural considerations. | 

@@ -3,9 +3,9 @@
   "title": "Clean 4 — serveurs, GPU & stockage 2026",
   "source": "docs/RAG/clean4",
   "source_dir": "docs/RAG/clean4",
-  "source_files": 196,
-  "source_sha256": "d0ec553fc7cb36937da77ae76d0308c930363656c0f5c058ab53b5e565f3afc5",
-  "chunk_count": 272,
+  "source_files": 244,
+  "source_sha256": "be123533b0bfff98d0463d5cf0e29393595b12dbf61652cc9a647281d09d94fe",
+  "chunk_count": 432,
   "generated_by": "RAG/_tools/build_rag.py",
   "chunks": [
     {
@@ -3950,6 +3950,3753 @@
       "sha256": "77c3f7e2391b8feffe1c9fd40974c8d2cfca906f166f6c7edbd1337dfa1f2a0e"
     },
     {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-news-micron-shows-a-512gb-ddr5-rdimm-12tb-per-dual-socket-server-at-9200-mt-s-75be52a3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-news-micron-shows-a-512gb-ddr5-rdimm-12tb-per-dual-socket-server-at-9200-mt-s-75be52a3.md",
+      "title": "fr-news-micron-shows-a-512gb-ddr5-rdimm-12tb-per-dual-socket-server-at-9200-mt-s-75be52a3",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "dram",
+        "hbm",
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/fr-news-micron-shows-a-512gb-ddr5-rdimm-12tb-per-dual-socket-server-at-9200-mt-s-75be52a3.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        13
+      ],
+      "canonical_for": [],
+      "words": 899,
+      "bytes": 5681,
+      "sha256": "dcdfb4004f987e3cdcd219f7b04ad669b7aff10632e08ab9c0db8a4f6a47ae02"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-1.md",
+      "title": "fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "distribution",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        16
+      ],
+      "canonical_for": [],
+      "words": 1197,
+      "bytes": 7961,
+      "sha256": "d907f6331fc11204cb5ba188d08f5d39a973d1b9a6def0ef934a50a498eb20da"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-2.md",
+      "title": "fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "exploit"
+      ],
+      "source": "docs/RAG/clean4/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655.md",
+      "source_anchor": "",
+      "source_lines": [
+        17,
+        45
+      ],
+      "canonical_for": [],
+      "words": 1227,
+      "bytes": 7939,
+      "sha256": "a2a8e31a4ddf261ba8081c6d41fcd2372bbe40f60a683fb9bfc3ecdefc9cdc7f"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-3.md",
+      "title": "fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd"
+      ],
+      "source": "docs/RAG/clean4/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        65
+      ],
+      "canonical_for": [],
+      "words": 1191,
+      "bytes": 7837,
+      "sha256": "04fe08cfc5964386440fc3d32c659bd6b18cef6627bf6faf20f9497c4c677358"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655-4.md",
+      "title": "fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "diffusion",
+        "distribution",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-300-gb-s-in-2u-the-dell-poweredge-r7725xd-resets-expectations-for-stor-1e3ea655.md",
+      "source_anchor": "",
+      "source_lines": [
+        66,
+        88
+      ],
+      "canonical_for": [],
+      "words": 1227,
+      "bytes": 7829,
+      "sha256": "1ea386d22241c5307015e6bf9c857d241c885534795b8b051e2665009f5990b1"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356.md",
+      "title": "fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd"
+      ],
+      "source": "docs/RAG/clean4/fr-review-amd-epyc-9754s-review-a-cpu-with-a-very-particular-set-of-skills-6f36d356.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1282,
+      "bytes": 7709,
+      "sha256": "9a95e53f7df4389cc2e041500d487a3a3adeaeebb38e7409002a252e488848df"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-1.md",
+      "title": "fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "compute",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        25
+      ],
+      "canonical_for": [],
+      "words": 1257,
+      "bytes": 7956,
+      "sha256": "2431c7938ec5a7d60cca3428d93b9e1b2163c170067d78551b2d772fca3b56aa"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-2.md",
+      "title": "fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark"
+      ],
+      "source": "docs/RAG/clean4/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5.md",
+      "source_anchor": "",
+      "source_lines": [
+        26,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1330,
+      "bytes": 7679,
+      "sha256": "82747782845f5b97ddadeaed52b8911a3582a51d8d28b7dbc81c736860b2c097"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-3.md",
+      "title": "fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        89
+      ],
+      "canonical_for": [],
+      "words": 1250,
+      "bytes": 7533,
+      "sha256": "a4f87f28c00e3d9f246b15040beee806d873c67e6bbe051c1019b2373e1942e9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-4.md",
+      "title": "fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "gpu",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5.md",
+      "source_anchor": "",
+      "source_lines": [
+        90,
+        134
+      ],
+      "canonical_for": [],
+      "words": 1396,
+      "bytes": 7989,
+      "sha256": "6501381fe40ce3900af9456c3bc3bd03382a9f06ebe0a54a8aa15409d8f63129"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-5",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5-5.md",
+      "title": "fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "distribution"
+      ],
+      "source": "docs/RAG/clean4/fr-review-amd-epyc-turin-review-192-cores-of-zen-5-c681c8c5.md",
+      "source_anchor": "",
+      "source_lines": [
+        135,
+        141
+      ],
+      "canonical_for": [],
+      "words": 230,
+      "bytes": 1516,
+      "sha256": "bc03fa4436f843576151a78401a8f937889f8cdb1906722e2d696adf50bf3265"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-1.md",
+      "title": "fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Apple",
+        "Google",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "attention",
+        "blackwell",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 1213,
+      "bytes": 7266,
+      "sha256": "1f436daece2842b553fac1a09992c6610e2a32eeeb3b1f621c4b124d8081c329"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-2.md",
+      "title": "fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "blackwell",
+        "distribution",
+        "dram",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        66
+      ],
+      "canonical_for": [],
+      "words": 1145,
+      "bytes": 7478,
+      "sha256": "d39ac86ce9f80c93d1e4e5c33444eaa695bbfe25ecee34abb4af29bb04a0e0c9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-3.md",
+      "title": "fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "arr",
+        "attention",
+        "ethernet",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50.md",
+      "source_anchor": "",
+      "source_lines": [
+        67,
+        80
+      ],
+      "canonical_for": [],
+      "words": 1105,
+      "bytes": 7513,
+      "sha256": "6fa8fc5f69e1869791de0cdf8c9ac3270e7805eb541eb78bf3caf13fb683aac8"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-4.md",
+      "title": "fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Anthropic",
+        "MiniMax",
+        "Nvidia",
+        "OpenRouter",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "claude",
+        "diffusion",
+        "gpu",
+        "moe",
+        "nvidia",
+        "opus 4",
+        "vllm"
+      ],
+      "source": "docs/RAG/clean4/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50.md",
+      "source_anchor": "",
+      "source_lines": [
+        81,
+        108
+      ],
+      "canonical_for": [],
+      "words": 1194,
+      "bytes": 7981,
+      "sha256": "3f4cbc843adb0abcc5f686261c6ae0739599bd2bb2a78873143304678660d236"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-5",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-5.md",
+      "title": "fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "MiniMax",
+        "Mistral",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "fp4",
+        "fp8",
+        "gpu",
+        "llama",
+        "mistral",
+        "moe",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50.md",
+      "source_anchor": "",
+      "source_lines": [
+        109,
+        143
+      ],
+      "canonical_for": [],
+      "words": 1313,
+      "bytes": 7607,
+      "sha256": "468a471d5072e8d9e5f43d3a2eb2d92aac5212547395912a6b15b1702df0a159"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-6",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u-7b819f50-6.md",
+      "title": "fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Anthropic",
+        "MiniMax"
+      ],
+      "dates": [],
+      "keywords": [
+        "agents",
+        "claude",
+        "gpu",
+        "llama"
+      ],
+      "source": "docs/RAG/clean4/fr-review-comino-grando-rtx-pro-6000-review-768gb-of-vram-in-a-liquid-cooled-4u--7b819f50.md",
+      "source_anchor": "",
+      "source_lines": [
+        144,
+        150
+      ],
+      "canonical_for": [],
+      "words": 439,
+      "bytes": 2933,
+      "sha256": "ed8131c62ccdd8b392f99ffbcfea8e6ed3d127cdecd78a6fe45e5db460ae327c"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-c6615-server-review-e5a753e4-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-c6615-server-review-e5a753e4-1.md",
+      "title": "fr-review-dell-poweredge-c6615-server-review-e5a753e4",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "China",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "datacenter",
+        "distribution",
+        "ethernet",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-c6615-server-review-e5a753e4.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 1255,
+      "bytes": 7964,
+      "sha256": "bd58b4f834ab8305a3e67155d383916c5f635b019487083559b901bc167f44c0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-c6615-server-review-e5a753e4-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-c6615-server-review-e5a753e4-2.md",
+      "title": "fr-review-dell-poweredge-c6615-server-review-e5a753e4",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-c6615-server-review-e5a753e4.md",
+      "source_anchor": "",
+      "source_lines": [
+        44,
+        120
+      ],
+      "canonical_for": [],
+      "words": 1431,
+      "bytes": 8000,
+      "sha256": "d77f6baf1d96e366cd79347c80b12d9723901085ea44e0c9af19beb51ac891e9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-c6615-server-review-e5a753e4-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-c6615-server-review-e5a753e4-3.md",
+      "title": "fr-review-dell-poweredge-c6615-server-review-e5a753e4",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "inference",
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-c6615-server-review-e5a753e4.md",
+      "source_anchor": "",
+      "source_lines": [
+        121,
+        157
+      ],
+      "canonical_for": [],
+      "words": 1090,
+      "bytes": 6197,
+      "sha256": "08adf649fa96920d986fa61eb1c5c25df54e25318450ca5e6233bb3a9a83b7b0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r360-server-review-87a1ef14-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r360-server-review-87a1ef14-1.md",
+      "title": "fr-review-dell-poweredge-r360-server-review-87a1ef14",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "ethernet",
+        "gpu",
+        "intel",
+        "nvidia",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r360-server-review-87a1ef14.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        64
+      ],
+      "canonical_for": [],
+      "words": 1338,
+      "bytes": 7933,
+      "sha256": "07b0386a2be48e4bd6145d22502bd024d38d5c9adf8a6c3481b1cecf683cca24"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r360-server-review-87a1ef14-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r360-server-review-87a1ef14-2.md",
+      "title": "fr-review-dell-poweredge-r360-server-review-87a1ef14",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "nvidia",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r360-server-review-87a1ef14.md",
+      "source_anchor": "",
+      "source_lines": [
+        65,
+        111
+      ],
+      "canonical_for": [],
+      "words": 808,
+      "bytes": 4601,
+      "sha256": "c73de2a3d842ba68fc4a7770d1ee14274a2116f3ca0ed9ef953f7a41d2a04c7e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf-1.md",
+      "title": "fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom",
+        "Intel",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "datacenter",
+        "ethernet",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1214,
+      "bytes": 7399,
+      "sha256": "8408e755c5dd6fe1483c2340832d0bed9ec18d2969023eaa53ec07189b715dca"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf-2.md",
+      "title": "fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "ethernet",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        84
+      ],
+      "canonical_for": [],
+      "words": 1190,
+      "bytes": 7730,
+      "sha256": "cc71f362433cea4ab7218aa0361b690a1aca12d2b3340b97042f001aa0cff6d0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf-3.md",
+      "title": "fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "gpu",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r4715-review-1u-amd-epyc-built-for-the-midmarket-9cd432cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        85,
+        125
+      ],
+      "canonical_for": [],
+      "words": 1264,
+      "bytes": 7653,
+      "sha256": "fec266f78a167fba1ba2cafef73ea4af0e9493e2ca5c29d9df7652dd76d16277"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r5715-review-bc780bb6-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r5715-review-bc780bb6-1.md",
+      "title": "fr-review-dell-poweredge-r5715-review-bc780bb6",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "datacenter",
+        "ethernet",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r5715-review-bc780bb6.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        55
+      ],
+      "canonical_for": [],
+      "words": 1283,
+      "bytes": 7742,
+      "sha256": "959ee2d8f8769bfe0b3b34039d7ac280917844a14ede7fc5a4269cb156dcaccb"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r5715-review-bc780bb6-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r5715-review-bc780bb6-2.md",
+      "title": "fr-review-dell-poweredge-r5715-review-bc780bb6",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "ethernet",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r5715-review-bc780bb6.md",
+      "source_anchor": "",
+      "source_lines": [
+        56,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1110,
+      "bytes": 7338,
+      "sha256": "7e03c0464cfb5d774afef42d000adfb3db84914a33f83afd9737390fe8d9eb99"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r5715-review-bc780bb6-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r5715-review-bc780bb6-3.md",
+      "title": "fr-review-dell-poweredge-r5715-review-bc780bb6",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r5715-review-bc780bb6.md",
+      "source_anchor": "",
+      "source_lines": [
+        80,
+        120
+      ],
+      "canonical_for": [],
+      "words": 1281,
+      "bytes": 7770,
+      "sha256": "f06e4671ccd8791892378c5e7fd34de7503b821f4ff644d4727b093ab3b1792b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-1.md",
+      "title": "fr-review-dell-poweredge-r7615-review-536a6ae7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "liquid cooling",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r7615-review-536a6ae7.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        34
+      ],
+      "canonical_for": [],
+      "words": 1202,
+      "bytes": 7499,
+      "sha256": "e51ae2137529135b97391c32661428843f834b3f2dab2ddfb8b39f8ec5e5bc75"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-2.md",
+      "title": "fr-review-dell-poweredge-r7615-review-536a6ae7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "ethernet",
+        "gpu",
+        "memory",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r7615-review-536a6ae7.md",
+      "source_anchor": "",
+      "source_lines": [
+        35,
+        69
+      ],
+      "canonical_for": [],
+      "words": 1215,
+      "bytes": 7912,
+      "sha256": "773c6ce342e761491daa4d661a5013ae9cc14d5b2f19784ae244e0090a3c4af2"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-3.md",
+      "title": "fr-review-dell-poweredge-r7615-review-536a6ae7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "dram",
+        "gpu",
+        "intel",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r7615-review-536a6ae7.md",
+      "source_anchor": "",
+      "source_lines": [
+        70,
+        121
+      ],
+      "canonical_for": [],
+      "words": 1300,
+      "bytes": 7891,
+      "sha256": "ca978e26085a283cf68ed76e00474a7e1fa5ede92fc2c95bdc8a3580c3319da3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r7615-review-536a6ae7-4.md",
+      "title": "fr-review-dell-poweredge-r7615-review-536a6ae7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r7615-review-536a6ae7.md",
+      "source_anchor": "",
+      "source_lines": [
+        122,
+        136
+      ],
+      "canonical_for": [],
+      "words": 615,
+      "bytes": 3977,
+      "sha256": "ee43785eb84a8e8383b7e662c31c9f5ee63824c58d9297eb14d1d5418af110cf"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-1.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "compute",
+        "datacenter",
+        "distribution",
+        "ethernet",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        32
+      ],
+      "canonical_for": [],
+      "words": 1145,
+      "bytes": 7506,
+      "sha256": "b282c3e5b514521f86ae8abedbb35b5f0ee6287cfc2c8841566a314ff5937a1c"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-2.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        33,
+        38
+      ],
+      "canonical_for": [],
+      "words": 469,
+      "bytes": 3247,
+      "sha256": "d40a26638b642a362783e600c40e49b6c16121cc096d79750c6fc8cff1218b05"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-3.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        39,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1148,
+      "bytes": 7955,
+      "sha256": "65be0ec47e28bd8cda23ae699130398c271ab2e3808dd2d373cb64aa1e3b945a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-4.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Hugging Face",
+        "Intel",
+        "Nvidia",
+        "Samsung",
+        "TensorRT-LLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "deepseek",
+        "distillation",
+        "gpu",
+        "inference",
+        "intel",
+        "nvidia",
+        "open source",
+        "qwen",
+        "tensorrt"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
+        106
+      ],
+      "canonical_for": [],
+      "words": 1250,
+      "bytes": 7526,
+      "sha256": "21ed7acd3404e8f4e7aa9f90a23c099db841ff91cbe421d6a8d1fefe11948fe1"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-5",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-5.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "intel",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        107,
+        163
+      ],
+      "canonical_for": [],
+      "words": 1283,
+      "bytes": 7872,
+      "sha256": "bc4e010b6fa419292fbe569aa5db2348b1b4cb9c529e816420fdbac9c70e7d60"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-6",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-6.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "intel",
+        "nvidia",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        164,
+        212
+      ],
+      "canonical_for": [],
+      "words": 1321,
+      "bytes": 7842,
+      "sha256": "d6a822649ccdeba743bce460f895f4474d8491e23196424169b03be89fec841f"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-7",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7-7.md",
+      "title": "fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770-review-modular-powerful-and-ai-ready-68c2acf7.md",
+      "source_anchor": "",
+      "source_lines": [
+        213,
+        217
+      ],
+      "canonical_for": [],
+      "words": 272,
+      "bytes": 1802,
+      "sha256": "1cb7193abeda362adb6ab5e9198f379bf4292056e12f4a694dfef8a3169cdd25"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-1.md",
+      "title": "fr-review-dell-poweredge-r770ap-review-84b71047",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "distribution",
+        "ethernet",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770ap-review-84b71047.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 1324,
+      "bytes": 7999,
+      "sha256": "38678912c768d4a4b1e4af20072d8339083a63a3ca3bfb49b93e56cf68e952ef"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-2.md",
+      "title": "fr-review-dell-poweredge-r770ap-review-84b71047",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "datacenter",
+        "ethernet",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770ap-review-84b71047.md",
+      "source_anchor": "",
+      "source_lines": [
+        48,
+        74
+      ],
+      "canonical_for": [],
+      "words": 1216,
+      "bytes": 7966,
+      "sha256": "8510c39d2d7c8730b2651e9a9873dc34db0f1f9fa1588afba189e9514874d8d7"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-3.md",
+      "title": "fr-review-dell-poweredge-r770ap-review-84b71047",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "intel",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770ap-review-84b71047.md",
+      "source_anchor": "",
+      "source_lines": [
+        75,
+        122
+      ],
+      "canonical_for": [],
+      "words": 1261,
+      "bytes": 7675,
+      "sha256": "76fc390dfba1ac1e037c0352dc77765d485577df96e8b5fbb9533b60e23575a5"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-r770ap-review-84b71047-4.md",
+      "title": "fr-review-dell-poweredge-r770ap-review-84b71047",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-r770ap-review-84b71047.md",
+      "source_anchor": "",
+      "source_lines": [
+        123,
+        135
+      ],
+      "canonical_for": [],
+      "words": 673,
+      "bytes": 4273,
+      "sha256": "3956e392c529e11f4e56859c292440b54b4cfcc9bd584b300eac32a4832605d3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5-1.md",
+      "title": "fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        44
+      ],
+      "canonical_for": [],
+      "words": 1165,
+      "bytes": 7748,
+      "sha256": "e51fa184b058aad73949239bdfe6925ed093696d4c82d3af1731678388dbeb63"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5-2.md",
+      "title": "fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Broadcom",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "intel",
+        "nvidia",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5.md",
+      "source_anchor": "",
+      "source_lines": [
+        45,
+        93
+      ],
+      "canonical_for": [],
+      "words": 1191,
+      "bytes": 7763,
+      "sha256": "6c46573e9848c3374f8bdb52bf6d8b67e71720a27be4c54cce8efd5b158b99a3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5-3.md",
+      "title": "fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "mlperf",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dell-poweredge-xr7620-review-acceleration-for-the-edge-2dbf9ba5.md",
+      "source_anchor": "",
+      "source_lines": [
+        94,
+        107
+      ],
+      "canonical_for": [],
+      "words": 703,
+      "bytes": 4563,
+      "sha256": "5e7e7141665f9bdf872723bb1dd0937cdff9a177635d2d455c778a82d66a0971"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe.md",
+      "title": "fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-dynatron-2u-aio-cpu-closed-liquid-loop-review-9b3982fe.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        30
+      ],
+      "canonical_for": [],
+      "words": 1162,
+      "bytes": 7672,
+      "sha256": "2a802b124684ee06f48ad7f6e37209de5b765e340a6f79b16edf8f93db356470"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe-1.md",
+      "title": "fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "energy",
+        "ethernet"
+      ],
+      "source": "docs/RAG/clean4/fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        33
+      ],
+      "canonical_for": [],
+      "words": 1154,
+      "bytes": 7638,
+      "sha256": "c413db7c982b1d616c44ee8bef1620b943130f357bcbc32e2f092cba1ca314db"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe-2.md",
+      "title": "fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/fr-review-eaton-9px11kg2-review-11-kw-of-clean-efficient-power-in-a-4u-form-fact-3fa0a1fe.md",
+      "source_anchor": "",
+      "source_lines": [
+        34,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1109,
+      "bytes": 7716,
+      "sha256": "fafd247a303c6061dae31ea5fa02126634ea51e29fcc7c3bccfe76d44dfc21ec"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903-1.md",
+      "title": "fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        30
+      ],
+      "canonical_for": [],
+      "words": 1228,
+      "bytes": 7973,
+      "sha256": "91eafc856f0e1c3518df10b8941e9f9556f8cd729ba7ed9a1479ff6423d47d4e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903-2.md",
+      "title": "fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "amd",
+        "benchmark",
+        "exploit",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903.md",
+      "source_anchor": "",
+      "source_lines": [
+        31,
+        67
+      ],
+      "canonical_for": [],
+      "words": 1224,
+      "bytes": 7352,
+      "sha256": "67adcc90c2a58f0b5b44612ca8b32063dabd5b8aa526754a761118658a5a91e5"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903-3.md",
+      "title": "fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-from-database-and-virtualized-workloads-to-backup-dell-poweredge-r4715-92e34903.md",
+      "source_anchor": "",
+      "source_lines": [
+        68,
+        97
+      ],
+      "canonical_for": [],
+      "words": 1163,
+      "bytes": 7248,
+      "sha256": "a00aadf7ff86e6c6c577c2a28e8558471cf60a2d61c9beadd3eb8d78cc0d16b4"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-1.md",
+      "title": "fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        38
+      ],
+      "canonical_for": [],
+      "words": 1242,
+      "bytes": 7962,
+      "sha256": "3f9db446572f03a7b0612619e43fdd87659499ee6c1a70ed3dd0ee74d09b024a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-2.md",
+      "title": "fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594.md",
+      "source_anchor": "",
+      "source_lines": [
+        39,
+        78
+      ],
+      "canonical_for": [],
+      "words": 1195,
+      "bytes": 7550,
+      "sha256": "35a668c3fe7a4163c51356295bfd7d3440545a90dd8e2915b55cf1fda3ba2b20"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-3.md",
+      "title": "fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "dram",
+        "gpu",
+        "intel",
+        "nvidia",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594.md",
+      "source_anchor": "",
+      "source_lines": [
+        79,
+        133
+      ],
+      "canonical_for": [],
+      "words": 1291,
+      "bytes": 7934,
+      "sha256": "9238205afd9fe9ab4a803edc2f5a0fd475ab794da9a186ef4ebd4970cc35a3c0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594-4.md",
+      "title": "fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "dram",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl320-gen11-server-review-73dfe594.md",
+      "source_anchor": "",
+      "source_lines": [
+        134,
+        135
+      ],
+      "canonical_for": [],
+      "words": 131,
+      "bytes": 851,
+      "sha256": "3471b5ca13552a8d12b5d693a0eccaffd2940de249df906cfc044c245de451ba"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-1.md",
+      "title": "fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "blackwell",
+        "compute",
+        "distribution",
+        "fp4",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        31
+      ],
+      "canonical_for": [],
+      "words": 1100,
+      "bytes": 7075,
+      "sha256": "3d32ad3eed3915595ef87a8074dd5b1f1a0914921eed2d63043195b1129f407b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-2.md",
+      "title": "fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "arr",
+        "blackwell",
+        "compute",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2.md",
+      "source_anchor": "",
+      "source_lines": [
+        32,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1148,
+      "bytes": 7762,
+      "sha256": "f25825bec1a1acb9ab784785246f149f4a2e813acf4dd571cab4c63999d35867"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-3.md",
+      "title": "fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "OpenAI",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "benchmarks",
+        "diffusion",
+        "gpu",
+        "intel",
+        "llama",
+        "nvfp4",
+        "nvidia",
+        "open source",
+        "packaging",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2.md",
+      "source_anchor": "",
+      "source_lines": [
+        53,
+        83
+      ],
+      "canonical_for": [],
+      "words": 1203,
+      "bytes": 7981,
+      "sha256": "d8e1851dc7866dc3a9206031b6f2dae227f2b9d0148dd838fdddac6b808acb2c"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi-d918d5c2-4.md",
+      "title": "fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "benchmarks",
+        "compute",
+        "gpu",
+        "intel",
+        "vllm"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl380a-gen12-review-air-cooled-4u-server-for-dense-multi--d918d5c2.md",
+      "source_anchor": "",
+      "source_lines": [
+        84,
+        99
+      ],
+      "canonical_for": [],
+      "words": 595,
+      "bytes": 4035,
+      "sha256": "18e7a7a1056aa3e031dddd0ca0e5088d9b85fabe49f6b4baa1bef9395c0696b2"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8-1.md",
+      "title": "fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "dram",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        57
+      ],
+      "canonical_for": [],
+      "words": 1290,
+      "bytes": 7959,
+      "sha256": "6207784a419d6131011f478900efad1ca9d66260d18232167589b379a748bdf4"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8-2.md",
+      "title": "fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "dram",
+        "gpu",
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-dl560-gen11-review-closed-loop-liquid-cooling-664217b8.md",
+      "source_anchor": "",
+      "source_lines": [
+        58,
+        79
+      ],
+      "canonical_for": [],
+      "words": 562,
+      "bytes": 3442,
+      "sha256": "a3dfd3eb0e52446061d98fb47ad940f5faece8b73f34b922a2ce4aefabdeb0aa"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45-1.md",
+      "title": "fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "distribution",
+        "dram",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        58
+      ],
+      "canonical_for": [],
+      "words": 1239,
+      "bytes": 7711,
+      "sha256": "962ca1da2495404417a913f6b3e3d7d57528346c514b33cddc7f5301a8c9090f"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45-2.md",
+      "title": "fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-hpe-proliant-ml350-gen11-tower-server-review-dfc3ad45.md",
+      "source_anchor": "",
+      "source_lines": [
+        59,
+        114
+      ],
+      "canonical_for": [],
+      "words": 812,
+      "bytes": 5023,
+      "sha256": "ab6c71ada25d332aed65c74e4ecb0a2d6b2d5674a2edafefaf22671b480b40d6"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43-1.md",
+      "title": "fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "compute",
+        "dram"
+      ],
+      "source": "docs/RAG/clean4/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        24
+      ],
+      "canonical_for": [],
+      "words": 1127,
+      "bytes": 7814,
+      "sha256": "89c1fef5407c862c3017da2556e27a39896d6008ded54b8fe62457b33f7c84ee"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43-2.md",
+      "title": "fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43.md",
+      "source_anchor": "",
+      "source_lines": [
+        25,
+        89
+      ],
+      "canonical_for": [],
+      "words": 1453,
+      "bytes": 7954,
+      "sha256": "069184717e16459e340b8a64133fedb89bb895b525bf8146b1edd7e4f334992a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43-3.md",
+      "title": "fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-intel-xeon-6-review-sierra-forest-6780e-6766e-65f60f43.md",
+      "source_anchor": "",
+      "source_lines": [
+        90,
+        115
+      ],
+      "canonical_for": [],
+      "words": 751,
+      "bytes": 4218,
+      "sha256": "1af0d991ff1c5bfc8119a687d6a99100fdc060f42d43b89671dd1154f2789751"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753-1.md",
+      "title": "fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "benchmark",
+        "gpu",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        78
+      ],
+      "canonical_for": [],
+      "words": 1441,
+      "bytes": 7948,
+      "sha256": "6a91a715f28fbf322ebba0be53a2ebcb5052460dcbec1350083a4c9fa13cbf7a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753-2.md",
+      "title": "fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-intel-xeon-platinum-8592-processor-review-dell-poweredge-r760-49794753.md",
+      "source_anchor": "",
+      "source_lines": [
+        79,
+        122
+      ],
+      "canonical_for": [],
+      "words": 1109,
+      "bytes": 6502,
+      "sha256": "3a3c42b03d550684c06b9b4761ab9ecce28e36eebd6d91c6b0543ec90ae05928"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-1.md",
+      "title": "fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "diffusion",
+        "ethernet",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        34
+      ],
+      "canonical_for": [],
+      "words": 1205,
+      "bytes": 7570,
+      "sha256": "11c1151fea1a45a52ba732a6540ad70266b8a6e331fcef2941874b63e6b58a3b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-2.md",
+      "title": "fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "dram",
+        "energy",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84.md",
+      "source_anchor": "",
+      "source_lines": [
+        35,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1315,
+      "bytes": 7722,
+      "sha256": "8754ef94b41370b308802e0fd9c4396509238e0e1d0b0e118102973cd5f12071"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-3.md",
+      "title": "fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "dram",
+        "energy",
+        "ethernet",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84.md",
+      "source_anchor": "",
+      "source_lines": [
+        80,
+        124
+      ],
+      "canonical_for": [],
+      "words": 1355,
+      "bytes": 7882,
+      "sha256": "66ef27bd6d6d174f09dd155dec18d5f2ab66bc9b8d7aada04660ee3ed64422d1"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84-4.md",
+      "title": "fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "energy",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-d3-chassis-powering-next-gen-compute-intensive-work-77f2ee84.md",
+      "source_anchor": "",
+      "source_lines": [
+        125,
+        152
+      ],
+      "canonical_for": [],
+      "words": 807,
+      "bytes": 5153,
+      "sha256": "92356d93507edd102f4b84a492c660af389163614b3ff9bb9b01d5967de083d0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-1.md",
+      "title": "fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "gpu",
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        45
+      ],
+      "canonical_for": [],
+      "words": 1372,
+      "bytes": 7907,
+      "sha256": "dcb1be82b2621db787f98337319f8efdb013580fb6ccf6ccf8272db6ff94f737"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-2.md",
+      "title": "fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "arr",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f.md",
+      "source_anchor": "",
+      "source_lines": [
+        46,
+        89
+      ],
+      "canonical_for": [],
+      "words": 1221,
+      "bytes": 7990,
+      "sha256": "03a97672652980aacba5129573eeb081679b3731f7738b3e910cc20c7a1d034a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-3.md",
+      "title": "fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "intel",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f.md",
+      "source_anchor": "",
+      "source_lines": [
+        90,
+        129
+      ],
+      "canonical_for": [],
+      "words": 1337,
+      "bytes": 7828,
+      "sha256": "695001414a71b9130393d4754c350c50bea2e6a9527e5508481424a9d91635a8"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f-4.md",
+      "title": "fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr630-v4-review-540efd2f.md",
+      "source_anchor": "",
+      "source_lines": [
+        130,
+        156
+      ],
+      "canonical_for": [],
+      "words": 811,
+      "bytes": 5022,
+      "sha256": "b18753f258ce7f4b232ece53eeb5e9ed69221579c2bf8a2a29b9af8abd66c080"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-1.md",
+      "title": "Test du Lenovo ThinkSystem SR650 V4 : Un serveur 2U polyvalent et performant",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "compute",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        68
+      ],
+      "canonical_for": [],
+      "words": 1318,
+      "bytes": 7198,
+      "sha256": "b15e2fb48bc5c9a0f504ee0ee4effcb5c7c5af49f8932f1d31533bea4ee5cb8a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-2.md",
+      "title": "Test du Lenovo ThinkSystem SR650 V4 : Un serveur 2U polyvalent et performant",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "arr",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752.md",
+      "source_anchor": "",
+      "source_lines": [
+        69,
+        122
+      ],
+      "canonical_for": [],
+      "words": 1148,
+      "bytes": 7373,
+      "sha256": "71a1a9b4f0c29d153311aaec152d1d33e7ea8fde7efa136180ad20d91ef41d6b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-3.md",
+      "title": "Test du Lenovo ThinkSystem SR650 V4 : Un serveur 2U polyvalent et performant",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "benchmarks",
+        "diffusion",
+        "fp8",
+        "gpu",
+        "intel",
+        "llama",
+        "nvidia",
+        "open source",
+        "valuation",
+        "vllm"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752.md",
+      "source_anchor": "",
+      "source_lines": [
+        123,
+        185
+      ],
+      "canonical_for": [],
+      "words": 1220,
+      "bytes": 7914,
+      "sha256": "76ffa7f685805fdb21bb3ad746e884a5eb1b1afa7a420727d040a91094effb74"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-4.md",
+      "title": "Test du Lenovo ThinkSystem SR650 V4 : Un serveur 2U polyvalent et performant",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "fp8",
+        "llama",
+        "mixture of experts",
+        "moe",
+        "nvfp4",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752.md",
+      "source_anchor": "",
+      "source_lines": [
+        186,
+        225
+      ],
+      "canonical_for": [],
+      "words": 1130,
+      "bytes": 7694,
+      "sha256": "03abaf2bbfe9a09ae3e3db0762e9333d2b9702c9fd0c7c141a3acd7112436136"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-5",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752-5.md",
+      "title": "Test du Lenovo ThinkSystem SR650 V4 : Un serveur 2U polyvalent et performant",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "gpu",
+        "intel",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-lenovo-thinksystem-sr650-v4-review-versatile-2u-workhorse-b60ae752.md",
+      "source_anchor": "",
+      "source_lines": [
+        226,
+        256
+      ],
+      "canonical_for": [],
+      "words": 683,
+      "bytes": 4605,
+      "sha256": "abadf1511394e0b941cd6079ce4d9b889ccfe97005e207d8c5f0b25936237ad7"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-linux-vs-windows-server-2025-native-nvme-926200e2-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-linux-vs-windows-server-2025-native-nvme-926200e2-1.md",
+      "title": "fr-review-linux-vs-windows-server-2025-native-nvme-926200e2",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "distribution",
+        "exploit"
+      ],
+      "source": "docs/RAG/clean4/fr-review-linux-vs-windows-server-2025-native-nvme-926200e2.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1382,
+      "bytes": 7872,
+      "sha256": "4f7857634fe430ead5eabbe5448a048d43b6e102e2f755d523ffc648f4cdc28e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-linux-vs-windows-server-2025-native-nvme-926200e2-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-linux-vs-windows-server-2025-native-nvme-926200e2-2.md",
+      "title": "fr-review-linux-vs-windows-server-2025-native-nvme-926200e2",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "open source",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/fr-review-linux-vs-windows-server-2025-native-nvme-926200e2.md",
+      "source_anchor": "",
+      "source_lines": [
+        50,
+        59
+      ],
+      "canonical_for": [],
+      "words": 557,
+      "bytes": 3676,
+      "sha256": "5063730d0e60a60212a766f1761444b94d508ddbce90f0f3b067f5b8da76f0fd"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-1.md",
+      "title": "fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "benchmarks",
+        "gpu",
+        "mai",
+        "nand"
+      ],
+      "source": "docs/RAG/clean4/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        36
+      ],
+      "canonical_for": [],
+      "words": 1298,
+      "bytes": 7901,
+      "sha256": "ad0ace7ddf187be15eaffad3b6d99595075e6957ad21f313928b4f8a9adfc377"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-2.md",
+      "title": "fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "blackwell",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74.md",
+      "source_anchor": "",
+      "source_lines": [
+        37,
+        65
+      ],
+      "canonical_for": [],
+      "words": 1236,
+      "bytes": 7695,
+      "sha256": "5f823ffa1df63c611bef9235b537ae455da167200299047d8fd58aaa8646f9f5"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-3.md",
+      "title": "fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Meta",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "blackwell",
+        "distribution",
+        "fp4",
+        "gpu",
+        "nvidia",
+        "sol"
+      ],
+      "source": "docs/RAG/clean4/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74.md",
+      "source_anchor": "",
+      "source_lines": [
+        66,
+        76
+      ],
+      "canonical_for": [],
+      "words": 1140,
+      "bytes": 7123,
+      "sha256": "4aab4a7a6ec9c7660f92f4d725a049d788f87adbf3164d6b9accec0267f818f9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74-4.md",
+      "title": "fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "acquisition",
+        "distribution",
+        "gpu",
+        "sol"
+      ],
+      "source": "docs/RAG/clean4/fr-review-micron-6600-ion-245tb-swap-the-hard-drives-power-an-nvl72-for-free-4b9ace74.md",
+      "source_anchor": "",
+      "source_lines": [
+        77,
+        84
+      ],
+      "canonical_for": [],
+      "words": 806,
+      "bytes": 5145,
+      "sha256": "9d56f334f095b85af4a70913851a509a63290097c3755b958ba9832e7a61abf3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594-1.md",
+      "title": "fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "benchmarks",
+        "fp8",
+        "intel",
+        "mlperf",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        74
+      ],
+      "canonical_for": [],
+      "words": 1320,
+      "bytes": 7820,
+      "sha256": "4a3fb1424a6d9aaddf10968483740cdf615badc53a81c83aef283b184c9d4187"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594-2.md",
+      "title": "fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "benchmark",
+        "benchmarks",
+        "intel",
+        "mlperf",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594.md",
+      "source_anchor": "",
+      "source_lines": [
+        75,
+        145
+      ],
+      "canonical_for": [],
+      "words": 1323,
+      "bytes": 7704,
+      "sha256": "2b2a9f441973516dc31409d98ef8f2dddb37eacaebd6feb61d7233f3b116c5b5"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594-3.md",
+      "title": "fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "amd",
+        "intel",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-nvidia-l4-gpu-review-low-power-inferencing-wizard-5e06d594.md",
+      "source_anchor": "",
+      "source_lines": [
+        146,
+        172
+      ],
+      "canonical_for": [],
+      "words": 769,
+      "bytes": 4998,
+      "sha256": "1f3db3beb5b04937ba73715f96a110611a97dd153d64f28537f11f260361aaad"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac-1.md",
+      "title": "fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "amd",
+        "arr",
+        "attribution",
+        "nvidia",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        35
+      ],
+      "canonical_for": [],
+      "words": 1213,
+      "bytes": 7959,
+      "sha256": "abbf5e99364593cb4dfef0a3dfeb9a0230c3b3b8e449f1de95828573c3533b4a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac-2.md",
+      "title": "fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "benchmark",
+        "benchmarks",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac.md",
+      "source_anchor": "",
+      "source_lines": [
+        36,
+        65
+      ],
+      "canonical_for": [],
+      "words": 1179,
+      "bytes": 7793,
+      "sha256": "61a5ff3bf968049bfa257b1d721cb066366f0d7c64cfca79da8686c5cee6a339"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac-3.md",
+      "title": "fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/fr-review-proxmox-vgpu-guide-your-gpu-deserves-more-than-just-passthrough-3185ddac.md",
+      "source_anchor": "",
+      "source_lines": [
+        66,
+        66
+      ],
+      "canonical_for": [],
+      "words": 73,
+      "bytes": 487,
+      "sha256": "7bfc5a23862c38b7012ad20903269cf187f69f747e2fb1779d0469e885e32691"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73-1.md",
+      "title": "fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "attention",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        23
+      ],
+      "canonical_for": [],
+      "words": 1242,
+      "bytes": 7994,
+      "sha256": "25fc60cb9c2ddd99c6354ad5699f6281cc63abf40852f3209404f4f769dee480"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73-2.md",
+      "title": "fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "arr",
+        "attention",
+        "benchmarks",
+        "datacenter",
+        "gpu",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73.md",
+      "source_anchor": "",
+      "source_lines": [
+        24,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1199,
+      "bytes": 7980,
+      "sha256": "732a962e2ad45c4a61a89ea73ec788ef2d77366ad8ececb032c77b4408bab7ba"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73-3.md",
+      "title": "fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "apache",
+        "benchmark",
+        "gpu",
+        "intel",
+        "nvidia",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-short-quiet-capable-supermicro-iot-sys-e403-14b-frn2t-review-699c7d73.md",
+      "source_anchor": "",
+      "source_lines": [
+        50,
+        89
+      ],
+      "canonical_for": [],
+      "words": 1023,
+      "bytes": 6703,
+      "sha256": "3809378ad69e459f09a4c1ca60c3ebd41cadfdef5d05f4ca4469c5cb8d01e74e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9-1.md",
+      "title": "fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "OpenAI"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "distribution",
+        "dram",
+        "hbm3",
+        "intel",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        29
+      ],
+      "canonical_for": [],
+      "words": 1197,
+      "bytes": 7722,
+      "sha256": "496de63b250588773743d07cc1d20bc3a6bd0f103b46debabf94c05c84dbb956"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9-2.md",
+      "title": "fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-4u-amd-epyc-gpu-servers-offer-ai-flexibility-as-4125gs-tnrt-c9778ed9.md",
+      "source_anchor": "",
+      "source_lines": [
+        30,
+        37
+      ],
+      "canonical_for": [],
+      "words": 688,
+      "bytes": 4570,
+      "sha256": "ad5ade3d290bca1b78d1f1bfcc02ccf8cb67b2bc43137d80ae13237a839b45c5"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-1.md",
+      "title": "fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "agent",
+        "arr",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        77
+      ],
+      "canonical_for": [],
+      "words": 1368,
+      "bytes": 7952,
+      "sha256": "aa0474956cc9873f2e4e1521f9d3fd5416c358ef61191ed7b73959d5d4d16a84"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-2.md",
+      "title": "fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "distribution",
+        "gpu",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887.md",
+      "source_anchor": "",
+      "source_lines": [
+        78,
+        104
+      ],
+      "canonical_for": [],
+      "words": 1088,
+      "bytes": 7453,
+      "sha256": "5752258103b6d10a7991be00792c9b69337fa304a80b43f29096979e79393228"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-3.md",
+      "title": "fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "gpu",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887.md",
+      "source_anchor": "",
+      "source_lines": [
+        105,
+        139
+      ],
+      "canonical_for": [],
+      "words": 1207,
+      "bytes": 7963,
+      "sha256": "5fb82f6ec3910315763863986adf37356f74996b2f0864e0d50430fea29ab92c"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887-4.md",
+      "title": "fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "apache",
+        "benchmarks",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-a-server-as-2126hs-tn-review-dual-amd-epyc-9005-turin-7a015887.md",
+      "source_anchor": "",
+      "source_lines": [
+        140,
+        167
+      ],
+      "canonical_for": [],
+      "words": 681,
+      "bytes": 4544,
+      "sha256": "aec664e18ea518952411c3bbc8c8f5ecfb24b1648b15004dd03a443afe8087ca"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf-1.md",
+      "title": "fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Broadcom"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 1201,
+      "bytes": 7978,
+      "sha256": "2ccecbf9a0aef26559150bd569729b91f39443bb271d9b42da448375ee498af4"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf-2.md",
+      "title": "fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Nvidia",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "gpu",
+        "nvidia",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        43,
+        121
+      ],
+      "canonical_for": [],
+      "words": 1307,
+      "bytes": 7989,
+      "sha256": "0c4374e1b3bd56f4da83bf7164083c4a17bd0d87d6cf47737ce718140d262494"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf-3.md",
+      "title": "fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "gpu",
+        "inference",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-as-1115sv-wtnrt-server-review-amd-epyc-8004-0eaef2cf.md",
+      "source_anchor": "",
+      "source_lines": [
+        122,
+        179
+      ],
+      "canonical_for": [],
+      "words": 1126,
+      "bytes": 7013,
+      "sha256": "08f3072146f0bae2d705b377860929a692405664419e7aa749d57550860a51cb"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb-1.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "agent",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        34
+      ],
+      "canonical_for": [],
+      "words": 1178,
+      "bytes": 7650,
+      "sha256": "f96647f8372e75e29f65a613041eabd565727a021b17c2aeaeabfe662e01d0a7"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb-2.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "intel",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb.md",
+      "source_anchor": "",
+      "source_lines": [
+        35,
+        88
+      ],
+      "canonical_for": [],
+      "words": 1299,
+      "bytes": 7978,
+      "sha256": "37ad14b95e8696754e04e2967f184223b3fcc151c8e1746417c6bbe253834061"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb-3.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "inference",
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-112h-tn-review-efficiency-and-power-w-799f43eb.md",
+      "source_anchor": "",
+      "source_lines": [
+        89,
+        135
+      ],
+      "canonical_for": [],
+      "words": 932,
+      "bytes": 5558,
+      "sha256": "77cf2aebacf1e82bf5ce47f92290b2025d8e6b149f21761ffb4a0d69669287e9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-1.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "agent",
+        "arr",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        42
+      ],
+      "canonical_for": [],
+      "words": 1288,
+      "bytes": 7913,
+      "sha256": "a00bd8cc19dbb396372059a12c1f218d6978af8691afdeb3c4a708c53042f659"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-2.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "benchmark",
+        "ethernet",
+        "gpu",
+        "open source"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868.md",
+      "source_anchor": "",
+      "source_lines": [
+        43,
+        83
+      ],
+      "canonical_for": [],
+      "words": 1189,
+      "bytes": 7895,
+      "sha256": "4467e35c0463242d0d7a30ed2375b38266aee7c2d430bc9290ebcfaadcf51c76"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-3.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "gpu",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868.md",
+      "source_anchor": "",
+      "source_lines": [
+        84,
+        128
+      ],
+      "canonical_for": [],
+      "words": 1260,
+      "bytes": 7787,
+      "sha256": "ce1ae90b7a5f4595e3af311da90589579c94fcd4554177e2a6cd26ca6ac50357"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868-4.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "gpu",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-212ha-tn-review-intel-xeon-6-6980p-0f575868.md",
+      "source_anchor": "",
+      "source_lines": [
+        129,
+        153
+      ],
+      "canonical_for": [],
+      "words": 684,
+      "bytes": 4313,
+      "sha256": "7926a14da7669511b9affde0357705d7be2f9f0bcf9751924fa2621426c23198"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1-1.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        83
+      ],
+      "canonical_for": [],
+      "words": 1241,
+      "bytes": 7775,
+      "sha256": "87f581fbed8016b561f8162b5714915a25f0b2cef5cd415265d5ba6187c3ab4c"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1-2.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "benchmark",
+        "gpu",
+        "intel",
+        "open source",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1.md",
+      "source_anchor": "",
+      "source_lines": [
+        84,
+        141
+      ],
+      "canonical_for": [],
+      "words": 1269,
+      "bytes": 7873,
+      "sha256": "e3378598d42aae8bf59c9ed1580c9bbe07b520b3337e14f2fb983c3c33cddf09"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1-3.md",
+      "title": "fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmarks",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-hyper-superserver-sys-221h-tn24r-review-e7dd20c1.md",
+      "source_anchor": "",
+      "source_lines": [
+        142,
+        144
+      ],
+      "canonical_for": [],
+      "words": 279,
+      "bytes": 1919,
+      "sha256": "a78d409b050d31f0c64683f484a70de3e8c2a706a147b988be7726130775de74"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-1.md",
+      "title": "fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "arr",
+        "gpu",
+        "intel",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        14
+      ],
+      "canonical_for": [],
+      "words": 1115,
+      "bytes": 7551,
+      "sha256": "69293472ead345917ea0b483ae0a87cc9f76113996bcb301c5589422241d926b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-2.md",
+      "title": "fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "diffusion",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c.md",
+      "source_anchor": "",
+      "source_lines": [
+        15,
+        41
+      ],
+      "canonical_for": [],
+      "words": 1231,
+      "bytes": 7707,
+      "sha256": "40f12e031159fba73f843988043b0c0ffdced096b790ccb41374ceb11bc9d90b"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-3.md",
+      "title": "fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Meta",
+        "Nvidia",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "benchmark",
+        "benchmarks",
+        "deepseek",
+        "diffusion",
+        "fp4",
+        "fp8",
+        "llama",
+        "mixture of experts",
+        "moe",
+        "nvfp4",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c.md",
+      "source_anchor": "",
+      "source_lines": [
+        42,
+        64
+      ],
+      "canonical_for": [],
+      "words": 1152,
+      "bytes": 7370,
+      "sha256": "3eeba54d2734d0adad47e600b3a00fc73e45d81916e2f00e7b95599b08a628f1"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-4.md",
+      "title": "fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Alibaba",
+        "DeepSeek",
+        "Nvidia",
+        "OpenAI",
+        "TensorRT-LLM",
+        "vLLM"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "blackwell",
+        "deepseek",
+        "fp4",
+        "fp8",
+        "llama",
+        "nvfp4",
+        "tensorrt",
+        "tensorrt-llm",
+        "vllm"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c.md",
+      "source_anchor": "",
+      "source_lines": [
+        65,
+        86
+      ],
+      "canonical_for": [],
+      "words": 1221,
+      "bytes": 7585,
+      "sha256": "652be6b64f7bb0da6f44988fd5e5a291ea073da3d34b37b2875979aab32e3103"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-5",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c-5.md",
+      "title": "fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-jumpstart-review-a-week-with-an-nvidia-hgx-b200-378de64c.md",
+      "source_anchor": "",
+      "source_lines": [
+        87,
+        88
+      ],
+      "canonical_for": [],
+      "words": 152,
+      "bytes": 1047,
+      "sha256": "aa771f202f87b44483efa2a1605b9fd7559ed7b96e739bbb1b65b579e6245700"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e-1.md",
+      "title": "fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "benchmark"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        43
+      ],
+      "canonical_for": [],
+      "words": 1291,
+      "bytes": 7967,
+      "sha256": "3dcc8fb3bb8adeec22546db036ad047d0f4ce0082bc89793da9ece58f7f6a01a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e-2.md",
+      "title": "fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/fr-review-supermicro-lsi-sas3008-hba-review-edbf2d6e.md",
+      "source_anchor": "",
+      "source_lines": [
+        44,
+        44
+      ],
+      "canonical_for": [],
+      "words": 33,
+      "bytes": 239,
+      "sha256": "df0b95971e3c97d2efc0363d6b2cd403edc61078b20d1dad659c877a41f6fa9a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79-1.md",
+      "title": "fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "arr",
+        "benchmark",
+        "benchmarks",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        49
+      ],
+      "canonical_for": [],
+      "words": 1211,
+      "bytes": 7654,
+      "sha256": "eb41b61c139a6d9e0a187add2aa378bdc33d63571dc5fc17f45c65f0d453fba3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79-2.md",
+      "title": "fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/fr-review-supermicro-superchassis-846be1c-r1k28b-review-82358c79.md",
+      "source_anchor": "",
+      "source_lines": [
+        50,
+        60
+      ],
+      "canonical_for": [],
+      "words": 232,
+      "bytes": 1502,
+      "sha256": "6e898082fcd5a664f69ddf0fd0861525eac67d38164274befd15d9d2c8eccfea"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee-1.md",
+      "title": "fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        52
+      ],
+      "canonical_for": [],
+      "words": 1283,
+      "bytes": 7958,
+      "sha256": "4f5ccc0455b5c8b02ebbe6daa1074717298e9e3e7881312f52ed50af1cc15ab0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee-2.md",
+      "title": "fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Apple",
+        "Google",
+        "Intel",
+        "Samsung"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "intel",
+        "benchmarks"
+      ],
+      "source": "docs/RAG/clean4/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee.md",
+      "source_anchor": "",
+      "source_lines": [
+        53,
+        109
+      ],
+      "canonical_for": [],
+      "words": 1293,
+      "bytes": 7922,
+      "sha256": "ffc5a9de3dd41cb6c0a4fe6043a71016660d852d25e61bce2d59214fa43051a3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee-3.md",
+      "title": "fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/fr-review-vdi-acceleration-for-all-intel-data-center-gpu-flex-series-170-review-4b06c1ee.md",
+      "source_anchor": "",
+      "source_lines": [
+        110,
+        113
+      ],
+      "canonical_for": [],
+      "words": 313,
+      "bytes": 2110,
+      "sha256": "a4b09983156324c05d4770ddd7d58831398bb6e4838590b1031c2b7b850d37d6"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-windows-server-native-nvme-39d49073-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-windows-server-native-nvme-39d49073-1.md",
+      "title": "fr-review-windows-server-native-nvme-39d49073",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmarks",
+        "valuation"
+      ],
+      "source": "docs/RAG/clean4/fr-review-windows-server-native-nvme-39d49073.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        34
+      ],
+      "canonical_for": [],
+      "words": 1194,
+      "bytes": 7977,
+      "sha256": "dd2297b3565309a2f9f36c88e6cc87a37e70095a333ee84599e97b3df5029252"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/fr-review-windows-server-native-nvme-39d49073-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/fr-review-windows-server-native-nvme-39d49073-2.md",
+      "title": "fr-review-windows-server-native-nvme-39d49073",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [],
+      "source": "docs/RAG/clean4/fr-review-windows-server-native-nvme-39d49073.md",
+      "source_anchor": "",
+      "source_lines": [
+        35,
+        59
+      ],
+      "canonical_for": [],
+      "words": 941,
+      "bytes": 6262,
+      "sha256": "0ec3b33afbe2f208d031dc47dd4dc6f54b0f2b317e59b562f40d1133c2f386f5"
+    },
+    {
       "id": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box-1",
       "path": "collect-250926-servers-hardware/servers-hardware/gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box-1.md",
       "title": "gigabyte-ai-top-atom-nvidia-gb10-review-a-neat-little-box",
@@ -5893,6 +9640,159 @@
       "sha256": "8c7cd9bb714fb14d02889ba9021098d52354b6b77121f251bd862a5bc0e3fe3b"
     },
     {
+      "id": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-1.md",
+      "title": "Cartes NVIDIA : lire le modèle, la conso et les températures",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "blackwell",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/msi-afterburner-2026-overclock-undervolt-gpu-tuto.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1229,
+      "bytes": 7877,
+      "sha256": "3d398b0a4ad0d859ecb4d49af291803e5adf5d6d3cb3434bb957a02afa49b896"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-2.md",
+      "title": "Cartes NVIDIA : lire le modèle, la conso et les températures",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "attention",
+        "benchmark",
+        "gpu",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/msi-afterburner-2026-overclock-undervolt-gpu-tuto.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
+        115
+      ],
+      "canonical_for": [],
+      "words": 1218,
+      "bytes": 7774,
+      "sha256": "49df5832f2fde9e5866fb3f763dc10042bc1ba01a21357761d41e818754ab96d"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-3.md",
+      "title": "Cartes NVIDIA : lire le modèle, la conso et les températures",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "benchmark",
+        "benchmarks",
+        "blackwell",
+        "gpu",
+        "intel",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/msi-afterburner-2026-overclock-undervolt-gpu-tuto.md",
+      "source_anchor": "",
+      "source_lines": [
+        116,
+        196
+      ],
+      "canonical_for": [],
+      "words": 1276,
+      "bytes": 7812,
+      "sha256": "5118abee987a525592ef28dcacd1e1217bc834b953db3aaf042273aec050ff23"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-4.md",
+      "title": "Cartes NVIDIA : lire le modèle, la conso et les températures",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "attention",
+        "blackwell",
+        "gpu",
+        "intel",
+        "rubin"
+      ],
+      "source": "docs/RAG/clean4/msi-afterburner-2026-overclock-undervolt-gpu-tuto.md",
+      "source_anchor": "",
+      "source_lines": [
+        197,
+        249
+      ],
+      "canonical_for": [],
+      "words": 1168,
+      "bytes": 7419,
+      "sha256": "e6b0f12cbd539eba6ccb886b5ee5def17c42f75b54470ccc09f8e398c30fe1cb"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-5",
+      "path": "collect-250926-servers-hardware/servers-hardware/msi-afterburner-2026-overclock-undervolt-gpu-tuto-5.md",
+      "title": "Cartes NVIDIA : lire le modèle, la conso et les températures",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "benchmark",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/msi-afterburner-2026-overclock-undervolt-gpu-tuto.md",
+      "source_anchor": "",
+      "source_lines": [
+        250,
+        299
+      ],
+      "canonical_for": [],
+      "words": 940,
+      "bytes": 5790,
+      "sha256": "62461aff0a33f6d73e6d3559fb024568b4eb383f74b491200a63aa3b3864f7a9"
+    },
+    {
       "id": "collect-250926-servers-hardware/servers-hardware/msi-slyly-shows-off-an-upcoming-dlc-amd-epyc-venice-platform-with-cd182-s6091-x2-servers-a",
       "path": "collect-250926-servers-hardware/servers-hardware/msi-slyly-shows-off-an-upcoming-dlc-amd-epyc-venice-platform-with-cd182-s6091-x2-servers-a.md",
       "title": "msi-slyly-shows-off-an-upcoming-dlc-amd-epyc-venice-platform-with-cd182-s6091-x2-servers-and-racks",
@@ -6126,6 +10026,154 @@
       "words": 528,
       "bytes": 2879,
       "sha256": "30aa51a2a4623f52a7cc591c61bd389ea66520a10269a7fb00f01263006c72d9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-1.md",
+      "title": "nvidia-dsx-40-de-gpu-par-usine-a-ia-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "attention",
+        "blackwell",
+        "energy",
+        "mai",
+        "open source",
+        "rubin",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/clean4/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        47
+      ],
+      "canonical_for": [],
+      "words": 1159,
+      "bytes": 7882,
+      "sha256": "a205cc72a08db164e739ce181dd114c48ffe00808d40541b4adcdc28a4159e83"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-2.md",
+      "title": "nvidia-dsx-40-de-gpu-par-usine-a-ia-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Microsoft",
+        "Mistral",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "amd",
+        "blackwell",
+        "distribution",
+        "energy",
+        "ethernet",
+        "mai",
+        "mistral",
+        "open source",
+        "research",
+        "revenue"
+      ],
+      "source": "docs/RAG/clean4/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        48,
+        91
+      ],
+      "canonical_for": [],
+      "words": 1143,
+      "bytes": 7605,
+      "sha256": "2575ec890da683236464ccd3dab563f8960f4054eb8cc728e1d071fe50449519"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-3.md",
+      "title": "nvidia-dsx-40-de-gpu-par-usine-a-ia-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Google",
+        "Microsoft",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "gpu",
+        "nvidia",
+        "amd",
+        "blackwell",
+        "mai",
+        "maia",
+        "research",
+        "rubin",
+        "tpu",
+        "trainium",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/clean4/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        92,
+        147
+      ],
+      "canonical_for": [],
+      "words": 1123,
+      "bytes": 7586,
+      "sha256": "b3bade1c2d8d0f55475103b4e0b25d6c218126407b9d88946738bf61fbf814c0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026-4.md",
+      "title": "nvidia-dsx-40-de-gpu-par-usine-a-ia-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "AWS",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "nvidia",
+        "amd",
+        "maia",
+        "open source",
+        "research",
+        "rubin",
+        "tpu",
+        "trainium",
+        "vera rubin"
+      ],
+      "source": "docs/RAG/clean4/nvidia-dsx-40-de-gpu-par-usine-a-ia-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        148,
+        160
+      ],
+      "canonical_for": [],
+      "words": 216,
+      "bytes": 1563,
+      "sha256": "70adb375869af7d0f1155a6c5895edae2bb53f7252550204a5d0a756dc0d302c"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/nvidia-launches-next-generation-rubin-ai-compute-platform-at-ces-2026-1",
@@ -6549,6 +10597,117 @@
       "sha256": "4141babaab45f02461da027cea851439d52e272d52879709de483761eeb23476"
     },
     {
+      "id": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-1.md",
+      "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "power delivery"
+      ],
+      "source": "docs/RAG/clean4/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        50
+      ],
+      "canonical_for": [],
+      "words": 1281,
+      "bytes": 7725,
+      "sha256": "c4c3c45fad0f40437bd8ffa4beb33b4afd5365566f5a4ed5c8112846b3ed76c9"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-2.md",
+      "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
+      "source_anchor": "",
+      "source_lines": [
+        51,
+        94
+      ],
+      "canonical_for": [],
+      "words": 1225,
+      "bytes": 7798,
+      "sha256": "d4947b010861a9d5dfb7f489b6978d53537fa529c3f93380243c2357f9e3863d"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-3.md",
+      "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Mistral",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "benchmark",
+        "diffusion",
+        "gpu",
+        "llama",
+        "mistral",
+        "nvidia"
+      ],
+      "source": "docs/RAG/clean4/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
+      "source_anchor": "",
+      "source_lines": [
+        95,
+        132
+      ],
+      "canonical_for": [],
+      "words": 1267,
+      "bytes": 7850,
+      "sha256": "27905ef0ef48fb679191a5a001970a3df940b1e9ae18e24e6dbea05a00a06577"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpui-4.md",
+      "title": "on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [],
+      "dates": [],
+      "keywords": [
+        "humanoid"
+      ],
+      "source": "docs/RAG/clean4/on-a-testa-le-minisforum-n5-max-ai-nas-le-nas-cinq-baies-qui-joue-aussi-les-mini-pc-surpuissants.md",
+      "source_anchor": "",
+      "source_lines": [
+        133,
+        137
+      ],
+      "canonical_for": [],
+      "words": 135,
+      "bytes": 973,
+      "sha256": "a08ed60b2b515d660f0e68baa93ea6789295291aa6a7f88da538808bec42533b"
+    },
+    {
       "id": "collect-250926-servers-hardware/servers-hardware/openai-codex-with-ollama-ollama-blog",
       "path": "collect-250926-servers-hardware/servers-hardware/openai-codex-with-ollama-ollama-blog.md",
       "title": "OpenAI Codex with Ollama",
@@ -6743,6 +10902,142 @@
       "words": 339,
       "bytes": 2233,
       "sha256": "3ae71d509727e8f02e67689949dfa8726d177345b3f5372e227549b95e44f1cc"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-1.md",
+      "title": "Windows (PowerShell)",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "blackwell",
+        "gpu",
+        "intel",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/parts-de-marche-gpu-2026-nvidia-90-amd-a-8.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        28
+      ],
+      "canonical_for": [],
+      "words": 1280,
+      "bytes": 7852,
+      "sha256": "6251f4e7b84e80970dafbe2d47bc2b4e5767a23c0293ce81684ba9e1fbcad512"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-2.md",
+      "title": "Windows (PowerShell)",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia",
+        "Samsung",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "attention",
+        "dram",
+        "gpu",
+        "hbm",
+        "intel",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/parts-de-marche-gpu-2026-nvidia-90-amd-a-8.md",
+      "source_anchor": "",
+      "source_lines": [
+        29,
+        84
+      ],
+      "canonical_for": [],
+      "words": 1300,
+      "bytes": 7957,
+      "sha256": "45ef2c4bc65fe5445f4695b23b0cec8db116e7561a4cee8ace411d11593382ef"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-3.md",
+      "title": "Windows (PowerShell)",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "antitrust",
+        "dram",
+        "gpu",
+        "hbm",
+        "intel",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/parts-de-marche-gpu-2026-nvidia-90-amd-a-8.md",
+      "source_anchor": "",
+      "source_lines": [
+        85,
+        149
+      ],
+      "canonical_for": [],
+      "words": 1244,
+      "bytes": 7720,
+      "sha256": "1032ae14ba438992f264f2c51e8d11911d2bde57354c895a9b4f9735c7f82557"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/parts-de-marche-gpu-2026-nvidia-90-amd-a-8-4.md",
+      "title": "Windows (PowerShell)",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Nvidia"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "arr",
+        "dram",
+        "gpu",
+        "hbm",
+        "intel",
+        "nvidia",
+        "research"
+      ],
+      "source": "docs/RAG/clean4/parts-de-marche-gpu-2026-nvidia-90-amd-a-8.md",
+      "source_anchor": "",
+      "source_lines": [
+        150,
+        174
+      ],
+      "canonical_for": [],
+      "words": 397,
+      "bytes": 2517,
+      "sha256": "1dc7267a40c59381437b30b8eca612c85e9363a83179e528af63843f0a278fa7"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/pegatron-nvidia-gb300-nvl72-and-more-at-nvidia-gtc-2025",
@@ -7281,6 +11576,152 @@
       "sha256": "185e1df21a747c96f4609ff4a25de302435ea0a0ddfb868ff01bfbdc64893fff"
     },
     {
+      "id": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-1.md",
+      "title": "Séquence de validation recommandée pour un profil RAM DDR5 overclocké",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "intel",
+        "latency",
+        "mai",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 1285,
+      "bytes": 7763,
+      "sha256": "b402ee023d55c9520d0fa88792fc3745c86abf35772f6d98080524954dbec4ed"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-2.md",
+      "title": "Séquence de validation recommandée pour un profil RAM DDR5 overclocké",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "arr",
+        "benchmark",
+        "intel",
+        "latency",
+        "memory",
+        "training"
+      ],
+      "source": "docs/RAG/clean4/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        40,
+        85
+      ],
+      "canonical_for": [],
+      "words": 1196,
+      "bytes": 7575,
+      "sha256": "ffb227379dbb86a554e2dd783a89e535cb3d539d76a543e20ded780c9acae2d0"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-3.md",
+      "title": "Séquence de validation recommandée pour un profil RAM DDR5 overclocké",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "latency",
+        "memory"
+      ],
+      "source": "docs/RAG/clean4/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        86,
+        191
+      ],
+      "canonical_for": [],
+      "words": 1138,
+      "bytes": 7454,
+      "sha256": "1fa76ee3c42abf5d779c0db96dacaf2e6c2e7bc121c337f9c5834f8ab14cd203"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-4.md",
+      "title": "Séquence de validation recommandée pour un profil RAM DDR5 overclocké",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "arr",
+        "benchmark",
+        "latency"
+      ],
+      "source": "docs/RAG/clean4/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        192,
+        226
+      ],
+      "canonical_for": [],
+      "words": 1149,
+      "bytes": 7503,
+      "sha256": "960b10a3c059bbcf439d167b818d8613f5f4c01b3300c0a247a56b25401ee8d3"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-5",
+      "path": "collect-250926-servers-hardware/servers-hardware/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026-5.md",
+      "title": "Séquence de validation recommandée pour un profil RAM DDR5 overclocké",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "gpu",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/ram-ddr5-activer-xmp-et-expo-ull-en-12-etapes-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        227,
+        269
+      ],
+      "canonical_for": [],
+      "words": 948,
+      "bytes": 5861,
+      "sha256": "bf89e7ddcdd08a9b61a4b12b1d67c340686bce5f51863ce2c00b9b5076a8937e"
+    },
+    {
       "id": "collect-250926-servers-hardware/servers-hardware/references",
       "path": "collect-250926-servers-hardware/servers-hardware/references.md",
       "title": "References",
@@ -7446,6 +11887,130 @@
       "words": 600,
       "bytes": 4693,
       "sha256": "5651d68ff885bbe64422c68d53b5bdb9519476a957b4add6a776ec848b3e191a"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-1.md",
+      "title": "ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "benchmark",
+        "benchmarks",
+        "copilot",
+        "gpu",
+        "lpddr5x"
+      ],
+      "source": "docs/RAG/clean4/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        39
+      ],
+      "canonical_for": [],
+      "words": 1316,
+      "bytes": 7646,
+      "sha256": "5e8567d90e0f13170850682baf28630ba777a260eb562c5a4c6bb1c52cf6160c"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-2.md",
+      "title": "ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "18a",
+        "amd",
+        "lpddr5x",
+        "panther lake"
+      ],
+      "source": "docs/RAG/clean4/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        40,
+        79
+      ],
+      "canonical_for": [],
+      "words": 1311,
+      "bytes": 7788,
+      "sha256": "47684ac4e9467d6ce37d1aa6a64c1b554e2acc563d5263ee307e7f030f2565ec"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-3.md",
+      "title": "ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "benchmarks",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        80,
+        115
+      ],
+      "canonical_for": [],
+      "words": 1272,
+      "bytes": 7982,
+      "sha256": "8236c22090edcb4b4b998e2c2b54eaa37b1781234cdfdae059d8bbe9cbdc0f79"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026-4.md",
+      "title": "ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "Microsoft"
+      ],
+      "dates": [],
+      "keywords": [
+        "intel",
+        "amd",
+        "copilot",
+        "gpu"
+      ],
+      "source": "docs/RAG/clean4/ryzen-z2-extreme-8-curs-zen-5-contre-intel-arc-g3-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        116,
+        150
+      ],
+      "canonical_for": [],
+      "words": 702,
+      "bytes": 4133,
+      "sha256": "d5f44efccf0c187031cd79c4839362eba924a778e835995d75081030f4c2950f"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/saving-to-gguf-unsloth-documentation",
@@ -8643,6 +13208,140 @@
       "words": 262,
       "bytes": 1986,
       "sha256": "2fcefec852b01ab4cae0e732693e7a2a2bde7d896296cb8a9056e229f41b3615"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-1",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-1.md",
+      "title": "Configuration PRÉSUMÉE – rumeurs, non confirmée par AMD",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "attention",
+        "chiplet",
+        "datacenter",
+        "gpu",
+        "intel",
+        "mai"
+      ],
+      "source": "docs/RAG/clean4/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        1,
+        34
+      ],
+      "canonical_for": [],
+      "words": 1229,
+      "bytes": 7635,
+      "sha256": "f0e435b4e1b312ad9c9568d60092bc11f362b95634fd6e0d631e06dadab7c7f7"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-2",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-2.md",
+      "title": "Configuration PRÉSUMÉE – rumeurs, non confirmée par AMD",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "18a",
+        "dram",
+        "hbm",
+        "intel",
+        "mai",
+        "panther lake"
+      ],
+      "source": "docs/RAG/clean4/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        35,
+        84
+      ],
+      "canonical_for": [],
+      "words": 1246,
+      "bytes": 7813,
+      "sha256": "b61510abc25d16a07754c867aa46735e056f41c49ebb55ae67345f502779cc90"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-3",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-3.md",
+      "title": "Configuration PRÉSUMÉE – rumeurs, non confirmée par AMD",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "18a",
+        "chiplet",
+        "datacenter",
+        "dram",
+        "gpu",
+        "helios",
+        "intel",
+        "mai",
+        "panther lake",
+        "wafer"
+      ],
+      "source": "docs/RAG/clean4/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        85,
+        140
+      ],
+      "canonical_for": [],
+      "words": 1370,
+      "bytes": 7858,
+      "sha256": "bac6a8498ef71c5a529e4002d2fd0a921e32ed67f30ace3c5098f16f5764343e"
+    },
+    {
+      "id": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-4",
+      "path": "collect-250926-servers-hardware/servers-hardware/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026-4.md",
+      "title": "Configuration PRÉSUMÉE – rumeurs, non confirmée par AMD",
+      "domain": "servers-hardware",
+      "role": "reference",
+      "task": "reference",
+      "actors": [
+        "AMD",
+        "Intel",
+        "TSMC"
+      ],
+      "dates": [],
+      "keywords": [
+        "amd",
+        "chiplet",
+        "dram",
+        "hbm",
+        "intel"
+      ],
+      "source": "docs/RAG/clean4/zen-6-am5-jusqu-en-2029-ryzen-10000-en-2027-2026.md",
+      "source_anchor": "",
+      "source_lines": [
+        141,
+        173
+      ],
+      "canonical_for": [],
+      "words": 434,
+      "bytes": 2567,
+      "sha256": "4cc6bb9ccbec42259b39f5ef9660e2998a3fdd024241bdc28d80f792cbf73a65"
     },
     {
       "id": "collect-250926-servers-hardware/servers-hardware/zen-1",

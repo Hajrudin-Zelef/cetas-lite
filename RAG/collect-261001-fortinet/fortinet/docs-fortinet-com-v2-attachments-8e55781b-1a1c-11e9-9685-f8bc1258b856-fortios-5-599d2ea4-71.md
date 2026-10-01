@@ -1,0 +1,157 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-71
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [8994, 9133]
+sha256: 0457ac352b9c8cd10858810660cde626eeb5b40dbd46858d84a4352f2c6639fd
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Remotelinkfailover(remoteIPmonitoring) HAandfailoverprotection
+Forexample,youmayhavethreelinkmonitorsconfiguredonthreeinterfacesbutonlywantafailovertooccurif
+twoofthelinkmonitorsfail. TodothisyoumustsettheHAprioritiesofthelinkmonitorsandtheHA
+pingserver- failover-threshold sothat thepriorityofonelinkmonitor islessthanthefailoverthreshold
+buttheaddedprioritiesoftwolinkmonitorsisequaltoorgreaterthanthefailoverthreshold.Failoveroccurswhen
+theHApriorityofallfailed linkmonitorsreachesorexceedsthethreshold.
+Forexample,setthefailoverthresholdto10andmonitor threeinterfaces:
+config system ha
+set pingserver-monitor-interface port2 port20 vlan_234
+set pingserver-failover-threshold 10
+set pingserver-flip-timeout 120
+end
+ThensettheHApriorityoflinkmonitor serverto5.
+TheHAPriority(ha-priority)setting isnotsynchronizedamongclusterunits. Inthe
+following example,youmustsettheHApriorityto5byloggingintoeachclusterunitunless
+youonlywantthisconfigurationtobeactiveononeoftheunitsinthecluster.
+config system link-monitor
+edit port2
+set srcintf port2
+set server 192.168.20.20
+set ha-priority 5
+next
+edit port20
+set srcintf port20
+set server 192.168.20.30
+set ha-priority 5
+next
+edit vlan_234
+set srcintf vlan_234
+set server 172.20.12.10
+set ha-priority 5
+end
+If onlyoneofthelinkmonitorsfails, thetotal linkmonitor HAprioritywillbe5,whichislowerthanthefailover
+thresholdsoafailoverwillnotoccur.If asecondlinkmonitor fails, thetotal linkmonitor HApriorityof10willequal
+thefailoverthreshold,causingafailover.
+Byaddingmultiple linkmonitorsandsetting theHAprioritiesforeach,youcanfinetuneremoteIPmonitoring.
+Forexample,ifitismoreimportant tomaintain connectionstosomenetworksyoucansettheHAprioritieshigher
+fortheselinkmonitors. Andifitislessimportant tomaintain connectionstoothernetworksyoucansettheHA
+prioritieslowerfortheselinkmonitors. Youcanalsoadjustthefailoverthresholdsothat iftheclustercannot
+connecttooneortwohighpriorityIPaddressesafailoveroccurs.Butafailoverwillnotoccuriftheclustercannot
+connecttooneortwolowpriorityIPaddresses.
+Detecting HA remote IP failover events
+JustaswithanyHAfailover,youcandetectHAremotelinkfaiolvereventsusingSNMPtomonitor forHAtraps.
+Youcanalsousealertemail toreceivenotifications ofHAstatuschangesandmonitor logmessagesforHA
+failoverlogmessages.Inaddition, thecriticallogmessagePing Server is down isgeneratedwhenaping
+serverfails. Thelogmessageincludesthenameoftheinterfacethat thepingserverthat detectedthefailure.
+242 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection Failoverandattachednetworkequipment
+Failover and attached network equipment
+It normallytakesaclusterapproximately6secondstocompleteafailover.However,theactualfailovertime
+experiencedbyyournetworkusersmaydependonhowquicklytheswitchesconnectedtotheclusterinterfaces
+accepttheclusterMACaddressupdatefromtheprimaryunit. If theswitchesdonotrecognizeandacceptthe
+gratuitousARPpacketsandupdatetheirMACforwardingtable, thefailovertime willincrease.
+Also,individualsessionfailoverdependsonwhethertheclusterisoperatinginactive-activeoractive-passive
+mode, andwhetherthecontentofthetraffic istobevirusscanned.Dependingonapplicationbehavior,itmay
+takeaTCPsessionalongerperiodoftime (upto30seconds)torecovercompletely.
+Monitoring cluster units for failover
+YoucanuseloggingandSNMPtomonitor clusterunitsforfailover.Boththeprimaryandsubordinateunitscan
+beconfiguredtowritelogmessagesandsendSNMPtrapsifafailoveroccurs.Youcanalsologintothecluster
+GUIandCLItodetermineifafailoverhasoccurred.
+NAT mode active-passive cluster packet flow
+Thissectiondescribeshowpacketsareprocessedandhowfailoveroccursinanactive-passiveHAclusterrunning
+inNATmode. Intheexample,theNATmodeclusteractsastheinternet firewallforaclientcomputer’sinternal
+network.Theclientcomputer’sdefault routepointsattheIPaddressoftheclusterinternalinterface. Theclient
+connectstoawebserverontheInternet. Internet routingroutespacketsfromtheclusterexternalinterfacetothe
+webserver,andfromthewebservertotheclusterexternalinterface.
+Inanactive-passiveclusteroperatinginNATmode, fourMACaddressesareinvolvedincommunication between
+theclientandthewebserverwhentheprimaryunitprocessestheconnection:
+l Internal virtualMACaddress(MAC_V_int)assignedtotheprimaryunitinternalinterface,
+l ExternalvirtualMACaddress(MAC_V_ext)assignedtotheprimaryunitexternalinterface,
+l ClientMACaddress(MAC_Client),
+l ServerMACaddress(MAC_Server),
+InNATmode, theHAclusterworksasagatewaywhenitrespondstoARPrequests.Therefore,theclientand
+serveronlyknowthegatewayMACaddresses.TheclientonlyknowstheclusterinternalvirtualMACaddress
+(MAC_V_int)andtheserveronlyknowtheclusterexternalvirtualMACaddress(MAC_V_ext).
+HighAvailability
+Fortinet TechnologiesInc.
+243
+
+NATmodeactive-passiveclusterpacketflow HAandfailoverprotection
+NAT mode active-passive packet flow
+Packet flow from client to web server
+1. Theclientcomputerrequestsaconnectionfrom10.11.101.10 to172.20.120.130.
+2. Thedefault routeontheclientcomputerrecognizes10.11.101.100 (theclusterIPaddress)asthegatewaytothe
+externalnetworkwherethewebserverislocated.
+3. TheclientcomputerissuesanARPrequestto10.11.101.100.
+4. TheprimaryunitinterceptstheARPrequest,andrespondswiththeinternalvirtualMACaddress(MAC_V_int)
+whichcorrespondstoitsIPaddressof10.11.101.100.
+5. Theclient’srequestpacketreachestheprimaryunitinternalinterface.
+IP address MAC address
+Source 10.11.101.10 MAC_Client
+Destination 172.20.120.130 MAC_V_int
+6. Theprimaryunitprocessesthepacket.
+7. Theprimaryunitforwardsthepacketfromitsexternalinterfacetothewebserver.
+IP address MAC address
+Source 172.20.120.141 MAC_V_ext
+Destination 172.20.120.130 MAC_Server
+8. Theprimaryunitcontinuestoprocesspacketsinthiswayunlessafailoveroccurs.
+244 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandfailoverprotection Transparentmodeactive-passiveclusterpacketflow
+Packet flow from web server to client
+1. Whenthewebserverrespondstotheclient’spacket,theclusterexternalinterfaceIPaddress(172.20.120.141)is
+recognizedasthegatewaytotheinternalnetwork.
+2. ThewebserverissuesanARPrequestto172.20.120.141.
+3. TheprimaryunitinterceptstheARPrequest,andrespondswiththeexternalvirtualMACaddress(MAC_V_ext)
+whichcorrespondsitsIPaddressof172.20.120.141.
+4. Thewebserverthensendsresponsepacketstotheprimaryunitexternalinterface.
+IP address MAC address
+Source 172.20.120.130 MAC_Server
+Destination 172.20.120.141 MAC_V_ext
+5. Theprimaryunitprocessesthepacket.
+6. Theprimaryunitforwardsthepacketfromitsinternalinterfacetotheclient.
+IP address MAC address
+Source 172.20.120.130 MAC_V_int
+Destination 10.11.101.10 MAC_Client
+7. Theprimaryunitcontinuestoprocesspacketsinthiswayunlessafailoveroccurs.
+When a failover occurs
+Thefollowing stepsarefollowedafteradeviceorlinkfailureoftheprimaryunitcausesafailover.
+1. If theprimaryunitfailsthesubordinateunitbecomestheprimaryunit.
+2. ThenewprimaryunitchangestheMACaddressesofallofitsinterfacestotheHAvirtualMACaddresses.
+ThenewprimaryunithasthesameIPaddressesandMACaddressesasthefailed primaryunit.
+3. ThenewprimaryunitssendsgratuitousARPpacketsfromtheinternalinterfacetothe10.11.101.0 networkto
+associateitsinternalIPaddresswiththeinternalvirtualMACaddress.
+4. ThenewprimaryunitssendsgratuitousARPpacketstothe172.20.120.0 toassociateitsexternalIPaddresswith
+theexternalvirtualMACaddress.
+5. Traffic senttotheclusterisnowreceivedandprocessedbythenewprimaryunit.
+If thereweremorethantwoclusterunitsintheoriginalcluster,theseremainingunitswouldbecome
+subordinateunits.
+Transparentmode active-passive cluster packet flow
+Thissectiondescribeshowpacketsareprocessedandhowfailoveroccursinanactive-passiveHAclusterrunning
+intransparentmode. Theclusterisinstalledonaninternalnetworkinfrontofamail serverandtheclient
+connectstothemail serverthroughthetransparentmodecluster.
+HighAvailability
+Fortinet TechnologiesInc.
+245
+

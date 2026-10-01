@@ -9,11 +9,9 @@ dates: []
 keywords: []
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [329, 412]
+source_lines: [0, 0]
 sha256: 79da69a1b984844fde73ec56b48871dc0da0af2408ff2e296a1e0c432a26ab0d
 ---
-
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
 
 did you finally get this XZ2 lol otherwise tell us more about how it is basically the design in real life, the handling, the responsiveness, the performance etc.... tell us everything
 

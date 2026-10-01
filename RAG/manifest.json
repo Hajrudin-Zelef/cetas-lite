@@ -689,7 +689,7 @@
       "source": "docs/RAG/clean4",
       "index": "collect-250926-servers-hardware/INDEX.md",
       "manifest": "collect-250926-servers-hardware/manifest.json",
-      "chunk_count": 272
+      "chunk_count": 432
     },
     {
       "corpus": "collect-260926-mikrotik",
@@ -706,6 +706,94 @@
       "index": "collect-260926-rattrapage/INDEX.md",
       "manifest": "collect-260926-rattrapage/manifest.json",
       "chunk_count": 205
+    },
+    {
+      "corpus": "collect-261001-cisco",
+      "title": "Cisco — configuration, routing, sécurité (2026)",
+      "source": "docs/RAG/collect-261001-cisco",
+      "index": "collect-261001-cisco/INDEX.md",
+      "manifest": "collect-261001-cisco/manifest.json",
+      "chunk_count": 1052
+    },
+    {
+      "corpus": "collect-261001-fortinet",
+      "title": "Fortinet — FortiGate, pare-feu, VPN (2026)",
+      "source": "docs/RAG/collect-261001-fortinet",
+      "index": "collect-261001-fortinet/INDEX.md",
+      "manifest": "collect-261001-fortinet/manifest.json",
+      "chunk_count": 735
+    },
+    {
+      "corpus": "collect-261001-huawei",
+      "title": "Huawei — réseau, HCIA/HCIP (2026)",
+      "source": "docs/RAG/collect-261001-huawei",
+      "index": "collect-261001-huawei/INDEX.md",
+      "manifest": "collect-261001-huawei/manifest.json",
+      "chunk_count": 1931
+    },
+    {
+      "corpus": "collect-261001-meraki",
+      "title": "Meraki — dashboard, API, sans-fil (2026)",
+      "source": "docs/RAG/collect-261001-meraki",
+      "index": "collect-261001-meraki/INDEX.md",
+      "manifest": "collect-261001-meraki/manifest.json",
+      "chunk_count": 412
+    },
+    {
+      "corpus": "collect-261001-opnsense-pfsense",
+      "title": "OPNsense & pfSense — pare-feu open source (2026)",
+      "source": "docs/RAG/collect-261001-opnsense-pfsense",
+      "index": "collect-261001-opnsense-pfsense/INDEX.md",
+      "manifest": "collect-261001-opnsense-pfsense/manifest.json",
+      "chunk_count": 359
+    },
+    {
+      "corpus": "collect-261001-unifi-ubiquiti",
+      "title": "Ubiquiti UniFi — réseaux et VPN (2026)",
+      "source": "docs/RAG/collect-261001-unifi-ubiquiti",
+      "index": "collect-261001-unifi-ubiquiti/INDEX.md",
+      "manifest": "collect-261001-unifi-ubiquiti/manifest.json",
+      "chunk_count": 593
+    },
+    {
+      "corpus": "collect-261001-general-networking",
+      "title": "Réseau général — commutation, QoS, protocoles (2026)",
+      "source": "docs/RAG/collect-261001-general-networking",
+      "index": "collect-261001-general-networking/INDEX.md",
+      "manifest": "collect-261001-general-networking/manifest.json",
+      "chunk_count": 2431
+    },
+    {
+      "corpus": "collect-261001-automatisation-infra",
+      "title": "Automatisation infra — Ansible, Netmiko, netops (2026)",
+      "source": "docs/RAG/collect-261001-automatisation-infra",
+      "index": "collect-261001-automatisation-infra/INDEX.md",
+      "manifest": "collect-261001-automatisation-infra/manifest.json",
+      "chunk_count": 94
+    },
+    {
+      "corpus": "collect-261001-mikrotik",
+      "title": "MikroTik — RouterOS, CAPsMAN, forum (Collect 5, 2026)",
+      "source": "docs/RAG/collect-261001-mikrotik",
+      "index": "collect-261001-mikrotik/INDEX.md",
+      "manifest": "collect-261001-mikrotik/manifest.json",
+      "chunk_count": 594
+    },
+    {
+      "corpus": "collect-261001-ia-llm",
+      "title": "IA & LLM — modèles, comparatifs, usages (2026)",
+      "source": "docs/RAG/collect-261001-ia-llm",
+      "index": "collect-261001-ia-llm/INDEX.md",
+      "manifest": "collect-261001-ia-llm/manifest.json",
+      "chunk_count": 1551
+    },
+    {
+      "corpus": "collect-261001-rattrapage",
+      "title": "Rattrapage — guides dev & datacenter (2026)",
+      "source": "docs/RAG/collect-261001-rattrapage",
+      "index": "collect-261001-rattrapage/INDEX.md",
+      "manifest": "collect-261001-rattrapage/manifest.json",
+      "chunk_count": 1155
     }
   ]
 }

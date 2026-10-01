@@ -1,0 +1,143 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-87
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["distribution"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [10819, 10944]
+sha256: 0c73e5be7bb905f8bbc219aaf6f1bf3887728d6734c6dc1af6982452172a8fe0
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+FortiGate SessionLifeSupportProtocol(FGSP) SynchronizingTCPandSCTPsessions
+set peervd <vdom-name>
+set syncvd <vdom-name>
+config session-sync-filter
+srcintf <interface-name>
+dstintf <interface-name>
+srcaddr x.x.x.x x.x.x.x
+dstaddr x.x.x.x x.x.x.x
+srcaddr6 ::/x
+dstaddr6 ::/x
+end
+end
+Youcanusethefilter toonlysynchronizesessionsaccordingtothesessionsourceanddestination interfaceand
+IPv4toIPv6address.
+Youcanonlyaddonefilter toacluster-syncinstance.Tocreatemultiple filters youmustcreatemultiple cluster-
+syncinstances.
+SynchronizingTCP and SCTP sessions
+Usethefollowing toenablesessionsynchronizationforTCPandSCTPsessionsandtoconfiguretheFGSPto
+usetheport8interfaceforsynchronizingtraffic:
+config system ha
+set session-pickup enable
+set hbdev "port8" 50
+end
+Automatic session sync after peer reboot
+YoucanconfigureyourFGSP deploymenttoresumesessionsmoresmoothlyafterafailed FortiGate rejoinsthe
+deployment. Insomecaseswhenafailed FortiGate comesbackupitmaybeginprocessingsessionsbeforethe
+sessiontablefromtheotherFortiGate hasbeensynchronizedtoit. Whenthishappens,theFortiGate maydrop
+packetsuntil thesessionsynchronizationiscomplete.
+Shutting down interfaces during session synchronization
+Thisfeatureallowsyoutoshutdownsomeinterfacesonthefailed FortiGate whenitstartsupsothat itwillnot
+acceptpacketsuntil sessionsynchronizationiscomplete. Thentheinterfacesarebroughtupandtraffic canflow.
+Whiletheinterfacesaredown,theFortiGate that hadnotfailed keepsprocessingtraffic.
+Usethefollowing toselecttheinterfacestoshutdownwhilewaitingforsessionsynchronizationtocomplete:
+config system cluster-sync
+edit 1
+set down-intfs-before-sess-sync port1 port2
+end
+Heartbeat monitoring
+If theFortiGate that wasrunningfailsbeforesessionsynchronizationiscomplete, theFortiGate that isrestarting
+willnotbeabletocompletesessionsynchronizationandwillnotturnonitsshutdowninterfaces.Topreventthis
+fromhappening,FGSPincludesheartbeatmonitoring. Usingheartbeatmonitoring, theFortiGate that iswaiting
+forsessionsynchronizationtofinishcandetectthat theotherFortiGate isdownandturnonitsinterfacesevenif
+HighAvailability
+Fortinet TechnologiesInc.
+291
+
+FGSPandfirmwareupgrades FortiGate SessionLifeSupportProtocol(FGSP)
+sessionsynchronizationisnotcomplete. Youcanusethefollowing tochangetheheartbeatinterval(hb-
+interval)andlostheartbeatthreshold(hp-lost-threshold)tochangeheartbeatmonitoring timing:
+config system cluster-sync
+edit 1
+set hb-interval 2
+set hb-lost-threshold 3
+end
+FGSP and firmware upgrades
+ThestepstofollowtoupgradethefirmwarerunningonanFGSPdeploymentdependonwhetheryouhave
+enabledconfigurationsynchronization(seeSynchronizingtheconfigurationonpage300)ornot:
+l If youhavenotenabledconfigurationsynchronization,youmustupgradethefirmwareseparatelyoneach
+FortiGate inthegroup.UpgradingthefirmwareofeachFortiGate interruptstraffic thoughthat FortiGate.
+l If youhaveenabledconfigurationsynchronization,youcanupgradethegroupfirmwarebyupgradingthefirmware
+runningonthedesignatedprimaryFortiGate. ThenewfirmwareimageissenttothebackupFortiGates wherethe
+firmwareisinstalledandeachFortiGate restarts.Thefirmwareupgradesimultaneouslyinterruptstraffic throughall
+oftheFortiGates inthegroup.
+FGSP firmware upgrade best practice
+Fortinet recommendsusingthefollowing stepstoupgradethefirmwareoftheFortiGates inanFGSP
+deployment. Followthesestepswhetherornotyouhaveenabledconfigurationsynchronization.
+ForanexampleFGSPdeploymentwithtwoFortiGates (FGT-1andFGT-2):
+1. Switchalltraffic toFGT-1.
+Configuretheloadbalancerorrouterthat distributestraffic betweentheFortiGates tosendalltraffic tooneofthe
+FortiGates intheFGSPdeployment(inthiscaseFGT-1).
+2. DisconnectFGT-2fromyournetwork.
+Makesuretoalsodisconnecttheinterfacesthat allowheartbeatandsynchronizationcommunication withFGT-1.
+YouwanttopreventFGT-2fromcommunicating withFGT-1.
+3. UpgradethefirmwareofFGT-2.
+4. Re-connectFGT-2'straffic interfaces(butnottheinterfacesusedforheartbeatandsynchronization
+communication withFGT-1).
+5. Switchalltraffic tothenewlyupgradedFGT-2.
+Configuretheloadbalancerorrouterthat distributestraffic betweentheFortiGates tosendalltraffic tothe
+FortiGate withupgradedfirmware.
+6. UpgradethefirmwareofFGT-1(whileheartbeatandsynchronizationcommunication withFGT-2remains
+disconnected).
+7. Re-connecttheFGT-2interfacesthat allowheartbeatandsynchronizationcommunication betweenFGT-1and
+FGT-2.
+8. Restoretheoriginaltraffic distribution betweenFGT-1andFGT-2.
+Configuretheloadbalancerorroutertoagaindistributetraffic toboth FortiGates intheFGSPdeployment.
+292 HighAvailability
+Fortinet TechnologiesInc.
+
+FortiGate SessionLifeSupportProtocol(FGSP) BackingupandrestoringtheconfigurationofanFGSPdeployment
+Backing up and restoring the configurationof an FGSP deployment
+Youshouldmaintain separatebackupconfigurationfilesforeachFortiGate intheFGSPdeployment. Whenyou
+restoretheconfigurationofoneFortiGate peer,theFGSPdoesnotsynchronizetheconfigurationfile totheother
+peers.InsteadyoumustbackupeachFortiGate separatelyandrestoretheconfigurationofeachFortiGate
+separatelywithitsownconfigurationfile.
+IPsec tunnel synchronization
+Whenyouusetheconfig system cluster-sync commandtoenableFGSP,IPseckeysandother
+runtime data(butnotactualtunnelsessions)aresynchronizedbetweenpeers.Thismeansthat ifonepeergoes
+down,thepeerthat isstill operatingcanquicklygetIPsectunnelsre-establishedwithout re-negotiating them.
+However,afterafailover,allexistingtunnelsessionsonthefailed FortiGate havetoberestartedonthe
+FortiGates that arestill operating.
+IPsectunnelsyncsupportsbothstaticanddialupIPsectunnels.ForIPsectunnelsynchronizationtowork,the
+interfacesontheFortiGates that aretunnelendpointsmusthavethesameIPaddressesandexternalrouters
+mustbeconfiguredtoloadbalanceIPsectunnelsessionstotheFortiGates inthedeployment.
+Optionally synchronizing IKE routes
+Youcanusethefollowing commandtocontrolwhetherIKEroutesaresynchronizedtoallunitsintheFGSP
+deployment:
+config system cluster-sync
+edit 0
+set slave-add-ike-routes {enable | disable}
+end
+EnabletosynchronizeIKEroutes,ordisableifyoudonotneedtosynchronizeIKEroutes.Enablingrouting
+synchronizationisoptionalbutdoingsoincreasessynchronizationoverheadandbandwidthusage.If youhave
+problemswithIPsecVPNtunnelsynchronization,youmaywanttoenablesynchronizingroutes.Otherwiseyou
+couldleaveitdisabledtoimproveperformanceandsavebandwidth.
+SynchronizingUDP and ICMP (connectionless)sessions
+Inmanyconfigurations,duetotheirnon-stateful nature,UDPandICMPsessionsdon'tneedtobesynchronized
+tonaturallyfailover.However,ifrequiredyoucanconfiguretheFGSPtosynchronizeUDPandICMPsessionsby
+enteringthefollowing:
+config system ha
+set session-pickup enable
+set session-pickup-connectionless enable
+end
+HighAvailability
+Fortinet TechnologiesInc.
+293
+

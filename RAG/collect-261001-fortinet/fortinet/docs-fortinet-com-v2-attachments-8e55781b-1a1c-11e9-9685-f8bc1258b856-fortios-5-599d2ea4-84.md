@@ -1,0 +1,156 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-84
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: ["Apple"]
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [10420, 10558]
+sha256: 1c93c76938b2caad39dc3d551353db9ddbd6dd6229bc7753659db9eb3abec308
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+SettingupVRRPfailover VRRPhighavailability
+config system interface
+edit port10
+config vrrp
+edit 200
+set vrip 10.31.101.200
+set priority 255
+end
+end
+Setting up VRRP failover
+VRRProutersinaVRRPdomainperiodicallysendVRRPadvertisementmessagestoalloftheroutersinthe
+domaintomaintain onerouterastheprimaryrouterandtheothersasbackuprouters.Theprimaryrouteristhe
+onewiththehighestpriority.If thebackuproutersstopreceivingthesepacketsfromtheprimaryrouter,the
+backuprouterwiththehighestprioritybecomesthenewprimaryrouter.
+TheprimaryrouterstopssendingVRRPadvertisementmessagesifiteitherfailsorbecomesdisconnected.You
+canalsoconfigureVRRPdestination addressesthat theprimaryroutermonitors. If theprimaryrouterbecomes
+unabletoconnecttothesedestination addresses,itstopssendingVRRPadvertisementmessagesandthe
+backuprouterwiththehighestprioritybecomestheprimaryrouter.Youcanaddoneortwodestination addresses
+toaVRRPconfiguration. Tobemosteffective, thesedestination addressesshouldberemoteaddresses.
+Forexample,configureIPv4VRRPonport14withtwodestination address:
+config system interface
+edit port14
+config vrrp
+edit 12
+set vrdst 10.10.10.20 10.20.20.10
+end
+IPv4 VRRP active failover
+YoucanreduceIPv4VRRPfailovertimes withthevrdst-priority option. Thisoptioncausestheprimary
+routertoactivelysignaltothebackuprouterswhentheprimaryroutercan'treachitsconfigureddestination
+addressoraddresses.Theprimaryrouterdoesthisbysendingalowerpriorityforitself intheVRRP
+advertisementmessages.Yousetthislowerprioritywiththevrdst-priority option. Thebackuprouterwith
+thehighestprioritybecomesthenewprimaryrouterandtakesoverprocessingtraffic.
+Thefollowing exampleconfigurestheprimaryroutertohaveapriorityof255soitshouldalwaysbecomethe
+primaryrouter.Thecommandalsosetsvrdst-priority to10.Soiftheprimaryroutercannolongerconnect
+toitsdestination addressof10.10.10.1, theprimaryrouterinformstheVRRPgroupthat itspriorityisnow10.
+config system interface
+edit port10
+config vrrp
+edit 12
+set vrip 10.31.101.200
+set priority 255
+set vrdst 10.10.10.1
+set vrdst-priority 10
+end
+280 HighAvailability
+Fortinet TechnologiesInc.
+
+VRRPhighavailability SettingupVRRPfailover
+Failover of IPv4 firewall VIPs and IP Pools
+FortiOSVRRPsupportsfailoveroffirewallVIPsandIPPoolswhenthestatusofarouterchanges.Thisfeature
+introducesanewproxyARPsetting tomapVIPandIPPooladdressrangestoeachrouter'sVirtualMAC(VMAC).
+Afterfailover,theIPrangesaddedtothenewprimaryrouterareroutedtothenewprimaryrouter'sVMAC.
+Usethefollowing commandtoaddaproxyARPaddressrangeandasingleIPaddresstoarouteraddedtoa
+FortiGate`sport5interface. TheaddressrangeandsingleIPaddressshouldmatchtheaddressrangeorsingleIP
+forVIPsorIPpoolsaddedtotheport5interface:
+config system interface
+edit port5
+config vrrp
+edit 1
+config proxy-arp
+edit 1
+set ip 192.168.62.100-192.168.62.200
+next
+edit 2
+set ip 192.168.62.225
+end
+Changing the advertisement message interval
+Bydefault, VRRPadvertisementmessagesaresentonceasecond.Youcanusetheadv-interval optionto
+changethefrequencyofsendingthesemessages.Therangeis1to255seconds.
+Theadv-interval alsoaffects theperiodabackupVRRProuterwaitsbeforeassumingtheprimaryrouterhas
+failed. Thatwaitingperiodis3times theadv-interval.Forexample,ifadv-interval is5,thebackup
+routerwaitsforupto15secondstoreceiveaVRRPadvertisementfromthecurrentprimaryrouterbeforetaking
+overtheroleastheprimaryrouter.
+Forexample,configureanIPv4VRRPtosendadvertisementmessagesevery10seconds:
+config system interface
+edit port14
+config vrrp
+edit 12
+set adv-interval 10
+end
+Changing the VRRP start time
+TheVRRPstarttime isthetime abackuporpriamaryVRRProuterwaitsbeforesendingorreceivingVRRP
+advertisementsandthuspotentially changingstate. Themainvisibilityofthistimer iswhenVRRP-monitored
+interfaceshavebecomeupafterhavingpreviouslybeendown.Whenthisoccursthedevicewillwaitforthistimer
+periodbeforeconsidering(and*potentially* changing)itsstatus.
+Thedefault startuptime is3secondsandtherangeis1to255seconds.
+Insomecasestheadvertisementmessagesmaybedelayed.Forexample,someswitcheswithspanningtree
+enabledmaydelaysomeoftheadvertisementmessagepackets.If youfindthat backuproutersareattempting to
+HighAvailability
+Fortinet TechnologiesInc.
+281
+
+SettingupVRRPgroups VRRPhighavailability
+becomeprimaryrouterseventhoughtheprimaryrouterhasn'tfailed, youcanextendthestarttime tomakesure
+thebackuprouterswaitlongenoughfortheadvertisementmessages.
+Forexample,settheIPv4VRRPstartuptime to10seconds:
+config system interface
+edit port14
+config vrrp
+edit 12
+set start-time 10
+end
+Setting up VRRP groups
+If youhaveaddedVRRProuterstomultiple interfacesofthesameFortiGate, eachofthoserouterswillbeina
+different VRRPdomain. If oneoftheseroutersswitchestobackup(forexample,ifitcan'tconnecttoits
+destination), youmight wantalloftheroutersonthisFortiGate toalsoswitchtobackup.If otherwords,ifoneof
+theVRRProutersaddedtoaFortiGate fails, youmight wantalloftheVRRProutersaddedtheFortiGate toalso
+fail.
+However,VRRPcanonlycheckthestatusoftheroutersinasingleVRRPdomainandcan'ttrackthestatusof
+routersinotherdomains.So,ifyouhavemultiple VRRPdomainsonasingleFortiGate, oneofthem canswitch
+tobackupbuttheotherscanremainoperatingnormally.
+VRRPgroupsallowyoutoavoidthisproblem. YoucanaddalloftheVRRPvirtualroutersonthesameFortiGate
+toaVRRPgroup.If oneofthevirtualroutersinaVRRPgroupswitchestobackup,theVRRPgroupforcesallof
+theothervirtualroutersinthesamegrouptoalsoswitchtobackup.SoallVRRPtraffic beingprocessedbythe
+FortiGate failsovertootherdevicesinyournetwork.
+ThestatusofthevirtualroutersinaVRRPgroupcanonlychangewhenoneormoreof
+thevirtualroutersinthegroupchangesstatus. YoucannotuseaVRRPgroupto
+manuallychangethestatusofthevirtualroutersinthegroup.
+Usethefollowing commandtoaddtwoVRRProuterstoaVRRPgroupwithagroupIDof10.TheVRRPgroupID
+canbebetween1and65535.
+config system interface
+edit port10
+config vrrp
+edit 200
+set vrip 10.31.101.200
+set priority 255
+set vrpgrp 10
+end
+end
+edit port20
+config vrrp
+edit 100
+set vrip 10.23.1.223
+set priority 20
+set vrpgrp 10
+end
+282 HighAvailability
+Fortinet TechnologiesInc.
+

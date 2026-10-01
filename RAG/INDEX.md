@@ -91,8 +91,19 @@ Un corpus `delta` ne contient que les faits nouveaux/corrigés d'une source déj
 | `collect-240926-frandroid` | FrAndroid — mobile & tech (Collect 240926) |  | 37 | `docs/RAG/clean_en/frandroid` | [INDEX](collect-240926-frandroid/INDEX.md) |
 | `collect-240926-hardwarecooking` | HardwareCooking — PC & matériel (Collect 240926) |  | 16 | `docs/RAG/clean_en/hardwarecooking` | [INDEX](collect-240926-hardwarecooking/INDEX.md) |
 | `collect-240926-misc` | Collect 240926 — longue traîne (14 sites) |  | 48 | `docs/RAG/clean_en/misc` | [INDEX](collect-240926-misc/INDEX.md) |
-| `collect-250926-servers-hardware` | Clean 4 — serveurs, GPU & stockage 2026 |  | 272 | `docs/RAG/clean4` | [INDEX](collect-250926-servers-hardware/INDEX.md) |
+| `collect-250926-servers-hardware` | Clean 4 — serveurs, GPU & stockage 2026 |  | 432 | `docs/RAG/clean4` | [INDEX](collect-250926-servers-hardware/INDEX.md) |
 | `collect-260926-mikrotik` | MikroTik — RouterOS, forums, CHR/Proxmox (2026) |  | 959 | `docs/RAG/lot-mikrotik` | [INDEX](collect-260926-mikrotik/INDEX.md) |
 | `collect-260926-rattrapage` | Rattrapage — IA, fine-tuning, reviews serveurs (2026) |  | 205 | `docs/RAG/lot-rattrapage` | [INDEX](collect-260926-rattrapage/INDEX.md) |
+| `collect-261001-cisco` | Cisco — configuration, routing, sécurité (2026) |  | 1052 | `docs/RAG/collect-261001-cisco` | [INDEX](collect-261001-cisco/INDEX.md) |
+| `collect-261001-fortinet` | Fortinet — FortiGate, pare-feu, VPN (2026) |  | 735 | `docs/RAG/collect-261001-fortinet` | [INDEX](collect-261001-fortinet/INDEX.md) |
+| `collect-261001-huawei` | Huawei — réseau, HCIA/HCIP (2026) |  | 1931 | `docs/RAG/collect-261001-huawei` | [INDEX](collect-261001-huawei/INDEX.md) |
+| `collect-261001-meraki` | Meraki — dashboard, API, sans-fil (2026) |  | 412 | `docs/RAG/collect-261001-meraki` | [INDEX](collect-261001-meraki/INDEX.md) |
+| `collect-261001-opnsense-pfsense` | OPNsense & pfSense — pare-feu open source (2026) |  | 359 | `docs/RAG/collect-261001-opnsense-pfsense` | [INDEX](collect-261001-opnsense-pfsense/INDEX.md) |
+| `collect-261001-unifi-ubiquiti` | Ubiquiti UniFi — réseaux et VPN (2026) |  | 593 | `docs/RAG/collect-261001-unifi-ubiquiti` | [INDEX](collect-261001-unifi-ubiquiti/INDEX.md) |
+| `collect-261001-general-networking` | Réseau général — commutation, QoS, protocoles (2026) |  | 2431 | `docs/RAG/collect-261001-general-networking` | [INDEX](collect-261001-general-networking/INDEX.md) |
+| `collect-261001-automatisation-infra` | Automatisation infra — Ansible, Netmiko, netops (2026) |  | 94 | `docs/RAG/collect-261001-automatisation-infra` | [INDEX](collect-261001-automatisation-infra/INDEX.md) |
+| `collect-261001-mikrotik` | MikroTik — RouterOS, CAPsMAN, forum (Collect 5, 2026) |  | 594 | `docs/RAG/collect-261001-mikrotik` | [INDEX](collect-261001-mikrotik/INDEX.md) |
+| `collect-261001-ia-llm` | IA & LLM — modèles, comparatifs, usages (2026) |  | 1551 | `docs/RAG/collect-261001-ia-llm` | [INDEX](collect-261001-ia-llm/INDEX.md) |
+| `collect-261001-rattrapage` | Rattrapage — guides dev & datacenter (2026) |  | 1155 | `docs/RAG/collect-261001-rattrapage` | [INDEX](collect-261001-rattrapage/INDEX.md) |
 
 Voir aussi [README](README.md) et `manifest.json`.

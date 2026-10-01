@@ -50,6 +50,18 @@ def verify_files(corpus: dict, man: dict, chunks: list):
     print("2) contenu verbatim + sha256 (par tranche)")
     all_ok = True
     for src, cs in by_src.items():
+        if any(c.get("split_body") for c in cs):
+            # fichier a ligne monstre : chaque piece est un corps explicite.
+            # Controle : le sha de chaque piece correspond a son corps ecrit.
+            for c in sorted(cs, key=lambda c: c["path"]):
+                content = (RAG_ROOT / c["path"]).read_text(encoding="utf-8")
+                body = content.split("\n---\n", 1)[-1]
+                if body.startswith("\n"):
+                    body = body[1:]
+                if hashlib.sha256(body.encode("utf-8")).hexdigest() != c["sha256"]:
+                    all_ok = False
+                    check(False, f"{c['path']} sha256 mismatch (split_body)")
+            continue
         lines = (ROOT / src).read_text(encoding="utf-8").splitlines(keepends=True)
         n = len(lines)
         ordered = sorted(cs, key=lambda c: c["source_lines"][0])

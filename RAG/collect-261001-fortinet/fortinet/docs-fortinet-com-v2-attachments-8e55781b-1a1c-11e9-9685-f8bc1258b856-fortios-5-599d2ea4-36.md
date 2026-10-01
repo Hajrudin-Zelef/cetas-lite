@@ -1,0 +1,106 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-36
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [4933, 5021]
+sha256: 2acf8069ec7d904621c0987e132c03d23f672a10bf7b8fddffd0271b9a7b5efe
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+TroubleshootingHAclusters FGCPconfigurationexamplesandtroubleshooting
+browsetoawebsiteontheInternet orpingaserverontheInternet toconfirmconnectivity.
+2. Fromyourmanagement PC,setpingtocontinuouslypingthecluster,andthenstartalargedownload,orinsome
+otherwayestablishongoingtraffic throughthecluster.
+3. Whiletraffic isgoingthroughthecluster,disconnectthepowerfromoneoftheclusterunits.
+Youcouldalsoshutdownorrestartaclusterunit.
+Traffic shouldcontinuewithminimal interruption.
+4. Startuptheclusterunitthat youdisconnected.
+Theunitshouldre-jointheclusterwithlittle ornoaffect ontraffic.
+5. DisconnectacablefromoneoftheHAheartbeatinterfaces.
+Theclustershouldkeepfunctioning, usingtheotherHAheartbeatinterface.
+6. If youhaveportmonitoring enabled,disconnectanetworkcablefromamonitoredinterface.
+Traffic shouldcontinuewithminimal interruption.
+To verify the cluster configuration from the GUI
+Usethesestepsifaclusterisformedjusttoverifyitsstatusandconfiguration.
+1. LogintotheclusterGUI.
+2. Checkthesystemdashboardtoverifythat theSystemInformation widgetdisplaysalloftheclusterunits.
+3. ChecktheUnitOperationwidgetgraphictoverifythat thecorrectclusterunitinterfacesareconnected.
+4. Goto System > HA orfromtheSystemInformation dashboardwidgetselect HA Status > Configureandverify
+that alloftheclusterunitsaredisplayedontheHAClusterlist.
+5. Fromtheclustermemberslist, edittheprimaryunit(master)andverifytheclusterconfigurationisasexpected.
+To troubleshoot the cluster configuration from the GUI
+UsethesestepsiftheFortiGates don'tsuccessfullyformacluster:
+1. ConnecttoeachclusterunitGUIandverifythat theHAconfigurationsarethesame.TheHAconfigurationsofall
+oftheclusterunitsmustbeidentical. EventhoughtheHAconfigurationisverysimpleyoucaneasilymakeasmall
+mistakethat preventsaFortiGate fromjoiningacluster.
+2. If theconfigurationsarethesame,tryre-enteringtheHA Passwordoneachclusterunitincaseyoumadean
+errortypingthepasswordwhenconfiguringoneoftheclusterunits.
+3. Checkthat thecorrectinterfacesofeachclusterunitareconnected.
+CheckthecablesandinterfaceLEDs.
+UsetheUnitOperationdashboardwidget, systemnetworkinterfacelist, orclustermemberslistto
+verifythat eachinterfacethat shouldbeconnectedactuallyisconnected.
+If thelinkisdownre-verifythephysicalconnection.Tryreplacingnetworkcablesorswitchesas
+required.
+To verify the cluster configuration from the CLI
+Usethesestepsifaclusterisformedjusttoverifyitsstatusandconfiguration.
+1. LogintoeachclusterunitCLI.
+YoucanusetheconsoleconnectionifyouneedtoavoidtheproblemofunitshavingthesameIP
+140 HighAvailability
+Fortinet TechnologiesInc.
+
+FGCPconfigurationexamplesandtroubleshooting TroubleshootingHAclusters
+address.
+2. Enterthecommandget system status.
+Lookforthefollowing information inthecommandoutput.
+Current HA mode: a-a,
+master
+Theclusterunitsareoperatingasaclusterandyouhaveconnectedtothe
+primaryunit.
+Current HA mode: a-a,
+backup
+Theclusterunitsareoperatingasaclusterandyouhaveconnectedtoa
+subordinateunit.
+Current HA mode:
+standalone
+TheclusterunitisnotoperatinginHAmode
+3. Verifythat theget system ha status commandshowsthat theclusterhealthisOKandshowsthat allof
+theclusterunitshavejoinedthecluster.
+4. Entertheget system ha commandtoverifythat theHAconfigurationiscorrectandthesameforeachcluster
+unit.
+To troubleshoot the cluster configuration from the CLI
+TrythesestepsiftheFortiGates don'tsuccessfullyformacluster:
+1. Tryusingthefollowing commandtore-entertheclusterpasswordoneachclusterunitincaseyoumadeanerror
+typingthepasswordwhenconfiguringoneoftheclusterunits.
+config system ha
+set password <password>
+end
+2. Checkthat thecorrectinterfacesofeachclusterunitareconnected.
+CheckthecablesandinterfaceLEDs.
+Useget hardware nic <interface_ name> commandtoconfirmthat eachinterfaceis
+connected.If theinterfaceisconnectedthecommandoutput shouldcontainaLink: up entry
+similartothefollowing:
+get hardware nic port1
+.
+.
+.
+Link: up
+.
+.
+.
+If thelinkisdown,re-verifythephysicalconnection.Tryreplacingnetworkcablesorswitchesas
+required.
+More troubleshooting information
+Muchoftheinformation inthisHAguidecanbeusefulfortroubleshootingHAclusters.Herearesomelinksto
+sectionswithmoreinformation.
+HighAvailability
+Fortinet TechnologiesInc.
+141
+

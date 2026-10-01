@@ -1054,12 +1054,29 @@ def _domain_from_source(body):
     return h.split(".")[0].lower()
 
 
+def _char_split_line(ln, maxc):
+    """Decoupe une ligne unique plus longue que maxc en morceaux <= maxc
+    caracteres, sans perdre un octet. Le dernier morceau porte le saut de
+    ligne d'origine. Aucune frontiere de mot requise (coupe dure UTF-8-safe)."""
+    had_nl = ln.endswith("\n")
+    text = ln[:-1] if had_nl else ln
+    parts = []
+    while len(text.encode("utf-8")) > maxc:
+        cut = len(text.encode("utf-8")[:maxc].decode("utf-8", "ignore"))
+        parts.append(text[:cut])
+        text = text[cut:]
+    parts.append(text)
+    if had_nl:
+        parts[-1] += "\n"
+    return parts
+
+
 def _char_split_lines(lines, maxc, base=0):
     """Decoupe une liste de lignes en tranches contigues <= maxc caracteres,
-    en coupant sur des lignes vides (frontieres de paragraphes). Coupe dure
-    en repli si un paragraphe seul depasse. `base` est l'offset (0-based) de
-    `lines` dans le fichier complet : les bornes renvoyees sont absolues
-    (1-based sur le fichier complet) quand base>0, sinon locales."""
+    en coupant sur des lignes vides (frontieres de paragraphes). Les lignes
+    uniques plus grandes que maxc sont gerees en amont (files_items via
+    _char_split_line). `base` est l'offset (0-based) dans le fichier complet :
+    les bornes renvoyees sont absolues (1-based) quand base>0, sinon locales."""
     n = len(lines)
     blanks = [i for i in range(1, n + 1) if lines[i - 1].strip() == ""]
     out, cur = [], 1
@@ -1100,23 +1117,51 @@ def files_items(cfg):
         base_slug = slugify(p.stem, 90)
         lines = body.splitlines(keepends=True)
         n = len(lines)
-        spans = [(1, n)]
-        if len(body.encode("utf-8")) > maxc:
-            spans = _char_split_lines(lines, maxc)
-        for k, (start, end) in enumerate(spans):
-            chunk_body = "".join(lines[start - 1:end])
+        # Un fichier contenant une ligne plus grande que la borne (dump JSON/
+        # HTML/PDF monolithique) ne peut pas etre decoupe sur des frontieres
+        # de lignes : on le coupe en corps explicites (split_body), en ne
+        # cassant que les lignes trop longues et en regroupant les autres.
+        has_monster = any(len(l.encode("utf-8")) > maxc for l in lines)
+        if len(body.encode("utf-8")) <= maxc:
+            spans = [("range", 1, n, body)]
+        elif has_monster:
+            atoms = []
+            for l in lines:
+                if len(l.encode("utf-8")) > maxc:
+                    atoms.extend(_char_split_line(l, maxc))
+                else:
+                    atoms.append(l)
+            pieces, cur, cur_size = [], "", 0
+            for at in atoms:
+                sz = len(at.encode("utf-8"))
+                if cur and cur_size + sz > maxc:
+                    pieces.append(cur)
+                    cur, cur_size = at, sz
+                else:
+                    cur += at
+                    cur_size += sz
+            if cur:
+                pieces.append(cur)
+            spans = [("body", 0, 0, p) for p in pieces]
+        else:
+            spans = [("range", a, b, "".join(lines[a - 1:b]))
+                     for (a, b) in _char_split_lines(lines, maxc)]
+        for k, (kind, start, end, chunk_body) in enumerate(spans):
             slug = base_slug if len(spans) == 1 else f"{base_slug}-{k + 1}"
             seen[slug] = seen.get(slug, 0) + 1
             if seen[slug] > 1:
                 slug = f"{slug}-{seen[slug]}"
-            items.append({
+            it = {
                 "folder": folder, "slug": slug, "title": title, "body": chunk_body,
                 "src": str(p.relative_to(ROOT)),
                 "start": start, "end": end,
                 "domain": cfg.get("domain") or _domain_from_source(body) or folder,
                 "role": "reference",
                 "task": _type_task(body) or cfg.get("task", "reference"),
-            })
+            }
+            if kind == "body":
+                it["split_body"] = True
+            items.append(it)
     return items
 
 
@@ -1177,12 +1222,25 @@ def build_corpus(cfg, lines, n):
         header.append("---")
 
         parts = ["\n".join(header), ""]
-        if not body.lstrip().startswith("# "):
+        # Les corps explicites (split_body) sont des tranches arbitraires :
+        # pas d'injection de titre, sinon le sha du corps ne correspond plus.
+        if not it.get("split_body") and not body.lstrip().startswith("# "):
             parts += [f"# {title}", ""]
         parts.append(body)
         content = "\n".join(parts)
         if not content.endswith("\n"):
             content += "\n"
+        # Le corps ecrit peut differer du corps source d'un seul saut de ligne
+        # final (normalisation ci-dessus). Pour les tranches explicites on
+        # hashe le corps ecrit, afin que le verify recolle a l'octet pres.
+        if it.get("split_body"):
+            written = content.split("\n---\n", 1)[-1]
+            if written.startswith("\n"):
+                written = written[1:]
+            digest = hashlib.sha256(written.encode("utf-8")).hexdigest()
+            entry_digest = digest
+        else:
+            entry_digest = digest
 
         fdir = out / folder
         fdir.mkdir(parents=True, exist_ok=True)
@@ -1195,6 +1253,8 @@ def build_corpus(cfg, lines, n):
             "source_lines": [start, end], "canonical_for": canon,
             "words": len(body.split()), "bytes": len(body.encode("utf-8")), "sha256": digest,
         }
+        if it.get("split_body"):
+            entry["split_body"] = True
         if auto and section:
             entry["section"] = section
         if cfg.get("delta_of"):
@@ -1331,6 +1391,18 @@ def verify_corpus(cfg, lines, n, man):
         for src, cs in by_src.items():
             slines = (ROOT / src).read_text(encoding="utf-8").splitlines(keepends=True)
             sn = len(slines)
+            if any(c.get("split_body") for c in cs):
+                # fichier a ligne monstre : chaque piece est un corps
+                # explicite (sha porte sur ce corps). Controle : le sha de
+                # chaque piece correspond a son propre corps ecrit.
+                for c in cs:
+                    content = (RAG_ROOT / c["path"]).read_text(encoding="utf-8")
+                    body = content.split("\n---\n", 1)[-1]
+                    if body.startswith("\n"):
+                        body = body[1:]
+                    assert hashlib.sha256(body.encode("utf-8")).hexdigest() == c["sha256"], \
+                        f"files: sha mismatch (split_body) {c['path']}"
+                continue
             ordered = sorted(cs, key=lambda c: c["source_lines"][0])
             cursor = 1
             for c in ordered:
@@ -1983,6 +2055,83 @@ CORPORA = [
         "slug": "collect-260926-rattrapage",
         "title": "Rattrapage — IA, fine-tuning, reviews serveurs (2026)",
         "source_dir": "docs/RAG/lot-rattrapage",
+        "mode": "files", "folder": "rattrapage",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-cisco",
+        "title": "Cisco — configuration, routing, sécurité (2026)",
+        "source_dir": "docs/RAG/collect-261001-cisco",
+        "mode": "files", "folder": "cisco",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-fortinet",
+        "title": "Fortinet — FortiGate, pare-feu, VPN (2026)",
+        "source_dir": "docs/RAG/collect-261001-fortinet",
+        "mode": "files", "folder": "fortinet",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-huawei",
+        "title": "Huawei — réseau, HCIA/HCIP (2026)",
+        "source_dir": "docs/RAG/collect-261001-huawei",
+        "mode": "files", "folder": "huawei",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-meraki",
+        "title": "Meraki — dashboard, API, sans-fil (2026)",
+        "source_dir": "docs/RAG/collect-261001-meraki",
+        "mode": "files", "folder": "meraki",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-opnsense-pfsense",
+        "title": "OPNsense & pfSense — pare-feu open source (2026)",
+        "source_dir": "docs/RAG/collect-261001-opnsense-pfsense",
+        "mode": "files", "folder": "opnsense-pfsense",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-unifi-ubiquiti",
+        "title": "Ubiquiti UniFi — réseaux et VPN (2026)",
+        "source_dir": "docs/RAG/collect-261001-unifi-ubiquiti",
+        "mode": "files", "folder": "unifi-ubiquiti",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-general-networking",
+        "title": "Réseau général — commutation, QoS, protocoles (2026)",
+        "source_dir": "docs/RAG/collect-261001-general-networking",
+        "mode": "files", "folder": "general-networking",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-automatisation-infra",
+        "title": "Automatisation infra — Ansible, Netmiko, netops (2026)",
+        "source_dir": "docs/RAG/collect-261001-automatisation-infra",
+        "mode": "files", "folder": "automatisation-infra",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-mikrotik",
+        "title": "MikroTik — RouterOS, CAPsMAN, forum (Collect 5, 2026)",
+        "source_dir": "docs/RAG/collect-261001-mikrotik",
+        "mode": "files", "folder": "mikrotik",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-ia-llm",
+        "title": "IA & LLM — modèles, comparatifs, usages (2026)",
+        "source_dir": "docs/RAG/collect-261001-ia-llm",
+        "mode": "files", "folder": "ia-llm",
+        "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
+    },
+    {
+        "slug": "collect-261001-rattrapage",
+        "title": "Rattrapage — guides dev & datacenter (2026)",
+        "source_dir": "docs/RAG/collect-261001-rattrapage",
         "mode": "files", "folder": "rattrapage",
         "actors": KB_ACTORS, "terms": KB_TERMS, "anchor_label": "(aucune ancre source)",
     },

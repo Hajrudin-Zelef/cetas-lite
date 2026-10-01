@@ -1,0 +1,41 @@
+---
+id: collect-261001-general-networking/general-networking/fr-review-kioxia-cm9-r-15-36tb-review-bics8-flash-hits-full-speed-at-low-queue-d-f4c610a5-2
+title: "fr-review-kioxia-cm9-r-15-36tb-review-bics8-flash-hits-full-speed-at-low-queue-d-f4c610a5"
+domain: general-networking
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["gpu"]
+source: docs/RAG/collect-261001-general-networking/fr-review-kioxia-cm9-r-15-36tb-review-bics8-flash-hits-full-speed-at-low-queue-d-f4c610a5.md
+source_anchor: ""
+source_lines: [53, 76]
+sha256: 4445f2a41bb59fdb4aebf88679e584bd873035e219b56141c9c1c0f9b067b627
+---
+
+# fr-review-kioxia-cm9-r-15-36tb-review-bics8-flash-hits-full-speed-at-low-queue-d-f4c610a5
+
+Ce changement convient parfaitement au CM9-R. Son débit de pointe de 10 812,2 Mo/s n'est devancé que par celui du Micron 9550 MAX (10 970,8 Mo/s). Cependant, là où le 9550 MAX nécessitait une profondeur d'E/S de 32, 4 tâches simultanées et 181.9 µs pour atteindre ce débit, le CM9-R a atteint son pic avec une profondeur d'E/S de 1 et 16 tâches simultanées, soit une latence de seulement 22.8 µs. Cette faible profondeur de file d'attente est la même caractéristique qui définit ce disque sur tous les autres points. La latence d'un seul processus de calcul (10.4 µs) était à nouveau la meilleure du groupe, et le disque a dépassé les 10 400 Mo/s à trois reprises, pour des profondeurs d'E/S allant de 1 à 32.
+Lecture séquentielle 16K
+En lecture, le CM9-R a atteint 13 393,2 Mo/s à une profondeur d'E/S de 32 et un nombre de tâches de 8, se classant deuxième derrière son homologue CD9P-R (13 819,7 Mo/s). Il a également obtenu un résultat quasi identique (13 390,1 Mo/s) à une profondeur d'E/S de 16 et un nombre de tâches de 8, avec une latence deux fois moindre (149.0 µs contre 298.3 µs). À noter : contrairement aux tests aléatoires, les lectures séquentielles 16K en flux unique ont montré des performances supérieures pour le Sandisk SN861 (12.5 µs) et le Micron (de 13.9 à 21.3 µs) par rapport au duo KIOXIA, dont la latence avoisinait les 32 µs. Une fois le parallélisme introduit, le CM9-R a bien évolué, atteignant 12 400 Mo/s à IODepth 4 / NumJobs 16.
+Écriture aléatoire 4K
+Le CM9-R a atteint 1 502,9 K IOPS à une profondeur d'E/S de 8 et un nombre de tâches de 16, avec une latence de seulement 84.6 µs. Il se classe quatrième du groupe, derrière le Micron 7600 MAX (1 781,2 K), le Solidigm PS1030 (1 595,8 K) et le 9550 MAX (1 544,2 K). Ses performances sont près de 2.8 fois supérieures à sa valeur nominale de 540 K IOPS, spécifiée par KIOXIA pour une profondeur de file d'attente fixe. À une profondeur de file d'attente de 1, il a dominé le classement avec 115.8 K IOPS et une latence de 8.2 µs, soit le temps de réponse en écriture de petits blocs le plus rapide mesuré parmi les disques de ce groupe.
+Lecture aléatoire 4K
+Le test de lecture 4K avec file d'attente profonde est le point faible du CM9-R : 1 973,4 K IOPS à son pic IODepth 16 / NumJobs 16, septième sur huit, juste devant le Micron 7600 MAX, et bien en deçà des 2 555,6 K IOPS du Sandisk SN861, leader du groupe. Il est important de noter le contexte : les 3 400 K IOPS annoncés par KIOXIA sont mesurés à des profondeurs de file d'attente supérieures à la limite de notre test (IODepth 32 / NumJobs 16). Nous interprétons donc cet écart comme une différence de configuration de test plutôt que comme un véritable déficit. Cependant, des disques comme le SN861 et le PS1030 ont obtenu des résultats nettement supérieurs lors du même test. L'autre moitié du graphique appartient au CM9-R : 33.6 K IOPS à 29.3 µs à une profondeur de file d'attente de 1, la latence de lecture 4K la plus faible du groupe, légèrement en avance sur le CD9P-R, qui avait fait de cette même caractéristique sa signature en juin.
+Performances GDSIO
+C’est au niveau des lectures GPU Direct Storage que le CM9-R présente les mêmes caractéristiques que son homologue CD9P-R, observées en juin, en matière de gestion des threads. Les deux disques KIOXIA ont dominé le segment des blocs de 16 Ko, et le CM9-R a enregistré un pic de 136 400 IOPS, le meilleur du groupe, devant le CD9P-R (134 200 IOPS) et loin derrière les deux disques Solidigm en dernière position (le PS1030 a atteint 101 200 IOPS). Dans le segment des blocs de 1 Mo, le CM9-R a culminé à 6.06 Gio/s, juste derrière le CD9P-R (6.16 Gio/s), suivi par le Solidigm PS1010 et le Micron 9550 MAX (6.05 Gio/s). La latence de lecture mono-thread 16K de 44.5 µs se situait au milieu du groupe, pratiquement identique à celle du CD9P-R ; le Sandisk SN861 détenait la pointe mono-thread à 26.1 µs.
+C'est au niveau des performances en écriture que le CM9-R se distingue discrètement. Son débit de pointe de 5.51 Gio/s (bloc de 1 Mo, 16 threads) le place, sur le papier, juste derrière les 5.69 Gio/s du Micron 9550 MAX. Mais la forme des deux courbes est révélatrice : le 9550 MAX chute à environ 2.2 Gio/s à 1 Mo/64 bits dans sa plage de volatilité documentée, tandis que le CM9-R affiche le débit le plus stable du groupe sur l'ensemble du segment de 1 Mo. Il évite également l'effondrement des performances à 128 Ko en cas de forte activité multithread, observé sur les deux disques Solidigm. Avec une latence d'écriture monothread de 21.4 µs (16 Ko), il égale le CD9P-R et se classe deuxième du groupe. Pour les flux d'écriture soutenus à proximité du GPU, il s'avère être le disque le plus prévisible de notre banc d'essai.
+Performances du point de contrôle DLIO
+Notre test de points de contrôle DLIO écrit des points de contrôle d'entraînement récurrents sur trois passes. Il évalue la constance autant que la vitesse ; plus le temps est court, mieux c'est. L'écart entre la première et la troisième passe indique le comportement d'un disque lorsque son FTL est soumis à une charge soutenue. Remarque importante : le nombre de points de contrôle est proportionnel à la capacité du disque. Ainsi, les disques de plus grande capacité, comme le CM9-R de 15.36 To, enregistrent davantage de points de contrôle par exécution, et les résultats par point de contrôle ne sont pas directement comparables d'un disque à l'autre. C'est pourquoi le tableau ci-dessous présente les moyennes par passe, ce qui normalise les performances de chaque disque et permet une comparaison directe ; plus le temps est bas, mieux c'est. Lors de la première passe, l'ensemble du groupe de comparaison se situe dans une fourchette étroite de 459 à 465 secondes, le CM9-R affichant un temps de 462.8 secondes. La différence se fait sentir plus tard. Au troisième passage, le CM9-R se stabilise à 580.9 secondes, au milieu du peloton vers l'arrière du groupe : plus rapide que les 599.2 secondes du Solidigm PS1030, mais derrière le Sandisk SN861 (553.3), le Micron 9550 MAX (555.3) et son propre frère CD9P-R (570.6).
+| par chaîne | Passe 1 Moyenne (secondes) | Passe 2 Moyenne (secondes) | Passe 3 Moyenne (secondes) | 
+|---|---|---|---|
+| Disque dur externe Sandisk DC SN861 7.68 To | 461.3 | 558.6 | 553.3 | 
+| Micron 9550 MAX 12.8 To | 462.8 | 558.9 | 555.3 | 
+| Micron 9550 Pro 7.68 To | 461.4 | 577.9 | 559.7 | 
+| Solidigm PS1010 7.68 To | 458.8 | 561.1 | 564.6 | 
+| Micron 7600 MAX 6.4 To | 464.2 | 581.5 | 567.3 | 
+| KIOXIA CD9P-R 7.68 To | 464.7 | 575.6 | 570.6 | 
+| KIOXIA CM9-R 15.36 To | 462.8 | 571.9 | 580.9 | 
+| Solidigm PS1030 12.8 To | 462.3 | 578.0 | 599.2 | 
+Le résultat du troisième passage mérite d'être analysé plutôt que d'être source d'inquiétude. Un disque conçu pour la lecture intensive (1 DWPD) n'est pas destiné à des écritures de points de contrôle soutenues, et les résultats FIO mettent en évidence le véritable atout du disque : la meilleure latence du groupe pour les faibles profondeurs de file d'attente, tant en lecture qu'en écriture, et ce, de manière constante. Notamment, le CM9-R a présenté une dégradation progressive et prévisible au fil des passages, sans fluctuations, affichant la même stabilité que sa ligne d'écriture GDS, un critère essentiel pour la planification des points de contrôle une fois le disque en rotation. Les utilisateurs ayant besoin d'une cadence de points de contrôle élevée devraient se tourner vers la gamme Micron 9550 ou attendre le CM9-V, son homologue polyvalent.
+Conclusion

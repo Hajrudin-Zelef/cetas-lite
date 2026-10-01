@@ -1,0 +1,112 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-79
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: ["memory"]
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [9848, 9942]
+sha256: c483f3c5be9dd7b58730d2a093cfe0a3ad2160c19df57fb44b46a8fa5a3bb948
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+Configuringweighted-round-robinweights HAandloadbalancing
+Configuringweighted-round-robin weights
+Youcanconfigureweightedround-robinloadbalancingforaclusterandconfigurethestaticweightsforeachof
+theclusterunitsaccordingtotheirpriorityinthecluster.Whenyousetschedule toweight-round-robin
+youcanusetheweight optiontosetthestaticweightofeachclusterunit. Thestaticweightissetaccordingto
+thepriorityofeachunitinthecluster.AFortiGate HAclustercancontainuptofourFortiGates soyoucansetup
+to4staticweights.
+Thepriorityofaclusterunitisdeterminedbyitsdevicepriority,thenumberofmonitoredinterfacesthat are
+functioning, itsageintheclusteranditsserialnumber.Prioritiesareusedtoselectaprimaryunitandtosetthe
+prioritiesofallofthesubordinateunits. Thusthepriorityofaclusterunitcanchangedependingonconfiguration
+settings, linkfailuresandsoon.Sinceweightsarealsosetusingthispriority,theweightsareindependentof
+specificclusterunitsbutdodependontheroleoftheeachunitinthecluster.
+Youcanusethefollowing commandtodisplaytherelativeprioritiesoftheunitsinacluster.Theclusterunitserial
+numbersandtheirprioritiesarelistedinthelastfewlinesofthecommandoutput. Thisexampleshowsacluster
+ofthreeFortiGates:
+get system ha status
+.
+.
+.
+Slave : FG-5KD3914800284, operating cluster index = 1
+Master: FG-5KD3914800344, operating cluster index = 0
+Slave : FG-5KD3914800353, operating cluster index = 2
+Theprimaryunitalwayshasthehighestpriorityandthesubordinateunitshavelowerpriorities.
+Thedefault staticweightforeachclusterunitis40.Thismeansthat sessionsaredistributedevenlyamongall
+clusterunits. Youcanusetheset weight commandtochangethestaticweightsofclusterunitstodistribute
+sessionstoclusterunitsdependingontheirpriorityinthecluster.Theweightcanbebetween0and255.Increase
+theweighttoincreasethenumberofconnectionsprocessedbytheclusterunitwiththat priority.
+Yousettheweightforeachunitseparately.Fortheexampleclusterof3FortiGates youcansettheweightfor
+eachunitasfollows:
+config system ha
+set mode a-a
+set schedule weight-roud-robin
+set weight 0 5
+set weight 1 10
+set weight 2 15
+end
+If youentertheget commandtoviewtheHAconfigurationtheoutput forweight wouldbe:
+weight 5 10 15 40 40 40 40 40 40 40 40 40 40 40 40 40
+Thisconfigurationhasthefollowing resultsiftheoutput oftheget system ha status commandisthat
+shownabove:
+l Thefirstfiveconnectionsareprocessedbytheprimaryunit(priority0,weight5).
+l Thenext10connectionsareprocessedbythefirstsubordinateunit(priority1,weight10)
+l Thenext15connectionsareprocessedbythesecondsubordinateunit(priority 2,weight15)
+264 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandloadbalancing Dynamicallyoptimizing weightedloadbalancingaccordingtohowbusyclusterunitsare
+Dynamically optimizing weighted load balancing according to how busy cluster
+units are
+Inconjunctionwithusingstaticweightstoloadbalancesessionsamongclusterunitsyoucanconfigureacluster
+todynamicallyloadbalancesessionsaccordingtoindividualclusterunitCPUusage,memoryusage,andnumber
+ofHTTP,FTP,IMAP,POP3,SMTP,orNNTPproxy-basedsecurityprofilesessions.If anyofthesesystem
+loadingindicatorsincreasesaboveconfiguredthresholds,weightedloadbalancingdynamicallysendsfewernew
+sessionstothebusyunituntil itrecovers.
+HighCPUormemoryusageindicatesthat aunitisunderincreasedloadandmaynotbeabletoprocessmore
+sessions.HTTP,FTP,IMAP,POP3,SMTP,orNNTPproxyusearealsogoodindicatorsofhowbusyaclusterunit
+is,sinceprocessinghighnumbersoftheseproxysessionscanquicklyreduceoverallclusterunitperformance.
+Forexample,youcansetaCPUusagehighwatermarkthreshold.Whenaclusterunitreachesthishigh
+watermarkthresholdfewersessionsaresenttoit. Withfewersessionstoprocesstheclusterunit’sCPUusage
+shouldfall backtothelowwatermarkthreshold.Whenthelowwatermarkthresholdisreachedthecluster
+resumesnormalloadbalancingofsessionstotheclusterunit.
+YoucansetindividualhighandlowwatermarkthresholdsandweightsforCPUusage,memoryusage,andforthe
+numberofHTTP,FTP,IMAP,POP3,SMTP,orNNTPproxysessions.
+TheCPUusage,memoryusage,andproxyweightsdeterminehowtheclusterloadbalancessessionswhena
+highwatermarkthresholdisreachedandalsoaffect howtheclusterloadbalancessessionswhenmultiple cluster
+unitsreachdifferent highwatermarkthresholdsatthesametime. Forexample,youmight belessconcerned
+aboutaclusterunitreachingthememoryusagehighwatermarkthresholdthanreachingtheCPUusagehigh
+watermarkthreshold.If thisisthecaseyoucansettheweightlowerformemoryusage.Then,ifoneclusterunit
+reachestheCPUusagehighwatermarkthresholdandasecondclusterunitreachesthememoryusagehigh
+watermarkthresholdtheclusterwillloadbalancemoresessionstotheclusterunitwithhighmemoryusageand
+fewersessionstotheclusterunitwithhighCPUusage.Asaresult,reachingtheCPUusagehighwatermarkwill
+haveagreateraffect onhowsessionsareredistributedthanreachingthememoryusagehighwatermark.
+Whenahighwatermarkthresholdisreached,thecorrespondingweightissubtractedfromthestaticweightofthe
+clusterunit. Thelowertheweightthefewerthenumberofsessionsthat areloadbalancedtothat unit.
+Subsequentlywhenthelowwatermarkthresholdisreached,thestaticweightoftheclusterunitreturnstoits
+configuredvalue.Fortheweightstoallbeeffective theweightsassignedtotheloadindicatorsshouldusuallybe
+lowerthanorequaltothestaticweightsassignedtotheclusterunits.
+Usethefollowing commandtosetthresholdsandweightsforCPUandmemoryusageandHTTP,FTP,IMAP,
+POP3,SMTP,orNNTPproxysessions:
+config system ha
+set mode a-a
+set schedule weight-round-robin
+set cpu-threshold <weight> <low> <high>
+set memory-threshold <weight> <low> <high>
+set http-proxy-threshold <weight> <low> <high>
+set ftp-proxy-threshold <weight> <low> <high>
+set imap-proxy-threshold <weight> <low> <high>
+set nntp-proxy-threshold <weight> <low> <high>
+set pop3-proxy-threshold <weight> <low> <high>
+set smtp-proxy-threshold <weight> <low> <high>
+end
+HighAvailability
+Fortinet TechnologiesInc.
+265
+

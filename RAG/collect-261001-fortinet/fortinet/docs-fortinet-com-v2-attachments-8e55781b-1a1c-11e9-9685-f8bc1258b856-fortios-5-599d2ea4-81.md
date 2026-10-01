@@ -1,0 +1,150 @@
+---
+id: collect-261001-fortinet/fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5-599d2ea4-81
+title: "docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4"
+domain: fortinet
+role: reference
+task: reference
+actors: []
+dates: []
+keywords: []
+source: docs/RAG/collect-261001-fortinet/docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4.md
+source_anchor: ""
+source_lines: [10087, 10219]
+sha256: 974aa7f42f1a07ca7c03091d8b828632f66e4e1f00f3b67f9489fabbb7fedb2b
+---
+
+# docs-fortinet-com-v2-attachments-8e55781b-1a1c-11e9-9685-f8bc1258b856-fortios-5--599d2ea4
+
+NATmodeactive-activeclusterpacketflow HAandloadbalancing
+Source 10.11.101.10 MAC_Client
+Destination 172.20.120.130 MAC_V_int
+6. Theprimaryunitdecidesthat thesubordinateunitshouldhandlethispacket,andforwardsittothesubordinate
+unitinternalinterface. ThesourceMACaddressoftheforwardedpacketischangedtotheactualMACaddressof
+theprimaryunitinternalinterface.
+IP address MAC address
+Source 10.11.101.10 MAC_P_int
+Destination 172.20.120.130 MAC_S_int
+7. Thesubordinateunitrecognizesthat thepackethasbeenforwardedfromtheprimaryunitandprocessesit.
+8. Thesubordinateunitforwardsthepacketfromitsexternalinterfacetothewebserver.
+IP address MAC address
+Source 172.20.120.141 MAC_S_ext
+Destination 172.20.120.130 MAC_Server
+9. Theprimaryunitforwardsfurtherpacketsinthesamesessiontothesubordinateunit.
+10. Packetsforothersessionsareloadbalancedbytheprimaryunitandeithersenttothesubordinateunitor
+processedbytheprimaryunit.
+Packet flow from web server to client
+1. Whenthewebserverrespondstotheclient’spacket,theclusterexternalinterfaceIPaddress(172.20.120.141)is
+recognizedasthegatewaytotheinternalnetwork.
+2. ThewebserverissuesanARPrequestto172.20.120.141.
+3. TheprimaryunitinterceptstheARPrequest,andrespondswiththeexternalvirtualMACaddress(MAC_V_ext)
+whichcorrespondsitsIPaddressof172.20.120.141.
+4. Thewebserverthensendsresponsepacketstotheprimaryunitexternalinterface.
+IP address MAC address
+Source 172.20.120.130 MAC_Server
+Destination 172.20.120.141 MAC_V_ext
+5. Theprimaryunitdecidesthat thesubordinateunitshouldhandlethispacket,andforwardsittothesubordinate
+unitexternalinterface. ThesourceMACaddressoftheforwardedpacketischangedtotheactualMACaddressof
+theprimaryunitexternalinterface.
+IP address MAC address
+270 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandloadbalancing Transparentmodeactive-activeclusterpacketflow
+Source 172.20.120.130 MAC_P_ext
+Destination 172.20.120.141 MAC_S_ext
+6. Thesubordinateunitrecognizesthat packethasbeenforwardedfromtheprimaryunitandprocessesit.
+7. Thesubordinateunitforwardsthepacketfromitsinternalinterfacetotheclient.
+IP address MAC address
+Source 172.20.120.130 MAC_S_int
+Destination 10.11.101.10 MAC_Client
+8. Theprimaryunitforwardsfurtherpacketsinthesamesessiontothesubordinateunit.
+9. Packetsforothersessionsareloadbalancedbytheprimaryunitandeithersenttothesubordinateunitor
+processedbytheprimaryunit.
+When a failover occurs
+Thefollowing stepsarefollowedafteradeviceorlinkfailureoftheprimaryunitcausesafailover.
+1. If theprimaryunitfails, thesubordinateunitnegotiatestobecometheprimaryunit.
+2. ThenewprimaryunitchangestheMACaddressesofallofitsinterfacestotheHAvirtualMACaddresses.
+ThenewprimaryunithasthesameIPaddressesandMACaddressesasthefailed primaryunit.
+3. ThenewprimaryunitssendsgratuitousARPpacketstothe10.10.101.0 networktoassociateitsinternalIP
+addresswiththeinternalvirtualMACaddress.
+4. ThenewprimaryunitssendsgratuitousARPpacketstothe172.20.120.0 networktoassociateitsexternalIP
+addresswiththeexternalvirtualMACaddress.
+5. Traffic senttotheclusterisnowreceivedandprocessedbythenewprimaryunit.
+If thereweremorethantwoclusterunitsintheoriginalcluster,thenewprimaryunitwouldload
+balancepacketstotheremainingclustermembers.
+Transparentmode active-active cluster packet flow
+Thissectiondescribesanexampleofhowpacketsareloadbalancedandhowfailoveroccursinanactive-active
+HAclusterrunningintransparentmode. Theclusterisinstalledonaninternalnetworkinfrontofamail serverand
+theclientconnectstothemail serverthroughthetransparentmodecluster.
+Intransparentmode, sixMACaddressesareinvolvedinactive-activecommunication betweenaclientanda
+serverwhentheprimaryunitloadbalancespacketstothesubordinateunit:
+l ClientMACaddress(MAC_Client),
+l ServerMACaddress(MAC_Server),
+l PrimaryunitoriginalinternalMACaddress(MAC_P_int),
+l PrimaryunitoriginalexternalMACaddress(MAC_P_ext),
+l SubordinateunitinternalMACaddress(MAC_S_int),
+l SubordinateunitexternalMACaddress(MAC_S_ext).
+HighAvailability
+Fortinet TechnologiesInc.
+271
+
+Transparentmodeactive-activeclusterpacketflow HAandloadbalancing
+TheHAvirtualMACaddressesarenotdirectlyinvolvedincommunicatebetweentheclientandtheserver.The
+clientcomputersendspacketstothemail serverandthemail serversendsresponses.Inbothcasesthepackets
+areinterceptedandloadbalancedamongclustermembers.
+Thecluster’spresenceonthenetworkanditsloadbalancingaretransparenttotheclientandservercomputers.
+TheprimaryunitsendsgratuitousARPpacketstoSwitch 1that associateallMACaddressesonthenetwork
+segmentconnectedtotheclusterexternalinterfacewiththeexternalvirtualMACaddress.Theprimaryunitalso
+sendsgratuitousARPpacketstoSwitch2that associateallMACaddressesonthenetworksegmentconnected
+totheclusterinternalinterfacewiththeinternalvirtualMACaddress.Inbothcases,thisresultsintheswitches
+sendingpacketstotheprimaryunitinterfaces.
+Transparentmode active-active packet flow
+Packet flow from client to mail server
+1. Theclientcomputerrequestsaconnectionfrom10.11.101.10 to10.11.101.200.
+2. TheclientcomputerissuesanARPrequestto10.11.101.200.
+3. TheprimaryunitforwardstheARPrequesttothemail server.
+4. Themail serverrespondswithitsMACaddress(MAC_Server)whichcorrespondstoitsIPaddressof
+10.11.101.200. TheprimaryunitreturnstheARPresponsetotheclientcomputer.
+5. Theclient’srequestpacketreachestheprimaryunitinternalinterface.
+IP address MAC address
+Source 10.11.101.10 MAC_Client
+Destination 10.11.101.200 MAC_Server
+272 HighAvailability
+Fortinet TechnologiesInc.
+
+HAandloadbalancing Transparentmodeactive-activeclusterpacketflow
+6. Theprimaryunitdecidesthat thesubordinateunitshouldhandlethispacket,andforwardsittothesubordinate
+unitinternalinterface. ThesourceMACaddressoftheforwardedpacketischangedtotheactualMACaddressof
+theprimaryunitinternalinterface.
+IP address MAC address
+Source 10.11.101.10 MAC_P_int
+Destination 10.11.101.200 MAC_S_int
+7. Thesubordinateunitrecognizesthat packethasbeenforwardedfromtheprimaryunitandprocessesit.
+8. Thesubordinateunitforwardsthepacketfromitsexternalinterfacetothemail server.
+IP address MAC address
+Source 10.11.101.10 MAC_S_ext
+Destination 10.11.101.200 MAC_Server
+9. Theprimaryunitforwardsfurtherpacketsinthesamesessiontothesubordinateunit.
+10. Packetsforothersessionsareloadbalancedbytheprimaryunitandeithersenttothesubordinateunitor
+processedbytheprimaryunit.
+Packet flow from mail server to client
+1. Torespondtotheclientcomputer, themail serverissuesanARPrequestto10.11.101.10.
+2. TheprimaryunitforwardstheARPrequesttotheclientcomputer.
+3. TheclientcomputerrespondswithitsMACaddress(MAC_Client)whichcorrespondstoitsIPaddressof
+10.11.101.10. TheprimaryunitreturnstheARPresponsetothemail server.
+4. Themail server’sresponsepacketreachestheprimaryunitexternalinterface.
+IP address MAC address
+Source 10.11.101.200 MAC_Server
+Destination 10.11.101.10 MAC_Client
+5. Theprimaryunitdecidesthat thesubordinateunitshouldhandlethispacket,andforwardsittothesubordinate
+unitexternalinterface. ThesourceMACaddressoftheforwardedpacketischangedtotheactualMACaddressof
+theprimaryunitexternalinterface.
+IP address MAC address
+Source 10.11.101.200 MAC_P_ext
+Destination 10.11.101.10 MAC_S_ext
+6. Thesubordinateunitrecognizesthat packethasbeenforwardedfromtheprimaryunitandprocessesit.
+7. Thesubordinateunitforwardsthepacketfromitsinternalinterfacetotheclient.
+HighAvailability
+Fortinet TechnologiesInc.
+273
+

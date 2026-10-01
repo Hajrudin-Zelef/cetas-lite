@@ -9,11 +9,9 @@ dates: []
 keywords: []
 source: docs/RAG/clean_en/frandroid/faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a.md
 source_anchor: ""
-source_lines: [257, 328]
+source_lines: [0, 0]
 sha256: a850a3a7e60a8ff9a93bb03e240186dc0ac3409f3facb0701d872995b1b6dd18
 ---
-
-# faut-il-encore-craquer-pour-un-smartphone-sony-xperia-en-2026a
 
 I find that sites like frandroid (or androidpit, etc.), when they talk about Sony phones, there are criticisms, but it's just nonsense? Why? Ex: on androidpit, I read that "the fingerprint sensor is very poorly positioned" for the XZ2 (on the back of the phone) and that it's a negative point, while in the SAME article, you have other smartphones with also a sensor on the back. Uh, credibility? It's funny how they criticize one brand and not the other, even though the things are placed in the same spot (afterwards you have to hold it in your hand and all to see a difference, if it's too high, too low, etc.), but you get the idea n_n
 
