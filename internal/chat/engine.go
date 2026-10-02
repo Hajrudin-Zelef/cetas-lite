@@ -3,6 +3,7 @@ package chat
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"strings"
 	"sync"
 	"time"
@@ -684,10 +685,12 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			cacheKey = e.cacheKeyFor(m.Provider, req)
 			if cacheKey != "" {
 				if ce, ok := cc.Get(cacheKey); ok {
+					slog.Info("exact_cache", "event", "hit", "provider", m.Provider, "model", m.Model, "chars", len(ce.Content))
 					e.replayCached(c, epoch, in, ce)
 					e.maybeRelatedPrefetch(in, ragRes)
 					return
 				}
+				slog.Info("exact_cache", "event", "miss", "provider", m.Provider, "model", m.Model)
 			}
 		}
 		// Pré-génération (lot 5) : si un fantôme a préparé la réponse de
@@ -717,6 +720,9 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		if err == nil {
 			if native {
 				c.appendDelta(epoch, map[string]any{"search": searchSourcesDelta(resp.Annotations, true)})
+			}
+			if cacheKey != "" {
+				slog.Info("exact_cache", "event", "store", "provider", m.Provider, "model", m.Model)
 			}
 			e.cacheStore(cacheKey, resp)
 			// Tour fantôme (lot 5) : la réponse réussie alimente le dépôt
