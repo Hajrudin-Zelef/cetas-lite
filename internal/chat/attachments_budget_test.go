@@ -27,6 +27,35 @@ func TestAttachmentContextTruncatesPerFile(t *testing.T) {
 	}
 }
 
+// Non-regression : une 2e piece jointe envoyee dans un tour ulterieur doit
+// etre vue par le modele (le bloc du tour precedent reste, le nouveau
+// s'ajoute) — le garde-fou initial bloquait toute nouvelle piece jointe.
+func TestSecondAttachmentSeen(t *testing.T) {
+	sp := &scriptedProvider{id: "fake", steps: []scriptStep{{content: "ok1"}, {content: "ok2"}}}
+	e := newAgentEngine(t, sp, plainFamily(alias.Member{Provider: "fake", Model: "m"}))
+	st := attach.New(t.TempDir(), 1<<20)
+	e.SetAttachments(st)
+	docA, err := st.Save("sam", "a.txt", []byte("CONTENU-A"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	docB, err := st.Save("sam", "b.txt", []byte("CONTENU-B"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	runTurn(t, e, "sam", TurnInput{Family: "plain", Mode: "standard", Text: "tour 1", Attachments: []string{docA.ID}})
+	runTurn(t, e, "sam", TurnInput{Family: "plain", Mode: "standard", Text: "tour 2", Attachments: []string{docB.ID}})
+
+	reqs := sp.requests()
+	last := reqs[len(reqs)-1]
+	if !hasSystemContaining([]provider.Request{last}, "CONTENU-B") {
+		t.Fatal("la 2e piece jointe doit etre visible dans le dernier prompt")
+	}
+	if !hasSystemContaining([]provider.Request{last}, "CONTENU-A") {
+		t.Fatal("la 1re piece jointe doit rester persistante dans l'historique")
+	}
+}
+
 func TestAttachmentContextBudgetTotal(t *testing.T) {
 	e, st := attachEngine(t)
 	var ids []string

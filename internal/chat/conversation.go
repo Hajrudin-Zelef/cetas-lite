@@ -180,8 +180,11 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	c.cancel = cancel
 	// P0-C : le texte des pièces jointes est persisté comme message system
 	// juste avant le message user, pour qu'il compte aux tours suivants.
-	// Garde-fou : jamais de doublon si une valeur traîne déjà en tête.
-	if in.CtxMessage != "" && !c.hasAttachmentContextLocked() {
+	// Chaque tour avec de NOUVELLES pièces jointes ajoute son bloc ; un tour
+	// sans pièce jointe n'en ajoute pas (les blocs précédents restent dans
+	// l'historique). L'anti-doublon de la régénération est assuré en amont :
+	// Regenerate retire le bloc du dernier tour avant de rejouer StartTurn.
+	if in.CtxMessage != "" {
 		c.Messages = append(c.Messages, provider.Message{Role: "system", Content: in.CtxMessage})
 	}
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
@@ -256,17 +259,6 @@ func (c *Conversation) Reset() {
 	if c.persist != nil {
 		c.persist(c)
 	}
-}
-
-// hasAttachmentContextLocked : un bloc PJ est-il déjà présent dans
-// l'historique ? (appelant tient c.mu).
-func (c *Conversation) hasAttachmentContextLocked() bool {
-	for _, m := range c.Messages {
-		if m.Role == "system" && isAttachmentContextMessage(m.Content) {
-			return true
-		}
-	}
-	return false
 }
 
 func (c *Conversation) IsGenerating() bool {

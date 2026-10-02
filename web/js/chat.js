@@ -156,12 +156,26 @@ export function initChat() {
 
       const thumbSlot = el("div", "attach-card-thumb");
       if (a.kind === "image") {
-        const img = el("img", "attach-card-img");
-        img.alt = a.name;
-        thumbSlot.appendChild(img);
+        // Vignette grisée + spinner pendant le chargement.
+        thumbSlot.classList.add("is-loading");
+        thumbSlot.appendChild(el("span", "attach-spinner"));
         thumbFor(a.id).then((url) => {
-          if (url) img.src = url;
-          else thumbSlot.replaceChildren(attachIcon(a));
+          if (!url) {
+            thumbSlot.classList.remove("is-loading");
+            thumbSlot.replaceChildren(attachIcon(a));
+            return;
+          }
+          const img = el("img", "attach-card-img");
+          img.alt = a.name;
+          img.onload = () => {
+            thumbSlot.classList.remove("is-loading");
+            thumbSlot.replaceChildren(img);
+          };
+          img.onerror = () => {
+            thumbSlot.classList.remove("is-loading");
+            thumbSlot.replaceChildren(attachIcon(a));
+          };
+          img.src = url;
         });
       } else {
         thumbSlot.appendChild(attachIcon(a));
@@ -416,12 +430,31 @@ export function initChat() {
   // Plus-menu
   const plusBtn = document.getElementById("plus-menu-btn");
   const plusMenu = document.getElementById("plus-menu-dropdown");
+  // Ancre le menu sur le bouton "+" (position fixe, calculée) : le bouton
+  // vit dans une rangée centrée (max-width) alors que le menu est enfant de
+  // .input-area (pleine largeur) — un simple left:32px le décalait à gauche.
+  function positionPlusMenu() {
+    if (!plusBtn || !plusMenu || plusMenu.style.display === "none") return;
+    const r = plusBtn.getBoundingClientRect();
+    const w = plusMenu.offsetWidth || 300;
+    const h = plusMenu.offsetHeight || 0;
+    let left = r.left;
+    if (left + w > window.innerWidth - 8) left = Math.max(8, window.innerWidth - w - 8);
+    let top = r.top - h - 6;
+    if (top < 8) top = Math.min(window.innerHeight - h - 8, r.bottom + 6);
+    plusMenu.style.position = "fixed";
+    plusMenu.style.bottom = "auto";
+    plusMenu.style.left = Math.max(8, left) + "px";
+    plusMenu.style.top = Math.max(8, top) + "px";
+  }
   if (plusBtn && plusMenu) {
     plusBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       const open = plusMenu.style.display === "none";
       plusMenu.style.display = open ? "" : "none";
+      if (open) positionPlusMenu();
     });
+    window.addEventListener("resize", positionPlusMenu);
     document.addEventListener("click", (e) => {
       if (plusMenu.style.display !== "none" && !plusMenu.contains(e.target) && !plusModelSubmenuContains(e.target) && e.target !== plusBtn && !plusBtn.contains(e.target)) {
         plusMenu.style.display = "none";

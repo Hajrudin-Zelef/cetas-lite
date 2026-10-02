@@ -282,6 +282,15 @@ function approvalDetail(tool, args) {
 // Libellé de statut façon OpenCode selon l'outil : "Writing command"
 // quand l'agent écrit une commande, "Preparing edit" quand il prépare une
 // modification. null = aucun statut particulier.
+// fileGlyph : petit glyphe par type pour les cartes de pièces jointes.
+function fileGlyph(name) {
+  const ext = String(name || "").toLowerCase().split(".").pop();
+  if (ext === "pdf") return "📕";
+  if (["py", "js", "mjs", "ts", "tsx", "jsx", "go", "rs", "java", "c", "cpp", "cs", "rb", "php", "sh", "sql", "json", "xml", "css", "html", "yml", "yaml", "toml"].includes(ext)) return "📜";
+  if (["md", "markdown", "txt", "csv", "log"].includes(ext)) return "📄";
+  return "📎";
+}
+
 // readSlice : suffixe de tranche d'une lecture ("[offset=50, limit=50]").
 // Vide si aucun bornage explicite n'est fourni (lecture complète).
 function readSlice(args) {
@@ -1190,19 +1199,34 @@ export class ThreadView {
     card.title = a.name || "";
     const thumb = el("div", "attach-card-thumb");
     if (a.kind === "image") {
-      const img = el("img", "attach-card-img");
-      img.alt = a.name || "";
-      thumb.appendChild(img);
+      // État de chargement : vignette grisée + spinner, remplacée par
+      // l'image une fois chargée (ou par un glyphe en cas d'échec).
+      thumb.classList.add("is-loading");
+      const spin = el("span", "attach-spinner");
+      thumb.appendChild(spin);
       fetch("/api/chat/attach/" + encodeURIComponent(a.id) + "?thumb=1", {
         headers: { Authorization: "Bearer " + getToken() },
       })
         .then((r) => (r.ok ? r.blob() : Promise.reject()))
         .then((b) => {
+          const img = el("img", "attach-card-img");
+          img.alt = a.name || "";
+          img.onload = () => {
+            thumb.classList.remove("is-loading");
+            thumb.replaceChildren(img);
+          };
+          img.onerror = () => {
+            thumb.classList.remove("is-loading");
+            thumb.textContent = fileGlyph(a.name);
+          };
           img.src = URL.createObjectURL(b);
         })
-        .catch(() => {});
+        .catch(() => {
+          thumb.classList.remove("is-loading");
+          thumb.textContent = fileGlyph(a.name);
+        });
     } else {
-      thumb.textContent = "📄";
+      thumb.textContent = fileGlyph(a.name);
     }
     card.appendChild(thumb);
     card.appendChild(el("span", "attach-card-name", a.name || ""));
