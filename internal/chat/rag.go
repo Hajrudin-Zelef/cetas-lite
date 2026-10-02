@@ -329,6 +329,21 @@ func localFirstDirective() string {
 		"the extracts, the documents or the base. Only search the web if that knowledge clearly does not contain the answer."
 }
 
+// ragReasoningNote : consigne inseree uniquement quand le raisonnement est
+// actif ET que la base locale couvre la requete (chat general). Elle demande
+// au modele d'exploiter les extraits PENDANT le raisonnement (non montre) et
+// de livrer une reponse finale soignee de formateur senior : prose propre,
+// jamais le brouillon du raisonnement, jamais de listes d'extraits ni de
+// citations visibles. Texte strictement constant : aucun contenu dynamique,
+// pour ne pas casser le prefixe de prompt caching.
+func ragReasoningNote() string {
+	return "Reasoning is enabled and a document base covers this request: use the excerpts " +
+		"privately, during your reasoning, to pick and order the facts — your reasoning is not shown to the user. " +
+		"Then deliver the final answer as polished senior-teacher prose: clear, professional, flowing; " +
+		"never dump your reasoning or your draft, never list the excerpts, never add visible citations, " +
+		"and never mention the base. The final answer must read as a single, clean, natural text."
+}
+
 // ragNotCoveredNote : note systeme injectee quand la base locale est active
 // mais ne couvre pas la requete. Texte strictement stable (pas de contenu
 // dynamique) pour ne pas casser le préfixe de prompt caching. Dit

@@ -211,6 +211,49 @@ func TestRagContextInjectedIntoRequest(t *testing.T) {
 	t.Fatalf("contexte RAG non injecte (%d messages)", len(cp.msgs))
 }
 
+// captureMessages joue un tour chat (non-agent) sur une base qui couvre,
+// avec le raisonnement demande ou non, et rend les messages envoyes.
+func captureMessages(t *testing.T, think bool) []provider.Message {
+	t.Helper()
+	st, err := store.Open(filepath.Join(t.TempDir(), "rc.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = st.Close() })
+	reg := provider.NewRegistry()
+	cp := &captureProvider{}
+	reg.Set(cp)
+	e := NewEngine(reg, nil, st, nil, t.TempDir())
+	e.SetRAG(fakeRag{ready: true, hits: []rag.Hit{
+		{Title: "Alpha", Path: "a/alpha.md", Excerpt: "EXTRAIT-RAG-UNIQUE", Score: ragStrongScore},
+	}})
+	e.SetFamilies([]alias.Family{{
+		ID: "code", Label: "Code",
+		Modes: []alias.Mode{{ID: "standard", Pool: []alias.Member{{Provider: "cap", Model: "m"}}}},
+	}})
+	c := e.Conversation("u")
+	if err := c.StartTurn(TurnInput{User: "u", Family: "code", Mode: "standard", Text: "parle du noyau", Think: think}); err != nil {
+		t.Fatalf("StartTurn: %v", err)
+	}
+	waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+	cp.mu.Lock()
+	defer cp.mu.Unlock()
+	return append([]provider.Message(nil), cp.msgs...)
+}
+
+// TestRagReasoningNoteOnlyWhenThinking : la consigne "raisonnement + base"
+// n'apparait que lorsque le raisonnement est actif ET que la base couvre.
+func TestRagReasoningNoteOnlyWhenThinking(t *testing.T) {
+	withThink := captureMessages(t, true)
+	if !hasSystemContaining([]provider.Request{{Messages: withThink}}, "your reasoning is not shown to the user") {
+		t.Fatalf("consigne raisonnement+RAG absente avec Think=true")
+	}
+	withoutThink := captureMessages(t, false)
+	if hasSystemContaining([]provider.Request{{Messages: withoutThink}}, "your reasoning is not shown to the user") {
+		t.Fatalf("consigne raisonnement+RAG presente alors que Think=false")
+	}
+}
+
 func TestRagNotInjectedWhenInactive(t *testing.T) {
 	st, err := store.Open(filepath.Join(t.TempDir(), "inj2.db"))
 	if err != nil {

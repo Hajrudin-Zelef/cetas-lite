@@ -593,6 +593,13 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		ragCoveredNow = len(ragRes.Hits) > 0
 	}
 
+	// Raisonnement actif + base locale couvrante (chat general uniquement) :
+	// consigne pour exploiter les extraits pendant le raisonnement (non
+	// montre) et livrer une reponse finale soignee, sans brut ni citations.
+	if !res.agent && in.Think && ragCoveredNow {
+		msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: ragReasoningNote()})
+	}
+
 	if res.agent && e.workspace != "" && in.User != "" {
 		e.runAgent(ctx, c, epoch, res, msgs, in)
 		return
