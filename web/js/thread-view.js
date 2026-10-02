@@ -2712,7 +2712,7 @@ export class ThreadView {
       this.turnOutTok = s.completion_tokens || 0;
       this.updateConvBadge();
       if (this.reasonPanel) updateReasonUsage(s);
-      if (this.trackTokens) setTurnStats(s.prompt_tokens, s.completion_tokens);
+      if (this.trackTokens) setTurnStats(s.prompt_tokens, s.completion_tokens, s.cached_tokens);
       return;
     }
     if (ev.compact) {

@@ -725,10 +725,18 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 				c.appendDelta(epoch, map[string]any{"content": ev.Content})
 			}
 			if ev.Usage != nil {
-				c.appendDelta(epoch, map[string]any{"stats": map[string]any{
+				st := map[string]any{
 					"prompt_tokens":     ev.Usage.PromptTokens,
 					"completion_tokens": ev.Usage.CompletionTokens,
-				}})
+				}
+				if ch := ev.Usage.CacheHitTokens(); ch > 0 {
+					st["cached_tokens"] = ch
+				}
+				c.appendDelta(epoch, map[string]any{"stats": st})
+				if ch := ev.Usage.CacheHitTokens(); ch > 0 {
+					slog.Info("prompt_cache", "event", "hit", "provider", m.Provider, "model", m.Model,
+						"prompt_tokens", ev.Usage.PromptTokens, "cached_tokens", ch)
+				}
 			}
 			return true
 		})

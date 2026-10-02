@@ -98,6 +98,37 @@ func TestStreamContentUsageTools(t *testing.T) {
 	}
 }
 
+func TestUsageCacheHitTokens(t *testing.T) {
+	cases := []struct {
+		name string
+		raw  string
+		want int
+	}{
+		{"deepseek", `{"prompt_cache_hit_tokens":128,"prompt_tokens":500}`, 128},
+		{"openai", `{"prompt_tokens_details":{"cached_tokens":64},"prompt_tokens":400}`, 64},
+		{"aucun", `{"prompt_tokens":400}`, 0},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			body := strings.Join([]string{
+				`data: {"choices":[{"delta":{"content":"x"}}]}`,
+				`data: {"choices":[],"usage":` + tc.raw + `}`,
+				`data: [DONE]`,
+				"",
+			}, "\n\n")
+			srv := sseServer(t, body, 200, false)
+			p := providerFor(t, srv, "/chat/completions")
+			resp, err := p.Stream(context.Background(), Request{Model: "m", Messages: []Message{{Role: "user", Content: "hi"}}}, func(Event) bool { return true })
+			if err != nil {
+				t.Fatalf("Stream: %v", err)
+			}
+			if got := resp.Usage.CacheHitTokens(); got != tc.want {
+				t.Fatalf("CacheHitTokens = %d, want %d", got, tc.want)
+			}
+		})
+	}
+}
+
 func TestStreamNon200(t *testing.T) {
 	srv := sseServer(t, "contexte depasse", http.StatusInternalServerError, false)
 	p := providerFor(t, srv, "/chat/completions")

@@ -6,6 +6,7 @@ import { currentSelection, getFamilies } from "./model-select.js";
 
 let lastIn = 0;
 let lastOut = 0;
+let lastCached = 0;
 let inputEst = 0;
 const infoCache = {};
 
@@ -73,7 +74,13 @@ export function updateTokenLine() {
   const line = document.getElementById("turn-token-line");
   const ioEl = document.getElementById("turn-token-io");
   if (!line || !ioEl) return;
-  ioEl.textContent = "↑ " + lastIn.toLocaleString("fr") + " (input) ↓ " + lastOut.toLocaleString("fr") + " (output) Tokens";
+  let txt =
+    "↑ " + lastIn.toLocaleString("fr") + " (input) ↓ " + lastOut.toLocaleString("fr") + " (output) Tokens";
+  if (lastCached > 0) {
+    const pct = lastIn > 0 ? Math.round((lastCached * 100) / lastIn) : 0;
+    txt += " · " + lastCached.toLocaleString("fr") + " cached (" + pct + "%)";
+  }
+  ioEl.textContent = txt;
   line.style.display = "";
   refreshCost();
 }
@@ -86,9 +93,10 @@ export function setInputEstimate(n) {
 }
 
 // Appelé à chaque événement stats du tour en cours.
-export function setTurnStats(inTok, outTok) {
+export function setTurnStats(inTok, outTok, cachedTok) {
   if (inTok != null) lastIn = inTok;
   if (outTok != null) lastOut = outTok;
+  if (cachedTok != null) lastCached = cachedTok;
   updateTokenLine();
   refreshCtxCounter();
 }
@@ -123,6 +131,7 @@ export function refreshModelMeta() {
 export function resetTurnTokens() {
   lastIn = 0;
   lastOut = 0;
+  lastCached = 0;
   const line = document.getElementById("turn-token-line");
   if (line) line.style.display = "none";
 }

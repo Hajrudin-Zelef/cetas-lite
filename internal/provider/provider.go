@@ -61,6 +61,29 @@ type Usage struct {
 	PromptTokens     int `json:"prompt_tokens"`
 	CompletionTokens int `json:"completion_tokens"`
 	TotalTokens      int `json:"total_tokens"`
+	// CachedTokens : tokens du prompt servis depuis le cache du provider,
+	// donc factures moins cher. Alimente par PromptTokensDetails.cached_tokens
+	// (OpenAI) ou PromptCacheHitTokens (DeepSeek). 0 si le provider ne
+	// rapporte rien. Purement informatif (mesure), jamais bloquant.
+	CachedTokens int `json:"cached_tokens,omitempty"`
+	// PromptTokensDetails : forme imbriquee (OpenAI) du compteur de cache.
+	PromptTokensDetails *struct {
+		CachedTokens int `json:"cached_tokens"`
+	} `json:"prompt_tokens_details,omitempty"`
+	// PromptCacheHitTokens : forme DeepSeek du compteur de cache.
+	PromptCacheHitTokens int `json:"prompt_cache_hit_tokens,omitempty"`
+}
+
+// CacheHitTokens rend le nombre de tokens du prompt servis depuis le cache
+// du provider, quelle que soit la forme du payload (0 si non rapporte).
+func (u Usage) CacheHitTokens() int {
+	if u.CachedTokens > 0 {
+		return u.CachedTokens
+	}
+	if u.PromptTokensDetails != nil && u.PromptTokensDetails.CachedTokens > 0 {
+		return u.PromptTokensDetails.CachedTokens
+	}
+	return u.PromptCacheHitTokens
 }
 
 type Request struct {
