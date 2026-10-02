@@ -131,25 +131,40 @@ export function initChat() {
     attachPreview.innerHTML = "";
     for (const a of attachments) {
       const chip = el("div", "attach-chip-preview");
+      const row = el("div", "attach-chip-row");
       const img = el("img", "attach-thumb");
       img.alt = a.name;
       thumbFor(a.id).then((url) => {
         if (url) img.src = url;
         else img.remove();
       });
-      chip.appendChild(img);
-      chip.appendChild(el("span", "attach-name", a.name));
+      row.appendChild(img);
+      row.appendChild(el("span", "attach-name", a.name));
       const rm = el("button", "attach-thumb-remove", "×");
       rm.type = "button";
       rm.setAttribute("aria-label", "Retirer");
       rm.addEventListener("click", () => removeAttachment(a));
-      chip.appendChild(rm);
+      row.appendChild(rm);
+      chip.appendChild(row);
+      if (a.kind && a.kind !== "image") {
+        const snip = el("div", "attach-snippet", "…");
+        chip.appendChild(snip);
+        fetch("/api/chat/attach/" + encodeURIComponent(a.id) + "?snippet=1", {
+          headers: { Authorization: "Bearer " + getToken() },
+        })
+          .then((r) => (r.ok ? r.text() : ""))
+          .then((t) => {
+            if (t.trim()) snip.textContent = t;
+            else snip.remove();
+          })
+          .catch(() => snip.remove());
+      }
       attachPreview.appendChild(chip);
     }
   }
 
   function addAttachment(file) {
-    attachments.push({ id: file.id, name: file.name });
+    attachments.push({ id: file.id, name: file.name, kind: file.kind });
     renderPreview();
   }
 

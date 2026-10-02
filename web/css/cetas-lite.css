@@ -407,6 +407,36 @@
   white-space: nowrap;
 }
 
+.attach-chip-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  padding: 4px 8px 4px 6px;
+  font-size: 0.78rem;
+  max-width: 280px;
+}
+
+.attach-chip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.attach-snippet {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 4.4em;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
 .attach-thumb {
   height: 20px;
   width: 20px;

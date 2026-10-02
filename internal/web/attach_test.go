@@ -6,7 +6,9 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
+	"unicode/utf8"
 
 	"cetas-lite/internal/attach"
 )
@@ -104,5 +106,90 @@ func TestAttachUnauthorized(t *testing.T) {
 	rec := uploadAttachment(t, s.Handler(), "", "a.md", []byte("x"))
 	if rec.Code != http.StatusUnauthorized {
 		t.Fatalf("status = %d", rec.Code)
+	}
+}
+
+func getSnippet(t *testing.T, h http.Handler, tok, id string) *httptest.ResponseRecorder {
+	t.Helper()
+	req := httptest.NewRequest(http.MethodGet, "/api/chat/attach/"+id+"?snippet=1", nil)
+	req.Header.Set("Authorization", "Bearer "+tok)
+	rec := httptest.NewRecorder()
+	h.ServeHTTP(rec, req)
+	return rec
+}
+
+func TestAttachSnippet(t *testing.T) {
+	s, tok := newAttachServer(t)
+	h := s.Handler()
+
+	rec := uploadAttachment(t, h, tok, "notes.md", []byte("ligne un\nligne deux"))
+	if rec.Code != http.StatusOK {
+		t.Fatalf("upload status = %d (%s)", rec.Code, rec.Body.String())
+	}
+	var a map[string]any
+	_ = json.Unmarshal(rec.Body.Bytes(), &a)
+	id, _ := a["id"].(string)
+
+	got := getSnippet(t, h, tok, id)
+	if got.Code != http.StatusOK {
+		t.Fatalf("snippet status = %d (%s)", got.Code, got.Body.String())
+	}
+	if ct := got.Header().Get("Content-Type"); ct != "text/plain; charset=utf-8" {
+		t.Fatalf("content-type = %q", ct)
+	}
+	if got.Body.String() != "ligne un\nligne deux" {
+		t.Fatalf("snippet = %q", got.Body.String())
+	}
+}
+
+func TestAttachSnippetTruncateUTF8(t *testing.T) {
+	s, tok := newAttachServer(t)
+	h := s.Handler()
+
+	// 700 runes avec des multi-octets (é/€) : coupe à 600 runes + ellipse.
+	long := strings.Repeat("é€x", 234) // 702 runes
+	rec := uploadAttachment(t, h, tok, "long.txt", []byte(long))
+	var a map[string]any
+	_ = json.Unmarshal(rec.Body.Bytes(), &a)
+	id, _ := a["id"].(string)
+
+	got := getSnippet(t, h, tok, id)
+	body := got.Body.String()
+	r := []rune(body)
+	if len(r) != 601 || r[600] != '…' {
+		t.Fatalf("snippet tronqué attendu à 601 runes + …, got %d runes", len(r))
+	}
+	if !utf8.ValidString(body) {
+		t.Fatal("snippet invalide UTF-8")
+	}
+}
+
+func TestAttachSnippetImageRejected(t *testing.T) {
+	s, tok := newAttachServer(t)
+	h := s.Handler()
+	rec := uploadAttachment(t, h, tok, "photo.png", []byte("\x89PNG"))
+	var a map[string]any
+	_ = json.Unmarshal(rec.Body.Bytes(), &a)
+	id, _ := a["id"].(string)
+	if got := getSnippet(t, h, tok, id); got.Code != http.StatusBadRequest {
+		t.Fatalf("image snippet status = %d", got.Code)
+	}
+}
+
+func TestAttachSnippetAuthAndNotFound(t *testing.T) {
+	s, _ := newAttachServer(t)
+	h := s.Handler()
+	req := httptest.NewRequest(http.MethodGet, "/api/chat/attach/abc?snippet=1", nil)
+	rec := httptest.NewRecorder()
+	h.ServeHTTP(rec, req)
+	if rec.Code != http.StatusUnauthorized {
+		t.Fatalf("sans token: status = %d", rec.Code)
+	}
+	req = httptest.NewRequest(http.MethodGet, "/api/chat/attach/nope?snippet=1", nil)
+	req.Header.Set("Authorization", "Bearer x")
+	rec = httptest.NewRecorder()
+	h.ServeHTTP(rec, req)
+	if rec.Code != http.StatusUnauthorized && rec.Code != http.StatusNotFound {
+		t.Fatalf("id inconnu: status = %d", rec.Code)
 	}
 }

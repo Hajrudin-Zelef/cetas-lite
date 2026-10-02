@@ -4,6 +4,7 @@ import (
 	"io"
 	"mime"
 	"net/http"
+	"strings"
 
 	"cetas-lite/internal/attach"
 	"cetas-lite/internal/docs"
@@ -62,6 +63,10 @@ func (s *Server) handleAttachGet(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusNotFound, "piece jointe introuvable")
 		return
 	}
+	if r.URL.Query().Get("snippet") == "1" {
+		serveAttachSnippet(w, a, data)
+		return
+	}
 	// P0-D : vignette legerer, generee a la demande et mise en sidecar.
 	if r.URL.Query().Get("thumb") == "1" && a.Kind == attach.KindImage {
 		if thumb, ok := s.engine.AttachmentThumb(claims.Username, a, data); ok {
@@ -87,6 +92,31 @@ func (s *Server) handleAttachGet(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Security-Policy", "sandbox")
 	}
 	_, _ = w.Write(data)
+}
+
+// serveAttachSnippet renvoie le debut du texte extrait d'une piece jointe
+// non-image (apercu dans le chip). Les images utilisent ?thumb=1.
+func serveAttachSnippet(w http.ResponseWriter, a attach.Attachment, data []byte) {
+	if attach.IsImage(a.Name) {
+		writeError(w, http.StatusBadRequest, "utiliser ?thumb=1 pour les images")
+		return
+	}
+	text, _, err := docs.Extract(a.Name, data)
+	if err != nil || strings.TrimSpace(text) == "" {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	_, _ = w.Write([]byte(truncateRunesWeb(text, 600)))
+}
+
+// truncateRunesWeb coupe s a n runes (UTF-8-safe), avec ellipse si tronque.
+func truncateRunesWeb(s string, n int) string {
+	r := []rune(s)
+	if len(r) <= n {
+		return s
+	}
+	return string(r[:n]) + "…"
 }
 
 func (s *Server) handleAttachDelete(w http.ResponseWriter, r *http.Request) {
