@@ -42,13 +42,13 @@ func TestChatSystemPromptInjected(t *testing.T) {
 
 func TestChatSystemPromptTokenBudget(t *testing.T) {
 	p := chatSystemPrompt()
-	// ~4 caracteres par token. Budget porte de 900 a 2100 lors de l'ajout
+	// ~4 caracteres par token. Budget porte de 900 a 2400 lors de l'ajout
 	// des regles d'identite et de confidentialite (createur, applications
-	// Marexsoft, divulgation parcimonieuse), sans minuteur.
-	// ~2100 car. ~= 525 tokens : reste sous la limite d'1k tokens en entree
+	// Marexsoft, divulgation parcimonieuse, refus naturel sans meta).
+	// ~2400 car. ~= 600 tokens : reste sous la limite d'1k tokens en entree
 	// meme pour un simple "salut".
-	if len(p) > 2100 {
-		t.Fatalf("prompt systeme trop long : %d caracteres (budget 2100)", len(p))
+	if len(p) > 2400 {
+		t.Fatalf("prompt systeme trop long : %d caracteres (budget 2400)", len(p))
 	}
 	for _, must := range []string{
 		"senior teacher", "premium pedagogy", "do not produce code", "never invent",
