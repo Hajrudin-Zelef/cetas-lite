@@ -75,6 +75,32 @@ func TestSizeLimitAndName(t *testing.T) {
 	}
 }
 
+// TestJSONContentNotClobbered : le contenu d'une piece jointe .json ne doit
+// jamais etre ecrase par ses metadonnees (bug : id.json servait aux deux).
+func TestJSONContentNotClobbered(t *testing.T) {
+	s := New(t.TempDir(), 1<<20)
+	content := []byte(`{"name":"manif","short_name":"m","icons":[192,512]}`)
+	a, err := s.Save("sam", "manifest.json", content)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got, data, err := s.Get("sam", a.ID)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Name != "manifest.json" || got.Ext != "json" {
+		t.Fatalf("meta = %+v", got)
+	}
+	if string(data) != string(content) {
+		t.Fatalf("contenu .json ecrase par les metadonnees:\n got=%s", data)
+	}
+	// La metadonnee vit hors du namespace des donnees.
+	dir, _ := s.userDir("sam")
+	if _, err := os.Stat(filepath.Join(dir, ".meta", a.ID+".json")); err != nil {
+		t.Fatalf("metadonnee .meta attendue: %v", err)
+	}
+}
+
 // TestSidecarAndPurge : les sidecars derives (.txt, .thumb.jpg) sont ecrits,
 // relus, et purges avec la piece jointe (Delete et CleanOlderThan).
 func TestSidecarAndPurge(t *testing.T) {

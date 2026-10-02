@@ -27,6 +27,20 @@ func TestAttachmentContextTruncatesPerFile(t *testing.T) {
 	}
 }
 
+// Non-regression : le contenu d'une piece jointe .json doit atteindre le
+// contexte (bug : les metadonnees id.json ecrasaient le contenu).
+func TestAttachmentContextJSONContent(t *testing.T) {
+	e, st := attachEngine(t)
+	doc, err := st.Save("sam", "manifest.json", []byte(`{"name":"x","short_name":"mon-manif"}`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	ctx := e.AttachmentContext("sam", []string{doc.ID})
+	if !strings.Contains(ctx, "mon-manif") {
+		t.Fatalf("le contenu json doit etre injecte, ctx=%q", ctx)
+	}
+}
+
 // Non-regression : une 2e piece jointe envoyee dans un tour ulterieur doit
 // etre vue par le modele (le bloc du tour precedent reste, le nouveau
 // s'ajoute) — le garde-fou initial bloquait toute nouvelle piece jointe.

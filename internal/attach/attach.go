@@ -66,8 +66,13 @@ func (s *Store) Save(user, name string, data []byte) (Attachment, error) {
 	if err := os.WriteFile(filepath.Join(dir, id+ext), data, 0o600); err != nil {
 		return Attachment{}, err
 	}
+	metaPath, err := s.metaPath(user, id)
+	if err != nil {
+		_ = os.Remove(filepath.Join(dir, id+ext))
+		return Attachment{}, err
+	}
 	meta, _ := json.Marshal(a)
-	if err := os.WriteFile(filepath.Join(dir, id+".json"), meta, 0o600); err != nil {
+	if err := os.WriteFile(metaPath, meta, 0o600); err != nil {
 		_ = os.Remove(filepath.Join(dir, id+ext))
 		return Attachment{}, err
 	}
@@ -85,7 +90,13 @@ func (s *Store) Get(user, id string) (Attachment, []byte, error) {
 	if !safeID(id) {
 		return Attachment{}, nil, errors.New("identifiant invalide")
 	}
-	raw, err := os.ReadFile(filepath.Join(dir, id+".json"))
+	// Les metadonnees vivent dans .meta/ (hors du namespace des donnees) :
+	// un fichier .json verrait sinon sa metadonnee id.json ecraser son
+	// contenu. Repli sur l'ancien emplacement id.json (pieces existantes).
+	raw, err := os.ReadFile(filepath.Join(dir, metaDir, id+".json"))
+	if err != nil {
+		raw, err = os.ReadFile(filepath.Join(dir, legacyMetaName(id)))
+	}
 	if err != nil {
 		return Attachment{}, nil, errors.New("piece jointe introuvable")
 	}
@@ -115,11 +126,31 @@ func (s *Store) Delete(user, id string) error {
 	if err != nil {
 		return err
 	}
-	_ = os.Remove(filepath.Join(dir, id+".json"))
+	_ = os.Remove(filepath.Join(dir, metaDir, id+".json"))
+	_ = os.Remove(filepath.Join(dir, legacyMetaName(id)))
 	_ = os.Remove(filepath.Join(dir, id+"."+a.Ext))
 	_ = os.Remove(filepath.Join(dir, id+textSidecarExt))
 	_ = os.Remove(filepath.Join(dir, id+thumbSidecarExt))
 	return nil
+}
+
+// metaDir : sous-dossier des metadonnees, separe des donnees pour qu'une
+// piece jointe .json ne voie jamais sa metadonnee ecraser son contenu.
+const metaDir = ".meta"
+
+func legacyMetaName(id string) string { return id + ".json" }
+
+// metaPath : chemin de la metadonnee d'une piece jointe (cree le dossier).
+func (s *Store) metaPath(user, id string) (string, error) {
+	dir, err := s.userDir(user)
+	if err != nil {
+		return "", err
+	}
+	mdir := filepath.Join(dir, metaDir)
+	if err := os.MkdirAll(mdir, 0o700); err != nil {
+		return "", err
+	}
+	return filepath.Join(mdir, id+".json"), nil
 }
 
 // textSidecarExt / thumbSidecarExt : suffixes des caches derives (texte
@@ -179,30 +210,47 @@ func (s *Store) CleanOlderThan(maxAge time.Duration) int {
 			continue
 		}
 		dir := filepath.Join(s.root, u.Name())
-		entries, err := os.ReadDir(dir)
+		removed += cleanDir(dir, filepath.Join(dir, metaDir), cutoff)
+		// Ancien emplacement (metadonnees id.json a la racine) : le garde
+		// a.ID==base protege les fichiers .json utilisateur.
+		removed += cleanDir(dir, dir, cutoff)
+	}
+	return removed
+}
+
+// cleanDir purge un dossier de metadonnees donne (le dossier .meta courant,
+// ou l'ancien emplacement : les fichiers *.json a la racine du dossier user,
+// uniquement s'ils portent un champ id coherent — un contenu .json
+// utilisateur ne doit jamais etre pris pour une metadonnee).
+func cleanDir(dir, metaDirPath string, cutoff int64) int {
+	removed := 0
+	entries, err := os.ReadDir(metaDirPath)
+	if err != nil {
+		return 0
+	}
+	for _, en := range entries {
+		if en.IsDir() || !strings.HasSuffix(en.Name(), ".json") {
+			continue
+		}
+		name := en.Name()
+		raw, err := os.ReadFile(filepath.Join(metaDirPath, name))
 		if err != nil {
 			continue
 		}
-		for _, en := range entries {
-			name := en.Name()
-			if !strings.HasSuffix(name, ".json") {
-				continue
-			}
-			raw, err := os.ReadFile(filepath.Join(dir, name))
-			if err != nil {
-				continue
-			}
-			var a Attachment
-			if err := json.Unmarshal(raw, &a); err != nil || a.Created >= cutoff {
-				continue
-			}
-			base := strings.TrimSuffix(name, ".json")
-			_ = os.Remove(filepath.Join(dir, name))
-			_ = os.Remove(filepath.Join(dir, base+"."+a.Ext))
-			_ = os.Remove(filepath.Join(dir, base+textSidecarExt))
-			_ = os.Remove(filepath.Join(dir, base+thumbSidecarExt))
-			removed++
+		var a Attachment
+		base := strings.TrimSuffix(name, ".json")
+		if err := json.Unmarshal(raw, &a); err != nil || a.Created >= cutoff {
+			continue
 		}
+		// Metadonnee coherente : id du JSON == nom de fichier.
+		if a.ID != base {
+			continue
+		}
+		_ = os.Remove(filepath.Join(metaDirPath, name))
+		_ = os.Remove(filepath.Join(dir, base+"."+a.Ext))
+		_ = os.Remove(filepath.Join(dir, base+textSidecarExt))
+		_ = os.Remove(filepath.Join(dir, base+thumbSidecarExt))
+		removed++
 	}
 	return removed
 }
