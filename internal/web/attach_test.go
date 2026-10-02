@@ -176,6 +176,61 @@ func TestAttachSnippetImageRejected(t *testing.T) {
 	}
 }
 
+func getText(t *testing.T, h http.Handler, tok, id string) *httptest.ResponseRecorder {
+	t.Helper()
+	req := httptest.NewRequest(http.MethodGet, "/api/chat/attach/"+id+"?text=1", nil)
+	req.Header.Set("Authorization", "Bearer "+tok)
+	rec := httptest.NewRecorder()
+	h.ServeHTTP(rec, req)
+	return rec
+}
+
+func TestAttachTextFull(t *testing.T) {
+	s, tok := newAttachServer(t)
+	h := s.Handler()
+	// 700 runes : le snippet coupe a 600, ?text=1 renvoie tout.
+	long := strings.Repeat("é", 700)
+	rec := uploadAttachment(t, h, tok, "full.txt", []byte(long))
+	var a map[string]any
+	_ = json.Unmarshal(rec.Body.Bytes(), &a)
+	id, _ := a["id"].(string)
+
+	got := getText(t, h, tok, id)
+	if got.Code != http.StatusOK {
+		t.Fatalf("text status = %d (%s)", got.Code, got.Body.String())
+	}
+	if got.Body.String() != long {
+		t.Fatalf("texte complet attendu (%d runes), got %d", len([]rune(long)), len([]rune(got.Body.String())))
+	}
+	if !utf8.ValidString(got.Body.String()) {
+		t.Fatal("texte invalide UTF-8")
+	}
+}
+
+func TestAttachTextImageRejected(t *testing.T) {
+	s, tok := newAttachServer(t)
+	h := s.Handler()
+	rec := uploadAttachment(t, h, tok, "photo.png", []byte("\x89PNG"))
+	var a map[string]any
+	_ = json.Unmarshal(rec.Body.Bytes(), &a)
+	id, _ := a["id"].(string)
+	if got := getText(t, h, tok, id); got.Code != http.StatusBadRequest {
+		t.Fatalf("image text status = %d", got.Code)
+	}
+}
+
+func TestAttachTextEmptyNoContent(t *testing.T) {
+	s, tok := newAttachServer(t)
+	h := s.Handler()
+	rec := uploadAttachment(t, h, tok, "vide.txt", []byte("   \n  "))
+	var a map[string]any
+	_ = json.Unmarshal(rec.Body.Bytes(), &a)
+	id, _ := a["id"].(string)
+	if got := getText(t, h, tok, id); got.Code != http.StatusNoContent {
+		t.Fatalf("text vide: status = %d (attendu 204)", got.Code)
+	}
+}
+
 func TestAttachSnippetAuthAndNotFound(t *testing.T) {
 	s, _ := newAttachServer(t)
 	h := s.Handler()

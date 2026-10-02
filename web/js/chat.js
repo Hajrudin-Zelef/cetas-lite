@@ -126,42 +126,80 @@ export function initChat() {
   window.addEventListener("cetas:composer-toggles", refreshHint);
   window.addEventListener("cetas:model-changed", refreshHint); // choix depuis le menu +
 
+  // Icône SVG simple par type de pièce jointe (chip + modal).
+  function attachIcon(a) {
+    const wrap = el("div", "attach-card-icon");
+    const ext = (a.name || "").toLowerCase().split(".").pop();
+    let svg = "";
+    if (a.kind === "image") {
+      svg = '<path d="M3 5h18v14H3z"/><circle cx="8" cy="10" r="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/>';
+    } else if (ext === "pdf") {
+      svg = '<path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h6M9 17h4"/>';
+    } else if (["py","js","mjs","ts","tsx","jsx","go","rs","java","kt","c","h","cpp","cs","rb","php","sh","sql","json","xml","css","html","yml","yaml","toml"].includes(ext)) {
+      svg = '<path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/>';
+    } else {
+      svg = '<path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h6M9 17h6"/>';
+    }
+    wrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + svg + "</svg>";
+    return wrap;
+  }
+
   function renderPreview() {
     if (!attachPreview) return;
     attachPreview.innerHTML = "";
     for (const a of attachments) {
-      const chip = el("div", "attach-chip-preview");
-      const row = el("div", "attach-chip-row");
+      const card = el("div", "attach-card");
+      card.tabIndex = 0;
+      card.setAttribute("role", "button");
+      card.title = "Aperçu de " + a.name;
+
+      const thumbSlot = el("div", "attach-card-thumb");
       if (a.kind === "image") {
-        const img = el("img", "attach-thumb");
+        const img = el("img", "attach-card-img");
         img.alt = a.name;
+        thumbSlot.appendChild(img);
         thumbFor(a.id).then((url) => {
           if (url) img.src = url;
-          else img.remove();
+          else thumbSlot.replaceChildren(attachIcon(a));
         });
-        row.appendChild(img);
+      } else {
+        thumbSlot.appendChild(attachIcon(a));
       }
-      row.appendChild(el("span", "attach-name", a.name));
-      const rm = el("button", "attach-thumb-remove", "×");
+
+      const rm = el("button", "attach-card-remove", "×");
       rm.type = "button";
       rm.setAttribute("aria-label", "Retirer");
-      rm.addEventListener("click", () => removeAttachment(a));
-      row.appendChild(rm);
-      chip.appendChild(row);
+      rm.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        removeAttachment(a);
+      });
+
+      const name = el("span", "attach-card-name", a.name);
+      const snip = el("span", "attach-card-snippet", "");
+      card.appendChild(rm);
+      card.appendChild(thumbSlot);
+      card.appendChild(name);
+      card.appendChild(snip);
+      card.addEventListener("click", () => openAttachModal(a));
+      card.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          openAttachModal(a);
+        }
+      });
+
       if (a.kind && a.kind !== "image") {
-        const snip = el("div", "attach-snippet", "…");
-        chip.appendChild(snip);
         fetch("/api/chat/attach/" + encodeURIComponent(a.id) + "?snippet=1", {
           headers: { Authorization: "Bearer " + getToken() },
         })
           .then((r) => (r.ok ? r.text() : ""))
           .then((t) => {
-            if (t.trim()) snip.textContent = t;
-            else snip.remove();
+            const line = t.replace(/\s+/g, " ").trim();
+            if (line) snip.textContent = line;
           })
-          .catch(() => snip.remove());
+          .catch(() => {});
       }
-      attachPreview.appendChild(chip);
+      attachPreview.appendChild(card);
     }
   }
 
@@ -174,6 +212,110 @@ export function initChat() {
     attachments = attachments.filter((a) => a !== entry);
     renderPreview();
     api("/api/chat/attach/" + encodeURIComponent(entry.id), { method: "DELETE" }).catch(() => {});
+  }
+
+  // Modal de contenu : image (zoom/scroll), PDF (iframe), texte/code (hljs).
+  const amOverlay = document.getElementById("attach-modal-overlay");
+  const amTitle = document.getElementById("attach-modal-title");
+  const amBody = document.getElementById("attach-modal-body");
+  const amClose = document.getElementById("attach-modal-close");
+  const amDownload = document.getElementById("attach-modal-download");
+  let amZoom = 1;
+
+  function amReset() {
+    amBody.innerHTML = "";
+    amBody.className = "attach-modal-body";
+    amZoom = 1;
+  }
+
+  function closeAttachModal() {
+    if (!amOverlay) return;
+    amOverlay.style.display = "none";
+    amReset();
+  }
+
+  function codeLang(name) {
+    const ext = (name || "").toLowerCase().split(".").pop();
+    const map = { py: "python", js: "javascript", mjs: "javascript", ts: "typescript", tsx: "typescript", jsx: "javascript", go: "go", rs: "rust", java: "java", kt: "kotlin", c: "c", h: "c", cpp: "cpp", cs: "csharp", rb: "ruby", php: "php", sh: "bash", bash: "bash", zsh: "bash", sql: "sql", json: "json", xml: "xml", html: "xml", css: "css", yml: "yaml", yaml: "yaml", toml: "ini", md: "markdown" };
+    return map[ext] || "";
+  }
+
+  function isCodeLike(name) {
+    const ext = (name || "").toLowerCase().split(".").pop();
+    return ["py","js","mjs","ts","tsx","jsx","go","rs","java","kt","c","h","cpp","hpp","cs","rb","php","sh","bash","zsh","sql","json","xml","html","css","scss","yml","yaml","toml","md","markdown"].includes(ext);
+  }
+
+  async function openAttachModal(a) {
+    if (!amOverlay) return;
+    amReset();
+    amTitle.textContent = a.name || "";
+    const url = "/api/chat/attach/" + encodeURIComponent(a.id);
+    if (amDownload) {
+      amDownload.href = url + "?download=1";
+      amDownload.setAttribute("download", a.name || "");
+    }
+
+    if (a.kind === "image") {
+      const img = el("img", "attach-modal-img");
+      img.alt = a.name || "";
+      img.src = url;
+      const stage = el("div", "attach-modal-stage");
+      stage.appendChild(img);
+      amBody.appendChild(stage);
+      // zoom molette + drag
+      let dragging = false, sx = 0, sy = 0, ox = 0, oy = 0;
+      const apply = () => { img.style.transform = `translate(${ox}px,${oy}px) scale(${amZoom})`; };
+      stage.addEventListener("wheel", (ev) => {
+        ev.preventDefault();
+        amZoom = Math.min(8, Math.max(0.2, amZoom * (ev.deltaY < 0 ? 1.15 : 0.87)));
+        apply();
+      }, { passive: false });
+      img.addEventListener("mousedown", (ev) => { dragging = true; sx = ev.clientX; sy = ev.clientY; img.classList.add("dragging"); });
+      window.addEventListener("mousemove", (ev) => { if (!dragging) return; ox += ev.clientX - sx; oy += ev.clientY - sy; sx = ev.clientX; sy = ev.clientY; apply(); });
+      window.addEventListener("mouseup", () => { dragging = false; img.classList.remove("dragging"); });
+      amOverlay.style.display = "flex";
+      return;
+    }
+
+    const ext = (a.ext || (a.name || "").split(".").pop() || "").toLowerCase();
+    if (ext === "pdf") {
+      const frame = el("iframe", "attach-modal-pdf");
+      frame.setAttribute("sandbox", "");
+      frame.src = url;
+      amBody.appendChild(frame);
+      amOverlay.style.display = "flex";
+      return;
+    }
+
+    // texte ou code
+    try {
+      const r = await fetch(url + "?text=1", { headers: { Authorization: "Bearer " + getToken() } });
+      const text = r.ok ? await r.text() : "";
+      if (text) {
+        const pre = el("pre", "attach-modal-pre");
+        const code = el("code", "", text);
+        if (isCodeLike(a.name)) {
+          const lang = codeLang(a.name);
+          if (lang) code.className = "language-" + lang;
+        }
+        pre.appendChild(code);
+        amBody.appendChild(pre);
+        if (isCodeLike(a.name)) {
+          import("./markdown.js").then((m) => m.highlightElement(code, codeLang(a.name))).catch(() => {});
+        }
+      } else {
+        amBody.appendChild(el("div", "attach-modal-empty", "Aucun texte à afficher pour ce fichier."));
+      }
+    } catch {
+      amBody.appendChild(el("div", "attach-modal-empty", "Impossible de charger le contenu."));
+    }
+    amOverlay.style.display = "flex";
+  }
+
+  if (amClose) amClose.addEventListener("click", closeAttachModal);
+  if (amOverlay) {
+    amOverlay.addEventListener("click", (ev) => { if (ev.target === amOverlay) closeAttachModal(); });
+    document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && amOverlay.style.display === "flex") closeAttachModal(); });
   }
 
   async function uploadFiles(files) {

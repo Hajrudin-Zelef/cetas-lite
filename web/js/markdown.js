@@ -80,6 +80,21 @@ function getHljs() {
   return hljsPromise;
 }
 
+// highlightElement : colore un élément <code> isolé (modal pièce jointe).
+// Fail-open : sans highlight.js, le code reste lisible en monospace.
+export function highlightElement(codeEl, lang) {
+  if (!codeEl) return;
+  getHljs().then((hljs) => {
+    if (!hljs || typeof hljs.highlightElement !== "function") return;
+    try {
+      if (lang) codeEl.className = "language-" + lang;
+      hljs.highlightElement(codeEl);
+    } catch {
+      /* laissé tel quel */
+    }
+  });
+}
+
 export function highlightNewCode(root) {
   if (!root || !root.querySelectorAll) return;
   const blocks = root.querySelectorAll("pre code:not([data-hl])");

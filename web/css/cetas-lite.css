@@ -407,41 +407,209 @@
   white-space: nowrap;
 }
 
-.attach-chip-preview {
+/* Carte de pièce jointe : icône/vignette, nom, aperçu 1 ligne, × */
+.attach-card {
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
+  width: 84px;
+  padding: 10px 6px 8px;
   background: var(--bg-input);
   border: 1px solid var(--border-input);
-  border-radius: 8px;
-  padding: 4px 8px 4px 6px;
-  font-size: 0.78rem;
-  max-width: 280px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
 }
 
-.attach-chip-row {
+.attach-card:hover,
+.attach-card:focus-visible {
+  border-color: var(--accent);
+  background: var(--bg-hover, var(--bg-input));
+  outline: none;
+}
+
+.attach-card-thumb {
+  width: 100%;
+  height: 44px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.attach-snippet {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.66rem;
-  line-height: 1.35;
+.attach-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.attach-card-icon {
+  width: 34px;
+  height: 34px;
   color: var(--text-secondary);
+}
+
+.attach-card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.attach-card-name {
+  width: 100%;
+  text-align: center;
+  font-size: 0.72rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attach-card-snippet {
+  width: 100%;
+  text-align: center;
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.attach-card-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--border-input);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attach-card-remove:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* Modal pièce jointe */
+.attach-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.attach-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 92vw;
+  height: 90vh;
+  max-width: 1400px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.attach-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-input);
+}
+
+.attach-modal-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.attach-modal-download,
+.attach-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 2px 6px;
+  text-decoration: none;
+}
+
+.attach-modal-download:hover,
+.attach-modal-close:hover {
+  color: var(--text-primary);
+}
+
+.attach-modal-body {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.attach-modal-stage {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attach-modal-img {
+  max-width: 100%;
+  max-height: 100%;
+  cursor: grab;
+  transform-origin: center center;
+  user-select: none;
+}
+
+.attach-modal-img.dragging {
+  cursor: grabbing;
+}
+
+.attach-modal-pdf {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+.attach-modal-pre {
+  margin: 0;
+  width: 100%;
+  padding: 14px 16px;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
-  max-height: 4.4em;
-  overflow: hidden;
-  opacity: 0.9;
 }
 
-.attach-thumb {
-  height: 20px;
-  width: 20px;
-  object-fit: cover;
-  border-radius: 4px;
+.attach-modal-empty {
+  align-self: center;
+  margin: auto;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 24px;
 }
 
 .attach-remove {

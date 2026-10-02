@@ -64,7 +64,11 @@ func (s *Server) handleAttachGet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.URL.Query().Get("snippet") == "1" {
-		serveAttachSnippet(w, a, data)
+		s.serveAttachSnippet(w, claims.Username, a)
+		return
+	}
+	if r.URL.Query().Get("text") == "1" {
+		s.serveAttachText(w, claims.Username, a)
 		return
 	}
 	// P0-D : vignette legerer, generee a la demande et mise en sidecar.
@@ -81,6 +85,11 @@ func (s *Server) handleAttachGet(w http.ResponseWriter, r *http.Request) {
 		ct = "application/octet-stream"
 	}
 	w.Header().Set("Content-Type", ct)
+	if r.URL.Query().Get("download") == "1" {
+		w.Header().Set("Content-Disposition", `attachment; filename="`+safeName(a.Name)+`"`)
+		_, _ = w.Write(data)
+		return
+	}
 	if a.Kind == attach.KindImage {
 		// Image pleine : inline, mais jamais rendue dans l'origine (le
 		// blob est recupere par fetch et affiche via object URL).
@@ -94,20 +103,52 @@ func (s *Server) handleAttachGet(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write(data)
 }
 
+// attachTextMaxBytes : borne du texte servi au modal (alignee sur docs.maxText).
+const attachTextMaxBytes = 512 << 10
+
 // serveAttachSnippet renvoie le debut du texte extrait d'une piece jointe
-// non-image (apercu dans le chip). Les images utilisent ?thumb=1.
-func serveAttachSnippet(w http.ResponseWriter, a attach.Attachment, data []byte) {
+// non-image (apercu 1 ligne dans le chip). Les images utilisent ?thumb=1.
+func (s *Server) serveAttachSnippet(w http.ResponseWriter, user string, a attach.Attachment) {
 	if attach.IsImage(a.Name) {
 		writeError(w, http.StatusBadRequest, "utiliser ?thumb=1 pour les images")
 		return
 	}
-	text, _, err := docs.Extract(a.Name, data)
-	if err != nil || strings.TrimSpace(text) == "" {
+	text, xerr := s.engine.AttachmentText(user, a)
+	if xerr != "" || strings.TrimSpace(text) == "" {
 		w.WriteHeader(http.StatusNoContent)
 		return
 	}
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	_, _ = w.Write([]byte(truncateRunesWeb(text, 600)))
+}
+
+// serveAttachText renvoie le texte extrait complet (borne) pour le modal de
+// contenu. Cache memoire + sidecar .txt cote moteur. Les images/PDF binaires
+// n'ont pas de texte : le client affiche l'image ou l'iframe selon le kind.
+func (s *Server) serveAttachText(w http.ResponseWriter, user string, a attach.Attachment) {
+	if attach.IsImage(a.Name) {
+		writeError(w, http.StatusBadRequest, "utiliser l'image pour les images")
+		return
+	}
+	text, xerr := s.engine.AttachmentText(user, a)
+	if xerr != "" || strings.TrimSpace(text) == "" {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	_, _ = w.Write([]byte(capAttachTextBytes(text, attachTextMaxBytes)))
+}
+
+// capAttachTextBytes borne s a max octets (UTF-8-safe), marqueur si tronque.
+func capAttachTextBytes(s string, max int) string {
+	if max <= 0 || len(s) <= max {
+		return s
+	}
+	end := max
+	for end > 0 && s[end]&0xC0 == 0x80 {
+		end--
+	}
+	return s[:end] + "\n… [tronqué]"
 }
 
 // truncateRunesWeb coupe s a n runes (UTF-8-safe), avec ellipse si tronque.

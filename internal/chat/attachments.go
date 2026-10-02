@@ -111,6 +111,17 @@ func (e *Engine) DeleteAttachment(user, id string) error {
 	return e.attachments().Delete(user, id)
 }
 
+// AttachmentText : texte extrait d'une piece jointe (cache memoire puis
+// sidecar .txt puis extraction). Expose pour le modal de contenu (web).
+// Renvoie (texte, "" ) ou ("", message d'erreur).
+func (e *Engine) AttachmentText(user string, a attach.Attachment) (string, string) {
+	st := e.attachments()
+	if st == nil {
+		return "", "stockage indisponible"
+	}
+	return e.extractAttachmentText(st, user, a)
+}
+
 // extractAttachmentText : texte d'une piece jointe non-image, memoise (memoire
 // puis sidecar .txt puis extraction). Fail-open : une erreur est memorisee et
 // presentee a l'utilisateur, sans bloquer le tour.
