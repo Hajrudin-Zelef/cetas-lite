@@ -78,6 +78,9 @@ func runAgentTurn(t *testing.T, e *Engine, user string, in TurnInput) *Conversat
 	t.Helper()
 	in.User = user
 	in.AgentMode = true // les tests agent simulent le mode "Agent" de l'UI
+	if in.CtxMessage == "" && len(in.Attachments) > 0 {
+		in.CtxMessage = e.AttachmentContext(user, in.Attachments)
+	}
 	c := e.Conversation(user)
 	if err := c.StartTurn(in); err != nil {
 		t.Fatalf("StartTurn: %v", err)

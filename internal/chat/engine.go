@@ -38,6 +38,9 @@ type Engine struct {
 	attach      *attach.Store
 	caps        modelcaps.Map
 	sandboxMode string
+	// attachCache : cache memoire LRU des textes extraits de pieces jointes
+	// (P0-B). Zero-valeur utilisable.
+	attachCache attachTextCache
 
 	mu         sync.Mutex
 	families   []alias.Family
@@ -293,6 +296,14 @@ func (e *Engine) Regenerate(user string) error {
 		c.mu.Unlock()
 		return ErrNoTurn
 	}
+	// Retire le bloc PJ persiste du dernier tour (P0-C) s'il precede
+	// immediatement le message user rejoue : StartTurn le repose, evitant
+	// toute accumulation a la regeneration.
+	if idx > 0 {
+		if m := c.Messages[idx-1]; m.Role == "system" && isAttachmentContextMessage(m.Content) {
+			idx--
+		}
+	}
 	c.Messages = append([]provider.Message(nil), c.Messages[:idx]...)
 	cut := 0
 	for i := len(c.Log) - 1; i >= 0; i-- {
@@ -304,7 +315,7 @@ func (e *Engine) Regenerate(user string) error {
 	c.Log = append([]LogEvent(nil), c.Log[:cut]...)
 	c.epoch++
 	c.cond.Broadcast()
-	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, WebDepth: last.WebDepth, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, ProjectID: last.ProjectID, Attachments: last.Attachments, FocusCorpus: last.FocusCorpus}
+	in := TurnInput{User: user, Family: last.Family, Mode: last.Mode, Text: last.Text, Web: last.Web, WebDepth: last.WebDepth, MCP: last.MCP, Think: last.Think, Effort: last.Effort, Approve: last.Approve, Plan: last.Plan, Worktree: last.Worktree, Repo: last.Repo, ProjectID: last.ProjectID, Attachments: last.Attachments, FocusCorpus: last.FocusCorpus, CtxMessage: last.CtxMessage}
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)
@@ -507,6 +518,9 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 	if needsVision {
 		res.members = e.filterVision(res.members)
 		if len(res.members) == 0 {
+			// P0-E : alerte explicite et visible au tour (message systeme
+			// rendu par l'UI), sans silence ni appel provider.
+			c.appendDelta(epoch, map[string]any{"warning": "Image jointe : active un modele vision (Settings -> Capacites des modeles)."})
 			c.appendDelta(epoch, map[string]any{"error": "Aucun modele vision selectionne : declare un modele vision dans Settings -> Capacites des modeles."})
 			return
 		}
@@ -517,9 +531,10 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 		msgs = append([]provider.Message{mi}, msgs...)
 	}
 
-	if actx := e.attachmentContext(in.User, in.Attachments); actx != "" {
-		msgs = append([]provider.Message{{Role: "system", Content: actx}}, msgs...)
-	}
+	// Pièces jointes texte (P0-C) : le bloc est persisté dans l'historique
+	// par StartTurn (avant Run) comme message system, donc déjà présent dans
+	// msgs (MessagesSnapshot). Ne PAS le réinjecter ici : ce serait un
+	// doublon. Regenerate le retire puis StartTurn le repose.
 
 	// Base documentaire locale : extraits pertinents injectes avant l'appel
 	// modele (fail-open : absente ou vide, rien n'est ajoute). Le resultat

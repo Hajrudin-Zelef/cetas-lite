@@ -32,4 +32,6 @@ type snapshotTurn struct {
 	ProjectID   string   `json:"project_id,omitempty"`
 	Attachments []string `json:"attachments,omitempty"`
 	FocusCorpus string   `json:"focus_corpus,omitempty"`
+	// ctxMessage : bloc PJ persistant du tour (P0-C), rejoué par Regenerate.
+	CtxMessage string
 }

@@ -75,6 +75,56 @@ func TestSizeLimitAndName(t *testing.T) {
 	}
 }
 
+// TestSidecarAndPurge : les sidecars derives (.txt, .thumb.jpg) sont ecrits,
+// relus, et purges avec la piece jointe (Delete et CleanOlderThan).
+func TestSidecarAndPurge(t *testing.T) {
+	s := New(t.TempDir(), 1<<20)
+	a, err := s.Save("sam", "doc.pdf", []byte("PDF"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := s.WriteSidecar("sam", a.ID, textSidecarExt, []byte("texte extrait")); err != nil {
+		t.Fatal(err)
+	}
+	if b, ok := s.ReadSidecar("sam", a.ID, textSidecarExt); !ok || string(b) != "texte extrait" {
+		t.Fatalf("sidecar texte = %q ok=%v", b, ok)
+	}
+	if err := s.WriteSidecar("sam", a.ID, thumbSidecarExt, []byte("JPEG")); err != nil {
+		t.Fatal(err)
+	}
+	dir, _ := s.userDir("sam")
+	if err := s.Delete("sam", a.ID); err != nil {
+		t.Fatal(err)
+	}
+	for _, suf := range []string{".json", ".pdf", textSidecarExt, thumbSidecarExt} {
+		if _, err := os.Stat(filepath.Join(dir, a.ID+suf)); err == nil {
+			t.Fatalf("sidecar/fichier %q doit etre purge par Delete", suf)
+		}
+	}
+}
+
+func TestCleanOlderThanPurgesSidecars(t *testing.T) {
+	s := New(t.TempDir(), 1<<20)
+	a, err := s.Save("sam", "vieux.md", []byte("vieux"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := s.WriteSidecar("sam", a.ID, textSidecarExt, []byte("t")); err != nil {
+		t.Fatal(err)
+	}
+	dir, _ := s.userDir("sam")
+	rawOld := `{"id":"` + a.ID + `","name":"vieux.md","kind":"text","ext":"md","size":5,"created":1}`
+	if err := os.WriteFile(filepath.Join(dir, a.ID+".json"), []byte(rawOld), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if n := s.CleanOlderThan(7 * 24 * time.Hour); n != 1 {
+		t.Fatalf("1 piece purgee attendue, obtenu %d", n)
+	}
+	if _, err := os.Stat(filepath.Join(dir, a.ID+textSidecarExt)); err == nil {
+		t.Fatal("le sidecar doit etre purge par CleanOlderThan")
+	}
+}
+
 // TestCleanOlderThan : seules les pièces jointes plus anciennes que maxAge
 // sont purgées (métadonnées + fichier), les récentes sont conservées.
 func TestCleanOlderThan(t *testing.T) {

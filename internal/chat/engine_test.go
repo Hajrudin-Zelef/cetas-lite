@@ -55,6 +55,9 @@ func codeFamily(pool ...alias.Member) []alias.Family {
 
 func runTurn(t *testing.T, e *Engine, user string, in TurnInput) *Conversation {
 	t.Helper()
+	if in.CtxMessage == "" && len(in.Attachments) > 0 {
+		in.CtxMessage = e.AttachmentContext(user, in.Attachments)
+	}
 	c := e.Conversation(user)
 	if err := c.StartTurn(in); err != nil {
 		t.Fatalf("StartTurn: %v", err)

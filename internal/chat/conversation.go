@@ -78,6 +78,20 @@ type TurnInput struct {
 	// l'historique brut ; la recalculer depuis msgs serait faux car
 	// msgs contient déjà les prompts système injectés.
 	PregenKey string
+	// CtxMessage est le bloc contextuel persistant propre au tour (P0-C :
+	// texte des pièces jointes). Posé dans l'historique avant le message
+	// user par StartTurn, puis injecté tel quel par Run. Transitoire : non
+	// sérialisé, reconstruit à chaque tour (Regenerate rejoue le bloc).
+	CtxMessage string
+}
+
+// attachmentContextPrefix : tête du message system portant les documents
+// joints (P0-C). Sert à reconnaître le bloc persisté pour l'anti-doublon.
+const attachmentContextPrefix = "Documents attached by the user"
+
+func isAttachmentContextMessage(content any) bool {
+	s, ok := content.(string)
+	return ok && strings.HasPrefix(s, attachmentContextPrefix)
 }
 
 // Bornes du reglage "tokens max par reponse".
@@ -152,8 +166,14 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	c.genStart = time.Now()
 	ctx, cancel := context.WithCancel(context.Background())
 	c.cancel = cancel
+	// P0-C : le texte des pièces jointes est persisté comme message system
+	// juste avant le message user, pour qu'il compte aux tours suivants.
+	// Garde-fou : jamais de doublon si une valeur traîne déjà en tête.
+	if in.CtxMessage != "" && !c.hasAttachmentContextLocked() {
+		c.Messages = append(c.Messages, provider.Message{Role: "system", Content: in.CtxMessage})
+	}
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
-	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, WebDepth: in.WebDepth, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments, FocusCorpus: in.FocusCorpus}
+	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, WebDepth: in.WebDepth, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments, FocusCorpus: in.FocusCorpus, CtxMessage: in.CtxMessage}
 	epoch := c.epoch
 	runner := c.runner
 	c.mu.Unlock()
@@ -221,6 +241,17 @@ func (c *Conversation) Reset() {
 	if c.persist != nil {
 		c.persist(c)
 	}
+}
+
+// hasAttachmentContextLocked : un bloc PJ est-il déjà présent dans
+// l'historique ? (appelant tient c.mu).
+func (c *Conversation) hasAttachmentContextLocked() bool {
+	for _, m := range c.Messages {
+		if m.Role == "system" && isAttachmentContextMessage(m.Content) {
+			return true
+		}
+	}
+	return false
 }
 
 func (c *Conversation) IsGenerating() bool {

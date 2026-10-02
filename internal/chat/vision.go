@@ -110,9 +110,10 @@ func (e *Engine) expandImageParts(msgs []provider.Message, user string, ids []st
 		if err != nil || a.Kind != attach.KindImage {
 			continue
 		}
+		encoded, mime := encodeImageForModel(data, a.Ext)
 		images = append(images, map[string]any{
 			"type":      "image_url",
-			"image_url": map[string]any{"url": "data:" + mimeFor(a.Ext) + ";base64," + base64.StdEncoding.EncodeToString(data)},
+			"image_url": map[string]any{"url": "data:" + mime + ";base64," + base64.StdEncoding.EncodeToString(encoded)},
 		})
 	}
 	if len(images) == 0 {
@@ -136,6 +137,15 @@ func (e *Engine) expandImageParts(msgs []provider.Message, user string, ids []st
 	out := append([]provider.Message(nil), msgs...)
 	out[idx].Content = parts
 	return out
+}
+
+// encodeImageForModel : redimensionne (grand cote 1024 px) et re-encode en
+// JPEG avant base64 (P1). Echec de decodage => image d'origine (fail-open).
+func encodeImageForModel(data []byte, ext string) ([]byte, string) {
+	if resized, err := resizeJPEG(data, visionImageMaxPx, visionJPEGQuality); err == nil {
+		return resized, "image/jpeg"
+	}
+	return data, mimeFor(ext)
 }
 
 func mimeFor(ext string) string {

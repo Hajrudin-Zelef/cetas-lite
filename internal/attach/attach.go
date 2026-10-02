@@ -117,7 +117,46 @@ func (s *Store) Delete(user, id string) error {
 	}
 	_ = os.Remove(filepath.Join(dir, id+".json"))
 	_ = os.Remove(filepath.Join(dir, id+"."+a.Ext))
+	_ = os.Remove(filepath.Join(dir, id+textSidecarExt))
+	_ = os.Remove(filepath.Join(dir, id+thumbSidecarExt))
 	return nil
+}
+
+// textSidecarExt / thumbSidecarExt : suffixes des caches derives (texte
+// extrait, vignette). Jamais servis comme pieces jointes (listes par .json).
+const (
+	textSidecarExt  = ".txt"
+	thumbSidecarExt = ".thumb.jpg"
+)
+
+// ReadSidecar renvoie le contenu d'un sidecar derive (fail-open : absent ou
+// illisible => ok=false, l'appelant re-genere).
+func (s *Store) ReadSidecar(user, id, suffix string) ([]byte, bool) {
+	if s == nil || !safeID(id) {
+		return nil, false
+	}
+	dir, err := s.userDir(user)
+	if err != nil {
+		return nil, false
+	}
+	b, err := os.ReadFile(filepath.Join(dir, id+suffix))
+	if err != nil {
+		return nil, false
+	}
+	return b, true
+}
+
+// WriteSidecar persiste un cache derive. Best-effort : une erreur d'ecriture
+// n'invalide pas la piece jointe (le prochain acces re-generera).
+func (s *Store) WriteSidecar(user, id, suffix string, data []byte) error {
+	if s == nil || !safeID(id) {
+		return errors.New("identifiant invalide")
+	}
+	dir, err := s.userDir(user)
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(filepath.Join(dir, id+suffix), data, 0o600)
 }
 
 // CleanOlderThan supprime les pièces jointes (métadonnées + fichier)
@@ -157,8 +196,11 @@ func (s *Store) CleanOlderThan(maxAge time.Duration) int {
 			if err := json.Unmarshal(raw, &a); err != nil || a.Created >= cutoff {
 				continue
 			}
+			base := strings.TrimSuffix(name, ".json")
 			_ = os.Remove(filepath.Join(dir, name))
-			_ = os.Remove(filepath.Join(dir, strings.TrimSuffix(name, ".json")+"."+a.Ext))
+			_ = os.Remove(filepath.Join(dir, base+"."+a.Ext))
+			_ = os.Remove(filepath.Join(dir, base+textSidecarExt))
+			_ = os.Remove(filepath.Join(dir, base+thumbSidecarExt))
 			removed++
 		}
 	}

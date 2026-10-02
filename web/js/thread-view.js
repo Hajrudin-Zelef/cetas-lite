@@ -2562,6 +2562,10 @@ export class ThreadView {
       this.addSystem(String(ev.system));
       return;
     }
+    if (ev.warning !== undefined) {
+      this.addSystem("⚠️ " + String(ev.warning));
+      return;
+    }
     if (ev.route !== undefined) {
       const r = ev.route || {};
       this.turnRoute = r;

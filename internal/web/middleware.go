@@ -58,7 +58,7 @@ func withSecurityHeaders(next http.Handler) http.Handler {
 		h.Set("X-Frame-Options", "DENY")
 		h.Set("Content-Security-Policy",
 			"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "+
-				"img-src 'self' data:; connect-src 'self'; "+
+				"img-src 'self' data: blob:; connect-src 'self'; "+
 				"frame-ancestors 'none'; base-uri 'self'; form-action 'self'")
 		h.Set("Cache-Control", "no-cache")
 		next.ServeHTTP(w, r)

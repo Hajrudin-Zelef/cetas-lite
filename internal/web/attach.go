@@ -62,12 +62,30 @@ func (s *Server) handleAttachGet(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusNotFound, "piece jointe introuvable")
 		return
 	}
+	// P0-D : vignette legerer, generee a la demande et mise en sidecar.
+	if r.URL.Query().Get("thumb") == "1" && a.Kind == attach.KindImage {
+		if thumb, ok := s.engine.AttachmentThumb(claims.Username, a, data); ok {
+			w.Header().Set("Content-Type", "image/jpeg")
+			w.Header().Set("Content-Disposition", `inline; filename="`+safeName(a.Name)+`.thumb.jpg"`)
+			_, _ = w.Write(thumb)
+			return
+		}
+	}
 	ct := mime.TypeByExtension("." + a.Ext)
 	if ct == "" {
 		ct = "application/octet-stream"
 	}
 	w.Header().Set("Content-Type", ct)
-	w.Header().Set("Content-Disposition", `inline; filename="`+safeName(a.Name)+`"`)
+	if a.Kind == attach.KindImage {
+		// Image pleine : inline, mais jamais rendue dans l'origine (le
+		// blob est recupere par fetch et affiche via object URL).
+		w.Header().Set("Content-Disposition", `inline; filename="`+safeName(a.Name)+`"`)
+	} else {
+		// Tout document non-image est un telechargement : jamais rendu
+		// inline dans le navigateur (mitige HTML/SVG/PDF actif).
+		w.Header().Set("Content-Disposition", `attachment; filename="`+safeName(a.Name)+`"`)
+		w.Header().Set("Content-Security-Policy", "sandbox")
+	}
 	_, _ = w.Write(data)
 }
 

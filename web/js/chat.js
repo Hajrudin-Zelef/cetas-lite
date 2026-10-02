@@ -35,7 +35,7 @@ export function initChat() {
   async function thumbFor(id) {
     if (thumbCache[id]) return thumbCache[id];
     try {
-      const resp = await fetch("/api/chat/attach/" + encodeURIComponent(id), {
+      const resp = await fetch("/api/chat/attach/" + encodeURIComponent(id) + "?thumb=1", {
         headers: { Authorization: "Bearer " + getToken() },
       });
       if (!resp.ok) return "";
