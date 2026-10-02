@@ -38,6 +38,49 @@ func EnrichQueryWithHistory(query string, history []string) (string, []string) {
 	return query + " " + strings.Join(ents, " "), uniqueTerms(keys)
 }
 
+// StrongSubject : renvoie le sujet « fort » d'un message (groupe d'entites
+// contenant au moins un token a chiffre, sigle ou majuscule interieure —
+// ex. « Kimi K3 », « DeepSeek V4 », « GLM-5.2 »). Sert d'ancrage de
+// conversation : ce sujet persiste entre les tours et enrichit les questions
+// elliptiques (« il a combien de parametres ? »), meme si un chiffre isole
+// (« 2.8T ») apparait entre-temps. "" si aucun sujet fort.
+func StrongSubject(s string) string {
+	best := ""
+	for _, g := range entityGroups(s) {
+		for _, t := range strings.Fields(g) {
+			if isSubjectToken(t) {
+				// Retient le groupe le plus long porteur d'un token fort.
+				if len(g) > len(best) {
+					best = g
+				}
+				break
+			}
+		}
+	}
+	return best
+}
+
+// isSubjectToken : token « nom de sujet » — commence par une lettre et
+// porte un chiffre (K3, V4, GLM-5.2), un sigle (GPT), une majuscule
+// interieure (DeepSeek) ou des guillemets. Exclut les quantites purement
+// numeriques avec suffixe d'unite (« 2.8T », « 104b »), qui ne sont pas
+// des sujets.
+func isSubjectToken(t string) bool {
+	r := []rune(t)
+	if len(r) == 0 || !unicode.IsLetter(r[0]) {
+		return false
+	}
+	return hasDigit(t) || isQuoted(t) || hasInteriorUpper(t) || isAllUpper(t)
+}
+
+// HasStrongEntity : la requete porte un sujet « fort » (meme regle que
+// StrongSubject, mais sans exiger un groupe : un seul token suffit).
+func HasStrongEntity(q string) bool { return hasStrongEntity(q) }
+
+// LooksElliptical : la requete ressemble a une ellipse (pronom ou tres
+// courte) — cas ou un sujet doit etre repris de la conversation.
+func LooksElliptical(q string) bool { return looksElliptical(q) }
+
 // hasStrongEntity : la requete porte deja un sujet identifiable —
 // inutile de l'enrichir. Fort : token avec chiffre (k3, v3.2, 104b),
 // passage entre guillemets, camelCase (vLLM), ou mot capitalise (sauf
@@ -45,7 +88,9 @@ func EnrichQueryWithHistory(query string, history []string) (string, []string) {
 func hasStrongEntity(q string) bool {
 	toks := rawTokens(q)
 	for _, t := range toks {
-		if hasDigit(t) || isQuoted(t) || hasInteriorUpper(t) {
+		// isSubjectToken exclut les quantites purement numeriques (« 2.8T »),
+		// qui ne sont pas des sujets et ne doivent pas empecher l'ancrage.
+		if isSubjectToken(t) {
 			return true
 		}
 	}

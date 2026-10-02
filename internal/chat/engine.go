@@ -569,7 +569,7 @@ func (e *Engine) Run(ctx context.Context, c *Conversation, epoch int, in TurnInp
 			msgs = insertBeforeLastUser(msgs, provider.Message{Role: "system", Content: rc})
 		}
 	} else {
-		ragRes = e.ragHits(ctx, in.Text, ragHistory, localFam)
+		ragRes = e.ragHits(ctx, in.Text, ragHistory, localFam, c.RAGSubject())
 		budget := ragContextBudget
 		if localFam {
 			budget = ragContextBudgetLocal

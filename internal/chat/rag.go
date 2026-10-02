@@ -136,7 +136,7 @@ func formatRagHits(res rag.Result) string {
 // pre-traitement paye avant le premier token) et depot prefetch ignore
 // (ses resultats sont hybrides — servir autre chose que ce que le chemin
 // normal produirait fausserait le contrat).
-func (e *Engine) ragHits(ctx context.Context, query string, history []provider.Message, bm25Only bool) rag.Result {
+func (e *Engine) ragHits(ctx context.Context, query string, history []provider.Message, bm25Only bool, subject string) rag.Result {
 	rt := e.ragTools()
 	if rt == nil || !rt.Ready() || strings.TrimSpace(query) == "" {
 		return rag.Result{}
@@ -151,7 +151,24 @@ func (e *Engine) ragHits(ctx context.Context, query string, history []provider.M
 			hist = append(hist, s)
 		}
 	}
-	q, ents := rag.EnrichQueryWithHistory(query, hist)
+	// Sujet ancré : sur une question elliptique sans sujet fort, on reprend
+	// le sujet de conversation (« Kimi K3 ») même s'il a quitté les derniers
+	// messages. Prioritaire sur l'enrichissement par historique : il évite
+	// qu'un chiffre isolé du tour précédent (« 2.8T ») ne devienne le sujet.
+	q := query
+	var ents []string
+	anchored := false
+	if s := strings.TrimSpace(subject); s != "" && !rag.HasStrongEntity(query) && rag.LooksElliptical(query) {
+		q = query + " " + s
+		for _, g := range strings.Fields(s) {
+			ents = append(ents, strings.ToLower(g))
+		}
+		ents = uniqueStrings(ents)
+		anchored = true
+	}
+	if !anchored {
+		q, ents = rag.EnrichQueryWithHistory(query, hist)
+	}
 	if bm25Only {
 		if len(ents) > 0 {
 			return rt.SearchBoosted(ctx, q, boostMap(ents, entityBoostFactor), hits)
@@ -172,6 +189,20 @@ func (e *Engine) ragHits(ctx context.Context, query string, history []provider.M
 }
 
 // boostMap : facteur de boost par token d'entité (itération 6b).
+// uniqueStrings : dédoublonne en conservant l'ordre.
+func uniqueStrings(in []string) []string {
+	seen := make(map[string]bool, len(in))
+	out := in[:0]
+	for _, s := range in {
+		if s == "" || seen[s] {
+			continue
+		}
+		seen[s] = true
+		out = append(out, s)
+	}
+	return out
+}
+
 func boostMap(entities []string, factor float64) map[string]float64 {
 	m := make(map[string]float64, len(entities))
 	for _, t := range entities {

@@ -120,23 +120,23 @@ func TestRagExecuteUnavailable(t *testing.T) {
 
 func TestRagContextFailOpenAndBudget(t *testing.T) {
 	ctx := context.Background()
-	if _, ok := ragContextFrom(ragEngine(t, nil).ragHits(ctx, "q", nil, false), ragContextBudget); ok {
+	if _, ok := ragContextFrom(ragEngine(t, nil).ragHits(ctx, "q", nil, false, ""), ragContextBudget); ok {
 		t.Fatal("sans RAG: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: false}).ragHits(ctx, "q", nil, false), ragContextBudget); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: false}).ragHits(ctx, "q", nil, false, ""), ragContextBudget); ok {
 		t.Fatal("non pret: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "  ", nil, false), ragContextBudget); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "  ", nil, false, ""), ragContextBudget); ok {
 		t.Fatal("requete vide: ok attendu faux")
 	}
-	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "q", nil, false), ragContextBudget); ok {
+	if _, ok := ragContextFrom(ragEngine(t, fakeRag{ready: true}).ragHits(ctx, "q", nil, false, ""), ragContextBudget); ok {
 		t.Fatal("aucun hit: ok attendu faux")
 	}
 	// Porte de score : des hits faibles ne sont pas injectes.
 	weak := ragEngine(t, fakeRag{ready: true, hits: []rag.Hit{
 		{Title: "W", Path: "w.md", Excerpt: "extrait faible", Score: ragStrongScore - 0.1},
 	}})
-	if _, ok := ragContextFrom(weak.ragHits(ctx, "q", nil, false), ragContextBudget); ok {
+	if _, ok := ragContextFrom(weak.ragHits(ctx, "q", nil, false, ""), ragContextBudget); ok {
 		t.Fatal("hits faibles: ok attendu faux")
 	}
 
@@ -146,7 +146,7 @@ func TestRagContextFailOpenAndBudget(t *testing.T) {
 		{Title: "B", Path: "b.md", Excerpt: long, Score: ragStrongScore + 1},
 		{Title: "C", Path: "c.md", Excerpt: long, Score: ragStrongScore + 2},
 	}})
-	txt, ok := ragContextFrom(e.ragHits(ctx, "q", nil, false), ragContextBudget)
+	txt, ok := ragContextFrom(e.ragHits(ctx, "q", nil, false, ""), ragContextBudget)
 	if !ok {
 		t.Fatal("contexte attendu")
 	}
@@ -706,8 +706,10 @@ func TestRagNotCoveredNoteNatural(t *testing.T) {
 }
 
 // captureQueryRag : faux RagTools qui capture la requete envoyee a Search
-// et le boost (iteration 6b).
+// et le boost (iteration 6b). Le prefetch continu interroge l'index en
+// parallele du tour : les champs sont proteges par un mutex.
 type captureQueryRag struct {
+	mu    sync.Mutex
 	ready bool
 	query string
 	boost map[string]float64
@@ -715,9 +717,17 @@ type captureQueryRag struct {
 
 func (f *captureQueryRag) Ready() bool { return f.ready }
 
+func (f *captureQueryRag) snapshot() (string, map[string]float64) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	return f.query, f.boost
+}
+
 func (f *captureQueryRag) Search(_ context.Context, q string, _ int) rag.Result {
+	f.mu.Lock()
 	f.query = q
 	f.boost = nil
+	f.mu.Unlock()
 	return rag.Result{Ready: f.ready}
 }
 
@@ -730,14 +740,61 @@ func (f *captureQueryRag) SearchBoosted(_ context.Context, q string, boost map[s
 }
 
 func (f *captureQueryRag) SearchHybrid(_ context.Context, q string, boost map[string]float64, _ int) rag.Result {
+	f.mu.Lock()
 	f.query = q
 	f.boost = boost
+	f.mu.Unlock()
 	return rag.Result{Ready: f.ready}
 }
 
 func (f *captureQueryRag) Read(string, int, int) (string, error) { return "", nil }
 
 func (f *captureQueryRag) Stats() rag.Stats { return rag.Stats{Ready: f.ready} }
+
+// TestRagSubjectAnchoredAcrossTurns : le sujet fort du 1er tour (« Kimi K3 »)
+// reste ancré et enrichit la question elliptique du 3e tour, même si le 2e
+// tour ne porte aucun sujet fort (« 2.8T ça pique ») — le bug initial prenait
+// « 2.8T » comme sujet, ou ne reprenait rien du tout.
+func TestRagSubjectAnchoredAcrossTurns(t *testing.T) {
+	st, err := store.Open(filepath.Join(t.TempDir(), "anchor.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = st.Close() })
+	reg := provider.NewRegistry()
+	cp := &captureProvider{}
+	reg.Set(cp)
+	e := NewEngine(reg, nil, st, nil, t.TempDir())
+	e.SetRAG(&captureQueryRag{ready: true})
+	e.SetFamilies([]alias.Family{{
+		ID: "code", Label: "Code",
+		Modes: []alias.Mode{{ID: "standard", Pool: []alias.Member{{Provider: "cap", Model: "m"}}}},
+	}})
+	f := e.ragTools().(*captureQueryRag)
+	c := e.Conversation("u")
+	run := func(text string) {
+		if err := c.StartTurn(TurnInput{User: "u", Family: "code", Mode: "standard", Text: text}); err != nil {
+			t.Fatalf("StartTurn: %v", err)
+		}
+		waitFor(t, func() bool { return !c.IsGenerating() }, "tour non termine")
+	}
+	run("est ce que Kimi K3 est vraiment puissant ?")
+	if got := c.RAGSubject(); got != "Kimi K3" {
+		t.Fatalf("sujet ancré = %q, attendu %q", got, "Kimi K3")
+	}
+	run("il est pas mal mais 2.8T ca pique")
+	if got := c.RAGSubject(); got != "Kimi K3" {
+		t.Fatalf("le sujet ne doit pas être écrasé par un chiffre isolé: %q", got)
+	}
+	run("a propos il a combien de parametres ?")
+	gotQ, _ := f.snapshot()
+	if !strings.Contains(gotQ, "Kimi K3") {
+		t.Fatalf("le 3e tour doit reprendre le sujet ancré: %q", gotQ)
+	}
+	if strings.Contains(gotQ, "2.8T") || strings.Contains(gotQ, "8t") {
+		t.Fatalf("le sujet ancré ne doit pas être le chiffre isolé: %q", gotQ)
+	}
+}
 
 // TestRagHitsEnrichesEllipticalQuery : le tour principal enrichit les
 // requetes elliptiques avec le sujet de l'historique avant BM25
@@ -749,40 +806,44 @@ func TestRagHitsEnrichesEllipticalQuery(t *testing.T) {
 		{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"},
 		{Role: "assistant", Content: "Kimi K3 est le modèle de Moonshot AI."},
 	}
-	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", hist, false)
-	if !strings.Contains(f.query, "K3") {
-		t.Fatalf("requete non enrichie: %q", f.query)
+	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", hist, false, "")
+	q, boost := f.snapshot()
+	if !strings.Contains(q, "K3") {
+		t.Fatalf("requete non enrichie: %q", q)
 	}
 	// Iteration 6b : l'enrichissement declenche SearchHybrid avec les
 	// tokens d'entite et le facteur calibre. L'historique le plus recent
 	// (assistant) domine : groupes « K3 » + « Moonshot AI » — « Kimi » en
 	// debut de phrase n'est pas un marqueur d'entite (regle iter6 ; le
 	// message utilisateur seul produirait « Kimi K3 », cf. 2e cas).
-	if f.boost == nil {
+	if boost == nil {
 		t.Fatal("boost absent : la requete enrichie doit passer par SearchHybrid")
 	}
 	for _, k := range []string{"k3", "moonshot", "ai"} {
-		if f.boost[k] != entityBoostFactor {
-			t.Fatalf("boost[%q] = %v, attendu %v (boost=%v)", k, f.boost[k], entityBoostFactor, f.boost)
+		if boost[k] != entityBoostFactor {
+			t.Fatalf("boost[%q] = %v, attendu %v (boost=%v)", k, boost[k], entityBoostFactor, boost)
 		}
 	}
 	// Historique reduit au message utilisateur : le groupe complet est repris.
 	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?",
-		[]provider.Message{{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"}}, false)
-	if !strings.Contains(f.query, "Kimi K3") {
-		t.Fatalf("sujet utilisateur non repris: %q", f.query)
+		[]provider.Message{{Role: "user", Content: "Qu'est-ce que Kimi K3 et que vaut-il ?"}}, false, "")
+	q, _ = f.snapshot()
+	if !strings.Contains(q, "Kimi K3") {
+		t.Fatalf("sujet utilisateur non repris: %q", q)
 	}
-	e.ragHits(context.Background(), "parle-moi de Kimi K3", hist, false)
-	if strings.Contains(f.query, "Moonshot") {
-		t.Fatalf("requete porteuse d'entite enrichie a tort: %q", f.query)
+	e.ragHits(context.Background(), "parle-moi de Kimi K3", hist, false, "")
+	q, boost = f.snapshot()
+	if strings.Contains(q, "Moonshot") {
+		t.Fatalf("requete porteuse d'entite enrichie a tort: %q", q)
 	}
-	if f.boost != nil {
-		t.Fatalf("requête directe : boost inattendu %v (Search attendu)", f.boost)
+	if boost != nil {
+		t.Fatalf("requête directe : boost inattendu %v (Search attendu)", boost)
 	}
 	// Historique vide : fail-open, requete inchangee, sans boost.
-	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", nil, false)
-	if strings.Contains(f.query, "Kimi") || f.boost != nil {
-		t.Fatalf("enrichissement sans historique: %q boost=%v", f.query, f.boost)
+	e.ragHits(context.Background(), "on peut la faire tourner sur combien de cpu ?", nil, false, "")
+	q, boost = f.snapshot()
+	if strings.Contains(q, "Kimi") || boost != nil {
+		t.Fatalf("enrichissement sans historique: %q boost=%v", q, boost)
 	}
 }
 
@@ -814,11 +875,11 @@ func (r *recRag) SearchBoosted(ctx context.Context, q string, boost map[string]f
 func TestRagHitsLocalSkipsSemanticLeg(t *testing.T) {
 	rec := &recRag{RagTools: fakeRag{ready: true, hits: []rag.Hit{{Title: "h"}}}}
 	e := ragEngine(t, rec)
-	e.ragHits(context.Background(), "une question anodine", nil, true)
+	e.ragHits(context.Background(), "une question anodine", nil, true, "")
 	if rec.hybridCalls != 0 || rec.searchCalls != 1 {
 		t.Fatalf("local => BM25 seul attendu (search=%d hybrid=%d)", rec.searchCalls, rec.hybridCalls)
 	}
-	e.ragHits(context.Background(), "une question anodine", nil, false)
+	e.ragHits(context.Background(), "une question anodine", nil, false, "")
 	if rec.hybridCalls != 1 {
 		t.Fatalf("cloud => hybride attendu (hybrid=%d)", rec.hybridCalls)
 	}

@@ -108,6 +108,28 @@ func TestEnrichEntitiesKeys(t *testing.T) {
 	}
 }
 
+// TestStrongSubject : le sujet fort est le groupe porteur d'un token a
+// chiffre/sigle, pas un chiffre isole (« 2.8T ») ni un mot capitalise de
+// debut de phrase.
+func TestStrongSubject(t *testing.T) {
+	cases := []struct {
+		in   string
+		want string
+	}{
+		{"est ce que Kimi K3 est vraiment puissant ?", "Kimi K3"},
+		{"il est pas mal mais 2.8T ca pique", ""},
+		{"a propos il a combien de parametres ?", ""},
+		{"parle-moi de DeepSeek V4", "DeepSeek V4"},
+		{"et GLM-5.2 ?", "GLM-5.2"},
+		{"une phrase ordinaire sans sujet", ""},
+	}
+	for _, tc := range cases {
+		if got := StrongSubject(tc.in); got != tc.want {
+			t.Fatalf("StrongSubject(%q) = %q, attendu %q", tc.in, got, tc.want)
+		}
+	}
+}
+
 // TestEnrichQueryNoDuplicate : un sujet deja present dans la requete
 // n'est pas re-ajoute.
 func TestEnrichQueryNoDuplicate(t *testing.T) {

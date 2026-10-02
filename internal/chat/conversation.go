@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"cetas-lite/internal/provider"
+	"cetas-lite/internal/rag"
 )
 
 const maxLogEvents = 200000
@@ -151,6 +152,13 @@ type Conversation struct {
 
 	runner  Runner
 	persist func(c *Conversation)
+
+	// ragSubject : sujet ancré de la conversation (ex. « Kimi K3 »), repris
+	// pour enrichir les questions elliptiques (« il a combien de
+	// paramètres ? ») même quand le sujet n'est plus dans les derniers
+	// messages. Mis à jour à chaque tour dont le message porte un sujet
+	// fort ; remis à zéro par Reset. Protégé par mu.
+	ragSubject string
 }
 
 func NewConversation(id string, runner Runner, persist func(c *Conversation)) *Conversation {
@@ -188,6 +196,13 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 		c.Messages = append(c.Messages, provider.Message{Role: "system", Content: in.CtxMessage})
 	}
 	c.Messages = append(c.Messages, provider.Message{Role: "user", Content: in.Text})
+	// Ancrage du sujet : un message porteur d'un sujet fort (« Kimi K3 »)
+	// met à jour le sujet de conversation, repris ensuite pour enrichir les
+	// questions elliptiques même si le sujet a quitté les derniers messages.
+	// En focus corpus explicite, le corpus fait foi : pas d'ancrage.
+	if strings.TrimSpace(in.FocusCorpus) == "" {
+		c.setRAGSubject(in.Text)
+	}
 	c.lastTurn = &snapshotTurn{Family: in.Family, Mode: in.Mode, Text: in.Text, Web: in.Web, WebDepth: in.WebDepth, MCP: in.MCP, Think: in.Think, Effort: in.Effort, Approve: in.Approve, Plan: in.Plan, Worktree: in.Worktree, Repo: in.Repo, ProjectID: in.ProjectID, Attachments: in.Attachments, FocusCorpus: in.FocusCorpus, CtxMessage: in.CtxMessage}
 	epoch := c.epoch
 	runner := c.runner
@@ -254,10 +269,27 @@ func (c *Conversation) Reset() {
 	c.Generating = false
 	c.cancel = nil
 	c.lastTurn = nil
+	c.ragSubject = ""
 	c.cond.Broadcast()
 	c.mu.Unlock()
 	if c.persist != nil {
 		c.persist(c)
+	}
+}
+
+// RAGSubject rend le sujet ancré courant ("" si aucun).
+func (c *Conversation) RAGSubject() string {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return c.ragSubject
+}
+
+// setRAGSubject met à jour le sujet ancré si le message en porte un fort.
+// Un message sans sujet fort ne l'efface pas : le sujet persiste entre les
+// tours. Fonction pure vis-à-vis du verrou (appelée sous c.mu).
+func (c *Conversation) setRAGSubject(text string) {
+	if s := rag.StrongSubject(text); s != "" {
+		c.ragSubject = s
 	}
 }
 
