@@ -132,13 +132,15 @@ export function initChat() {
     for (const a of attachments) {
       const chip = el("div", "attach-chip-preview");
       const row = el("div", "attach-chip-row");
-      const img = el("img", "attach-thumb");
-      img.alt = a.name;
-      thumbFor(a.id).then((url) => {
-        if (url) img.src = url;
-        else img.remove();
-      });
-      row.appendChild(img);
+      if (a.kind === "image") {
+        const img = el("img", "attach-thumb");
+        img.alt = a.name;
+        thumbFor(a.id).then((url) => {
+          if (url) img.src = url;
+          else img.remove();
+        });
+        row.appendChild(img);
+      }
       row.appendChild(el("span", "attach-name", a.name));
       const rm = el("button", "attach-thumb-remove", "×");
       rm.type = "button";
