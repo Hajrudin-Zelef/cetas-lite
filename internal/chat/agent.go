@@ -350,6 +350,9 @@ func (e *Engine) execParallelRun(ctx context.Context, c *Conversation, epoch int
 			if sp, ok := o.out.Meta["search_provider"]; ok {
 				toolDelta["search_provider"] = sp
 			}
+			if att, ok := o.out.Meta["attachment"]; ok {
+				toolDelta["attachment"] = att
+			}
 		}
 		c.appendDelta(epoch, map[string]any{"tool": toolDelta})
 	}
@@ -535,6 +538,9 @@ func (e *Engine) execSequentialCall(ctx context.Context, c *Conversation, epoch 
 		}
 		if sp, ok := out.Meta["search_provider"]; ok {
 			toolDelta["search_provider"] = sp
+		}
+		if att, ok := out.Meta["attachment"]; ok {
+			toolDelta["attachment"] = att
 		}
 	}
 	c.appendDelta(epoch, map[string]any{"tool": toolDelta})

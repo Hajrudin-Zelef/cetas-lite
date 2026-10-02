@@ -477,6 +477,81 @@
   opacity: 0.85;
 }
 
+/* Bouton « Enregistrer » à côté de « Copier » sur les blocs de code */
+.message-text pre {
+  position: relative;
+}
+
+.code-save-btn {
+  position: absolute;
+  top: 6px;
+  right: 62px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 1;
+}
+
+.message-text pre:hover .code-save-btn {
+  opacity: 1;
+}
+
+.code-save-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark .code-save-btn {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark .code-save-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Indicateur de lecture discret sur la carte (spinner + libellé) */
+.attach-reading {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  max-width: 100%;
+}
+
+.attach-spinner {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border: 1.5px solid var(--border-input);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: attach-spin 0.8s linear infinite;
+}
+
+@keyframes attach-spin {
+  to { transform: rotate(360deg); }
+}
+
+.msg-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.attach-card-inline {
+  width: 96px;
+}
+
 .attach-card-remove {
   position: absolute;
   top: -6px;

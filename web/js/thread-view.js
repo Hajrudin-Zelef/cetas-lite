@@ -282,12 +282,32 @@ function approvalDetail(tool, args) {
 // Libellé de statut façon OpenCode selon l'outil : "Writing command"
 // quand l'agent écrit une commande, "Preparing edit" quand il prépare une
 // modification. null = aucun statut particulier.
+// readSlice : suffixe de tranche d'une lecture ("[offset=50, limit=50]").
+// Vide si aucun bornage explicite n'est fourni (lecture complète).
+function readSlice(args) {
+  if (!args) return "";
+  const off = args.offset != null ? args.offset : null;
+  const lim = args.limit != null ? args.limit : null;
+  if (off == null && lim == null) return "";
+  const parts = [];
+  if (off != null) parts.push("offset=" + off);
+  if (lim != null) parts.push("limit=" + lim);
+  return " [" + parts.join(", ") + "]";
+}
+
 function agentStatusForTool(name, args) {
   if (name === "Bash" || name === "RunScript") return "Writing command";
   if (name === "Edit" || name === "Write") return "Preparing edit";
   // Phase 4 : progression en direct et en français pendant les lectures —
-  // "Lecture de X…" au lieu d'attendre le bloc final.
-  if (name === "Read" && args && args.file_path) return "Lecture de " + args.file_path + "…";
+  // "Lecture de X…" au lieu d'attendre le bloc final. Pour Read/rag_read,
+  // la tranche lue est précisée : "[offset=N, limit=L]" (lecture par
+  // morceaux sur les documents longs).
+  if (name === "Read" && args && args.file_path) {
+    return "Lecture de " + args.file_path + "…" + readSlice(args);
+  }
+  if (name === "rag_read" && args && args.path) {
+    return "Lecture de " + args.path + "…" + readSlice(args);
+  }
   if (name === "Ls") return "Liste des fichiers…";
   if (name === "Tree") return "Exploration de l'arborescence…";
   if (name === "Grep" && args && args.pattern) return "Recherche de « " + args.pattern + " »…";
@@ -1144,15 +1164,115 @@ export class ThreadView {
     }
   }
 
-  addUser(text) {
+  addUser(text, attachments) {
     this.clearEmpty();
     const wrapper = el("div", "message-wrapper message-wrapper-user");
     const bubble = el("div", "message message-user");
     bubble.appendChild(el("div", "message-text", text));
+    if (Array.isArray(attachments) && attachments.length) {
+      const box = el("div", "msg-attachments");
+      for (const a of attachments) box.appendChild(this.attachCard(a));
+      bubble.appendChild(box);
+    }
     wrapper.appendChild(bubble);
     this.log.appendChild(wrapper);
     this.toBottom();
     return wrapper;
+  }
+
+  // Carte de pièce jointe persistée dans le fil : icône/vignette, nom,
+  // cliquable (rouvre le modal). Le clic est délégué au chat via un hook
+  // global pour ne pas dupliquer la logique du modal ici.
+  attachCard(a) {
+    const card = el("div", "attach-card attach-card-inline");
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.title = a.name || "";
+    const thumb = el("div", "attach-card-thumb");
+    if (a.kind === "image") {
+      const img = el("img", "attach-card-img");
+      img.alt = a.name || "";
+      thumb.appendChild(img);
+      fetch("/api/chat/attach/" + encodeURIComponent(a.id) + "?thumb=1", {
+        headers: { Authorization: "Bearer " + getToken() },
+      })
+        .then((r) => (r.ok ? r.blob() : Promise.reject()))
+        .then((b) => {
+          img.src = URL.createObjectURL(b);
+        })
+        .catch(() => {});
+    } else {
+      thumb.textContent = "📄";
+    }
+    card.appendChild(thumb);
+    card.appendChild(el("span", "attach-card-name", a.name || ""));
+    const open = () => {
+      if (typeof window.cetasOpenAttachment === "function") window.cetasOpenAttachment(a);
+    };
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        open();
+      }
+    });
+    return card;
+  }
+
+  // Carte de fichier généré (chat général) : placée sous le message
+  // assistant qui contient le bloc de code enregistré.
+  addGeneratedCard(preEl, info) {
+    if (!info || !info.id) return;
+    let bubble = null;
+    if (preEl && preEl.closest) {
+      bubble = preEl.closest(".message-wrapper-assistant");
+    }
+    if (!bubble) {
+      const last = this.log.querySelector(":scope > .message-wrapper-assistant:last-of-type");
+      bubble = last || this.log;
+    }
+    const target = bubble.querySelector(".message-assistant") || bubble;
+    let box = target.querySelector(".msg-attachments.msg-attachments-generated");
+    if (!box) {
+      box = el("div", "msg-attachments msg-attachments-generated");
+      target.appendChild(box);
+    }
+    box.appendChild(this.attachCard(info));
+    this.toBottom();
+  }
+
+  // Ajoute les cartes de pièces jointes dans une bulle user déjà affichée
+  // (écho optimiste confirmé par le delta serveur).
+  attachCardsToUser(wrapper, attachments) {
+    if (!Array.isArray(attachments) || !attachments.length) return;
+    const bubble = wrapper.querySelector(".message-user");
+    if (!bubble || bubble.querySelector(".msg-attachments")) return;
+    const box = el("div", "msg-attachments");
+    for (const a of attachments) box.appendChild(this.attachCard(a));
+    bubble.appendChild(box);
+  }
+
+  // Indicateur de lecture discret : chaque carte du dernier message user
+  // affiche « Lecture du fichier… » / « Lecture de l'image… » + spinner,
+  // jusqu'au premier signe de réponse du modèle.
+  markReading() {
+    const cards = this.log.querySelectorAll(
+      ":scope > .message-wrapper-user:last-of-type .attach-card"
+    );
+    cards.forEach((card) => {
+      if (card.querySelector(".attach-reading")) return;
+      const isImg = !!card.querySelector(".attach-card-img");
+      const ind = el("span", "attach-reading");
+      ind.appendChild(el("span", "attach-spinner"));
+      ind.appendChild(el("span", "", isImg ? "Lecture de l'image…" : "Lecture du fichier…"));
+      card.appendChild(ind);
+    });
+  }
+
+  clearReadingIndicators() {
+    this.log
+      .querySelectorAll(".attach-reading")
+      .forEach((n) => n.remove());
   }
 
   // Écho optimiste : affiche le message immédiatement à l'envoi, sans
@@ -1583,6 +1703,14 @@ export class ThreadView {
     if (det) det.classList.remove("running");
     // Fin d'exécution : le statut façon OpenCode disparaît.
     this.popAgentStatus(key);
+    // Fichier livré par l'agent (PresentFile) : carte cliquable dans le fil.
+    if (ev.attachment && ev.attachment.id) {
+      const box = el("div", "msg-attachments");
+      box.appendChild(this.attachCard(ev.attachment));
+      body.appendChild(box);
+      if (det) det.open = true;
+      this.requestFollow();
+    }
     // Fin d'une recherche web : l'indicateur disparaît.
     const isSearch = ev.name === "web_search" || ev.name === "web_fetch";
     const status = body.querySelector(".search-status");
@@ -2465,12 +2593,16 @@ export class ThreadView {
       // Déduplication de l'écho optimiste : le message a déjà été affiché
       // à l'envoi avec ce client_msg_id — on le confirme au lieu de le
       // dupliquer. Le reste du traitement du tour reste identique.
+      const atts = Array.isArray(ev.attachments) ? ev.attachments : null;
       if (ev.client_msg_id && ev.client_msg_id === this.pendingUserId) {
         this.pendingUserId = null;
         const opt = this.log.querySelector(
           ':scope > .message-wrapper-user[data-optimistic="1"]'
         );
-        if (opt) opt.removeAttribute("data-optimistic");
+        if (opt) {
+          opt.removeAttribute("data-optimistic");
+          this.attachCardsToUser(opt, atts);
+        }
       } else {
         const text = String(ev.user);
         // F16 : cas limite — le delta "user" du serveur arrive sans
@@ -2483,10 +2615,14 @@ export class ThreadView {
         if (opt && optText && optText.textContent === text) {
           this.pendingUserId = ev.client_msg_id || null;
           opt.removeAttribute("data-optimistic");
+          this.attachCardsToUser(opt, atts);
         } else {
-          this.addUser(text);
+          this.addUser(text, atts);
         }
       }
+      // Spinner de lecture sur les cartes du tour courant, retiré dès le
+      // premier signe de réponse (route/contenu) — voir clearReadingIndicators.
+      this.markReading();
       this.turnStartTs = Date.now();
       this.turnStats = null;
       this.turnRoute = null;
@@ -2508,6 +2644,7 @@ export class ThreadView {
       return;
     }
     if (ev.content !== undefined) {
+      this.clearReadingIndicators();
       this.appendContent(String(ev.content), ev.replace === true);
       return;
     }
@@ -2593,6 +2730,7 @@ export class ThreadView {
       return;
     }
     if (ev.turn_done !== undefined) {
+      this.clearReadingIndicators();
       const td = ev.turn_done || {};
       if (td.elapsed_ms != null) this.turnElapsedMs = td.elapsed_ms;
       this.finishTurn();

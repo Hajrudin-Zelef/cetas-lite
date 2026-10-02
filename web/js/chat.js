@@ -1,5 +1,6 @@
 import { api, getToken } from "./api.js";
 import { ThreadView, el } from "./thread-view.js";
+import { attachExtForLang } from "./markdown.js";
 import { currentSelection } from "./model-select.js";
 import { getFamilies, getMaxTokens, getFeaturePref, plusModelSubmenuContains, closePlusModelSubmenu } from "./model-select.js";
 import { initReasonPanel } from "./reasoning-panel.js";
@@ -311,6 +312,39 @@ export function initChat() {
     }
     amOverlay.style.display = "flex";
   }
+
+  // Hook global : le fil (thread-view) ouvre le modal d'une carte PJ sans
+  // connaître son implémentation.
+  window.cetasOpenAttachment = openAttachModal;
+
+  // Chat général : « Enregistrer » un bloc de code comme fichier. Le contenu
+  // devient une pièce jointe (store) rendue en carte cliquable sous le
+  // message assistant. Repli sur un téléchargement local en cas d'échec.
+  let saveSeq = 0;
+  window.cetasSaveCodeFile = async (text, lang, preEl) => {
+    const ext = attachExtForLang(lang);
+    saveSeq += 1;
+    const name = "reponse-" + saveSeq + "." + ext;
+    try {
+      const fd = new FormData();
+      fd.append("file", new File([text], name, { type: "text/plain" }));
+      const r = await fetch("/api/chat/attach", {
+        method: "POST",
+        headers: { Authorization: "Bearer " + getToken() },
+        body: fd,
+      });
+      if (!r.ok) throw new Error("upload " + r.status);
+      const info = await r.json();
+      if (typeof view.addGeneratedCard === "function") view.addGeneratedCard(preEl, info);
+    } catch {
+      const blob = new Blob([text], { type: "text/plain" });
+      const a = el("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+  };
 
   if (amClose) amClose.addEventListener("click", closeAttachModal);
   if (amOverlay) {

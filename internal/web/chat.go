@@ -57,7 +57,8 @@ func (s *Server) handleChatSend(w http.ResponseWriter, r *http.Request) {
 	// P0-C : le texte extrait des pièces jointes est construit ici (et non
 	// dans Run) pour être posé dans l'historique avant le message user.
 	actx := s.engine.AttachmentContext(claims.Username, body.Attachments)
-	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments, MaxTokens: maxTokens, FocusCorpus: body.FocusCorpus, PregenLookup: body.FocusCorpus != "" && settings.pregenEnabled(), CtxMessage: actx})
+	ainfos := s.engine.AttachmentInfos(claims.Username, body.Attachments)
+	err := c.StartTurn(chat.TurnInput{User: claims.Username, Family: body.Family, Mode: body.Mode, Text: body.Message, Web: body.Web, MCP: body.MCP, Think: body.Think, Effort: body.Effort, Approve: body.Approve, Plan: body.Plan, AgentMode: body.AgentMode, Worktree: body.Worktree, Repo: body.Repo, Attachments: body.Attachments, MaxTokens: maxTokens, FocusCorpus: body.FocusCorpus, PregenLookup: body.FocusCorpus != "" && settings.pregenEnabled(), CtxMessage: actx, AttachmentInfos: ainfos})
 	if errors.Is(err, chat.ErrBusy) {
 		writeError(w, http.StatusConflict, "generation en cours")
 		return

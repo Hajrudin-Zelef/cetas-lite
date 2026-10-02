@@ -77,6 +77,11 @@ func timedExecute(sb *Sandbox, name string, fn func() (ToolResult, *provider.Mes
 
 func (e *Engine) toolRegistry(in TurnInput, sb *Sandbox) toolRegistry {
 	families := []toolFamily{visionFamily{e: e, sb: sb}}
+	// PresentFile : livraison de fichiers (mode agent uniquement) — l'agent
+	// expose un fichier du workspace comme pièce jointe cliquable.
+	if in.AgentMode && e.attachments() != nil {
+		families = append(families, presentFamily{e: e, sb: sb})
+	}
 	if e.memoryTools() != nil {
 		families = append(families, memoryFamily{e: e})
 	}

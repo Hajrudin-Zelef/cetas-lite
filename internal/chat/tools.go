@@ -256,7 +256,7 @@ func ToolSchemas() []provider.Tool {
 // jusqu'a la carte d'approbation utilisateur.
 func requiredFields(name string) []string {
 	switch name {
-	case "Read", "Cat":
+	case "Read", "Cat", "PresentFile":
 		return []string{"file_path"}
 	case "Write":
 		return []string{"file_path", "content"}

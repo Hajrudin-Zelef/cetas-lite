@@ -111,6 +111,24 @@ func (e *Engine) DeleteAttachment(user, id string) error {
 	return e.attachments().Delete(user, id)
 }
 
+// AttachmentInfos : métadonnées (id, nom, kind) des pièces jointes, dans
+// l'ordre demandé. Les ids inconnus sont ignorés.
+func (e *Engine) AttachmentInfos(user string, ids []string) []AttachmentInfo {
+	st := e.attachments()
+	if st == nil || len(ids) == 0 {
+		return nil
+	}
+	out := make([]AttachmentInfo, 0, len(ids))
+	for _, id := range ids {
+		a, _, err := st.Get(user, id)
+		if err != nil {
+			continue
+		}
+		out = append(out, AttachmentInfo{ID: a.ID, Name: a.Name, Kind: a.Kind})
+	}
+	return out
+}
+
 // AttachmentText : texte extrait d'une piece jointe (cache memoire puis
 // sidecar .txt puis extraction). Expose pour le modal de contenu (web).
 // Renvoie (texte, "" ) ou ("", message d'erreur).

@@ -83,6 +83,18 @@ type TurnInput struct {
 	// user par StartTurn, puis injecté tel quel par Run. Transitoire : non
 	// sérialisé, reconstruit à chaque tour (Regenerate rejoue le bloc).
 	CtxMessage string
+	// AttachmentInfos : métadonnées des pièces jointes du tour (id, nom,
+	// kind) pour l'affichage persistant des cartes dans le fil. Rempli par
+	// l'appelant web (store), recopié dans le delta "user".
+	AttachmentInfos []AttachmentInfo
+}
+
+// AttachmentInfo : métadonnée minimale d'une pièce jointe affichée dans le
+// fil (carte cliquable), transmise au navigateur via le delta "user".
+type AttachmentInfo struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	Kind string `json:"kind"`
 }
 
 // attachmentContextPrefix : tête du message system portant les documents
@@ -184,6 +196,9 @@ func (c *Conversation) StartTurn(in TurnInput) error {
 	userDelta := map[string]any{"user": in.Text}
 	if id := strings.TrimSpace(in.ClientMsgID); id != "" {
 		userDelta["client_msg_id"] = id
+	}
+	if len(in.AttachmentInfos) > 0 {
+		userDelta["attachments"] = in.AttachmentInfos
 	}
 	c.appendDelta(epoch, userDelta)
 	if c.persist != nil {

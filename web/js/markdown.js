@@ -31,15 +31,22 @@ function wrapTables(root) {
   }
 }
 
+function codeLangOf(code) {
+  if (!code) return "";
+  const cls = code.className || "";
+  const m = cls.match(/language-([a-z0-9+#-]+)/i);
+  return m ? m[1].toLowerCase() : "";
+}
+
 function addCopyButtons(root) {
   for (const pre of root.querySelectorAll("pre")) {
     if (pre.querySelector(".code-copy-btn")) continue;
+    const code = pre.querySelector("code");
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "code-copy-btn";
     btn.textContent = "Copier";
     btn.addEventListener("click", () => {
-      const code = pre.querySelector("code");
       const text = code ? code.innerText : pre.innerText;
       if (!navigator.clipboard) return;
       navigator.clipboard.writeText(text).then(() => {
@@ -50,7 +57,49 @@ function addCopyButtons(root) {
       }).catch(() => {});
     });
     pre.appendChild(btn);
+
+    // Enregistrer le bloc comme fichier (chat général) : carte pièce jointe
+    // cliquable sous le message. Délégué au chat via un hook global ; repli
+    // sur un téléchargement local si le hook est absent.
+    if (code) {
+      const save = document.createElement("button");
+      save.type = "button";
+      save.className = "code-save-btn";
+      save.textContent = "Enregistrer";
+      save.addEventListener("click", () => {
+        const text = code.innerText;
+        const lang = codeLangOf(code);
+        if (typeof window.cetasSaveCodeFile === "function") {
+          window.cetasSaveCodeFile(text, lang, pre);
+        } else {
+          const blob = new Blob([text], { type: "text/plain" });
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "snippet." + attachExtForLang(lang);
+          a.click();
+          URL.revokeObjectURL(a.href);
+        }
+      });
+      pre.appendChild(save);
+    }
   }
+}
+
+// attachExtForLang : extension de fichier déduite du langage du bloc de code.
+// Langage inconnu -> txt.
+export function attachExtForLang(lang) {
+  const map = {
+    python: "py", py: "py", javascript: "js", js: "js", jsx: "jsx",
+    typescript: "ts", ts: "ts", tsx: "tsx", json: "json", bash: "sh",
+    sh: "sh", shell: "sh", zsh: "sh", yaml: "yml", yml: "yml", toml: "toml",
+    ini: "ini", markdown: "md", md: "md", csv: "csv", xml: "xml",
+    html: "html", css: "css", scss: "scss", sql: "sql", go: "go",
+    rust: "rs", java: "java", kotlin: "kt", c: "c", cpp: "cpp", csharp: "cs",
+    ruby: "rb", php: "php", swift: "swift", perl: "pl", lua: "lua",
+    r: "r", dart: "dart", scala: "scala", dockerfile: "dockerfile",
+    makefile: "mk", text: "txt", plaintext: "txt", diff: "diff",
+  };
+  return map[lang] || "txt";
 }
 
 export function renderInto(el, text) {
